@@ -53,7 +53,7 @@
 				<div class="readRevision initialhide"><label><span>Read Revision</span><input type="checkbox" disabled="disabled" checked="checked"/></label></div>
 				<div class="writeRevision initialhide"><label><span>Write Revision</span><select>
 <%
-	for (SProject sProject : loginManager.getService().getAllProjects()) {
+	for (SProject sProject : loginManager.getService().getAllProjects(true)) {
 %><option value="<%=sProject.getOid()%>"><%=sProject.getName() %></option><%
 	}
 %>

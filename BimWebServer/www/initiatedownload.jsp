@@ -27,7 +27,7 @@
 		if (data.has("sync") && data.getBoolean("sync")) {
 			sync = true;
 		}
-		int longActionId = -1;
+		long longActionId = -1;
 		String downloadType = data.getString("downloadType");
 		if (downloadType.equals("checkout")) {
 			longActionId = loginManager.getService().checkout(roid, serializerOid, sync);

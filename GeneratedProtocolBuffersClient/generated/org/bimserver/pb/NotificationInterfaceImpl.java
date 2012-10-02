@@ -8,1278 +8,13 @@ public final class NotificationInterfaceImpl {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  public interface SNewProjectNotificationOrBuilder
+  public interface NewLogActionRequestOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional int64 oid = 1;
-    boolean hasOid();
-    long getOid();
-    
-    // optional int64 projectId = 2;
-    boolean hasProjectId();
-    long getProjectId();
-  }
-  public static final class SNewProjectNotification extends
-      com.google.protobuf.GeneratedMessage
-      implements SNewProjectNotificationOrBuilder {
-    // Use SNewProjectNotification.newBuilder() to construct.
-    private SNewProjectNotification(Builder builder) {
-      super(builder);
-    }
-    private SNewProjectNotification(boolean noInit) {}
-    
-    private static final SNewProjectNotification defaultInstance;
-    public static SNewProjectNotification getDefaultInstance() {
-      return defaultInstance;
-    }
-    
-    public SNewProjectNotification getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-    
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_SNewProjectNotification_descriptor;
-    }
-    
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_SNewProjectNotification_fieldAccessorTable;
-    }
-    
-    private int bitField0_;
-    // optional int64 oid = 1;
-    public static final int OID_FIELD_NUMBER = 1;
-    private long oid_;
-    public boolean hasOid() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    public long getOid() {
-      return oid_;
-    }
-    
-    // optional int64 projectId = 2;
-    public static final int PROJECTID_FIELD_NUMBER = 2;
-    private long projectId_;
-    public boolean hasProjectId() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    public long getProjectId() {
-      return projectId_;
-    }
-    
-    private void initFields() {
-      oid_ = 0L;
-      projectId_ = 0L;
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-      
-      memoizedIsInitialized = 1;
-      return true;
-    }
-    
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt64(1, oid_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt64(2, projectId_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-    
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, oid_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, projectId_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-    
-    @java.lang.Override
-    protected Object writeReplace() throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-    
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
-    }
-    
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-    
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotificationOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_SNewProjectNotification_descriptor;
-      }
-      
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_SNewProjectNotification_fieldAccessorTable;
-      }
-      
-      // Construct using org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-      
-      private Builder(BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-      
-      public Builder clear() {
-        super.clear();
-        oid_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        projectId_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        return this;
-      }
-      
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-      
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.getDescriptor();
-      }
-      
-      public org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification getDefaultInstanceForType() {
-        return org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.getDefaultInstance();
-      }
-      
-      public org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification build() {
-        org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-      
-      private org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification buildParsed()
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(
-            result).asInvalidProtocolBufferException();
-        }
-        return result;
-      }
-      
-      public org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification buildPartial() {
-        org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification result = new org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.oid_ = oid_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.projectId_ = projectId_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-      
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification) {
-          return mergeFrom((org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-      
-      public Builder mergeFrom(org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification other) {
-        if (other == org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.getDefaultInstance()) return this;
-        if (other.hasOid()) {
-          setOid(other.getOid());
-        }
-        if (other.hasProjectId()) {
-          setProjectId(other.getProjectId());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-      
-      public final boolean isInitialized() {
-        return true;
-      }
-      
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
-        while (true) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
-              onChanged();
-              return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                onChanged();
-                return this;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              oid_ = input.readInt64();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              projectId_ = input.readInt64();
-              break;
-            }
-          }
-        }
-      }
-      
-      private int bitField0_;
-      
-      // optional int64 oid = 1;
-      private long oid_ ;
-      public boolean hasOid() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      public long getOid() {
-        return oid_;
-      }
-      public Builder setOid(long value) {
-        bitField0_ |= 0x00000001;
-        oid_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearOid() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        oid_ = 0L;
-        onChanged();
-        return this;
-      }
-      
-      // optional int64 projectId = 2;
-      private long projectId_ ;
-      public boolean hasProjectId() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      public long getProjectId() {
-        return projectId_;
-      }
-      public Builder setProjectId(long value) {
-        bitField0_ |= 0x00000002;
-        projectId_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearProjectId() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        projectId_ = 0L;
-        onChanged();
-        return this;
-      }
-      
-      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.SNewProjectNotification)
-    }
-    
-    static {
-      defaultInstance = new SNewProjectNotification(true);
-      defaultInstance.initFields();
-    }
-    
-    // @@protoc_insertion_point(class_scope:org.bimserver.pb.SNewProjectNotification)
-  }
-  
-  public interface NewProjectRequestOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
-    
-    // optional .org.bimserver.pb.SNewProjectNotification newProjectNotification = 1;
-    boolean hasNewProjectNotification();
-    org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification getNewProjectNotification();
-    org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotificationOrBuilder getNewProjectNotificationOrBuilder();
-  }
-  public static final class NewProjectRequest extends
-      com.google.protobuf.GeneratedMessage
-      implements NewProjectRequestOrBuilder {
-    // Use NewProjectRequest.newBuilder() to construct.
-    private NewProjectRequest(Builder builder) {
-      super(builder);
-    }
-    private NewProjectRequest(boolean noInit) {}
-    
-    private static final NewProjectRequest defaultInstance;
-    public static NewProjectRequest getDefaultInstance() {
-      return defaultInstance;
-    }
-    
-    public NewProjectRequest getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-    
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_NewProjectRequest_descriptor;
-    }
-    
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_NewProjectRequest_fieldAccessorTable;
-    }
-    
-    private int bitField0_;
-    // optional .org.bimserver.pb.SNewProjectNotification newProjectNotification = 1;
-    public static final int NEWPROJECTNOTIFICATION_FIELD_NUMBER = 1;
-    private org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification newProjectNotification_;
-    public boolean hasNewProjectNotification() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    public org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification getNewProjectNotification() {
-      return newProjectNotification_;
-    }
-    public org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotificationOrBuilder getNewProjectNotificationOrBuilder() {
-      return newProjectNotification_;
-    }
-    
-    private void initFields() {
-      newProjectNotification_ = org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.getDefaultInstance();
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-      
-      memoizedIsInitialized = 1;
-      return true;
-    }
-    
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeMessage(1, newProjectNotification_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-    
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, newProjectNotification_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-    
-    @java.lang.Override
-    protected Object writeReplace() throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-    
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
-    }
-    
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-    
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_NewProjectRequest_descriptor;
-      }
-      
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_NewProjectRequest_fieldAccessorTable;
-      }
-      
-      // Construct using org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-      
-      private Builder(BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getNewProjectNotificationFieldBuilder();
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-      
-      public Builder clear() {
-        super.clear();
-        if (newProjectNotificationBuilder_ == null) {
-          newProjectNotification_ = org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.getDefaultInstance();
-        } else {
-          newProjectNotificationBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000001);
-        return this;
-      }
-      
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-      
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest.getDescriptor();
-      }
-      
-      public org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest getDefaultInstanceForType() {
-        return org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest.getDefaultInstance();
-      }
-      
-      public org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest build() {
-        org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-      
-      private org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest buildParsed()
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(
-            result).asInvalidProtocolBufferException();
-        }
-        return result;
-      }
-      
-      public org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest buildPartial() {
-        org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest result = new org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        if (newProjectNotificationBuilder_ == null) {
-          result.newProjectNotification_ = newProjectNotification_;
-        } else {
-          result.newProjectNotification_ = newProjectNotificationBuilder_.build();
-        }
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-      
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest) {
-          return mergeFrom((org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-      
-      public Builder mergeFrom(org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest other) {
-        if (other == org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest.getDefaultInstance()) return this;
-        if (other.hasNewProjectNotification()) {
-          mergeNewProjectNotification(other.getNewProjectNotification());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-      
-      public final boolean isInitialized() {
-        return true;
-      }
-      
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
-        while (true) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
-              onChanged();
-              return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                onChanged();
-                return this;
-              }
-              break;
-            }
-            case 10: {
-              org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.Builder subBuilder = org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.newBuilder();
-              if (hasNewProjectNotification()) {
-                subBuilder.mergeFrom(getNewProjectNotification());
-              }
-              input.readMessage(subBuilder, extensionRegistry);
-              setNewProjectNotification(subBuilder.buildPartial());
-              break;
-            }
-          }
-        }
-      }
-      
-      private int bitField0_;
-      
-      // optional .org.bimserver.pb.SNewProjectNotification newProjectNotification = 1;
-      private org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification newProjectNotification_ = org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification, org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.Builder, org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotificationOrBuilder> newProjectNotificationBuilder_;
-      public boolean hasNewProjectNotification() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      public org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification getNewProjectNotification() {
-        if (newProjectNotificationBuilder_ == null) {
-          return newProjectNotification_;
-        } else {
-          return newProjectNotificationBuilder_.getMessage();
-        }
-      }
-      public Builder setNewProjectNotification(org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification value) {
-        if (newProjectNotificationBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          newProjectNotification_ = value;
-          onChanged();
-        } else {
-          newProjectNotificationBuilder_.setMessage(value);
-        }
-        bitField0_ |= 0x00000001;
-        return this;
-      }
-      public Builder setNewProjectNotification(
-          org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.Builder builderForValue) {
-        if (newProjectNotificationBuilder_ == null) {
-          newProjectNotification_ = builderForValue.build();
-          onChanged();
-        } else {
-          newProjectNotificationBuilder_.setMessage(builderForValue.build());
-        }
-        bitField0_ |= 0x00000001;
-        return this;
-      }
-      public Builder mergeNewProjectNotification(org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification value) {
-        if (newProjectNotificationBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001) &&
-              newProjectNotification_ != org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.getDefaultInstance()) {
-            newProjectNotification_ =
-              org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.newBuilder(newProjectNotification_).mergeFrom(value).buildPartial();
-          } else {
-            newProjectNotification_ = value;
-          }
-          onChanged();
-        } else {
-          newProjectNotificationBuilder_.mergeFrom(value);
-        }
-        bitField0_ |= 0x00000001;
-        return this;
-      }
-      public Builder clearNewProjectNotification() {
-        if (newProjectNotificationBuilder_ == null) {
-          newProjectNotification_ = org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.getDefaultInstance();
-          onChanged();
-        } else {
-          newProjectNotificationBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000001);
-        return this;
-      }
-      public org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.Builder getNewProjectNotificationBuilder() {
-        bitField0_ |= 0x00000001;
-        onChanged();
-        return getNewProjectNotificationFieldBuilder().getBuilder();
-      }
-      public org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotificationOrBuilder getNewProjectNotificationOrBuilder() {
-        if (newProjectNotificationBuilder_ != null) {
-          return newProjectNotificationBuilder_.getMessageOrBuilder();
-        } else {
-          return newProjectNotification_;
-        }
-      }
-      private com.google.protobuf.SingleFieldBuilder<
-          org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification, org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.Builder, org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotificationOrBuilder> 
-          getNewProjectNotificationFieldBuilder() {
-        if (newProjectNotificationBuilder_ == null) {
-          newProjectNotificationBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification, org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.Builder, org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotificationOrBuilder>(
-                  newProjectNotification_,
-                  getParentForChildren(),
-                  isClean());
-          newProjectNotification_ = null;
-        }
-        return newProjectNotificationBuilder_;
-      }
-      
-      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.NewProjectRequest)
-    }
-    
-    static {
-      defaultInstance = new NewProjectRequest(true);
-      defaultInstance.initFields();
-    }
-    
-    // @@protoc_insertion_point(class_scope:org.bimserver.pb.NewProjectRequest)
-  }
-  
-  public interface SNewRevisionNotificationOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
-    
-    // optional int64 oid = 1;
-    boolean hasOid();
-    long getOid();
-    
-    // optional int64 projectId = 2;
-    boolean hasProjectId();
-    long getProjectId();
-    
-    // optional int64 revisionId = 3;
-    boolean hasRevisionId();
-    long getRevisionId();
-  }
-  public static final class SNewRevisionNotification extends
-      com.google.protobuf.GeneratedMessage
-      implements SNewRevisionNotificationOrBuilder {
-    // Use SNewRevisionNotification.newBuilder() to construct.
-    private SNewRevisionNotification(Builder builder) {
-      super(builder);
-    }
-    private SNewRevisionNotification(boolean noInit) {}
-    
-    private static final SNewRevisionNotification defaultInstance;
-    public static SNewRevisionNotification getDefaultInstance() {
-      return defaultInstance;
-    }
-    
-    public SNewRevisionNotification getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-    
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_SNewRevisionNotification_descriptor;
-    }
-    
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_SNewRevisionNotification_fieldAccessorTable;
-    }
-    
-    private int bitField0_;
-    // optional int64 oid = 1;
-    public static final int OID_FIELD_NUMBER = 1;
-    private long oid_;
-    public boolean hasOid() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    public long getOid() {
-      return oid_;
-    }
-    
-    // optional int64 projectId = 2;
-    public static final int PROJECTID_FIELD_NUMBER = 2;
-    private long projectId_;
-    public boolean hasProjectId() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    public long getProjectId() {
-      return projectId_;
-    }
-    
-    // optional int64 revisionId = 3;
-    public static final int REVISIONID_FIELD_NUMBER = 3;
-    private long revisionId_;
-    public boolean hasRevisionId() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    public long getRevisionId() {
-      return revisionId_;
-    }
-    
-    private void initFields() {
-      oid_ = 0L;
-      projectId_ = 0L;
-      revisionId_ = 0L;
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-      
-      memoizedIsInitialized = 1;
-      return true;
-    }
-    
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt64(1, oid_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt64(2, projectId_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt64(3, revisionId_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-    
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, oid_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, projectId_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(3, revisionId_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-    
-    @java.lang.Override
-    protected Object writeReplace() throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-    
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
-    }
-    
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-    
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotificationOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_SNewRevisionNotification_descriptor;
-      }
-      
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_SNewRevisionNotification_fieldAccessorTable;
-      }
-      
-      // Construct using org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-      
-      private Builder(BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-      
-      public Builder clear() {
-        super.clear();
-        oid_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        projectId_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        revisionId_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        return this;
-      }
-      
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-      
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.getDescriptor();
-      }
-      
-      public org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification getDefaultInstanceForType() {
-        return org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.getDefaultInstance();
-      }
-      
-      public org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification build() {
-        org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-      
-      private org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification buildParsed()
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(
-            result).asInvalidProtocolBufferException();
-        }
-        return result;
-      }
-      
-      public org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification buildPartial() {
-        org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification result = new org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.oid_ = oid_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.projectId_ = projectId_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.revisionId_ = revisionId_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-      
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification) {
-          return mergeFrom((org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-      
-      public Builder mergeFrom(org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification other) {
-        if (other == org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.getDefaultInstance()) return this;
-        if (other.hasOid()) {
-          setOid(other.getOid());
-        }
-        if (other.hasProjectId()) {
-          setProjectId(other.getProjectId());
-        }
-        if (other.hasRevisionId()) {
-          setRevisionId(other.getRevisionId());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-      
-      public final boolean isInitialized() {
-        return true;
-      }
-      
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
-        while (true) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
-              onChanged();
-              return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                onChanged();
-                return this;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              oid_ = input.readInt64();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              projectId_ = input.readInt64();
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
-              revisionId_ = input.readInt64();
-              break;
-            }
-          }
-        }
-      }
-      
-      private int bitField0_;
-      
-      // optional int64 oid = 1;
-      private long oid_ ;
-      public boolean hasOid() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      public long getOid() {
-        return oid_;
-      }
-      public Builder setOid(long value) {
-        bitField0_ |= 0x00000001;
-        oid_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearOid() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        oid_ = 0L;
-        onChanged();
-        return this;
-      }
-      
-      // optional int64 projectId = 2;
-      private long projectId_ ;
-      public boolean hasProjectId() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      public long getProjectId() {
-        return projectId_;
-      }
-      public Builder setProjectId(long value) {
-        bitField0_ |= 0x00000002;
-        projectId_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearProjectId() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        projectId_ = 0L;
-        onChanged();
-        return this;
-      }
-      
-      // optional int64 revisionId = 3;
-      private long revisionId_ ;
-      public boolean hasRevisionId() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      public long getRevisionId() {
-        return revisionId_;
-      }
-      public Builder setRevisionId(long value) {
-        bitField0_ |= 0x00000004;
-        revisionId_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearRevisionId() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        revisionId_ = 0L;
-        onChanged();
-        return this;
-      }
-      
-      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.SNewRevisionNotification)
-    }
-    
-    static {
-      defaultInstance = new SNewRevisionNotification(true);
-      defaultInstance.initFields();
-    }
-    
-    // @@protoc_insertion_point(class_scope:org.bimserver.pb.SNewRevisionNotification)
-  }
-  
-  public interface NewRevisionRequestOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
-    
-    // optional .org.bimserver.pb.SNewRevisionNotification newRevisionNotification = 1;
-    boolean hasNewRevisionNotification();
-    org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification getNewRevisionNotification();
-    org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotificationOrBuilder getNewRevisionNotificationOrBuilder();
+    // optional .org.bimserver.pb.SLogAction logAction = 1;
+    boolean hasLogAction();
+    org.bimserver.pb.ServiceInterfaceImpl.SLogAction getLogAction();
+    org.bimserver.pb.ServiceInterfaceImpl.SLogActionOrBuilder getLogActionOrBuilder();
     
     // optional .org.bimserver.pb.SToken token = 2;
     boolean hasToken();
@@ -1290,46 +25,46 @@ public final class NotificationInterfaceImpl {
     boolean hasApiUrl();
     String getApiUrl();
   }
-  public static final class NewRevisionRequest extends
+  public static final class NewLogActionRequest extends
       com.google.protobuf.GeneratedMessage
-      implements NewRevisionRequestOrBuilder {
-    // Use NewRevisionRequest.newBuilder() to construct.
-    private NewRevisionRequest(Builder builder) {
+      implements NewLogActionRequestOrBuilder {
+    // Use NewLogActionRequest.newBuilder() to construct.
+    private NewLogActionRequest(Builder builder) {
       super(builder);
     }
-    private NewRevisionRequest(boolean noInit) {}
+    private NewLogActionRequest(boolean noInit) {}
     
-    private static final NewRevisionRequest defaultInstance;
-    public static NewRevisionRequest getDefaultInstance() {
+    private static final NewLogActionRequest defaultInstance;
+    public static NewLogActionRequest getDefaultInstance() {
       return defaultInstance;
     }
     
-    public NewRevisionRequest getDefaultInstanceForType() {
+    public NewLogActionRequest getDefaultInstanceForType() {
       return defaultInstance;
     }
     
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_NewRevisionRequest_descriptor;
+      return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_NewLogActionRequest_descriptor;
     }
     
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_NewRevisionRequest_fieldAccessorTable;
+      return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_NewLogActionRequest_fieldAccessorTable;
     }
     
     private int bitField0_;
-    // optional .org.bimserver.pb.SNewRevisionNotification newRevisionNotification = 1;
-    public static final int NEWREVISIONNOTIFICATION_FIELD_NUMBER = 1;
-    private org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification newRevisionNotification_;
-    public boolean hasNewRevisionNotification() {
+    // optional .org.bimserver.pb.SLogAction logAction = 1;
+    public static final int LOGACTION_FIELD_NUMBER = 1;
+    private org.bimserver.pb.ServiceInterfaceImpl.SLogAction logAction_;
+    public boolean hasLogAction() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification getNewRevisionNotification() {
-      return newRevisionNotification_;
+    public org.bimserver.pb.ServiceInterfaceImpl.SLogAction getLogAction() {
+      return logAction_;
     }
-    public org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotificationOrBuilder getNewRevisionNotificationOrBuilder() {
-      return newRevisionNotification_;
+    public org.bimserver.pb.ServiceInterfaceImpl.SLogActionOrBuilder getLogActionOrBuilder() {
+      return logAction_;
     }
     
     // optional .org.bimserver.pb.SToken token = 2;
@@ -1378,7 +113,7 @@ public final class NotificationInterfaceImpl {
     }
     
     private void initFields() {
-      newRevisionNotification_ = org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.getDefaultInstance();
+      logAction_ = org.bimserver.pb.ServiceInterfaceImpl.SLogAction.getDefaultInstance();
       token_ = org.bimserver.pb.ServiceInterfaceImpl.SToken.getDefaultInstance();
       apiUrl_ = "";
     }
@@ -1387,6 +122,12 @@ public final class NotificationInterfaceImpl {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
       
+      if (hasLogAction()) {
+        if (!getLogAction().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -1395,7 +136,7 @@ public final class NotificationInterfaceImpl {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeMessage(1, newRevisionNotification_);
+        output.writeMessage(1, logAction_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeMessage(2, token_);
@@ -1414,7 +155,7 @@ public final class NotificationInterfaceImpl {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, newRevisionNotification_);
+          .computeMessageSize(1, logAction_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1434,41 +175,41 @@ public final class NotificationInterfaceImpl {
       return super.writeReplace();
     }
     
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest parseFrom(
+    public static org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest parseFrom(
+    public static org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest parseFrom(byte[] data)
+    public static org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest parseFrom(
+    public static org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest parseFrom(java.io.InputStream input)
+    public static org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest parseFrom(
+    public static org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest parseDelimitedFrom(java.io.InputStream input)
+    public static org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -1477,7 +218,7 @@ public final class NotificationInterfaceImpl {
         return null;
       }
     }
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest parseDelimitedFrom(
+    public static org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1488,12 +229,12 @@ public final class NotificationInterfaceImpl {
         return null;
       }
     }
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest parseFrom(
+    public static org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest parseFrom(
+    public static org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1503,7 +244,7 @@ public final class NotificationInterfaceImpl {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest prototype) {
+    public static Builder newBuilder(org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -1516,18 +257,18 @@ public final class NotificationInterfaceImpl {
     }
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequestOrBuilder {
+       implements org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_NewRevisionRequest_descriptor;
+        return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_NewLogActionRequest_descriptor;
       }
       
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_NewRevisionRequest_fieldAccessorTable;
+        return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_NewLogActionRequest_fieldAccessorTable;
       }
       
-      // Construct using org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest.newBuilder()
+      // Construct using org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1538,7 +279,7 @@ public final class NotificationInterfaceImpl {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getNewRevisionNotificationFieldBuilder();
+          getLogActionFieldBuilder();
           getTokenFieldBuilder();
         }
       }
@@ -1548,10 +289,10 @@ public final class NotificationInterfaceImpl {
       
       public Builder clear() {
         super.clear();
-        if (newRevisionNotificationBuilder_ == null) {
-          newRevisionNotification_ = org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.getDefaultInstance();
+        if (logActionBuilder_ == null) {
+          logAction_ = org.bimserver.pb.ServiceInterfaceImpl.SLogAction.getDefaultInstance();
         } else {
-          newRevisionNotificationBuilder_.clear();
+          logActionBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
         if (tokenBuilder_ == null) {
@@ -1571,24 +312,24 @@ public final class NotificationInterfaceImpl {
       
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest.getDescriptor();
+        return org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest.getDescriptor();
       }
       
-      public org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest getDefaultInstanceForType() {
-        return org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest.getDefaultInstance();
+      public org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest getDefaultInstanceForType() {
+        return org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest.getDefaultInstance();
       }
       
-      public org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest build() {
-        org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest result = buildPartial();
+      public org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest build() {
+        org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
       
-      private org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest buildParsed()
+      private org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest result = buildPartial();
+        org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(
             result).asInvalidProtocolBufferException();
@@ -1596,17 +337,17 @@ public final class NotificationInterfaceImpl {
         return result;
       }
       
-      public org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest buildPartial() {
-        org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest result = new org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest(this);
+      public org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest buildPartial() {
+        org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest result = new org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        if (newRevisionNotificationBuilder_ == null) {
-          result.newRevisionNotification_ = newRevisionNotification_;
+        if (logActionBuilder_ == null) {
+          result.logAction_ = logAction_;
         } else {
-          result.newRevisionNotification_ = newRevisionNotificationBuilder_.build();
+          result.logAction_ = logActionBuilder_.build();
         }
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
@@ -1626,18 +367,18 @@ public final class NotificationInterfaceImpl {
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest) {
-          return mergeFrom((org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest)other);
+        if (other instanceof org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest) {
+          return mergeFrom((org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
       
-      public Builder mergeFrom(org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest other) {
-        if (other == org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest.getDefaultInstance()) return this;
-        if (other.hasNewRevisionNotification()) {
-          mergeNewRevisionNotification(other.getNewRevisionNotification());
+      public Builder mergeFrom(org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest other) {
+        if (other == org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest.getDefaultInstance()) return this;
+        if (other.hasLogAction()) {
+          mergeLogAction(other.getLogAction());
         }
         if (other.hasToken()) {
           mergeToken(other.getToken());
@@ -1650,6 +391,12 @@ public final class NotificationInterfaceImpl {
       }
       
       public final boolean isInitialized() {
+        if (hasLogAction()) {
+          if (!getLogAction().isInitialized()) {
+            
+            return false;
+          }
+        }
         return true;
       }
       
@@ -1677,12 +424,12 @@ public final class NotificationInterfaceImpl {
               break;
             }
             case 10: {
-              org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.Builder subBuilder = org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.newBuilder();
-              if (hasNewRevisionNotification()) {
-                subBuilder.mergeFrom(getNewRevisionNotification());
+              org.bimserver.pb.ServiceInterfaceImpl.SLogAction.Builder subBuilder = org.bimserver.pb.ServiceInterfaceImpl.SLogAction.newBuilder();
+              if (hasLogAction()) {
+                subBuilder.mergeFrom(getLogAction());
               }
               input.readMessage(subBuilder, extensionRegistry);
-              setNewRevisionNotification(subBuilder.buildPartial());
+              setLogAction(subBuilder.buildPartial());
               break;
             }
             case 18: {
@@ -1705,94 +452,94 @@ public final class NotificationInterfaceImpl {
       
       private int bitField0_;
       
-      // optional .org.bimserver.pb.SNewRevisionNotification newRevisionNotification = 1;
-      private org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification newRevisionNotification_ = org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.getDefaultInstance();
+      // optional .org.bimserver.pb.SLogAction logAction = 1;
+      private org.bimserver.pb.ServiceInterfaceImpl.SLogAction logAction_ = org.bimserver.pb.ServiceInterfaceImpl.SLogAction.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification, org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.Builder, org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotificationOrBuilder> newRevisionNotificationBuilder_;
-      public boolean hasNewRevisionNotification() {
+          org.bimserver.pb.ServiceInterfaceImpl.SLogAction, org.bimserver.pb.ServiceInterfaceImpl.SLogAction.Builder, org.bimserver.pb.ServiceInterfaceImpl.SLogActionOrBuilder> logActionBuilder_;
+      public boolean hasLogAction() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification getNewRevisionNotification() {
-        if (newRevisionNotificationBuilder_ == null) {
-          return newRevisionNotification_;
+      public org.bimserver.pb.ServiceInterfaceImpl.SLogAction getLogAction() {
+        if (logActionBuilder_ == null) {
+          return logAction_;
         } else {
-          return newRevisionNotificationBuilder_.getMessage();
+          return logActionBuilder_.getMessage();
         }
       }
-      public Builder setNewRevisionNotification(org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification value) {
-        if (newRevisionNotificationBuilder_ == null) {
+      public Builder setLogAction(org.bimserver.pb.ServiceInterfaceImpl.SLogAction value) {
+        if (logActionBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          newRevisionNotification_ = value;
+          logAction_ = value;
           onChanged();
         } else {
-          newRevisionNotificationBuilder_.setMessage(value);
+          logActionBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000001;
         return this;
       }
-      public Builder setNewRevisionNotification(
-          org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.Builder builderForValue) {
-        if (newRevisionNotificationBuilder_ == null) {
-          newRevisionNotification_ = builderForValue.build();
+      public Builder setLogAction(
+          org.bimserver.pb.ServiceInterfaceImpl.SLogAction.Builder builderForValue) {
+        if (logActionBuilder_ == null) {
+          logAction_ = builderForValue.build();
           onChanged();
         } else {
-          newRevisionNotificationBuilder_.setMessage(builderForValue.build());
+          logActionBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000001;
         return this;
       }
-      public Builder mergeNewRevisionNotification(org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification value) {
-        if (newRevisionNotificationBuilder_ == null) {
+      public Builder mergeLogAction(org.bimserver.pb.ServiceInterfaceImpl.SLogAction value) {
+        if (logActionBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001) &&
-              newRevisionNotification_ != org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.getDefaultInstance()) {
-            newRevisionNotification_ =
-              org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.newBuilder(newRevisionNotification_).mergeFrom(value).buildPartial();
+              logAction_ != org.bimserver.pb.ServiceInterfaceImpl.SLogAction.getDefaultInstance()) {
+            logAction_ =
+              org.bimserver.pb.ServiceInterfaceImpl.SLogAction.newBuilder(logAction_).mergeFrom(value).buildPartial();
           } else {
-            newRevisionNotification_ = value;
+            logAction_ = value;
           }
           onChanged();
         } else {
-          newRevisionNotificationBuilder_.mergeFrom(value);
+          logActionBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000001;
         return this;
       }
-      public Builder clearNewRevisionNotification() {
-        if (newRevisionNotificationBuilder_ == null) {
-          newRevisionNotification_ = org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.getDefaultInstance();
+      public Builder clearLogAction() {
+        if (logActionBuilder_ == null) {
+          logAction_ = org.bimserver.pb.ServiceInterfaceImpl.SLogAction.getDefaultInstance();
           onChanged();
         } else {
-          newRevisionNotificationBuilder_.clear();
+          logActionBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
-      public org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.Builder getNewRevisionNotificationBuilder() {
+      public org.bimserver.pb.ServiceInterfaceImpl.SLogAction.Builder getLogActionBuilder() {
         bitField0_ |= 0x00000001;
         onChanged();
-        return getNewRevisionNotificationFieldBuilder().getBuilder();
+        return getLogActionFieldBuilder().getBuilder();
       }
-      public org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotificationOrBuilder getNewRevisionNotificationOrBuilder() {
-        if (newRevisionNotificationBuilder_ != null) {
-          return newRevisionNotificationBuilder_.getMessageOrBuilder();
+      public org.bimserver.pb.ServiceInterfaceImpl.SLogActionOrBuilder getLogActionOrBuilder() {
+        if (logActionBuilder_ != null) {
+          return logActionBuilder_.getMessageOrBuilder();
         } else {
-          return newRevisionNotification_;
+          return logAction_;
         }
       }
       private com.google.protobuf.SingleFieldBuilder<
-          org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification, org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.Builder, org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotificationOrBuilder> 
-          getNewRevisionNotificationFieldBuilder() {
-        if (newRevisionNotificationBuilder_ == null) {
-          newRevisionNotificationBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification, org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.Builder, org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotificationOrBuilder>(
-                  newRevisionNotification_,
+          org.bimserver.pb.ServiceInterfaceImpl.SLogAction, org.bimserver.pb.ServiceInterfaceImpl.SLogAction.Builder, org.bimserver.pb.ServiceInterfaceImpl.SLogActionOrBuilder> 
+          getLogActionFieldBuilder() {
+        if (logActionBuilder_ == null) {
+          logActionBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.bimserver.pb.ServiceInterfaceImpl.SLogAction, org.bimserver.pb.ServiceInterfaceImpl.SLogAction.Builder, org.bimserver.pb.ServiceInterfaceImpl.SLogActionOrBuilder>(
+                  logAction_,
                   getParentForChildren(),
                   isClean());
-          newRevisionNotification_ = null;
+          logAction_ = null;
         }
-        return newRevisionNotificationBuilder_;
+        return logActionBuilder_;
       }
       
       // optional .org.bimserver.pb.SToken token = 2;
@@ -1921,49 +668,84 @@ public final class NotificationInterfaceImpl {
         onChanged();
       }
       
-      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.NewRevisionRequest)
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.NewLogActionRequest)
     }
     
     static {
-      defaultInstance = new NewRevisionRequest(true);
+      defaultInstance = new NewLogActionRequest(true);
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:org.bimserver.pb.NewRevisionRequest)
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.NewLogActionRequest)
   }
   
-  public interface ServerHasStartedRequestOrBuilder
+  public interface ProgressRequestOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional int64 topicId = 1;
+    boolean hasTopicId();
+    long getTopicId();
+    
+    // optional .org.bimserver.pb.SLongActionState state = 2;
+    boolean hasState();
+    org.bimserver.pb.ServiceInterfaceImpl.SLongActionState getState();
+    org.bimserver.pb.ServiceInterfaceImpl.SLongActionStateOrBuilder getStateOrBuilder();
   }
-  public static final class ServerHasStartedRequest extends
+  public static final class ProgressRequest extends
       com.google.protobuf.GeneratedMessage
-      implements ServerHasStartedRequestOrBuilder {
-    // Use ServerHasStartedRequest.newBuilder() to construct.
-    private ServerHasStartedRequest(Builder builder) {
+      implements ProgressRequestOrBuilder {
+    // Use ProgressRequest.newBuilder() to construct.
+    private ProgressRequest(Builder builder) {
       super(builder);
     }
-    private ServerHasStartedRequest(boolean noInit) {}
+    private ProgressRequest(boolean noInit) {}
     
-    private static final ServerHasStartedRequest defaultInstance;
-    public static ServerHasStartedRequest getDefaultInstance() {
+    private static final ProgressRequest defaultInstance;
+    public static ProgressRequest getDefaultInstance() {
       return defaultInstance;
     }
     
-    public ServerHasStartedRequest getDefaultInstanceForType() {
+    public ProgressRequest getDefaultInstanceForType() {
       return defaultInstance;
     }
     
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_ServerHasStartedRequest_descriptor;
+      return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_ProgressRequest_descriptor;
     }
     
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_ServerHasStartedRequest_fieldAccessorTable;
+      return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_ProgressRequest_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // optional int64 topicId = 1;
+    public static final int TOPICID_FIELD_NUMBER = 1;
+    private long topicId_;
+    public boolean hasTopicId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public long getTopicId() {
+      return topicId_;
+    }
+    
+    // optional .org.bimserver.pb.SLongActionState state = 2;
+    public static final int STATE_FIELD_NUMBER = 2;
+    private org.bimserver.pb.ServiceInterfaceImpl.SLongActionState state_;
+    public boolean hasState() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public org.bimserver.pb.ServiceInterfaceImpl.SLongActionState getState() {
+      return state_;
+    }
+    public org.bimserver.pb.ServiceInterfaceImpl.SLongActionStateOrBuilder getStateOrBuilder() {
+      return state_;
     }
     
     private void initFields() {
+      topicId_ = 0L;
+      state_ = org.bimserver.pb.ServiceInterfaceImpl.SLongActionState.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1977,6 +759,12 @@ public final class NotificationInterfaceImpl {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt64(1, topicId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeMessage(2, state_);
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -1986,6 +774,14 @@ public final class NotificationInterfaceImpl {
       if (size != -1) return size;
     
       size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, topicId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, state_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
@@ -1996,41 +792,41 @@ public final class NotificationInterfaceImpl {
       return super.writeReplace();
     }
     
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest parseFrom(
+    public static org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest parseFrom(
+    public static org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest parseFrom(byte[] data)
+    public static org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest parseFrom(
+    public static org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest parseFrom(java.io.InputStream input)
+    public static org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest parseFrom(
+    public static org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest parseDelimitedFrom(java.io.InputStream input)
+    public static org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -2039,7 +835,7 @@ public final class NotificationInterfaceImpl {
         return null;
       }
     }
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest parseDelimitedFrom(
+    public static org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2050,12 +846,12 @@ public final class NotificationInterfaceImpl {
         return null;
       }
     }
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest parseFrom(
+    public static org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest parseFrom(
+    public static org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2065,7 +861,7 @@ public final class NotificationInterfaceImpl {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest prototype) {
+    public static Builder newBuilder(org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -2078,18 +874,18 @@ public final class NotificationInterfaceImpl {
     }
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequestOrBuilder {
+       implements org.bimserver.pb.NotificationInterfaceImpl.ProgressRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_ServerHasStartedRequest_descriptor;
+        return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_ProgressRequest_descriptor;
       }
       
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_ServerHasStartedRequest_fieldAccessorTable;
+        return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_ProgressRequest_fieldAccessorTable;
       }
       
-      // Construct using org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest.newBuilder()
+      // Construct using org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2100,6 +896,7 @@ public final class NotificationInterfaceImpl {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getStateFieldBuilder();
         }
       }
       private static Builder create() {
@@ -2108,6 +905,14 @@ public final class NotificationInterfaceImpl {
       
       public Builder clear() {
         super.clear();
+        topicId_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (stateBuilder_ == null) {
+          state_ = org.bimserver.pb.ServiceInterfaceImpl.SLongActionState.getDefaultInstance();
+        } else {
+          stateBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
       
@@ -2117,24 +922,24 @@ public final class NotificationInterfaceImpl {
       
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest.getDescriptor();
+        return org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest.getDescriptor();
       }
       
-      public org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest getDefaultInstanceForType() {
-        return org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest.getDefaultInstance();
+      public org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest getDefaultInstanceForType() {
+        return org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest.getDefaultInstance();
       }
       
-      public org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest build() {
-        org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest result = buildPartial();
+      public org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest build() {
+        org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
       
-      private org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest buildParsed()
+      private org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest result = buildPartial();
+        org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(
             result).asInvalidProtocolBufferException();
@@ -2142,23 +947,44 @@ public final class NotificationInterfaceImpl {
         return result;
       }
       
-      public org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest buildPartial() {
-        org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest result = new org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest(this);
+      public org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest buildPartial() {
+        org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest result = new org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.topicId_ = topicId_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        if (stateBuilder_ == null) {
+          result.state_ = state_;
+        } else {
+          result.state_ = stateBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest) {
-          return mergeFrom((org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest)other);
+        if (other instanceof org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest) {
+          return mergeFrom((org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
       
-      public Builder mergeFrom(org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest other) {
-        if (other == org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest.getDefaultInstance()) return this;
+      public Builder mergeFrom(org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest other) {
+        if (other == org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest.getDefaultInstance()) return this;
+        if (other.hasTopicId()) {
+          setTopicId(other.getTopicId());
+        }
+        if (other.hasState()) {
+          mergeState(other.getState());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
@@ -2190,294 +1016,146 @@ public final class NotificationInterfaceImpl {
               }
               break;
             }
-          }
-        }
-      }
-      
-      
-      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.ServerHasStartedRequest)
-    }
-    
-    static {
-      defaultInstance = new ServerHasStartedRequest(true);
-      defaultInstance.initFields();
-    }
-    
-    // @@protoc_insertion_point(class_scope:org.bimserver.pb.ServerHasStartedRequest)
-  }
-  
-  public interface ServerWillBeShutdownRequestOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
-  }
-  public static final class ServerWillBeShutdownRequest extends
-      com.google.protobuf.GeneratedMessage
-      implements ServerWillBeShutdownRequestOrBuilder {
-    // Use ServerWillBeShutdownRequest.newBuilder() to construct.
-    private ServerWillBeShutdownRequest(Builder builder) {
-      super(builder);
-    }
-    private ServerWillBeShutdownRequest(boolean noInit) {}
-    
-    private static final ServerWillBeShutdownRequest defaultInstance;
-    public static ServerWillBeShutdownRequest getDefaultInstance() {
-      return defaultInstance;
-    }
-    
-    public ServerWillBeShutdownRequest getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-    
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_ServerWillBeShutdownRequest_descriptor;
-    }
-    
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_ServerWillBeShutdownRequest_fieldAccessorTable;
-    }
-    
-    private void initFields() {
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-      
-      memoizedIsInitialized = 1;
-      return true;
-    }
-    
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      getUnknownFields().writeTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-    
-      size = 0;
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-    
-    @java.lang.Override
-    protected Object writeReplace() throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-    
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
-    }
-    public static org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
-    }
-    
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-    
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_ServerWillBeShutdownRequest_descriptor;
-      }
-      
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return org.bimserver.pb.NotificationInterfaceImpl.internal_static_org_bimserver_pb_ServerWillBeShutdownRequest_fieldAccessorTable;
-      }
-      
-      // Construct using org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-      
-      private Builder(BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-      
-      public Builder clear() {
-        super.clear();
-        return this;
-      }
-      
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-      
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest.getDescriptor();
-      }
-      
-      public org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest getDefaultInstanceForType() {
-        return org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest.getDefaultInstance();
-      }
-      
-      public org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest build() {
-        org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-      
-      private org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest buildParsed()
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(
-            result).asInvalidProtocolBufferException();
-        }
-        return result;
-      }
-      
-      public org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest buildPartial() {
-        org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest result = new org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest(this);
-        onBuilt();
-        return result;
-      }
-      
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest) {
-          return mergeFrom((org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-      
-      public Builder mergeFrom(org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest other) {
-        if (other == org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest.getDefaultInstance()) return this;
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-      
-      public final boolean isInitialized() {
-        return true;
-      }
-      
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
-        while (true) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
-              onChanged();
-              return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                onChanged();
-                return this;
+            case 8: {
+              bitField0_ |= 0x00000001;
+              topicId_ = input.readInt64();
+              break;
+            }
+            case 18: {
+              org.bimserver.pb.ServiceInterfaceImpl.SLongActionState.Builder subBuilder = org.bimserver.pb.ServiceInterfaceImpl.SLongActionState.newBuilder();
+              if (hasState()) {
+                subBuilder.mergeFrom(getState());
               }
+              input.readMessage(subBuilder, extensionRegistry);
+              setState(subBuilder.buildPartial());
               break;
             }
           }
         }
       }
       
+      private int bitField0_;
       
-      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.ServerWillBeShutdownRequest)
+      // optional int64 topicId = 1;
+      private long topicId_ ;
+      public boolean hasTopicId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public long getTopicId() {
+        return topicId_;
+      }
+      public Builder setTopicId(long value) {
+        bitField0_ |= 0x00000001;
+        topicId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearTopicId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        topicId_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // optional .org.bimserver.pb.SLongActionState state = 2;
+      private org.bimserver.pb.ServiceInterfaceImpl.SLongActionState state_ = org.bimserver.pb.ServiceInterfaceImpl.SLongActionState.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          org.bimserver.pb.ServiceInterfaceImpl.SLongActionState, org.bimserver.pb.ServiceInterfaceImpl.SLongActionState.Builder, org.bimserver.pb.ServiceInterfaceImpl.SLongActionStateOrBuilder> stateBuilder_;
+      public boolean hasState() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public org.bimserver.pb.ServiceInterfaceImpl.SLongActionState getState() {
+        if (stateBuilder_ == null) {
+          return state_;
+        } else {
+          return stateBuilder_.getMessage();
+        }
+      }
+      public Builder setState(org.bimserver.pb.ServiceInterfaceImpl.SLongActionState value) {
+        if (stateBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          state_ = value;
+          onChanged();
+        } else {
+          stateBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      public Builder setState(
+          org.bimserver.pb.ServiceInterfaceImpl.SLongActionState.Builder builderForValue) {
+        if (stateBuilder_ == null) {
+          state_ = builderForValue.build();
+          onChanged();
+        } else {
+          stateBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      public Builder mergeState(org.bimserver.pb.ServiceInterfaceImpl.SLongActionState value) {
+        if (stateBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              state_ != org.bimserver.pb.ServiceInterfaceImpl.SLongActionState.getDefaultInstance()) {
+            state_ =
+              org.bimserver.pb.ServiceInterfaceImpl.SLongActionState.newBuilder(state_).mergeFrom(value).buildPartial();
+          } else {
+            state_ = value;
+          }
+          onChanged();
+        } else {
+          stateBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      public Builder clearState() {
+        if (stateBuilder_ == null) {
+          state_ = org.bimserver.pb.ServiceInterfaceImpl.SLongActionState.getDefaultInstance();
+          onChanged();
+        } else {
+          stateBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      public org.bimserver.pb.ServiceInterfaceImpl.SLongActionState.Builder getStateBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getStateFieldBuilder().getBuilder();
+      }
+      public org.bimserver.pb.ServiceInterfaceImpl.SLongActionStateOrBuilder getStateOrBuilder() {
+        if (stateBuilder_ != null) {
+          return stateBuilder_.getMessageOrBuilder();
+        } else {
+          return state_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          org.bimserver.pb.ServiceInterfaceImpl.SLongActionState, org.bimserver.pb.ServiceInterfaceImpl.SLongActionState.Builder, org.bimserver.pb.ServiceInterfaceImpl.SLongActionStateOrBuilder> 
+          getStateFieldBuilder() {
+        if (stateBuilder_ == null) {
+          stateBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.bimserver.pb.ServiceInterfaceImpl.SLongActionState, org.bimserver.pb.ServiceInterfaceImpl.SLongActionState.Builder, org.bimserver.pb.ServiceInterfaceImpl.SLongActionStateOrBuilder>(
+                  state_,
+                  getParentForChildren(),
+                  isClean());
+          state_ = null;
+        }
+        return stateBuilder_;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.ProgressRequest)
     }
     
     static {
-      defaultInstance = new ServerWillBeShutdownRequest(true);
+      defaultInstance = new ProgressRequest(true);
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:org.bimserver.pb.ServerWillBeShutdownRequest)
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.ProgressRequest)
   }
   
   public static abstract class NotificationInterface
@@ -2485,24 +1163,14 @@ public final class NotificationInterfaceImpl {
     protected NotificationInterface() {}
     
     public interface Interface {
-      public abstract void newProject(
+      public abstract void newLogAction(
           com.google.protobuf.RpcController controller,
-          org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest request,
+          org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
       
-      public abstract void newRevision(
+      public abstract void progress(
           com.google.protobuf.RpcController controller,
-          org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest request,
-          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
-      
-      public abstract void serverHasStarted(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest request,
-          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
-      
-      public abstract void serverWillBeShutdown(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest request,
+          org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
       
     }
@@ -2511,35 +1179,19 @@ public final class NotificationInterfaceImpl {
         final Interface impl) {
       return new NotificationInterface() {
         @java.lang.Override
-        public  void newProject(
+        public  void newLogAction(
             com.google.protobuf.RpcController controller,
-            org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest request,
+            org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest request,
             com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
-          impl.newProject(controller, request, done);
+          impl.newLogAction(controller, request, done);
         }
         
         @java.lang.Override
-        public  void newRevision(
+        public  void progress(
             com.google.protobuf.RpcController controller,
-            org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest request,
+            org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest request,
             com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
-          impl.newRevision(controller, request, done);
-        }
-        
-        @java.lang.Override
-        public  void serverHasStarted(
-            com.google.protobuf.RpcController controller,
-            org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest request,
-            com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
-          impl.serverHasStarted(controller, request, done);
-        }
-        
-        @java.lang.Override
-        public  void serverWillBeShutdown(
-            com.google.protobuf.RpcController controller,
-            org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest request,
-            com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
-          impl.serverWillBeShutdown(controller, request, done);
+          impl.progress(controller, request, done);
         }
         
       };
@@ -2565,13 +1217,9 @@ public final class NotificationInterfaceImpl {
           }
           switch(method.getIndex()) {
             case 0:
-              return impl.newProject(controller, (org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest)request);
+              return impl.newLogAction(controller, (org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest)request);
             case 1:
-              return impl.newRevision(controller, (org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest)request);
-            case 2:
-              return impl.serverHasStarted(controller, (org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest)request);
-            case 3:
-              return impl.serverWillBeShutdown(controller, (org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest)request);
+              return impl.progress(controller, (org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest)request);
             default:
               throw new java.lang.AssertionError("Can't get here.");
           }
@@ -2587,13 +1235,9 @@ public final class NotificationInterfaceImpl {
           }
           switch(method.getIndex()) {
             case 0:
-              return org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest.getDefaultInstance();
+              return org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest.getDefaultInstance();
             case 1:
-              return org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest.getDefaultInstance();
-            case 2:
-              return org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest.getDefaultInstance();
-            case 3:
-              return org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest.getDefaultInstance();
+              return org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest.getDefaultInstance();
             default:
               throw new java.lang.AssertionError("Can't get here.");
           }
@@ -2612,10 +1256,6 @@ public final class NotificationInterfaceImpl {
               return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
             case 1:
               return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
-            case 2:
-              return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
-            case 3:
-              return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
             default:
               throw new java.lang.AssertionError("Can't get here.");
           }
@@ -2624,24 +1264,14 @@ public final class NotificationInterfaceImpl {
       };
     }
     
-    public abstract void newProject(
+    public abstract void newLogAction(
         com.google.protobuf.RpcController controller,
-        org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest request,
+        org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest request,
         com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
     
-    public abstract void newRevision(
+    public abstract void progress(
         com.google.protobuf.RpcController controller,
-        org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest request,
-        com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
-    
-    public abstract void serverHasStarted(
-        com.google.protobuf.RpcController controller,
-        org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest request,
-        com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
-    
-    public abstract void serverWillBeShutdown(
-        com.google.protobuf.RpcController controller,
-        org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest request,
+        org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest request,
         com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
     
     public static final
@@ -2667,22 +1297,12 @@ public final class NotificationInterfaceImpl {
       }
       switch(method.getIndex()) {
         case 0:
-          this.newProject(controller, (org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest)request,
+          this.newLogAction(controller, (org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 1:
-          this.newRevision(controller, (org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest)request,
-            com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
-              done));
-          return;
-        case 2:
-          this.serverHasStarted(controller, (org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest)request,
-            com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
-              done));
-          return;
-        case 3:
-          this.serverWillBeShutdown(controller, (org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest)request,
+          this.progress(controller, (org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
@@ -2701,13 +1321,9 @@ public final class NotificationInterfaceImpl {
       }
       switch(method.getIndex()) {
         case 0:
-          return org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest.getDefaultInstance();
+          return org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest.getDefaultInstance();
         case 1:
-          return org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest.getDefaultInstance();
-        case 2:
-          return org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest.getDefaultInstance();
-        case 3:
-          return org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest.getDefaultInstance();
+          return org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest.getDefaultInstance();
         default:
           throw new java.lang.AssertionError("Can't get here.");
       }
@@ -2725,10 +1341,6 @@ public final class NotificationInterfaceImpl {
         case 0:
           return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
         case 1:
-          return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
-        case 2:
-          return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
-        case 3:
           return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
         default:
           throw new java.lang.AssertionError("Can't get here.");
@@ -2751,9 +1363,9 @@ public final class NotificationInterfaceImpl {
         return channel;
       }
       
-      public  void newProject(
+      public  void newLogAction(
           com.google.protobuf.RpcController controller,
-          org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest request,
+          org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
           getDescriptor().getMethods().get(0),
@@ -2766,42 +1378,12 @@ public final class NotificationInterfaceImpl {
             org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance()));
       }
       
-      public  void newRevision(
+      public  void progress(
           com.google.protobuf.RpcController controller,
-          org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest request,
+          org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
           getDescriptor().getMethods().get(1),
-          controller,
-          request,
-          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
-          com.google.protobuf.RpcUtil.generalizeCallback(
-            done,
-            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.class,
-            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance()));
-      }
-      
-      public  void serverHasStarted(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest request,
-          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
-        channel.callMethod(
-          getDescriptor().getMethods().get(2),
-          controller,
-          request,
-          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
-          com.google.protobuf.RpcUtil.generalizeCallback(
-            done,
-            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.class,
-            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance()));
-      }
-      
-      public  void serverWillBeShutdown(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest request,
-          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
-        channel.callMethod(
-          getDescriptor().getMethods().get(3),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -2818,24 +1400,14 @@ public final class NotificationInterfaceImpl {
     }
     
     public interface BlockingInterface {
-      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse newProject(
+      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse newLogAction(
           com.google.protobuf.RpcController controller,
-          org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest request)
+          org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest request)
           throws com.google.protobuf.ServiceException;
       
-      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse newRevision(
+      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse progress(
           com.google.protobuf.RpcController controller,
-          org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest request)
-          throws com.google.protobuf.ServiceException;
-      
-      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse serverHasStarted(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest request)
-          throws com.google.protobuf.ServiceException;
-      
-      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse serverWillBeShutdown(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest request)
+          org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest request)
           throws com.google.protobuf.ServiceException;
     }
     
@@ -2846,9 +1418,9 @@ public final class NotificationInterfaceImpl {
       
       private final com.google.protobuf.BlockingRpcChannel channel;
       
-      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse newProject(
+      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse newLogAction(
           com.google.protobuf.RpcController controller,
-          org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest request)
+          org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
           getDescriptor().getMethods().get(0),
@@ -2858,36 +1430,12 @@ public final class NotificationInterfaceImpl {
       }
       
       
-      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse newRevision(
+      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse progress(
           com.google.protobuf.RpcController controller,
-          org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest request)
+          org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
           getDescriptor().getMethods().get(1),
-          controller,
-          request,
-          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
-      }
-      
-      
-      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse serverHasStarted(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest request)
-          throws com.google.protobuf.ServiceException {
-        return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(2),
-          controller,
-          request,
-          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
-      }
-      
-      
-      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse serverWillBeShutdown(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest request)
-          throws com.google.protobuf.ServiceException {
-        return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(3),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -2897,35 +1445,15 @@ public final class NotificationInterfaceImpl {
   }
   
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_org_bimserver_pb_SNewProjectNotification_descriptor;
+    internal_static_org_bimserver_pb_NewLogActionRequest_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_org_bimserver_pb_SNewProjectNotification_fieldAccessorTable;
+      internal_static_org_bimserver_pb_NewLogActionRequest_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_org_bimserver_pb_NewProjectRequest_descriptor;
+    internal_static_org_bimserver_pb_ProgressRequest_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_org_bimserver_pb_NewProjectRequest_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_org_bimserver_pb_SNewRevisionNotification_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_org_bimserver_pb_SNewRevisionNotification_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_org_bimserver_pb_NewRevisionRequest_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_org_bimserver_pb_NewRevisionRequest_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_org_bimserver_pb_ServerHasStartedRequest_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_org_bimserver_pb_ServerHasStartedRequest_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_org_bimserver_pb_ServerWillBeShutdownRequest_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_org_bimserver_pb_ServerWillBeShutdownRequest_fieldAccessorTable;
+      internal_static_org_bimserver_pb_ProgressRequest_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2936,83 +1464,40 @@ public final class NotificationInterfaceImpl {
   static {
     java.lang.String[] descriptorData = {
       "\n\022notification.proto\022\020org.bimserver.pb\032\r" +
-      "service.proto\"9\n\027SNewProjectNotification" +
-      "\022\013\n\003oid\030\001 \001(\003\022\021\n\tprojectId\030\002 \001(\003\"^\n\021NewP" +
-      "rojectRequest\022I\n\026newProjectNotification\030" +
-      "\001 \001(\0132).org.bimserver.pb.SNewProjectNoti" +
-      "fication\"N\n\030SNewRevisionNotification\022\013\n\003" +
-      "oid\030\001 \001(\003\022\021\n\tprojectId\030\002 \001(\003\022\022\n\nrevision" +
-      "Id\030\003 \001(\003\"\232\001\n\022NewRevisionRequest\022K\n\027newRe" +
-      "visionNotification\030\001 \001(\0132*.org.bimserver" +
-      ".pb.SNewRevisionNotification\022\'\n\005token\030\002 ",
-      "\001(\0132\030.org.bimserver.pb.SToken\022\016\n\006apiUrl\030" +
-      "\003 \001(\t\"\031\n\027ServerHasStartedRequest\"\035\n\033Serv" +
-      "erWillBeShutdownRequest2\205\003\n\025Notification" +
-      "Interface\022Q\n\nnewProject\022#.org.bimserver." +
-      "pb.NewProjectRequest\032\036.org.bimserver.pb." +
-      "VoidResponse\022S\n\013newRevision\022$.org.bimser" +
-      "ver.pb.NewRevisionRequest\032\036.org.bimserve" +
-      "r.pb.VoidResponse\022]\n\020serverHasStarted\022)." +
-      "org.bimserver.pb.ServerHasStartedRequest" +
-      "\032\036.org.bimserver.pb.VoidResponse\022e\n\024serv",
-      "erWillBeShutdown\022-.org.bimserver.pb.Serv" +
-      "erWillBeShutdownRequest\032\036.org.bimserver." +
-      "pb.VoidResponseB B\031NotificationInterface" +
-      "ImplH\001\210\001\001"
+      "service.proto\"\177\n\023NewLogActionRequest\022/\n\t" +
+      "logAction\030\001 \001(\0132\034.org.bimserver.pb.SLogA" +
+      "ction\022\'\n\005token\030\002 \001(\0132\030.org.bimserver.pb." +
+      "SToken\022\016\n\006apiUrl\030\003 \001(\t\"U\n\017ProgressReques" +
+      "t\022\017\n\007topicId\030\001 \001(\003\0221\n\005state\030\002 \001(\0132\".org." +
+      "bimserver.pb.SLongActionState2\275\001\n\025Notifi" +
+      "cationInterface\022U\n\014newLogAction\022%.org.bi" +
+      "mserver.pb.NewLogActionRequest\032\036.org.bim" +
+      "server.pb.VoidResponse\022M\n\010progress\022!.org",
+      ".bimserver.pb.ProgressRequest\032\036.org.bims" +
+      "erver.pb.VoidResponseB B\031NotificationInt" +
+      "erfaceImplH\001\210\001\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
         public com.google.protobuf.ExtensionRegistry assignDescriptors(
             com.google.protobuf.Descriptors.FileDescriptor root) {
           descriptor = root;
-          internal_static_org_bimserver_pb_SNewProjectNotification_descriptor =
+          internal_static_org_bimserver_pb_NewLogActionRequest_descriptor =
             getDescriptor().getMessageTypes().get(0);
-          internal_static_org_bimserver_pb_SNewProjectNotification_fieldAccessorTable = new
+          internal_static_org_bimserver_pb_NewLogActionRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_org_bimserver_pb_SNewProjectNotification_descriptor,
-              new java.lang.String[] { "Oid", "ProjectId", },
-              org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.class,
-              org.bimserver.pb.NotificationInterfaceImpl.SNewProjectNotification.Builder.class);
-          internal_static_org_bimserver_pb_NewProjectRequest_descriptor =
+              internal_static_org_bimserver_pb_NewLogActionRequest_descriptor,
+              new java.lang.String[] { "LogAction", "Token", "ApiUrl", },
+              org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest.class,
+              org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest.Builder.class);
+          internal_static_org_bimserver_pb_ProgressRequest_descriptor =
             getDescriptor().getMessageTypes().get(1);
-          internal_static_org_bimserver_pb_NewProjectRequest_fieldAccessorTable = new
+          internal_static_org_bimserver_pb_ProgressRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_org_bimserver_pb_NewProjectRequest_descriptor,
-              new java.lang.String[] { "NewProjectNotification", },
-              org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest.class,
-              org.bimserver.pb.NotificationInterfaceImpl.NewProjectRequest.Builder.class);
-          internal_static_org_bimserver_pb_SNewRevisionNotification_descriptor =
-            getDescriptor().getMessageTypes().get(2);
-          internal_static_org_bimserver_pb_SNewRevisionNotification_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_org_bimserver_pb_SNewRevisionNotification_descriptor,
-              new java.lang.String[] { "Oid", "ProjectId", "RevisionId", },
-              org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.class,
-              org.bimserver.pb.NotificationInterfaceImpl.SNewRevisionNotification.Builder.class);
-          internal_static_org_bimserver_pb_NewRevisionRequest_descriptor =
-            getDescriptor().getMessageTypes().get(3);
-          internal_static_org_bimserver_pb_NewRevisionRequest_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_org_bimserver_pb_NewRevisionRequest_descriptor,
-              new java.lang.String[] { "NewRevisionNotification", "Token", "ApiUrl", },
-              org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest.class,
-              org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest.Builder.class);
-          internal_static_org_bimserver_pb_ServerHasStartedRequest_descriptor =
-            getDescriptor().getMessageTypes().get(4);
-          internal_static_org_bimserver_pb_ServerHasStartedRequest_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_org_bimserver_pb_ServerHasStartedRequest_descriptor,
-              new java.lang.String[] { },
-              org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest.class,
-              org.bimserver.pb.NotificationInterfaceImpl.ServerHasStartedRequest.Builder.class);
-          internal_static_org_bimserver_pb_ServerWillBeShutdownRequest_descriptor =
-            getDescriptor().getMessageTypes().get(5);
-          internal_static_org_bimserver_pb_ServerWillBeShutdownRequest_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_org_bimserver_pb_ServerWillBeShutdownRequest_descriptor,
-              new java.lang.String[] { },
-              org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest.class,
-              org.bimserver.pb.NotificationInterfaceImpl.ServerWillBeShutdownRequest.Builder.class);
+              internal_static_org_bimserver_pb_ProgressRequest_descriptor,
+              new java.lang.String[] { "TopicId", "State", },
+              org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest.class,
+              org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest.Builder.class);
           return null;
         }
       };

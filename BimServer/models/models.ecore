@@ -68,7 +68,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="hasRightsOn" upperBound="-1"
           eType="#/0/Project" eOpposite="#/0/Project/hasAuthorizedUsers"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="revisions" upperBound="-1"
-          eType="#/0/Revision"/>
+          eType="#/0/Revision" eOpposite="#/0/Revision/user"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#/0/ObjectState"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdOn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="createdBy" eType="#/0/User"/>
@@ -88,7 +88,8 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Revision">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"
+          eOpposite="#/0/User/revisions"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"/>

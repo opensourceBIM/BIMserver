@@ -61,6 +61,8 @@ public class Step0000 extends Migration {
 	private Schema schema;
 	private EClass serverSettingsClass;
 	private EClass userSettings;
+	private EReference revisionUser;
+	private EReference userRevisions;
 
 	@Override
 	public void migrate(Schema schema) {
@@ -100,6 +102,9 @@ public class Step0000 extends Migration {
 		
 		checkoutRevision.setEOpposite(revisionCheckouts);
 		revisionCheckouts.setEOpposite(checkoutRevision);
+		
+		revisionUser.setEOpposite(userRevisions);
+		userRevisions.setEOpposite(revisionUser);
 		
 		revisionConcreteRevisions.setEOpposite(concreteRevisionRevisions);
 		concreteRevisionRevisions.setEOpposite(revisionConcreteRevisions);
@@ -160,7 +165,7 @@ public class Step0000 extends Migration {
 
 	private void createRevisionClass() {
 		schema.createEAttribute(revisionClass, "id", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
-		schema.createEReference(revisionClass, "user", userClass, Multiplicity.SINGLE);
+		revisionUser = schema.createEReference(revisionClass, "user", userClass, Multiplicity.SINGLE);
 		schema.createEAttribute(revisionClass, "date", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEAttribute(revisionClass, "comment", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(revisionClass, "size", ecorePackage.getELongObject(), Multiplicity.SINGLE);
@@ -206,7 +211,7 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(userClass, "name", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(userClass, "password", ecorePackage.getEString(), Multiplicity.SINGLE);
 		userHasRightsOn = schema.createEReference(userClass, "hasRightsOn", projectClass, Multiplicity.MANY);
-		schema.createEReference(userClass, "revisions", revisionClass, Multiplicity.MANY);
+		userRevisions = schema.createEReference(userClass, "revisions", revisionClass, Multiplicity.MANY);
 		schema.createEAttribute(userClass, "state", objectStateEnum, Multiplicity.SINGLE);
 		schema.createEAttribute(userClass, "createdOn", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEReference(userClass, "createdBy", userClass, Multiplicity.SINGLE);
