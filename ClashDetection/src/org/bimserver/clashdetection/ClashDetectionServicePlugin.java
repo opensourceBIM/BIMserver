@@ -44,7 +44,7 @@ import org.bimserver.models.store.Trigger;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
-import org.bimserver.plugins.deserializers.EmfDeserializer;
+import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineClash;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
@@ -94,7 +94,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 					ByteArrayOutputStream baos = new ByteArrayOutputStream();
 					IOUtils.copy(downloadData.getFile().getInputStream(), baos);
 
-					EmfDeserializer deserializer = pluginManager.requireDeserializer("ifc").createDeserializer();
+					Deserializer deserializer = pluginManager.requireDeserializer("ifc").createDeserializer();
 					deserializer.init(pluginManager.requireSchemaDefinition());
 					IfcModelInterface model = deserializer.read(new ByteArrayInputStream(baos.toByteArray()), "test.ifc", true, baos.size());
 					List<IfcProject> ifcProjects = model.getAll(IfcProject.class);
@@ -243,5 +243,10 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 	@Override
 	public String getTitle() {
 		return "Clashdetection";
+	}
+
+	@Override
+	public String getDefaultName() {
+		return "ClashDetection";
 	}
 }
