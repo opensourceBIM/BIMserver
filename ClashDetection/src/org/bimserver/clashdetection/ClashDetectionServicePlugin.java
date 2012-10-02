@@ -87,7 +87,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 			
 				SSerializer sSerializer = serviceInterface.getSerializerByContentType("application/ifc");
 				
-				Integer download = serviceInterface.download(sNewRevisionAdded.getRevisionId(), sSerializer.getOid(), true, true);
+				long download = serviceInterface.download(sNewRevisionAdded.getRevisionId(), sSerializer.getOid(), true, true);
 				SDownloadResult downloadData = serviceInterface.getDownloadData(download);
 				
 				try {
