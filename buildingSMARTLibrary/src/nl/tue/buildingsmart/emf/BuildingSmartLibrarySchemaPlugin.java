@@ -103,4 +103,9 @@ public class BuildingSmartLibrarySchemaPlugin implements SchemaPlugin {
 	public File getExpressSchemaFile() {
 		return schemaFile;
 	}
+
+	@Override
+	public String getDefaultName() {
+		return "BuildingSmartLibrarySchemaPlugin";
+	}
 }

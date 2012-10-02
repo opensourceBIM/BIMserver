@@ -31,8 +31,8 @@ import org.bimserver.models.ifc2x3tc1.IfcPort;
 import org.bimserver.models.ifc2x3tc1.IfcRelConnectsPortToElement;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,7 +50,7 @@ public class IfcRioleringTest {
 		try {
 			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
-			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
 			try {
 				model = deserializer.read(src, true);

@@ -49,7 +49,7 @@ public class KmzSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public String getDefaultSerializerName() {
+	public String getDefaultName() {
 		return "KMZ";
 	}
 

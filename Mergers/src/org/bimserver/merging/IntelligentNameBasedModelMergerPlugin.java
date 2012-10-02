@@ -30,7 +30,7 @@ public class IntelligentNameBasedModelMergerPlugin implements ModelMergerPlugin 
 	}
 
 	@Override
-	public String getDefaultModelMergerName() {
+	public String getDefaultName() {
 		return "Intelligent Name Based Merger";
 	}
 

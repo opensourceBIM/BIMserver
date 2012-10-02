@@ -25,9 +25,9 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.RevisionMerger;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.deserializers.EmfDeserializer;
-import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
 public class RevisionMergeTest {
@@ -39,7 +39,7 @@ public class RevisionMergeTest {
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
-			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
 			IfcModelInterface model1 = deserializer.read(TestFile.EXPORT1.getFile(), true);
 			IfcModelInterface model2 = deserializer.read(TestFile.EXPORT3.getFile(), true);
@@ -50,7 +50,7 @@ public class RevisionMergeTest {
 			model2.fixOids(new IncrementingOidProvider(model1.getHighestOid() + 1));
 			IfcModel merged = new RevisionMerger(model1, model2).merge();
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
-			EmfSerializer serializer = serializerPlugin.createSerializer();
+			Serializer serializer = serializerPlugin.createSerializer();
 			serializer.init(merged, null, null, pluginManager.requireIfcEngine().createIfcEngine());
 			serializer.writeToFile(new File("merged.ifc"));
 		} catch (Exception e) {

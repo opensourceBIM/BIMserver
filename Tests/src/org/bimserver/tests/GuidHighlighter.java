@@ -42,7 +42,7 @@ import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleRendering;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.schema.SchemaDefinition;
-import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
@@ -52,7 +52,7 @@ public class GuidHighlighter {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			highlightGuids(model, highlightedGuids);
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
-			EmfSerializer serializer = serializerPlugin.createSerializer();
+			Serializer serializer = serializerPlugin.createSerializer();
 			try {
 				serializer.init(model, null, null, pluginManager.requireIfcEngine().createIfcEngine());
 				serializer.writeToFile(outputFile);

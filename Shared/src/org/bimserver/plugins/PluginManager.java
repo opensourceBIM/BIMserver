@@ -55,7 +55,7 @@ import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.schema.SchemaPlugin;
-import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
@@ -365,14 +365,14 @@ public class PluginManager {
 	/*
 	 * This will try to find at least one serializer for the content-type "application/ifc", if none are found an exception is throws, if more than 1 is found, the first one is returned
 	 */
-	public EmfSerializer requireIfcStepSerializer() throws SerializerException {
+	public Serializer requireIfcStepSerializer() throws SerializerException {
 		String contentType = "application/ifc";
 		Collection<SerializerPlugin> serializerPlugins = getAllSerializerPlugins(contentType, true);
 		if (serializerPlugins.isEmpty()) {
 			throw new SerializerException("A working serializer for the content type " + contentType + " is required");
 		}
 		SerializerPlugin serializerPlugin = serializerPlugins.iterator().next();
-		EmfSerializer ifcSerializer = serializerPlugin.createSerializer();
+		Serializer ifcSerializer = serializerPlugin.createSerializer();
 		return ifcSerializer;
 	}
 

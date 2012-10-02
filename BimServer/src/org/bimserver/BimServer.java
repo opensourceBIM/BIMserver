@@ -440,7 +440,7 @@ public class BimServer {
 			session.store(user);
 		}
 		for (ObjectIDMPlugin objectIDMPlugin : pluginManager.getAllObjectIDMPlugins(true)) {
-			String name = objectIDMPlugin.getDefaultObjectIDMName();
+			String name = objectIDMPlugin.getDefaultName();
 			ObjectIDM found = find(userSettings.getObjectIDMs(), name);
 			if (found == null) {
 				ObjectIDM objectIDM = StoreFactory.eINSTANCE.createObjectIDM();
@@ -462,7 +462,7 @@ public class BimServer {
 			userSettings.setDefaultObjectIDM(userSettings.getObjectIDMs().get(0));
 		}
 		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins(true)) {
-			String name = ifcEnginePlugin.getDefaultIfcEngineName();
+			String name = ifcEnginePlugin.getDefaultName();
 			IfcEngine found = find(userSettings.getIfcEngines(), name);
 			if (found == null) {
 				IfcEngine ifcEngine = StoreFactory.eINSTANCE.createIfcEngine();
@@ -484,7 +484,7 @@ public class BimServer {
 			userSettings.setDefaultIfcEngine(userSettings.getIfcEngines().get(0));
 		}
 		for (QueryEnginePlugin queryEnginePlugin : pluginManager.getAllQueryEnginePlugins(true)) {
-			String name = queryEnginePlugin.getDefaultQueryEngineName();
+			String name = queryEnginePlugin.getDefaultName();
 			QueryEngine found = find(userSettings.getQueryengines(), name);
 			if (found == null) {
 				QueryEngine queryEngine = StoreFactory.eINSTANCE.createQueryEngine();
@@ -506,7 +506,7 @@ public class BimServer {
 			userSettings.setDefaultQueryEngine(userSettings.getQueryengines().get(0));
 		}
 		for (ModelMergerPlugin modelMergerPlugin : pluginManager.getAllModelMergerPlugins(true)) {
-			String name = modelMergerPlugin.getDefaultModelMergerName();
+			String name = modelMergerPlugin.getDefaultName();
 			ModelMerger found = find(userSettings.getModelmergers(), name);
 			if (found == null) {
 				ModelMerger modelMerger = StoreFactory.eINSTANCE.createModelMerger();
@@ -528,7 +528,7 @@ public class BimServer {
 			userSettings.setDefaultModelMerger(userSettings.getModelmergers().get(0));
 		}
 		for (ModelComparePlugin modelComparePlugin : pluginManager.getAllModelComparePlugins(true)) {
-			String name = modelComparePlugin.getDefaultModelCompareName();
+			String name = modelComparePlugin.getDefaultName();
 			ModelCompare found = find(userSettings.getModelcompares(), name);
 			if (found == null) {
 				ModelCompare modelcompare = StoreFactory.eINSTANCE.createModelCompare();
@@ -550,7 +550,7 @@ public class BimServer {
 			userSettings.setDefaultModelCompare(userSettings.getModelcompares().get(0));
 		}
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
-			String name = serializerPlugin.getDefaultSerializerName();
+			String name = serializerPlugin.getDefaultName();
 			Serializer found = find(userSettings.getSerializers(), name);
 			if (found == null) {
 				Serializer serializer = StoreFactory.eINSTANCE.createSerializer();
@@ -590,7 +590,7 @@ public class BimServer {
 			}
 		}
 		for (DeserializerPlugin deserializerPlugin : pluginManager.getAllDeserializerPlugins(true)) {
-			String name = deserializerPlugin.getDefaultDeserializerName();
+			String name = deserializerPlugin.getDefaultName();
 			Deserializer found = find(userSettings.getDeserializers(), name);
 			if (found == null) {
 				Deserializer deserializer = StoreFactory.eINSTANCE.createDeserializer();

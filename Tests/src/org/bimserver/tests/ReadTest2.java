@@ -26,8 +26,8 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.deserializers.EmfDeserializer;
 
 public class ReadTest2 {
 	public static void main(String[] args) {
@@ -38,7 +38,7 @@ public class ReadTest2 {
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
-			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
 			IfcModelInterface model =  deserializer.read(TestFile.HAUS_SOURCE_FILE.getFile(), true);
 

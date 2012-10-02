@@ -31,7 +31,7 @@ import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class EmfSerializer {
+public abstract class EmfSerializer implements Serializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmfSerializer.class);
 	protected IfcModelInterface model;

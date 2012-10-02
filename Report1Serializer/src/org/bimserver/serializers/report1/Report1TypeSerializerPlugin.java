@@ -61,7 +61,7 @@ public class Report1TypeSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public String getDefaultSerializerName() {
+	public String getDefaultName() {
 		return "Report1Type";
 	}
 

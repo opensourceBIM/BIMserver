@@ -49,7 +49,7 @@ public class ColladaSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public String getDefaultSerializerName() {
+	public String getDefaultName() {
 		return "Collada";
 	}
 

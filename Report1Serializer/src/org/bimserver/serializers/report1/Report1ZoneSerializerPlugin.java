@@ -61,7 +61,7 @@ public class Report1ZoneSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public String getDefaultSerializerName() {
+	public String getDefaultName() {
 		return "Report1Zone";
 	}
 

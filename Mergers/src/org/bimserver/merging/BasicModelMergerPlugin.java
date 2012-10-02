@@ -30,7 +30,7 @@ public class BasicModelMergerPlugin implements ModelMergerPlugin {
 	}
 
 	@Override
-	public String getDefaultModelMergerName() {
+	public String getDefaultName() {
 		return "Basic Merger";
 	}
 

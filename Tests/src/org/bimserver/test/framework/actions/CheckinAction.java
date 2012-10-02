@@ -18,7 +18,6 @@ package org.bimserver.test.framework.actions;
  *****************************************************************************/
 
 import java.io.File;
-import java.util.List;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
@@ -27,7 +26,6 @@ import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SCheckinStatus;
 import org.bimserver.interfaces.objects.SDeserializer;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;

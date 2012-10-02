@@ -42,9 +42,9 @@ import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.deserializers.EmfDeserializer;
-import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.utils.SwingUtil;
@@ -60,7 +60,7 @@ public class Visualise extends JFrame {
 		try {
 			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.requireDeserializer("application/ifc");
-			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
 			IfcModelInterface model1 = deserializer.read(TestFile.EXPORT1.getFile(), true);
 			IfcModelInterface model1b = deserializer.read(TestFile.EXPORT1.getFile(), true);
@@ -75,7 +75,7 @@ public class Visualise extends JFrame {
 			model2.fixOids(new IncrementingOidProvider(model1.getHighestOid() + 1));
 			IfcModel merged = new RevisionMerger(model1, model2).merge();
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
-			EmfSerializer serializer = serializerPlugin.createSerializer();
+			Serializer serializer = serializerPlugin.createSerializer();
 			serializer.init(merged, null, null, pluginManager.requireIfcEngine().createIfcEngine());
 			serializer.writeToFile(new File("merged.ifc"));
 			new Visualise().start(model1b, "Model 1");

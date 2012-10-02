@@ -26,9 +26,9 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.deserializers.EmfDeserializer;
-import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
@@ -37,11 +37,11 @@ public class CityGmlTest {
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.requireDeserializer("ifc");
-			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
 			IfcModelInterface model = deserializer.read(TestFile.AC11.getFile(), true);
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/gml", true);
-			EmfSerializer serializer = serializerPlugin.createSerializer();
+			Serializer serializer = serializerPlugin.createSerializer();
 			serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine());
 			FileOutputStream fos = new FileOutputStream(new File("out.gml"));
 			serializer.writeToOutputStream(fos);

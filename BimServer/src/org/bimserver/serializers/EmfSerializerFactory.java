@@ -41,7 +41,6 @@ import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
-import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -68,7 +67,7 @@ public class EmfSerializerFactory {
 			SSerializerPluginDescriptor descriptor = new SSerializerPluginDescriptor();
 			descriptor.setDefaultContentType(serializerPlugin.getDefaultContentType());
 			descriptor.setDefaultExtension(serializerPlugin.getDefaultExtension());
-			descriptor.setDefaultName(serializerPlugin.getDefaultSerializerName());
+			descriptor.setDefaultName(serializerPlugin.getDefaultName());
 			descriptor.setPluginClassName(serializerPlugin.getClass().getName());
 			descriptors.add(descriptor);
 		}
@@ -85,7 +84,7 @@ public class EmfSerializerFactory {
 		return descriptors;
 	}
 	
-	public EmfSerializer get(long serializerOid) {
+	public org.bimserver.plugins.serializers.Serializer get(long serializerOid) {
 		DatabaseSession session = bimDatabase.createSession();
 		try {
 			Serializer serializerObject = session.get(StorePackage.eINSTANCE.getSerializer(), serializerOid, false, null);
@@ -103,8 +102,8 @@ public class EmfSerializerFactory {
 		return null;
 	}
 	
-	public EmfSerializer create(Project project, String username, IfcModelInterface model, IfcEngine ifcEngine, DownloadParameters downloadParameters) throws SerializerException {
-		EmfSerializer serializer = get(downloadParameters.getSerializerOid());
+	public org.bimserver.plugins.serializers.Serializer create(Project project, String username, IfcModelInterface model, IfcEngine ifcEngine, DownloadParameters downloadParameters) throws SerializerException {
+		org.bimserver.plugins.serializers.Serializer serializer = get(downloadParameters.getSerializerOid());
 		if (serializer != null) {
 			try {
 				ProjectInfo projectInfo = new ProjectInfo();
@@ -132,7 +131,7 @@ public class EmfSerializerFactory {
 				SSerializerPluginDescriptor descriptor = new SSerializerPluginDescriptor();
 				descriptor.setDefaultContentType(serializerPlugin.getDefaultContentType());
 				descriptor.setDefaultExtension(serializerPlugin.getDefaultExtension());
-				descriptor.setDefaultName(serializerPlugin.getDefaultSerializerName());
+				descriptor.setDefaultName(serializerPlugin.getDefaultName());
 				descriptor.setPluginClassName(serializerPlugin.getClass().getName());
 				return descriptor;
 			}
@@ -159,7 +158,7 @@ public class EmfSerializerFactory {
 		List<SIfcEnginePluginDescriptor> descriptors = new ArrayList<SIfcEnginePluginDescriptor>();
 		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins(true)) {
 			SIfcEnginePluginDescriptor descriptor = new SIfcEnginePluginDescriptor();
-			descriptor.setDefaultName(ifcEnginePlugin.getDefaultIfcEngineName());
+			descriptor.setDefaultName(ifcEnginePlugin.getDefaultName());
 			descriptor.setPluginClassName(ifcEnginePlugin.getClass().getName());
 			descriptors.add(descriptor);
 		}
@@ -170,7 +169,7 @@ public class EmfSerializerFactory {
 		List<SQueryEnginePluginDescriptor> descriptors = new ArrayList<SQueryEnginePluginDescriptor>();
 		for (QueryEnginePlugin queryEnginePlugin : pluginManager.getAllQueryEnginePlugins(true)) {
 			SQueryEnginePluginDescriptor descriptor = new SQueryEnginePluginDescriptor();
-			descriptor.setDefaultName(queryEnginePlugin.getDefaultQueryEngineName());
+			descriptor.setDefaultName(queryEnginePlugin.getDefaultName());
 			descriptor.setPluginClassName(queryEnginePlugin.getClass().getName());
 			descriptors.add(descriptor);
 		}
@@ -181,7 +180,7 @@ public class EmfSerializerFactory {
 		List<SModelMergerPluginDescriptor> descriptors = new ArrayList<SModelMergerPluginDescriptor>();
 		for (ModelMergerPlugin queryEnginePlugin : pluginManager.getAllModelMergerPlugins(true)) {
 			SModelMergerPluginDescriptor descriptor = new SModelMergerPluginDescriptor();
-			descriptor.setDefaultName(queryEnginePlugin.getDefaultModelMergerName());
+			descriptor.setDefaultName(queryEnginePlugin.getDefaultName());
 			descriptor.setPluginClassName(queryEnginePlugin.getClass().getName());
 			descriptors.add(descriptor);
 		}
@@ -192,7 +191,7 @@ public class EmfSerializerFactory {
 		List<SModelComparePluginDescriptor> descriptors = new ArrayList<SModelComparePluginDescriptor>();
 		for (ModelComparePlugin queryEnginePlugin : pluginManager.getAllModelComparePlugins(true)) {
 			SModelComparePluginDescriptor descriptor = new SModelComparePluginDescriptor();
-			descriptor.setDefaultName(queryEnginePlugin.getDefaultModelCompareName());
+			descriptor.setDefaultName(queryEnginePlugin.getDefaultName());
 			descriptor.setPluginClassName(queryEnginePlugin.getClass().getName());
 			descriptors.add(descriptor);
 		}

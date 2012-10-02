@@ -115,7 +115,7 @@ public class TNOIfcEnginePlugin implements IfcEnginePlugin {
 	}
 
 	@Override
-	public String getDefaultIfcEngineName() {
+	public String getDefaultName() {
 		return "TNO Engine Series";
 	}
 }

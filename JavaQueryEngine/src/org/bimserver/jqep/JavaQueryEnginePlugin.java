@@ -62,7 +62,7 @@ public class JavaQueryEnginePlugin implements QueryEnginePlugin {
 	}
 
 	@Override
-	public String getDefaultQueryEngineName() {
+	public String getDefaultName() {
 		return "JavaQueryEnginePlugin";
 	}
 }

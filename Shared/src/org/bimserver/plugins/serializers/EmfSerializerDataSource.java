@@ -26,9 +26,9 @@ import javax.activation.DataSource;
 
 public class EmfSerializerDataSource implements DataSource {
 
-	private final EmfSerializer serializer;
+	private final Serializer serializer;
 
-	public EmfSerializerDataSource(EmfSerializer serializer) {
+	public EmfSerializerDataSource(Serializer serializer) {
 		this.serializer = serializer;
 	}
 
@@ -52,7 +52,7 @@ public class EmfSerializerDataSource implements DataSource {
 		return null;
 	}
 
-	public EmfSerializer getSerializer() {
+	public Serializer getSerializer() {
 		return serializer;
 	}
 }

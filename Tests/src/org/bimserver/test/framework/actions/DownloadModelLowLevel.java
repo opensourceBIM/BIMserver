@@ -25,7 +25,7 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.exceptions.ServerException;
@@ -48,7 +48,7 @@ public class DownloadModelLowLevel extends Action {
 				model = virtualUser.getBimServerClient().getModel(randomRevision.getOid());
 				PluginManager pluginManager = virtualUser.getBimServerClient().getPluginManager();
 				SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
-				EmfSerializer serializer = serializerPlugin.createSerializer();
+				Serializer serializer = serializerPlugin.createSerializer();
 				serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine());
 				serializer.writeToFile(new File(getTestFramework().getTestConfiguration().getOutputFolder(), "test.ifc"));
 			} catch (BimServerClientException e1) {

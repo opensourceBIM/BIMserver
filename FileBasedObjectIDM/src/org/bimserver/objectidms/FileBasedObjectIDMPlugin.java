@@ -59,7 +59,7 @@ public class FileBasedObjectIDMPlugin implements ObjectIDMPlugin {
 	}
 
 	@Override
-	public String getDefaultObjectIDMName() {
+	public String getDefaultName() {
 		return "FileBasedObjectIDMPlugin";
 	}
 }

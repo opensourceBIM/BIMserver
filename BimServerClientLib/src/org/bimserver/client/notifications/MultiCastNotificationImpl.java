@@ -20,9 +20,6 @@ package org.bimserver.client.notifications;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.jws.WebMethod;
-import javax.jws.WebParam;
-
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SToken;

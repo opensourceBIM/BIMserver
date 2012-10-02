@@ -29,8 +29,8 @@ import org.bimserver.models.ifc2x3tc1.IfcDoor;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.deserializers.EmfDeserializer;
 
 public class SimpleTest {
 	public static void main(String[] args) {
@@ -41,7 +41,7 @@ public class SimpleTest {
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
-			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
 			IfcModelInterface model = deserializer.read(TestFile.HAUS_SOURCE_FILE.getFile(), true);
             List<IfcBuildingStorey> stories = model.getAll(IfcBuildingStorey.class);

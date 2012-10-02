@@ -27,7 +27,7 @@ import org.bimserver.plugins.schema.SchemaDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class EmfDeserializer {
+public abstract class EmfDeserializer implements Deserializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmfDeserializer.class);
 	public abstract void init(SchemaDefinition schema);

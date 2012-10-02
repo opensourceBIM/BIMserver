@@ -19,8 +19,8 @@ package org.bimserver.ifc.step.deserializer;
 
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.schema.SchemaException;
 
 public class IfcStepDeserializerPlugin implements DeserializerPlugin {
@@ -28,7 +28,7 @@ public class IfcStepDeserializerPlugin implements DeserializerPlugin {
 	boolean initialized = false;
 	
 	@Override
-	public EmfDeserializer createDeserializer() {
+	public Deserializer createDeserializer() {
 		return new IfcStepDeserializer();
 	}
 
@@ -59,7 +59,7 @@ public class IfcStepDeserializerPlugin implements DeserializerPlugin {
 	}
 
 	@Override
-	public String getDefaultDeserializerName() {
+	public String getDefaultName() {
 		return "IfcStepDeserializer";
 	}
 }

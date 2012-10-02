@@ -21,7 +21,7 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.schema.SchemaException;
-import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
 public class CityGmlSerializerPlugin implements SerializerPlugin {
@@ -48,12 +48,12 @@ public class CityGmlSerializerPlugin implements SerializerPlugin {
 		initialized = true;
 	}
 	
-	public EmfSerializer createSerializer() {
+	public Serializer createSerializer() {
 		return new CityGmlSerializer();
 	}
 
 	@Override
-	public String getDefaultSerializerName() {
+	public String getDefaultName() {
 		return "CityGML1.0.0";
 	}
 
