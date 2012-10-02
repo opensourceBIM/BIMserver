@@ -89,7 +89,7 @@ public class SPasswordChanged extends SLogAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long userId;
+	private long userId = -1;
 	public long getUserId() {
 		return userId;
 	}

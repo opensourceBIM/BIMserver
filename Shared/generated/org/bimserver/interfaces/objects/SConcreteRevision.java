@@ -121,13 +121,13 @@ public class SConcreteRevision implements SDataBase
 	}
 	
 	private java.lang.Integer id;
-	private long projectId;
+	private long projectId = -1;
 	private byte[] checksum;
 	private List<Long> revisions = new ArrayList<Long>();
 	private java.lang.Long size;
 	private java.util.Date date;
 	private java.lang.String lastError;
-	private long userId;
+	private long userId = -1;
 	public java.lang.Integer getId() {
 		return id;
 	}

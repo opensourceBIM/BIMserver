@@ -67,9 +67,6 @@ public class SExtendedDataSchema implements SDataBase
 		if (sField.getName().equals("type")) {
 			return getType();
 		}
-		if (sField.getName().equals("settingsId")) {
-			return getSettingsId();
-		}
 		if (sField.getName().equals("users")) {
 			return getUsers();
 		}
@@ -107,10 +104,6 @@ public class SExtendedDataSchema implements SDataBase
 			setType((SExtendedDataSchemaType)val);
 			return;
 		}
-		if (sField.getName().equals("settingsId")) {
-			setSettingsId((Long)val);
-			return;
-		}
 		if (sField.getName().equals("users")) {
 			setUsers((List<Long>)val);
 			return;
@@ -132,7 +125,6 @@ public class SExtendedDataSchema implements SDataBase
 	private byte[] data;
 	private boolean validate;
 	private SExtendedDataSchemaType type;
-	private long settingsId;
 	private List<Long> users = new ArrayList<Long>();
 	private List<Long> extendedData = new ArrayList<Long>();
 	public java.lang.String getName() {
@@ -177,14 +169,6 @@ public class SExtendedDataSchema implements SDataBase
 	public void setType(SExtendedDataSchemaType type) {
 		this.type = type;
 	}
-	public long getSettingsId() {
-		return settingsId;
-	}
-
-	public void setSettingsId(long settingsId) {
-		this.settingsId = settingsId;
-	}
-	
 	public List<Long> getUsers() {
 		return users;
 	}

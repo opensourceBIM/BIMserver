@@ -96,8 +96,8 @@ public class SNewProjectAdded extends SLogAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long projectId;
-	private long parentProjectId;
+	private long projectId = -1;
+	private long parentProjectId = -1;
 	public long getProjectId() {
 		return projectId;
 	}

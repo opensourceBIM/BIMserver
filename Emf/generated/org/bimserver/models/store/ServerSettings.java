@@ -43,7 +43,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ServerSettings#getHeaderAddition <em>Header Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getFooterAddition <em>Footer Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getCacheOutputFiles <em>Cache Output Files</em>}</li>
- *   <li>{@link org.bimserver.models.store.ServerSettings#getSchemas <em>Schemas</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getServiceRepositoryUrl <em>Service Repository Url</em>}</li>
  * </ul>
  * </p>
@@ -469,24 +468,6 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	void setCacheOutputFiles(Boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Schemas</b></em>' reference list.
-	 * The list contents are of type {@link org.bimserver.models.store.ExtendedDataSchema}.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.ExtendedDataSchema#getSettings <em>Settings</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Schemas</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Schemas</em>' reference list.
-	 * @see org.bimserver.models.store.StorePackage#getServerSettings_Schemas()
-	 * @see org.bimserver.models.store.ExtendedDataSchema#getSettings
-	 * @model opposite="settings"
-	 * @generated
-	 */
-	EList<ExtendedDataSchema> getSchemas();
 
 	/**
 	 * Returns the value of the '<em><b>Service Repository Url</b></em>' attribute.

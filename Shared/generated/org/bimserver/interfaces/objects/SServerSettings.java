@@ -16,8 +16,6 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -97,9 +95,6 @@ public class SServerSettings implements SDataBase
 		if (sField.getName().equals("cacheOutputFiles")) {
 			return getCacheOutputFiles();
 		}
-		if (sField.getName().equals("schemas")) {
-			return getSchemas();
-		}
 		if (sField.getName().equals("serviceRepositoryUrl")) {
 			return getServiceRepositoryUrl();
 		}
@@ -108,7 +103,6 @@ public class SServerSettings implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
-	@SuppressWarnings("unchecked")
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("showVersionUpgradeAvailable")) {
 			setShowVersionUpgradeAvailable((Boolean)val);
@@ -174,10 +168,6 @@ public class SServerSettings implements SDataBase
 			setCacheOutputFiles((Boolean)val);
 			return;
 		}
-		if (sField.getName().equals("schemas")) {
-			setSchemas((List<Long>)val);
-			return;
-		}
 		if (sField.getName().equals("serviceRepositoryUrl")) {
 			setServiceRepositoryUrl((String)val);
 			return;
@@ -205,7 +195,6 @@ public class SServerSettings implements SDataBase
 	private java.lang.String headerAddition;
 	private java.lang.String footerAddition;
 	private java.lang.Boolean cacheOutputFiles;
-	private List<Long> schemas = new ArrayList<Long>();
 	private java.lang.String serviceRepositoryUrl;
 	public java.lang.Boolean getShowVersionUpgradeAvailable() {
 		return showVersionUpgradeAvailable;
@@ -318,13 +307,6 @@ public class SServerSettings implements SDataBase
 
 	public void setCacheOutputFiles(java.lang.Boolean cacheOutputFiles) {
 		this.cacheOutputFiles = cacheOutputFiles;
-	}
-	public List<Long> getSchemas() {
-		return schemas;
-	}
-
-	public void setSchemas(List<Long> schemas) {
-		this.schemas = schemas;
 	}
 	public java.lang.String getServiceRepositoryUrl() {
 		return serviceRepositoryUrl;

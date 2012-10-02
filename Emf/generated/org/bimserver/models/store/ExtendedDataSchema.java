@@ -33,7 +33,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getData <em>Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#isValidate <em>Validate</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getType <em>Type</em>}</li>
- *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getSettings <em>Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getUsers <em>Users</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getExtendedData <em>Extended Data</em>}</li>
  * </ul>
@@ -203,34 +202,6 @@ public interface ExtendedDataSchema extends IdEObject {
 	 * @generated
 	 */
 	void setType(ExtendedDataSchemaType value);
-
-	/**
-	 * Returns the value of the '<em><b>Settings</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.ServerSettings#getSchemas <em>Schemas</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Settings</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Settings</em>' reference.
-	 * @see #setSettings(ServerSettings)
-	 * @see org.bimserver.models.store.StorePackage#getExtendedDataSchema_Settings()
-	 * @see org.bimserver.models.store.ServerSettings#getSchemas
-	 * @model opposite="schemas"
-	 * @generated
-	 */
-	ServerSettings getSettings();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ExtendedDataSchema#getSettings <em>Settings</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Settings</em>' reference.
-	 * @see #getSettings()
-	 * @generated
-	 */
-	void setSettings(ServerSettings value);
 
 	/**
 	 * Returns the value of the '<em><b>Users</b></em>' reference list.

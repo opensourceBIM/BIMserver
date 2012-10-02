@@ -95,7 +95,7 @@ public class SModelCompare extends SPlugin implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long settingsId;
+	private long settingsId = -1;
 	public long getSettingsId() {
 		return settingsId;
 	}

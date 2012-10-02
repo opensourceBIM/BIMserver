@@ -19,12 +19,18 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
+import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.PostCommitAction;
+import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.log.ExtendedDataAddedToRevision;
+import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
@@ -32,9 +38,11 @@ public class AddExtendedDataToRevisionDatabaseAction extends AddDatabaseAction<E
 
 	private final Long roid;
 	private Authorization authorization;
+	private BimServer bimServer;
 
-	public AddExtendedDataToRevisionDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Long roid, Authorization authorization, ExtendedData extendedData) {
+	public AddExtendedDataToRevisionDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Long roid, Authorization authorization, ExtendedData extendedData) {
 		super(databaseSession, accessMethod, extendedData);
+		this.bimServer = bimServer;
 		this.roid = roid;
 		this.authorization = authorization;
 	}
@@ -42,6 +50,7 @@ public class AddExtendedDataToRevisionDatabaseAction extends AddDatabaseAction<E
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		authorization.canWriteExtendedData(roid);
+		User actingUser = getUserByUoid(authorization.getUoid());
 		getIdEObject().setAdded(new Date());
 		super.execute();
 		Revision revision = getRevisionByRoid(roid);
@@ -50,6 +59,21 @@ public class AddExtendedDataToRevisionDatabaseAction extends AddDatabaseAction<E
 		}
 		revision.getExtendedData().add(getIdEObject());
 		getDatabaseSession().store(revision);
+		
+		final ExtendedDataAddedToRevision extendedDataAddedToRevision = LogFactory.eINSTANCE.createExtendedDataAddedToRevision();
+		extendedDataAddedToRevision.setAccessMethod(getAccessMethod());
+		extendedDataAddedToRevision.setDate(new Date());
+		extendedDataAddedToRevision.setExecutor(actingUser);
+		extendedDataAddedToRevision.setExtendedData(getIdEObject());
+		extendedDataAddedToRevision.setRevision(revision);
+		getDatabaseSession().store(extendedDataAddedToRevision);
+		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+			@Override
+			public void execute() throws UserException {
+				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(extendedDataAddedToRevision));
+			}
+		});
+		
 		return null;
 	}
 }

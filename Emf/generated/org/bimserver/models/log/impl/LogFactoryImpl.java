@@ -118,6 +118,10 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 			return (EObject) createPasswordChanged();
 		case LogPackage.USER_CHANGED:
 			return (EObject) createUserChanged();
+		case LogPackage.EXTENDED_DATA_ADDED_TO_REVISION:
+			return (EObject) createExtendedDataAddedToRevision();
+		case LogPackage.EXTENDED_DATA_ADDED_TO_PROJECT:
+			return (EObject) createExtendedDataAddedToProject();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -391,6 +395,26 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	public UserChanged createUserChanged() {
 		UserChangedImpl userChanged = new UserChangedImpl();
 		return userChanged;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExtendedDataAddedToRevision createExtendedDataAddedToRevision() {
+		ExtendedDataAddedToRevisionImpl extendedDataAddedToRevision = new ExtendedDataAddedToRevisionImpl();
+		return extendedDataAddedToRevision;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExtendedDataAddedToProject createExtendedDataAddedToProject() {
+		ExtendedDataAddedToProjectImpl extendedDataAddedToProject = new ExtendedDataAddedToProjectImpl();
+		return extendedDataAddedToProject;
 	}
 
 	/**

@@ -642,6 +642,9 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	public <T extends IdEObject> T get(EClass eClass, long oid, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException {
+		if (oid == -1) {
+			return null;
+		}
 		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
 		IfcModelInterface model = new IfcModel();
 		T t = get(eClass, model, null, oid, deep, objectIDM, null);

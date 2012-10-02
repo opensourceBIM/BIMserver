@@ -99,7 +99,7 @@ public class SLongAction implements SDataBase
 	}
 	
 	private java.lang.String identification;
-	private long userId;
+	private long userId = -1;
 	private java.util.Date start;
 	private java.lang.String username;
 	private java.lang.String name;

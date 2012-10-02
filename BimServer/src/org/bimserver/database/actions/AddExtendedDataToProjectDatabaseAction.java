@@ -17,32 +17,61 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Date;
+
+import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.PostCommitAction;
+import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.log.ExtendedDataAddedToProject;
+import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.Authorization;
 
 public class AddExtendedDataToProjectDatabaseAction extends AddDatabaseAction<ExtendedData> {
 
 	private final Long poid;
+	private BimServer bimServer;
+	private Authorization authorization;
 
-	public AddExtendedDataToProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Long poid, ExtendedData extendedData) {
+	public AddExtendedDataToProjectDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Long poid, ExtendedData extendedData, Authorization authorization) {
 		super(databaseSession, accessMethod, extendedData);
+		this.bimServer = bimServer;
 		this.poid = poid;
+		this.authorization = authorization;
 	}
 	
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		super.execute();
+		User actingUser = getUserByUoid(authorization.getUoid());
 		Project project = getProjectByPoid(poid);
 		if (project == null) {
 			throw new UserException("Project with poid " + poid + " not found");
 		}
 		project.getExtendedData().add(getIdEObject());
 		getDatabaseSession().store(project);
+		
+		final ExtendedDataAddedToProject extendedDataAddedToProject = LogFactory.eINSTANCE.createExtendedDataAddedToProject();
+		extendedDataAddedToProject.setAccessMethod(getAccessMethod());
+		extendedDataAddedToProject.setDate(new Date());
+		extendedDataAddedToProject.setExecutor(actingUser);
+		extendedDataAddedToProject.setExtendedData(getIdEObject());
+		extendedDataAddedToProject.setProject(project);
+		getDatabaseSession().store(extendedDataAddedToProject);
+		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+			@Override
+			public void execute() throws UserException {
+				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(extendedDataAddedToProject));
+			}
+		});
+
 		return null;
 	}
 }

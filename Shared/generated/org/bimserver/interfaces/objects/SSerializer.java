@@ -125,9 +125,9 @@ public class SSerializer extends SPlugin implements SDataBase
 	
 	private java.lang.String extension;
 	private java.lang.String contentType;
-	private long objectIDMId;
-	private long settingsId;
-	private long ifcEngineId;
+	private long objectIDMId = -1;
+	private long settingsId = -1;
+	private long ifcEngineId = -1;
 	public java.lang.String getExtension() {
 		return extension;
 	}

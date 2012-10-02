@@ -152,10 +152,10 @@ public class SService implements SDataBase
 	private STrigger trigger;
 	private boolean readRevision;
 	private boolean readExtendedData;
-	private long writeRevisionId;
+	private long writeRevisionId = -1;
 	private boolean writeExtendedData;
-	private long projectId;
-	private long userId;
+	private long projectId = -1;
+	private long userId = -1;
 	public java.lang.String getName() {
 		return name;
 	}

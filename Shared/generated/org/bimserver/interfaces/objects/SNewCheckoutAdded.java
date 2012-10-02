@@ -89,7 +89,7 @@ public class SNewCheckoutAdded extends SLogAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long checkoutId;
+	private long checkoutId = -1;
 	public long getCheckoutId() {
 		return checkoutId;
 	}

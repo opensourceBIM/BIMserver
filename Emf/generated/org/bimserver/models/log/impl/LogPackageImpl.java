@@ -234,6 +234,20 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass extendedDataAddedToRevisionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass extendedDataAddedToProjectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum accessMethodEEnum = null;
 
 	/**
@@ -844,6 +858,66 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 */
 	public EReference getUserChanged_User() {
 		return (EReference) getUserChanged().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExtendedDataAddedToRevision() {
+		if (extendedDataAddedToRevisionEClass == null) {
+			extendedDataAddedToRevisionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(25);
+		}
+		return extendedDataAddedToRevisionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExtendedDataAddedToRevision_Revision() {
+		return (EReference) getExtendedDataAddedToRevision().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExtendedDataAddedToRevision_ExtendedData() {
+		return (EReference) getExtendedDataAddedToRevision().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExtendedDataAddedToProject() {
+		if (extendedDataAddedToProjectEClass == null) {
+			extendedDataAddedToProjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(26);
+		}
+		return extendedDataAddedToProjectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExtendedDataAddedToProject_Project() {
+		return (EReference) getExtendedDataAddedToProject().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExtendedDataAddedToProject_ExtendedData() {
+		return (EReference) getExtendedDataAddedToProject().getEStructuralFeatures().get(1);
 	}
 
 	/**

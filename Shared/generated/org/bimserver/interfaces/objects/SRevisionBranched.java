@@ -96,8 +96,8 @@ public class SRevisionBranched extends SLogAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long oldrevisionId;
-	private long newrevisionId;
+	private long oldrevisionId = -1;
+	private long newrevisionId = -1;
 	public long getOldrevisionId() {
 		return oldrevisionId;
 	}

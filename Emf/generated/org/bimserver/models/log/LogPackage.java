@@ -1373,6 +1373,134 @@ public interface LogPackage extends EPackage {
 	int USER_CHANGED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.log.impl.ExtendedDataAddedToRevisionImpl <em>Extended Data Added To Revision</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.log.impl.ExtendedDataAddedToRevisionImpl
+	 * @see org.bimserver.models.log.impl.LogPackageImpl#getExtendedDataAddedToRevision()
+	 * @generated
+	 */
+	int EXTENDED_DATA_ADDED_TO_REVISION = 24;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_ADDED_TO_REVISION__DATE = LOG_ACTION__DATE;
+
+	/**
+	 * The feature id for the '<em><b>Executor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_ADDED_TO_REVISION__EXECUTOR = LOG_ACTION__EXECUTOR;
+
+	/**
+	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_ADDED_TO_REVISION__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+
+	/**
+	 * The feature id for the '<em><b>Revision</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_ADDED_TO_REVISION__REVISION = LOG_ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Extended Data</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_ADDED_TO_REVISION__EXTENDED_DATA = LOG_ACTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Extended Data Added To Revision</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_ADDED_TO_REVISION_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.log.impl.ExtendedDataAddedToProjectImpl <em>Extended Data Added To Project</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.log.impl.ExtendedDataAddedToProjectImpl
+	 * @see org.bimserver.models.log.impl.LogPackageImpl#getExtendedDataAddedToProject()
+	 * @generated
+	 */
+	int EXTENDED_DATA_ADDED_TO_PROJECT = 25;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_ADDED_TO_PROJECT__DATE = LOG_ACTION__DATE;
+
+	/**
+	 * The feature id for the '<em><b>Executor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_ADDED_TO_PROJECT__EXECUTOR = LOG_ACTION__EXECUTOR;
+
+	/**
+	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_ADDED_TO_PROJECT__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+
+	/**
+	 * The feature id for the '<em><b>Project</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_ADDED_TO_PROJECT__PROJECT = LOG_ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Extended Data</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_ADDED_TO_PROJECT__EXTENDED_DATA = LOG_ACTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Extended Data Added To Project</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_ADDED_TO_PROJECT_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.AccessMethod <em>Access Method</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1380,7 +1508,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getAccessMethod()
 	 * @generated
 	 */
-	int ACCESS_METHOD = 24;
+	int ACCESS_METHOD = 26;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.LogAction <em>Action</em>}'.
@@ -1931,6 +2059,70 @@ public interface LogPackage extends EPackage {
 	EReference getUserChanged_User();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.log.ExtendedDataAddedToRevision <em>Extended Data Added To Revision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Extended Data Added To Revision</em>'.
+	 * @see org.bimserver.models.log.ExtendedDataAddedToRevision
+	 * @generated
+	 */
+	EClass getExtendedDataAddedToRevision();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.log.ExtendedDataAddedToRevision#getRevision <em>Revision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Revision</em>'.
+	 * @see org.bimserver.models.log.ExtendedDataAddedToRevision#getRevision()
+	 * @see #getExtendedDataAddedToRevision()
+	 * @generated
+	 */
+	EReference getExtendedDataAddedToRevision_Revision();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.log.ExtendedDataAddedToRevision#getExtendedData <em>Extended Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Extended Data</em>'.
+	 * @see org.bimserver.models.log.ExtendedDataAddedToRevision#getExtendedData()
+	 * @see #getExtendedDataAddedToRevision()
+	 * @generated
+	 */
+	EReference getExtendedDataAddedToRevision_ExtendedData();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.log.ExtendedDataAddedToProject <em>Extended Data Added To Project</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Extended Data Added To Project</em>'.
+	 * @see org.bimserver.models.log.ExtendedDataAddedToProject
+	 * @generated
+	 */
+	EClass getExtendedDataAddedToProject();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.log.ExtendedDataAddedToProject#getProject <em>Project</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Project</em>'.
+	 * @see org.bimserver.models.log.ExtendedDataAddedToProject#getProject()
+	 * @see #getExtendedDataAddedToProject()
+	 * @generated
+	 */
+	EReference getExtendedDataAddedToProject_Project();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.log.ExtendedDataAddedToProject#getExtendedData <em>Extended Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Extended Data</em>'.
+	 * @see org.bimserver.models.log.ExtendedDataAddedToProject#getExtendedData()
+	 * @see #getExtendedDataAddedToProject()
+	 * @generated
+	 */
+	EReference getExtendedDataAddedToProject_ExtendedData();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.log.AccessMethod <em>Access Method</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2425,6 +2617,58 @@ public interface LogPackage extends EPackage {
 		 * @generated
 		 */
 		EReference USER_CHANGED__USER = eINSTANCE.getUserChanged_User();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.log.impl.ExtendedDataAddedToRevisionImpl <em>Extended Data Added To Revision</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.log.impl.ExtendedDataAddedToRevisionImpl
+		 * @see org.bimserver.models.log.impl.LogPackageImpl#getExtendedDataAddedToRevision()
+		 * @generated
+		 */
+		EClass EXTENDED_DATA_ADDED_TO_REVISION = eINSTANCE.getExtendedDataAddedToRevision();
+
+		/**
+		 * The meta object literal for the '<em><b>Revision</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENDED_DATA_ADDED_TO_REVISION__REVISION = eINSTANCE.getExtendedDataAddedToRevision_Revision();
+
+		/**
+		 * The meta object literal for the '<em><b>Extended Data</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENDED_DATA_ADDED_TO_REVISION__EXTENDED_DATA = eINSTANCE.getExtendedDataAddedToRevision_ExtendedData();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.log.impl.ExtendedDataAddedToProjectImpl <em>Extended Data Added To Project</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.log.impl.ExtendedDataAddedToProjectImpl
+		 * @see org.bimserver.models.log.impl.LogPackageImpl#getExtendedDataAddedToProject()
+		 * @generated
+		 */
+		EClass EXTENDED_DATA_ADDED_TO_PROJECT = eINSTANCE.getExtendedDataAddedToProject();
+
+		/**
+		 * The meta object literal for the '<em><b>Project</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENDED_DATA_ADDED_TO_PROJECT__PROJECT = eINSTANCE.getExtendedDataAddedToProject_Project();
+
+		/**
+		 * The meta object literal for the '<em><b>Extended Data</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENDED_DATA_ADDED_TO_PROJECT__EXTENDED_DATA = eINSTANCE.getExtendedDataAddedToProject_ExtendedData();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.AccessMethod <em>Access Method</em>}' enum.

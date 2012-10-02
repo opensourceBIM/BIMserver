@@ -39,7 +39,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getData <em>Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#isValidate <em>Validate</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getSettings <em>Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getUsers <em>Users</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getExtendedData <em>Extended Data</em>}</li>
  * </ul>
@@ -183,24 +182,6 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements ExtendedDat
 	 */
 	public void setType(ExtendedDataSchemaType newType) {
 		eSet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__TYPE, newType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ServerSettings getSettings() {
-		return (ServerSettings) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__SETTINGS, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSettings(ServerSettings newSettings) {
-		eSet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__SETTINGS, newSettings);
 	}
 
 	/**

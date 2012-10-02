@@ -170,19 +170,19 @@ public class SRevision implements SDataBase
 	}
 	
 	private java.lang.Integer id;
-	private long userId;
+	private long userId = -1;
 	private java.util.Date date;
 	private java.lang.String comment;
 	private java.lang.Long size;
 	private List<Long> concreteRevisions = new ArrayList<Long>();
-	private long lastConcreteRevisionId;
+	private long lastConcreteRevisionId = -1;
 	private List<Long> checkouts = new ArrayList<Long>();
-	private long projectId;
+	private long projectId = -1;
 	private java.lang.String tag;
 	private java.lang.String lastError;
 	private java.lang.Integer bmi;
 	private java.lang.Long laid;
-	private long summaryId;
+	private long summaryId = -1;
 	private List<Long> extendedData = new ArrayList<Long>();
 	public java.lang.Integer getId() {
 		return id;

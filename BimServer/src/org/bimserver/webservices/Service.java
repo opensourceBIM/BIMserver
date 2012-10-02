@@ -509,6 +509,21 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
+	public List<org.bimserver.interfaces.objects.SService> getAllServicesOfProject(Long poid) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			BimDatabaseAction<Set<org.bimserver.models.store.Service>> action = new GetAllServicesOfProjectDatabaseAction(session, accessMethod, poid);
+			List<org.bimserver.interfaces.objects.SService> convertToSListRevision = converter.convertToSListService(session.executeAndCommitAction(action));
+			return convertToSListRevision;
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
 	public List<SCheckout> getAllCheckoutsOfProject(Long poid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
@@ -2270,7 +2285,8 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SSerializer getSerializerByContentType(String contentType) throws ServerException, UserException {
-		requireRealUserAuthentication();
+		// Not checking for real authentication here because a remote service should be able to use a serializer for download call
+		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			return converter.convertToSObject(session.executeAndCommitAction(new GetSerializerByContentTypeDatabaseAction(session, accessMethod, contentType)));
@@ -3044,7 +3060,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			ExtendedData convert = converter.convertFromSObject(extendedData, session);
-			session.executeAndCommitAction(new AddExtendedDataToRevisionDatabaseAction(session, accessMethod, roid, authorization, convert));
+			session.executeAndCommitAction(new AddExtendedDataToRevisionDatabaseAction(bimServer, session, accessMethod, roid, authorization, convert));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -3058,7 +3074,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			ExtendedData convert = converter.convertFromSObject(extendedData, session);
-			session.executeAndCommitAction(new AddExtendedDataToProjectDatabaseAction(session, accessMethod, poid, convert));
+			session.executeAndCommitAction(new AddExtendedDataToProjectDatabaseAction(bimServer, session, accessMethod, poid, convert, authorization));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -3502,7 +3518,8 @@ public class Service implements ServiceInterface {
 	}
 
 	public SExtendedDataSchema getExtendedDataSchemaByNamespace(String nameSpace) throws UserException, ServerException {
-		requireRealUserAuthentication();
+		// Not checking for real authentication here because a remote service should be able to use an exs
+		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			return converter.convertToSObject(session.executeAndCommitAction(new GetExtendedDataSchemaByNamespaceDatabaseAction(session, accessMethod, nameSpace)));

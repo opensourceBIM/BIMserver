@@ -182,13 +182,13 @@ public class SUser implements SDataBase
 	private List<Long> revisions = new ArrayList<Long>();
 	private SObjectState state;
 	private java.util.Date createdOn;
-	private long createdById;
+	private long createdById = -1;
 	private SUserType userType;
 	private java.lang.String username;
 	private java.util.Date lastSeen;
 	private java.lang.String validationToken;
 	private java.util.Date validationTokenCreated;
-	private long settingsId;
+	private long settingsId = -1;
 	private List<Long> schemas = new ArrayList<Long>();
 	private List<Long> extendedData = new ArrayList<Long>();
 	private List<Long> services = new ArrayList<Long>();

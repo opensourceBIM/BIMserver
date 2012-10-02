@@ -71,6 +71,7 @@ import org.bimserver.interfaces.objects.SSerializer;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServerDescriptor;
 import org.bimserver.interfaces.objects.SServerInfo;
+import org.bimserver.interfaces.objects.SService;
 import org.bimserver.interfaces.objects.SServiceDescriptor;
 import org.bimserver.interfaces.objects.SServiceInterface;
 import org.bimserver.interfaces.objects.SServiceMethod;
@@ -506,6 +507,10 @@ public interface ServiceInterface {
 	List<SRevision> getAllRevisionsOfProject(
 			@QueryParam("poid") @WebParam(name = "poid", partName = "getAllRevisionsOfProject.poid") Long poid) throws ServerException, UserException;
 
+	@WebMethod(action = "getAllServicesOfProject")
+	List<SService> getAllServicesOfProject(
+			@WebParam(name = "poid", partName = "getAllServicesOfProject.poid") Long poid) throws ServerException, UserException;
+	
 	/**
 	 * @param poid The ObjectID of the Project
 	 * @return A list of Checkouts belonging to this Project
@@ -1863,7 +1868,7 @@ public interface ServiceInterface {
 
 	@WebMethod(action="getService")
 	org.bimserver.interfaces.objects.SService getService(
-		@WebParam(name = "epid", partName = "getService.epid") Long epid) throws ServerException, UserException;
+		@WebParam(name = "soid", partName = "getService.soid") Long soid) throws ServerException, UserException;
 
 	@WebMethod(action="getServiceInterfaces")
 	List<SServiceInterface> getServiceInterfaces() throws ServerException, UserException;
