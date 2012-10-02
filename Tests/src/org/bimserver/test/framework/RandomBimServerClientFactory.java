@@ -47,12 +47,10 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 	private static final Logger LOGGER = LoggerFactory.getLogger(RandomBimServerClientFactory.class);
 	private int current = 0;
 	private final Type[] types;
-	private final TestFramework testFramework;
 	private Map<String, SService> map;
 	private PluginManager pluginManager;
 	
 	public RandomBimServerClientFactory(TestFramework testFramework, Type... types) {
-		this.testFramework = testFramework;
 		if (types.length == 0) {
 			this.types = Type.values();
 		} else {

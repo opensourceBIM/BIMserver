@@ -49,8 +49,8 @@ import org.bimserver.models.store.ServerState;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.ServiceInterface;
@@ -316,7 +316,7 @@ public class TestLowLevelChanges {
 		DataHandler dataHandler = downloadData.getFile();
 		try {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
-			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
 			IfcModelInterface model = deserializer.read(dataHandler.getInputStream(), "test.ifc", true, 0);
 			return model;

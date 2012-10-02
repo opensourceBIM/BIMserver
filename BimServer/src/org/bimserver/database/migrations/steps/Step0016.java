@@ -19,7 +19,6 @@ package org.bimserver.database.migrations.steps;
 
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
-import org.bimserver.database.migrations.Schema.Multiplicity;
 
 public class Step0016 extends Migration {
 

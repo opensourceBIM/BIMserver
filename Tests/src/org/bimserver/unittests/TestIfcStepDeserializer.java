@@ -26,9 +26,9 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.deserializers.EmfDeserializer;
-import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.tests.TestFile;
@@ -40,12 +40,12 @@ public class TestIfcStepDeserializer {
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
-			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
 			IfcModelInterface modelInterface = deserializer.read(TestFile.AC11.getFile(), true);
 			
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
-			EmfSerializer serializer = serializerPlugin.createSerializer();
+			Serializer serializer = serializerPlugin.createSerializer();
 			serializer.init(modelInterface, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine());
 			serializer.writeToFile(new File("output/test.ifc"));
 		} catch (PluginException e) {

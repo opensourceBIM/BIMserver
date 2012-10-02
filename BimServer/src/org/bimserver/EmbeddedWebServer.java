@@ -19,13 +19,11 @@ package org.bimserver;
 
 import java.util.Random;
 
-import org.bimserver.servlets.RestServlet;
 import org.bimserver.servlets.SyndicationServlet;
 import org.bimserver.servlets.WebServiceServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.nio.SelectChannelConnector;
 import org.eclipse.jetty.server.session.HashSessionIdManager;
-import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +42,7 @@ public class EmbeddedWebServer {
 		server.addConnector(socketConnector);
 		context = new WebAppContext(server, "", "/");
 		context.addServlet(WebServiceServlet.class.getName(), "/soap/*");
-		ServletHolder restServletHolder = context.addServlet(RestServlet.class.getName(), "/rest/*");
+//		ServletHolder restServletHolder = context.addServlet(RestServlet.class.getName(), "/rest/*");
 //		restServletHolder.setInitParameter("javax.ws.rs.Application", "willbeoverridden");
 		context.addServlet(SyndicationServlet.class.getName(), "/syndication/*");
 		context.getServletContext().setAttribute("bimserver", bimServer);

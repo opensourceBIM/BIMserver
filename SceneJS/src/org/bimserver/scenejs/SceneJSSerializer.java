@@ -114,6 +114,7 @@ import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
@@ -147,7 +148,7 @@ public class SceneJSSerializer extends EmfSerializer {
 		this.surfaceStyleIds = new ArrayList<String>();
 		try {
 			ifcEngine.init();
-			EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
+			Serializer serializer = getPluginManager().requireIfcStepSerializer();
 			serializer.init(model, getProjectInfo(), getPluginManager(), ifcEngine);
 			ifcEngineModel = ifcEngine.openModel(serializer.getBytes());
 			ifcEngineModel.setPostProcessing(true);

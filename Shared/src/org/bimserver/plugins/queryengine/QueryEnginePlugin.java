@@ -12,11 +12,6 @@ public interface QueryEnginePlugin extends Plugin {
 	QueryEngine getQueryEngine();
 	
 	/**
-	 * @return A default name, will be used for auto initialization
-	 */
-	String getDefaultQueryEngineName();
-	
-	/**
 	 * @return Return a list of keys (usually file names) corresponding to code examples for this plugin
 	 */
 	Collection<String> getExampleKeys();

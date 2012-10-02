@@ -34,6 +34,7 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
@@ -61,7 +62,7 @@ public class XsltSerializer extends EmfSerializer {
 		switch (getMode()) {
 		case BODY:
 			SerializerPlugin plugin = (SerializerPlugin) getPluginManager().getPlugin("org.bimserver.ifc.xml.serializer.IfcXmlSerializerPlugin", true);
-			EmfSerializer ifcXmlSerializer = plugin.createSerializer();
+			Serializer ifcXmlSerializer = plugin.createSerializer();
 			ifcXmlSerializer.init(model, null, getPluginManager(), null);
 			TransformerFactory factory = TransformerFactory.newInstance();
 			try {

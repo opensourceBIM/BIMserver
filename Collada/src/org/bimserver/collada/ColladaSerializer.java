@@ -65,6 +65,7 @@ import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
 import org.eclipse.emf.common.util.EList;
@@ -119,7 +120,7 @@ public class ColladaSerializer extends EmfSerializer {
 		super.init(model, projectInfo, pluginManager, ifcEngine);
 		this.lengthUnitPrefix = getLengthUnitPrefix(model);
 		try {
-			EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
+			Serializer serializer = getPluginManager().requireIfcStepSerializer();
 			serializer.init(model, getProjectInfo(), getPluginManager(), ifcEngine);
 			ifcEngine.init();
 			ifcEngineModel = ifcEngine.openModel(serializer.getBytes());

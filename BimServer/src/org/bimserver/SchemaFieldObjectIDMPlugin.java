@@ -58,7 +58,7 @@ public class SchemaFieldObjectIDMPlugin implements ObjectIDMPlugin {
 	}
 
 	@Override
-	public String getDefaultObjectIDMName() {
+	public String getDefaultName() {
 		return "default";
 	}
 }

@@ -36,7 +36,6 @@ import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
-import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -70,7 +69,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			try {
 				model.fixOids(new IncrementingOidProvider(1L));
 				
-				EmfSerializer serializer = getBimServer().getEmfSerializerFactory().create(project, username, model, ifcEngine, downloadParameters);
+				org.bimserver.plugins.serializers.Serializer serializer = getBimServer().getEmfSerializerFactory().create(project, username, model, ifcEngine, downloadParameters);
 				if (serializer == null) {
 					throw new UserException("Error, no serializer found " + downloadParameters.getSerializerOid());
 				}

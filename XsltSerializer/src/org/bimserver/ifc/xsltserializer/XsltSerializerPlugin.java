@@ -48,7 +48,7 @@ public class XsltSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public String getDefaultSerializerName() {
+	public String getDefaultName() {
 		return "XSLT";
 	}
 

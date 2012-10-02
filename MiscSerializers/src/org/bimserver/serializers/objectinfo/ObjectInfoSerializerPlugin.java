@@ -48,7 +48,7 @@ public class ObjectInfoSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public String getDefaultSerializerName() {
+	public String getDefaultName() {
 		return "ObjectInfo";
 	}
 

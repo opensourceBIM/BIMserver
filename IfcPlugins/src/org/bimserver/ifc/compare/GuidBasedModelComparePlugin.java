@@ -34,7 +34,7 @@ public class GuidBasedModelComparePlugin implements ModelComparePlugin {
 	}
 
 	@Override
-	public String getDefaultModelCompareName() {
+	public String getDefaultName() {
 		return "GUID based compare";
 	}
 

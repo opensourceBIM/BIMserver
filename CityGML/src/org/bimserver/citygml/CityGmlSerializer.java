@@ -67,6 +67,7 @@ import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.citygml4j.CityGMLContext;
 import org.citygml4j.builder.jaxb.JAXBBuilder;
@@ -136,7 +137,7 @@ public class CityGmlSerializer extends EmfSerializer {
 		// gmlObjectFactory = new org.citygml4j.jaxb.gml._3_1_1.ObjectFactory();
 		convertedObjects = new HashMap<EObject, AbstractCityObject>();
 
-		EmfSerializer serializer = getPluginManager().requireIfcStepSerializer();
+		Serializer serializer = getPluginManager().requireIfcStepSerializer();
 		serializer.init(ifcModel, getProjectInfo(), getPluginManager(), ifcEngine);
 		try {
 			ifcEngine.init();

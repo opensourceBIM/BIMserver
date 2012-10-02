@@ -153,10 +153,8 @@ import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
-import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.servlets.EndPoint;
 import org.bimserver.shared.compare.CompareWriter;
 import org.bimserver.shared.exceptions.ServerException;
@@ -242,7 +240,7 @@ public class Service implements ServiceInterface {
 				if (deserializerObject == null) {
 					throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 				}
-				EmfDeserializer deserializer = bimServer.getEmfDeserializerFactory().createDeserializer(deserializerObject.getClassName());
+				org.bimserver.plugins.deserializers.Deserializer deserializer = bimServer.getEmfDeserializerFactory().createDeserializer(deserializerObject.getClassName());
 				try {
 					deserializer.init(bimServer.getPluginManager().requireSchemaDefinition());
 				} catch (PluginException e) {
@@ -311,7 +309,7 @@ public class Service implements ServiceInterface {
 	public Long checkout(Long roid, Long serializerOid, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		authorization.canDownload(roid);
-		EmfSerializer serializer = bimServer.getEmfSerializerFactory().get(serializerOid);
+		org.bimserver.plugins.serializers.Serializer serializer = bimServer.getEmfSerializerFactory().get(serializerOid);
 		if (serializer == null) {
 			throw new UserException("No serializer with id " + serializerOid + " could be found");
 		}
@@ -557,7 +555,9 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Set<User>> action = new GetAllUsersDatabaseAction(session, accessMethod, authorization);
-			return converter.convertToSListUser(session.executeAndCommitAction(action));
+			List<SUser> convertToSListUser = converter.convertToSListUser(session.executeAndCommitAction(action));
+			Collections.sort(convertToSListUser, new SUserComparator());
+			return convertToSListUser;
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -2570,7 +2570,7 @@ public class Service implements ServiceInterface {
 		List<SDeserializerPluginDescriptor> descriptors = new ArrayList<SDeserializerPluginDescriptor>();
 		for (DeserializerPlugin deserializerPlugin : bimServer.getPluginManager().getAllDeserializerPlugins(true)) {
 			SDeserializerPluginDescriptor descriptor = new SDeserializerPluginDescriptor();
-			descriptor.setDefaultName(deserializerPlugin.getDefaultDeserializerName());
+			descriptor.setDefaultName(deserializerPlugin.getDefaultName());
 			descriptor.setPluginClassName(deserializerPlugin.getClass().getName());
 			descriptors.add(descriptor);
 		}

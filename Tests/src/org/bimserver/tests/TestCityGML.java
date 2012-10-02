@@ -8,9 +8,9 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.deserializers.EmfDeserializer;
-import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
@@ -25,11 +25,11 @@ public class TestCityGML {
 			Collection<SerializerPlugin> plugins = pluginManager.getAllSerializerPlugins("application/gml", true);
 			if (!plugins.isEmpty()) {
 				SerializerPlugin plugin = plugins.iterator().next();
-				EmfSerializer serializer = plugin.createSerializer();
+				Serializer serializer = plugin.createSerializer();
 				Collection<DeserializerPlugin> allDeserializerPlugins = pluginManager.getAllDeserializerPlugins("ifc", true);
 				if (!allDeserializerPlugins.isEmpty()) {
 					DeserializerPlugin deserializerPlugin = allDeserializerPlugins.iterator().next();
-					EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+					Deserializer deserializer = deserializerPlugin.createDeserializer();
 					deserializer.init(pluginManager.requireSchemaDefinition());
 					IfcModelInterface model = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Workspace\\BIMserver\\TestData\\data\\Eindhoven - TUe_model - RevitArch.ifc"), true);
 					serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine());

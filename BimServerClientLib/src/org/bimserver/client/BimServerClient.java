@@ -51,8 +51,8 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.ConnectDisconnectListener;
@@ -393,7 +393,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 	public long uploadModel(long poid, String comment, IfcModelInterface model) {
 		try {
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
-			EmfSerializer serializer = serializerPlugin.createSerializer();
+			Serializer serializer = serializerPlugin.createSerializer();
 			serializer.init(model, null, pluginManager, null);
 			long checkinId = getServiceInterface().checkin(poid, comment, -1L, 0L, new DataHandler(new EmfSerializerDataSource(serializer)), false, true); // TODO
 			SCheckinResult checkinResult = getServiceInterface().getCheckinState(checkinId);

@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Queue;
 import java.util.Set;
 
 public class FullModel extends AbstractModel {

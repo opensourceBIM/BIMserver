@@ -34,7 +34,7 @@ public class NameBasedModelComparePlugin implements ModelComparePlugin {
 	}
 
 	@Override
-	public String getDefaultModelCompareName() {
+	public String getDefaultName() {
 		return "Name based compare";
 	}
 

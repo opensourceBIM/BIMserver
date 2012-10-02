@@ -30,7 +30,7 @@ public class IntelligentGuidBasedModelMergerPlugin implements ModelMergerPlugin 
 	}
 
 	@Override
-	public String getDefaultModelMergerName() {
+	public String getDefaultName() {
 		return "Intelligent GUID Based Merger";
 	}
 

@@ -7,7 +7,6 @@ import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.NotificationInterfaceAdapter;
 import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.meta.SService;

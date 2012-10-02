@@ -25,9 +25,9 @@ import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.deserializers.EmfDeserializer;
-import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
@@ -40,14 +40,14 @@ public class IfcXmlReadTest {
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifcxml", true);
-			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			try {
 				File file = TestFile.AC11_XML.getFile();
 				IfcModelInterface model = deserializer.read(new FileInputStream(file), "ac11.ifcxml", false, file.length());
 				
 				File outFile = new File("out.ifc");
 				SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
-				EmfSerializer serializer = serializerPlugin.createSerializer();
+				Serializer serializer = serializerPlugin.createSerializer();
 				serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine());
 				try {
 					serializer.writeToFile(outFile);
@@ -56,7 +56,7 @@ public class IfcXmlReadTest {
 				}
 				
 				DeserializerPlugin deserializerPlugin2 = pluginManager.getFirstDeserializer("ifc", true);
-				EmfDeserializer deserializer2 = deserializerPlugin2.createDeserializer();
+				Deserializer deserializer2 = deserializerPlugin2.createDeserializer();
 				deserializer2.init(pluginManager.requireSchemaDefinition());
 				deserializer2.read(outFile, true);
 			} catch (FileNotFoundException e) {

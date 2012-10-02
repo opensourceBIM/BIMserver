@@ -58,7 +58,7 @@ public class IfcXmlDeserializerPlugin implements DeserializerPlugin {
 	}
 
 	@Override
-	public String getDefaultDeserializerName() {
+	public String getDefaultName() {
 		return "IfcXmlDeserializer";
 	}
 }

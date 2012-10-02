@@ -1,8 +1,5 @@
 package org.bimserver.plugins.objectidms;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
  * 
@@ -19,10 +16,10 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 public interface ObjectIDM {
-
 	boolean shouldFollowReference(EClass originalClass, EClass eClass, EStructuralFeature eStructuralFeature);
 	boolean shouldIncludeClass(EClass originalClass, EClass eClass);
 }

@@ -104,7 +104,6 @@ public class NotificationsManager extends Thread implements NotificationsManager
 							}
 						}
 						if (notification instanceof SNewProjectAdded) {
-							SNewProjectAdded newProjectNotification = (SNewProjectAdded) notification;
 						} else if (notification instanceof SNewRevisionAdded) {
 							SNewRevisionAdded newRevisionNotification = (SNewRevisionAdded) notification;
 							Project project = session.get(StorePackage.eINSTANCE.getProject(), newRevisionNotification.getProjectId(), false, null);

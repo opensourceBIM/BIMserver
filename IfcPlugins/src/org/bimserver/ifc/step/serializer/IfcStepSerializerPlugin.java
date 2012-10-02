@@ -48,7 +48,7 @@ public class IfcStepSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public String getDefaultSerializerName() {
+	public String getDefaultName() {
 		return "Ifc2x3";
 	}
 
