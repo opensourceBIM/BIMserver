@@ -1,10 +1,8 @@
+<%@page import="org.bimserver.interfaces.objects.SInternalServicePluginConfiguration"%>
 <%@page import="org.bimserver.interfaces.objects.SServicePluginDescriptor"%>
 <%@page import="org.bimserver.interfaces.objects.SService"%>
-<%@page import="org.bimserver.interfaces.objects.SEService"%>
 <%@page import="org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor"%>
-<%@page import="org.bimserver.interfaces.objects.SQueryEngine"%>
 <%@page import="org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor"%>
-<%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="header.jsp"%>
 <%@page import="java.util.List"%>
@@ -29,11 +27,11 @@
 <%
 	ServiceInterface service = loginManager.getService();
 	if (request.getParameter("add") != null) {
-		SEService seService = new SEService();
+		SInternalServicePluginConfiguration seService = new SInternalServicePluginConfiguration();
 		seService.setName(request.getParameter("name"));
 		seService.setClassName(request.getParameter("className"));
 		seService.setEnabled(true);
-		loginManager.getService().addSEService(seService);
+		loginManager.getService().addInternalService(seService);
 		response.sendRedirect("internalservices.jsp");
 	}
 %>

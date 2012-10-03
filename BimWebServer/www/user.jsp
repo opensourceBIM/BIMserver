@@ -19,7 +19,7 @@
 <%@page import="org.bimserver.shared.interfaces.ServiceInterface"%>
 <%@page import="org.bimserver.shared.comparators.SRevisionDateComparator"%>
 <%@page import="org.bimserver.interfaces.objects.SObjectState"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializerPluginConfiguration"%>
 <%@ include file="header.jsp" %>
 <%
 	long uoid = Long.parseLong(request.getParameter("uoid"));

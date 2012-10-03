@@ -19,11 +19,11 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.Deserializer;
+import org.bimserver.models.store.DeserializerPluginConfiguration;
 
-public class UpdateDeserializerDatabaseAction extends UpdateDatabaseAction<Deserializer> {
+public class UpdateDeserializerDatabaseAction extends UpdateDatabaseAction<DeserializerPluginConfiguration> {
 
-	public UpdateDeserializerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Deserializer deserializer) {
+	public UpdateDeserializerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, DeserializerPluginConfiguration deserializer) {
 		super(databaseSession, accessMethod, deserializer);
 	}
 }

@@ -1,15 +1,15 @@
-<%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
+<%@page import="org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration"%>
 <%@page import="java.util.List"%>
 <%@ include file="usersettingsmenu.jsp"%>
 <%		
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
 	if (action.equals("disable")) {
-		SObjectIDM objectIDM = loginManager.getService().getObjectIDMById(Long.parseLong(request.getParameter("oid")));
+		SObjectIDMPluginConfiguration objectIDM = loginManager.getService().getObjectIDMById(Long.parseLong(request.getParameter("oid")));
 		objectIDM.setEnabled(false);
 		loginManager.getService().updateObjectIDM(objectIDM);
 	} else if (action.equals("enable")) {
-		SObjectIDM objectIDM = loginManager.getService().getObjectIDMById(Long.parseLong(request.getParameter("oid")));
+		SObjectIDMPluginConfiguration objectIDM = loginManager.getService().getObjectIDMById(Long.parseLong(request.getParameter("oid")));
 		objectIDM.setEnabled(true);
 		loginManager.getService().updateObjectIDM(objectIDM);
 	} else if (action.equals("setdefault")) {
@@ -25,8 +25,8 @@ if (request.getParameter("action") != null) {
 <table class="formatted">
 <tr><th>Name</th><th>Classname</th><th>Serializers</th><th>Default</th><th>State</th><th>Actions</th></tr>
 <%
-	List<SObjectIDM> objectIDMs = service.getAllObjectIDMs(false);
-	for (SObjectIDM objectIDM : objectIDMs) {
+	List<SObjectIDMPluginConfiguration> objectIDMs = service.getAllObjectIDMs(false);
+	for (SObjectIDMPluginConfiguration objectIDM : objectIDMs) {
 		boolean isDefault = service.getDefaultObjectIDM() != null && service.getDefaultObjectIDM().getOid() == objectIDM.getOid();
 %>
 	<tr>

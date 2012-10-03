@@ -19,11 +19,11 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ModelCompare;
+import org.bimserver.models.store.ModelComparePluginConfiguration;
 
-public class UpdateModelCompareDatabaseAction extends UpdateDatabaseAction<ModelCompare> {
+public class UpdateModelCompareDatabaseAction extends UpdateDatabaseAction<ModelComparePluginConfiguration> {
 
-	public UpdateModelCompareDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, ModelCompare modelCompare) {
+	public UpdateModelCompareDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, ModelComparePluginConfiguration modelCompare) {
 		super(databaseSession, accessMethod, modelCompare);
 	}
 }

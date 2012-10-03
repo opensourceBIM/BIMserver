@@ -28,31 +28,31 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 
-public class GetAllSerializersDatabaseAction extends GetAllDatabaseAction<Serializer> {
+public class GetAllSerializersDatabaseAction extends GetAllDatabaseAction<SerializerPluginConfiguration> {
 
 	private final boolean onlyEnabled;
 	private final BimServer bimServer;
 
 	public GetAllSerializersDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, boolean onlyEnabled) {
-		super(databaseSession, accessMethod, Serializer.class, StorePackage.eINSTANCE.getSerializer());
+		super(databaseSession, accessMethod, SerializerPluginConfiguration.class, StorePackage.eINSTANCE.getSerializerPluginConfiguration());
 		this.bimServer = bimServer;
 		this.onlyEnabled = onlyEnabled;
 	}
 
 	@Override
-	public List<Serializer> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getSerializer());
-		Map<Long, Serializer> result = getDatabaseSession().query(condition, Serializer.class, false, null);
-		List<Serializer> mapToList = CollectionUtils.mapToList(result);
+	public List<SerializerPluginConfiguration> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getSerializerPluginConfiguration());
+		Map<Long, SerializerPluginConfiguration> result = getDatabaseSession().query(condition, SerializerPluginConfiguration.class, false, null);
+		List<SerializerPluginConfiguration> mapToList = CollectionUtils.mapToList(result);
 		if (onlyEnabled) {
-			Iterator<Serializer> iterator = mapToList.iterator();
+			Iterator<SerializerPluginConfiguration> iterator = mapToList.iterator();
 			while (iterator.hasNext()) {
-				Serializer serializer = iterator.next();
+				SerializerPluginConfiguration serializer = iterator.next();
 				if (!bimServer.getPluginManager().isEnabled(serializer.getClassName()) || !serializer.getEnabled()) {
 					iterator.remove();
 				}

@@ -21,17 +21,17 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.QueryEngine;
+import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
-public class AddQueryEngineDatabaseAction extends AddDatabaseAction<QueryEngine> {
+public class AddQueryEngineDatabaseAction extends AddDatabaseAction<QueryEnginePluginConfiguration> {
 
 	private Authorization authorization;
 
-	public AddQueryEngineDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, QueryEngine queryEngine) {
+	public AddQueryEngineDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, QueryEnginePluginConfiguration queryEngine) {
 		super(databaseSession, accessMethod, queryEngine);
 		this.authorization = authorization;
 	}

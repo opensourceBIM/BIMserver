@@ -1,5 +1,5 @@
+<%@page import="org.bimserver.interfaces.objects.SModelComparePluginConfiguration"%>
 <%@page import="org.bimserver.interfaces.objects.SExternalServer"%>
-<%@page import="org.bimserver.interfaces.objects.SModelCompare"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.shared.comparators.SUserNameComparator"%>
 <%@page import="org.bimserver.shared.comparators.SProjectNameComparator"%>
@@ -26,7 +26,7 @@
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="org.slf4j.LoggerFactory"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializerPluginConfiguration"%>
 <%@ include file="header.jsp"%>
 <%
 		if (loginManager.isLoggedIn()) {
@@ -387,7 +387,7 @@ if (revisions.size() > 0) {
 						<option value="DELETE">Deleted</option>
 					</select> Compare Engine <select name="mcid">
 <%
-for (SModelCompare modelCompare : loginManager.getService().getAllModelCompares(true)) {
+for (SModelComparePluginConfiguration modelCompare : loginManager.getService().getAllModelCompares(true)) {
 %>
 						<option value="<%=modelCompare.getOid()%>" <%=loginManager.getService().getDefaultModelCompare() != null && loginManager.getService().getDefaultModelCompare().getOid() == modelCompare.getOid() ? "selected=\"selected\"" : ""%>><%=modelCompare.getName() %></option>
 <%

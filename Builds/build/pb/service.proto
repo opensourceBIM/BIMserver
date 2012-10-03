@@ -41,6 +41,8 @@ service ServiceInterface {
 
 	rpc addIntegerAttribute (AddIntegerAttributeRequest) returns (VoidResponse);
 
+	rpc addInternalService (AddInternalServiceRequest) returns (VoidResponse);
+
 	rpc addModelCompare (AddModelCompareRequest) returns (VoidResponse);
 
 	rpc addModelMerger (AddModelMergerRequest) returns (VoidResponse);
@@ -54,8 +56,6 @@ service ServiceInterface {
 	rpc addQueryEngine (AddQueryEngineRequest) returns (VoidResponse);
 
 	rpc addReference (AddReferenceRequest) returns (VoidResponse);
-
-	rpc addSEService (AddSEServiceRequest) returns (VoidResponse);
 
 	rpc addSerializer (AddSerializerRequest) returns (VoidResponse);
 
@@ -95,9 +95,9 @@ service ServiceInterface {
 
 	rpc deleteDeserializer (DeleteDeserializerRequest) returns (VoidResponse);
 
-	rpc deleteEService (DeleteEServiceRequest) returns (VoidResponse);
-
 	rpc deleteIfcEngine (DeleteIfcEngineRequest) returns (VoidResponse);
+
+	rpc deleteInternalService (DeleteInternalServiceRequest) returns (VoidResponse);
 
 	rpc deleteModelCompare (DeleteModelCompareRequest) returns (VoidResponse);
 
@@ -161,6 +161,8 @@ service ServiceInterface {
 
 	rpc getAllIfcEngines (GetAllIfcEnginesRequest) returns (GetAllIfcEnginesResponse);
 
+	rpc getAllInternalServices (GetAllInternalServicesRequest) returns (GetAllInternalServicesResponse);
+
 	rpc getAllModelComparePluginDescriptors (GetAllModelComparePluginDescriptorsRequest) returns (GetAllModelComparePluginDescriptorsResponse);
 
 	rpc getAllModelCompares (GetAllModelComparesRequest) returns (GetAllModelComparesResponse);
@@ -190,8 +192,6 @@ service ServiceInterface {
 	rpc getAllRevisionsByUser (GetAllRevisionsByUserRequest) returns (GetAllRevisionsByUserResponse);
 
 	rpc getAllRevisionsOfProject (GetAllRevisionsOfProjectRequest) returns (GetAllRevisionsOfProjectResponse);
-
-	rpc getAllSEServices (GetAllSEServicesRequest) returns (GetAllSEServicesResponse);
 
 	rpc getAllSerializerPluginDescriptors (GetAllSerializerPluginDescriptorsRequest) returns (GetAllSerializerPluginDescriptorsResponse);
 
@@ -247,8 +247,6 @@ service ServiceInterface {
 
 	rpc getDownloadState (GetDownloadStateRequest) returns (GetDownloadStateResponse);
 
-	rpc getEServiceById (GetEServiceByIdRequest) returns (GetEServiceByIdResponse);
-
 	rpc getExtendedData (GetExtendedDataRequest) returns (GetExtendedDataResponse);
 
 	rpc getExtendedDataSchemaById (GetExtendedDataSchemaByIdRequest) returns (GetExtendedDataSchemaByIdResponse);
@@ -265,9 +263,7 @@ service ServiceInterface {
 
 	rpc getIfcEngineByName (GetIfcEngineByNameRequest) returns (GetIfcEngineByNameResponse);
 
-	rpc getInternalServers (GetInternalServersRequest) returns (GetInternalServersResponse);
-
-	rpc getInternalServices (GetInternalServicesRequest) returns (GetInternalServicesResponse);
+	rpc getInternalServiceById (GetInternalServiceByIdRequest) returns (GetInternalServiceByIdResponse);
 
 	rpc getLastActive (GetLastActiveRequest) returns (GetLastActiveResponse);
 
@@ -485,6 +481,8 @@ service ServiceInterface {
 
 	rpc updateIfcEngine (UpdateIfcEngineRequest) returns (VoidResponse);
 
+	rpc updateInternalService (UpdateInternalServiceRequest) returns (VoidResponse);
+
 	rpc updateModelCompare (UpdateModelCompareRequest) returns (VoidResponse);
 
 	rpc updateModelMerger (UpdateModelMergerRequest) returns (VoidResponse);
@@ -496,8 +494,6 @@ service ServiceInterface {
 	rpc updateQueryEngine (UpdateQueryEngineRequest) returns (VoidResponse);
 
 	rpc updateRevision (UpdateRevisionRequest) returns (VoidResponse);
-
-	rpc updateSEService (UpdateSEServiceRequest) returns (VoidResponse);
 
 	rpc updateSerializer (UpdateSerializerRequest) returns (VoidResponse);
 
@@ -525,13 +521,13 @@ message AddBooleanAttributeRequest {
 	optional bool value = 3;
 }
 
-message SDeserializer {
+message SDeserializerPluginConfiguration {
 	optional int64 settingsId = 1;
 	optional int64 oid = 2;
 }
 
 message AddDeserializerRequest {
-	optional SDeserializer deserializer = 1;
+	optional SDeserializerPluginConfiguration deserializer = 1;
 }
 
 message AddDoubleAttributeRequest {
@@ -584,14 +580,14 @@ message AddExtendedDataToRevisionRequest {
 	optional SExtendedData extendedData = 2;
 }
 
-message SIfcEngine {
+message SIfcEnginePluginConfiguration {
 	repeated int64 serializers = 1;
 	optional int64 settingsId = 2;
 	optional int64 oid = 3;
 }
 
 message AddIfcEngineRequest {
-	optional SIfcEngine ifcEngine = 1;
+	optional SIfcEnginePluginConfiguration ifcEngine = 1;
 }
 
 message AddIntegerAttributeRequest {
@@ -600,32 +596,41 @@ message AddIntegerAttributeRequest {
 	optional int32 value = 3;
 }
 
-message SModelCompare {
+message SInternalServicePluginConfiguration {
+	optional int64 settingsId = 1;
+	optional int64 oid = 2;
+}
+
+message AddInternalServiceRequest {
+	optional SInternalServicePluginConfiguration internalService = 1;
+}
+
+message SModelComparePluginConfiguration {
 	optional int64 settingsId = 1;
 	optional int64 oid = 2;
 }
 
 message AddModelCompareRequest {
-	optional SModelCompare modelCompare = 1;
+	optional SModelComparePluginConfiguration modelCompare = 1;
 }
 
-message SModelMerger {
+message SModelMergerPluginConfiguration {
 	optional int64 settingsId = 1;
 	optional int64 oid = 2;
 }
 
 message AddModelMergerRequest {
-	optional SModelMerger modelMerger = 1;
+	optional SModelMergerPluginConfiguration modelMerger = 1;
 }
 
-message SObjectIDM {
+message SObjectIDMPluginConfiguration {
 	repeated int64 serializers = 1;
 	optional int64 settingsId = 2;
 	optional int64 oid = 3;
 }
 
 message AddObjectIDMRequest {
-	optional SObjectIDM objectIDM = 1;
+	optional SObjectIDMPluginConfiguration objectIDM = 1;
 }
 
 message AddProjectRequest {
@@ -664,13 +669,13 @@ message SProject {
 	optional SObjectState state = 4;
 	repeated int64 concreteRevisions = 5;
 	optional int32 id = 6;
-	optional int64 parentId = 7;
-	repeated int64 extendedData = 8;
-	repeated int64 hasAuthorizedUsers = 9;
+	repeated int64 extendedData = 7;
+	repeated int64 hasAuthorizedUsers = 8;
+	optional int64 parentId = 9;
 	optional string description = 10;
-	optional int64 geoTagId = 11;
-	optional int64 oid = 12;
-	optional SSIPrefix exportLengthMeasurePrefix = 13;
+	optional int64 oid = 11;
+	optional SSIPrefix exportLengthMeasurePrefix = 12;
+	optional int64 geoTagId = 13;
 	optional string name = 14;
 	repeated int64 subProjects = 15;
 	optional int64 lastRevisionId = 16;
@@ -694,13 +699,13 @@ message AddProjectAsSubProjectResponse {
 	optional SProject value = 2;
 }
 
-message SQueryEngine {
+message SQueryEnginePluginConfiguration {
 	optional int64 settingsId = 1;
 	optional int64 oid = 2;
 }
 
 message AddQueryEngineRequest {
-	optional SQueryEngine queryEngine = 1;
+	optional SQueryEnginePluginConfiguration queryEngine = 1;
 }
 
 message AddReferenceRequest {
@@ -709,16 +714,7 @@ message AddReferenceRequest {
 	optional int64 referenceOid = 3;
 }
 
-message SEService {
-	optional int64 settingsId = 1;
-	optional int64 oid = 2;
-}
-
-message AddSEServiceRequest {
-	optional SEService seService = 1;
-}
-
-message SSerializer {
+message SSerializerPluginConfiguration {
 	optional string extension = 1;
 	optional int64 settingsId = 2;
 	optional int64 oid = 3;
@@ -728,7 +724,7 @@ message SSerializer {
 }
 
 message AddSerializerRequest {
-	optional SSerializer serializer = 1;
+	optional SSerializerPluginConfiguration serializer = 1;
 }
 
 enum STrigger{
@@ -757,8 +753,8 @@ message SService {
 	optional string token = 8;
 	optional string description = 9;
 	optional int64 oid = 10;
-	optional int64 writeRevisionId = 11;
-	optional int64 userId = 12;
+	optional int64 userId = 11;
+	optional int64 writeRevisionId = 12;
 	optional string name = 13;
 }
 
@@ -960,6 +956,14 @@ message CompareRequest {
 	optional int64 mcid = 4;
 }
 
+message SObjectAdded {
+	optional int64 oid = 1;
+}
+
+message SObjectRemoved {
+	optional int64 oid = 1;
+}
+
 message SObjectModified {
 	optional string newValue = 1;
 	optional int64 oid = 2;
@@ -967,17 +971,9 @@ message SObjectModified {
 	optional string fieldName = 4;
 }
 
-message SObjectRemoved {
+message SSimpleDataValue {
 	optional int64 oid = 1;
-}
-
-message SObjectAdded {
-	optional int64 oid = 1;
-}
-
-message SListDataValue {
-	repeated SDataValue values = 1;
-	optional int64 oid = 2;
+	optional string stringValue = 2;
 }
 
 message SReferenceDataValue {
@@ -986,16 +982,16 @@ message SReferenceDataValue {
 	optional int64 oid = 3;
 }
 
-message SSimpleDataValue {
-	optional int64 oid = 1;
-	optional string stringValue = 2;
+message SListDataValue {
+	repeated SDataValue values = 1;
+	optional int64 oid = 2;
 }
 
 message SDataValue {
 	required string __actual_type = 1;
-	optional SListDataValue __SListDataValue = 2;
+	optional SSimpleDataValue __SSimpleDataValue = 2;
 	optional SReferenceDataValue __SReferenceDataValue = 3;
-	optional SSimpleDataValue __SSimpleDataValue = 4;
+	optional SListDataValue __SListDataValue = 4;
 	optional int64 oid = 5;
 	optional string fieldName = 6;
 }
@@ -1010,9 +1006,9 @@ message SDataObject {
 
 message SCompareItem {
 	required string __actual_type = 1;
-	optional SObjectModified __SObjectModified = 2;
+	optional SObjectAdded __SObjectAdded = 2;
 	optional SObjectRemoved __SObjectRemoved = 3;
-	optional SObjectAdded __SObjectAdded = 4;
+	optional SObjectModified __SObjectModified = 4;
 	optional int64 oid = 5;
 	optional SDataObject dataObject = 6;
 }
@@ -1046,12 +1042,12 @@ message DeleteDeserializerRequest {
 	optional int64 sid = 1;
 }
 
-message DeleteEServiceRequest {
-	optional int64 oid = 1;
-}
-
 message DeleteIfcEngineRequest {
 	optional int64 iid = 1;
+}
+
+message DeleteInternalServiceRequest {
+	optional int64 oid = 1;
 }
 
 message DeleteModelCompareRequest {
@@ -1324,7 +1320,7 @@ message GetAllDeserializersRequest {
 
 message GetAllDeserializersResponse {
 	optional string errorMessage = 1;
-	repeated SDeserializer value = 2;
+	repeated SDeserializerPluginConfiguration value = 2;
 }
 
 message GetAllExtendedDataSchemasRequest {
@@ -1353,7 +1349,16 @@ message GetAllIfcEnginesRequest {
 
 message GetAllIfcEnginesResponse {
 	optional string errorMessage = 1;
-	repeated SIfcEngine value = 2;
+	repeated SIfcEnginePluginConfiguration value = 2;
+}
+
+message GetAllInternalServicesRequest {
+	optional bool onlyEnabled = 1;
+}
+
+message GetAllInternalServicesResponse {
+	optional string errorMessage = 1;
+	repeated SInternalServicePluginConfiguration value = 2;
 }
 
 message GetAllModelComparePluginDescriptorsRequest {
@@ -1374,7 +1379,7 @@ message GetAllModelComparesRequest {
 
 message GetAllModelComparesResponse {
 	optional string errorMessage = 1;
-	repeated SModelCompare value = 2;
+	repeated SModelComparePluginConfiguration value = 2;
 }
 
 message GetAllModelMergerPluginDescriptorsRequest {
@@ -1395,7 +1400,7 @@ message GetAllModelMergersRequest {
 
 message GetAllModelMergersResponse {
 	optional string errorMessage = 1;
-	repeated SModelMerger value = 2;
+	repeated SModelMergerPluginConfiguration value = 2;
 }
 
 message GetAllNonAuthorizedProjectsOfUserRequest {
@@ -1435,14 +1440,10 @@ message GetAllObjectIDMsRequest {
 
 message GetAllObjectIDMsResponse {
 	optional string errorMessage = 1;
-	repeated SObjectIDM value = 2;
+	repeated SObjectIDMPluginConfiguration value = 2;
 }
 
 message GetAllPluginsRequest {
-}
-
-message SQueryEnginePluginDescriptor {
-	optional int64 oid = 1;
 }
 
 message SServicePluginDescriptor {
@@ -1455,14 +1456,18 @@ message SSerializerPluginDescriptor {
 	optional string defaultContentType = 3;
 }
 
+message SQueryEnginePluginDescriptor {
+	optional int64 oid = 1;
+}
+
 message SPluginDescriptor {
 	required string __actual_type = 1;
-	optional SQueryEnginePluginDescriptor __SQueryEnginePluginDescriptor = 2;
-	optional SModelMergerPluginDescriptor __SModelMergerPluginDescriptor = 3;
-	optional SDeserializerPluginDescriptor __SDeserializerPluginDescriptor = 4;
-	optional SServicePluginDescriptor __SServicePluginDescriptor = 5;
-	optional SSerializerPluginDescriptor __SSerializerPluginDescriptor = 6;
-	optional SIfcEnginePluginDescriptor __SIfcEnginePluginDescriptor = 7;
+	optional SDeserializerPluginDescriptor __SDeserializerPluginDescriptor = 2;
+	optional SServicePluginDescriptor __SServicePluginDescriptor = 3;
+	optional SIfcEnginePluginDescriptor __SIfcEnginePluginDescriptor = 4;
+	optional SSerializerPluginDescriptor __SSerializerPluginDescriptor = 5;
+	optional SModelMergerPluginDescriptor __SModelMergerPluginDescriptor = 6;
+	optional SQueryEnginePluginDescriptor __SQueryEnginePluginDescriptor = 7;
 	optional SModelComparePluginDescriptor __SModelComparePluginDescriptor = 8;
 	optional string defaultName = 9;
 	optional bool enabled = 10;
@@ -1500,7 +1505,7 @@ message GetAllQueryEnginesRequest {
 
 message GetAllQueryEnginesResponse {
 	optional string errorMessage = 1;
-	repeated SQueryEngine value = 2;
+	repeated SQueryEnginePluginConfiguration value = 2;
 }
 
 message GetAllReadableProjectsRequest {
@@ -1548,15 +1553,6 @@ message GetAllRevisionsOfProjectResponse {
 	repeated SRevision value = 2;
 }
 
-message GetAllSEServicesRequest {
-	optional bool onlyEnabled = 1;
-}
-
-message GetAllSEServicesResponse {
-	optional string errorMessage = 1;
-	repeated SEService value = 2;
-}
-
 message GetAllSerializerPluginDescriptorsRequest {
 }
 
@@ -1571,7 +1567,7 @@ message GetAllSerializersRequest {
 
 message GetAllSerializersResponse {
 	optional string errorMessage = 1;
-	repeated SSerializer value = 2;
+	repeated SSerializerPluginConfiguration value = 2;
 }
 
 message GetAllServicePluginDescriptorsRequest {
@@ -1737,7 +1733,7 @@ message GetDefaultIfcEngineRequest {
 
 message GetDefaultIfcEngineResponse {
 	optional string errorMessage = 1;
-	optional SIfcEngine value = 2;
+	optional SIfcEnginePluginConfiguration value = 2;
 }
 
 message GetDefaultModelCompareRequest {
@@ -1745,7 +1741,7 @@ message GetDefaultModelCompareRequest {
 
 message GetDefaultModelCompareResponse {
 	optional string errorMessage = 1;
-	optional SModelCompare value = 2;
+	optional SModelComparePluginConfiguration value = 2;
 }
 
 message GetDefaultModelMergerRequest {
@@ -1753,7 +1749,7 @@ message GetDefaultModelMergerRequest {
 
 message GetDefaultModelMergerResponse {
 	optional string errorMessage = 1;
-	optional SModelMerger value = 2;
+	optional SModelMergerPluginConfiguration value = 2;
 }
 
 message GetDefaultObjectIDMRequest {
@@ -1761,7 +1757,7 @@ message GetDefaultObjectIDMRequest {
 
 message GetDefaultObjectIDMResponse {
 	optional string errorMessage = 1;
-	optional SObjectIDM value = 2;
+	optional SObjectIDMPluginConfiguration value = 2;
 }
 
 message GetDefaultQueryEngineRequest {
@@ -1769,7 +1765,7 @@ message GetDefaultQueryEngineRequest {
 
 message GetDefaultQueryEngineResponse {
 	optional string errorMessage = 1;
-	optional SQueryEngine value = 2;
+	optional SQueryEnginePluginConfiguration value = 2;
 }
 
 message GetDefaultSerializerRequest {
@@ -1777,7 +1773,7 @@ message GetDefaultSerializerRequest {
 
 message GetDefaultSerializerResponse {
 	optional string errorMessage = 1;
-	optional SSerializer value = 2;
+	optional SSerializerPluginConfiguration value = 2;
 }
 
 message GetDeserializerByIdRequest {
@@ -1786,7 +1782,7 @@ message GetDeserializerByIdRequest {
 
 message GetDeserializerByIdResponse {
 	optional string errorMessage = 1;
-	optional SDeserializer value = 2;
+	optional SDeserializerPluginConfiguration value = 2;
 }
 
 message GetDeserializerByNameRequest {
@@ -1795,7 +1791,7 @@ message GetDeserializerByNameRequest {
 
 message GetDeserializerByNameResponse {
 	optional string errorMessage = 1;
-	optional SDeserializer value = 2;
+	optional SDeserializerPluginConfiguration value = 2;
 }
 
 message GetDownloadDataRequest {
@@ -1842,15 +1838,6 @@ message SLongActionState {
 message GetDownloadStateResponse {
 	optional string errorMessage = 1;
 	optional SLongActionState value = 2;
-}
-
-message GetEServiceByIdRequest {
-	optional int64 oid = 1;
-}
-
-message GetEServiceByIdResponse {
-	optional string errorMessage = 1;
-	optional SEService value = 2;
 }
 
 message GetExtendedDataRequest {
@@ -1900,8 +1887,8 @@ message GetExternalServicesRequest {
 
 message SServiceDescriptor {
 	optional STrigger trigger = 1;
-	optional bool writeExtendedData = 2;
-	optional SAccessMethod notificationProtocol = 3;
+	optional SAccessMethod notificationProtocol = 2;
+	optional bool writeExtendedData = 3;
 	optional bool writeRevision = 4;
 	optional bool readExtendedData = 5;
 	optional string token = 6;
@@ -1942,7 +1929,7 @@ message GetIfcEngineByIdRequest {
 
 message GetIfcEngineByIdResponse {
 	optional string errorMessage = 1;
-	optional SIfcEngine value = 2;
+	optional SIfcEnginePluginConfiguration value = 2;
 }
 
 message GetIfcEngineByNameRequest {
@@ -1951,24 +1938,16 @@ message GetIfcEngineByNameRequest {
 
 message GetIfcEngineByNameResponse {
 	optional string errorMessage = 1;
-	optional SIfcEngine value = 2;
+	optional SIfcEnginePluginConfiguration value = 2;
 }
 
-message GetInternalServersRequest {
+message GetInternalServiceByIdRequest {
+	optional int64 oid = 1;
 }
 
-message GetInternalServersResponse {
+message GetInternalServiceByIdResponse {
 	optional string errorMessage = 1;
-	repeated SServerDescriptor value = 2;
-}
-
-message GetInternalServicesRequest {
-	optional string name = 1;
-}
-
-message GetInternalServicesResponse {
-	optional string errorMessage = 1;
-	repeated SServiceDescriptor value = 2;
+	optional SInternalServicePluginConfiguration value = 2;
 }
 
 message GetLastActiveRequest {
@@ -2017,44 +1996,8 @@ message GetLoggedInUserResponse {
 message GetLogsRequest {
 }
 
-message SExtendedDataAddedToProject {
+message SNewObjectIDMUploaded {
 	optional int64 oid = 1;
-	optional int64 projectId = 2;
-	optional int64 extendedDataId = 3;
-}
-
-message SServerStarted {
-	optional int64 oid = 1;
-}
-
-message SDownload {
-	optional int64 oid = 1;
-}
-
-message SProjectUndeleted {
-	optional int64 oid = 1;
-	optional int64 projectId = 2;
-}
-
-message SNewCheckoutAdded {
-	optional int64 oid = 1;
-	optional int64 checkoutId = 2;
-}
-
-message SRevisionBranched {
-	optional int64 newrevisionId = 1;
-	optional int64 oid = 2;
-	optional int64 oldrevisionId = 3;
-}
-
-message SProjectDeleted {
-	optional int64 oid = 1;
-	optional int64 projectId = 2;
-}
-
-message SGeoTagUpdated {
-	optional int64 geoTagId = 1;
-	optional int64 oid = 2;
 }
 
 message SNewProjectAdded {
@@ -2063,12 +2006,35 @@ message SNewProjectAdded {
 	optional int64 parentProjectId = 3;
 }
 
-message SRevisionUpdated {
+message SExtendedDataAddedToRevision {
 	optional int64 oid = 1;
-	optional int64 revisionId = 2;
+	optional int64 extendedDataId = 2;
+	optional int64 revisionId = 3;
 }
 
-message SUserDeleted {
+message SUserAddedToProject {
+	optional int64 oid = 1;
+	optional int64 userId = 2;
+	optional int64 projectId = 3;
+}
+
+message SProjectDeleted {
+	optional int64 oid = 1;
+	optional int64 projectId = 2;
+}
+
+message SDatabaseCreated {
+	optional int64 oid = 1;
+	optional string path = 2;
+	optional int32 version = 3;
+}
+
+message SProjectUpdated {
+	optional int64 oid = 1;
+	optional int64 projectId = 2;
+}
+
+message SUserUndeleted {
 	optional int64 oid = 1;
 	optional int64 userId = 2;
 }
@@ -2078,41 +2044,19 @@ message SPasswordReset {
 	optional int64 userId = 2;
 }
 
-message SSettingsSaved {
-	optional int64 oid = 1;
+message SGeoTagUpdated {
+	optional int64 geoTagId = 1;
+	optional int64 oid = 2;
 }
 
-message SUserUndeleted {
+message SNewUserAdded {
 	optional int64 oid = 1;
 	optional int64 userId = 2;
 }
 
-message SExtendedDataAddedToRevision {
+message SNewCheckoutAdded {
 	optional int64 oid = 1;
-	optional int64 extendedDataId = 2;
-	optional int64 revisionId = 3;
-}
-
-message SDatabaseCreated {
-	optional int64 oid = 1;
-	optional string path = 2;
-	optional int32 version = 3;
-}
-
-message SUserChanged {
-	optional int64 oid = 1;
-	optional int64 userId = 2;
-}
-
-message SPasswordChanged {
-	optional int64 oid = 1;
-	optional int64 userId = 2;
-}
-
-message SUserAddedToProject {
-	optional int64 oid = 1;
-	optional int64 userId = 2;
-	optional int64 projectId = 3;
+	optional int64 checkoutId = 2;
 }
 
 message SUserRemovedFromProject {
@@ -2121,52 +2065,87 @@ message SUserRemovedFromProject {
 	optional int64 projectId = 3;
 }
 
-message SNewObjectIDMUploaded {
-	optional int64 oid = 1;
-}
-
-message SProjectUpdated {
-	optional int64 oid = 1;
-	optional int64 projectId = 2;
-}
-
 message SNewRevisionAdded {
 	optional int64 oid = 1;
 	optional int64 projectId = 2;
 	optional int64 revisionId = 3;
 }
 
-message SNewUserAdded {
+message SSettingsSaved {
+	optional int64 oid = 1;
+}
+
+message SServerStarted {
+	optional int64 oid = 1;
+}
+
+message SProjectUndeleted {
+	optional int64 oid = 1;
+	optional int64 projectId = 2;
+}
+
+message SUserDeleted {
 	optional int64 oid = 1;
 	optional int64 userId = 2;
 }
 
+message SUserChanged {
+	optional int64 oid = 1;
+	optional int64 userId = 2;
+}
+
+message SExtendedDataAddedToProject {
+	optional int64 oid = 1;
+	optional int64 projectId = 2;
+	optional int64 extendedDataId = 3;
+}
+
+message SPasswordChanged {
+	optional int64 oid = 1;
+	optional int64 userId = 2;
+}
+
+message SRevisionUpdated {
+	optional int64 oid = 1;
+	optional int64 revisionId = 2;
+}
+
+message SRevisionBranched {
+	optional int64 newrevisionId = 1;
+	optional int64 oid = 2;
+	optional int64 oldrevisionId = 3;
+}
+
+message SDownload {
+	optional int64 oid = 1;
+}
+
 message SLogAction {
 	required string __actual_type = 1;
-	optional SExtendedDataAddedToProject __SExtendedDataAddedToProject = 2;
-	optional SServerStarted __SServerStarted = 3;
-	optional SDownload __SDownload = 4;
-	optional SProjectUndeleted __SProjectUndeleted = 5;
-	optional SNewCheckoutAdded __SNewCheckoutAdded = 6;
-	optional SRevisionBranched __SRevisionBranched = 7;
-	optional SProjectDeleted __SProjectDeleted = 8;
-	optional SGeoTagUpdated __SGeoTagUpdated = 9;
-	optional SNewProjectAdded __SNewProjectAdded = 10;
-	optional SRevisionUpdated __SRevisionUpdated = 11;
-	optional SUserDeleted __SUserDeleted = 12;
-	optional SPasswordReset __SPasswordReset = 13;
-	optional SSettingsSaved __SSettingsSaved = 14;
-	optional SUserUndeleted __SUserUndeleted = 15;
-	optional SExtendedDataAddedToRevision __SExtendedDataAddedToRevision = 16;
-	optional SDatabaseCreated __SDatabaseCreated = 17;
-	optional SUserChanged __SUserChanged = 18;
-	optional SPasswordChanged __SPasswordChanged = 19;
-	optional SUserAddedToProject __SUserAddedToProject = 20;
-	optional SUserRemovedFromProject __SUserRemovedFromProject = 21;
-	optional SNewObjectIDMUploaded __SNewObjectIDMUploaded = 22;
-	optional SProjectUpdated __SProjectUpdated = 23;
-	optional SNewRevisionAdded __SNewRevisionAdded = 24;
-	optional SNewUserAdded __SNewUserAdded = 25;
+	optional SNewObjectIDMUploaded __SNewObjectIDMUploaded = 2;
+	optional SNewProjectAdded __SNewProjectAdded = 3;
+	optional SExtendedDataAddedToRevision __SExtendedDataAddedToRevision = 4;
+	optional SUserAddedToProject __SUserAddedToProject = 5;
+	optional SProjectDeleted __SProjectDeleted = 6;
+	optional SDatabaseCreated __SDatabaseCreated = 7;
+	optional SProjectUpdated __SProjectUpdated = 8;
+	optional SUserUndeleted __SUserUndeleted = 9;
+	optional SPasswordReset __SPasswordReset = 10;
+	optional SGeoTagUpdated __SGeoTagUpdated = 11;
+	optional SNewUserAdded __SNewUserAdded = 12;
+	optional SNewCheckoutAdded __SNewCheckoutAdded = 13;
+	optional SUserRemovedFromProject __SUserRemovedFromProject = 14;
+	optional SNewRevisionAdded __SNewRevisionAdded = 15;
+	optional SSettingsSaved __SSettingsSaved = 16;
+	optional SServerStarted __SServerStarted = 17;
+	optional SProjectUndeleted __SProjectUndeleted = 18;
+	optional SUserDeleted __SUserDeleted = 19;
+	optional SUserChanged __SUserChanged = 20;
+	optional SExtendedDataAddedToProject __SExtendedDataAddedToProject = 21;
+	optional SPasswordChanged __SPasswordChanged = 22;
+	optional SRevisionUpdated __SRevisionUpdated = 23;
+	optional SRevisionBranched __SRevisionBranched = 24;
+	optional SDownload __SDownload = 25;
 	optional int64 executorId = 26;
 	optional int64 oid = 27;
 	optional SAccessMethod accessMethod = 28;
@@ -2199,7 +2178,7 @@ message GetModelCompareByIdRequest {
 
 message GetModelCompareByIdResponse {
 	optional string errorMessage = 1;
-	optional SModelCompare value = 2;
+	optional SModelComparePluginConfiguration value = 2;
 }
 
 message GetModelCompareByNameRequest {
@@ -2208,7 +2187,7 @@ message GetModelCompareByNameRequest {
 
 message GetModelCompareByNameResponse {
 	optional string errorMessage = 1;
-	optional SModelCompare value = 2;
+	optional SModelComparePluginConfiguration value = 2;
 }
 
 message GetModelMergerByIdRequest {
@@ -2217,7 +2196,7 @@ message GetModelMergerByIdRequest {
 
 message GetModelMergerByIdResponse {
 	optional string errorMessage = 1;
-	optional SModelMerger value = 2;
+	optional SModelMergerPluginConfiguration value = 2;
 }
 
 message GetModelMergerByNameRequest {
@@ -2226,7 +2205,7 @@ message GetModelMergerByNameRequest {
 
 message GetModelMergerByNameResponse {
 	optional string errorMessage = 1;
-	optional SModelMerger value = 2;
+	optional SModelMergerPluginConfiguration value = 2;
 }
 
 message GetObjectIDMByIdRequest {
@@ -2235,7 +2214,7 @@ message GetObjectIDMByIdRequest {
 
 message GetObjectIDMByIdResponse {
 	optional string errorMessage = 1;
-	optional SObjectIDM value = 2;
+	optional SObjectIDMPluginConfiguration value = 2;
 }
 
 message GetObjectIDMByNameRequest {
@@ -2244,7 +2223,7 @@ message GetObjectIDMByNameRequest {
 
 message GetObjectIDMByNameResponse {
 	optional string errorMessage = 1;
-	optional SObjectIDM value = 2;
+	optional SObjectIDMPluginConfiguration value = 2;
 }
 
 message GetProjectByPoidRequest {
@@ -2279,7 +2258,7 @@ message GetQueryEngineByIdRequest {
 
 message GetQueryEngineByIdResponse {
 	optional string errorMessage = 1;
-	optional SQueryEngine value = 2;
+	optional SQueryEnginePluginConfiguration value = 2;
 }
 
 message GetQueryEngineByNameRequest {
@@ -2288,7 +2267,7 @@ message GetQueryEngineByNameRequest {
 
 message GetQueryEngineByNameResponse {
 	optional string errorMessage = 1;
-	optional SQueryEngine value = 2;
+	optional SQueryEnginePluginConfiguration value = 2;
 }
 
 message GetQueryEngineExampleRequest {
@@ -2359,7 +2338,7 @@ message GetSerializerByContentTypeRequest {
 
 message GetSerializerByContentTypeResponse {
 	optional string errorMessage = 1;
-	optional SSerializer value = 2;
+	optional SSerializerPluginConfiguration value = 2;
 }
 
 message GetSerializerByIdRequest {
@@ -2368,7 +2347,7 @@ message GetSerializerByIdRequest {
 
 message GetSerializerByIdResponse {
 	optional string errorMessage = 1;
-	optional SSerializer value = 2;
+	optional SSerializerPluginConfiguration value = 2;
 }
 
 message GetSerializerByNameRequest {
@@ -2377,7 +2356,7 @@ message GetSerializerByNameRequest {
 
 message GetSerializerByNameResponse {
 	optional string errorMessage = 1;
-	optional SSerializer value = 2;
+	optional SSerializerPluginConfiguration value = 2;
 }
 
 message GetSerializerPluginDescriptorRequest {
@@ -2429,7 +2408,7 @@ message GetServerStartTimeResponse {
 }
 
 message GetServiceRequest {
-	optional int64 epid = 1;
+	optional int64 soid = 1;
 }
 
 message GetServiceResponse {
@@ -2591,7 +2570,7 @@ message GetSuggestedDeserializerForExtensionRequest {
 
 message GetSuggestedDeserializerForExtensionResponse {
 	optional string errorMessage = 1;
-	optional SDeserializer value = 2;
+	optional SDeserializerPluginConfiguration value = 2;
 }
 
 message GetUserByUoidRequest {
@@ -2946,7 +2925,7 @@ message UnsetReferenceRequest {
 }
 
 message UpdateDeserializerRequest {
-	optional SDeserializer deserializer = 1;
+	optional SDeserializerPluginConfiguration deserializer = 1;
 }
 
 message UpdateGeoTagRequest {
@@ -2954,19 +2933,23 @@ message UpdateGeoTagRequest {
 }
 
 message UpdateIfcEngineRequest {
-	optional SIfcEngine ifcEngine = 1;
+	optional SIfcEnginePluginConfiguration ifcEngine = 1;
+}
+
+message UpdateInternalServiceRequest {
+	optional SInternalServicePluginConfiguration internalService = 1;
 }
 
 message UpdateModelCompareRequest {
-	optional SModelCompare modelCompare = 1;
+	optional SModelComparePluginConfiguration modelCompare = 1;
 }
 
 message UpdateModelMergerRequest {
-	optional SModelMerger modelMerger = 1;
+	optional SModelMergerPluginConfiguration modelMerger = 1;
 }
 
 message UpdateObjectIDMRequest {
-	optional SObjectIDM objectIDM = 1;
+	optional SObjectIDMPluginConfiguration objectIDM = 1;
 }
 
 message UpdateProjectRequest {
@@ -2974,19 +2957,15 @@ message UpdateProjectRequest {
 }
 
 message UpdateQueryEngineRequest {
-	optional SQueryEngine queryEngine = 1;
+	optional SQueryEnginePluginConfiguration queryEngine = 1;
 }
 
 message UpdateRevisionRequest {
 	optional SRevision sRevision = 1;
 }
 
-message UpdateSEServiceRequest {
-	optional SEService seService = 1;
-}
-
 message UpdateSerializerRequest {
-	optional SSerializer serializer = 1;
+	optional SSerializerPluginConfiguration serializer = 1;
 }
 
 message UpgradePossibleRequest {

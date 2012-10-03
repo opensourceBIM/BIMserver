@@ -1,8 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.interfaces.objects.SDeserializerPluginDescriptor"%>
 <%@ include file="header.jsp"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializerPluginDescriptor"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.GregorianCalendar"%>

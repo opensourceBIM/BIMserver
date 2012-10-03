@@ -1,9 +1,10 @@
-<%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializerPluginDescriptor"%>
+<%@page import="org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration"%>
+<%@page import="org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimwebserver.jsp.JspHelper"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializerPluginDescriptor"%>
 <%@ include file="header.jsp"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializerPluginConfiguration"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.GregorianCalendar"%>
@@ -16,7 +17,6 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.interfaces.ServiceInterface"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
-<%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
 <div class="sidebar">
 <ul>
 </ul>
@@ -36,7 +36,7 @@
 		contentType = request.getParameter("contentType");
 		extension = request.getParameter("extension");
 		name = request.getParameter("name");
-		SSerializer serializer = new SSerializer();
+		SSerializerPluginConfiguration serializer = new SSerializerPluginConfiguration();
 		serializer.setName(name);
 		serializer.setDescription(description);
 		serializer.setContentType(contentType);
@@ -94,7 +94,7 @@
 	<td><select name="objectIDM" id="objectIDM">
 		<option value="[none]">[None]</option>
 <%
-	for (SObjectIDM objectIDM : service.getAllObjectIDMs(true)) {
+	for (SObjectIDMPluginConfiguration objectIDM : service.getAllObjectIDMs(true)) {
 %>
 	<option value="<%=objectIDM.getOid()%>"<%=(request.getParameter("objectIDM") != null && request.getParameter("objectIDM").equals("" + objectIDM.getOid())) ? " selected=\"selected\"" : "" %>><%=objectIDM.getName()%></option>
 <%
@@ -107,7 +107,7 @@
 	<td><select name="ifcEngine" id="ifcEngine">
 		<option value="[none]">[None]</option>
 <%
-	for (SIfcEngine ifcEngine : service.getAllIfcEngines(true)) {
+	for (SIfcEnginePluginConfiguration ifcEngine : service.getAllIfcEngines(true)) {
 %>
 	<option value="<%=ifcEngine.getOid()%>"<%=(request.getParameter("ifcEngine") != null && request.getParameter("ifcEngine").equals("" + ifcEngine.getOid())) ? " selected=\"selected\"" : "" %>><%=ifcEngine.getName()%></option>
 <%

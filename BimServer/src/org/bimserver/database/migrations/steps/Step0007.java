@@ -32,10 +32,10 @@ public class Step0007 extends Migration {
 
 	@Override
 	public void migrate(Schema schema) {
-		EClass ifcEnginePluginClass = schema.createEClass(schema.getEPackage("store"), "IfcEngine", schema.getEClass("store", "Plugin"));
+		EClass ifcEnginePluginClass = schema.createEClass(schema.getEPackage("store"), "IfcEnginePluginConfiguration", schema.getEClass("store", "PluginConfiguration"));
 		EClass userSettingsClass = schema.getEClass("store", "UserSettings");
 
-		EClass serializerPluginClass = schema.getEClass("store", "Serializer");
+		EClass serializerPluginClass = schema.getEClass("store", "SerializerPluginConfiguration");
 		EReference ifcEngineSerializersReference = schema.createEReference(ifcEnginePluginClass, "serializers", serializerPluginClass, Multiplicity.MANY);
 		EReference serializerIfcEngineReference = schema.createEReference(serializerPluginClass, "ifcEngine", ifcEnginePluginClass, Multiplicity.SINGLE);
 		

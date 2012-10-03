@@ -10,7 +10,7 @@
 <%@page import="org.bimwebserver.jsp.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializerPluginConfiguration"%>
 <%@ include file="header.jsp" %>
 <%
 	if (request.getParameter("compare") != null) {

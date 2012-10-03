@@ -28,9 +28,10 @@ import org.bimserver.exceptions.NoSerializerFoundException;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.IfcEnginePluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.ifcengine.IfcEngine;
@@ -102,9 +103,9 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				DatabaseSession newSession = getBimServer().getDatabase().createSession();
 				IfcEnginePlugin ifcEnginePlugin = null;
 				try {
-					Serializer found = newSession.get(StorePackage.eINSTANCE.getSerializer(), downloadParameters.getSerializerOid(), false, null);
-					if (found != null) {
-						org.bimserver.models.store.IfcEngine ifcEngine = found.getIfcEngine();
+					SerializerPluginConfiguration serializerPluginConfiguration = newSession.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), false, null);
+					if (serializerPluginConfiguration != null) {
+						IfcEnginePluginConfiguration ifcEngine = serializerPluginConfiguration.getIfcEngine();
 						if (ifcEngine != null) {
 							ifcEnginePlugin = (IfcEnginePlugin) getBimServer().getPluginManager().getIfcEngine(ifcEngine.getClassName(), true);
 						}

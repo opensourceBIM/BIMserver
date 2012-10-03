@@ -28,30 +28,30 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ObjectIDM;
+import org.bimserver.models.store.ObjectIDMPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 
-public class GetAllObjectIDMsDatabaseAction extends GetAllDatabaseAction<ObjectIDM> {
+public class GetAllObjectIDMsDatabaseAction extends GetAllDatabaseAction<ObjectIDMPluginConfiguration> {
 
 	private boolean onlyEnabled;
 	private BimServer bimServer;
 
 	public GetAllObjectIDMsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, boolean onlyEnabled) {
-		super(databaseSession, accessMethod, ObjectIDM.class, StorePackage.eINSTANCE.getObjectIDM());
+		super(databaseSession, accessMethod, ObjectIDMPluginConfiguration.class, StorePackage.eINSTANCE.getObjectIDMPluginConfiguration());
 		this.bimServer = bimServer;
 		this.onlyEnabled = onlyEnabled;
 	}
 	
-	public List<ObjectIDM> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getObjectIDM());
-		Map<Long, ObjectIDM> result = getDatabaseSession().query(condition, ObjectIDM.class, false, null);
-		List<ObjectIDM> mapToList = CollectionUtils.mapToList(result);
+	public List<ObjectIDMPluginConfiguration> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getObjectIDMPluginConfiguration());
+		Map<Long, ObjectIDMPluginConfiguration> result = getDatabaseSession().query(condition, ObjectIDMPluginConfiguration.class, false, null);
+		List<ObjectIDMPluginConfiguration> mapToList = CollectionUtils.mapToList(result);
 		if (onlyEnabled) {
-			Iterator<ObjectIDM> iterator = mapToList.iterator();
+			Iterator<ObjectIDMPluginConfiguration> iterator = mapToList.iterator();
 			while (iterator.hasNext()) {
-				ObjectIDM objectIdm = iterator.next();
+				ObjectIDMPluginConfiguration objectIdm = iterator.next();
 				if (!bimServer.getPluginManager().isEnabled(objectIdm.getClassName()) || !objectIdm.getEnabled()) {
 					iterator.remove();
 				}

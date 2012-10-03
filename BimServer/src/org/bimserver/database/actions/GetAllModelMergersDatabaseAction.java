@@ -28,31 +28,31 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ModelMerger;
+import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 
-public class GetAllModelMergersDatabaseAction extends GetAllDatabaseAction<ModelMerger> {
+public class GetAllModelMergersDatabaseAction extends GetAllDatabaseAction<ModelMergerPluginConfiguration> {
 
 	private final boolean onlyEnabled;
 	private final BimServer bimServer;
 
 	public GetAllModelMergersDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, boolean onlyEnabled) {
-		super(databaseSession, accessMethod, ModelMerger.class, StorePackage.eINSTANCE.getModelMerger());
+		super(databaseSession, accessMethod, ModelMergerPluginConfiguration.class, StorePackage.eINSTANCE.getModelMergerPluginConfiguration());
 		this.bimServer = bimServer;
 		this.onlyEnabled = onlyEnabled;
 	}
 
 	@Override
-	public List<ModelMerger> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getModelMerger());
-		Map<Long, ModelMerger> result = getDatabaseSession().query(condition, ModelMerger.class, false, null);
-		List<ModelMerger> mapToList = CollectionUtils.mapToList(result);
+	public List<ModelMergerPluginConfiguration> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getModelMergerPluginConfiguration());
+		Map<Long, ModelMergerPluginConfiguration> result = getDatabaseSession().query(condition, ModelMergerPluginConfiguration.class, false, null);
+		List<ModelMergerPluginConfiguration> mapToList = CollectionUtils.mapToList(result);
 		if (onlyEnabled) {
-			Iterator<ModelMerger> iterator = mapToList.iterator();
+			Iterator<ModelMergerPluginConfiguration> iterator = mapToList.iterator();
 			while (iterator.hasNext()) {
-				ModelMerger modelMerger = iterator.next();
+				ModelMergerPluginConfiguration modelMerger = iterator.next();
 				if (!bimServer.getPluginManager().isEnabled(modelMerger.getClassName()) || !modelMerger.getEnabled()) {
 					iterator.remove();
 				}

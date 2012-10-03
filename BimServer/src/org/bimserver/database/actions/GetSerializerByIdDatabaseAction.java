@@ -19,12 +19,12 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 
-public class GetSerializerByIdDatabaseAction extends GetByIdDatabaseAction<Serializer> {
+public class GetSerializerByIdDatabaseAction extends GetByIdDatabaseAction<SerializerPluginConfiguration> {
 
 	public GetSerializerByIdDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long oid) {
-		super(databaseSession, accessMethod, oid, StorePackage.eINSTANCE.getSerializer());
+		super(databaseSession, accessMethod, oid, StorePackage.eINSTANCE.getSerializerPluginConfiguration());
 	}
 }

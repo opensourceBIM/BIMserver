@@ -121,28 +121,28 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter casePlugin(Plugin object) {
-			return createPluginAdapter();
+		public Adapter casePluginConfiguration(PluginConfiguration object) {
+			return createPluginConfigurationAdapter();
 		}
 
 		@Override
-		public Adapter caseSerializer(Serializer object) {
-			return createSerializerAdapter();
+		public Adapter caseSerializerPluginConfiguration(SerializerPluginConfiguration object) {
+			return createSerializerPluginConfigurationAdapter();
 		}
 
 		@Override
-		public Adapter caseObjectIDM(ObjectIDM object) {
-			return createObjectIDMAdapter();
+		public Adapter caseObjectIDMPluginConfiguration(ObjectIDMPluginConfiguration object) {
+			return createObjectIDMPluginConfigurationAdapter();
 		}
 
 		@Override
-		public Adapter caseIfcEngine(IfcEngine object) {
-			return createIfcEngineAdapter();
+		public Adapter caseIfcEnginePluginConfiguration(IfcEnginePluginConfiguration object) {
+			return createIfcEnginePluginConfigurationAdapter();
 		}
 
 		@Override
-		public Adapter caseDeserializer(Deserializer object) {
-			return createDeserializerAdapter();
+		public Adapter caseDeserializerPluginConfiguration(DeserializerPluginConfiguration object) {
+			return createDeserializerPluginConfigurationAdapter();
 		}
 
 		@Override
@@ -321,8 +321,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseQueryEngine(QueryEngine object) {
-			return createQueryEngineAdapter();
+		public Adapter caseQueryEnginePluginConfiguration(QueryEnginePluginConfiguration object) {
+			return createQueryEnginePluginConfigurationAdapter();
 		}
 
 		@Override
@@ -331,8 +331,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseModelMerger(ModelMerger object) {
-			return createModelMergerAdapter();
+		public Adapter caseModelMergerPluginConfiguration(ModelMergerPluginConfiguration object) {
+			return createModelMergerPluginConfigurationAdapter();
 		}
 
 		@Override
@@ -341,8 +341,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseModelCompare(ModelCompare object) {
-			return createModelCompareAdapter();
+		public Adapter caseModelComparePluginConfiguration(ModelComparePluginConfiguration object) {
+			return createModelComparePluginConfigurationAdapter();
 		}
 
 		@Override
@@ -371,8 +371,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseEService(EService object) {
-			return createEServiceAdapter();
+		public Adapter caseInternalServicePluginConfiguration(InternalServicePluginConfiguration object) {
+			return createInternalServicePluginConfigurationAdapter();
 		}
 
 		@Override
@@ -532,72 +532,72 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Plugin <em>Plugin</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.PluginConfiguration <em>Plugin Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.store.Plugin
+	 * @see org.bimserver.models.store.PluginConfiguration
 	 * @generated
 	 */
-	public Adapter createPluginAdapter() {
+	public Adapter createPluginConfigurationAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Serializer <em>Serializer</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.SerializerPluginConfiguration <em>Serializer Plugin Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.store.Serializer
+	 * @see org.bimserver.models.store.SerializerPluginConfiguration
 	 * @generated
 	 */
-	public Adapter createSerializerAdapter() {
+	public Adapter createSerializerPluginConfigurationAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ObjectIDM <em>Object IDM</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ObjectIDMPluginConfiguration <em>Object IDM Plugin Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.store.ObjectIDM
+	 * @see org.bimserver.models.store.ObjectIDMPluginConfiguration
 	 * @generated
 	 */
-	public Adapter createObjectIDMAdapter() {
+	public Adapter createObjectIDMPluginConfigurationAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.IfcEngine <em>Ifc Engine</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.IfcEnginePluginConfiguration <em>Ifc Engine Plugin Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.store.IfcEngine
+	 * @see org.bimserver.models.store.IfcEnginePluginConfiguration
 	 * @generated
 	 */
-	public Adapter createIfcEngineAdapter() {
+	public Adapter createIfcEnginePluginConfigurationAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Deserializer <em>Deserializer</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.DeserializerPluginConfiguration <em>Deserializer Plugin Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.store.Deserializer
+	 * @see org.bimserver.models.store.DeserializerPluginConfiguration
 	 * @generated
 	 */
-	public Adapter createDeserializerAdapter() {
+	public Adapter createDeserializerPluginConfigurationAdapter() {
 		return null;
 	}
 
@@ -1092,16 +1092,16 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.QueryEngine <em>Query Engine</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.QueryEnginePluginConfiguration <em>Query Engine Plugin Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.store.QueryEngine
+	 * @see org.bimserver.models.store.QueryEnginePluginConfiguration
 	 * @generated
 	 */
-	public Adapter createQueryEngineAdapter() {
+	public Adapter createQueryEnginePluginConfigurationAdapter() {
 		return null;
 	}
 
@@ -1120,16 +1120,16 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ModelMerger <em>Model Merger</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ModelMergerPluginConfiguration <em>Model Merger Plugin Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.store.ModelMerger
+	 * @see org.bimserver.models.store.ModelMergerPluginConfiguration
 	 * @generated
 	 */
-	public Adapter createModelMergerAdapter() {
+	public Adapter createModelMergerPluginConfigurationAdapter() {
 		return null;
 	}
 
@@ -1148,16 +1148,16 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ModelCompare <em>Model Compare</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ModelComparePluginConfiguration <em>Model Compare Plugin Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.store.ModelCompare
+	 * @see org.bimserver.models.store.ModelComparePluginConfiguration
 	 * @generated
 	 */
-	public Adapter createModelCompareAdapter() {
+	public Adapter createModelComparePluginConfigurationAdapter() {
 		return null;
 	}
 
@@ -1232,16 +1232,16 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.EService <em>EService</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.InternalServicePluginConfiguration <em>Internal Service Plugin Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.store.EService
+	 * @see org.bimserver.models.store.InternalServicePluginConfiguration
 	 * @generated
 	 */
-	public Adapter createEServiceAdapter() {
+	public Adapter createInternalServicePluginConfigurationAdapter() {
 		return null;
 	}
 

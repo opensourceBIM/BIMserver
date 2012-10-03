@@ -113,35 +113,35 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass pluginEClass = null;
+	private EClass pluginConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass serializerEClass = null;
+	private EClass serializerPluginConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass objectIDMEClass = null;
+	private EClass objectIDMPluginConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass ifcEngineEClass = null;
+	private EClass ifcEnginePluginConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass deserializerEClass = null;
+	private EClass deserializerPluginConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -393,7 +393,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass queryEngineEClass = null;
+	private EClass queryEnginePluginConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -407,7 +407,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass modelMergerEClass = null;
+	private EClass modelMergerPluginConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -421,7 +421,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass modelCompareEClass = null;
+	private EClass modelComparePluginConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -463,7 +463,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass eServiceEClass = null;
+	private EClass internalServicePluginConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1650,11 +1650,11 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPlugin() {
-		if (pluginEClass == null) {
-			pluginEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(11);
+	public EClass getPluginConfiguration() {
+		if (pluginConfigurationEClass == null) {
+			pluginConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(11);
 		}
-		return pluginEClass;
+		return pluginConfigurationEClass;
 	}
 
 	/**
@@ -1662,8 +1662,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlugin_Name() {
-		return (EAttribute) getPlugin().getEStructuralFeatures().get(0);
+	public EAttribute getPluginConfiguration_Name() {
+		return (EAttribute) getPluginConfiguration().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1671,8 +1671,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlugin_Enabled() {
-		return (EAttribute) getPlugin().getEStructuralFeatures().get(1);
+	public EAttribute getPluginConfiguration_Enabled() {
+		return (EAttribute) getPluginConfiguration().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1680,8 +1680,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlugin_Description() {
-		return (EAttribute) getPlugin().getEStructuralFeatures().get(2);
+	public EAttribute getPluginConfiguration_Description() {
+		return (EAttribute) getPluginConfiguration().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1689,8 +1689,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlugin_ClassName() {
-		return (EAttribute) getPlugin().getEStructuralFeatures().get(3);
+	public EAttribute getPluginConfiguration_ClassName() {
+		return (EAttribute) getPluginConfiguration().getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1698,11 +1698,11 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSerializer() {
-		if (serializerEClass == null) {
-			serializerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(12);
+	public EClass getSerializerPluginConfiguration() {
+		if (serializerPluginConfigurationEClass == null) {
+			serializerPluginConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(12);
 		}
-		return serializerEClass;
+		return serializerPluginConfigurationEClass;
 	}
 
 	/**
@@ -1710,8 +1710,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSerializer_Extension() {
-		return (EAttribute) getSerializer().getEStructuralFeatures().get(0);
+	public EAttribute getSerializerPluginConfiguration_Extension() {
+		return (EAttribute) getSerializerPluginConfiguration().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1719,8 +1719,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSerializer_ContentType() {
-		return (EAttribute) getSerializer().getEStructuralFeatures().get(1);
+	public EAttribute getSerializerPluginConfiguration_ContentType() {
+		return (EAttribute) getSerializerPluginConfiguration().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1728,8 +1728,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSerializer_ObjectIDM() {
-		return (EReference) getSerializer().getEStructuralFeatures().get(2);
+	public EReference getSerializerPluginConfiguration_ObjectIDM() {
+		return (EReference) getSerializerPluginConfiguration().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1737,8 +1737,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSerializer_Settings() {
-		return (EReference) getSerializer().getEStructuralFeatures().get(3);
+	public EReference getSerializerPluginConfiguration_Settings() {
+		return (EReference) getSerializerPluginConfiguration().getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1746,8 +1746,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSerializer_IfcEngine() {
-		return (EReference) getSerializer().getEStructuralFeatures().get(4);
+	public EReference getSerializerPluginConfiguration_IfcEngine() {
+		return (EReference) getSerializerPluginConfiguration().getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1755,11 +1755,11 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getObjectIDM() {
-		if (objectIDMEClass == null) {
-			objectIDMEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(13);
+	public EClass getObjectIDMPluginConfiguration() {
+		if (objectIDMPluginConfigurationEClass == null) {
+			objectIDMPluginConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(13);
 		}
-		return objectIDMEClass;
+		return objectIDMPluginConfigurationEClass;
 	}
 
 	/**
@@ -1767,8 +1767,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getObjectIDM_Serializers() {
-		return (EReference) getObjectIDM().getEStructuralFeatures().get(0);
+	public EReference getObjectIDMPluginConfiguration_Serializers() {
+		return (EReference) getObjectIDMPluginConfiguration().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1776,8 +1776,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getObjectIDM_Settings() {
-		return (EReference) getObjectIDM().getEStructuralFeatures().get(1);
+	public EReference getObjectIDMPluginConfiguration_Settings() {
+		return (EReference) getObjectIDMPluginConfiguration().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1785,11 +1785,11 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getIfcEngine() {
-		if (ifcEngineEClass == null) {
-			ifcEngineEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(14);
+	public EClass getIfcEnginePluginConfiguration() {
+		if (ifcEnginePluginConfigurationEClass == null) {
+			ifcEnginePluginConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(14);
 		}
-		return ifcEngineEClass;
+		return ifcEnginePluginConfigurationEClass;
 	}
 
 	/**
@@ -1797,8 +1797,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIfcEngine_Serializers() {
-		return (EReference) getIfcEngine().getEStructuralFeatures().get(0);
+	public EReference getIfcEnginePluginConfiguration_Serializers() {
+		return (EReference) getIfcEnginePluginConfiguration().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1806,8 +1806,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIfcEngine_Settings() {
-		return (EReference) getIfcEngine().getEStructuralFeatures().get(1);
+	public EReference getIfcEnginePluginConfiguration_Settings() {
+		return (EReference) getIfcEnginePluginConfiguration().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1815,11 +1815,11 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDeserializer() {
-		if (deserializerEClass == null) {
-			deserializerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(15);
+	public EClass getDeserializerPluginConfiguration() {
+		if (deserializerPluginConfigurationEClass == null) {
+			deserializerPluginConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(15);
 		}
-		return deserializerEClass;
+		return deserializerPluginConfigurationEClass;
 	}
 
 	/**
@@ -1827,8 +1827,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDeserializer_Settings() {
-		return (EReference) getDeserializer().getEStructuralFeatures().get(0);
+	public EReference getDeserializerPluginConfiguration_Settings() {
+		return (EReference) getDeserializerPluginConfiguration().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3156,11 +3156,11 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getQueryEngine() {
-		if (queryEngineEClass == null) {
-			queryEngineEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(57);
+	public EClass getQueryEnginePluginConfiguration() {
+		if (queryEnginePluginConfigurationEClass == null) {
+			queryEnginePluginConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(57);
 		}
-		return queryEngineEClass;
+		return queryEnginePluginConfigurationEClass;
 	}
 
 	/**
@@ -3168,8 +3168,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getQueryEngine_Settings() {
-		return (EReference) getQueryEngine().getEStructuralFeatures().get(0);
+	public EReference getQueryEnginePluginConfiguration_Settings() {
+		return (EReference) getQueryEnginePluginConfiguration().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3189,11 +3189,11 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getModelMerger() {
-		if (modelMergerEClass == null) {
-			modelMergerEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(59);
+	public EClass getModelMergerPluginConfiguration() {
+		if (modelMergerPluginConfigurationEClass == null) {
+			modelMergerPluginConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(59);
 		}
-		return modelMergerEClass;
+		return modelMergerPluginConfigurationEClass;
 	}
 
 	/**
@@ -3201,8 +3201,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelMerger_Settings() {
-		return (EReference) getModelMerger().getEStructuralFeatures().get(0);
+	public EReference getModelMergerPluginConfiguration_Settings() {
+		return (EReference) getModelMergerPluginConfiguration().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3222,11 +3222,11 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getModelCompare() {
-		if (modelCompareEClass == null) {
-			modelCompareEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(61);
+	public EClass getModelComparePluginConfiguration() {
+		if (modelComparePluginConfigurationEClass == null) {
+			modelComparePluginConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(61);
 		}
-		return modelCompareEClass;
+		return modelComparePluginConfigurationEClass;
 	}
 
 	/**
@@ -3234,8 +3234,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelCompare_Settings() {
-		return (EReference) getModelCompare().getEStructuralFeatures().get(0);
+	public EReference getModelComparePluginConfiguration_Settings() {
+		return (EReference) getModelComparePluginConfiguration().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3546,11 +3546,11 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEService() {
-		if (eServiceEClass == null) {
-			eServiceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(68);
+	public EClass getInternalServicePluginConfiguration() {
+		if (internalServicePluginConfigurationEClass == null) {
+			internalServicePluginConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(68);
 		}
-		return eServiceEClass;
+		return internalServicePluginConfigurationEClass;
 	}
 
 	/**
@@ -3558,8 +3558,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEService_Settings() {
-		return (EReference) getEService().getEStructuralFeatures().get(0);
+	public EReference getInternalServicePluginConfiguration_Settings() {
+		return (EReference) getInternalServicePluginConfiguration().getEStructuralFeatures().get(0);
 	}
 
 	/**

@@ -28,31 +28,31 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.QueryEngine;
+import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 
-public class GetAllQueryEnginesDatabaseAction extends GetAllDatabaseAction<QueryEngine> {
+public class GetAllQueryEnginesDatabaseAction extends GetAllDatabaseAction<QueryEnginePluginConfiguration> {
 
 	private final boolean onlyEnabled;
 	private final BimServer bimServer;
 
 	public GetAllQueryEnginesDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, boolean onlyEnabled) {
-		super(databaseSession, accessMethod, QueryEngine.class, StorePackage.eINSTANCE.getQueryEngine());
+		super(databaseSession, accessMethod, QueryEnginePluginConfiguration.class, StorePackage.eINSTANCE.getQueryEnginePluginConfiguration());
 		this.bimServer = bimServer;
 		this.onlyEnabled = onlyEnabled;
 	}
 
 	@Override
-	public List<QueryEngine> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getQueryEngine());
-		Map<Long, QueryEngine> result = getDatabaseSession().query(condition, QueryEngine.class, false, null);
-		List<QueryEngine> mapToList = CollectionUtils.mapToList(result);
+	public List<QueryEnginePluginConfiguration> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getQueryEnginePluginConfiguration());
+		Map<Long, QueryEnginePluginConfiguration> result = getDatabaseSession().query(condition, QueryEnginePluginConfiguration.class, false, null);
+		List<QueryEnginePluginConfiguration> mapToList = CollectionUtils.mapToList(result);
 		if (onlyEnabled) {
-			Iterator<QueryEngine> iterator = mapToList.iterator();
+			Iterator<QueryEnginePluginConfiguration> iterator = mapToList.iterator();
 			while (iterator.hasNext()) {
-				QueryEngine queryEngine = iterator.next();
+				QueryEnginePluginConfiguration queryEngine = iterator.next();
 				if (!bimServer.getPluginManager().isEnabled(queryEngine.getClassName()) || !queryEngine.getEnabled()) {
 					iterator.remove();
 				}

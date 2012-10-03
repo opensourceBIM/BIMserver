@@ -19,12 +19,12 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ModelMerger;
+import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 
-public class GetModelMergerByNameDatabaseAction extends AbstractGetByFieldDatabaseAction<ModelMerger> {
+public class GetModelMergerByNameDatabaseAction extends AbstractGetByFieldDatabaseAction<ModelMergerPluginConfiguration> {
 
 	public GetModelMergerByNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String name) {
-		super(databaseSession, accessMethod, ModelMerger.class, StorePackage.eINSTANCE.getPlugin_Name(), name);
+		super(databaseSession, accessMethod, ModelMergerPluginConfiguration.class, StorePackage.eINSTANCE.getPluginConfiguration_Name(), name);
 	}
 }

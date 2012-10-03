@@ -1,12 +1,10 @@
-<%@page import="org.bimserver.interfaces.objects.SEService"%>
+<%@page import="org.bimserver.interfaces.objects.SInternalServicePluginConfiguration"%>
 <%@page import="org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor"%>
-<%@page import="org.bimserver.interfaces.objects.SQueryEngine"%>
 <%@page import="org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor"%>
-<%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor"%>
 <%@ include file="header.jsp"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializerPluginConfiguration"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.GregorianCalendar"%>
@@ -19,7 +17,6 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.interfaces.ServiceInterface"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
-<%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
 <div class="sidebar">
 <ul>
 </ul>
@@ -32,13 +29,13 @@
 	String className = request.getParameter("className");
 	long id = Long.parseLong(request.getParameter("id"));
 	if (request.getParameter("update") != null) {
-		SEService seService = loginManager.getService().getEServiceById(id);
+		SInternalServicePluginConfiguration seService = loginManager.getService().getInternalServiceById(id);
 		seService.setName(name);
 		seService.setClassName(className);
-		loginManager.getService().updateSEService(seService);
+		loginManager.getService().updateInternalService(seService);
 		response.sendRedirect("internalservices.jsp");
 	} else {
-		SEService seService = loginManager.getService().getEServiceById(id);
+		SInternalServicePluginConfiguration seService = loginManager.getService().getInternalServiceById(id);
 		if (name == null) {
 			name = seService.getName();
 		}

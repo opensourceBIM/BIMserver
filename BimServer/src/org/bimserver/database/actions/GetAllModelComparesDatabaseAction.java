@@ -28,31 +28,31 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ModelCompare;
+import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 
-public class GetAllModelComparesDatabaseAction extends GetAllDatabaseAction<ModelCompare> {
+public class GetAllModelComparesDatabaseAction extends GetAllDatabaseAction<ModelComparePluginConfiguration> {
 
 	private final boolean onlyEnabled;
 	private final BimServer bimServer;
 
 	public GetAllModelComparesDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, boolean onlyEnabled) {
-		super(databaseSession, accessMethod, ModelCompare.class, StorePackage.eINSTANCE.getModelCompare());
+		super(databaseSession, accessMethod, ModelComparePluginConfiguration.class, StorePackage.eINSTANCE.getModelComparePluginConfiguration());
 		this.bimServer = bimServer;
 		this.onlyEnabled = onlyEnabled;
 	}
 
 	@Override
-	public List<ModelCompare> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getModelCompare());
-		Map<Long, ModelCompare> result = getDatabaseSession().query(condition, ModelCompare.class, false, null);
-		List<ModelCompare> mapToList = CollectionUtils.mapToList(result);
+	public List<ModelComparePluginConfiguration> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getModelComparePluginConfiguration());
+		Map<Long, ModelComparePluginConfiguration> result = getDatabaseSession().query(condition, ModelComparePluginConfiguration.class, false, null);
+		List<ModelComparePluginConfiguration> mapToList = CollectionUtils.mapToList(result);
 		if (onlyEnabled) {
-			Iterator<ModelCompare> iterator = mapToList.iterator();
+			Iterator<ModelComparePluginConfiguration> iterator = mapToList.iterator();
 			while (iterator.hasNext()) {
-				ModelCompare modelCompare = iterator.next();
+				ModelComparePluginConfiguration modelCompare = iterator.next();
 				if (!bimServer.getPluginManager().isEnabled(modelCompare.getClassName()) || !modelCompare.getEnabled()) {
 					iterator.remove();
 				}

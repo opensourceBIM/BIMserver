@@ -21,20 +21,20 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ObjectIDM;
+import org.bimserver.models.store.ObjectIDMPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.shared.exceptions.UserException;
 
-public class DeleteObjectIDMDatabaseAction extends DeleteDatabaseAction<ObjectIDM> {
+public class DeleteObjectIDMDatabaseAction extends DeleteDatabaseAction<ObjectIDMPluginConfiguration> {
 
 	public DeleteObjectIDMDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long ifid) {
-		super(databaseSession, accessMethod, StorePackage.eINSTANCE.getObjectIDM(), ifid);
+		super(databaseSession, accessMethod, StorePackage.eINSTANCE.getObjectIDMPluginConfiguration(), ifid);
 	}
 
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		ObjectIDM object = getDatabaseSession().get(geteClass(), getOid(), false, null);
+		ObjectIDMPluginConfiguration object = getDatabaseSession().get(geteClass(), getOid(), false, null);
 		UserSettings settings = object.getSettings();
 		settings.getObjectIDMs().remove(object);
 		getDatabaseSession().store(settings);

@@ -1,9 +1,7 @@
+<%@page import="org.bimserver.interfaces.objects.SDeserializerPluginConfiguration"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@page import="org.bimserver.interfaces.objects.SDeserializer"%>
 <%@page import="org.bimwebserver.jsp.JspHelper"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializerPluginDescriptor"%>
 <%@ include file="header.jsp"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.GregorianCalendar"%>
@@ -31,7 +29,7 @@
 	if (request.getParameter("next") != null) {
 		name = request.getParameter("name");
 		description = request.getParameter("description");
-		SDeserializer deserializer = new SDeserializer();
+		SDeserializerPluginConfiguration deserializer = new SDeserializerPluginConfiguration();
 		deserializer.setName(name);
 		deserializer.setEnabled(true);
 		deserializer.setDescription(description);

@@ -1,15 +1,12 @@
+<%@page import="org.bimserver.interfaces.objects.SModelMergerPluginConfiguration"%>
 <%@page import="org.bimserver.interfaces.objects.SModelMergerPluginDescriptor"%>
-<%@page import="org.bimserver.interfaces.objects.SModelMerger"%>
 <%@page import="org.bimserver.interfaces.objects.SModelComparePluginDescriptor"%>
-<%@page import="org.bimserver.interfaces.objects.SModelCompare"%>
 <%@page import="org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor"%>
-<%@page import="org.bimserver.interfaces.objects.SQueryEngine"%>
 <%@page import="org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor"%>
-<%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor"%>
 <%@ include file="header.jsp"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializerPluginConfiguration"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.GregorianCalendar"%>
@@ -22,7 +19,6 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.interfaces.ServiceInterface"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
-<%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
 <div class="sidebar">
 <ul>
 </ul>
@@ -35,13 +31,13 @@
 	String className = request.getParameter("className");
 	long id = Long.parseLong(request.getParameter("id"));
 	if (request.getParameter("update") != null) {
-		SModelMerger modelMerger = loginManager.getService().getModelMergerById(id);
+		SModelMergerPluginConfiguration modelMerger = loginManager.getService().getModelMergerById(id);
 		modelMerger.setName(name);
 		modelMerger.setClassName(className);
 		loginManager.getService().updateModelMerger(modelMerger);
 		response.sendRedirect("modelmergers.jsp");
 	} else {
-		SModelMerger modelMerger = loginManager.getService().getModelMergerById(id);
+		SModelMergerPluginConfiguration modelMerger = loginManager.getService().getModelMergerById(id);
 		if (name == null) {
 			name = modelMerger.getName();
 		}

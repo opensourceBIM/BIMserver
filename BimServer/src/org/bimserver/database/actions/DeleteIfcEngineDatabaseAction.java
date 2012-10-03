@@ -21,20 +21,20 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.IfcEnginePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.shared.exceptions.UserException;
 
-public class DeleteIfcEngineDatabaseAction extends DeleteDatabaseAction<IfcEngine> {
+public class DeleteIfcEngineDatabaseAction extends DeleteDatabaseAction<IfcEnginePluginConfiguration> {
 
 	public DeleteIfcEngineDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long iid) {
-		super(databaseSession, accessMethod, StorePackage.eINSTANCE.getIfcEngine(), iid);
+		super(databaseSession, accessMethod, StorePackage.eINSTANCE.getIfcEnginePluginConfiguration(), iid);
 	}
 	
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		IfcEngine object = getDatabaseSession().get(geteClass(), getOid(), false, null);
+		IfcEnginePluginConfiguration object = getDatabaseSession().get(geteClass(), getOid(), false, null);
 		UserSettings settings = object.getSettings();
 		settings.getIfcEngines().remove(object);
 		getDatabaseSession().store(settings);

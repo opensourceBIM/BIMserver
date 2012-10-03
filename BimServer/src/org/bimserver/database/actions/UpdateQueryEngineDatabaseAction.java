@@ -19,11 +19,11 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.QueryEngine;
+import org.bimserver.models.store.QueryEnginePluginConfiguration;
 
-public class UpdateQueryEngineDatabaseAction extends UpdateDatabaseAction<QueryEngine> {
+public class UpdateQueryEngineDatabaseAction extends UpdateDatabaseAction<QueryEnginePluginConfiguration> {
 
-	public UpdateQueryEngineDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, QueryEngine queryEngine) {
+	public UpdateQueryEngineDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, QueryEnginePluginConfiguration queryEngine) {
 		super(databaseSession, accessMethod, queryEngine);
 	}
 }

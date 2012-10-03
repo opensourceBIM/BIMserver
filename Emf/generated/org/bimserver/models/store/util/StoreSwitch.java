@@ -136,45 +136,45 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.PLUGIN: {
-			Plugin plugin = (Plugin) theEObject;
-			T result = casePlugin(plugin);
+		case StorePackage.PLUGIN_CONFIGURATION: {
+			PluginConfiguration pluginConfiguration = (PluginConfiguration) theEObject;
+			T result = casePluginConfiguration(pluginConfiguration);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.SERIALIZER: {
-			Serializer serializer = (Serializer) theEObject;
-			T result = caseSerializer(serializer);
+		case StorePackage.SERIALIZER_PLUGIN_CONFIGURATION: {
+			SerializerPluginConfiguration serializerPluginConfiguration = (SerializerPluginConfiguration) theEObject;
+			T result = caseSerializerPluginConfiguration(serializerPluginConfiguration);
 			if (result == null)
-				result = casePlugin(serializer);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case StorePackage.OBJECT_IDM: {
-			ObjectIDM objectIDM = (ObjectIDM) theEObject;
-			T result = caseObjectIDM(objectIDM);
-			if (result == null)
-				result = casePlugin(objectIDM);
+				result = casePluginConfiguration(serializerPluginConfiguration);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.IFC_ENGINE: {
-			IfcEngine ifcEngine = (IfcEngine) theEObject;
-			T result = caseIfcEngine(ifcEngine);
+		case StorePackage.OBJECT_IDM_PLUGIN_CONFIGURATION: {
+			ObjectIDMPluginConfiguration objectIDMPluginConfiguration = (ObjectIDMPluginConfiguration) theEObject;
+			T result = caseObjectIDMPluginConfiguration(objectIDMPluginConfiguration);
 			if (result == null)
-				result = casePlugin(ifcEngine);
+				result = casePluginConfiguration(objectIDMPluginConfiguration);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.DESERIALIZER: {
-			Deserializer deserializer = (Deserializer) theEObject;
-			T result = caseDeserializer(deserializer);
+		case StorePackage.IFC_ENGINE_PLUGIN_CONFIGURATION: {
+			IfcEnginePluginConfiguration ifcEnginePluginConfiguration = (IfcEnginePluginConfiguration) theEObject;
+			T result = caseIfcEnginePluginConfiguration(ifcEnginePluginConfiguration);
 			if (result == null)
-				result = casePlugin(deserializer);
+				result = casePluginConfiguration(ifcEnginePluginConfiguration);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.DESERIALIZER_PLUGIN_CONFIGURATION: {
+			DeserializerPluginConfiguration deserializerPluginConfiguration = (DeserializerPluginConfiguration) theEObject;
+			T result = caseDeserializerPluginConfiguration(deserializerPluginConfiguration);
+			if (result == null)
+				result = casePluginConfiguration(deserializerPluginConfiguration);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -448,11 +448,11 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.QUERY_ENGINE: {
-			QueryEngine queryEngine = (QueryEngine) theEObject;
-			T result = caseQueryEngine(queryEngine);
+		case StorePackage.QUERY_ENGINE_PLUGIN_CONFIGURATION: {
+			QueryEnginePluginConfiguration queryEnginePluginConfiguration = (QueryEnginePluginConfiguration) theEObject;
+			T result = caseQueryEnginePluginConfiguration(queryEnginePluginConfiguration);
 			if (result == null)
-				result = casePlugin(queryEngine);
+				result = casePluginConfiguration(queryEnginePluginConfiguration);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -466,11 +466,11 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.MODEL_MERGER: {
-			ModelMerger modelMerger = (ModelMerger) theEObject;
-			T result = caseModelMerger(modelMerger);
+		case StorePackage.MODEL_MERGER_PLUGIN_CONFIGURATION: {
+			ModelMergerPluginConfiguration modelMergerPluginConfiguration = (ModelMergerPluginConfiguration) theEObject;
+			T result = caseModelMergerPluginConfiguration(modelMergerPluginConfiguration);
 			if (result == null)
-				result = casePlugin(modelMerger);
+				result = casePluginConfiguration(modelMergerPluginConfiguration);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -484,11 +484,11 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.MODEL_COMPARE: {
-			ModelCompare modelCompare = (ModelCompare) theEObject;
-			T result = caseModelCompare(modelCompare);
+		case StorePackage.MODEL_COMPARE_PLUGIN_CONFIGURATION: {
+			ModelComparePluginConfiguration modelComparePluginConfiguration = (ModelComparePluginConfiguration) theEObject;
+			T result = caseModelComparePluginConfiguration(modelComparePluginConfiguration);
 			if (result == null)
-				result = casePlugin(modelCompare);
+				result = casePluginConfiguration(modelComparePluginConfiguration);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -530,11 +530,11 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.ESERVICE: {
-			EService eService = (EService) theEObject;
-			T result = caseEService(eService);
+		case StorePackage.INTERNAL_SERVICE_PLUGIN_CONFIGURATION: {
+			InternalServicePluginConfiguration internalServicePluginConfiguration = (InternalServicePluginConfiguration) theEObject;
+			T result = caseInternalServicePluginConfiguration(internalServicePluginConfiguration);
 			if (result == null)
-				result = casePlugin(eService);
+				result = casePluginConfiguration(internalServicePluginConfiguration);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -700,77 +700,77 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Plugin</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Plugin</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Plugin Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePlugin(Plugin object) {
+	public T casePluginConfiguration(PluginConfiguration object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Serializer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Serializer Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Serializer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Serializer Plugin Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSerializer(Serializer object) {
+	public T caseSerializerPluginConfiguration(SerializerPluginConfiguration object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Object IDM</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Object IDM Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Object IDM</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Object IDM Plugin Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseObjectIDM(ObjectIDM object) {
+	public T caseObjectIDMPluginConfiguration(ObjectIDMPluginConfiguration object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc Engine</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Engine Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc Engine</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Engine Plugin Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcEngine(IfcEngine object) {
+	public T caseIfcEnginePluginConfiguration(IfcEnginePluginConfiguration object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Deserializer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Deserializer Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Deserializer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Deserializer Plugin Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDeserializer(Deserializer object) {
+	public T caseDeserializerPluginConfiguration(DeserializerPluginConfiguration object) {
 		return null;
 	}
 
@@ -1300,17 +1300,17 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Query Engine</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Query Engine Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Query Engine</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Query Engine Plugin Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseQueryEngine(QueryEngine object) {
+	public T caseQueryEnginePluginConfiguration(QueryEnginePluginConfiguration object) {
 		return null;
 	}
 
@@ -1330,17 +1330,17 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Merger</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Merger Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Merger</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Merger Plugin Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelMerger(ModelMerger object) {
+	public T caseModelMergerPluginConfiguration(ModelMergerPluginConfiguration object) {
 		return null;
 	}
 
@@ -1360,17 +1360,17 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Compare</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Compare Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Compare</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Compare Plugin Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelCompare(ModelCompare object) {
+	public T caseModelComparePluginConfiguration(ModelComparePluginConfiguration object) {
 		return null;
 	}
 
@@ -1450,17 +1450,17 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EService</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Internal Service Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EService</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Internal Service Plugin Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEService(EService object) {
+	public T caseInternalServicePluginConfiguration(InternalServicePluginConfiguration object) {
 		return null;
 	}
 

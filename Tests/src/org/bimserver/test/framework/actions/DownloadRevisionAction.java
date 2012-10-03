@@ -27,7 +27,7 @@ import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
-import org.bimserver.interfaces.objects.SSerializer;
+import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
@@ -52,11 +52,11 @@ public class DownloadRevisionAction extends Action {
 		SProject project = virtualUser.getRandomProject();
 		if (project != null) {
 			if (project.getLastRevisionId() != -1) {
-				SSerializer serializer = null;
+				SSerializerPluginConfiguration serializer = null;
 				if (serializerName != null) {
 					serializer = virtualUser.getBimServerClient().getServiceInterface().getSerializerByName(serializerName);
 				} else {
-					List<SSerializer> allSerializers = virtualUser.getBimServerClient().getServiceInterface().getAllSerializers(true);
+					List<SSerializerPluginConfiguration> allSerializers = virtualUser.getBimServerClient().getServiceInterface().getAllSerializers(true);
 					serializer = allSerializers.get(nextInt(allSerializers.size()));
 				}
 				boolean sync = nextBoolean();

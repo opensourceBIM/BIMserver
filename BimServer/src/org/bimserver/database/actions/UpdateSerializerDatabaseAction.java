@@ -21,12 +21,12 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.shared.exceptions.UserException;
 
-public class UpdateSerializerDatabaseAction extends UpdateDatabaseAction<Serializer> {
+public class UpdateSerializerDatabaseAction extends UpdateDatabaseAction<SerializerPluginConfiguration> {
 
-	public UpdateSerializerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Serializer serializer) {
+	public UpdateSerializerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, SerializerPluginConfiguration serializer) {
 		super(databaseSession, accessMethod, serializer);
 	}
 	

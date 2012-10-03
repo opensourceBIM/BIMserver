@@ -21,22 +21,22 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.IfcEnginePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.UserException;
 
-public class UpdateIfcEngineDatabaseAction extends UpdateDatabaseAction<IfcEngine> {
+public class UpdateIfcEngineDatabaseAction extends UpdateDatabaseAction<IfcEnginePluginConfiguration> {
 
-	private final IfcEngine ifcEngine;
+	private final IfcEnginePluginConfiguration ifcEngine;
 
-	public UpdateIfcEngineDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, IfcEngine ifcEngine) {
+	public UpdateIfcEngineDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, IfcEnginePluginConfiguration ifcEngine) {
 		super(databaseSession, accessMethod, ifcEngine);
 		this.ifcEngine = ifcEngine;
 	}
 	
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		IfcEngine oldIfcEngine = getDatabaseSession().get(StorePackage.eINSTANCE.getIfcEngine(), ifcEngine.getOid(), false, null);
+		IfcEnginePluginConfiguration oldIfcEngine = getDatabaseSession().get(StorePackage.eINSTANCE.getIfcEnginePluginConfiguration(), ifcEngine.getOid(), false, null);
 		if (oldIfcEngine.getEnabled() == true && ifcEngine.getEnabled() == false && !oldIfcEngine.getSerializers().isEmpty()) {
 			throw new UserException("Cannot disable render engine with serializers");
 		}

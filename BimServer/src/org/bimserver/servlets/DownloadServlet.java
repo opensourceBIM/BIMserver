@@ -35,7 +35,7 @@ import org.bimserver.BimServer;
 import org.bimserver.interfaces.objects.SCompareType;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.interfaces.objects.SSerializer;
+import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
@@ -64,7 +64,7 @@ public class DownloadServlet extends HttpServlet {
 			}
 			ServiceInterface service = bimServer.getServiceFactory().getService(token);
 
-			SSerializer serializer = null;
+			SSerializerPluginConfiguration serializer = null;
 			if (request.getParameter("serializerOid") != null) {
 				long serializerOid = Long.parseLong(request.getParameter("serializerOid"));
 				serializer = service.getSerializerById(serializerOid);

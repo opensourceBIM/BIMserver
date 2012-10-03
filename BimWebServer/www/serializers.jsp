@@ -1,6 +1,7 @@
+<%@page import="org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration"%>
+<%@page import="org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration"%>
 <%@page import="org.bimserver.interfaces.objects.SSettings"%>
-<%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializerPluginConfiguration"%>
 <%@page import="java.util.List"%>
 <%@ include file="usersettingsmenu.jsp"%>
 <h1>Serializers</h1>
@@ -11,11 +12,11 @@
 	if (request.getParameter("action") != null) {
 		String action = request.getParameter("action");
 		if (action.equals("disable")) {
-			SSerializer serializer = loginManager.getService().getSerializerById(Long.parseLong(request.getParameter("oid")));
+			SSerializerPluginConfiguration serializer = loginManager.getService().getSerializerById(Long.parseLong(request.getParameter("oid")));
 			serializer.setEnabled(false);
 			loginManager.getService().updateSerializer(serializer);
 		} else if (action.equals("enable")) {
-			SSerializer serializer = loginManager.getService().getSerializerById(Long.parseLong(request.getParameter("oid")));
+			SSerializerPluginConfiguration serializer = loginManager.getService().getSerializerById(Long.parseLong(request.getParameter("oid")));
 			serializer.setEnabled(true);
 			loginManager.getService().updateSerializer(serializer);
 		} else if (action.equals("setdefault")) {
@@ -25,14 +26,14 @@
 		}
 		response.sendRedirect("serializers.jsp");
 	}
-	List<SSerializer> serializers = service.getAllSerializers(false);
-	for (SSerializer serializer : serializers) {
+	List<SSerializerPluginConfiguration> serializers = service.getAllSerializers(false);
+	for (SSerializerPluginConfiguration serializer : serializers) {
 		boolean isDefault = service.getDefaultSerializer() != null && service.getDefaultSerializer().getOid() == serializer.getOid();
-		SObjectIDM objectIDM = null;
+		SObjectIDMPluginConfiguration objectIDM = null;
 		if (serializer.getObjectIDMId() != -1) {
 			objectIDM = service.getObjectIDMById(serializer.getObjectIDMId());
 		}
-		SIfcEngine ifcEngine = null;
+		SIfcEnginePluginConfiguration ifcEngine = null;
 		if (serializer.getIfcEngineId() != -1) {
 			ifcEngine = service.getIfcEngineById(serializer.getIfcEngineId());
 		}

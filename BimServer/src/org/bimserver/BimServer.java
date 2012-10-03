@@ -60,14 +60,15 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.ServerStarted;
-import org.bimserver.models.store.Deserializer;
-import org.bimserver.models.store.EService;
-import org.bimserver.models.store.IfcEngine;
-import org.bimserver.models.store.ModelCompare;
-import org.bimserver.models.store.ModelMerger;
-import org.bimserver.models.store.ObjectIDM;
-import org.bimserver.models.store.QueryEngine;
-import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.DeserializerPluginConfiguration;
+import org.bimserver.models.store.IfcEnginePluginConfiguration;
+import org.bimserver.models.store.InternalServicePluginConfiguration;
+import org.bimserver.models.store.ModelComparePluginConfiguration;
+import org.bimserver.models.store.ModelMergerPluginConfiguration;
+import org.bimserver.models.store.ObjectIDMPluginConfiguration;
+import org.bimserver.models.store.PluginConfiguration;
+import org.bimserver.models.store.QueryEnginePluginConfiguration;
+import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.ServerInfo;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.ServerState;
@@ -235,17 +236,17 @@ public class BimServer {
 					@Override
 					public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
 						// Reflect this change also in the database
-						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(pluginContext.getPlugin().getClass()
+						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginConfiguration_Name(), new StringLiteral(pluginContext.getPlugin().getClass()
 								.getName()));
 						DatabaseSession session = bimDatabase.createSession();
 						try {
-							Map<Long, org.bimserver.models.store.Plugin> pluginsFound = session.query(pluginCondition, org.bimserver.models.store.Plugin.class, false, null);
+							Map<Long, PluginConfiguration> pluginsFound = session.query(pluginCondition, PluginConfiguration.class, false, null);
 							if (pluginsFound.size() == 0) {
 								LOGGER.error("Error changing plugin-state in database, plugin " + pluginContext.getPlugin().getClass().getName() + " not found");
 							} else if (pluginsFound.size() == 1) {
-								org.bimserver.models.store.Plugin pluginFound = pluginsFound.values().iterator().next();
-								pluginFound.setEnabled(pluginContext.isEnabled());
-								session.store(pluginFound);
+								PluginConfiguration pluginConfiguration = pluginsFound.values().iterator().next();
+								pluginConfiguration.setEnabled(pluginContext.isEnabled());
+								session.store(pluginConfiguration);
 							} else {
 								LOGGER.error("Error, too many plugin-objects found in database for name " + pluginContext.getPlugin().getClass().getName());
 							}
@@ -421,7 +422,7 @@ public class BimServer {
 		session.commit();
 	}
 
-	private <T extends org.bimserver.models.store.Plugin> T find(List<T> list, String name) {
+	private <T extends PluginConfiguration> T find(List<T> list, String name) {
 		for (T t : list) {
 			if (t.getName().equals(name)) {
 				return t;
@@ -440,20 +441,20 @@ public class BimServer {
 		}
 		for (ObjectIDMPlugin objectIDMPlugin : pluginManager.getAllObjectIDMPlugins(true)) {
 			String name = objectIDMPlugin.getDefaultName();
-			ObjectIDM found = find(userSettings.getObjectIDMs(), name);
-			if (found == null) {
-				ObjectIDM objectIDM = StoreFactory.eINSTANCE.createObjectIDM();
-				userSettings.getObjectIDMs().add(objectIDM);
-				objectIDM.setName(name);
-				objectIDM.setClassName(objectIDMPlugin.getClass().getName());
-				objectIDM.setEnabled(true);
+			ObjectIDMPluginConfiguration objectIdmPluginConfiguration = find(userSettings.getObjectIDMs(), name);
+			if (objectIdmPluginConfiguration == null) {
+				objectIdmPluginConfiguration = StoreFactory.eINSTANCE.createObjectIDMPluginConfiguration();
+				userSettings.getObjectIDMs().add(objectIdmPluginConfiguration);
+				objectIdmPluginConfiguration.setName(name);
+				objectIdmPluginConfiguration.setClassName(objectIDMPlugin.getClass().getName());
+				objectIdmPluginConfiguration.setEnabled(true);
 				if (userSettings.getDefaultObjectIDM() == null && objectIDMPlugin.getClass() == SchemaFieldObjectIDMPlugin.class) {
-					userSettings.setDefaultObjectIDM(objectIDM);
+					userSettings.setDefaultObjectIDM(objectIdmPluginConfiguration);
 				}
-				session.store(objectIDM);
+				session.store(objectIdmPluginConfiguration);
 			} else {
 				if (userSettings.getDefaultObjectIDM() == null && objectIDMPlugin.getClass() == SchemaFieldObjectIDMPlugin.class) {
-					userSettings.setDefaultObjectIDM(found);
+					userSettings.setDefaultObjectIDM(objectIdmPluginConfiguration);
 				}
 			}
 		}
@@ -462,20 +463,20 @@ public class BimServer {
 		}
 		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins(true)) {
 			String name = ifcEnginePlugin.getDefaultName();
-			IfcEngine found = find(userSettings.getIfcEngines(), name);
-			if (found == null) {
-				IfcEngine ifcEngine = StoreFactory.eINSTANCE.createIfcEngine();
-				userSettings.getIfcEngines().add(ifcEngine);
-				ifcEngine.setClassName(ifcEnginePlugin.getClass().getName());
-				ifcEngine.setName(name);
-				ifcEngine.setEnabled(true);
-				session.store(ifcEngine);
+			IfcEnginePluginConfiguration ifcEnginePluginConfiguration = find(userSettings.getIfcEngines(), name);
+			if (ifcEnginePluginConfiguration == null) {
+				ifcEnginePluginConfiguration = StoreFactory.eINSTANCE.createIfcEnginePluginConfiguration();
+				userSettings.getIfcEngines().add(ifcEnginePluginConfiguration);
+				ifcEnginePluginConfiguration.setClassName(ifcEnginePlugin.getClass().getName());
+				ifcEnginePluginConfiguration.setName(name);
+				ifcEnginePluginConfiguration.setEnabled(true);
+				session.store(ifcEnginePluginConfiguration);
 				if (userSettings.getDefaultIfcEngine() == null && ifcEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOIfcEnginePlugin")) {
-					userSettings.setDefaultIfcEngine(ifcEngine);
+					userSettings.setDefaultIfcEngine(ifcEnginePluginConfiguration);
 				}
 			} else {
 				if (userSettings.getDefaultIfcEngine() == null && ifcEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOIfcEnginePlugin")) {
-					userSettings.setDefaultIfcEngine(found);
+					userSettings.setDefaultIfcEngine(ifcEnginePluginConfiguration);
 				}
 			}
 		}
@@ -484,20 +485,20 @@ public class BimServer {
 		}
 		for (QueryEnginePlugin queryEnginePlugin : pluginManager.getAllQueryEnginePlugins(true)) {
 			String name = queryEnginePlugin.getDefaultName();
-			QueryEngine found = find(userSettings.getQueryengines(), name);
-			if (found == null) {
-				QueryEngine queryEngine = StoreFactory.eINSTANCE.createQueryEngine();
-				userSettings.getQueryengines().add(queryEngine);
-				queryEngine.setClassName(queryEnginePlugin.getClass().getName());
-				queryEngine.setName(name);
-				queryEngine.setEnabled(true);
+			QueryEnginePluginConfiguration queryEnginePluginConfiguration = find(userSettings.getQueryengines(), name);
+			if (queryEnginePluginConfiguration == null) {
+				queryEnginePluginConfiguration = StoreFactory.eINSTANCE.createQueryEnginePluginConfiguration();
+				userSettings.getQueryengines().add(queryEnginePluginConfiguration);
+				queryEnginePluginConfiguration.setClassName(queryEnginePlugin.getClass().getName());
+				queryEnginePluginConfiguration.setName(name);
+				queryEnginePluginConfiguration.setEnabled(true);
 				if (userSettings.getDefaultQueryEngine() == null && queryEnginePlugin.getClass().getName().equals("nl.wietmazairac.bimql.BimQLQueryEnginePlugin")) {
-					userSettings.setDefaultQueryEngine(queryEngine);
+					userSettings.setDefaultQueryEngine(queryEnginePluginConfiguration);
 				}
-				session.store(queryEngine);
+				session.store(queryEnginePluginConfiguration);
 			} else {
 				if (userSettings.getDefaultQueryEngine() == null && queryEnginePlugin.getClass().getName().equals("nl.wietmazairac.bimql.BimQLQueryEnginePlugin")) {
-					userSettings.setDefaultQueryEngine(found);
+					userSettings.setDefaultQueryEngine(queryEnginePluginConfiguration);
 				}
 			}
 		}
@@ -506,20 +507,20 @@ public class BimServer {
 		}
 		for (ModelMergerPlugin modelMergerPlugin : pluginManager.getAllModelMergerPlugins(true)) {
 			String name = modelMergerPlugin.getDefaultName();
-			ModelMerger found = find(userSettings.getModelmergers(), name);
-			if (found == null) {
-				ModelMerger modelMerger = StoreFactory.eINSTANCE.createModelMerger();
-				userSettings.getModelmergers().add(modelMerger);
-				modelMerger.setClassName(modelMergerPlugin.getClass().getName());
-				modelMerger.setName(name);
-				modelMerger.setEnabled(true);
+			ModelMergerPluginConfiguration modelMergerPluginConfiguration = find(userSettings.getModelmergers(), name);
+			if (modelMergerPluginConfiguration == null) {
+				modelMergerPluginConfiguration = StoreFactory.eINSTANCE.createModelMergerPluginConfiguration();
+				userSettings.getModelmergers().add(modelMergerPluginConfiguration);
+				modelMergerPluginConfiguration.setClassName(modelMergerPlugin.getClass().getName());
+				modelMergerPluginConfiguration.setName(name);
+				modelMergerPluginConfiguration.setEnabled(true);
 				if (userSettings.getDefaultModelMerger() == null && modelMergerPlugin.getClass().getName().equals("org.bimserver.merging.BasicModelMergerPlugin")) {
-					userSettings.setDefaultModelMerger(modelMerger);
+					userSettings.setDefaultModelMerger(modelMergerPluginConfiguration);
 				}
-				session.store(modelMerger);
+				session.store(modelMergerPluginConfiguration);
 			} else {
 				if (userSettings.getDefaultModelMerger() == null && modelMergerPlugin.getClass().getName().equals("org.bimserver.merging.BasicModelMergerPlugin")) {
-					userSettings.setDefaultModelMerger(found);
+					userSettings.setDefaultModelMerger(modelMergerPluginConfiguration);
 				}
 			}
 		}
@@ -528,20 +529,20 @@ public class BimServer {
 		}
 		for (ModelComparePlugin modelComparePlugin : pluginManager.getAllModelComparePlugins(true)) {
 			String name = modelComparePlugin.getDefaultName();
-			ModelCompare found = find(userSettings.getModelcompares(), name);
-			if (found == null) {
-				ModelCompare modelcompare = StoreFactory.eINSTANCE.createModelCompare();
-				userSettings.getModelcompares().add(modelcompare);
-				modelcompare.setClassName(modelComparePlugin.getClass().getName());
-				modelcompare.setName(name);
-				modelcompare.setEnabled(true);
+			ModelComparePluginConfiguration modelComparePluginConfiguration = find(userSettings.getModelcompares(), name);
+			if (modelComparePluginConfiguration == null) {
+				modelComparePluginConfiguration = StoreFactory.eINSTANCE.createModelComparePluginConfiguration();
+				userSettings.getModelcompares().add(modelComparePluginConfiguration);
+				modelComparePluginConfiguration.setClassName(modelComparePlugin.getClass().getName());
+				modelComparePluginConfiguration.setName(name);
+				modelComparePluginConfiguration.setEnabled(true);
 				if (userSettings.getDefaultModelCompare() == null && modelComparePlugin.getClass().getName().equals("org.bimserver.ifc.compare.GuidBasedModelComparePlugin")) {
-					userSettings.setDefaultModelCompare(modelcompare);
+					userSettings.setDefaultModelCompare(modelComparePluginConfiguration);
 				}
-				session.store(modelcompare);
+				session.store(modelComparePluginConfiguration);
 			} else {
 				if (userSettings.getDefaultModelCompare() == null && modelComparePlugin.getClass().getName().equals("org.bimserver.ifc.compare.GuidBasedModelComparePlugin")) {
-					userSettings.setDefaultModelCompare(found);
+					userSettings.setDefaultModelCompare(modelComparePluginConfiguration);
 				}
 			}
 		}
@@ -550,25 +551,25 @@ public class BimServer {
 		}
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
 			String name = serializerPlugin.getDefaultName();
-			Serializer found = find(userSettings.getSerializers(), name);
-			if (found == null) {
-				Serializer serializer = StoreFactory.eINSTANCE.createSerializer();
-				userSettings.getSerializers().add(serializer);
-				serializer.setClassName(serializerPlugin.getClass().getName());
-				serializer.setName(name);
-				serializer.setEnabled(true);
-				serializer.setDescription(serializerPlugin.getDescription());
-				serializer.setContentType(serializerPlugin.getDefaultContentType());
-				serializer.setExtension(serializerPlugin.getDefaultExtension());
-				serializer.setObjectIDM(userSettings.getDefaultObjectIDM());
-				serializer.setIfcEngine(userSettings.getDefaultIfcEngine());
+			SerializerPluginConfiguration serializerPluginConfiguration = find(userSettings.getSerializers(), name);
+			if (serializerPluginConfiguration == null) {
+				serializerPluginConfiguration = StoreFactory.eINSTANCE.createSerializerPluginConfiguration();
+				userSettings.getSerializers().add(serializerPluginConfiguration);
+				serializerPluginConfiguration.setClassName(serializerPlugin.getClass().getName());
+				serializerPluginConfiguration.setName(name);
+				serializerPluginConfiguration.setEnabled(true);
+				serializerPluginConfiguration.setDescription(serializerPlugin.getDescription());
+				serializerPluginConfiguration.setContentType(serializerPlugin.getDefaultContentType());
+				serializerPluginConfiguration.setExtension(serializerPlugin.getDefaultExtension());
+				serializerPluginConfiguration.setObjectIDM(userSettings.getDefaultObjectIDM());
+				serializerPluginConfiguration.setIfcEngine(userSettings.getDefaultIfcEngine());
 				if (userSettings.getDefaultSerializer() == null && serializerPlugin.getClass().getName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin")) {
-					userSettings.setDefaultSerializer(serializer);
+					userSettings.setDefaultSerializer(serializerPluginConfiguration);
 				}
-				session.store(serializer);
+				session.store(serializerPluginConfiguration);
 			} else {
 				if (userSettings.getDefaultSerializer() == null && serializerPlugin.getClass().getName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin")) {
-					userSettings.setDefaultSerializer(found);
+					userSettings.setDefaultSerializer(serializerPluginConfiguration);
 				}
 			}
 		}
@@ -577,43 +578,43 @@ public class BimServer {
 		}
 		for (ServicePlugin servicePlugin : pluginManager.getAllServicePlugins(true)) {
 			String name = servicePlugin.getTitle();
-			EService found = find(userSettings.getServices(), name);
-			if (found == null) {
-				EService service = StoreFactory.eINSTANCE.createEService();
-				userSettings.getServices().add(service);
-				service.setClassName(servicePlugin.getClass().getName());
-				service.setName(name);
-				service.setEnabled(true);
-				service.setDescription(servicePlugin.getDescription());
-				session.store(service);
+			InternalServicePluginConfiguration internalServicePluginConfiguration = find(userSettings.getServices(), name);
+			if (internalServicePluginConfiguration == null) {
+				internalServicePluginConfiguration = StoreFactory.eINSTANCE.createInternalServicePluginConfiguration();
+				userSettings.getServices().add(internalServicePluginConfiguration);
+				internalServicePluginConfiguration.setClassName(servicePlugin.getClass().getName());
+				internalServicePluginConfiguration.setName(name);
+				internalServicePluginConfiguration.setEnabled(true);
+				internalServicePluginConfiguration.setDescription(servicePlugin.getDescription());
+				session.store(internalServicePluginConfiguration);
 			}
 		}
 		for (DeserializerPlugin deserializerPlugin : pluginManager.getAllDeserializerPlugins(true)) {
 			String name = deserializerPlugin.getDefaultName();
-			Deserializer found = find(userSettings.getDeserializers(), name);
-			if (found == null) {
-				Deserializer deserializer = StoreFactory.eINSTANCE.createDeserializer();
-				userSettings.getDeserializers().add(deserializer);
-				deserializer.setClassName(deserializerPlugin.getClass().getName());
-				deserializer.setName(name);
-				deserializer.setEnabled(true);
-				deserializer.setDescription(deserializerPlugin.getDescription());
-				session.store(deserializer);
+			DeserializerPluginConfiguration deserializerPluginConfiguration = find(userSettings.getDeserializers(), name);
+			if (deserializerPluginConfiguration == null) {
+				deserializerPluginConfiguration = StoreFactory.eINSTANCE.createDeserializerPluginConfiguration();
+				userSettings.getDeserializers().add(deserializerPluginConfiguration);
+				deserializerPluginConfiguration.setClassName(deserializerPlugin.getClass().getName());
+				deserializerPluginConfiguration.setName(name);
+				deserializerPluginConfiguration.setEnabled(true);
+				deserializerPluginConfiguration.setDescription(deserializerPlugin.getDescription());
+				session.store(deserializerPluginConfiguration);
 			}
 		}
 		Collection<Plugin> allPlugins = pluginManager.getAllPlugins(false);
 		for (Plugin plugin : allPlugins) {
-			Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPlugin_Name(), new StringLiteral(plugin.getClass().getName()));
-			Map<Long, org.bimserver.models.store.Plugin> results = session.query(pluginCondition, org.bimserver.models.store.Plugin.class, false, null);
+			Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginConfiguration_Name(), new StringLiteral(plugin.getClass().getName()));
+			Map<Long, PluginConfiguration> results = session.query(pluginCondition, PluginConfiguration.class, false, null);
 			if (results.size() == 0) {
-				org.bimserver.models.store.Plugin pluginObject = StoreFactory.eINSTANCE.createPlugin();
+				PluginConfiguration pluginObject = StoreFactory.eINSTANCE.createPluginConfiguration();
 				pluginObject.setName(plugin.getClass().getName());
 				pluginObject.setEnabled(true); // New plugins are enabled by
 												// default
 				session.store(pluginObject);
 			} else if (results.size() == 1) {
-				org.bimserver.models.store.Plugin pluginObject = results.values().iterator().next();
-				pluginManager.getPluginContext(plugin).setEnabled(pluginObject.getEnabled(), false);
+				PluginConfiguration pluginConfiguration = results.values().iterator().next();
+				pluginManager.getPluginContext(plugin).setEnabled(pluginConfiguration.getEnabled(), false);
 			} else {
 				LOGGER.error("Multiple plugin objects found with the same name: " + plugin.getClass().getName());
 			}

@@ -19,12 +19,12 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.Deserializer;
+import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 
-public class GetDeserializerByNameDatabaseAction extends AbstractGetByFieldDatabaseAction<Deserializer> {
+public class GetDeserializerByNameDatabaseAction extends AbstractGetByFieldDatabaseAction<DeserializerPluginConfiguration> {
 
 	public GetDeserializerByNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String name) {
-		super(databaseSession, accessMethod, Deserializer.class, StorePackage.eINSTANCE.getPlugin_Name(), name);
+		super(databaseSession, accessMethod, DeserializerPluginConfiguration.class, StorePackage.eINSTANCE.getPluginConfiguration_Name(), name);
 	}
 }

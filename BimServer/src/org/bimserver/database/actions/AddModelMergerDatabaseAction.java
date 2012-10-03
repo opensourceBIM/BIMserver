@@ -21,17 +21,17 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ModelMerger;
+import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
-public class AddModelMergerDatabaseAction extends AddDatabaseAction<ModelMerger> {
+public class AddModelMergerDatabaseAction extends AddDatabaseAction<ModelMergerPluginConfiguration> {
 
 	private Authorization authorization;
 
-	public AddModelMergerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, ModelMerger modelMerger) {
+	public AddModelMergerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, ModelMergerPluginConfiguration modelMerger) {
 		super(databaseSession, accessMethod, modelMerger);
 		this.authorization = authorization;
 	}

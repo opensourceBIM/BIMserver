@@ -7,7 +7,6 @@
 <%@page import="org.bimserver.interfaces.objects.SSchemaType"%>
 <%@page import="org.bimserver.interfaces.objects.SExtendedDataSchema"%>
 <%@page import="org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor"%>
-<%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="header.jsp"%>
 <%@page import="java.util.List"%>

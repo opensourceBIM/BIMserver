@@ -38,7 +38,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
-import org.bimserver.interfaces.objects.SSerializer;
+import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
 import org.bimserver.models.ifc2x3tc1.IfcOwnerHistory;
@@ -310,7 +310,7 @@ public class TestLowLevelChanges {
 	
 	private IfcModelInterface getSingleRevision(long roid) throws ServiceException, DeserializeException, IOException {
 		SRevision revision = service.getRevision(roid);
-		SSerializer serializerByContentType = service.getSerializerByContentType("application/ifc");
+		SSerializerPluginConfiguration serializerByContentType = service.getSerializerByContentType("application/ifc");
 		long downloadId = service.download(revision.getOid(), serializerByContentType.getOid(), true, true);
 		SDownloadResult downloadData = service.getDownloadData(downloadId);
 		DataHandler dataHandler = downloadData.getFile();
