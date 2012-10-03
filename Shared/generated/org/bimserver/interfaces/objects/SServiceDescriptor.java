@@ -27,7 +27,16 @@ public class SServiceDescriptor implements SBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String name;
+	private java.lang.String url;
+	private java.lang.String token;
+	private SAccessMethod notificationProtocol;
+	private java.lang.String description;
+	private STrigger trigger;
+	private boolean readRevision;
+	private boolean readExtendedData;
+	private boolean writeRevision;
+	private boolean writeExtendedData;
 	
 	@XmlTransient
 	public SClass getSClass() {
@@ -71,6 +80,7 @@ public class SServiceDescriptor implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
@@ -115,16 +125,6 @@ public class SServiceDescriptor implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String name;
-	private java.lang.String url;
-	private java.lang.String token;
-	private SAccessMethod notificationProtocol;
-	private java.lang.String description;
-	private STrigger trigger;
-	private boolean readRevision;
-	private boolean readExtendedData;
-	private boolean writeRevision;
-	private boolean writeExtendedData;
 	public java.lang.String getName() {
 		return name;
 	}
@@ -132,6 +132,7 @@ public class SServiceDescriptor implements SBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
+	
 	public java.lang.String getUrl() {
 		return url;
 	}
@@ -139,6 +140,7 @@ public class SServiceDescriptor implements SBase
 	public void setUrl(java.lang.String url) {
 		this.url = url;
 	}
+	
 	public java.lang.String getToken() {
 		return token;
 	}
@@ -146,6 +148,7 @@ public class SServiceDescriptor implements SBase
 	public void setToken(java.lang.String token) {
 		this.token = token;
 	}
+	
 	public SAccessMethod getNotificationProtocol() {
 		return notificationProtocol;
 	}
@@ -153,6 +156,7 @@ public class SServiceDescriptor implements SBase
 	public void setNotificationProtocol(SAccessMethod notificationProtocol) {
 		this.notificationProtocol = notificationProtocol;
 	}
+	
 	public java.lang.String getDescription() {
 		return description;
 	}
@@ -160,6 +164,7 @@ public class SServiceDescriptor implements SBase
 	public void setDescription(java.lang.String description) {
 		this.description = description;
 	}
+	
 	public STrigger getTrigger() {
 		return trigger;
 	}
@@ -167,6 +172,7 @@ public class SServiceDescriptor implements SBase
 	public void setTrigger(STrigger trigger) {
 		this.trigger = trigger;
 	}
+	
 	public boolean isReadRevision() {
 		return readRevision;
 	}
@@ -174,6 +180,7 @@ public class SServiceDescriptor implements SBase
 	public void setReadRevision(boolean readRevision) {
 		this.readRevision = readRevision;
 	}
+	
 	public boolean isReadExtendedData() {
 		return readExtendedData;
 	}
@@ -181,6 +188,7 @@ public class SServiceDescriptor implements SBase
 	public void setReadExtendedData(boolean readExtendedData) {
 		this.readExtendedData = readExtendedData;
 	}
+	
 	public boolean isWriteRevision() {
 		return writeRevision;
 	}
@@ -188,6 +196,7 @@ public class SServiceDescriptor implements SBase
 	public void setWriteRevision(boolean writeRevision) {
 		this.writeRevision = writeRevision;
 	}
+	
 	public boolean isWriteExtendedData() {
 		return writeExtendedData;
 	}
@@ -195,4 +204,5 @@ public class SServiceDescriptor implements SBase
 	public void setWriteExtendedData(boolean writeExtendedData) {
 		this.writeExtendedData = writeExtendedData;
 	}
+	
 }

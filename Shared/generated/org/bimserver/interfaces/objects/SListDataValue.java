@@ -30,7 +30,7 @@ public class SListDataValue extends SDataValue implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private List<SDataValue> values = new ArrayList<SDataValue>();
 	public long getOid() {
 		return oid;
 	}
@@ -61,6 +61,7 @@ public class SListDataValue extends SDataValue implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("fieldName")) {
 			setFieldName((String)val);
@@ -77,7 +78,6 @@ public class SListDataValue extends SDataValue implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private List<SDataValue> values = new ArrayList<SDataValue>();
 	public List<SDataValue> getValues() {
 		return values;
 	}
@@ -85,6 +85,7 @@ public class SListDataValue extends SDataValue implements SDataBase
 	public void setValues(List<SDataValue> values) {
 		this.values = values;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -29,7 +29,8 @@ public class SDatabaseCreated extends SLogAction implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String path;
+	private java.lang.Integer version;
 	public long getOid() {
 		return oid;
 	}
@@ -68,6 +69,7 @@ public class SDatabaseCreated extends SLogAction implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("date")) {
 			setDate((Date)val);
@@ -96,8 +98,6 @@ public class SDatabaseCreated extends SLogAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String path;
-	private java.lang.Integer version;
 	public java.lang.String getPath() {
 		return path;
 	}
@@ -105,6 +105,7 @@ public class SDatabaseCreated extends SLogAction implements SDataBase
 	public void setPath(java.lang.String path) {
 		this.path = path;
 	}
+	
 	public java.lang.Integer getVersion() {
 		return version;
 	}
@@ -112,6 +113,7 @@ public class SDatabaseCreated extends SLogAction implements SDataBase
 	public void setVersion(java.lang.Integer version) {
 		this.version = version;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

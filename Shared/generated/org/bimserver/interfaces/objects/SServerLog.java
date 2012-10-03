@@ -30,7 +30,7 @@ public class SServerLog implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private List<Long> actions = new ArrayList<Long>();
 	public long getOid() {
 		return oid;
 	}
@@ -58,6 +58,7 @@ public class SServerLog implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("actions")) {
 			setActions((List<Long>)val);
@@ -70,7 +71,6 @@ public class SServerLog implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private List<Long> actions = new ArrayList<Long>();
 	public List<Long> getActions() {
 		return actions;
 	}
@@ -78,6 +78,7 @@ public class SServerLog implements SDataBase
 	public void setActions(List<Long> actions) {
 		this.actions = actions;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

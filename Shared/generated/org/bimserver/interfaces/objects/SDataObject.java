@@ -30,7 +30,10 @@ public class SDataObject implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String type;
+	private java.lang.String guid;
+	private java.lang.String name;
+	private List<SDataValue> values = new ArrayList<SDataValue>();
 	public long getOid() {
 		return oid;
 	}
@@ -67,6 +70,7 @@ public class SDataObject implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("type")) {
 			setType((String)val);
@@ -91,10 +95,6 @@ public class SDataObject implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String type;
-	private java.lang.String guid;
-	private java.lang.String name;
-	private List<SDataValue> values = new ArrayList<SDataValue>();
 	public java.lang.String getType() {
 		return type;
 	}
@@ -102,6 +102,7 @@ public class SDataObject implements SDataBase
 	public void setType(java.lang.String type) {
 		this.type = type;
 	}
+	
 	public java.lang.String getGuid() {
 		return guid;
 	}
@@ -109,6 +110,7 @@ public class SDataObject implements SDataBase
 	public void setGuid(java.lang.String guid) {
 		this.guid = guid;
 	}
+	
 	public java.lang.String getName() {
 		return name;
 	}
@@ -116,6 +118,7 @@ public class SDataObject implements SDataBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
+	
 	public List<SDataValue> getValues() {
 		return values;
 	}
@@ -123,6 +126,7 @@ public class SDataObject implements SDataBase
 	public void setValues(List<SDataValue> values) {
 		this.values = values;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

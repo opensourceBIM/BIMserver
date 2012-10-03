@@ -30,7 +30,14 @@ public class SExtendedDataSchema implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String name;
+	private java.lang.String url;
+	private java.lang.String namespace;
+	private byte[] data;
+	private boolean validate;
+	private SExtendedDataSchemaType type;
+	private List<Long> users = new ArrayList<Long>();
+	private List<Long> extendedData = new ArrayList<Long>();
 	public long getOid() {
 		return oid;
 	}
@@ -79,6 +86,7 @@ public class SExtendedDataSchema implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
@@ -119,14 +127,6 @@ public class SExtendedDataSchema implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String name;
-	private java.lang.String url;
-	private java.lang.String namespace;
-	private byte[] data;
-	private boolean validate;
-	private SExtendedDataSchemaType type;
-	private List<Long> users = new ArrayList<Long>();
-	private List<Long> extendedData = new ArrayList<Long>();
 	public java.lang.String getName() {
 		return name;
 	}
@@ -134,6 +134,7 @@ public class SExtendedDataSchema implements SDataBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
+	
 	public java.lang.String getUrl() {
 		return url;
 	}
@@ -141,6 +142,7 @@ public class SExtendedDataSchema implements SDataBase
 	public void setUrl(java.lang.String url) {
 		this.url = url;
 	}
+	
 	public java.lang.String getNamespace() {
 		return namespace;
 	}
@@ -148,6 +150,7 @@ public class SExtendedDataSchema implements SDataBase
 	public void setNamespace(java.lang.String namespace) {
 		this.namespace = namespace;
 	}
+	
 	public byte[] getData() {
 		return data;
 	}
@@ -155,6 +158,7 @@ public class SExtendedDataSchema implements SDataBase
 	public void setData(byte[] data) {
 		this.data = data;
 	}
+	
 	public boolean isValidate() {
 		return validate;
 	}
@@ -162,6 +166,7 @@ public class SExtendedDataSchema implements SDataBase
 	public void setValidate(boolean validate) {
 		this.validate = validate;
 	}
+	
 	public SExtendedDataSchemaType getType() {
 		return type;
 	}
@@ -169,6 +174,7 @@ public class SExtendedDataSchema implements SDataBase
 	public void setType(SExtendedDataSchemaType type) {
 		this.type = type;
 	}
+	
 	public List<Long> getUsers() {
 		return users;
 	}
@@ -176,6 +182,7 @@ public class SExtendedDataSchema implements SDataBase
 	public void setUsers(List<Long> users) {
 		this.users = users;
 	}
+	
 	public List<Long> getExtendedData() {
 		return extendedData;
 	}
@@ -183,6 +190,7 @@ public class SExtendedDataSchema implements SDataBase
 	public void setExtendedData(List<Long> extendedData) {
 		this.extendedData = extendedData;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

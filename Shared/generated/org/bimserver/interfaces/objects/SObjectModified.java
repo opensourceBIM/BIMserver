@@ -28,7 +28,9 @@ public class SObjectModified extends SCompareItem implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String fieldName;
+	private java.lang.String oldValue;
+	private java.lang.String newValue;
 	public long getOid() {
 		return oid;
 	}
@@ -64,6 +66,7 @@ public class SObjectModified extends SCompareItem implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("dataObject")) {
 			setDataObject((SDataObject)val);
@@ -88,9 +91,6 @@ public class SObjectModified extends SCompareItem implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String fieldName;
-	private java.lang.String oldValue;
-	private java.lang.String newValue;
 	public java.lang.String getFieldName() {
 		return fieldName;
 	}
@@ -98,6 +98,7 @@ public class SObjectModified extends SCompareItem implements SDataBase
 	public void setFieldName(java.lang.String fieldName) {
 		this.fieldName = fieldName;
 	}
+	
 	public java.lang.String getOldValue() {
 		return oldValue;
 	}
@@ -105,6 +106,7 @@ public class SObjectModified extends SCompareItem implements SDataBase
 	public void setOldValue(java.lang.String oldValue) {
 		this.oldValue = oldValue;
 	}
+	
 	public java.lang.String getNewValue() {
 		return newValue;
 	}
@@ -112,6 +114,7 @@ public class SObjectModified extends SCompareItem implements SDataBase
 	public void setNewValue(java.lang.String newValue) {
 		this.newValue = newValue;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -28,7 +28,6 @@ public class SObjectRemoved extends SCompareItem implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
 	public long getOid() {
 		return oid;
 	}
@@ -55,6 +54,7 @@ public class SObjectRemoved extends SCompareItem implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("dataObject")) {
 			setDataObject((SDataObject)val);

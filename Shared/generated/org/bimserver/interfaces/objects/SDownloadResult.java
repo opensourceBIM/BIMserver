@@ -31,7 +31,9 @@ public class SDownloadResult implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String projectName;
+	private java.lang.Integer revisionNr;
+	private javax.activation.DataHandler file;
 	public long getOid() {
 		return oid;
 	}
@@ -64,6 +66,7 @@ public class SDownloadResult implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("projectName")) {
 			setProjectName((String)val);
@@ -84,9 +87,6 @@ public class SDownloadResult implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String projectName;
-	private java.lang.Integer revisionNr;
-	private javax.activation.DataHandler file;
 	public java.lang.String getProjectName() {
 		return projectName;
 	}
@@ -94,6 +94,7 @@ public class SDownloadResult implements SDataBase
 	public void setProjectName(java.lang.String projectName) {
 		this.projectName = projectName;
 	}
+	
 	public java.lang.Integer getRevisionNr() {
 		return revisionNr;
 	}
@@ -101,6 +102,7 @@ public class SDownloadResult implements SDataBase
 	public void setRevisionNr(java.lang.Integer revisionNr) {
 		this.revisionNr = revisionNr;
 	}
+	
 	public javax.activation.DataHandler getFile() {
 		return file;
 	}
@@ -108,6 +110,7 @@ public class SDownloadResult implements SDataBase
 	public void setFile(javax.activation.DataHandler file) {
 		this.file = file;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -23,14 +23,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SServicePluginDescriptor.class, SIfcEnginePluginDescriptor.class, SDeserializerPluginDescriptor.class, SModelComparePluginDescriptor.class, SModelMergerPluginDescriptor.class, SQueryEnginePluginDescriptor.class, SSerializerPluginDescriptor.class})
+@XmlSeeAlso(value={SServicePluginDescriptor.class, SQueryEnginePluginDescriptor.class, SModelComparePluginDescriptor.class, SSerializerPluginDescriptor.class, SModelMergerPluginDescriptor.class, SDeserializerPluginDescriptor.class, SIfcEnginePluginDescriptor.class})
 public class SPluginDescriptor implements SDataBase
 {
 	private long oid = -1;
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String defaultName;
+	private java.lang.String pluginClassName;
+	private java.lang.String description;
+	private java.lang.String location;
+	private java.lang.Boolean enabled;
 	public long getOid() {
 		return oid;
 	}
@@ -69,6 +73,7 @@ public class SPluginDescriptor implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("defaultName")) {
 			setDefaultName((String)val);
@@ -97,11 +102,6 @@ public class SPluginDescriptor implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String defaultName;
-	private java.lang.String pluginClassName;
-	private java.lang.String description;
-	private java.lang.String location;
-	private java.lang.Boolean enabled;
 	public java.lang.String getDefaultName() {
 		return defaultName;
 	}
@@ -109,6 +109,7 @@ public class SPluginDescriptor implements SDataBase
 	public void setDefaultName(java.lang.String defaultName) {
 		this.defaultName = defaultName;
 	}
+	
 	public java.lang.String getPluginClassName() {
 		return pluginClassName;
 	}
@@ -116,6 +117,7 @@ public class SPluginDescriptor implements SDataBase
 	public void setPluginClassName(java.lang.String pluginClassName) {
 		this.pluginClassName = pluginClassName;
 	}
+	
 	public java.lang.String getDescription() {
 		return description;
 	}
@@ -123,6 +125,7 @@ public class SPluginDescriptor implements SDataBase
 	public void setDescription(java.lang.String description) {
 		this.description = description;
 	}
+	
 	public java.lang.String getLocation() {
 		return location;
 	}
@@ -130,6 +133,7 @@ public class SPluginDescriptor implements SDataBase
 	public void setLocation(java.lang.String location) {
 		this.location = location;
 	}
+	
 	public java.lang.Boolean getEnabled() {
 		return enabled;
 	}
@@ -137,6 +141,7 @@ public class SPluginDescriptor implements SDataBase
 	public void setEnabled(java.lang.Boolean enabled) {
 		this.enabled = enabled;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

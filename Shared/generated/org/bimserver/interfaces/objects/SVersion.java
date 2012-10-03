@@ -29,7 +29,13 @@ public class SVersion implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.Integer major;
+	private java.lang.Integer minor;
+	private java.lang.Integer revision;
+	private java.util.Date date;
+	private java.lang.String downloadUrl;
+	private java.lang.String supportUrl;
+	private java.lang.String supportEmail;
 	public long getOid() {
 		return oid;
 	}
@@ -74,6 +80,7 @@ public class SVersion implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("major")) {
 			setMajor((Integer)val);
@@ -110,13 +117,6 @@ public class SVersion implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.Integer major;
-	private java.lang.Integer minor;
-	private java.lang.Integer revision;
-	private java.util.Date date;
-	private java.lang.String downloadUrl;
-	private java.lang.String supportUrl;
-	private java.lang.String supportEmail;
 	public java.lang.Integer getMajor() {
 		return major;
 	}
@@ -124,6 +124,7 @@ public class SVersion implements SDataBase
 	public void setMajor(java.lang.Integer major) {
 		this.major = major;
 	}
+	
 	public java.lang.Integer getMinor() {
 		return minor;
 	}
@@ -131,6 +132,7 @@ public class SVersion implements SDataBase
 	public void setMinor(java.lang.Integer minor) {
 		this.minor = minor;
 	}
+	
 	public java.lang.Integer getRevision() {
 		return revision;
 	}
@@ -138,6 +140,7 @@ public class SVersion implements SDataBase
 	public void setRevision(java.lang.Integer revision) {
 		this.revision = revision;
 	}
+	
 	public java.util.Date getDate() {
 		return date;
 	}
@@ -145,6 +148,7 @@ public class SVersion implements SDataBase
 	public void setDate(java.util.Date date) {
 		this.date = date;
 	}
+	
 	public java.lang.String getDownloadUrl() {
 		return downloadUrl;
 	}
@@ -152,6 +156,7 @@ public class SVersion implements SDataBase
 	public void setDownloadUrl(java.lang.String downloadUrl) {
 		this.downloadUrl = downloadUrl;
 	}
+	
 	public java.lang.String getSupportUrl() {
 		return supportUrl;
 	}
@@ -159,6 +164,7 @@ public class SVersion implements SDataBase
 	public void setSupportUrl(java.lang.String supportUrl) {
 		this.supportUrl = supportUrl;
 	}
+	
 	public java.lang.String getSupportEmail() {
 		return supportEmail;
 	}
@@ -166,6 +172,7 @@ public class SVersion implements SDataBase
 	public void setSupportEmail(java.lang.String supportEmail) {
 		this.supportEmail = supportEmail;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

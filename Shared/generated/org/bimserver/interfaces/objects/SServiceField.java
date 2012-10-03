@@ -27,7 +27,10 @@ public class SServiceField implements SBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String name;
+	private SServiceType type;
+	private SServiceType genericType;
+	private java.lang.String doc;
 	
 	@XmlTransient
 	public SClass getSClass() {
@@ -53,6 +56,7 @@ public class SServiceField implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
@@ -73,10 +77,6 @@ public class SServiceField implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String name;
-	private SServiceType type;
-	private SServiceType genericType;
-	private java.lang.String doc;
 	public java.lang.String getName() {
 		return name;
 	}
@@ -84,6 +84,7 @@ public class SServiceField implements SBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
+	
 	public SServiceType getType() {
 		return type;
 	}
@@ -91,6 +92,7 @@ public class SServiceField implements SBase
 	public void setType(SServiceType type) {
 		this.type = type;
 	}
+	
 	
 	public SServiceType getGenericType() {
 		return genericType;
@@ -100,6 +102,7 @@ public class SServiceField implements SBase
 		this.genericType = genericType;
 	}
 	
+	
 	public java.lang.String getDoc() {
 		return doc;
 	}
@@ -107,4 +110,5 @@ public class SServiceField implements SBase
 	public void setDoc(java.lang.String doc) {
 		this.doc = doc;
 	}
+	
 }

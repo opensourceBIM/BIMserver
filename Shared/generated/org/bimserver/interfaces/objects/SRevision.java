@@ -16,9 +16,9 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -31,7 +31,21 @@ public class SRevision implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.Integer id;
+	private long userId = -1;
+	private java.util.Date date;
+	private java.lang.String comment;
+	private java.lang.Long size;
+	private List<Long> concreteRevisions = new ArrayList<Long>();
+	private long lastConcreteRevisionId = -1;
+	private List<Long> checkouts = new ArrayList<Long>();
+	private long projectId = -1;
+	private java.lang.String tag;
+	private java.lang.String lastError;
+	private java.lang.Integer bmi;
+	private java.lang.Long laid;
+	private long summaryId = -1;
+	private List<Long> extendedData = new ArrayList<Long>();
 	public long getOid() {
 		return oid;
 	}
@@ -101,6 +115,7 @@ public class SRevision implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("id")) {
 			setId((Integer)val);
@@ -169,21 +184,6 @@ public class SRevision implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.Integer id;
-	private long userId = -1;
-	private java.util.Date date;
-	private java.lang.String comment;
-	private java.lang.Long size;
-	private List<Long> concreteRevisions = new ArrayList<Long>();
-	private long lastConcreteRevisionId = -1;
-	private List<Long> checkouts = new ArrayList<Long>();
-	private long projectId = -1;
-	private java.lang.String tag;
-	private java.lang.String lastError;
-	private java.lang.Integer bmi;
-	private java.lang.Long laid;
-	private long summaryId = -1;
-	private List<Long> extendedData = new ArrayList<Long>();
 	public java.lang.Integer getId() {
 		return id;
 	}
@@ -191,6 +191,7 @@ public class SRevision implements SDataBase
 	public void setId(java.lang.Integer id) {
 		this.id = id;
 	}
+	
 	public long getUserId() {
 		return userId;
 	}
@@ -206,6 +207,7 @@ public class SRevision implements SDataBase
 	public void setDate(java.util.Date date) {
 		this.date = date;
 	}
+	
 	public java.lang.String getComment() {
 		return comment;
 	}
@@ -213,6 +215,7 @@ public class SRevision implements SDataBase
 	public void setComment(java.lang.String comment) {
 		this.comment = comment;
 	}
+	
 	public java.lang.Long getSize() {
 		return size;
 	}
@@ -220,6 +223,7 @@ public class SRevision implements SDataBase
 	public void setSize(java.lang.Long size) {
 		this.size = size;
 	}
+	
 	public List<Long> getConcreteRevisions() {
 		return concreteRevisions;
 	}
@@ -227,6 +231,7 @@ public class SRevision implements SDataBase
 	public void setConcreteRevisions(List<Long> concreteRevisions) {
 		this.concreteRevisions = concreteRevisions;
 	}
+	
 	public long getLastConcreteRevisionId() {
 		return lastConcreteRevisionId;
 	}
@@ -242,6 +247,7 @@ public class SRevision implements SDataBase
 	public void setCheckouts(List<Long> checkouts) {
 		this.checkouts = checkouts;
 	}
+	
 	public long getProjectId() {
 		return projectId;
 	}
@@ -257,6 +263,7 @@ public class SRevision implements SDataBase
 	public void setTag(java.lang.String tag) {
 		this.tag = tag;
 	}
+	
 	public java.lang.String getLastError() {
 		return lastError;
 	}
@@ -264,6 +271,7 @@ public class SRevision implements SDataBase
 	public void setLastError(java.lang.String lastError) {
 		this.lastError = lastError;
 	}
+	
 	public java.lang.Integer getBmi() {
 		return bmi;
 	}
@@ -271,6 +279,7 @@ public class SRevision implements SDataBase
 	public void setBmi(java.lang.Integer bmi) {
 		this.bmi = bmi;
 	}
+	
 	public java.lang.Long getLaid() {
 		return laid;
 	}
@@ -278,6 +287,7 @@ public class SRevision implements SDataBase
 	public void setLaid(java.lang.Long laid) {
 		this.laid = laid;
 	}
+	
 	public long getSummaryId() {
 		return summaryId;
 	}
@@ -293,6 +303,7 @@ public class SRevision implements SDataBase
 	public void setExtendedData(List<Long> extendedData) {
 		this.extendedData = extendedData;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -28,7 +28,11 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String extension;
+	private java.lang.String contentType;
+	private long objectIDMId = -1;
+	private long settingsId = -1;
+	private long ifcEngineId = -1;
 	public long getOid() {
 		return oid;
 	}
@@ -79,6 +83,7 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
@@ -123,11 +128,6 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String extension;
-	private java.lang.String contentType;
-	private long objectIDMId = -1;
-	private long settingsId = -1;
-	private long ifcEngineId = -1;
 	public java.lang.String getExtension() {
 		return extension;
 	}
@@ -135,6 +135,7 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 	public void setExtension(java.lang.String extension) {
 		this.extension = extension;
 	}
+	
 	public java.lang.String getContentType() {
 		return contentType;
 	}
@@ -142,6 +143,7 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 	public void setContentType(java.lang.String contentType) {
 		this.contentType = contentType;
 	}
+	
 	public long getObjectIDMId() {
 		return objectIDMId;
 	}

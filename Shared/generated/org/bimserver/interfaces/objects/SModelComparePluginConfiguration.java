@@ -28,7 +28,7 @@ public class SModelComparePluginConfiguration extends SPluginConfiguration imple
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private long settingsId = -1;
 	public long getOid() {
 		return oid;
 	}
@@ -67,6 +67,7 @@ public class SModelComparePluginConfiguration extends SPluginConfiguration imple
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
@@ -95,7 +96,6 @@ public class SModelComparePluginConfiguration extends SPluginConfiguration imple
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long settingsId = -1;
 	public long getSettingsId() {
 		return settingsId;
 	}

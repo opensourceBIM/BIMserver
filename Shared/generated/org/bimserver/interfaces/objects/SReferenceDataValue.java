@@ -28,7 +28,8 @@ public class SReferenceDataValue extends SDataValue implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String typeName;
+	private java.lang.String guid;
 	public long getOid() {
 		return oid;
 	}
@@ -61,6 +62,7 @@ public class SReferenceDataValue extends SDataValue implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("fieldName")) {
 			setFieldName((String)val);
@@ -81,8 +83,6 @@ public class SReferenceDataValue extends SDataValue implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String typeName;
-	private java.lang.String guid;
 	public java.lang.String getTypeName() {
 		return typeName;
 	}
@@ -90,6 +90,7 @@ public class SReferenceDataValue extends SDataValue implements SDataBase
 	public void setTypeName(java.lang.String typeName) {
 		this.typeName = typeName;
 	}
+	
 	public java.lang.String getGuid() {
 		return guid;
 	}
@@ -97,6 +98,7 @@ public class SReferenceDataValue extends SDataValue implements SDataBase
 	public void setGuid(java.lang.String guid) {
 		this.guid = guid;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

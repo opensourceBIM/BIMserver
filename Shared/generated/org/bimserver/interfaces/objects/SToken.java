@@ -28,7 +28,8 @@ public class SToken implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String tokenString;
+	private long expires;
 	public long getOid() {
 		return oid;
 	}
@@ -58,6 +59,7 @@ public class SToken implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("tokenString")) {
 			setTokenString((String)val);
@@ -74,8 +76,6 @@ public class SToken implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String tokenString;
-	private long expires;
 	public java.lang.String getTokenString() {
 		return tokenString;
 	}
@@ -83,6 +83,7 @@ public class SToken implements SDataBase
 	public void setTokenString(java.lang.String tokenString) {
 		this.tokenString = tokenString;
 	}
+	
 	public long getExpires() {
 		return expires;
 	}
@@ -90,6 +91,7 @@ public class SToken implements SDataBase
 	public void setExpires(long expires) {
 		this.expires = expires;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

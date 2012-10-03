@@ -27,7 +27,9 @@ public class SServerDescriptor implements SBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String title;
+	private java.lang.String url;
+	private java.lang.String description;
 	
 	@XmlTransient
 	public SClass getSClass() {
@@ -50,6 +52,7 @@ public class SServerDescriptor implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("title")) {
 			setTitle((String)val);
@@ -66,9 +69,6 @@ public class SServerDescriptor implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String title;
-	private java.lang.String url;
-	private java.lang.String description;
 	public java.lang.String getTitle() {
 		return title;
 	}
@@ -76,6 +76,7 @@ public class SServerDescriptor implements SBase
 	public void setTitle(java.lang.String title) {
 		this.title = title;
 	}
+	
 	public java.lang.String getUrl() {
 		return url;
 	}
@@ -83,6 +84,7 @@ public class SServerDescriptor implements SBase
 	public void setUrl(java.lang.String url) {
 		this.url = url;
 	}
+	
 	public java.lang.String getDescription() {
 		return description;
 	}
@@ -90,4 +92,5 @@ public class SServerDescriptor implements SBase
 	public void setDescription(java.lang.String description) {
 		this.description = description;
 	}
+	
 }

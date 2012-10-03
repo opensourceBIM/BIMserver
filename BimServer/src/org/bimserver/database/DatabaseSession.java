@@ -75,7 +75,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -128,7 +127,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		objectsToCommit.put(idEObject);
 	}
 
-	public void clearProject() throws BimserverDatabaseException {
+	private void clearProject() throws BimserverDatabaseException {
 		ByteBuffer keyBuffer = ByteBuffer.allocate(16);
 		ByteBuffer searchKeyBuffer = ByteBuffer.allocate(12);
 		for (EClass eClass : database.getClasses()) {
@@ -180,6 +179,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	public void commit(ProgressHandler progressHandler) throws BimserverDatabaseException {
+		checkOpen();
 		try {
 			if (progressHandler != null) {
 				progressHandler.progress(0, objectsToCommit.size());
@@ -227,42 +227,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		fillKeyBuffer(buffer, recordIdentifier.getPid(), recordIdentifier.getOid(), recordIdentifier.getRid());
 	}
 
-	public Object convert(EClassifier classifier, String value) {
-		if (classifier != null) {
-			if (classifier instanceof EClassImpl) {
-				if (null != ((EClassImpl) classifier).getEStructuralFeature(WRAPPED_VALUE)) {
-					EObject create = classifier.getEPackage().getEFactoryInstance().create((EClass) classifier);
-					Class<?> instanceClass = create.eClass().getEStructuralFeature(WRAPPED_VALUE).getEType().getInstanceClass();
-					if (value.equals("")) {
-
-					} else {
-						if (instanceClass == Double.class || instanceClass == double.class) {
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Double.parseDouble(value));
-						} else if (instanceClass == Integer.class || instanceClass == int.class) {
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Integer.parseInt(value));
-						} else if (instanceClass == Long.class || instanceClass == long.class) {
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Long.parseLong(value));
-						} else if (instanceClass == Boolean.class || instanceClass == boolean.class) {
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Boolean.parseBoolean(value));
-						} else if (instanceClass == Float.class || instanceClass == float.class) {
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), Float.parseFloat(value));
-						} else if (instanceClass == String.class) {
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), value);
-						}
-					}
-					return create;
-				} else {
-					// return processInline(classifier, value);
-				}
-			} else if (classifier instanceof EDataType) {
-				// return convertSimpleValue(classifier.getInstanceClass(),
-				// value);
-			}
-		}
-		return null;
-	}
-
-	public IdEObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModelInterface model, int pid, int rid, boolean deep,
+	private IdEObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModelInterface model, int pid, int rid, boolean deep,
 			ObjectIDM objectIDM, Queue<IdEObject> todoList) throws BimserverDatabaseException {
 		if (model.contains(oid)) {
 			return model.get(oid);
@@ -294,7 +259,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	@SuppressWarnings("unchecked")
-	public IdEObject convertByteArrayToObject(IdEObject idEObject, EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModelInterface model, int pid,
+	private IdEObject convertByteArrayToObject(IdEObject idEObject, EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModelInterface model, int pid,
 			int rid, boolean deep, org.bimserver.plugins.objectidms.ObjectIDM objectIDM, Queue<IdEObject> todoList) throws BimserverDatabaseException {
 
 		if (idEObject == null) {
@@ -436,7 +401,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		return idEObject;
 	}
 
-	public ByteBuffer convertObjectToByteArray(IdEObject object) throws BimserverDatabaseException {
+	private ByteBuffer convertObjectToByteArray(IdEObject object) throws BimserverDatabaseException {
 		ByteBuffer buffer = ByteBuffer.allocate(getExactSize(object));
 		byte[] unsetted = new byte[(int) Math.ceil(object.eClass().getEAllStructuralFeatures().size() / 8.0)];
 		int fieldCounter = 0;
@@ -515,11 +480,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		return buffer;
 	}
 
-	public ByteBuffer createKeyBuffer(IdEObject object) {
-		return createKeyBuffer(object.getPid(), object.getOid(), object.getRid());
-	}
-
-	public ByteBuffer fillKeyBuffer(ByteBuffer buffer, IdEObject object) {
+	private ByteBuffer fillKeyBuffer(ByteBuffer buffer, IdEObject object) {
 		return fillKeyBuffer(buffer, object.getPid(), object.getOid(), object.getRid());
 	}
 
@@ -538,6 +499,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	public void delete(IdEObject object) throws BimserverDatabaseException {
+		checkOpen();
 		if (perRecordVersioning(object)) {
 			objectsToDelete.put(object.eClass(), object.getPid(), object.getRid() + 1, object.getOid());
 		} else {
@@ -546,10 +508,12 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	public <T> T executeAndCommitAction(BimDatabaseAction<T> action) throws BimserverDatabaseException, UserException {
+		checkOpen();
 		return executeAndCommitAction(action, DEFAULT_CONFLICT_RETRIES, null);
 	}
 
 	public <T> T executeAndCommitAction(BimDatabaseAction<T> action, int retries, ProgressHandler progressHandler) throws BimserverDatabaseException, UserException {
+		checkOpen();
 		for (int i = 0; i < retries; i++) {
 			try {
 				T result = action.execute();
@@ -602,16 +566,13 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends IdEObject> T get(EClass eClass, IfcModelInterface model, IdEObject idEObject, long oid, boolean deep, ObjectIDM objectIDM, Queue<IdEObject> todoList) {
-		try {
-			return (T) get(idEObject, oid, deep, objectIDM, model, todoList);
-		} catch (BimserverDatabaseException e) {
-			LOGGER.error("", e);
-		}
-		return null;
+	public <T extends IdEObject> T get(EClass eClass, IfcModelInterface model, IdEObject idEObject, long oid, boolean deep, ObjectIDM objectIDM, Queue<IdEObject> todoList) throws BimserverDatabaseException {
+		checkOpen();
+		return (T) get(idEObject, oid, deep, objectIDM, model, todoList);
 	}
 
-	public EClass getEClassForOid(long oid) {
+	public EClass getEClassForOid(long oid) throws BimserverDatabaseException {
+		checkOpen();
 		ByteBuffer buffer = ByteBuffer.wrap(new byte[8]);
 		buffer.putLong(oid);
 		short cid = buffer.getShort(6);
@@ -623,6 +584,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 	
 	public IdEObject get(int pid, int rid, long oid, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException {
+		checkOpen();
 		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
 		IfcModelInterface model = new IfcModel();
 		IdEObject idEObject = get(model, null, pid, rid, oid, deep, objectIDM, todoList);
@@ -631,17 +593,20 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	public <T extends IdEObject> T get(EClass eClass, IfcModelInterface model, long oid, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException {
+		checkOpen();
 		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
 		T t = get(eClass, model, oid, deep, objectIDM, todoList);
 		processTodoList(model, todoList, Database.STORE_PROJECT_ID, Integer.MAX_VALUE, deep, objectIDM);
 		return t;
 	}
 
-	public <T extends IdEObject> T get(EClass eClass, IfcModelInterface model, long oid, boolean deep, ObjectIDM objectIDM, Queue<IdEObject> todoList) {
+	public <T extends IdEObject> T get(EClass eClass, IfcModelInterface model, long oid, boolean deep, ObjectIDM objectIDM, Queue<IdEObject> todoList) throws BimserverDatabaseException {
+		checkOpen();
 		return get(eClass, model, null, oid, deep, objectIDM, todoList);
 	}
 
 	public <T extends IdEObject> T get(EClass eClass, long oid, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException {
+		checkOpen();
 		if (oid == -1) {
 			return null;
 		}
@@ -661,16 +626,19 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	@SuppressWarnings("unchecked")
 	public <T extends IdEObject> T get(IfcModelInterface model, IdEObject idEObject, int pid, int rid, long oid, boolean deep, ObjectIDM objectIDM,
 			Queue<IdEObject> todoList) throws BimserverDatabaseException {
+		checkOpen();
 		return (T) get(idEObject, oid, pid, rid, model, deep, objectIDM, todoList);
 	}
 
 	public <T extends IdEObject> T get(IdEObject idEObject, long oid, boolean deep, ObjectIDM objectIDM, IfcModelInterface model, Queue<IdEObject> todoList)
 			throws BimserverDatabaseException {
+		checkOpen();
 		return get(idEObject, oid, Database.STORE_PROJECT_ID, Integer.MAX_VALUE, model, deep, objectIDM, todoList);
 	}
 
 	public <T extends IdEObject> T get(IdEObject idEObject, long oid, int pid, int rid, IfcModelInterface model, boolean deep, ObjectIDM objectIDM)
 			throws BimserverDatabaseException {
+		checkOpen();
 		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
 		T result = get(idEObject, oid, pid, rid, model, deep, objectIDM, todoList);
 		processTodoList(model, todoList, pid, rid, deep, objectIDM);
@@ -738,10 +706,12 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	public IfcModelInterface getAllOfType(EClass eClass, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException {
+		checkOpen();
 		return getAllOfType(eClass, Database.STORE_PROJECT_ID, Integer.MAX_VALUE, deep, objectIDM);
 	}
 
 	public IfcModelInterface getAllOfType(EClass eClass, int pid, int rid, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException {
+		checkOpen();
 		IfcModelInterface model = new IfcModel();
 		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
 		getMap(eClass, pid, rid, model, deep, objectIDM, todoList);
@@ -750,6 +720,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	public IfcModelInterface getAllOfTypes(Set<EClass> eClasses, int pid, int rid, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException {
+		checkOpen();
 		IfcModelInterface model = new IfcModel();
 		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
 		for (EClass eClass : eClasses) {
@@ -760,6 +731,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	public IfcModelInterface getAllOfType(String className, int pid, int rid, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException {
+		checkOpen();
 		return getAllOfType(getEClassForName(className), pid, rid, deep, objectIDM);
 	}
 
@@ -801,6 +773,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	public int getCount(EClass eClass, IfcModelInterface model, int pid, int rid) throws BimserverDatabaseException {
+		checkOpen();
 		int count = 0;
 		SearchingRecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(),
 				BinUtils.intToByteArray(pid), BinUtils.intToByteArray(pid), this);
@@ -936,6 +909,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 
 	private int getMap(EClass originalQueryClass, EClass eClass, IfcModelInterface model, ByteBuffer buffer, int keyPid, long keyOid, int keyRid, int pid, int rid, boolean deep,
 			ObjectIDM objectIDM, Queue<IdEObject> todoList) throws BimserverDatabaseException {
+		checkOpen();
 		if (keyPid == pid) {
 			if (keyRid <= rid) {
 				RecordIdentifier recordIdentifier = new RecordIdentifier(pid, keyOid, keyRid);
@@ -980,6 +954,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	public void getMap(EClass eClass, int pid, int rid, IfcModelInterface ifcModel, boolean deep, ObjectIDM objectIDM, Queue<IdEObject> todoList) throws BimserverDatabaseException {
 		SearchingRecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(),
 				BinUtils.intToByteArray(pid), BinUtils.intToByteArray(pid), this);
+		checkOpen();
 		try {
 			Record record = recordIterator.next();
 			ByteBuffer nextKeyStart = ByteBuffer.allocate(12);
@@ -1006,6 +981,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	public void getMap(IfcModelInterface ifcModel, int pid, int rid, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException {
+		checkOpen();
 		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
 		for (EClass eClass : database.getClasses()) {
 			if (objectIDM == null || objectIDM.shouldIncludeClass(eClass, eClass)) {
@@ -1016,6 +992,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	public IfcModelInterface getMapWithObjectIdentifiers(int pid, int rid, Set<ObjectIdentifier> oids, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException {
+		checkOpen();
 		IfcModelInterface model = new IfcModel();
 		for (ObjectIdentifier objectIdentifier : oids) {
 			getMapWithOid(pid, rid, objectIdentifier.getCid(), objectIdentifier.getOid(), model, deep, objectIDM);
@@ -1024,6 +1001,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	public IfcModelInterface getMapWithOid(int pid, int rid, short cid, long oid, IfcModelInterface model, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException {
+		checkOpen();
 		EClass eClass = database.getEClassForCid(cid);
 		if (eClass == null) {
 			return model;
@@ -1059,6 +1037,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	public void getMapWithOids(IfcModelInterface model, int pid, int rid, Set<Long> oids, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException {
+		checkOpen();
 		for (Long oid : oids) {
 			EClass eClass = getClassOfObjectId(pid, rid, oid, deep, objectIDM);
 			if (eClass != null) {
@@ -1206,7 +1185,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		return query(Database.STORE_PROJECT_ID, Integer.MAX_VALUE, condition, clazz, deep, objectIDM);
 	}
 
-	public <T extends IdEObject> Map<Long, T> query(int pid, int rid, Condition condition, Class<T> clazz, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException {
+	private <T extends IdEObject> Map<Long, T> query(int pid, int rid, Condition condition, Class<T> clazz, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException {
 		Map<Long, T> map = new HashMap<Long, T>();
 		Set<EClass> eClasses = new HashSet<EClass>();
 		condition.getEClassRequirements(eClasses);
@@ -1228,10 +1207,12 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	public <T extends IdEObject> T querySingle(Condition condition, Class<T> clazz, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException {
+		checkOpen();
 		return querySingle(Database.STORE_PROJECT_ID, Integer.MAX_VALUE, condition, clazz, deep, objectIDM);
 	}
 
 	public <T extends IdEObject> T querySingle(int pid, int rid, Condition condition, Class<T> clazz, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException {
+		checkOpen();
 		Collection<T> values = query(pid, rid, condition, clazz, deep, objectIDM).values();
 		if (values.size() == 0) {
 			return null;
@@ -1239,7 +1220,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		return values.iterator().next();
 	}
 
-	public Object readPrimitiveValue(EClassifier classifier, ByteBuffer buffer) {
+	private Object readPrimitiveValue(EClassifier classifier, ByteBuffer buffer) {
 		if (classifier == ECORE_PACKAGE.getEString()) {
 			int length = buffer.getInt();
 			if (length != -1) {
@@ -1280,7 +1261,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		}
 	}
 
-	public void fakeRead(ByteBuffer buffer, EStructuralFeature feature) {
+	private void fakeRead(ByteBuffer buffer, EStructuralFeature feature) {
 		boolean wrappedValue = Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) feature.getEType());
 		if (feature.getUpperBound() > 1 || feature.getUpperBound() == -1) {
 			if (feature.getEType() instanceof EEnum) {
@@ -1394,20 +1375,24 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	public void store(Collection<? extends IdEObject> values) throws BimserverDatabaseException {
+		checkOpen();
 		store(values, Database.STORE_PROJECT_ID, Integer.MAX_VALUE);
 	}
 
 	public void store(Collection<? extends IdEObject> values, int pid, int rid) throws BimserverDatabaseException {
+		checkOpen();
 		for (IdEObject object : values) {
 			store(object, pid, rid);
 		}
 	}
 
 	public long store(IdEObject object) throws BimserverDatabaseException {
+		checkOpen();
 		return store(object, Database.STORE_PROJECT_ID, Integer.MAX_VALUE);
 	}
 
 	public long store(IdEObject object, int pid, int rid) throws BimserverDatabaseException {
+		checkOpen();
 		if (!objectsToCommit.containsObject(object)) {
 			if (object.getOid() == -1) {
 				long newOid = newOid(object.eClass());
@@ -1425,7 +1410,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		return object.getOid();
 	}
 
-	public void writePrimitiveValue(EStructuralFeature feature, Object value, ByteBuffer buffer) throws BimserverDatabaseException {
+	private void writePrimitiveValue(EStructuralFeature feature, Object value, ByteBuffer buffer) throws BimserverDatabaseException {
 		EClassifier type = feature.getEType();
 		if (type == ECORE_PACKAGE.getEString()) {
 			if (value == null) {
@@ -1529,7 +1514,8 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		}
 	}
 
-	public Set<String> getAvailableClassesInRevision(int pid, int rid) {
+	public Set<String> getAvailableClassesInRevision(int pid, int rid) throws BimserverDatabaseException {
+		checkOpen();
 		IfcModelInterface ifcModel = new IfcModel();
 		try {
 			getMap(ifcModel, pid, rid, true, null);
@@ -1552,12 +1538,14 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		return stackTrace;
 	}
 
-	public void planClearProject(int pid, int oldRid, int newRid) {
+	public void planClearProject(int pid, int oldRid, int newRid) throws BimserverDatabaseException {
+		checkOpen();
 		clearProjectPlan = new ClearProjectPlan(pid, oldRid, newRid);
 	}
 
 	@SuppressWarnings("unchecked")
 	public <T> T create(EClass eClass) throws BimserverDatabaseException {
+		checkOpen();
 		IdEObject idEObject = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		store(idEObject);
 		return (T) idEObject;

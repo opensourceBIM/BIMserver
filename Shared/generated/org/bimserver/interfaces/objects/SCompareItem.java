@@ -23,14 +23,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SObjectModified.class, SObjectRemoved.class, SObjectAdded.class})
+@XmlSeeAlso(value={SObjectRemoved.class, SObjectModified.class, SObjectAdded.class})
 public class SCompareItem implements SDataBase
 {
 	private long oid = -1;
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private SDataObject dataObject;
 	public long getOid() {
 		return oid;
 	}
@@ -57,6 +57,7 @@ public class SCompareItem implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("dataObject")) {
 			setDataObject((SDataObject)val);
@@ -69,7 +70,6 @@ public class SCompareItem implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private SDataObject dataObject;
 	public SDataObject getDataObject() {
 		return dataObject;
 	}
@@ -77,6 +77,7 @@ public class SCompareItem implements SDataBase
 	public void setDataObject(SDataObject dataObject) {
 		this.dataObject = dataObject;
 	}
+	
 	
 	@Override
 	public int hashCode() {

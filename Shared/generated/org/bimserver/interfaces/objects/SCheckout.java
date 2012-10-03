@@ -29,7 +29,12 @@ public class SCheckout implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private long userId = -1;
+	private long revisionId = -1;
+	private long projectId = -1;
+	private java.util.Date date;
+	private long checkinId = -1;
+	private java.lang.Boolean active;
 	public long getOid() {
 		return oid;
 	}
@@ -71,6 +76,7 @@ public class SCheckout implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("userId")) {
 			setUserId((Long)val);
@@ -103,12 +109,6 @@ public class SCheckout implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long userId = -1;
-	private long revisionId = -1;
-	private long projectId = -1;
-	private java.util.Date date;
-	private long checkinId = -1;
-	private java.lang.Boolean active;
 	public long getUserId() {
 		return userId;
 	}
@@ -140,6 +140,7 @@ public class SCheckout implements SDataBase
 	public void setDate(java.util.Date date) {
 		this.date = date;
 	}
+	
 	public long getCheckinId() {
 		return checkinId;
 	}
@@ -155,6 +156,7 @@ public class SCheckout implements SDataBase
 	public void setActive(java.lang.Boolean active) {
 		this.active = active;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

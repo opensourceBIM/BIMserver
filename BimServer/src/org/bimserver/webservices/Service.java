@@ -3324,7 +3324,7 @@ public class Service implements ServiceInterface {
 		try {
 			List<SServerDescriptor> externalServers = new ArrayList<SServerDescriptor>();
 			String url = getServiceRepositoryUrl();
-			String content = NetUtils.getContent(new URL(url));
+			String content = NetUtils.getContent(new URL(url), 5000);
 			JSONObject root = new JSONObject(new JSONTokener(content));
 			JSONArray services = root.getJSONArray("servers");
 			for (int i = 0; i < services.length(); i++) {
@@ -3346,7 +3346,7 @@ public class Service implements ServiceInterface {
 		requireRealUserAuthentication();
 		try {
 			List<SServiceDescriptor> sServiceDescriptors = new ArrayList<SServiceDescriptor>();
-			String content = NetUtils.getContent(new URL(url));
+			String content = NetUtils.getContent(new URL(url), 5000);
 			JSONObject root = new JSONObject(new JSONTokener(content));
 			JSONArray services = root.getJSONArray("services");
 			for (int i = 0; i < services.length(); i++) {

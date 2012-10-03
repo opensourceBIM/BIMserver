@@ -30,7 +30,8 @@ public class SRevisionSummaryContainer implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String name;
+	private List<SRevisionSummaryType> types = new ArrayList<SRevisionSummaryType>();
 	public long getOid() {
 		return oid;
 	}
@@ -61,6 +62,7 @@ public class SRevisionSummaryContainer implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
@@ -77,8 +79,6 @@ public class SRevisionSummaryContainer implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String name;
-	private List<SRevisionSummaryType> types = new ArrayList<SRevisionSummaryType>();
 	public java.lang.String getName() {
 		return name;
 	}
@@ -86,6 +86,7 @@ public class SRevisionSummaryContainer implements SDataBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
+	
 	public List<SRevisionSummaryType> getTypes() {
 		return types;
 	}
@@ -93,6 +94,7 @@ public class SRevisionSummaryContainer implements SDataBase
 	public void setTypes(List<SRevisionSummaryType> types) {
 		this.types = types;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

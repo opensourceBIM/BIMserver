@@ -29,7 +29,6 @@ public class SCheckoutResult extends SDownloadResult implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
 	public long getOid() {
 		return oid;
 	}
@@ -62,6 +61,7 @@ public class SCheckoutResult extends SDownloadResult implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("projectName")) {
 			setProjectName((String)val);

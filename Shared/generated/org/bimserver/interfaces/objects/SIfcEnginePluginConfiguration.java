@@ -30,7 +30,8 @@ public class SIfcEnginePluginConfiguration extends SPluginConfiguration implemen
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private List<Long> serializers = new ArrayList<Long>();
+	private long settingsId = -1;
 	public long getOid() {
 		return oid;
 	}
@@ -73,6 +74,7 @@ public class SIfcEnginePluginConfiguration extends SPluginConfiguration implemen
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
@@ -105,8 +107,6 @@ public class SIfcEnginePluginConfiguration extends SPluginConfiguration implemen
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private List<Long> serializers = new ArrayList<Long>();
-	private long settingsId = -1;
 	public List<Long> getSerializers() {
 		return serializers;
 	}
@@ -114,6 +114,7 @@ public class SIfcEnginePluginConfiguration extends SPluginConfiguration implemen
 	public void setSerializers(List<Long> serializers) {
 		this.serializers = serializers;
 	}
+	
 	public long getSettingsId() {
 		return settingsId;
 	}

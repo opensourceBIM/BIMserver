@@ -23,14 +23,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SInternalServicePluginConfiguration.class, SDeserializerPluginConfiguration.class, SModelComparePluginConfiguration.class, SSerializerPluginConfiguration.class, SModelMergerPluginConfiguration.class, SQueryEnginePluginConfiguration.class, SIfcEnginePluginConfiguration.class, SObjectIDMPluginConfiguration.class})
+@XmlSeeAlso(value={SModelMergerPluginConfiguration.class, SIfcEnginePluginConfiguration.class, SInternalServicePluginConfiguration.class, SQueryEnginePluginConfiguration.class, SSerializerPluginConfiguration.class, SDeserializerPluginConfiguration.class, SObjectIDMPluginConfiguration.class, SModelComparePluginConfiguration.class})
 public class SPluginConfiguration implements SDataBase
 {
 	private long oid = -1;
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String name;
+	private java.lang.Boolean enabled;
+	private java.lang.String description;
+	private java.lang.String className;
 	public long getOid() {
 		return oid;
 	}
@@ -66,6 +69,7 @@ public class SPluginConfiguration implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
@@ -90,10 +94,6 @@ public class SPluginConfiguration implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String name;
-	private java.lang.Boolean enabled;
-	private java.lang.String description;
-	private java.lang.String className;
 	public java.lang.String getName() {
 		return name;
 	}
@@ -101,6 +101,7 @@ public class SPluginConfiguration implements SDataBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
+	
 	public java.lang.Boolean getEnabled() {
 		return enabled;
 	}
@@ -108,6 +109,7 @@ public class SPluginConfiguration implements SDataBase
 	public void setEnabled(java.lang.Boolean enabled) {
 		this.enabled = enabled;
 	}
+	
 	public java.lang.String getDescription() {
 		return description;
 	}
@@ -115,6 +117,7 @@ public class SPluginConfiguration implements SDataBase
 	public void setDescription(java.lang.String description) {
 		this.description = description;
 	}
+	
 	public java.lang.String getClassName() {
 		return className;
 	}
@@ -122,6 +125,7 @@ public class SPluginConfiguration implements SDataBase
 	public void setClassName(java.lang.String className) {
 		this.className = className;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

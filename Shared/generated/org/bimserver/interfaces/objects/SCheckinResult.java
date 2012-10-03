@@ -28,7 +28,11 @@ public class SCheckinResult implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private long revisionId = -1;
+	private long projectId = -1;
+	private java.lang.Integer progress;
+	private java.lang.String lastError;
+	private SCheckinStatus status;
 	public long getOid() {
 		return oid;
 	}
@@ -67,6 +71,7 @@ public class SCheckinResult implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("revisionId")) {
 			setRevisionId((Long)val);
@@ -95,11 +100,6 @@ public class SCheckinResult implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long revisionId = -1;
-	private long projectId = -1;
-	private java.lang.Integer progress;
-	private java.lang.String lastError;
-	private SCheckinStatus status;
 	public long getRevisionId() {
 		return revisionId;
 	}
@@ -123,6 +123,7 @@ public class SCheckinResult implements SDataBase
 	public void setProgress(java.lang.Integer progress) {
 		this.progress = progress;
 	}
+	
 	public java.lang.String getLastError() {
 		return lastError;
 	}
@@ -130,6 +131,7 @@ public class SCheckinResult implements SDataBase
 	public void setLastError(java.lang.String lastError) {
 		this.lastError = lastError;
 	}
+	
 	public SCheckinStatus getStatus() {
 		return status;
 	}
@@ -137,6 +139,7 @@ public class SCheckinResult implements SDataBase
 	public void setStatus(SCheckinStatus status) {
 		this.status = status;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
