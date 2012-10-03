@@ -74,7 +74,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		clashDetection.setDescription("Clashdetection");
 		clashDetection.setNotificationProtocol(AccessMethod.INTERNAL);
 		clashDetection.setReadRevision(true);
-		clashDetection.setWriteExtendedData(true);
+		clashDetection.setWriteExtendedData("clashdetection");
 		clashDetection.setTrigger(Trigger.NEW_REVISION);
 		
 		register(serverDescriptor, clashDetection, new NotificationInterfaceAdapter(){
