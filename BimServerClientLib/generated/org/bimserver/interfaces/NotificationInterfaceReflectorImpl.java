@@ -20,6 +20,7 @@ import org.bimserver.shared.reflector.Reflector;
 
 import org.bimserver.shared.reflector.KeyValuePair;
 
+@SuppressWarnings("unchecked")
 public class NotificationInterfaceReflectorImpl implements org.bimserver.shared.interfaces.NotificationInterface {
 
 private Reflector reflector;

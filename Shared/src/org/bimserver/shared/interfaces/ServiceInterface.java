@@ -158,6 +158,7 @@ public interface ServiceInterface {
 			@QueryParam("comment") @WebParam(name = "comment", partName = "checkin.comment") String comment,
 			@QueryParam("deserializerOid") @WebParam(name = "deserializerOid", partName = "checkin.deserializerOid") Long deserializerOid,
 			@QueryParam("fileSize") @WebParam(name = "fileSize", partName = "checkin.fileSize") Long fileSize,
+			@QueryParam("fileName") @WebParam(name = "fileName", partName = "checkin.fileName") String fileName,
 			@QueryParam("ifcFile") @WebParam(name = "ifcFile", partName = "checkin.ifcFile") @XmlMimeType("application/octet-stream") DataHandler ifcFile,
 			@QueryParam("merge") @WebParam(name = "merge", partName = "checkin.merge") Boolean merge,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "checkin.sync") Boolean sync) throws ServerException, UserException;

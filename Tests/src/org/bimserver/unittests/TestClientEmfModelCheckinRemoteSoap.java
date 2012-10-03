@@ -74,7 +74,7 @@ public class TestClientEmfModelCheckinRemoteSoap {
 			File file = new File("../TestData/data/AC11-FZK-Haus-IFC.ifc");
 			DataSource dataSource = new org.bimserver.utils.FileDataSource(file);
 			DataHandler dataHandler = new DataHandler(dataSource);
-			long checkin = bimServerClient.getServiceInterface().checkin(poid, "lala", -1L, file.length(), dataHandler, false, true); // TODO
+			long checkin = bimServerClient.getServiceInterface().checkin(poid, "lala", -1L, file.length(), "test", dataHandler, false, true); // TODO
 			bimServerClient.getServiceInterface().getCheckinState(checkin);
 		} catch (Exception e) {
 			e.printStackTrace();

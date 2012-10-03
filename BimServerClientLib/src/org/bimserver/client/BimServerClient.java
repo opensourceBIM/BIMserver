@@ -43,6 +43,7 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDataValue;
+import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SListDataValue;
 import org.bimserver.interfaces.objects.SReferenceDataValue;
 import org.bimserver.interfaces.objects.SSimpleDataValue;
@@ -395,7 +396,9 @@ public class BimServerClient implements ConnectDisconnectListener {
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
 			Serializer serializer = serializerPlugin.createSerializer();
 			serializer.init(model, null, pluginManager, null);
-			long checkinId = getServiceInterface().checkin(poid, comment, -1L, 0L, new DataHandler(new EmfSerializerDataSource(serializer)), false, true); // TODO
+			SDeserializerPluginConfiguration deserializerPluginConfiguration = getServiceInterface().getSuggestedDeserializerForExtension("ifc");
+			String fileName = "unknown";
+			long checkinId = getServiceInterface().checkin(poid, comment, deserializerPluginConfiguration.getOid(), 0L, fileName, new DataHandler(new EmfSerializerDataSource(serializer)), false, true); // TODO
 			SCheckinResult checkinResult = getServiceInterface().getCheckinState(checkinId);
 			return checkinResult.getRevisionId();
 		} catch (ServiceException e) {

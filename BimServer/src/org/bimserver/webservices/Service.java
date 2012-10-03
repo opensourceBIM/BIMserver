@@ -152,6 +152,7 @@ import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
@@ -201,7 +202,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Long checkin(final Long poid, final String comment, Long deserializerOid, Long fileSize, DataHandler dataHandler, Boolean merge, Boolean sync)
+	public Long checkin(final Long poid, final String comment, Long deserializerOid, Long fileSize, String fileName, DataHandler dataHandler, Boolean merge, Boolean sync)
 			throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		final DatabaseSession session = bimServer.getDatabase().createSession();
@@ -219,28 +220,22 @@ public class Service implements ServiceInterface {
 			if (!userDirIncoming.exists()) {
 				userDirIncoming.mkdir();
 			}
-			InputStream inputStream = null;
-			String fileName = dataHandler.getName();
-			if (fileName == null || fileName.trim().equals("")) {
-				inputStream = dataHandler.getInputStream();
-			} else {
-				if (fileName.contains("/")) {
-					fileName = fileName.substring(fileName.lastIndexOf("/") + 1);
-				}
-				if (fileName.contains("\\")) {
-					fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
-				}
-				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-				fileName = dateFormat.format(new Date()) + "-" + fileName;
-				File file = new File(userDirIncoming, fileName);
-				inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(file));
+			if (fileName.contains("/")) {
+				fileName = fileName.substring(fileName.lastIndexOf("/") + 1);
 			}
+			if (fileName.contains("\\")) {
+				fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
+			}
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+			fileName = dateFormat.format(new Date()) + "-" + fileName;
+			File file = new File(userDirIncoming, fileName);
+			InputStream inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(file));
 			try {
 				DeserializerPluginConfiguration deserializerObject = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, false, null);
 				if (deserializerObject == null) {
 					throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 				}
-				org.bimserver.plugins.deserializers.Deserializer deserializer = bimServer.getEmfDeserializerFactory().createDeserializer(deserializerObject.getClassName());
+				Deserializer deserializer = bimServer.getEmfDeserializerFactory().createDeserializer(deserializerObject.getClassName());
 				try {
 					deserializer.init(bimServer.getPluginManager().requireSchemaDefinition());
 				} catch (PluginException e) {

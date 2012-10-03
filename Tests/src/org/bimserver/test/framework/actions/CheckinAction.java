@@ -58,7 +58,7 @@ public class CheckinAction extends Action {
 		boolean merge = settings.shouldMerge();
 		getActionResults().setText("Checking in new revision on project " + project.getName() + " (" + fileName + ") " + "sync: " + sync + ", merge: " + merge);
 		long checkinId = virtualUser.getBimServerClient().getServiceInterface()
-				.checkin(project.getOid(), randomString(), suggestedDeserializerForExtension.getOid(), randomFile.length(), new DataHandler(dataSource), merge, sync); // TODO
+				.checkin(project.getOid(), randomString(), suggestedDeserializerForExtension.getOid(), randomFile.length(), fileName, new DataHandler(dataSource), merge, sync);
 		if (sync) {
 			virtualUser.getBimServerClient().getServiceInterface().getCheckinState(checkinId);
 		} else {

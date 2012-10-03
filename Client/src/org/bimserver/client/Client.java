@@ -44,6 +44,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.interfaces.objects.SCheckinResult;
+import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
@@ -130,7 +131,9 @@ public class Client extends JFrame {
 				JOptionPane.OK_OPTION | JOptionPane.INFORMATION_MESSAGE);
 		try {
 			DataHandler ifcFile = new DataHandler(dataSource);
-			long checkinId = serviceHolder.getService().checkin(project.getOid(), comment, -1L, fileSize, ifcFile, false, true); // TODO
+			SDeserializerPluginConfiguration deserializerForExtension = serviceHolder.getService().getSuggestedDeserializerForExtension("ifc");
+			String fileName = ifcFile.getName();
+			long checkinId = serviceHolder.getService().checkin(project.getOid(), comment, deserializerForExtension.getOid(), fileSize, fileName, ifcFile, false, true);
 			SCheckinResult sCheckinResult = serviceHolder.getService().getCheckinState(checkinId);
 			JOptionPane.showMessageDialog(this, "New revision number: " + sCheckinResult.getRevisionId(), "Checkin successful", JOptionPane.OK_OPTION
 					| JOptionPane.INFORMATION_MESSAGE);
