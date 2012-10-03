@@ -35,9 +35,10 @@ import org.bimserver.models.log.AccessMethod;
  *   <li>{@link org.bimserver.models.store.ServiceDescriptor#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceDescriptor#getTrigger <em>Trigger</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceDescriptor#isReadRevision <em>Read Revision</em>}</li>
- *   <li>{@link org.bimserver.models.store.ServiceDescriptor#isReadExtendedData <em>Read Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServiceDescriptor#getReadExtendedData <em>Read Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceDescriptor#isWriteRevision <em>Write Revision</em>}</li>
- *   <li>{@link org.bimserver.models.store.ServiceDescriptor#isWriteExtendedData <em>Write Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServiceDescriptor#getWriteExtendedData <em>Write Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServiceDescriptor#getProviderName <em>Provider Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -244,22 +245,22 @@ public interface ServiceDescriptor extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Read Extended Data</em>' attribute.
-	 * @see #setReadExtendedData(boolean)
+	 * @see #setReadExtendedData(String)
 	 * @see org.bimserver.models.store.StorePackage#getServiceDescriptor_ReadExtendedData()
 	 * @model
 	 * @generated
 	 */
-	boolean isReadExtendedData();
+	String getReadExtendedData();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ServiceDescriptor#isReadExtendedData <em>Read Extended Data</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.ServiceDescriptor#getReadExtendedData <em>Read Extended Data</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Read Extended Data</em>' attribute.
-	 * @see #isReadExtendedData()
+	 * @see #getReadExtendedData()
 	 * @generated
 	 */
-	void setReadExtendedData(boolean value);
+	void setReadExtendedData(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Write Revision</b></em>' attribute.
@@ -296,21 +297,47 @@ public interface ServiceDescriptor extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Write Extended Data</em>' attribute.
-	 * @see #setWriteExtendedData(boolean)
+	 * @see #setWriteExtendedData(String)
 	 * @see org.bimserver.models.store.StorePackage#getServiceDescriptor_WriteExtendedData()
 	 * @model
 	 * @generated
 	 */
-	boolean isWriteExtendedData();
+	String getWriteExtendedData();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ServiceDescriptor#isWriteExtendedData <em>Write Extended Data</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.ServiceDescriptor#getWriteExtendedData <em>Write Extended Data</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Write Extended Data</em>' attribute.
-	 * @see #isWriteExtendedData()
+	 * @see #getWriteExtendedData()
 	 * @generated
 	 */
-	void setWriteExtendedData(boolean value);
+	void setWriteExtendedData(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Provider Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Provider Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Provider Name</em>' attribute.
+	 * @see #setProviderName(String)
+	 * @see org.bimserver.models.store.StorePackage#getServiceDescriptor_ProviderName()
+	 * @model
+	 * @generated
+	 */
+	String getProviderName();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServiceDescriptor#getProviderName <em>Provider Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Provider Name</em>' attribute.
+	 * @see #getProviderName()
+	 * @generated
+	 */
+	void setProviderName(String value);
 
 } // ServiceDescriptor

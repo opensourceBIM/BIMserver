@@ -26,23 +26,23 @@
 	if (loginManager.isLoggedIn()) {
 		SProject superProject = null;
 		if (request.getParameter("parentoid") != null) {
-			superProject = loginManager.getService().getProjectByPoid(Long.parseLong(request.getParameter("parentoid")));
+			superProject = loginManager.getService(request).getProjectByPoid(Long.parseLong(request.getParameter("parentoid")));
 		}
-		if (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects()) {
+		if (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService(request).isSettingAllowUsersToCreateTopLevelProjects()) {
 			if (request.getParameter("save") != null) {
 				try {
 					SProject sProject = null;
 					SProject parentProject = null;
 					if (request.getParameter("parentoid") != null) {
-						parentProject = loginManager.getService().getProjectByPoid(Long.parseLong(request.getParameter("parentoid")));
+						parentProject = loginManager.getService(request).getProjectByPoid(Long.parseLong(request.getParameter("parentoid")));
 					}
 					if (request.getParameter("parentoid") != null) {
-						sProject = loginManager.getService().addProjectAsSubProject(request.getParameter("name"), Long.parseLong(request.getParameter("parentoid")));
+						sProject = loginManager.getService(request).addProjectAsSubProject(request.getParameter("name"), Long.parseLong(request.getParameter("parentoid")));
 					} else {
-						sProject = loginManager.getService().addProject(request.getParameter("name"));
+						sProject = loginManager.getService(request).addProject(request.getParameter("name"));
 					}
 					if (request.getParameter("parentoid") == null) {
-						SGeoTag sGeoTag = loginManager.getService().getGeoTag(sProject.getGeoTagId());
+						SGeoTag sGeoTag = loginManager.getService(request).getGeoTag(sProject.getGeoTagId());
 						sGeoTag.setEnabled(request.getParameter("coordcheck") != null);
 						sGeoTag.setDirectionAngle(Double.parseDouble(request.getParameter("directionAngle")));
 						sGeoTag.setEpsg(Integer.parseInt(request.getParameter("epsg").substring(5)));
@@ -50,7 +50,7 @@
 						sGeoTag.setY(Double.parseDouble(request.getParameter("y"))); 
 						sGeoTag.setZ(Double.parseDouble(request.getParameter("z")));
 						if (sGeoTag.getEnabled()) {
-							loginManager.getService().updateGeoTag(sGeoTag);
+							loginManager.getService(request).updateGeoTag(sGeoTag);
 						}
 					}
 					if (request.getParameter("parentoid") != null) {

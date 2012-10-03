@@ -5,17 +5,17 @@
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
 	if (action.equals("enable")) {
-		SModelComparePluginConfiguration modelCompare = loginManager.getService().getModelCompareById(Long.parseLong(request.getParameter("oid")));
+		SModelComparePluginConfiguration modelCompare = loginManager.getService(request).getModelCompareById(Long.parseLong(request.getParameter("oid")));
 		modelCompare.setEnabled(true);
-		loginManager.getService().updateModelCompare(modelCompare);
+		loginManager.getService(request).updateModelCompare(modelCompare);
 	} else if (action.equals("disable")) {
-		SModelComparePluginConfiguration modelCompare = loginManager.getService().getModelCompareById(Long.parseLong(request.getParameter("oid")));
+		SModelComparePluginConfiguration modelCompare = loginManager.getService(request).getModelCompareById(Long.parseLong(request.getParameter("oid")));
 		modelCompare.setEnabled(false);
-		loginManager.getService().updateModelCompare(modelCompare);
+		loginManager.getService(request).updateModelCompare(modelCompare);
 	} else if (action.equals("setdefault")) {
-		loginManager.getService().setDefaultModelCompare(Long.parseLong(request.getParameter("oid")));
+		loginManager.getService(request).setDefaultModelCompare(Long.parseLong(request.getParameter("oid")));
 	} else if (action.equals("delete")) {
-		loginManager.getService().deleteModelCompare(Long.parseLong(request.getParameter("oid")));
+		loginManager.getService(request).deleteModelCompare(Long.parseLong(request.getParameter("oid")));
 	}
 	response.sendRedirect("modelcompares.jsp");
 }

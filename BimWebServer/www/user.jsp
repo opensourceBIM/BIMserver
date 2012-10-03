@@ -23,7 +23,7 @@
 <%@ include file="header.jsp" %>
 <%
 	long uoid = Long.parseLong(request.getParameter("uoid"));
-	SUser user = loginManager.getService().getUserByUoid(uoid);
+	SUser user = loginManager.getService(request).getUserByUoid(uoid);
 	boolean allowEdit = (loginManager.getUserType() == SUserType.ADMIN && user.getUserType() != SUserType.SYSTEM) || uoid == loginManager.getUoid();
 %>
 <div class="sidebar">
@@ -44,15 +44,15 @@
 		out.println("<div class=\"success\">" + Message.get(Integer.parseInt(request.getParameter("mid"))) + "</div>");
 	}
 	DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-	List<SRevision> revisions = loginManager.getService().getAllRevisionsByUser(user.getOid());
+	List<SRevision> revisions = loginManager.getService(request).getAllRevisionsByUser(user.getOid());
 	Collections.sort(revisions, new SRevisionDateComparator(false));
-	List<SCheckout> checkouts = loginManager.getService().getAllCheckoutsByUser(user.getOid());
+	List<SCheckout> checkouts = loginManager.getService(request).getAllCheckoutsByUser(user.getOid());
 	Collections.sort(checkouts, new SCheckoutDateComparator(false));
-	List<SProject> projects = loginManager.getService().getUsersProjects(uoid);
-	Collections.sort(projects, new SProjectComparator(loginManager.getService()));
-	List<SProject> nonAuthorizedProjects = loginManager.getService().getAllNonAuthorizedProjectsOfUser(user.getOid());
-	final ServiceInterface service = loginManager.getService();
-	Collections.sort(nonAuthorizedProjects, new SProjectComparator(loginManager.getService()));
+	List<SProject> projects = loginManager.getService(request).getUsersProjects(uoid);
+	Collections.sort(projects, new SProjectComparator(loginManager.getService(request)));
+	List<SProject> nonAuthorizedProjects = loginManager.getService(request).getAllNonAuthorizedProjectsOfUser(user.getOid());
+	final ServiceInterface service = loginManager.getService(request);
+	Collections.sort(nonAuthorizedProjects, new SProjectComparator(loginManager.getService(request)));
 %>
 <h1>User details (<%=user.getName() %>)</h1>
 <div class="tabber" id="usertabber">
@@ -64,11 +64,11 @@
 <tr><td class="first">Last seen</td><td><%=user.getLastSeen() == null ? "never" : dateFormat.format(user.getLastSeen()) %></td></tr>
 <tr><td class="first">State</td><td><%=user.getState().name().toLowerCase() %></td></tr>
 <tr><td class="first">Type</td><td><%=JspHelper.getNiceUserTypeName(user.getUserType()) %></td></tr>
-<% SUser currentUser = loginManager.getService().getUserByUoid(loginManager.getUoid());
+<% SUser currentUser = loginManager.getService(request).getUserByUoid(loginManager.getUoid());
 if (allowEdit) { %>
 <tr><td class="first">Change password</td><td><a href="changepassword.jsp?uoid=<%=uoid%>">Change password</a></td></tr>
 <% }
-	SUser creater = loginManager.getService().getUserByUoid(user.getCreatedById());
+	SUser creater = loginManager.getService(request).getUserByUoid(user.getCreatedById());
 	if (creater != null) {
 %>
 <tr><td class="first">Created by</td><td><a href="user.jsp?uoid=<%=creater.getOid()%>"><%=creater.getUsername() %></a></td></tr>
@@ -92,7 +92,7 @@ if (allowEdit) { %>
 </tr>
 <%
 		for (SRevision revision : revisions) {
-			SProject sProject = loginManager.getService().getProjectByPoid(revision.getProjectId());
+			SProject sProject = loginManager.getService(request).getProjectByPoid(revision.getProjectId());
 %>
 <tr>
 	<td><a href="project.jsp?poid=<%=revision.getProjectId() %>"><%=sProject.getName() %></a></td>
@@ -129,8 +129,8 @@ if (allowEdit) { %>
 </tr>
 <%
 		for (SCheckout checkout : checkouts) {
-			SProject sProject = loginManager.getService().getProjectByPoid(checkout.getProjectId());
-			SRevision sRevision = loginManager.getService().getRevision(checkout.getRevisionId());
+			SProject sProject = loginManager.getService(request).getProjectByPoid(checkout.getProjectId());
+			SRevision sRevision = loginManager.getService(request).getRevision(checkout.getRevisionId());
 %>
 <tr>
 	<td><a href="project.jsp?poid=<%=checkout.getProjectId() %>"><%=sProject.getName() %></a></td>
@@ -159,7 +159,7 @@ if (allowEdit) { %>
 <%
 	for (SProject project : nonAuthorizedProjects) {
 %>
-<option value="<%=project.getOid() %>"><%=JspHelper.completeProjectName(loginManager.getService(), project) %></option>
+<option value="<%=project.getOid() %>"><%=JspHelper.completeProjectName(loginManager.getService(request), project) %></option>
 <%
 	}
 %>
@@ -181,7 +181,7 @@ if (allowEdit) { %>
 		for (SProject project : projects) {
 %>
 <tr<%= project.getState() == SObjectState.DELETED ? " class=\"deleted\"" : "" %>>
-	<td><a href="project.jsp?poid=<%=project.getOid() %>"><%=JspHelper.completeProjectName(loginManager.getService(), project) %></a></td>
+	<td><a href="project.jsp?poid=<%=project.getOid() %>"><%=JspHelper.completeProjectName(loginManager.getService(request), project) %></a></td>
 	<td><% if (loginManager.getUserType() == SUserType.ADMIN && user.getUserType() != SUserType.ADMIN) { %><a href="revokepermission.jsp?type=user&amp;poid=<%=project.getOid() %>&amp;uoid=<%=uoid %>">revoke</a><% } %></td>
 </tr>
 <%

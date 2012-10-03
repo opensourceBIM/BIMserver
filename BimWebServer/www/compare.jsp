@@ -17,11 +17,11 @@
 		long roid1 = Long.parseLong(request.getParameter("roid1"));
 		long roid2 = Long.parseLong(request.getParameter("roid2"));
 		long poid = Long.parseLong(request.getParameter("poid"));
-		SProject project = loginManager.getService().getProjectByPoid(poid);
-		SRevision revision1 = loginManager.getService().getRevision(roid1);
-		SRevision revision2 = loginManager.getService().getRevision(roid2);
+		SProject project = loginManager.getService(request).getProjectByPoid(poid);
+		SRevision revision1 = loginManager.getService(request).getRevision(roid1);
+		SRevision revision2 = loginManager.getService(request).getRevision(roid2);
 		SCompareType sCompareType = SCompareType.valueOf(request.getParameter("type"));
-		SCompareResult compareResult = loginManager.getService().compare(roid1, roid2, sCompareType, Long.parseLong(request.getParameter("mcid")));
+		SCompareResult compareResult = loginManager.getService(request).compare(roid1, roid2, sCompareType, Long.parseLong(request.getParameter("mcid")));
 %>
 <div id="downloadcheckoutpopup"></div>
 Back to 

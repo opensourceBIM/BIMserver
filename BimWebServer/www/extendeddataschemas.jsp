@@ -6,7 +6,7 @@
 <%@ include file="serversettingsmenu.jsp"%>
 <% 
 	if (loginManager.isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
-		ServiceInterface service = loginManager.getService();
+		ServiceInterface service = loginManager.getService(request);
 %>
 <div class="content">
 <h1>Extended Data Schemas</h1>

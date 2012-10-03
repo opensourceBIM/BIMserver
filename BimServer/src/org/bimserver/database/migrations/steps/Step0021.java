@@ -34,9 +34,10 @@ public class Step0021 extends Migration {
 		schema.createEAttribute(serviceDescriptor, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serviceDescriptor, "trigger", trigger, Multiplicity.SINGLE);
 		schema.createEAttribute(serviceDescriptor, "readRevision", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
-		schema.createEAttribute(serviceDescriptor, "readExtendedData", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(serviceDescriptor, "readExtendedData", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serviceDescriptor, "writeRevision", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
-		schema.createEAttribute(serviceDescriptor, "writeExtendedData", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(serviceDescriptor, "writeExtendedData", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(serviceDescriptor, "providerName", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		
 		EClass service = schema.createEClass("store", "Service");
 		schema.createEAttribute(service, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);

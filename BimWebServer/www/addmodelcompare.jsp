@@ -25,13 +25,13 @@
 <h1>Add Model Compare</h1>
 <fieldset>
 <%
-	ServiceInterface service = loginManager.getService();
+	ServiceInterface service = loginManager.getService(request);
 	if (request.getParameter("add") != null) {
 		SModelComparePluginConfiguration modelCompare = new SModelComparePluginConfiguration();
 		modelCompare.setName(request.getParameter("name"));
 		modelCompare.setClassName(request.getParameter("className"));
 		modelCompare.setEnabled(true);
-		loginManager.getService().addModelCompare(modelCompare);
+		loginManager.getService(request).addModelCompare(modelCompare);
 		response.sendRedirect("modelcompares.jsp");
 	}
 %>
@@ -45,7 +45,7 @@
 	<td><label for="className">Class</label></td>
 	<td><select name="className" id="className">
 <%
-	for (SModelComparePluginDescriptor iepd : loginManager.getService().getAllModelComparePluginDescriptors()) {
+	for (SModelComparePluginDescriptor iepd : loginManager.getService(request).getAllModelComparePluginDescriptors()) {
 		out.print("<option value=\"" + iepd.getPluginClassName() + "\">" + iepd.getPluginClassName() + "</option>");
 	}
 %>

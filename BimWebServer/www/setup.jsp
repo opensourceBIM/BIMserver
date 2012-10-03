@@ -4,7 +4,7 @@
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%
-if (loginManager.getService().getServerInfo().getServerState() != SServerState.NOT_SETUP) {
+if (loginManager.getService(request).getServerInfo().getServerState() != SServerState.NOT_SETUP) {
 	response.sendRedirect(request.getContextPath());
 }
 %>
@@ -21,7 +21,7 @@ if (loginManager.getService().getServerInfo().getServerState() != SServerState.N
 	String adminPassword = request.getParameter("adminPassword") != null ? request.getParameter("adminPassword") : "";
 	if (request.getParameter("setup") != null) {
 		try {
-			loginManager.getService().setup(siteAddress, smtpServer, smtpSender, adminName, adminUsername, adminPassword);
+			loginManager.getService(request).setup(siteAddress, smtpServer, smtpSender, adminName, adminUsername, adminPassword);
 			response.sendRedirect("login.jsp?username=" + adminUsername);
 		} catch (ServiceException e) {
 			JspHelper.showException(out, e);

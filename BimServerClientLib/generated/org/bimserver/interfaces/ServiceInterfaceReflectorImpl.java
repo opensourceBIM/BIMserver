@@ -263,7 +263,7 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> getAllPlugins() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllPlugins", java.util.List.class);
 	}
-	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllProjects(boolean onlyTopLevel) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllProjects(Boolean onlyTopLevel) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SProject>) reflector.callMethod("ServiceInterface", "getAllProjects", java.util.List.class, new KeyValuePair("onlyTopLevel", onlyTopLevel));
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor> getAllQueryEnginePluginDescriptors() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
@@ -286,6 +286,9 @@ private Reflector reflector;
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SSerializerPluginConfiguration> getAllSerializers(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SSerializerPluginConfiguration>) reflector.callMethod("ServiceInterface", "getAllSerializers", java.util.List.class, new KeyValuePair("onlyEnabled", onlyEnabled));
+	}
+	public java.util.List<org.bimserver.interfaces.objects.SServiceDescriptor> getAllServiceDescriptors() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.util.List<org.bimserver.interfaces.objects.SServiceDescriptor>) reflector.callMethod("ServiceInterface", "getAllServiceDescriptors", java.util.List.class);
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SServicePluginDescriptor> getAllServicePluginDescriptors() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SServicePluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllServicePluginDescriptors", java.util.List.class);
@@ -370,12 +373,6 @@ private Reflector reflector;
 	}
 	public org.bimserver.interfaces.objects.SExtendedDataSchema getExtendedDataSchemaByNamespace(java.lang.String namespace) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SExtendedDataSchema) reflector.callMethod("ServiceInterface", "getExtendedDataSchemaByNamespace", org.bimserver.interfaces.objects.SExtendedDataSchema.class, new KeyValuePair("namespace", namespace));
-	}
-	public java.util.List<org.bimserver.interfaces.objects.SServerDescriptor> getExternalServers() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.util.List<org.bimserver.interfaces.objects.SServerDescriptor>) reflector.callMethod("ServiceInterface", "getExternalServers", java.util.List.class);
-	}
-	public java.util.List<org.bimserver.interfaces.objects.SServiceDescriptor> getExternalServices(java.lang.String remoteUrl) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.util.List<org.bimserver.interfaces.objects.SServiceDescriptor>) reflector.callMethod("ServiceInterface", "getExternalServices", java.util.List.class, new KeyValuePair("remoteUrl", remoteUrl));
 	}
 	public org.bimserver.interfaces.objects.SGeoTag getGeoTag(java.lang.Long goid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SGeoTag) reflector.callMethod("ServiceInterface", "getGeoTag", org.bimserver.interfaces.objects.SGeoTag.class, new KeyValuePair("goid", goid));
@@ -478,6 +475,9 @@ private Reflector reflector;
 	}
 	public org.bimserver.interfaces.objects.SService getService(java.lang.Long soid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SService) reflector.callMethod("ServiceInterface", "getService", org.bimserver.interfaces.objects.SService.class, new KeyValuePair("soid", soid));
+	}
+	public org.bimserver.interfaces.objects.SServiceDescriptor getServiceDescriptor(java.lang.String url) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SServiceDescriptor) reflector.callMethod("ServiceInterface", "getServiceDescriptor", org.bimserver.interfaces.objects.SServiceDescriptor.class, new KeyValuePair("url", url));
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SServiceInterface> getServiceInterfaces() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SServiceInterface>) reflector.callMethod("ServiceInterface", "getServiceInterfaces", java.util.List.class);

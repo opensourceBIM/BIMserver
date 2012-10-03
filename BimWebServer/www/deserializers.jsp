@@ -5,15 +5,15 @@
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
 	if (action.equals("disable")) {
-		SDeserializerPluginConfiguration deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("oid")));
+		SDeserializerPluginConfiguration deserializer = loginManager.getService(request).getDeserializerById(Long.parseLong(request.getParameter("oid")));
 		deserializer.setEnabled(false);
-		loginManager.getService().updateDeserializer(deserializer);
+		loginManager.getService(request).updateDeserializer(deserializer);
 	} else if (action.equals("enable")) {
-		SDeserializerPluginConfiguration deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("oid")));
+		SDeserializerPluginConfiguration deserializer = loginManager.getService(request).getDeserializerById(Long.parseLong(request.getParameter("oid")));
 		deserializer.setEnabled(true);
-		loginManager.getService().updateDeserializer(deserializer);
+		loginManager.getService(request).updateDeserializer(deserializer);
 	} else if (action.equals("delete")) {
-		loginManager.getService().deleteDeserializer(Long.parseLong(request.getParameter("oid")));
+		loginManager.getService(request).deleteDeserializer(Long.parseLong(request.getParameter("oid")));
 	}
 	response.sendRedirect("deserializers.jsp");
 }

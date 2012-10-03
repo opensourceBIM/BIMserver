@@ -25,13 +25,13 @@
 <h1>Add Service</h1>
 <fieldset>
 <%
-	ServiceInterface service = loginManager.getService();
+	ServiceInterface service = loginManager.getService(request);
 	if (request.getParameter("add") != null) {
 		SInternalServicePluginConfiguration seService = new SInternalServicePluginConfiguration();
 		seService.setName(request.getParameter("name"));
 		seService.setClassName(request.getParameter("className"));
 		seService.setEnabled(true);
-		loginManager.getService().addInternalService(seService);
+		loginManager.getService(request).addInternalService(seService);
 		response.sendRedirect("internalservices.jsp");
 	}
 %>
@@ -45,7 +45,7 @@
 	<td><label for="className">Class</label></td>
 	<td><select name="className" id="className">
 <%
-	for (SServicePluginDescriptor iepd : loginManager.getService().getAllServicePluginDescriptors()) {
+	for (SServicePluginDescriptor iepd : loginManager.getService(request).getAllServicePluginDescriptors()) {
 		out.print("<option value=\"" + iepd.getPluginClassName() + "\">" + iepd.getPluginClassName() + "</option>");
 	}
 %>

@@ -5,17 +5,17 @@
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
 	if (action.equals("enable")) {
-		SQueryEnginePluginConfiguration queryEngine = loginManager.getService().getQueryEngineById(Long.parseLong(request.getParameter("oid")));
+		SQueryEnginePluginConfiguration queryEngine = loginManager.getService(request).getQueryEngineById(Long.parseLong(request.getParameter("oid")));
 		queryEngine.setEnabled(true);
-		loginManager.getService().updateQueryEngine(queryEngine);
+		loginManager.getService(request).updateQueryEngine(queryEngine);
 	} else if (action.equals("disable")) {
-		SQueryEnginePluginConfiguration queryEngine = loginManager.getService().getQueryEngineById(Long.parseLong(request.getParameter("oid")));
+		SQueryEnginePluginConfiguration queryEngine = loginManager.getService(request).getQueryEngineById(Long.parseLong(request.getParameter("oid")));
 		queryEngine.setEnabled(false);
-		loginManager.getService().updateQueryEngine(queryEngine);
+		loginManager.getService(request).updateQueryEngine(queryEngine);
 	} else if (action.equals("setdefault")) {
-		loginManager.getService().setDefaultQueryEngine(Long.parseLong(request.getParameter("oid")));
+		loginManager.getService(request).setDefaultQueryEngine(Long.parseLong(request.getParameter("oid")));
 	} else if (action.equals("delete")) {
-		loginManager.getService().deleteQueryEngine(Long.parseLong(request.getParameter("oid")));
+		loginManager.getService(request).deleteQueryEngine(Long.parseLong(request.getParameter("oid")));
 	}
 	response.sendRedirect("queryengines.jsp");
 }

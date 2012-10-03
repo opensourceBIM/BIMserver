@@ -9,12 +9,12 @@
 		if (action.equals("branchtonewproject")) {
 			String name = request.getParameter("name");
 			String comment = request.getParameter("comment");
-			SCheckinResult checkinResult = loginManager.getService().branchToNewProject(roid, name, comment);
+			SCheckinResult checkinResult = loginManager.getService(request).branchToNewProject(roid, name, comment);
 			response.sendRedirect("project.jsp?poid=" + checkinResult.getProjectId());
 		} else if (action.equals("branchtoexistingproject")) {
 			long destPoid = Long.parseLong(request.getParameter("destpoid"));
 			String comment = request.getParameter("comment");
-			loginManager.getService().branchToExistingProject(roid, destPoid, comment);
+			loginManager.getService(request).branchToExistingProject(roid, destPoid, comment);
 			response.sendRedirect("project.jsp?poid=" + destPoid);
 		}
 	} catch (Exception e) {

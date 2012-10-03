@@ -5,17 +5,17 @@
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
 	if (action.equals("disable")) {
-		SObjectIDMPluginConfiguration objectIDM = loginManager.getService().getObjectIDMById(Long.parseLong(request.getParameter("oid")));
+		SObjectIDMPluginConfiguration objectIDM = loginManager.getService(request).getObjectIDMById(Long.parseLong(request.getParameter("oid")));
 		objectIDM.setEnabled(false);
-		loginManager.getService().updateObjectIDM(objectIDM);
+		loginManager.getService(request).updateObjectIDM(objectIDM);
 	} else if (action.equals("enable")) {
-		SObjectIDMPluginConfiguration objectIDM = loginManager.getService().getObjectIDMById(Long.parseLong(request.getParameter("oid")));
+		SObjectIDMPluginConfiguration objectIDM = loginManager.getService(request).getObjectIDMById(Long.parseLong(request.getParameter("oid")));
 		objectIDM.setEnabled(true);
-		loginManager.getService().updateObjectIDM(objectIDM);
+		loginManager.getService(request).updateObjectIDM(objectIDM);
 	} else if (action.equals("setdefault")) {
-		loginManager.getService().setDefaultObjectIDM(Long.parseLong(request.getParameter("oid")));
+		loginManager.getService(request).setDefaultObjectIDM(Long.parseLong(request.getParameter("oid")));
 	} else if (action.equals("delete")) {
-		loginManager.getService().deleteObjectIDM(Long.parseLong(request.getParameter("oid")));
+		loginManager.getService(request).deleteObjectIDM(Long.parseLong(request.getParameter("oid")));
 	}
 	response.sendRedirect("objectidms.jsp");
 }

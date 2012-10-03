@@ -19,8 +19,8 @@
 	}
 	SRevision revision = null;
 	if (roid != -1) {
-		revision = loginManager.getService().getRevision(roid);
-		Set<String> checkoutWarnings = loginManager.getService().getCheckoutWarnings(revision.getProjectId());
+		revision = loginManager.getService(request).getRevision(roid);
+		Set<String> checkoutWarnings = loginManager.getService(request).getCheckoutWarnings(revision.getProjectId());
 		for (String warning : checkoutWarnings) {
 			out.write("<div class=\"warning\"><img src=\"images/warning.png\" alt=\"warning\" />" + warning + "</div>");
 		}
@@ -32,7 +32,7 @@
 	if (request.getParameter("poid") != null && data.has("poid")) {
 		poid = data.getLong("poid");
 	}
-	boolean userHasCheckinRights = poid == -1 || loginManager.getService().userHasCheckinRights(loginManager.getUoid(), poid);
+	boolean userHasCheckinRights = poid == -1 || loginManager.getService(request).userHasCheckinRights(loginManager.getUoid(), poid);
 %>
 <div class="message"></div>
 <div class="progressbar"></div>
@@ -41,10 +41,10 @@
 <tr><td><label for="serializerOid">Serializer</label></td>
 <td><select name="serializerOid" class="revisionsdownloadcheckoutselect">
 <%
-	for (SSerializerPluginConfiguration serializer : loginManager.getService().getAllSerializers(true)) {
+	for (SSerializerPluginConfiguration serializer : loginManager.getService(request).getAllSerializers(true)) {
 	%>
 	<option value="<%=serializer.getOid()%>"
-		<%=loginManager.getService().getDefaultSerializer() != null && loginManager.getService().getDefaultSerializer().getOid() == serializer.getOid() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
+		<%=loginManager.getService(request).getDefaultSerializer() != null && loginManager.getService(request).getDefaultSerializer().getOid() == serializer.getOid() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>
 	<%
 	}
 	%>

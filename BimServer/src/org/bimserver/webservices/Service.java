@@ -99,7 +99,6 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
-import org.bimserver.interfaces.objects.SServerDescriptor;
 import org.bimserver.interfaces.objects.SServerInfo;
 import org.bimserver.interfaces.objects.SServiceDescriptor;
 import org.bimserver.interfaces.objects.SServiceField;
@@ -410,7 +409,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SProject> getAllProjects(boolean onlyTopLevel) throws ServerException, UserException {
+	public List<SProject> getAllProjects(Boolean onlyTopLevel) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -3314,34 +3313,37 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SServerDescriptor> getExternalServers() throws ServerException, UserException {
+	public SServiceDescriptor getServiceDescriptor(String url) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			List<SServerDescriptor> externalServers = new ArrayList<SServerDescriptor>();
-			String url = getServiceRepositoryUrl();
-			String content = NetUtils.getContent(new URL(url), 5000);
-			JSONObject root = new JSONObject(new JSONTokener(content));
-			JSONArray services = root.getJSONArray("servers");
-			for (int i = 0; i < services.length(); i++) {
-				JSONObject service = services.getJSONObject(i);
-				SServerDescriptor externalServer = new SServerDescriptor();
-				externalServer.setTitle(service.getString("title"));
-				externalServer.setDescription(service.getString("description"));
-				externalServer.setUrl(service.getString("url"));
-				externalServers.add(externalServer);
-			}
-			return externalServers;
+			String content = NetUtils.getContent(new URL(url + "?doc"), 5000);
+			JSONObject service = new JSONObject(new JSONTokener(content));
+			SServiceDescriptor sServiceDescriptor = new SServiceDescriptor();
+			sServiceDescriptor.setName(service.getString("name"));
+			sServiceDescriptor.setDescription(service.getString("description"));
+			sServiceDescriptor.setNotificationProtocol(SAccessMethod.valueOf(service.getString("notificationProtocol")));
+			sServiceDescriptor.setTrigger(STrigger.valueOf(service.getString("trigger")));
+			sServiceDescriptor.setUrl(service.getString("url"));
+			sServiceDescriptor.setProviderName(service.getString("providerName"));
+
+			JSONObject rights = service.getJSONObject("rights");
+
+			sServiceDescriptor.setReadRevision(rights.getBoolean("readRevision"));
+			sServiceDescriptor.setReadExtendedData(rights.getString("readExtendedData"));
+			sServiceDescriptor.setWriteRevision(rights.getBoolean("writeRevision"));
+			sServiceDescriptor.setWriteExtendedData(rights.getString("writeExtendedData"));
+			return sServiceDescriptor;
 		} catch (Exception e) {
 			return handleException(e);
 		}
 	}
 
 	@Override
-	public List<SServiceDescriptor> getExternalServices(String url) throws ServerException, UserException {
+	public List<SServiceDescriptor> getAllServiceDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
 			List<SServiceDescriptor> sServiceDescriptors = new ArrayList<SServiceDescriptor>();
-			String content = NetUtils.getContent(new URL(url), 5000);
+			String content = NetUtils.getContent(new URL(getServiceRepositoryUrl()), 5000);
 			JSONObject root = new JSONObject(new JSONTokener(content));
 			JSONArray services = root.getJSONArray("services");
 			for (int i = 0; i < services.length(); i++) {
@@ -3352,13 +3354,14 @@ public class Service implements ServiceInterface {
 				sServiceDescriptor.setNotificationProtocol(SAccessMethod.valueOf(service.getString("notificationProtocol")));
 				sServiceDescriptor.setTrigger(STrigger.valueOf(service.getString("trigger")));
 				sServiceDescriptor.setUrl(service.getString("url"));
+				sServiceDescriptor.setProviderName(service.getString("providerName"));
 
 				JSONObject rights = service.getJSONObject("rights");
 
-				sServiceDescriptor.setReadRevision(rights.getBoolean("readRevision"));
-				sServiceDescriptor.setReadExtendedData(rights.getBoolean("readExtendedData"));
-				sServiceDescriptor.setWriteRevision(rights.getBoolean("writeRevision"));
-				sServiceDescriptor.setWriteExtendedData(rights.getBoolean("writeExtendedData"));
+				sServiceDescriptor.setReadRevision(rights.has("readRevision") && rights.getBoolean("readRevision"));
+				sServiceDescriptor.setReadExtendedData(rights.has("readExtendedData") ? rights.getString("readExtendedData") : null);
+				sServiceDescriptor.setWriteRevision(rights.has("writeRevision") && rights.getBoolean("writeRevision"));
+				sServiceDescriptor.setWriteExtendedData(rights.has("writeExtendedData") ? rights.getString("writeExtendedData") : null);
 				sServiceDescriptors.add(sServiceDescriptor);
 			}
 			return sServiceDescriptors;

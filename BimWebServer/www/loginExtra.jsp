@@ -5,11 +5,11 @@
 <%@page import="java.util.Date"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%
-	SVersion version = loginManager.getService().getVersion();
+	SVersion version = loginManager.getService(request).getVersion();
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 	Date lastReset = null;
 	try {
-		lastReset = loginManager.getService().getLastDatabaseReset();
+		lastReset = loginManager.getService(request).getLastDatabaseReset();
 	} catch (ServiceException e) {
 		// Ignore		
 	}

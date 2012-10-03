@@ -43,10 +43,10 @@
 <%
 	if (loginManager.isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-		SDatabaseInformation databaseInformation = loginManager.getService().getDatabaseInformation();
-		SVersion version = loginManager.getService().getVersion();
-		SVersion latestVersion = loginManager.getService().getLatestVersion();
-		if (loginManager.getService().isSettingShowVersionUpgradeAvailable() && loginManager.getService().upgradePossible()) {
+		SDatabaseInformation databaseInformation = loginManager.getService(request).getDatabaseInformation();
+		SVersion version = loginManager.getService(request).getVersion();
+		SVersion latestVersion = loginManager.getService(request).getLatestVersion();
+		if (loginManager.getService(request).isSettingShowVersionUpgradeAvailable() && loginManager.getService(request).upgradePossible()) {
 %>
 <div class="error">
 A newer version of the BIMserver is available online.<br/>
@@ -158,7 +158,7 @@ E-mail <a href="mailto:<%= latestVersion.getSupportEmail() %>"><%= latestVersion
 			<tr><td colspan="2" class="tabletitle">Version</td></tr>
 			<tr><td class="firstcolumn">Local Version</td><td><%=version.getMajor() + "." + version.getMinor() + "." + version.getRevision() %></td></tr>
 			<tr><td class="firstcolumn">Build date/time</td><td><%=dateFormat.format(version.getDate()) %></td></tr>
-			<tr><td class="firstcolumn">Schema Version</td><td><%=loginManager.getService().getDatabaseInformation().getSchemaVersion() %></td></tr>
+			<tr><td class="firstcolumn">Schema Version</td><td><%=loginManager.getService(request).getDatabaseInformation().getSchemaVersion() %></td></tr>
 			<tr><td colspan="2" class="tabletitle">Latest available version</td></tr>
 			<tr><td class="firstcolumn">Latest Version</td><td><%=latestVersion.getMajor() + "." + latestVersion.getMinor() + "." + latestVersion.getRevision() %></td></tr>
 			<tr><td class="firstcolumn">Build date/time</td><td><%=dateFormat.format(latestVersion.getDate()) %></td></tr>
@@ -172,10 +172,10 @@ E-mail <a href="mailto:<%= latestVersion.getSupportEmail() %>"><%= latestVersion
 			<a href="https://docs.google.com/spreadsheet/embeddedform?formkey=dG5DYUNyVnA0Mk5DWnN0eHFueDlMR2c6MQ" target="_blank">
 			Click here to register</a>.</td></tr>
 			<tr><td>Server log</td><td><a href="<%=getServletContext().getContextPath()%>/files?file=serverlog">Download server Logfile</a></td></tr>
-			<tr><td class="firstcolumn">Server started at</td><td><%=dateFormat.format(loginManager.getService().getServerStartTime()) %></td></tr>
+			<tr><td class="firstcolumn">Server started at</td><td><%=dateFormat.format(loginManager.getService(request).getServerStartTime()) %></td></tr>
 			<%
 				GregorianCalendar gc = new GregorianCalendar();
-				gc.setTime(loginManager.getService().getServerStartTime());
+				gc.setTime(loginManager.getService(request).getServerStartTime());
 			%>
 			<tr><td class="firstcolumn">Uptime</td><td><%=Formatters.timeSpanToString(gc, new GregorianCalendar()) %></td></tr>
 		</table>
@@ -220,7 +220,7 @@ E-mail <a href="mailto:<%= latestVersion.getSupportEmail() %>"><%= latestVersion
 				<th>Last active</th>
 			</tr>
 <%
-	List<SUserSession> userSessions = loginManager.getService().getActiveUserSessions();
+	List<SUserSession> userSessions = loginManager.getService(request).getActiveUserSessions();
 	for (SUserSession userSession : userSessions) {
 %>
 	<tr>
@@ -247,7 +247,7 @@ E-mail <a href="mailto:<%= latestVersion.getSupportEmail() %>"><%= latestVersion
 				<th>Running</th>
 			</tr>
 <%
-	List<SLongAction> longActions = loginManager.getService().getActiveLongActions();
+	List<SLongAction> longActions = loginManager.getService(request).getActiveLongActions();
 	for (SLongAction longAction : longActions) {
 		long millis = System.currentTimeMillis() - longAction.getStart().getTime();		
 %>

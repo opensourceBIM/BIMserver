@@ -34,9 +34,10 @@ public class SServiceDescriptor implements SBase
 	private java.lang.String description;
 	private STrigger trigger;
 	private boolean readRevision;
-	private boolean readExtendedData;
+	private java.lang.String readExtendedData;
 	private boolean writeRevision;
-	private boolean writeExtendedData;
+	private java.lang.String writeExtendedData;
+	private java.lang.String providerName;
 	
 	@XmlTransient
 	public SClass getSClass() {
@@ -70,13 +71,16 @@ public class SServiceDescriptor implements SBase
 			return isReadRevision();
 		}
 		if (sField.getName().equals("readExtendedData")) {
-			return isReadExtendedData();
+			return getReadExtendedData();
 		}
 		if (sField.getName().equals("writeRevision")) {
 			return isWriteRevision();
 		}
 		if (sField.getName().equals("writeExtendedData")) {
-			return isWriteExtendedData();
+			return getWriteExtendedData();
+		}
+		if (sField.getName().equals("providerName")) {
+			return getProviderName();
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
@@ -111,7 +115,7 @@ public class SServiceDescriptor implements SBase
 			return;
 		}
 		if (sField.getName().equals("readExtendedData")) {
-			setReadExtendedData((Boolean)val);
+			setReadExtendedData((String)val);
 			return;
 		}
 		if (sField.getName().equals("writeRevision")) {
@@ -119,7 +123,11 @@ public class SServiceDescriptor implements SBase
 			return;
 		}
 		if (sField.getName().equals("writeExtendedData")) {
-			setWriteExtendedData((Boolean)val);
+			setWriteExtendedData((String)val);
+			return;
+		}
+		if (sField.getName().equals("providerName")) {
+			setProviderName((String)val);
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
@@ -181,11 +189,11 @@ public class SServiceDescriptor implements SBase
 		this.readRevision = readRevision;
 	}
 	
-	public boolean isReadExtendedData() {
+	public java.lang.String getReadExtendedData() {
 		return readExtendedData;
 	}
 
-	public void setReadExtendedData(boolean readExtendedData) {
+	public void setReadExtendedData(java.lang.String readExtendedData) {
 		this.readExtendedData = readExtendedData;
 	}
 	
@@ -197,12 +205,20 @@ public class SServiceDescriptor implements SBase
 		this.writeRevision = writeRevision;
 	}
 	
-	public boolean isWriteExtendedData() {
+	public java.lang.String getWriteExtendedData() {
 		return writeExtendedData;
 	}
 
-	public void setWriteExtendedData(boolean writeExtendedData) {
+	public void setWriteExtendedData(java.lang.String writeExtendedData) {
 		this.writeExtendedData = writeExtendedData;
+	}
+	
+	public java.lang.String getProviderName() {
+		return providerName;
+	}
+
+	public void setProviderName(java.lang.String providerName) {
+		this.providerName = providerName;
 	}
 	
 }

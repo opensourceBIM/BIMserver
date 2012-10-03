@@ -23,13 +23,13 @@
 <h1>Add ObjectIDM</h1>
 <fieldset>
 <%
-	ServiceInterface service = loginManager.getService();
+	ServiceInterface service = loginManager.getService(request);
 	if (request.getParameter("add") != null) {
 		SObjectIDMPluginConfiguration objectIDM = new SObjectIDMPluginConfiguration();
 		objectIDM.setName(request.getParameter("name"));
 		objectIDM.setClassName(request.getParameter("className"));
 		objectIDM.setEnabled(true);
-		loginManager.getService().addObjectIDM(objectIDM);
+		loginManager.getService(request).addObjectIDM(objectIDM);
 		response.sendRedirect("objectidms.jsp");
 	}
 %>
@@ -43,7 +43,7 @@
 	<td><label for="className">Class</label></td>
 	<td><select name="className" id="className">
 <%
-	for (SObjectIDMPluginDescriptor gppd : loginManager.getService().getAllObjectIDMPluginDescriptors()) {
+	for (SObjectIDMPluginDescriptor gppd : loginManager.getService(request).getAllObjectIDMPluginDescriptors()) {
 		out.print("<option value=\"" + gppd.getClassName() + "\">" + gppd.getClassName() + "</option>");
 	}
 %>

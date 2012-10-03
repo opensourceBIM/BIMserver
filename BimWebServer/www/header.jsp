@@ -14,16 +14,16 @@
 <jsp:include page="htmlheader.jsp" />
 <body class="default">
 <%
-	SServerInfo serverInfo = loginManager.getService().getServerInfo();
+	SServerInfo serverInfo = loginManager.getService(request).getServerInfo();
 	if (serverInfo.getServerState() == SServerState.RUNNING) {
 %>
 <div class="sitewrapper">
 <div class="header"><a href="main.jsp"> <%
-	SVersion version = loginManager.getService().getVersion();
+	SVersion version = loginManager.getService(request).getVersion();
  %> <img class="headerimage"
-	src="<%=loginManager.getService().getSettingCustomLogoAddress() != null ? loginManager.getService().getSettingCustomLogoAddress() : "images/logo.gif"%>" alt="BIMserver" title="BIMserver <%=version.getMajor() + "." + version.getMinor() + "." + version.getRevision()%>" /></a> <%
+	src="<%=loginManager.getService(request).getSettingCustomLogoAddress() != null ? loginManager.getService(request).getSettingCustomLogoAddress() : "images/logo.gif"%>" alt="BIMserver" title="BIMserver <%=version.getMajor() + "." + version.getMinor() + "." + version.getRevision()%>" /></a> <%
  	if (loginManager.isLoggedIn()) {
- 		SUser loggedInUser = loginManager.getService().getLoggedInUser();
+ 		SUser loggedInUser = loginManager.getService(request).getLoggedInUser();
  %>
 <div class="menubar">
 You are logged in as: <a href="user.jsp?uoid=<%=loggedInUser.getOid()%>"><%=loggedInUser.getName()%></a> - <a href="logout.jsp">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;<br/>
@@ -43,7 +43,7 @@ You are logged in as: <a href="user.jsp?uoid=<%=loggedInUser.getOid()%>"><%=logg
  					if (loginManager.login(auth, request.getRemoteAddr(), request)) {
  %>
 <div class="menubar">
-You are logged in as: <a href="user.jsp?uoid=<%=loginManager.getService().getLoggedInUser().getOid()%>"><%=loginManager.getService().getLoggedInUser().getName()%></a> - <a href="logout.jsp">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+You are logged in as: <a href="user.jsp?uoid=<%=loginManager.getService(request).getLoggedInUser().getOid()%>"><%=loginManager.getService(request).getLoggedInUser().getName()%></a> - <a href="logout.jsp">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;<br/>
 <br/>
 <jsp:include page="mainmenu.jsp" />
 </div>
@@ -81,4 +81,4 @@ You are logged in as: <a href="user.jsp?uoid=<%=loginManager.getService().getLog
 %>
 </div>
 <div class="main">
-<%=loginManager.getService().getSettingHeaderAddition() %>
+<%=loginManager.getService(request).getSettingHeaderAddition() %>

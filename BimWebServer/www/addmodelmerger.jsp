@@ -24,13 +24,13 @@
 <h1>Add Model Merger</h1>
 <fieldset>
 <%
-	ServiceInterface service = loginManager.getService();
+	ServiceInterface service = loginManager.getService(request);
 	if (request.getParameter("add") != null) {
 		SModelMergerPluginConfiguration modelMerger = new SModelMergerPluginConfiguration();
 		modelMerger.setName(request.getParameter("name"));
 		modelMerger.setClassName(request.getParameter("className"));
 		modelMerger.setEnabled(true);
-		loginManager.getService().addModelMerger(modelMerger);
+		loginManager.getService(request).addModelMerger(modelMerger);
 		response.sendRedirect("modelmergers.jsp");
 	}
 %>
@@ -44,7 +44,7 @@
 	<td><label for="className">Class</label></td>
 	<td><select name="className" id="className">
 <%
-	for (SModelMergerPluginDescriptor iepd : loginManager.getService().getAllModelMergerPluginDescriptors()) {
+	for (SModelMergerPluginDescriptor iepd : loginManager.getService(request).getAllModelMergerPluginDescriptors()) {
 		out.print("<option value=\"" + iepd.getPluginClassName() + "\">" + iepd.getPluginClassName() + "</option>");
 	}
 %>

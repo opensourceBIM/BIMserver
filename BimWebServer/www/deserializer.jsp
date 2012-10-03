@@ -25,17 +25,17 @@
 	long id = Long.parseLong(request.getParameter("id"));
 	String description = "";
 	String name = request.getParameter("name");
-	ServiceInterface service = loginManager.getService();
+	ServiceInterface service = loginManager.getService(request);
 	
 	if (request.getParameter("update") != null) {
-		SDeserializerPluginConfiguration deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("id")));
+		SDeserializerPluginConfiguration deserializer = loginManager.getService(request).getDeserializerById(Long.parseLong(request.getParameter("id")));
 		description = request.getParameter("description");
 		deserializer.setName(name);
 		deserializer.setDescription(description);
-		loginManager.getService().updateDeserializer(deserializer);
+		loginManager.getService(request).updateDeserializer(deserializer);
 		response.sendRedirect("deserializers.jsp");
 	} else {
-		SDeserializerPluginConfiguration deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("id")));
+		SDeserializerPluginConfiguration deserializer = loginManager.getService(request).getDeserializerById(Long.parseLong(request.getParameter("id")));
 		description = deserializer.getDescription();
 		name = deserializer.getName();
 	}

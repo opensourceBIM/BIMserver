@@ -31,9 +31,9 @@
 	String name = "";
 	long objectIDMId = -1;
 	long ifcEngineId = -1;
-	ServiceInterface service = loginManager.getService();
+	ServiceInterface service = loginManager.getService(request);
 	if (request.getParameter("update") != null) {
-		SSerializerPluginConfiguration serializer = loginManager.getService().getSerializerById(id);
+		SSerializerPluginConfiguration serializer = loginManager.getService(request).getSerializerById(id);
 		name = request.getParameter("name");
 		type = request.getParameter("type");
 		contentType = request.getParameter("contentType");
@@ -48,10 +48,10 @@
 		serializer.setName(request.getParameter("name"));
 		serializer.setObjectIDMId(objectIDMId);
 		serializer.setIfcEngineId(ifcEngineId);
-		loginManager.getService().updateSerializer(serializer);
+		loginManager.getService(request).updateSerializer(serializer);
 		response.sendRedirect("serializers.jsp");
 	} else {
-		SSerializerPluginConfiguration serializer = loginManager.getService().getSerializerById(id);
+		SSerializerPluginConfiguration serializer = loginManager.getService(request).getSerializerById(id);
 		name = serializer.getName();
 		extension = serializer.getExtension();
 		contentType = serializer.getContentType();

@@ -13,13 +13,13 @@
 			String action = request.getParameter("action");
 			if (action.equals("enable")) {
 				String pluginName = request.getParameter("plugin");
-				loginManager.getService().enablePlugin(pluginName);
+				loginManager.getService(request).enablePlugin(pluginName);
 			} else if (action.equals("disable")) {
 				String pluginName = request.getParameter("plugin");
-				loginManager.getService().disablePlugin(pluginName);
+				loginManager.getService(request).disablePlugin(pluginName);
 			}
 		}
-		List<SPluginDescriptor> plugins = loginManager.getService().getAllPlugins();
+		List<SPluginDescriptor> plugins = loginManager.getService(request).getAllPlugins();
 %>
 <table class="formatted">
 <tr><th>Name</th><th>Description</th><th>Location</th><th>State</th><th>Actions</th></tr>

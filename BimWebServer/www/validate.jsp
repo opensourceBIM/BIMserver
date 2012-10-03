@@ -12,7 +12,7 @@
 	long uoid = Long.parseLong(request.getParameter("uoid"));
 	if (request.getParameter("password") != null) {
 		try {
-			SUser sUser = loginManager.getService().validateAccount(uoid, request.getParameter("token"), request.getParameter("password"));
+			SUser sUser = loginManager.getService(request).validateAccount(uoid, request.getParameter("token"), request.getParameter("password"));
 			out.println("<div class=\"success\">Account successfully validated, you can now <a href=\"/?username=" + sUser.getUsername() + "\">login</a></div>");
 			showForm = false;
 		} catch (ServiceException e) {

@@ -40,9 +40,10 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getTrigger <em>Trigger</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#isReadRevision <em>Read Revision</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#isReadExtendedData <em>Read Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getReadExtendedData <em>Read Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#isWriteRevision <em>Write Revision</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#isWriteExtendedData <em>Write Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getWriteExtendedData <em>Write Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getProviderName <em>Provider Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -209,8 +210,8 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isReadExtendedData() {
-		return (Boolean) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__READ_EXTENDED_DATA, true);
+	public String getReadExtendedData() {
+		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__READ_EXTENDED_DATA, true);
 	}
 
 	/**
@@ -218,7 +219,7 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReadExtendedData(boolean newReadExtendedData) {
+	public void setReadExtendedData(String newReadExtendedData) {
 		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__READ_EXTENDED_DATA, newReadExtendedData);
 	}
 
@@ -245,8 +246,8 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isWriteExtendedData() {
-		return (Boolean) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__WRITE_EXTENDED_DATA, true);
+	public String getWriteExtendedData() {
+		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__WRITE_EXTENDED_DATA, true);
 	}
 
 	/**
@@ -254,8 +255,26 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWriteExtendedData(boolean newWriteExtendedData) {
+	public void setWriteExtendedData(String newWriteExtendedData) {
 		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__WRITE_EXTENDED_DATA, newWriteExtendedData);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getProviderName() {
+		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__PROVIDER_NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProviderName(String newProviderName) {
+		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__PROVIDER_NAME, newProviderName);
 	}
 
 } //ServiceDescriptorImpl

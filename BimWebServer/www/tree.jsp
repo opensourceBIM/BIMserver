@@ -21,7 +21,7 @@ $(function(){
 </script>
 Project <select id="projectSelect">
 <%
-	for (SProject project : loginManager.getService().getAllProjects(true)) {
+	for (SProject project : loginManager.getService(request).getAllProjects(true)) {
 %><option><%=project.getName() %></option><%
 	}
 %>
@@ -34,7 +34,7 @@ Project <select id="projectSelect">
 <div class="root"><a href="#" class="showContent"><%=type %></a>
 <div class="content" style="display: none">  
 <%
-		List<SDataObject> objects = loginManager.getService().getDataObjectsByType(roid, type);
+		List<SDataObject> objects = loginManager.getService(request).getDataObjectsByType(roid, type);
 		if (objects.size() > 0) {
 			for (SDataObject object : objects) {
 				%>

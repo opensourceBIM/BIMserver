@@ -49,22 +49,22 @@
 						}
 					}
 				}
-				loginManager.getService().addExtendedDataToRevision(roid, extendedData);
+				loginManager.getService(request).addExtendedDataToRevision(roid, extendedData);
 				response.sendRedirect("revision.jsp?roid=" + roid);
 			}
 			
 	DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-	SRevision revision = loginManager.getService().getRevision(roid);
+	SRevision revision = loginManager.getService(request).getRevision(roid);
 	boolean isTagged = revision.getTag() != null;
-	SProject project = loginManager.getService().getProjectByPoid(revision.getProjectId());
-	SUser user = loginManager.getService().getUserByUoid(revision.getUserId());
-	List<SCheckout> checkouts = loginManager.getService().getAllCheckoutsOfRevision(roid);
+	SProject project = loginManager.getService(request).getProjectByPoid(revision.getProjectId());
+	SUser user = loginManager.getService(request).getUserByUoid(revision.getUserId());
+	List<SCheckout> checkouts = loginManager.getService(request).getAllCheckoutsOfRevision(roid);
 	Collections.sort(checkouts, new SCheckoutDateComparator(false));
-	List<String> classes = loginManager.getService().getAvailableClasses();
+	List<String> classes = loginManager.getService(request).getAvailableClasses();
 	Collections.sort(classes);
-	boolean isAdmin = loginManager.getService().getCurrentUser().getUserType() == SUserType.ADMIN;
+	boolean isAdmin = loginManager.getService(request).getCurrentUser().getUserType() == SUserType.ADMIN;
 	boolean isTopProject = project.getParentId() == -1L;
-	boolean kmzEnabled = loginManager.getService().hasActiveSerializer("application/vnd.google-earth.kmz");
+	boolean kmzEnabled = loginManager.getService(request).hasActiveSerializer("application/vnd.google-earth.kmz");
 %>
 <div class="sidebar">
 <ul>
@@ -79,7 +79,7 @@
 <div id="guide">
   <div id="guidewrap">
     <ol id="breadcrumb">
-	  <li><%=JspHelper.generateBreadCrumbPath(revision, loginManager.getService())%></li>
+	  <li><%=JspHelper.generateBreadCrumbPath(revision, loginManager.getService(request))%></li>
     </ol>
   </div>
 </div>
@@ -201,7 +201,7 @@
 	</tr>
 	<%
 		for (SCheckout checkout : checkouts) {
-			SUser checkoutUser = loginManager.getService().getUserByUoid(checkout.getUserId());
+			SUser checkoutUser = loginManager.getService(request).getUserByUoid(checkout.getUserId());
 	%>
 	<tr>
 		<td><a href="user.jsp?id=<%=checkout.getUserId()%>"><%=checkoutUser.getUsername()%></a></td>
@@ -226,7 +226,7 @@
 	<td><label for="type"></label></td>
 	<td><select>
 <%
-	for (SExtendedDataSchema extendedDataSchema : loginManager.getService().getAllExtendedDataSchemas()) {
+	for (SExtendedDataSchema extendedDataSchema : loginManager.getService(request).getAllExtendedDataSchemas()) {
 		out.println("<option value=\"" + extendedDataSchema.getOid() + "\">" + extendedDataSchema.getName() + "</option>");
 	}
 %>
@@ -260,8 +260,8 @@
 <tr><th>Title</th><th>URL/Data</th><th>Namespace</th><th>Date</th></tr>
 <%
 	for (long edoid : revision.getExtendedData()) {
-		SExtendedData sExtendedData = loginManager.getService().getExtendedData(edoid);
-		SExtendedDataSchema sExtendedDataSchema = loginManager.getService().getExtendedDataSchemaById(sExtendedData.getSchemaId());
+		SExtendedData sExtendedData = loginManager.getService(request).getExtendedData(edoid);
+		SExtendedDataSchema sExtendedDataSchema = loginManager.getService(request).getExtendedDataSchemaById(sExtendedData.getSchemaId());
 		out.println("<tr>");
 		out.println("<td><a href=\"getextendeddata.jsp?edid=" + sExtendedData.getOid() + "\">" + sExtendedData.getTitle() + "</a></td>");
 		if (sExtendedData.getData() != null && sExtendedData.getData().length > 0) {

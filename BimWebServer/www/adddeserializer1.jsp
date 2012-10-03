@@ -21,7 +21,7 @@
 <h1>Add deserializer (1)</h1>
 <fieldset>
 <%
-	ServiceInterface service = loginManager.getService();
+	ServiceInterface service = loginManager.getService(request);
 	if (request.getParameter("next") != null) {
 		response.sendRedirect("adddeserializer2.jsp?type=" + request.getParameter("type"));
 	}

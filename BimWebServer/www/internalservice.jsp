@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.interfaces.objects.SServicePluginDescriptor"%>
 <%@page import="org.bimserver.interfaces.objects.SInternalServicePluginConfiguration"%>
 <%@page import="org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor"%>
 <%@page import="org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor"%>
@@ -29,13 +30,13 @@
 	String className = request.getParameter("className");
 	long id = Long.parseLong(request.getParameter("id"));
 	if (request.getParameter("update") != null) {
-		SInternalServicePluginConfiguration seService = loginManager.getService().getInternalServiceById(id);
+		SInternalServicePluginConfiguration seService = loginManager.getService(request).getInternalServiceById(id);
 		seService.setName(name);
 		seService.setClassName(className);
-		loginManager.getService().updateInternalService(seService);
+		loginManager.getService(request).updateInternalService(seService);
 		response.sendRedirect("internalservices.jsp");
 	} else {
-		SInternalServicePluginConfiguration seService = loginManager.getService().getInternalServiceById(id);
+		SInternalServicePluginConfiguration seService = loginManager.getService(request).getInternalServiceById(id);
 		if (name == null) {
 			name = seService.getName();
 		}
@@ -50,6 +51,19 @@
 <tr>
 	<td><label for="name">Name</label></td>
 	<td><input name="name" id="name" value="<%=name%>"></input></td>
+</tr>
+<tr>
+	<td><label for="className">Classname</label></td>
+	<td><select name="className" id="className">
+		<option value="[none]">[None]</option>
+<%
+	for (SServicePluginDescriptor iepd : loginManager.getService(request).getAllServicePluginDescriptors()) {
+%>
+	<option value="<%=iepd.getPluginClassName()%>"<%=(iepd.getPluginClassName().equals(className) ? " selected=\"selected\"" : "") %>><%=iepd.getPluginClassName()%></option>
+<%
+	}
+%>
+	</select></td>
 </tr>
 <tr>
 	<td></td>
