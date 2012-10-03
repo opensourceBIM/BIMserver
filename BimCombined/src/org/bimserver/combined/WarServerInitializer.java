@@ -36,6 +36,7 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimwebserver.BimWebServer;
 import org.bimwebserver.jsp.LoginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,7 +69,9 @@ public class WarServerInitializer implements ServletContextListener {
 		config.setStartEmbeddedWebServer(false);
 		bimServer = new BimServer(config);
 		
-	 	LoginManager.bimServerClientFactory = new BimServerClientFactory() {
+	 	BimWebServer bimWebServer = new BimWebServer(bimServer.getServiceInterfaces());
+	 	
+	 	bimWebServer.setBimServerClientFactory(new BimServerClientFactory() {
 			@Override
 			public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
 				BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager());
@@ -76,7 +79,9 @@ public class WarServerInitializer implements ServletContextListener {
 				bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE, remoteAddress));
 				return bimServerClient;
 			}
-		};
+		});
+	 	
+//		embeddedWebServer.getContext().getServletContext().setAttribute("bimwebserver", bimWebServer);
 		
 		File file = resourceFetcher.getFile("plugins");
 		try {

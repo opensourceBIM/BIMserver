@@ -22,18 +22,21 @@ import javax.servlet.http.HttpServletRequest;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
 import org.bimserver.client.factories.AuthenticationInfo;
-import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimwebserver.BimWebServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class LoginManager {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginManager.class);
-	public static BimServerClientFactory bimServerClientFactory;
 	private BimServerClient bimServerClient;
 	private boolean loggedIn;
+
+	public long getUoid(HttpServletRequest request) throws ServiceException {
+		return getService(request).getCurrentUser().getOid();
+	}
 
 	public long getUoid() throws ServiceException {
 		return getService().getCurrentUser().getOid();
@@ -44,7 +47,8 @@ public class LoginManager {
 			if (bimServerClient != null) {
 				bimServerClient.disconnect();
 			}
-			bimServerClient = bimServerClientFactory.create(authenticationInfo, remoteAddress);
+			BimWebServer bimWebServer = (BimWebServer)request.getServletContext().getAttribute("bimwebserver");
+			bimServerClient = bimWebServer.getBimServerClientFactory().create(authenticationInfo, remoteAddress);
 			loggedIn = bimServerClient.isConnected();
 			request.getSession().setAttribute("token", bimServerClient.getServiceInterface().getCurrentToken());
 		} catch (ServiceException e) {
@@ -67,11 +71,16 @@ public class LoginManager {
 	public boolean isLoggedIn() {
 		return loggedIn;
 	}
-	
+
 	public ServiceInterface getService() {
+		return bimServerClient.getServiceInterface();
+	}
+	
+	public ServiceInterface getService(HttpServletRequest request) {
 		if (bimServerClient == null) {
 			try {
-				bimServerClient = bimServerClientFactory.create(null, "unknown");
+				BimWebServer bimWebServer = (BimWebServer)request.getServletContext().getAttribute("bimwebserver");
+				bimServerClient = bimWebServer.getBimServerClientFactory().create(null, "unknown");
 			} catch (ServiceException e) {
 				LOGGER.error("", e);
 			} catch (ConnectionException e) {
@@ -83,5 +92,9 @@ public class LoginManager {
 
 	public SUserType getUserType() throws ServiceException {
 		return getService().getCurrentUser().getUserType();
+	}
+
+	public SUserType getUserType(HttpServletRequest request) throws ServiceException {
+		return getService(request).getCurrentUser().getUserType();
 	}
 }

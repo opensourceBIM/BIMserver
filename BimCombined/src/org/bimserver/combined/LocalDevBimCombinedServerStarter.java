@@ -44,15 +44,13 @@ import org.bimserver.servlets.UploadServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimwebserver.BimWebServer;
-import org.bimwebserver.jsp.LocalDevBimWebServerStarter;
-import org.bimwebserver.jsp.LoginManager;
 import org.bimwebserver.servlets.ProgressServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class LocalDevBimCombinedServerStarter {
 	private org.eclipse.jetty.server.Server server;
-	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevBimWebServerStarter.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevBimCombinedServerStarter.class);
 	private BimServer bimServer;
 
 	public static void main(String[] args) {
@@ -88,9 +86,22 @@ public class LocalDevBimCombinedServerStarter {
 		 	embeddedWebServer.getContext().addServlet(JsonApiServlet.class, "/json/*");
 		 	embeddedWebServer.getContext().addServlet(StreamingServlet.class, "/stream/*");
 		 	embeddedWebServer.getContext().setResourceBase("../BimWebServer/www");
+
 		 	BimWebServer bimWebServer = new BimWebServer(bimServer.getServiceInterfaces());
+		 	
+		 	bimWebServer.setBimServerClientFactory(new BimServerClientFactory() {
+				@Override
+				public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
+					BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager());
+					bimServerClient.setAuthentication(authenticationInfo);
+					bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE, remoteAddress));
+					return bimServerClient;
+				}
+			});
+		 	
 			embeddedWebServer.getContext().getServletContext().setAttribute("bimwebserver", bimWebServer);
-	 		bimServer.start();
+
+		 	bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				bimServer.getSystemService().setup("http://localhost:8080", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
 			}
@@ -118,23 +129,9 @@ public class LocalDevBimCombinedServerStarter {
 		} catch (DatabaseRestartRequiredException e) {
 			LOGGER.error("", e);
 		}
-
-	 	LoginManager.bimServerClientFactory = new BimServerClientFactory() {
-			@Override
-			public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
-				BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager(), bimServer.getServiceInterfaces());
-				bimServerClient.setAuthentication(authenticationInfo);
-//				try {
-//					bimServerClient.connectProtocolBuffers("localhost", 8020);
-//				} catch (ConnectionException e) {
-//					e.printStackTrace();
-//				}
-				bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE, remoteAddress));
-				return bimServerClient;
-			}
-		};
 	}
 	
+	/* for testing */
 	public BimServer getBimServer() {
 		return bimServer;
 	}

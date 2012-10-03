@@ -358,8 +358,7 @@ public class BimServer {
 			try {
 				ServiceFactoryRegistry serviceFactoryRegistry = new ServiceFactoryRegistry();
 				serviceFactoryRegistry.registerServiceFactory(serviceFactory);
-				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactoryRegistry, serviceInterfaces, getServerSettings(session)
-						.getProtocolBuffersPort());
+				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactoryRegistry, serviceInterfaces, config.getInitialProtocolBuffersPort());
 				protocolBuffersServer.registerService(new ReflectiveRpcChannel(serviceFactory, protocolBuffersMetaData, serviceInterfaces));
 				protocolBuffersServer.start();
 			} catch (Exception e) {

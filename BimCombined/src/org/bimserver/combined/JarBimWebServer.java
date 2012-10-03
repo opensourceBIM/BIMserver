@@ -36,7 +36,7 @@ import org.bimserver.servlets.DownloadServlet;
 import org.bimserver.servlets.JsonApiServlet;
 import org.bimserver.servlets.UploadServlet;
 import org.bimserver.shared.exceptions.ServerException;
-import org.bimwebserver.jsp.LoginManager;
+import org.bimwebserver.BimWebServer;
 import org.bimwebserver.servlets.ProgressServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -99,6 +99,21 @@ public class JarBimWebServer {
 		 	embeddedWebServer.getContext().addServlet(UploadServlet.class, "/upload/*");
 		 	embeddedWebServer.getContext().addServlet(JsonApiServlet.class, "/json/*");
 		 	embeddedWebServer.getContext().setResourceBase("www");
+		 	
+		 	BimWebServer bimWebServer = new BimWebServer(bimServer.getServiceInterfaces());
+		 	
+		 	bimWebServer.setBimServerClientFactory(new BimServerClientFactory() {
+				@Override
+				public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
+					BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager());
+					bimServerClient.setAuthentication(authenticationInfo);
+					bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE, remoteAddress));
+					return bimServerClient;
+				}
+			});
+		 	
+			embeddedWebServer.getContext().getServletContext().setAttribute("bimwebserver", bimWebServer);
+		 	
 			bimServer.start();
 		} catch (PluginException e) {
 			LOGGER.error("", e);
@@ -111,15 +126,5 @@ public class JarBimWebServer {
 		} catch (DatabaseRestartRequiredException e) {
 			LOGGER.error("", e);
 		}
-
-	 	LoginManager.bimServerClientFactory = new BimServerClientFactory() {
-			@Override
-			public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
-				BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager());
-				bimServerClient.setAuthentication(authenticationInfo);
-				bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE, remoteAddress));
-				return bimServerClient;
-			}
-		};
 	}
 }

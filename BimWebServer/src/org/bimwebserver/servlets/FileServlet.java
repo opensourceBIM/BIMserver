@@ -44,14 +44,14 @@ public class FileServlet extends HttpServlet {
 			String file = request.getParameter("file");
 			if (file.equals("service.proto")) {
 				try {
-					String protocolBuffersFile = loginManager.getService().getProtocolBuffersFile();
+					String protocolBuffersFile = loginManager.getService(request).getProtocolBuffersFile();
 					response.getOutputStream().write(protocolBuffersFile.getBytes(Charsets.UTF_8));
 				} catch (ServiceException e) {
 					LOGGER.error("", e);
 				}
 			} else if (file.equals("serverlog")) {
 				try {
-					response.getWriter().write(loginManager.getService().getServerLog());
+					response.getWriter().write(loginManager.getService(request).getServerLog());
 				} catch (ServerException e) {
 					LOGGER.error("", e);
 				} catch (UserException e) {

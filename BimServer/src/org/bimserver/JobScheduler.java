@@ -80,6 +80,7 @@ public class JobScheduler {
 			Properties properties = new Properties();
 			properties.setProperty("org.quartz.threadPool.class", "org.quartz.simpl.SimpleThreadPool");
 			properties.setProperty("org.quartz.threadPool.threadCount", "1");
+			properties.setProperty(StdSchedulerFactory.PROP_SCHED_INSTANCE_NAME, bimServer.getHomeDir().toString());
 			sf = new StdSchedulerFactory(properties);
 			sched = sf.getScheduler();
 			sched.getContext().put("bimserver", bimServer);
