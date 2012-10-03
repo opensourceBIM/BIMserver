@@ -3,6 +3,7 @@ package org.bimwebserver;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.NotificationInterfaceAdapter;
@@ -16,6 +17,7 @@ public class BimWebServer extends NotificationInterfaceAdapter {
 	private final Map<Long, NotificationInterface> notificationHandlers = new HashMap<Long, NotificationInterface>();
 	private final Map<String, SService> sServices;
 	private final Map<String, Object> services = new HashMap<String, Object>();
+	private BimServerClientFactory bimServerClientFactory;
 	
 	public BimWebServer(Map<String, SService> sServices) {
 		this.sServices = sServices;
@@ -47,5 +49,13 @@ public class BimWebServer extends NotificationInterfaceAdapter {
 		for (NotificationInterface notificationInterface : notificationHandlers.values()) {
 			notificationInterface.newLogAction(newRevisionNotification, token, apiUrl);
 		}
+	}
+
+	public BimServerClientFactory getBimServerClientFactory() {
+		return bimServerClientFactory;
+	}
+
+	public void setBimServerClientFactory(BimServerClientFactory bimServerClientFactory) {
+		this.bimServerClientFactory = bimServerClientFactory;
 	}
 }

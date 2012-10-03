@@ -28,6 +28,7 @@ public class BimServerConfig {
 	private String classPath;
 	private int port;
 	private boolean startCommandLine = false;
+	private int initialProtocolBuffersPort;
 	
 	public boolean isStartEmbeddedWebServer() {
 		return startEmbeddedWebServer;
@@ -75,5 +76,13 @@ public class BimServerConfig {
 
 	public void setStartCommandLine(boolean startCommandLine) {
 		this.startCommandLine = startCommandLine;
+	}
+
+	public int getInitialProtocolBuffersPort() {
+		return initialProtocolBuffersPort;
+	}
+	
+	public void setInitialProtocolBuffersPort(int initialProtocolBuffersPort) {
+		this.initialProtocolBuffersPort = initialProtocolBuffersPort;
 	}
 }

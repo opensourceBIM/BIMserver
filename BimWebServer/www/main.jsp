@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.shared.interfaces.ServiceInterface"%>
 <%@page import="org.bimserver.interfaces.objects.SObjectState"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.slf4j.LoggerFactory"%>
@@ -11,11 +12,12 @@
 <%@ include file="header.jsp" %>
 <%
 try {
+	ServiceInterface service = loginManager.getService(request);
 	if (loginManager.isLoggedIn()) {
-		if (loginManager.getService().getServerInfo().getServerState() == SServerState.RUNNING) { %>
+		if (service.getServerInfo().getServerState() == SServerState.RUNNING) { %>
 <div class="sidebar">
  <ul>
-<% if (loginManager.getUserType() != SUserType.READ_ONLY && (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects())) { %>
+<% if (loginManager.getUserType() != SUserType.READ_ONLY && (loginManager.getUserType() == SUserType.ADMIN || service.isSettingAllowUsersToCreateTopLevelProjects())) { %>
  <li><a href="addproject.jsp">Add project</a></li>
 <% } %>
  <li><a class="rss" href="<%=request.getContextPath() %>/syndication/projects">Projects feed</a></li>
@@ -25,7 +27,7 @@ try {
 <div class="content">
 <h1>Projects</h1>
 <%
-	List<SProject> projects = loginManager.getService().getAllProjects(false);
+	List<SProject> projects = service.getAllProjects(false);
 	Collections.sort(projects, new SProjectNameComparator());
 	if (projects.size() > 0) {
 %>
@@ -54,7 +56,7 @@ There are no projects yet.<br/><br/>
 		return;
 	}
 } else {
-	if (loginManager.getService().getServerInfo().getServerState() == SServerState.NOT_SETUP) {
+	if (service.getServerInfo().getServerState() == SServerState.NOT_SETUP) {
 		response.sendRedirect("setup.jsp");
 		return;
 	}
