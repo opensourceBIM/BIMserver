@@ -171,58 +171,58 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UserSettings">
       <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
-          eType="#/0/Serializer" eOpposite="#/0/Serializer/settings"/>
+          eType="#/0/SerializerPluginConfiguration" eOpposite="#/0/SerializerPluginConfiguration/settings"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="objectIDMs" upperBound="-1"
-          eType="#/0/ObjectIDM" eOpposite="#/0/ObjectIDM/settings"/>
+          eType="#/0/ObjectIDMPluginConfiguration" eOpposite="#/0/ObjectIDMPluginConfiguration/settings"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ifcEngines" upperBound="-1"
-          eType="#/0/IfcEngine" eOpposite="#/0/IfcEngine/settings"/>
+          eType="#/0/IfcEnginePluginConfiguration" eOpposite="#/0/IfcEnginePluginConfiguration/settings"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="deserializers" upperBound="-1"
-          eType="#/0/Deserializer" eOpposite="#/0/Deserializer/settings"/>
+          eType="#/0/DeserializerPluginConfiguration" eOpposite="#/0/DeserializerPluginConfiguration/settings"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="queryengines" upperBound="-1"
-          eType="#/0/QueryEngine" eOpposite="#/0/QueryEngine/settings"/>
+          eType="#/0/QueryEnginePluginConfiguration" eOpposite="#/0/QueryEnginePluginConfiguration/settings"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelmergers" upperBound="-1"
-          eType="#/0/ModelMerger" eOpposite="#/0/ModelMerger/settings"/>
+          eType="#/0/ModelMergerPluginConfiguration" eOpposite="#/0/ModelMergerPluginConfiguration/settings"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelcompares" upperBound="-1"
-          eType="#/0/ModelCompare" eOpposite="#/0/ModelCompare/settings"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultModelMerger" eType="#/0/ModelMerger"/>
+          eType="#/0/ModelComparePluginConfiguration" eOpposite="#/0/ModelComparePluginConfiguration/settings"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultModelMerger" eType="#/0/ModelMergerPluginConfiguration"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="defaultModelCompare"
-          eType="#/0/ModelCompare"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultQueryEngine" eType="#/0/QueryEngine"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultIfcEngine" eType="#/0/IfcEngine"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultSerializer" eType="#/0/Serializer"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultObjectIDM" eType="#/0/ObjectIDM"/>
+          eType="#/0/ModelComparePluginConfiguration"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultQueryEngine" eType="#/0/QueryEnginePluginConfiguration"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultIfcEngine" eType="#/0/IfcEnginePluginConfiguration"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultSerializer" eType="#/0/SerializerPluginConfiguration"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultObjectIDM" eType="#/0/ObjectIDMPluginConfiguration"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="services" upperBound="-1"
-          eType="#/0/EService" eOpposite="#/0/EService/settings"/>
+          eType="#/0/InternalServicePluginConfiguration" eOpposite="#/0/InternalServicePluginConfiguration/settings"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Plugin">
+    <eClassifiers xsi:type="ecore:EClass" name="PluginConfiguration">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Serializer" eSuperTypes="#/0/Plugin">
+    <eClassifiers xsi:type="ecore:EClass" name="SerializerPluginConfiguration" eSuperTypes="#/0/PluginConfiguration">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="extension" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="contentType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="objectIDM" eType="#/0/ObjectIDM"
-          eOpposite="#/0/ObjectIDM/serializers"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="objectIDM" eType="#/0/ObjectIDMPluginConfiguration"
+          eOpposite="#/0/ObjectIDMPluginConfiguration/serializers"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/UserSettings"
           eOpposite="#/0/UserSettings/serializers"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="ifcEngine" eType="#/0/IfcEngine"
-          eOpposite="#/0/IfcEngine/serializers"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ifcEngine" eType="#/0/IfcEnginePluginConfiguration"
+          eOpposite="#/0/IfcEnginePluginConfiguration/serializers"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ObjectIDM" eSuperTypes="#/0/Plugin">
+    <eClassifiers xsi:type="ecore:EClass" name="ObjectIDMPluginConfiguration" eSuperTypes="#/0/PluginConfiguration">
       <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
-          eType="#/0/Serializer" eOpposite="#/0/Serializer/objectIDM"/>
+          eType="#/0/SerializerPluginConfiguration" eOpposite="#/0/SerializerPluginConfiguration/objectIDM"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/UserSettings"
           eOpposite="#/0/UserSettings/objectIDMs"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="IfcEngine" eSuperTypes="#/0/Plugin">
+    <eClassifiers xsi:type="ecore:EClass" name="IfcEnginePluginConfiguration" eSuperTypes="#/0/PluginConfiguration">
       <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
-          eType="#/0/Serializer" eOpposite="#/0/Serializer/ifcEngine"/>
+          eType="#/0/SerializerPluginConfiguration" eOpposite="#/0/SerializerPluginConfiguration/ifcEngine"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/UserSettings"
           eOpposite="#/0/UserSettings/ifcEngines"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Deserializer" eSuperTypes="#/0/Plugin">
+    <eClassifiers xsi:type="ecore:EClass" name="DeserializerPluginConfiguration" eSuperTypes="#/0/PluginConfiguration">
       <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/UserSettings"
           eOpposite="#/0/UserSettings/deserializers"/>
     </eClassifiers>
@@ -456,17 +456,17 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="mime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="QueryEnginePluginDescriptor" eSuperTypes="#/0/PluginDescriptor"/>
-    <eClassifiers xsi:type="ecore:EClass" name="QueryEngine" eSuperTypes="#/0/Plugin">
+    <eClassifiers xsi:type="ecore:EClass" name="QueryEnginePluginConfiguration" eSuperTypes="#/0/PluginConfiguration">
       <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/UserSettings"
           eOpposite="#/0/UserSettings/queryengines"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelMergerPluginDescriptor" eSuperTypes="#/0/PluginDescriptor"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ModelMerger" eSuperTypes="#/0/Plugin">
+    <eClassifiers xsi:type="ecore:EClass" name="ModelMergerPluginConfiguration" eSuperTypes="#/0/PluginConfiguration">
       <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/UserSettings"
           eOpposite="#/0/UserSettings/modelmergers"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelComparePluginDescriptor" eSuperTypes="#/0/PluginDescriptor"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ModelCompare" eSuperTypes="#/0/Plugin">
+    <eClassifiers xsi:type="ecore:EClass" name="ModelComparePluginConfiguration" eSuperTypes="#/0/PluginConfiguration">
       <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/UserSettings"
           eOpposite="#/0/UserSettings/modelcompares"/>
     </eClassifiers>
@@ -516,7 +516,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="expires" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ServicePluginDescriptor" eSuperTypes="#/0/PluginDescriptor"/>
-    <eClassifiers xsi:type="ecore:EClass" name="EService" eSuperTypes="#/0/Plugin">
+    <eClassifiers xsi:type="ecore:EClass" name="InternalServicePluginConfiguration"
+        eSuperTypes="#/0/PluginConfiguration">
       <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/0/UserSettings"
           eOpposite="#/0/UserSettings/services"/>
     </eClassifiers>

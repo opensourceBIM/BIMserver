@@ -1,7 +1,8 @@
+<%@page import="org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor"%>
 <%@ include file="header.jsp"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializerPluginConfiguration"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.GregorianCalendar"%>
@@ -14,7 +15,6 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.interfaces.ServiceInterface"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
-<%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
 <div class="sidebar">
 <ul>
 </ul>
@@ -27,13 +27,13 @@
 	String className = request.getParameter("className");
 	long id = Long.parseLong(request.getParameter("id"));
 	if (request.getParameter("update") != null) {
-		SObjectIDM objectIDM = loginManager.getService().getObjectIDMById(id);
+		SObjectIDMPluginConfiguration objectIDM = loginManager.getService().getObjectIDMById(id);
 		objectIDM.setName(name);
 		objectIDM.setClassName(className);
 		loginManager.getService().updateObjectIDM(objectIDM);
 		response.sendRedirect("objectidms.jsp");
 	} else {
-		SObjectIDM objectIDM = loginManager.getService().getObjectIDMById(id);
+		SObjectIDMPluginConfiguration objectIDM = loginManager.getService().getObjectIDMById(id);
 		if (name == null) {
 			name = objectIDM.getName();
 		}

@@ -24,7 +24,7 @@ import javax.activation.FileDataSource;
 
 import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SCheckinStatus;
-import org.bimserver.interfaces.objects.SDeserializer;
+import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -47,7 +47,7 @@ public class CheckinAction extends Action {
 		FileDataSource dataSource = new FileDataSource(randomFile);
 		String fileName = randomFile.getName();
 		String extension = fileName.substring(fileName.indexOf(".") + 1);
-		SDeserializer suggestedDeserializerForExtension = virtualUser.getBimServerClient().getServiceInterface().getSuggestedDeserializerForExtension(extension);
+		SDeserializerPluginConfiguration suggestedDeserializerForExtension = virtualUser.getBimServerClient().getServiceInterface().getSuggestedDeserializerForExtension(extension);
 		
 		if (suggestedDeserializerForExtension == null) {
 			getActionResults().setText("No deserializer found for extension " + extension + " in file " + fileName);

@@ -19,12 +19,12 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ObjectIDM;
+import org.bimserver.models.store.ObjectIDMPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 
-public class GetObjectIDMByNameDatabaseAction extends AbstractGetByFieldDatabaseAction<ObjectIDM> {
+public class GetObjectIDMByNameDatabaseAction extends AbstractGetByFieldDatabaseAction<ObjectIDMPluginConfiguration> {
 
 	public GetObjectIDMByNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String name) {
-		super(databaseSession, accessMethod, ObjectIDM.class, StorePackage.eINSTANCE.getPlugin_Name(), name);
+		super(databaseSession, accessMethod, ObjectIDMPluginConfiguration.class, StorePackage.eINSTANCE.getPluginConfiguration_Name(), name);
 	}
 }

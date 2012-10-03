@@ -52,7 +52,7 @@ import org.bimserver.models.store.CompareItem;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.CompareType;
 import org.bimserver.models.store.DataObject;
-import org.bimserver.models.store.ModelCompare;
+import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.ObjectAdded;
 import org.bimserver.models.store.ObjectModified;
 import org.bimserver.models.store.ObjectRemoved;
@@ -96,7 +96,7 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 	}
 	
 	public org.bimserver.plugins.modelcompare.ModelCompare getModelCompare() throws ModelCompareException, BimserverDatabaseException {
-		ModelCompare modelCompareObject = getDatabaseSession().get(StorePackage.eINSTANCE.getModelCompare(), mcid, false, null);
+		ModelComparePluginConfiguration modelCompareObject = getDatabaseSession().get(StorePackage.eINSTANCE.getModelComparePluginConfiguration(), mcid, false, null);
 		if (modelCompareObject != null) {
 			ModelComparePlugin modelComparePlugin = bimServer.getPluginManager().getModelComparePlugin(modelCompareObject.getClassName(), true);
 			if (modelComparePlugin != null) {

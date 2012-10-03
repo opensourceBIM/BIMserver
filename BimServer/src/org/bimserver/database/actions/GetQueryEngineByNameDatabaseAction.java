@@ -19,12 +19,12 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.QueryEngine;
+import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 
-public class GetQueryEngineByNameDatabaseAction extends AbstractGetByFieldDatabaseAction<QueryEngine> {
+public class GetQueryEngineByNameDatabaseAction extends AbstractGetByFieldDatabaseAction<QueryEnginePluginConfiguration> {
 
 	public GetQueryEngineByNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String name) {
-		super(databaseSession, accessMethod, QueryEngine.class, StorePackage.eINSTANCE.getPlugin_Name(), name);
+		super(databaseSession, accessMethod, QueryEnginePluginConfiguration.class, StorePackage.eINSTANCE.getPluginConfiguration_Name(), name);
 	}
 }

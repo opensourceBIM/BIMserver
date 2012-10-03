@@ -5,7 +5,7 @@
 <%@page import="org.codehaus.jettison.json.JSONObject"%>
 <%@page import="java.util.Set"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializerPluginConfiguration"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%@page import="org.bimwebserver.jsp.LoginManager"%>
@@ -41,7 +41,7 @@
 <tr><td><label for="serializerOid">Serializer</label></td>
 <td><select name="serializerOid" class="revisionsdownloadcheckoutselect">
 <%
-	for (SSerializer serializer : loginManager.getService().getAllSerializers(true)) {
+	for (SSerializerPluginConfiguration serializer : loginManager.getService().getAllSerializers(true)) {
 	%>
 	<option value="<%=serializer.getOid()%>"
 		<%=loginManager.getService().getDefaultSerializer() != null && loginManager.getService().getDefaultSerializer().getOid() == serializer.getOid() ? " SELECTED=\"SELECTED\"" : ""%>><%=serializer.getName()%></option>

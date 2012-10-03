@@ -19,12 +19,12 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.IfcEnginePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 
-public class GetIfcEngineByNameDatabaseAction extends AbstractGetByFieldDatabaseAction<IfcEngine> {
+public class GetIfcEngineByNameDatabaseAction extends AbstractGetByFieldDatabaseAction<IfcEnginePluginConfiguration> {
 
 	public GetIfcEngineByNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String name) {
-		super(databaseSession, accessMethod, IfcEngine.class, StorePackage.eINSTANCE.getPlugin_Name(), name);
+		super(databaseSession, accessMethod, IfcEnginePluginConfiguration.class, StorePackage.eINSTANCE.getPluginConfiguration_Name(), name);
 	}
 }

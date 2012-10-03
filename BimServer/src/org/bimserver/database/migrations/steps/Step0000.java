@@ -118,11 +118,11 @@ public class Step0000 extends Migration {
 		projectParentProject.setEOpposite(projectSubProjects);
 		projectSubProjects.setEOpposite(projectParentProject);
 		
-		EClass pluginClass = schema.createEClass(schema.getEPackage("store"), "Plugin");
-		schema.createEAttribute(pluginClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(pluginClass, "enabled", EcorePackage.eINSTANCE.getEBooleanObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(pluginClass, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(pluginClass, "className", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		EClass pluginConfigurationClass = schema.createEClass(schema.getEPackage("store"), "PluginConfiguration");
+		schema.createEAttribute(pluginConfigurationClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(pluginConfigurationClass, "enabled", EcorePackage.eINSTANCE.getEBooleanObject(), Multiplicity.SINGLE);
+		schema.createEAttribute(pluginConfigurationClass, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(pluginConfigurationClass, "className", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 	}
 	
 	private void createUserSettingsClass() {

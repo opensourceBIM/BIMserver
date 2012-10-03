@@ -72,32 +72,32 @@ import org.bimserver.interfaces.objects.SCompareResult;
 import org.bimserver.interfaces.objects.SCompareType;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDatabaseInformation;
-import org.bimserver.interfaces.objects.SDeserializer;
+import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
-import org.bimserver.interfaces.objects.SEService;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SGeoTag;
-import org.bimserver.interfaces.objects.SIfcEngine;
+import org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
+import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongAction;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SMigration;
-import org.bimserver.interfaces.objects.SModelCompare;
+import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
-import org.bimserver.interfaces.objects.SModelMerger;
+import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
 import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
-import org.bimserver.interfaces.objects.SObjectIDM;
+import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.interfaces.objects.SQueryEngine;
+import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
-import org.bimserver.interfaces.objects.SSerializer;
+import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServerDescriptor;
 import org.bimserver.interfaces.objects.SServerInfo;
@@ -126,20 +126,20 @@ import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.DataObject;
 import org.bimserver.models.store.DatabaseInformation;
-import org.bimserver.models.store.Deserializer;
-import org.bimserver.models.store.EService;
+import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.GeoTag;
-import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.IfcEnginePluginConfiguration;
+import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.LongActionState;
-import org.bimserver.models.store.ModelCompare;
-import org.bimserver.models.store.ModelMerger;
+import org.bimserver.models.store.ModelComparePluginConfiguration;
+import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.Project;
-import org.bimserver.models.store.QueryEngine;
+import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
-import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.StorePackage;
@@ -236,7 +236,7 @@ public class Service implements ServiceInterface {
 				inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(file));
 			}
 			try {
-				Deserializer deserializerObject = session.get(StorePackage.eINSTANCE.getDeserializer(), deserializerOid, false, null);
+				DeserializerPluginConfiguration deserializerObject = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, false, null);
 				if (deserializerObject == null) {
 					throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 				}
@@ -1964,12 +1964,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SSerializer> getAllSerializers(Boolean onlyEnabled) throws ServerException, UserException {
+	public List<SSerializerPluginConfiguration> getAllSerializers(Boolean onlyEnabled) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			List<SSerializer> serializers = converter.convertToSListSerializer(getUserSettings(session).getSerializers());
-			Collections.sort(serializers, new SPluginComparator());
+			List<SSerializerPluginConfiguration> serializers = converter.convertToSListSerializerPluginConfiguration(getUserSettings(session).getSerializers());
+			Collections.sort(serializers, new SPluginConfigurationComparator());
 			return serializers;
 		} catch (Exception e) {
 			handleException(e);
@@ -1980,12 +1980,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SDeserializer> getAllDeserializers(Boolean onlyEnabled) throws ServerException, UserException {
+	public List<SDeserializerPluginConfiguration> getAllDeserializers(Boolean onlyEnabled) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			List<SDeserializer> deserializers = converter.convertToSListDeserializer(getUserSettings(session).getDeserializers());
-			Collections.sort(deserializers, new SPluginComparator());
+			List<SDeserializerPluginConfiguration> deserializers = converter.convertToSListDeserializerPluginConfiguration(getUserSettings(session).getDeserializers());
+			Collections.sort(deserializers, new SPluginConfigurationComparator());
 			return deserializers;
 		} catch (Exception e) {
 			handleException(e);
@@ -1996,11 +1996,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void addSerializer(SSerializer serializer) throws ServerException, UserException {
+	public void addSerializer(SSerializerPluginConfiguration serializer) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			Serializer convert = converter.convertFromSObject(serializer, session);
+			SerializerPluginConfiguration convert = converter.convertFromSObject(serializer, session);
 			session.executeAndCommitAction(new AddSerializerDatabaseAction(session, accessMethod, authorization, convert));
 		} catch (Exception e) {
 			handleException(e);
@@ -2010,11 +2010,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void addDeserializer(SDeserializer deserializer) throws ServerException, UserException {
+	public void addDeserializer(SDeserializerPluginConfiguration deserializer) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			Deserializer convert = converter.convertFromSObject(deserializer, session);
+			DeserializerPluginConfiguration convert = converter.convertFromSObject(deserializer, session);
 			session.executeAndCommitAction(new AddDeserializerDatabaseAction(session, accessMethod, authorization, convert));
 		} catch (Exception e) {
 			handleException(e);
@@ -2024,11 +2024,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void updateSerializer(SSerializer serializer) throws ServerException, UserException {
+	public void updateSerializer(SSerializerPluginConfiguration serializer) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			Serializer convert = converter.convertFromSObject(serializer, session);
+			SerializerPluginConfiguration convert = converter.convertFromSObject(serializer, session);
 			session.executeAndCommitAction(new UpdateSerializerDatabaseAction(session, accessMethod, convert));
 		} catch (Exception e) {
 			handleException(e);
@@ -2038,11 +2038,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void updateDeserializer(SDeserializer deserializer) throws ServerException, UserException {
+	public void updateDeserializer(SDeserializerPluginConfiguration deserializer) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			Deserializer convert = converter.convertFromSObject(deserializer, session);
+			DeserializerPluginConfiguration convert = converter.convertFromSObject(deserializer, session);
 			session.executeAndCommitAction(new UpdateDeserializerDatabaseAction(session, accessMethod, convert));
 		} catch (Exception e) {
 			handleException(e);
@@ -2052,12 +2052,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SObjectIDM> getAllObjectIDMs(Boolean onlyEnabled) throws ServerException, UserException {
+	public List<SObjectIDMPluginConfiguration> getAllObjectIDMs(Boolean onlyEnabled) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			List<SObjectIDM> objectIdms = converter.convertToSListObjectIDM(getUserSettings(session).getObjectIDMs());
-			Collections.sort(objectIdms, new SPluginComparator());
+			List<SObjectIDMPluginConfiguration> objectIdms = converter.convertToSListObjectIDMPluginConfiguration(getUserSettings(session).getObjectIDMs());
+			Collections.sort(objectIdms, new SPluginConfigurationComparator());
 			return objectIdms;
 		} catch (Exception e) {
 			handleException(e);
@@ -2068,7 +2068,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void addObjectIDM(SObjectIDM objectIDM) throws ServerException, UserException {
+	public void addObjectIDM(SObjectIDMPluginConfiguration objectIDM) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -2081,7 +2081,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void updateObjectIDM(SObjectIDM objectIDM) throws ServerException, UserException {
+	public void updateObjectIDM(SObjectIDMPluginConfiguration objectIDM) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -2094,7 +2094,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SSerializer getSerializerById(Long oid) throws ServerException, UserException {
+	public SSerializerPluginConfiguration getSerializerById(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -2108,7 +2108,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SDeserializer getDeserializerById(Long oid) throws ServerException, UserException {
+	public SDeserializerPluginConfiguration getDeserializerById(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -2122,7 +2122,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SObjectIDM getObjectIDMById(Long oid) throws ServerException, UserException {
+	public SObjectIDMPluginConfiguration getObjectIDMById(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -2242,7 +2242,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SSerializer getSerializerByName(String serializerName) throws ServerException, UserException {
+	public SSerializerPluginConfiguration getSerializerByName(String serializerName) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -2256,7 +2256,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SObjectIDM getObjectIDMByName(String ObjectIDMName) throws ServerException, UserException {
+	public SObjectIDMPluginConfiguration getObjectIDMByName(String ObjectIDMName) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -2270,7 +2270,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SDeserializer getDeserializerByName(String deserializerName) throws ServerException, UserException {
+	public SDeserializerPluginConfiguration getDeserializerByName(String deserializerName) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -2284,7 +2284,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SSerializer getSerializerByContentType(String contentType) throws ServerException, UserException {
+	public SSerializerPluginConfiguration getSerializerByContentType(String contentType) throws ServerException, UserException {
 		// Not checking for real authentication here because a remote service should be able to use a serializer for download call
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
@@ -2302,7 +2302,7 @@ public class Service implements ServiceInterface {
 	public Boolean hasActiveSerializer(String contentType) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			SSerializer serializer = getSerializerByContentType(contentType);
+			SSerializerPluginConfiguration serializer = getSerializerByContentType(contentType);
 			if (serializer != null) {
 				if (serializer.getEnabled()) {
 					return bimServer.getPluginManager().isEnabled(serializer.getClassName());
@@ -2654,12 +2654,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SIfcEngine> getAllIfcEngines(Boolean onlyEnabled) throws ServerException, UserException {
+	public List<SIfcEnginePluginConfiguration> getAllIfcEngines(Boolean onlyEnabled) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			List<SIfcEngine> ifcEngines = converter.convertToSListIfcEngine(getUserSettings(session).getIfcEngines());
-			Collections.sort(ifcEngines, new SPluginComparator());
+			List<SIfcEnginePluginConfiguration> ifcEngines = converter.convertToSListIfcEnginePluginConfiguration(getUserSettings(session).getIfcEngines());
+			Collections.sort(ifcEngines, new SPluginConfigurationComparator());
 			return ifcEngines;
 		} catch (Exception e) {
 			return handleException(e);
@@ -2669,12 +2669,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SQueryEngine> getAllQueryEngines(Boolean onlyEnabled) throws ServerException, UserException {
+	public List<SQueryEnginePluginConfiguration> getAllQueryEngines(Boolean onlyEnabled) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			List<SQueryEngine> queryEngines = converter.convertToSListQueryEngine(getUserSettings(session).getQueryengines());
-			Collections.sort(queryEngines, new SPluginComparator());
+			List<SQueryEnginePluginConfiguration> queryEngines = converter.convertToSListQueryEnginePluginConfiguration(getUserSettings(session).getQueryengines());
+			Collections.sort(queryEngines, new SPluginConfigurationComparator());
 			return queryEngines;
 		} catch (Exception e) {
 			return handleException(e);
@@ -2684,12 +2684,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SModelCompare> getAllModelCompares(Boolean onlyEnabled) throws ServerException, UserException {
+	public List<SModelComparePluginConfiguration> getAllModelCompares(Boolean onlyEnabled) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			List<SModelCompare> modelCompares = converter.convertToSListModelCompare(getUserSettings(session).getModelcompares());
-			Collections.sort(modelCompares, new SPluginComparator());
+			List<SModelComparePluginConfiguration> modelCompares = converter.convertToSListModelComparePluginConfiguration(getUserSettings(session).getModelcompares());
+			Collections.sort(modelCompares, new SPluginConfigurationComparator());
 			return modelCompares;
 		} catch (Exception e) {
 			return handleException(e);
@@ -2699,12 +2699,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SModelMerger> getAllModelMergers(Boolean onlyEnabled) throws ServerException, UserException {
+	public List<SModelMergerPluginConfiguration> getAllModelMergers(Boolean onlyEnabled) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			List<SModelMerger> modelMergers = converter.convertToSListModelMerger(getUserSettings(session).getModelmergers());
-			Collections.sort(modelMergers, new SPluginComparator());
+			List<SModelMergerPluginConfiguration> modelMergers = converter.convertToSListModelMergerPluginConfiguration(getUserSettings(session).getModelmergers());
+			Collections.sort(modelMergers, new SPluginConfigurationComparator());
 			return modelMergers;
 		} catch (Exception e) {
 			return handleException(e);
@@ -2714,11 +2714,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void updateIfcEngine(SIfcEngine ifcEngine) throws ServerException, UserException {
+	public void updateIfcEngine(SIfcEnginePluginConfiguration ifcEngine) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			IfcEngine convert = converter.convertFromSObject(ifcEngine, session);
+			IfcEnginePluginConfiguration convert = converter.convertFromSObject(ifcEngine, session);
 			session.executeAndCommitAction(new UpdateIfcEngineDatabaseAction(session, accessMethod, convert));
 		} catch (Exception e) {
 			handleException(e);
@@ -2728,11 +2728,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void updateQueryEngine(SQueryEngine queryEngine) throws ServerException, UserException {
+	public void updateQueryEngine(SQueryEnginePluginConfiguration queryEngine) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			QueryEngine convert = converter.convertFromSObject(queryEngine, session);
+			QueryEnginePluginConfiguration convert = converter.convertFromSObject(queryEngine, session);
 			session.executeAndCommitAction(new UpdateQueryEngineDatabaseAction(session, accessMethod, convert));
 		} catch (Exception e) {
 			handleException(e);
@@ -2742,11 +2742,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void updateModelCompare(SModelCompare modelCompare) throws ServerException, UserException {
+	public void updateModelCompare(SModelComparePluginConfiguration modelCompare) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			ModelCompare convert = converter.convertFromSObject(modelCompare, session);
+			ModelComparePluginConfiguration convert = converter.convertFromSObject(modelCompare, session);
 			session.executeAndCommitAction(new UpdateModelCompareDatabaseAction(session, accessMethod, convert));
 		} catch (Exception e) {
 			handleException(e);
@@ -2756,11 +2756,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void updateModelMerger(SModelMerger modelMerger) throws ServerException, UserException {
+	public void updateModelMerger(SModelMergerPluginConfiguration modelMerger) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			ModelMerger convert = converter.convertFromSObject(modelMerger, session);
+			ModelMergerPluginConfiguration convert = converter.convertFromSObject(modelMerger, session);
 			session.executeAndCommitAction(new UpdateModelMergerDatabaseAction(session, accessMethod, convert));
 		} catch (Exception e) {
 			handleException(e);
@@ -2826,7 +2826,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SIfcEngine getIfcEngineByName(String name) throws ServerException, UserException {
+	public SIfcEnginePluginConfiguration getIfcEngineByName(String name) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -2839,7 +2839,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SQueryEngine getQueryEngineByName(String name) throws ServerException, UserException {
+	public SQueryEnginePluginConfiguration getQueryEngineByName(String name) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -2852,7 +2852,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SModelMerger getModelMergerById(Long oid) throws ServerException, UserException {
+	public SModelMergerPluginConfiguration getModelMergerById(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -2865,7 +2865,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SModelCompare getModelCompareById(Long oid) throws ServerException, UserException {
+	public SModelComparePluginConfiguration getModelCompareById(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -2878,7 +2878,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SModelCompare getModelCompareByName(String name) throws ServerException, UserException {
+	public SModelComparePluginConfiguration getModelCompareByName(String name) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -2891,7 +2891,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SModelMerger getModelMergerByName(String name) throws ServerException, UserException {
+	public SModelMergerPluginConfiguration getModelMergerByName(String name) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -2904,7 +2904,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SIfcEngine getIfcEngineById(Long oid) throws ServerException, UserException {
+	public SIfcEnginePluginConfiguration getIfcEngineById(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -2917,7 +2917,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SQueryEngine getQueryEngineById(Long oid) throws ServerException, UserException {
+	public SQueryEnginePluginConfiguration getQueryEngineById(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -2930,11 +2930,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void addIfcEngine(SIfcEngine ifcEngine) throws ServerException, UserException {
+	public void addIfcEngine(SIfcEnginePluginConfiguration ifcEngine) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			IfcEngine convert = converter.convertFromSObject(ifcEngine, session);
+			IfcEnginePluginConfiguration convert = converter.convertFromSObject(ifcEngine, session);
 			session.executeAndCommitAction(new AddIfcEngineDatabaseAction(session, accessMethod, authorization, convert));
 		} catch (Exception e) {
 			handleException(e);
@@ -2944,11 +2944,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void addQueryEngine(SQueryEngine queryEngine) throws ServerException, UserException {
+	public void addQueryEngine(SQueryEnginePluginConfiguration queryEngine) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			QueryEngine convert = converter.convertFromSObject(queryEngine, session);
+			QueryEnginePluginConfiguration convert = converter.convertFromSObject(queryEngine, session);
 			session.executeAndCommitAction(new AddQueryEngineDatabaseAction(session, accessMethod, authorization, convert));
 		} catch (Exception e) {
 			handleException(e);
@@ -2958,11 +2958,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void addModelCompare(SModelCompare modelCompare) throws ServerException, UserException {
+	public void addModelCompare(SModelComparePluginConfiguration modelCompare) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			ModelCompare convert = converter.convertFromSObject(modelCompare, session);
+			ModelComparePluginConfiguration convert = converter.convertFromSObject(modelCompare, session);
 			session.executeAndCommitAction(new AddModelCompareDatabaseAction(session, accessMethod, authorization, convert));
 		} catch (Exception e) {
 			handleException(e);
@@ -2972,11 +2972,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void addModelMerger(SModelMerger modelMerger) throws ServerException, UserException {
+	public void addModelMerger(SModelMergerPluginConfiguration modelMerger) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			ModelMerger convert = converter.convertFromSObject(modelMerger, session);
+			ModelMergerPluginConfiguration convert = converter.convertFromSObject(modelMerger, session);
 			session.executeAndCommitAction(new AddModelMergerDatabaseAction(session, accessMethod, authorization, convert));
 		} catch (Exception e) {
 			handleException(e);
@@ -2986,14 +2986,14 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SDeserializer getSuggestedDeserializerForExtension(String extension) throws ServerException, UserException {
+	public SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(String extension) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		for (DeserializerPlugin deserializerPlugin : bimServer.getPluginManager().getAllDeserializerPlugins(true)) {
 			if (deserializerPlugin.canHandleExtension(extension)) {
 				DatabaseSession session = bimServer.getDatabase().createSession();
 				try {
 					UserSettings userSettings = getUserSettings(session);
-					for (Deserializer deserializer : userSettings.getDeserializers()) {
+					for (DeserializerPluginConfiguration deserializer : userSettings.getDeserializers()) {
 						if (deserializer.getClassName().equals(deserializerPlugin.getClass().getName())) {
 							return converter.convertToSObject(deserializer);
 						}
@@ -3128,7 +3128,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public String getQueryEngineExample(Long qeid, String key) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		SQueryEngine queryEngineById = getQueryEngineById(qeid);
+		SQueryEnginePluginConfiguration queryEngineById = getQueryEngineById(qeid);
 		QueryEnginePlugin queryEngine = bimServer.getPluginManager().getQueryEngine(queryEngineById.getClassName(), true);
 		return queryEngine.getExample(key);
 	}
@@ -3136,7 +3136,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<String> getQueryEngineExampleKeys(Long qeid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		SQueryEngine queryEngineById = getQueryEngineById(qeid);
+		SQueryEnginePluginConfiguration queryEngineById = getQueryEngineById(qeid);
 		QueryEnginePlugin queryEngine = bimServer.getPluginManager().getQueryEngine(queryEngineById.getClassName(), true);
 		return new ArrayList<String>(queryEngine.getExampleKeys());
 	}
@@ -3150,7 +3150,7 @@ public class Service implements ServiceInterface {
 		return null;
 	}
 
-	public SIfcEngine getDefaultIfcEngine() throws ServerException, UserException {
+	public SIfcEnginePluginConfiguration getDefaultIfcEngine() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -3163,7 +3163,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public SQueryEngine getDefaultQueryEngine() throws ServerException, UserException {
+	public SQueryEnginePluginConfiguration getDefaultQueryEngine() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -3176,7 +3176,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public SModelCompare getDefaultModelCompare() throws ServerException, UserException {
+	public SModelComparePluginConfiguration getDefaultModelCompare() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -3189,7 +3189,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public SModelMerger getDefaultModelMerger() throws ServerException, UserException {
+	public SModelMergerPluginConfiguration getDefaultModelMerger() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -3202,7 +3202,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public SSerializer getDefaultSerializer() throws ServerException, UserException {
+	public SSerializerPluginConfiguration getDefaultSerializer() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -3215,7 +3215,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public SObjectIDM getDefaultObjectIDM() throws ServerException, UserException {
+	public SObjectIDMPluginConfiguration getDefaultObjectIDM() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -3531,24 +3531,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SServerDescriptor> getInternalServers() throws ServerException, UserException {
-		requireRealUserAuthentication();
-		return converter.convertToSListServerDescriptor(bimServer.getNotificationsManager().getInternalServers());
-	}
-
-	@Override
-	public List<SServiceDescriptor> getInternalServices(String name) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		return converter.convertToSListServiceDescriptor(bimServer.getNotificationsManager().getInternalServices(name).values());
-	}
-
-	@Override
-	public SEService getEServiceById(Long oid) throws ServerException, UserException {
+	public SInternalServicePluginConfiguration getInternalServiceById(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			return converter
-					.convertToSObject(session.executeAndCommitAction(new GetByIdDatabaseAction<EService>(session, accessMethod, oid, StorePackage.eINSTANCE.getEService())));
+					.convertToSObject(session.executeAndCommitAction(new GetByIdDatabaseAction<InternalServicePluginConfiguration>(session, accessMethod, oid, StorePackage.eINSTANCE.getInternalServicePluginConfiguration())));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -3557,11 +3545,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void updateSEService(SEService seService) throws ServerException, UserException {
+	public void updateInternalService(SInternalServicePluginConfiguration internalService) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			session.executeAndCommitAction(new UpdateDatabaseAction<EService>(session, accessMethod, converter.convertFromSObject(seService, session)));
+			session.executeAndCommitAction(new UpdateDatabaseAction<InternalServicePluginConfiguration>(session, accessMethod, converter.convertFromSObject(internalService, session)));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -3570,11 +3558,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void addSEService(SEService seService) throws ServerException, UserException {
+	public void addInternalService(SInternalServicePluginConfiguration internalService) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			session.executeAndCommitAction(new AddServiceDatabaseAction(session, accessMethod, authorization, converter.convertFromSObject(seService, session)));
+			session.executeAndCommitAction(new AddInternalServiceDatabaseAction(session, accessMethod, authorization, converter.convertFromSObject(internalService, session)));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -3583,11 +3571,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void deleteEService(Long oid) throws ServerException, UserException {
+	public void deleteInternalService(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			session.executeAndCommitAction(new DeleteEServiceDatabaseAction(session, accessMethod, oid));
+			session.executeAndCommitAction(new DeleteInternalServiceDatabaseAction(session, accessMethod, oid));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -3596,12 +3584,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SEService> getAllSEServices(Boolean onlyEnabled) throws UserException, ServerException {
+	public List<SInternalServicePluginConfiguration> getAllInternalServices(Boolean onlyEnabled) throws UserException, ServerException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			List<SEService> services = converter.convertToSListEService(getUserSettings(session).getServices());
-			Collections.sort(services, new SPluginComparator());
+			List<SInternalServicePluginConfiguration> services = converter.convertToSListInternalServicePluginConfiguration(getUserSettings(session).getServices());
+			Collections.sort(services, new SPluginConfigurationComparator());
 			return services;
 		} catch (Exception e) {
 			return handleException(e);

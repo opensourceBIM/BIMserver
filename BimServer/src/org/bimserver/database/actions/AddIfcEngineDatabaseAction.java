@@ -21,17 +21,17 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.IfcEnginePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
-public class AddIfcEngineDatabaseAction extends AddDatabaseAction<IfcEngine> {
+public class AddIfcEngineDatabaseAction extends AddDatabaseAction<IfcEnginePluginConfiguration> {
 
 	private Authorization authorization;
 
-	public AddIfcEngineDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, IfcEngine ifcEngine) {
+	public AddIfcEngineDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, IfcEnginePluginConfiguration ifcEngine) {
 		super(databaseSession, accessMethod, ifcEngine);
 		this.authorization = authorization;
 	}

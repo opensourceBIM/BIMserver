@@ -24,11 +24,11 @@ import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.UserException;
 
-public class GetSerializerByContentTypeDatabaseAction extends BimDatabaseAction<Serializer> {
+public class GetSerializerByContentTypeDatabaseAction extends BimDatabaseAction<SerializerPluginConfiguration> {
 
 	private final String contentType;
 
@@ -38,8 +38,8 @@ public class GetSerializerByContentTypeDatabaseAction extends BimDatabaseAction<
 	}
 
 	@Override
-	public Serializer execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializer_ContentType(), new StringLiteral(contentType));
-		return getDatabaseSession().querySingle(condition, Serializer.class, false, null);
+	public SerializerPluginConfiguration execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializerPluginConfiguration_ContentType(), new StringLiteral(contentType));
+		return getDatabaseSession().querySingle(condition, SerializerPluginConfiguration.class, false, null);
 	}
 }

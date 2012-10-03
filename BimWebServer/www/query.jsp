@@ -1,11 +1,10 @@
+<%@page import="org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration"%>
 <%@page import="org.bimserver.interfaces.objects.SRevision"%>
-<%@page import="org.bimserver.interfaces.objects.SQueryEngine"%>
-<%@page import="org.bimserver.models.store.QueryEngine"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.List"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializerPluginConfiguration"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%
 	long roid = Long.parseLong(request.getParameter("roid"));
@@ -81,7 +80,7 @@
 
 </div>
 <%
-		for (SQueryEngine queryEngine : loginManager.getService().getAllQueryEngines(true)) {
+		for (SQueryEnginePluginConfiguration queryEngine : loginManager.getService().getAllQueryEngines(true)) {
 %>
 <div class="tabbertab" title="<%=queryEngine.getName()%>" id="<%=queryEngine.getOid() %>">
 Examples: <%

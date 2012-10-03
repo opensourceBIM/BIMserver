@@ -19,11 +19,11 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ModelMerger;
+import org.bimserver.models.store.ModelMergerPluginConfiguration;
 
-public class UpdateModelMergerDatabaseAction extends UpdateDatabaseAction<ModelMerger> {
+public class UpdateModelMergerDatabaseAction extends UpdateDatabaseAction<ModelMergerPluginConfiguration> {
 
-	public UpdateModelMergerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, ModelMerger modelMerger) {
+	public UpdateModelMergerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, ModelMergerPluginConfiguration modelMerger) {
 		super(databaseSession, accessMethod, modelMerger);
 	}
 }

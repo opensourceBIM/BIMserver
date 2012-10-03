@@ -1,8 +1,8 @@
+<%@page import="org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor"%>
-<%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
 <%@ include file="header.jsp"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializerPluginConfiguration"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.GregorianCalendar"%>
@@ -25,7 +25,7 @@
 <%
 	ServiceInterface service = loginManager.getService();
 	if (request.getParameter("add") != null) {
-		SObjectIDM objectIDM = new SObjectIDM();
+		SObjectIDMPluginConfiguration objectIDM = new SObjectIDMPluginConfiguration();
 		objectIDM.setName(request.getParameter("name"));
 		objectIDM.setClassName(request.getParameter("className"));
 		objectIDM.setEnabled(true);

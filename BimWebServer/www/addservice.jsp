@@ -28,11 +28,7 @@
 <label for="servers">Server </label><select id="servers" name="servers" class="servers">
 				<option value="[SELECT]">[Select]</option>
 	<optgroup label="Internal"></optgroup>
-<%
-	for (SServerDescriptor internalServer : loginManager.getService().getInternalServers()) {
-		out.println("<option class=\"internal\" value=\"" + internalServer.getTitle() + "\">" + internalServer.getTitle() + "</option>");
-	}
-%>
+		<option value="[INTERNAL]">Internal BIMserver</option>
 	<optgroup label="External"></optgroup>
 <%
 	for (SServerDescriptor externalServer : loginManager.getService().getExternalServers()) {
@@ -66,32 +62,31 @@
 $(function(){
 	$(".servers").change(function(){
 		var val = $(this).attr("value");
+		var selected = $(this).find(":selected");
 		if (val == "[SELECT]") {
 			$(".services, .serviceslabel, .servicediv").hide();
+		} else if (val == "[INTERNAL]") {
+			bimServerApi.call("ServiceInterface", "getAllInternalServices", {onlyEnabled: true}, function(data){
+				$(".services").empty();
+				$(".services").append($("<option value=\"[SELECT]\">[Select]</option>"));
+				data.forEach(function(service){
+					var option = $("<option value=\"" + service.name + "\">" + service.name + "</option>");
+					option.data("service", service);
+					$(".services").append(option);
+				});
+				$(".services, .serviceslabel").show();
+			});
 		} else {
-			if ($(this).hasClass("internal")) {
-				bimServerApi.call("ServiceInterface", "getInternalServices", {name: val}, function(data){
-					$(".services").empty();
-					$(".services").append($("<option value=\"[SELECT]\">[Select]</option>"));
-					data.forEach(function(service){
-						var option = $("<option value=\"" + service.name + "\">" + service.name + "</option>");
-						option.data("service", service);
-						$(".services").append(option);
-					});
-					$(".services, .serviceslabel").show();
+			bimServerApi.call("ServiceInterface", "getExternalServices", {remoteUrl: val}, function(data){
+				$(".services").empty();
+				$(".services").append($("<option value=\"[SELECT]\">[Select]</option>"));
+				data.forEach(function(service){
+					var option = $("<option value=\"" + service.name + "\">" + service.name + "</option>");
+					option.data("service", service);
+					$(".services").append(option);
 				});
-			} else if ($(this).hasClass("external") != null) {
-				bimServerApi.call("ServiceInterface", "getExternalServices", {remoteUrl: val}, function(data){
-					$(".services").empty();
-					$(".services").append($("<option value=\"[SELECT]\">[Select]</option>"));
-					data.forEach(function(service){
-						var option = $("<option value=\"" + service.name + "\">" + service.name + "</option>");
-						option.data("service", service);
-						$(".services").append(option);
-					});
-					$(".services, .serviceslabel").show();
-				});
-			}
+				$(".services, .serviceslabel").show();
+			});
 		}
 	});
 	

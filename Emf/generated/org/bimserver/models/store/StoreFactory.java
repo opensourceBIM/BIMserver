@@ -108,49 +108,49 @@ public interface StoreFactory extends EFactory {
 	UserSettings createUserSettings();
 
 	/**
-	 * Returns a new object of class '<em>Plugin</em>'.
+	 * Returns a new object of class '<em>Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Plugin</em>'.
+	 * @return a new object of class '<em>Plugin Configuration</em>'.
 	 * @generated
 	 */
-	Plugin createPlugin();
+	PluginConfiguration createPluginConfiguration();
 
 	/**
-	 * Returns a new object of class '<em>Serializer</em>'.
+	 * Returns a new object of class '<em>Serializer Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Serializer</em>'.
+	 * @return a new object of class '<em>Serializer Plugin Configuration</em>'.
 	 * @generated
 	 */
-	Serializer createSerializer();
+	SerializerPluginConfiguration createSerializerPluginConfiguration();
 
 	/**
-	 * Returns a new object of class '<em>Object IDM</em>'.
+	 * Returns a new object of class '<em>Object IDM Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Object IDM</em>'.
+	 * @return a new object of class '<em>Object IDM Plugin Configuration</em>'.
 	 * @generated
 	 */
-	ObjectIDM createObjectIDM();
+	ObjectIDMPluginConfiguration createObjectIDMPluginConfiguration();
 
 	/**
-	 * Returns a new object of class '<em>Ifc Engine</em>'.
+	 * Returns a new object of class '<em>Ifc Engine Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ifc Engine</em>'.
+	 * @return a new object of class '<em>Ifc Engine Plugin Configuration</em>'.
 	 * @generated
 	 */
-	IfcEngine createIfcEngine();
+	IfcEnginePluginConfiguration createIfcEnginePluginConfiguration();
 
 	/**
-	 * Returns a new object of class '<em>Deserializer</em>'.
+	 * Returns a new object of class '<em>Deserializer Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Deserializer</em>'.
+	 * @return a new object of class '<em>Deserializer Plugin Configuration</em>'.
 	 * @generated
 	 */
-	Deserializer createDeserializer();
+	DeserializerPluginConfiguration createDeserializerPluginConfiguration();
 
 	/**
 	 * Returns a new object of class '<em>Checkin Result</em>'.
@@ -468,13 +468,13 @@ public interface StoreFactory extends EFactory {
 	QueryEnginePluginDescriptor createQueryEnginePluginDescriptor();
 
 	/**
-	 * Returns a new object of class '<em>Query Engine</em>'.
+	 * Returns a new object of class '<em>Query Engine Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Query Engine</em>'.
+	 * @return a new object of class '<em>Query Engine Plugin Configuration</em>'.
 	 * @generated
 	 */
-	QueryEngine createQueryEngine();
+	QueryEnginePluginConfiguration createQueryEnginePluginConfiguration();
 
 	/**
 	 * Returns a new object of class '<em>Model Merger Plugin Descriptor</em>'.
@@ -486,13 +486,13 @@ public interface StoreFactory extends EFactory {
 	ModelMergerPluginDescriptor createModelMergerPluginDescriptor();
 
 	/**
-	 * Returns a new object of class '<em>Model Merger</em>'.
+	 * Returns a new object of class '<em>Model Merger Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Merger</em>'.
+	 * @return a new object of class '<em>Model Merger Plugin Configuration</em>'.
 	 * @generated
 	 */
-	ModelMerger createModelMerger();
+	ModelMergerPluginConfiguration createModelMergerPluginConfiguration();
 
 	/**
 	 * Returns a new object of class '<em>Model Compare Plugin Descriptor</em>'.
@@ -504,13 +504,13 @@ public interface StoreFactory extends EFactory {
 	ModelComparePluginDescriptor createModelComparePluginDescriptor();
 
 	/**
-	 * Returns a new object of class '<em>Model Compare</em>'.
+	 * Returns a new object of class '<em>Model Compare Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Compare</em>'.
+	 * @return a new object of class '<em>Model Compare Plugin Configuration</em>'.
 	 * @generated
 	 */
-	ModelCompare createModelCompare();
+	ModelComparePluginConfiguration createModelComparePluginConfiguration();
 
 	/**
 	 * Returns a new object of class '<em>Server Descriptor</em>'.
@@ -558,13 +558,13 @@ public interface StoreFactory extends EFactory {
 	ServicePluginDescriptor createServicePluginDescriptor();
 
 	/**
-	 * Returns a new object of class '<em>EService</em>'.
+	 * Returns a new object of class '<em>Internal Service Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>EService</em>'.
+	 * @return a new object of class '<em>Internal Service Plugin Configuration</em>'.
 	 * @generated
 	 */
-	EService createEService();
+	InternalServicePluginConfiguration createInternalServicePluginConfiguration();
 
 	/**
 	 * Returns a new object of class '<em>Service Interface</em>'.

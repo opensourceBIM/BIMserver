@@ -1,15 +1,15 @@
-<%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
+<%@page import="org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration"%>
 <%@page import="java.util.List"%>
 <%@ include file="usersettingsmenu.jsp"%>
 <%
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
 	if (action.equals("disable")) {
-		SIfcEngine ifcEngine = loginManager.getService().getIfcEngineById(Long.parseLong(request.getParameter("oid")));
+		SIfcEnginePluginConfiguration ifcEngine = loginManager.getService().getIfcEngineById(Long.parseLong(request.getParameter("oid")));
 		ifcEngine.setEnabled(false);
 		loginManager.getService().updateIfcEngine(ifcEngine);
 	} else if (action.equals("enable")) {
-		SIfcEngine ifcEngine = loginManager.getService().getIfcEngineById(Long.parseLong(request.getParameter("oid")));
+		SIfcEnginePluginConfiguration ifcEngine = loginManager.getService().getIfcEngineById(Long.parseLong(request.getParameter("oid")));
 		ifcEngine.setEnabled(true);
 		loginManager.getService().updateIfcEngine(ifcEngine);
 	} else if (action.equals("setdefault")) {
@@ -25,8 +25,8 @@ if (request.getParameter("action") != null) {
 <table class="formatted">
 <tr><th>Name</th><th>Classname</th><th>Serializers</th><th>Default</th><th>State</th><th>Actions</th></tr>
 <%
-	List<SIfcEngine> ifcEngines = service.getAllIfcEngines(false);
-	for (SIfcEngine ifcEngine : ifcEngines) {
+	List<SIfcEnginePluginConfiguration> ifcEngines = service.getAllIfcEngines(false);
+	for (SIfcEnginePluginConfiguration ifcEngine : ifcEngines) {
 		boolean isDefault = service.getDefaultIfcEngine() != null && service.getDefaultIfcEngine().getOid() == ifcEngine.getOid();
 %>
 	<tr>

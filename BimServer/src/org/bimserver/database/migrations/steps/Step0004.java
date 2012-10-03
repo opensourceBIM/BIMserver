@@ -31,8 +31,8 @@ public class Step0004 extends Migration {
 
 	@Override
 	public void migrate(Schema schema) {
-		EClass serializerPluginClass = schema.createEClass(schema.getEPackage("store"), "Serializer", schema.getEClass("store", "Plugin"));
-		EClass objectIDMPluginClass = schema.createEClass(schema.getEPackage("store"), "ObjectIDM", schema.getEClass("store", "Plugin"));
+		EClass serializerPluginClass = schema.createEClass(schema.getEPackage("store"), "SerializerPluginConfiguration", schema.getEClass("store", "PluginConfiguration"));
+		EClass objectIDMPluginClass = schema.createEClass(schema.getEPackage("store"), "ObjectIDMPluginConfiguration", schema.getEClass("store", "PluginConfiguration"));
 		EClass userSettingsClass = schema.getEClass("store", "UserSettings");
 
 		schema.createEAttribute(serializerPluginClass, "extension", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);

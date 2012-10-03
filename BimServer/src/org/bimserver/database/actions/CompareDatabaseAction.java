@@ -25,7 +25,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.CompareType;
-import org.bimserver.models.store.ModelCompare;
+import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.VoidReporter;
 import org.bimserver.plugins.modelcompare.ModelCompareException;
@@ -54,7 +54,7 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 	}
 
 	public org.bimserver.plugins.modelcompare.ModelCompare getModelCompare() throws ModelCompareException, BimserverDatabaseException {
-		ModelCompare modelCompareObject = getDatabaseSession().get(StorePackage.eINSTANCE.getModelCompare(), mcid, false, null);
+		ModelComparePluginConfiguration modelCompareObject = getDatabaseSession().get(StorePackage.eINSTANCE.getModelComparePluginConfiguration(), mcid, false, null);
 		if (modelCompareObject != null) {
 			ModelComparePlugin modelComparePlugin = bimServer.getPluginManager().getModelComparePlugin(modelCompareObject.getClassName(), true);
 			if (modelComparePlugin != null) {

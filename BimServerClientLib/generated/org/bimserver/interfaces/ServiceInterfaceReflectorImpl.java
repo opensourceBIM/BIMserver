@@ -32,7 +32,7 @@ private Reflector reflector;
 	public void addBooleanAttribute(java.lang.Long oid, java.lang.String attributeName, java.lang.Boolean value) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "addBooleanAttribute", void.class, new KeyValuePair("oid", oid), new KeyValuePair("attributeName", attributeName), new KeyValuePair("value", value));
 	}
-	public void addDeserializer(org.bimserver.interfaces.objects.SDeserializer deserializer) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public void addDeserializer(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration deserializer) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "addDeserializer", void.class, new KeyValuePair("deserializer", deserializer));
 	}
 	public void addDoubleAttribute(java.lang.Long oid, java.lang.String attributeName, java.lang.Double value) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
@@ -47,19 +47,22 @@ private Reflector reflector;
 	public void addExtendedDataToRevision(java.lang.Long roid, org.bimserver.interfaces.objects.SExtendedData extendedData) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "addExtendedDataToRevision", void.class, new KeyValuePair("roid", roid), new KeyValuePair("extendedData", extendedData));
 	}
-	public void addIfcEngine(org.bimserver.interfaces.objects.SIfcEngine ifcEngine) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public void addIfcEngine(org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration ifcEngine) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "addIfcEngine", void.class, new KeyValuePair("ifcEngine", ifcEngine));
 	}
 	public void addIntegerAttribute(java.lang.Long oid, java.lang.String attributeName, java.lang.Integer value) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "addIntegerAttribute", void.class, new KeyValuePair("oid", oid), new KeyValuePair("attributeName", attributeName), new KeyValuePair("value", value));
 	}
-	public void addModelCompare(org.bimserver.interfaces.objects.SModelCompare modelCompare) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public void addInternalService(org.bimserver.interfaces.objects.SInternalServicePluginConfiguration internalService) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("ServiceInterface", "addInternalService", void.class, new KeyValuePair("internalService", internalService));
+	}
+	public void addModelCompare(org.bimserver.interfaces.objects.SModelComparePluginConfiguration modelCompare) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "addModelCompare", void.class, new KeyValuePair("modelCompare", modelCompare));
 	}
-	public void addModelMerger(org.bimserver.interfaces.objects.SModelMerger modelMerger) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public void addModelMerger(org.bimserver.interfaces.objects.SModelMergerPluginConfiguration modelMerger) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "addModelMerger", void.class, new KeyValuePair("modelMerger", modelMerger));
 	}
-	public void addObjectIDM(org.bimserver.interfaces.objects.SObjectIDM objectIDM) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public void addObjectIDM(org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration objectIDM) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "addObjectIDM", void.class, new KeyValuePair("objectIDM", objectIDM));
 	}
 	public org.bimserver.interfaces.objects.SProject addProject(java.lang.String projectName) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
@@ -68,16 +71,13 @@ private Reflector reflector;
 	public org.bimserver.interfaces.objects.SProject addProjectAsSubProject(java.lang.String projectName, java.lang.Long parentPoid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SProject) reflector.callMethod("ServiceInterface", "addProjectAsSubProject", org.bimserver.interfaces.objects.SProject.class, new KeyValuePair("projectName", projectName), new KeyValuePair("parentPoid", parentPoid));
 	}
-	public void addQueryEngine(org.bimserver.interfaces.objects.SQueryEngine queryEngine) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public void addQueryEngine(org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration queryEngine) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "addQueryEngine", void.class, new KeyValuePair("queryEngine", queryEngine));
 	}
 	public void addReference(java.lang.Long oid, java.lang.String referenceName, java.lang.Long referenceOid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "addReference", void.class, new KeyValuePair("oid", oid), new KeyValuePair("referenceName", referenceName), new KeyValuePair("referenceOid", referenceOid));
 	}
-	public void addSEService(org.bimserver.interfaces.objects.SEService seService) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("ServiceInterface", "addSEService", void.class, new KeyValuePair("seService", seService));
-	}
-	public void addSerializer(org.bimserver.interfaces.objects.SSerializer serializer) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public void addSerializer(org.bimserver.interfaces.objects.SSerializerPluginConfiguration serializer) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "addSerializer", void.class, new KeyValuePair("serializer", serializer));
 	}
 	public void addServiceToProject(java.lang.Long poid, org.bimserver.interfaces.objects.SService sService) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
@@ -134,11 +134,11 @@ private Reflector reflector;
 	public void deleteDeserializer(java.lang.Long sid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "deleteDeserializer", void.class, new KeyValuePair("sid", sid));
 	}
-	public void deleteEService(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("ServiceInterface", "deleteEService", void.class, new KeyValuePair("oid", oid));
-	}
 	public void deleteIfcEngine(java.lang.Long iid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "deleteIfcEngine", void.class, new KeyValuePair("iid", iid));
+	}
+	public void deleteInternalService(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("ServiceInterface", "deleteInternalService", void.class, new KeyValuePair("oid", oid));
 	}
 	public void deleteModelCompare(java.lang.Long iid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "deleteModelCompare", void.class, new KeyValuePair("iid", iid));
@@ -221,8 +221,8 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SDeserializerPluginDescriptor> getAllDeserializerPluginDescriptors() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SDeserializerPluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllDeserializerPluginDescriptors", java.util.List.class);
 	}
-	public java.util.List<org.bimserver.interfaces.objects.SDeserializer> getAllDeserializers(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.util.List<org.bimserver.interfaces.objects.SDeserializer>) reflector.callMethod("ServiceInterface", "getAllDeserializers", java.util.List.class, new KeyValuePair("onlyEnabled", onlyEnabled));
+	public java.util.List<org.bimserver.interfaces.objects.SDeserializerPluginConfiguration> getAllDeserializers(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.util.List<org.bimserver.interfaces.objects.SDeserializerPluginConfiguration>) reflector.callMethod("ServiceInterface", "getAllDeserializers", java.util.List.class, new KeyValuePair("onlyEnabled", onlyEnabled));
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SExtendedDataSchema> getAllExtendedDataSchemas() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SExtendedDataSchema>) reflector.callMethod("ServiceInterface", "getAllExtendedDataSchemas", java.util.List.class);
@@ -230,20 +230,23 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor> getAllIfcEnginePluginDescriptors() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllIfcEnginePluginDescriptors", java.util.List.class);
 	}
-	public java.util.List<org.bimserver.interfaces.objects.SIfcEngine> getAllIfcEngines(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.util.List<org.bimserver.interfaces.objects.SIfcEngine>) reflector.callMethod("ServiceInterface", "getAllIfcEngines", java.util.List.class, new KeyValuePair("onlyEnabled", onlyEnabled));
+	public java.util.List<org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration> getAllIfcEngines(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.util.List<org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration>) reflector.callMethod("ServiceInterface", "getAllIfcEngines", java.util.List.class, new KeyValuePair("onlyEnabled", onlyEnabled));
+	}
+	public java.util.List<org.bimserver.interfaces.objects.SInternalServicePluginConfiguration> getAllInternalServices(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.util.List<org.bimserver.interfaces.objects.SInternalServicePluginConfiguration>) reflector.callMethod("ServiceInterface", "getAllInternalServices", java.util.List.class, new KeyValuePair("onlyEnabled", onlyEnabled));
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SModelComparePluginDescriptor> getAllModelComparePluginDescriptors() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SModelComparePluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllModelComparePluginDescriptors", java.util.List.class);
 	}
-	public java.util.List<org.bimserver.interfaces.objects.SModelCompare> getAllModelCompares(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.util.List<org.bimserver.interfaces.objects.SModelCompare>) reflector.callMethod("ServiceInterface", "getAllModelCompares", java.util.List.class, new KeyValuePair("onlyEnabled", onlyEnabled));
+	public java.util.List<org.bimserver.interfaces.objects.SModelComparePluginConfiguration> getAllModelCompares(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.util.List<org.bimserver.interfaces.objects.SModelComparePluginConfiguration>) reflector.callMethod("ServiceInterface", "getAllModelCompares", java.util.List.class, new KeyValuePair("onlyEnabled", onlyEnabled));
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SModelMergerPluginDescriptor> getAllModelMergerPluginDescriptors() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SModelMergerPluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllModelMergerPluginDescriptors", java.util.List.class);
 	}
-	public java.util.List<org.bimserver.interfaces.objects.SModelMerger> getAllModelMergers(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.util.List<org.bimserver.interfaces.objects.SModelMerger>) reflector.callMethod("ServiceInterface", "getAllModelMergers", java.util.List.class, new KeyValuePair("onlyEnabled", onlyEnabled));
+	public java.util.List<org.bimserver.interfaces.objects.SModelMergerPluginConfiguration> getAllModelMergers(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.util.List<org.bimserver.interfaces.objects.SModelMergerPluginConfiguration>) reflector.callMethod("ServiceInterface", "getAllModelMergers", java.util.List.class, new KeyValuePair("onlyEnabled", onlyEnabled));
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllNonAuthorizedProjectsOfUser(java.lang.Long uoid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SProject>) reflector.callMethod("ServiceInterface", "getAllNonAuthorizedProjectsOfUser", java.util.List.class, new KeyValuePair("uoid", uoid));
@@ -254,8 +257,8 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor> getAllObjectIDMPluginDescriptors() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllObjectIDMPluginDescriptors", java.util.List.class);
 	}
-	public java.util.List<org.bimserver.interfaces.objects.SObjectIDM> getAllObjectIDMs(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.util.List<org.bimserver.interfaces.objects.SObjectIDM>) reflector.callMethod("ServiceInterface", "getAllObjectIDMs", java.util.List.class, new KeyValuePair("onlyEnabled", onlyEnabled));
+	public java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration> getAllObjectIDMs(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration>) reflector.callMethod("ServiceInterface", "getAllObjectIDMs", java.util.List.class, new KeyValuePair("onlyEnabled", onlyEnabled));
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> getAllPlugins() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllPlugins", java.util.List.class);
@@ -266,8 +269,8 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor> getAllQueryEnginePluginDescriptors() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllQueryEnginePluginDescriptors", java.util.List.class);
 	}
-	public java.util.List<org.bimserver.interfaces.objects.SQueryEngine> getAllQueryEngines(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.util.List<org.bimserver.interfaces.objects.SQueryEngine>) reflector.callMethod("ServiceInterface", "getAllQueryEngines", java.util.List.class, new KeyValuePair("onlyEnabled", onlyEnabled));
+	public java.util.List<org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration> getAllQueryEngines(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.util.List<org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration>) reflector.callMethod("ServiceInterface", "getAllQueryEngines", java.util.List.class, new KeyValuePair("onlyEnabled", onlyEnabled));
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllReadableProjects() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SProject>) reflector.callMethod("ServiceInterface", "getAllReadableProjects", java.util.List.class);
@@ -278,14 +281,11 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SRevision> getAllRevisionsOfProject(java.lang.Long poid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SRevision>) reflector.callMethod("ServiceInterface", "getAllRevisionsOfProject", java.util.List.class, new KeyValuePair("poid", poid));
 	}
-	public java.util.List<org.bimserver.interfaces.objects.SEService> getAllSEServices(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.util.List<org.bimserver.interfaces.objects.SEService>) reflector.callMethod("ServiceInterface", "getAllSEServices", java.util.List.class, new KeyValuePair("onlyEnabled", onlyEnabled));
-	}
 	public java.util.List<org.bimserver.interfaces.objects.SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SSerializerPluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllSerializerPluginDescriptors", java.util.List.class);
 	}
-	public java.util.List<org.bimserver.interfaces.objects.SSerializer> getAllSerializers(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.util.List<org.bimserver.interfaces.objects.SSerializer>) reflector.callMethod("ServiceInterface", "getAllSerializers", java.util.List.class, new KeyValuePair("onlyEnabled", onlyEnabled));
+	public java.util.List<org.bimserver.interfaces.objects.SSerializerPluginConfiguration> getAllSerializers(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.util.List<org.bimserver.interfaces.objects.SSerializerPluginConfiguration>) reflector.callMethod("ServiceInterface", "getAllSerializers", java.util.List.class, new KeyValuePair("onlyEnabled", onlyEnabled));
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SServicePluginDescriptor> getAllServicePluginDescriptors() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SServicePluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllServicePluginDescriptors", java.util.List.class);
@@ -332,38 +332,35 @@ private Reflector reflector;
 	public org.bimserver.interfaces.objects.SDatabaseInformation getDatabaseInformation() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SDatabaseInformation) reflector.callMethod("ServiceInterface", "getDatabaseInformation", org.bimserver.interfaces.objects.SDatabaseInformation.class);
 	}
-	public org.bimserver.interfaces.objects.SIfcEngine getDefaultIfcEngine() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SIfcEngine) reflector.callMethod("ServiceInterface", "getDefaultIfcEngine", org.bimserver.interfaces.objects.SIfcEngine.class);
+	public org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration getDefaultIfcEngine() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration) reflector.callMethod("ServiceInterface", "getDefaultIfcEngine", org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration.class);
 	}
-	public org.bimserver.interfaces.objects.SModelCompare getDefaultModelCompare() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SModelCompare) reflector.callMethod("ServiceInterface", "getDefaultModelCompare", org.bimserver.interfaces.objects.SModelCompare.class);
+	public org.bimserver.interfaces.objects.SModelComparePluginConfiguration getDefaultModelCompare() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SModelComparePluginConfiguration) reflector.callMethod("ServiceInterface", "getDefaultModelCompare", org.bimserver.interfaces.objects.SModelComparePluginConfiguration.class);
 	}
-	public org.bimserver.interfaces.objects.SModelMerger getDefaultModelMerger() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SModelMerger) reflector.callMethod("ServiceInterface", "getDefaultModelMerger", org.bimserver.interfaces.objects.SModelMerger.class);
+	public org.bimserver.interfaces.objects.SModelMergerPluginConfiguration getDefaultModelMerger() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SModelMergerPluginConfiguration) reflector.callMethod("ServiceInterface", "getDefaultModelMerger", org.bimserver.interfaces.objects.SModelMergerPluginConfiguration.class);
 	}
-	public org.bimserver.interfaces.objects.SObjectIDM getDefaultObjectIDM() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SObjectIDM) reflector.callMethod("ServiceInterface", "getDefaultObjectIDM", org.bimserver.interfaces.objects.SObjectIDM.class);
+	public org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration getDefaultObjectIDM() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration) reflector.callMethod("ServiceInterface", "getDefaultObjectIDM", org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration.class);
 	}
-	public org.bimserver.interfaces.objects.SQueryEngine getDefaultQueryEngine() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SQueryEngine) reflector.callMethod("ServiceInterface", "getDefaultQueryEngine", org.bimserver.interfaces.objects.SQueryEngine.class);
+	public org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration getDefaultQueryEngine() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration) reflector.callMethod("ServiceInterface", "getDefaultQueryEngine", org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration.class);
 	}
-	public org.bimserver.interfaces.objects.SSerializer getDefaultSerializer() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SSerializer) reflector.callMethod("ServiceInterface", "getDefaultSerializer", org.bimserver.interfaces.objects.SSerializer.class);
+	public org.bimserver.interfaces.objects.SSerializerPluginConfiguration getDefaultSerializer() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SSerializerPluginConfiguration) reflector.callMethod("ServiceInterface", "getDefaultSerializer", org.bimserver.interfaces.objects.SSerializerPluginConfiguration.class);
 	}
-	public org.bimserver.interfaces.objects.SDeserializer getDeserializerById(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SDeserializer) reflector.callMethod("ServiceInterface", "getDeserializerById", org.bimserver.interfaces.objects.SDeserializer.class, new KeyValuePair("oid", oid));
+	public org.bimserver.interfaces.objects.SDeserializerPluginConfiguration getDeserializerById(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SDeserializerPluginConfiguration) reflector.callMethod("ServiceInterface", "getDeserializerById", org.bimserver.interfaces.objects.SDeserializerPluginConfiguration.class, new KeyValuePair("oid", oid));
 	}
-	public org.bimserver.interfaces.objects.SDeserializer getDeserializerByName(java.lang.String deserializerName) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SDeserializer) reflector.callMethod("ServiceInterface", "getDeserializerByName", org.bimserver.interfaces.objects.SDeserializer.class, new KeyValuePair("deserializerName", deserializerName));
+	public org.bimserver.interfaces.objects.SDeserializerPluginConfiguration getDeserializerByName(java.lang.String deserializerName) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SDeserializerPluginConfiguration) reflector.callMethod("ServiceInterface", "getDeserializerByName", org.bimserver.interfaces.objects.SDeserializerPluginConfiguration.class, new KeyValuePair("deserializerName", deserializerName));
 	}
 	public org.bimserver.interfaces.objects.SDownloadResult getDownloadData(java.lang.Long actionId) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SDownloadResult) reflector.callMethod("ServiceInterface", "getDownloadData", org.bimserver.interfaces.objects.SDownloadResult.class, new KeyValuePair("actionId", actionId));
 	}
 	public org.bimserver.interfaces.objects.SLongActionState getDownloadState(java.lang.Long actionId) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SLongActionState) reflector.callMethod("ServiceInterface", "getDownloadState", org.bimserver.interfaces.objects.SLongActionState.class, new KeyValuePair("actionId", actionId));
-	}
-	public org.bimserver.interfaces.objects.SEService getEServiceById(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SEService) reflector.callMethod("ServiceInterface", "getEServiceById", org.bimserver.interfaces.objects.SEService.class, new KeyValuePair("oid", oid));
 	}
 	public org.bimserver.interfaces.objects.SExtendedData getExtendedData(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SExtendedData) reflector.callMethod("ServiceInterface", "getExtendedData", org.bimserver.interfaces.objects.SExtendedData.class, new KeyValuePair("oid", oid));
@@ -383,17 +380,14 @@ private Reflector reflector;
 	public org.bimserver.interfaces.objects.SGeoTag getGeoTag(java.lang.Long goid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SGeoTag) reflector.callMethod("ServiceInterface", "getGeoTag", org.bimserver.interfaces.objects.SGeoTag.class, new KeyValuePair("goid", goid));
 	}
-	public org.bimserver.interfaces.objects.SIfcEngine getIfcEngineById(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SIfcEngine) reflector.callMethod("ServiceInterface", "getIfcEngineById", org.bimserver.interfaces.objects.SIfcEngine.class, new KeyValuePair("oid", oid));
+	public org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration getIfcEngineById(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration) reflector.callMethod("ServiceInterface", "getIfcEngineById", org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration.class, new KeyValuePair("oid", oid));
 	}
-	public org.bimserver.interfaces.objects.SIfcEngine getIfcEngineByName(java.lang.String name) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SIfcEngine) reflector.callMethod("ServiceInterface", "getIfcEngineByName", org.bimserver.interfaces.objects.SIfcEngine.class, new KeyValuePair("name", name));
+	public org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration getIfcEngineByName(java.lang.String name) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration) reflector.callMethod("ServiceInterface", "getIfcEngineByName", org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration.class, new KeyValuePair("name", name));
 	}
-	public java.util.List<org.bimserver.interfaces.objects.SServerDescriptor> getInternalServers() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.util.List<org.bimserver.interfaces.objects.SServerDescriptor>) reflector.callMethod("ServiceInterface", "getInternalServers", java.util.List.class);
-	}
-	public java.util.List<org.bimserver.interfaces.objects.SServiceDescriptor> getInternalServices(java.lang.String name) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.util.List<org.bimserver.interfaces.objects.SServiceDescriptor>) reflector.callMethod("ServiceInterface", "getInternalServices", java.util.List.class, new KeyValuePair("name", name));
+	public org.bimserver.interfaces.objects.SInternalServicePluginConfiguration getInternalServiceById(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SInternalServicePluginConfiguration) reflector.callMethod("ServiceInterface", "getInternalServiceById", org.bimserver.interfaces.objects.SInternalServicePluginConfiguration.class, new KeyValuePair("oid", oid));
 	}
 	public java.util.Date getLastActive() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.Date) reflector.callMethod("ServiceInterface", "getLastActive", java.util.Date.class);
@@ -413,23 +407,23 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SMigration> getMigrations() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SMigration>) reflector.callMethod("ServiceInterface", "getMigrations", java.util.List.class);
 	}
-	public org.bimserver.interfaces.objects.SModelCompare getModelCompareById(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SModelCompare) reflector.callMethod("ServiceInterface", "getModelCompareById", org.bimserver.interfaces.objects.SModelCompare.class, new KeyValuePair("oid", oid));
+	public org.bimserver.interfaces.objects.SModelComparePluginConfiguration getModelCompareById(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SModelComparePluginConfiguration) reflector.callMethod("ServiceInterface", "getModelCompareById", org.bimserver.interfaces.objects.SModelComparePluginConfiguration.class, new KeyValuePair("oid", oid));
 	}
-	public org.bimserver.interfaces.objects.SModelCompare getModelCompareByName(java.lang.String name) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SModelCompare) reflector.callMethod("ServiceInterface", "getModelCompareByName", org.bimserver.interfaces.objects.SModelCompare.class, new KeyValuePair("name", name));
+	public org.bimserver.interfaces.objects.SModelComparePluginConfiguration getModelCompareByName(java.lang.String name) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SModelComparePluginConfiguration) reflector.callMethod("ServiceInterface", "getModelCompareByName", org.bimserver.interfaces.objects.SModelComparePluginConfiguration.class, new KeyValuePair("name", name));
 	}
-	public org.bimserver.interfaces.objects.SModelMerger getModelMergerById(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SModelMerger) reflector.callMethod("ServiceInterface", "getModelMergerById", org.bimserver.interfaces.objects.SModelMerger.class, new KeyValuePair("oid", oid));
+	public org.bimserver.interfaces.objects.SModelMergerPluginConfiguration getModelMergerById(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SModelMergerPluginConfiguration) reflector.callMethod("ServiceInterface", "getModelMergerById", org.bimserver.interfaces.objects.SModelMergerPluginConfiguration.class, new KeyValuePair("oid", oid));
 	}
-	public org.bimserver.interfaces.objects.SModelMerger getModelMergerByName(java.lang.String name) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SModelMerger) reflector.callMethod("ServiceInterface", "getModelMergerByName", org.bimserver.interfaces.objects.SModelMerger.class, new KeyValuePair("name", name));
+	public org.bimserver.interfaces.objects.SModelMergerPluginConfiguration getModelMergerByName(java.lang.String name) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SModelMergerPluginConfiguration) reflector.callMethod("ServiceInterface", "getModelMergerByName", org.bimserver.interfaces.objects.SModelMergerPluginConfiguration.class, new KeyValuePair("name", name));
 	}
-	public org.bimserver.interfaces.objects.SObjectIDM getObjectIDMById(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SObjectIDM) reflector.callMethod("ServiceInterface", "getObjectIDMById", org.bimserver.interfaces.objects.SObjectIDM.class, new KeyValuePair("oid", oid));
+	public org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration getObjectIDMById(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration) reflector.callMethod("ServiceInterface", "getObjectIDMById", org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration.class, new KeyValuePair("oid", oid));
 	}
-	public org.bimserver.interfaces.objects.SObjectIDM getObjectIDMByName(java.lang.String objectIDMName) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SObjectIDM) reflector.callMethod("ServiceInterface", "getObjectIDMByName", org.bimserver.interfaces.objects.SObjectIDM.class, new KeyValuePair("objectIDMName", objectIDMName));
+	public org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration getObjectIDMByName(java.lang.String objectIDMName) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration) reflector.callMethod("ServiceInterface", "getObjectIDMByName", org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration.class, new KeyValuePair("objectIDMName", objectIDMName));
 	}
 	public org.bimserver.interfaces.objects.SProject getProjectByPoid(java.lang.Long poid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SProject) reflector.callMethod("ServiceInterface", "getProjectByPoid", org.bimserver.interfaces.objects.SProject.class, new KeyValuePair("poid", poid));
@@ -440,11 +434,11 @@ private Reflector reflector;
 	public java.lang.String getProtocolBuffersFile() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.lang.String) reflector.callMethod("ServiceInterface", "getProtocolBuffersFile", java.lang.String.class);
 	}
-	public org.bimserver.interfaces.objects.SQueryEngine getQueryEngineById(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SQueryEngine) reflector.callMethod("ServiceInterface", "getQueryEngineById", org.bimserver.interfaces.objects.SQueryEngine.class, new KeyValuePair("oid", oid));
+	public org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration getQueryEngineById(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration) reflector.callMethod("ServiceInterface", "getQueryEngineById", org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration.class, new KeyValuePair("oid", oid));
 	}
-	public org.bimserver.interfaces.objects.SQueryEngine getQueryEngineByName(java.lang.String name) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SQueryEngine) reflector.callMethod("ServiceInterface", "getQueryEngineByName", org.bimserver.interfaces.objects.SQueryEngine.class, new KeyValuePair("name", name));
+	public org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration getQueryEngineByName(java.lang.String name) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration) reflector.callMethod("ServiceInterface", "getQueryEngineByName", org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration.class, new KeyValuePair("name", name));
 	}
 	public java.lang.String getQueryEngineExample(java.lang.Long qeid, java.lang.String key) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.lang.String) reflector.callMethod("ServiceInterface", "getQueryEngineExample", java.lang.String.class, new KeyValuePair("qeid", qeid), new KeyValuePair("key", key));
@@ -461,14 +455,14 @@ private Reflector reflector;
 	public org.bimserver.interfaces.objects.SRevisionSummary getRevisionSummary(java.lang.Long roid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SRevisionSummary) reflector.callMethod("ServiceInterface", "getRevisionSummary", org.bimserver.interfaces.objects.SRevisionSummary.class, new KeyValuePair("roid", roid));
 	}
-	public org.bimserver.interfaces.objects.SSerializer getSerializerByContentType(java.lang.String contentType) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SSerializer) reflector.callMethod("ServiceInterface", "getSerializerByContentType", org.bimserver.interfaces.objects.SSerializer.class, new KeyValuePair("contentType", contentType));
+	public org.bimserver.interfaces.objects.SSerializerPluginConfiguration getSerializerByContentType(java.lang.String contentType) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SSerializerPluginConfiguration) reflector.callMethod("ServiceInterface", "getSerializerByContentType", org.bimserver.interfaces.objects.SSerializerPluginConfiguration.class, new KeyValuePair("contentType", contentType));
 	}
-	public org.bimserver.interfaces.objects.SSerializer getSerializerById(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SSerializer) reflector.callMethod("ServiceInterface", "getSerializerById", org.bimserver.interfaces.objects.SSerializer.class, new KeyValuePair("oid", oid));
+	public org.bimserver.interfaces.objects.SSerializerPluginConfiguration getSerializerById(java.lang.Long oid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SSerializerPluginConfiguration) reflector.callMethod("ServiceInterface", "getSerializerById", org.bimserver.interfaces.objects.SSerializerPluginConfiguration.class, new KeyValuePair("oid", oid));
 	}
-	public org.bimserver.interfaces.objects.SSerializer getSerializerByName(java.lang.String serializerName) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SSerializer) reflector.callMethod("ServiceInterface", "getSerializerByName", org.bimserver.interfaces.objects.SSerializer.class, new KeyValuePair("serializerName", serializerName));
+	public org.bimserver.interfaces.objects.SSerializerPluginConfiguration getSerializerByName(java.lang.String serializerName) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SSerializerPluginConfiguration) reflector.callMethod("ServiceInterface", "getSerializerByName", org.bimserver.interfaces.objects.SSerializerPluginConfiguration.class, new KeyValuePair("serializerName", serializerName));
 	}
 	public org.bimserver.interfaces.objects.SSerializerPluginDescriptor getSerializerPluginDescriptor(java.lang.String type) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SSerializerPluginDescriptor) reflector.callMethod("ServiceInterface", "getSerializerPluginDescriptor", org.bimserver.interfaces.objects.SSerializerPluginDescriptor.class, new KeyValuePair("type", type));
@@ -482,8 +476,8 @@ private Reflector reflector;
 	public java.util.Date getServerStartTime() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.Date) reflector.callMethod("ServiceInterface", "getServerStartTime", java.util.Date.class);
 	}
-	public org.bimserver.interfaces.objects.SService getService(java.lang.Long epid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SService) reflector.callMethod("ServiceInterface", "getService", org.bimserver.interfaces.objects.SService.class, new KeyValuePair("epid", epid));
+	public org.bimserver.interfaces.objects.SService getService(java.lang.Long soid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SService) reflector.callMethod("ServiceInterface", "getService", org.bimserver.interfaces.objects.SService.class, new KeyValuePair("soid", soid));
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SServiceInterface> getServiceInterfaces() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SServiceInterface>) reflector.callMethod("ServiceInterface", "getServiceInterfaces", java.util.List.class);
@@ -527,8 +521,8 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SProject> getSubProjects(java.lang.Long poid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SProject>) reflector.callMethod("ServiceInterface", "getSubProjects", java.util.List.class, new KeyValuePair("poid", poid));
 	}
-	public org.bimserver.interfaces.objects.SDeserializer getSuggestedDeserializerForExtension(java.lang.String extension) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (org.bimserver.interfaces.objects.SDeserializer) reflector.callMethod("ServiceInterface", "getSuggestedDeserializerForExtension", org.bimserver.interfaces.objects.SDeserializer.class, new KeyValuePair("extension", extension));
+	public org.bimserver.interfaces.objects.SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(java.lang.String extension) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SDeserializerPluginConfiguration) reflector.callMethod("ServiceInterface", "getSuggestedDeserializerForExtension", org.bimserver.interfaces.objects.SDeserializerPluginConfiguration.class, new KeyValuePair("extension", extension));
 	}
 	public org.bimserver.interfaces.objects.SUser getUserByUoid(java.lang.Long uoid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SUser) reflector.callMethod("ServiceInterface", "getUserByUoid", org.bimserver.interfaces.objects.SUser.class, new KeyValuePair("uoid", uoid));
@@ -710,37 +704,37 @@ private Reflector reflector;
 	public void unsetReference(java.lang.Long oid, java.lang.String referenceName) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "unsetReference", void.class, new KeyValuePair("oid", oid), new KeyValuePair("referenceName", referenceName));
 	}
-	public void updateDeserializer(org.bimserver.interfaces.objects.SDeserializer deserializer) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public void updateDeserializer(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration deserializer) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "updateDeserializer", void.class, new KeyValuePair("deserializer", deserializer));
 	}
 	public void updateGeoTag(org.bimserver.interfaces.objects.SGeoTag sGeoTag) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "updateGeoTag", void.class, new KeyValuePair("sGeoTag", sGeoTag));
 	}
-	public void updateIfcEngine(org.bimserver.interfaces.objects.SIfcEngine ifcEngine) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public void updateIfcEngine(org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration ifcEngine) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "updateIfcEngine", void.class, new KeyValuePair("ifcEngine", ifcEngine));
 	}
-	public void updateModelCompare(org.bimserver.interfaces.objects.SModelCompare modelCompare) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public void updateInternalService(org.bimserver.interfaces.objects.SInternalServicePluginConfiguration internalService) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("ServiceInterface", "updateInternalService", void.class, new KeyValuePair("internalService", internalService));
+	}
+	public void updateModelCompare(org.bimserver.interfaces.objects.SModelComparePluginConfiguration modelCompare) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "updateModelCompare", void.class, new KeyValuePair("modelCompare", modelCompare));
 	}
-	public void updateModelMerger(org.bimserver.interfaces.objects.SModelMerger modelMerger) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public void updateModelMerger(org.bimserver.interfaces.objects.SModelMergerPluginConfiguration modelMerger) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "updateModelMerger", void.class, new KeyValuePair("modelMerger", modelMerger));
 	}
-	public void updateObjectIDM(org.bimserver.interfaces.objects.SObjectIDM objectIDM) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public void updateObjectIDM(org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration objectIDM) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "updateObjectIDM", void.class, new KeyValuePair("objectIDM", objectIDM));
 	}
 	public void updateProject(org.bimserver.interfaces.objects.SProject sProject) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "updateProject", void.class, new KeyValuePair("sProject", sProject));
 	}
-	public void updateQueryEngine(org.bimserver.interfaces.objects.SQueryEngine queryEngine) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public void updateQueryEngine(org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration queryEngine) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "updateQueryEngine", void.class, new KeyValuePair("queryEngine", queryEngine));
 	}
 	public void updateRevision(org.bimserver.interfaces.objects.SRevision sRevision) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "updateRevision", void.class, new KeyValuePair("sRevision", sRevision));
 	}
-	public void updateSEService(org.bimserver.interfaces.objects.SEService seService) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		reflector.callMethod("ServiceInterface", "updateSEService", void.class, new KeyValuePair("seService", seService));
-	}
-	public void updateSerializer(org.bimserver.interfaces.objects.SSerializer serializer) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public void updateSerializer(org.bimserver.interfaces.objects.SSerializerPluginConfiguration serializer) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "updateSerializer", void.class, new KeyValuePair("serializer", serializer));
 	}
 	public java.lang.Boolean upgradePossible() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {

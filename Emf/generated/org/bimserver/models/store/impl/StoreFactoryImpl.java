@@ -33,35 +33,35 @@ import org.bimserver.models.store.DataValue;
 import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.DatabaseInformationCategory;
 import org.bimserver.models.store.DatabaseInformationItem;
-import org.bimserver.models.store.Deserializer;
+import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.DeserializerPluginDescriptor;
 import org.bimserver.models.store.DownloadResult;
-import org.bimserver.models.store.EService;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.ExtendedDataSchemaType;
 import org.bimserver.models.store.GeoTag;
-import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.IfcEnginePluginConfiguration;
 import org.bimserver.models.store.IfcEnginePluginDescriptor;
+import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.ListDataValue;
 import org.bimserver.models.store.LongAction;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.LongCheckinAction;
 import org.bimserver.models.store.Migration;
-import org.bimserver.models.store.ModelCompare;
+import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.ModelComparePluginDescriptor;
-import org.bimserver.models.store.ModelMerger;
+import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.ModelMergerPluginDescriptor;
 import org.bimserver.models.store.ObjectAdded;
-import org.bimserver.models.store.ObjectIDM;
+import org.bimserver.models.store.ObjectIDMPluginConfiguration;
 import org.bimserver.models.store.ObjectIDMPluginDescriptor;
 import org.bimserver.models.store.ObjectModified;
 import org.bimserver.models.store.ObjectRemoved;
 import org.bimserver.models.store.ObjectState;
-import org.bimserver.models.store.Plugin;
+import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.Project;
-import org.bimserver.models.store.QueryEngine;
+import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.QueryEnginePluginDescriptor;
 import org.bimserver.models.store.ReferenceDataValue;
 import org.bimserver.models.store.Revision;
@@ -69,7 +69,7 @@ import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.RevisionSummaryContainer;
 import org.bimserver.models.store.RevisionSummaryType;
 import org.bimserver.models.store.SIPrefix;
-import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.SerializerPluginDescriptor;
 import org.bimserver.models.store.ServerDescriptor;
 import org.bimserver.models.store.ServerInfo;
@@ -159,16 +159,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createServerSettings();
 		case StorePackage.USER_SETTINGS:
 			return (EObject) createUserSettings();
-		case StorePackage.PLUGIN:
-			return (EObject) createPlugin();
-		case StorePackage.SERIALIZER:
-			return (EObject) createSerializer();
-		case StorePackage.OBJECT_IDM:
-			return (EObject) createObjectIDM();
-		case StorePackage.IFC_ENGINE:
-			return (EObject) createIfcEngine();
-		case StorePackage.DESERIALIZER:
-			return (EObject) createDeserializer();
+		case StorePackage.PLUGIN_CONFIGURATION:
+			return (EObject) createPluginConfiguration();
+		case StorePackage.SERIALIZER_PLUGIN_CONFIGURATION:
+			return (EObject) createSerializerPluginConfiguration();
+		case StorePackage.OBJECT_IDM_PLUGIN_CONFIGURATION:
+			return (EObject) createObjectIDMPluginConfiguration();
+		case StorePackage.IFC_ENGINE_PLUGIN_CONFIGURATION:
+			return (EObject) createIfcEnginePluginConfiguration();
+		case StorePackage.DESERIALIZER_PLUGIN_CONFIGURATION:
+			return (EObject) createDeserializerPluginConfiguration();
 		case StorePackage.CHECKIN_RESULT:
 			return (EObject) createCheckinResult();
 		case StorePackage.DOWNLOAD_RESULT:
@@ -239,16 +239,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createExtendedData();
 		case StorePackage.QUERY_ENGINE_PLUGIN_DESCRIPTOR:
 			return (EObject) createQueryEnginePluginDescriptor();
-		case StorePackage.QUERY_ENGINE:
-			return (EObject) createQueryEngine();
+		case StorePackage.QUERY_ENGINE_PLUGIN_CONFIGURATION:
+			return (EObject) createQueryEnginePluginConfiguration();
 		case StorePackage.MODEL_MERGER_PLUGIN_DESCRIPTOR:
 			return (EObject) createModelMergerPluginDescriptor();
-		case StorePackage.MODEL_MERGER:
-			return (EObject) createModelMerger();
+		case StorePackage.MODEL_MERGER_PLUGIN_CONFIGURATION:
+			return (EObject) createModelMergerPluginConfiguration();
 		case StorePackage.MODEL_COMPARE_PLUGIN_DESCRIPTOR:
 			return (EObject) createModelComparePluginDescriptor();
-		case StorePackage.MODEL_COMPARE:
-			return (EObject) createModelCompare();
+		case StorePackage.MODEL_COMPARE_PLUGIN_CONFIGURATION:
+			return (EObject) createModelComparePluginConfiguration();
 		case StorePackage.SERVER_DESCRIPTOR:
 			return (EObject) createServerDescriptor();
 		case StorePackage.SERVICE_DESCRIPTOR:
@@ -259,8 +259,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createToken();
 		case StorePackage.SERVICE_PLUGIN_DESCRIPTOR:
 			return (EObject) createServicePluginDescriptor();
-		case StorePackage.ESERVICE:
-			return (EObject) createEService();
+		case StorePackage.INTERNAL_SERVICE_PLUGIN_CONFIGURATION:
+			return (EObject) createInternalServicePluginConfiguration();
 		case StorePackage.SERVICE_INTERFACE:
 			return (EObject) createServiceInterface();
 		case StorePackage.SERVICE_METHOD:
@@ -427,9 +427,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Plugin createPlugin() {
-		PluginImpl plugin = new PluginImpl();
-		return plugin;
+	public PluginConfiguration createPluginConfiguration() {
+		PluginConfigurationImpl pluginConfiguration = new PluginConfigurationImpl();
+		return pluginConfiguration;
 	}
 
 	/**
@@ -437,9 +437,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Serializer createSerializer() {
-		SerializerImpl serializer = new SerializerImpl();
-		return serializer;
+	public SerializerPluginConfiguration createSerializerPluginConfiguration() {
+		SerializerPluginConfigurationImpl serializerPluginConfiguration = new SerializerPluginConfigurationImpl();
+		return serializerPluginConfiguration;
 	}
 
 	/**
@@ -447,9 +447,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ObjectIDM createObjectIDM() {
-		ObjectIDMImpl objectIDM = new ObjectIDMImpl();
-		return objectIDM;
+	public ObjectIDMPluginConfiguration createObjectIDMPluginConfiguration() {
+		ObjectIDMPluginConfigurationImpl objectIDMPluginConfiguration = new ObjectIDMPluginConfigurationImpl();
+		return objectIDMPluginConfiguration;
 	}
 
 	/**
@@ -457,9 +457,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEngine createIfcEngine() {
-		IfcEngineImpl ifcEngine = new IfcEngineImpl();
-		return ifcEngine;
+	public IfcEnginePluginConfiguration createIfcEnginePluginConfiguration() {
+		IfcEnginePluginConfigurationImpl ifcEnginePluginConfiguration = new IfcEnginePluginConfigurationImpl();
+		return ifcEnginePluginConfiguration;
 	}
 
 	/**
@@ -467,9 +467,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Deserializer createDeserializer() {
-		DeserializerImpl deserializer = new DeserializerImpl();
-		return deserializer;
+	public DeserializerPluginConfiguration createDeserializerPluginConfiguration() {
+		DeserializerPluginConfigurationImpl deserializerPluginConfiguration = new DeserializerPluginConfigurationImpl();
+		return deserializerPluginConfiguration;
 	}
 
 	/**
@@ -827,9 +827,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public QueryEngine createQueryEngine() {
-		QueryEngineImpl queryEngine = new QueryEngineImpl();
-		return queryEngine;
+	public QueryEnginePluginConfiguration createQueryEnginePluginConfiguration() {
+		QueryEnginePluginConfigurationImpl queryEnginePluginConfiguration = new QueryEnginePluginConfigurationImpl();
+		return queryEnginePluginConfiguration;
 	}
 
 	/**
@@ -847,9 +847,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelMerger createModelMerger() {
-		ModelMergerImpl modelMerger = new ModelMergerImpl();
-		return modelMerger;
+	public ModelMergerPluginConfiguration createModelMergerPluginConfiguration() {
+		ModelMergerPluginConfigurationImpl modelMergerPluginConfiguration = new ModelMergerPluginConfigurationImpl();
+		return modelMergerPluginConfiguration;
 	}
 
 	/**
@@ -867,9 +867,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelCompare createModelCompare() {
-		ModelCompareImpl modelCompare = new ModelCompareImpl();
-		return modelCompare;
+	public ModelComparePluginConfiguration createModelComparePluginConfiguration() {
+		ModelComparePluginConfigurationImpl modelComparePluginConfiguration = new ModelComparePluginConfigurationImpl();
+		return modelComparePluginConfiguration;
 	}
 
 	/**
@@ -927,9 +927,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EService createEService() {
-		EServiceImpl eService = new EServiceImpl();
-		return eService;
+	public InternalServicePluginConfiguration createInternalServicePluginConfiguration() {
+		InternalServicePluginConfigurationImpl internalServicePluginConfiguration = new InternalServicePluginConfigurationImpl();
+		return internalServicePluginConfiguration;
 	}
 
 	/**

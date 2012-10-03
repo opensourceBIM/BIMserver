@@ -1,15 +1,15 @@
-<%@page import="org.bimserver.interfaces.objects.SQueryEngine"%>
+<%@page import="org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration"%>
 <%@page import="java.util.List"%>
 <%@ include file="usersettingsmenu.jsp"%>
 <%
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
 	if (action.equals("enable")) {
-		SQueryEngine queryEngine = loginManager.getService().getQueryEngineById(Long.parseLong(request.getParameter("oid")));
+		SQueryEnginePluginConfiguration queryEngine = loginManager.getService().getQueryEngineById(Long.parseLong(request.getParameter("oid")));
 		queryEngine.setEnabled(true);
 		loginManager.getService().updateQueryEngine(queryEngine);
 	} else if (action.equals("disable")) {
-		SQueryEngine queryEngine = loginManager.getService().getQueryEngineById(Long.parseLong(request.getParameter("oid")));
+		SQueryEnginePluginConfiguration queryEngine = loginManager.getService().getQueryEngineById(Long.parseLong(request.getParameter("oid")));
 		queryEngine.setEnabled(false);
 		loginManager.getService().updateQueryEngine(queryEngine);
 	} else if (action.equals("setdefault")) {
@@ -25,8 +25,8 @@ if (request.getParameter("action") != null) {
 <table class="formatted">
 <tr><th>Name</th><th>Classname</th><th>Default</th><th>State</th><th>Actions</th></tr>
 <%
-	List<SQueryEngine> queryEngines = service.getAllQueryEngines(false);
-	for (SQueryEngine queryEngine : queryEngines) {
+	List<SQueryEnginePluginConfiguration> queryEngines = service.getAllQueryEngines(false);
+	for (SQueryEnginePluginConfiguration queryEngine : queryEngines) {
 		boolean isDefault = service.getDefaultQueryEngine() != null && service.getDefaultQueryEngine().getOid() == queryEngine.getOid();
 %>
 	<tr>

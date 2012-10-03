@@ -1,20 +1,19 @@
-<%@page import="org.bimserver.interfaces.objects.SEService"%>
-<%@page import="org.bimserver.interfaces.objects.SQueryEngine"%>
+<%@page import="org.bimserver.interfaces.objects.SInternalServicePluginConfiguration"%>
 <%@page import="java.util.List"%>
 <%@ include file="usersettingsmenu.jsp"%>
 <%
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
 	if (action.equals("enable")) {
-		SEService seService = loginManager.getService().getEServiceById(Long.parseLong(request.getParameter("oid")));
+		SInternalServicePluginConfiguration seService = loginManager.getService().getInternalServiceById(Long.parseLong(request.getParameter("oid")));
 		seService.setEnabled(true);
-		loginManager.getService().updateSEService(seService);
+		loginManager.getService().updateInternalService(seService);
 	} else if (action.equals("disable")) {
-		SEService seService = loginManager.getService().getEServiceById(Long.parseLong(request.getParameter("oid")));
+		SInternalServicePluginConfiguration seService = loginManager.getService().getInternalServiceById(Long.parseLong(request.getParameter("oid")));
 		seService.setEnabled(false);
-		loginManager.getService().updateSEService(seService);
+		loginManager.getService().updateInternalService(seService);
 	} else if (action.equals("delete")) {
-		loginManager.getService().deleteEService(Long.parseLong(request.getParameter("oid")));
+		loginManager.getService().deleteInternalService(Long.parseLong(request.getParameter("oid")));
 	}
 	response.sendRedirect("internalservices.jsp");
 }
@@ -24,8 +23,8 @@ if (request.getParameter("action") != null) {
 <table class="formatted">
 <tr><th>Name</th><th>Classname</th><th>State</th><th>Actions</th></tr>
 <%
-	List<SEService> services = service.getAllSEServices(false);
-	for (SEService seService : services) {
+	List<SInternalServicePluginConfiguration> services = service.getAllInternalServices(false);
+	for (SInternalServicePluginConfiguration seService : services) {
 %>
 	<tr>
 		<td><a href="internalservice.jsp?id=<%=seService.getOid()%>"><%=seService.getName() %></a></td>

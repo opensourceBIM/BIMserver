@@ -1,6 +1,5 @@
 <%@page import="org.bimserver.interfaces.objects.SSettings"%>
-<%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializerPluginConfiguration"%>
 <%@page import="java.util.List"%>
 <%@ include file="usersettingsmenu.jsp"%>
 <h1>User Settings</h1>

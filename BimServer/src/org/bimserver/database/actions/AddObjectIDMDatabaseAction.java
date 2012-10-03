@@ -21,17 +21,17 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ObjectIDM;
+import org.bimserver.models.store.ObjectIDMPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
-public class AddObjectIDMDatabaseAction extends AddDatabaseAction<ObjectIDM> {
+public class AddObjectIDMDatabaseAction extends AddDatabaseAction<ObjectIDMPluginConfiguration> {
 
 	private Authorization authorization;
 
-	public AddObjectIDMDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, ObjectIDM objectIDM) {
+	public AddObjectIDMDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, ObjectIDMPluginConfiguration objectIDM) {
 		super(databaseSession, accessMethod, objectIDM);
 		this.authorization = authorization;
 	}

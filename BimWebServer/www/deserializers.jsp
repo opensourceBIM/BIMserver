@@ -1,15 +1,15 @@
-<%@page import="org.bimserver.interfaces.objects.SDeserializer"%>
+<%@page import="org.bimserver.interfaces.objects.SDeserializerPluginConfiguration"%>
 <%@page import="java.util.List"%>
 <%@ include file="usersettingsmenu.jsp"%>
 <%
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
 	if (action.equals("disable")) {
-		SDeserializer deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("oid")));
+		SDeserializerPluginConfiguration deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("oid")));
 		deserializer.setEnabled(false);
 		loginManager.getService().updateDeserializer(deserializer);
 	} else if (action.equals("enable")) {
-		SDeserializer deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("oid")));
+		SDeserializerPluginConfiguration deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("oid")));
 		deserializer.setEnabled(true);
 		loginManager.getService().updateDeserializer(deserializer);
 	} else if (action.equals("delete")) {
@@ -23,8 +23,8 @@ if (request.getParameter("action") != null) {
 <table class="formatted">
 <tr><th>Name</th><th>Description</th><th>Type</th><th>State</th><th>Actions</th></tr>
 <%
-	List<SDeserializer> deserializers = service.getAllDeserializers(false);
-	for (SDeserializer deserializer : deserializers) {
+	List<SDeserializerPluginConfiguration> deserializers = service.getAllDeserializers(false);
+	for (SDeserializerPluginConfiguration deserializer : deserializers) {
 %>
 	<tr>
 		<td><a href="deserializer.jsp?id=<%=deserializer.getOid()%>"><%=deserializer.getName() %></a></td>

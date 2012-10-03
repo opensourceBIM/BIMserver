@@ -19,7 +19,7 @@ package org.bimserver;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.models.store.ModelMerger;
+import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
@@ -39,7 +39,7 @@ public class MergerFactory {
 			User user = databaseSession.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
 			UserSettings userSettings = user.getSettings();
 
-			ModelMerger modelMergerObject = userSettings.getDefaultModelMerger();
+			ModelMergerPluginConfiguration modelMergerObject = userSettings.getDefaultModelMerger();
 			if (modelMergerObject != null) {
 				ModelMergerPlugin modelMergerPlugin = bimServer.getPluginManager().getModelMergerPlugin(modelMergerObject.getClassName(), true);
 				if (modelMergerPlugin != null) {

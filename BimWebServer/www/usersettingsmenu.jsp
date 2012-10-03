@@ -1,11 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@page import="org.bimserver.interfaces.objects.SModelCompare"%>
-<%@page import="org.bimserver.interfaces.objects.SModelMerger"%>
-<%@page import="org.bimserver.interfaces.objects.SQueryEngine"%>
 <%@page import="org.bimserver.interfaces.objects.SExtendedDataSchema"%>
-<%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
-<%@page import="org.bimserver.interfaces.objects.SDeserializer"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializerPluginConfiguration"%>
 <%@ include file="header.jsp"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Collections"%>
@@ -19,7 +14,6 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.interfaces.ServiceInterface"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
-<%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
 <div class="sidebar">
 <ul>
 <li><a href="usersettings.jsp">User Settings</a></li>

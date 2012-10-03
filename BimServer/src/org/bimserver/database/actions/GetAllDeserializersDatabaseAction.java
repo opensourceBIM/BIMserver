@@ -28,31 +28,31 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.Deserializer;
+import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 
-public class GetAllDeserializersDatabaseAction extends GetAllDatabaseAction<Deserializer> {
+public class GetAllDeserializersDatabaseAction extends GetAllDatabaseAction<DeserializerPluginConfiguration> {
 
 	private final boolean onlyEnabled;
 	private final BimServer bimServer;
 
 	public GetAllDeserializersDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, boolean onlyEnabled) {
-		super(databaseSession, accessMethod, Deserializer.class, StorePackage.eINSTANCE.getSerializer());
+		super(databaseSession, accessMethod, DeserializerPluginConfiguration.class, StorePackage.eINSTANCE.getDeserializerPluginConfiguration());
 		this.bimServer = bimServer;
 		this.onlyEnabled = onlyEnabled;
 	}
 
 	@Override
-	public List<Deserializer> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getDeserializer());
-		Map<Long, Deserializer> result = getDatabaseSession().query(condition, Deserializer.class, false, null);
-		List<Deserializer> mapToList = CollectionUtils.mapToList(result);
+	public List<DeserializerPluginConfiguration> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getDeserializerPluginConfiguration());
+		Map<Long, DeserializerPluginConfiguration> result = getDatabaseSession().query(condition, DeserializerPluginConfiguration.class, false, null);
+		List<DeserializerPluginConfiguration> mapToList = CollectionUtils.mapToList(result);
 		if (onlyEnabled) {
-			Iterator<Deserializer> iterator = mapToList.iterator();
+			Iterator<DeserializerPluginConfiguration> iterator = mapToList.iterator();
 			while (iterator.hasNext()) {
-				Deserializer deserializer = iterator.next();
+				DeserializerPluginConfiguration deserializer = iterator.next();
 				if (!bimServer.getPluginManager().isEnabled(deserializer.getClassName()) || !deserializer.getEnabled()) {
 					iterator.remove();
 				}

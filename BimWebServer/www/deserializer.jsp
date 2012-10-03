@@ -1,8 +1,7 @@
+<%@page import="org.bimserver.interfaces.objects.SDeserializerPluginConfiguration"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@page import="org.bimserver.interfaces.objects.SDeserializer"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializerPluginDescriptor"%>
 <%@ include file="header.jsp"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializerPluginConfiguration"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.GregorianCalendar"%>
@@ -15,7 +14,6 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.interfaces.ServiceInterface"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
-<%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
 <div class="sidebar">
 <ul>
 </ul>
@@ -30,14 +28,14 @@
 	ServiceInterface service = loginManager.getService();
 	
 	if (request.getParameter("update") != null) {
-		SDeserializer deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("id")));
+		SDeserializerPluginConfiguration deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("id")));
 		description = request.getParameter("description");
 		deserializer.setName(name);
 		deserializer.setDescription(description);
 		loginManager.getService().updateDeserializer(deserializer);
 		response.sendRedirect("deserializers.jsp");
 	} else {
-		SDeserializer deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("id")));
+		SDeserializerPluginConfiguration deserializer = loginManager.getService().getDeserializerById(Long.parseLong(request.getParameter("id")));
 		description = deserializer.getDescription();
 		name = deserializer.getName();
 	}

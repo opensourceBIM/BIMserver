@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.interfaces.objects.SDeserializerPluginConfiguration"%>
 <%@page import="java.util.Set"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.shared.comparators.SRevisionIdComparator"%>
@@ -5,7 +6,6 @@
 <%@page import="org.bimserver.shared.comparators.SProjectNameComparator"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Collections"%>
-<%@page import="org.bimserver.interfaces.objects.SDeserializer"%>
 <%@page import="org.bimwebserver.jsp.LoginManager"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
@@ -29,7 +29,7 @@
 <tr><td><label for="deserializerOid">Deserializer</label></td><td><select id="deserializerOid" name="deserializerOid">
 <option value="[NONE]">Select a deserializer</option>
 <%
-	for (SDeserializer deserializer : loginManager.getService().getAllDeserializers(true)) {
+	for (SDeserializerPluginConfiguration deserializer : loginManager.getService().getAllDeserializers(true)) {
 		out.println("<option value=\"" + deserializer.getOid() + "\">" + deserializer.getName() + "</option>");
 	}
 %>

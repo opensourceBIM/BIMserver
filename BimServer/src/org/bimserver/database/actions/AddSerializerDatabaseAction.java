@@ -21,17 +21,17 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
-public class AddSerializerDatabaseAction extends AddDatabaseAction<Serializer> {
+public class AddSerializerDatabaseAction extends AddDatabaseAction<SerializerPluginConfiguration> {
 
 	private Authorization authorization;
 
-	public AddSerializerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, Serializer serializer) {
+	public AddSerializerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, SerializerPluginConfiguration serializer) {
 		super(databaseSession, accessMethod, serializer);
 		this.authorization = authorization;
 	}

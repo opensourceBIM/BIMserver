@@ -19,11 +19,11 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ObjectIDM;
+import org.bimserver.models.store.ObjectIDMPluginConfiguration;
 
-public class UpdateObjectIDMDatabaseAction extends UpdateDatabaseAction<ObjectIDM> {
+public class UpdateObjectIDMDatabaseAction extends UpdateDatabaseAction<ObjectIDMPluginConfiguration> {
 
-	public UpdateObjectIDMDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, ObjectIDM objectIDM) {
+	public UpdateObjectIDMDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, ObjectIDMPluginConfiguration objectIDM) {
 		super(databaseSession, accessMethod, objectIDM);
 	}
 }

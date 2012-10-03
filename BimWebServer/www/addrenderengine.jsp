@@ -1,5 +1,5 @@
+<%@page import="org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration"%>
 <%@page import="org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor"%>
-<%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="header.jsp"%>
 <%@page import="java.util.List"%>
@@ -24,7 +24,7 @@
 <%
 	ServiceInterface service = loginManager.getService();
 	if (request.getParameter("add") != null) {
-		SIfcEngine ifcEngine = new SIfcEngine();
+		SIfcEnginePluginConfiguration ifcEngine = new SIfcEnginePluginConfiguration();
 		ifcEngine.setName(request.getParameter("name"));
 		ifcEngine.setClassName(request.getParameter("className"));
 		ifcEngine.setEnabled(true);

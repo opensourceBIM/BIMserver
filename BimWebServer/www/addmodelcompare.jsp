@@ -1,11 +1,8 @@
+<%@page import="org.bimserver.interfaces.objects.SModelComparePluginConfiguration"%>
 <%@page import="org.bimserver.interfaces.objects.SModelComparePluginDescriptor"%>
-<%@page import="org.bimserver.interfaces.objects.SModelCompare"%>
 <%@page import="org.bimserver.interfaces.objects.SModelMergerPluginDescriptor"%>
-<%@page import="org.bimserver.interfaces.objects.SModelMerger"%>
 <%@page import="org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor"%>
-<%@page import="org.bimserver.interfaces.objects.SQueryEngine"%>
 <%@page import="org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor"%>
-<%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="header.jsp"%>
 <%@page import="java.util.List"%>
@@ -30,7 +27,7 @@
 <%
 	ServiceInterface service = loginManager.getService();
 	if (request.getParameter("add") != null) {
-		SModelCompare modelCompare = new SModelCompare();
+		SModelComparePluginConfiguration modelCompare = new SModelComparePluginConfiguration();
 		modelCompare.setName(request.getParameter("name"));
 		modelCompare.setClassName(request.getParameter("className"));
 		modelCompare.setEnabled(true);

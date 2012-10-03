@@ -19,12 +19,12 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ObjectIDM;
+import org.bimserver.models.store.ObjectIDMPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 
-public class GetObjectIDMByIdDatabaseAction extends GetByIdDatabaseAction<ObjectIDM> {
+public class GetObjectIDMByIdDatabaseAction extends GetByIdDatabaseAction<ObjectIDMPluginConfiguration> {
 
 	public GetObjectIDMByIdDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long oid) {
-		super(databaseSession, accessMethod, oid, StorePackage.eINSTANCE.getObjectIDM());
+		super(databaseSession, accessMethod, oid, StorePackage.eINSTANCE.getObjectIDMPluginConfiguration());
 	}
 }

@@ -33,7 +33,7 @@ import org.bimserver.interfaces.objects.SServicePluginDescriptor;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.Project;
-import org.bimserver.models.store.Serializer;
+import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
@@ -87,9 +87,9 @@ public class EmfSerializerFactory {
 	public org.bimserver.plugins.serializers.Serializer get(long serializerOid) {
 		DatabaseSession session = bimDatabase.createSession();
 		try {
-			Serializer serializerObject = session.get(StorePackage.eINSTANCE.getSerializer(), serializerOid, false, null);
-			if (serializerObject != null) {
-				SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(serializerObject.getClassName(), true);
+			SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, false, null);
+			if (serializerPluginConfiguration != null) {
+				SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(serializerPluginConfiguration.getClassName(), true);
 				if (serializerPlugin != null) {
 					return serializerPlugin.createSerializer();
 				}
@@ -142,7 +142,7 @@ public class EmfSerializerFactory {
 	public String getExtension(Long serializerOid) {
 		DatabaseSession session = bimDatabase.createSession();
 		try {
-			Serializer found = session.get(StorePackage.eINSTANCE.getSerializer(), serializerOid, false, null);
+			SerializerPluginConfiguration found = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, false, null);
 			if (found != null) {
 				return found.getExtension();
 			}

@@ -42,32 +42,32 @@ import org.bimserver.interfaces.objects.SCompareResult;
 import org.bimserver.interfaces.objects.SCompareType;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDatabaseInformation;
-import org.bimserver.interfaces.objects.SDeserializer;
+import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
-import org.bimserver.interfaces.objects.SEService;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SGeoTag;
-import org.bimserver.interfaces.objects.SIfcEngine;
+import org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
+import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongAction;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SMigration;
-import org.bimserver.interfaces.objects.SModelCompare;
+import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
-import org.bimserver.interfaces.objects.SModelMerger;
+import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
 import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
-import org.bimserver.interfaces.objects.SObjectIDM;
+import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.interfaces.objects.SQueryEngine;
+import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
-import org.bimserver.interfaces.objects.SSerializer;
+import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServerDescriptor;
 import org.bimserver.interfaces.objects.SServerInfo;
@@ -956,7 +956,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAllSerializers")
-	List<SSerializer> getAllSerializers(
+	List<SSerializerPluginConfiguration> getAllSerializers(
 			@WebParam(name = "onlyEnabled", partName = "getAllSerializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 
 	/**
@@ -965,7 +965,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAllIfcEngines")
-	List<SIfcEngine> getAllIfcEngines(
+	List<SIfcEnginePluginConfiguration> getAllIfcEngines(
 			@WebParam(name = "onlyEnabled", partName = "getAllIfcEngines.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 
 	/**
@@ -974,7 +974,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAllQueryEngines")
-	List<SQueryEngine> getAllQueryEngines(
+	List<SQueryEnginePluginConfiguration> getAllQueryEngines(
 			@WebParam(name = "onlyEnabled", partName = "getAllQueryEngines.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 	
 	/**
@@ -983,7 +983,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAllModelMergers")
-	List<SModelMerger> getAllModelMergers(
+	List<SModelMergerPluginConfiguration> getAllModelMergers(
 			@WebParam(name = "onlyEnabled", partName = "getAllModelMergers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 	
 	/**
@@ -992,7 +992,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAllModelCompares")
-	List<SModelCompare> getAllModelCompares(
+	List<SModelComparePluginConfiguration> getAllModelCompares(
 			@WebParam(name = "onlyEnabled", partName = "getAllModelCompares.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 	
 	/**
@@ -1020,7 +1020,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getSerializerById")
-	SSerializer getSerializerById(
+	SSerializerPluginConfiguration getSerializerById(
 			@WebParam(name = "oid", partName = "getSerializerById.oid") Long oid) throws ServerException, UserException;
 
 	/**
@@ -1047,7 +1047,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getIfcEngineById")
-	SIfcEngine getIfcEngineById(
+	SIfcEnginePluginConfiguration getIfcEngineById(
 			@WebParam(name = "oid", partName = "getIfcEngineById.oid") Long oid) throws ServerException, UserException;
 
 	/**
@@ -1056,7 +1056,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getQueryEngineById")
-	SQueryEngine getQueryEngineById(
+	SQueryEnginePluginConfiguration getQueryEngineById(
 			@WebParam(name = "oid", partName = "getQueryEngineById.oid") Long oid) throws ServerException, UserException;
 
 	/**
@@ -1065,7 +1065,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getModelMergerById")
-	SModelMerger getModelMergerById(
+	SModelMergerPluginConfiguration getModelMergerById(
 			@WebParam(name = "oid", partName = "getModelMergerById.oid") Long oid) throws ServerException, UserException;
 
 	/**
@@ -1074,7 +1074,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getModelCompareById")
-	SModelCompare getModelCompareById(
+	SModelComparePluginConfiguration getModelCompareById(
 			@WebParam(name = "oid", partName = "getModelCompareById.oid") Long oid) throws ServerException, UserException;
 	
 	/**
@@ -1083,7 +1083,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getDeserializerById")
-	SDeserializer getDeserializerById(
+	SDeserializerPluginConfiguration getDeserializerById(
 			@WebParam(name = "oid", partName = "getDeserializerById.oid") Long oid) throws ServerException, UserException;
 
 	/**
@@ -1092,7 +1092,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "addSerializer")
 	void addSerializer(
-			@WebParam(name = "serializer", partName = "addSerializer.serializer") SSerializer serializer) throws ServerException, UserException;
+			@WebParam(name = "serializer", partName = "addSerializer.serializer") SSerializerPluginConfiguration serializer) throws ServerException, UserException;
 
 	/**
 	 * @param extendedDataSchema ExtendedDataSchema to add
@@ -1154,7 +1154,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "addIfcEngine")
 	void addIfcEngine(
-			@WebParam(name = "ifcEngine", partName = "addIfcEngine.ifcEngine") SIfcEngine ifcEngine) throws ServerException, UserException;
+			@WebParam(name = "ifcEngine", partName = "addIfcEngine.ifcEngine") SIfcEnginePluginConfiguration ifcEngine) throws ServerException, UserException;
 
 	/**
 	 * @param queryEngine QueryEngine to add
@@ -1162,7 +1162,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "addQueryEngine")
 	void addQueryEngine(
-			@WebParam(name = "queryEngine", partName = "addQueryEngine.queryEngine") SQueryEngine queryEngine) throws ServerException, UserException;
+			@WebParam(name = "queryEngine", partName = "addQueryEngine.queryEngine") SQueryEnginePluginConfiguration queryEngine) throws ServerException, UserException;
 
 	/**
 	 * @param modelMerger ModelMerger to add
@@ -1170,7 +1170,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "addModelMerger")
 	void addModelMerger(
-			@WebParam(name = "modelMerger", partName = "addModelMerger.modelMerger") SModelMerger modelMerger) throws ServerException, UserException;
+			@WebParam(name = "modelMerger", partName = "addModelMerger.modelMerger") SModelMergerPluginConfiguration modelMerger) throws ServerException, UserException;
 
 	/**
 	 * @param modelCompare ModelCompare to add
@@ -1178,7 +1178,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "addModelCompare")
 	void addModelCompare(
-			@WebParam(name = "modelCompare", partName = "addModelCompare.modelCompare") SModelCompare modelCompare) throws ServerException, UserException;
+			@WebParam(name = "modelCompare", partName = "addModelCompare.modelCompare") SModelComparePluginConfiguration modelCompare) throws ServerException, UserException;
 
 	/**
 	 * @param deserializer Deserializer to add
@@ -1186,7 +1186,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "addDeserializer")
 	void addDeserializer(
-			@WebParam(name = "deserializer", partName = "addDeserializer.deserializer") SDeserializer deserializer) throws ServerException, UserException;
+			@WebParam(name = "deserializer", partName = "addDeserializer.deserializer") SDeserializerPluginConfiguration deserializer) throws ServerException, UserException;
 
 	/**
 	 * @param serializer Serializer to update
@@ -1194,7 +1194,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "updateSerializer")
 	void updateSerializer(
-			@WebParam(name = "serializer", partName = "updateSerializer.serializer") SSerializer serializer) throws ServerException, UserException;
+			@WebParam(name = "serializer", partName = "updateSerializer.serializer") SSerializerPluginConfiguration serializer) throws ServerException, UserException;
 
 	/**
 	 * @param ifcEngine IfcEngine to update
@@ -1202,7 +1202,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "updateIfcEngine")
 	void updateIfcEngine(
-			@WebParam(name = "ifcEngine", partName = "updateIfcEngine.ifcEngine") SIfcEngine ifcEngine) throws ServerException, UserException;
+			@WebParam(name = "ifcEngine", partName = "updateIfcEngine.ifcEngine") SIfcEnginePluginConfiguration ifcEngine) throws ServerException, UserException;
 
 	/**
 	 * @param queryEngine QueryEngine to update
@@ -1210,7 +1210,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "updateQueryEngine")
 	void updateQueryEngine(
-			@WebParam(name = "queryEngine", partName = "updateQueryEngine.queryEngine") SQueryEngine queryEngine) throws ServerException, UserException;
+			@WebParam(name = "queryEngine", partName = "updateQueryEngine.queryEngine") SQueryEnginePluginConfiguration queryEngine) throws ServerException, UserException;
 
 	/**
 	 * @param modelMerger ModelMerger to update
@@ -1218,7 +1218,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "updateModelMerger")
 	void updateModelMerger(
-			@WebParam(name = "modelMerger", partName = "updateModelMerger.modelMerger") SModelMerger modelMerger) throws ServerException, UserException;
+			@WebParam(name = "modelMerger", partName = "updateModelMerger.modelMerger") SModelMergerPluginConfiguration modelMerger) throws ServerException, UserException;
 
 	/**
 	 * @param modelCompare ModelCompare to update
@@ -1226,7 +1226,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "updateModelCompare")
 	void updateModelCompare(
-			@WebParam(name = "modelCompare", partName = "updateModelCompare.modelCompare") SModelCompare modelCompare) throws ServerException, UserException;
+			@WebParam(name = "modelCompare", partName = "updateModelCompare.modelCompare") SModelComparePluginConfiguration modelCompare) throws ServerException, UserException;
 
 	/**
 	 * @param deserializer Deserializer to update
@@ -1234,7 +1234,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "updateDeserializer")
 	void updateDeserializer(
-			@WebParam(name = "deserializer", partName = "updateDeserializer.deserializer") SDeserializer deserializer) throws ServerException, UserException;
+			@WebParam(name = "deserializer", partName = "updateDeserializer.deserializer") SDeserializerPluginConfiguration deserializer) throws ServerException, UserException;
 
 	/**
 	 * @param onlyEnabled Whether to include only enabled ObjectIDMs
@@ -1242,7 +1242,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAllObjectIDMs")
-	List<SObjectIDM> getAllObjectIDMs(
+	List<SObjectIDMPluginConfiguration> getAllObjectIDMs(
 			@WebParam(name = "onlyEnabled", partName = "getAllSerializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 	
 	/**
@@ -1251,7 +1251,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getObjectIDMById")
-	SObjectIDM getObjectIDMById(
+	SObjectIDMPluginConfiguration getObjectIDMById(
 			@WebParam(name = "oid", partName = "getObjectIDMById.oid") Long oid) throws ServerException, UserException;
 	
 	/**
@@ -1260,7 +1260,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "addObjectIDM")
 	void addObjectIDM(
-			@WebParam(name = "objectIDM", partName = "addObjectIDM.objectIDM") SObjectIDM objectIDM) throws ServerException, UserException;
+			@WebParam(name = "objectIDM", partName = "addObjectIDM.objectIDM") SObjectIDMPluginConfiguration objectIDM) throws ServerException, UserException;
 	
 	/**
 	 * @param objectIDM The ObjectIDM to update
@@ -1268,7 +1268,7 @@ public interface ServiceInterface {
 	 */
 	@WebMethod(action = "updateObjectIDM")
 	void updateObjectIDM(
-			@WebParam(name = "objectIDM", partName = "updateObjectIDM.objectIDM") SObjectIDM objectIDM) throws ServerException, UserException;
+			@WebParam(name = "objectIDM", partName = "updateObjectIDM.objectIDM") SObjectIDMPluginConfiguration objectIDM) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the ObjectIDM to delete
@@ -1381,7 +1381,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getSerializerByName")
-	SSerializer getSerializerByName(
+	SSerializerPluginConfiguration getSerializerByName(
 			@WebParam(name = "serializerName", partName = "getSerializerByName.serializerName") String serializerName) throws ServerException, UserException;
 
 	/**
@@ -1390,7 +1390,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getIfcEngineByName")
-	SIfcEngine getIfcEngineByName(
+	SIfcEnginePluginConfiguration getIfcEngineByName(
 			@WebParam(name = "name", partName = "getIfcEngineByName.name") String name) throws ServerException, UserException;
 
 	/**
@@ -1399,7 +1399,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getQueryEngineByName")
-	SQueryEngine getQueryEngineByName(
+	SQueryEnginePluginConfiguration getQueryEngineByName(
 			@WebParam(name = "name", partName = "getQueryEngineByName.name") String name) throws ServerException, UserException;
 
 	/**
@@ -1408,7 +1408,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getModelMergerByName")
-	SModelMerger getModelMergerByName(
+	SModelMergerPluginConfiguration getModelMergerByName(
 			@WebParam(name = "name", partName = "getModelMergerByName.name") String name) throws ServerException, UserException;
 
 	/**
@@ -1417,7 +1417,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getModelCompareByName")
-	SModelCompare getModelCompareByName(
+	SModelComparePluginConfiguration getModelCompareByName(
 			@WebParam(name = "name", partName = "getModelCompareByName.name") String name) throws ServerException, UserException;
 
 	/**
@@ -1426,7 +1426,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getObjectIDMByName")
-	SObjectIDM getObjectIDMByName(
+	SObjectIDMPluginConfiguration getObjectIDMByName(
 			@WebParam(name = "objectIDMName", partName = "getObjectIDMByName.objectIDMName") String objectIDMName) throws ServerException, UserException;
 
 	/**
@@ -1435,7 +1435,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getDeserializerByName")
-	SDeserializer getDeserializerByName(
+	SDeserializerPluginConfiguration getDeserializerByName(
 			@WebParam(name = "deserializerName", partName = "getDeserializerByName.deserializerName") String deserializerName) throws ServerException, UserException;
 
 	/**
@@ -1453,7 +1453,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getSerializerByContentType")
-	SSerializer getSerializerByContentType(
+	SSerializerPluginConfiguration getSerializerByContentType(
 		@WebParam(name = "contentType", partName = "getSerializerByContentType.contentType") String contentType) throws ServerException, UserException;
 	
 	/**
@@ -1705,7 +1705,7 @@ public interface ServiceInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAllDeserializers")
-	List<SDeserializer> getAllDeserializers(
+	List<SDeserializerPluginConfiguration> getAllDeserializers(
 			@WebParam(name = "onlyEnabled", partName = "getAllDeserializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 	
 	/**
@@ -1774,7 +1774,7 @@ public interface ServiceInterface {
 	 * @throws ServerException 
 	 */
 	@WebMethod(action = "getSuggestedDeserializerForExtension")
-	SDeserializer getSuggestedDeserializerForExtension(
+	SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(
 		@WebParam(name = "extension", partName = "getSuggestedDeserializerForExtension.extension") String extension) throws ServerException, UserException;
 
 	/**
@@ -1795,22 +1795,22 @@ public interface ServiceInterface {
 	List<SExtendedDataSchema> getAllExtendedDataSchemas () throws ServerException, UserException;
 	
 	@WebMethod(action="getDefaultIfcEngine")
-	SIfcEngine getDefaultIfcEngine() throws ServerException, UserException;
+	SIfcEnginePluginConfiguration getDefaultIfcEngine() throws ServerException, UserException;
 
 	@WebMethod(action="getDefaultQueryEngine")
-	SQueryEngine getDefaultQueryEngine() throws ServerException, UserException;
+	SQueryEnginePluginConfiguration getDefaultQueryEngine() throws ServerException, UserException;
 
 	@WebMethod(action="getDefaultModelCompare")
-	SModelCompare getDefaultModelCompare() throws ServerException, UserException;
+	SModelComparePluginConfiguration getDefaultModelCompare() throws ServerException, UserException;
 
 	@WebMethod(action="getDefaultModelMerger")
-	SModelMerger getDefaultModelMerger() throws ServerException, UserException;
+	SModelMergerPluginConfiguration getDefaultModelMerger() throws ServerException, UserException;
 
 	@WebMethod(action="getDefaultSerializer")
-	SSerializer getDefaultSerializer() throws ServerException, UserException;
+	SSerializerPluginConfiguration getDefaultSerializer() throws ServerException, UserException;
 
 	@WebMethod(action="getDefaultObjectIDM")
-	SObjectIDM getDefaultObjectIDM() throws ServerException, UserException;
+	SObjectIDMPluginConfiguration getDefaultObjectIDM() throws ServerException, UserException;
 
 	@WebMethod(action="setDefaultIfcEngine")
 	void setDefaultIfcEngine(
@@ -1845,18 +1845,11 @@ public interface ServiceInterface {
 	
 	@WebMethod(action="getExternalServers")
 	List<SServerDescriptor> getExternalServers() throws ServerException, UserException;
-
-	@WebMethod(action="getInternalServers")
-	List<SServerDescriptor> getInternalServers() throws ServerException, UserException;
 	
 	@WebMethod(action="getExternalServices")
 	List<SServiceDescriptor> getExternalServices(
 		@WebParam(name = "remoteUrl", partName = "getExternalServices.remoteUrl") String remoteUrl) throws ServerException, UserException;
 
-	@WebMethod(action="getInternalServices")
-	List<SServiceDescriptor> getInternalServices(
-		@WebParam(name = "name", partName = "getInternalServices.name") String name) throws ServerException, UserException;
-	
 	@WebMethod(action="addServiceToProject")
 	void addServiceToProject(
 		@WebParam(name = "poid", partName = "addServiceToProject.poid") Long poid, 
@@ -1886,25 +1879,25 @@ public interface ServiceInterface {
 		@WebParam(name = "serviceInterfaceName", partName = "getServiceMethodParameters.serviceInterfaceName") String serviceInterfaceName,
 		@WebParam(name = "serviceMethodName", partName = "getServiceMethodParameters.serviceMethodName") String serviceMethodName) throws ServerException, UserException;
 	
-	@WebMethod(action="getEServiceById")
-	SEService getEServiceById(
+	@WebMethod(action="getInternalServiceById")
+	SInternalServicePluginConfiguration getInternalServiceById(
 		@WebParam(name = "oid", partName = "getEServiceById.oid") Long oid) throws ServerException, UserException;
 	
-	@WebMethod(action="updateSEService")
-	void updateSEService(
-		@WebParam(name = "seService", partName = "updateSEService.seService") SEService seService) throws ServerException, UserException;
+	@WebMethod(action="updateInternalService")
+	void updateInternalService(
+		@WebParam(name = "internalService", partName = "updateInternalService.internalService") SInternalServicePluginConfiguration internalService) throws ServerException, UserException;
 	
-	@WebMethod(action="addSEService")
-	void addSEService(
-		@WebParam(name = "seService", partName = "addSEService.seService") SEService seService) throws ServerException, UserException;
+	@WebMethod(action="addInternalService")
+	void addInternalService(
+		@WebParam(name = "internalService", partName = "addInternalService.internalService") SInternalServicePluginConfiguration internalService) throws ServerException, UserException;
 	
-	@WebMethod(action="deleteEService")
-	void deleteEService(
-		@WebParam(name = "oid", partName = "deleteEService.oid") Long oid) throws ServerException, UserException;
+	@WebMethod(action="deleteInternalService")
+	void deleteInternalService(
+		@WebParam(name = "oid", partName = "deleteInternalService.oid") Long oid) throws ServerException, UserException;
 	
-	@WebMethod(action="getAllSEServices")
-	List<SEService> getAllSEServices(
-		@WebParam(name = "onlyEnabled", partName = "getAllSEServices.onlyEnabled") Boolean onlyEnabled) throws UserException, ServerException;
+	@WebMethod(action="getAllInternalServices")
+	List<SInternalServicePluginConfiguration> getAllInternalServices(
+		@WebParam(name = "onlyEnabled", partName = "getAllInternalServices.onlyEnabled") Boolean onlyEnabled) throws UserException, ServerException;
 	
 	/**
 	 * @return The location of a custom Logo (URL) for the BIMserver

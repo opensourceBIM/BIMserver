@@ -1,15 +1,15 @@
-<%@page import="org.bimserver.interfaces.objects.SModelMerger"%>
+<%@page import="org.bimserver.interfaces.objects.SModelMergerPluginConfiguration"%>
 <%@page import="java.util.List"%>
 <%@ include file="usersettingsmenu.jsp"%>
 <%
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
 	if (action.equals("enable")) {
-		SModelMerger modelMerger = loginManager.getService().getModelMergerById(Long.parseLong(request.getParameter("oid")));
+		SModelMergerPluginConfiguration modelMerger = loginManager.getService().getModelMergerById(Long.parseLong(request.getParameter("oid")));
 		modelMerger.setEnabled(true);
 		loginManager.getService().updateModelMerger(modelMerger);
 	} else if (action.equals("disable")) {
-		SModelMerger modelMerger = loginManager.getService().getModelMergerById(Long.parseLong(request.getParameter("oid")));
+		SModelMergerPluginConfiguration modelMerger = loginManager.getService().getModelMergerById(Long.parseLong(request.getParameter("oid")));
 		modelMerger.setEnabled(false);
 		loginManager.getService().updateModelMerger(modelMerger);
 	} else if (action.equals("setdefault")) {
@@ -25,8 +25,8 @@ if (request.getParameter("action") != null) {
 <table class="formatted">
 <tr><th>Name</th><th>Classname</th><th>Default</th><th>State</th><th>Actions</th></tr>
 <%
-	List<SModelMerger> modelMergers = service.getAllModelMergers(false);
-	for (SModelMerger modelMerger : modelMergers) {
+	List<SModelMergerPluginConfiguration> modelMergers = service.getAllModelMergers(false);
+	for (SModelMergerPluginConfiguration modelMerger : modelMergers) {
 		boolean isDefault = service.getDefaultModelMerger() != null && service.getDefaultModelMerger().getOid() == modelMerger.getOid();
 %>
 	<tr>

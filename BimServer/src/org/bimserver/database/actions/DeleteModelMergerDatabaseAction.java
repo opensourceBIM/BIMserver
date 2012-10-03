@@ -21,20 +21,20 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ModelMerger;
+import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.shared.exceptions.UserException;
 
-public class DeleteModelMergerDatabaseAction extends DeleteDatabaseAction<ModelMerger> {
+public class DeleteModelMergerDatabaseAction extends DeleteDatabaseAction<ModelMergerPluginConfiguration> {
 
 	public DeleteModelMergerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long iid) {
-		super(databaseSession, accessMethod, StorePackage.eINSTANCE.getModelMerger(), iid);
+		super(databaseSession, accessMethod, StorePackage.eINSTANCE.getModelMergerPluginConfiguration(), iid);
 	}
 
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		ModelMerger object = getDatabaseSession().get(geteClass(), getOid(), false, null);
+		ModelMergerPluginConfiguration object = getDatabaseSession().get(geteClass(), getOid(), false, null);
 		UserSettings settings = object.getSettings();
 		settings.getModelmergers().remove(object);
 		getDatabaseSession().store(settings);

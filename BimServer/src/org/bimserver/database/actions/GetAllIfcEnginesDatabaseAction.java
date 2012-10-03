@@ -28,31 +28,31 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.IfcEngine;
+import org.bimserver.models.store.IfcEnginePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 
-public class GetAllIfcEnginesDatabaseAction extends GetAllDatabaseAction<IfcEngine> {
+public class GetAllIfcEnginesDatabaseAction extends GetAllDatabaseAction<IfcEnginePluginConfiguration> {
 
 	private final boolean onlyEnabled;
 	private final BimServer bimServer;
 
 	public GetAllIfcEnginesDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, boolean onlyEnabled) {
-		super(databaseSession, accessMethod, IfcEngine.class, StorePackage.eINSTANCE.getIfcEngine());
+		super(databaseSession, accessMethod, IfcEnginePluginConfiguration.class, StorePackage.eINSTANCE.getIfcEnginePluginConfiguration());
 		this.bimServer = bimServer;
 		this.onlyEnabled = onlyEnabled;
 	}
 
 	@Override
-	public List<IfcEngine> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getIfcEngine());
-		Map<Long, IfcEngine> result = getDatabaseSession().query(condition, IfcEngine.class, false, null);
-		List<IfcEngine> mapToList = CollectionUtils.mapToList(result);
+	public List<IfcEnginePluginConfiguration> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getIfcEnginePluginConfiguration());
+		Map<Long, IfcEnginePluginConfiguration> result = getDatabaseSession().query(condition, IfcEnginePluginConfiguration.class, false, null);
+		List<IfcEnginePluginConfiguration> mapToList = CollectionUtils.mapToList(result);
 		if (onlyEnabled) {
-			Iterator<IfcEngine> iterator = mapToList.iterator();
+			Iterator<IfcEnginePluginConfiguration> iterator = mapToList.iterator();
 			while (iterator.hasNext()) {
-				IfcEngine ifcEngine = iterator.next();
+				IfcEnginePluginConfiguration ifcEngine = iterator.next();
 				if (!bimServer.getPluginManager().isEnabled(ifcEngine.getClassName()) || !ifcEngine.getEnabled()) {
 					iterator.remove();
 				}

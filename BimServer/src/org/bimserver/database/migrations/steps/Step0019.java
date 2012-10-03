@@ -29,7 +29,7 @@ public class Step0019 extends Migration {
 	public void migrate(Schema schema) {
 		schema.createEClass(schema.getEPackage("store"), "ModelMergerPluginDescriptor", schema.getEClass("store", "PluginDescriptor"));
 		
-		EClass modelMergerPluginClass = schema.createEClass(schema.getEPackage("store"), "ModelMerger", schema.getEClass("store", "Plugin"));
+		EClass modelMergerPluginClass = schema.createEClass(schema.getEPackage("store"), "ModelMergerPluginConfiguration", schema.getEClass("store", "PluginConfiguration"));
 		EClass userSettingsClass = schema.getEClass("store", "UserSettings");
 
 		EReference modelMergerSettingsReference = schema.createEReference(modelMergerPluginClass, "settings", userSettingsClass, Multiplicity.SINGLE);

@@ -1,15 +1,15 @@
-<%@page import="org.bimserver.interfaces.objects.SModelCompare"%>
+<%@page import="org.bimserver.interfaces.objects.SModelComparePluginConfiguration"%>
 <%@page import="java.util.List"%>
 <%@ include file="usersettingsmenu.jsp"%>
 <%
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
 	if (action.equals("enable")) {
-		SModelCompare modelCompare = loginManager.getService().getModelCompareById(Long.parseLong(request.getParameter("oid")));
+		SModelComparePluginConfiguration modelCompare = loginManager.getService().getModelCompareById(Long.parseLong(request.getParameter("oid")));
 		modelCompare.setEnabled(true);
 		loginManager.getService().updateModelCompare(modelCompare);
 	} else if (action.equals("disable")) {
-		SModelCompare modelCompare = loginManager.getService().getModelCompareById(Long.parseLong(request.getParameter("oid")));
+		SModelComparePluginConfiguration modelCompare = loginManager.getService().getModelCompareById(Long.parseLong(request.getParameter("oid")));
 		modelCompare.setEnabled(false);
 		loginManager.getService().updateModelCompare(modelCompare);
 	} else if (action.equals("setdefault")) {
@@ -24,8 +24,8 @@ if (request.getParameter("action") != null) {
 <table class="formatted">
 <tr><th>Name</th><th>Classname</th><th>Default</th><th>State</th><th>Actions</th></tr>
 <%
-	List<SModelCompare> modelCompares = service.getAllModelCompares(false);
-	for (SModelCompare modelCompare : modelCompares) {
+	List<SModelComparePluginConfiguration> modelCompares = service.getAllModelCompares(false);
+	for (SModelComparePluginConfiguration modelCompare : modelCompares) {
 		boolean isDefault = service.getDefaultModelCompare() != null && service.getDefaultModelCompare().getOid() == modelCompare.getOid();
 %>
 	<tr>

@@ -1,7 +1,8 @@
-<%@page import="org.bimserver.interfaces.objects.SIfcEngine"%>
+<%@page import="org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration"%>
+<%@page import="org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="header.jsp"%>
-<%@page import="org.bimserver.interfaces.objects.SSerializer"%>
+<%@page import="org.bimserver.interfaces.objects.SSerializerPluginConfiguration"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.GregorianCalendar"%>
@@ -14,7 +15,6 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.interfaces.ServiceInterface"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
-<%@page import="org.bimserver.interfaces.objects.SObjectIDM"%>
 <div class="sidebar">
 <ul>
 </ul>
@@ -33,7 +33,7 @@
 	long ifcEngineId = -1;
 	ServiceInterface service = loginManager.getService();
 	if (request.getParameter("update") != null) {
-		SSerializer serializer = loginManager.getService().getSerializerById(id);
+		SSerializerPluginConfiguration serializer = loginManager.getService().getSerializerById(id);
 		name = request.getParameter("name");
 		type = request.getParameter("type");
 		contentType = request.getParameter("contentType");
@@ -51,7 +51,7 @@
 		loginManager.getService().updateSerializer(serializer);
 		response.sendRedirect("serializers.jsp");
 	} else {
-		SSerializer serializer = loginManager.getService().getSerializerById(id);
+		SSerializerPluginConfiguration serializer = loginManager.getService().getSerializerById(id);
 		name = serializer.getName();
 		extension = serializer.getExtension();
 		contentType = serializer.getContentType();
@@ -90,7 +90,7 @@
 	<td><select name="objectIDM" id="objectIDM">
 		<option value="[none]">[None]</option>
 <%
-	for (SObjectIDM objectIDM : service.getAllObjectIDMs(true)) {
+	for (SObjectIDMPluginConfiguration objectIDM : service.getAllObjectIDMs(true)) {
 %>
 	<option value="<%=objectIDM.getOid()%>"<%=(objectIDMId == objectIDM.getOid() ? " selected=\"selected\"" : "") %>><%=objectIDM.getName()%></option>
 <%
@@ -103,7 +103,7 @@
 	<td><select name="ifcEngine" id="ifcEngine">
 		<option value="[none]">[None]</option>
 <%
-	for (SIfcEngine ifcEngine : service.getAllIfcEngines(true)) {
+	for (SIfcEnginePluginConfiguration ifcEngine : service.getAllIfcEngines(true)) {
 %>
 	<option value="<%=ifcEngine.getOid()%>"<%=(ifcEngineId == ifcEngine.getOid() ? " selected=\"selected\"" : "") %>><%=ifcEngine.getName()%></option>
 <%

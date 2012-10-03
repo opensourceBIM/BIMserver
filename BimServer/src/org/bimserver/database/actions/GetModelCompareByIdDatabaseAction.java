@@ -19,12 +19,12 @@ package org.bimserver.database.actions;
 
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ModelCompare;
+import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 
-public class GetModelCompareByIdDatabaseAction extends GetByIdDatabaseAction<ModelCompare> {
+public class GetModelCompareByIdDatabaseAction extends GetByIdDatabaseAction<ModelComparePluginConfiguration> {
 
 	public GetModelCompareByIdDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long oid) {
-		super(databaseSession, accessMethod, oid, StorePackage.eINSTANCE.getModelCompare());
+		super(databaseSession, accessMethod, oid, StorePackage.eINSTANCE.getModelComparePluginConfiguration());
 	}
 }
