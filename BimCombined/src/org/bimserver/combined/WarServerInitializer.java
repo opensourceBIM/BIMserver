@@ -37,7 +37,6 @@ import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimwebserver.BimWebServer;
-import org.bimwebserver.jsp.LoginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -74,7 +73,7 @@ public class WarServerInitializer implements ServletContextListener {
 	 	bimWebServer.setBimServerClientFactory(new BimServerClientFactory() {
 			@Override
 			public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
-				BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager());
+				BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager(), bimServer.getServiceInterfaces());
 				bimServerClient.setAuthentication(authenticationInfo);
 				bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE, remoteAddress));
 				return bimServerClient;

@@ -86,12 +86,6 @@ public class BimServerClient implements ConnectDisconnectListener {
 	public BimServerClient(PluginManager pluginManager) {
 		this(pluginManager, createDefaultSServices());
 	}
-
-	private static Map<String, SService> createDefaultSServices() {
-		Map<String, SService> map = new HashMap<String, SService>();
-		map.put(ServiceInterface.class.getSimpleName(), new SService(null, ServiceInterface.class));
-		return map;
-	}
 	
 	public BimServerClient(PluginManager pluginManager, Map<String, SService> sServices) {
 		this.pluginManager = pluginManager;
@@ -106,6 +100,12 @@ public class BimServerClient implements ConnectDisconnectListener {
 		notificationsClient = new SocketNotificationsClient();
 	}
 
+	private static Map<String, SService> createDefaultSServices() {
+		Map<String, SService> map = new HashMap<String, SService>();
+		map.put(ServiceInterface.class.getSimpleName(), new SService(null, ServiceInterface.class));
+		return map;
+	}
+	
 	public void setAuthentication(AuthenticationInfo authenticationInfo) {
 		this.authenticationInfo = authenticationInfo;
 	}
