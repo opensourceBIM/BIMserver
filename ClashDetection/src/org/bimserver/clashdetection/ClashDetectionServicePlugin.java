@@ -32,7 +32,7 @@ import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SNewRevisionAdded;
-import org.bimserver.interfaces.objects.SSerializer;
+import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
@@ -85,7 +85,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 				
 				ServiceInterface serviceInterface = getServiceInterface(token);
 			
-				SSerializer sSerializer = serviceInterface.getSerializerByContentType("application/ifc");
+				SSerializerPluginConfiguration sSerializer = serviceInterface.getSerializerByContentType("application/ifc");
 				
 				long download = serviceInterface.download(sNewRevisionAdded.getRevisionId(), sSerializer.getOid(), true, true);
 				SDownloadResult downloadData = serviceInterface.getDownloadData(download);
