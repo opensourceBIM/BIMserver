@@ -120,7 +120,7 @@ public class UploadServlet extends HttpServlet {
 						}
 						if (token != null) {
 							ServiceInterface service = bimServer.getServiceFactory().getService(token);
-							long checkinId = service.checkin(poid, comment, deserializerOid, size, ifcFile, merge, false);
+							long checkinId = service.checkin(poid, comment, deserializerOid, size, name, ifcFile, merge, false);
 							result.put("checkinid", checkinId);
 						}
 					}

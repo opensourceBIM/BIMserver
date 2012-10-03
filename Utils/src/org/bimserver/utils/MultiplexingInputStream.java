@@ -34,7 +34,9 @@ public class MultiplexingInputStream extends InputStream {
 	@Override
 	public int read() throws IOException {
 		int read = in.read();
-		out.write(read);
+		if (read != -1) {
+			out.write(read);
+		}
 		return read;
 	}
 	
@@ -42,13 +44,14 @@ public class MultiplexingInputStream extends InputStream {
 	public int read(byte[] b, int off, int len) throws IOException {
 		int read = in.read(b, off, len);
 		if (read != -1) {
-			out.write(b, off, len);
+			out.write(b, off, read);
 		}
 		return read;
 	}
 	
 	@Override
 	public void close() throws IOException {
+		out.flush();
 		in.close();
 		out.close();
 		super.close();
