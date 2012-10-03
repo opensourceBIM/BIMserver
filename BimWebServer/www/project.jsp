@@ -33,24 +33,24 @@
 			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 			long poid = Long.parseLong(request.getParameter("poid"));
 			try {
-				SProject project = loginManager.getService().getProjectByPoid(poid);
+				SProject project = loginManager.getService(request).getProjectByPoid(poid);
 	
 				// Count the active subprojects
 				int subProjectCount = 0;
 				List<Long> subProjectIds = project.getSubProjects();
 				for (Long subpoid : subProjectIds) {
-					SProject subproject = loginManager.getService().getProjectByPoid(subpoid);
+					SProject subproject = loginManager.getService(request).getProjectByPoid(subpoid);
 					SObjectState state = subproject.getState();
 					if (subproject.getState() == SObjectState.ACTIVE) {
 						subProjectCount++;
 					}
 				}
 	
-				List<SRevision> revisions = loginManager.getService().getAllRevisionsOfProject(poid);
+				List<SRevision> revisions = loginManager.getService(request).getAllRevisionsOfProject(poid);
 				Collections.sort(revisions, new SRevisionIdComparator(false));
-				List<SRevision> revisionsInc = loginManager.getService().getAllRevisionsOfProject(poid);
+				List<SRevision> revisionsInc = loginManager.getService(request).getAllRevisionsOfProject(poid);
 				Collections.sort(revisionsInc, new SRevisionIdComparator(false));
-				List<SCheckout> checkouts = loginManager.getService().getAllCheckoutsOfProjectAndSubProjects(poid);
+				List<SCheckout> checkouts = loginManager.getService(request).getAllCheckoutsOfProjectAndSubProjects(poid);
 				Collections.sort(checkouts, new SCheckoutDateComparator(false));
 				List<SCheckout> activeCheckouts = new ArrayList<SCheckout>();
 				for (SCheckout checkout : checkouts) {
@@ -58,20 +58,20 @@
 						activeCheckouts.add(checkout);
 					}
 				}
-				List<SUser> users = loginManager.getService().getAllAuthorizedUsersOfProject(poid);
+				List<SUser> users = loginManager.getService(request).getAllAuthorizedUsersOfProject(poid);
 				Collections.sort(users, new SUserNameComparator());
-				List<SUser> nonAuthorizedUsers = loginManager.getService().getAllNonAuthorizedUsersOfProject(poid);
+				List<SUser> nonAuthorizedUsers = loginManager.getService(request).getAllNonAuthorizedUsersOfProject(poid);
 				Collections.sort(nonAuthorizedUsers, new SUserNameComparator());
 				SRevision lastRevision = null;
 				if (project.getLastRevisionId() != -1) {
-					lastRevision = loginManager.getService().getRevision(project.getLastRevisionId());
+					lastRevision = loginManager.getService(request).getRevision(project.getLastRevisionId());
 				}
 				boolean hasUserManagementRights = project.getHasAuthorizedUsers().contains(loginManager.getUoid()) && loginManager.getUserType() != SUserType.READ_ONLY;
-				boolean userHasCheckinRights = loginManager.getService().userHasCheckinRights(loginManager.getUoid(), project.getOid()) && loginManager.getUserType() != SUserType.READ_ONLY;
-				boolean hasEditRights = loginManager.getService().userHasRights(project.getOid()) && loginManager.getUserType() != SUserType.READ_ONLY;
-				boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService().isSettingAllowUsersToCreateTopLevelProjects());
-				boolean kmzEnabled = loginManager.getService().hasActiveSerializer("application/vnd.google-earth.kmz");
-				boolean isAdmin = loginManager.getService().getCurrentUser().getUserType() == SUserType.ADMIN;
+				boolean userHasCheckinRights = loginManager.getService(request).userHasCheckinRights(loginManager.getUoid(), project.getOid()) && loginManager.getUserType() != SUserType.READ_ONLY;
+				boolean hasEditRights = loginManager.getService(request).userHasRights(project.getOid()) && loginManager.getUserType() != SUserType.READ_ONLY;
+				boolean hasCreateProjectRights = (loginManager.getUserType() == SUserType.ADMIN || loginManager.getService(request).isSettingAllowUsersToCreateTopLevelProjects());
+				boolean kmzEnabled = loginManager.getService(request).hasActiveSerializer("application/vnd.google-earth.kmz");
+				boolean isAdmin = loginManager.getService(request).getCurrentUser().getUserType() == SUserType.ADMIN;
 %>
 <div class="sidebar">
 	<ul>
@@ -101,7 +101,7 @@
 				feed</a></li>
 		<jsp:include page="showdeleted.jsp" />
 	</ul>
-	<br /><%=JspHelper.showProjectTree(project, loginManager.getService())%>
+	<br /><%=JspHelper.showProjectTree(project, loginManager.getService(request))%>
 </div>
 <div id="checkinpopup"></div>
 <div id="downloadcheckoutpopup"></div>
@@ -114,7 +114,7 @@
 	<div id="guide">
 		<div id="guidewrap">
 			<ol id="breadcrumb">
-				<li><%=JspHelper.generateBreadCrumbPath(project, loginManager.getService())%></li>
+				<li><%=JspHelper.generateBreadCrumbPath(project, loginManager.getService(request))%></li>
 			</ol>
 		</div>
 	</div>
@@ -144,7 +144,7 @@
 				</tr>
 				<%
 					if (project.getParentId() != -1) {
-								SProject parentProject = loginManager.getService().getProjectByPoid(project.getParentId());
+								SProject parentProject = loginManager.getService(request).getProjectByPoid(project.getParentId());
 				%>
 				<tr>
 					<td class="first">Parent</td>
@@ -153,8 +153,8 @@
 				</tr>
 				<%
 					}
-							SUser createdBy = loginManager.getService().getUserByUoid(project.getCreatedById());
-							SGeoTag geoTag = loginManager.getService().getGeoTag(project.getGeoTagId());
+							SUser createdBy = loginManager.getService(request).getUserByUoid(project.getCreatedById());
+							SGeoTag geoTag = loginManager.getService(request).getGeoTag(project.getGeoTagId());
 				%>
 				<tr>
 					<td class="first">Created on</td>
@@ -174,7 +174,7 @@
 				</tr>
 				<tr>
 					<td class="first">Last update by</td>
-					<td><a href="user.jsp?uoid=<%=lastRevision.getUserId()%>"><%=loginManager.getService().getUserByUoid(lastRevision.getUserId()).getUsername()%></a></td>
+					<td><a href="user.jsp?uoid=<%=lastRevision.getUserId()%>"><%=loginManager.getService(request).getUserByUoid(lastRevision.getUserId()).getUsername()%></a></td>
 				</tr>
 				<%
 					}
@@ -299,27 +299,27 @@
 					Set<SProject> subProjects = new TreeSet<SProject>(new SProjectNameComparator());
 					for (long subPoid : project.getSubProjects()) {
 						try {
-							SProject subProject = loginManager.getService().getProjectByPoid(subPoid);
+							SProject subProject = loginManager.getService(request).getProjectByPoid(subPoid);
 							subProjects.add(subProject);
 						} catch (ServiceException e) {
 						}
 					}
 					for (SProject subProject : subProjects) {
-						List<SUser> subProjectUsers = loginManager.getService().getAllAuthorizedUsersOfProject(subProject.getOid());
+						List<SUser> subProjectUsers = loginManager.getService(request).getAllAuthorizedUsersOfProject(subProject.getOid());
 
 						SRevision lastSubProjectRevision = null;
 						if (subProject.getLastRevisionId() != -1) {
-							lastSubProjectRevision = loginManager.getService().getRevision(subProject.getLastRevisionId());
+							lastSubProjectRevision = loginManager.getService(request).getRevision(subProject.getLastRevisionId());
 						}
 				%>
 				<tr
-					<%=(loginManager.getService().userHasCheckinRights(loginManager.getUoid(), subProject.getOid()) == true ? "" : " class=\"checkinrights\"")%>
+					<%=(loginManager.getService(request).userHasCheckinRights(loginManager.getUoid(), subProject.getOid()) == true ? "" : " class=\"checkinrights\"")%>
 					<%=subProject.getState() == SObjectState.DELETED ? " class=\"deleted\"" : ""%>>
 					<td><a href="project.jsp?poid=<%=subProject.getOid()%>"><%=subProject.getName()%></a>
 					</td>
 					<td><%=lastSubProjectRevision == null ? "No revisions" : ("<a href=\"revision.jsp?roid=" + lastSubProjectRevision.getOid() + "\">"
 									+ lastSubProjectRevision.getId() + "</a> by <a href=\"user.jsp?id=" + lastSubProjectRevision.getUserId() + "\">"
-									+ loginManager.getService().getUserByUoid(lastSubProjectRevision.getUserId()).getUsername() + "</a>")%></td>
+									+ loginManager.getService(request).getUserByUoid(lastSubProjectRevision.getUserId()).getUsername() + "</a>")%></td>
 					<td><%=subProject.getRevisions().size()%></td>
 					<td><%=subProject.getCheckouts().size()%></td>
 					<td><%=subProjectUsers.size()%></td>
@@ -387,9 +387,9 @@ if (revisions.size() > 0) {
 						<option value="DELETE">Deleted</option>
 					</select> Compare Engine <select name="mcid">
 <%
-for (SModelComparePluginConfiguration modelCompare : loginManager.getService().getAllModelCompares(true)) {
+for (SModelComparePluginConfiguration modelCompare : loginManager.getService(request).getAllModelCompares(true)) {
 %>
-						<option value="<%=modelCompare.getOid()%>" <%=loginManager.getService().getDefaultModelCompare() != null && loginManager.getService().getDefaultModelCompare().getOid() == modelCompare.getOid() ? "selected=\"selected\"" : ""%>><%=modelCompare.getName() %></option>
+						<option value="<%=modelCompare.getOid()%>" <%=loginManager.getService(request).getDefaultModelCompare() != null && loginManager.getService(request).getDefaultModelCompare().getOid() == modelCompare.getOid() ? "selected=\"selected\"" : ""%>><%=modelCompare.getName() %></option>
 <%
 }
 %>
@@ -408,7 +408,7 @@ for (SModelComparePluginConfiguration modelCompare : loginManager.getService().g
 				</tr>
 				<%
 					for (SRevision revision : revisions) {
-						SUser revisionUser = loginManager.getService().getUserByUoid(revision.getUserId());
+						SUser revisionUser = loginManager.getService(request).getUserByUoid(revision.getUserId());
 						boolean isTagged = revision.getTag() != null;
 				%>
 				<tr <%=isTagged ? "class=\"tagged\"" : ""%>
@@ -481,11 +481,11 @@ for (SModelComparePluginConfiguration modelCompare : loginManager.getService().g
 				</tr>
 				<%
 					for (SCheckout checkout : checkouts) {
-									SUser checkoutUser = loginManager.getService().getUserByUoid(checkout.getUserId());
+									SUser checkoutUser = loginManager.getService(request).getUserByUoid(checkout.getUserId());
 				%>
 				<tr
 					class="<%=checkout.getActive() ? "" : "inactivecheckoutrow"%>">
-					<td><a href="revision.jsp?roid=<%=checkout.getRevisionId()%>"><%=loginManager.getService().getRevision(checkout.getRevisionId()).getId()%></a></td>
+					<td><a href="revision.jsp?roid=<%=checkout.getRevisionId()%>"><%=loginManager.getService(request).getRevision(checkout.getRevisionId()).getId()%></a></td>
 					<td><a href="user.jsp?uoid=<%=checkout.getUserId()%>"><%=checkoutUser.getUsername()%></a>
 					</td>
 					<td><%=dateFormat.format(checkout.getDate())%></td>
@@ -505,7 +505,7 @@ for (SModelComparePluginConfiguration modelCompare : loginManager.getService().g
 		<div class="tabbertab" id="authorizeduserstab"
 			title="Authorized users<%=users.size() == 0 ? "" : " (" + users.size() + ")"%>">
 			<%
-				if (nonAuthorizedUsers.size() > 0 && (isAdmin || (!loginManager.getService().isSettingHideUserListForNonAdmin() && hasUserManagementRights))) {
+				if (nonAuthorizedUsers.size() > 0 && (isAdmin || (!loginManager.getService(request).isSettingHideUserListForNonAdmin() && hasUserManagementRights))) {
 			%>
 			Add an existing user<br/>
 			<form method="post" action="addusertoproject.jsp">
@@ -524,7 +524,7 @@ for (SModelComparePluginConfiguration modelCompare : loginManager.getService().g
 
 			<%
 				}
-				if (loginManager.getService().isSettingHideUserListForNonAdmin() && hasUserManagementRights) {
+				if (loginManager.getService(request).isSettingHideUserListForNonAdmin() && hasUserManagementRights) {
 			%>
 			Invite more people<br/>
 			<form method="post" action="addusertoproject.jsp">

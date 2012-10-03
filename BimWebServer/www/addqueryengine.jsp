@@ -23,13 +23,13 @@
 <h1>Add Query Engine</h1>
 <fieldset>
 <%
-	ServiceInterface service = loginManager.getService();
+	ServiceInterface service = loginManager.getService(request);
 	if (request.getParameter("add") != null) {
 		SQueryEnginePluginConfiguration queryEngine = new SQueryEnginePluginConfiguration();
 		queryEngine.setName(request.getParameter("name"));
 		queryEngine.setClassName(request.getParameter("className"));
 		queryEngine.setEnabled(true);
-		loginManager.getService().addQueryEngine(queryEngine);
+		loginManager.getService(request).addQueryEngine(queryEngine);
 		response.sendRedirect("queryengines.jsp");
 	}
 %>
@@ -43,7 +43,7 @@
 	<td><label for="className">Class</label></td>
 	<td><select name="className" id="className">
 <%
-	for (SQueryEnginePluginDescriptor iepd : loginManager.getService().getAllQueryEnginePluginDescriptors()) {
+	for (SQueryEnginePluginDescriptor iepd : loginManager.getService(request).getAllQueryEnginePluginDescriptors()) {
 		out.print("<option value=\"" + iepd.getPluginClassName() + "\">" + iepd.getPluginClassName() + "</option>");
 	}
 %>

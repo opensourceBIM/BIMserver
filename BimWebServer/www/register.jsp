@@ -17,15 +17,15 @@
 <jsp:include page="htmlheader.jsp" />
 <jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%
-	if (loginManager.getService().isSettingAllowSelfRegistration()) {
+	if (loginManager.getService(request).isSettingAllowSelfRegistration()) {
 		List<String> errorMessages = new ArrayList<String>();
-		SVersion version = loginManager.getService().getVersion();
+		SVersion version = loginManager.getService(request).getVersion();
 		boolean success = false;
 		if (request.getParameter("register") != null) {
 			String name = request.getParameter("register_name");
 			String username = request.getParameter("register_username");
 			try {
-				SUser user = loginManager.getService().addUser(username, name, SUserType.USER, true);
+				SUser user = loginManager.getService(request).addUser(username, name, SUserType.USER, true);
 			} catch (ServiceException e) {
 				errorMessages.add(e.getUserMessage());
 			}
@@ -38,7 +38,7 @@
 <div class="header"><a href="main.jsp"><img src="images/fulllogo.gif" title="BIMserver <%=version.getMajor() + "." + version.getMinor() + "." + version.getRevision() %>"/></a></div>
 <div>
 <%
-	String addition = loginManager.getService().getSettingRegistrationAddition();
+	String addition = loginManager.getService(request).getSettingRegistrationAddition();
 out.print(addition + "<br/><br/>");
 if (errorMessages.size() > 0) {
 	out.println("<div class=\"error\">");

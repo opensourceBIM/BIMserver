@@ -5,15 +5,15 @@
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
 	if (action.equals("enable")) {
-		SInternalServicePluginConfiguration seService = loginManager.getService().getInternalServiceById(Long.parseLong(request.getParameter("oid")));
+		SInternalServicePluginConfiguration seService = loginManager.getService(request).getInternalServiceById(Long.parseLong(request.getParameter("oid")));
 		seService.setEnabled(true);
-		loginManager.getService().updateInternalService(seService);
+		loginManager.getService(request).updateInternalService(seService);
 	} else if (action.equals("disable")) {
-		SInternalServicePluginConfiguration seService = loginManager.getService().getInternalServiceById(Long.parseLong(request.getParameter("oid")));
+		SInternalServicePluginConfiguration seService = loginManager.getService(request).getInternalServiceById(Long.parseLong(request.getParameter("oid")));
 		seService.setEnabled(false);
-		loginManager.getService().updateInternalService(seService);
+		loginManager.getService(request).updateInternalService(seService);
 	} else if (action.equals("delete")) {
-		loginManager.getService().deleteInternalService(Long.parseLong(request.getParameter("oid")));
+		loginManager.getService(request).deleteInternalService(Long.parseLong(request.getParameter("oid")));
 	}
 	response.sendRedirect("internalservices.jsp");
 }

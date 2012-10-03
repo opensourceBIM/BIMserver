@@ -6,7 +6,7 @@
 	if (loginManager.isLoggedIn()) {
 		try {
 			long poid = Long.parseLong(request.getParameter("poid"));
-			if (loginManager.getService().undeleteProject(poid)) {
+			if (loginManager.getService(request).undeleteProject(poid)) {
 				if (request.getParameter("ppid") != null) {
 					response.sendRedirect("project.jsp?poid=" + request.getParameter("ppid"));
 				} else {

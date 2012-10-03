@@ -5,17 +5,17 @@
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
 	if (action.equals("enable")) {
-		SModelMergerPluginConfiguration modelMerger = loginManager.getService().getModelMergerById(Long.parseLong(request.getParameter("oid")));
+		SModelMergerPluginConfiguration modelMerger = loginManager.getService(request).getModelMergerById(Long.parseLong(request.getParameter("oid")));
 		modelMerger.setEnabled(true);
-		loginManager.getService().updateModelMerger(modelMerger);
+		loginManager.getService(request).updateModelMerger(modelMerger);
 	} else if (action.equals("disable")) {
-		SModelMergerPluginConfiguration modelMerger = loginManager.getService().getModelMergerById(Long.parseLong(request.getParameter("oid")));
+		SModelMergerPluginConfiguration modelMerger = loginManager.getService(request).getModelMergerById(Long.parseLong(request.getParameter("oid")));
 		modelMerger.setEnabled(false);
-		loginManager.getService().updateModelMerger(modelMerger);
+		loginManager.getService(request).updateModelMerger(modelMerger);
 	} else if (action.equals("setdefault")) {
-		loginManager.getService().setDefaultModelMerger(Long.parseLong(request.getParameter("oid")));
+		loginManager.getService(request).setDefaultModelMerger(Long.parseLong(request.getParameter("oid")));
 	} else if (action.equals("delete")) {
-		loginManager.getService().deleteModelMerger(Long.parseLong(request.getParameter("oid")));
+		loginManager.getService(request).deleteModelMerger(Long.parseLong(request.getParameter("oid")));
 	}
 	response.sendRedirect("modelmergers.jsp");
 }

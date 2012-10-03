@@ -25,7 +25,7 @@
 	String type = request.getParameter("type");
 	String name = "";
 	String description = "";
-	ServiceInterface service = loginManager.getService();
+	ServiceInterface service = loginManager.getService(request);
 	if (request.getParameter("next") != null) {
 		name = request.getParameter("name");
 		description = request.getParameter("description");

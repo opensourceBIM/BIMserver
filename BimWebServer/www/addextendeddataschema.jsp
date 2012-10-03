@@ -29,7 +29,7 @@
 <h1>Add Extended Data Schema</h1>
 <fieldset>
 <%
-	ServiceInterface service = loginManager.getService();
+	ServiceInterface service = loginManager.getService(request);
 	boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 	if (isMultipart) {
 		SExtendedDataSchema extendedDataSchema = new SExtendedDataSchema();
@@ -57,7 +57,7 @@
 				}
 			}
 		}
-		loginManager.getService().addExtendedDataSchema(extendedDataSchema);
+		loginManager.getService(request).addExtendedDataSchema(extendedDataSchema);
 		response.sendRedirect("extendeddataschemas.jsp");
 	}
 %>

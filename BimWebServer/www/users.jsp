@@ -32,7 +32,7 @@
 	<th>Actions</th>
 </tr>
 <%
-	List<SUser> users = loginManager.getService().getAllUsers();
+	List<SUser> users = loginManager.getService(request).getAllUsers();
 	Collections.sort(users, new SUserNameComparator());
 	for (SUser user : users) {
 %>

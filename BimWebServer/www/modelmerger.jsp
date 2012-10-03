@@ -31,13 +31,13 @@
 	String className = request.getParameter("className");
 	long id = Long.parseLong(request.getParameter("id"));
 	if (request.getParameter("update") != null) {
-		SModelMergerPluginConfiguration modelMerger = loginManager.getService().getModelMergerById(id);
+		SModelMergerPluginConfiguration modelMerger = loginManager.getService(request).getModelMergerById(id);
 		modelMerger.setName(name);
 		modelMerger.setClassName(className);
-		loginManager.getService().updateModelMerger(modelMerger);
+		loginManager.getService(request).updateModelMerger(modelMerger);
 		response.sendRedirect("modelmergers.jsp");
 	} else {
-		SModelMergerPluginConfiguration modelMerger = loginManager.getService().getModelMergerById(id);
+		SModelMergerPluginConfiguration modelMerger = loginManager.getService(request).getModelMergerById(id);
 		if (name == null) {
 			name = modelMerger.getName();
 		}
@@ -58,7 +58,7 @@
 	<td><select name="className" id="className">
 		<option value="[none]">[None]</option>
 <%
-	for (SModelMergerPluginDescriptor iepd : loginManager.getService().getAllModelMergerPluginDescriptors()) {
+	for (SModelMergerPluginDescriptor iepd : loginManager.getService(request).getAllModelMergerPluginDescriptors()) {
 %>
 	<option value="<%=iepd.getPluginClassName()%>"<%=(iepd.getPluginClassName().equals(className) ? " selected=\"selected\"" : "") %>><%=iepd.getPluginClassName()%></option>
 <%

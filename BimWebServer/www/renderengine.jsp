@@ -27,13 +27,13 @@
 	String className = request.getParameter("className");
 	long id = Long.parseLong(request.getParameter("id"));
 	if (request.getParameter("update") != null) {
-		SIfcEnginePluginConfiguration ifcEngine = loginManager.getService().getIfcEngineById(id);
+		SIfcEnginePluginConfiguration ifcEngine = loginManager.getService(request).getIfcEngineById(id);
 		ifcEngine.setName(name);
 		ifcEngine.setClassName(className);
-		loginManager.getService().updateIfcEngine(ifcEngine);
+		loginManager.getService(request).updateIfcEngine(ifcEngine);
 		response.sendRedirect("renderengines.jsp");
 	} else {
-		SIfcEnginePluginConfiguration ifcEngine = loginManager.getService().getIfcEngineById(id);
+		SIfcEnginePluginConfiguration ifcEngine = loginManager.getService(request).getIfcEngineById(id);
 		if (name == null) {
 			name = ifcEngine.getName();
 		}
@@ -54,7 +54,7 @@
 	<td><select name="className" id="className">
 		<option value="[none]">[None]</option>
 <%
-	for (SIfcEnginePluginDescriptor iepd : loginManager.getService().getAllIfcEnginePluginDescriptors()) {
+	for (SIfcEnginePluginDescriptor iepd : loginManager.getService(request).getAllIfcEnginePluginDescriptors()) {
 %>
 	<option value="<%=iepd.getPluginClassName()%>"<%=(iepd.getPluginClassName().equals(className) ? " selected=\"selected\"" : "") %>><%=iepd.getPluginClassName()%></option>
 <%

@@ -28,9 +28,9 @@
 	if (loginManager.isLoggedIn()) {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		long poid = Long.parseLong(request.getParameter("poid"));
-		SProject sProject = loginManager.getService().getProjectByPoid(poid);
+		SProject sProject = loginManager.getService(request).getProjectByPoid(poid);
 		try {
-			SGeoTag sGeoTag = loginManager.getService().getGeoTag(sProject.getGeoTagId());
+			SGeoTag sGeoTag = loginManager.getService(request).getGeoTag(sProject.getGeoTagId());
 			if (request.getParameter("save") != null) {
 				try {
 					if (sProject.getParentId() == -1) {
@@ -40,12 +40,12 @@
 						sGeoTag.setZ(Double.parseDouble(request.getParameter("z")));
 						sGeoTag.setDirectionAngle(Double.parseDouble(request.getParameter("directionAngle")));
 						sGeoTag.setEpsg(Integer.parseInt(request.getParameter("epsg").substring(5)));
-						loginManager.getService().updateGeoTag(sGeoTag);
+						loginManager.getService(request).updateGeoTag(sGeoTag);
 					}
 					sProject.setName(request.getParameter("name"));
 					sProject.setDescription(request.getParameter("description"));
 					sProject.setExportLengthMeasurePrefix(SSIPrefix.values()[Integer.parseInt(request.getParameter("exportLengthMeasurePrefix"))]);
-					loginManager.getService().updateProject(sProject);
+					loginManager.getService(request).updateProject(sProject);
 					response.sendRedirect("project.jsp?poid=" + poid);
 				} catch (ServiceException e) {
 					JspHelper.showException(out, e);
@@ -60,7 +60,7 @@
 <div id="guide">
   <div id="guidewrap">
     <ol id="breadcrumb">
-	  <li><%=JspHelper.generateBreadCrumbPath(sProject, loginManager.getService())%></li>
+	  <li><%=JspHelper.generateBreadCrumbPath(sProject, loginManager.getService(request))%></li>
     </ol>
   </div>
 </div>

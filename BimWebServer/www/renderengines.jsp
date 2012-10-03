@@ -5,17 +5,17 @@
 if (request.getParameter("action") != null) {
 	String action = request.getParameter("action");
 	if (action.equals("disable")) {
-		SIfcEnginePluginConfiguration ifcEngine = loginManager.getService().getIfcEngineById(Long.parseLong(request.getParameter("oid")));
+		SIfcEnginePluginConfiguration ifcEngine = loginManager.getService(request).getIfcEngineById(Long.parseLong(request.getParameter("oid")));
 		ifcEngine.setEnabled(false);
-		loginManager.getService().updateIfcEngine(ifcEngine);
+		loginManager.getService(request).updateIfcEngine(ifcEngine);
 	} else if (action.equals("enable")) {
-		SIfcEnginePluginConfiguration ifcEngine = loginManager.getService().getIfcEngineById(Long.parseLong(request.getParameter("oid")));
+		SIfcEnginePluginConfiguration ifcEngine = loginManager.getService(request).getIfcEngineById(Long.parseLong(request.getParameter("oid")));
 		ifcEngine.setEnabled(true);
-		loginManager.getService().updateIfcEngine(ifcEngine);
+		loginManager.getService(request).updateIfcEngine(ifcEngine);
 	} else if (action.equals("setdefault")) {
-		loginManager.getService().setDefaultIfcEngine(Long.parseLong(request.getParameter("oid")));
+		loginManager.getService(request).setDefaultIfcEngine(Long.parseLong(request.getParameter("oid")));
 	} else if (action.equals("delete")) {
-		loginManager.getService().deleteIfcEngine(Long.parseLong(request.getParameter("oid")));
+		loginManager.getService(request).deleteIfcEngine(Long.parseLong(request.getParameter("oid")));
 	}
 	response.sendRedirect("renderengines.jsp");
 }

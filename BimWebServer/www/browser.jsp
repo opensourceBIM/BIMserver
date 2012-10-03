@@ -16,9 +16,9 @@
 <jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%
 	long roid = Long.parseLong(request.getParameter("roid"));
-	SRevision revision = loginManager.getService().getRevision(roid);
-	SProject project = loginManager.getService().getProjectByPoid(revision.getProjectId());
-	List<SRevision> revisionsInc = loginManager.getService().getAllRevisionsOfProject(revision.getProjectId());
+	SRevision revision = loginManager.getService(request).getRevision(roid);
+	SProject project = loginManager.getService(request).getProjectByPoid(revision.getProjectId());
+	List<SRevision> revisionsInc = loginManager.getService(request).getAllRevisionsOfProject(revision.getProjectId());
 	Collections.sort(revisionsInc, new SRevisionIdComparator(false));
 %>
 <a href="#" class="browserlink" browserUrl="<%=request.getRequestURI()%>?roid=<%=roid%>">Home</a><br/>
@@ -37,7 +37,7 @@ for (SRevision sRevision : revisionsInc) {
 	  		if (request.getParameter("oid") != null) {
 	  			long oid = Long.parseLong(request.getParameter("oid"));
 	  			String className = request.getParameter("className");
-		  		dataObject = loginManager.getService().getDataObjectByOid(roid, oid);
+		  		dataObject = loginManager.getService(request).getDataObjectByOid(roid, oid);
 	  			out.println("<br/><br/><h1>" + dataObject.getType() + "</h1>");
 	  			out.println("<table>");
 	  			for (SDataValue dataValue : dataObject.getValues()) {
@@ -66,7 +66,7 @@ for (SRevision sRevision : revisionsInc) {
 	  			out.println("</table>");
 	  		} else if (request.getParameter("className") != null) { 
 				String className = request.getParameter("className");
-				List<SDataObject> dataObjects = loginManager.getService().getDataObjectsByType(roid, className);
+				List<SDataObject> dataObjects = loginManager.getService(request).getDataObjectsByType(roid, className);
 				out.println("<table class=\"formatted\">");
 				out.println("<tr><th>Link</th><th>GUID</th><th>Name</th><th>Type</th><th>Query</th></tr>");
 				for (SDataObject object : dataObjects) {
@@ -99,7 +99,7 @@ for (SRevision sRevision : revisionsInc) {
 				}
 				out.println("</table>");
 	  		} else {
-	  			SRevisionSummary revisionSummary = loginManager.getService().getRevisionSummary(roid);
+	  			SRevisionSummary revisionSummary = loginManager.getService(request).getRevisionSummary(roid);
 	  			out.print(JspHelper.writeSummaryTable(project, roid, revisionSummary, request));
 	  		}
 		} catch (ServiceException e) {

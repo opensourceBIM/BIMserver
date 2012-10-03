@@ -8,11 +8,11 @@
 <div class="content">
 <%
 	long uoid = Long.parseLong(request.getParameter("uoid"));
-	SUser user = loginManager.getService().getUserByUoid(uoid);
+	SUser user = loginManager.getService(request).getUserByUoid(uoid);
 	if (request.getParameter("save") != null) {
 		SUserType userType = SUserType.values()[Integer.parseInt(request.getParameter("type"))];
 		try {
-			loginManager.getService().changeUserType(uoid, userType);
+			loginManager.getService(request).changeUserType(uoid, userType);
 			response.sendRedirect("user.jsp?uoid=" + uoid);
 		} catch (ServiceException e) {
 			JspHelper.showException(out, e);

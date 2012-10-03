@@ -22,7 +22,7 @@
 <h1>Add serializer (1)</h1>
 <fieldset>
 <%
-	ServiceInterface service = loginManager.getService();
+	ServiceInterface service = loginManager.getService(request);
 	if (request.getParameter("next") != null) {
 		response.sendRedirect("addserializer2.jsp?type=" + request.getParameter("type"));
 	}

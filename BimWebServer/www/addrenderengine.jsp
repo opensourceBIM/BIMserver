@@ -22,13 +22,13 @@
 <h1>Add Render Engine</h1>
 <fieldset>
 <%
-	ServiceInterface service = loginManager.getService();
+	ServiceInterface service = loginManager.getService(request);
 	if (request.getParameter("add") != null) {
 		SIfcEnginePluginConfiguration ifcEngine = new SIfcEnginePluginConfiguration();
 		ifcEngine.setName(request.getParameter("name"));
 		ifcEngine.setClassName(request.getParameter("className"));
 		ifcEngine.setEnabled(true);
-		loginManager.getService().addIfcEngine(ifcEngine);
+		loginManager.getService(request).addIfcEngine(ifcEngine);
 		response.sendRedirect("renderengines.jsp");
 	}
 %>
@@ -42,7 +42,7 @@
 	<td><label for="className">Class</label></td>
 	<td><select name="className" id="className">
 <%
-	for (SIfcEnginePluginDescriptor iepd : loginManager.getService().getAllIfcEnginePluginDescriptors()) {
+	for (SIfcEnginePluginDescriptor iepd : loginManager.getService(request).getAllIfcEnginePluginDescriptors()) {
 		out.print("<option value=\"" + iepd.getPluginClassName() + "\">" + iepd.getPluginClassName() + "</option>");
 	}
 %>

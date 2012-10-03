@@ -29,13 +29,13 @@
 	String className = request.getParameter("className");
 	long id = Long.parseLong(request.getParameter("id"));
 	if (request.getParameter("update") != null) {
-		SQueryEnginePluginConfiguration queryEngine = loginManager.getService().getQueryEngineById(id);
+		SQueryEnginePluginConfiguration queryEngine = loginManager.getService(request).getQueryEngineById(id);
 		queryEngine.setName(name);
 		queryEngine.setClassName(className);
-		loginManager.getService().updateQueryEngine(queryEngine);
+		loginManager.getService(request).updateQueryEngine(queryEngine);
 		response.sendRedirect("queryengines.jsp");
 	} else {
-		SQueryEnginePluginConfiguration queryEngine = loginManager.getService().getQueryEngineById(id);
+		SQueryEnginePluginConfiguration queryEngine = loginManager.getService(request).getQueryEngineById(id);
 		if (name == null) {
 			name = queryEngine.getName();
 		}
@@ -56,7 +56,7 @@
 	<td><select name="className" id="className">
 		<option value="[none]">[None]</option>
 <%
-	for (SQueryEnginePluginDescriptor iepd : loginManager.getService().getAllQueryEnginePluginDescriptors()) {
+	for (SQueryEnginePluginDescriptor iepd : loginManager.getService(request).getAllQueryEnginePluginDescriptors()) {
 %>
 	<option value="<%=iepd.getPluginClassName()%>"<%=(iepd.getPluginClassName().equals(className) ? " selected=\"selected\"" : "") %>><%=iepd.getPluginClassName()%></option>
 <%

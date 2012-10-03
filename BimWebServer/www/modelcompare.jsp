@@ -30,13 +30,13 @@
 	String className = request.getParameter("className");
 	long id = Long.parseLong(request.getParameter("id"));
 	if (request.getParameter("update") != null) {
-		SModelComparePluginConfiguration modelCompare = loginManager.getService().getModelCompareById(id);
+		SModelComparePluginConfiguration modelCompare = loginManager.getService(request).getModelCompareById(id);
 		modelCompare.setName(name);
 		modelCompare.setClassName(className);
-		loginManager.getService().updateModelCompare(modelCompare);
+		loginManager.getService(request).updateModelCompare(modelCompare);
 		response.sendRedirect("modelcompares.jsp");
 	} else {
-		SModelComparePluginConfiguration modelCompare = loginManager.getService().getModelCompareById(id);
+		SModelComparePluginConfiguration modelCompare = loginManager.getService(request).getModelCompareById(id);
 		if (name == null) {
 			name = modelCompare.getName();
 		}
@@ -57,7 +57,7 @@
 	<td><select name="className" id="className">
 		<option value="[none]">[None]</option>
 <%
-	for (SModelComparePluginDescriptor iepd : loginManager.getService().getAllModelComparePluginDescriptors()) {
+	for (SModelComparePluginDescriptor iepd : loginManager.getService(request).getAllModelComparePluginDescriptors()) {
 %>
 	<option value="<%=iepd.getPluginClassName()%>"<%=(iepd.getPluginClassName().equals(className) ? " selected=\"selected\"" : "") %>><%=iepd.getPluginClassName()%></option>
 <%

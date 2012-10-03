@@ -31,7 +31,7 @@
 <%
 	ServiceInterface service = null;
 	if (loginManager.isLoggedIn()) {
-	service = loginManager.getService();
+	service = loginManager.getService(request);
 %>
 <%
 	} else {

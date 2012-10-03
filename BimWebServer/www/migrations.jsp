@@ -8,13 +8,13 @@
 <%
 	if (request.getParameter("migrate") != null) {
 		try {
-			loginManager.getService().migrateDatabase();
+			loginManager.getService(request).migrateDatabase();
 			response.sendRedirect("main.jsp");
 		} catch (ServiceException e) {
 			out.println("<div class=\"error\">" + e.getUserMessage() + "</div>");
 		}
 	}
-	List<SMigration> migrations = loginManager.getService().getMigrations();
+	List<SMigration> migrations = loginManager.getService(request).getMigrations();
 %>
 <table class="formatted">
 <tr><th>Number</th><th>Description</th><th>Executed</th></tr>

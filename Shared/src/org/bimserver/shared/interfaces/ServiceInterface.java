@@ -69,7 +69,6 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
-import org.bimserver.interfaces.objects.SServerDescriptor;
 import org.bimserver.interfaces.objects.SServerInfo;
 import org.bimserver.interfaces.objects.SService;
 import org.bimserver.interfaces.objects.SServiceDescriptor;
@@ -473,7 +472,7 @@ public interface ServiceInterface {
 	@Produces({"application/xml", "application/json"})
 	@WebMethod(action = "getAllProjects")
 	List<SProject> getAllProjects(
-		@WebParam(name = "onlyTopLevel", partName = "getAllProjects.onlyTopLevel") boolean onlyTopLevel) throws ServerException, UserException;
+		@WebParam(name = "onlyTopLevel", partName = "getAllProjects.onlyTopLevel") Boolean onlyTopLevel) throws ServerException, UserException;
 
 	/**
 	 * 
@@ -1844,12 +1843,12 @@ public interface ServiceInterface {
 	void setServiceRepositoryUrl(
 		@WebParam(name = "url", partName = "setServiceRepositoryUrl.url") String url) throws ServerException, UserException;
 	
-	@WebMethod(action="getExternalServers")
-	List<SServerDescriptor> getExternalServers() throws ServerException, UserException;
+	@WebMethod(action="getServiceDescriptor")
+	SServiceDescriptor getServiceDescriptor(
+		@WebParam(name = "url", partName = "getServiceDescriptor.url") String url) throws ServerException, UserException;
 	
-	@WebMethod(action="getExternalServices")
-	List<SServiceDescriptor> getExternalServices(
-		@WebParam(name = "remoteUrl", partName = "getExternalServices.remoteUrl") String remoteUrl) throws ServerException, UserException;
+	@WebMethod(action="getAllServiceDescriptors")
+	List<SServiceDescriptor> getAllServiceDescriptors() throws ServerException, UserException;
 
 	@WebMethod(action="addServiceToProject")
 	void addServiceToProject(

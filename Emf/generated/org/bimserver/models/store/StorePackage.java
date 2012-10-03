@@ -3835,13 +3835,22 @@ public interface StorePackage extends EPackage {
 	int SERVICE_DESCRIPTOR__WRITE_EXTENDED_DATA = 9;
 
 	/**
+	 * The feature id for the '<em><b>Provider Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_DESCRIPTOR__PROVIDER_NAME = 10;
+
+	/**
 	 * The number of structural features of the '<em>Service Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_DESCRIPTOR_FEATURE_COUNT = 10;
+	int SERVICE_DESCRIPTOR_FEATURE_COUNT = 11;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServiceImpl <em>Service</em>}' class.
@@ -7524,11 +7533,11 @@ public interface StorePackage extends EPackage {
 	EAttribute getServiceDescriptor_ReadRevision();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceDescriptor#isReadExtendedData <em>Read Extended Data</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceDescriptor#getReadExtendedData <em>Read Extended Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Read Extended Data</em>'.
-	 * @see org.bimserver.models.store.ServiceDescriptor#isReadExtendedData()
+	 * @see org.bimserver.models.store.ServiceDescriptor#getReadExtendedData()
 	 * @see #getServiceDescriptor()
 	 * @generated
 	 */
@@ -7546,15 +7555,26 @@ public interface StorePackage extends EPackage {
 	EAttribute getServiceDescriptor_WriteRevision();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceDescriptor#isWriteExtendedData <em>Write Extended Data</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceDescriptor#getWriteExtendedData <em>Write Extended Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Write Extended Data</em>'.
-	 * @see org.bimserver.models.store.ServiceDescriptor#isWriteExtendedData()
+	 * @see org.bimserver.models.store.ServiceDescriptor#getWriteExtendedData()
 	 * @see #getServiceDescriptor()
 	 * @generated
 	 */
 	EAttribute getServiceDescriptor_WriteExtendedData();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceDescriptor#getProviderName <em>Provider Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Provider Name</em>'.
+	 * @see org.bimserver.models.store.ServiceDescriptor#getProviderName()
+	 * @see #getServiceDescriptor()
+	 * @generated
+	 */
+	EAttribute getServiceDescriptor_ProviderName();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Service <em>Service</em>}'.
@@ -10496,6 +10516,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERVICE_DESCRIPTOR__WRITE_EXTENDED_DATA = eINSTANCE.getServiceDescriptor_WriteExtendedData();
+
+		/**
+		 * The meta object literal for the '<em><b>Provider Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_DESCRIPTOR__PROVIDER_NAME = eINSTANCE.getServiceDescriptor_ProviderName();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServiceImpl <em>Service</em>}' class.

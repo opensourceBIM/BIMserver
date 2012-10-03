@@ -8,8 +8,8 @@
 <jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%
 	long roid = Long.parseLong(request.getParameter("roid"));
-	SRevision revision = loginManager.getService().getRevision(roid);
-	List<String> classes = loginManager.getService().getAvailableClasses();
+	SRevision revision = loginManager.getService(request).getRevision(roid);
+	List<String> classes = loginManager.getService(request).getAvailableClasses();
 	Collections.sort(classes);
 %>
 <div class="tabber" id="querytab">
@@ -80,11 +80,11 @@
 
 </div>
 <%
-		for (SQueryEnginePluginConfiguration queryEngine : loginManager.getService().getAllQueryEngines(true)) {
+		for (SQueryEnginePluginConfiguration queryEngine : loginManager.getService(request).getAllQueryEngines(true)) {
 %>
 <div class="tabbertab" title="<%=queryEngine.getName()%>" id="<%=queryEngine.getOid() %>">
 Examples: <%
-	for (String key : loginManager.getService().getQueryEngineExampleKeys(queryEngine.getOid())) {
+	for (String key : loginManager.getService(request).getQueryEngineExampleKeys(queryEngine.getOid())) {
 %><a href="#" qeid="<%=queryEngine.getOid() %>" key="<%=key%>" class="examplebutton"><%=key%></a> <%
 	}
 %>

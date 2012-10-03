@@ -19,7 +19,7 @@
 <div class="content">
 <h1>Server Settings</h1>
 <%
-	ServiceInterface service = loginManager.getService();
+	ServiceInterface service = loginManager.getService(request);
 	if (loginManager.isLoggedIn() && loginManager.getUserType() == SUserType.ADMIN) {
 		if (request.getParameter("save") != null) {
 			try {

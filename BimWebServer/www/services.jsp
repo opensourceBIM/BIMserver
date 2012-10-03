@@ -7,12 +7,12 @@
 	if (request.getParameter("action") != null) {
 		String action = request.getParameter("action");
 		if (action.equals("delete")) {
-			loginManager.getService().deleteService(Long.parseLong(request.getParameter("oid")));
+			loginManager.getService(request).deleteService(Long.parseLong(request.getParameter("oid")));
 			response.sendRedirect("project.jsp?poid=" + request.getParameter("poid"));
 		}
 	}
 
-	SProject project = loginManager.getService().getProjectByPoid(Long.parseLong(request.getParameter("poid")));
+	SProject project = loginManager.getService(request).getProjectByPoid(Long.parseLong(request.getParameter("poid")));
 %>
 			<a href="#" class="addServiceButton">Add service</a>
 <% if (project.getServices().isEmpty()) { %>
@@ -22,8 +22,8 @@
 				<tr><th>Server</th><th>Service</th><th>User</th><th>Description</th><th>Actions</th></tr>
 <%
 	for (long epid : project.getServices()) {
-		SService sService = loginManager.getService().getService(epid);
-		SUser user = loginManager.getService().getUserByUoid(sService.getUserId());
+		SService sService = loginManager.getService(request).getService(epid);
+		SUser user = loginManager.getService(request).getUserByUoid(sService.getUserId());
 %>
 	<tr>
 	<td><%=sService.getUrl() %></td>

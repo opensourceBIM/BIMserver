@@ -12,17 +12,17 @@
 	if (request.getParameter("action") != null) {
 		String action = request.getParameter("action");
 		if (action.equals("disable")) {
-			SSerializerPluginConfiguration serializer = loginManager.getService().getSerializerById(Long.parseLong(request.getParameter("oid")));
+			SSerializerPluginConfiguration serializer = loginManager.getService(request).getSerializerById(Long.parseLong(request.getParameter("oid")));
 			serializer.setEnabled(false);
-			loginManager.getService().updateSerializer(serializer);
+			loginManager.getService(request).updateSerializer(serializer);
 		} else if (action.equals("enable")) {
-			SSerializerPluginConfiguration serializer = loginManager.getService().getSerializerById(Long.parseLong(request.getParameter("oid")));
+			SSerializerPluginConfiguration serializer = loginManager.getService(request).getSerializerById(Long.parseLong(request.getParameter("oid")));
 			serializer.setEnabled(true);
-			loginManager.getService().updateSerializer(serializer);
+			loginManager.getService(request).updateSerializer(serializer);
 		} else if (action.equals("setdefault")) {
-			loginManager.getService().setDefaultSerializer(Long.parseLong(request.getParameter("oid")));
+			loginManager.getService(request).setDefaultSerializer(Long.parseLong(request.getParameter("oid")));
 		} else if (action.equals("delete")) {
-			loginManager.getService().deleteSerializer(Long.parseLong(request.getParameter("oid")));
+			loginManager.getService(request).deleteSerializer(Long.parseLong(request.getParameter("oid")));
 		}
 		response.sendRedirect("serializers.jsp");
 	}

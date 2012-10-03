@@ -27,13 +27,13 @@
 	String className = request.getParameter("className");
 	long id = Long.parseLong(request.getParameter("id"));
 	if (request.getParameter("update") != null) {
-		SObjectIDMPluginConfiguration objectIDM = loginManager.getService().getObjectIDMById(id);
+		SObjectIDMPluginConfiguration objectIDM = loginManager.getService(request).getObjectIDMById(id);
 		objectIDM.setName(name);
 		objectIDM.setClassName(className);
-		loginManager.getService().updateObjectIDM(objectIDM);
+		loginManager.getService(request).updateObjectIDM(objectIDM);
 		response.sendRedirect("objectidms.jsp");
 	} else {
-		SObjectIDMPluginConfiguration objectIDM = loginManager.getService().getObjectIDMById(id);
+		SObjectIDMPluginConfiguration objectIDM = loginManager.getService(request).getObjectIDMById(id);
 		if (name == null) {
 			name = objectIDM.getName();
 		}
@@ -54,7 +54,7 @@
 	<td><select name="className" id="className">
 		<option value="[none]">[None]</option>
 <%
-	for (SObjectIDMPluginDescriptor objectIDMPluginDescriptor : loginManager.getService().getAllObjectIDMPluginDescriptors()) {
+	for (SObjectIDMPluginDescriptor objectIDMPluginDescriptor : loginManager.getService(request).getAllObjectIDMPluginDescriptors()) {
 %>
 	<option value="<%=objectIDMPluginDescriptor.getClassName()%>"<%=(objectIDMPluginDescriptor.getClassName().equals(className) ? " selected=\"selected\"" : "") %>><%=objectIDMPluginDescriptor.getClassName()%></option>
 <%

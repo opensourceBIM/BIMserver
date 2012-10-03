@@ -11,12 +11,12 @@
 <jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%
 	long poid = Long.parseLong(request.getParameter("poid"));
-	SProject sProject = loginManager.getService().getProjectByPoid(poid);
+	SProject sProject = loginManager.getService(request).getProjectByPoid(poid);
 %>
 <a href="#" id="uploadlink">This project has subprojects, click here if you still want to checkin a new revision</a>
 <div id="uploads">
 <%
-	Set<String> checkoutWarnings = loginManager.getService().getCheckinWarnings(poid);
+	Set<String> checkoutWarnings = loginManager.getService(request).getCheckinWarnings(poid);
 	for (String warning : checkoutWarnings) {
 		out.write("<div class=\"warning\"><img src=\"images/warning.png\" alt=\"warning\" /><div>" + warning + "</div></div>");
 	}
@@ -29,14 +29,14 @@
 <tr><td><label for="deserializerOid">Deserializer</label></td><td><select id="deserializerOid" name="deserializerOid">
 <option value="[NONE]">Select a deserializer</option>
 <%
-	for (SDeserializerPluginConfiguration deserializer : loginManager.getService().getAllDeserializers(true)) {
+	for (SDeserializerPluginConfiguration deserializer : loginManager.getService(request).getAllDeserializers(true)) {
 		out.println("<option value=\"" + deserializer.getOid() + "\">" + deserializer.getName() + "</option>");
 	}
 %>
 </select></td></tr>
 <tr><td><label for="comment">Comment</label></td><td><textarea id="comment" name="comment" cols="57" rows="4"></textarea></td></tr>
 <%
-	if (loginManager.getService().isSettingCheckinMergingEnabled() && sProject.getRevisions().size() > 0) {
+	if (loginManager.getService(request).isSettingCheckinMergingEnabled() && sProject.getRevisions().size() > 0) {
 %>
 <tr><td><label for="merge">Merge</label></td><td><input id="merge" name="merge" type="checkbox"/></td></tr>
 <%
@@ -48,7 +48,7 @@
 </div>
 <div id="uploadbranch">
 	<%
-		List<SProject> projects = loginManager.getService().getAllReadableProjects();
+		List<SProject> projects = loginManager.getService(request).getAllReadableProjects();
 		Collections.sort(projects, new SProjectNameComparator());
 		if (!projects.isEmpty() && (projects.size() > 1 || !projects.get(0).getRevisions().isEmpty())) {
 			boolean atLeastOne = false;
@@ -68,7 +68,7 @@
 			%>
 			<optgroup label="<%=p.getName()%>">
 				<%
-					List<SRevision> checkinRevisions = loginManager.getService().getAllRevisionsOfProject(p.getOid());
+					List<SRevision> checkinRevisions = loginManager.getService(request).getAllRevisionsOfProject(p.getOid());
 												Collections.sort(checkinRevisions, new SRevisionIdComparator(false));
 												for (SRevision sRevision : checkinRevisions) {
 				%>
@@ -271,7 +271,7 @@
 		});
 		
 		$("#uploadButton").hide();
-		<%if (!loginManager.getService().getSubProjects(poid).isEmpty()) {%>
+		<%if (!loginManager.getService(request).getSubProjects(poid).isEmpty()) {%>
 		$("#uploadlink").show();
 		$("#uploadlink").click(function(){
 			$("#uploads").show();

@@ -8,7 +8,7 @@
 <%
 	long laid = Long.parseLong(request.getParameter("laid"));
 	String zip = request.getParameter("zip");
-	SLongActionState dls = loginManager.getService().getDownloadState(laid);
+	SLongActionState dls = loginManager.getService(request).getDownloadState(laid);
 	JSONObject result = new JSONObject();
 	result.put("progress", dls.getProgress());
 	result.put("state", dls.getState().toString());

@@ -23,7 +23,7 @@
 				if (!newPassword1.equals(newPassword2)) {
 					out.println("<div class=\"error\">Password and password check did not match</div>");
 				} else {
-					loginManager.getService().changePassword(uoid, oldPassword, newPassword1);
+					loginManager.getService(request).changePassword(uoid, oldPassword, newPassword1);
 					response.sendRedirect("user.jsp?uoid=" + uoid + "&mid=" + Message.PASSWORD_SUCCESSFULLY_CHANGED.ordinal());
 				}
 			} catch (ServiceException e) {

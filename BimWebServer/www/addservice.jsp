@@ -6,7 +6,7 @@
 <%@page import="org.bimserver.interfaces.objects.SExternalServer"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%
-	SProject project = loginManager.getService().getProjectByPoid(Long.parseLong(request.getParameter("oid")));
+	SProject project = loginManager.getService(request).getProjectByPoid(Long.parseLong(request.getParameter("oid")));
 	if (request.getParameter("action") != null) {
 		String action = request.getParameter("action");
 		if (action.equals("add")) {
@@ -21,7 +21,7 @@
 			sService.setWriteRevisionId(Long.parseLong(request.getParameter("writeRevision")));
 			sService.setWriteExtendedData(request.getParameter("writeExtendedData") != null);
 			sService.setUrl(request.getParameter("url"));
-			loginManager.getService().addServiceToProject(project.getOid(), sService);
+			loginManager.getService(request).addServiceToProject(project.getOid(), sService);
 		}
 	}
 %>
@@ -31,7 +31,7 @@
 		<option value="[INTERNAL]">Internal BIMserver</option>
 	<optgroup label="External"></optgroup>
 <%
-	for (SServerDescriptor externalServer : loginManager.getService().getExternalServers()) {
+	for (SServerDescriptor externalServer : loginManager.getService(request).getExternalServers()) {
 		out.println("<option class=\"external\" value=\"" + externalServer.getUrl() + "\">" + externalServer.getTitle() + "</option>");
 	} 
 %>
@@ -49,7 +49,7 @@
 				<div class="readRevision initialhide"><label><span>Read Revision</span><input type="checkbox" disabled="disabled" checked="checked"/></label></div>
 				<div class="writeRevision initialhide"><label><span>Write Revision</span><select>
 <%
-	for (SProject sProject : loginManager.getService().getAllProjects(true)) {
+	for (SProject sProject : loginManager.getService(request).getAllProjects(true)) {
 %><option value="<%=sProject.getOid()%>"><%=sProject.getName() %></option><%
 	}
 %>

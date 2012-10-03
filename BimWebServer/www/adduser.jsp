@@ -15,7 +15,7 @@
 	if (loginManager.isLoggedIn()) {
 		if (request.getParameter("save") != null) {
 			try {
-				SUser user = loginManager.getService().addUser(request.getParameter("username"), request.getParameter("name"), SUserType.values()[Integer.parseInt(request.getParameter("type"))], false);
+				SUser user = loginManager.getService(request).addUser(request.getParameter("username"), request.getParameter("name"), SUserType.values()[Integer.parseInt(request.getParameter("type"))], false);
 				response.sendRedirect("user.jsp?uoid=" + user.getOid());
 			} catch (ServiceException e) {
 				JspHelper.showException(out, e);

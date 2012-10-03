@@ -30,7 +30,7 @@
 	String extension = "";
 	String description = "";
 	String name = "";
-	ServiceInterface service = loginManager.getService();
+	ServiceInterface service = loginManager.getService(request);
 	if (request.getParameter("next") != null) {
 		description = request.getParameter("description");
 		contentType = request.getParameter("contentType");
@@ -60,7 +60,7 @@
 			JspHelper.showException(out, e);
 		}
 	} else {
-		SSerializerPluginDescriptor serializerPluginDescriptor = loginManager.getService().getSerializerPluginDescriptor(type);
+		SSerializerPluginDescriptor serializerPluginDescriptor = loginManager.getService(request).getSerializerPluginDescriptor(type);
 		contentType = serializerPluginDescriptor.getDefaultContentType();
 		extension = serializerPluginDescriptor.getDefaultExtension();
 		name = serializerPluginDescriptor.getDefaultName();

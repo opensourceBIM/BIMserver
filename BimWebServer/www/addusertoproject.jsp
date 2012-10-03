@@ -10,7 +10,7 @@
 			String type = request.getParameter("type");
 			if (type.equals("project") || type.equals("user")) {
 				long uoid = Long.parseLong(request.getParameter("uoid"));
-				loginManager.getService().addUserToProject(uoid, poid);
+				loginManager.getService(request).addUserToProject(uoid, poid);
 				if (request.getParameter("type").equals("project")) {
 					response.sendRedirect("project.jsp?poid=" + poid);
 				} else if (request.getParameter("type").equals("user")) {
