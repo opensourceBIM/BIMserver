@@ -28,7 +28,8 @@ public class SRevisionSummaryType implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String name;
+	private java.lang.Integer count;
 	public long getOid() {
 		return oid;
 	}
@@ -58,6 +59,7 @@ public class SRevisionSummaryType implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
@@ -74,8 +76,6 @@ public class SRevisionSummaryType implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String name;
-	private java.lang.Integer count;
 	public java.lang.String getName() {
 		return name;
 	}
@@ -83,6 +83,7 @@ public class SRevisionSummaryType implements SDataBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
+	
 	public java.lang.Integer getCount() {
 		return count;
 	}
@@ -90,6 +91,7 @@ public class SRevisionSummaryType implements SDataBase
 	public void setCount(java.lang.Integer count) {
 		this.count = count;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

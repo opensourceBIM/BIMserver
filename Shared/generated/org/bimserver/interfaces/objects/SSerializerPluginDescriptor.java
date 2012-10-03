@@ -28,7 +28,8 @@ public class SSerializerPluginDescriptor extends SPluginDescriptor implements SD
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String defaultExtension;
+	private java.lang.String defaultContentType;
 	public long getOid() {
 		return oid;
 	}
@@ -73,6 +74,7 @@ public class SSerializerPluginDescriptor extends SPluginDescriptor implements SD
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("defaultName")) {
 			setDefaultName((String)val);
@@ -109,8 +111,6 @@ public class SSerializerPluginDescriptor extends SPluginDescriptor implements SD
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String defaultExtension;
-	private java.lang.String defaultContentType;
 	public java.lang.String getDefaultExtension() {
 		return defaultExtension;
 	}
@@ -118,6 +118,7 @@ public class SSerializerPluginDescriptor extends SPluginDescriptor implements SD
 	public void setDefaultExtension(java.lang.String defaultExtension) {
 		this.defaultExtension = defaultExtension;
 	}
+	
 	public java.lang.String getDefaultContentType() {
 		return defaultContentType;
 	}
@@ -125,6 +126,7 @@ public class SSerializerPluginDescriptor extends SPluginDescriptor implements SD
 	public void setDefaultContentType(java.lang.String defaultContentType) {
 		this.defaultContentType = defaultContentType;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

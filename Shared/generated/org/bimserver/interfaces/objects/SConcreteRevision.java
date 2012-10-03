@@ -16,9 +16,9 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -31,7 +31,14 @@ public class SConcreteRevision implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.Integer id;
+	private long projectId = -1;
+	private byte[] checksum;
+	private List<Long> revisions = new ArrayList<Long>();
+	private java.lang.Long size;
+	private java.util.Date date;
+	private java.lang.String lastError;
+	private long userId = -1;
 	public long getOid() {
 		return oid;
 	}
@@ -80,6 +87,7 @@ public class SConcreteRevision implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("id")) {
 			setId((Integer)val);
@@ -120,14 +128,6 @@ public class SConcreteRevision implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.Integer id;
-	private long projectId = -1;
-	private byte[] checksum;
-	private List<Long> revisions = new ArrayList<Long>();
-	private java.lang.Long size;
-	private java.util.Date date;
-	private java.lang.String lastError;
-	private long userId = -1;
 	public java.lang.Integer getId() {
 		return id;
 	}
@@ -135,6 +135,7 @@ public class SConcreteRevision implements SDataBase
 	public void setId(java.lang.Integer id) {
 		this.id = id;
 	}
+	
 	public long getProjectId() {
 		return projectId;
 	}
@@ -150,6 +151,7 @@ public class SConcreteRevision implements SDataBase
 	public void setChecksum(byte[] checksum) {
 		this.checksum = checksum;
 	}
+	
 	public List<Long> getRevisions() {
 		return revisions;
 	}
@@ -157,6 +159,7 @@ public class SConcreteRevision implements SDataBase
 	public void setRevisions(List<Long> revisions) {
 		this.revisions = revisions;
 	}
+	
 	public java.lang.Long getSize() {
 		return size;
 	}
@@ -164,6 +167,7 @@ public class SConcreteRevision implements SDataBase
 	public void setSize(java.lang.Long size) {
 		this.size = size;
 	}
+	
 	public java.util.Date getDate() {
 		return date;
 	}
@@ -171,6 +175,7 @@ public class SConcreteRevision implements SDataBase
 	public void setDate(java.util.Date date) {
 		this.date = date;
 	}
+	
 	public java.lang.String getLastError() {
 		return lastError;
 	}
@@ -178,6 +183,7 @@ public class SConcreteRevision implements SDataBase
 	public void setLastError(java.lang.String lastError) {
 		this.lastError = lastError;
 	}
+	
 	public long getUserId() {
 		return userId;
 	}

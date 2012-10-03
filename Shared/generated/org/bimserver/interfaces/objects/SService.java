@@ -28,7 +28,18 @@ public class SService implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String name;
+	private java.lang.String url;
+	private java.lang.String token;
+	private SAccessMethod notificationProtocol;
+	private java.lang.String description;
+	private STrigger trigger;
+	private boolean readRevision;
+	private boolean readExtendedData;
+	private long writeRevisionId = -1;
+	private boolean writeExtendedData;
+	private long projectId = -1;
+	private long userId = -1;
 	public long getOid() {
 		return oid;
 	}
@@ -88,6 +99,7 @@ public class SService implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
@@ -144,18 +156,6 @@ public class SService implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String name;
-	private java.lang.String url;
-	private java.lang.String token;
-	private SAccessMethod notificationProtocol;
-	private java.lang.String description;
-	private STrigger trigger;
-	private boolean readRevision;
-	private boolean readExtendedData;
-	private long writeRevisionId = -1;
-	private boolean writeExtendedData;
-	private long projectId = -1;
-	private long userId = -1;
 	public java.lang.String getName() {
 		return name;
 	}
@@ -163,6 +163,7 @@ public class SService implements SDataBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
+	
 	public java.lang.String getUrl() {
 		return url;
 	}
@@ -170,6 +171,7 @@ public class SService implements SDataBase
 	public void setUrl(java.lang.String url) {
 		this.url = url;
 	}
+	
 	public java.lang.String getToken() {
 		return token;
 	}
@@ -177,6 +179,7 @@ public class SService implements SDataBase
 	public void setToken(java.lang.String token) {
 		this.token = token;
 	}
+	
 	public SAccessMethod getNotificationProtocol() {
 		return notificationProtocol;
 	}
@@ -184,6 +187,7 @@ public class SService implements SDataBase
 	public void setNotificationProtocol(SAccessMethod notificationProtocol) {
 		this.notificationProtocol = notificationProtocol;
 	}
+	
 	public java.lang.String getDescription() {
 		return description;
 	}
@@ -191,6 +195,7 @@ public class SService implements SDataBase
 	public void setDescription(java.lang.String description) {
 		this.description = description;
 	}
+	
 	public STrigger getTrigger() {
 		return trigger;
 	}
@@ -198,6 +203,7 @@ public class SService implements SDataBase
 	public void setTrigger(STrigger trigger) {
 		this.trigger = trigger;
 	}
+	
 	public boolean isReadRevision() {
 		return readRevision;
 	}
@@ -205,6 +211,7 @@ public class SService implements SDataBase
 	public void setReadRevision(boolean readRevision) {
 		this.readRevision = readRevision;
 	}
+	
 	public boolean isReadExtendedData() {
 		return readExtendedData;
 	}
@@ -212,6 +219,7 @@ public class SService implements SDataBase
 	public void setReadExtendedData(boolean readExtendedData) {
 		this.readExtendedData = readExtendedData;
 	}
+	
 	public long getWriteRevisionId() {
 		return writeRevisionId;
 	}
@@ -227,6 +235,7 @@ public class SService implements SDataBase
 	public void setWriteExtendedData(boolean writeExtendedData) {
 		this.writeExtendedData = writeExtendedData;
 	}
+	
 	public long getProjectId() {
 		return projectId;
 	}

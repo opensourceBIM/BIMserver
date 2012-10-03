@@ -30,7 +30,7 @@ public class SCompareResult implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private List<SCompareContainer> items = new ArrayList<SCompareContainer>();
 	public long getOid() {
 		return oid;
 	}
@@ -58,6 +58,7 @@ public class SCompareResult implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("items")) {
 			setItems((List<SCompareContainer>)val);
@@ -70,7 +71,6 @@ public class SCompareResult implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private List<SCompareContainer> items = new ArrayList<SCompareContainer>();
 	public List<SCompareContainer> getItems() {
 		return items;
 	}
@@ -78,6 +78,7 @@ public class SCompareResult implements SDataBase
 	public void setItems(List<SCompareContainer> items) {
 		this.items = items;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

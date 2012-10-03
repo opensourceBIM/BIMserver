@@ -30,7 +30,20 @@ public class SUserSettings implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private List<Long> serializers = new ArrayList<Long>();
+	private List<Long> objectIDMs = new ArrayList<Long>();
+	private List<Long> ifcEngines = new ArrayList<Long>();
+	private List<Long> deserializers = new ArrayList<Long>();
+	private List<Long> queryengines = new ArrayList<Long>();
+	private List<Long> modelmergers = new ArrayList<Long>();
+	private List<Long> modelcompares = new ArrayList<Long>();
+	private long defaultModelMergerId = -1;
+	private long defaultModelCompareId = -1;
+	private long defaultQueryEngineId = -1;
+	private long defaultIfcEngineId = -1;
+	private long defaultSerializerId = -1;
+	private long defaultObjectIDMId = -1;
+	private List<Long> services = new ArrayList<Long>();
 	public long getOid() {
 		return oid;
 	}
@@ -97,6 +110,7 @@ public class SUserSettings implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("serializers")) {
 			setSerializers((List<Long>)val);
@@ -161,20 +175,6 @@ public class SUserSettings implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private List<Long> serializers = new ArrayList<Long>();
-	private List<Long> objectIDMs = new ArrayList<Long>();
-	private List<Long> ifcEngines = new ArrayList<Long>();
-	private List<Long> deserializers = new ArrayList<Long>();
-	private List<Long> queryengines = new ArrayList<Long>();
-	private List<Long> modelmergers = new ArrayList<Long>();
-	private List<Long> modelcompares = new ArrayList<Long>();
-	private long defaultModelMergerId = -1;
-	private long defaultModelCompareId = -1;
-	private long defaultQueryEngineId = -1;
-	private long defaultIfcEngineId = -1;
-	private long defaultSerializerId = -1;
-	private long defaultObjectIDMId = -1;
-	private List<Long> services = new ArrayList<Long>();
 	public List<Long> getSerializers() {
 		return serializers;
 	}
@@ -182,6 +182,7 @@ public class SUserSettings implements SDataBase
 	public void setSerializers(List<Long> serializers) {
 		this.serializers = serializers;
 	}
+	
 	public List<Long> getObjectIDMs() {
 		return objectIDMs;
 	}
@@ -189,6 +190,7 @@ public class SUserSettings implements SDataBase
 	public void setObjectIDMs(List<Long> objectIDMs) {
 		this.objectIDMs = objectIDMs;
 	}
+	
 	public List<Long> getIfcEngines() {
 		return ifcEngines;
 	}
@@ -196,6 +198,7 @@ public class SUserSettings implements SDataBase
 	public void setIfcEngines(List<Long> ifcEngines) {
 		this.ifcEngines = ifcEngines;
 	}
+	
 	public List<Long> getDeserializers() {
 		return deserializers;
 	}
@@ -203,6 +206,7 @@ public class SUserSettings implements SDataBase
 	public void setDeserializers(List<Long> deserializers) {
 		this.deserializers = deserializers;
 	}
+	
 	public List<Long> getQueryengines() {
 		return queryengines;
 	}
@@ -210,6 +214,7 @@ public class SUserSettings implements SDataBase
 	public void setQueryengines(List<Long> queryengines) {
 		this.queryengines = queryengines;
 	}
+	
 	public List<Long> getModelmergers() {
 		return modelmergers;
 	}
@@ -217,6 +222,7 @@ public class SUserSettings implements SDataBase
 	public void setModelmergers(List<Long> modelmergers) {
 		this.modelmergers = modelmergers;
 	}
+	
 	public List<Long> getModelcompares() {
 		return modelcompares;
 	}
@@ -224,6 +230,7 @@ public class SUserSettings implements SDataBase
 	public void setModelcompares(List<Long> modelcompares) {
 		this.modelcompares = modelcompares;
 	}
+	
 	public long getDefaultModelMergerId() {
 		return defaultModelMergerId;
 	}
@@ -279,6 +286,7 @@ public class SUserSettings implements SDataBase
 	public void setServices(List<Long> services) {
 		this.services = services;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

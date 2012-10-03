@@ -30,7 +30,13 @@ public class SGeoTag implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.Boolean enabled;
+	private List<Long> projects = new ArrayList<Long>();
+	private java.lang.Double x;
+	private java.lang.Double y;
+	private java.lang.Double z;
+	private java.lang.Integer epsg;
+	private java.lang.Double directionAngle;
 	public long getOid() {
 		return oid;
 	}
@@ -76,6 +82,7 @@ public class SGeoTag implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("enabled")) {
 			setEnabled((Boolean)val);
@@ -112,13 +119,6 @@ public class SGeoTag implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.Boolean enabled;
-	private List<Long> projects = new ArrayList<Long>();
-	private java.lang.Double x;
-	private java.lang.Double y;
-	private java.lang.Double z;
-	private java.lang.Integer epsg;
-	private java.lang.Double directionAngle;
 	public java.lang.Boolean getEnabled() {
 		return enabled;
 	}
@@ -126,6 +126,7 @@ public class SGeoTag implements SDataBase
 	public void setEnabled(java.lang.Boolean enabled) {
 		this.enabled = enabled;
 	}
+	
 	public List<Long> getProjects() {
 		return projects;
 	}
@@ -133,6 +134,7 @@ public class SGeoTag implements SDataBase
 	public void setProjects(List<Long> projects) {
 		this.projects = projects;
 	}
+	
 	public java.lang.Double getX() {
 		return x;
 	}
@@ -140,6 +142,7 @@ public class SGeoTag implements SDataBase
 	public void setX(java.lang.Double x) {
 		this.x = x;
 	}
+	
 	public java.lang.Double getY() {
 		return y;
 	}
@@ -147,6 +150,7 @@ public class SGeoTag implements SDataBase
 	public void setY(java.lang.Double y) {
 		this.y = y;
 	}
+	
 	public java.lang.Double getZ() {
 		return z;
 	}
@@ -154,6 +158,7 @@ public class SGeoTag implements SDataBase
 	public void setZ(java.lang.Double z) {
 		this.z = z;
 	}
+	
 	public java.lang.Integer getEpsg() {
 		return epsg;
 	}
@@ -161,6 +166,7 @@ public class SGeoTag implements SDataBase
 	public void setEpsg(java.lang.Integer epsg) {
 		this.epsg = epsg;
 	}
+	
 	public java.lang.Double getDirectionAngle() {
 		return directionAngle;
 	}
@@ -168,6 +174,7 @@ public class SGeoTag implements SDataBase
 	public void setDirectionAngle(java.lang.Double directionAngle) {
 		this.directionAngle = directionAngle;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

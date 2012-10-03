@@ -28,7 +28,23 @@ public class SServerSettings implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.Boolean showVersionUpgradeAvailable;
+	private boolean sendConfirmationEmailAfterRegistration;
+	private java.lang.Boolean useCaching;
+	private java.lang.Boolean allowSelfRegistration;
+	private boolean allowUsersToCreateTopLevelProjects;
+	private java.lang.Boolean checkinMergingEnabled;
+	private java.lang.String registrationAddition;
+	private java.lang.String smtpServer;
+	private java.lang.String emailSenderAddress;
+	private java.lang.String customLogoAddress;
+	private java.lang.String siteAddress;
+	private java.lang.Boolean hideUserListForNonAdmin;
+	private java.lang.Integer protocolBuffersPort;
+	private java.lang.String headerAddition;
+	private java.lang.String footerAddition;
+	private java.lang.Boolean cacheOutputFiles;
+	private java.lang.String serviceRepositoryUrl;
 	public long getOid() {
 		return oid;
 	}
@@ -103,6 +119,7 @@ public class SServerSettings implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("showVersionUpgradeAvailable")) {
 			setShowVersionUpgradeAvailable((Boolean)val);
@@ -179,23 +196,6 @@ public class SServerSettings implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.Boolean showVersionUpgradeAvailable;
-	private boolean sendConfirmationEmailAfterRegistration;
-	private java.lang.Boolean useCaching;
-	private java.lang.Boolean allowSelfRegistration;
-	private boolean allowUsersToCreateTopLevelProjects;
-	private java.lang.Boolean checkinMergingEnabled;
-	private java.lang.String registrationAddition;
-	private java.lang.String smtpServer;
-	private java.lang.String emailSenderAddress;
-	private java.lang.String customLogoAddress;
-	private java.lang.String siteAddress;
-	private java.lang.Boolean hideUserListForNonAdmin;
-	private java.lang.Integer protocolBuffersPort;
-	private java.lang.String headerAddition;
-	private java.lang.String footerAddition;
-	private java.lang.Boolean cacheOutputFiles;
-	private java.lang.String serviceRepositoryUrl;
 	public java.lang.Boolean getShowVersionUpgradeAvailable() {
 		return showVersionUpgradeAvailable;
 	}
@@ -203,6 +203,7 @@ public class SServerSettings implements SDataBase
 	public void setShowVersionUpgradeAvailable(java.lang.Boolean showVersionUpgradeAvailable) {
 		this.showVersionUpgradeAvailable = showVersionUpgradeAvailable;
 	}
+	
 	public boolean isSendConfirmationEmailAfterRegistration() {
 		return sendConfirmationEmailAfterRegistration;
 	}
@@ -210,6 +211,7 @@ public class SServerSettings implements SDataBase
 	public void setSendConfirmationEmailAfterRegistration(boolean sendConfirmationEmailAfterRegistration) {
 		this.sendConfirmationEmailAfterRegistration = sendConfirmationEmailAfterRegistration;
 	}
+	
 	public java.lang.Boolean getUseCaching() {
 		return useCaching;
 	}
@@ -217,6 +219,7 @@ public class SServerSettings implements SDataBase
 	public void setUseCaching(java.lang.Boolean useCaching) {
 		this.useCaching = useCaching;
 	}
+	
 	public java.lang.Boolean getAllowSelfRegistration() {
 		return allowSelfRegistration;
 	}
@@ -224,6 +227,7 @@ public class SServerSettings implements SDataBase
 	public void setAllowSelfRegistration(java.lang.Boolean allowSelfRegistration) {
 		this.allowSelfRegistration = allowSelfRegistration;
 	}
+	
 	public boolean isAllowUsersToCreateTopLevelProjects() {
 		return allowUsersToCreateTopLevelProjects;
 	}
@@ -231,6 +235,7 @@ public class SServerSettings implements SDataBase
 	public void setAllowUsersToCreateTopLevelProjects(boolean allowUsersToCreateTopLevelProjects) {
 		this.allowUsersToCreateTopLevelProjects = allowUsersToCreateTopLevelProjects;
 	}
+	
 	public java.lang.Boolean getCheckinMergingEnabled() {
 		return checkinMergingEnabled;
 	}
@@ -238,6 +243,7 @@ public class SServerSettings implements SDataBase
 	public void setCheckinMergingEnabled(java.lang.Boolean checkinMergingEnabled) {
 		this.checkinMergingEnabled = checkinMergingEnabled;
 	}
+	
 	public java.lang.String getRegistrationAddition() {
 		return registrationAddition;
 	}
@@ -245,6 +251,7 @@ public class SServerSettings implements SDataBase
 	public void setRegistrationAddition(java.lang.String registrationAddition) {
 		this.registrationAddition = registrationAddition;
 	}
+	
 	public java.lang.String getSmtpServer() {
 		return smtpServer;
 	}
@@ -252,6 +259,7 @@ public class SServerSettings implements SDataBase
 	public void setSmtpServer(java.lang.String smtpServer) {
 		this.smtpServer = smtpServer;
 	}
+	
 	public java.lang.String getEmailSenderAddress() {
 		return emailSenderAddress;
 	}
@@ -259,6 +267,7 @@ public class SServerSettings implements SDataBase
 	public void setEmailSenderAddress(java.lang.String emailSenderAddress) {
 		this.emailSenderAddress = emailSenderAddress;
 	}
+	
 	public java.lang.String getCustomLogoAddress() {
 		return customLogoAddress;
 	}
@@ -266,6 +275,7 @@ public class SServerSettings implements SDataBase
 	public void setCustomLogoAddress(java.lang.String customLogoAddress) {
 		this.customLogoAddress = customLogoAddress;
 	}
+	
 	public java.lang.String getSiteAddress() {
 		return siteAddress;
 	}
@@ -273,6 +283,7 @@ public class SServerSettings implements SDataBase
 	public void setSiteAddress(java.lang.String siteAddress) {
 		this.siteAddress = siteAddress;
 	}
+	
 	public java.lang.Boolean getHideUserListForNonAdmin() {
 		return hideUserListForNonAdmin;
 	}
@@ -280,6 +291,7 @@ public class SServerSettings implements SDataBase
 	public void setHideUserListForNonAdmin(java.lang.Boolean hideUserListForNonAdmin) {
 		this.hideUserListForNonAdmin = hideUserListForNonAdmin;
 	}
+	
 	public java.lang.Integer getProtocolBuffersPort() {
 		return protocolBuffersPort;
 	}
@@ -287,6 +299,7 @@ public class SServerSettings implements SDataBase
 	public void setProtocolBuffersPort(java.lang.Integer protocolBuffersPort) {
 		this.protocolBuffersPort = protocolBuffersPort;
 	}
+	
 	public java.lang.String getHeaderAddition() {
 		return headerAddition;
 	}
@@ -294,6 +307,7 @@ public class SServerSettings implements SDataBase
 	public void setHeaderAddition(java.lang.String headerAddition) {
 		this.headerAddition = headerAddition;
 	}
+	
 	public java.lang.String getFooterAddition() {
 		return footerAddition;
 	}
@@ -301,6 +315,7 @@ public class SServerSettings implements SDataBase
 	public void setFooterAddition(java.lang.String footerAddition) {
 		this.footerAddition = footerAddition;
 	}
+	
 	public java.lang.Boolean getCacheOutputFiles() {
 		return cacheOutputFiles;
 	}
@@ -308,6 +323,7 @@ public class SServerSettings implements SDataBase
 	public void setCacheOutputFiles(java.lang.Boolean cacheOutputFiles) {
 		this.cacheOutputFiles = cacheOutputFiles;
 	}
+	
 	public java.lang.String getServiceRepositoryUrl() {
 		return serviceRepositoryUrl;
 	}
@@ -315,6 +331,7 @@ public class SServerSettings implements SDataBase
 	public void setServiceRepositoryUrl(java.lang.String serviceRepositoryUrl) {
 		this.serviceRepositoryUrl = serviceRepositoryUrl;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

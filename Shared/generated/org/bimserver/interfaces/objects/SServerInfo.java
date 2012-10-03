@@ -28,7 +28,8 @@ public class SServerInfo implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private SServerState serverState;
+	private java.lang.String errorMessage;
 	public long getOid() {
 		return oid;
 	}
@@ -58,6 +59,7 @@ public class SServerInfo implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("serverState")) {
 			setServerState((SServerState)val);
@@ -74,8 +76,6 @@ public class SServerInfo implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private SServerState serverState;
-	private java.lang.String errorMessage;
 	public SServerState getServerState() {
 		return serverState;
 	}
@@ -83,6 +83,7 @@ public class SServerInfo implements SDataBase
 	public void setServerState(SServerState serverState) {
 		this.serverState = serverState;
 	}
+	
 	public java.lang.String getErrorMessage() {
 		return errorMessage;
 	}
@@ -90,6 +91,7 @@ public class SServerInfo implements SDataBase
 	public void setErrorMessage(java.lang.String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

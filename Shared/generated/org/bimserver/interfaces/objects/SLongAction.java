@@ -31,7 +31,11 @@ public class SLongAction implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String identification;
+	private long userId = -1;
+	private java.util.Date start;
+	private java.lang.String username;
+	private java.lang.String name;
 	public long getOid() {
 		return oid;
 	}
@@ -70,6 +74,7 @@ public class SLongAction implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("identification")) {
 			setIdentification((String)val);
@@ -98,11 +103,6 @@ public class SLongAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String identification;
-	private long userId = -1;
-	private java.util.Date start;
-	private java.lang.String username;
-	private java.lang.String name;
 	public java.lang.String getIdentification() {
 		return identification;
 	}
@@ -110,6 +110,7 @@ public class SLongAction implements SDataBase
 	public void setIdentification(java.lang.String identification) {
 		this.identification = identification;
 	}
+	
 	public long getUserId() {
 		return userId;
 	}
@@ -125,6 +126,7 @@ public class SLongAction implements SDataBase
 	public void setStart(java.util.Date start) {
 		this.start = start;
 	}
+	
 	public java.lang.String getUsername() {
 		return username;
 	}
@@ -132,6 +134,7 @@ public class SLongAction implements SDataBase
 	public void setUsername(java.lang.String username) {
 		this.username = username;
 	}
+	
 	public java.lang.String getName() {
 		return name;
 	}
@@ -139,6 +142,7 @@ public class SLongAction implements SDataBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

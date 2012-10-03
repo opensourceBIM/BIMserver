@@ -29,7 +29,14 @@ public class SUserSession implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private long userId = -1;
+	private java.lang.String username;
+	private java.lang.String name;
+	private SUserType type;
+	private java.lang.String remoteAddress;
+	private java.util.Date activeSince;
+	private java.util.Date lastActive;
+	private SAccessMethod accessMethod;
 	public long getOid() {
 		return oid;
 	}
@@ -77,6 +84,7 @@ public class SUserSession implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("userId")) {
 			setUserId((Long)val);
@@ -117,14 +125,6 @@ public class SUserSession implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long userId = -1;
-	private java.lang.String username;
-	private java.lang.String name;
-	private SUserType type;
-	private java.lang.String remoteAddress;
-	private java.util.Date activeSince;
-	private java.util.Date lastActive;
-	private SAccessMethod accessMethod;
 	public long getUserId() {
 		return userId;
 	}
@@ -140,6 +140,7 @@ public class SUserSession implements SDataBase
 	public void setUsername(java.lang.String username) {
 		this.username = username;
 	}
+	
 	public java.lang.String getName() {
 		return name;
 	}
@@ -147,6 +148,7 @@ public class SUserSession implements SDataBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
+	
 	public SUserType getType() {
 		return type;
 	}
@@ -154,6 +156,7 @@ public class SUserSession implements SDataBase
 	public void setType(SUserType type) {
 		this.type = type;
 	}
+	
 	public java.lang.String getRemoteAddress() {
 		return remoteAddress;
 	}
@@ -161,6 +164,7 @@ public class SUserSession implements SDataBase
 	public void setRemoteAddress(java.lang.String remoteAddress) {
 		this.remoteAddress = remoteAddress;
 	}
+	
 	public java.util.Date getActiveSince() {
 		return activeSince;
 	}
@@ -168,6 +172,7 @@ public class SUserSession implements SDataBase
 	public void setActiveSince(java.util.Date activeSince) {
 		this.activeSince = activeSince;
 	}
+	
 	public java.util.Date getLastActive() {
 		return lastActive;
 	}
@@ -175,6 +180,7 @@ public class SUserSession implements SDataBase
 	public void setLastActive(java.util.Date lastActive) {
 		this.lastActive = lastActive;
 	}
+	
 	public SAccessMethod getAccessMethod() {
 		return accessMethod;
 	}
@@ -182,6 +188,7 @@ public class SUserSession implements SDataBase
 	public void setAccessMethod(SAccessMethod accessMethod) {
 		this.accessMethod = accessMethod;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

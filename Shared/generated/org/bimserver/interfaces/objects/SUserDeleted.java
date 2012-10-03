@@ -29,7 +29,7 @@ public class SUserDeleted extends SLogAction implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private long userId = -1;
 	public long getOid() {
 		return oid;
 	}
@@ -65,6 +65,7 @@ public class SUserDeleted extends SLogAction implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("date")) {
 			setDate((Date)val);
@@ -89,7 +90,6 @@ public class SUserDeleted extends SLogAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long userId = -1;
 	public long getUserId() {
 		return userId;
 	}

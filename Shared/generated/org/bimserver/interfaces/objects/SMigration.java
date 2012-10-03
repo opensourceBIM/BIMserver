@@ -28,7 +28,9 @@ public class SMigration implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.Integer number;
+	private java.lang.String description;
+	private java.lang.Boolean executed;
 	public long getOid() {
 		return oid;
 	}
@@ -61,6 +63,7 @@ public class SMigration implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("number")) {
 			setNumber((Integer)val);
@@ -81,9 +84,6 @@ public class SMigration implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.Integer number;
-	private java.lang.String description;
-	private java.lang.Boolean executed;
 	public java.lang.Integer getNumber() {
 		return number;
 	}
@@ -91,6 +91,7 @@ public class SMigration implements SDataBase
 	public void setNumber(java.lang.Integer number) {
 		this.number = number;
 	}
+	
 	public java.lang.String getDescription() {
 		return description;
 	}
@@ -98,6 +99,7 @@ public class SMigration implements SDataBase
 	public void setDescription(java.lang.String description) {
 		this.description = description;
 	}
+	
 	public java.lang.Boolean getExecuted() {
 		return executed;
 	}
@@ -105,6 +107,7 @@ public class SMigration implements SDataBase
 	public void setExecuted(java.lang.Boolean executed) {
 		this.executed = executed;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

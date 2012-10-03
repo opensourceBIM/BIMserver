@@ -27,7 +27,7 @@ public class SServiceInterface implements SBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String name;
 	
 	@XmlTransient
 	public SClass getSClass() {
@@ -44,6 +44,7 @@ public class SServiceInterface implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
@@ -52,7 +53,6 @@ public class SServiceInterface implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String name;
 	public java.lang.String getName() {
 		return name;
 	}
@@ -60,4 +60,5 @@ public class SServiceInterface implements SBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
+	
 }

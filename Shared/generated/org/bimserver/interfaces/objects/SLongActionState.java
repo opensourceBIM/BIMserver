@@ -30,7 +30,11 @@ public class SLongActionState implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.Integer progress;
+	private SActionState state;
+	private List<java.lang.String> errors = new ArrayList<java.lang.String>();
+	private List<java.lang.String> warnings = new ArrayList<java.lang.String>();
+	private List<java.lang.String> infos = new ArrayList<java.lang.String>();
 	public long getOid() {
 		return oid;
 	}
@@ -70,6 +74,7 @@ public class SLongActionState implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("progress")) {
 			setProgress((Integer)val);
@@ -98,11 +103,6 @@ public class SLongActionState implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.Integer progress;
-	private SActionState state;
-	private List<java.lang.String> errors = new ArrayList<java.lang.String>();
-	private List<java.lang.String> warnings = new ArrayList<java.lang.String>();
-	private List<java.lang.String> infos = new ArrayList<java.lang.String>();
 	public java.lang.Integer getProgress() {
 		return progress;
 	}
@@ -110,6 +110,7 @@ public class SLongActionState implements SDataBase
 	public void setProgress(java.lang.Integer progress) {
 		this.progress = progress;
 	}
+	
 	public SActionState getState() {
 		return state;
 	}
@@ -117,6 +118,7 @@ public class SLongActionState implements SDataBase
 	public void setState(SActionState state) {
 		this.state = state;
 	}
+	
 
 	public List<java.lang.String> getErrors() {
 		return errors;
@@ -125,6 +127,7 @@ public class SLongActionState implements SDataBase
 	public void setErrors(List<java.lang.String> errors) {
 		this.errors = errors;
 	}
+	
 
 	public List<java.lang.String> getWarnings() {
 		return warnings;
@@ -133,6 +136,7 @@ public class SLongActionState implements SDataBase
 	public void setWarnings(List<java.lang.String> warnings) {
 		this.warnings = warnings;
 	}
+	
 
 	public List<java.lang.String> getInfos() {
 		return infos;
@@ -141,6 +145,7 @@ public class SLongActionState implements SDataBase
 	public void setInfos(List<java.lang.String> infos) {
 		this.infos = infos;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

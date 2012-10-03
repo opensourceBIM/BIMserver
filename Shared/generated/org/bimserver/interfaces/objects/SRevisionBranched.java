@@ -29,7 +29,8 @@ public class SRevisionBranched extends SLogAction implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private long oldrevisionId = -1;
+	private long newrevisionId = -1;
 	public long getOid() {
 		return oid;
 	}
@@ -68,6 +69,7 @@ public class SRevisionBranched extends SLogAction implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("date")) {
 			setDate((Date)val);
@@ -96,8 +98,6 @@ public class SRevisionBranched extends SLogAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long oldrevisionId = -1;
-	private long newrevisionId = -1;
 	public long getOldrevisionId() {
 		return oldrevisionId;
 	}

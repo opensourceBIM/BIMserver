@@ -35,46 +35,46 @@ public class ServiceInterfaceObjectGenerator
   protected final String TEXT_14 = " implements ";
   protected final String TEXT_15 = NL + "{";
   protected final String TEXT_16 = NL + "\tprivate long oid = -1;";
-  protected final String TEXT_17 = NL + NL + "\t@XmlTransient" + NL + "\tprivate static SClass sClass;" + NL + "\t";
-  protected final String TEXT_18 = NL + "\tpublic long getOid() {" + NL + "\t\treturn oid;" + NL + "\t}" + NL + "\t" + NL + "\tpublic void setOid(long oid) {" + NL + "\t\tthis.oid = oid;" + NL + "\t}";
-  protected final String TEXT_19 = NL + "\t" + NL + "\t@XmlTransient" + NL + "\tpublic SClass getSClass() {" + NL + "\t\treturn sClass;" + NL + "\t}" + NL + "\t" + NL + "\tpublic static void setSClass(SClass sClass) {" + NL + "\t\tS";
-  protected final String TEXT_20 = ".sClass = sClass;" + NL + "\t}" + NL + "" + NL + "\tpublic Object sGet(SField sField) {";
-  protected final String TEXT_21 = NL + "\t\tif (sField.getName().equals(\"";
-  protected final String TEXT_22 = "\")) {" + NL + "\t\t\treturn ";
-  protected final String TEXT_23 = "();" + NL + "\t\t}";
-  protected final String TEXT_24 = NL + "\t\tif (sField.getName().equals(\"oid\")) {" + NL + "\t\t\treturn getOid();" + NL + "\t\t}";
-  protected final String TEXT_25 = NL + "\t\tthrow new RuntimeException(\"Field \" + sField.getName() + \" not found\");" + NL + "\t}";
-  protected final String TEXT_26 = NL + "\t@SuppressWarnings(\"unchecked\")";
-  protected final String TEXT_27 = NL + "\tpublic void sSet(SField sField, Object val) {";
-  protected final String TEXT_28 = NL + "\t\tif (sField.getName().equals(\"";
-  protected final String TEXT_29 = "\")) {" + NL + "\t\t\tset";
-  protected final String TEXT_30 = "((";
-  protected final String TEXT_31 = ")val);" + NL + "\t\t\treturn;" + NL + "\t\t}";
-  protected final String TEXT_32 = NL + "\t\tif (sField.getName().equals(\"oid\")) {" + NL + "\t\t\tsetOid((Long)val);" + NL + "\t\t\treturn;" + NL + "\t\t}";
-  protected final String TEXT_33 = NL + "\t\tthrow new RuntimeException(\"Field \" + sField.getName() + \" not found\");" + NL + "\t}" + NL + "\t";
-  protected final String TEXT_34 = NL + "\tprivate S";
-  protected final String TEXT_35 = " ";
-  protected final String TEXT_36 = ";";
-  protected final String TEXT_37 = NL + "\tprivate List<";
-  protected final String TEXT_38 = "> ";
-  protected final String TEXT_39 = " = new ArrayList<";
-  protected final String TEXT_40 = ">();";
-  protected final String TEXT_41 = NL + "\t@XmlMimeType(\"application/octet-stream\")" + NL + "\tprivate DataHandler ";
-  protected final String TEXT_42 = ";";
-  protected final String TEXT_43 = NL + "\tprivate ";
-  protected final String TEXT_44 = " ";
-  protected final String TEXT_45 = ";";
-  protected final String TEXT_46 = NL + "\tprivate List<S";
-  protected final String TEXT_47 = "> ";
-  protected final String TEXT_48 = " = new ArrayList<S";
-  protected final String TEXT_49 = ">();";
-  protected final String TEXT_50 = NL + "\tprivate List<Long> ";
-  protected final String TEXT_51 = " = new ArrayList<Long>();";
-  protected final String TEXT_52 = NL + "\tprivate S";
-  protected final String TEXT_53 = " ";
-  protected final String TEXT_54 = ";";
-  protected final String TEXT_55 = NL + "\tprivate long ";
-  protected final String TEXT_56 = "Id = -1;";
+  protected final String TEXT_17 = NL + NL + "\t@XmlTransient" + NL + "\tprivate static SClass sClass;";
+  protected final String TEXT_18 = NL + "\tprivate S";
+  protected final String TEXT_19 = " ";
+  protected final String TEXT_20 = ";";
+  protected final String TEXT_21 = NL + "\tprivate List<";
+  protected final String TEXT_22 = "> ";
+  protected final String TEXT_23 = " = new ArrayList<";
+  protected final String TEXT_24 = ">();";
+  protected final String TEXT_25 = NL + "\t@XmlMimeType(\"application/octet-stream\")" + NL + "\tprivate DataHandler ";
+  protected final String TEXT_26 = ";";
+  protected final String TEXT_27 = NL + "\tprivate ";
+  protected final String TEXT_28 = " ";
+  protected final String TEXT_29 = ";";
+  protected final String TEXT_30 = NL + "\tprivate List<S";
+  protected final String TEXT_31 = "> ";
+  protected final String TEXT_32 = " = new ArrayList<S";
+  protected final String TEXT_33 = ">();";
+  protected final String TEXT_34 = NL + "\tprivate List<Long> ";
+  protected final String TEXT_35 = " = new ArrayList<Long>();";
+  protected final String TEXT_36 = NL + "\tprivate S";
+  protected final String TEXT_37 = " ";
+  protected final String TEXT_38 = ";";
+  protected final String TEXT_39 = NL + "\tprivate long ";
+  protected final String TEXT_40 = "Id = -1;";
+  protected final String TEXT_41 = NL + "\tpublic long getOid() {" + NL + "\t\treturn oid;" + NL + "\t}" + NL + "\t" + NL + "\tpublic void setOid(long oid) {" + NL + "\t\tthis.oid = oid;" + NL + "\t}";
+  protected final String TEXT_42 = NL + "\t" + NL + "\t@XmlTransient" + NL + "\tpublic SClass getSClass() {" + NL + "\t\treturn sClass;" + NL + "\t}" + NL + "\t" + NL + "\tpublic static void setSClass(SClass sClass) {" + NL + "\t\tS";
+  protected final String TEXT_43 = ".sClass = sClass;" + NL + "\t}" + NL + "" + NL + "\tpublic Object sGet(SField sField) {";
+  protected final String TEXT_44 = NL + "\t\tif (sField.getName().equals(\"";
+  protected final String TEXT_45 = "\")) {" + NL + "\t\t\treturn ";
+  protected final String TEXT_46 = "();" + NL + "\t\t}";
+  protected final String TEXT_47 = NL + "\t\tif (sField.getName().equals(\"oid\")) {" + NL + "\t\t\treturn getOid();" + NL + "\t\t}";
+  protected final String TEXT_48 = NL + "\t\tthrow new RuntimeException(\"Field \" + sField.getName() + \" not found\");" + NL + "\t}";
+  protected final String TEXT_49 = NL + "\t@SuppressWarnings(\"unchecked\")";
+  protected final String TEXT_50 = NL + NL + "\tpublic void sSet(SField sField, Object val) {";
+  protected final String TEXT_51 = NL + "\t\tif (sField.getName().equals(\"";
+  protected final String TEXT_52 = "\")) {" + NL + "\t\t\tset";
+  protected final String TEXT_53 = "((";
+  protected final String TEXT_54 = ")val);" + NL + "\t\t\treturn;" + NL + "\t\t}";
+  protected final String TEXT_55 = NL + "\t\tif (sField.getName().equals(\"oid\")) {" + NL + "\t\t\tsetOid((Long)val);" + NL + "\t\t\treturn;" + NL + "\t\t}";
+  protected final String TEXT_56 = NL + "\t\tthrow new RuntimeException(\"Field \" + sField.getName() + \" not found\");" + NL + "\t}" + NL + "\t";
   protected final String TEXT_57 = NL + "\tpublic S";
   protected final String TEXT_58 = " ";
   protected final String TEXT_59 = "() {" + NL + "\t\treturn ";
@@ -83,7 +83,7 @@ public class ServiceInterfaceObjectGenerator
   protected final String TEXT_62 = " ";
   protected final String TEXT_63 = ") {" + NL + "\t\tthis.";
   protected final String TEXT_64 = " = ";
-  protected final String TEXT_65 = ";" + NL + "\t}";
+  protected final String TEXT_65 = ";" + NL + "\t}" + NL + "\t";
   protected final String TEXT_66 = NL + NL + "\tpublic List<";
   protected final String TEXT_67 = "> ";
   protected final String TEXT_68 = "() {" + NL + "\t\treturn ";
@@ -92,14 +92,14 @@ public class ServiceInterfaceObjectGenerator
   protected final String TEXT_71 = "> ";
   protected final String TEXT_72 = ") {" + NL + "\t\tthis.";
   protected final String TEXT_73 = " = ";
-  protected final String TEXT_74 = ";" + NL + "\t}";
+  protected final String TEXT_74 = ";" + NL + "\t}" + NL + "\t";
   protected final String TEXT_75 = NL + "\tpublic DataHandler ";
   protected final String TEXT_76 = "() {" + NL + "\t\treturn ";
   protected final String TEXT_77 = ";" + NL + "\t}" + NL + "" + NL + "\tpublic void ";
   protected final String TEXT_78 = "(DataHandler ";
   protected final String TEXT_79 = ") {" + NL + "\t\tthis.";
   protected final String TEXT_80 = " = ";
-  protected final String TEXT_81 = ";" + NL + "\t}";
+  protected final String TEXT_81 = ";" + NL + "\t}" + NL + "\t";
   protected final String TEXT_82 = NL + "\tpublic ";
   protected final String TEXT_83 = " ";
   protected final String TEXT_84 = "() {" + NL + "\t\treturn ";
@@ -108,7 +108,7 @@ public class ServiceInterfaceObjectGenerator
   protected final String TEXT_87 = " ";
   protected final String TEXT_88 = ") {" + NL + "\t\tthis.";
   protected final String TEXT_89 = " = ";
-  protected final String TEXT_90 = ";" + NL + "\t}";
+  protected final String TEXT_90 = ";" + NL + "\t}" + NL + "\t";
   protected final String TEXT_91 = NL + "\tpublic List<S";
   protected final String TEXT_92 = "> ";
   protected final String TEXT_93 = "() {" + NL + "\t\treturn ";
@@ -117,14 +117,14 @@ public class ServiceInterfaceObjectGenerator
   protected final String TEXT_96 = "> ";
   protected final String TEXT_97 = ") {" + NL + "\t\tthis.";
   protected final String TEXT_98 = " = ";
-  protected final String TEXT_99 = ";" + NL + "\t}";
+  protected final String TEXT_99 = ";" + NL + "\t}" + NL + "\t";
   protected final String TEXT_100 = NL + "\tpublic List<Long> ";
   protected final String TEXT_101 = "() {" + NL + "\t\treturn ";
   protected final String TEXT_102 = ";" + NL + "\t}" + NL + "" + NL + "\tpublic void ";
   protected final String TEXT_103 = "(List<Long> ";
   protected final String TEXT_104 = ") {" + NL + "\t\tthis.";
   protected final String TEXT_105 = " = ";
-  protected final String TEXT_106 = ";" + NL + "\t}";
+  protected final String TEXT_106 = ";" + NL + "\t}" + NL + "\t";
   protected final String TEXT_107 = NL + "\tpublic S";
   protected final String TEXT_108 = " ";
   protected final String TEXT_109 = "() {" + NL + "\t\treturn ";
@@ -133,7 +133,7 @@ public class ServiceInterfaceObjectGenerator
   protected final String TEXT_112 = " ";
   protected final String TEXT_113 = ") {" + NL + "\t\tthis.";
   protected final String TEXT_114 = " = ";
-  protected final String TEXT_115 = ";" + NL + "\t}" + NL + "\t";
+  protected final String TEXT_115 = ";" + NL + "\t}" + NL + "\t" + NL + "\t";
   protected final String TEXT_116 = NL + "\tpublic long ";
   protected final String TEXT_117 = "() {" + NL + "\t\treturn ";
   protected final String TEXT_118 = "Id;" + NL + "\t}" + NL + "" + NL + "\tpublic void ";
@@ -247,60 +247,6 @@ for (EClass subClass : subClasses) {
     stringBuffer.append(TEXT_16);
      } 
     stringBuffer.append(TEXT_17);
-     if (eClass.getEAnnotation("nodatabase") == null) { 
-    stringBuffer.append(TEXT_18);
-     } 
-    stringBuffer.append(TEXT_19);
-    stringBuffer.append(eClass.getName());
-    stringBuffer.append(TEXT_20);
-    
-	for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
-
-    stringBuffer.append(TEXT_21);
-    stringBuffer.append(eStructuralFeature.getName());
-    stringBuffer.append((eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" );
-    stringBuffer.append(TEXT_22);
-    stringBuffer.append(eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() ? "is" : "get");
-    stringBuffer.append(StringUtils.firstUpperCase(eStructuralFeature.getName()));
-    stringBuffer.append((eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" );
-    stringBuffer.append(TEXT_23);
-    
-	}
-if (eClass.getEAnnotation("nodatabase") == null) {
-
-    stringBuffer.append(TEXT_24);
-     } 
-    stringBuffer.append(TEXT_25);
-     if (hasLists) { 
-    stringBuffer.append(TEXT_26);
-     } 
-    stringBuffer.append(TEXT_27);
-    
-	for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
-		if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDate()) {
-			importManager.getImport("java.util.Date");
-		} else if (eStructuralFeature.getEType().getName().equals("DataHandler")) {
-			importManager.getImport("javax.activation.DataHandler");
-		
-		}
-		boolean useId = (eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null);
-
-    stringBuffer.append(TEXT_28);
-    stringBuffer.append(eStructuralFeature.getName());
-    stringBuffer.append((eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" );
-    stringBuffer.append(TEXT_29);
-    stringBuffer.append(StringUtils.firstUpperCase(eStructuralFeature.getName()));
-    stringBuffer.append(useId ? "Id" : "" );
-    stringBuffer.append(TEXT_30);
-    stringBuffer.append(GenerateUtils.getType(eStructuralFeature));
-    stringBuffer.append(TEXT_31);
-    
-	}
-if (eClass.getEAnnotation("nodatabase") == null) {
-
-    stringBuffer.append(TEXT_32);
-     } 
-    stringBuffer.append(TEXT_33);
     
 	for (EStructuralFeature eStructuralFeature : eClass.getEStructuralFeatures()) {
 		if (eStructuralFeature.getEAnnotation("notinserviceinterface") == null) {
@@ -308,40 +254,40 @@ if (eClass.getEAnnotation("nodatabase") == null) {
 				EAttribute eAttribute = (EAttribute)eStructuralFeature;
 				if (eAttribute.getEType() instanceof EEnum) {
 
-    stringBuffer.append(TEXT_34);
+    stringBuffer.append(TEXT_18);
     stringBuffer.append(eAttribute.getEType().getName());
-    stringBuffer.append(TEXT_35);
+    stringBuffer.append(TEXT_19);
     stringBuffer.append(eAttribute.getName());
-    stringBuffer.append(TEXT_36);
+    stringBuffer.append(TEXT_20);
     
 				} else {
 					if (eAttribute.isMany()) {
 						importManager.getImport("java.util.List");
 						importManager.getImport("java.util.ArrayList");
 
-    stringBuffer.append(TEXT_37);
+    stringBuffer.append(TEXT_21);
     stringBuffer.append(eAttribute.getEType().getInstanceClassName());
-    stringBuffer.append(TEXT_38);
+    stringBuffer.append(TEXT_22);
     stringBuffer.append(eAttribute.getName());
-    stringBuffer.append(TEXT_39);
+    stringBuffer.append(TEXT_23);
     stringBuffer.append(eAttribute.getEType().getInstanceClassName());
-    stringBuffer.append(TEXT_40);
+    stringBuffer.append(TEXT_24);
     
 					} else {
 						if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray() && eAttribute.getEAnnotation("file") != null) {
 							importManager.getImport("javax.activation.DataHandler");
 
-    stringBuffer.append(TEXT_41);
+    stringBuffer.append(TEXT_25);
     stringBuffer.append(eAttribute.getName());
-    stringBuffer.append(TEXT_42);
+    stringBuffer.append(TEXT_26);
     
 						} else {
 
-    stringBuffer.append(TEXT_43);
+    stringBuffer.append(TEXT_27);
     stringBuffer.append(eAttribute.getEType().getInstanceClassName());
-    stringBuffer.append(TEXT_44);
+    stringBuffer.append(TEXT_28);
     stringBuffer.append(eAttribute.getName());
-    stringBuffer.append(TEXT_45);
+    stringBuffer.append(TEXT_29);
     
 						}
 					}
@@ -353,41 +299,98 @@ if (eClass.getEAnnotation("nodatabase") == null) {
 					importManager.getImport("java.util.ArrayList");
 					if (eReference.getEAnnotation("embedsreference") != null) {
 
-    stringBuffer.append(TEXT_46);
+    stringBuffer.append(TEXT_30);
     stringBuffer.append(eReference.getEType().getName());
-    stringBuffer.append(TEXT_47);
+    stringBuffer.append(TEXT_31);
     stringBuffer.append(eReference.getName());
-    stringBuffer.append(TEXT_48);
+    stringBuffer.append(TEXT_32);
     stringBuffer.append(eReference.getEType().getName());
-    stringBuffer.append(TEXT_49);
+    stringBuffer.append(TEXT_33);
     			
 					} else {
 
-    stringBuffer.append(TEXT_50);
+    stringBuffer.append(TEXT_34);
     stringBuffer.append(eReference.getName());
-    stringBuffer.append(TEXT_51);
+    stringBuffer.append(TEXT_35);
     
 					}
 				} else {
 					if (eReference.getEAnnotation("embedsreference") != null) {
 
-    stringBuffer.append(TEXT_52);
+    stringBuffer.append(TEXT_36);
     stringBuffer.append(eReference.getEType().getName());
-    stringBuffer.append(TEXT_53);
+    stringBuffer.append(TEXT_37);
     stringBuffer.append(eReference.getName());
-    stringBuffer.append(TEXT_54);
+    stringBuffer.append(TEXT_38);
     
 					} else {
 
-    stringBuffer.append(TEXT_55);
+    stringBuffer.append(TEXT_39);
     stringBuffer.append(eReference.getName());
-    stringBuffer.append(TEXT_56);
+    stringBuffer.append(TEXT_40);
     
 					}
 				}
 			}
 		}
 	}
+
+	if (eClass.getEAnnotation("nodatabase") == null) { 
+    stringBuffer.append(TEXT_41);
+     } 
+    stringBuffer.append(TEXT_42);
+    stringBuffer.append(eClass.getName());
+    stringBuffer.append(TEXT_43);
+    
+	for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+
+    stringBuffer.append(TEXT_44);
+    stringBuffer.append(eStructuralFeature.getName());
+    stringBuffer.append((eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" );
+    stringBuffer.append(TEXT_45);
+    stringBuffer.append(eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() ? "is" : "get");
+    stringBuffer.append(StringUtils.firstUpperCase(eStructuralFeature.getName()));
+    stringBuffer.append((eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" );
+    stringBuffer.append(TEXT_46);
+    
+	}
+if (eClass.getEAnnotation("nodatabase") == null) {
+
+    stringBuffer.append(TEXT_47);
+     } 
+    stringBuffer.append(TEXT_48);
+     if (hasLists) { 
+    stringBuffer.append(TEXT_49);
+     } 
+    stringBuffer.append(TEXT_50);
+    
+	for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+		if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDate()) {
+			importManager.getImport("java.util.Date");
+		} else if (eStructuralFeature.getEType().getName().equals("DataHandler")) {
+			importManager.getImport("javax.activation.DataHandler");
+		
+		}
+		boolean useId = (eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null);
+
+    stringBuffer.append(TEXT_51);
+    stringBuffer.append(eStructuralFeature.getName());
+    stringBuffer.append((eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" );
+    stringBuffer.append(TEXT_52);
+    stringBuffer.append(StringUtils.firstUpperCase(eStructuralFeature.getName()));
+    stringBuffer.append(useId ? "Id" : "" );
+    stringBuffer.append(TEXT_53);
+    stringBuffer.append(GenerateUtils.getType(eStructuralFeature));
+    stringBuffer.append(TEXT_54);
+    
+	}
+if (eClass.getEAnnotation("nodatabase") == null) {
+
+    stringBuffer.append(TEXT_55);
+     } 
+    stringBuffer.append(TEXT_56);
+    
+
 	for (EStructuralFeature eStructuralFeature : eClass.getEStructuralFeatures()) {
 		if (eStructuralFeature.getEAnnotation("notinserviceinterface") == null) {
 			if (eStructuralFeature instanceof EAttribute) {

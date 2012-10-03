@@ -16,9 +16,9 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -31,7 +31,7 @@ public class SLongCheckinAction extends SLongAction implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private List<Long> revisions = new ArrayList<Long>();
 	public long getOid() {
 		return oid;
 	}
@@ -74,6 +74,7 @@ public class SLongCheckinAction extends SLongAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("identification")) {
 			setIdentification((String)val);
@@ -106,7 +107,6 @@ public class SLongCheckinAction extends SLongAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private List<Long> revisions = new ArrayList<Long>();
 	public List<Long> getRevisions() {
 		return revisions;
 	}
@@ -114,6 +114,7 @@ public class SLongCheckinAction extends SLongAction implements SDataBase
 	public void setRevisions(List<Long> revisions) {
 		this.revisions = revisions;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

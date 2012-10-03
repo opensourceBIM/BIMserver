@@ -77,73 +77,6 @@ public class S<%=eClass.getName()%>
 
 	@XmlTransient
 	private static SClass sClass;
-	
-<% if (eClass.getEAnnotation("nodatabase") == null) { %>
-	public long getOid() {
-		return oid;
-	}
-	
-	public void setOid(long oid) {
-		this.oid = oid;
-	}
-<% } %>
-	
-	@XmlTransient
-	public SClass getSClass() {
-		return sClass;
-	}
-	
-	public static void setSClass(SClass sClass) {
-		S<%=eClass.getName()%>.sClass = sClass;
-	}
-
-	public Object sGet(SField sField) {
-<%
-	for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
-%>
-		if (sField.getName().equals("<%=eStructuralFeature.getName()%><%=(eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" %>")) {
-			return <%=eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() ? "is" : "get"%><%=StringUtils.firstUpperCase(eStructuralFeature.getName())%><%=(eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" %>();
-		}
-<%
-	}
-if (eClass.getEAnnotation("nodatabase") == null) {
-%>
-		if (sField.getName().equals("oid")) {
-			return getOid();
-		}
-<% } %>
-		throw new RuntimeException("Field " + sField.getName() + " not found");
-	}
-<% if (hasLists) { %>
-	@SuppressWarnings("unchecked")
-<% } %>
-	public void sSet(SField sField, Object val) {
-<%
-	for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
-		if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDate()) {
-			importManager.getImport("java.util.Date");
-		} else if (eStructuralFeature.getEType().getName().equals("DataHandler")) {
-			importManager.getImport("javax.activation.DataHandler");
-		
-		}
-		boolean useId = (eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null);
-%>
-		if (sField.getName().equals("<%=eStructuralFeature.getName()%><%=(eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" %>")) {
-			set<%=StringUtils.firstUpperCase(eStructuralFeature.getName())%><%=useId ? "Id" : "" %>((<%=GenerateUtils.getType(eStructuralFeature)%>)val);
-			return;
-		}
-<%
-	}
-if (eClass.getEAnnotation("nodatabase") == null) {
-%>
-		if (sField.getName().equals("oid")) {
-			setOid((Long)val);
-			return;
-		}
-<% } %>
-		throw new RuntimeException("Field " + sField.getName() + " not found");
-	}
-	
 <%
 	for (EStructuralFeature eStructuralFeature : eClass.getEStructuralFeatures()) {
 		if (eStructuralFeature.getEAnnotation("notinserviceinterface") == null) {
@@ -202,6 +135,76 @@ if (eClass.getEAnnotation("nodatabase") == null) {
 			}
 		}
 	}
+
+	if (eClass.getEAnnotation("nodatabase") == null) { %>
+	public long getOid() {
+		return oid;
+	}
+	
+	public void setOid(long oid) {
+		this.oid = oid;
+	}
+<% } %>
+	
+	@XmlTransient
+	public SClass getSClass() {
+		return sClass;
+	}
+	
+	public static void setSClass(SClass sClass) {
+		S<%=eClass.getName()%>.sClass = sClass;
+	}
+
+	public Object sGet(SField sField) {
+<%
+	for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+%>
+		if (sField.getName().equals("<%=eStructuralFeature.getName()%><%=(eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" %>")) {
+			return <%=eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() ? "is" : "get"%><%=StringUtils.firstUpperCase(eStructuralFeature.getName())%><%=(eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" %>();
+		}
+<%
+	}
+if (eClass.getEAnnotation("nodatabase") == null) {
+%>
+		if (sField.getName().equals("oid")) {
+			return getOid();
+		}
+<% } %>
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+<% if (hasLists) { %>
+	@SuppressWarnings("unchecked")
+<% } %>
+
+	public void sSet(SField sField, Object val) {
+<%
+	for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+		if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDate()) {
+			importManager.getImport("java.util.Date");
+		} else if (eStructuralFeature.getEType().getName().equals("DataHandler")) {
+			importManager.getImport("javax.activation.DataHandler");
+		
+		}
+		boolean useId = (eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null);
+%>
+		if (sField.getName().equals("<%=eStructuralFeature.getName()%><%=(eStructuralFeature instanceof EReference && !eStructuralFeature.isMany() && eStructuralFeature.getEAnnotation("embedsreference") == null) ? "Id" : "" %>")) {
+			set<%=StringUtils.firstUpperCase(eStructuralFeature.getName())%><%=useId ? "Id" : "" %>((<%=GenerateUtils.getType(eStructuralFeature)%>)val);
+			return;
+		}
+<%
+	}
+if (eClass.getEAnnotation("nodatabase") == null) {
+%>
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
+			return;
+		}
+<% } %>
+		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
+<%
+
 	for (EStructuralFeature eStructuralFeature : eClass.getEStructuralFeatures()) {
 		if (eStructuralFeature.getEAnnotation("notinserviceinterface") == null) {
 			if (eStructuralFeature instanceof EAttribute) {
@@ -215,6 +218,7 @@ if (eClass.getEAnnotation("nodatabase") == null) {
 	public void <%=GenerateUtils.makeSetter(eAttribute)%>(S<%=eAttribute.getEType().getName()%> <%=eAttribute.getName()%>) {
 		this.<%=eAttribute.getName()%> = <%=eAttribute.getName()%>;
 	}
+	
 <%
 				} else {
 					if (eAttribute.isMany()) {
@@ -227,6 +231,7 @@ if (eClass.getEAnnotation("nodatabase") == null) {
 	public void <%=GenerateUtils.makeSetter(eAttribute)%>(List<<%=eAttribute.getEType().getInstanceClassName()%>> <%=eAttribute.getName()%>) {
 		this.<%=eAttribute.getName()%> = <%=eAttribute.getName()%>;
 	}
+	
 <%
 					} else {
 						if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEByteArray() && eAttribute.getEAnnotation("file") != null) {
@@ -238,6 +243,7 @@ if (eClass.getEAnnotation("nodatabase") == null) {
 	public void <%=GenerateUtils.makeSetter(eAttribute)%>(DataHandler <%=eAttribute.getName()%>) {
 		this.<%=eAttribute.getName()%> = <%=eAttribute.getName()%>;
 	}
+	
 <%
 						} else {
 %>
@@ -248,6 +254,7 @@ if (eClass.getEAnnotation("nodatabase") == null) {
 	public void <%=GenerateUtils.makeSetter(eAttribute)%>(<%=eAttribute.getEType().getInstanceClassName()%> <%=eAttribute.getName()%>) {
 		this.<%=eAttribute.getName()%> = <%=eAttribute.getName()%>;
 	}
+	
 <%
 						}
 					}
@@ -264,6 +271,7 @@ if (eClass.getEAnnotation("nodatabase") == null) {
 	public void <%=GenerateUtils.makeSetter(eReference)%>(List<S<%=eReference.getEType().getName()%>> <%=eReference.getName()%>) {
 		this.<%=eReference.getName()%> = <%=eReference.getName()%>;
 	}
+	
 <%
 					} else {
 %>
@@ -274,6 +282,7 @@ if (eClass.getEAnnotation("nodatabase") == null) {
 	public void <%=GenerateUtils.makeSetter(eReference)%>(List<Long> <%=eReference.getName()%>) {
 		this.<%=eReference.getName()%> = <%=eReference.getName()%>;
 	}
+	
 <%
 					}
 				} else {
@@ -286,6 +295,7 @@ if (eClass.getEAnnotation("nodatabase") == null) {
 	public void <%=GenerateUtils.makeSetter(eReference)%>(S<%=eReference.getEType().getName()%> <%=eReference.getName()%>) {
 		this.<%=eReference.getName()%> = <%=eReference.getName()%>;
 	}
+	
 	
 <%
 					} else {

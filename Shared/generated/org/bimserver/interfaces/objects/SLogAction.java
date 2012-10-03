@@ -24,14 +24,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SPasswordReset.class, SRevisionBranched.class, SServerStarted.class, SExtendedDataAddedToRevision.class, SNewRevisionAdded.class, SProjectUndeleted.class, SProjectDeleted.class, SNewCheckoutAdded.class, SDownload.class, SPasswordChanged.class, SSettingsSaved.class, SExtendedDataAddedToProject.class, SNewUserAdded.class, SNewProjectAdded.class, SUserRemovedFromProject.class, SUserDeleted.class, SUserUndeleted.class, SDatabaseCreated.class, SProjectUpdated.class, SGeoTagUpdated.class, SNewObjectIDMUploaded.class, SRevisionUpdated.class, SUserAddedToProject.class, SUserChanged.class})
+@XmlSeeAlso(value={SExtendedDataAddedToProject.class, SUserUndeleted.class, SNewCheckoutAdded.class, SExtendedDataAddedToRevision.class, SGeoTagUpdated.class, SServerStarted.class, SDatabaseCreated.class, SDownload.class, SSettingsSaved.class, SUserRemovedFromProject.class, SRevisionBranched.class, SNewObjectIDMUploaded.class, SPasswordChanged.class, SUserChanged.class, SProjectUndeleted.class, SPasswordReset.class, SNewUserAdded.class, SNewRevisionAdded.class, SNewProjectAdded.class, SUserDeleted.class, SProjectDeleted.class, SProjectUpdated.class, SRevisionUpdated.class, SUserAddedToProject.class})
 public class SLogAction implements SDataBase
 {
 	private long oid = -1;
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.util.Date date;
+	private long executorId = -1;
+	private SAccessMethod accessMethod;
 	public long getOid() {
 		return oid;
 	}
@@ -64,6 +66,7 @@ public class SLogAction implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("date")) {
 			setDate((Date)val);
@@ -84,9 +87,6 @@ public class SLogAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.util.Date date;
-	private long executorId = -1;
-	private SAccessMethod accessMethod;
 	public java.util.Date getDate() {
 		return date;
 	}
@@ -94,6 +94,7 @@ public class SLogAction implements SDataBase
 	public void setDate(java.util.Date date) {
 		this.date = date;
 	}
+	
 	public long getExecutorId() {
 		return executorId;
 	}
@@ -109,6 +110,7 @@ public class SLogAction implements SDataBase
 	public void setAccessMethod(SAccessMethod accessMethod) {
 		this.accessMethod = accessMethod;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

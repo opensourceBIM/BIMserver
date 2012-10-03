@@ -16,9 +16,9 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -31,7 +31,22 @@ public class SUser implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String name;
+	private java.lang.String password;
+	private List<Long> hasRightsOn = new ArrayList<Long>();
+	private List<Long> revisions = new ArrayList<Long>();
+	private SObjectState state;
+	private java.util.Date createdOn;
+	private long createdById = -1;
+	private SUserType userType;
+	private java.lang.String username;
+	private java.util.Date lastSeen;
+	private java.lang.String validationToken;
+	private java.util.Date validationTokenCreated;
+	private long settingsId = -1;
+	private List<Long> schemas = new ArrayList<Long>();
+	private List<Long> extendedData = new ArrayList<Long>();
+	private List<Long> services = new ArrayList<Long>();
 	public long getOid() {
 		return oid;
 	}
@@ -104,6 +119,7 @@ public class SUser implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
@@ -176,22 +192,6 @@ public class SUser implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String name;
-	private java.lang.String password;
-	private List<Long> hasRightsOn = new ArrayList<Long>();
-	private List<Long> revisions = new ArrayList<Long>();
-	private SObjectState state;
-	private java.util.Date createdOn;
-	private long createdById = -1;
-	private SUserType userType;
-	private java.lang.String username;
-	private java.util.Date lastSeen;
-	private java.lang.String validationToken;
-	private java.util.Date validationTokenCreated;
-	private long settingsId = -1;
-	private List<Long> schemas = new ArrayList<Long>();
-	private List<Long> extendedData = new ArrayList<Long>();
-	private List<Long> services = new ArrayList<Long>();
 	public java.lang.String getName() {
 		return name;
 	}
@@ -199,6 +199,7 @@ public class SUser implements SDataBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
+	
 	public java.lang.String getPassword() {
 		return password;
 	}
@@ -206,6 +207,7 @@ public class SUser implements SDataBase
 	public void setPassword(java.lang.String password) {
 		this.password = password;
 	}
+	
 	public List<Long> getHasRightsOn() {
 		return hasRightsOn;
 	}
@@ -213,6 +215,7 @@ public class SUser implements SDataBase
 	public void setHasRightsOn(List<Long> hasRightsOn) {
 		this.hasRightsOn = hasRightsOn;
 	}
+	
 	public List<Long> getRevisions() {
 		return revisions;
 	}
@@ -220,6 +223,7 @@ public class SUser implements SDataBase
 	public void setRevisions(List<Long> revisions) {
 		this.revisions = revisions;
 	}
+	
 	public SObjectState getState() {
 		return state;
 	}
@@ -227,6 +231,7 @@ public class SUser implements SDataBase
 	public void setState(SObjectState state) {
 		this.state = state;
 	}
+	
 	public java.util.Date getCreatedOn() {
 		return createdOn;
 	}
@@ -234,6 +239,7 @@ public class SUser implements SDataBase
 	public void setCreatedOn(java.util.Date createdOn) {
 		this.createdOn = createdOn;
 	}
+	
 	public long getCreatedById() {
 		return createdById;
 	}
@@ -249,6 +255,7 @@ public class SUser implements SDataBase
 	public void setUserType(SUserType userType) {
 		this.userType = userType;
 	}
+	
 	public java.lang.String getUsername() {
 		return username;
 	}
@@ -256,6 +263,7 @@ public class SUser implements SDataBase
 	public void setUsername(java.lang.String username) {
 		this.username = username;
 	}
+	
 	public java.util.Date getLastSeen() {
 		return lastSeen;
 	}
@@ -263,6 +271,7 @@ public class SUser implements SDataBase
 	public void setLastSeen(java.util.Date lastSeen) {
 		this.lastSeen = lastSeen;
 	}
+	
 	public java.lang.String getValidationToken() {
 		return validationToken;
 	}
@@ -270,6 +279,7 @@ public class SUser implements SDataBase
 	public void setValidationToken(java.lang.String validationToken) {
 		this.validationToken = validationToken;
 	}
+	
 	public java.util.Date getValidationTokenCreated() {
 		return validationTokenCreated;
 	}
@@ -277,6 +287,7 @@ public class SUser implements SDataBase
 	public void setValidationTokenCreated(java.util.Date validationTokenCreated) {
 		this.validationTokenCreated = validationTokenCreated;
 	}
+	
 	public long getSettingsId() {
 		return settingsId;
 	}
@@ -292,6 +303,7 @@ public class SUser implements SDataBase
 	public void setSchemas(List<Long> schemas) {
 		this.schemas = schemas;
 	}
+	
 	public List<Long> getExtendedData() {
 		return extendedData;
 	}
@@ -299,6 +311,7 @@ public class SUser implements SDataBase
 	public void setExtendedData(List<Long> extendedData) {
 		this.extendedData = extendedData;
 	}
+	
 	public List<Long> getServices() {
 		return services;
 	}
@@ -306,6 +319,7 @@ public class SUser implements SDataBase
 	public void setServices(List<Long> services) {
 		this.services = services;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

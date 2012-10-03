@@ -30,7 +30,8 @@ public class SDatabaseInformationCategory implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String title;
+	private List<SDatabaseInformationItem> items = new ArrayList<SDatabaseInformationItem>();
 	public long getOid() {
 		return oid;
 	}
@@ -61,6 +62,7 @@ public class SDatabaseInformationCategory implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("title")) {
 			setTitle((String)val);
@@ -77,8 +79,6 @@ public class SDatabaseInformationCategory implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String title;
-	private List<SDatabaseInformationItem> items = new ArrayList<SDatabaseInformationItem>();
 	public java.lang.String getTitle() {
 		return title;
 	}
@@ -86,6 +86,7 @@ public class SDatabaseInformationCategory implements SDataBase
 	public void setTitle(java.lang.String title) {
 		this.title = title;
 	}
+	
 	public List<SDatabaseInformationItem> getItems() {
 		return items;
 	}
@@ -93,6 +94,7 @@ public class SDatabaseInformationCategory implements SDataBase
 	public void setItems(List<SDatabaseInformationItem> items) {
 		this.items = items;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

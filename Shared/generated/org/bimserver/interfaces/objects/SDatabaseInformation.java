@@ -16,9 +16,9 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -31,7 +31,16 @@ public class SDatabaseInformation implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.Integer numberOfProjects;
+	private java.lang.Integer numberOfUsers;
+	private java.lang.Integer numberOfRevisions;
+	private java.lang.Integer numberOfCheckouts;
+	private java.lang.Long databaseSizeInBytes;
+	private java.lang.String type;
+	private java.util.Date created;
+	private java.lang.String location;
+	private java.lang.Integer schemaVersion;
+	private List<SDatabaseInformationCategory> categories = new ArrayList<SDatabaseInformationCategory>();
 	public long getOid() {
 		return oid;
 	}
@@ -86,6 +95,7 @@ public class SDatabaseInformation implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("numberOfProjects")) {
 			setNumberOfProjects((Integer)val);
@@ -134,16 +144,6 @@ public class SDatabaseInformation implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.Integer numberOfProjects;
-	private java.lang.Integer numberOfUsers;
-	private java.lang.Integer numberOfRevisions;
-	private java.lang.Integer numberOfCheckouts;
-	private java.lang.Long databaseSizeInBytes;
-	private java.lang.String type;
-	private java.util.Date created;
-	private java.lang.String location;
-	private java.lang.Integer schemaVersion;
-	private List<SDatabaseInformationCategory> categories = new ArrayList<SDatabaseInformationCategory>();
 	public java.lang.Integer getNumberOfProjects() {
 		return numberOfProjects;
 	}
@@ -151,6 +151,7 @@ public class SDatabaseInformation implements SDataBase
 	public void setNumberOfProjects(java.lang.Integer numberOfProjects) {
 		this.numberOfProjects = numberOfProjects;
 	}
+	
 	public java.lang.Integer getNumberOfUsers() {
 		return numberOfUsers;
 	}
@@ -158,6 +159,7 @@ public class SDatabaseInformation implements SDataBase
 	public void setNumberOfUsers(java.lang.Integer numberOfUsers) {
 		this.numberOfUsers = numberOfUsers;
 	}
+	
 	public java.lang.Integer getNumberOfRevisions() {
 		return numberOfRevisions;
 	}
@@ -165,6 +167,7 @@ public class SDatabaseInformation implements SDataBase
 	public void setNumberOfRevisions(java.lang.Integer numberOfRevisions) {
 		this.numberOfRevisions = numberOfRevisions;
 	}
+	
 	public java.lang.Integer getNumberOfCheckouts() {
 		return numberOfCheckouts;
 	}
@@ -172,6 +175,7 @@ public class SDatabaseInformation implements SDataBase
 	public void setNumberOfCheckouts(java.lang.Integer numberOfCheckouts) {
 		this.numberOfCheckouts = numberOfCheckouts;
 	}
+	
 	public java.lang.Long getDatabaseSizeInBytes() {
 		return databaseSizeInBytes;
 	}
@@ -179,6 +183,7 @@ public class SDatabaseInformation implements SDataBase
 	public void setDatabaseSizeInBytes(java.lang.Long databaseSizeInBytes) {
 		this.databaseSizeInBytes = databaseSizeInBytes;
 	}
+	
 	public java.lang.String getType() {
 		return type;
 	}
@@ -186,6 +191,7 @@ public class SDatabaseInformation implements SDataBase
 	public void setType(java.lang.String type) {
 		this.type = type;
 	}
+	
 	public java.util.Date getCreated() {
 		return created;
 	}
@@ -193,6 +199,7 @@ public class SDatabaseInformation implements SDataBase
 	public void setCreated(java.util.Date created) {
 		this.created = created;
 	}
+	
 	public java.lang.String getLocation() {
 		return location;
 	}
@@ -200,6 +207,7 @@ public class SDatabaseInformation implements SDataBase
 	public void setLocation(java.lang.String location) {
 		this.location = location;
 	}
+	
 	public java.lang.Integer getSchemaVersion() {
 		return schemaVersion;
 	}
@@ -207,6 +215,7 @@ public class SDatabaseInformation implements SDataBase
 	public void setSchemaVersion(java.lang.Integer schemaVersion) {
 		this.schemaVersion = schemaVersion;
 	}
+	
 	public List<SDatabaseInformationCategory> getCategories() {
 		return categories;
 	}
@@ -214,6 +223,7 @@ public class SDatabaseInformation implements SDataBase
 	public void setCategories(List<SDatabaseInformationCategory> categories) {
 		this.categories = categories;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -29,7 +29,16 @@ public class SExtendedData implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String url;
+	private byte[] data;
+	private java.lang.String title;
+	private java.lang.String filename;
+	private java.util.Date added;
+	private long userId = -1;
+	private long schemaId = -1;
+	private long revisionId = -1;
+	private long projectId = -1;
+	private java.lang.String mime;
 	public long getOid() {
 		return oid;
 	}
@@ -83,6 +92,7 @@ public class SExtendedData implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("url")) {
 			setUrl((String)val);
@@ -131,16 +141,6 @@ public class SExtendedData implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String url;
-	private byte[] data;
-	private java.lang.String title;
-	private java.lang.String filename;
-	private java.util.Date added;
-	private long userId = -1;
-	private long schemaId = -1;
-	private long revisionId = -1;
-	private long projectId = -1;
-	private java.lang.String mime;
 	public java.lang.String getUrl() {
 		return url;
 	}
@@ -148,6 +148,7 @@ public class SExtendedData implements SDataBase
 	public void setUrl(java.lang.String url) {
 		this.url = url;
 	}
+	
 	public byte[] getData() {
 		return data;
 	}
@@ -155,6 +156,7 @@ public class SExtendedData implements SDataBase
 	public void setData(byte[] data) {
 		this.data = data;
 	}
+	
 	public java.lang.String getTitle() {
 		return title;
 	}
@@ -162,6 +164,7 @@ public class SExtendedData implements SDataBase
 	public void setTitle(java.lang.String title) {
 		this.title = title;
 	}
+	
 	public java.lang.String getFilename() {
 		return filename;
 	}
@@ -169,6 +172,7 @@ public class SExtendedData implements SDataBase
 	public void setFilename(java.lang.String filename) {
 		this.filename = filename;
 	}
+	
 	public java.util.Date getAdded() {
 		return added;
 	}
@@ -176,6 +180,7 @@ public class SExtendedData implements SDataBase
 	public void setAdded(java.util.Date added) {
 		this.added = added;
 	}
+	
 	public long getUserId() {
 		return userId;
 	}
@@ -215,6 +220,7 @@ public class SExtendedData implements SDataBase
 	public void setMime(java.lang.String mime) {
 		this.mime = mime;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

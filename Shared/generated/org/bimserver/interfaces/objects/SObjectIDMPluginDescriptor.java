@@ -28,7 +28,7 @@ public class SObjectIDMPluginDescriptor implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String className;
 	public long getOid() {
 		return oid;
 	}
@@ -55,6 +55,7 @@ public class SObjectIDMPluginDescriptor implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("className")) {
 			setClassName((String)val);
@@ -67,7 +68,6 @@ public class SObjectIDMPluginDescriptor implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String className;
 	public java.lang.String getClassName() {
 		return className;
 	}
@@ -75,6 +75,7 @@ public class SObjectIDMPluginDescriptor implements SDataBase
 	public void setClassName(java.lang.String className) {
 		this.className = className;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

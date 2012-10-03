@@ -27,7 +27,9 @@ public class SServiceMethod implements SBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String name;
+	private java.lang.String doc;
+	private java.lang.String returnDoc;
 	
 	@XmlTransient
 	public SClass getSClass() {
@@ -50,6 +52,7 @@ public class SServiceMethod implements SBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
@@ -66,9 +69,6 @@ public class SServiceMethod implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String name;
-	private java.lang.String doc;
-	private java.lang.String returnDoc;
 	public java.lang.String getName() {
 		return name;
 	}
@@ -76,6 +76,7 @@ public class SServiceMethod implements SBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
+	
 	public java.lang.String getDoc() {
 		return doc;
 	}
@@ -83,6 +84,7 @@ public class SServiceMethod implements SBase
 	public void setDoc(java.lang.String doc) {
 		this.doc = doc;
 	}
+	
 	public java.lang.String getReturnDoc() {
 		return returnDoc;
 	}
@@ -90,4 +92,5 @@ public class SServiceMethod implements SBase
 	public void setReturnDoc(java.lang.String returnDoc) {
 		this.returnDoc = returnDoc;
 	}
+	
 }

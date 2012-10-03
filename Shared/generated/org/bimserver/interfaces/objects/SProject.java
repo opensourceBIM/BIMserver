@@ -16,9 +16,9 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -31,7 +31,24 @@ public class SProject implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.Integer id;
+	private java.lang.String name;
+	private List<Long> hasAuthorizedUsers = new ArrayList<Long>();
+	private List<Long> concreteRevisions = new ArrayList<Long>();
+	private List<Long> revisions = new ArrayList<Long>();
+	private long lastConcreteRevisionId = -1;
+	private long lastRevisionId = -1;
+	private List<Long> checkouts = new ArrayList<Long>();
+	private SObjectState state;
+	private java.util.Date createdDate;
+	private long createdById = -1;
+	private long geoTagId = -1;
+	private List<Long> subProjects = new ArrayList<Long>();
+	private long parentId = -1;
+	private java.lang.String description;
+	private SSIPrefix exportLengthMeasurePrefix;
+	private List<Long> extendedData = new ArrayList<Long>();
+	private List<Long> services = new ArrayList<Long>();
 	public long getOid() {
 		return oid;
 	}
@@ -110,6 +127,7 @@ public class SProject implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("id")) {
 			setId((Integer)val);
@@ -190,24 +208,6 @@ public class SProject implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.Integer id;
-	private java.lang.String name;
-	private List<Long> hasAuthorizedUsers = new ArrayList<Long>();
-	private List<Long> concreteRevisions = new ArrayList<Long>();
-	private List<Long> revisions = new ArrayList<Long>();
-	private long lastConcreteRevisionId = -1;
-	private long lastRevisionId = -1;
-	private List<Long> checkouts = new ArrayList<Long>();
-	private SObjectState state;
-	private java.util.Date createdDate;
-	private long createdById = -1;
-	private long geoTagId = -1;
-	private List<Long> subProjects = new ArrayList<Long>();
-	private long parentId = -1;
-	private java.lang.String description;
-	private SSIPrefix exportLengthMeasurePrefix;
-	private List<Long> extendedData = new ArrayList<Long>();
-	private List<Long> services = new ArrayList<Long>();
 	public java.lang.Integer getId() {
 		return id;
 	}
@@ -215,6 +215,7 @@ public class SProject implements SDataBase
 	public void setId(java.lang.Integer id) {
 		this.id = id;
 	}
+	
 	public java.lang.String getName() {
 		return name;
 	}
@@ -222,6 +223,7 @@ public class SProject implements SDataBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
+	
 	public List<Long> getHasAuthorizedUsers() {
 		return hasAuthorizedUsers;
 	}
@@ -229,6 +231,7 @@ public class SProject implements SDataBase
 	public void setHasAuthorizedUsers(List<Long> hasAuthorizedUsers) {
 		this.hasAuthorizedUsers = hasAuthorizedUsers;
 	}
+	
 	public List<Long> getConcreteRevisions() {
 		return concreteRevisions;
 	}
@@ -236,6 +239,7 @@ public class SProject implements SDataBase
 	public void setConcreteRevisions(List<Long> concreteRevisions) {
 		this.concreteRevisions = concreteRevisions;
 	}
+	
 	public List<Long> getRevisions() {
 		return revisions;
 	}
@@ -243,6 +247,7 @@ public class SProject implements SDataBase
 	public void setRevisions(List<Long> revisions) {
 		this.revisions = revisions;
 	}
+	
 	public long getLastConcreteRevisionId() {
 		return lastConcreteRevisionId;
 	}
@@ -266,6 +271,7 @@ public class SProject implements SDataBase
 	public void setCheckouts(List<Long> checkouts) {
 		this.checkouts = checkouts;
 	}
+	
 	public SObjectState getState() {
 		return state;
 	}
@@ -273,6 +279,7 @@ public class SProject implements SDataBase
 	public void setState(SObjectState state) {
 		this.state = state;
 	}
+	
 	public java.util.Date getCreatedDate() {
 		return createdDate;
 	}
@@ -280,6 +287,7 @@ public class SProject implements SDataBase
 	public void setCreatedDate(java.util.Date createdDate) {
 		this.createdDate = createdDate;
 	}
+	
 	public long getCreatedById() {
 		return createdById;
 	}
@@ -303,6 +311,7 @@ public class SProject implements SDataBase
 	public void setSubProjects(List<Long> subProjects) {
 		this.subProjects = subProjects;
 	}
+	
 	public long getParentId() {
 		return parentId;
 	}
@@ -318,6 +327,7 @@ public class SProject implements SDataBase
 	public void setDescription(java.lang.String description) {
 		this.description = description;
 	}
+	
 	public SSIPrefix getExportLengthMeasurePrefix() {
 		return exportLengthMeasurePrefix;
 	}
@@ -325,6 +335,7 @@ public class SProject implements SDataBase
 	public void setExportLengthMeasurePrefix(SSIPrefix exportLengthMeasurePrefix) {
 		this.exportLengthMeasurePrefix = exportLengthMeasurePrefix;
 	}
+	
 	public List<Long> getExtendedData() {
 		return extendedData;
 	}
@@ -332,6 +343,7 @@ public class SProject implements SDataBase
 	public void setExtendedData(List<Long> extendedData) {
 		this.extendedData = extendedData;
 	}
+	
 	public List<Long> getServices() {
 		return services;
 	}
@@ -339,6 +351,7 @@ public class SProject implements SDataBase
 	public void setServices(List<Long> services) {
 		this.services = services;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

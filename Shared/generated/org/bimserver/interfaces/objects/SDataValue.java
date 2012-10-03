@@ -23,14 +23,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SSimpleDataValue.class, SReferenceDataValue.class, SListDataValue.class})
+@XmlSeeAlso(value={SReferenceDataValue.class, SListDataValue.class, SSimpleDataValue.class})
 public class SDataValue implements SDataBase
 {
 	private long oid = -1;
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String fieldName;
 	public long getOid() {
 		return oid;
 	}
@@ -57,6 +57,7 @@ public class SDataValue implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("fieldName")) {
 			setFieldName((String)val);
@@ -69,7 +70,6 @@ public class SDataValue implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String fieldName;
 	public java.lang.String getFieldName() {
 		return fieldName;
 	}
@@ -77,6 +77,7 @@ public class SDataValue implements SDataBase
 	public void setFieldName(java.lang.String fieldName) {
 		this.fieldName = fieldName;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

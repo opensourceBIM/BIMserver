@@ -30,7 +30,9 @@ public class SServiceType implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String name;
+	private java.lang.String simpleName;
+	private List<SServiceField> fields = new ArrayList<SServiceField>();
 	public long getOid() {
 		return oid;
 	}
@@ -64,6 +66,7 @@ public class SServiceType implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
@@ -84,9 +87,6 @@ public class SServiceType implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String name;
-	private java.lang.String simpleName;
-	private List<SServiceField> fields = new ArrayList<SServiceField>();
 	public java.lang.String getName() {
 		return name;
 	}
@@ -94,6 +94,7 @@ public class SServiceType implements SDataBase
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
+	
 	public java.lang.String getSimpleName() {
 		return simpleName;
 	}
@@ -101,6 +102,7 @@ public class SServiceType implements SDataBase
 	public void setSimpleName(java.lang.String simpleName) {
 		this.simpleName = simpleName;
 	}
+	
 	public List<SServiceField> getFields() {
 		return fields;
 	}
@@ -108,6 +110,7 @@ public class SServiceType implements SDataBase
 	public void setFields(List<SServiceField> fields) {
 		this.fields = fields;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

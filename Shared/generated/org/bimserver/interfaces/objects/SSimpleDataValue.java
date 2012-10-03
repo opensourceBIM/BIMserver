@@ -28,7 +28,7 @@ public class SSimpleDataValue extends SDataValue implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String stringValue;
 	public long getOid() {
 		return oid;
 	}
@@ -58,6 +58,7 @@ public class SSimpleDataValue extends SDataValue implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("fieldName")) {
 			setFieldName((String)val);
@@ -74,7 +75,6 @@ public class SSimpleDataValue extends SDataValue implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String stringValue;
 	public java.lang.String getStringValue() {
 		return stringValue;
 	}
@@ -82,6 +82,7 @@ public class SSimpleDataValue extends SDataValue implements SDataBase
 	public void setStringValue(java.lang.String stringValue) {
 		this.stringValue = stringValue;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

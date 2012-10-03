@@ -28,7 +28,6 @@ public class SModelMergerPluginDescriptor extends SPluginDescriptor implements S
 
 	@XmlTransient
 	private static SClass sClass;
-	
 	public long getOid() {
 		return oid;
 	}
@@ -67,6 +66,7 @@ public class SModelMergerPluginDescriptor extends SPluginDescriptor implements S
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("defaultName")) {
 			setDefaultName((String)val);

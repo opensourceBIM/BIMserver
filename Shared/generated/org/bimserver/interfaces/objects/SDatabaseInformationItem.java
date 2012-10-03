@@ -28,7 +28,8 @@ public class SDatabaseInformationItem implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String key;
+	private java.lang.String value;
 	public long getOid() {
 		return oid;
 	}
@@ -58,6 +59,7 @@ public class SDatabaseInformationItem implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("key")) {
 			setKey((String)val);
@@ -74,8 +76,6 @@ public class SDatabaseInformationItem implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String key;
-	private java.lang.String value;
 	public java.lang.String getKey() {
 		return key;
 	}
@@ -83,6 +83,7 @@ public class SDatabaseInformationItem implements SDataBase
 	public void setKey(java.lang.String key) {
 		this.key = key;
 	}
+	
 	public java.lang.String getValue() {
 		return value;
 	}
@@ -90,6 +91,7 @@ public class SDatabaseInformationItem implements SDataBase
 	public void setValue(java.lang.String value) {
 		this.value = value;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
