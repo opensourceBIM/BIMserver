@@ -92,7 +92,7 @@ public class LocalDevBimCombinedServerStarter {
 		 	bimWebServer.setBimServerClientFactory(new BimServerClientFactory() {
 				@Override
 				public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
-					BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager());
+					BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager(), bimServer.getServiceInterfaces());
 					bimServerClient.setAuthentication(authenticationInfo);
 					bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE, remoteAddress));
 					return bimServerClient;

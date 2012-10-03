@@ -54,31 +54,6 @@ public class SService {
 	// Disabled for now, makes the deployed JAR stop at this point
 	private boolean processJavaDoc = true;
 
-	public void dump() {
-		System.out.println(getMethods().size());
-		for (SMethod method : getMethods()) {
-			System.out.println(method.getName() + ": " + method.getReturnType().getName() + " (" + method.getDoc() + ")");
-			for (SParameter parameter : method.getParameters()) {
-				System.out.println("\t" + parameter.getName() + " " + parameter.getType().getName() + " (" + parameter.getDoc() + ")");
-			}
-			System.out.println();
-		}
-		for (SClass type : getTypes()) {
-			System.out.println(type.getName());
-			if (type instanceof SClass) {
-				SClass sClass = (SClass) type;
-				for (SField sField : sClass.getFields()) {
-					SClass type2 = sField.getType();
-					if (type2 == null) {
-						System.err.println("type for " + sField.getName() + " = null");
-					}
-					System.out.println("\t" + sField.getName() + " " + type2.getName());
-				}
-			}
-			System.out.println();
-		}
-	}
-
 	public SService(String sourceCode, Class<?> clazz) {
 		this.sourceCode = sourceCode;
 		this.clazz = clazz;
@@ -260,5 +235,30 @@ public class SService {
 			}
 		}
 		return sType;
+	}
+	
+	public void dump() {
+		System.out.println(getMethods().size());
+		for (SMethod method : getMethods()) {
+			System.out.println(method.getName() + ": " + method.getReturnType().getName() + " (" + method.getDoc() + ")");
+			for (SParameter parameter : method.getParameters()) {
+				System.out.println("\t" + parameter.getName() + " " + parameter.getType().getName() + " (" + parameter.getDoc() + ")");
+			}
+			System.out.println();
+		}
+		for (SClass type : getTypes()) {
+			System.out.println(type.getName());
+			if (type instanceof SClass) {
+				SClass sClass = (SClass) type;
+				for (SField sField : sClass.getFields()) {
+					SClass type2 = sField.getType();
+					if (type2 == null) {
+						System.err.println("type for " + sField.getName() + " = null");
+					}
+					System.out.println("\t" + sField.getName() + " " + type2.getName());
+				}
+			}
+			System.out.println();
+		}
 	}
 }
