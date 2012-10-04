@@ -37,7 +37,10 @@ import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ServerDescriptor;
+import org.bimserver.models.store.ObjectDefinition;
+import org.bimserver.models.store.ParameterDefinition;
+import org.bimserver.models.store.PrimitiveDefinition;
+import org.bimserver.models.store.PrimitiveEnum;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.Trigger;
@@ -66,9 +69,6 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		super.init(pluginManager);
 		initialized = true;
 
-		ServerDescriptor serverDescriptor = StoreFactory.eINSTANCE.createServerDescriptor();
-		serverDescriptor.setTitle("Clashdetection");
-		
 		ServiceDescriptor clashDetection = StoreFactory.eINSTANCE.createServiceDescriptor();
 		clashDetection.setName("Clashdetection");
 		clashDetection.setDescription("Clashdetection");
@@ -77,7 +77,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		clashDetection.setWriteExtendedData("clashdetection");
 		clashDetection.setTrigger(Trigger.NEW_REVISION);
 		
-		register(serverDescriptor, clashDetection, new NotificationInterfaceAdapter(){
+		register(clashDetection, new NotificationInterfaceAdapter(){
 			@Override
 			public void newLogAction(SLogAction newRevisionNotification, SToken token, String apiUrl) throws UserException, ServerException {
 				SNewRevisionAdded sNewRevisionAdded = (SNewRevisionAdded)newRevisionNotification;
@@ -248,5 +248,18 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 	@Override
 	public String getDefaultName() {
 		return "ClashDetection";
+	}
+
+	@Override
+	public ObjectDefinition getSettingsDefinition() {
+		ObjectDefinition objectDefinition = StoreFactory.eINSTANCE.createObjectDefinition();
+		ParameterDefinition marginParameter = StoreFactory.eINSTANCE.createParameterDefinition();
+		marginParameter.setName("margin");
+		marginParameter.setRequired(true);
+		PrimitiveDefinition doubleDefinition = StoreFactory.eINSTANCE.createPrimitiveDefinition();
+		doubleDefinition.setType(PrimitiveEnum.DOUBLE);
+		marginParameter.setType(doubleDefinition);
+		objectDefinition.getParameters().add(marginParameter);
+		return objectDefinition;
 	}
 }
