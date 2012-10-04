@@ -35,9 +35,13 @@ public class SService implements SDataBase
 	private java.lang.String description;
 	private STrigger trigger;
 	private boolean readRevision;
-	private boolean readExtendedData;
+	private long readExtendedDataId = -1;
 	private long writeRevisionId = -1;
-	private boolean writeExtendedData;
+	private long writeExtendedDataId = -1;
+	private java.lang.String profileIdentifier;
+	private java.lang.String profileName;
+	private java.lang.String profileDescription;
+	private boolean profilePublic;
 	private long projectId = -1;
 	private long userId = -1;
 	public long getOid() {
@@ -79,14 +83,26 @@ public class SService implements SDataBase
 		if (sField.getName().equals("readRevision")) {
 			return isReadRevision();
 		}
-		if (sField.getName().equals("readExtendedData")) {
-			return isReadExtendedData();
+		if (sField.getName().equals("readExtendedDataId")) {
+			return getReadExtendedDataId();
 		}
 		if (sField.getName().equals("writeRevisionId")) {
 			return getWriteRevisionId();
 		}
-		if (sField.getName().equals("writeExtendedData")) {
-			return isWriteExtendedData();
+		if (sField.getName().equals("writeExtendedDataId")) {
+			return getWriteExtendedDataId();
+		}
+		if (sField.getName().equals("profileIdentifier")) {
+			return getProfileIdentifier();
+		}
+		if (sField.getName().equals("profileName")) {
+			return getProfileName();
+		}
+		if (sField.getName().equals("profileDescription")) {
+			return getProfileDescription();
+		}
+		if (sField.getName().equals("profilePublic")) {
+			return isProfilePublic();
 		}
 		if (sField.getName().equals("projectId")) {
 			return getProjectId();
@@ -129,16 +145,32 @@ public class SService implements SDataBase
 			setReadRevision((Boolean)val);
 			return;
 		}
-		if (sField.getName().equals("readExtendedData")) {
-			setReadExtendedData((Boolean)val);
+		if (sField.getName().equals("readExtendedDataId")) {
+			setReadExtendedDataId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("writeRevisionId")) {
 			setWriteRevisionId((Long)val);
 			return;
 		}
-		if (sField.getName().equals("writeExtendedData")) {
-			setWriteExtendedData((Boolean)val);
+		if (sField.getName().equals("writeExtendedDataId")) {
+			setWriteExtendedDataId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("profileIdentifier")) {
+			setProfileIdentifier((String)val);
+			return;
+		}
+		if (sField.getName().equals("profileName")) {
+			setProfileName((String)val);
+			return;
+		}
+		if (sField.getName().equals("profileDescription")) {
+			setProfileDescription((String)val);
+			return;
+		}
+		if (sField.getName().equals("profilePublic")) {
+			setProfilePublic((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("projectId")) {
@@ -212,12 +244,12 @@ public class SService implements SDataBase
 		this.readRevision = readRevision;
 	}
 	
-	public boolean isReadExtendedData() {
-		return readExtendedData;
+	public long getReadExtendedDataId() {
+		return readExtendedDataId;
 	}
 
-	public void setReadExtendedData(boolean readExtendedData) {
-		this.readExtendedData = readExtendedData;
+	public void setReadExtendedDataId(long readExtendedDataId) {
+		this.readExtendedDataId = readExtendedDataId;
 	}
 	
 	public long getWriteRevisionId() {
@@ -228,12 +260,44 @@ public class SService implements SDataBase
 		this.writeRevisionId = writeRevisionId;
 	}
 	
-	public boolean isWriteExtendedData() {
-		return writeExtendedData;
+	public long getWriteExtendedDataId() {
+		return writeExtendedDataId;
 	}
 
-	public void setWriteExtendedData(boolean writeExtendedData) {
-		this.writeExtendedData = writeExtendedData;
+	public void setWriteExtendedDataId(long writeExtendedDataId) {
+		this.writeExtendedDataId = writeExtendedDataId;
+	}
+	
+	public java.lang.String getProfileIdentifier() {
+		return profileIdentifier;
+	}
+
+	public void setProfileIdentifier(java.lang.String profileIdentifier) {
+		this.profileIdentifier = profileIdentifier;
+	}
+	
+	public java.lang.String getProfileName() {
+		return profileName;
+	}
+
+	public void setProfileName(java.lang.String profileName) {
+		this.profileName = profileName;
+	}
+	
+	public java.lang.String getProfileDescription() {
+		return profileDescription;
+	}
+
+	public void setProfileDescription(java.lang.String profileDescription) {
+		this.profileDescription = profileDescription;
+	}
+	
+	public boolean isProfilePublic() {
+		return profilePublic;
+	}
+
+	public void setProfilePublic(boolean profilePublic) {
+		this.profilePublic = profilePublic;
 	}
 	
 	public long getProjectId() {

@@ -37,6 +37,9 @@ public class JsonHandler {
 				String interfaceName = request.getString("interface");
 				String methodName = request.getString("method");
 				SService sService = bimServer.getServiceInterface(interfaceName);
+				if (sService == null) {
+					throw new UserException("No service found with name " + interfaceName);
+				}
 				SMethod method = sService.getSMethod(methodName);
 				if (method == null) {
 					throw new UserException("Method " + methodName + " not found on " + interfaceName);

@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bimserver.interfaces.objects.SToken;
-import org.bimserver.models.store.ServerDescriptor;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginException;
@@ -29,9 +28,9 @@ public abstract class ServicePlugin implements Plugin {
 		this.pluginManager = pluginManager;
 	}
 	
-	public void register(ServerDescriptor serverDescriptor, ServiceDescriptor serviceDescriptor, NotificationInterface notificationInterface) {
+	public void register(ServiceDescriptor serviceDescriptor, NotificationInterface notificationInterface) {
 		serviceDescriptor.setUrl(getUrl());
-		pluginManager.register(serverDescriptor, serviceDescriptor, notificationInterface);
+		pluginManager.register(serviceDescriptor, notificationInterface);
 		serviceDescriptors.put(serviceDescriptor.getUrl(), serviceDescriptor);
 	}
 	

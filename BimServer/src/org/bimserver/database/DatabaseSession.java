@@ -1386,6 +1386,31 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		}
 	}
 
+	public void store(IdEObject object, boolean deep) throws BimserverDatabaseException {
+		checkOpen();
+		Set<IdEObject> done = new HashSet<IdEObject>();
+		storeDeep(object, done);
+	}
+	
+	private void storeDeep(IdEObject object, Set<IdEObject> done) throws BimserverDatabaseException {
+		if (object == null || done.contains(object)) {
+			return;
+		}
+		done.add(object);
+		store(object);
+		for (EReference eReference : object.eClass().getEAllReferences()) {
+			if (eReference.isMany()) {
+				List<?> list = (List<?>)object.eGet(eReference);
+				for (Object v : list) {
+					storeDeep((IdEObject) v, done);
+				}
+			} else {
+				IdEObject reference = (IdEObject)object.eGet(eReference);
+				storeDeep(reference, done);
+			}
+		}
+	}
+
 	public long store(IdEObject object) throws BimserverDatabaseException {
 		checkOpen();
 		return store(object, Database.STORE_PROJECT_ID, Integer.MAX_VALUE);

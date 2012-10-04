@@ -355,8 +355,8 @@ public class IfcModel implements IfcModelInterface {
 	}
 
 	public void add(Long key, IdEObject eObject, boolean ignoreDuplicateOids, boolean allowMultiModel) throws IfcModelInterfaceException {
-		if (eObject.hasModel() && !allowMultiModel) {
-			throw new IfcModelInterfaceException("This object (" + eObject + ") already belongs to a Model: " + eObject.getModel());
+		if (((IdEObjectImpl) eObject).hasModel() && !allowMultiModel) {
+			throw new IfcModelInterfaceException("This object (" + eObject + ") already belongs to a Model: " + ((IdEObjectImpl) eObject).getModel());
 		}
 		if (objects.containsKey(key)) {
 			if (!ignoreDuplicateOids) {
@@ -364,7 +364,7 @@ public class IfcModel implements IfcModelInterface {
 			}
 		} else {
 			objects.put(key, eObject);
-			if (!eObject.hasModel() || !allowMultiModel) {
+			if (!((IdEObjectImpl) eObject).hasModel() || !allowMultiModel) {
 				((IdEObjectImpl) eObject).setModel(this);
 			}
 			if (guidIndexed != null) {

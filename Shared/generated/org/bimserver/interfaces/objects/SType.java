@@ -16,18 +16,20 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SQueryPluginDescriptor implements SBase
+@XmlSeeAlso(value={SPrimitiveType.class, SArrayType.class, SObjectType.class})
+public class SType implements SDataBase
 {
 	private long oid = -1;
+
 	@XmlTransient
 	private static SClass sClass;
-	
 	public long getOid() {
 		return oid;
 	}
@@ -42,30 +44,17 @@ public class SQueryPluginDescriptor implements SBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SQueryPluginDescriptor.sClass = sClass;
+		SType.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("pluginClassName")) {
-			return getPluginClassName();
-		}
-		if (sField.getName().equals("defaultName")) {
-			return getDefaultName();
-		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("pluginClassName")) {
-			setPluginClassName((String)val);
-			return;
-		}
-		if (sField.getName().equals("defaultName")) {
-			setDefaultName((String)val);
-			return;
-		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -73,22 +62,6 @@ public class SQueryPluginDescriptor implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String pluginClassName;
-	private java.lang.String defaultName;
-	public java.lang.String getPluginClassName() {
-		return pluginClassName;
-	}
-
-	public void setPluginClassName(java.lang.String pluginClassName) {
-		this.pluginClassName = pluginClassName;
-	}
-	public java.lang.String getDefaultName() {
-		return defaultName;
-	}
-
-	public void setDefaultName(java.lang.String defaultName) {
-		this.defaultName = defaultName;
-	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -105,7 +78,7 @@ public class SQueryPluginDescriptor implements SBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SQueryPluginDescriptor other = (SQueryPluginDescriptor) obj;
+		SType other = (SType) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

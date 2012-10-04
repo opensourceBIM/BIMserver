@@ -39,8 +39,8 @@ public class AddInternalServiceDatabaseAction extends AddDatabaseAction<Internal
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
-		user.getSettings().getServices().add(getIdEObject());
-		getDatabaseSession().store(user.getSettings());
+		user.getUserSettings().getServices().add(getIdEObject());
+		getDatabaseSession().store(user.getUserSettings());
 		return super.execute();
 	}
 }

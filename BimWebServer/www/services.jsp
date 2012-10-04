@@ -1,7 +1,6 @@
 <%@page import="org.bimserver.interfaces.objects.SUser"%>
 <%@page import="org.bimserver.interfaces.objects.SService"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
-<%@page import="org.bimserver.interfaces.objects.SExternalServer"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%
 	if (request.getParameter("action") != null) {

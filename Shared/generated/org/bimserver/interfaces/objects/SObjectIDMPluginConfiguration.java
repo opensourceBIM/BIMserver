@@ -31,7 +31,7 @@ public class SObjectIDMPluginConfiguration extends SPluginConfiguration implemen
 	@XmlTransient
 	private static SClass sClass;
 	private List<Long> serializers = new ArrayList<Long>();
-	private long settingsId = -1;
+	private long userSettingsId = -1;
 	public long getOid() {
 		return oid;
 	}
@@ -62,11 +62,14 @@ public class SObjectIDMPluginConfiguration extends SPluginConfiguration implemen
 		if (sField.getName().equals("className")) {
 			return getClassName();
 		}
+		if (sField.getName().equals("settingsId")) {
+			return getSettingsId();
+		}
 		if (sField.getName().equals("serializers")) {
 			return getSerializers();
 		}
-		if (sField.getName().equals("settingsId")) {
-			return getSettingsId();
+		if (sField.getName().equals("userSettingsId")) {
+			return getUserSettingsId();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -92,12 +95,16 @@ public class SObjectIDMPluginConfiguration extends SPluginConfiguration implemen
 			setClassName((String)val);
 			return;
 		}
+		if (sField.getName().equals("settingsId")) {
+			setSettingsId((Long)val);
+			return;
+		}
 		if (sField.getName().equals("serializers")) {
 			setSerializers((List<Long>)val);
 			return;
 		}
-		if (sField.getName().equals("settingsId")) {
-			setSettingsId((Long)val);
+		if (sField.getName().equals("userSettingsId")) {
+			setUserSettingsId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -115,12 +122,12 @@ public class SObjectIDMPluginConfiguration extends SPluginConfiguration implemen
 		this.serializers = serializers;
 	}
 	
-	public long getSettingsId() {
-		return settingsId;
+	public long getUserSettingsId() {
+		return userSettingsId;
 	}
 
-	public void setSettingsId(long settingsId) {
-		this.settingsId = settingsId;
+	public void setUserSettingsId(long userSettingsId) {
+		this.userSettingsId = userSettingsId;
 	}
 	
 	@Override

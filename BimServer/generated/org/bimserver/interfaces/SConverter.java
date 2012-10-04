@@ -71,8 +71,50 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ExtendedDataAddedToRevision) {
+		if (input instanceof UserAddedToProject) {
+			return convertToSObject((UserAddedToProject)input);
+		}
+		else if (input instanceof DatabaseCreated) {
+			return convertToSObject((DatabaseCreated)input);
+		}
+		else if (input instanceof NewRevisionAdded) {
+			return convertToSObject((NewRevisionAdded)input);
+		}
+		else if (input instanceof ExtendedDataAddedToProject) {
+			return convertToSObject((ExtendedDataAddedToProject)input);
+		}
+		else if (input instanceof ExtendedDataAddedToRevision) {
 			return convertToSObject((ExtendedDataAddedToRevision)input);
+		}
+		else if (input instanceof ProjectUndeleted) {
+			return convertToSObject((ProjectUndeleted)input);
+		}
+		else if (input instanceof NewProjectAdded) {
+			return convertToSObject((NewProjectAdded)input);
+		}
+		else if (input instanceof RevisionUpdated) {
+			return convertToSObject((RevisionUpdated)input);
+		}
+		else if (input instanceof ServerStarted) {
+			return convertToSObject((ServerStarted)input);
+		}
+		else if (input instanceof RevisionBranched) {
+			return convertToSObject((RevisionBranched)input);
+		}
+		else if (input instanceof UserDeleted) {
+			return convertToSObject((UserDeleted)input);
+		}
+		else if (input instanceof UserUndeleted) {
+			return convertToSObject((UserUndeleted)input);
+		}
+		else if (input instanceof UserChanged) {
+			return convertToSObject((UserChanged)input);
+		}
+		else if (input instanceof PasswordReset) {
+			return convertToSObject((PasswordReset)input);
+		}
+		else if (input instanceof UserRemovedFromProject) {
+			return convertToSObject((UserRemovedFromProject)input);
 		}
 		else if (input instanceof NewUserAdded) {
 			return convertToSObject((NewUserAdded)input);
@@ -80,68 +122,26 @@ public class SConverter {
 		else if (input instanceof ProjectDeleted) {
 			return convertToSObject((ProjectDeleted)input);
 		}
-		else if (input instanceof ExtendedDataAddedToProject) {
-			return convertToSObject((ExtendedDataAddedToProject)input);
-		}
-		else if (input instanceof PasswordReset) {
-			return convertToSObject((PasswordReset)input);
-		}
-		else if (input instanceof PasswordChanged) {
-			return convertToSObject((PasswordChanged)input);
-		}
-		else if (input instanceof NewProjectAdded) {
-			return convertToSObject((NewProjectAdded)input);
-		}
-		else if (input instanceof ProjectUpdated) {
-			return convertToSObject((ProjectUpdated)input);
-		}
-		else if (input instanceof Download) {
-			return convertToSObject((Download)input);
-		}
-		else if (input instanceof RevisionBranched) {
-			return convertToSObject((RevisionBranched)input);
-		}
-		else if (input instanceof UserAddedToProject) {
-			return convertToSObject((UserAddedToProject)input);
-		}
-		else if (input instanceof RevisionUpdated) {
-			return convertToSObject((RevisionUpdated)input);
-		}
-		else if (input instanceof NewRevisionAdded) {
-			return convertToSObject((NewRevisionAdded)input);
-		}
-		else if (input instanceof UserChanged) {
-			return convertToSObject((UserChanged)input);
-		}
-		else if (input instanceof NewObjectIDMUploaded) {
-			return convertToSObject((NewObjectIDMUploaded)input);
-		}
-		else if (input instanceof UserRemovedFromProject) {
-			return convertToSObject((UserRemovedFromProject)input);
-		}
-		else if (input instanceof ServerStarted) {
-			return convertToSObject((ServerStarted)input);
-		}
-		else if (input instanceof UserDeleted) {
-			return convertToSObject((UserDeleted)input);
-		}
-		else if (input instanceof DatabaseCreated) {
-			return convertToSObject((DatabaseCreated)input);
-		}
-		else if (input instanceof ProjectUndeleted) {
-			return convertToSObject((ProjectUndeleted)input);
+		else if (input instanceof NewCheckoutAdded) {
+			return convertToSObject((NewCheckoutAdded)input);
 		}
 		else if (input instanceof SettingsSaved) {
 			return convertToSObject((SettingsSaved)input);
 		}
-		else if (input instanceof UserUndeleted) {
-			return convertToSObject((UserUndeleted)input);
-		}
-		else if (input instanceof NewCheckoutAdded) {
-			return convertToSObject((NewCheckoutAdded)input);
+		else if (input instanceof PasswordChanged) {
+			return convertToSObject((PasswordChanged)input);
 		}
 		else if (input instanceof GeoTagUpdated) {
 			return convertToSObject((GeoTagUpdated)input);
+		}
+		else if (input instanceof ProjectUpdated) {
+			return convertToSObject((ProjectUpdated)input);
+		}
+		else if (input instanceof NewObjectIDMUploaded) {
+			return convertToSObject((NewObjectIDMUploaded)input);
+		}
+		else if (input instanceof Download) {
+			return convertToSObject((Download)input);
 		}
 		SLogAction result = new SLogAction();
 		result.setOid(input.getOid());
@@ -156,6 +156,78 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
+		if (input instanceof SUserAddedToProject) {
+			return convertFromSObject((SUserAddedToProject)input, session);
+		}
+		else if (input instanceof SDatabaseCreated) {
+			return convertFromSObject((SDatabaseCreated)input, session);
+		}
+		else if (input instanceof SNewRevisionAdded) {
+			return convertFromSObject((SNewRevisionAdded)input, session);
+		}
+		else if (input instanceof SExtendedDataAddedToProject) {
+			return convertFromSObject((SExtendedDataAddedToProject)input, session);
+		}
+		else if (input instanceof SExtendedDataAddedToRevision) {
+			return convertFromSObject((SExtendedDataAddedToRevision)input, session);
+		}
+		else if (input instanceof SProjectUndeleted) {
+			return convertFromSObject((SProjectUndeleted)input, session);
+		}
+		else if (input instanceof SNewProjectAdded) {
+			return convertFromSObject((SNewProjectAdded)input, session);
+		}
+		else if (input instanceof SRevisionUpdated) {
+			return convertFromSObject((SRevisionUpdated)input, session);
+		}
+		else if (input instanceof SServerStarted) {
+			return convertFromSObject((SServerStarted)input, session);
+		}
+		else if (input instanceof SRevisionBranched) {
+			return convertFromSObject((SRevisionBranched)input, session);
+		}
+		else if (input instanceof SUserDeleted) {
+			return convertFromSObject((SUserDeleted)input, session);
+		}
+		else if (input instanceof SUserUndeleted) {
+			return convertFromSObject((SUserUndeleted)input, session);
+		}
+		else if (input instanceof SUserChanged) {
+			return convertFromSObject((SUserChanged)input, session);
+		}
+		else if (input instanceof SPasswordReset) {
+			return convertFromSObject((SPasswordReset)input, session);
+		}
+		else if (input instanceof SUserRemovedFromProject) {
+			return convertFromSObject((SUserRemovedFromProject)input, session);
+		}
+		else if (input instanceof SNewUserAdded) {
+			return convertFromSObject((SNewUserAdded)input, session);
+		}
+		else if (input instanceof SProjectDeleted) {
+			return convertFromSObject((SProjectDeleted)input, session);
+		}
+		else if (input instanceof SNewCheckoutAdded) {
+			return convertFromSObject((SNewCheckoutAdded)input, session);
+		}
+		else if (input instanceof SSettingsSaved) {
+			return convertFromSObject((SSettingsSaved)input, session);
+		}
+		else if (input instanceof SPasswordChanged) {
+			return convertFromSObject((SPasswordChanged)input, session);
+		}
+		else if (input instanceof SGeoTagUpdated) {
+			return convertFromSObject((SGeoTagUpdated)input, session);
+		}
+		else if (input instanceof SProjectUpdated) {
+			return convertFromSObject((SProjectUpdated)input, session);
+		}
+		else if (input instanceof SNewObjectIDMUploaded) {
+			return convertFromSObject((SNewObjectIDMUploaded)input, session);
+		}
+		else if (input instanceof SDownload) {
+			return convertFromSObject((SDownload)input, session);
+		}		
 		LogAction result = LogFactory.eINSTANCE.createLogAction();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -214,7 +286,7 @@ public class SConverter {
 	public ServerLog convertFromSObject(SServerLog input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ServerLog result = LogFactory.eINSTANCE.createServerLog();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		List<LogAction> listactions = result.getActions();
@@ -275,7 +347,7 @@ public class SConverter {
 	public NewUserAdded convertFromSObject(SNewUserAdded input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		NewUserAdded result = LogFactory.eINSTANCE.createNewUserAdded();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -338,7 +410,7 @@ public class SConverter {
 	public NewProjectAdded convertFromSObject(SNewProjectAdded input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		NewProjectAdded result = LogFactory.eINSTANCE.createNewProjectAdded();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -402,7 +474,7 @@ public class SConverter {
 	public RevisionBranched convertFromSObject(SRevisionBranched input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		RevisionBranched result = LogFactory.eINSTANCE.createRevisionBranched();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -466,7 +538,7 @@ public class SConverter {
 	public NewRevisionAdded convertFromSObject(SNewRevisionAdded input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		NewRevisionAdded result = LogFactory.eINSTANCE.createNewRevisionAdded();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -528,7 +600,7 @@ public class SConverter {
 	public NewCheckoutAdded convertFromSObject(SNewCheckoutAdded input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		NewCheckoutAdded result = LogFactory.eINSTANCE.createNewCheckoutAdded();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -587,7 +659,7 @@ public class SConverter {
 	public SettingsSaved convertFromSObject(SSettingsSaved input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		SettingsSaved result = LogFactory.eINSTANCE.createSettingsSaved();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -649,7 +721,7 @@ public class SConverter {
 	public UserAddedToProject convertFromSObject(SUserAddedToProject input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		UserAddedToProject result = LogFactory.eINSTANCE.createUserAddedToProject();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -709,7 +781,7 @@ public class SConverter {
 	public NewObjectIDMUploaded convertFromSObject(SNewObjectIDMUploaded input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		NewObjectIDMUploaded result = LogFactory.eINSTANCE.createNewObjectIDMUploaded();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -767,7 +839,7 @@ public class SConverter {
 	public Download convertFromSObject(SDownload input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		Download result = LogFactory.eINSTANCE.createDownload();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -829,7 +901,7 @@ public class SConverter {
 	public UserRemovedFromProject convertFromSObject(SUserRemovedFromProject input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		UserRemovedFromProject result = LogFactory.eINSTANCE.createUserRemovedFromProject();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -891,7 +963,7 @@ public class SConverter {
 	public ProjectDeleted convertFromSObject(SProjectDeleted input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ProjectDeleted result = LogFactory.eINSTANCE.createProjectDeleted();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -952,7 +1024,7 @@ public class SConverter {
 	public UserDeleted convertFromSObject(SUserDeleted input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		UserDeleted result = LogFactory.eINSTANCE.createUserDeleted();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -1013,7 +1085,7 @@ public class SConverter {
 	public PasswordReset convertFromSObject(SPasswordReset input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		PasswordReset result = LogFactory.eINSTANCE.createPasswordReset();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -1074,7 +1146,7 @@ public class SConverter {
 	public DatabaseCreated convertFromSObject(SDatabaseCreated input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		DatabaseCreated result = LogFactory.eINSTANCE.createDatabaseCreated();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -1134,7 +1206,7 @@ public class SConverter {
 	public ServerStarted convertFromSObject(SServerStarted input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ServerStarted result = LogFactory.eINSTANCE.createServerStarted();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -1194,7 +1266,7 @@ public class SConverter {
 	public ProjectUpdated convertFromSObject(SProjectUpdated input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ProjectUpdated result = LogFactory.eINSTANCE.createProjectUpdated();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -1255,7 +1327,7 @@ public class SConverter {
 	public UserUndeleted convertFromSObject(SUserUndeleted input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		UserUndeleted result = LogFactory.eINSTANCE.createUserUndeleted();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -1316,7 +1388,7 @@ public class SConverter {
 	public ProjectUndeleted convertFromSObject(SProjectUndeleted input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ProjectUndeleted result = LogFactory.eINSTANCE.createProjectUndeleted();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -1377,7 +1449,7 @@ public class SConverter {
 	public RevisionUpdated convertFromSObject(SRevisionUpdated input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		RevisionUpdated result = LogFactory.eINSTANCE.createRevisionUpdated();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -1438,7 +1510,7 @@ public class SConverter {
 	public GeoTagUpdated convertFromSObject(SGeoTagUpdated input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		GeoTagUpdated result = LogFactory.eINSTANCE.createGeoTagUpdated();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -1499,7 +1571,7 @@ public class SConverter {
 	public PasswordChanged convertFromSObject(SPasswordChanged input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		PasswordChanged result = LogFactory.eINSTANCE.createPasswordChanged();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -1560,7 +1632,7 @@ public class SConverter {
 	public UserChanged convertFromSObject(SUserChanged input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		UserChanged result = LogFactory.eINSTANCE.createUserChanged();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -1623,7 +1695,7 @@ public class SConverter {
 	public ExtendedDataAddedToRevision convertFromSObject(SExtendedDataAddedToRevision input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ExtendedDataAddedToRevision result = LogFactory.eINSTANCE.createExtendedDataAddedToRevision();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -1687,7 +1759,7 @@ public class SConverter {
 	public ExtendedDataAddedToProject convertFromSObject(SExtendedDataAddedToProject input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ExtendedDataAddedToProject result = LogFactory.eINSTANCE.createExtendedDataAddedToProject();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -1815,7 +1887,7 @@ public class SConverter {
 	public Project convertFromSObject(SProject input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		Project result = StoreFactory.eINSTANCE.createProject();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setId(input.getId());
@@ -1906,6 +1978,7 @@ public class SConverter {
 		result.setUserType(SUserType.values()[input.getUserType().ordinal()]);
 		result.setUsername(input.getUsername());
 		result.setLastSeen(input.getLastSeen());
+		result.setToken(input.getToken());
 		result.setValidationToken(input.getValidationToken());
 		result.setValidationTokenCreated(input.getValidationTokenCreated());
 		List<Long> listhasRightsOn = new ArrayList<Long>();
@@ -1920,8 +1993,8 @@ public class SConverter {
 		result.setRevisions(listrevisions);
 		User createdByVal = input.getCreatedBy();
 		result.setCreatedById(createdByVal == null ? -1 : createdByVal.getOid());
-		UserSettings settingsVal = input.getSettings();
-		result.setSettingsId(settingsVal == null ? -1 : settingsVal.getOid());
+		UserSettings userSettingsVal = input.getUserSettings();
+		result.setUserSettingsId(userSettingsVal == null ? -1 : userSettingsVal.getOid());
 		List<Long> listschemas = new ArrayList<Long>();
 		for (ExtendedDataSchema v : input.getSchemas()) {
 			listschemas.add(v.getOid());
@@ -1943,7 +2016,7 @@ public class SConverter {
 	public User convertFromSObject(SUser input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		User result = StoreFactory.eINSTANCE.createUser();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
@@ -1953,6 +2026,7 @@ public class SConverter {
 		result.setUserType(UserType.values()[input.getUserType().ordinal()]);
 		result.setUsername(input.getUsername());
 		result.setLastSeen(input.getLastSeen());
+		result.setToken(input.getToken());
 		result.setValidationToken(input.getValidationToken());
 		result.setValidationTokenCreated(input.getValidationTokenCreated());
 		List<Project> listhasRightsOn = result.getHasRightsOn();
@@ -1964,7 +2038,7 @@ public class SConverter {
 			listrevisions.add((Revision)session.get(StorePackage.eINSTANCE.getRevision(), oid, false, null));
 		}
 		result.setCreatedBy((User)session.get(StorePackage.eINSTANCE.getUser(), input.getCreatedById(), false, null));
-		result.setSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getSettingsId(), false, null));
+		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), false, null));
 		List<ExtendedDataSchema> listschemas = result.getSchemas();
 		for (long oid : input.getSchemas()) {
 			listschemas.add((ExtendedDataSchema)session.get(StorePackage.eINSTANCE.getExtendedDataSchema(), oid, false, null));
@@ -2056,7 +2130,7 @@ public class SConverter {
 	public Revision convertFromSObject(SRevision input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		Revision result = StoreFactory.eINSTANCE.createRevision();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setId(input.getId());
@@ -2145,7 +2219,7 @@ public class SConverter {
 	public ConcreteRevision convertFromSObject(SConcreteRevision input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ConcreteRevision result = StoreFactory.eINSTANCE.createConcreteRevision();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setId(input.getId());
@@ -2218,7 +2292,7 @@ public class SConverter {
 	public GeoTag convertFromSObject(SGeoTag input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		GeoTag result = StoreFactory.eINSTANCE.createGeoTag();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setEnabled(input.getEnabled());
@@ -2289,7 +2363,7 @@ public class SConverter {
 	public Checkout convertFromSObject(SCheckout input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		Checkout result = StoreFactory.eINSTANCE.createCheckout();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDate(input.getDate());
@@ -2363,7 +2437,7 @@ public class SConverter {
 	public ServerSettings convertFromSObject(SServerSettings input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ServerSettings result = StoreFactory.eINSTANCE.createServerSettings();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setShowVersionUpgradeAvailable(input.getShowVersionUpgradeAvailable());
@@ -2483,7 +2557,7 @@ public class SConverter {
 	public UserSettings convertFromSObject(SUserSettings input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		UserSettings result = StoreFactory.eINSTANCE.createUserSettings();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		List<SerializerPluginConfiguration> listserializers = result.getSerializers();
@@ -2564,14 +2638,11 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ObjectIDMPluginConfiguration) {
-			return convertToSObject((ObjectIDMPluginConfiguration)input);
-		}
-		else if (input instanceof ModelMergerPluginConfiguration) {
+		if (input instanceof ModelMergerPluginConfiguration) {
 			return convertToSObject((ModelMergerPluginConfiguration)input);
 		}
-		else if (input instanceof IfcEnginePluginConfiguration) {
-			return convertToSObject((IfcEnginePluginConfiguration)input);
+		else if (input instanceof ObjectIDMPluginConfiguration) {
+			return convertToSObject((ObjectIDMPluginConfiguration)input);
 		}
 		else if (input instanceof InternalServicePluginConfiguration) {
 			return convertToSObject((InternalServicePluginConfiguration)input);
@@ -2582,11 +2653,14 @@ public class SConverter {
 		else if (input instanceof DeserializerPluginConfiguration) {
 			return convertToSObject((DeserializerPluginConfiguration)input);
 		}
+		else if (input instanceof SerializerPluginConfiguration) {
+			return convertToSObject((SerializerPluginConfiguration)input);
+		}
 		else if (input instanceof QueryEnginePluginConfiguration) {
 			return convertToSObject((QueryEnginePluginConfiguration)input);
 		}
-		else if (input instanceof SerializerPluginConfiguration) {
-			return convertToSObject((SerializerPluginConfiguration)input);
+		else if (input instanceof IfcEnginePluginConfiguration) {
+			return convertToSObject((IfcEnginePluginConfiguration)input);
 		}
 		SPluginConfiguration result = new SPluginConfiguration();
 		result.setOid(input.getOid());
@@ -2594,6 +2668,8 @@ public class SConverter {
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
 		result.setClassName(input.getClassName());
+		ObjectType settingsVal = input.getSettings();
+		result.setSettingsId(settingsVal == null ? -1 : settingsVal.getOid());
 		return result;
 	}
 
@@ -2601,12 +2677,37 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
+		if (input instanceof SModelMergerPluginConfiguration) {
+			return convertFromSObject((SModelMergerPluginConfiguration)input, session);
+		}
+		else if (input instanceof SObjectIDMPluginConfiguration) {
+			return convertFromSObject((SObjectIDMPluginConfiguration)input, session);
+		}
+		else if (input instanceof SInternalServicePluginConfiguration) {
+			return convertFromSObject((SInternalServicePluginConfiguration)input, session);
+		}
+		else if (input instanceof SModelComparePluginConfiguration) {
+			return convertFromSObject((SModelComparePluginConfiguration)input, session);
+		}
+		else if (input instanceof SDeserializerPluginConfiguration) {
+			return convertFromSObject((SDeserializerPluginConfiguration)input, session);
+		}
+		else if (input instanceof SSerializerPluginConfiguration) {
+			return convertFromSObject((SSerializerPluginConfiguration)input, session);
+		}
+		else if (input instanceof SQueryEnginePluginConfiguration) {
+			return convertFromSObject((SQueryEnginePluginConfiguration)input, session);
+		}
+		else if (input instanceof SIfcEnginePluginConfiguration) {
+			return convertFromSObject((SIfcEnginePluginConfiguration)input, session);
+		}		
 		PluginConfiguration result = StoreFactory.eINSTANCE.createPluginConfiguration();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
 		result.setClassName(input.getClassName());
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), false, null));
 		return result;
 	}
 
@@ -2655,10 +2756,12 @@ public class SConverter {
 		result.setClassName(input.getClassName());
 		result.setExtension(input.getExtension());
 		result.setContentType(input.getContentType());
+		ObjectType settingsVal = input.getSettings();
+		result.setSettingsId(settingsVal == null ? -1 : settingsVal.getOid());
 		ObjectIDMPluginConfiguration objectIDMVal = input.getObjectIDM();
 		result.setObjectIDMId(objectIDMVal == null ? -1 : objectIDMVal.getOid());
-		UserSettings settingsVal = input.getSettings();
-		result.setSettingsId(settingsVal == null ? -1 : settingsVal.getOid());
+		UserSettings userSettingsVal = input.getUserSettings();
+		result.setUserSettingsId(userSettingsVal == null ? -1 : userSettingsVal.getOid());
 		IfcEnginePluginConfiguration ifcEngineVal = input.getIfcEngine();
 		result.setIfcEngineId(ifcEngineVal == null ? -1 : ifcEngineVal.getOid());
 		return result;
@@ -2667,7 +2770,7 @@ public class SConverter {
 	public SerializerPluginConfiguration convertFromSObject(SSerializerPluginConfiguration input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		SerializerPluginConfiguration result = StoreFactory.eINSTANCE.createSerializerPluginConfiguration();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
@@ -2676,8 +2779,9 @@ public class SConverter {
 		result.setClassName(input.getClassName());
 		result.setExtension(input.getExtension());
 		result.setContentType(input.getContentType());
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), false, null));
 		result.setObjectIDM((ObjectIDMPluginConfiguration)session.get(StorePackage.eINSTANCE.getObjectIDMPluginConfiguration(), input.getObjectIDMId(), false, null));
-		result.setSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getSettingsId(), false, null));
+		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), false, null));
 		result.setIfcEngine((IfcEnginePluginConfiguration)session.get(StorePackage.eINSTANCE.getIfcEnginePluginConfiguration(), input.getIfcEngineId(), false, null));
 		return result;
 	}
@@ -2725,31 +2829,34 @@ public class SConverter {
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
 		result.setClassName(input.getClassName());
+		ObjectType settingsVal = input.getSettings();
+		result.setSettingsId(settingsVal == null ? -1 : settingsVal.getOid());
 		List<Long> listserializers = new ArrayList<Long>();
 		for (SerializerPluginConfiguration v : input.getSerializers()) {
 			listserializers.add(v.getOid());
 		}
 		result.setSerializers(listserializers);
-		UserSettings settingsVal = input.getSettings();
-		result.setSettingsId(settingsVal == null ? -1 : settingsVal.getOid());
+		UserSettings userSettingsVal = input.getUserSettings();
+		result.setUserSettingsId(userSettingsVal == null ? -1 : userSettingsVal.getOid());
 		return result;
 	}
 
 	public ObjectIDMPluginConfiguration convertFromSObject(SObjectIDMPluginConfiguration input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ObjectIDMPluginConfiguration result = StoreFactory.eINSTANCE.createObjectIDMPluginConfiguration();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
 		result.setClassName(input.getClassName());
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), false, null));
 		List<SerializerPluginConfiguration> listserializers = result.getSerializers();
 		for (long oid : input.getSerializers()) {
 			listserializers.add((SerializerPluginConfiguration)session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), oid, false, null));
 		}
-		result.setSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getSettingsId(), false, null));
+		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), false, null));
 		return result;
 	}
 
@@ -2796,31 +2903,34 @@ public class SConverter {
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
 		result.setClassName(input.getClassName());
+		ObjectType settingsVal = input.getSettings();
+		result.setSettingsId(settingsVal == null ? -1 : settingsVal.getOid());
 		List<Long> listserializers = new ArrayList<Long>();
 		for (SerializerPluginConfiguration v : input.getSerializers()) {
 			listserializers.add(v.getOid());
 		}
 		result.setSerializers(listserializers);
-		UserSettings settingsVal = input.getSettings();
-		result.setSettingsId(settingsVal == null ? -1 : settingsVal.getOid());
+		UserSettings userSettingsVal = input.getUserSettings();
+		result.setUserSettingsId(userSettingsVal == null ? -1 : userSettingsVal.getOid());
 		return result;
 	}
 
 	public IfcEnginePluginConfiguration convertFromSObject(SIfcEnginePluginConfiguration input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		IfcEnginePluginConfiguration result = StoreFactory.eINSTANCE.createIfcEnginePluginConfiguration();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
 		result.setClassName(input.getClassName());
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), false, null));
 		List<SerializerPluginConfiguration> listserializers = result.getSerializers();
 		for (long oid : input.getSerializers()) {
 			listserializers.add((SerializerPluginConfiguration)session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), oid, false, null));
 		}
-		result.setSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getSettingsId(), false, null));
+		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), false, null));
 		return result;
 	}
 
@@ -2867,22 +2977,25 @@ public class SConverter {
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
 		result.setClassName(input.getClassName());
-		UserSettings settingsVal = input.getSettings();
+		ObjectType settingsVal = input.getSettings();
 		result.setSettingsId(settingsVal == null ? -1 : settingsVal.getOid());
+		UserSettings userSettingsVal = input.getUserSettings();
+		result.setUserSettingsId(userSettingsVal == null ? -1 : userSettingsVal.getOid());
 		return result;
 	}
 
 	public DeserializerPluginConfiguration convertFromSObject(SDeserializerPluginConfiguration input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		DeserializerPluginConfiguration result = StoreFactory.eINSTANCE.createDeserializerPluginConfiguration();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
 		result.setClassName(input.getClassName());
-		result.setSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getSettingsId(), false, null));
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), false, null));
+		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), false, null));
 		return result;
 	}
 
@@ -2938,7 +3051,7 @@ public class SConverter {
 	public CheckinResult convertFromSObject(SCheckinResult input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		CheckinResult result = StoreFactory.eINSTANCE.createCheckinResult();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setProgress(input.getProgress());
@@ -3001,6 +3114,9 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
+		if (input instanceof SCheckoutResult) {
+			return convertFromSObject((SCheckoutResult)input, session);
+		}		
 		DownloadResult result = StoreFactory.eINSTANCE.createDownloadResult();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setProjectName(input.getProjectName());
@@ -3057,7 +3173,7 @@ public class SConverter {
 	public CheckoutResult convertFromSObject(SCheckoutResult input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		CheckoutResult result = StoreFactory.eINSTANCE.createCheckoutResult();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setProjectName(input.getProjectName());
@@ -3103,11 +3219,11 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ReferenceDataValue) {
-			return convertToSObject((ReferenceDataValue)input);
-		}
-		else if (input instanceof ListDataValue) {
+		if (input instanceof ListDataValue) {
 			return convertToSObject((ListDataValue)input);
+		}
+		else if (input instanceof ReferenceDataValue) {
+			return convertToSObject((ReferenceDataValue)input);
 		}
 		else if (input instanceof SimpleDataValue) {
 			return convertToSObject((SimpleDataValue)input);
@@ -3122,6 +3238,15 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
+		if (input instanceof SListDataValue) {
+			return convertFromSObject((SListDataValue)input, session);
+		}
+		else if (input instanceof SReferenceDataValue) {
+			return convertFromSObject((SReferenceDataValue)input, session);
+		}
+		else if (input instanceof SSimpleDataValue) {
+			return convertFromSObject((SSimpleDataValue)input, session);
+		}		
 		DataValue result = StoreFactory.eINSTANCE.createDataValue();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setFieldName(input.getFieldName());
@@ -3181,7 +3306,7 @@ public class SConverter {
 	public DataObject convertFromSObject(SDataObject input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		DataObject result = StoreFactory.eINSTANCE.createDataObject();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setType(input.getType());
@@ -3248,7 +3373,7 @@ public class SConverter {
 	public UserSession convertFromSObject(SUserSession input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		UserSession result = StoreFactory.eINSTANCE.createUserSession();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setUsername(input.getUsername());
@@ -3310,7 +3435,7 @@ public class SConverter {
 	public Migration convertFromSObject(SMigration input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		Migration result = StoreFactory.eINSTANCE.createMigration();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setNumber(input.getNumber());
@@ -3367,7 +3492,7 @@ public class SConverter {
 	public ReferenceDataValue convertFromSObject(SReferenceDataValue input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ReferenceDataValue result = StoreFactory.eINSTANCE.createReferenceDataValue();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setFieldName(input.getFieldName());
@@ -3427,7 +3552,7 @@ public class SConverter {
 	public ListDataValue convertFromSObject(SListDataValue input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ListDataValue result = StoreFactory.eINSTANCE.createListDataValue();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setFieldName(input.getFieldName());
@@ -3485,7 +3610,7 @@ public class SConverter {
 	public SimpleDataValue convertFromSObject(SSimpleDataValue input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		SimpleDataValue result = StoreFactory.eINSTANCE.createSimpleDataValue();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setFieldName(input.getFieldName());
@@ -3540,7 +3665,7 @@ public class SConverter {
 	public DatabaseInformationItem convertFromSObject(SDatabaseInformationItem input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		DatabaseInformationItem result = StoreFactory.eINSTANCE.createDatabaseInformationItem();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setKey(input.getKey());
@@ -3599,7 +3724,7 @@ public class SConverter {
 	public DatabaseInformationCategory convertFromSObject(SDatabaseInformationCategory input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		DatabaseInformationCategory result = StoreFactory.eINSTANCE.createDatabaseInformationCategory();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setTitle(input.getTitle());
@@ -3669,7 +3794,7 @@ public class SConverter {
 	public DatabaseInformation convertFromSObject(SDatabaseInformation input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		DatabaseInformation result = StoreFactory.eINSTANCE.createDatabaseInformation();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setNumberOfProjects(input.getNumberOfProjects());
@@ -3725,26 +3850,26 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ModelComparePluginDescriptor) {
-			return convertToSObject((ModelComparePluginDescriptor)input);
-		}
-		else if (input instanceof SerializerPluginDescriptor) {
-			return convertToSObject((SerializerPluginDescriptor)input);
-		}
-		else if (input instanceof ModelMergerPluginDescriptor) {
-			return convertToSObject((ModelMergerPluginDescriptor)input);
-		}
-		else if (input instanceof QueryEnginePluginDescriptor) {
-			return convertToSObject((QueryEnginePluginDescriptor)input);
-		}
-		else if (input instanceof IfcEnginePluginDescriptor) {
-			return convertToSObject((IfcEnginePluginDescriptor)input);
-		}
-		else if (input instanceof ServicePluginDescriptor) {
+		if (input instanceof ServicePluginDescriptor) {
 			return convertToSObject((ServicePluginDescriptor)input);
 		}
 		else if (input instanceof DeserializerPluginDescriptor) {
 			return convertToSObject((DeserializerPluginDescriptor)input);
+		}
+		else if (input instanceof ModelMergerPluginDescriptor) {
+			return convertToSObject((ModelMergerPluginDescriptor)input);
+		}
+		else if (input instanceof ModelComparePluginDescriptor) {
+			return convertToSObject((ModelComparePluginDescriptor)input);
+		}
+		else if (input instanceof IfcEnginePluginDescriptor) {
+			return convertToSObject((IfcEnginePluginDescriptor)input);
+		}
+		else if (input instanceof SerializerPluginDescriptor) {
+			return convertToSObject((SerializerPluginDescriptor)input);
+		}
+		else if (input instanceof QueryEnginePluginDescriptor) {
+			return convertToSObject((QueryEnginePluginDescriptor)input);
 		}
 		SPluginDescriptor result = new SPluginDescriptor();
 		result.setOid(input.getOid());
@@ -3760,6 +3885,27 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
+		if (input instanceof SServicePluginDescriptor) {
+			return convertFromSObject((SServicePluginDescriptor)input, session);
+		}
+		else if (input instanceof SDeserializerPluginDescriptor) {
+			return convertFromSObject((SDeserializerPluginDescriptor)input, session);
+		}
+		else if (input instanceof SModelMergerPluginDescriptor) {
+			return convertFromSObject((SModelMergerPluginDescriptor)input, session);
+		}
+		else if (input instanceof SModelComparePluginDescriptor) {
+			return convertFromSObject((SModelComparePluginDescriptor)input, session);
+		}
+		else if (input instanceof SIfcEnginePluginDescriptor) {
+			return convertFromSObject((SIfcEnginePluginDescriptor)input, session);
+		}
+		else if (input instanceof SSerializerPluginDescriptor) {
+			return convertFromSObject((SSerializerPluginDescriptor)input, session);
+		}
+		else if (input instanceof SQueryEnginePluginDescriptor) {
+			return convertFromSObject((SQueryEnginePluginDescriptor)input, session);
+		}		
 		PluginDescriptor result = StoreFactory.eINSTANCE.createPluginDescriptor();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDefaultName(input.getDefaultName());
@@ -3822,7 +3968,7 @@ public class SConverter {
 	public SerializerPluginDescriptor convertFromSObject(SSerializerPluginDescriptor input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		SerializerPluginDescriptor result = StoreFactory.eINSTANCE.createSerializerPluginDescriptor();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDefaultName(input.getDefaultName());
@@ -3885,7 +4031,7 @@ public class SConverter {
 	public DeserializerPluginDescriptor convertFromSObject(SDeserializerPluginDescriptor input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		DeserializerPluginDescriptor result = StoreFactory.eINSTANCE.createDeserializerPluginDescriptor();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDefaultName(input.getDefaultName());
@@ -3943,7 +4089,7 @@ public class SConverter {
 	public RevisionSummaryType convertFromSObject(SRevisionSummaryType input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		RevisionSummaryType result = StoreFactory.eINSTANCE.createRevisionSummaryType();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
@@ -4002,7 +4148,7 @@ public class SConverter {
 	public RevisionSummaryContainer convertFromSObject(SRevisionSummaryContainer input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		RevisionSummaryContainer result = StoreFactory.eINSTANCE.createRevisionSummaryContainer();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
@@ -4063,7 +4209,7 @@ public class SConverter {
 	public RevisionSummary convertFromSObject(SRevisionSummary input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		RevisionSummary result = StoreFactory.eINSTANCE.createRevisionSummary();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		List<RevisionSummaryContainer> listlist = result.getList();
@@ -4128,6 +4274,9 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
+		if (input instanceof SLongCheckinAction) {
+			return convertFromSObject((SLongCheckinAction)input, session);
+		}		
 		LongAction result = StoreFactory.eINSTANCE.createLongAction();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setIdentification(input.getIdentification());
@@ -4194,7 +4343,7 @@ public class SConverter {
 	public LongCheckinAction convertFromSObject(SLongCheckinAction input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		LongCheckinAction result = StoreFactory.eINSTANCE.createLongCheckinAction();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setIdentification(input.getIdentification());
@@ -4255,7 +4404,7 @@ public class SConverter {
 	public ObjectIDMPluginDescriptor convertFromSObject(SObjectIDMPluginDescriptor input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ObjectIDMPluginDescriptor result = StoreFactory.eINSTANCE.createObjectIDMPluginDescriptor();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setClassName(input.getClassName());
@@ -4309,11 +4458,11 @@ public class SConverter {
 		if (input instanceof ObjectAdded) {
 			return convertToSObject((ObjectAdded)input);
 		}
-		else if (input instanceof ObjectRemoved) {
-			return convertToSObject((ObjectRemoved)input);
-		}
 		else if (input instanceof ObjectModified) {
 			return convertToSObject((ObjectModified)input);
+		}
+		else if (input instanceof ObjectRemoved) {
+			return convertToSObject((ObjectRemoved)input);
 		}
 		SCompareItem result = new SCompareItem();
 		result.setOid(input.getOid());
@@ -4326,6 +4475,15 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
+		if (input instanceof SObjectAdded) {
+			return convertFromSObject((SObjectAdded)input, session);
+		}
+		else if (input instanceof SObjectModified) {
+			return convertFromSObject((SObjectModified)input, session);
+		}
+		else if (input instanceof SObjectRemoved) {
+			return convertFromSObject((SObjectRemoved)input, session);
+		}		
 		CompareItem result = StoreFactory.eINSTANCE.createCompareItem();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDataObject(convertFromSObject(input.getDataObject(), session));
@@ -4379,7 +4537,7 @@ public class SConverter {
 	public ObjectAdded convertFromSObject(SObjectAdded input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ObjectAdded result = StoreFactory.eINSTANCE.createObjectAdded();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDataObject(convertFromSObject(input.getDataObject(), session));
@@ -4433,7 +4591,7 @@ public class SConverter {
 	public ObjectRemoved convertFromSObject(SObjectRemoved input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ObjectRemoved result = StoreFactory.eINSTANCE.createObjectRemoved();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDataObject(convertFromSObject(input.getDataObject(), session));
@@ -4490,7 +4648,7 @@ public class SConverter {
 	public ObjectModified convertFromSObject(SObjectModified input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ObjectModified result = StoreFactory.eINSTANCE.createObjectModified();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setFieldName(input.getFieldName());
@@ -4551,7 +4709,7 @@ public class SConverter {
 	public CompareContainer convertFromSObject(SCompareContainer input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		CompareContainer result = StoreFactory.eINSTANCE.createCompareContainer();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setType(input.getType());
@@ -4612,7 +4770,7 @@ public class SConverter {
 	public CompareResult convertFromSObject(SCompareResult input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		CompareResult result = StoreFactory.eINSTANCE.createCompareResult();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		List<CompareContainer> listitems = result.getItems();
@@ -4679,7 +4837,7 @@ public class SConverter {
 	public LongActionState convertFromSObject(SLongActionState input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		LongActionState result = StoreFactory.eINSTANCE.createLongActionState();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setProgress(input.getProgress());
@@ -4744,7 +4902,7 @@ public class SConverter {
 	public ServerInfo convertFromSObject(SServerInfo input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ServerInfo result = StoreFactory.eINSTANCE.createServerInfo();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setServerState(ServerState.values()[input.getServerState().ordinal()]);
@@ -4804,7 +4962,7 @@ public class SConverter {
 	public Version convertFromSObject(SVersion input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		Version result = StoreFactory.eINSTANCE.createVersion();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setMajor(input.getMajor());
@@ -4867,7 +5025,7 @@ public class SConverter {
 	public IfcEnginePluginDescriptor convertFromSObject(SIfcEnginePluginDescriptor input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		IfcEnginePluginDescriptor result = StoreFactory.eINSTANCE.createIfcEnginePluginDescriptor();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDefaultName(input.getDefaultName());
@@ -4953,7 +5111,7 @@ public class SConverter {
 	public ExtendedDataSchema convertFromSObject(SExtendedDataSchema input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ExtendedDataSchema result = StoreFactory.eINSTANCE.createExtendedDataSchema();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
@@ -5032,7 +5190,7 @@ public class SConverter {
 	public ExtendedData convertFromSObject(SExtendedData input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ExtendedData result = StoreFactory.eINSTANCE.createExtendedData();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setUrl(input.getUrl());
@@ -5098,7 +5256,7 @@ public class SConverter {
 	public QueryEnginePluginDescriptor convertFromSObject(SQueryEnginePluginDescriptor input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		QueryEnginePluginDescriptor result = StoreFactory.eINSTANCE.createQueryEnginePluginDescriptor();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDefaultName(input.getDefaultName());
@@ -5152,22 +5310,25 @@ public class SConverter {
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
 		result.setClassName(input.getClassName());
-		UserSettings settingsVal = input.getSettings();
+		ObjectType settingsVal = input.getSettings();
 		result.setSettingsId(settingsVal == null ? -1 : settingsVal.getOid());
+		UserSettings userSettingsVal = input.getUserSettings();
+		result.setUserSettingsId(userSettingsVal == null ? -1 : userSettingsVal.getOid());
 		return result;
 	}
 
 	public QueryEnginePluginConfiguration convertFromSObject(SQueryEnginePluginConfiguration input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		QueryEnginePluginConfiguration result = StoreFactory.eINSTANCE.createQueryEnginePluginConfiguration();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
 		result.setClassName(input.getClassName());
-		result.setSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getSettingsId(), false, null));
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), false, null));
+		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), false, null));
 		return result;
 	}
 
@@ -5221,7 +5382,7 @@ public class SConverter {
 	public ModelMergerPluginDescriptor convertFromSObject(SModelMergerPluginDescriptor input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ModelMergerPluginDescriptor result = StoreFactory.eINSTANCE.createModelMergerPluginDescriptor();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDefaultName(input.getDefaultName());
@@ -5275,22 +5436,25 @@ public class SConverter {
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
 		result.setClassName(input.getClassName());
-		UserSettings settingsVal = input.getSettings();
+		ObjectType settingsVal = input.getSettings();
 		result.setSettingsId(settingsVal == null ? -1 : settingsVal.getOid());
+		UserSettings userSettingsVal = input.getUserSettings();
+		result.setUserSettingsId(userSettingsVal == null ? -1 : userSettingsVal.getOid());
 		return result;
 	}
 
 	public ModelMergerPluginConfiguration convertFromSObject(SModelMergerPluginConfiguration input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ModelMergerPluginConfiguration result = StoreFactory.eINSTANCE.createModelMergerPluginConfiguration();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
 		result.setClassName(input.getClassName());
-		result.setSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getSettingsId(), false, null));
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), false, null));
+		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), false, null));
 		return result;
 	}
 
@@ -5344,7 +5508,7 @@ public class SConverter {
 	public ModelComparePluginDescriptor convertFromSObject(SModelComparePluginDescriptor input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ModelComparePluginDescriptor result = StoreFactory.eINSTANCE.createModelComparePluginDescriptor();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDefaultName(input.getDefaultName());
@@ -5398,22 +5562,25 @@ public class SConverter {
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
 		result.setClassName(input.getClassName());
-		UserSettings settingsVal = input.getSettings();
+		ObjectType settingsVal = input.getSettings();
 		result.setSettingsId(settingsVal == null ? -1 : settingsVal.getOid());
+		UserSettings userSettingsVal = input.getUserSettings();
+		result.setUserSettingsId(userSettingsVal == null ? -1 : userSettingsVal.getOid());
 		return result;
 	}
 
 	public ModelComparePluginConfiguration convertFromSObject(SModelComparePluginConfiguration input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ModelComparePluginConfiguration result = StoreFactory.eINSTANCE.createModelComparePluginConfiguration();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
 		result.setClassName(input.getClassName());
-		result.setSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getSettingsId(), false, null));
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), false, null));
+		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), false, null));
 		return result;
 	}
 		public STrigger convertToSObject(Trigger input) {
@@ -5424,58 +5591,60 @@ public class SConverter {
 			return Trigger.values()[input.ordinal()];
 		}
 
-	public Set<SServerDescriptor> convertToSSetServerDescriptor(Collection<ServerDescriptor> input) {
-		Set<SServerDescriptor> result = new HashSet<SServerDescriptor>();
-		for (ServerDescriptor o : input) {
+	public Set<SProfileDescriptor> convertToSSetProfileDescriptor(Collection<ProfileDescriptor> input) {
+		Set<SProfileDescriptor> result = new HashSet<SProfileDescriptor>();
+		for (ProfileDescriptor o : input) {
 			result.add(convertToSObject(o));
 		}
 		return result;
 	}
 
-	public Set<ServerDescriptor> convertFromSSetServerDescriptor(Collection<SServerDescriptor> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<ServerDescriptor> result = new HashSet<ServerDescriptor>();
-		for (SServerDescriptor o : input) {
+	public Set<ProfileDescriptor> convertFromSSetProfileDescriptor(Collection<SProfileDescriptor> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<ProfileDescriptor> result = new HashSet<ProfileDescriptor>();
+		for (SProfileDescriptor o : input) {
 			result.add(convertFromSObject(o, session));
 		}
 		return result;
 	}
 
-	public List<SServerDescriptor> convertToSListServerDescriptor(Collection<ServerDescriptor> input) {
-		List<SServerDescriptor> result = new ArrayList<SServerDescriptor>();
-		for (ServerDescriptor o : input) {
+	public List<SProfileDescriptor> convertToSListProfileDescriptor(Collection<ProfileDescriptor> input) {
+		List<SProfileDescriptor> result = new ArrayList<SProfileDescriptor>();
+		for (ProfileDescriptor o : input) {
 			result.add(convertToSObject(o));
 		}
 		return result;
 	}
 
-	public List<ServerDescriptor> convertFromSListServerDescriptor(Collection<SServerDescriptor> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<ServerDescriptor> result = new ArrayList<ServerDescriptor>();
-		for (SServerDescriptor o : input) {
+	public List<ProfileDescriptor> convertFromSListProfileDescriptor(Collection<SProfileDescriptor> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<ProfileDescriptor> result = new ArrayList<ProfileDescriptor>();
+		for (SProfileDescriptor o : input) {
 			result.add(convertFromSObject(o, session));
 		}
 		return result;
 	}
 
-	public SServerDescriptor convertToSObject(ServerDescriptor input) {
+	public SProfileDescriptor convertToSObject(ProfileDescriptor input) {
 		if (input == null) {
 			return null;
 		}
 		
-		SServerDescriptor result = new SServerDescriptor();
-		result.setTitle(input.getTitle());
-		result.setUrl(input.getUrl());
+		SProfileDescriptor result = new SProfileDescriptor();
+		result.setName(input.getName());
 		result.setDescription(input.getDescription());
+		result.setPublicProfile(input.isPublicProfile());
+		result.setIdentifier(input.getIdentifier());
 		return result;
 	}
 
-	public ServerDescriptor convertFromSObject(SServerDescriptor input, DatabaseSession session) throws BimserverDatabaseException {
+	public ProfileDescriptor convertFromSObject(SProfileDescriptor input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
-		ServerDescriptor result = StoreFactory.eINSTANCE.createServerDescriptor();
-		result.setTitle(input.getTitle());
-		result.setUrl(input.getUrl());
+		}		
+		ProfileDescriptor result = StoreFactory.eINSTANCE.createProfileDescriptor();
+		result.setName(input.getName());
 		result.setDescription(input.getDescription());
+		result.setPublicProfile(input.isPublicProfile());
+		result.setIdentifier(input.getIdentifier());
 		return result;
 	}
 
@@ -5534,7 +5703,7 @@ public class SConverter {
 	public ServiceDescriptor convertFromSObject(SServiceDescriptor input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ServiceDescriptor result = StoreFactory.eINSTANCE.createServiceDescriptor();
 		result.setName(input.getName());
 		result.setUrl(input.getUrl());
@@ -5596,10 +5765,16 @@ public class SConverter {
 		result.setDescription(input.getDescription());
 		result.setTrigger(STrigger.values()[input.getTrigger().ordinal()]);
 		result.setReadRevision(input.isReadRevision());
-		result.setReadExtendedData(input.isReadExtendedData());
-		result.setWriteExtendedData(input.isWriteExtendedData());
+		result.setProfileIdentifier(input.getProfileIdentifier());
+		result.setProfileName(input.getProfileName());
+		result.setProfileDescription(input.getProfileDescription());
+		result.setProfilePublic(input.isProfilePublic());
+		ExtendedDataSchema readExtendedDataVal = input.getReadExtendedData();
+		result.setReadExtendedDataId(readExtendedDataVal == null ? -1 : readExtendedDataVal.getOid());
 		Project writeRevisionVal = input.getWriteRevision();
 		result.setWriteRevisionId(writeRevisionVal == null ? -1 : writeRevisionVal.getOid());
+		ExtendedDataSchema writeExtendedDataVal = input.getWriteExtendedData();
+		result.setWriteExtendedDataId(writeExtendedDataVal == null ? -1 : writeExtendedDataVal.getOid());
 		Project projectVal = input.getProject();
 		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
 		User userVal = input.getUser();
@@ -5610,7 +5785,7 @@ public class SConverter {
 	public Service convertFromSObject(SService input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		Service result = StoreFactory.eINSTANCE.createService();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
@@ -5620,9 +5795,13 @@ public class SConverter {
 		result.setDescription(input.getDescription());
 		result.setTrigger(Trigger.values()[input.getTrigger().ordinal()]);
 		result.setReadRevision(input.isReadRevision());
-		result.setReadExtendedData(input.isReadExtendedData());
-		result.setWriteExtendedData(input.isWriteExtendedData());
+		result.setProfileIdentifier(input.getProfileIdentifier());
+		result.setProfileName(input.getProfileName());
+		result.setProfileDescription(input.getProfileDescription());
+		result.setProfilePublic(input.isProfilePublic());
+		result.setReadExtendedData((ExtendedDataSchema)session.get(StorePackage.eINSTANCE.getExtendedDataSchema(), input.getReadExtendedDataId(), false, null));
 		result.setWriteRevision((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getWriteRevisionId(), false, null));
+		result.setWriteExtendedData((ExtendedDataSchema)session.get(StorePackage.eINSTANCE.getExtendedDataSchema(), input.getWriteExtendedDataId(), false, null));
 		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), false, null));
 		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), false, null));
 		return result;
@@ -5675,7 +5854,7 @@ public class SConverter {
 	public Token convertFromSObject(SToken input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		Token result = StoreFactory.eINSTANCE.createToken();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setTokenString(input.getTokenString());
@@ -5733,7 +5912,7 @@ public class SConverter {
 	public ServicePluginDescriptor convertFromSObject(SServicePluginDescriptor input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ServicePluginDescriptor result = StoreFactory.eINSTANCE.createServicePluginDescriptor();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setDefaultName(input.getDefaultName());
@@ -5787,22 +5966,27 @@ public class SConverter {
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
 		result.setClassName(input.getClassName());
-		UserSettings settingsVal = input.getSettings();
+		result.setRemoteAccessible(input.isRemoteAccessible());
+		ObjectType settingsVal = input.getSettings();
 		result.setSettingsId(settingsVal == null ? -1 : settingsVal.getOid());
+		UserSettings userSettingsVal = input.getUserSettings();
+		result.setUserSettingsId(userSettingsVal == null ? -1 : userSettingsVal.getOid());
 		return result;
 	}
 
 	public InternalServicePluginConfiguration convertFromSObject(SInternalServicePluginConfiguration input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		InternalServicePluginConfiguration result = StoreFactory.eINSTANCE.createInternalServicePluginConfiguration();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
 		result.setClassName(input.getClassName());
-		result.setSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getSettingsId(), false, null));
+		result.setRemoteAccessible(input.isRemoteAccessible());
+		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), false, null));
+		result.setUserSettings((UserSettings)session.get(StorePackage.eINSTANCE.getUserSettings(), input.getUserSettingsId(), false, null));
 		return result;
 	}
 
@@ -5851,7 +6035,7 @@ public class SConverter {
 	public ServiceInterface convertFromSObject(SServiceInterface input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ServiceInterface result = StoreFactory.eINSTANCE.createServiceInterface();
 		result.setName(input.getName());
 		return result;
@@ -5904,7 +6088,7 @@ public class SConverter {
 	public ServiceMethod convertFromSObject(SServiceMethod input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ServiceMethod result = StoreFactory.eINSTANCE.createServiceMethod();
 		result.setName(input.getName());
 		result.setDoc(input.getDoc());
@@ -5962,7 +6146,7 @@ public class SConverter {
 	public ServiceField convertFromSObject(SServiceField input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ServiceField result = StoreFactory.eINSTANCE.createServiceField();
 		result.setName(input.getName());
 		result.setDoc(input.getDoc());
@@ -6023,7 +6207,7 @@ public class SConverter {
 	public ServiceType convertFromSObject(SServiceType input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ServiceType result = StoreFactory.eINSTANCE.createServiceType();
 		((IdEObjectImpl)result).setOid(input.getOid());
 		result.setName(input.getName());
@@ -6085,12 +6269,837 @@ public class SConverter {
 	public ServiceParameter convertFromSObject(SServiceParameter input, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
-		}
+		}		
 		ServiceParameter result = StoreFactory.eINSTANCE.createServiceParameter();
 		result.setName(input.getName());
 		result.setDoc(input.getDoc());
 		result.setType(convertFromSObject(input.getType(), session));
 		result.setGenericType(convertFromSObject(input.getGenericType(), session));
+		return result;
+	}
+		public SPrimitiveEnum convertToSObject(PrimitiveEnum input) {
+			return SPrimitiveEnum.values()[input.ordinal()];
+		}
+		
+		public PrimitiveEnum convertFromSObject(SPrimitiveEnum input) {
+			return PrimitiveEnum.values()[input.ordinal()];
+		}
+
+	public Set<STypeDefinition> convertToSSetTypeDefinition(Collection<TypeDefinition> input) {
+		Set<STypeDefinition> result = new HashSet<STypeDefinition>();
+		for (TypeDefinition o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<TypeDefinition> convertFromSSetTypeDefinition(Collection<STypeDefinition> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<TypeDefinition> result = new HashSet<TypeDefinition>();
+		for (STypeDefinition o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<STypeDefinition> convertToSListTypeDefinition(Collection<TypeDefinition> input) {
+		List<STypeDefinition> result = new ArrayList<STypeDefinition>();
+		for (TypeDefinition o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<TypeDefinition> convertFromSListTypeDefinition(Collection<STypeDefinition> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<TypeDefinition> result = new ArrayList<TypeDefinition>();
+		for (STypeDefinition o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public STypeDefinition convertToSObject(TypeDefinition input) {
+		if (input == null) {
+			return null;
+		}
+		
+		if (input instanceof ObjectDefinition) {
+			return convertToSObject((ObjectDefinition)input);
+		}
+		else if (input instanceof ArrayDefinition) {
+			return convertToSObject((ArrayDefinition)input);
+		}
+		else if (input instanceof PrimitiveDefinition) {
+			return convertToSObject((PrimitiveDefinition)input);
+		}
+		STypeDefinition result = new STypeDefinition();
+		return result;
+	}
+
+	public TypeDefinition convertFromSObject(STypeDefinition input, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		if (input instanceof SObjectDefinition) {
+			return convertFromSObject((SObjectDefinition)input, session);
+		}
+		else if (input instanceof SArrayDefinition) {
+			return convertFromSObject((SArrayDefinition)input, session);
+		}
+		else if (input instanceof SPrimitiveDefinition) {
+			return convertFromSObject((SPrimitiveDefinition)input, session);
+		}		
+		TypeDefinition result = StoreFactory.eINSTANCE.createTypeDefinition();
+		return result;
+	}
+
+	public Set<SObjectDefinition> convertToSSetObjectDefinition(Collection<ObjectDefinition> input) {
+		Set<SObjectDefinition> result = new HashSet<SObjectDefinition>();
+		for (ObjectDefinition o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ObjectDefinition> convertFromSSetObjectDefinition(Collection<SObjectDefinition> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<ObjectDefinition> result = new HashSet<ObjectDefinition>();
+		for (SObjectDefinition o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SObjectDefinition> convertToSListObjectDefinition(Collection<ObjectDefinition> input) {
+		List<SObjectDefinition> result = new ArrayList<SObjectDefinition>();
+		for (ObjectDefinition o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ObjectDefinition> convertFromSListObjectDefinition(Collection<SObjectDefinition> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<ObjectDefinition> result = new ArrayList<ObjectDefinition>();
+		for (SObjectDefinition o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SObjectDefinition convertToSObject(ObjectDefinition input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SObjectDefinition result = new SObjectDefinition();
+		List<SParameterDefinition> listparameters = new ArrayList<SParameterDefinition>();
+		for (ParameterDefinition v : input.getParameters()) {
+			listparameters.add(convertToSObject(v));
+		}
+		result.setParameters(listparameters);
+		return result;
+	}
+
+	public ObjectDefinition convertFromSObject(SObjectDefinition input, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}		
+		ObjectDefinition result = StoreFactory.eINSTANCE.createObjectDefinition();
+		List<ParameterDefinition> listparameters = result.getParameters();
+		for (SParameterDefinition v : input.getParameters()) {
+			listparameters.add(convertFromSObject(v, session));
+		}
+		return result;
+	}
+
+	public Set<SPrimitiveDefinition> convertToSSetPrimitiveDefinition(Collection<PrimitiveDefinition> input) {
+		Set<SPrimitiveDefinition> result = new HashSet<SPrimitiveDefinition>();
+		for (PrimitiveDefinition o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<PrimitiveDefinition> convertFromSSetPrimitiveDefinition(Collection<SPrimitiveDefinition> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<PrimitiveDefinition> result = new HashSet<PrimitiveDefinition>();
+		for (SPrimitiveDefinition o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SPrimitiveDefinition> convertToSListPrimitiveDefinition(Collection<PrimitiveDefinition> input) {
+		List<SPrimitiveDefinition> result = new ArrayList<SPrimitiveDefinition>();
+		for (PrimitiveDefinition o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<PrimitiveDefinition> convertFromSListPrimitiveDefinition(Collection<SPrimitiveDefinition> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<PrimitiveDefinition> result = new ArrayList<PrimitiveDefinition>();
+		for (SPrimitiveDefinition o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SPrimitiveDefinition convertToSObject(PrimitiveDefinition input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SPrimitiveDefinition result = new SPrimitiveDefinition();
+		result.setType(SPrimitiveEnum.values()[input.getType().ordinal()]);
+		return result;
+	}
+
+	public PrimitiveDefinition convertFromSObject(SPrimitiveDefinition input, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}		
+		PrimitiveDefinition result = StoreFactory.eINSTANCE.createPrimitiveDefinition();
+		result.setType(PrimitiveEnum.values()[input.getType().ordinal()]);
+		return result;
+	}
+
+	public Set<SArrayDefinition> convertToSSetArrayDefinition(Collection<ArrayDefinition> input) {
+		Set<SArrayDefinition> result = new HashSet<SArrayDefinition>();
+		for (ArrayDefinition o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ArrayDefinition> convertFromSSetArrayDefinition(Collection<SArrayDefinition> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<ArrayDefinition> result = new HashSet<ArrayDefinition>();
+		for (SArrayDefinition o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SArrayDefinition> convertToSListArrayDefinition(Collection<ArrayDefinition> input) {
+		List<SArrayDefinition> result = new ArrayList<SArrayDefinition>();
+		for (ArrayDefinition o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ArrayDefinition> convertFromSListArrayDefinition(Collection<SArrayDefinition> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<ArrayDefinition> result = new ArrayList<ArrayDefinition>();
+		for (SArrayDefinition o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SArrayDefinition convertToSObject(ArrayDefinition input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SArrayDefinition result = new SArrayDefinition();
+		TypeDefinition typeVal = input.getType();
+		result.setType(convertToSObject(typeVal));
+		return result;
+	}
+
+	public ArrayDefinition convertFromSObject(SArrayDefinition input, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}		
+		ArrayDefinition result = StoreFactory.eINSTANCE.createArrayDefinition();
+		result.setType(convertFromSObject(input.getType(), session));
+		return result;
+	}
+
+	public Set<SParameterDefinition> convertToSSetParameterDefinition(Collection<ParameterDefinition> input) {
+		Set<SParameterDefinition> result = new HashSet<SParameterDefinition>();
+		for (ParameterDefinition o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ParameterDefinition> convertFromSSetParameterDefinition(Collection<SParameterDefinition> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<ParameterDefinition> result = new HashSet<ParameterDefinition>();
+		for (SParameterDefinition o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SParameterDefinition> convertToSListParameterDefinition(Collection<ParameterDefinition> input) {
+		List<SParameterDefinition> result = new ArrayList<SParameterDefinition>();
+		for (ParameterDefinition o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ParameterDefinition> convertFromSListParameterDefinition(Collection<SParameterDefinition> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<ParameterDefinition> result = new ArrayList<ParameterDefinition>();
+		for (SParameterDefinition o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SParameterDefinition convertToSObject(ParameterDefinition input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SParameterDefinition result = new SParameterDefinition();
+		result.setName(input.getName());
+		result.setRequired(input.isRequired());
+		TypeDefinition typeVal = input.getType();
+		result.setType(convertToSObject(typeVal));
+		return result;
+	}
+
+	public ParameterDefinition convertFromSObject(SParameterDefinition input, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}		
+		ParameterDefinition result = StoreFactory.eINSTANCE.createParameterDefinition();
+		result.setName(input.getName());
+		result.setRequired(input.isRequired());
+		result.setType(convertFromSObject(input.getType(), session));
+		return result;
+	}
+
+	public Set<SType> convertToSSetType(Collection<Type> input) {
+		Set<SType> result = new HashSet<SType>();
+		for (Type o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<Type> convertFromSSetType(Collection<SType> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<Type> result = new HashSet<Type>();
+		for (SType o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SType> convertToSListType(Collection<Type> input) {
+		List<SType> result = new ArrayList<SType>();
+		for (Type o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<Type> convertFromSListType(Collection<SType> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<Type> result = new ArrayList<Type>();
+		for (SType o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SType convertToSObject(Type input) {
+		if (input == null) {
+			return null;
+		}
+		
+		if (input instanceof PrimitiveType) {
+			return convertToSObject((PrimitiveType)input);
+		}
+		else if (input instanceof ArrayType) {
+			return convertToSObject((ArrayType)input);
+		}
+		else if (input instanceof ObjectType) {
+			return convertToSObject((ObjectType)input);
+		}
+		SType result = new SType();
+		result.setOid(input.getOid());
+		return result;
+	}
+
+	public Type convertFromSObject(SType input, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		if (input instanceof SPrimitiveType) {
+			return convertFromSObject((SPrimitiveType)input, session);
+		}
+		else if (input instanceof SArrayType) {
+			return convertFromSObject((SArrayType)input, session);
+		}
+		else if (input instanceof SObjectType) {
+			return convertFromSObject((SObjectType)input, session);
+		}		
+		Type result = StoreFactory.eINSTANCE.createType();
+		((IdEObjectImpl)result).setOid(input.getOid());
+		return result;
+	}
+
+	public Set<SObjectType> convertToSSetObjectType(Collection<ObjectType> input) {
+		Set<SObjectType> result = new HashSet<SObjectType>();
+		for (ObjectType o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ObjectType> convertFromSSetObjectType(Collection<SObjectType> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<ObjectType> result = new HashSet<ObjectType>();
+		for (SObjectType o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SObjectType> convertToSListObjectType(Collection<ObjectType> input) {
+		List<SObjectType> result = new ArrayList<SObjectType>();
+		for (ObjectType o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ObjectType> convertFromSListObjectType(Collection<SObjectType> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<ObjectType> result = new ArrayList<ObjectType>();
+		for (SObjectType o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SObjectType convertToSObject(ObjectType input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SObjectType result = new SObjectType();
+		result.setOid(input.getOid());
+		result.setName(input.getName());
+		List<SParameter> listparameters = new ArrayList<SParameter>();
+		for (Parameter v : input.getParameters()) {
+			listparameters.add(convertToSObject(v));
+		}
+		result.setParameters(listparameters);
+		return result;
+	}
+
+	public ObjectType convertFromSObject(SObjectType input, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}		
+		ObjectType result = StoreFactory.eINSTANCE.createObjectType();
+		((IdEObjectImpl)result).setOid(input.getOid());
+		result.setName(input.getName());
+		List<Parameter> listparameters = result.getParameters();
+		for (SParameter v : input.getParameters()) {
+			listparameters.add(convertFromSObject(v, session));
+		}
+		return result;
+	}
+
+	public Set<SPrimitiveType> convertToSSetPrimitiveType(Collection<PrimitiveType> input) {
+		Set<SPrimitiveType> result = new HashSet<SPrimitiveType>();
+		for (PrimitiveType o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<PrimitiveType> convertFromSSetPrimitiveType(Collection<SPrimitiveType> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<PrimitiveType> result = new HashSet<PrimitiveType>();
+		for (SPrimitiveType o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SPrimitiveType> convertToSListPrimitiveType(Collection<PrimitiveType> input) {
+		List<SPrimitiveType> result = new ArrayList<SPrimitiveType>();
+		for (PrimitiveType o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<PrimitiveType> convertFromSListPrimitiveType(Collection<SPrimitiveType> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<PrimitiveType> result = new ArrayList<PrimitiveType>();
+		for (SPrimitiveType o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SPrimitiveType convertToSObject(PrimitiveType input) {
+		if (input == null) {
+			return null;
+		}
+		
+		if (input instanceof StringType) {
+			return convertToSObject((StringType)input);
+		}
+		else if (input instanceof LongType) {
+			return convertToSObject((LongType)input);
+		}
+		else if (input instanceof BooleanType) {
+			return convertToSObject((BooleanType)input);
+		}
+		else if (input instanceof DoubleType) {
+			return convertToSObject((DoubleType)input);
+		}
+		SPrimitiveType result = new SPrimitiveType();
+		result.setOid(input.getOid());
+		return result;
+	}
+
+	public PrimitiveType convertFromSObject(SPrimitiveType input, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		if (input instanceof SStringType) {
+			return convertFromSObject((SStringType)input, session);
+		}
+		else if (input instanceof SLongType) {
+			return convertFromSObject((SLongType)input, session);
+		}
+		else if (input instanceof SBooleanType) {
+			return convertFromSObject((SBooleanType)input, session);
+		}
+		else if (input instanceof SDoubleType) {
+			return convertFromSObject((SDoubleType)input, session);
+		}		
+		PrimitiveType result = StoreFactory.eINSTANCE.createPrimitiveType();
+		((IdEObjectImpl)result).setOid(input.getOid());
+		return result;
+	}
+
+	public Set<SLongType> convertToSSetLongType(Collection<LongType> input) {
+		Set<SLongType> result = new HashSet<SLongType>();
+		for (LongType o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<LongType> convertFromSSetLongType(Collection<SLongType> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<LongType> result = new HashSet<LongType>();
+		for (SLongType o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SLongType> convertToSListLongType(Collection<LongType> input) {
+		List<SLongType> result = new ArrayList<SLongType>();
+		for (LongType o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<LongType> convertFromSListLongType(Collection<SLongType> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<LongType> result = new ArrayList<LongType>();
+		for (SLongType o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SLongType convertToSObject(LongType input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SLongType result = new SLongType();
+		result.setOid(input.getOid());
+		result.setValue(input.getValue());
+		return result;
+	}
+
+	public LongType convertFromSObject(SLongType input, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}		
+		LongType result = StoreFactory.eINSTANCE.createLongType();
+		((IdEObjectImpl)result).setOid(input.getOid());
+		result.setValue(input.getValue());
+		return result;
+	}
+
+	public Set<SDoubleType> convertToSSetDoubleType(Collection<DoubleType> input) {
+		Set<SDoubleType> result = new HashSet<SDoubleType>();
+		for (DoubleType o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<DoubleType> convertFromSSetDoubleType(Collection<SDoubleType> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<DoubleType> result = new HashSet<DoubleType>();
+		for (SDoubleType o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SDoubleType> convertToSListDoubleType(Collection<DoubleType> input) {
+		List<SDoubleType> result = new ArrayList<SDoubleType>();
+		for (DoubleType o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<DoubleType> convertFromSListDoubleType(Collection<SDoubleType> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<DoubleType> result = new ArrayList<DoubleType>();
+		for (SDoubleType o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SDoubleType convertToSObject(DoubleType input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SDoubleType result = new SDoubleType();
+		result.setOid(input.getOid());
+		result.setValue(input.getValue());
+		return result;
+	}
+
+	public DoubleType convertFromSObject(SDoubleType input, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}		
+		DoubleType result = StoreFactory.eINSTANCE.createDoubleType();
+		((IdEObjectImpl)result).setOid(input.getOid());
+		result.setValue(input.getValue());
+		return result;
+	}
+
+	public Set<SStringType> convertToSSetStringType(Collection<StringType> input) {
+		Set<SStringType> result = new HashSet<SStringType>();
+		for (StringType o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<StringType> convertFromSSetStringType(Collection<SStringType> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<StringType> result = new HashSet<StringType>();
+		for (SStringType o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SStringType> convertToSListStringType(Collection<StringType> input) {
+		List<SStringType> result = new ArrayList<SStringType>();
+		for (StringType o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<StringType> convertFromSListStringType(Collection<SStringType> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<StringType> result = new ArrayList<StringType>();
+		for (SStringType o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SStringType convertToSObject(StringType input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SStringType result = new SStringType();
+		result.setOid(input.getOid());
+		result.setValue(input.getValue());
+		return result;
+	}
+
+	public StringType convertFromSObject(SStringType input, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}		
+		StringType result = StoreFactory.eINSTANCE.createStringType();
+		((IdEObjectImpl)result).setOid(input.getOid());
+		result.setValue(input.getValue());
+		return result;
+	}
+
+	public Set<SBooleanType> convertToSSetBooleanType(Collection<BooleanType> input) {
+		Set<SBooleanType> result = new HashSet<SBooleanType>();
+		for (BooleanType o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<BooleanType> convertFromSSetBooleanType(Collection<SBooleanType> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<BooleanType> result = new HashSet<BooleanType>();
+		for (SBooleanType o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SBooleanType> convertToSListBooleanType(Collection<BooleanType> input) {
+		List<SBooleanType> result = new ArrayList<SBooleanType>();
+		for (BooleanType o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<BooleanType> convertFromSListBooleanType(Collection<SBooleanType> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<BooleanType> result = new ArrayList<BooleanType>();
+		for (SBooleanType o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SBooleanType convertToSObject(BooleanType input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SBooleanType result = new SBooleanType();
+		result.setOid(input.getOid());
+		result.setValue(input.isValue());
+		return result;
+	}
+
+	public BooleanType convertFromSObject(SBooleanType input, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}		
+		BooleanType result = StoreFactory.eINSTANCE.createBooleanType();
+		((IdEObjectImpl)result).setOid(input.getOid());
+		result.setValue(input.isValue());
+		return result;
+	}
+
+	public Set<SArrayType> convertToSSetArrayType(Collection<ArrayType> input) {
+		Set<SArrayType> result = new HashSet<SArrayType>();
+		for (ArrayType o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<ArrayType> convertFromSSetArrayType(Collection<SArrayType> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<ArrayType> result = new HashSet<ArrayType>();
+		for (SArrayType o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SArrayType> convertToSListArrayType(Collection<ArrayType> input) {
+		List<SArrayType> result = new ArrayList<SArrayType>();
+		for (ArrayType o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<ArrayType> convertFromSListArrayType(Collection<SArrayType> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<ArrayType> result = new ArrayList<ArrayType>();
+		for (SArrayType o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SArrayType convertToSObject(ArrayType input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SArrayType result = new SArrayType();
+		result.setOid(input.getOid());
+		List<SType> listvalues = new ArrayList<SType>();
+		for (Type v : input.getValues()) {
+			listvalues.add(convertToSObject(v));
+		}
+		result.setValues(listvalues);
+		return result;
+	}
+
+	public ArrayType convertFromSObject(SArrayType input, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}		
+		ArrayType result = StoreFactory.eINSTANCE.createArrayType();
+		((IdEObjectImpl)result).setOid(input.getOid());
+		List<Type> listvalues = result.getValues();
+		for (SType v : input.getValues()) {
+			listvalues.add(convertFromSObject(v, session));
+		}
+		return result;
+	}
+
+	public Set<SParameter> convertToSSetParameter(Collection<Parameter> input) {
+		Set<SParameter> result = new HashSet<SParameter>();
+		for (Parameter o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<Parameter> convertFromSSetParameter(Collection<SParameter> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<Parameter> result = new HashSet<Parameter>();
+		for (SParameter o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SParameter> convertToSListParameter(Collection<Parameter> input) {
+		List<SParameter> result = new ArrayList<SParameter>();
+		for (Parameter o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<Parameter> convertFromSListParameter(Collection<SParameter> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<Parameter> result = new ArrayList<Parameter>();
+		for (SParameter o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SParameter convertToSObject(Parameter input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SParameter result = new SParameter();
+		result.setOid(input.getOid());
+		result.setName(input.getName());
+		Type valueVal = input.getValue();
+		result.setValue(convertToSObject(valueVal));
+		return result;
+	}
+
+	public Parameter convertFromSObject(SParameter input, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}		
+		Parameter result = StoreFactory.eINSTANCE.createParameter();
+		((IdEObjectImpl)result).setOid(input.getOid());
+		result.setName(input.getName());
+		result.setValue(convertFromSObject(input.getValue(), session));
 		return result;
 	}
 }

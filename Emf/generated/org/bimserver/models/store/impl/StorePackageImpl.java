@@ -428,7 +428,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass serverDescriptorEClass = null;
+	private EClass profileDescriptorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -505,6 +505,104 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass typeDefinitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass objectDefinitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass primitiveDefinitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass arrayDefinitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass parameterDefinitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass typeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass objectTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass primitiveTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass longTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass doubleTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stringTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass booleanTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass arrayTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass parameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum userTypeEEnum = null;
 
 	/**
@@ -562,6 +660,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	private EEnum triggerEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum primitiveEnumEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -921,7 +1026,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUser_ValidationToken() {
+	public EAttribute getUser_Token() {
 		return (EAttribute) getUser().getEStructuralFeatures().get(10);
 	}
 
@@ -930,7 +1035,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUser_ValidationTokenCreated() {
+	public EAttribute getUser_ValidationToken() {
 		return (EAttribute) getUser().getEStructuralFeatures().get(11);
 	}
 
@@ -939,8 +1044,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUser_Settings() {
-		return (EReference) getUser().getEStructuralFeatures().get(12);
+	public EAttribute getUser_ValidationTokenCreated() {
+		return (EAttribute) getUser().getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -948,7 +1053,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUser_Schemas() {
+	public EReference getUser_UserSettings() {
 		return (EReference) getUser().getEStructuralFeatures().get(13);
 	}
 
@@ -957,7 +1062,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUser_ExtendedData() {
+	public EReference getUser_Schemas() {
 		return (EReference) getUser().getEStructuralFeatures().get(14);
 	}
 
@@ -966,8 +1071,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUser_Services() {
+	public EReference getUser_ExtendedData() {
 		return (EReference) getUser().getEStructuralFeatures().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUser_Services() {
+		return (EReference) getUser().getEStructuralFeatures().get(16);
 	}
 
 	/**
@@ -1698,6 +1812,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getPluginConfiguration_Settings() {
+		return (EReference) getPluginConfiguration().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSerializerPluginConfiguration() {
 		if (serializerPluginConfigurationEClass == null) {
 			serializerPluginConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(12);
@@ -1737,7 +1860,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSerializerPluginConfiguration_Settings() {
+	public EReference getSerializerPluginConfiguration_UserSettings() {
 		return (EReference) getSerializerPluginConfiguration().getEStructuralFeatures().get(3);
 	}
 
@@ -1776,7 +1899,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getObjectIDMPluginConfiguration_Settings() {
+	public EReference getObjectIDMPluginConfiguration_UserSettings() {
 		return (EReference) getObjectIDMPluginConfiguration().getEStructuralFeatures().get(1);
 	}
 
@@ -1806,7 +1929,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIfcEnginePluginConfiguration_Settings() {
+	public EReference getIfcEnginePluginConfiguration_UserSettings() {
 		return (EReference) getIfcEnginePluginConfiguration().getEStructuralFeatures().get(1);
 	}
 
@@ -1827,7 +1950,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDeserializerPluginConfiguration_Settings() {
+	public EReference getDeserializerPluginConfiguration_UserSettings() {
 		return (EReference) getDeserializerPluginConfiguration().getEStructuralFeatures().get(0);
 	}
 
@@ -3168,7 +3291,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getQueryEnginePluginConfiguration_Settings() {
+	public EReference getQueryEnginePluginConfiguration_UserSettings() {
 		return (EReference) getQueryEnginePluginConfiguration().getEStructuralFeatures().get(0);
 	}
 
@@ -3201,7 +3324,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelMergerPluginConfiguration_Settings() {
+	public EReference getModelMergerPluginConfiguration_UserSettings() {
 		return (EReference) getModelMergerPluginConfiguration().getEStructuralFeatures().get(0);
 	}
 
@@ -3234,7 +3357,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModelComparePluginConfiguration_Settings() {
+	public EReference getModelComparePluginConfiguration_UserSettings() {
 		return (EReference) getModelComparePluginConfiguration().getEStructuralFeatures().get(0);
 	}
 
@@ -3243,11 +3366,11 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getServerDescriptor() {
-		if (serverDescriptorEClass == null) {
-			serverDescriptorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(63);
+	public EClass getProfileDescriptor() {
+		if (profileDescriptorEClass == null) {
+			profileDescriptorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(63);
 		}
-		return serverDescriptorEClass;
+		return profileDescriptorEClass;
 	}
 
 	/**
@@ -3255,8 +3378,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerDescriptor_Title() {
-		return (EAttribute) getServerDescriptor().getEStructuralFeatures().get(0);
+	public EAttribute getProfileDescriptor_Name() {
+		return (EAttribute) getProfileDescriptor().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3264,8 +3387,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerDescriptor_Url() {
-		return (EAttribute) getServerDescriptor().getEStructuralFeatures().get(1);
+	public EAttribute getProfileDescriptor_Description() {
+		return (EAttribute) getProfileDescriptor().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3273,8 +3396,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerDescriptor_Description() {
-		return (EAttribute) getServerDescriptor().getEStructuralFeatures().get(2);
+	public EAttribute getProfileDescriptor_PublicProfile() {
+		return (EAttribute) getProfileDescriptor().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProfileDescriptor_Identifier() {
+		return (EAttribute) getProfileDescriptor().getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -3468,8 +3600,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getService_ReadExtendedData() {
-		return (EAttribute) getService().getEStructuralFeatures().get(7);
+	public EReference getService_ReadExtendedData() {
+		return (EReference) getService().getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -3486,8 +3618,44 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getService_WriteExtendedData() {
-		return (EAttribute) getService().getEStructuralFeatures().get(9);
+	public EReference getService_WriteExtendedData() {
+		return (EReference) getService().getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getService_ProfileIdentifier() {
+		return (EAttribute) getService().getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getService_ProfileName() {
+		return (EAttribute) getService().getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getService_ProfileDescription() {
+		return (EAttribute) getService().getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getService_ProfilePublic() {
+		return (EAttribute) getService().getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -3496,7 +3664,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getService_Project() {
-		return (EReference) getService().getEStructuralFeatures().get(10);
+		return (EReference) getService().getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -3505,7 +3673,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getService_User() {
-		return (EReference) getService().getEStructuralFeatures().get(11);
+		return (EReference) getService().getEStructuralFeatures().get(15);
 	}
 
 	/**
@@ -3567,8 +3735,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInternalServicePluginConfiguration_Settings() {
-		return (EReference) getInternalServicePluginConfiguration().getEStructuralFeatures().get(0);
+	public EAttribute getInternalServicePluginConfiguration_RemoteAccessible() {
+		return (EAttribute) getInternalServicePluginConfiguration().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getInternalServicePluginConfiguration_UserSettings() {
+		return (EReference) getInternalServicePluginConfiguration().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3771,6 +3948,309 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTypeDefinition() {
+		if (typeDefinitionEClass == null) {
+			typeDefinitionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(75);
+		}
+		return typeDefinitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getObjectDefinition() {
+		if (objectDefinitionEClass == null) {
+			objectDefinitionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(76);
+		}
+		return objectDefinitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getObjectDefinition_Parameters() {
+		return (EReference) getObjectDefinition().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPrimitiveDefinition() {
+		if (primitiveDefinitionEClass == null) {
+			primitiveDefinitionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(77);
+		}
+		return primitiveDefinitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPrimitiveDefinition_Type() {
+		return (EAttribute) getPrimitiveDefinition().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getArrayDefinition() {
+		if (arrayDefinitionEClass == null) {
+			arrayDefinitionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(78);
+		}
+		return arrayDefinitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getArrayDefinition_Type() {
+		return (EReference) getArrayDefinition().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getParameterDefinition() {
+		if (parameterDefinitionEClass == null) {
+			parameterDefinitionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(79);
+		}
+		return parameterDefinitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getParameterDefinition_Name() {
+		return (EAttribute) getParameterDefinition().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getParameterDefinition_Required() {
+		return (EAttribute) getParameterDefinition().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getParameterDefinition_Type() {
+		return (EReference) getParameterDefinition().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getType() {
+		if (typeEClass == null) {
+			typeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(80);
+		}
+		return typeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getObjectType() {
+		if (objectTypeEClass == null) {
+			objectTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(81);
+		}
+		return objectTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getObjectType_Name() {
+		return (EAttribute) getObjectType().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getObjectType_Parameters() {
+		return (EReference) getObjectType().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPrimitiveType() {
+		if (primitiveTypeEClass == null) {
+			primitiveTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(82);
+		}
+		return primitiveTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLongType() {
+		if (longTypeEClass == null) {
+			longTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(83);
+		}
+		return longTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLongType_Value() {
+		return (EAttribute) getLongType().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDoubleType() {
+		if (doubleTypeEClass == null) {
+			doubleTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(84);
+		}
+		return doubleTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDoubleType_Value() {
+		return (EAttribute) getDoubleType().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStringType() {
+		if (stringTypeEClass == null) {
+			stringTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(85);
+		}
+		return stringTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStringType_Value() {
+		return (EAttribute) getStringType().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBooleanType() {
+		if (booleanTypeEClass == null) {
+			booleanTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(86);
+		}
+		return booleanTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBooleanType_Value() {
+		return (EAttribute) getBooleanType().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getArrayType() {
+		if (arrayTypeEClass == null) {
+			arrayTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(87);
+		}
+		return arrayTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getArrayType_Values() {
+		return (EReference) getArrayType().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getParameter() {
+		if (parameterEClass == null) {
+			parameterEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(88);
+		}
+		return parameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getParameter_Name() {
+		return (EAttribute) getParameter().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getParameter_Value() {
+		return (EReference) getParameter().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getUserType() {
 		if (userTypeEEnum == null) {
 			userTypeEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(0);
@@ -3872,6 +4352,18 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 			triggerEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(62);
 		}
 		return triggerEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getPrimitiveEnum() {
+		if (primitiveEnumEEnum == null) {
+			primitiveEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(74);
+		}
+		return primitiveEnumEEnum;
 	}
 
 	/**

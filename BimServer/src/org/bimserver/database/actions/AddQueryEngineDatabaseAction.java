@@ -39,8 +39,8 @@ public class AddQueryEngineDatabaseAction extends AddDatabaseAction<QueryEngineP
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
-		user.getSettings().getQueryengines().add(getIdEObject());
-		getDatabaseSession().store(user.getSettings());
+		user.getUserSettings().getQueryengines().add(getIdEObject());
+		getDatabaseSession().store(user.getUserSettings());
 		return super.execute();
 	}
 }

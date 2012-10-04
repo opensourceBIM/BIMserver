@@ -432,10 +432,10 @@ public class BimServer {
 	}
 	
 	public void updateUserSettings(DatabaseSession session, User user) throws BimserverLockConflictException, BimserverDatabaseException {
-		UserSettings userSettings = user.getSettings();
+		UserSettings userSettings = user.getUserSettings();
 		if (userSettings == null) {
 			userSettings = StoreFactory.eINSTANCE.createUserSettings();
-			user.setSettings(userSettings);
+			user.setUserSettings(userSettings);
 			session.store(userSettings);
 			session.store(user);
 		}

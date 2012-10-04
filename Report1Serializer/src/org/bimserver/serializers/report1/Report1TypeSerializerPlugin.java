@@ -21,6 +21,7 @@ import java.net.URL;
 
 import org.bimserver.ifc.xsltserializer.XsltParameter;
 import org.bimserver.ifc.xsltserializer.XsltSerializer;
+import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.EmfSerializer;
@@ -73,5 +74,10 @@ public class Report1TypeSerializerPlugin implements SerializerPlugin {
 	@Override
 	public String getDefaultContentType() {
 		return "text/html";
+	}
+
+	@Override
+	public ObjectDefinition getSettingsDefinition() {
+		return null;
 	}
 }

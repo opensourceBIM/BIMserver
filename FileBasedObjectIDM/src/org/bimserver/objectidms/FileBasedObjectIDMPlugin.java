@@ -17,6 +17,7 @@ package org.bimserver.objectidms;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.objectidms.ObjectIDM;
@@ -61,5 +62,10 @@ public class FileBasedObjectIDMPlugin implements ObjectIDMPlugin {
 	@Override
 	public String getDefaultName() {
 		return "FileBasedObjectIDMPlugin";
+	}
+
+	@Override
+	public ObjectDefinition getSettingsDefinition() {
+		return null;
 	}
 }

@@ -22,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -89,9 +90,12 @@ import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
 import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
+import org.bimserver.interfaces.objects.SObjectDefinition;
 import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
+import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
+import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
@@ -134,6 +138,8 @@ import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.ModelMergerPluginConfiguration;
+import org.bimserver.models.store.ObjectType;
+import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
@@ -334,7 +340,7 @@ public class Service implements ServiceInterface {
 
 	private UserSettings getUserSettings(DatabaseSession session) throws BimserverLockConflictException, BimserverDatabaseException {
 		User user = session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
-		return user.getSettings();
+		return user.getUserSettings();
 	}
 
 	private ServerSettings getServerSettings(DatabaseSession session) throws BimserverDatabaseException {
@@ -377,7 +383,7 @@ public class Service implements ServiceInterface {
 			throw new ServerException("Database error", e);
 		}
 		LOGGER.error("", e);
-		throw new ServerException("Unknown error", e);
+		throw new ServerException("Unknown error: " + e.getMessage(), e);
 	}
 
 	@Override
@@ -3333,6 +3339,8 @@ public class Service implements ServiceInterface {
 			sServiceDescriptor.setWriteRevision(rights.getBoolean("writeRevision"));
 			sServiceDescriptor.setWriteExtendedData(rights.getString("writeExtendedData"));
 			return sServiceDescriptor;
+		} catch (MalformedURLException e) {
+			throw new UserException("Invalid URL");
 		} catch (Exception e) {
 			return handleException(e);
 		}
@@ -3600,5 +3608,89 @@ public class Service implements ServiceInterface {
 		requireRealUserAuthentication();
 		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
 		bimServer.getNotificationsManager().register(getCurrentUser().getOid(), endPoint);
+	}
+	
+	@Override
+	public List<SProfileDescriptor> getAllPublicProfiles(String serviceUrl) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		try {
+			List<SProfileDescriptor> profileDescriptors = new ArrayList<SProfileDescriptor>();
+			String content = NetUtils.getContent(new URL(serviceUrl + "?profiles"), 5000);
+			JSONObject root = new JSONObject(new JSONTokener(content));
+			JSONArray profiles = root.getJSONArray("profiles");
+			for (int i = 0; i < profiles.length(); i++) {
+				JSONObject profile = profiles.getJSONObject(i);
+				SProfileDescriptor profileDescriptor = new SProfileDescriptor();
+				profileDescriptor.setDescription(profile.getString("description"));
+				profileDescriptor.setName(profile.getString("name"));
+				profileDescriptor.setPublicProfile(profile.getBoolean("publicProfile"));
+				profileDescriptor.setIdentifier(profile.getString("identifier"));
+				profileDescriptors.add(profileDescriptor);
+			}
+			return profileDescriptors;
+		} catch (Exception e) {
+			return handleException(e);
+		}
+	}
+
+	@Override
+	public List<SProfileDescriptor> getAllPrivateProfiles(String serviceUrl, String token) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		try {
+			List<SProfileDescriptor> profileDescriptors = new ArrayList<SProfileDescriptor>();
+			String content = NetUtils.getContent(new URL(serviceUrl + "?profiles&token=" + token), 5000);
+			JSONObject root = new JSONObject(new JSONTokener(content));
+			if (root.has("profiles")) {
+				JSONArray profiles = root.getJSONArray("profiles");
+				for (int i = 0; i < profiles.length(); i++) {
+					JSONObject profile = profiles.getJSONObject(i);
+					SProfileDescriptor profileDescriptor = new SProfileDescriptor();
+					profileDescriptor.setDescription(profile.getString("description"));
+					profileDescriptor.setName(profile.getString("name"));
+					profileDescriptor.setPublicProfile(profile.getBoolean("publicProfile"));
+					profileDescriptor.setIdentifier(profile.getString("identifier"));
+					profileDescriptors.add(profileDescriptor);
+				}
+			} else if (root.has("error")) {
+				throw new UserException(root.getString("error"));
+			}
+			return profileDescriptors;
+		} catch (Exception e) {
+			return handleException(e);
+		}
+	}
+
+	@Override
+	public SObjectDefinition getPluginObjectDefinition(String className) throws ServerException, UserException {
+		return converter.convertToSObject(bimServer.getPluginManager().getPlugin(className, false).getSettingsDefinition());
+	}
+
+	public SObjectType getPluginSettings(long poid) throws ServerException, UserException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			PluginConfiguration pluginConfiguration = session.get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, false, null);
+			return converter.convertToSObject(pluginConfiguration.getSettings());
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public void setPluginSettings(long poid, SObjectType settings) throws ServerException, UserException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			PluginConfiguration pluginConfiguration = session.get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, false, null);
+			ObjectType convertedSettings = converter.convertFromSObject(settings, session);
+			pluginConfiguration.setSettings(convertedSettings);
+			session.store(pluginConfiguration);
+			session.store(convertedSettings, true);
+			session.commit();
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 }

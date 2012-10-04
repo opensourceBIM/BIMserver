@@ -4,7 +4,6 @@
 <%@page import="org.apache.commons.fileupload.FileItem"%>
 <%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
 <%@page import="org.bimserver.interfaces.objects.SExtendedDataSchemaType"%>
-<%@page import="org.bimserver.interfaces.objects.SSchemaType"%>
 <%@page import="org.bimserver.interfaces.objects.SExtendedDataSchema"%>
 <%@page import="org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor"%>
 <%@ page contentType="text/html; charset=UTF-8" %>

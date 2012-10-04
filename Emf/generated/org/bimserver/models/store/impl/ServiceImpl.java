@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.StorePackage;
@@ -39,9 +40,13 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getTrigger <em>Trigger</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#isReadRevision <em>Read Revision</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#isReadExtendedData <em>Read Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getReadExtendedData <em>Read Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getWriteRevision <em>Write Revision</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#isWriteExtendedData <em>Write Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getWriteExtendedData <em>Write Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getProfileIdentifier <em>Profile Identifier</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getProfileName <em>Profile Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getProfileDescription <em>Profile Description</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#isProfilePublic <em>Profile Public</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getProject <em>Project</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getUser <em>User</em>}</li>
  * </ul>
@@ -210,8 +215,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isReadExtendedData() {
-		return (Boolean) eGet(StorePackage.Literals.SERVICE__READ_EXTENDED_DATA, true);
+	public ExtendedDataSchema getReadExtendedData() {
+		return (ExtendedDataSchema) eGet(StorePackage.Literals.SERVICE__READ_EXTENDED_DATA, true);
 	}
 
 	/**
@@ -219,7 +224,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReadExtendedData(boolean newReadExtendedData) {
+	public void setReadExtendedData(ExtendedDataSchema newReadExtendedData) {
 		eSet(StorePackage.Literals.SERVICE__READ_EXTENDED_DATA, newReadExtendedData);
 	}
 
@@ -246,8 +251,8 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isWriteExtendedData() {
-		return (Boolean) eGet(StorePackage.Literals.SERVICE__WRITE_EXTENDED_DATA, true);
+	public ExtendedDataSchema getWriteExtendedData() {
+		return (ExtendedDataSchema) eGet(StorePackage.Literals.SERVICE__WRITE_EXTENDED_DATA, true);
 	}
 
 	/**
@@ -255,8 +260,80 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setWriteExtendedData(boolean newWriteExtendedData) {
+	public void setWriteExtendedData(ExtendedDataSchema newWriteExtendedData) {
 		eSet(StorePackage.Literals.SERVICE__WRITE_EXTENDED_DATA, newWriteExtendedData);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getProfileIdentifier() {
+		return (String) eGet(StorePackage.Literals.SERVICE__PROFILE_IDENTIFIER, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProfileIdentifier(String newProfileIdentifier) {
+		eSet(StorePackage.Literals.SERVICE__PROFILE_IDENTIFIER, newProfileIdentifier);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getProfileName() {
+		return (String) eGet(StorePackage.Literals.SERVICE__PROFILE_NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProfileName(String newProfileName) {
+		eSet(StorePackage.Literals.SERVICE__PROFILE_NAME, newProfileName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getProfileDescription() {
+		return (String) eGet(StorePackage.Literals.SERVICE__PROFILE_DESCRIPTION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProfileDescription(String newProfileDescription) {
+		eSet(StorePackage.Literals.SERVICE__PROFILE_DESCRIPTION, newProfileDescription);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isProfilePublic() {
+		return (Boolean) eGet(StorePackage.Literals.SERVICE__PROFILE_PUBLIC, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProfilePublic(boolean newProfilePublic) {
+		eSet(StorePackage.Literals.SERVICE__PROFILE_PUBLIC, newProfilePublic);
 	}
 
 	/**

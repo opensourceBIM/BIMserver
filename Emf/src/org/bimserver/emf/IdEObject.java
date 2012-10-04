@@ -24,7 +24,4 @@ public interface IdEObject extends EObject {
 	int getRid();
 	int getPid();
 	void load();
-	boolean hasModel();
-	IfcModelInterface getModel();
-	void setModel(IfcModelInterface model) throws IfcModelInterfaceException;
 }

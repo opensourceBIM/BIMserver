@@ -37,7 +37,7 @@ public class MergerFactory {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			User user = databaseSession.get(StorePackage.eINSTANCE.getUser(), currentUoid, false, null);
-			UserSettings userSettings = user.getSettings();
+			UserSettings userSettings = user.getUserSettings();
 
 			ModelMergerPluginConfiguration modelMergerObject = userSettings.getDefaultModelMerger();
 			if (modelMergerObject != null) {

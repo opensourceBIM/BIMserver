@@ -35,7 +35,7 @@ public class DeleteInternalServiceDatabaseAction extends DeleteDatabaseAction<In
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		InternalServicePluginConfiguration object = getDatabaseSession().get(geteClass(), getOid(), false, null);
-		UserSettings settings = object.getSettings();
+		UserSettings settings = object.getUserSettings();
 		settings.getServices().remove(object);
 		getDatabaseSession().store(settings);
 		return super.execute();

@@ -27,7 +27,7 @@ package org.bimserver.models.store;
  *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#getExtension <em>Extension</em>}</li>
  *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#getContentType <em>Content Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#getObjectIDM <em>Object IDM</em>}</li>
- *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#getSettings <em>Settings</em>}</li>
+ *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#getUserSettings <em>User Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#getIfcEngine <em>Ifc Engine</em>}</li>
  * </ul>
  * </p>
@@ -118,32 +118,32 @@ public interface SerializerPluginConfiguration extends PluginConfiguration {
 	void setObjectIDM(ObjectIDMPluginConfiguration value);
 
 	/**
-	 * Returns the value of the '<em><b>Settings</b></em>' reference.
+	 * Returns the value of the '<em><b>User Settings</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.UserSettings#getSerializers <em>Serializers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Settings</em>' reference isn't clear,
+	 * If the meaning of the '<em>User Settings</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Settings</em>' reference.
-	 * @see #setSettings(UserSettings)
-	 * @see org.bimserver.models.store.StorePackage#getSerializerPluginConfiguration_Settings()
+	 * @return the value of the '<em>User Settings</em>' reference.
+	 * @see #setUserSettings(UserSettings)
+	 * @see org.bimserver.models.store.StorePackage#getSerializerPluginConfiguration_UserSettings()
 	 * @see org.bimserver.models.store.UserSettings#getSerializers
 	 * @model opposite="serializers"
 	 * @generated
 	 */
-	UserSettings getSettings();
+	UserSettings getUserSettings();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.SerializerPluginConfiguration#getSettings <em>Settings</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.store.SerializerPluginConfiguration#getUserSettings <em>User Settings</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Settings</em>' reference.
-	 * @see #getSettings()
+	 * @param value the new value of the '<em>User Settings</em>' reference.
+	 * @see #getUserSettings()
 	 * @generated
 	 */
-	void setSettings(UserSettings value);
+	void setUserSettings(UserSettings value);
 
 	/**
 	 * Returns the value of the '<em><b>Ifc Engine</b></em>' reference.

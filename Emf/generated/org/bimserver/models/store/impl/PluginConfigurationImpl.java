@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 
+import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 
@@ -34,6 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.PluginConfigurationImpl#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginConfigurationImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginConfigurationImpl#getClassName <em>Class Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginConfigurationImpl#getSettings <em>Settings</em>}</li>
  * </ul>
  * </p>
  *
@@ -139,6 +141,24 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 */
 	public void setClassName(String newClassName) {
 		eSet(StorePackage.Literals.PLUGIN_CONFIGURATION__CLASS_NAME, newClassName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ObjectType getSettings() {
+		return (ObjectType) eGet(StorePackage.Literals.PLUGIN_CONFIGURATION__SETTINGS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSettings(ObjectType newSettings) {
+		eSet(StorePackage.Literals.PLUGIN_CONFIGURATION__SETTINGS, newSettings);
 	}
 
 } //PluginConfigurationImpl

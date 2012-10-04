@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
@@ -64,5 +65,10 @@ public class JavaQueryEnginePlugin implements QueryEnginePlugin {
 	@Override
 	public String getDefaultName() {
 		return "JavaQueryEnginePlugin";
+	}
+
+	@Override
+	public ObjectDefinition getSettingsDefinition() {
+		return null;
 	}
 }

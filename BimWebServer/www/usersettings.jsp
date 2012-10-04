@@ -1,4 +1,3 @@
-<%@page import="org.bimserver.interfaces.objects.SSettings"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializerPluginConfiguration"%>
 <%@page import="java.util.List"%>
 <%@ include file="usersettingsmenu.jsp"%>

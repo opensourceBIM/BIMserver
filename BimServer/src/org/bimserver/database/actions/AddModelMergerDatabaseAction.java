@@ -39,8 +39,8 @@ public class AddModelMergerDatabaseAction extends AddDatabaseAction<ModelMergerP
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
-		user.getSettings().getModelmergers().add(getIdEObject());
-		getDatabaseSession().store(user.getSettings());
+		user.getUserSettings().getModelmergers().add(getIdEObject());
+		getDatabaseSession().store(user.getUserSettings());
 		return super.execute();
 	}
 }

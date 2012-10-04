@@ -32,7 +32,7 @@ public class Step0020 extends Migration {
 		EClass modelComparePluginClass = schema.createEClass(schema.getEPackage("store"), "ModelComparePluginConfiguration", schema.getEClass("store", "PluginConfiguration"));
 		EClass userSettingsClass = schema.getEClass("store", "UserSettings");
 
-		EReference modelCompareSettingsReference = schema.createEReference(modelComparePluginClass, "settings", userSettingsClass, Multiplicity.SINGLE);
+		EReference modelCompareSettingsReference = schema.createEReference(modelComparePluginClass, "userSettings", userSettingsClass, Multiplicity.SINGLE);
 		EReference settingsModelComparesReference = schema.createEReference(userSettingsClass, "modelcompares", modelComparePluginClass, Multiplicity.MANY);
 
 		modelCompareSettingsReference.setEOpposite(settingsModelComparesReference);

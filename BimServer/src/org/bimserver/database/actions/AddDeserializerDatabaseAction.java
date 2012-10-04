@@ -39,8 +39,8 @@ public class AddDeserializerDatabaseAction extends AddDatabaseAction<Deserialize
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
-		user.getSettings().getDeserializers().add(getIdEObject());
-		getDatabaseSession().store(user.getSettings());
+		user.getUserSettings().getDeserializers().add(getIdEObject());
+		getDatabaseSession().store(user.getUserSettings());
 		return super.execute();
 	}
 }

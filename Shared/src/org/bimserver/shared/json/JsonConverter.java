@@ -75,7 +75,7 @@ public class JsonConverter {
 		return null;
 	}
 	
-	public Object fromJson(SClass definedType, SClass genericType, Object object) throws JSONException {
+	public Object fromJson(SClass definedType, SClass genericType, Object object) throws JSONException, ConvertException {
 		if (object instanceof JSONObject) {
 			JSONObject jsonObject = (JSONObject) object;
 			if (jsonObject.has("__type")) {
@@ -89,7 +89,7 @@ public class JsonConverter {
 				}
 				return newObject;
 			} else {
-				return null;
+				throw new ConvertException("Missing __type field");
 			}
 		} else if (object instanceof JSONArray) {
 			JSONArray array = (JSONArray)object;
@@ -127,7 +127,13 @@ public class JsonConverter {
 			}
 		} else if (definedType.isDate()) {
 			return new Date((Long)object);
-		} else if (definedType.isString() || definedType.isBoolean()) {
+		} else if (definedType.isString()) {
+			if (object == JSONObject.NULL) {
+				return null;
+			} else {
+				return object;
+			}
+		} else if (definedType.isBoolean()) {
 			return object;
 		} else if (definedType.isList()) {
 			if (genericType.isLong()) {
@@ -139,6 +145,10 @@ public class JsonConverter {
 					return ((Integer)object).longValue();
 				}
 			}
+		} else if (definedType.isDouble()) {
+			return Double.parseDouble(object.toString());
+		} else if (definedType.isFloat()) {
+			return Float.parseFloat(object.toString());
 		} else if (object instanceof Integer) {
 			if (genericType.isLong()) {
 				if (object instanceof String) {

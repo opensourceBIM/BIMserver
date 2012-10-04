@@ -30,6 +30,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.PluginConfiguration#getEnabled <em>Enabled</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginConfiguration#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginConfiguration#getClassName <em>Class Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.PluginConfiguration#getSettings <em>Settings</em>}</li>
  * </ul>
  * </p>
  *
@@ -142,5 +143,31 @@ public interface PluginConfiguration extends IdEObject {
 	 * @generated
 	 */
 	void setClassName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Settings</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Settings</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Settings</em>' reference.
+	 * @see #setSettings(ObjectType)
+	 * @see org.bimserver.models.store.StorePackage#getPluginConfiguration_Settings()
+	 * @model
+	 * @generated
+	 */
+	ObjectType getSettings();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.PluginConfiguration#getSettings <em>Settings</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Settings</em>' reference.
+	 * @see #getSettings()
+	 * @generated
+	 */
+	void setSettings(ObjectType value);
 
 } // PluginConfiguration

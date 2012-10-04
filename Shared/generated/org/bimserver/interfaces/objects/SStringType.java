@@ -22,14 +22,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SServerDescriptor implements SBase
+public class SStringType extends SPrimitiveType implements SDataBase
 {
+	private long oid = -1;
 
 	@XmlTransient
 	private static SClass sClass;
-	private java.lang.String title;
-	private java.lang.String url;
-	private java.lang.String description;
+	private java.lang.String value;
+	public long getOid() {
+		return oid;
+	}
+	
+	public void setOid(long oid) {
+		this.oid = oid;
+	}
 	
 	@XmlTransient
 	public SClass getSClass() {
@@ -37,60 +43,58 @@ public class SServerDescriptor implements SBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SServerDescriptor.sClass = sClass;
+		SStringType.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("title")) {
-			return getTitle();
+		if (sField.getName().equals("value")) {
+			return getValue();
 		}
-		if (sField.getName().equals("url")) {
-			return getUrl();
-		}
-		if (sField.getName().equals("description")) {
-			return getDescription();
+		if (sField.getName().equals("oid")) {
+			return getOid();
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("title")) {
-			setTitle((String)val);
+		if (sField.getName().equals("value")) {
+			setValue((String)val);
 			return;
 		}
-		if (sField.getName().equals("url")) {
-			setUrl((String)val);
-			return;
-		}
-		if (sField.getName().equals("description")) {
-			setDescription((String)val);
+		if (sField.getName().equals("oid")) {
+			setOid((Long)val);
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	public java.lang.String getTitle() {
-		return title;
+	public java.lang.String getValue() {
+		return value;
 	}
 
-	public void setTitle(java.lang.String title) {
-		this.title = title;
+	public void setValue(java.lang.String value) {
+		this.value = value;
 	}
 	
-	public java.lang.String getUrl() {
-		return url;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (oid ^ (oid >>> 32));
+		return result;
 	}
 
-	public void setUrl(java.lang.String url) {
-		this.url = url;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SStringType other = (SStringType) obj;
+		if (oid != other.oid)
+			return false;
+		return true;
 	}
-	
-	public java.lang.String getDescription() {
-		return description;
-	}
-
-	public void setDescription(java.lang.String description) {
-		this.description = description;
-	}
-	
 }

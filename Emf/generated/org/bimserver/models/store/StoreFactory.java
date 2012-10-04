@@ -513,13 +513,13 @@ public interface StoreFactory extends EFactory {
 	ModelComparePluginConfiguration createModelComparePluginConfiguration();
 
 	/**
-	 * Returns a new object of class '<em>Server Descriptor</em>'.
+	 * Returns a new object of class '<em>Profile Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Server Descriptor</em>'.
+	 * @return a new object of class '<em>Profile Descriptor</em>'.
 	 * @generated
 	 */
-	ServerDescriptor createServerDescriptor();
+	ProfileDescriptor createProfileDescriptor();
 
 	/**
 	 * Returns a new object of class '<em>Service Descriptor</em>'.
@@ -610,6 +610,132 @@ public interface StoreFactory extends EFactory {
 	 * @generated
 	 */
 	ServiceParameter createServiceParameter();
+
+	/**
+	 * Returns a new object of class '<em>Type Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Type Definition</em>'.
+	 * @generated
+	 */
+	TypeDefinition createTypeDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Object Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Object Definition</em>'.
+	 * @generated
+	 */
+	ObjectDefinition createObjectDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Primitive Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Primitive Definition</em>'.
+	 * @generated
+	 */
+	PrimitiveDefinition createPrimitiveDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Array Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Array Definition</em>'.
+	 * @generated
+	 */
+	ArrayDefinition createArrayDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Parameter Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Parameter Definition</em>'.
+	 * @generated
+	 */
+	ParameterDefinition createParameterDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Type</em>'.
+	 * @generated
+	 */
+	Type createType();
+
+	/**
+	 * Returns a new object of class '<em>Object Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Object Type</em>'.
+	 * @generated
+	 */
+	ObjectType createObjectType();
+
+	/**
+	 * Returns a new object of class '<em>Primitive Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Primitive Type</em>'.
+	 * @generated
+	 */
+	PrimitiveType createPrimitiveType();
+
+	/**
+	 * Returns a new object of class '<em>Long Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Long Type</em>'.
+	 * @generated
+	 */
+	LongType createLongType();
+
+	/**
+	 * Returns a new object of class '<em>Double Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Double Type</em>'.
+	 * @generated
+	 */
+	DoubleType createDoubleType();
+
+	/**
+	 * Returns a new object of class '<em>String Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>String Type</em>'.
+	 * @generated
+	 */
+	StringType createStringType();
+
+	/**
+	 * Returns a new object of class '<em>Boolean Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Boolean Type</em>'.
+	 * @generated
+	 */
+	BooleanType createBooleanType();
+
+	/**
+	 * Returns a new object of class '<em>Array Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Array Type</em>'.
+	 * @generated
+	 */
+	ArrayType createArrayType();
+
+	/**
+	 * Returns a new object of class '<em>Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Parameter</em>'.
+	 * @generated
+	 */
+	Parameter createParameter();
 
 	/**
 	 * Returns the package supported by this factory.

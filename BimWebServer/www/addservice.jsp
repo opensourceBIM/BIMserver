@@ -1,9 +1,7 @@
 <%@page import="org.bimserver.interfaces.objects.STrigger"%>
 <%@page import="org.bimserver.interfaces.objects.SAccessMethod"%>
-<%@page import="org.bimserver.interfaces.objects.SServerDescriptor"%>
 <%@page import="org.bimserver.interfaces.objects.SService"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>
-<%@page import="org.bimserver.interfaces.objects.SExternalServer"%>
 <jsp:useBean id="loginManager" scope="session" class="org.bimwebserver.jsp.LoginManager" />
 <%
 	SProject project = loginManager.getService(request).getProjectByPoid(Long.parseLong(request.getParameter("oid")));
@@ -16,10 +14,10 @@
 			sService.setNotificationProtocol(SAccessMethod.valueOf(request.getParameter("notificationProtocol")));
 			sService.setTrigger(STrigger.valueOf(request.getParameter("trigger")));
 			sService.setUrl(request.getParameter("url"));
-			sService.setReadExtendedData(request.getParameter("readExtendedData") != null);
+			//sService.setReadExtendedDataId(request.getParameter("readExtendedData));
 			sService.setReadRevision(request.getParameter("readRevision") != null);
 			sService.setWriteRevisionId(Long.parseLong(request.getParameter("writeRevision")));
-			sService.setWriteExtendedData(request.getParameter("writeExtendedData") != null);
+			//sService.setWriteExtendedData(request.getParameter("writeExtendedData") != null);
 			sService.setUrl(request.getParameter("url"));
 			loginManager.getService(request).addServiceToProject(project.getOid(), sService);
 		}
@@ -31,9 +29,9 @@
 		<option value="[INTERNAL]">Internal BIMserver</option>
 	<optgroup label="External"></optgroup>
 <%
-	for (SServerDescriptor externalServer : loginManager.getService(request).getExternalServers()) {
-		out.println("<option class=\"external\" value=\"" + externalServer.getUrl() + "\">" + externalServer.getTitle() + "</option>");
-	} 
+	//for (SServerDescriptor externalServer : loginManager.getService(request).getExternalServers()) {
+	//	out.println("<option class=\"external\" value=\"" + externalServer.getUrl() + "\">" + externalServer.getTitle() + "</option>");
+	//} 
 %>
 			</select>
 			<label class="serviceslabel initialhide" for="services">Service </label>

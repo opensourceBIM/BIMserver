@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getExtension <em>Extension</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getContentType <em>Content Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getObjectIDM <em>Object IDM</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getSettings <em>Settings</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getUserSettings <em>User Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getIfcEngine <em>Ifc Engine</em>}</li>
  * </ul>
  * </p>
@@ -120,8 +120,8 @@ public class SerializerPluginConfigurationImpl extends PluginConfigurationImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UserSettings getSettings() {
-		return (UserSettings) eGet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__SETTINGS, true);
+	public UserSettings getUserSettings() {
+		return (UserSettings) eGet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS, true);
 	}
 
 	/**
@@ -129,8 +129,8 @@ public class SerializerPluginConfigurationImpl extends PluginConfigurationImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSettings(UserSettings newSettings) {
-		eSet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__SETTINGS, newSettings);
+	public void setUserSettings(UserSettings newUserSettings) {
+		eSet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS, newUserSettings);
 	}
 
 	/**
