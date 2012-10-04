@@ -58,6 +58,7 @@ public class DataObjectGeneratorWrapper {
 			LOGGER.error("", e);
 		}
 		ServiceInterfaceObjectGenerator dataObjectGenerator = new ServiceInterfaceObjectGenerator();
+		Set<String> fileNamesCreated = new HashSet<String>();
 		for (EPackage ePackage : ePackages) {
 			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 				if (eClassifier instanceof EClass || eClassifier instanceof EEnum) {
@@ -67,7 +68,9 @@ public class DataObjectGeneratorWrapper {
 						new MetaDataManager(ePackages)
 					};
 					String generated = dataObjectGenerator.generate(arguments);
-					File file = new File(packageFolder, "S" + eClassifier.getName() + ".java");
+					String fileName = "S" + eClassifier.getName() + ".java";
+					fileNamesCreated.add(fileName);
+					File file = new File(packageFolder, fileName);
 					try {
 						OutputStream fileOutputStream = new FileOutputStream(file);
 						fileOutputStream.write(generated.getBytes(Charsets.UTF_8));
@@ -80,6 +83,11 @@ public class DataObjectGeneratorWrapper {
 						LOGGER.error("", e);
 					}
 				}
+			}
+		}
+		for (File file : packageFolder.listFiles()) {
+			if (!fileNamesCreated.contains(file.getName())) {
+				file.delete();
 			}
 		}
 	}

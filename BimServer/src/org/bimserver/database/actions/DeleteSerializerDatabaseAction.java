@@ -35,7 +35,7 @@ public class DeleteSerializerDatabaseAction extends DeleteDatabaseAction<Seriali
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		SerializerPluginConfiguration object = getDatabaseSession().get(geteClass(), getOid(), false, null);
-		UserSettings settings = object.getSettings();
+		UserSettings settings = object.getUserSettings();
 		settings.getSerializers().remove(object);
 		getDatabaseSession().store(settings);
 		return super.execute();

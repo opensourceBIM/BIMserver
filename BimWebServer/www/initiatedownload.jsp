@@ -2,7 +2,6 @@
 <%@page import="org.apache.commons.codec.binary.Base64"%>
 <%@page import="org.codehaus.jettison.json.JSONArray"%>
 <%@page import="org.codehaus.jettison.json.JSONTokener"%>
-<%@page import="org.bimserver.interfaces.objects.SCompareIdentifier"%>
 <%@page import="org.bimserver.interfaces.objects.SCompareType"%>
 <%@page import="org.codehaus.jettison.json.JSONObject"%>
 <%@ page contentType="text/html; charset=UTF-8"%>

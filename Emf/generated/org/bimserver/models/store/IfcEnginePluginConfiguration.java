@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.bimserver.models.store.IfcEnginePluginConfiguration#getSerializers <em>Serializers</em>}</li>
- *   <li>{@link org.bimserver.models.store.IfcEnginePluginConfiguration#getSettings <em>Settings</em>}</li>
+ *   <li>{@link org.bimserver.models.store.IfcEnginePluginConfiguration#getUserSettings <em>User Settings</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,31 +55,31 @@ public interface IfcEnginePluginConfiguration extends PluginConfiguration {
 	EList<SerializerPluginConfiguration> getSerializers();
 
 	/**
-	 * Returns the value of the '<em><b>Settings</b></em>' reference.
+	 * Returns the value of the '<em><b>User Settings</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.UserSettings#getIfcEngines <em>Ifc Engines</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Settings</em>' reference isn't clear,
+	 * If the meaning of the '<em>User Settings</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Settings</em>' reference.
-	 * @see #setSettings(UserSettings)
-	 * @see org.bimserver.models.store.StorePackage#getIfcEnginePluginConfiguration_Settings()
+	 * @return the value of the '<em>User Settings</em>' reference.
+	 * @see #setUserSettings(UserSettings)
+	 * @see org.bimserver.models.store.StorePackage#getIfcEnginePluginConfiguration_UserSettings()
 	 * @see org.bimserver.models.store.UserSettings#getIfcEngines
 	 * @model opposite="ifcEngines"
 	 * @generated
 	 */
-	UserSettings getSettings();
+	UserSettings getUserSettings();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.IfcEnginePluginConfiguration#getSettings <em>Settings</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.store.IfcEnginePluginConfiguration#getUserSettings <em>User Settings</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Settings</em>' reference.
-	 * @see #getSettings()
+	 * @param value the new value of the '<em>User Settings</em>' reference.
+	 * @see #getUserSettings()
 	 * @generated
 	 */
-	void setSettings(UserSettings value);
+	void setUserSettings(UserSettings value);
 
 } // IfcEnginePluginConfiguration

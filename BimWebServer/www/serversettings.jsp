@@ -13,7 +13,6 @@
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.shared.interfaces.ServiceInterface"%>
 <%@page import="org.bimserver.shared.exceptions.ServiceException"%>
-<%@page import="org.bimserver.interfaces.objects.SMergeIdentifier"%>
 <%@page import="org.bimserver.interfaces.objects.SSerializerPluginConfiguration"%>
 <jsp:include page="serversettingsmenu.jsp"/>
 <div class="content">

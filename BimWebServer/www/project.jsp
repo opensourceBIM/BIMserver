@@ -1,5 +1,4 @@
 <%@page import="org.bimserver.interfaces.objects.SModelComparePluginConfiguration"%>
-<%@page import="org.bimserver.interfaces.objects.SExternalServer"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimserver.shared.comparators.SUserNameComparator"%>
 <%@page import="org.bimserver.shared.comparators.SProjectNameComparator"%>

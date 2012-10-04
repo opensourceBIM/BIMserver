@@ -145,12 +145,10 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 		return state;
 	}
 	
-	@Override
 	public IfcModelInterface getModel() {
 		return model;
 	}
 	
-	@Override
 	public boolean hasModel() {
 		return getModel() != null;
 	}

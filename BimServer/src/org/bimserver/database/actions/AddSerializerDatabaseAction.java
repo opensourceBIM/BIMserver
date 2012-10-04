@@ -47,8 +47,8 @@ public class AddSerializerDatabaseAction extends AddDatabaseAction<SerializerPlu
 			getDatabaseSession().store(getIdEObject().getObjectIDM());
 		}
 		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
-		user.getSettings().getSerializers().add(getIdEObject());
-		getDatabaseSession().store(user.getSettings());
+		user.getUserSettings().getSerializers().add(getIdEObject());
+		getDatabaseSession().store(user.getUserSettings());
 
 		return execute;
 	}

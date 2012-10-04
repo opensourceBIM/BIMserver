@@ -17,6 +17,7 @@ package org.bimserver.citygml;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
@@ -70,5 +71,10 @@ public class CityGmlSerializerPlugin implements SerializerPlugin {
 	@Override
 	public boolean isInitialized() {
 		return initialized;
+	}
+
+	@Override
+	public ObjectDefinition getSettingsDefinition() {
+		return null;
 	}
 }

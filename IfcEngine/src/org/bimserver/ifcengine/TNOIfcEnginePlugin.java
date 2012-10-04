@@ -30,6 +30,7 @@ import java.io.InputStream;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
@@ -117,5 +118,10 @@ public class TNOIfcEnginePlugin implements IfcEnginePlugin {
 	@Override
 	public String getDefaultName() {
 		return "TNO Engine Series";
+	}
+
+	@Override
+	public ObjectDefinition getSettingsDefinition() {
+		return null;
 	}
 }

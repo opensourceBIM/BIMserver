@@ -28,7 +28,7 @@ public class SDeserializerPluginConfiguration extends SPluginConfiguration imple
 
 	@XmlTransient
 	private static SClass sClass;
-	private long settingsId = -1;
+	private long userSettingsId = -1;
 	public long getOid() {
 		return oid;
 	}
@@ -62,6 +62,9 @@ public class SDeserializerPluginConfiguration extends SPluginConfiguration imple
 		if (sField.getName().equals("settingsId")) {
 			return getSettingsId();
 		}
+		if (sField.getName().equals("userSettingsId")) {
+			return getUserSettingsId();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -89,6 +92,10 @@ public class SDeserializerPluginConfiguration extends SPluginConfiguration imple
 			setSettingsId((Long)val);
 			return;
 		}
+		if (sField.getName().equals("userSettingsId")) {
+			setUserSettingsId((Long)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -96,12 +103,12 @@ public class SDeserializerPluginConfiguration extends SPluginConfiguration imple
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	public long getSettingsId() {
-		return settingsId;
+	public long getUserSettingsId() {
+		return userSettingsId;
 	}
 
-	public void setSettingsId(long settingsId) {
-		this.settingsId = settingsId;
+	public void setUserSettingsId(long userSettingsId) {
+		this.userSettingsId = userSettingsId;
 	}
 	
 	@Override

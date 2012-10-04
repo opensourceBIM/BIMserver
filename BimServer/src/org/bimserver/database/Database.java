@@ -83,7 +83,7 @@ public class Database implements BimDatabase {
 	 * database-schema change Do not change this variable when nothing has
 	 * changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 23;
+	public static final int APPLICATION_SCHEMA_VERSION = 24;
 
 	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, KeyValueStore keyValueStore) throws DatabaseInitException {
 		this.bimServer = bimServer;
@@ -204,7 +204,7 @@ public class Database implements BimDatabase {
 		settings.setHideUserListForNonAdmin(true);
 		settings.setShowVersionUpgradeAvailable(false);
 		settings.setCacheOutputFiles(false);
-		settings.setServiceRepositoryUrl("http://extend.bimserver.org/servers");
+		settings.setServiceRepositoryUrl("http://extend.bimserver.org/services");
 		return settings;
 	}
 	

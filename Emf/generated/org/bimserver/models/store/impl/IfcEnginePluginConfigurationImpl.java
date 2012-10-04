@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.IfcEnginePluginConfigurationImpl#getSerializers <em>Serializers</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.IfcEnginePluginConfigurationImpl#getSettings <em>Settings</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.IfcEnginePluginConfigurationImpl#getUserSettings <em>User Settings</em>}</li>
  * </ul>
  * </p>
  *
@@ -74,8 +74,8 @@ public class IfcEnginePluginConfigurationImpl extends PluginConfigurationImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UserSettings getSettings() {
-		return (UserSettings) eGet(StorePackage.Literals.IFC_ENGINE_PLUGIN_CONFIGURATION__SETTINGS, true);
+	public UserSettings getUserSettings() {
+		return (UserSettings) eGet(StorePackage.Literals.IFC_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS, true);
 	}
 
 	/**
@@ -83,8 +83,8 @@ public class IfcEnginePluginConfigurationImpl extends PluginConfigurationImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSettings(UserSettings newSettings) {
-		eSet(StorePackage.Literals.IFC_ENGINE_PLUGIN_CONFIGURATION__SETTINGS, newSettings);
+	public void setUserSettings(UserSettings newUserSettings) {
+		eSet(StorePackage.Literals.IFC_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS, newUserSettings);
 	}
 
 } //IfcEnginePluginConfigurationImpl

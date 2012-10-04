@@ -39,9 +39,10 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.User#getUserType <em>User Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getUsername <em>Username</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getLastSeen <em>Last Seen</em>}</li>
+ *   <li>{@link org.bimserver.models.store.User#getToken <em>Token</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getValidationToken <em>Validation Token</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getValidationTokenCreated <em>Validation Token Created</em>}</li>
- *   <li>{@link org.bimserver.models.store.User#getSettings <em>Settings</em>}</li>
+ *   <li>{@link org.bimserver.models.store.User#getUserSettings <em>User Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getSchemas <em>Schemas</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getExtendedData <em>Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getServices <em>Services</em>}</li>
@@ -305,6 +306,32 @@ public interface User extends IdEObject {
 	void setLastSeen(Date value);
 
 	/**
+	 * Returns the value of the '<em><b>Token</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Token</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Token</em>' attribute.
+	 * @see #setToken(String)
+	 * @see org.bimserver.models.store.StorePackage#getUser_Token()
+	 * @model
+	 * @generated
+	 */
+	String getToken();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.User#getToken <em>Token</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Token</em>' attribute.
+	 * @see #getToken()
+	 * @generated
+	 */
+	void setToken(String value);
+
+	/**
 	 * Returns the value of the '<em><b>Validation Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -357,30 +384,30 @@ public interface User extends IdEObject {
 	void setValidationTokenCreated(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>Settings</b></em>' reference.
+	 * Returns the value of the '<em><b>User Settings</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Settings</em>' reference isn't clear,
+	 * If the meaning of the '<em>User Settings</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Settings</em>' reference.
-	 * @see #setSettings(UserSettings)
-	 * @see org.bimserver.models.store.StorePackage#getUser_Settings()
+	 * @return the value of the '<em>User Settings</em>' reference.
+	 * @see #setUserSettings(UserSettings)
+	 * @see org.bimserver.models.store.StorePackage#getUser_UserSettings()
 	 * @model
 	 * @generated
 	 */
-	UserSettings getSettings();
+	UserSettings getUserSettings();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.User#getSettings <em>Settings</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.store.User#getUserSettings <em>User Settings</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Settings</em>' reference.
-	 * @see #getSettings()
+	 * @param value the new value of the '<em>User Settings</em>' reference.
+	 * @see #getUserSettings()
 	 * @generated
 	 */
-	void setSettings(UserSettings value);
+	void setUserSettings(UserSettings value);
 
 	/**
 	 * Returns the value of the '<em><b>Schemas</b></em>' reference list.

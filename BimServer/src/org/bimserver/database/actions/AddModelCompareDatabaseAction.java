@@ -39,8 +39,8 @@ public class AddModelCompareDatabaseAction extends AddDatabaseAction<ModelCompar
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
-		user.getSettings().getModelcompares().add(getIdEObject());
-		getDatabaseSession().store(user.getSettings());
+		user.getUserSettings().getModelcompares().add(getIdEObject());
+		getDatabaseSession().store(user.getUserSettings());
 		return super.execute();
 	}
 }

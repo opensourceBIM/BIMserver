@@ -1,5 +1,6 @@
 package org.bimserver.ifc.compare;
 
+import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.modelcompare.ModelCompare;
@@ -45,5 +46,10 @@ public class GuidBasedModelComparePlugin implements ModelComparePlugin {
 		} catch (ObjectIDMException e) {
 			throw new ModelCompareException(e);
 		}
+	}
+
+	@Override
+	public ObjectDefinition getSettingsDefinition() {
+		return null;
 	}
 }

@@ -37,7 +37,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-import org.bimserver.models.store.ServerDescriptor;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.classloaders.DelegatingClassLoader;
 import org.bimserver.plugins.classloaders.EclipsePluginClassloader;
@@ -517,8 +516,8 @@ public class PluginManager {
 		return getPluginByClassName(ServicePlugin.class, className, onlyEnabled);
 	}
 
-	public void register(ServerDescriptor serverDescriptor, ServiceDescriptor serviceDescriptor, NotificationInterface notificationInterface) {
-		notificationsManagerInterface.register(serverDescriptor, serviceDescriptor, notificationInterface);
+	public void register(ServiceDescriptor serviceDescriptor, NotificationInterface notificationInterface) {
+		notificationsManagerInterface.register(serviceDescriptor, notificationInterface);
 	}
 
 	public ServiceFactory getServiceFactory() {

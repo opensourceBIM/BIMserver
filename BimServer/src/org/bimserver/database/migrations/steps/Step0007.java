@@ -42,7 +42,7 @@ public class Step0007 extends Migration {
 		serializerIfcEngineReference.setEOpposite(ifcEngineSerializersReference);
 		ifcEngineSerializersReference.setEOpposite(serializerIfcEngineReference);
 		
-		EReference ifcEngineSettings = schema.createEReference(ifcEnginePluginClass, "settings", userSettingsClass, Multiplicity.SINGLE);
+		EReference ifcEngineSettings = schema.createEReference(ifcEnginePluginClass, "userSettings", userSettingsClass, Multiplicity.SINGLE);
 
 		EReference settingsIfcEngines = schema.createEReference(userSettingsClass, "ifcEngines", ifcEnginePluginClass, Multiplicity.MANY);
 

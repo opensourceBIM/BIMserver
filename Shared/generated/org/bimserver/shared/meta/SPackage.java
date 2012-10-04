@@ -124,7 +124,7 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SModelComparePluginDescriptor");
 		Class.forName("org.bimserver.interfaces.objects.SModelComparePluginConfiguration");
 		Class.forName("org.bimserver.interfaces.objects.STrigger");
-		Class.forName("org.bimserver.interfaces.objects.SServerDescriptor");
+		Class.forName("org.bimserver.interfaces.objects.SProfileDescriptor");
 		Class.forName("org.bimserver.interfaces.objects.SServiceDescriptor");
 		Class.forName("org.bimserver.interfaces.objects.SService");
 		Class.forName("org.bimserver.interfaces.objects.SToken");
@@ -135,6 +135,21 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SServiceField");
 		Class.forName("org.bimserver.interfaces.objects.SServiceType");
 		Class.forName("org.bimserver.interfaces.objects.SServiceParameter");
+		Class.forName("org.bimserver.interfaces.objects.SPrimitiveEnum");
+		Class.forName("org.bimserver.interfaces.objects.STypeDefinition");
+		Class.forName("org.bimserver.interfaces.objects.SObjectDefinition");
+		Class.forName("org.bimserver.interfaces.objects.SPrimitiveDefinition");
+		Class.forName("org.bimserver.interfaces.objects.SArrayDefinition");
+		Class.forName("org.bimserver.interfaces.objects.SParameterDefinition");
+		Class.forName("org.bimserver.interfaces.objects.SType");
+		Class.forName("org.bimserver.interfaces.objects.SObjectType");
+		Class.forName("org.bimserver.interfaces.objects.SPrimitiveType");
+		Class.forName("org.bimserver.interfaces.objects.SLongType");
+		Class.forName("org.bimserver.interfaces.objects.SDoubleType");
+		Class.forName("org.bimserver.interfaces.objects.SStringType");
+		Class.forName("org.bimserver.interfaces.objects.SBooleanType");
+		Class.forName("org.bimserver.interfaces.objects.SArrayType");
+		Class.forName("org.bimserver.interfaces.objects.SParameter");
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);
 		}

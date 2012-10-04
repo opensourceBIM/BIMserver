@@ -59,9 +59,12 @@ import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
 import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
+import org.bimserver.interfaces.objects.SObjectDefinition;
 import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
+import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
+import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
@@ -69,7 +72,6 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
-import org.bimserver.interfaces.objects.SServerDescriptor;
 import org.bimserver.interfaces.objects.SServerInfo;
 import org.bimserver.interfaces.objects.SService;
 import org.bimserver.interfaces.objects.SServiceDescriptor;
@@ -158,6 +160,7 @@ public interface ServiceInterface {
 			@QueryParam("comment") @WebParam(name = "comment", partName = "checkin.comment") String comment,
 			@QueryParam("deserializerOid") @WebParam(name = "deserializerOid", partName = "checkin.deserializerOid") Long deserializerOid,
 			@QueryParam("fileSize") @WebParam(name = "fileSize", partName = "checkin.fileSize") Long fileSize,
+			@QueryParam("fileName") @WebParam(name = "fileName", partName = "checkin.fileName") String fileName,
 			@QueryParam("ifcFile") @WebParam(name = "ifcFile", partName = "checkin.ifcFile") @XmlMimeType("application/octet-stream") DataHandler ifcFile,
 			@QueryParam("merge") @WebParam(name = "merge", partName = "checkin.merge") Boolean merge,
 			@QueryParam("sync") @WebParam(name = "sync", partName = "checkin.sync") Boolean sync) throws ServerException, UserException;
@@ -472,7 +475,7 @@ public interface ServiceInterface {
 	@Produces({"application/xml", "application/json"})
 	@WebMethod(action = "getAllProjects")
 	List<SProject> getAllProjects(
-		@WebParam(name = "onlyTopLevel", partName = "getAllProjects.onlyTopLevel") boolean onlyTopLevel) throws ServerException, UserException;
+		@WebParam(name = "onlyTopLevel", partName = "getAllProjects.onlyTopLevel") Boolean onlyTopLevel) throws ServerException, UserException;
 
 	/**
 	 * 
@@ -1843,12 +1846,16 @@ public interface ServiceInterface {
 	void setServiceRepositoryUrl(
 		@WebParam(name = "url", partName = "setServiceRepositoryUrl.url") String url) throws ServerException, UserException;
 	
-	@WebMethod(action="getExternalServers")
-	List<SServerDescriptor> getExternalServers() throws ServerException, UserException;
+	@WebMethod(action="getServiceDescriptor")
+	SServiceDescriptor getServiceDescriptor(
+		@WebParam(name = "url", partName = "getServiceDescriptor.url") String url) throws ServerException, UserException;
 	
-	@WebMethod(action="getExternalServices")
-	List<SServiceDescriptor> getExternalServices(
-		@WebParam(name = "remoteUrl", partName = "getExternalServices.remoteUrl") String remoteUrl) throws ServerException, UserException;
+	@WebMethod(action="getAllServiceDescriptors")
+	List<SServiceDescriptor> getAllServiceDescriptors() throws ServerException, UserException;
+
+	@WebMethod(action="getAllPublicProfiles")
+	List<SProfileDescriptor> getAllPublicProfiles(
+		@WebParam(name = "serviceUrl", partName = "getAllPublicProfiles.serviceUrl") String serviceUrl) throws ServerException, UserException;
 
 	@WebMethod(action="addServiceToProject")
 	void addServiceToProject(
@@ -2222,4 +2229,22 @@ public interface ServiceInterface {
 	@WebMethod(action = "registerAll")
 	void registerAll(
 		@WebParam(name = "endPointId", partName = "registerAll.endPointId") long endPointId) throws ServerException, UserException;
+
+	@WebMethod(action = "getAllPrivateProfiles")
+	List<SProfileDescriptor> getAllPrivateProfiles(
+		@WebParam(name = "serviceUrl", partName = "getAllPrivateProfiles.serviceUrl") String serviceUrl, 
+		@WebParam(name = "token", partName = "getAllPrivateProfiles.token") String token) throws ServerException, UserException;
+	
+	@WebMethod(action = "getPluginObjectDefinition")
+	SObjectDefinition getPluginObjectDefinition(
+		@WebParam(name = "className", partName = "getPluginObjectDefinition.className") String className) throws ServerException, UserException;
+
+	@WebMethod(action = "setPluginSettings")
+	void setPluginSettings(
+		@WebParam(name = "poid", partName = "setPluginSettings.poid") long poid, 
+		@WebParam(name = "settings", partName = "setPluginSettings.settings") SObjectType settings) throws ServerException, UserException;
+
+	@WebMethod(action = "getPluginSettings")
+	SObjectType getPluginSettings(
+		@WebParam(name = "poid", partName = "getPluginSettings.poid") long poid) throws ServerException, UserException;
 }

@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.QueryEnginePluginConfigurationImpl#getSettings <em>Settings</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.QueryEnginePluginConfigurationImpl#getUserSettings <em>User Settings</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,8 +60,8 @@ public class QueryEnginePluginConfigurationImpl extends PluginConfigurationImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UserSettings getSettings() {
-		return (UserSettings) eGet(StorePackage.Literals.QUERY_ENGINE_PLUGIN_CONFIGURATION__SETTINGS, true);
+	public UserSettings getUserSettings() {
+		return (UserSettings) eGet(StorePackage.Literals.QUERY_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS, true);
 	}
 
 	/**
@@ -69,8 +69,8 @@ public class QueryEnginePluginConfigurationImpl extends PluginConfigurationImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSettings(UserSettings newSettings) {
-		eSet(StorePackage.Literals.QUERY_ENGINE_PLUGIN_CONFIGURATION__SETTINGS, newSettings);
+	public void setUserSettings(UserSettings newUserSettings) {
+		eSet(StorePackage.Literals.QUERY_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS, newUserSettings);
 	}
 
 } //QueryEnginePluginConfigurationImpl

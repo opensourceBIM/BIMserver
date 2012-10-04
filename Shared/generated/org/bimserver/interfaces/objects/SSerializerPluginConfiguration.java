@@ -31,7 +31,7 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 	private java.lang.String extension;
 	private java.lang.String contentType;
 	private long objectIDMId = -1;
-	private long settingsId = -1;
+	private long userSettingsId = -1;
 	private long ifcEngineId = -1;
 	public long getOid() {
 		return oid;
@@ -63,6 +63,9 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 		if (sField.getName().equals("className")) {
 			return getClassName();
 		}
+		if (sField.getName().equals("settingsId")) {
+			return getSettingsId();
+		}
 		if (sField.getName().equals("extension")) {
 			return getExtension();
 		}
@@ -72,8 +75,8 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 		if (sField.getName().equals("objectIDMId")) {
 			return getObjectIDMId();
 		}
-		if (sField.getName().equals("settingsId")) {
-			return getSettingsId();
+		if (sField.getName().equals("userSettingsId")) {
+			return getUserSettingsId();
 		}
 		if (sField.getName().equals("ifcEngineId")) {
 			return getIfcEngineId();
@@ -101,6 +104,10 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 			setClassName((String)val);
 			return;
 		}
+		if (sField.getName().equals("settingsId")) {
+			setSettingsId((Long)val);
+			return;
+		}
 		if (sField.getName().equals("extension")) {
 			setExtension((String)val);
 			return;
@@ -113,8 +120,8 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 			setObjectIDMId((Long)val);
 			return;
 		}
-		if (sField.getName().equals("settingsId")) {
-			setSettingsId((Long)val);
+		if (sField.getName().equals("userSettingsId")) {
+			setUserSettingsId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("ifcEngineId")) {
@@ -152,12 +159,12 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 		this.objectIDMId = objectIDMId;
 	}
 	
-	public long getSettingsId() {
-		return settingsId;
+	public long getUserSettingsId() {
+		return userSettingsId;
 	}
 
-	public void setSettingsId(long settingsId) {
-		this.settingsId = settingsId;
+	public void setUserSettingsId(long userSettingsId) {
+		this.userSettingsId = userSettingsId;
 	}
 	
 	public long getIfcEngineId() {

@@ -149,6 +149,17 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
+<%
+	if (!metaDataManager.getDirectSubClasses(eClass).isEmpty()) {
+		for (EClass subClass : metaDataManager.getDirectSubClasses(eClass)) {
+%>
+		<%=metaDataManager.getDirectSubClasses(eClass).iterator().next() == subClass ? "" : "else "%>if (input instanceof S<%=subClass.getName()%>) {
+			return convertFromSObject((S<%=subClass.getName()%>)input, session);
+		}
+<%
+		}
+		}
+%>		
 		<%=eClass.getName()%> result = <%=StringUtils.firstUpperCase(eClass.getEPackage().getName())%>Factory.eINSTANCE.create<%=eClass.getName()%>();
 <% if (eClass.getEAnnotation("nodatabase") == null) { %>
 		((IdEObjectImpl)result).setOid(input.getOid());

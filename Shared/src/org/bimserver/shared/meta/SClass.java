@@ -270,4 +270,12 @@ public class SClass {
 	public boolean isBoolean() {
 		return name.equals("java.lang.Boolean") || name.equals("boolean");
 	}
+
+	public boolean isDouble() {
+		return name.equals("java.lang.Double") || name.equals("double");
+	}
+
+	public boolean isFloat() {
+		return name.equals("java.lang.Float") || name.equals("float");
+	}
 }

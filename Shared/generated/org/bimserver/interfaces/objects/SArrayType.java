@@ -24,12 +24,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SExternalServer implements SBase
+public class SArrayType extends SType implements SDataBase
 {
 	private long oid = -1;
+
 	@XmlTransient
 	private static SClass sClass;
-	
+	private List<SType> values = new ArrayList<SType>();
 	public long getOid() {
 		return oid;
 	}
@@ -44,27 +45,12 @@ public class SExternalServer implements SBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SExternalServer.sClass = sClass;
+		SArrayType.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("title")) {
-			return getTitle();
-		}
-		if (sField.getName().equals("url")) {
-			return getUrl();
-		}
-		if (sField.getName().equals("description")) {
-			return getDescription();
-		}
-		if (sField.getName().equals("token")) {
-			return getToken();
-		}
-		if (sField.getName().equals("userId")) {
-			return getUserId();
-		}
-		if (sField.getName().equals("profiles")) {
-			return getProfiles();
+		if (sField.getName().equals("values")) {
+			return getValues();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -72,29 +58,10 @@ public class SExternalServer implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("title")) {
-			setTitle((String)val);
-			return;
-		}
-		if (sField.getName().equals("url")) {
-			setUrl((String)val);
-			return;
-		}
-		if (sField.getName().equals("description")) {
-			setDescription((String)val);
-			return;
-		}
-		if (sField.getName().equals("token")) {
-			setToken((String)val);
-			return;
-		}
-		if (sField.getName().equals("userId")) {
-			setUserId((Long)val);
-			return;
-		}
-		if (sField.getName().equals("profiles")) {
-			setProfiles((List<Long>)val);
+		if (sField.getName().equals("values")) {
+			setValues((List<SType>)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -104,55 +71,14 @@ public class SExternalServer implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.String title;
-	private java.lang.String url;
-	private java.lang.String description;
-	private java.lang.String token;
-	private long userId;
-	private List<Long> profiles = new ArrayList<Long>();
-	public java.lang.String getTitle() {
-		return title;
+	public List<SType> getValues() {
+		return values;
 	}
 
-	public void setTitle(java.lang.String title) {
-		this.title = title;
-	}
-	public java.lang.String getUrl() {
-		return url;
-	}
-
-	public void setUrl(java.lang.String url) {
-		this.url = url;
-	}
-	public java.lang.String getDescription() {
-		return description;
-	}
-
-	public void setDescription(java.lang.String description) {
-		this.description = description;
-	}
-	public java.lang.String getToken() {
-		return token;
-	}
-
-	public void setToken(java.lang.String token) {
-		this.token = token;
-	}
-	public long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setValues(List<SType> values) {
+		this.values = values;
 	}
 	
-	public List<Long> getProfiles() {
-		return profiles;
-	}
-
-	public void setProfiles(List<Long> profiles) {
-		this.profiles = profiles;
-	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -169,7 +95,7 @@ public class SExternalServer implements SBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SExternalServer other = (SExternalServer) obj;
+		SArrayType other = (SArrayType) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

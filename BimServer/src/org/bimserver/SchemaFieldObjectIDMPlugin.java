@@ -18,6 +18,7 @@ package org.bimserver;
  *****************************************************************************/
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.objectidms.ObjectIDM;
@@ -60,5 +61,10 @@ public class SchemaFieldObjectIDMPlugin implements ObjectIDMPlugin {
 	@Override
 	public String getDefaultName() {
 		return "default";
+	}
+
+	@Override
+	public ObjectDefinition getSettingsDefinition() {
+		return null;
 	}
 }

@@ -94,7 +94,7 @@ public class SServiceInterfaceService extends SService {
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SModelComparePluginDescriptor")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SModelComparePluginConfiguration")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.STrigger")));
-		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SServerDescriptor")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SProfileDescriptor")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SServiceDescriptor")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SService")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SToken")));
@@ -105,6 +105,21 @@ public class SServiceInterfaceService extends SService {
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SServiceField")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SServiceType")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SServiceParameter")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SPrimitiveEnum")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.STypeDefinition")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SObjectDefinition")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SPrimitiveDefinition")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SArrayDefinition")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SParameterDefinition")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SType")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SObjectType")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SPrimitiveType")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SLongType")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SDoubleType")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SStringType")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SBooleanType")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SArrayType")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SParameter")));
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);
 		}

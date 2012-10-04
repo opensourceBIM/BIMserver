@@ -16,20 +16,20 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SRunResult implements SBase
+public class SParameter implements SDataBase
 {
 	private long oid = -1;
+
 	@XmlTransient
 	private static SClass sClass;
-	
+	private java.lang.String name;
+	private SType value;
 	public long getOid() {
 		return oid;
 	}
@@ -44,50 +44,29 @@ public class SRunResult implements SBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SRunResult.sClass = sClass;
+		SParameter.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("runOke")) {
-			return getRunOke();
+		if (sField.getName().equals("name")) {
+			return getName();
 		}
-		if (sField.getName().equals("warnings")) {
-			return getWarnings();
-		}
-		if (sField.getName().equals("errors")) {
-			return getErrors();
-		}
-		if (sField.getName().equals("output")) {
-			return getOutput();
-		}
-		if (sField.getName().equals("downloadId")) {
-			return getDownloadId();
+		if (sField.getName().equals("value")) {
+			return getValue();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
-	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("runOke")) {
-			setRunOke((Boolean)val);
+		if (sField.getName().equals("name")) {
+			setName((String)val);
 			return;
 		}
-		if (sField.getName().equals("warnings")) {
-			setWarnings((List<String>)val);
-			return;
-		}
-		if (sField.getName().equals("errors")) {
-			setErrors((List<String>)val);
-			return;
-		}
-		if (sField.getName().equals("output")) {
-			setOutput((String)val);
-			return;
-		}
-		if (sField.getName().equals("downloadId")) {
-			setDownloadId((Integer)val);
+		if (sField.getName().equals("value")) {
+			setValue((SType)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -97,48 +76,23 @@ public class SRunResult implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.Boolean runOke;
-	private List<java.lang.String> warnings = new ArrayList<java.lang.String>();
-	private List<java.lang.String> errors = new ArrayList<java.lang.String>();
-	private java.lang.String output;
-	private java.lang.Integer downloadId;
-	public java.lang.Boolean getRunOke() {
-		return runOke;
+	public java.lang.String getName() {
+		return name;
 	}
 
-	public void setRunOke(java.lang.Boolean runOke) {
-		this.runOke = runOke;
+	public void setName(java.lang.String name) {
+		this.name = name;
+	}
+	
+	public SType getValue() {
+		return value;
 	}
 
-	public List<java.lang.String> getWarnings() {
-		return warnings;
+	public void setValue(SType value) {
+		this.value = value;
 	}
-
-	public void setWarnings(List<java.lang.String> warnings) {
-		this.warnings = warnings;
-	}
-
-	public List<java.lang.String> getErrors() {
-		return errors;
-	}
-
-	public void setErrors(List<java.lang.String> errors) {
-		this.errors = errors;
-	}
-	public java.lang.String getOutput() {
-		return output;
-	}
-
-	public void setOutput(java.lang.String output) {
-		this.output = output;
-	}
-	public java.lang.Integer getDownloadId() {
-		return downloadId;
-	}
-
-	public void setDownloadId(java.lang.Integer downloadId) {
-		this.downloadId = downloadId;
-	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -155,7 +109,7 @@ public class SRunResult implements SBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SRunResult other = (SRunResult) obj;
+		SParameter other = (SParameter) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

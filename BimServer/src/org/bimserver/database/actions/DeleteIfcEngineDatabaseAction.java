@@ -35,7 +35,7 @@ public class DeleteIfcEngineDatabaseAction extends DeleteDatabaseAction<IfcEngin
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		IfcEnginePluginConfiguration object = getDatabaseSession().get(geteClass(), getOid(), false, null);
-		UserSettings settings = object.getSettings();
+		UserSettings settings = object.getUserSettings();
 		settings.getIfcEngines().remove(object);
 		getDatabaseSession().store(settings);
 		return super.execute();

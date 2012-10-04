@@ -17,12 +17,14 @@ package org.bimserver.interfaces.objects;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-public enum SMergeIdentifier {
-	NAME(0),
-	GUID(1);
+public enum SPrimitiveEnum {
+	LONG(0),
+	DOUBLE(1),
+	BOOLEAN(2),
+	STRING(3);
 	int ordinal;
 
-	SMergeIdentifier(int ordinal) {
+	SPrimitiveEnum(int ordinal) {
 		this.ordinal = ordinal;
 	}
 	

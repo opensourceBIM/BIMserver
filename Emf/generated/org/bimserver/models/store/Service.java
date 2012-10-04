@@ -34,9 +34,13 @@ import org.bimserver.models.log.AccessMethod;
  *   <li>{@link org.bimserver.models.store.Service#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getTrigger <em>Trigger</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#isReadRevision <em>Read Revision</em>}</li>
- *   <li>{@link org.bimserver.models.store.Service#isReadExtendedData <em>Read Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#getReadExtendedData <em>Read Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getWriteRevision <em>Write Revision</em>}</li>
- *   <li>{@link org.bimserver.models.store.Service#isWriteExtendedData <em>Write Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#getWriteExtendedData <em>Write Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#getProfileIdentifier <em>Profile Identifier</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#getProfileName <em>Profile Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#getProfileDescription <em>Profile Description</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#isProfilePublic <em>Profile Public</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getProject <em>Project</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getUser <em>User</em>}</li>
  * </ul>
@@ -237,30 +241,30 @@ public interface Service extends IdEObject {
 	void setReadRevision(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Read Extended Data</b></em>' attribute.
+	 * Returns the value of the '<em><b>Read Extended Data</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Read Extended Data</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Read Extended Data</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Read Extended Data</em>' attribute.
-	 * @see #setReadExtendedData(boolean)
+	 * @return the value of the '<em>Read Extended Data</em>' reference.
+	 * @see #setReadExtendedData(ExtendedDataSchema)
 	 * @see org.bimserver.models.store.StorePackage#getService_ReadExtendedData()
 	 * @model
 	 * @generated
 	 */
-	boolean isReadExtendedData();
+	ExtendedDataSchema getReadExtendedData();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Service#isReadExtendedData <em>Read Extended Data</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#getReadExtendedData <em>Read Extended Data</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Read Extended Data</em>' attribute.
-	 * @see #isReadExtendedData()
+	 * @param value the new value of the '<em>Read Extended Data</em>' reference.
+	 * @see #getReadExtendedData()
 	 * @generated
 	 */
-	void setReadExtendedData(boolean value);
+	void setReadExtendedData(ExtendedDataSchema value);
 
 	/**
 	 * Returns the value of the '<em><b>Write Revision</b></em>' reference.
@@ -289,30 +293,134 @@ public interface Service extends IdEObject {
 	void setWriteRevision(Project value);
 
 	/**
-	 * Returns the value of the '<em><b>Write Extended Data</b></em>' attribute.
+	 * Returns the value of the '<em><b>Write Extended Data</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Write Extended Data</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Write Extended Data</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Write Extended Data</em>' attribute.
-	 * @see #setWriteExtendedData(boolean)
+	 * @return the value of the '<em>Write Extended Data</em>' reference.
+	 * @see #setWriteExtendedData(ExtendedDataSchema)
 	 * @see org.bimserver.models.store.StorePackage#getService_WriteExtendedData()
 	 * @model
 	 * @generated
 	 */
-	boolean isWriteExtendedData();
+	ExtendedDataSchema getWriteExtendedData();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Service#isWriteExtendedData <em>Write Extended Data</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#getWriteExtendedData <em>Write Extended Data</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Write Extended Data</em>' attribute.
-	 * @see #isWriteExtendedData()
+	 * @param value the new value of the '<em>Write Extended Data</em>' reference.
+	 * @see #getWriteExtendedData()
 	 * @generated
 	 */
-	void setWriteExtendedData(boolean value);
+	void setWriteExtendedData(ExtendedDataSchema value);
+
+	/**
+	 * Returns the value of the '<em><b>Profile Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Profile Identifier</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Profile Identifier</em>' attribute.
+	 * @see #setProfileIdentifier(String)
+	 * @see org.bimserver.models.store.StorePackage#getService_ProfileIdentifier()
+	 * @model
+	 * @generated
+	 */
+	String getProfileIdentifier();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#getProfileIdentifier <em>Profile Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Profile Identifier</em>' attribute.
+	 * @see #getProfileIdentifier()
+	 * @generated
+	 */
+	void setProfileIdentifier(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Profile Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Profile Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Profile Name</em>' attribute.
+	 * @see #setProfileName(String)
+	 * @see org.bimserver.models.store.StorePackage#getService_ProfileName()
+	 * @model
+	 * @generated
+	 */
+	String getProfileName();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#getProfileName <em>Profile Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Profile Name</em>' attribute.
+	 * @see #getProfileName()
+	 * @generated
+	 */
+	void setProfileName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Profile Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Profile Description</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Profile Description</em>' attribute.
+	 * @see #setProfileDescription(String)
+	 * @see org.bimserver.models.store.StorePackage#getService_ProfileDescription()
+	 * @model
+	 * @generated
+	 */
+	String getProfileDescription();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#getProfileDescription <em>Profile Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Profile Description</em>' attribute.
+	 * @see #getProfileDescription()
+	 * @generated
+	 */
+	void setProfileDescription(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Profile Public</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Profile Public</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Profile Public</em>' attribute.
+	 * @see #setProfilePublic(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getService_ProfilePublic()
+	 * @model
+	 * @generated
+	 */
+	boolean isProfilePublic();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#isProfilePublic <em>Profile Public</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Profile Public</em>' attribute.
+	 * @see #isProfilePublic()
+	 * @generated
+	 */
+	void setProfilePublic(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Project</b></em>' reference.

@@ -346,8 +346,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseServerDescriptor(ServerDescriptor object) {
-			return createServerDescriptorAdapter();
+		public Adapter caseProfileDescriptor(ProfileDescriptor object) {
+			return createProfileDescriptorAdapter();
 		}
 
 		@Override
@@ -398,6 +398,76 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseServiceParameter(ServiceParameter object) {
 			return createServiceParameterAdapter();
+		}
+
+		@Override
+		public Adapter caseTypeDefinition(TypeDefinition object) {
+			return createTypeDefinitionAdapter();
+		}
+
+		@Override
+		public Adapter caseObjectDefinition(ObjectDefinition object) {
+			return createObjectDefinitionAdapter();
+		}
+
+		@Override
+		public Adapter casePrimitiveDefinition(PrimitiveDefinition object) {
+			return createPrimitiveDefinitionAdapter();
+		}
+
+		@Override
+		public Adapter caseArrayDefinition(ArrayDefinition object) {
+			return createArrayDefinitionAdapter();
+		}
+
+		@Override
+		public Adapter caseParameterDefinition(ParameterDefinition object) {
+			return createParameterDefinitionAdapter();
+		}
+
+		@Override
+		public Adapter caseType(Type object) {
+			return createTypeAdapter();
+		}
+
+		@Override
+		public Adapter caseObjectType(ObjectType object) {
+			return createObjectTypeAdapter();
+		}
+
+		@Override
+		public Adapter casePrimitiveType(PrimitiveType object) {
+			return createPrimitiveTypeAdapter();
+		}
+
+		@Override
+		public Adapter caseLongType(LongType object) {
+			return createLongTypeAdapter();
+		}
+
+		@Override
+		public Adapter caseDoubleType(DoubleType object) {
+			return createDoubleTypeAdapter();
+		}
+
+		@Override
+		public Adapter caseStringType(StringType object) {
+			return createStringTypeAdapter();
+		}
+
+		@Override
+		public Adapter caseBooleanType(BooleanType object) {
+			return createBooleanTypeAdapter();
+		}
+
+		@Override
+		public Adapter caseArrayType(ArrayType object) {
+			return createArrayTypeAdapter();
+		}
+
+		@Override
+		public Adapter caseParameter(Parameter object) {
+			return createParameterAdapter();
 		}
 
 		@Override
@@ -1162,16 +1232,16 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ServerDescriptor <em>Server Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ProfileDescriptor <em>Profile Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.store.ServerDescriptor
+	 * @see org.bimserver.models.store.ProfileDescriptor
 	 * @generated
 	 */
-	public Adapter createServerDescriptorAdapter() {
+	public Adapter createProfileDescriptorAdapter() {
 		return null;
 	}
 
@@ -1312,6 +1382,202 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createServiceParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.TypeDefinition <em>Type Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.TypeDefinition
+	 * @generated
+	 */
+	public Adapter createTypeDefinitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ObjectDefinition <em>Object Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ObjectDefinition
+	 * @generated
+	 */
+	public Adapter createObjectDefinitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.PrimitiveDefinition <em>Primitive Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.PrimitiveDefinition
+	 * @generated
+	 */
+	public Adapter createPrimitiveDefinitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ArrayDefinition <em>Array Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ArrayDefinition
+	 * @generated
+	 */
+	public Adapter createArrayDefinitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ParameterDefinition <em>Parameter Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ParameterDefinition
+	 * @generated
+	 */
+	public Adapter createParameterDefinitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Type <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.Type
+	 * @generated
+	 */
+	public Adapter createTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ObjectType <em>Object Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ObjectType
+	 * @generated
+	 */
+	public Adapter createObjectTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.PrimitiveType <em>Primitive Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.PrimitiveType
+	 * @generated
+	 */
+	public Adapter createPrimitiveTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.LongType <em>Long Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.LongType
+	 * @generated
+	 */
+	public Adapter createLongTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.DoubleType <em>Double Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.DoubleType
+	 * @generated
+	 */
+	public Adapter createDoubleTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.StringType <em>String Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.StringType
+	 * @generated
+	 */
+	public Adapter createStringTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.BooleanType <em>Boolean Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.BooleanType
+	 * @generated
+	 */
+	public Adapter createBooleanTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ArrayType <em>Array Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ArrayType
+	 * @generated
+	 */
+	public Adapter createArrayTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Parameter <em>Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.Parameter
+	 * @generated
+	 */
+	public Adapter createParameterAdapter() {
 		return null;
 	}
 

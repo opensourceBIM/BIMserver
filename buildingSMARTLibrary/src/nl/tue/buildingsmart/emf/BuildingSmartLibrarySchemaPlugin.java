@@ -26,6 +26,7 @@ import java.io.InputStream;
 import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.apache.commons.io.IOUtils;
+import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.schema.SchemaDefinition;
@@ -107,5 +108,10 @@ public class BuildingSmartLibrarySchemaPlugin implements SchemaPlugin {
 	@Override
 	public String getDefaultName() {
 		return "BuildingSmartLibrarySchemaPlugin";
+	}
+
+	@Override
+	public ObjectDefinition getSettingsDefinition() {
+		return null;
 	}
 }

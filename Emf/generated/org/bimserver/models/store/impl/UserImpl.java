@@ -49,9 +49,10 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getUserType <em>User Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getUsername <em>Username</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getLastSeen <em>Last Seen</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.UserImpl#getToken <em>Token</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getValidationToken <em>Validation Token</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getValidationTokenCreated <em>Validation Token Created</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.UserImpl#getSettings <em>Settings</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.UserImpl#getUserSettings <em>User Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getSchemas <em>Schemas</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getExtendedData <em>Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getServices <em>Services</em>}</li>
@@ -259,6 +260,24 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getToken() {
+		return (String) eGet(StorePackage.Literals.USER__TOKEN, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setToken(String newToken) {
+		eSet(StorePackage.Literals.USER__TOKEN, newToken);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getValidationToken() {
 		return (String) eGet(StorePackage.Literals.USER__VALIDATION_TOKEN, true);
 	}
@@ -295,8 +314,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UserSettings getSettings() {
-		return (UserSettings) eGet(StorePackage.Literals.USER__SETTINGS, true);
+	public UserSettings getUserSettings() {
+		return (UserSettings) eGet(StorePackage.Literals.USER__USER_SETTINGS, true);
 	}
 
 	/**
@@ -304,8 +323,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSettings(UserSettings newSettings) {
-		eSet(StorePackage.Literals.USER__SETTINGS, newSettings);
+	public void setUserSettings(UserSettings newUserSettings) {
+		eSet(StorePackage.Literals.USER__USER_SETTINGS, newUserSettings);
 	}
 
 	/**

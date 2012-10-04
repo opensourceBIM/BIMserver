@@ -18,33 +18,34 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 
-import org.bimserver.models.store.ServerDescriptor;
+import org.bimserver.models.store.ParameterDefinition;
 import org.bimserver.models.store.StorePackage;
 
+import org.bimserver.models.store.TypeDefinition;
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Server Descriptor</b></em>'.
+ * An implementation of the model object '<em><b>Parameter Definition</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.ServerDescriptorImpl#getTitle <em>Title</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ServerDescriptorImpl#getUrl <em>Url</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ServerDescriptorImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ParameterDefinitionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ParameterDefinitionImpl#isRequired <em>Required</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ParameterDefinitionImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ServerDescriptorImpl extends IdEObjectImpl implements ServerDescriptor {
+public class ParameterDefinitionImpl extends IdEObjectImpl implements ParameterDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ServerDescriptorImpl() {
+	protected ParameterDefinitionImpl() {
 		super();
 	}
 
@@ -55,7 +56,7 @@ public class ServerDescriptorImpl extends IdEObjectImpl implements ServerDescrip
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StorePackage.Literals.SERVER_DESCRIPTOR;
+		return StorePackage.Literals.PARAMETER_DEFINITION;
 	}
 
 	/**
@@ -73,8 +74,8 @@ public class ServerDescriptorImpl extends IdEObjectImpl implements ServerDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getTitle() {
-		return (String) eGet(StorePackage.Literals.SERVER_DESCRIPTOR__TITLE, true);
+	public String getName() {
+		return (String) eGet(StorePackage.Literals.PARAMETER_DEFINITION__NAME, true);
 	}
 
 	/**
@@ -82,8 +83,8 @@ public class ServerDescriptorImpl extends IdEObjectImpl implements ServerDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTitle(String newTitle) {
-		eSet(StorePackage.Literals.SERVER_DESCRIPTOR__TITLE, newTitle);
+	public void setName(String newName) {
+		eSet(StorePackage.Literals.PARAMETER_DEFINITION__NAME, newName);
 	}
 
 	/**
@@ -91,8 +92,8 @@ public class ServerDescriptorImpl extends IdEObjectImpl implements ServerDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getUrl() {
-		return (String) eGet(StorePackage.Literals.SERVER_DESCRIPTOR__URL, true);
+	public boolean isRequired() {
+		return (Boolean) eGet(StorePackage.Literals.PARAMETER_DEFINITION__REQUIRED, true);
 	}
 
 	/**
@@ -100,8 +101,8 @@ public class ServerDescriptorImpl extends IdEObjectImpl implements ServerDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUrl(String newUrl) {
-		eSet(StorePackage.Literals.SERVER_DESCRIPTOR__URL, newUrl);
+	public void setRequired(boolean newRequired) {
+		eSet(StorePackage.Literals.PARAMETER_DEFINITION__REQUIRED, newRequired);
 	}
 
 	/**
@@ -109,8 +110,8 @@ public class ServerDescriptorImpl extends IdEObjectImpl implements ServerDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDescription() {
-		return (String) eGet(StorePackage.Literals.SERVER_DESCRIPTOR__DESCRIPTION, true);
+	public TypeDefinition getType() {
+		return (TypeDefinition) eGet(StorePackage.Literals.PARAMETER_DEFINITION__TYPE, true);
 	}
 
 	/**
@@ -118,8 +119,8 @@ public class ServerDescriptorImpl extends IdEObjectImpl implements ServerDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDescription(String newDescription) {
-		eSet(StorePackage.Literals.SERVER_DESCRIPTOR__DESCRIPTION, newDescription);
+	public void setType(TypeDefinition newType) {
+		eSet(StorePackage.Literals.PARAMETER_DEFINITION__TYPE, newType);
 	}
 
-} //ServerDescriptorImpl
+} //ParameterDefinitionImpl

@@ -31,7 +31,6 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ServerDescriptor;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.models.store.StoreFactory;
@@ -108,18 +107,15 @@ public class DualLocalDevBimCombinedServerStarter {
 							bimServer.getSystemService().setup("http://localhost:" + port, "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
 						}
 						
-						ServerDescriptor serverDescriptor = StoreFactory.eINSTANCE.createServerDescriptor();
-						serverDescriptor.setTitle("BIMWebServer");
-						bimServer.getNotificationsManager().register(serverDescriptor);
-						
 						ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
+						serviceDescriptor.setProviderName("BIMWebServer");
 						serviceDescriptor.setUrl("");
 						serviceDescriptor.setName("Desktop Notifications");
 						serviceDescriptor.setTrigger(Trigger.NEW_REVISION);
 						serviceDescriptor.setNotificationProtocol(AccessMethod.INTERNAL);
 						serviceDescriptor.setDescription("Desktop Notifications");
 						
-						bimServer.getNotificationsManager().register(serverDescriptor, serviceDescriptor, bimWebServer);
+						bimServer.getNotificationsManager().register(serviceDescriptor, bimWebServer);
 					} catch (PluginException e) {
 						LOGGER.error("", e);
 					} catch (ServiceException e) {

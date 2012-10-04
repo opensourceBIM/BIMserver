@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import javax.activation.DataHandler;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.CheckinStatus;
@@ -71,7 +72,6 @@ import org.bimserver.models.store.RevisionSummaryType;
 import org.bimserver.models.store.SIPrefix;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.SerializerPluginDescriptor;
-import org.bimserver.models.store.ServerDescriptor;
 import org.bimserver.models.store.ServerInfo;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.ServerState;
@@ -249,8 +249,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createModelComparePluginDescriptor();
 		case StorePackage.MODEL_COMPARE_PLUGIN_CONFIGURATION:
 			return (EObject) createModelComparePluginConfiguration();
-		case StorePackage.SERVER_DESCRIPTOR:
-			return (EObject) createServerDescriptor();
+		case StorePackage.PROFILE_DESCRIPTOR:
+			return (EObject) createProfileDescriptor();
 		case StorePackage.SERVICE_DESCRIPTOR:
 			return (EObject) createServiceDescriptor();
 		case StorePackage.SERVICE:
@@ -271,6 +271,34 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createServiceType();
 		case StorePackage.SERVICE_PARAMETER:
 			return (EObject) createServiceParameter();
+		case StorePackage.TYPE_DEFINITION:
+			return (EObject) createTypeDefinition();
+		case StorePackage.OBJECT_DEFINITION:
+			return (EObject) createObjectDefinition();
+		case StorePackage.PRIMITIVE_DEFINITION:
+			return (EObject) createPrimitiveDefinition();
+		case StorePackage.ARRAY_DEFINITION:
+			return (EObject) createArrayDefinition();
+		case StorePackage.PARAMETER_DEFINITION:
+			return (EObject) createParameterDefinition();
+		case StorePackage.TYPE:
+			return (EObject) createType();
+		case StorePackage.OBJECT_TYPE:
+			return (EObject) createObjectType();
+		case StorePackage.PRIMITIVE_TYPE:
+			return (EObject) createPrimitiveType();
+		case StorePackage.LONG_TYPE:
+			return (EObject) createLongType();
+		case StorePackage.DOUBLE_TYPE:
+			return (EObject) createDoubleType();
+		case StorePackage.STRING_TYPE:
+			return (EObject) createStringType();
+		case StorePackage.BOOLEAN_TYPE:
+			return (EObject) createBooleanType();
+		case StorePackage.ARRAY_TYPE:
+			return (EObject) createArrayType();
+		case StorePackage.PARAMETER:
+			return (EObject) createParameter();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -302,6 +330,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return createExtendedDataSchemaTypeFromString(eDataType, initialValue);
 		case StorePackage.TRIGGER:
 			return createTriggerFromString(eDataType, initialValue);
+		case StorePackage.PRIMITIVE_ENUM:
+			return createPrimitiveEnumFromString(eDataType, initialValue);
 		case StorePackage.DATA_HANDLER:
 			return createDataHandlerFromString(eDataType, initialValue);
 		default:
@@ -335,6 +365,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return convertExtendedDataSchemaTypeToString(eDataType, instanceValue);
 		case StorePackage.TRIGGER:
 			return convertTriggerToString(eDataType, instanceValue);
+		case StorePackage.PRIMITIVE_ENUM:
+			return convertPrimitiveEnumToString(eDataType, instanceValue);
 		case StorePackage.DATA_HANDLER:
 			return convertDataHandlerToString(eDataType, instanceValue);
 		default:
@@ -877,9 +909,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ServerDescriptor createServerDescriptor() {
-		ServerDescriptorImpl serverDescriptor = new ServerDescriptorImpl();
-		return serverDescriptor;
+	public ProfileDescriptor createProfileDescriptor() {
+		ProfileDescriptorImpl profileDescriptor = new ProfileDescriptorImpl();
+		return profileDescriptor;
 	}
 
 	/**
@@ -980,6 +1012,146 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public ServiceParameter createServiceParameter() {
 		ServiceParameterImpl serviceParameter = new ServiceParameterImpl();
 		return serviceParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TypeDefinition createTypeDefinition() {
+		TypeDefinitionImpl typeDefinition = new TypeDefinitionImpl();
+		return typeDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ObjectDefinition createObjectDefinition() {
+		ObjectDefinitionImpl objectDefinition = new ObjectDefinitionImpl();
+		return objectDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PrimitiveDefinition createPrimitiveDefinition() {
+		PrimitiveDefinitionImpl primitiveDefinition = new PrimitiveDefinitionImpl();
+		return primitiveDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ArrayDefinition createArrayDefinition() {
+		ArrayDefinitionImpl arrayDefinition = new ArrayDefinitionImpl();
+		return arrayDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ParameterDefinition createParameterDefinition() {
+		ParameterDefinitionImpl parameterDefinition = new ParameterDefinitionImpl();
+		return parameterDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Type createType() {
+		TypeImpl type = new TypeImpl();
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ObjectType createObjectType() {
+		ObjectTypeImpl objectType = new ObjectTypeImpl();
+		return objectType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PrimitiveType createPrimitiveType() {
+		PrimitiveTypeImpl primitiveType = new PrimitiveTypeImpl();
+		return primitiveType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LongType createLongType() {
+		LongTypeImpl longType = new LongTypeImpl();
+		return longType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DoubleType createDoubleType() {
+		DoubleTypeImpl doubleType = new DoubleTypeImpl();
+		return doubleType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StringType createStringType() {
+		StringTypeImpl stringType = new StringTypeImpl();
+		return stringType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BooleanType createBooleanType() {
+		BooleanTypeImpl booleanType = new BooleanTypeImpl();
+		return booleanType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ArrayType createArrayType() {
+		ArrayTypeImpl arrayType = new ArrayTypeImpl();
+		return arrayType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Parameter createParameter() {
+		ParameterImpl parameter = new ParameterImpl();
+		return parameter;
 	}
 
 	/**
@@ -1168,6 +1340,27 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertTriggerToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PrimitiveEnum createPrimitiveEnumFromString(EDataType eDataType, String initialValue) {
+		PrimitiveEnum result = PrimitiveEnum.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertPrimitiveEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SObjectIDMPluginConfiguration.class, SModelMergerPluginConfiguration.class, SIfcEnginePluginConfiguration.class, SInternalServicePluginConfiguration.class, SModelComparePluginConfiguration.class, SDeserializerPluginConfiguration.class, SQueryEnginePluginConfiguration.class, SSerializerPluginConfiguration.class})
+@XmlSeeAlso(value={SModelMergerPluginConfiguration.class, SObjectIDMPluginConfiguration.class, SInternalServicePluginConfiguration.class, SModelComparePluginConfiguration.class, SDeserializerPluginConfiguration.class, SSerializerPluginConfiguration.class, SQueryEnginePluginConfiguration.class, SIfcEnginePluginConfiguration.class})
 public class SPluginConfiguration implements SDataBase
 {
 	private long oid = -1;
@@ -34,6 +34,7 @@ public class SPluginConfiguration implements SDataBase
 	private java.lang.Boolean enabled;
 	private java.lang.String description;
 	private java.lang.String className;
+	private long settingsId = -1;
 	public long getOid() {
 		return oid;
 	}
@@ -64,6 +65,9 @@ public class SPluginConfiguration implements SDataBase
 		if (sField.getName().equals("className")) {
 			return getClassName();
 		}
+		if (sField.getName().equals("settingsId")) {
+			return getSettingsId();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -85,6 +89,10 @@ public class SPluginConfiguration implements SDataBase
 		}
 		if (sField.getName().equals("className")) {
 			setClassName((String)val);
+			return;
+		}
+		if (sField.getName().equals("settingsId")) {
+			setSettingsId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -124,6 +132,14 @@ public class SPluginConfiguration implements SDataBase
 
 	public void setClassName(java.lang.String className) {
 		this.className = className;
+	}
+	
+	public long getSettingsId() {
+		return settingsId;
+	}
+
+	public void setSettingsId(long settingsId) {
+		this.settingsId = settingsId;
 	}
 	
 	@Override

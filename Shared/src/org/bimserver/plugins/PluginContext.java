@@ -40,7 +40,6 @@ public class PluginContext {
 	private final PluginType pluginType;
 	private JavaFileManager javaFileManager;
 	private final ClassLoader classLoader;
-
 	private VirtualFile virtualFile;
 
 	public PluginContext(PluginManager pluginManager, ClassLoader classLoader, PluginType pluginType, String location) {

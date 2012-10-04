@@ -29,7 +29,8 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.InternalServicePluginConfigurationImpl#getSettings <em>Settings</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.InternalServicePluginConfigurationImpl#isRemoteAccessible <em>Remote Accessible</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.InternalServicePluginConfigurationImpl#getUserSettings <em>User Settings</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,8 +61,8 @@ public class InternalServicePluginConfigurationImpl extends PluginConfigurationI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UserSettings getSettings() {
-		return (UserSettings) eGet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__SETTINGS, true);
+	public boolean isRemoteAccessible() {
+		return (Boolean) eGet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__REMOTE_ACCESSIBLE, true);
 	}
 
 	/**
@@ -69,8 +70,26 @@ public class InternalServicePluginConfigurationImpl extends PluginConfigurationI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSettings(UserSettings newSettings) {
-		eSet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__SETTINGS, newSettings);
+	public void setRemoteAccessible(boolean newRemoteAccessible) {
+		eSet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__REMOTE_ACCESSIBLE, newRemoteAccessible);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UserSettings getUserSettings() {
+		return (UserSettings) eGet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__USER_SETTINGS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUserSettings(UserSettings newUserSettings) {
+		eSet(StorePackage.Literals.INTERNAL_SERVICE_PLUGIN_CONFIGURATION__USER_SETTINGS, newUserSettings);
 	}
 
 } //InternalServicePluginConfigurationImpl

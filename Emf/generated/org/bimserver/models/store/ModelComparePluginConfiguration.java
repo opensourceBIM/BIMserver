@@ -24,7 +24,7 @@ package org.bimserver.models.store;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.models.store.ModelComparePluginConfiguration#getSettings <em>Settings</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ModelComparePluginConfiguration#getUserSettings <em>User Settings</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,31 +34,31 @@ package org.bimserver.models.store;
  */
 public interface ModelComparePluginConfiguration extends PluginConfiguration {
 	/**
-	 * Returns the value of the '<em><b>Settings</b></em>' reference.
+	 * Returns the value of the '<em><b>User Settings</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.UserSettings#getModelcompares <em>Modelcompares</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Settings</em>' reference isn't clear,
+	 * If the meaning of the '<em>User Settings</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Settings</em>' reference.
-	 * @see #setSettings(UserSettings)
-	 * @see org.bimserver.models.store.StorePackage#getModelComparePluginConfiguration_Settings()
+	 * @return the value of the '<em>User Settings</em>' reference.
+	 * @see #setUserSettings(UserSettings)
+	 * @see org.bimserver.models.store.StorePackage#getModelComparePluginConfiguration_UserSettings()
 	 * @see org.bimserver.models.store.UserSettings#getModelcompares
 	 * @model opposite="modelcompares"
 	 * @generated
 	 */
-	UserSettings getSettings();
+	UserSettings getUserSettings();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ModelComparePluginConfiguration#getSettings <em>Settings</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.store.ModelComparePluginConfiguration#getUserSettings <em>User Settings</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Settings</em>' reference.
-	 * @see #getSettings()
+	 * @param value the new value of the '<em>User Settings</em>' reference.
+	 * @see #getUserSettings()
 	 * @generated
 	 */
-	void setSettings(UserSettings value);
+	void setUserSettings(UserSettings value);
 
 } // ModelComparePluginConfiguration

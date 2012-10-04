@@ -22,20 +22,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SInternalServiceConfiguration extends SPluginConfiguration implements SDataBase
+public class SProfileDescriptor implements SBase
 {
-	private long oid = -1;
 
 	@XmlTransient
 	private static SClass sClass;
-	
-	public long getOid() {
-		return oid;
-	}
-	
-	public void setOid(long oid) {
-		this.oid = oid;
-	}
+	private java.lang.String name;
+	private java.lang.String description;
+	private boolean publicProfile;
+	private java.lang.String identifier;
 	
 	@XmlTransient
 	public SClass getSClass() {
@@ -43,86 +38,75 @@ public class SInternalServiceConfiguration extends SPluginConfiguration implemen
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SInternalServiceConfiguration.sClass = sClass;
+		SProfileDescriptor.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("name")) {
 			return getName();
 		}
-		if (sField.getName().equals("enabled")) {
-			return getEnabled();
-		}
 		if (sField.getName().equals("description")) {
 			return getDescription();
 		}
-		if (sField.getName().equals("className")) {
-			return getClassName();
+		if (sField.getName().equals("publicProfile")) {
+			return isPublicProfile();
 		}
-		if (sField.getName().equals("settingsId")) {
-			return getSettingsId();
-		}
-		if (sField.getName().equals("oid")) {
-			return getOid();
+		if (sField.getName().equals("identifier")) {
+			return getIdentifier();
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
-			return;
-		}
-		if (sField.getName().equals("enabled")) {
-			setEnabled((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("description")) {
 			setDescription((String)val);
 			return;
 		}
-		if (sField.getName().equals("className")) {
-			setClassName((String)val);
+		if (sField.getName().equals("publicProfile")) {
+			setPublicProfile((Boolean)val);
 			return;
 		}
-		if (sField.getName().equals("settingsId")) {
-			setSettingsId((Long)val);
-			return;
-		}
-		if (sField.getName().equals("oid")) {
-			setOid((Long)val);
+		if (sField.getName().equals("identifier")) {
+			setIdentifier((String)val);
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private long settingsId = -1;
-	public long getSettingsId() {
-		return settingsId;
+	public java.lang.String getName() {
+		return name;
 	}
 
-	public void setSettingsId(long settingsId) {
-		this.settingsId = settingsId;
+	public void setName(java.lang.String name) {
+		this.name = name;
 	}
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (oid ^ (oid >>> 32));
-		return result;
+	public java.lang.String getDescription() {
+		return description;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		SInternalServiceConfiguration other = (SInternalServiceConfiguration) obj;
-		if (oid != other.oid)
-			return false;
-		return true;
+	public void setDescription(java.lang.String description) {
+		this.description = description;
 	}
+	
+	public boolean isPublicProfile() {
+		return publicProfile;
+	}
+
+	public void setPublicProfile(boolean publicProfile) {
+		this.publicProfile = publicProfile;
+	}
+	
+	public java.lang.String getIdentifier() {
+		return identifier;
+	}
+
+	public void setIdentifier(java.lang.String identifier) {
+		this.identifier = identifier;
+	}
+	
 }

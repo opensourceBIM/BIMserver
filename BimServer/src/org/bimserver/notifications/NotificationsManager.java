@@ -17,7 +17,6 @@ package org.bimserver.notifications;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -36,7 +35,6 @@ import org.bimserver.interfaces.objects.SNewProjectAdded;
 import org.bimserver.interfaces.objects.SNewRevisionAdded;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.Project;
-import org.bimserver.models.store.ServerDescriptor;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.models.store.StorePackage;
@@ -53,8 +51,7 @@ import org.slf4j.LoggerFactory;
 public class NotificationsManager extends Thread implements NotificationsManagerInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(NotificationsManager.class);
 	private final Map<Long, Set<EndPoint>> endPoints = new HashMap<Long, Set<EndPoint>>();
-	private final Map<String, Map<String, ServiceDescriptor>> internalServices = new HashMap<String, Map<String, ServiceDescriptor>>();
-	private final Map<String, ServerDescriptor> internalServers = new HashMap<String, ServerDescriptor>();
+	private final Map<String, ServiceDescriptor> internalServices = new HashMap<String, ServiceDescriptor>();
 	private final Map<String, NotificationInterface> x = new HashMap<String, NotificationInterface>();
 	private final BlockingQueue<SLogAction> queue = new ArrayBlockingQueue<SLogAction>(1000);
 	private final BimServer bimServer;
@@ -111,10 +108,10 @@ public class NotificationsManager extends Thread implements NotificationsManager
 								if (service.getTrigger() == Trigger.NEW_REVISION) {
 									Channel channel = getChannel(service);
 									try {
-										if (service.isReadRevision() || service.isReadExtendedData() || service.isWriteExtendedData() || service.getWriteRevision() != null) {
+										if (service.isReadRevision() || service.getReadExtendedData() != null || service.getWriteExtendedData() != null || service.getWriteRevision() != null) {
 											// This service will be needing a token
 											ServiceInterface newService = bimServer.getServiceFactory().newService(service.getNotificationProtocol(), "");
-											((org.bimserver.webservices.Service)newService).setAuthorization(new TokenAuthorization(service.getUser().getOid(), service.isReadRevision() ? newRevisionNotification.getRevisionId() : -1, service.getWriteRevision().getOid(), service.isReadExtendedData() ? newRevisionNotification.getRevisionId() : -1, service.isWriteExtendedData() ? newRevisionNotification.getRevisionId() : -1));
+											((org.bimserver.webservices.Service)newService).setAuthorization(new TokenAuthorization(service.getUser().getOid(), service.isReadRevision() ? newRevisionNotification.getRevisionId() : -1, service.getWriteRevision().getOid(), service.getReadExtendedData() != null ? newRevisionNotification.getRevisionId() : -1, service.getWriteExtendedData() != null ? newRevisionNotification.getRevisionId() : -1));
 											channel.getNotificationInterface().newLogAction(newRevisionNotification, newService.getCurrentToken(), bimServer.getServerSettings(session).getSiteAddress() + "/jsonapi");
 										} else {
 											channel.getNotificationInterface().newLogAction(newRevisionNotification, null, null);
@@ -160,26 +157,14 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		this.interrupt();
 	}
 
-	public void register(ServerDescriptor serverDescriptor) {
-		internalServers.put(serverDescriptor.getTitle(), serverDescriptor);
-		internalServices.put(serverDescriptor.getTitle(), new HashMap<String, ServiceDescriptor>());
-	}
-	
 	@Override
-	public void register(ServerDescriptor serverDescriptor, ServiceDescriptor serviceDescriptor, NotificationInterface notificationInterface) {
-		if (!internalServices.containsKey(serverDescriptor.getTitle())) {
-			register(serverDescriptor);
-		}
-		internalServices.get(serverDescriptor.getTitle()).put(serviceDescriptor.getName(), serviceDescriptor);
+	public void register(ServiceDescriptor serviceDescriptor, NotificationInterface notificationInterface) {
+		internalServices.put(serviceDescriptor.getName(), serviceDescriptor);
 		x.put(serviceDescriptor.getName(), notificationInterface);
 	}
 	
-	public Map<String, ServiceDescriptor> getInternalServices(String serverName) {
-		return internalServices.get(serverName);
-	}
-
-	public Collection<ServerDescriptor> getInternalServers() {
-		return internalServers.values();
+	public Map<String, ServiceDescriptor> getInternalServices() {
+		return internalServices;
 	}
 
 	public void updateProgress(long id, LongActionState actionState) {

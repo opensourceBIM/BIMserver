@@ -16,20 +16,19 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SCompileResult implements SBase
+public class SBooleanType extends SPrimitiveType implements SDataBase
 {
 	private long oid = -1;
+
 	@XmlTransient
 	private static SClass sClass;
-	
+	private boolean value;
 	public long getOid() {
 		return oid;
 	}
@@ -44,36 +43,22 @@ public class SCompileResult implements SBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SCompileResult.sClass = sClass;
+		SBooleanType.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("compileOke")) {
-			return getCompileOke();
-		}
-		if (sField.getName().equals("warnings")) {
-			return getWarnings();
-		}
-		if (sField.getName().equals("errors")) {
-			return getErrors();
+		if (sField.getName().equals("value")) {
+			return isValue();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
-	@SuppressWarnings("unchecked")
+
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("compileOke")) {
-			setCompileOke((Boolean)val);
-			return;
-		}
-		if (sField.getName().equals("warnings")) {
-			setWarnings((List<String>)val);
-			return;
-		}
-		if (sField.getName().equals("errors")) {
-			setErrors((List<String>)val);
+		if (sField.getName().equals("value")) {
+			setValue((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -83,32 +68,14 @@ public class SCompileResult implements SBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	private java.lang.Boolean compileOke;
-	private List<java.lang.String> warnings = new ArrayList<java.lang.String>();
-	private List<java.lang.String> errors = new ArrayList<java.lang.String>();
-	public java.lang.Boolean getCompileOke() {
-		return compileOke;
+	public boolean isValue() {
+		return value;
 	}
 
-	public void setCompileOke(java.lang.Boolean compileOke) {
-		this.compileOke = compileOke;
+	public void setValue(boolean value) {
+		this.value = value;
 	}
-
-	public List<java.lang.String> getWarnings() {
-		return warnings;
-	}
-
-	public void setWarnings(List<java.lang.String> warnings) {
-		this.warnings = warnings;
-	}
-
-	public List<java.lang.String> getErrors() {
-		return errors;
-	}
-
-	public void setErrors(List<java.lang.String> errors) {
-		this.errors = errors;
-	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -125,7 +92,7 @@ public class SCompileResult implements SBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SCompileResult other = (SCompileResult) obj;
+		SBooleanType other = (SBooleanType) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

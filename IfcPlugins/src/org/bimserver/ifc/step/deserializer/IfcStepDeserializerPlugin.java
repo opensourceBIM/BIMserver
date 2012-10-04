@@ -17,6 +17,7 @@ package org.bimserver.ifc.step.deserializer;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
@@ -61,5 +62,10 @@ public class IfcStepDeserializerPlugin implements DeserializerPlugin {
 	@Override
 	public String getDefaultName() {
 		return "IfcStepDeserializer";
+	}
+
+	@Override
+	public ObjectDefinition getSettingsDefinition() {
+		return null;
 	}
 }

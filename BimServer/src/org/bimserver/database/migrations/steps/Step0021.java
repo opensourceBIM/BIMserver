@@ -19,11 +19,12 @@ public class Step0021 extends Migration {
 		schema.createEEnumLiteral(trigger, "NEW_REVISION");
 		schema.createEEnumLiteral(trigger, "NEW_PROJECT");
 		
-		EClass serverDescriptor = schema.createEClass(schema.getEPackage("store"), "ServerDescriptor");
-		serverDescriptor.getEAnnotations().add(createNoDatabase());
-		schema.createEAttribute(serverDescriptor, "title", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(serverDescriptor, "url", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(serverDescriptor, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		EClass profileDescriptor = schema.createEClass(schema.getEPackage("store"), "ProfileDescriptor");
+		profileDescriptor.getEAnnotations().add(createNoDatabase());
+		schema.createEAttribute(profileDescriptor, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(profileDescriptor, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(profileDescriptor, "publicProfile", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(profileDescriptor, "identifier", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 
 		EClass serviceDescriptor = schema.createEClass(schema.getEPackage("store"), "ServiceDescriptor");
 		serviceDescriptor.getEAnnotations().add(createNoDatabase());
@@ -47,9 +48,13 @@ public class Step0021 extends Migration {
 		schema.createEAttribute(service, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(service, "trigger", trigger, Multiplicity.SINGLE);
 		schema.createEAttribute(service, "readRevision", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
-		schema.createEAttribute(service, "readExtendedData", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEReference(service, "readExtendedData", schema.getEClass("store", "ExtendedDataSchema"), Multiplicity.SINGLE);
 		schema.createEReference(service, "writeRevision", project, Multiplicity.SINGLE);
-		schema.createEAttribute(service, "writeExtendedData", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEReference(service, "writeExtendedData", schema.getEClass("store", "ExtendedDataSchema"), Multiplicity.SINGLE);
+		schema.createEAttribute(service, "profileIdentifier", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(service, "profileName", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(service, "profileDescription", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(service, "profilePublic", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
 		
 		EReference serviceProject = schema.createEReference(service, "project", project, Multiplicity.SINGLE);
 		EReference projectServices = schema.createEReference(project, "services", service, Multiplicity.MANY);
@@ -75,9 +80,10 @@ public class Step0021 extends Migration {
 		schema.createEClass(schema.getEPackage("store"), "ServicePluginDescriptor", schema.getEClass("store", "PluginDescriptor"));
 		
 		EClass internalServicePluginClass = schema.createEClass(schema.getEPackage("store"), "InternalServicePluginConfiguration", schema.getEClass("store", "PluginConfiguration"));
+		schema.createEAttribute(internalServicePluginClass, "remoteAccessible", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
 		EClass userSettingsClass = schema.getEClass("store", "UserSettings");
 
-		EReference serviceSettingsReference = schema.createEReference(internalServicePluginClass, "settings", userSettingsClass, Multiplicity.SINGLE);
+		EReference serviceSettingsReference = schema.createEReference(internalServicePluginClass, "userSettings", userSettingsClass, Multiplicity.SINGLE);
 		EReference settingsServicesReference = schema.createEReference(userSettingsClass, "services", internalServicePluginClass, Multiplicity.MANY);
 		
 		serviceSettingsReference.setEOpposite(settingsServicesReference);

@@ -59,9 +59,12 @@ import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
 import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
+import org.bimserver.interfaces.objects.SObjectDefinition;
 import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
+import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
+import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
@@ -1850,6 +1853,10 @@ public interface ServiceInterface {
 	@WebMethod(action="getAllServiceDescriptors")
 	List<SServiceDescriptor> getAllServiceDescriptors() throws ServerException, UserException;
 
+	@WebMethod(action="getAllPublicProfiles")
+	List<SProfileDescriptor> getAllPublicProfiles(
+		@WebParam(name = "serviceUrl", partName = "getAllPublicProfiles.serviceUrl") String serviceUrl) throws ServerException, UserException;
+
 	@WebMethod(action="addServiceToProject")
 	void addServiceToProject(
 		@WebParam(name = "poid", partName = "addServiceToProject.poid") Long poid, 
@@ -2222,4 +2229,22 @@ public interface ServiceInterface {
 	@WebMethod(action = "registerAll")
 	void registerAll(
 		@WebParam(name = "endPointId", partName = "registerAll.endPointId") long endPointId) throws ServerException, UserException;
+
+	@WebMethod(action = "getAllPrivateProfiles")
+	List<SProfileDescriptor> getAllPrivateProfiles(
+		@WebParam(name = "serviceUrl", partName = "getAllPrivateProfiles.serviceUrl") String serviceUrl, 
+		@WebParam(name = "token", partName = "getAllPrivateProfiles.token") String token) throws ServerException, UserException;
+	
+	@WebMethod(action = "getPluginObjectDefinition")
+	SObjectDefinition getPluginObjectDefinition(
+		@WebParam(name = "className", partName = "getPluginObjectDefinition.className") String className) throws ServerException, UserException;
+
+	@WebMethod(action = "setPluginSettings")
+	void setPluginSettings(
+		@WebParam(name = "poid", partName = "setPluginSettings.poid") long poid, 
+		@WebParam(name = "settings", partName = "setPluginSettings.settings") SObjectType settings) throws ServerException, UserException;
+
+	@WebMethod(action = "getPluginSettings")
+	SObjectType getPluginSettings(
+		@WebParam(name = "poid", partName = "getPluginSettings.poid") long poid) throws ServerException, UserException;
 }

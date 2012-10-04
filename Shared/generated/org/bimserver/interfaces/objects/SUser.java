@@ -41,9 +41,10 @@ public class SUser implements SDataBase
 	private SUserType userType;
 	private java.lang.String username;
 	private java.util.Date lastSeen;
+	private java.lang.String token;
 	private java.lang.String validationToken;
 	private java.util.Date validationTokenCreated;
-	private long settingsId = -1;
+	private long userSettingsId = -1;
 	private List<Long> schemas = new ArrayList<Long>();
 	private List<Long> extendedData = new ArrayList<Long>();
 	private List<Long> services = new ArrayList<Long>();
@@ -95,14 +96,17 @@ public class SUser implements SDataBase
 		if (sField.getName().equals("lastSeen")) {
 			return getLastSeen();
 		}
+		if (sField.getName().equals("token")) {
+			return getToken();
+		}
 		if (sField.getName().equals("validationToken")) {
 			return getValidationToken();
 		}
 		if (sField.getName().equals("validationTokenCreated")) {
 			return getValidationTokenCreated();
 		}
-		if (sField.getName().equals("settingsId")) {
-			return getSettingsId();
+		if (sField.getName().equals("userSettingsId")) {
+			return getUserSettingsId();
 		}
 		if (sField.getName().equals("schemas")) {
 			return getSchemas();
@@ -161,6 +165,10 @@ public class SUser implements SDataBase
 			setLastSeen((Date)val);
 			return;
 		}
+		if (sField.getName().equals("token")) {
+			setToken((String)val);
+			return;
+		}
 		if (sField.getName().equals("validationToken")) {
 			setValidationToken((String)val);
 			return;
@@ -169,8 +177,8 @@ public class SUser implements SDataBase
 			setValidationTokenCreated((Date)val);
 			return;
 		}
-		if (sField.getName().equals("settingsId")) {
-			setSettingsId((Long)val);
+		if (sField.getName().equals("userSettingsId")) {
+			setUserSettingsId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("schemas")) {
@@ -272,6 +280,14 @@ public class SUser implements SDataBase
 		this.lastSeen = lastSeen;
 	}
 	
+	public java.lang.String getToken() {
+		return token;
+	}
+
+	public void setToken(java.lang.String token) {
+		this.token = token;
+	}
+	
 	public java.lang.String getValidationToken() {
 		return validationToken;
 	}
@@ -288,12 +304,12 @@ public class SUser implements SDataBase
 		this.validationTokenCreated = validationTokenCreated;
 	}
 	
-	public long getSettingsId() {
-		return settingsId;
+	public long getUserSettingsId() {
+		return userSettingsId;
 	}
 
-	public void setSettingsId(long settingsId) {
-		this.settingsId = settingsId;
+	public void setUserSettingsId(long userSettingsId) {
+		this.userSettingsId = userSettingsId;
 	}
 	
 	public List<Long> getSchemas() {

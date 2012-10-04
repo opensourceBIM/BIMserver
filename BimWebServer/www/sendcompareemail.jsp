@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@page import="org.bimserver.interfaces.objects.SCompareIdentifier"%>
 <%@page import="org.bimserver.interfaces.objects.SCompareType"%>
 <%@page import="org.bimwebserver.jsp.JspHelper"%>
 <%@page import="org.bimserver.interfaces.objects.SProject"%>

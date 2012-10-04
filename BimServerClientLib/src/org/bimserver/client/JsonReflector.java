@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.json.ConvertException;
 import org.bimserver.shared.json.JsonConverter;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SService;
@@ -62,6 +63,8 @@ public abstract class JsonReflector implements Reflector {
 				return null;
 			}
 		} catch (JSONException e) {
+			e.printStackTrace();
+		} catch (ConvertException e) {
 			e.printStackTrace();
 		}
 		return null;

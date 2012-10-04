@@ -1,5 +1,6 @@
 package org.bimserver.merging;
 
+import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.modelmerger.ModelMerger;
@@ -37,5 +38,10 @@ public class IntelligentNameBasedModelMergerPlugin implements ModelMergerPlugin 
 	@Override
 	public ModelMerger createModelMerger() {
 		return new IntelligentNameBasedModelMerger();
+	}
+
+	@Override
+	public ObjectDefinition getSettingsDefinition() {
+		return null;
 	}
 }

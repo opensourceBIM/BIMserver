@@ -38,10 +38,10 @@ public class Step0004 extends Migration {
 		schema.createEAttribute(serializerPluginClass, "extension", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serializerPluginClass, "contentType", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		EReference serializerObjectIDMReference = schema.createEReference(serializerPluginClass, "objectIDM", objectIDMPluginClass, Multiplicity.SINGLE);
-		EReference serializerSettingsReference = schema.createEReference(serializerPluginClass, "settings", userSettingsClass, Multiplicity.SINGLE);
+		EReference serializerSettingsReference = schema.createEReference(serializerPluginClass, "userSettings", userSettingsClass, Multiplicity.SINGLE);
 		
 		EReference objectIDMSerializers = schema.createEReference(objectIDMPluginClass, "serializers", serializerPluginClass, Multiplicity.MANY);
-		EReference objectIDMSettingsReference = schema.createEReference(objectIDMPluginClass, "settings", userSettingsClass, Multiplicity.SINGLE);
+		EReference objectIDMSettingsReference = schema.createEReference(objectIDMPluginClass, "userSettings", userSettingsClass, Multiplicity.SINGLE);
 		
 		EReference settingsSerializersReference = schema.createEReference(userSettingsClass, "serializers", serializerPluginClass, Multiplicity.MANY);
 		EReference settingsObjectIDMReference = schema.createEReference(userSettingsClass, "objectIDMs", objectIDMPluginClass, Multiplicity.MANY);

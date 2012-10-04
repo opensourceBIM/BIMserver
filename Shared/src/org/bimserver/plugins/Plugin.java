@@ -1,5 +1,7 @@
 package org.bimserver.plugins;
 
+import org.bimserver.models.store.ObjectDefinition;
+
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
  * 
@@ -22,5 +24,6 @@ public interface Plugin {
 	String getDescription();
 	String getDefaultName();
 	String getVersion();
+	ObjectDefinition getSettingsDefinition();
 	boolean isInitialized();
 }

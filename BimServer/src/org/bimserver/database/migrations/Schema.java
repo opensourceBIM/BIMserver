@@ -298,4 +298,8 @@ public class Schema {
 	public EEnum createEEnum(String packageName, String enumName) {
 		return createEEnum(getEPackage(packageName), enumName);
 	}
+
+	public EClass createEClass(String packageName, String className, EClass... superTypes) {
+		return createEClass(getEPackage(packageName), className, superTypes);
+	}
 }

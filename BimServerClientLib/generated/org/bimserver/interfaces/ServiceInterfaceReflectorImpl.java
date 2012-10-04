@@ -263,8 +263,14 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> getAllPlugins() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllPlugins", java.util.List.class);
 	}
-	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllProjects(Boolean onlyTopLevel) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor> getAllPrivateProfiles(java.lang.String serviceUrl, java.lang.String token) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor>) reflector.callMethod("ServiceInterface", "getAllPrivateProfiles", java.util.List.class, new KeyValuePair("serviceUrl", serviceUrl), new KeyValuePair("token", token));
+	}
+	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllProjects(java.lang.Boolean onlyTopLevel) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SProject>) reflector.callMethod("ServiceInterface", "getAllProjects", java.util.List.class, new KeyValuePair("onlyTopLevel", onlyTopLevel));
+	}
+	public java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor> getAllPublicProfiles(java.lang.String serviceUrl) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor>) reflector.callMethod("ServiceInterface", "getAllPublicProfiles", java.util.List.class, new KeyValuePair("serviceUrl", serviceUrl));
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor> getAllQueryEnginePluginDescriptors() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllQueryEnginePluginDescriptors", java.util.List.class);
@@ -421,6 +427,12 @@ private Reflector reflector;
 	}
 	public org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration getObjectIDMByName(java.lang.String objectIDMName) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration) reflector.callMethod("ServiceInterface", "getObjectIDMByName", org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration.class, new KeyValuePair("objectIDMName", objectIDMName));
+	}
+	public org.bimserver.interfaces.objects.SObjectDefinition getPluginObjectDefinition(java.lang.String className) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SObjectDefinition) reflector.callMethod("ServiceInterface", "getPluginObjectDefinition", org.bimserver.interfaces.objects.SObjectDefinition.class, new KeyValuePair("className", className));
+	}
+	public org.bimserver.interfaces.objects.SObjectType getPluginSettings(long poid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SObjectType) reflector.callMethod("ServiceInterface", "getPluginSettings", org.bimserver.interfaces.objects.SObjectType.class, new KeyValuePair("poid", poid));
 	}
 	public org.bimserver.interfaces.objects.SProject getProjectByPoid(java.lang.Long poid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SProject) reflector.callMethod("ServiceInterface", "getProjectByPoid", org.bimserver.interfaces.objects.SProject.class, new KeyValuePair("poid", poid));
@@ -628,6 +640,9 @@ private Reflector reflector;
 	}
 	public void setIntegerAttribute(java.lang.Long oid, java.lang.String attributeName, java.lang.Integer value) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "setIntegerAttribute", void.class, new KeyValuePair("oid", oid), new KeyValuePair("attributeName", attributeName), new KeyValuePair("value", value));
+	}
+	public void setPluginSettings(long poid, org.bimserver.interfaces.objects.SObjectType settings) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("ServiceInterface", "setPluginSettings", void.class, new KeyValuePair("poid", poid), new KeyValuePair("settings", settings));
 	}
 	public void setReference(java.lang.Long oid, java.lang.String referenceName, java.lang.Long referenceOid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "setReference", void.class, new KeyValuePair("oid", oid), new KeyValuePair("referenceName", referenceName), new KeyValuePair("referenceOid", referenceOid));
