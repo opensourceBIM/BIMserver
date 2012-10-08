@@ -40,7 +40,23 @@ public enum ExtendedDataSchemaType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	XSD(0, "XSD", "XSD");
+	XSD(0, "XSD", "XSD"), /**
+							 * The '<em><b>PDF</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #PDF_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	PDF(1, "PDF", "PDF"), /**
+							 * The '<em><b>TXT</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #TXT_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	TXT(2, "TXT", "TXT");
 
 	/**
 	 * The '<em><b>XSD</b></em>' literal value.
@@ -58,12 +74,42 @@ public enum ExtendedDataSchemaType implements Enumerator {
 	public static final int XSD_VALUE = 0;
 
 	/**
+	 * The '<em><b>PDF</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PDF</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PDF
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PDF_VALUE = 1;
+
+	/**
+	 * The '<em><b>TXT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>TXT</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #TXT
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TXT_VALUE = 2;
+
+	/**
 	 * An array of all the '<em><b>Extended Data Schema Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ExtendedDataSchemaType[] VALUES_ARRAY = new ExtendedDataSchemaType[] { XSD, };
+	private static final ExtendedDataSchemaType[] VALUES_ARRAY = new ExtendedDataSchemaType[] { XSD, PDF, TXT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Extended Data Schema Type</b></em>' enumerators.
@@ -115,6 +161,10 @@ public enum ExtendedDataSchemaType implements Enumerator {
 		switch (value) {
 		case XSD_VALUE:
 			return XSD;
+		case PDF_VALUE:
+			return PDF;
+		case TXT_VALUE:
+			return TXT;
 		}
 		return null;
 	}

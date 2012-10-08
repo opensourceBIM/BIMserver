@@ -20,6 +20,7 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.ExtendedDataSchemaType;
+import org.bimserver.models.store.File;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.eclipse.emf.common.util.EList;
@@ -35,7 +36,9 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getUrl <em>Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getNamespace <em>Namespace</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getData <em>Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getFile <em>File</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#isValidate <em>Validate</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl#getUsers <em>Users</em>}</li>
@@ -134,8 +137,8 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements ExtendedDat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public byte[] getData() {
-		return (byte[]) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__DATA, true);
+	public String getDescription() {
+		return (String) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__DESCRIPTION, true);
 	}
 
 	/**
@@ -143,8 +146,44 @@ public class ExtendedDataSchemaImpl extends IdEObjectImpl implements ExtendedDat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setData(byte[] newData) {
-		eSet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__DATA, newData);
+	public void setDescription(String newDescription) {
+		eSet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__DESCRIPTION, newDescription);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public File getFile() {
+		return (File) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__FILE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFile(File newFile) {
+		eSet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__FILE, newFile);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getSize() {
+		return (Long) eGet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__SIZE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSize(long newSize) {
+		eSet(StorePackage.Literals.EXTENDED_DATA_SCHEMA__SIZE, newSize);
 	}
 
 	/**

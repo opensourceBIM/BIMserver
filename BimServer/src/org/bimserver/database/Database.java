@@ -204,7 +204,7 @@ public class Database implements BimDatabase {
 		settings.setHideUserListForNonAdmin(true);
 		settings.setShowVersionUpgradeAvailable(false);
 		settings.setCacheOutputFiles(false);
-		settings.setServiceRepositoryUrl("http://extend.bimserver.org/services");
+		settings.setServiceRepositoryUrl("http://extend.bimserver.org");
 		return settings;
 	}
 	

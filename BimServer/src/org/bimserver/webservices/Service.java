@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.activation.DataHandler;
+import javax.jws.WebMethod;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -78,6 +79,8 @@ import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
+import org.bimserver.interfaces.objects.SExtendedDataSchemaType;
+import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
@@ -104,6 +107,7 @@ import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServerInfo;
+import org.bimserver.interfaces.objects.SServerSettings;
 import org.bimserver.interfaces.objects.SServiceDescriptor;
 import org.bimserver.interfaces.objects.SServiceField;
 import org.bimserver.interfaces.objects.SServiceInterface;
@@ -3351,7 +3355,7 @@ public class Service implements ServiceInterface {
 		requireRealUserAuthentication();
 		try {
 			List<SServiceDescriptor> sServiceDescriptors = new ArrayList<SServiceDescriptor>();
-			String content = NetUtils.getContent(new URL(getServiceRepositoryUrl()), 5000);
+			String content = NetUtils.getContent(new URL(getServiceRepositoryUrl() + "/services"), 5000);
 			JSONObject root = new JSONObject(new JSONTokener(content));
 			JSONArray services = root.getJSONArray("services");
 			for (int i = 0; i < services.length(); i++) {
@@ -3378,6 +3382,32 @@ public class Service implements ServiceInterface {
 		}
 	}
 
+	@Override
+	public List<SExtendedDataSchema> getAllRepositoryExtendedDataSchemas() throws ServerException, UserException {
+		requireRealUserAuthentication();
+		try {
+			List<SExtendedDataSchema> extendedDataSchemas = new ArrayList<SExtendedDataSchema>();
+			String content = NetUtils.getContent(new URL(getServiceRepositoryUrl() + "/extendeddataschemas"), 5000);
+			JSONObject root = new JSONObject(new JSONTokener(content));
+			JSONArray extendedDataSchemasJson = root.getJSONArray("extendeddataschemas");
+			for (int i = 0; i < extendedDataSchemasJson.length(); i++) {
+				JSONObject extendedDataSchemaJson = extendedDataSchemasJson.getJSONObject(i);
+				
+				SExtendedDataSchema sExtendedDataSchema = new SExtendedDataSchema();
+				sExtendedDataSchema.setName(extendedDataSchemaJson.getString("name"));
+				sExtendedDataSchema.setNamespace(extendedDataSchemaJson.getString("namespace"));
+				sExtendedDataSchema.setUrl(extendedDataSchemaJson.getString("url"));
+				sExtendedDataSchema.setDescription(extendedDataSchemaJson.getString("description"));
+				sExtendedDataSchema.setType(SExtendedDataSchemaType.valueOf(extendedDataSchemaJson.getString("type")));
+
+				extendedDataSchemas.add(sExtendedDataSchema);
+			}
+			return extendedDataSchemas;
+		} catch (Exception e) {
+			return handleException(e);
+		}
+	}
+	
 	public org.bimserver.interfaces.objects.SService getService(Long epid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
@@ -3615,7 +3645,7 @@ public class Service implements ServiceInterface {
 		requireRealUserAuthentication();
 		try {
 			List<SProfileDescriptor> profileDescriptors = new ArrayList<SProfileDescriptor>();
-			String content = NetUtils.getContent(new URL(serviceUrl + "?profiles"), 5000);
+			String content = NetUtils.getContent(new URL(serviceUrl + "/services?profiles"), 5000);
 			JSONObject root = new JSONObject(new JSONTokener(content));
 			JSONArray profiles = root.getJSONArray("profiles");
 			for (int i = 0; i < profiles.length(); i++) {
@@ -3689,6 +3719,78 @@ public class Service implements ServiceInterface {
 			session.commit();
 		} catch (Exception e) {
 			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	@WebMethod(action = "getServerSettings")
+	public SServerSettings getServerSettings() throws ServerException, UserException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getServerSettings(), false, null);
+			return converter.convertToSObject(allOfType.getAll(ServerSettings.class).get(0));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public SExtendedDataSchema getExtendedDataSchemaFromRepository(String namespace) throws UserException, ServerException {
+		requireRealUserAuthentication();
+		try {
+			String content = NetUtils.getContent(new URL(getServiceRepositoryUrl() + "/extendeddataschemas?namespace=" + namespace), 5000);
+			JSONObject root = new JSONObject(new JSONTokener(content));
+			SExtendedDataSchema sExtendedDataSchema = new SExtendedDataSchema();
+			sExtendedDataSchema.setName(root.getString("name"));
+			sExtendedDataSchema.setNamespace(root.getString("namespace"));
+			sExtendedDataSchema.setUrl(root.getString("url"));
+			sExtendedDataSchema.setType(SExtendedDataSchemaType.valueOf(root.getString("type")));
+			return sExtendedDataSchema;
+		} catch (Exception e) {
+			return handleException(e);
+		}
+	}
+	
+	@Override
+	public List<SExtendedData> getAllExtendedDataOfRevision(Long roid) throws ServerException, UserException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
+			return converter.convertToSListExtendedData(revision.getExtendedData());
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public SFile getFile(long fileId) throws ServerException, UserException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			org.bimserver.models.store.File file = (org.bimserver.models.store.File)session.get(StorePackage.eINSTANCE.getFile(), fileId, false, null);
+			return converter.convertToSObject(file);
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public Long uploadFile(SFile file) throws ServerException, UserException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			org.bimserver.models.store.File convertFromSObject = converter.convertFromSObject(file, session);
+			long oid = session.store(convertFromSObject);
+			session.commit();
+			return oid;
+		} catch (Exception e) {
+			return handleException(e);
 		} finally {
 			session.close();
 		}

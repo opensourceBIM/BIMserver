@@ -441,6 +441,15 @@ public interface StoreFactory extends EFactory {
 	IfcEnginePluginDescriptor createIfcEnginePluginDescriptor();
 
 	/**
+	 * Returns a new object of class '<em>File</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>File</em>'.
+	 * @generated
+	 */
+	File createFile();
+
+	/**
 	 * Returns a new object of class '<em>Extended Data Schema</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

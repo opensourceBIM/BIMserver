@@ -16,21 +16,21 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SObjectRemoved.class, SObjectAdded.class, SObjectModified.class})
-public class SCompareItem implements SDataBase
+public class SFile implements SDataBase
 {
 	private long oid = -1;
 
 	@XmlTransient
 	private static SClass sClass;
-	private SDataObject dataObject;
+	private byte[] data;
+	private java.lang.String filename;
+	private java.lang.String mime;
 	public long getOid() {
 		return oid;
 	}
@@ -45,12 +45,18 @@ public class SCompareItem implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SCompareItem.sClass = sClass;
+		SFile.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("dataObject")) {
-			return getDataObject();
+		if (sField.getName().equals("data")) {
+			return getData();
+		}
+		if (sField.getName().equals("filename")) {
+			return getFilename();
+		}
+		if (sField.getName().equals("mime")) {
+			return getMime();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -59,8 +65,16 @@ public class SCompareItem implements SDataBase
 	}
 
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("dataObject")) {
-			setDataObject((SDataObject)val);
+		if (sField.getName().equals("data")) {
+			setData((byte[])val);
+			return;
+		}
+		if (sField.getName().equals("filename")) {
+			setFilename((String)val);
+			return;
+		}
+		if (sField.getName().equals("mime")) {
+			setMime((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -70,14 +84,29 @@ public class SCompareItem implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	public SDataObject getDataObject() {
-		return dataObject;
+	public byte[] getData() {
+		return data;
 	}
 
-	public void setDataObject(SDataObject dataObject) {
-		this.dataObject = dataObject;
+	public void setData(byte[] data) {
+		this.data = data;
 	}
 	
+	public java.lang.String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(java.lang.String filename) {
+		this.filename = filename;
+	}
+	
+	public java.lang.String getMime() {
+		return mime;
+	}
+
+	public void setMime(java.lang.String mime) {
+		this.mime = mime;
+	}
 	
 	@Override
 	public int hashCode() {
@@ -95,7 +124,7 @@ public class SCompareItem implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SCompareItem other = (SCompareItem) obj;
+		SFile other = (SFile) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

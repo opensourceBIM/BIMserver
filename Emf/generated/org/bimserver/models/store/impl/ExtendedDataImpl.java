@@ -21,6 +21,7 @@ import java.util.Date;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
+import org.bimserver.models.store.File;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
@@ -35,15 +36,14 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getUrl <em>Url</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getData <em>Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getFile <em>File</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getTitle <em>Title</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getFilename <em>Filename</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getAdded <em>Added</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getSchema <em>Schema</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getRevision <em>Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getProject <em>Project</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getMime <em>Mime</em>}</li>
  * </ul>
  * </p>
  *
@@ -102,8 +102,8 @@ public class ExtendedDataImpl extends IdEObjectImpl implements ExtendedData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public byte[] getData() {
-		return (byte[]) eGet(StorePackage.Literals.EXTENDED_DATA__DATA, true);
+	public File getFile() {
+		return (File) eGet(StorePackage.Literals.EXTENDED_DATA__FILE, true);
 	}
 
 	/**
@@ -111,8 +111,26 @@ public class ExtendedDataImpl extends IdEObjectImpl implements ExtendedData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setData(byte[] newData) {
-		eSet(StorePackage.Literals.EXTENDED_DATA__DATA, newData);
+	public void setFile(File newFile) {
+		eSet(StorePackage.Literals.EXTENDED_DATA__FILE, newFile);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getSize() {
+		return (Long) eGet(StorePackage.Literals.EXTENDED_DATA__SIZE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSize(long newSize) {
+		eSet(StorePackage.Literals.EXTENDED_DATA__SIZE, newSize);
 	}
 
 	/**
@@ -131,24 +149,6 @@ public class ExtendedDataImpl extends IdEObjectImpl implements ExtendedData {
 	 */
 	public void setTitle(String newTitle) {
 		eSet(StorePackage.Literals.EXTENDED_DATA__TITLE, newTitle);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getFilename() {
-		return (String) eGet(StorePackage.Literals.EXTENDED_DATA__FILENAME, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFilename(String newFilename) {
-		eSet(StorePackage.Literals.EXTENDED_DATA__FILENAME, newFilename);
 	}
 
 	/**
@@ -239,24 +239,6 @@ public class ExtendedDataImpl extends IdEObjectImpl implements ExtendedData {
 	 */
 	public void setProject(Project newProject) {
 		eSet(StorePackage.Literals.EXTENDED_DATA__PROJECT, newProject);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getMime() {
-		return (String) eGet(StorePackage.Literals.EXTENDED_DATA__MIME, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMime(String newMime) {
-		eSet(StorePackage.Literals.EXTENDED_DATA__MIME, newMime);
 	}
 
 } //ExtendedDataImpl

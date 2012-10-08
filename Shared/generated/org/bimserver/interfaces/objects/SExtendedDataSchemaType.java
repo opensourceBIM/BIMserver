@@ -18,7 +18,9 @@ package org.bimserver.interfaces.objects;
  *****************************************************************************/
 
 public enum SExtendedDataSchemaType {
-	XSD(0);
+	XSD(0),
+	PDF(1),
+	TXT(2);
 	int ordinal;
 
 	SExtendedDataSchemaType(int ordinal) {

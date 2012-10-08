@@ -33,7 +33,9 @@ public class SExtendedDataSchema implements SDataBase
 	private java.lang.String name;
 	private java.lang.String url;
 	private java.lang.String namespace;
-	private byte[] data;
+	private java.lang.String description;
+	private long fileId = -1;
+	private long size;
 	private boolean validate;
 	private SExtendedDataSchemaType type;
 	private List<Long> users = new ArrayList<Long>();
@@ -65,8 +67,14 @@ public class SExtendedDataSchema implements SDataBase
 		if (sField.getName().equals("namespace")) {
 			return getNamespace();
 		}
-		if (sField.getName().equals("data")) {
-			return getData();
+		if (sField.getName().equals("description")) {
+			return getDescription();
+		}
+		if (sField.getName().equals("fileId")) {
+			return getFileId();
+		}
+		if (sField.getName().equals("size")) {
+			return getSize();
 		}
 		if (sField.getName().equals("validate")) {
 			return isValidate();
@@ -100,8 +108,16 @@ public class SExtendedDataSchema implements SDataBase
 			setNamespace((String)val);
 			return;
 		}
-		if (sField.getName().equals("data")) {
-			setData((byte[])val);
+		if (sField.getName().equals("description")) {
+			setDescription((String)val);
+			return;
+		}
+		if (sField.getName().equals("fileId")) {
+			setFileId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("size")) {
+			setSize((Long)val);
 			return;
 		}
 		if (sField.getName().equals("validate")) {
@@ -151,12 +167,28 @@ public class SExtendedDataSchema implements SDataBase
 		this.namespace = namespace;
 	}
 	
-	public byte[] getData() {
-		return data;
+	public java.lang.String getDescription() {
+		return description;
 	}
 
-	public void setData(byte[] data) {
-		this.data = data;
+	public void setDescription(java.lang.String description) {
+		this.description = description;
+	}
+	
+	public long getFileId() {
+		return fileId;
+	}
+
+	public void setFileId(long fileId) {
+		this.fileId = fileId;
+	}
+	
+	public long getSize() {
+		return size;
+	}
+
+	public void setSize(long size) {
+		this.size = size;
 	}
 	
 	public boolean isValidate() {

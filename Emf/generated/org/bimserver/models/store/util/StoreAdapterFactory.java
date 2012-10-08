@@ -306,6 +306,11 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseFile(File object) {
+			return createFileAdapter();
+		}
+
+		@Override
 		public Adapter caseExtendedDataSchema(ExtendedDataSchema object) {
 			return createExtendedDataSchemaAdapter();
 		}
@@ -1116,6 +1121,20 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcEnginePluginDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.File <em>File</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.File
+	 * @generated
+	 */
+	public Adapter createFileAdapter() {
 		return null;
 	}
 
