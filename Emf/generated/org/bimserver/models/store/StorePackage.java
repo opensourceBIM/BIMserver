@@ -3159,6 +3159,52 @@ public interface StorePackage extends EPackage {
 	int IFC_ENGINE_PLUGIN_DESCRIPTOR_FEATURE_COUNT = PLUGIN_DESCRIPTOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.FileImpl <em>File</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.FileImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getFile()
+	 * @generated
+	 */
+	int FILE = 45;
+
+	/**
+	 * The feature id for the '<em><b>Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE__DATA = 0;
+
+	/**
+	 * The feature id for the '<em><b>Filename</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE__FILENAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Mime</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE__MIME = 2;
+
+	/**
+	 * The number of structural features of the '<em>File</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_FEATURE_COUNT = 3;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl <em>Extended Data Schema</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3166,7 +3212,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchema()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA = 45;
+	int EXTENDED_DATA_SCHEMA = 46;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3196,13 +3242,31 @@ public interface StorePackage extends EPackage {
 	int EXTENDED_DATA_SCHEMA__NAMESPACE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Data</b></em>' attribute.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA__DATA = 3;
+	int EXTENDED_DATA_SCHEMA__DESCRIPTION = 3;
+
+	/**
+	 * The feature id for the '<em><b>File</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_SCHEMA__FILE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA_SCHEMA__SIZE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Validate</b></em>' attribute.
@@ -3211,7 +3275,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA__VALIDATE = 4;
+	int EXTENDED_DATA_SCHEMA__VALIDATE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -3220,7 +3284,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA__TYPE = 5;
+	int EXTENDED_DATA_SCHEMA__TYPE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Users</b></em>' reference list.
@@ -3229,7 +3293,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA__USERS = 6;
+	int EXTENDED_DATA_SCHEMA__USERS = 8;
 
 	/**
 	 * The feature id for the '<em><b>Extended Data</b></em>' reference list.
@@ -3238,7 +3302,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA__EXTENDED_DATA = 7;
+	int EXTENDED_DATA_SCHEMA__EXTENDED_DATA = 9;
 
 	/**
 	 * The number of structural features of the '<em>Extended Data Schema</em>' class.
@@ -3247,7 +3311,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_SCHEMA_FEATURE_COUNT = 8;
+	int EXTENDED_DATA_SCHEMA_FEATURE_COUNT = 10;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ExtendedDataImpl <em>Extended Data</em>}' class.
@@ -3257,7 +3321,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedData()
 	 * @generated
 	 */
-	int EXTENDED_DATA = 46;
+	int EXTENDED_DATA = 47;
 
 	/**
 	 * The feature id for the '<em><b>Url</b></em>' attribute.
@@ -3269,13 +3333,22 @@ public interface StorePackage extends EPackage {
 	int EXTENDED_DATA__URL = 0;
 
 	/**
-	 * The feature id for the '<em><b>Data</b></em>' attribute.
+	 * The feature id for the '<em><b>File</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA__DATA = 1;
+	int EXTENDED_DATA__FILE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENDED_DATA__SIZE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Title</b></em>' attribute.
@@ -3284,16 +3357,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA__TITLE = 2;
-
-	/**
-	 * The feature id for the '<em><b>Filename</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDED_DATA__FILENAME = 3;
+	int EXTENDED_DATA__TITLE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Added</b></em>' attribute.
@@ -3341,22 +3405,13 @@ public interface StorePackage extends EPackage {
 	int EXTENDED_DATA__PROJECT = 8;
 
 	/**
-	 * The feature id for the '<em><b>Mime</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTENDED_DATA__MIME = 9;
-
-	/**
 	 * The number of structural features of the '<em>Extended Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENDED_DATA_FEATURE_COUNT = 10;
+	int EXTENDED_DATA_FEATURE_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.QueryEnginePluginDescriptorImpl <em>Query Engine Plugin Descriptor</em>}' class.
@@ -3366,7 +3421,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getQueryEnginePluginDescriptor()
 	 * @generated
 	 */
-	int QUERY_ENGINE_PLUGIN_DESCRIPTOR = 47;
+	int QUERY_ENGINE_PLUGIN_DESCRIPTOR = 48;
 
 	/**
 	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
@@ -3430,7 +3485,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getQueryEnginePluginConfiguration()
 	 * @generated
 	 */
-	int QUERY_ENGINE_PLUGIN_CONFIGURATION = 48;
+	int QUERY_ENGINE_PLUGIN_CONFIGURATION = 49;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3503,7 +3558,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelMergerPluginDescriptor()
 	 * @generated
 	 */
-	int MODEL_MERGER_PLUGIN_DESCRIPTOR = 49;
+	int MODEL_MERGER_PLUGIN_DESCRIPTOR = 50;
 
 	/**
 	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
@@ -3567,7 +3622,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelMergerPluginConfiguration()
 	 * @generated
 	 */
-	int MODEL_MERGER_PLUGIN_CONFIGURATION = 50;
+	int MODEL_MERGER_PLUGIN_CONFIGURATION = 51;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3640,7 +3695,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelComparePluginDescriptor()
 	 * @generated
 	 */
-	int MODEL_COMPARE_PLUGIN_DESCRIPTOR = 51;
+	int MODEL_COMPARE_PLUGIN_DESCRIPTOR = 52;
 
 	/**
 	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
@@ -3704,7 +3759,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelComparePluginConfiguration()
 	 * @generated
 	 */
-	int MODEL_COMPARE_PLUGIN_CONFIGURATION = 52;
+	int MODEL_COMPARE_PLUGIN_CONFIGURATION = 53;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3777,7 +3832,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getProfileDescriptor()
 	 * @generated
 	 */
-	int PROFILE_DESCRIPTOR = 53;
+	int PROFILE_DESCRIPTOR = 54;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3832,7 +3887,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceDescriptor()
 	 * @generated
 	 */
-	int SERVICE_DESCRIPTOR = 54;
+	int SERVICE_DESCRIPTOR = 55;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3950,7 +4005,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getService()
 	 * @generated
 	 */
-	int SERVICE = 55;
+	int SERVICE = 56;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4113,7 +4168,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getToken()
 	 * @generated
 	 */
-	int TOKEN = 56;
+	int TOKEN = 57;
 
 	/**
 	 * The feature id for the '<em><b>Token String</b></em>' attribute.
@@ -4150,7 +4205,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServicePluginDescriptor()
 	 * @generated
 	 */
-	int SERVICE_PLUGIN_DESCRIPTOR = 57;
+	int SERVICE_PLUGIN_DESCRIPTOR = 58;
 
 	/**
 	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
@@ -4214,7 +4269,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getInternalServicePluginConfiguration()
 	 * @generated
 	 */
-	int INTERNAL_SERVICE_PLUGIN_CONFIGURATION = 58;
+	int INTERNAL_SERVICE_PLUGIN_CONFIGURATION = 59;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4296,7 +4351,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceInterface()
 	 * @generated
 	 */
-	int SERVICE_INTERFACE = 59;
+	int SERVICE_INTERFACE = 60;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4324,7 +4379,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceMethod()
 	 * @generated
 	 */
-	int SERVICE_METHOD = 60;
+	int SERVICE_METHOD = 61;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4370,7 +4425,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceField()
 	 * @generated
 	 */
-	int SERVICE_FIELD = 61;
+	int SERVICE_FIELD = 62;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4425,7 +4480,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceType()
 	 * @generated
 	 */
-	int SERVICE_TYPE = 62;
+	int SERVICE_TYPE = 63;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4471,7 +4526,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceParameter()
 	 * @generated
 	 */
-	int SERVICE_PARAMETER = 63;
+	int SERVICE_PARAMETER = 64;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4526,7 +4581,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTypeDefinition()
 	 * @generated
 	 */
-	int TYPE_DEFINITION = 64;
+	int TYPE_DEFINITION = 65;
 
 	/**
 	 * The number of structural features of the '<em>Type Definition</em>' class.
@@ -4545,7 +4600,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectDefinition()
 	 * @generated
 	 */
-	int OBJECT_DEFINITION = 65;
+	int OBJECT_DEFINITION = 66;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' reference list.
@@ -4573,7 +4628,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveDefinition()
 	 * @generated
 	 */
-	int PRIMITIVE_DEFINITION = 66;
+	int PRIMITIVE_DEFINITION = 67;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -4601,7 +4656,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getArrayDefinition()
 	 * @generated
 	 */
-	int ARRAY_DEFINITION = 67;
+	int ARRAY_DEFINITION = 68;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -4629,7 +4684,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getParameterDefinition()
 	 * @generated
 	 */
-	int PARAMETER_DEFINITION = 68;
+	int PARAMETER_DEFINITION = 69;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4675,7 +4730,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getType()
 	 * @generated
 	 */
-	int TYPE = 69;
+	int TYPE = 70;
 
 	/**
 	 * The number of structural features of the '<em>Type</em>' class.
@@ -4694,7 +4749,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectType()
 	 * @generated
 	 */
-	int OBJECT_TYPE = 70;
+	int OBJECT_TYPE = 71;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4731,7 +4786,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveType()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE = 71;
+	int PRIMITIVE_TYPE = 72;
 
 	/**
 	 * The number of structural features of the '<em>Primitive Type</em>' class.
@@ -4750,7 +4805,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getLongType()
 	 * @generated
 	 */
-	int LONG_TYPE = 72;
+	int LONG_TYPE = 73;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4778,7 +4833,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDoubleType()
 	 * @generated
 	 */
-	int DOUBLE_TYPE = 73;
+	int DOUBLE_TYPE = 74;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4806,7 +4861,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getStringType()
 	 * @generated
 	 */
-	int STRING_TYPE = 74;
+	int STRING_TYPE = 75;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4834,7 +4889,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getBooleanType()
 	 * @generated
 	 */
-	int BOOLEAN_TYPE = 75;
+	int BOOLEAN_TYPE = 76;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4862,7 +4917,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getArrayType()
 	 * @generated
 	 */
-	int ARRAY_TYPE = 76;
+	int ARRAY_TYPE = 77;
 
 	/**
 	 * The feature id for the '<em><b>Values</b></em>' reference list.
@@ -4890,7 +4945,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 77;
+	int PARAMETER = 78;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4927,7 +4982,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 78;
+	int USER_TYPE = 79;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -4937,7 +4992,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 79;
+	int SI_PREFIX = 80;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -4947,7 +5002,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 80;
+	int OBJECT_STATE = 81;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -4957,7 +5012,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 81;
+	int COMPARE_TYPE = 82;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -4967,7 +5022,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 82;
+	int ACTION_STATE = 83;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -4977,7 +5032,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 83;
+	int SERVER_STATE = 84;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinStatus <em>Checkin Status</em>}' enum.
@@ -4987,7 +5042,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinStatus()
 	 * @generated
 	 */
-	int CHECKIN_STATUS = 84;
+	int CHECKIN_STATUS = 85;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
@@ -4997,7 +5052,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA_TYPE = 85;
+	int EXTENDED_DATA_SCHEMA_TYPE = 86;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
@@ -5007,7 +5062,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 86;
+	int TRIGGER = 87;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.
@@ -5017,7 +5072,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_ENUM = 87;
+	int PRIMITIVE_ENUM = 88;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -5027,7 +5082,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 88;
+	int DATA_HANDLER = 89;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -7669,6 +7724,49 @@ public interface StorePackage extends EPackage {
 	EClass getIfcEnginePluginDescriptor();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.File <em>File</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>File</em>'.
+	 * @see org.bimserver.models.store.File
+	 * @generated
+	 */
+	EClass getFile();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.File#getData <em>Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data</em>'.
+	 * @see org.bimserver.models.store.File#getData()
+	 * @see #getFile()
+	 * @generated
+	 */
+	EAttribute getFile_Data();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.File#getFilename <em>Filename</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Filename</em>'.
+	 * @see org.bimserver.models.store.File#getFilename()
+	 * @see #getFile()
+	 * @generated
+	 */
+	EAttribute getFile_Filename();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.File#getMime <em>Mime</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mime</em>'.
+	 * @see org.bimserver.models.store.File#getMime()
+	 * @see #getFile()
+	 * @generated
+	 */
+	EAttribute getFile_Mime();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ExtendedDataSchema <em>Extended Data Schema</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7712,15 +7810,37 @@ public interface StorePackage extends EPackage {
 	EAttribute getExtendedDataSchema_Namespace();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedDataSchema#getData <em>Data</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedDataSchema#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Data</em>'.
-	 * @see org.bimserver.models.store.ExtendedDataSchema#getData()
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.bimserver.models.store.ExtendedDataSchema#getDescription()
 	 * @see #getExtendedDataSchema()
 	 * @generated
 	 */
-	EAttribute getExtendedDataSchema_Data();
+	EAttribute getExtendedDataSchema_Description();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ExtendedDataSchema#getFile <em>File</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>File</em>'.
+	 * @see org.bimserver.models.store.ExtendedDataSchema#getFile()
+	 * @see #getExtendedDataSchema()
+	 * @generated
+	 */
+	EReference getExtendedDataSchema_File();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedDataSchema#getSize <em>Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Size</em>'.
+	 * @see org.bimserver.models.store.ExtendedDataSchema#getSize()
+	 * @see #getExtendedDataSchema()
+	 * @generated
+	 */
+	EAttribute getExtendedDataSchema_Size();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedDataSchema#isValidate <em>Validate</em>}'.
@@ -7788,15 +7908,26 @@ public interface StorePackage extends EPackage {
 	EAttribute getExtendedData_Url();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedData#getData <em>Data</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ExtendedData#getFile <em>File</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Data</em>'.
-	 * @see org.bimserver.models.store.ExtendedData#getData()
+	 * @return the meta object for the reference '<em>File</em>'.
+	 * @see org.bimserver.models.store.ExtendedData#getFile()
 	 * @see #getExtendedData()
 	 * @generated
 	 */
-	EAttribute getExtendedData_Data();
+	EReference getExtendedData_File();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedData#getSize <em>Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Size</em>'.
+	 * @see org.bimserver.models.store.ExtendedData#getSize()
+	 * @see #getExtendedData()
+	 * @generated
+	 */
+	EAttribute getExtendedData_Size();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedData#getTitle <em>Title</em>}'.
@@ -7808,17 +7939,6 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getExtendedData_Title();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedData#getFilename <em>Filename</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Filename</em>'.
-	 * @see org.bimserver.models.store.ExtendedData#getFilename()
-	 * @see #getExtendedData()
-	 * @generated
-	 */
-	EAttribute getExtendedData_Filename();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedData#getAdded <em>Added</em>}'.
@@ -7874,17 +7994,6 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getExtendedData_Project();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ExtendedData#getMime <em>Mime</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Mime</em>'.
-	 * @see org.bimserver.models.store.ExtendedData#getMime()
-	 * @see #getExtendedData()
-	 * @generated
-	 */
-	EAttribute getExtendedData_Mime();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.QueryEnginePluginDescriptor <em>Query Engine Plugin Descriptor</em>}'.
@@ -11120,6 +11229,40 @@ public interface StorePackage extends EPackage {
 		EClass IFC_ENGINE_PLUGIN_DESCRIPTOR = eINSTANCE.getIfcEnginePluginDescriptor();
 
 		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.FileImpl <em>File</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.FileImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getFile()
+		 * @generated
+		 */
+		EClass FILE = eINSTANCE.getFile();
+
+		/**
+		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FILE__DATA = eINSTANCE.getFile_Data();
+
+		/**
+		 * The meta object literal for the '<em><b>Filename</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FILE__FILENAME = eINSTANCE.getFile_Filename();
+
+		/**
+		 * The meta object literal for the '<em><b>Mime</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FILE__MIME = eINSTANCE.getFile_Mime();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ExtendedDataSchemaImpl <em>Extended Data Schema</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -11154,12 +11297,28 @@ public interface StorePackage extends EPackage {
 		EAttribute EXTENDED_DATA_SCHEMA__NAMESPACE = eINSTANCE.getExtendedDataSchema_Namespace();
 
 		/**
-		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTENDED_DATA_SCHEMA__DATA = eINSTANCE.getExtendedDataSchema_Data();
+		EAttribute EXTENDED_DATA_SCHEMA__DESCRIPTION = eINSTANCE.getExtendedDataSchema_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>File</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTENDED_DATA_SCHEMA__FILE = eINSTANCE.getExtendedDataSchema_File();
+
+		/**
+		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDED_DATA_SCHEMA__SIZE = eINSTANCE.getExtendedDataSchema_Size();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate</b></em>' attribute feature.
@@ -11212,12 +11371,20 @@ public interface StorePackage extends EPackage {
 		EAttribute EXTENDED_DATA__URL = eINSTANCE.getExtendedData_Url();
 
 		/**
-		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>File</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTENDED_DATA__DATA = eINSTANCE.getExtendedData_Data();
+		EReference EXTENDED_DATA__FILE = eINSTANCE.getExtendedData_File();
+
+		/**
+		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDED_DATA__SIZE = eINSTANCE.getExtendedData_Size();
 
 		/**
 		 * The meta object literal for the '<em><b>Title</b></em>' attribute feature.
@@ -11226,14 +11393,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EXTENDED_DATA__TITLE = eINSTANCE.getExtendedData_Title();
-
-		/**
-		 * The meta object literal for the '<em><b>Filename</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EXTENDED_DATA__FILENAME = eINSTANCE.getExtendedData_Filename();
 
 		/**
 		 * The meta object literal for the '<em><b>Added</b></em>' attribute feature.
@@ -11274,14 +11433,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference EXTENDED_DATA__PROJECT = eINSTANCE.getExtendedData_Project();
-
-		/**
-		 * The meta object literal for the '<em><b>Mime</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EXTENDED_DATA__MIME = eINSTANCE.getExtendedData_Mime();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.QueryEnginePluginDescriptorImpl <em>Query Engine Plugin Descriptor</em>}' class.

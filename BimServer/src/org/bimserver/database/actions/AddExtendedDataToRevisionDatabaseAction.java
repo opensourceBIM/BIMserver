@@ -51,6 +51,7 @@ public class AddExtendedDataToRevisionDatabaseAction extends AddDatabaseAction<E
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		authorization.canWriteExtendedData(roid);
 		User actingUser = getUserByUoid(authorization.getUoid());
+		getIdEObject().setUser(actingUser);
 		getIdEObject().setAdded(new Date());
 		super.execute();
 		Revision revision = getRevisionByRoid(roid);

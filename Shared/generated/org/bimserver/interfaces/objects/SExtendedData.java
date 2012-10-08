@@ -30,15 +30,14 @@ public class SExtendedData implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private java.lang.String url;
-	private byte[] data;
+	private long fileId = -1;
+	private long size;
 	private java.lang.String title;
-	private java.lang.String filename;
 	private java.util.Date added;
 	private long userId = -1;
 	private long schemaId = -1;
 	private long revisionId = -1;
 	private long projectId = -1;
-	private java.lang.String mime;
 	public long getOid() {
 		return oid;
 	}
@@ -60,14 +59,14 @@ public class SExtendedData implements SDataBase
 		if (sField.getName().equals("url")) {
 			return getUrl();
 		}
-		if (sField.getName().equals("data")) {
-			return getData();
+		if (sField.getName().equals("fileId")) {
+			return getFileId();
+		}
+		if (sField.getName().equals("size")) {
+			return getSize();
 		}
 		if (sField.getName().equals("title")) {
 			return getTitle();
-		}
-		if (sField.getName().equals("filename")) {
-			return getFilename();
 		}
 		if (sField.getName().equals("added")) {
 			return getAdded();
@@ -84,9 +83,6 @@ public class SExtendedData implements SDataBase
 		if (sField.getName().equals("projectId")) {
 			return getProjectId();
 		}
-		if (sField.getName().equals("mime")) {
-			return getMime();
-		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -98,16 +94,16 @@ public class SExtendedData implements SDataBase
 			setUrl((String)val);
 			return;
 		}
-		if (sField.getName().equals("data")) {
-			setData((byte[])val);
+		if (sField.getName().equals("fileId")) {
+			setFileId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("size")) {
+			setSize((Long)val);
 			return;
 		}
 		if (sField.getName().equals("title")) {
 			setTitle((String)val);
-			return;
-		}
-		if (sField.getName().equals("filename")) {
-			setFilename((String)val);
 			return;
 		}
 		if (sField.getName().equals("added")) {
@@ -130,10 +126,6 @@ public class SExtendedData implements SDataBase
 			setProjectId((Long)val);
 			return;
 		}
-		if (sField.getName().equals("mime")) {
-			setMime((String)val);
-			return;
-		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -149,12 +141,20 @@ public class SExtendedData implements SDataBase
 		this.url = url;
 	}
 	
-	public byte[] getData() {
-		return data;
+	public long getFileId() {
+		return fileId;
 	}
 
-	public void setData(byte[] data) {
-		this.data = data;
+	public void setFileId(long fileId) {
+		this.fileId = fileId;
+	}
+	
+	public long getSize() {
+		return size;
+	}
+
+	public void setSize(long size) {
+		this.size = size;
 	}
 	
 	public java.lang.String getTitle() {
@@ -163,14 +163,6 @@ public class SExtendedData implements SDataBase
 
 	public void setTitle(java.lang.String title) {
 		this.title = title;
-	}
-	
-	public java.lang.String getFilename() {
-		return filename;
-	}
-
-	public void setFilename(java.lang.String filename) {
-		this.filename = filename;
 	}
 	
 	public java.util.Date getAdded() {
@@ -211,14 +203,6 @@ public class SExtendedData implements SDataBase
 
 	public void setProjectId(long projectId) {
 		this.projectId = projectId;
-	}
-	
-	public java.lang.String getMime() {
-		return mime;
-	}
-
-	public void setMime(java.lang.String mime) {
-		this.mime = mime;
 	}
 	
 	@Override

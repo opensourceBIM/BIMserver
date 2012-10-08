@@ -30,7 +30,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getUrl <em>Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getNamespace <em>Namespace</em>}</li>
- *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getData <em>Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getFile <em>File</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getSize <em>Size</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#isValidate <em>Validate</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedDataSchema#getUsers <em>Users</em>}</li>
@@ -123,30 +125,82 @@ public interface ExtendedDataSchema extends IdEObject {
 	void setNamespace(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Data</b></em>' attribute.
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Data</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Data</em>' attribute.
-	 * @see #setData(byte[])
-	 * @see org.bimserver.models.store.StorePackage#getExtendedDataSchema_Data()
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see org.bimserver.models.store.StorePackage#getExtendedDataSchema_Description()
 	 * @model
 	 * @generated
 	 */
-	byte[] getData();
+	String getDescription();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ExtendedDataSchema#getData <em>Data</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.ExtendedDataSchema#getDescription <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Data</em>' attribute.
-	 * @see #getData()
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
 	 * @generated
 	 */
-	void setData(byte[] value);
+	void setDescription(String value);
+
+	/**
+	 * Returns the value of the '<em><b>File</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>File</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>File</em>' reference.
+	 * @see #setFile(File)
+	 * @see org.bimserver.models.store.StorePackage#getExtendedDataSchema_File()
+	 * @model
+	 * @generated
+	 */
+	File getFile();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ExtendedDataSchema#getFile <em>File</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>File</em>' reference.
+	 * @see #getFile()
+	 * @generated
+	 */
+	void setFile(File value);
+
+	/**
+	 * Returns the value of the '<em><b>Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Size</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Size</em>' attribute.
+	 * @see #setSize(long)
+	 * @see org.bimserver.models.store.StorePackage#getExtendedDataSchema_Size()
+	 * @model
+	 * @generated
+	 */
+	long getSize();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ExtendedDataSchema#getSize <em>Size</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Size</em>' attribute.
+	 * @see #getSize()
+	 * @generated
+	 */
+	void setSize(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Validate</b></em>' attribute.

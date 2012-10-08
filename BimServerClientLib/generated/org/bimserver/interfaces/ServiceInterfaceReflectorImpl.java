@@ -224,6 +224,9 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SDeserializerPluginConfiguration> getAllDeserializers(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SDeserializerPluginConfiguration>) reflector.callMethod("ServiceInterface", "getAllDeserializers", java.util.List.class, new KeyValuePair("onlyEnabled", onlyEnabled));
 	}
+	public java.util.List<org.bimserver.interfaces.objects.SExtendedData> getAllExtendedDataOfRevision(java.lang.Long roid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.util.List<org.bimserver.interfaces.objects.SExtendedData>) reflector.callMethod("ServiceInterface", "getAllExtendedDataOfRevision", java.util.List.class, new KeyValuePair("roid", roid));
+	}
 	public java.util.List<org.bimserver.interfaces.objects.SExtendedDataSchema> getAllExtendedDataSchemas() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SExtendedDataSchema>) reflector.callMethod("ServiceInterface", "getAllExtendedDataSchemas", java.util.List.class);
 	}
@@ -280,6 +283,9 @@ private Reflector reflector;
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllReadableProjects() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SProject>) reflector.callMethod("ServiceInterface", "getAllReadableProjects", java.util.List.class);
+	}
+	public java.util.List<org.bimserver.interfaces.objects.SExtendedDataSchema> getAllRepositoryExtendedDataSchemas() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.util.List<org.bimserver.interfaces.objects.SExtendedDataSchema>) reflector.callMethod("ServiceInterface", "getAllRepositoryExtendedDataSchemas", java.util.List.class);
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SRevision> getAllRevisionsByUser(java.lang.Long uoid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SRevision>) reflector.callMethod("ServiceInterface", "getAllRevisionsByUser", java.util.List.class, new KeyValuePair("uoid", uoid));
@@ -379,6 +385,12 @@ private Reflector reflector;
 	}
 	public org.bimserver.interfaces.objects.SExtendedDataSchema getExtendedDataSchemaByNamespace(java.lang.String namespace) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SExtendedDataSchema) reflector.callMethod("ServiceInterface", "getExtendedDataSchemaByNamespace", org.bimserver.interfaces.objects.SExtendedDataSchema.class, new KeyValuePair("namespace", namespace));
+	}
+	public org.bimserver.interfaces.objects.SExtendedDataSchema getExtendedDataSchemaFromRepository(java.lang.String namespace) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SExtendedDataSchema) reflector.callMethod("ServiceInterface", "getExtendedDataSchemaFromRepository", org.bimserver.interfaces.objects.SExtendedDataSchema.class, new KeyValuePair("namespace", namespace));
+	}
+	public org.bimserver.interfaces.objects.SFile getFile(long fileId) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SFile) reflector.callMethod("ServiceInterface", "getFile", org.bimserver.interfaces.objects.SFile.class, new KeyValuePair("fileId", fileId));
 	}
 	public org.bimserver.interfaces.objects.SGeoTag getGeoTag(java.lang.Long goid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SGeoTag) reflector.callMethod("ServiceInterface", "getGeoTag", org.bimserver.interfaces.objects.SGeoTag.class, new KeyValuePair("goid", goid));
@@ -481,6 +493,9 @@ private Reflector reflector;
 	}
 	public java.lang.String getServerLog() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.lang.String) reflector.callMethod("ServiceInterface", "getServerLog", java.lang.String.class);
+	}
+	public org.bimserver.interfaces.objects.SServerSettings getServerSettings() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (org.bimserver.interfaces.objects.SServerSettings) reflector.callMethod("ServiceInterface", "getServerSettings", org.bimserver.interfaces.objects.SServerSettings.class);
 	}
 	public java.util.Date getServerStartTime() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.Date) reflector.callMethod("ServiceInterface", "getServerStartTime", java.util.Date.class);
@@ -754,6 +769,9 @@ private Reflector reflector;
 	}
 	public java.lang.Boolean upgradePossible() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.lang.Boolean) reflector.callMethod("ServiceInterface", "upgradePossible", java.lang.Boolean.class);
+	}
+	public Long uploadFile(org.bimserver.interfaces.objects.SFile file) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (Long) reflector.callMethod("ServiceInterface", "uploadFile", long.class, new KeyValuePair("file", file));
 	}
 	public java.lang.Boolean userHasCheckinRights(java.lang.Long uoid, java.lang.Long poid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.lang.Boolean) reflector.callMethod("ServiceInterface", "userHasCheckinRights", java.lang.Boolean.class, new KeyValuePair("uoid", uoid), new KeyValuePair("poid", poid));

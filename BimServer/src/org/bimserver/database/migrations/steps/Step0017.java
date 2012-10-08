@@ -14,20 +14,29 @@ public class Step0017 extends Migration {
 	public void migrate(Schema schema) {
 		EEnum extendedDataSchemaType = schema.createEEnum(schema.getEPackage("store"), "ExtendedDataSchemaType");
 		schema.createEEnumLiteral(extendedDataSchemaType, "XSD");
+		schema.createEEnumLiteral(extendedDataSchemaType, "PDF");
+		schema.createEEnumLiteral(extendedDataSchemaType, "TXT");
+		
+		EClass file = schema.createEClass("store", "File");
+		schema.createEAttribute(file, "data", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
+		schema.createEAttribute(file, "filename", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(file, "mime", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		
 		EClass extendedDataSchemaClass = schema.createEClass(schema.getEPackage("store"), "ExtendedDataSchema");
 		schema.createEAttribute(extendedDataSchemaClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(extendedDataSchemaClass, "url", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(extendedDataSchemaClass, "namespace", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(extendedDataSchemaClass, "data", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
+		schema.createEAttribute(extendedDataSchemaClass, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEReference(extendedDataSchemaClass, "file", file, Multiplicity.SINGLE);
+		schema.createEAttribute(extendedDataSchemaClass, "size", EcorePackage.eINSTANCE.getELong(), Multiplicity.SINGLE);
 		schema.createEAttribute(extendedDataSchemaClass, "validate", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
 		schema.createEAttribute(extendedDataSchemaClass, "type", extendedDataSchemaType, Multiplicity.SINGLE);
 		
 		EClass extendedDataClass = schema.createEClass(schema.getEPackage("store"), "ExtendedData");
 		schema.createEAttribute(extendedDataClass, "url", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(extendedDataClass, "data", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
+		schema.createEReference(extendedDataClass, "file", file, Multiplicity.SINGLE);
+		schema.createEAttribute(extendedDataClass, "size", EcorePackage.eINSTANCE.getELong(), Multiplicity.SINGLE);
 		schema.createEAttribute(extendedDataClass, "title", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(extendedDataClass, "filename", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(extendedDataClass, "added", EcorePackage.eINSTANCE.getEDate(), Multiplicity.SINGLE);
 		
 		EClass userClass = schema.getEClass("store", "User");

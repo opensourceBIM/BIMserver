@@ -15,6 +15,7 @@ import org.bimserver.shared.meta.SService;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.slf4j.LoggerFactory;
 
 public class JsonHandler {
 	private BimServer bimServer;
@@ -26,6 +27,7 @@ public class JsonHandler {
 	}
 
 	public JSONObject execute(JSONObject incomingMessage, HttpServletRequest httpRequest) throws JSONException {
+		LoggerFactory.getLogger(JsonHandler.class).debug(incomingMessage.toString(2));
 		JSONArray requests = incomingMessage.getJSONArray("requests");
 		JSONArray responses = new JSONArray();
 

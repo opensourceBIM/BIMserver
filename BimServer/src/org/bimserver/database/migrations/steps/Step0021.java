@@ -71,8 +71,6 @@ public class Step0021 extends Migration {
 		EClass serverSettings = schema.getEClass("store", "ServerSettings");
 		schema.createEAttribute(serverSettings, "serviceRepositoryUrl", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		
-		schema.createEAttribute(schema.getEClass("store", "ExtendedData"), "mime", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		
 		EClass tokenClass = schema.createEClass("store", "Token");
 		schema.createEAttribute(tokenClass, "tokenString", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(tokenClass, "expires", EcorePackage.eINSTANCE.getELong(), Multiplicity.SINGLE);

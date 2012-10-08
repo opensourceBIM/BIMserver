@@ -233,6 +233,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createVersion();
 		case StorePackage.IFC_ENGINE_PLUGIN_DESCRIPTOR:
 			return (EObject) createIfcEnginePluginDescriptor();
+		case StorePackage.FILE:
+			return (EObject) createFile();
 		case StorePackage.EXTENDED_DATA_SCHEMA:
 			return (EObject) createExtendedDataSchema();
 		case StorePackage.EXTENDED_DATA:
@@ -822,6 +824,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public IfcEnginePluginDescriptor createIfcEnginePluginDescriptor() {
 		IfcEnginePluginDescriptorImpl ifcEnginePluginDescriptor = new IfcEnginePluginDescriptorImpl();
 		return ifcEnginePluginDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public File createFile() {
+		FileImpl file = new FileImpl();
+		return file;
 	}
 
 	/**

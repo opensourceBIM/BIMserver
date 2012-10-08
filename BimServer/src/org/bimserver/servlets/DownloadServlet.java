@@ -34,6 +34,8 @@ import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
 import org.bimserver.interfaces.objects.SCompareType;
 import org.bimserver.interfaces.objects.SDownloadResult;
+import org.bimserver.interfaces.objects.SExtendedData;
+import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SToken;
@@ -53,8 +55,8 @@ public class DownloadServlet extends HttpServlet {
 			response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
 			response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 			BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
-			SToken token = (SToken)request.getSession().getAttribute("token");
-			
+			SToken token = (SToken) request.getSession().getAttribute("token");
+
 			if (token == null) {
 				String tokenString = request.getParameter("tokenString");
 				long expires = Long.parseLong(request.getParameter("tokenExpires"));
@@ -63,6 +65,19 @@ public class DownloadServlet extends HttpServlet {
 				token.setExpires(expires);
 			}
 			ServiceInterface service = bimServer.getServiceFactory().getService(token);
+
+			if (request.getParameter("action") != null && request.getParameter("action").equals("extendeddata")) {
+				SExtendedData sExtendedData = service.getExtendedData(Long.parseLong(request.getParameter("edid")));
+				SFile file = service.getFile(sExtendedData.getFileId());
+				if (file.getMime() != null) {
+					response.setContentType(file.getMime());
+				}
+				if (file.getFilename() != null) {
+					response.setHeader("Content-Disposition", "inline; filename=\"" + file.getFilename() + "\"");
+				}
+				response.getOutputStream().write(file.getData());
+				return;
+			}
 
 			SSerializerPluginConfiguration serializer = null;
 			if (request.getParameter("serializerOid") != null) {

@@ -29,15 +29,14 @@ import org.bimserver.emf.IdEObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.bimserver.models.store.ExtendedData#getUrl <em>Url</em>}</li>
- *   <li>{@link org.bimserver.models.store.ExtendedData#getData <em>Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ExtendedData#getFile <em>File</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ExtendedData#getSize <em>Size</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedData#getTitle <em>Title</em>}</li>
- *   <li>{@link org.bimserver.models.store.ExtendedData#getFilename <em>Filename</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedData#getAdded <em>Added</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedData#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedData#getSchema <em>Schema</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedData#getRevision <em>Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedData#getProject <em>Project</em>}</li>
- *   <li>{@link org.bimserver.models.store.ExtendedData#getMime <em>Mime</em>}</li>
  * </ul>
  * </p>
  *
@@ -74,30 +73,56 @@ public interface ExtendedData extends IdEObject {
 	void setUrl(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Data</b></em>' attribute.
+	 * Returns the value of the '<em><b>File</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Data</em>' attribute isn't clear,
+	 * If the meaning of the '<em>File</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Data</em>' attribute.
-	 * @see #setData(byte[])
-	 * @see org.bimserver.models.store.StorePackage#getExtendedData_Data()
+	 * @return the value of the '<em>File</em>' reference.
+	 * @see #setFile(File)
+	 * @see org.bimserver.models.store.StorePackage#getExtendedData_File()
 	 * @model
 	 * @generated
 	 */
-	byte[] getData();
+	File getFile();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ExtendedData#getData <em>Data</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.ExtendedData#getFile <em>File</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Data</em>' attribute.
-	 * @see #getData()
+	 * @param value the new value of the '<em>File</em>' reference.
+	 * @see #getFile()
 	 * @generated
 	 */
-	void setData(byte[] value);
+	void setFile(File value);
+
+	/**
+	 * Returns the value of the '<em><b>Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Size</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Size</em>' attribute.
+	 * @see #setSize(long)
+	 * @see org.bimserver.models.store.StorePackage#getExtendedData_Size()
+	 * @model
+	 * @generated
+	 */
+	long getSize();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ExtendedData#getSize <em>Size</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Size</em>' attribute.
+	 * @see #getSize()
+	 * @generated
+	 */
+	void setSize(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Title</b></em>' attribute.
@@ -124,32 +149,6 @@ public interface ExtendedData extends IdEObject {
 	 * @generated
 	 */
 	void setTitle(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Filename</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Filename</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Filename</em>' attribute.
-	 * @see #setFilename(String)
-	 * @see org.bimserver.models.store.StorePackage#getExtendedData_Filename()
-	 * @model
-	 * @generated
-	 */
-	String getFilename();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ExtendedData#getFilename <em>Filename</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Filename</em>' attribute.
-	 * @see #getFilename()
-	 * @generated
-	 */
-	void setFilename(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Added</b></em>' attribute.
@@ -288,31 +287,5 @@ public interface ExtendedData extends IdEObject {
 	 * @generated
 	 */
 	void setProject(Project value);
-
-	/**
-	 * Returns the value of the '<em><b>Mime</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Mime</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mime</em>' attribute.
-	 * @see #setMime(String)
-	 * @see org.bimserver.models.store.StorePackage#getExtendedData_Mime()
-	 * @model
-	 * @generated
-	 */
-	String getMime();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ExtendedData#getMime <em>Mime</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Mime</em>' attribute.
-	 * @see #getMime()
-	 * @generated
-	 */
-	void setMime(String value);
 
 } // ExtendedData

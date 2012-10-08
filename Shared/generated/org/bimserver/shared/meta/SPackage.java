@@ -115,6 +115,7 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor");
 		Class.forName("org.bimserver.interfaces.objects.SCheckinStatus");
 		Class.forName("org.bimserver.interfaces.objects.SExtendedDataSchemaType");
+		Class.forName("org.bimserver.interfaces.objects.SFile");
 		Class.forName("org.bimserver.interfaces.objects.SExtendedDataSchema");
 		Class.forName("org.bimserver.interfaces.objects.SExtendedData");
 		Class.forName("org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor");
