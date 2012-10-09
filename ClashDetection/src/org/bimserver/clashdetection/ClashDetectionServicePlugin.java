@@ -30,6 +30,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
+import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SNewRevisionAdded;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
@@ -191,18 +192,23 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 				
 				SExtendedDataSchema extendedDataSchemaByNamespace = serviceInterface.getExtendedDataSchemaByNamespace("bcf");
 
+				SFile file = new SFile();
+				
 				SExtendedData extendedData = new SExtendedData();
 				extendedData.setTitle("Clashdetection Results");
-				extendedData.setFilename("clashdetection.bcfzip");
+				file.setFilename("clashdetection.bcfzip");
 				extendedData.setSchemaId(extendedDataSchemaByNamespace.getOid());
 				try {
-					extendedData.setData(bcf.toBytes());
+					file.setData(bcf.toBytes());
 				} catch (BcfException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				extendedData.setMime("application/bcf");
+				file.setMime("application/bcf");
+				
+				long fileId = serviceInterface.uploadFile(file);
+				extendedData.setFileId(fileId);
 				
 				serviceInterface.addExtendedDataToRevision(sNewRevisionAdded.getRevisionId(), extendedData);
 			}
