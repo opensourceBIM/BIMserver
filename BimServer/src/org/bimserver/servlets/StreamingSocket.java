@@ -3,7 +3,6 @@ package org.bimserver.servlets;
 import java.io.IOException;
 
 import org.bimserver.BimServer;
-import org.bimserver.client.JsonReflector;
 import org.bimserver.interfaces.NotificationInterfaceReflectorImpl;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.codehaus.jettison.json.JSONException;
@@ -13,7 +12,7 @@ import org.eclipse.jetty.websocket.WebSocket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class StreamingSocket implements WebSocket.OnTextMessage, EndPoint {
+public class StreamingSocket implements WebSocket.OnTextMessage, EndPoint, StreamingSocketInterface {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(StreamingSocket.class);
 	private Connection connection;
@@ -25,8 +24,7 @@ public class StreamingSocket implements WebSocket.OnTextMessage, EndPoint {
 	public StreamingSocket(BimServer bimServer) {
 		this.bimServer = bimServer;
 		this.endpointid = bimServer.getEndPointManager().register(this);
-		JsonReflector jsonReflector = new JsonWebsocketReflector(bimServer.getServiceInterfaces(), this);
-		reflectorImpl = new NotificationInterfaceReflectorImpl(jsonReflector);
+		reflectorImpl = new NotificationInterfaceReflectorImpl(new JsonWebsocketReflector(bimServer.getServiceInterfaces(), this));
 	}
 
 	@Override

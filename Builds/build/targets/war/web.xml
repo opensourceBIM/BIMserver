@@ -56,15 +56,15 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>StreamingServlet</servlet-name>
-		<servlet-class>org.bimserver.servlets.StreamingServlet</servlet-class>
+		<servlet-name>TomcatStreamingServlet</servlet-name>
+		<servlet-class>org.bimserver.servlets.TomcatStreamingServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>StreamingServlet</servlet-name>
+		<servlet-name>TomcatStreamingServlet</servlet-name>
 		<url-pattern>/stream/*</url-pattern>
 	</servlet-mapping>
-
+	
 	<servlet>
 		<servlet-name>UploadServlet</servlet-name>
 		<servlet-class>org.bimserver.servlets.UploadServlet</servlet-class>
