@@ -9,8 +9,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.equinox.preferences_3.5.0.v20120522-1841.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.jdt.core_3.8.1.v20120531-0637.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.osgi_3.8.0.v20120529-1548.jar"/>
-	<classpathentry kind="lib" path="lib/tomcat-api.jar"/>
-	<classpathentry kind="lib" path="lib/catalina.jar"/>
 	<classpathentry kind="lib" path="lib/tomcat/tomcat-coyote.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
@@ -138,6 +136,7 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/tomcat/catalina.jar"/>
 	<classpathentry kind="output" path="bin"/>
 	<referencedentry exported="true" kind="lib" path="lib/cxf/cxf-2.4.4.jar" sourcepath="libsrc/apache-cxf-2.4.3-src.zip"/>
 </classpath>
