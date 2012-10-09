@@ -15,7 +15,6 @@ import org.bimserver.shared.meta.SService;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import org.slf4j.LoggerFactory;
 
 public class JsonHandler {
 	private BimServer bimServer;
@@ -27,7 +26,6 @@ public class JsonHandler {
 	}
 
 	public JSONObject execute(JSONObject incomingMessage, HttpServletRequest httpRequest) throws JSONException {
-		LoggerFactory.getLogger(JsonHandler.class).info(incomingMessage.toString(2));
 		JSONArray requests = incomingMessage.getJSONArray("requests");
 		JSONArray responses = new JSONArray();
 
@@ -38,9 +36,6 @@ public class JsonHandler {
 				JSONObject request = requests.getJSONObject(r);
 				String interfaceName = request.getString("interface");
 				String methodName = request.getString("method");
-				if (methodName.equals("getDataObjects")) {
-					System.out.println();
-				}
 				SService sService = bimServer.getServiceInterface(interfaceName);
 				if (sService == null) {
 					throw new UserException("No service found with name " + interfaceName);
@@ -84,8 +79,6 @@ public class JsonHandler {
 
 		JSONObject outgoingMessage = new JSONObject();
 		outgoingMessage.put("responses", responses);
-		
-		LoggerFactory.getLogger(JsonHandler.class).info("size: " + outgoingMessage.toString(2).length());
 		
 		return outgoingMessage;
 	}
