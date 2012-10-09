@@ -37,7 +37,6 @@ import org.bimserver.servlets.JsonApiServlet;
 import org.bimserver.servlets.UploadServlet;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimwebserver.BimWebServer;
-import org.bimwebserver.servlets.ProgressServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -95,7 +94,6 @@ public class JarBimWebServer {
 	 		bimServer.getPluginManager().loadAllPluginsFromDirectoryOfJars(new File("plugins"));
 		 	EmbeddedWebServer embeddedWebServer = bimServer.getEmbeddedWebServer();
 		 	embeddedWebServer.getContext().addServlet(DownloadServlet.class, "/download/*");
-		 	embeddedWebServer.getContext().addServlet(ProgressServlet.class, "/progress/*");
 		 	embeddedWebServer.getContext().addServlet(UploadServlet.class, "/upload/*");
 		 	embeddedWebServer.getContext().addServlet(JsonApiServlet.class, "/json/*");
 		 	embeddedWebServer.getContext().setResourceBase("www");

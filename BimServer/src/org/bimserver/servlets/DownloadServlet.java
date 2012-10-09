@@ -39,11 +39,14 @@ import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SToken;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.base.Charsets;
 
 public class DownloadServlet extends HttpServlet {
 	private static final long serialVersionUID = 732025375536415841L;
@@ -77,8 +80,27 @@ public class DownloadServlet extends HttpServlet {
 				}
 				response.getOutputStream().write(file.getData());
 				return;
+			} else if (request.getParameter("action") != null && request.getParameter("action").equals("getfile")) {
+				if (request.getParameter("file") != null) {
+					String file = request.getParameter("file");
+					if (file.equals("service.proto")) {
+						try {
+							String protocolBuffersFile = service.getProtocolBuffersFile();
+							response.getOutputStream().write(protocolBuffersFile.getBytes(Charsets.UTF_8));
+						} catch (ServiceException e) {
+							LOGGER.error("", e);
+						}
+					} else if (file.equals("serverlog")) {
+						try {
+							response.getWriter().write(service.getServerLog());
+						} catch (ServerException e) {
+							LOGGER.error("", e);
+						} catch (UserException e) {
+							LOGGER.error("", e);
+						}
+					}
+				}
 			}
-
 			SSerializerPluginConfiguration serializer = null;
 			if (request.getParameter("serializerOid") != null) {
 				long serializerOid = Long.parseLong(request.getParameter("serializerOid"));

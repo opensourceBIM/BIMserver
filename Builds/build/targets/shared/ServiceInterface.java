@@ -47,6 +47,7 @@ import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
+import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
@@ -73,6 +74,7 @@ import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServerInfo;
+import org.bimserver.interfaces.objects.SServerSettings;
 import org.bimserver.interfaces.objects.SService;
 import org.bimserver.interfaces.objects.SServiceDescriptor;
 import org.bimserver.interfaces.objects.SServiceInterface;
@@ -1045,6 +1047,15 @@ public interface ServiceInterface {
 			@WebParam(name = "oid", partName = "getExtendedData.oid") Long oid) throws ServerException, UserException;
 
 	/**
+	 * @param oid ObjectID of the ExtendedData
+	 * @return ExtendedData
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllExtendedDataOfRevision")
+	List<SExtendedData> getAllExtendedDataOfRevision(
+			@WebParam(name = "roid", partName = "getAllExtendedDataOfRevision.roid") Long roid) throws ServerException, UserException;
+
+	/**
 	 * @param oid ObjectID of the IfcEngine
 	 * @return IfcEngine
 	 * @throws ServerException, UserException
@@ -1140,6 +1151,10 @@ public interface ServiceInterface {
 	@WebMethod(action = "getExtendedDataSchemaByNamespace")
 	SExtendedDataSchema getExtendedDataSchemaByNamespace(
 			@WebParam(name = "namespace", partName = "getExtendedDataSchemaByNamespace.namespace") String namespace) throws UserException, ServerException;
+
+	@WebMethod(action = "getExtendedDataSchemaFromRepository")
+	SExtendedDataSchema getExtendedDataSchemaFromRepository(
+			@WebParam(name = "namespace", partName = "getExtendedDataSchemaFromRepository.namespace") String namespace) throws UserException, ServerException;
 	
 	/**
 	 * @param roid ObjectID of the Revision
@@ -1853,6 +1868,9 @@ public interface ServiceInterface {
 	@WebMethod(action="getAllServiceDescriptors")
 	List<SServiceDescriptor> getAllServiceDescriptors() throws ServerException, UserException;
 
+	@WebMethod(action="getAllRepositoryExtendedDataSchemas")
+	List<SExtendedDataSchema> getAllRepositoryExtendedDataSchemas() throws ServerException, UserException;
+
 	@WebMethod(action="getAllPublicProfiles")
 	List<SProfileDescriptor> getAllPublicProfiles(
 		@WebParam(name = "serviceUrl", partName = "getAllPublicProfiles.serviceUrl") String serviceUrl) throws ServerException, UserException;
@@ -2247,4 +2265,15 @@ public interface ServiceInterface {
 	@WebMethod(action = "getPluginSettings")
 	SObjectType getPluginSettings(
 		@WebParam(name = "poid", partName = "getPluginSettings.poid") long poid) throws ServerException, UserException;
+	
+	@WebMethod(action = "getServerSettings")
+	SServerSettings getServerSettings() throws ServerException, UserException;
+
+	@WebMethod(action = "uploadFile")
+	Long uploadFile(
+		@WebParam(name = "file", partName = "uploadFile.file") SFile file) throws ServerException, UserException;
+
+	@WebMethod(action = "getFile")
+	SFile getFile(
+		@WebParam(name = "fileId", partName = "getFile.fileId") long fileId) throws ServerException, UserException;
 }

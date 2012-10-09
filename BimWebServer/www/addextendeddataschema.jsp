@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.interfaces.objects.SFile"%>
 <%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
 <%@page import="org.apache.commons.fileupload.FileItemFactory"%>
 <%@page import="java.util.Iterator"%>
@@ -32,6 +33,7 @@
 	boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 	if (isMultipart) {
 		SExtendedDataSchema extendedDataSchema = new SExtendedDataSchema();
+		SFile sFile = new SFile();
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		factory.setSizeThreshold(1024 * 1024 * 500);
 		ServletFileUpload upload = new ServletFileUpload(factory);
@@ -40,7 +42,7 @@
 		while (iter.hasNext()) {
 			FileItem next = iter.next();
 			if (!next.isFormField()) {
-				extendedDataSchema.setData(next.get());
+				sFile.setData(next.get());
 			} else {
 				String fieldName = next.getFieldName();
 				if ("name".equals(fieldName)) {
@@ -56,6 +58,8 @@
 				}
 			}
 		}
+		long fid = loginManager.getService(request).uploadFile(sFile);
+		extendedDataSchema.setFileId(fid);
 		loginManager.getService(request).addExtendedDataSchema(extendedDataSchema);
 		response.sendRedirect("extendeddataschemas.jsp");
 	}

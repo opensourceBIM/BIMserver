@@ -1,6 +1,5 @@
 <%@page import="org.bimwebserver.jsp.SProjectComparator"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@page import="org.bimwebserver.jsp.Message"%>
 <%@page import="java.util.List" %>
 <%@page import="java.text.DateFormat" %>
 <%@page import="java.text.SimpleDateFormat" %>

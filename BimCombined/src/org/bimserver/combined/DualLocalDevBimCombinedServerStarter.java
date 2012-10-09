@@ -32,9 +32,6 @@ import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServerState;
-import org.bimserver.models.store.ServiceDescriptor;
-import org.bimserver.models.store.StoreFactory;
-import org.bimserver.models.store.Trigger;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.servlets.DownloadServlet;
 import org.bimserver.servlets.JsonApiServlet;
@@ -43,7 +40,6 @@ import org.bimserver.servlets.UploadServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimwebserver.BimWebServer;
-import org.bimwebserver.servlets.ProgressServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -84,7 +80,6 @@ public class DualLocalDevBimCombinedServerStarter {
 				 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
 					 	EmbeddedWebServer embeddedWebServer = bimServer.getEmbeddedWebServer();
 					 	embeddedWebServer.getContext().addServlet(DownloadServlet.class, "/download/*");
-					 	embeddedWebServer.getContext().addServlet(ProgressServlet.class, "/progress/*");
 					 	embeddedWebServer.getContext().addServlet(UploadServlet.class, "/upload/*");
 					 	embeddedWebServer.getContext().addServlet(JsonApiServlet.class, "/json/*");
 					 	embeddedWebServer.getContext().addServlet(StreamingServlet.class, "/stream/*");
@@ -106,16 +101,6 @@ public class DualLocalDevBimCombinedServerStarter {
 						if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 							bimServer.getSystemService().setup("http://localhost:" + port, "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
 						}
-						
-						ServiceDescriptor serviceDescriptor = StoreFactory.eINSTANCE.createServiceDescriptor();
-						serviceDescriptor.setProviderName("BIMWebServer");
-						serviceDescriptor.setUrl("");
-						serviceDescriptor.setName("Desktop Notifications");
-						serviceDescriptor.setTrigger(Trigger.NEW_REVISION);
-						serviceDescriptor.setNotificationProtocol(AccessMethod.INTERNAL);
-						serviceDescriptor.setDescription("Desktop Notifications");
-						
-						bimServer.getNotificationsManager().register(serviceDescriptor, bimWebServer);
 					} catch (PluginException e) {
 						LOGGER.error("", e);
 					} catch (ServiceException e) {

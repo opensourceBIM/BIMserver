@@ -106,7 +106,7 @@ public class ServiceInterfaceFactory implements ServiceFactory {
 		List<SUserSession> userSessions = new ArrayList<SUserSession>();
 		for (TokenWrapper tokenWrapper : tokens.keySet()) {
 			Token token = tokenWrapper.getToken();
-			ServiceInterface serviceInterface = tokens.get(token);
+			ServiceInterface serviceInterface = getService(token);
 			if (serviceInterface.isLoggedIn() && serviceInterface.getAccessMethod() != SAccessMethod.INTERNAL) {
 				SUser user = serviceInterface.getCurrentUser();
 				if (user != null) {

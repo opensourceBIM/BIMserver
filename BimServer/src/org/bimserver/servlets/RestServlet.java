@@ -39,7 +39,6 @@ public class RestServlet extends CXFNonSpringJaxrsServlet {
 	private static final Logger LOGGER = LoggerFactory.getLogger(RestServlet.class);
 	
 	protected void createServerFromApplication(String cName, ServletConfig servletConfig) throws ServletException {
-		
 	}
 	
 	@Override
