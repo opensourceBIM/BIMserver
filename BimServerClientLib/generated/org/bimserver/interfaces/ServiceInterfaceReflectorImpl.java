@@ -722,6 +722,9 @@ private Reflector reflector;
 	public void startTransaction(java.lang.Long poid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "startTransaction", void.class, new KeyValuePair("poid", poid));
 	}
+	public void triggerNewRevision(long roid, long soid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("ServiceInterface", "triggerNewRevision", void.class, new KeyValuePair("roid", roid), new KeyValuePair("soid", soid));
+	}
 	public java.lang.Boolean undeleteProject(java.lang.Long poid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.lang.Boolean) reflector.callMethod("ServiceInterface", "undeleteProject", java.lang.Boolean.class, new KeyValuePair("poid", poid));
 	}
@@ -770,8 +773,8 @@ private Reflector reflector;
 	public java.lang.Boolean upgradePossible() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.lang.Boolean) reflector.callMethod("ServiceInterface", "upgradePossible", java.lang.Boolean.class);
 	}
-	public Long uploadFile(org.bimserver.interfaces.objects.SFile file) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (Long) reflector.callMethod("ServiceInterface", "uploadFile", long.class, new KeyValuePair("file", file));
+	public java.lang.Long uploadFile(org.bimserver.interfaces.objects.SFile file) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.lang.Long) reflector.callMethod("ServiceInterface", "uploadFile", java.lang.Long.class, new KeyValuePair("file", file));
 	}
 	public java.lang.Boolean userHasCheckinRights(java.lang.Long uoid, java.lang.Long poid) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.lang.Boolean) reflector.callMethod("ServiceInterface", "userHasCheckinRights", java.lang.Boolean.class, new KeyValuePair("uoid", uoid), new KeyValuePair("poid", poid));

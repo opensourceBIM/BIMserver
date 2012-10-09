@@ -3601,7 +3601,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getService_Url() {
+	public EAttribute getService_ServiceName() {
 		return (EAttribute) getService().getEStructuralFeatures().get(1);
 	}
 
@@ -3610,7 +3610,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getService_Token() {
+	public EAttribute getService_ProviderName() {
 		return (EAttribute) getService().getEStructuralFeatures().get(2);
 	}
 
@@ -3619,7 +3619,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getService_NotificationProtocol() {
+	public EAttribute getService_Url() {
 		return (EAttribute) getService().getEStructuralFeatures().get(3);
 	}
 
@@ -3628,7 +3628,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getService_Description() {
+	public EAttribute getService_Token() {
 		return (EAttribute) getService().getEStructuralFeatures().get(4);
 	}
 
@@ -3637,7 +3637,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getService_Trigger() {
+	public EAttribute getService_NotificationProtocol() {
 		return (EAttribute) getService().getEStructuralFeatures().get(5);
 	}
 
@@ -3646,7 +3646,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getService_ReadRevision() {
+	public EAttribute getService_Description() {
 		return (EAttribute) getService().getEStructuralFeatures().get(6);
 	}
 
@@ -3655,25 +3655,25 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getService_Trigger() {
+		return (EAttribute) getService().getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getService_ReadRevision() {
+		return (EAttribute) getService().getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getService_ReadExtendedData() {
-		return (EReference) getService().getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getService_WriteRevision() {
-		return (EReference) getService().getEStructuralFeatures().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getService_WriteExtendedData() {
 		return (EReference) getService().getEStructuralFeatures().get(9);
 	}
 
@@ -3682,25 +3682,25 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getService_WriteRevision() {
+		return (EReference) getService().getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getService_WriteExtendedData() {
+		return (EReference) getService().getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getService_ProfileIdentifier() {
-		return (EAttribute) getService().getEStructuralFeatures().get(10);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getService_ProfileName() {
-		return (EAttribute) getService().getEStructuralFeatures().get(11);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getService_ProfileDescription() {
 		return (EAttribute) getService().getEStructuralFeatures().get(12);
 	}
 
@@ -3709,7 +3709,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getService_ProfilePublic() {
+	public EAttribute getService_ProfileName() {
 		return (EAttribute) getService().getEStructuralFeatures().get(13);
 	}
 
@@ -3718,8 +3718,26 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getService_ProfileDescription() {
+		return (EAttribute) getService().getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getService_ProfilePublic() {
+		return (EAttribute) getService().getEStructuralFeatures().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getService_Project() {
-		return (EReference) getService().getEStructuralFeatures().get(14);
+		return (EReference) getService().getEStructuralFeatures().get(16);
 	}
 
 	/**
@@ -3728,7 +3746,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getService_User() {
-		return (EReference) getService().getEStructuralFeatures().get(15);
+		return (EReference) getService().getEStructuralFeatures().get(17);
 	}
 
 	/**

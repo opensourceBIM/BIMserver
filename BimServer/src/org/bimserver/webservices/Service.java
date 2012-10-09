@@ -93,6 +93,7 @@ import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
 import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
+import org.bimserver.interfaces.objects.SNewRevisionAdded;
 import org.bimserver.interfaces.objects.SObjectDefinition;
 import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
@@ -501,7 +502,7 @@ public class Service implements ServiceInterface {
 		try {
 			BimDatabaseAction<Set<Revision>> action = new GetAllRevisionsOfProjectDatabaseAction(session, accessMethod, poid);
 			List<SRevision> convertToSListRevision = converter.convertToSListRevision(session.executeAndCommitAction(action));
-			Collections.sort(convertToSListRevision, new SRevisionComparator(true));
+			Collections.sort(convertToSListRevision, new SRevisionComparator(false));
 			return convertToSListRevision;
 		} catch (Exception e) {
 			return handleException(e);
@@ -3429,6 +3430,11 @@ public class Service implements ServiceInterface {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
 			sService.setUserId(getCurrentUser().getOid());
 			org.bimserver.models.store.Service service = converter.convertFromSObject(sService, session);
+			for (org.bimserver.models.store.Service existing : project.getServices()) {
+				if (existing.getName().equals(service.getName())) {
+					throw new UserException("Service name \"" + service.getName() + "\" already used in this project");
+				}
+			}
 			project.getServices().add(service);
 			service.setProject(project);
 			session.store(service);
@@ -3791,6 +3797,23 @@ public class Service implements ServiceInterface {
 			return oid;
 		} catch (Exception e) {
 			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public void triggerNewRevision(long roid, long soid) throws ServerException, UserException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			org.bimserver.models.store.Service service = (org.bimserver.models.store.Service)session.get(StorePackage.eINSTANCE.getService(), soid, false, null);
+			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
+			SNewRevisionAdded newRevisionNotification = new SNewRevisionAdded();
+			newRevisionNotification.setRevisionId(revision.getOid());
+			newRevisionNotification.setProjectId(revision.getProject().getOid());
+			bimServer.getNotificationsManager().trigger(bimServer.getServerSettings(session).getSiteAddress(), newRevisionNotification, service);
+		} catch (Exception e) {
+			handleException(e);
 		} finally {
 			session.close();
 		}

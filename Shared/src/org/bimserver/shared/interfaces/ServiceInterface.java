@@ -2276,4 +2276,9 @@ public interface ServiceInterface {
 	@WebMethod(action = "getFile")
 	SFile getFile(
 		@WebParam(name = "fileId", partName = "getFile.fileId") long fileId) throws ServerException, UserException;
+	
+	@WebMethod(action = "triggerNewRevision")
+	void triggerNewRevision(
+		@WebParam(name = "roid", partName = "triggerNewRevision.roid") long roid, 
+		@WebParam(name = "soid", partName = "triggerNewRevision.soid") long soid) throws ServerException, UserException;
 }
