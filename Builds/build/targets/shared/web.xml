@@ -12,16 +12,6 @@
 	</listener>
 
 	<servlet>
-		<servlet-name>ProgressServlet</servlet-name>
-		<servlet-class>org.bimwebserver.servlets.ProgressServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ProgressServlet</servlet-name>
-		<url-pattern>/progress/*</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
 		<servlet-name>UploadServlet</servlet-name>
 		<servlet-class>org.bimserver.servlets.UploadServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>

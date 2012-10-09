@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.interfaces.objects.SFile"%>
 <%@page import="org.apache.commons.fileupload.FileItem"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
@@ -29,6 +30,7 @@
 			boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 			if (isMultipart) {
 				SExtendedData extendedData = new SExtendedData();
+				SFile file = new SFile();
 				DiskFileItemFactory factory = new DiskFileItemFactory();
 				factory.setSizeThreshold(1024 * 1024 * 500);
 				ServletFileUpload upload = new ServletFileUpload(factory);
@@ -37,7 +39,7 @@
 				while (iter.hasNext()) {
 					FileItem next = iter.next();
 					if (!next.isFormField()) {
-						extendedData.setData(next.get());
+						file.setData(next.get());
 					} else {
 						String fieldName = next.getFieldName();
 						if ("title".equals(fieldName)) {
@@ -49,6 +51,8 @@
 						}
 					}
 				}
+				long fid = loginManager.getService(request).uploadFile(file);
+				extendedData.setFileId(fid);
 				loginManager.getService(request).addExtendedDataToRevision(roid, extendedData);
 				response.sendRedirect("revision.jsp?roid=" + roid);
 			}
@@ -264,8 +268,8 @@
 		SExtendedDataSchema sExtendedDataSchema = loginManager.getService(request).getExtendedDataSchemaById(sExtendedData.getSchemaId());
 		out.println("<tr>");
 		out.println("<td><a href=\"getextendeddata.jsp?edid=" + sExtendedData.getOid() + "\">" + sExtendedData.getTitle() + "</a></td>");
-		if (sExtendedData.getData() != null && sExtendedData.getData().length > 0) {
-			out.println("<td>" + sExtendedData.getData().length + " bytes" + "</td>");
+		if (sExtendedData.getFileId() != -1) {
+			out.println("<td>" + sExtendedData.getSize() + " bytes" + "</td>");
 		} else {
 			out.println("<td><a href=\"\">" + sExtendedData.getUrl() + "</a></td>");
 		}

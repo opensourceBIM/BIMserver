@@ -58,7 +58,7 @@ E-mail <a href="mailto:<%= latestVersion.getSupportEmail() %>"><%= latestVersion
 %>
 
 	<p>If you plan to post an issue on <a href="http://support.bimserver.org" target="_blank">http://support.bimserver.org</a>, please make sure 
-	you accompany it with the <a href="<%=getServletContext().getContextPath()%>/files?file=serverlog">server logfile</a>, a solid 
+	you accompany it with the <a href="<%=getServletContext().getContextPath()%>/download?action=getfile&file=serverlog">server logfile</a>, a solid 
 	description of your situation (including BIMserver version number) and maybe even a screenshot. Only than we can help you the best possible way.</p>
 <div class="tabber" id="infotabber">
 	<%@ include file="extraInfo.jsp" %>
@@ -171,7 +171,7 @@ E-mail <a href="mailto:<%= latestVersion.getSupportEmail() %>"><%= latestVersion
 			<tr><td>BIMserver managers registration</td><td> Please take a moment to register yourself as a BIMserver manager.<br/>
 			<a href="https://docs.google.com/spreadsheet/embeddedform?formkey=dG5DYUNyVnA0Mk5DWnN0eHFueDlMR2c6MQ" target="_blank">
 			Click here to register</a>.</td></tr>
-			<tr><td>Server log</td><td><a href="<%=getServletContext().getContextPath()%>/files?file=serverlog">Download server Logfile</a></td></tr>
+			<tr><td>Server log</td><td><a href="<%=getServletContext().getContextPath()%>/download?action=getfile&file=serverlog">Download server Logfile</a></td></tr>
 			<tr><td class="firstcolumn">Server started at</td><td><%=dateFormat.format(loginManager.getService(request).getServerStartTime()) %></td></tr>
 			<%
 				GregorianCalendar gc = new GregorianCalendar();
@@ -204,7 +204,7 @@ E-mail <a href="mailto:<%= latestVersion.getSupportEmail() %>"><%= latestVersion
 			<tr><td colspan="2" class="tabletitle">General Information</td></tr>
 			<tr><td class="firstcolumn">SOAP Service Descriptor</td><td><a href="soap?wsdl">WSDL</a></td></tr>
 			<tr><td class="firstcolumn">Rest Service Descriptor</td><td><a href="rest?_wadl">WADL</a></td></tr>
-			<tr><td class="firstcolumn">Protocol Buffers Desriptor File</td><td><a href="/files?file=service.proto">Proto</a></td></tr>
+			<tr><td class="firstcolumn">Protocol Buffers Desriptor File</td><td><a href="/download?action=getfile&file=service.proto">Proto</a></td></tr>
 			<tr><td class="firstcolumn">JSON Documentation</td><td><a href="/jsonapi?doc">JSON Doc</a></td></tr>
 		</table>
 	</div>

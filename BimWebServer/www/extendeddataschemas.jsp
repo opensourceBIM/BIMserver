@@ -1,3 +1,4 @@
+<%@page import="org.bimserver.interfaces.objects.SFile"%>
 <%@page import="org.bimserver.shared.interfaces.ServiceInterface"%>
 <%@page import="org.bimserver.interfaces.objects.SUserType"%>
 <%@page import="org.bimserver.interfaces.objects.SExtendedDataSchema"%>
@@ -16,10 +17,11 @@
 <%
 	List<SExtendedDataSchema> extendedDataSchemas = service.getAllExtendedDataSchemas();
 	for (SExtendedDataSchema extendedDataSchema : extendedDataSchemas) {
+		SFile sFile = loginManager.getService(request).getFile(extendedDataSchema.getFileId());
 %>
 	<tr>
 		<td><%=extendedDataSchema.getName() %></a></td>
-		<td><%=(extendedDataSchema.getData() != null && extendedDataSchema.getData().length > 0) ? (extendedDataSchema.getData().length + " bytes") : extendedDataSchema.getUrl() %></td>
+		<td><%=extendedDataSchema.getSize() + " bytes" %></td>
 		<td><%=extendedDataSchema.getNamespace() %></td>
 		<td><%=extendedDataSchema.isValidate() %></td>
 		<td><%=extendedDataSchema.getType().name() %></td>
