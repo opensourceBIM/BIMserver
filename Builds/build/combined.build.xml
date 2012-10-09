@@ -65,6 +65,7 @@
 				<exclude name="ant-1.6.5.jar" />
 				<exclude name="core-3.1.1.jar" />
 				<exclude name="jetty/**" />
+				<exclude name="tomcat/**" />
 				<exclude name="**/*servlet*" />
 			</fileset>
 		</copy>
