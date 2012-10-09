@@ -26,14 +26,15 @@ import org.bimserver.interfaces.NotificationInterfaceReflectorImpl;
 import org.bimserver.interfaces.ServiceInterfaceReflectorImpl;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.reflector.Reflector;
 
 public abstract class Channel {
-	private final Map<String, Object> serviceInterfaces = new HashMap<String, Object>();
+	private final Map<String, PublicInterface> serviceInterfaces = new HashMap<String, PublicInterface>();
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
 
-	protected void addServiceInterface(String name, Object object) {
+	protected void addServiceInterface(String name, PublicInterface object) {
 		serviceInterfaces.put(name, object);
 	}
 
@@ -45,7 +46,7 @@ public abstract class Channel {
 		return (ServiceInterface) getServiceInterface("ServiceInterface");
 	}
 	
-	public Object getServiceInterface(String name) {
+	public PublicInterface getServiceInterface(String name) {
 		return serviceInterfaces.get(name);
 	}
 	

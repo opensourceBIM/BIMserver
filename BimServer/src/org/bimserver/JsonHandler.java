@@ -7,7 +7,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.json.JsonConverter;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
@@ -32,9 +32,9 @@ public class JsonHandler {
 		for (int r = 0; r < requests.length(); r++) {
 			JSONObject responseObject = new JSONObject();
 			try {
-				ServiceInterface service = getServiceInterface(httpRequest, bimServer, incomingMessage);
 				JSONObject request = requests.getJSONObject(r);
 				String interfaceName = request.getString("interface");
+				Class clazz = Class.forName("org.bimserver.shared.interfaces." + interfaceName);
 				String methodName = request.getString("method");
 				SService sService = bimServer.getServiceInterface(interfaceName);
 				if (sService == null) {
@@ -55,6 +55,7 @@ public class JsonHandler {
 					}
 				}
 
+				Object service = getServiceInterface(httpRequest, bimServer, clazz, incomingMessage);
 				Object result = method.invoke(service, parameters);
 				if (result == null) {
 					responseObject.put("result", new JSONObject());
@@ -83,9 +84,9 @@ public class JsonHandler {
 		return outgoingMessage;
 	}
 
-	private ServiceInterface getServiceInterface(HttpServletRequest httpRequest, BimServer bimServer, JSONObject request) throws JSONException, UserException, ServerException {
+	private <T extends PublicInterface> T getServiceInterface(HttpServletRequest httpRequest, BimServer bimServer, Class<T> interfaceClass, JSONObject request) throws JSONException, UserException, ServerException {
 		SToken token = httpRequest == null ? null : (SToken) httpRequest.getSession().getAttribute("token");
-		ServiceInterface service = null;
+		T service = null;
 		if (token == null) {
 			// There is no token in the HTTP Session, but we also allow the user
 			// to not use sessions and provide the token in the json request
@@ -94,15 +95,16 @@ public class JsonHandler {
 				token = new SToken();
 				token.setTokenString(jsonToken.getString("tokenString"));
 				token.setExpires(jsonToken.getLong("expires"));
-				service = bimServer.getServiceFactory().getService(token);
+				service = bimServer.getServiceFactory().getService(interfaceClass, token);
+				token = service.getCurrentToken();
 			}
 		} else {
-			service = bimServer.getServiceFactory().getService(token);
+			service = bimServer.getServiceFactory().getService(interfaceClass, token);
 		}
 		if (service == null) {
-			service = bimServer.getServiceFactory().newService(AccessMethod.INTERNAL, "");
+			service = bimServer.getServiceFactory().newService(interfaceClass, AccessMethod.INTERNAL, "");
 			if (httpRequest != null) {
-				httpRequest.getSession().setAttribute("token", service.getCurrentToken());
+				httpRequest.getSession().setAttribute("token", token);
 			}
 		}
 		return service;

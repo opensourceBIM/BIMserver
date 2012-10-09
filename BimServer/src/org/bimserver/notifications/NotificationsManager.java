@@ -130,7 +130,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 			try {
 				if (service.isReadRevision() || service.getReadExtendedData() != null || service.getWriteExtendedData() != null || service.getWriteRevision() != null) {
 					// This service will be needing a token
-					ServiceInterface newService = bimServer.getServiceFactory().newService(service.getNotificationProtocol(), "");
+					ServiceInterface newService = bimServer.getServiceFactory().newService(ServiceInterface.class, service.getNotificationProtocol(), "");
 					long writeProjectPoid = service.getWriteRevision() == null ? -1 : service.getWriteRevision().getOid();
 					long writeExtendedDataRoid = service.getWriteExtendedData() != null ? newRevisionNotification.getRevisionId() : -1;
 					long readRevisionRoid = service.isReadRevision() ? newRevisionNotification.getRevisionId() : -1;

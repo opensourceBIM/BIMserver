@@ -27,6 +27,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.shared.interfaces.PublicInterface;
+import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
@@ -44,7 +46,7 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 	private OutputStream outputStream;
 	private DataInputStream dataInputStream;
 	private final ProtocolBuffersServer protocolBuffersServer;
-	private final Map<String, Object> services = new HashMap<String, Object>();
+	private final Map<String, PublicInterface> services = new HashMap<String, PublicInterface>();
 	private Map<String, SService> sServices;
 
 	public ProtocolBuffersConnectionHandler(Socket socket, ProtocolBuffersServer protocolBuffersServer, Map<String, SService> sServices) {
@@ -68,7 +70,7 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 				String methodName = dataInputStream.readUTF();
 				ProtocolBuffersMetaData protocolBuffersMetaData = protocolBuffersServer.getProtocolBuffersMetaData();
 				if (!services.containsKey(serviceName)) {
-					services.put(serviceName, protocolBuffersServer.getServiceFactoryRegistry().createServiceFactory(serviceName).newService(AccessMethod.PROTOCOL_BUFFERS, socket.getRemoteSocketAddress().toString()));
+					services.put(serviceName, protocolBuffersServer.getServiceFactoryRegistry().createServiceFactory(serviceName).newService(ServiceInterface.class, AccessMethod.PROTOCOL_BUFFERS, socket.getRemoteSocketAddress().toString()));
 				}
 				ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(services.get(serviceName), protocolBuffersMetaData, sServices);
 				MethodDescriptorContainer method = protocolBuffersMetaData.getMethod(serviceName, methodName);

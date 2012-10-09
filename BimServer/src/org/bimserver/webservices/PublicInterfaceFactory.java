@@ -35,33 +35,51 @@ import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.Token;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.utils.GeneratorUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ServiceInterfaceFactory implements ServiceFactory {
-	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceInterfaceFactory.class);
+public class PublicInterfaceFactory implements ServiceFactory {
+	private static final Logger LOGGER = LoggerFactory.getLogger(PublicInterfaceFactory.class);
 	private static final int TOKEN_TTL_SECONDS = 60*60; // one hour
-	private final HashMap<TokenWrapper, ServiceInterface> tokens = new HashMap<TokenWrapper, ServiceInterface>();
+	private final HashMap<TokenWrapper, PublicInterface> tokens = new HashMap<TokenWrapper, PublicInterface>();
 	private final BimServer bimServer;
 
-	public ServiceInterfaceFactory(BimServer bimServer) {
+	public PublicInterfaceFactory(BimServer bimServer) {
 		this.bimServer = bimServer;
 	}
 	
-	public ServiceInterface newService(AccessMethod accessMethod, String remoteAddress) {
-		Service service = new Service(bimServer, accessMethod, remoteAddress, this);
+	@SuppressWarnings("unchecked")
+	public <T extends PublicInterface> T newService(Class<T> interfaceClass, AccessMethod accessMethod, String remoteAddress) {
+		PublicInterface publicInterface = null;
+		if (interfaceClass == ServiceInterface.class) {
+			publicInterface = new Service(bimServer, accessMethod, remoteAddress, this);
+		} else if (interfaceClass == NotificationInterface.class) {
+			publicInterface = new Service(bimServer, accessMethod, remoteAddress, this);
+		}
 		Date expires = new Date(new Date().getTime() + (TOKEN_TTL_SECONDS * 1000));
 		Token token = StoreFactory.eINSTANCE.createToken();
 		token.setTokenString(GeneratorUtils.generateToken());
 		token.setExpires(expires.getTime());
-		tokens.put(new TokenWrapper(token), service);
-		service.setToken(token);
-		return service;
+		tokens.put(new TokenWrapper(token), publicInterface);
+		publicInterface.setToken(token);
+		return (T) publicInterface;
 	}
 
-	public synchronized ServiceInterface getService(Token token) throws UserException {
+	@SuppressWarnings("unchecked")
+	public synchronized <T extends PublicInterface> T getService(Class<T> publicInterface, Token token) throws UserException {
+		return (T) getService(token);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public synchronized <T extends PublicInterface> T getService(Class<T> publicInterface, SToken token) throws UserException {
+		return (T) getService(token);
+	}
+	
+	public synchronized PublicInterface getService(Token token) throws UserException {
 		TokenWrapper wrapper = new TokenWrapper(token);
 		if (tokens.containsKey(wrapper)) {
 			return tokens.get(wrapper);
@@ -69,7 +87,7 @@ public class ServiceInterfaceFactory implements ServiceFactory {
 		throw new UserException("Invalid token");
 	}
 
-	public synchronized ServiceInterface getService(SToken token) throws UserException {
+	public synchronized PublicInterface getService(SToken token) throws UserException {
 		TokenWrapper wrapper = new TokenWrapper(token);
 		if (tokens.containsKey(wrapper)) {
 			return tokens.get(wrapper);
@@ -106,20 +124,23 @@ public class ServiceInterfaceFactory implements ServiceFactory {
 		List<SUserSession> userSessions = new ArrayList<SUserSession>();
 		for (TokenWrapper tokenWrapper : tokens.keySet()) {
 			Token token = tokenWrapper.getToken();
-			ServiceInterface serviceInterface = getService(token);
-			if (serviceInterface.isLoggedIn() && serviceInterface.getAccessMethod() != SAccessMethod.INTERNAL) {
-				SUser user = serviceInterface.getCurrentUser();
-				if (user != null) {
-					SUserSession userSession = new SUserSession();
-					userSession.setUsername(user.getUsername());
-					userSession.setType(user.getUserType());
-					userSession.setName(user.getName());
-					userSession.setRemoteAddress(serviceInterface.getRemoteAddress());
-					userSession.setUserId(user.getOid());
-					userSession.setAccessMethod(serviceInterface.getAccessMethod());
-					userSession.setActiveSince(serviceInterface.getActiveSince());
-					userSession.setLastActive(serviceInterface.getLastActive());
-					userSessions.add(userSession);
+			PublicInterface publicInterface = getService(token);
+			if (publicInterface instanceof ServiceInterface) {
+				ServiceInterface serviceInterface = (ServiceInterface)publicInterface;
+				if (serviceInterface.isLoggedIn() && serviceInterface.getAccessMethod() != SAccessMethod.INTERNAL) {
+					SUser user = serviceInterface.getCurrentUser();
+					if (user != null) {
+						SUserSession userSession = new SUserSession();
+						userSession.setUsername(user.getUsername());
+						userSession.setType(user.getUserType());
+						userSession.setName(user.getName());
+						userSession.setRemoteAddress(serviceInterface.getRemoteAddress());
+						userSession.setUserId(user.getOid());
+						userSession.setAccessMethod(serviceInterface.getAccessMethod());
+						userSession.setActiveSince(serviceInterface.getActiveSince());
+						userSession.setLastActive(serviceInterface.getLastActive());
+						userSessions.add(userSession);
+					}
 				}
 			}
 		}

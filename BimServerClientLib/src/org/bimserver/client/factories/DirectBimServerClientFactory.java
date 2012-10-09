@@ -20,21 +20,24 @@ package org.bimserver.client.factories;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 
 public class DirectBimServerClientFactory implements BimServerClientFactory {
 
 	private final PluginManager pluginManager;
-	private final ServiceInterface serviceInterface;
+	private final PublicInterface publicInterface;
+	private Class interfaceClass;
 
-	public DirectBimServerClientFactory(ServiceInterface serviceInterface) {
-		this.serviceInterface = serviceInterface;
+	public <T extends PublicInterface> DirectBimServerClientFactory(Class<T> interfaceClass, T publicInterface) {
+		this.interfaceClass = interfaceClass;
+		this.publicInterface = publicInterface;
 		pluginManager = new PluginManager();
 		pluginManager.loadPluginsFromCurrentClassloader();
 	}
 
-	public DirectBimServerClientFactory(ServiceInterface serviceInterface, PluginManager pluginManager) {
-		this.serviceInterface = serviceInterface;
+	public DirectBimServerClientFactory(PublicInterface publicInterface, PluginManager pluginManager) {
+		this.publicInterface = publicInterface;
 		this.pluginManager = pluginManager;
 	}
 
@@ -42,7 +45,7 @@ public class DirectBimServerClientFactory implements BimServerClientFactory {
 	public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServiceException {
 		BimServerClient bimServerClient = new BimServerClient(pluginManager);
 		bimServerClient.setAuthentication(authenticationInfo);
-		bimServerClient.connectDirect(serviceInterface);
+		bimServerClient.connectDirect(interfaceClass, publicInterface);
 		return bimServerClient;
 	}
 }

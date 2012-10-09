@@ -35,11 +35,13 @@ import org.bimserver.models.store.ServerState;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.servlets.DownloadServlet;
 import org.bimserver.servlets.JsonApiServlet;
+import org.bimserver.servlets.ServicesServlet;
 import org.bimserver.servlets.RestServlet;
 import org.bimserver.servlets.StreamingServlet;
 import org.bimserver.servlets.UploadServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimwebserver.BimWebServer;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.slf4j.Logger;
@@ -81,6 +83,7 @@ public class LocalDevBimCombinedServerStarter {
 		 	embeddedWebServer.getContext().addServlet(UploadServlet.class, "/upload/*");
 		 	embeddedWebServer.getContext().addServlet(JsonApiServlet.class, "/json/*");
 		 	embeddedWebServer.getContext().addServlet(StreamingServlet.class, "/stream/*");
+		 	embeddedWebServer.getContext().addServlet(ServicesServlet.class, "/services/*");
 		 	ServletHolder servletHolder = embeddedWebServer.getContext().addServlet(RestServlet.class, "/rest/*");
 //		 	servletHolder.setInitParameter("javax.ws.rs.Application", "willbeoverridden");
 		 	embeddedWebServer.getContext().setResourceBase("../BimWebServer/www");
@@ -92,7 +95,7 @@ public class LocalDevBimCombinedServerStarter {
 				public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
 					BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager(), bimServer.getServiceInterfaces());
 					bimServerClient.setAuthentication(authenticationInfo);
-					bimServerClient.connectDirect(bimServer.getServiceFactory().newService(AccessMethod.WEB_INTERFACE, remoteAddress));
+					bimServerClient.connectDirect(ServiceInterface.class, bimServer.getServiceFactory().newService(ServiceInterface.class, AccessMethod.WEB_INTERFACE, remoteAddress));
 					return bimServerClient;
 				}
 			});

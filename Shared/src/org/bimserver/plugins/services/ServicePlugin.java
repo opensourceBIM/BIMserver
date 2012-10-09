@@ -20,7 +20,7 @@ public abstract class ServicePlugin implements Plugin {
 	private final Map<String, ServiceDescriptor> serviceDescriptors = new HashMap<String, ServiceDescriptor>();
 	
 	public ServiceInterface getServiceInterface(SToken token) throws UserException {
-		return pluginManager.getServiceFactory().getService(token);
+		return pluginManager.getServiceFactory().getService(ServiceInterface.class, token);
 	}
 
 	@Override

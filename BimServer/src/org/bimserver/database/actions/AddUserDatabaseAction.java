@@ -119,6 +119,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		if (password != null) {
 			user.setPassword(Hashers.getSha256Hash(password));
 		}
+		user.setToken(GeneratorUtils.generateToken());
 		user.setName(trimmedName);
 		user.setUsername(trimmedUserName);
 		user.setCreatedOn(new Date());

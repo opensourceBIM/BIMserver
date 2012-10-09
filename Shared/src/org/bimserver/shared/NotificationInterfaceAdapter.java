@@ -20,6 +20,7 @@ package org.bimserver.shared;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SToken;
+import org.bimserver.models.store.Token;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
@@ -31,5 +32,14 @@ public class NotificationInterfaceAdapter implements NotificationInterface {
 	}
 	
 	public void progress(long topicId, SLongActionState state) throws UserException, ServerException {
+	}
+
+	@Override
+	public void setToken(Token token) {
+	}
+
+	@Override
+	public SToken getCurrentToken() throws ServerException, UserException {
+		return null;
 	}
 }

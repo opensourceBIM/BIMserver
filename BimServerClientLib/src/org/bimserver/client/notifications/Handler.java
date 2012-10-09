@@ -27,6 +27,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
@@ -55,17 +56,17 @@ public class Handler extends Thread {
 		this.services = services;
 		serviceFactory = new ServiceFactory() {
 			@Override
-			public Object newService(AccessMethod accessMethod, String remoteAddress) {
-				return notificationInterface;
-			}
-			
-			@Override
-			public String getName() {
-				return "NotifierInterface";
+			public <T extends PublicInterface> T newService(Class<T> interfaceClass, AccessMethod accessMethod, String remoteAddress) {
+				return (T) notificationInterface;
 			}
 
 			@Override
-			public ServiceInterface getService(SToken token) throws UserException {
+			public String getName() {
+				return null;
+			}
+
+			@Override
+			public <T extends PublicInterface> T getService(Class<T> serviceInterface, SToken token) throws UserException {
 				return null;
 			}
 		};
@@ -74,7 +75,7 @@ public class Handler extends Thread {
 	@Override
 	public void run() {
 		running = true;
-		ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(serviceFactory.newService(AccessMethod.PROTOCOL_BUFFERS, socket.getRemoteSocketAddress().toString()), protocolBuffersMetaData, services);
+		ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(serviceFactory.newService(ServiceInterface.class, AccessMethod.PROTOCOL_BUFFERS, socket.getRemoteSocketAddress().toString()), protocolBuffersMetaData, services);
 		try {
 			while (running) {
 				DataInputStream dis = new DataInputStream(socket.getInputStream());

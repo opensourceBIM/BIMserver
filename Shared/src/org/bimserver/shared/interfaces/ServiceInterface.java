@@ -98,7 +98,7 @@ import org.bimserver.shared.exceptions.UserException;
 @Path("/")
 @Produces({"application/xml", "application/json"})
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
-public interface ServiceInterface {
+public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Method to test the connection, will return the given string
 	 * 

@@ -16,6 +16,7 @@ package org.bimserver.interfaces;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import org.bimserver.models.store.Token;
 import org.bimserver.shared.reflector.Reflector;
 
 import org.bimserver.shared.reflector.KeyValuePair;
@@ -784,5 +785,8 @@ private Reflector reflector;
 	}
 	public org.bimserver.interfaces.objects.SUser validateAccount(java.lang.Long uoid, java.lang.String token, java.lang.String password) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SUser) reflector.callMethod("ServiceInterface", "validateAccount", org.bimserver.interfaces.objects.SUser.class, new KeyValuePair("uoid", uoid), new KeyValuePair("token", token), new KeyValuePair("password", password));
+	}
+	@Override
+	public void setToken(Token token) {
 	}
 }

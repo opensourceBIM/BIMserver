@@ -107,7 +107,7 @@ import org.bimserver.templating.TemplateEngine;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.version.VersionChecker;
 import org.bimserver.webservices.Service;
-import org.bimserver.webservices.ServiceInterfaceFactory;
+import org.bimserver.webservices.PublicInterfaceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -129,7 +129,7 @@ public class BimServer {
 	private MailSystem mailSystem;
 	private DiskCacheManager diskCacheManager;
 	private ServerInfoManager serverInfoManager;
-	private ServiceInterfaceFactory serviceFactory;
+	private PublicInterfaceFactory serviceFactory;
 	private VersionChecker versionChecker;
 	private TemplateEngine templateEngine;
 	private NotificationsManager notificationsManager;
@@ -186,7 +186,7 @@ public class BimServer {
 
 			serverInfoManager = new ServerInfoManager();
 			notificationsManager = new NotificationsManager(this);
-			serviceFactory = new ServiceInterfaceFactory(this);
+			serviceFactory = new PublicInterfaceFactory(this);
 
 			pluginManager = new PluginManager(new File(config.getHomeDir(), "tmp"), config.getClassPath(), serviceFactory, notificationsManager);
 			
@@ -343,7 +343,7 @@ public class BimServer {
 			diskCacheManager = new DiskCacheManager(this, new File(config.getHomeDir(), "cache"));
 
 			mergerFactory = new MergerFactory(this);
-			setSystemService(serviceFactory.newService(AccessMethod.INTERNAL, "internal"));
+			setSystemService(serviceFactory.newService(ServiceInterface.class, AccessMethod.INTERNAL, "internal"));
 			try {
 				if (!((Service) getSystemService()).loginAsSystem()) {
 					throw new RuntimeException("System user not found");
@@ -360,7 +360,6 @@ public class BimServer {
 				ServiceFactoryRegistry serviceFactoryRegistry = new ServiceFactoryRegistry();
 				serviceFactoryRegistry.registerServiceFactory(serviceFactory);
 				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactoryRegistry, serviceInterfaces, config.getInitialProtocolBuffersPort());
-				protocolBuffersServer.registerService(new ReflectiveRpcChannel(serviceFactory, protocolBuffersMetaData, serviceInterfaces));
 				protocolBuffersServer.start();
 			} catch (Exception e) {
 				LOGGER.error("", e);
@@ -759,7 +758,7 @@ public class BimServer {
 		return serverInfoManager.getServerInfo();
 	}
 
-	public ServiceInterfaceFactory getServiceFactory() {
+	public PublicInterfaceFactory getServiceFactory() {
 		return serviceFactory;
 	}
 
