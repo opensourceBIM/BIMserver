@@ -41,7 +41,7 @@
 	if (loginManager.isLoggedIn()) {
 		try {
 	if (request.getParameter("mid") != null) {
-		out.println("<div class=\"success\">" + Message.get(Integer.parseInt(request.getParameter("mid"))) + "</div>");
+		out.println("<div class=\"success\">" + request.getParameter("message") + "</div>");
 	}
 	DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 	List<SRevision> revisions = loginManager.getService(request).getAllRevisionsByUser(user.getOid());
