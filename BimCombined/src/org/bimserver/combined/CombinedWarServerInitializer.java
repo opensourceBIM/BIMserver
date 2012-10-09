@@ -40,9 +40,9 @@ import org.bimwebserver.BimWebServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class WarServerInitializer implements ServletContextListener {
+public class CombinedWarServerInitializer implements ServletContextListener {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(WarServerInitializer.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CombinedWarServerInitializer.class);
 	private BimServer bimServer;
 	
 	@Override
@@ -80,7 +80,7 @@ public class WarServerInitializer implements ServletContextListener {
 			}
 		});
 	 	
-//		embeddedWebServer.getContext().getServletContext().setAttribute("bimwebserver", bimWebServer);
+	 	servletContextEvent.getServletContext().setAttribute("bimwebserver", bimWebServer);
 		
 		File file = resourceFetcher.getFile("plugins");
 		try {
