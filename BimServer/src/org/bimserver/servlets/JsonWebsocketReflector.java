@@ -9,9 +9,9 @@ import org.codehaus.jettison.json.JSONObject;
 
 public class JsonWebsocketReflector extends JsonReflector {
 
-	private StreamingSocket streamingSocket;
+	private StreamingSocketInterface streamingSocket;
 
-	public JsonWebsocketReflector(Map<String, SService> services, StreamingSocket streamingSocket) {
+	public JsonWebsocketReflector(Map<String, SService> services, StreamingSocketInterface streamingSocket) {
 		super(services);
 		this.streamingSocket = streamingSocket;
 	}
