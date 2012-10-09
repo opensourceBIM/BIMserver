@@ -2,6 +2,7 @@
 	<import file="one-jar-ant-task.xml" />
 	<fileset id="lib" dir="../../BimServer">
 		<include name="**/*.jar" />
+		<exclude name="**tomcat*"/>
 	</fileset>
 	<fileset id="buildlib" dir="builds/lib">
 		<include name="**/*.jar" />
