@@ -24,7 +24,7 @@
 					out.println("<div class=\"error\">Password and password check did not match</div>");
 				} else {
 					loginManager.getService(request).changePassword(uoid, oldPassword, newPassword1);
-					response.sendRedirect("user.jsp?uoid=" + uoid + "&mid=" + Message.PASSWORD_SUCCESSFULLY_CHANGED.ordinal());
+					response.sendRedirect("user.jsp?uoid=" + uoid + "&message=Password successfully changed");
 				}
 			} catch (ServiceException e) {
 				JspHelper.showException(out, e);
