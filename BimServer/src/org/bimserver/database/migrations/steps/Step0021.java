@@ -42,6 +42,8 @@ public class Step0021 extends Migration {
 		
 		EClass service = schema.createEClass("store", "Service");
 		schema.createEAttribute(service, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(service, "serviceName", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(service, "providerName", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(service, "url", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(service, "token", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(service, "notificationProtocol", schema.getEEnum("log", "AccessMethod"), Multiplicity.SINGLE);

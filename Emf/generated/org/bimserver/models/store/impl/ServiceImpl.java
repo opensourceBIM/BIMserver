@@ -34,6 +34,8 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getServiceName <em>Service Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getProviderName <em>Provider Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getUrl <em>Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getToken <em>Token</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getNotificationProtocol <em>Notification Protocol</em>}</li>
@@ -100,6 +102,42 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 */
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.SERVICE__NAME, newName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getServiceName() {
+		return (String) eGet(StorePackage.Literals.SERVICE__SERVICE_NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setServiceName(String newServiceName) {
+		eSet(StorePackage.Literals.SERVICE__SERVICE_NAME, newServiceName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getProviderName() {
+		return (String) eGet(StorePackage.Literals.SERVICE__PROVIDER_NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProviderName(String newProviderName) {
+		eSet(StorePackage.Literals.SERVICE__PROVIDER_NAME, newProviderName);
 	}
 
 	/**

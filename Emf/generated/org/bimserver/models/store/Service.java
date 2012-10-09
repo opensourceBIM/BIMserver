@@ -28,6 +28,8 @@ import org.bimserver.models.log.AccessMethod;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.bimserver.models.store.Service#getName <em>Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#getServiceName <em>Service Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#getProviderName <em>Provider Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getUrl <em>Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getToken <em>Token</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getNotificationProtocol <em>Notification Protocol</em>}</li>
@@ -77,6 +79,58 @@ public interface Service extends IdEObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Service Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Service Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Service Name</em>' attribute.
+	 * @see #setServiceName(String)
+	 * @see org.bimserver.models.store.StorePackage#getService_ServiceName()
+	 * @model
+	 * @generated
+	 */
+	String getServiceName();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#getServiceName <em>Service Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Service Name</em>' attribute.
+	 * @see #getServiceName()
+	 * @generated
+	 */
+	void setServiceName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Provider Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Provider Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Provider Name</em>' attribute.
+	 * @see #setProviderName(String)
+	 * @see org.bimserver.models.store.StorePackage#getService_ProviderName()
+	 * @model
+	 * @generated
+	 */
+	String getProviderName();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#getProviderName <em>Provider Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Provider Name</em>' attribute.
+	 * @see #getProviderName()
+	 * @generated
+	 */
+	void setProviderName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Url</b></em>' attribute.

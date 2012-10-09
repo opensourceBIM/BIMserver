@@ -37,11 +37,9 @@ public class JsonApiServlet extends HttpServlet {
 		response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
 		response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
-		response.setHeader("Content-Type", "text/html");
 		try {
-			PrintWriter writer = response.getWriter();
 			if (request.getParameter("doc") != null) {
-				writeDocumentation(request, bimServer, writer);
+				writeDocumentation(request, response, bimServer);
 			} else {
 				handleRequest(request, response, bimServer);
 			}
@@ -52,6 +50,7 @@ public class JsonApiServlet extends HttpServlet {
 
 	private void handleRequest(HttpServletRequest httpRequest, HttpServletResponse response, BimServer bimServer) {
 		try {
+			response.setCharacterEncoding("UTF-8");
 			ServletInputStream inputStream = httpRequest.getInputStream();
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			IOUtils.copy(inputStream, outputStream);
@@ -60,7 +59,7 @@ public class JsonApiServlet extends HttpServlet {
 			response.setHeader("Content-Type", "application/json");
 
 			JSONObject responseObject = bimServer.getJsonHandler().execute(request, httpRequest);
-			
+
 			responseObject.write(response.getWriter());
 		} catch (Exception e) {
 			sendException(response, e);
@@ -79,7 +78,10 @@ public class JsonApiServlet extends HttpServlet {
 		}
 	}
 
-	private void writeDocumentation(HttpServletRequest request, BimServer bimServer, PrintWriter writer) {
+	private void writeDocumentation(HttpServletRequest request, HttpServletResponse response, BimServer bimServer) throws IOException {
+		response.setHeader("Content-Type", "text/html");
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter writer = response.getWriter();
 		String siteAddress = "";
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {

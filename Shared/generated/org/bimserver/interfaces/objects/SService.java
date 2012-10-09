@@ -29,6 +29,8 @@ public class SService implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private java.lang.String name;
+	private java.lang.String serviceName;
+	private java.lang.String providerName;
 	private java.lang.String url;
 	private java.lang.String token;
 	private SAccessMethod notificationProtocol;
@@ -64,6 +66,12 @@ public class SService implements SDataBase
 	public Object sGet(SField sField) {
 		if (sField.getName().equals("name")) {
 			return getName();
+		}
+		if (sField.getName().equals("serviceName")) {
+			return getServiceName();
+		}
+		if (sField.getName().equals("providerName")) {
+			return getProviderName();
 		}
 		if (sField.getName().equals("url")) {
 			return getUrl();
@@ -119,6 +127,14 @@ public class SService implements SDataBase
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("name")) {
 			setName((String)val);
+			return;
+		}
+		if (sField.getName().equals("serviceName")) {
+			setServiceName((String)val);
+			return;
+		}
+		if (sField.getName().equals("providerName")) {
+			setProviderName((String)val);
 			return;
 		}
 		if (sField.getName().equals("url")) {
@@ -194,6 +210,22 @@ public class SService implements SDataBase
 
 	public void setName(java.lang.String name) {
 		this.name = name;
+	}
+	
+	public java.lang.String getServiceName() {
+		return serviceName;
+	}
+
+	public void setServiceName(java.lang.String serviceName) {
+		this.serviceName = serviceName;
+	}
+	
+	public java.lang.String getProviderName() {
+		return providerName;
+	}
+
+	public void setProviderName(java.lang.String providerName) {
+		this.providerName = providerName;
 	}
 	
 	public java.lang.String getUrl() {

@@ -105,26 +105,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 							SNewRevisionAdded newRevisionNotification = (SNewRevisionAdded) notification;
 							Project project = session.get(StorePackage.eINSTANCE.getProject(), newRevisionNotification.getProjectId(), false, null);
 							for (Service service : project.getServices()) {
-								if (service.getTrigger() == Trigger.NEW_REVISION) {
-									Channel channel = getChannel(service);
-									try {
-										if (service.isReadRevision() || service.getReadExtendedData() != null || service.getWriteExtendedData() != null || service.getWriteRevision() != null) {
-											// This service will be needing a token
-											ServiceInterface newService = bimServer.getServiceFactory().newService(service.getNotificationProtocol(), "");
-											long writeProjectPoid = service.getWriteRevision() == null ? -1 : service.getWriteRevision().getOid();
-											long writeExtendedDataRoid = service.getWriteExtendedData() != null ? newRevisionNotification.getRevisionId() : -1;
-											long readRevisionRoid = service.isReadRevision() ? newRevisionNotification.getRevisionId() : -1;
-											long readExtendedDataRoid = service.getReadExtendedData() != null ? newRevisionNotification.getRevisionId() : -1;
-											TokenAuthorization authorization = new TokenAuthorization(service.getUser().getOid(), readRevisionRoid, writeProjectPoid, readExtendedDataRoid, writeExtendedDataRoid);
-											((org.bimserver.webservices.Service)newService).setAuthorization(authorization);
-											channel.getNotificationInterface().newLogAction(newRevisionNotification, newService.getCurrentToken(), bimServer.getServerSettings(session).getSiteAddress() + "/jsonapi");
-										} else {
-											channel.getNotificationInterface().newLogAction(newRevisionNotification, null, null);
-										}
-									} finally {
-										channel.disconnect();
-									}
-								}
+								trigger(bimServer.getServerSettings(session).getSiteAddress(), newRevisionNotification, service);
 							}
 						}
 					} finally {
@@ -139,6 +120,29 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		} catch (InterruptedException e) {
 			if (running) {
 				LOGGER.error("", e);
+			}
+		}
+	}
+
+	public void trigger(String siteAddress, SNewRevisionAdded newRevisionNotification, Service service) throws UserException, ServerException {
+		if (service.getTrigger() == Trigger.NEW_REVISION) {
+			Channel channel = getChannel(service);
+			try {
+				if (service.isReadRevision() || service.getReadExtendedData() != null || service.getWriteExtendedData() != null || service.getWriteRevision() != null) {
+					// This service will be needing a token
+					ServiceInterface newService = bimServer.getServiceFactory().newService(service.getNotificationProtocol(), "");
+					long writeProjectPoid = service.getWriteRevision() == null ? -1 : service.getWriteRevision().getOid();
+					long writeExtendedDataRoid = service.getWriteExtendedData() != null ? newRevisionNotification.getRevisionId() : -1;
+					long readRevisionRoid = service.isReadRevision() ? newRevisionNotification.getRevisionId() : -1;
+					long readExtendedDataRoid = service.getReadExtendedData() != null ? newRevisionNotification.getRevisionId() : -1;
+					TokenAuthorization authorization = new TokenAuthorization(service.getUser().getOid(), readRevisionRoid, writeProjectPoid, readExtendedDataRoid, writeExtendedDataRoid);
+					((org.bimserver.webservices.Service)newService).setAuthorization(authorization);
+					channel.getNotificationInterface().newLogAction(newRevisionNotification, newService.getCurrentToken(), siteAddress + "/jsonapi");
+				} else {
+					channel.getNotificationInterface().newLogAction(newRevisionNotification, null, null);
+				}
+			} finally {
+				channel.disconnect();
 			}
 		}
 	}
