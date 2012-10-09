@@ -107,7 +107,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 			throw new UserException("A user with the username " + trimmedUserName + " already exists");
 		}
 		User actingUser = null;
-		if (!(authorization instanceof SystemAuthorization)) {
+		if (authorization != null && !(authorization instanceof SystemAuthorization)) {
 			actingUser = getUserByUoid(authorization.getUoid());
 			if (actingUser == null || actingUser.getUserType() != UserType.SYSTEM) {
 				if (authorization.getUoid() != -1 && actingUser.getUserType() != UserType.ADMIN) {
