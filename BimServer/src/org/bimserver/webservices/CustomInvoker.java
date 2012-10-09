@@ -37,9 +37,9 @@ import org.slf4j.LoggerFactory;
 public class CustomInvoker extends AbstractInvoker {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CustomInvoker.class);
-	private final ServiceInterfaceFactory serviceFactory;
+	private final PublicInterfaceFactory serviceFactory;
 
-	public CustomInvoker(ServiceInterfaceFactory serviceFactory) {
+	public CustomInvoker(PublicInterfaceFactory serviceFactory) {
 		this.serviceFactory = serviceFactory;
 	}
 
@@ -65,7 +65,7 @@ public class CustomInvoker extends AbstractInvoker {
 					return null;
 				}
 			} else {
-				ServiceInterface newService = serviceFactory.newService(AccessMethod.SOAP, httpRequest.getRemoteAddr());
+				ServiceInterface newService = serviceFactory.newService(ServiceInterface.class, AccessMethod.SOAP, httpRequest.getRemoteAddr());
 				try {
 					context.getSession().put("token", newService.getCurrentToken());
 				} catch (ServiceException e) {
@@ -74,7 +74,7 @@ public class CustomInvoker extends AbstractInvoker {
 				return newService;
 			}
 		} else {
-			ServiceInterface newService = serviceFactory.newService(AccessMethod.REST, httpRequest.getRemoteAddr());
+			ServiceInterface newService = serviceFactory.newService(ServiceInterface.class, AccessMethod.REST, httpRequest.getRemoteAddr());
 			return newService;
 		}
 	}

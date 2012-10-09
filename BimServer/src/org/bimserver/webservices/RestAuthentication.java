@@ -62,11 +62,11 @@ public class RestAuthentication extends SoapHeaderInterceptor {
 		Token token = (Token)message.getExchange().getSession().get("token");
 		ServiceInterface newService = null;
 		if (token == null) {
-			newService = bimServer.getServiceFactory().newService(AccessMethod.REST, httpRequest.getRemoteAddr());
+			newService = bimServer.getServiceFactory().newService(ServiceInterface.class, AccessMethod.REST, httpRequest.getRemoteAddr());
 			message.getExchange().getSession().put("token", ((Service)newService).getCurrentToken());
 		} else {
 			try {
-				newService = bimServer.getServiceFactory().getService(token);
+				newService = bimServer.getServiceFactory().getService(ServiceInterface.class, token);
 			} catch (UserException e) {
 				LOGGER.error("", e);
 			}

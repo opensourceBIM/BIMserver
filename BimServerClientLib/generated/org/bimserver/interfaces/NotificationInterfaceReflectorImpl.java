@@ -16,6 +16,10 @@ package org.bimserver.interfaces;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import org.bimserver.interfaces.objects.SToken;
+import org.bimserver.models.store.Token;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.reflector.Reflector;
 
 import org.bimserver.shared.reflector.KeyValuePair;
@@ -31,5 +35,12 @@ private Reflector reflector;
 	}
 	public void progress(long topicId, org.bimserver.interfaces.objects.SLongActionState state) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("NotificationInterface", "progress", void.class, new KeyValuePair("topicId", topicId), new KeyValuePair("state", state));
+	}
+	@Override
+	public void setToken(Token token) {
+	}
+	@Override
+	public SToken getCurrentToken() throws ServerException, UserException {
+		return null;
 	}
 }

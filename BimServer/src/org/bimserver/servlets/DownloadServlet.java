@@ -67,7 +67,7 @@ public class DownloadServlet extends HttpServlet {
 				token.setTokenString(tokenString);
 				token.setExpires(expires);
 			}
-			ServiceInterface service = bimServer.getServiceFactory().getService(token);
+			ServiceInterface service = bimServer.getServiceFactory().getService(ServiceInterface.class, token);
 
 			if (request.getParameter("action") != null && request.getParameter("action").equals("extendeddata")) {
 				SExtendedData sExtendedData = service.getExtendedData(Long.parseLong(request.getParameter("edid")));

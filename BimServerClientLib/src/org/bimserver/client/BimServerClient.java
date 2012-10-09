@@ -61,6 +61,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
@@ -111,12 +112,12 @@ public class BimServerClient implements ConnectDisconnectListener {
 		this.authenticationInfo = authenticationInfo;
 	}
 
-	public void connectDirect(ServiceInterface serviceInterface) {
+	public <T extends PublicInterface> void connectDirect(Class<T> interfaceClass, T serviceInterface) {
 		DirectChannel directChannel = new DirectChannel();
 		disconnect();
 		this.channel = directChannel;
 		directChannel.registerConnectDisconnectListener(this);
-		directChannel.connect(serviceInterface);
+		directChannel.connect(interfaceClass, serviceInterface);
 	}
 
 	public void connectProtocolBuffers(String address, int port) throws ConnectionException {

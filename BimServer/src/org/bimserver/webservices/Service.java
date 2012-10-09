@@ -187,7 +187,7 @@ import org.slf4j.LoggerFactory;
 
 public class Service implements ServiceInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Service.class);
-	private final ServiceInterfaceFactory serviceFactory;
+	private final PublicInterfaceFactory serviceFactory;
 	private final SConverter converter = new SConverter();
 
 	private final BimServer bimServer;
@@ -202,7 +202,7 @@ public class Service implements ServiceInterface {
 	private Token token;
 	private long transactionPoid;
 
-	public Service(BimServer bimServer, AccessMethod accessMethod, String remoteAddress, ServiceInterfaceFactory serviceFactory) {
+	public Service(BimServer bimServer, AccessMethod accessMethod, String remoteAddress, PublicInterfaceFactory serviceFactory) {
 		this.accessMethod = accessMethod;
 		this.remoteAddress = remoteAddress;
 		this.serviceFactory = serviceFactory;
@@ -3650,8 +3650,9 @@ public class Service implements ServiceInterface {
 	public List<SProfileDescriptor> getAllPublicProfiles(String serviceUrl) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
+			URL url = new URL(serviceUrl + "?profiles");
 			List<SProfileDescriptor> profileDescriptors = new ArrayList<SProfileDescriptor>();
-			String content = NetUtils.getContent(new URL(serviceUrl + "/services?profiles"), 5000);
+			String content = NetUtils.getContent(url, 5000);
 			JSONObject root = new JSONObject(new JSONTokener(content));
 			JSONArray profiles = root.getJSONArray("profiles");
 			for (int i = 0; i < profiles.length(); i++) {

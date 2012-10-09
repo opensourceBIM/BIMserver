@@ -26,7 +26,7 @@ import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
-public interface NotificationInterface {
+public interface NotificationInterface extends PublicInterface {
 	
 	@WebMethod(action = "newLogAction")
 	void newLogAction(

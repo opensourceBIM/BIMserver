@@ -17,14 +17,14 @@ package org.bimserver.client.channels;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.interfaces.PublicInterface;
 
 public class DirectChannel extends Channel {
 	public DirectChannel() {
 	}
 	
-	public void connect(ServiceInterface serviceInterface) {
-		addServiceInterface("ServiceInterface", serviceInterface);
+	public void connect(Class<? extends PublicInterface> serviceClass, PublicInterface publicInterface) {
+		addServiceInterface(serviceClass.getSimpleName(), publicInterface);
 		notifyOfConnect();
 	}
 

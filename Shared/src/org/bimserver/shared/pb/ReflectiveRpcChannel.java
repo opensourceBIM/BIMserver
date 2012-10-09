@@ -30,6 +30,8 @@ import java.util.Set;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 
+import org.bimserver.shared.ServiceFactory;
+import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
@@ -51,10 +53,10 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReflectiveRpcChannel.class);
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
-	private final Object service;
+	private final PublicInterface service;
 	private Map<String, SService> services;
 
-	public ReflectiveRpcChannel(Object service, ProtocolBuffersMetaData protocolBuffersMetaData, Map<String, SService> services) {
+	public ReflectiveRpcChannel(PublicInterface service, ProtocolBuffersMetaData protocolBuffersMetaData, Map<String, SService> services) {
 		super(protocolBuffersMetaData);
 		this.service = service;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;

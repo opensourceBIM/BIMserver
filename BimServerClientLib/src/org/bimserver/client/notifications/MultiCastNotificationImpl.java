@@ -23,6 +23,7 @@ import java.util.Set;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SToken;
+import org.bimserver.models.store.Token;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
@@ -56,5 +57,14 @@ public class MultiCastNotificationImpl implements NotificationInterface {
 		for (NotificationInterface notificationInterface : notificationInterfaces) {
 			notificationInterface.progress(topicId, state);
 		}
+	}
+
+	@Override
+	public void setToken(Token token) {
+	}
+
+	@Override
+	public SToken getCurrentToken() throws ServerException, UserException {
+		return null;
 	}
 }
