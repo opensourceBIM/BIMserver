@@ -81,7 +81,7 @@ public class SoapChannel extends Channel {
 				LOGGER.error("", e);
 			}
 		}
-		addServiceInterface("ServiceInterface", serviceInterface);
+		addServiceInterface(ServiceInterface.class, serviceInterface);
 		notifyOfConnect();
 	}
 

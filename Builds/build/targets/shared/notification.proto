@@ -24,20 +24,71 @@ option java_outer_classname = "NotificationInterfaceImpl";
 option optimize_for = SPEED;
 
 service NotificationInterface {
+	rpc getCurrentToken (GetCurrentTokenRequest) returns (GetCurrentTokenResponse);
+
+	rpc getPrivateProfiles (GetPrivateProfilesRequest) returns (GetPrivateProfilesResponse);
+
+	rpc getPublicProfiles (GetPublicProfilesRequest) returns (GetPublicProfilesResponse);
+
+	rpc getService (GetServiceRequest) returns (GetServiceResponse);
+
 	rpc newLogAction (NewLogActionRequest) returns (VoidResponse);
 
 	rpc progress (ProgressRequest) returns (VoidResponse);
 
+	rpc setToken (SetTokenRequest) returns (VoidResponse);
+
+}
+
+message GetCurrentTokenRequest {
+}
+
+message GetCurrentTokenResponse {
+	optional string errorMessage = 1;
+	optional SToken value = 2;
+}
+
+message GetPrivateProfilesRequest {
+	optional string serviceIdentifier = 1;
+	optional string token = 2;
+}
+
+message GetPrivateProfilesResponse {
+	optional string errorMessage = 1;
+	repeated SProfileDescriptor value = 2;
+}
+
+message GetPublicProfilesRequest {
+	optional string serviceIdentifier = 1;
+}
+
+message GetPublicProfilesResponse {
+	optional string errorMessage = 1;
+	repeated SProfileDescriptor value = 2;
+}
+
+message GetServiceRequest {
+	optional string serviceIdentifier = 1;
+}
+
+message GetServiceResponse {
+	optional string errorMessage = 1;
+	optional SServiceDescriptor value = 2;
 }
 
 message NewLogActionRequest {
 	optional SLogAction logAction = 1;
-	optional SToken token = 2;
-	optional string apiUrl = 3;
+	optional string serviceIdentifier = 2;
+	optional SToken token = 3;
+	optional string apiUrl = 4;
 }
 
 message ProgressRequest {
 	optional int64 topicId = 1;
 	optional SLongActionState state = 2;
+}
+
+message SetTokenRequest {
+	optional SToken arg0 = 1;
 }
 

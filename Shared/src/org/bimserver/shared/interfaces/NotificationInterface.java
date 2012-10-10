@@ -17,11 +17,15 @@ package org.bimserver.shared.interfaces;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.List;
+
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongActionState;
+import org.bimserver.interfaces.objects.SProfileDescriptor;
+import org.bimserver.interfaces.objects.SServiceDescriptor;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -31,6 +35,7 @@ public interface NotificationInterface extends PublicInterface {
 	@WebMethod(action = "newLogAction")
 	void newLogAction(
 		@WebParam(name = "logAction", partName = "newLogAction.logAction") SLogAction logAction,
+		@WebParam(name = "serviceIdentifier", partName = "newLogAction.serviceIdentifier") String serviceIdentifier,
 		@WebParam(name = "token", partName = "newRevision.token") SToken token,
 		@WebParam(name = "apiUrl", partName = "newRevision.apiUrl") String apiUrl) throws UserException, ServerException;
 
@@ -38,4 +43,17 @@ public interface NotificationInterface extends PublicInterface {
 	void progress(
 		@WebParam(name = "topicId", partName = "progress.topicId") long topicId, 
 		@WebParam(name = "state", partName = "progress.state") SLongActionState state) throws UserException, ServerException;
+	
+	@WebMethod(action = "getPublicProfiles")
+	List<SProfileDescriptor> getPublicProfiles(
+		@WebParam(name = "serviceIdentifier", partName = "getPrivateProfiles.serviceIdentifier") String serviceIdentifier) throws UserException, ServerException;
+	
+	@WebMethod(action = "getPrivateProfiles")
+	List<SProfileDescriptor> getPrivateProfiles(
+		@WebParam(name = "serviceIdentifier", partName = "getPrivateProfiles.serviceIdentifier") String serviceIdentifier,
+		@WebParam(name = "token", partName = "getPrivateProfiles.token") String token) throws UserException, ServerException;
+
+	@WebMethod(action = "getService")
+	SServiceDescriptor getService(
+		@WebParam(name = "serviceIdentifier", partName = "getService.serviceIdentifier") String serviceIdentifier) throws UserException, ServerException;
 }

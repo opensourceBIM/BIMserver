@@ -52,7 +52,7 @@ public class ExploderActivity extends Activity {
 	}
 	
 	@Override
-	public void newLogAction(SLogAction logAction, SToken token, String apiUrl) throws UserException, ServerException {
+	public void newLogAction(SLogAction logAction, String serviceName, SToken token, String apiUrl) throws UserException, ServerException {
 		if (logAction instanceof SNewRevisionAdded) {
 			SNewRevisionAdded sNewRevisionAdded = (SNewRevisionAdded)logAction;
 			SRevision revision = satelliteServer.getBimServerClient().getServiceInterface().getRevision(sNewRevisionAdded.getRevisionId());

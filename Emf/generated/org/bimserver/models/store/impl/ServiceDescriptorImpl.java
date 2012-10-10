@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getUrl <em>Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getToken <em>Token</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getNotificationProtocol <em>Notification Protocol</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceDescriptorImpl#getTrigger <em>Trigger</em>}</li>
@@ -131,6 +132,24 @@ public class ServiceDescriptorImpl extends IdEObjectImpl implements ServiceDescr
 	 */
 	public void setToken(String newToken) {
 		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__TOKEN, newToken);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getIdentifier() {
+		return (String) eGet(StorePackage.Literals.SERVICE_DESCRIPTOR__IDENTIFIER, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIdentifier(String newIdentifier) {
+		eSet(StorePackage.Literals.SERVICE_DESCRIPTOR__IDENTIFIER, newIdentifier);
 	}
 
 	/**

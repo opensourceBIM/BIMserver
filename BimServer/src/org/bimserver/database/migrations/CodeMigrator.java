@@ -57,6 +57,7 @@ import org.slf4j.LoggerFactory;
 
 public class CodeMigrator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CodeMigrator.class);
+	private SService service;
 
 	public static void main(String[] args) {
 		new CodeMigrator().start();
@@ -108,7 +109,7 @@ public class CodeMigrator {
 		try {
 			InterfaceReflectorGenerator interfaceReflectorGenerator = new InterfaceReflectorGenerator();
 			File javaFile = new File("../Shared/src/org/bimserver/shared/interfaces/NotificationInterface.java");
-			SService service = new SService(FileUtils.readFileToString(javaFile), NotificationInterface.class);
+			SService service = new SService(FileUtils.readFileToString(javaFile), NotificationInterface.class, this.service);
 			File protoFile = new File("../Builds/build/pb/notification.proto");
 			File descFile = new File("../Builds/build/pb/notification.desc");
 			File reflectorImplementationFile = new File("../BimServerClientLib/generated/org/bimserver/interfaces/NotificationInterfaceReflectorImpl.java");
@@ -128,7 +129,7 @@ public class CodeMigrator {
 			InterfaceReflectorGenerator interfaceReflectorGenerator = new InterfaceReflectorGenerator();
 			File reflectorImplementationFile = new File("../BimServerClientLib/generated/org/bimserver/interfaces/ServiceInterfaceReflectorImpl.java");
 			File javaFile = new File("../Shared/src/org/bimserver/shared/interfaces/ServiceInterface.java");
-			SService service = new SService(FileUtils.readFileToString(javaFile), ServiceInterface.class);
+			service = new SService(FileUtils.readFileToString(javaFile), ServiceInterface.class);
 			interfaceReflectorGenerator.generateServiceInterfaceImplementationForReflector(service, reflectorImplementationFile);
 			File protoFile = new File("../Builds/build/pb/service.proto");
 			File descFile = new File("../Builds/build/pb/service.desc");

@@ -30,6 +30,7 @@ public class SService implements SDataBase
 	private static SClass sClass;
 	private java.lang.String name;
 	private java.lang.String serviceName;
+	private java.lang.String serviceIdentifier;
 	private java.lang.String providerName;
 	private java.lang.String url;
 	private java.lang.String token;
@@ -69,6 +70,9 @@ public class SService implements SDataBase
 		}
 		if (sField.getName().equals("serviceName")) {
 			return getServiceName();
+		}
+		if (sField.getName().equals("serviceIdentifier")) {
+			return getServiceIdentifier();
 		}
 		if (sField.getName().equals("providerName")) {
 			return getProviderName();
@@ -131,6 +135,10 @@ public class SService implements SDataBase
 		}
 		if (sField.getName().equals("serviceName")) {
 			setServiceName((String)val);
+			return;
+		}
+		if (sField.getName().equals("serviceIdentifier")) {
+			setServiceIdentifier((String)val);
 			return;
 		}
 		if (sField.getName().equals("providerName")) {
@@ -218,6 +226,14 @@ public class SService implements SDataBase
 
 	public void setServiceName(java.lang.String serviceName) {
 		this.serviceName = serviceName;
+	}
+	
+	public java.lang.String getServiceIdentifier() {
+		return serviceIdentifier;
+	}
+
+	public void setServiceIdentifier(java.lang.String serviceIdentifier) {
+		this.serviceIdentifier = serviceIdentifier;
 	}
 	
 	public java.lang.String getProviderName() {

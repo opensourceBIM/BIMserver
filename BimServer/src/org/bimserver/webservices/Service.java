@@ -55,6 +55,7 @@ import org.bimserver.changes.RemoveObjectChange;
 import org.bimserver.changes.RemoveReferenceChange;
 import org.bimserver.changes.SetAttributeChange;
 import org.bimserver.changes.SetReferenceChange;
+import org.bimserver.client.BimServerClient;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
@@ -153,7 +154,6 @@ import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.Token;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.UserType;
@@ -170,6 +170,7 @@ import org.bimserver.servlets.EndPoint;
 import org.bimserver.shared.compare.CompareWriter;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
@@ -199,14 +200,15 @@ public class Service implements ServiceInterface {
 
 	private Date activeSince;
 	private Date lastActive;
-	private Token token;
+	private SToken token;
 	private long transactionPoid;
 
-	public Service(BimServer bimServer, AccessMethod accessMethod, String remoteAddress, PublicInterfaceFactory serviceFactory) {
+	public Service(BimServer bimServer, AccessMethod accessMethod, String remoteAddress, PublicInterfaceFactory serviceFactory, SToken token) {
 		this.accessMethod = accessMethod;
 		this.remoteAddress = remoteAddress;
 		this.serviceFactory = serviceFactory;
 		this.bimServer = bimServer;
+		this.token = token;
 		activeSince = new Date();
 		lastActive = new Date();
 	}
@@ -502,7 +504,7 @@ public class Service implements ServiceInterface {
 		try {
 			BimDatabaseAction<Set<Revision>> action = new GetAllRevisionsOfProjectDatabaseAction(session, accessMethod, poid);
 			List<SRevision> convertToSListRevision = converter.convertToSListRevision(session.executeAndCommitAction(action));
-			Collections.sort(convertToSListRevision, new SRevisionComparator(false));
+			Collections.sort(convertToSListRevision, new SRevisionComparator(true));
 			return convertToSListRevision;
 		} catch (Exception e) {
 			return handleException(e);
@@ -1795,10 +1797,10 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SToken getCurrentToken() {
-		return converter.convertToSObject(token);
+		return token;
 	}
 
-	public void setToken(Token token) {
+	public void setToken(SToken token) {
 		this.token = token;
 	}
 
@@ -3331,6 +3333,7 @@ public class Service implements ServiceInterface {
 			JSONObject service = new JSONObject(new JSONTokener(content));
 			SServiceDescriptor sServiceDescriptor = new SServiceDescriptor();
 			sServiceDescriptor.setName(service.getString("name"));
+			sServiceDescriptor.setIdentifier(service.getString("identifier"));
 			sServiceDescriptor.setDescription(service.getString("description"));
 			sServiceDescriptor.setNotificationProtocol(SAccessMethod.valueOf(service.getString("notificationProtocol")));
 			sServiceDescriptor.setTrigger(STrigger.valueOf(service.getString("trigger")));
@@ -3352,6 +3355,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
+	public List<SServiceDescriptor> getAllLocalServiceDescriptors() throws ServerException, UserException {
+		return converter.convertToSListServiceDescriptor(bimServer.getNotificationsManager().getInternalServices().values());
+	}
+	
+	@Override
 	public List<SServiceDescriptor> getAllServiceDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
@@ -3363,6 +3371,7 @@ public class Service implements ServiceInterface {
 				JSONObject service = services.getJSONObject(i);
 				SServiceDescriptor sServiceDescriptor = new SServiceDescriptor();
 				sServiceDescriptor.setName(service.getString("name"));
+				sServiceDescriptor.setIdentifier(service.getString("identifier"));
 				sServiceDescriptor.setDescription(service.getString("description"));
 				sServiceDescriptor.setNotificationProtocol(SAccessMethod.valueOf(service.getString("notificationProtocol")));
 				sServiceDescriptor.setTrigger(STrigger.valueOf(service.getString("trigger")));
@@ -3647,51 +3656,26 @@ public class Service implements ServiceInterface {
 	}
 	
 	@Override
-	public List<SProfileDescriptor> getAllPublicProfiles(String serviceUrl) throws ServerException, UserException {
+	public List<SProfileDescriptor> getAllPublicProfiles(String notificationsUrl, String serviceIdentifier) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			URL url = new URL(serviceUrl + "?profiles");
-			List<SProfileDescriptor> profileDescriptors = new ArrayList<SProfileDescriptor>();
-			String content = NetUtils.getContent(url, 5000);
-			JSONObject root = new JSONObject(new JSONTokener(content));
-			JSONArray profiles = root.getJSONArray("profiles");
-			for (int i = 0; i < profiles.length(); i++) {
-				JSONObject profile = profiles.getJSONObject(i);
-				SProfileDescriptor profileDescriptor = new SProfileDescriptor();
-				profileDescriptor.setDescription(profile.getString("description"));
-				profileDescriptor.setName(profile.getString("name"));
-				profileDescriptor.setPublicProfile(profile.getBoolean("publicProfile"));
-				profileDescriptor.setIdentifier(profile.getString("identifier"));
-				profileDescriptors.add(profileDescriptor);
-			}
-			return profileDescriptors;
+			BimServerClient client = new BimServerClient(bimServer.getPluginManager(), bimServer.getServiceInterfaces());
+			client.connectJson(notificationsUrl, false);
+			NotificationInterface notificationInterface = client.getNotificationInterface();
+			return notificationInterface.getPublicProfiles(serviceIdentifier);
 		} catch (Exception e) {
 			return handleException(e);
 		}
 	}
 
 	@Override
-	public List<SProfileDescriptor> getAllPrivateProfiles(String serviceUrl, String token) throws ServerException, UserException {
+	public List<SProfileDescriptor> getAllPrivateProfiles(String notificationsUrl, String serviceIdentifier, String token) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			List<SProfileDescriptor> profileDescriptors = new ArrayList<SProfileDescriptor>();
-			String content = NetUtils.getContent(new URL(serviceUrl + "?profiles&token=" + token), 5000);
-			JSONObject root = new JSONObject(new JSONTokener(content));
-			if (root.has("profiles")) {
-				JSONArray profiles = root.getJSONArray("profiles");
-				for (int i = 0; i < profiles.length(); i++) {
-					JSONObject profile = profiles.getJSONObject(i);
-					SProfileDescriptor profileDescriptor = new SProfileDescriptor();
-					profileDescriptor.setDescription(profile.getString("description"));
-					profileDescriptor.setName(profile.getString("name"));
-					profileDescriptor.setPublicProfile(profile.getBoolean("publicProfile"));
-					profileDescriptor.setIdentifier(profile.getString("identifier"));
-					profileDescriptors.add(profileDescriptor);
-				}
-			} else if (root.has("error")) {
-				throw new UserException(root.getString("error"));
-			}
-			return profileDescriptors;
+			BimServerClient client = new BimServerClient(bimServer.getPluginManager(), bimServer.getServiceInterfaces());
+			client.connectJson(notificationsUrl, false);
+			NotificationInterface notificationInterface = client.getNotificationInterface();
+			return notificationInterface.getPrivateProfiles(serviceIdentifier, token);
 		} catch (Exception e) {
 			return handleException(e);
 		}

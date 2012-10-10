@@ -3917,13 +3917,22 @@ public interface StorePackage extends EPackage {
 	int SERVICE_DESCRIPTOR__TOKEN = 2;
 
 	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_DESCRIPTOR__IDENTIFIER = 3;
+
+	/**
 	 * The feature id for the '<em><b>Notification Protocol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_DESCRIPTOR__NOTIFICATION_PROTOCOL = 3;
+	int SERVICE_DESCRIPTOR__NOTIFICATION_PROTOCOL = 4;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -3932,7 +3941,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_DESCRIPTOR__DESCRIPTION = 4;
+	int SERVICE_DESCRIPTOR__DESCRIPTION = 5;
 
 	/**
 	 * The feature id for the '<em><b>Trigger</b></em>' attribute.
@@ -3941,7 +3950,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_DESCRIPTOR__TRIGGER = 5;
+	int SERVICE_DESCRIPTOR__TRIGGER = 6;
 
 	/**
 	 * The feature id for the '<em><b>Read Revision</b></em>' attribute.
@@ -3950,7 +3959,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_DESCRIPTOR__READ_REVISION = 6;
+	int SERVICE_DESCRIPTOR__READ_REVISION = 7;
 
 	/**
 	 * The feature id for the '<em><b>Read Extended Data</b></em>' attribute.
@@ -3959,7 +3968,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_DESCRIPTOR__READ_EXTENDED_DATA = 7;
+	int SERVICE_DESCRIPTOR__READ_EXTENDED_DATA = 8;
 
 	/**
 	 * The feature id for the '<em><b>Write Revision</b></em>' attribute.
@@ -3968,7 +3977,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_DESCRIPTOR__WRITE_REVISION = 8;
+	int SERVICE_DESCRIPTOR__WRITE_REVISION = 9;
 
 	/**
 	 * The feature id for the '<em><b>Write Extended Data</b></em>' attribute.
@@ -3977,7 +3986,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_DESCRIPTOR__WRITE_EXTENDED_DATA = 9;
+	int SERVICE_DESCRIPTOR__WRITE_EXTENDED_DATA = 10;
 
 	/**
 	 * The feature id for the '<em><b>Provider Name</b></em>' attribute.
@@ -3986,7 +3995,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_DESCRIPTOR__PROVIDER_NAME = 10;
+	int SERVICE_DESCRIPTOR__PROVIDER_NAME = 11;
 
 	/**
 	 * The number of structural features of the '<em>Service Descriptor</em>' class.
@@ -3995,7 +4004,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_DESCRIPTOR_FEATURE_COUNT = 11;
+	int SERVICE_DESCRIPTOR_FEATURE_COUNT = 12;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServiceImpl <em>Service</em>}' class.
@@ -4026,13 +4035,22 @@ public interface StorePackage extends EPackage {
 	int SERVICE__SERVICE_NAME = 1;
 
 	/**
+	 * The feature id for the '<em><b>Service Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__SERVICE_IDENTIFIER = 2;
+
+	/**
 	 * The feature id for the '<em><b>Provider Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__PROVIDER_NAME = 2;
+	int SERVICE__PROVIDER_NAME = 3;
 
 	/**
 	 * The feature id for the '<em><b>Url</b></em>' attribute.
@@ -4041,7 +4059,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__URL = 3;
+	int SERVICE__URL = 4;
 
 	/**
 	 * The feature id for the '<em><b>Token</b></em>' attribute.
@@ -4050,7 +4068,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__TOKEN = 4;
+	int SERVICE__TOKEN = 5;
 
 	/**
 	 * The feature id for the '<em><b>Notification Protocol</b></em>' attribute.
@@ -4059,7 +4077,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__NOTIFICATION_PROTOCOL = 5;
+	int SERVICE__NOTIFICATION_PROTOCOL = 6;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -4068,7 +4086,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__DESCRIPTION = 6;
+	int SERVICE__DESCRIPTION = 7;
 
 	/**
 	 * The feature id for the '<em><b>Trigger</b></em>' attribute.
@@ -4077,7 +4095,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__TRIGGER = 7;
+	int SERVICE__TRIGGER = 8;
 
 	/**
 	 * The feature id for the '<em><b>Read Revision</b></em>' attribute.
@@ -4086,7 +4104,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__READ_REVISION = 8;
+	int SERVICE__READ_REVISION = 9;
 
 	/**
 	 * The feature id for the '<em><b>Read Extended Data</b></em>' reference.
@@ -4095,7 +4113,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__READ_EXTENDED_DATA = 9;
+	int SERVICE__READ_EXTENDED_DATA = 10;
 
 	/**
 	 * The feature id for the '<em><b>Write Revision</b></em>' reference.
@@ -4104,7 +4122,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__WRITE_REVISION = 10;
+	int SERVICE__WRITE_REVISION = 11;
 
 	/**
 	 * The feature id for the '<em><b>Write Extended Data</b></em>' reference.
@@ -4113,7 +4131,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__WRITE_EXTENDED_DATA = 11;
+	int SERVICE__WRITE_EXTENDED_DATA = 12;
 
 	/**
 	 * The feature id for the '<em><b>Profile Identifier</b></em>' attribute.
@@ -4122,7 +4140,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__PROFILE_IDENTIFIER = 12;
+	int SERVICE__PROFILE_IDENTIFIER = 13;
 
 	/**
 	 * The feature id for the '<em><b>Profile Name</b></em>' attribute.
@@ -4131,7 +4149,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__PROFILE_NAME = 13;
+	int SERVICE__PROFILE_NAME = 14;
 
 	/**
 	 * The feature id for the '<em><b>Profile Description</b></em>' attribute.
@@ -4140,7 +4158,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__PROFILE_DESCRIPTION = 14;
+	int SERVICE__PROFILE_DESCRIPTION = 15;
 
 	/**
 	 * The feature id for the '<em><b>Profile Public</b></em>' attribute.
@@ -4149,7 +4167,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__PROFILE_PUBLIC = 15;
+	int SERVICE__PROFILE_PUBLIC = 16;
 
 	/**
 	 * The feature id for the '<em><b>Project</b></em>' reference.
@@ -4158,7 +4176,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__PROJECT = 16;
+	int SERVICE__PROJECT = 17;
 
 	/**
 	 * The feature id for the '<em><b>User</b></em>' reference.
@@ -4167,7 +4185,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE__USER = 17;
+	int SERVICE__USER = 18;
 
 	/**
 	 * The number of structural features of the '<em>Service</em>' class.
@@ -4176,7 +4194,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_FEATURE_COUNT = 18;
+	int SERVICE_FEATURE_COUNT = 19;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.TokenImpl <em>Token</em>}' class.
@@ -8204,6 +8222,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getServiceDescriptor_Token();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceDescriptor#getIdentifier <em>Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see org.bimserver.models.store.ServiceDescriptor#getIdentifier()
+	 * @see #getServiceDescriptor()
+	 * @generated
+	 */
+	EAttribute getServiceDescriptor_Identifier();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceDescriptor#getNotificationProtocol <em>Notification Protocol</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8322,6 +8351,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getService_ServiceName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Service#getServiceIdentifier <em>Service Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Service Identifier</em>'.
+	 * @see org.bimserver.models.store.Service#getServiceIdentifier()
+	 * @see #getService()
+	 * @generated
+	 */
+	EAttribute getService_ServiceIdentifier();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Service#getProviderName <em>Provider Name</em>}'.
@@ -11635,6 +11675,14 @@ public interface StorePackage extends EPackage {
 		EAttribute SERVICE_DESCRIPTOR__TOKEN = eINSTANCE.getServiceDescriptor_Token();
 
 		/**
+		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_DESCRIPTOR__IDENTIFIER = eINSTANCE.getServiceDescriptor_Identifier();
+
+		/**
 		 * The meta object literal for the '<em><b>Notification Protocol</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -11723,6 +11771,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERVICE__SERVICE_NAME = eINSTANCE.getService_ServiceName();
+
+		/**
+		 * The meta object literal for the '<em><b>Service Identifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE__SERVICE_IDENTIFIER = eINSTANCE.getService_ServiceIdentifier();
 
 		/**
 		 * The meta object literal for the '<em><b>Provider Name</b></em>' attribute feature.

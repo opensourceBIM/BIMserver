@@ -53,10 +53,12 @@ public class SService {
 
 	// Disabled for now, makes the deployed JAR stop at this point
 	private boolean processJavaDoc = true;
+	private SService[] others;
 
-	public SService(String sourceCode, Class<?> clazz) {
+	public SService(String sourceCode, Class<?> clazz, SService...others) {
 		this.sourceCode = sourceCode;
 		this.clazz = clazz;
+		this.others = others;
 		this.name = clazz.getSimpleName();
 		init();
 		if (processJavaDoc && sourceCode != null) {
@@ -232,6 +234,14 @@ public class SService {
 			if (name.contains(".")) {
 				name = name.substring(name.lastIndexOf(".") + 1);
 				return getSType(name);
+			}
+		}
+		if (sType == null) {
+			for (SService other : others) {
+				SClass otherClass = other.getSType(name);
+				if (otherClass != null) {
+					return otherClass;
+				}
 			}
 		}
 		return sType;

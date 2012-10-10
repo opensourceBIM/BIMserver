@@ -2,6 +2,7 @@ package org.bimserver.shared;
 
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.PublicInterface;
 
@@ -23,7 +24,7 @@ import org.bimserver.shared.interfaces.PublicInterface;
  *****************************************************************************/
 
 public interface ServiceFactory {
-	<T extends PublicInterface> T newService(Class<T> serviceInterface, AccessMethod accessMethod, String remoteAddress);
-	String getName();
 	<T extends PublicInterface> T getService(Class<T> serviceInterface, SToken token) throws UserException;
+	String getName();
+	InterfaceMap newServiceMap(AccessMethod accessMethod, String remoteAddress) throws ServerException, UserException;
 }
