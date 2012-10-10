@@ -71,6 +71,8 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		initialized = true;
 
 		ServiceDescriptor clashDetection = StoreFactory.eINSTANCE.createServiceDescriptor();
+		clashDetection.setProviderName("BIMserver");
+		clashDetection.setIdentifier(getClass().getName());
 		clashDetection.setName("Clashdetection");
 		clashDetection.setDescription("Clashdetection");
 		clashDetection.setNotificationProtocol(AccessMethod.INTERNAL);
@@ -80,7 +82,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		
 		register(clashDetection, new NotificationInterfaceAdapter(){
 			@Override
-			public void newLogAction(SLogAction newRevisionNotification, SToken token, String apiUrl) throws UserException, ServerException {
+			public void newLogAction(SLogAction newRevisionNotification, String serviceName, SToken token, String apiUrl) throws UserException, ServerException {
 				SNewRevisionAdded sNewRevisionAdded = (SNewRevisionAdded)newRevisionNotification;
 				Bcf bcf = new Bcf();
 				
@@ -190,7 +192,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 					e.printStackTrace();
 				}
 				
-				SExtendedDataSchema extendedDataSchemaByNamespace = serviceInterface.getExtendedDataSchemaByNamespace("bcf");
+				SExtendedDataSchema extendedDataSchemaByNamespace = serviceInterface.getExtendedDataSchemaByNamespace("http://www.buildingsmart-tech.org/specifications/bcf-releases");
 
 				SFile file = new SFile();
 				
@@ -199,18 +201,19 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 				file.setFilename("clashdetection.bcfzip");
 				extendedData.setSchemaId(extendedDataSchemaByNamespace.getOid());
 				try {
-					file.setData(bcf.toBytes());
+					byte[] bytes = bcf.toBytes();
+					file.setData(bytes);
+					file.setMime("application/bcf");
+					
+					long fileId = serviceInterface.uploadFile(file);
+					extendedData.setFileId(fileId);
+					
+					serviceInterface.addExtendedDataToRevision(sNewRevisionAdded.getRevisionId(), extendedData);
 				} catch (BcfException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				file.setMime("application/bcf");
-				
-				long fileId = serviceInterface.uploadFile(file);
-				extendedData.setFileId(fileId);
-				
-				serviceInterface.addExtendedDataToRevision(sNewRevisionAdded.getRevisionId(), extendedData);
 			}
 		});
 	}
