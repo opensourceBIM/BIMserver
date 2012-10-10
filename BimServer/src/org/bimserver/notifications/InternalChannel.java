@@ -6,7 +6,7 @@ import org.bimserver.shared.interfaces.NotificationInterface;
 public class InternalChannel extends Channel {
 
 	public InternalChannel(NotificationInterface notificationInterface) {
-		addServiceInterface(NotificationInterface.class.getSimpleName(), notificationInterface);
+		addServiceInterface(NotificationInterface.class, notificationInterface);
 	}
 
 	@Override

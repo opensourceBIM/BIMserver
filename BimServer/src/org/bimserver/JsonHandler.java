@@ -25,6 +25,7 @@ public class JsonHandler {
 		converter = new JsonConverter(bimServer.getServiceInterfaces());
 	}
 
+	@SuppressWarnings("unchecked")
 	public JSONObject execute(JSONObject incomingMessage, HttpServletRequest httpRequest) throws JSONException {
 		JSONArray requests = incomingMessage.getJSONArray("requests");
 		JSONArray responses = new JSONArray();
@@ -34,7 +35,7 @@ public class JsonHandler {
 			try {
 				JSONObject request = requests.getJSONObject(r);
 				String interfaceName = request.getString("interface");
-				Class clazz = Class.forName("org.bimserver.shared.interfaces." + interfaceName);
+				Class<? extends PublicInterface> clazz = (Class<? extends PublicInterface>) Class.forName("org.bimserver.shared.interfaces." + interfaceName);
 				String methodName = request.getString("method");
 				SService sService = bimServer.getServiceInterface(interfaceName);
 				if (sService == null) {
@@ -63,6 +64,7 @@ public class JsonHandler {
 					responseObject.put("result", converter.toJson(result));
 				}
 			} catch (Exception exception) {
+				exception.printStackTrace();
 				if (exception instanceof ServiceException) {
 					ServiceException serviceException = (ServiceException)exception;
 					JSONObject exceptionJson = new JSONObject();
@@ -102,7 +104,7 @@ public class JsonHandler {
 			service = bimServer.getServiceFactory().getService(interfaceClass, token);
 		}
 		if (service == null) {
-			service = bimServer.getServiceFactory().newService(interfaceClass, AccessMethod.INTERNAL, "");
+			service = bimServer.getServiceFactory().newServiceMap(AccessMethod.INTERNAL, "").get(interfaceClass);
 			if (httpRequest != null) {
 				httpRequest.getSession().setAttribute("token", token);
 			}

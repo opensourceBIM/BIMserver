@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getServiceName <em>Service Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getServiceIdentifier <em>Service Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getProviderName <em>Provider Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getUrl <em>Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getToken <em>Token</em>}</li>
@@ -120,6 +121,24 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 */
 	public void setServiceName(String newServiceName) {
 		eSet(StorePackage.Literals.SERVICE__SERVICE_NAME, newServiceName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getServiceIdentifier() {
+		return (String) eGet(StorePackage.Literals.SERVICE__SERVICE_IDENTIFIER, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setServiceIdentifier(String newServiceIdentifier) {
+		eSet(StorePackage.Literals.SERVICE__SERVICE_IDENTIFIER, newServiceIdentifier);
 	}
 
 	/**

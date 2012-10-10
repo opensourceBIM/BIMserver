@@ -102,12 +102,11 @@ import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
-import org.bimserver.shared.pb.ReflectiveRpcChannel;
 import org.bimserver.templating.TemplateEngine;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.version.VersionChecker;
-import org.bimserver.webservices.Service;
 import org.bimserver.webservices.PublicInterfaceFactory;
+import org.bimserver.webservices.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -293,6 +292,8 @@ public class BimServer {
 				serverInfoManager.setErrorMessage("Inconsistent models");
 			}
 			
+			notificationsManager.init();
+			
 			protocolBuffersMetaData = new ProtocolBuffersMetaData();
 			try {
 				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("service.desc"));
@@ -303,11 +304,12 @@ public class BimServer {
 
 			URL resource1 = config.getResourceFetcher().getResource("ServiceInterface.java");
 			String content1 = getContent(resource1);
-			serviceInterfaces.put(ServiceInterface.class.getSimpleName(), new SService(content1, ServiceInterface.class));
+			SService serviceInterfaceMeta = new SService(content1, ServiceInterface.class);
+			serviceInterfaces.put(ServiceInterface.class.getSimpleName(), serviceInterfaceMeta);
 
 			URL resource2 = config.getResourceFetcher().getResource("NotificationInterface.java");
 			String content2 = getContent(resource2);
-			serviceInterfaces.put(NotificationInterface.class.getSimpleName(), new SService(content2, NotificationInterface.class));
+			serviceInterfaces.put(NotificationInterface.class.getSimpleName(), new SService(content2, NotificationInterface.class, serviceInterfaceMeta));
 
 			notificationsManager.start();
 
@@ -343,7 +345,7 @@ public class BimServer {
 			diskCacheManager = new DiskCacheManager(this, new File(config.getHomeDir(), "cache"));
 
 			mergerFactory = new MergerFactory(this);
-			setSystemService(serviceFactory.newService(ServiceInterface.class, AccessMethod.INTERNAL, "internal"));
+			setSystemService(serviceFactory.newServiceMap(AccessMethod.INTERNAL, "internal").get(ServiceInterface.class));
 			try {
 				if (!((Service) getSystemService()).loginAsSystem()) {
 					throw new RuntimeException("System user not found");

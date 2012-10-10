@@ -36,6 +36,7 @@ import org.bimserver.servlets.DownloadServlet;
 import org.bimserver.servlets.JsonApiServlet;
 import org.bimserver.servlets.UploadServlet;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimwebserver.BimWebServer;
 import org.slf4j.Logger;
@@ -103,10 +104,10 @@ public class JarBimWebServer {
 		 	
 		 	bimWebServer.setBimServerClientFactory(new BimServerClientFactory() {
 				@Override
-				public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
+				public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServerException, UserException {
 					BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager(), bimServer.getServiceInterfaces());
 					bimServerClient.setAuthentication(authenticationInfo);
-					bimServerClient.connectDirect(ServiceInterface.class, bimServer.getServiceFactory().newService(ServiceInterface.class, AccessMethod.WEB_INTERFACE, remoteAddress));
+					bimServerClient.connectDirect(ServiceInterface.class, bimServer.getServiceFactory().newServiceMap(AccessMethod.WEB_INTERFACE, remoteAddress).get((ServiceInterface.class)));
 					return bimServerClient;
 				}
 			});

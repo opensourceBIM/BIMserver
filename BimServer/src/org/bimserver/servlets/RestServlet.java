@@ -69,7 +69,7 @@ public class RestServlet extends CXFNonSpringJaxrsServlet {
 			public Object getInstance(Message message) {
 				Token token = (Token)message.getExchange().getSession().get("token");
 				try {
-					return bimServer.getServiceFactory().getService(token);
+					return bimServer.getServiceFactory().getService(ServiceInterface.class, token);
 				} catch (UserException e) {
 					LOGGER.error("", e);
 				}

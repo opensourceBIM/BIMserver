@@ -29,6 +29,7 @@ import org.bimserver.models.log.AccessMethod;
  * <ul>
  *   <li>{@link org.bimserver.models.store.Service#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getServiceName <em>Service Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#getServiceIdentifier <em>Service Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getProviderName <em>Provider Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getUrl <em>Url</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getToken <em>Token</em>}</li>
@@ -105,6 +106,32 @@ public interface Service extends IdEObject {
 	 * @generated
 	 */
 	void setServiceName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Service Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Service Identifier</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Service Identifier</em>' attribute.
+	 * @see #setServiceIdentifier(String)
+	 * @see org.bimserver.models.store.StorePackage#getService_ServiceIdentifier()
+	 * @model
+	 * @generated
+	 */
+	String getServiceIdentifier();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#getServiceIdentifier <em>Service Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Service Identifier</em>' attribute.
+	 * @see #getServiceIdentifier()
+	 * @generated
+	 */
+	void setServiceIdentifier(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Provider Name</b></em>' attribute.

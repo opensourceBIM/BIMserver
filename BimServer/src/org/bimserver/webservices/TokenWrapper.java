@@ -63,7 +63,7 @@ public class TokenWrapper {
 		return true;
 	}
 
-	public Token getToken() {
-		return token;
+	public SToken getToken() {
+		return sToken;
 	}
 }

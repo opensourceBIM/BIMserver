@@ -18,12 +18,14 @@ package org.bimserver.client.notifications;
  *****************************************************************************/
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongActionState;
+import org.bimserver.interfaces.objects.SProfileDescriptor;
+import org.bimserver.interfaces.objects.SServiceDescriptor;
 import org.bimserver.interfaces.objects.SToken;
-import org.bimserver.models.store.Token;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
@@ -46,9 +48,9 @@ public class MultiCastNotificationImpl implements NotificationInterface {
 	}
 
 	@Override
-	public void newLogAction(SLogAction logAction, SToken token, String apiUrl) throws UserException, ServerException {
+	public void newLogAction(SLogAction logAction, String serviceIdentifier, SToken token, String apiUrl) throws UserException, ServerException {
 		for (NotificationInterface notificationInterface : notificationInterfaces) {
-			notificationInterface.newLogAction(logAction, token, apiUrl);
+			notificationInterface.newLogAction(logAction, serviceIdentifier, token, apiUrl);
 		}
 	}
 
@@ -60,11 +62,26 @@ public class MultiCastNotificationImpl implements NotificationInterface {
 	}
 
 	@Override
-	public void setToken(Token token) {
+	public void setToken(SToken token) {
 	}
 
 	@Override
 	public SToken getCurrentToken() throws ServerException, UserException {
+		return null;
+	}
+
+	@Override
+	public List<SProfileDescriptor> getPublicProfiles(String serviceIdentifier) {
+		return null;
+	}
+
+	@Override
+	public List<SProfileDescriptor> getPrivateProfiles(String serviceIdentifier, String token) {
+		return null;
+	}
+
+	@Override
+	public SServiceDescriptor getService(String serviceIdentifier) {
 		return null;
 	}
 }

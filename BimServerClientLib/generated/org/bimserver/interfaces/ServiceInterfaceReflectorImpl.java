@@ -16,7 +16,6 @@ package org.bimserver.interfaces;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-import org.bimserver.models.store.Token;
 import org.bimserver.shared.reflector.Reflector;
 
 import org.bimserver.shared.reflector.KeyValuePair;
@@ -240,6 +239,9 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SInternalServicePluginConfiguration> getAllInternalServices(java.lang.Boolean onlyEnabled) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SInternalServicePluginConfiguration>) reflector.callMethod("ServiceInterface", "getAllInternalServices", java.util.List.class, new KeyValuePair("onlyEnabled", onlyEnabled));
 	}
+	public java.util.List<org.bimserver.interfaces.objects.SServiceDescriptor> getAllLocalServiceDescriptors() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.util.List<org.bimserver.interfaces.objects.SServiceDescriptor>) reflector.callMethod("ServiceInterface", "getAllLocalServiceDescriptors", java.util.List.class);
+	}
 	public java.util.List<org.bimserver.interfaces.objects.SModelComparePluginDescriptor> getAllModelComparePluginDescriptors() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SModelComparePluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllModelComparePluginDescriptors", java.util.List.class);
 	}
@@ -267,14 +269,14 @@ private Reflector reflector;
 	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> getAllPlugins() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllPlugins", java.util.List.class);
 	}
-	public java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor> getAllPrivateProfiles(java.lang.String serviceUrl, java.lang.String token) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor>) reflector.callMethod("ServiceInterface", "getAllPrivateProfiles", java.util.List.class, new KeyValuePair("serviceUrl", serviceUrl), new KeyValuePair("token", token));
+	public java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor> getAllPrivateProfiles(java.lang.String notificationsUrl, java.lang.String serviceIdentifier, java.lang.String token) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor>) reflector.callMethod("ServiceInterface", "getAllPrivateProfiles", java.util.List.class, new KeyValuePair("notificationsUrl", notificationsUrl), new KeyValuePair("serviceIdentifier", serviceIdentifier), new KeyValuePair("token", token));
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllProjects(java.lang.Boolean onlyTopLevel) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SProject>) reflector.callMethod("ServiceInterface", "getAllProjects", java.util.List.class, new KeyValuePair("onlyTopLevel", onlyTopLevel));
 	}
-	public java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor> getAllPublicProfiles(java.lang.String serviceUrl) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
-		return (java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor>) reflector.callMethod("ServiceInterface", "getAllPublicProfiles", java.util.List.class, new KeyValuePair("serviceUrl", serviceUrl));
+	public java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor> getAllPublicProfiles(java.lang.String notificationsUrl, java.lang.String serviceIdentifier) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		return (java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor>) reflector.callMethod("ServiceInterface", "getAllPublicProfiles", java.util.List.class, new KeyValuePair("notificationsUrl", notificationsUrl), new KeyValuePair("serviceIdentifier", serviceIdentifier));
 	}
 	public java.util.List<org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor> getAllQueryEnginePluginDescriptors() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (java.util.List<org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor>) reflector.callMethod("ServiceInterface", "getAllQueryEnginePluginDescriptors", java.util.List.class);
@@ -717,6 +719,9 @@ private Reflector reflector;
 	public void setStringAttribute(java.lang.Long oid, java.lang.String attributeName, java.lang.String value) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "setStringAttribute", void.class, new KeyValuePair("oid", oid), new KeyValuePair("attributeName", attributeName), new KeyValuePair("value", value));
 	}
+	public void setToken(org.bimserver.interfaces.objects.SToken arg0) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("ServiceInterface", "setToken", void.class, new KeyValuePair("arg0", arg0));
+	}
 	public void setup(java.lang.String siteAddress, java.lang.String smtpServer, java.lang.String smtpSender, java.lang.String adminName, java.lang.String adminUsername, java.lang.String adminPassword) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "setup", void.class, new KeyValuePair("siteAddress", siteAddress), new KeyValuePair("smtpServer", smtpServer), new KeyValuePair("smtpSender", smtpSender), new KeyValuePair("adminName", adminName), new KeyValuePair("adminUsername", adminUsername), new KeyValuePair("adminPassword", adminPassword));
 	}
@@ -785,8 +790,5 @@ private Reflector reflector;
 	}
 	public org.bimserver.interfaces.objects.SUser validateAccount(java.lang.Long uoid, java.lang.String token, java.lang.String password) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SUser) reflector.callMethod("ServiceInterface", "validateAccount", org.bimserver.interfaces.objects.SUser.class, new KeyValuePair("uoid", uoid), new KeyValuePair("token", token), new KeyValuePair("password", password));
-	}
-	@Override
-	public void setToken(Token token) {
 	}
 }

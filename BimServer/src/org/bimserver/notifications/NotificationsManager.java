@@ -28,13 +28,16 @@ import java.util.concurrent.BlockingQueue;
 import org.bimserver.BimServer;
 import org.bimserver.client.JsonChannel;
 import org.bimserver.client.channels.Channel;
+import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SNewProjectAdded;
 import org.bimserver.interfaces.objects.SNewRevisionAdded;
+import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.models.store.StorePackage;
@@ -56,6 +59,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	private final BlockingQueue<SLogAction> queue = new ArrayBlockingQueue<SLogAction>(1000);
 	private final BimServer bimServer;
 	private volatile boolean running;
+	private String url;
 
 	public NotificationsManager(BimServer bimServer) {
 		setName("NotificationsManager");
@@ -97,7 +101,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 					try {
 						for (Entry<Long, Set<EndPoint>> endPoints : this.endPoints.entrySet()) {
 							for (EndPoint endPoint : endPoints.getValue()) {
-								endPoint.getNotificationInterface().newLogAction(notification, null, null);
+								endPoint.getNotificationInterface().newLogAction(notification, null, null, null);
 							}
 						}
 						if (notification instanceof SNewProjectAdded) {
@@ -124,22 +128,37 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		}
 	}
 
+	public void init() {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			ServerSettings serverSettings = session.getAllOfType(StorePackage.eINSTANCE.getServerSettings(), false, null).getAll(ServerSettings.class).get(0);
+			this.url = serverSettings.getSiteAddress() + "/json";
+			for (String s : internalServices.keySet()) {
+				internalServices.get(s).setUrl(url);
+			}
+		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+
 	public void trigger(String siteAddress, SNewRevisionAdded newRevisionNotification, Service service) throws UserException, ServerException {
 		if (service.getTrigger() == Trigger.NEW_REVISION) {
 			Channel channel = getChannel(service);
 			try {
 				if (service.isReadRevision() || service.getReadExtendedData() != null || service.getWriteExtendedData() != null || service.getWriteRevision() != null) {
 					// This service will be needing a token
-					ServiceInterface newService = bimServer.getServiceFactory().newService(ServiceInterface.class, service.getNotificationProtocol(), "");
+					ServiceInterface newService = bimServer.getServiceFactory().newServiceMap(service.getNotificationProtocol(), "").get(ServiceInterface.class);
 					long writeProjectPoid = service.getWriteRevision() == null ? -1 : service.getWriteRevision().getOid();
 					long writeExtendedDataRoid = service.getWriteExtendedData() != null ? newRevisionNotification.getRevisionId() : -1;
 					long readRevisionRoid = service.isReadRevision() ? newRevisionNotification.getRevisionId() : -1;
 					long readExtendedDataRoid = service.getReadExtendedData() != null ? newRevisionNotification.getRevisionId() : -1;
 					TokenAuthorization authorization = new TokenAuthorization(service.getUser().getOid(), readRevisionRoid, writeProjectPoid, readExtendedDataRoid, writeExtendedDataRoid);
 					((org.bimserver.webservices.Service)newService).setAuthorization(authorization);
-					channel.getNotificationInterface().newLogAction(newRevisionNotification, newService.getCurrentToken(), siteAddress + "/jsonapi");
+					channel.getNotificationInterface().newLogAction(newRevisionNotification, service.getServiceIdentifier(), newService.getCurrentToken(), siteAddress + "/jsonapi");
 				} else {
-					channel.getNotificationInterface().newLogAction(newRevisionNotification, null, null);
+					channel.getNotificationInterface().newLogAction(newRevisionNotification, service.getServiceIdentifier(), null, null);
 				}
 			} finally {
 				channel.disconnect();
@@ -168,8 +187,9 @@ public class NotificationsManager extends Thread implements NotificationsManager
 
 	@Override
 	public void register(ServiceDescriptor serviceDescriptor, NotificationInterface notificationInterface) {
+		serviceDescriptor.setUrl(url);
 		internalServices.put(serviceDescriptor.getName(), serviceDescriptor);
-		x.put(serviceDescriptor.getName(), notificationInterface);
+		x.put(serviceDescriptor.getIdentifier(), notificationInterface);
 	}
 	
 	public Map<String, ServiceDescriptor> getInternalServices() {
@@ -187,6 +207,17 @@ public class NotificationsManager extends Thread implements NotificationsManager
 					e.printStackTrace();
 				}
 			}
+		}
+	}
+
+	public void notify(SLogAction logAction, String serviceIdentifier, SToken token, String apiUrl) {
+		try {
+			NotificationInterface notificationInterface = x.get(serviceIdentifier);
+			notificationInterface.newLogAction(logAction, serviceIdentifier, token, apiUrl);
+		} catch (UserException e) {
+			e.printStackTrace();
+		} catch (ServerException e) {
+			e.printStackTrace();
 		}
 	}
 }

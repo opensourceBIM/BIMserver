@@ -36,6 +36,7 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.comparators.SRevisionIdComparator;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
@@ -73,7 +74,13 @@ public class SyndicationServlet extends HttpServlet {
 			String password = split[1];
 			ServiceInterface service = (ServiceInterface) getServletContext().getAttribute("service");
 			if (service == null) {
-				service = bimServer.getServiceFactory().newService(ServiceInterface.class, AccessMethod.SYNDICATION, request.getRemoteAddr());
+				try {
+					service = bimServer.getServiceFactory().newServiceMap(AccessMethod.SYNDICATION, request.getRemoteAddr()).get(ServiceInterface.class);
+				} catch (ServerException e) {
+					e.printStackTrace();
+				} catch (UserException e) {
+					e.printStackTrace();
+				}
 			}
 			try {
 				if (service.login(username, password) != null) {

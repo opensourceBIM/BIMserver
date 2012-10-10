@@ -31,23 +31,23 @@ import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.reflector.Reflector;
 
 public abstract class Channel {
-	private final Map<String, PublicInterface> serviceInterfaces = new HashMap<String, PublicInterface>();
+	private final Map<Class<? extends PublicInterface>, PublicInterface> serviceInterfaces = new HashMap<Class<? extends PublicInterface>, PublicInterface>();
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
 
-	protected void addServiceInterface(String name, PublicInterface object) {
-		serviceInterfaces.put(name, object);
+	protected void addServiceInterface(Class<? extends PublicInterface> interfaceClass, PublicInterface object) {
+		serviceInterfaces.put(interfaceClass, object);
 	}
 
 	public NotificationInterface getNotificationInterface() {
-		return (NotificationInterface) getServiceInterface("NotificationInterface");
+		return (NotificationInterface) getServiceInterface(NotificationInterface.class);
 	}
 	
 	public ServiceInterface getServiceInterface() {
-		return (ServiceInterface) getServiceInterface("ServiceInterface");
+		return (ServiceInterface) getServiceInterface(ServiceInterface.class);
 	}
 	
-	public PublicInterface getServiceInterface(String name) {
-		return serviceInterfaces.get(name);
+	public PublicInterface getServiceInterface(Class<? extends PublicInterface> interfaceClass) {
+		return serviceInterfaces.get(interfaceClass);
 	}
 	
 	public void registerConnectDisconnectListener(ConnectDisconnectListener connectDisconnectListener) {
@@ -67,8 +67,8 @@ public abstract class Channel {
 	}
 
 	protected void finish(Reflector reflector) {
-		serviceInterfaces.put("ServiceInterface", new ServiceInterfaceReflectorImpl(reflector));
-		serviceInterfaces.put("NotificationInterface", new NotificationInterfaceReflectorImpl(reflector));
+		serviceInterfaces.put(ServiceInterface.class, new ServiceInterfaceReflectorImpl(reflector));
+		serviceInterfaces.put(NotificationInterface.class, new NotificationInterfaceReflectorImpl(reflector));
 	}
 	
 	public abstract void disconnect();

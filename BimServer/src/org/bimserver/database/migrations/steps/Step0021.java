@@ -31,6 +31,7 @@ public class Step0021 extends Migration {
 		schema.createEAttribute(serviceDescriptor, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serviceDescriptor, "url", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serviceDescriptor, "token", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(serviceDescriptor, "identifier", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serviceDescriptor, "notificationProtocol", schema.getEEnum("log", "AccessMethod"), Multiplicity.SINGLE);
 		schema.createEAttribute(serviceDescriptor, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serviceDescriptor, "trigger", trigger, Multiplicity.SINGLE);
@@ -43,6 +44,7 @@ public class Step0021 extends Migration {
 		EClass service = schema.createEClass("store", "Service");
 		schema.createEAttribute(service, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(service, "serviceName", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(service, "serviceIdentifier", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(service, "providerName", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(service, "url", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(service, "token", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);

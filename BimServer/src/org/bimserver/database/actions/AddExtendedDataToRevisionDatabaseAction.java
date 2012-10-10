@@ -53,6 +53,7 @@ public class AddExtendedDataToRevisionDatabaseAction extends AddDatabaseAction<E
 		User actingUser = getUserByUoid(authorization.getUoid());
 		getIdEObject().setUser(actingUser);
 		getIdEObject().setAdded(new Date());
+		getIdEObject().setSize(getIdEObject().getFile().getData().length);
 		super.execute();
 		Revision revision = getRevisionByRoid(roid);
 		if (revision == null) {

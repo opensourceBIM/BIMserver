@@ -39,6 +39,7 @@ import org.apache.cxf.ws.addressing.EndpointReferenceType;
 import org.bimserver.BimServer;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Token;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
@@ -62,7 +63,13 @@ public class RestAuthentication extends SoapHeaderInterceptor {
 		Token token = (Token)message.getExchange().getSession().get("token");
 		ServiceInterface newService = null;
 		if (token == null) {
-			newService = bimServer.getServiceFactory().newService(ServiceInterface.class, AccessMethod.REST, httpRequest.getRemoteAddr());
+			try {
+				newService = bimServer.getServiceFactory().newServiceMap(AccessMethod.REST, httpRequest.getRemoteAddr()).get(ServiceInterface.class);
+			} catch (ServerException e) {
+				e.printStackTrace();
+			} catch (UserException e) {
+				e.printStackTrace();
+			}
 			message.getExchange().getSession().put("token", ((Service)newService).getCurrentToken());
 		} else {
 			try {

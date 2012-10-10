@@ -18,11 +18,13 @@ package org.bimserver.client.notifications;
  *****************************************************************************/
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongActionState;
+import org.bimserver.interfaces.objects.SProfileDescriptor;
+import org.bimserver.interfaces.objects.SServiceDescriptor;
 import org.bimserver.interfaces.objects.SToken;
-import org.bimserver.models.store.Token;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
@@ -36,7 +38,7 @@ public class NotificationLogger implements NotificationInterface {
 	}
 
 	@Override
-	public void newLogAction(SLogAction logAction, SToken token, String apiUrl) {
+	public void newLogAction(SLogAction logAction, String serviceIdentifier, SToken token, String apiUrl) {
 		out.println(logAction);
 		out.flush();
 	}
@@ -46,11 +48,26 @@ public class NotificationLogger implements NotificationInterface {
 	}
 
 	@Override
-	public void setToken(Token token) {
+	public void setToken(SToken token) {
 	}
 
 	@Override
 	public SToken getCurrentToken() throws ServerException, UserException {
+		return null;
+	}
+
+	@Override
+	public List<SProfileDescriptor> getPublicProfiles(String serviceIdentifier) {
+		return null;
+	}
+
+	@Override
+	public List<SProfileDescriptor> getPrivateProfiles(String serviceIdentifier, String token) {
+		return null;
+	}
+
+	@Override
+	public SServiceDescriptor getService(String serviceIdentifier) {
 		return null;
 	}
 }

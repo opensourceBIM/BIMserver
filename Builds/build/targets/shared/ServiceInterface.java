@@ -98,7 +98,7 @@ import org.bimserver.shared.exceptions.UserException;
 @Path("/")
 @Produces({"application/xml", "application/json"})
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
-public interface ServiceInterface {
+public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Method to test the connection, will return the given string
 	 * 
@@ -1873,7 +1873,8 @@ public interface ServiceInterface {
 
 	@WebMethod(action="getAllPublicProfiles")
 	List<SProfileDescriptor> getAllPublicProfiles(
-		@WebParam(name = "serviceUrl", partName = "getAllPublicProfiles.serviceUrl") String serviceUrl) throws ServerException, UserException;
+		@WebParam(name = "notificationsUrl", partName = "getAllPublicProfiles.notificationsUrl") String notificationsUrl, 
+		@WebParam(name = "serviceIdentifier", partName = "getAllPublicProfiles.serviceIdentifier") String serviceIdentifier) throws ServerException, UserException;
 
 	@WebMethod(action="addServiceToProject")
 	void addServiceToProject(
@@ -2250,7 +2251,8 @@ public interface ServiceInterface {
 
 	@WebMethod(action = "getAllPrivateProfiles")
 	List<SProfileDescriptor> getAllPrivateProfiles(
-		@WebParam(name = "serviceUrl", partName = "getAllPrivateProfiles.serviceUrl") String serviceUrl, 
+		@WebParam(name = "notificationsUrl", partName = "getAllPrivateProfiles.notificationsUrl") String notificationsUrl, 
+		@WebParam(name = "serviceIdentifier", partName = "getAllPrivateProfiles.serviceIdentifier") String serviceIdentifier,
 		@WebParam(name = "token", partName = "getAllPrivateProfiles.token") String token) throws ServerException, UserException;
 	
 	@WebMethod(action = "getPluginObjectDefinition")
@@ -2281,4 +2283,7 @@ public interface ServiceInterface {
 	void triggerNewRevision(
 		@WebParam(name = "roid", partName = "triggerNewRevision.roid") long roid, 
 		@WebParam(name = "soid", partName = "triggerNewRevision.soid") long soid) throws ServerException, UserException;
+
+	@WebMethod(action = "getAllLocalServiceDescriptors")
+	List<SServiceDescriptor> getAllLocalServiceDescriptors() throws ServerException, UserException;
 }

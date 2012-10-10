@@ -31,9 +31,10 @@ import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.Token;
+import org.bimserver.shared.InterfaceMap;
 import org.bimserver.shared.ServiceFactory;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
@@ -44,64 +45,41 @@ import org.slf4j.LoggerFactory;
 
 public class PublicInterfaceFactory implements ServiceFactory {
 	private static final Logger LOGGER = LoggerFactory.getLogger(PublicInterfaceFactory.class);
-	private static final int TOKEN_TTL_SECONDS = 60*60; // one hour
-	private final HashMap<TokenWrapper, PublicInterface> tokens = new HashMap<TokenWrapper, PublicInterface>();
+	private static final int TOKEN_TTL_SECONDS = 60 * 60; // one hour
+	private final HashMap<TokenWrapper, InterfaceMap> tokens = new HashMap<TokenWrapper, InterfaceMap>();
 	private final BimServer bimServer;
 
 	public PublicInterfaceFactory(BimServer bimServer) {
 		this.bimServer = bimServer;
 	}
-	
-	@SuppressWarnings("unchecked")
-	public <T extends PublicInterface> T newService(Class<T> interfaceClass, AccessMethod accessMethod, String remoteAddress) {
-		PublicInterface publicInterface = null;
-		if (interfaceClass == ServiceInterface.class) {
-			publicInterface = new Service(bimServer, accessMethod, remoteAddress, this);
-		} else if (interfaceClass == NotificationInterface.class) {
-			publicInterface = new Service(bimServer, accessMethod, remoteAddress, this);
-		}
+
+	public InterfaceMap newServiceMap(AccessMethod accessMethod, String remoteAddress) throws ServerException, UserException {
+		SToken token = new SToken();
+		InterfaceMap interfaceMap = new InterfaceMap();
+		interfaceMap.add(ServiceInterface.class, new Service(bimServer, accessMethod, remoteAddress, this, token));
+		interfaceMap.add(NotificationInterface.class, new NotificationImpl(bimServer, token));
 		Date expires = new Date(new Date().getTime() + (TOKEN_TTL_SECONDS * 1000));
-		Token token = StoreFactory.eINSTANCE.createToken();
 		token.setTokenString(GeneratorUtils.generateToken());
 		token.setExpires(expires.getTime());
-		tokens.put(new TokenWrapper(token), publicInterface);
-		publicInterface.setToken(token);
-		return (T) publicInterface;
+		tokens.put(new TokenWrapper(token), interfaceMap);
+		return interfaceMap;
 	}
 
-	@SuppressWarnings("unchecked")
 	public synchronized <T extends PublicInterface> T getService(Class<T> publicInterface, Token token) throws UserException {
-		return (T) getService(token);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public synchronized <T extends PublicInterface> T getService(Class<T> publicInterface, SToken token) throws UserException {
-		return (T) getService(token);
-	}
-	
-	public synchronized PublicInterface getService(Token token) throws UserException {
-		TokenWrapper wrapper = new TokenWrapper(token);
-		if (tokens.containsKey(wrapper)) {
-			return tokens.get(wrapper);
-		}
-		throw new UserException("Invalid token");
+		return tokens.get(new TokenWrapper(token)).get(publicInterface);
 	}
 
-	public synchronized PublicInterface getService(SToken token) throws UserException {
-		TokenWrapper wrapper = new TokenWrapper(token);
-		if (tokens.containsKey(wrapper)) {
-			return tokens.get(wrapper);
-		}
-		throw new UserException("Invalid token");
+	public synchronized <T extends PublicInterface> T getService(Class<T> publicInterface, SToken token) throws UserException {
+		return tokens.get(new TokenWrapper(token)).get(publicInterface);
 	}
-	
+
 	public synchronized void cleanup() {
 		int tokensCleaned = 0;
 		Date now = new Date();
 		Iterator<TokenWrapper> iterator = tokens.keySet().iterator();
 		while (iterator.hasNext()) {
 			TokenWrapper tokenWrapper = iterator.next();
-			Token token = tokenWrapper.getToken();
+			SToken token = tokenWrapper.getToken();
 			if (new Date(token.getExpires()).before(now)) {
 				tokensCleaned++;
 				iterator.remove();
@@ -116,39 +94,37 @@ public class PublicInterfaceFactory implements ServiceFactory {
 		return tokens.size();
 	}
 
-	public synchronized void remove(Token token) {
+	public synchronized void remove(SToken token) {
 		tokens.remove(token);
 	}
 
 	public List<SUserSession> getActiveUserSessions() throws org.bimserver.shared.exceptions.ServerException, UserException {
 		List<SUserSession> userSessions = new ArrayList<SUserSession>();
 		for (TokenWrapper tokenWrapper : tokens.keySet()) {
-			Token token = tokenWrapper.getToken();
-			PublicInterface publicInterface = getService(token);
-			if (publicInterface instanceof ServiceInterface) {
-				ServiceInterface serviceInterface = (ServiceInterface)publicInterface;
-				if (serviceInterface.isLoggedIn() && serviceInterface.getAccessMethod() != SAccessMethod.INTERNAL) {
-					SUser user = serviceInterface.getCurrentUser();
-					if (user != null) {
-						SUserSession userSession = new SUserSession();
-						userSession.setUsername(user.getUsername());
-						userSession.setType(user.getUserType());
-						userSession.setName(user.getName());
-						userSession.setRemoteAddress(serviceInterface.getRemoteAddress());
-						userSession.setUserId(user.getOid());
-						userSession.setAccessMethod(serviceInterface.getAccessMethod());
-						userSession.setActiveSince(serviceInterface.getActiveSince());
-						userSession.setLastActive(serviceInterface.getLastActive());
-						userSessions.add(userSession);
-					}
+			SToken token = tokenWrapper.getToken();
+			ServiceInterface serviceInterface = getService(ServiceInterface.class, token);
+			if (serviceInterface.isLoggedIn() && serviceInterface.getAccessMethod() != SAccessMethod.INTERNAL) {
+				SUser user = serviceInterface.getCurrentUser();
+				if (user != null) {
+					SUserSession userSession = new SUserSession();
+					userSession.setUsername(user.getUsername());
+					userSession.setType(user.getUserType());
+					userSession.setName(user.getName());
+					userSession.setRemoteAddress(serviceInterface.getRemoteAddress());
+					userSession.setUserId(user.getOid());
+					userSession.setAccessMethod(serviceInterface.getAccessMethod());
+					userSession.setActiveSince(serviceInterface.getActiveSince());
+					userSession.setLastActive(serviceInterface.getLastActive());
+					userSessions.add(userSession);
 				}
 			}
 		}
-		Collections.sort(userSessions, new Comparator<SUserSession>(){
+		Collections.sort(userSessions, new Comparator<SUserSession>() {
 			@Override
 			public int compare(SUserSession o1, SUserSession o2) {
 				return o1.getLastActive().compareTo(o2.getLastActive());
-			}});
+			}
+		});
 		return userSessions;
 	}
 

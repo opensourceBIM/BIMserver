@@ -30,7 +30,6 @@ import java.util.Set;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 
-import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SMethod;

@@ -175,7 +175,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 	public ServiceInterface getServiceInterface() {
 		if (channel != null) {
-			return (ServiceInterface) channel.getServiceInterface("ServiceInterface");
+			return channel.getServiceInterface();
 		}
 		return null;
 	}
@@ -422,5 +422,12 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 	public void unregisterNotificationListener(NotificationInterface notificationInterface) {
 		notificationsClient.unregisterNotifictionListener(notificationInterface);
+	}
+
+	public NotificationInterface getNotificationInterface() {
+		if (channel != null) {
+			return channel.getNotificationInterface();
+		}
+		return null;
 	}
 }

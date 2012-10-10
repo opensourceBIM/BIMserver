@@ -28,7 +28,7 @@ import org.apache.cxf.service.invoker.AbstractInvoker;
 import org.apache.cxf.transport.http.AbstractHTTPDestination;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Token;
-import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.slf4j.Logger;
@@ -59,24 +59,33 @@ public class CustomInvoker extends AbstractInvoker {
 			}
 			if (token != null) {
 				try {
-					return serviceFactory.getService(token);
+					return serviceFactory.getService(ServiceInterface.class, token);
 				} catch (UserException e) {
 					LOGGER.error("", e);
 					return null;
 				}
 			} else {
-				ServiceInterface newService = serviceFactory.newService(ServiceInterface.class, AccessMethod.SOAP, httpRequest.getRemoteAddr());
+				ServiceInterface newService;
 				try {
+					newService = serviceFactory.newServiceMap(AccessMethod.SOAP, httpRequest.getRemoteAddr()).get(ServiceInterface.class);
 					context.getSession().put("token", newService.getCurrentToken());
-				} catch (ServiceException e) {
-					LOGGER.error("", e);
+					return newService;
+				} catch (ServerException e1) {
+					LOGGER.error("", e1);
+				} catch (UserException e1) {
+					LOGGER.error("", e1);
 				}
-				return newService;
 			}
 		} else {
-			ServiceInterface newService = serviceFactory.newService(ServiceInterface.class, AccessMethod.REST, httpRequest.getRemoteAddr());
-			return newService;
+			try {
+				return serviceFactory.newServiceMap(AccessMethod.REST, httpRequest.getRemoteAddr()).get(ServiceInterface.class);
+			} catch (ServerException e) {
+				LOGGER.error("", e);
+			} catch (UserException e) {
+				LOGGER.error("", e);
+			}
 		}
+		return null;
 	}
 
 	@Override

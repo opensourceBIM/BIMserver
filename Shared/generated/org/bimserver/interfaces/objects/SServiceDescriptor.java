@@ -30,6 +30,7 @@ public class SServiceDescriptor implements SBase
 	private java.lang.String name;
 	private java.lang.String url;
 	private java.lang.String token;
+	private java.lang.String identifier;
 	private SAccessMethod notificationProtocol;
 	private java.lang.String description;
 	private STrigger trigger;
@@ -57,6 +58,9 @@ public class SServiceDescriptor implements SBase
 		}
 		if (sField.getName().equals("token")) {
 			return getToken();
+		}
+		if (sField.getName().equals("identifier")) {
+			return getIdentifier();
 		}
 		if (sField.getName().equals("notificationProtocol")) {
 			return getNotificationProtocol();
@@ -96,6 +100,10 @@ public class SServiceDescriptor implements SBase
 		}
 		if (sField.getName().equals("token")) {
 			setToken((String)val);
+			return;
+		}
+		if (sField.getName().equals("identifier")) {
+			setIdentifier((String)val);
 			return;
 		}
 		if (sField.getName().equals("notificationProtocol")) {
@@ -155,6 +163,14 @@ public class SServiceDescriptor implements SBase
 
 	public void setToken(java.lang.String token) {
 		this.token = token;
+	}
+	
+	public java.lang.String getIdentifier() {
+		return identifier;
+	}
+
+	public void setIdentifier(java.lang.String identifier) {
+		this.identifier = identifier;
 	}
 	
 	public SAccessMethod getNotificationProtocol() {
