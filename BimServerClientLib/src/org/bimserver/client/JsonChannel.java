@@ -1,17 +1,17 @@
 package org.bimserver.client;
 
-import java.util.Map;
-
 import org.bimserver.client.channels.Channel;
-import org.bimserver.client.factories.AuthenticationInfo;
-import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.AuthenticationInfo;
+import org.bimserver.shared.json.JsonReflector;
+import org.bimserver.shared.json.JsonSocketReflector;
+import org.bimserver.shared.meta.ServicesMap;
 
 public class JsonChannel extends Channel {
 
-	private Map<String, SService> sServices;
+	private ServicesMap servicesMap;
 
-	public JsonChannel(Map<String, SService> sServices) {
-		this.sServices = sServices;
+	public JsonChannel(ServicesMap servicesMap) {
+		this.servicesMap = servicesMap;
 	}
 
 	@Override
@@ -19,7 +19,7 @@ public class JsonChannel extends Channel {
 	}
 
 	public void connect(String address, boolean useHttpSession, AuthenticationInfo authenticationInfo) {
-		JsonReflector reflector = new JsonSocketReflector(sServices, address, useHttpSession, authenticationInfo);
+		JsonReflector reflector = new JsonSocketReflector(servicesMap, address, useHttpSession, authenticationInfo);
 		finish(reflector);
 	}
 }

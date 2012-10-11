@@ -38,7 +38,7 @@ public class NotificationLogger implements NotificationInterface {
 	}
 
 	@Override
-	public void newLogAction(SLogAction logAction, String serviceIdentifier, SToken token, String apiUrl) {
+	public void newLogAction(SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) {
 		out.println(logAction);
 		out.flush();
 	}

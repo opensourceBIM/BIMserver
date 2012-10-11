@@ -20,6 +20,7 @@ package org.bimserver.client.factories;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 
 public class SoapBimServerClientFactory implements BimServerClientFactory {
