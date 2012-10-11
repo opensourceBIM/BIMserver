@@ -61,7 +61,6 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.eclipse.emf.ecore.EClass;
@@ -85,8 +84,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 	private ServicesMap servicesMap = new ServicesMap();
 
 	public BimServerClient(PluginManager pluginManager) {
-		this(pluginManager, createDefaultSServices());
-		this.servicesMap = pluginManager.getServicesMap();
+		this(pluginManager, pluginManager.getServicesMap());
 	}
 	
 	public BimServerClient(PluginManager pluginManager, ServicesMap servicesMap) {
@@ -102,12 +100,6 @@ public class BimServerClient implements ConnectDisconnectListener {
 		notificationsClient = new SocketNotificationsClient();
 	}
 
-	private static ServicesMap createDefaultSServices() {
-		ServicesMap services = new ServicesMap();
-		services.add(new SService(null, ServiceInterface.class));
-		return services;
-	}
-	
 	public void setAuthentication(AuthenticationInfo authenticationInfo) {
 		this.authenticationInfo = authenticationInfo;
 	}

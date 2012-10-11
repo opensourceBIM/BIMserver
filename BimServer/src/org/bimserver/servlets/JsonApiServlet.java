@@ -58,9 +58,7 @@ public class JsonApiServlet extends HttpServlet {
 			JSONObject request = new JSONObject(new JSONTokener(incomingText));
 			response.setHeader("Content-Type", "application/json");
 
-			JSONObject responseObject = bimServer.getJsonHandler().execute(request, httpRequest);
-
-			responseObject.write(response.getWriter());
+			bimServer.getJsonHandler().execute(request, httpRequest, response.getWriter());
 		} catch (Exception e) {
 			sendException(response, e);
 		}

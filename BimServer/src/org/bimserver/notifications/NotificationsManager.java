@@ -176,13 +176,17 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	}
 
 	private Channel getChannel(Service service) {
+		if (service.getInternalService() != null) {
+			// Overrule definition
+			return new InternalChannel(x.get(service.getServiceIdentifier()));
+		}
 		switch (service.getNotificationProtocol()) {
 		case JSON:
 			JsonChannel jsonChannel = new JsonChannel(bimServer.getServicesMap());
 			jsonChannel.connect(service.getUrl(), true, null);
 			return jsonChannel;
 		case INTERNAL:
-			return new InternalChannel(x.get(service.getServiceIdentifier()), service);
+			return new InternalChannel(x.get(service.getServiceIdentifier()));
 		default: 
 			LOGGER.error("Unimplemented AccessMethod: " + service.getNotificationProtocol());
 			return null;
