@@ -5845,6 +5845,8 @@ public class SConverter {
 		result.setProjectId(projectVal == null ? -1 : projectVal.getOid());
 		User userVal = input.getUser();
 		result.setUserId(userVal == null ? -1 : userVal.getOid());
+		InternalServicePluginConfiguration internalServiceVal = input.getInternalService();
+		result.setInternalServiceId(internalServiceVal == null ? -1 : internalServiceVal.getOid());
 		return result;
 	}
 
@@ -5873,6 +5875,7 @@ public class SConverter {
 		result.setWriteExtendedData((ExtendedDataSchema)session.get(StorePackage.eINSTANCE.getExtendedDataSchema(), input.getWriteExtendedDataId(), false, null));
 		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), false, null));
 		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), false, null));
+		result.setInternalService((InternalServicePluginConfiguration)session.get(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), input.getInternalServiceId(), false, null));
 		return result;
 	}
 
@@ -6624,6 +6627,8 @@ public class SConverter {
 		result.setRequired(input.isRequired());
 		TypeDefinition typeVal = input.getType();
 		result.setType(convertToSObject(typeVal));
+		Type defaultValueVal = input.getDefaultValue();
+		result.setDefaultValueId(defaultValueVal == null ? -1 : defaultValueVal.getOid());
 		return result;
 	}
 
@@ -6635,6 +6640,7 @@ public class SConverter {
 		result.setName(input.getName());
 		result.setRequired(input.isRequired());
 		result.setType(convertFromSObject(input.getType(), session));
+		result.setDefaultValue((Type)session.get(StorePackage.eINSTANCE.getType(), input.getDefaultValueId(), false, null));
 		return result;
 	}
 

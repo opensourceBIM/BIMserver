@@ -57,6 +57,7 @@ import org.bimserver.plugins.schema.SchemaPlugin;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.interfaces.NotificationInterface;
@@ -516,11 +517,11 @@ public class PluginManager {
 		return getPluginByClassName(ServicePlugin.class, className, onlyEnabled);
 	}
 
-	public void register(ServiceDescriptor serviceDescriptor, NotificationInterface notificationInterface) {
-		notificationsManagerInterface.register(serviceDescriptor, notificationInterface);
-	}
-
 	public ServiceFactory getServiceFactory() {
 		return serviceFactory;
+	}
+
+	public void registerNewRevisionHandler(ServiceDescriptor serviceDescriptor, NewRevisionHandler newRevisionHandler) {
+		notificationsManagerInterface.registerNewRevisionHandler(serviceDescriptor, newRevisionHandler);
 	}
 }

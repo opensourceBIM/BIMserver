@@ -23,11 +23,11 @@ import java.util.Set;
 
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
-import org.bimserver.client.factories.AuthenticationInfo;
-import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.satellite.activities.Activity;
+import org.bimserver.shared.AuthenticationInfo;
+import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.interfaces.NotificationInterface;
 
 public class SatelliteServer {

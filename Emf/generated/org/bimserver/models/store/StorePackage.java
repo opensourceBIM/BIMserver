@@ -4188,13 +4188,22 @@ public interface StorePackage extends EPackage {
 	int SERVICE__USER = 18;
 
 	/**
+	 * The feature id for the '<em><b>Internal Service</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__INTERNAL_SERVICE = 19;
+
+	/**
 	 * The number of structural features of the '<em>Service</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_FEATURE_COUNT = 19;
+	int SERVICE_FEATURE_COUNT = 20;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.TokenImpl <em>Token</em>}' class.
@@ -4750,13 +4759,22 @@ public interface StorePackage extends EPackage {
 	int PARAMETER_DEFINITION__TYPE = 2;
 
 	/**
+	 * The feature id for the '<em><b>Default Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_DEFINITION__DEFAULT_VALUE = 3;
+
+	/**
 	 * The number of structural features of the '<em>Parameter Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_DEFINITION_FEATURE_COUNT = 3;
+	int PARAMETER_DEFINITION_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.TypeImpl <em>Type</em>}' class.
@@ -8540,6 +8558,17 @@ public interface StorePackage extends EPackage {
 	EReference getService_User();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Service#getInternalService <em>Internal Service</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Internal Service</em>'.
+	 * @see org.bimserver.models.store.Service#getInternalService()
+	 * @see #getService()
+	 * @generated
+	 */
+	EReference getService_InternalService();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Token <em>Token</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8943,6 +8972,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getParameterDefinition_Type();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ParameterDefinition#getDefaultValue <em>Default Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Default Value</em>'.
+	 * @see org.bimserver.models.store.ParameterDefinition#getDefaultValue()
+	 * @see #getParameterDefinition()
+	 * @generated
+	 */
+	EReference getParameterDefinition_DefaultValue();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Type <em>Type</em>}'.
@@ -11909,6 +11949,14 @@ public interface StorePackage extends EPackage {
 		EReference SERVICE__USER = eINSTANCE.getService_User();
 
 		/**
+		 * The meta object literal for the '<em><b>Internal Service</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVICE__INTERNAL_SERVICE = eINSTANCE.getService_InternalService();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.TokenImpl <em>Token</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -12237,6 +12285,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference PARAMETER_DEFINITION__TYPE = eINSTANCE.getParameterDefinition_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Value</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PARAMETER_DEFINITION__DEFAULT_VALUE = eINSTANCE.getParameterDefinition_DefaultValue();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.TypeImpl <em>Type</em>}' class.

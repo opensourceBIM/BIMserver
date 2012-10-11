@@ -27,12 +27,12 @@ import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
 import org.bimserver.client.Session;
-import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 

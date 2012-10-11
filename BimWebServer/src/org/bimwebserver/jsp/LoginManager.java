@@ -21,8 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
-import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.interfaces.objects.SUserType;
+import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimwebserver.BimWebServer;

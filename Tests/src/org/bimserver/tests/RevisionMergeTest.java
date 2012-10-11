@@ -22,13 +22,13 @@ import java.io.File;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.merging.IncrementingOidProvider;
 import org.bimserver.merging.RevisionMerger;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.IncrementingOidProvider;
 
 public class RevisionMergeTest {
 	public static void main(String[] args) {

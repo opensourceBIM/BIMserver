@@ -24,7 +24,7 @@ public class StreamingSocket implements WebSocket.OnTextMessage, EndPoint, Strea
 	public StreamingSocket(BimServer bimServer) {
 		this.bimServer = bimServer;
 		this.endpointid = bimServer.getEndPointManager().register(this);
-		reflectorImpl = new NotificationInterfaceReflectorImpl(new JsonWebsocketReflector(bimServer.getServiceInterfaces(), this));
+		reflectorImpl = new NotificationInterfaceReflectorImpl(new JsonWebsocketReflector(bimServer.getServicesMap(), this));
 	}
 
 	@Override

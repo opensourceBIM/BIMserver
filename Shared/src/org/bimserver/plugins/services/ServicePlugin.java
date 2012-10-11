@@ -6,7 +6,6 @@ import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 
 public abstract class ServicePlugin implements Plugin {
@@ -18,12 +17,12 @@ public abstract class ServicePlugin implements Plugin {
 		return pluginManager.getServiceFactory().getService(ServiceInterface.class, token);
 	}
 
+	protected void registerNewRevisionHandler(ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
+		pluginManager.registerNewRevisionHandler(serviceDescriptor, newRevisionHandler);
+	}
+	
 	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
 		this.pluginManager = pluginManager;
-	}
-	
-	public void register(ServiceDescriptor serviceDescriptor, NotificationInterface notificationInterface) {
-		pluginManager.register(serviceDescriptor, notificationInterface);
 	}
 }

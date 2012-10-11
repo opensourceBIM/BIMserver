@@ -27,7 +27,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -65,7 +64,11 @@ import org.bimserver.models.store.IfcEnginePluginConfiguration;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.ModelMergerPluginConfiguration;
+import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.models.store.ObjectIDMPluginConfiguration;
+import org.bimserver.models.store.ObjectType;
+import org.bimserver.models.store.Parameter;
+import org.bimserver.models.store.ParameterDefinition;
 import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.SerializerPluginConfiguration;
@@ -74,6 +77,7 @@ import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.Type;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.notifications.NotificationsManager;
@@ -101,6 +105,7 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.templating.TemplateEngine;
 import org.bimserver.utils.CollectionUtils;
@@ -134,7 +139,7 @@ public class BimServer {
 	private NotificationsManager notificationsManager;
 	private CompareCache compareCache;
 	private ProtocolBuffersMetaData protocolBuffersMetaData;
-	private final Map<String, SService> serviceInterfaces = new HashMap<String, SService>();
+	private final ServicesMap servicesMap = new ServicesMap();
 	private EmbeddedWebServer embeddedWebServer;
 	private final BimServerConfig config;
 	private ProtocolBuffersServer protocolBuffersServer;
@@ -305,11 +310,11 @@ public class BimServer {
 			URL resource1 = config.getResourceFetcher().getResource("ServiceInterface.java");
 			String content1 = getContent(resource1);
 			SService serviceInterfaceMeta = new SService(content1, ServiceInterface.class);
-			serviceInterfaces.put(ServiceInterface.class.getSimpleName(), serviceInterfaceMeta);
+			servicesMap.add(serviceInterfaceMeta);
 
 			URL resource2 = config.getResourceFetcher().getResource("NotificationInterface.java");
 			String content2 = getContent(resource2);
-			serviceInterfaces.put(NotificationInterface.class.getSimpleName(), new SService(content2, NotificationInterface.class, serviceInterfaceMeta));
+			servicesMap.add(new SService(content2, NotificationInterface.class, serviceInterfaceMeta));
 
 			notificationsManager.start();
 
@@ -361,7 +366,7 @@ public class BimServer {
 			try {
 				ServiceFactoryRegistry serviceFactoryRegistry = new ServiceFactoryRegistry();
 				serviceFactoryRegistry.registerServiceFactory(serviceFactory);
-				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactoryRegistry, serviceInterfaces, config.getInitialProtocolBuffersPort());
+				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactoryRegistry, servicesMap, config.getInitialProtocolBuffersPort());
 				protocolBuffersServer.start();
 			} catch (Exception e) {
 				LOGGER.error("", e);
@@ -581,13 +586,24 @@ public class BimServer {
 			String name = servicePlugin.getTitle();
 			InternalServicePluginConfiguration internalServicePluginConfiguration = find(userSettings.getServices(), name);
 			if (internalServicePluginConfiguration == null) {
-				internalServicePluginConfiguration = StoreFactory.eINSTANCE.createInternalServicePluginConfiguration();
+				internalServicePluginConfiguration = session.create(StorePackage.eINSTANCE.getInternalServicePluginConfiguration());
 				userSettings.getServices().add(internalServicePluginConfiguration);
 				internalServicePluginConfiguration.setClassName(servicePlugin.getClass().getName());
 				internalServicePluginConfiguration.setName(name);
 				internalServicePluginConfiguration.setEnabled(true);
 				internalServicePluginConfiguration.setDescription(servicePlugin.getDescription());
-				session.store(internalServicePluginConfiguration);
+				ObjectType settings = session.create(StorePackage.eINSTANCE.getObjectType());
+				ObjectDefinition settingsDefinition = servicePlugin.getSettingsDefinition();
+				for (ParameterDefinition parameterDefinition : settingsDefinition.getParameters()) {
+					Parameter parameter = session.create(StorePackage.eINSTANCE.getParameter());
+					parameter.setName(parameterDefinition.getName());
+					if (parameterDefinition.getDefaultValue() != null) {
+						Type value = session.cloneAndAdd(parameterDefinition.getDefaultValue());
+						parameter.setValue(value);
+					}
+					settings.getParameters().add(parameter);
+				}
+				internalServicePluginConfiguration.setSettings(settings);
 			}
 		}
 		for (DeserializerPlugin deserializerPlugin : pluginManager.getAllDeserializerPlugins(true)) {
@@ -784,10 +800,6 @@ public class BimServer {
 		return serverInfoManager;
 	}
 
-	public SService getServiceInterface(String name) {
-		return serviceInterfaces.get(name);
-	}
-
 	public ProtocolBuffersMetaData getProtocolBuffersMetaData() {
 		return protocolBuffersMetaData;
 	}
@@ -800,8 +812,8 @@ public class BimServer {
 		return embeddedWebServer;
 	}
 
-	public Map<String, SService> getServiceInterfaces() {
-		return serviceInterfaces;
+	public ServicesMap getServicesMap() {
+		return servicesMap;
 	}
 
 	public JsonHandler getJsonHandler() {

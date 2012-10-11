@@ -84,6 +84,8 @@ public class Step0021 extends Migration {
 		EClass internalServicePluginClass = schema.createEClass(schema.getEPackage("store"), "InternalServicePluginConfiguration", schema.getEClass("store", "PluginConfiguration"));
 		schema.createEAttribute(internalServicePluginClass, "remoteAccessible", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
 		EClass userSettingsClass = schema.getEClass("store", "UserSettings");
+		
+		schema.createEReference(service, "internalService", schema.getEClass("store", "InternalServicePluginConfiguration"), Multiplicity.SINGLE);
 
 		EReference serviceSettingsReference = schema.createEReference(internalServicePluginClass, "userSettings", userSettingsClass, Multiplicity.SINGLE);
 		EReference settingsServicesReference = schema.createEReference(userSettingsClass, "services", internalServicePluginClass, Multiplicity.MANY);

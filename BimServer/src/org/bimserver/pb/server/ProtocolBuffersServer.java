@@ -21,10 +21,9 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ReflectiveRpcChannel;
 import org.slf4j.Logger;
@@ -38,11 +37,11 @@ public class ProtocolBuffersServer extends Thread {
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
 	private final int port;
 	private ServerSocket serverSocket;
-	private final Map<String, SService> services;
+	private final ServicesMap services;
 
-	public ProtocolBuffersServer(ProtocolBuffersMetaData protocolBuffersMetaData, ServiceFactoryRegistry serviceFactoryRegistry, Map<String, SService> services, int port) {
-		this.services = services;
+	public ProtocolBuffersServer(ProtocolBuffersMetaData protocolBuffersMetaData, ServiceFactoryRegistry serviceFactoryRegistry, ServicesMap services, int port) {
 		setName("ProtocolBuffersServer");
+		this.services = services;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
 		this.serviceFactoryRegistry = serviceFactoryRegistry;
 		this.port = port;

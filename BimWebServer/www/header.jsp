@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@page import="org.bimwebserver.jsp.JspHelper"%>
 <%@page import="org.slf4j.LoggerFactory"%>
-<%@page import="org.bimserver.client.factories.AutologinAuthenticationInfo"%>
+<%@page import="org.bimserver.shared.AutologinAuthenticationInfo"%>
 <%@page import="org.bimserver.interfaces.objects.SVersion"%>
 <%@page import="org.bimserver.interfaces.objects.SServerState"%>
 <%@page import="org.bimserver.interfaces.objects.SServerInfo"%>

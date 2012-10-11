@@ -3772,6 +3772,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getService_InternalService() {
+		return (EReference) getService().getEStructuralFeatures().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getToken() {
 		if (tokenEClass == null) {
 			tokenEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(67);
@@ -4146,6 +4155,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EReference getParameterDefinition_Type() {
 		return (EReference) getParameterDefinition().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getParameterDefinition_DefaultValue() {
+		return (EReference) getParameterDefinition().getEStructuralFeatures().get(3);
 	}
 
 	/**

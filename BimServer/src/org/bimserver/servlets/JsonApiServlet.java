@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
@@ -23,6 +22,7 @@ import org.bimserver.shared.meta.SField;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.meta.ServicesMap;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.codehaus.jettison.json.JSONTokener;
@@ -91,7 +91,7 @@ public class JsonApiServlet extends HttpServlet {
 		}
 		writeHeader(writer);
 		writer.println("<h1>BIMserver JSON API Documentation</h1>");
-		Map<String, SService> serviceInterfaces = bimServer.getServiceInterfaces();
+		ServicesMap serviceInterfaces = bimServer.getServicesMap();
 		for (String name : serviceInterfaces.keySet()) {
 			writeMenu(writer, serviceInterfaces.get(name));
 		}

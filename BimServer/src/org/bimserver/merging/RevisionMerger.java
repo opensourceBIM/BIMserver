@@ -32,6 +32,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
+import org.bimserver.shared.IncrementingOidProvider;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 

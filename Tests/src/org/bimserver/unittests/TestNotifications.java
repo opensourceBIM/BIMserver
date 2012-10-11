@@ -22,8 +22,6 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -36,6 +34,7 @@ import org.bimserver.combined.LocalDevBimCombinedServerStarter;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -85,10 +84,9 @@ public class TestNotifications {
 //			}
 //		};
 		try {
-			SService notificationsInterface = new SService(FileUtils.readFileToString(new File("../Shared/src/org/bimserver/shared/NotificationInterface.java")), NotificationInterface.class);
-			Map<String, SService> services = new HashMap<String, SService>();
-			services.put(NotificationInterface.class.getSimpleName(), notificationsInterface);
-			socketNotificationsClient.connect(protocolBuffersMetaData, services, new InetSocketAddress("localhost", 8055));
+			ServicesMap servicesMap = new ServicesMap();
+			servicesMap.add(new SService(FileUtils.readFileToString(new File("../Shared/src/org/bimserver/shared/NotificationInterface.java")), NotificationInterface.class));
+			socketNotificationsClient.connect(protocolBuffersMetaData, servicesMap, new InetSocketAddress("localhost", 8055));
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		}

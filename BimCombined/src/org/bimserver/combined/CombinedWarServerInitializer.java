@@ -26,7 +26,6 @@ import javax.servlet.ServletContextListener;
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
@@ -35,6 +34,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
+import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
@@ -70,12 +70,12 @@ public class CombinedWarServerInitializer implements ServletContextListener {
 		config.setStartEmbeddedWebServer(false);
 		bimServer = new BimServer(config);
 		
-	 	BimWebServer bimWebServer = new BimWebServer(bimServer.getServiceInterfaces());
+	 	BimWebServer bimWebServer = new BimWebServer(bimServer.getServicesMap());
 	 	
 	 	bimWebServer.setBimServerClientFactory(new BimServerClientFactory() {
 			@Override
 			public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServerException, UserException {
-				BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager(), bimServer.getServiceInterfaces());
+				BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager(), bimServer.getServicesMap());
 				bimServerClient.setAuthentication(authenticationInfo);
 				bimServerClient.connectDirect(ServiceInterface.class, bimServer.getServiceFactory().newServiceMap(AccessMethod.WEB_INTERFACE, remoteAddress).get(ServiceInterface.class));
 				return bimServerClient;

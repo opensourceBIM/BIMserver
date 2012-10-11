@@ -2286,4 +2286,14 @@ public interface ServiceInterface extends PublicInterface {
 
 	@WebMethod(action = "getAllLocalServiceDescriptors")
 	List<SServiceDescriptor> getAllLocalServiceDescriptors() throws ServerException, UserException;
+
+	@WebMethod(action = "getAllLocalProfiles")
+	List<SProfileDescriptor> getAllLocalProfiles(
+		@WebParam(name = "serviceIdentifier", partName = "getAllLocalProfiles.serviceIdentifier") String serviceIdentifier) throws ServerException, UserException;
+
+	@WebMethod(action = "addLocalServiceToProject")
+	void addLocalServiceToProject(
+		@WebParam(name = "poid", partName = "addLocalServiceToProject.poid") Long poid, 
+		@WebParam(name = "sService", partName = "addLocalServiceToProject.sService") SService sService,
+		@WebParam(name = "internalServiceOid", partName = "addLocalServiceToProject.internalServiceOid") Long internalServiceOid) throws ServerException, UserException;
 }

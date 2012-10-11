@@ -64,6 +64,9 @@ import org.bimserver.database.actions.*;
 import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.database.migrations.Migrator;
+import org.bimserver.database.query.conditions.AttributeCondition;
+import org.bimserver.database.query.conditions.Condition;
+import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.SConverter;
@@ -622,7 +625,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SRevision getRevision(Long roid) throws ServerException, UserException {
-		requireRealUserAuthentication();
+		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<Revision> action = new GetRevisionDatabaseAction(session, accessMethod, roid, authorization);
@@ -1172,11 +1175,11 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SProject getProjectByPoid(Long poid) throws ServerException, UserException {
-		requireRealUserAuthentication();
+		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			GetProjectByPoidDatabaseAction action = new GetProjectByPoidDatabaseAction(session, accessMethod, poid, authorization);
-			return converter.convertToSObject(action.execute());
+			return converter.convertToSObject(session.executeAndCommitAction(action));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -1938,8 +1941,8 @@ public class Service implements ServiceInterface {
 
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			new AddUserDatabaseAction(bimServer, session, AccessMethod.INTERNAL, adminUsername, adminPassword, adminName, UserType.ADMIN, authorization, false).execute();
-			session.commit();
+			AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(bimServer, session, AccessMethod.INTERNAL, adminUsername, adminPassword, adminName, UserType.ADMIN, authorization, false);
+			session.executeAndCommitAction(addUserDatabaseAction);
 		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		} finally {
@@ -2994,7 +2997,8 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(String extension) throws ServerException, UserException {
-		requireRealUserAuthentication();
+		// Token authenticated users should also be able to call this method
+		requireAuthenticationAndRunningServer();
 		for (DeserializerPlugin deserializerPlugin : bimServer.getPluginManager().getAllDeserializerPlugins(true)) {
 			if (deserializerPlugin.canHandleExtension(extension)) {
 				DatabaseSession session = bimServer.getDatabase().createSession();
@@ -3419,7 +3423,7 @@ public class Service implements ServiceInterface {
 	}
 	
 	public org.bimserver.interfaces.objects.SService getService(Long epid) throws ServerException, UserException {
-		requireRealUserAuthentication();
+		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			org.bimserver.models.store.Service externalProfile = session.get(StorePackage.eINSTANCE.getService(), epid, false, null);
@@ -3431,6 +3435,33 @@ public class Service implements ServiceInterface {
 		}
 	}
 
+	@Override
+	public void addLocalServiceToProject(Long poid, org.bimserver.interfaces.objects.SService sService, Long internalServiceOid) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
+			sService.setUserId(getCurrentUser().getOid());
+			org.bimserver.models.store.Service service = converter.convertFromSObject(sService, session);
+			for (org.bimserver.models.store.Service existing : project.getServices()) {
+				if (existing.getName().equals(service.getName())) {
+					throw new UserException("Service name \"" + service.getName() + "\" already used in this project");
+				}
+			}
+			service.setInternalService((InternalServicePluginConfiguration) session.get(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), internalServiceOid, false, null));
+			project.getServices().add(service);
+			service.setProject(project);
+			session.store(service);
+			service.setProfileIdentifier("" + service.getOid());
+			session.store(project);
+			session.commit();
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
 	@Override
 	public void addServiceToProject(Long poid, org.bimserver.interfaces.objects.SService sService) throws ServerException, UserException {
 		requireRealUserAuthentication();
@@ -3460,7 +3491,7 @@ public class Service implements ServiceInterface {
 	public List<SServiceInterface> getServiceInterfaces() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		List<SServiceInterface> sServiceInterfaces = new ArrayList<SServiceInterface>();
-		for (String name : bimServer.getServiceInterfaces().keySet()) {
+		for (String name : bimServer.getServicesMap().keySet()) {
 			SServiceInterface sServiceInterface = new SServiceInterface();
 			sServiceInterface.setName(name);
 			sServiceInterfaces.add(sServiceInterface);
@@ -3472,7 +3503,7 @@ public class Service implements ServiceInterface {
 	public List<SServiceMethod> getServiceMethods(String serviceInterfaceName) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		List<SServiceMethod> sServiceMethods = new ArrayList<SServiceMethod>();
-		SService sService = bimServer.getServiceInterfaces().get(serviceInterfaceName);
+		SService sService = bimServer.getServicesMap().get(serviceInterfaceName);
 		if (sService == null) {
 			throw new UserException("Service \"" + serviceInterfaceName + "\" not found");
 		}
@@ -3491,7 +3522,7 @@ public class Service implements ServiceInterface {
 	public List<SServiceType> getServiceTypes(String serviceInterfaceName) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		List<SServiceType> sServiceTypes = new ArrayList<SServiceType>();
-		SService serviceInterface = bimServer.getServiceInterface(serviceInterfaceName);
+		SService serviceInterface = bimServer.getServicesMap().get(serviceInterfaceName);
 		if (serviceInterface == null) {
 			throw new UserException("Service \"" + serviceInterfaceName + "\" not found");
 		}
@@ -3527,7 +3558,7 @@ public class Service implements ServiceInterface {
 	public List<SServiceParameter> getServiceMethodParameters(String serviceInterfaceName, String serviceMethodName) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		List<SServiceParameter> sServiceParameters = new ArrayList<SServiceParameter>();
-		SService serviceInterface = bimServer.getServiceInterface(serviceInterfaceName);
+		SService serviceInterface = bimServer.getServicesMap().get(serviceInterfaceName);
 		if (serviceInterface == null) {
 			throw new UserException("Service \"" + serviceInterfaceName + "\" not found");
 		}
@@ -3583,7 +3614,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SInternalServicePluginConfiguration getInternalServiceById(Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
+		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			return converter
@@ -3659,7 +3690,7 @@ public class Service implements ServiceInterface {
 	public List<SProfileDescriptor> getAllPublicProfiles(String notificationsUrl, String serviceIdentifier) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClient client = new BimServerClient(bimServer.getPluginManager(), bimServer.getServiceInterfaces());
+			BimServerClient client = new BimServerClient(bimServer.getPluginManager(), bimServer.getServicesMap());
 			client.connectJson(notificationsUrl, false);
 			NotificationInterface notificationInterface = client.getNotificationInterface();
 			return notificationInterface.getPublicProfiles(serviceIdentifier);
@@ -3672,13 +3703,43 @@ public class Service implements ServiceInterface {
 	public List<SProfileDescriptor> getAllPrivateProfiles(String notificationsUrl, String serviceIdentifier, String token) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClient client = new BimServerClient(bimServer.getPluginManager(), bimServer.getServiceInterfaces());
+			BimServerClient client = new BimServerClient(bimServer.getPluginManager(), bimServer.getServicesMap());
 			client.connectJson(notificationsUrl, false);
 			NotificationInterface notificationInterface = client.getNotificationInterface();
 			return notificationInterface.getPrivateProfiles(serviceIdentifier, token);
 		} catch (Exception e) {
 			return handleException(e);
 		}
+	}
+
+	@Override
+	public List<SProfileDescriptor> getAllLocalProfiles(String serviceIdentifier) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		List<SProfileDescriptor> descriptors = new ArrayList<SProfileDescriptor>();
+		try {
+			SUser currentUser = getCurrentUser();
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Token(), new StringLiteral(currentUser.getToken()));
+			User user = session.querySingle(condition, User.class, false, null);
+			if (user != null) {
+				for (InternalServicePluginConfiguration internalServicePluginConfiguration : user.getUserSettings().getServices()) {
+					if (internalServicePluginConfiguration.getClassName().equals(serviceIdentifier)) {
+						SProfileDescriptor sProfileDescriptor = new SProfileDescriptor();
+						descriptors.add(sProfileDescriptor);
+						
+						sProfileDescriptor.setIdentifier("" + internalServicePluginConfiguration.getOid());
+						sProfileDescriptor.setName(internalServicePluginConfiguration.getName());
+						sProfileDescriptor.setDescription(internalServicePluginConfiguration.getDescription());
+						sProfileDescriptor.setPublicProfile(false);
+					}
+				}
+			}
+		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return descriptors;
 	}
 
 	@Override

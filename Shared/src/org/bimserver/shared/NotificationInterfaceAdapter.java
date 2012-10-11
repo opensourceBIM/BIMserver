@@ -31,7 +31,7 @@ import org.bimserver.shared.interfaces.NotificationInterface;
 public class NotificationInterfaceAdapter implements NotificationInterface {
 
 	@Override
-	public void newLogAction(SLogAction logAction, String serviceIdentifier, SToken token, String apiUrl) throws UserException, ServerException {
+	public void newLogAction(SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) throws UserException, ServerException {
 	}
 	
 	public void progress(long topicId, SLongActionState state) throws UserException, ServerException {

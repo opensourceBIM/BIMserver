@@ -19,7 +19,7 @@ package org.bimserver.test.framework;
 
 import org.bimserver.client.ConnectionException;
 import org.bimserver.client.factories.BimServerClientFactory;
-import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 
 public class VirtualUserFactory {
