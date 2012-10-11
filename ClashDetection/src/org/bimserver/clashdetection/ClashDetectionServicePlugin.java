@@ -31,13 +31,13 @@ import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
-import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SNewRevisionAdded;
+import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.DoubleType;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.models.store.ParameterDefinition;
 import org.bimserver.models.store.PrimitiveDefinition;
@@ -55,8 +55,8 @@ import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
+import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
-import org.bimserver.shared.NotificationInterfaceAdapter;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
@@ -80,17 +80,13 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		clashDetection.setWriteExtendedData("clashdetection");
 		clashDetection.setTrigger(Trigger.NEW_REVISION);
 		
-		register(clashDetection, new NotificationInterfaceAdapter(){
-			@Override
-			public void newLogAction(SLogAction newRevisionNotification, String serviceName, SToken token, String apiUrl) throws UserException, ServerException {
-				SNewRevisionAdded sNewRevisionAdded = (SNewRevisionAdded)newRevisionNotification;
+		registerNewRevisionHandler(clashDetection, new NewRevisionHandler(){
+			public void newRevision(ServiceInterface serviceInterface, SNewRevisionAdded notification, SObjectType settings) throws ServerException, UserException {
 				Bcf bcf = new Bcf();
 				
-				ServiceInterface serviceInterface = getServiceInterface(token);
-			
 				SSerializerPluginConfiguration sSerializer = serviceInterface.getSerializerByContentType("application/ifc");
 				
-				long download = serviceInterface.download(sNewRevisionAdded.getRevisionId(), sSerializer.getOid(), true, true);
+				long download = serviceInterface.download(notification.getRevisionId(), sSerializer.getOid(), true, true);
 				SDownloadResult downloadData = serviceInterface.getDownloadData(download);
 				
 				try {
@@ -208,7 +204,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 					long fileId = serviceInterface.uploadFile(file);
 					extendedData.setFileId(fileId);
 					
-					serviceInterface.addExtendedDataToRevision(sNewRevisionAdded.getRevisionId(), extendedData);
+					serviceInterface.addExtendedDataToRevision(notification.getRevisionId(), extendedData);
 				} catch (BcfException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -265,6 +261,9 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		ParameterDefinition marginParameter = StoreFactory.eINSTANCE.createParameterDefinition();
 		marginParameter.setName("margin");
 		marginParameter.setRequired(true);
+		DoubleType defaultValue = StoreFactory.eINSTANCE.createDoubleType();
+		defaultValue.setValue(0.0);
+		marginParameter.setDefaultValue(defaultValue);
 		PrimitiveDefinition doubleDefinition = StoreFactory.eINSTANCE.createPrimitiveDefinition();
 		doubleDefinition.setType(PrimitiveEnum.DOUBLE);
 		marginParameter.setType(doubleDefinition);
