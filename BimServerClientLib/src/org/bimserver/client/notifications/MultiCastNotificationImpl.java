@@ -48,9 +48,9 @@ public class MultiCastNotificationImpl implements NotificationInterface {
 	}
 
 	@Override
-	public void newLogAction(SLogAction logAction, String serviceIdentifier, SToken token, String apiUrl) throws UserException, ServerException {
+	public void newLogAction(SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) throws UserException, ServerException {
 		for (NotificationInterface notificationInterface : notificationInterfaces) {
-			notificationInterface.newLogAction(logAction, serviceIdentifier, token, apiUrl);
+			notificationInterface.newLogAction(logAction, serviceIdentifier, profileIdentifier, token, apiUrl);
 		}
 	}
 

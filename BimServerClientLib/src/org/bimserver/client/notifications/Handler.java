@@ -20,7 +20,6 @@ package org.bimserver.client.notifications;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Map;
 
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ServiceFactory;
@@ -28,7 +27,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
 import org.bimserver.shared.pb.ReflectiveRpcChannel;
@@ -46,20 +45,20 @@ public class Handler extends Thread {
 	private final SocketNotificationsClient socketNotificationsClient;
 	private ServiceFactory serviceFactory;
 	private boolean running;
-	private final Map<String, SService> services;
+	private final ServicesMap servicesMap;
 
-	public Handler(SocketNotificationsClient socketNotificationsClient, Socket socket, final NotificationInterface notificationInterface, ProtocolBuffersMetaData protocolBuffersMetaData, Map<String, SService> services) {
+	public Handler(SocketNotificationsClient socketNotificationsClient, Socket socket, final NotificationInterface notificationInterface, ProtocolBuffersMetaData protocolBuffersMetaData, ServicesMap servicesMap) {
 		this.socketNotificationsClient = socketNotificationsClient;
 		this.socket = socket;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
-		this.services = services;
+		this.servicesMap = servicesMap;
 	}
 
 	@Override
 	public void run() {
 		running = true;
 		try {
-			ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(serviceFactory.newServiceMap(AccessMethod.PROTOCOL_BUFFERS, socket.getRemoteSocketAddress().toString()).get(ServiceInterface.class), protocolBuffersMetaData, services);
+			ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(serviceFactory.newServiceMap(AccessMethod.PROTOCOL_BUFFERS, socket.getRemoteSocketAddress().toString()).get(ServiceInterface.class), protocolBuffersMetaData, servicesMap);
 			while (running) {
 				DataInputStream dis = new DataInputStream(socket.getInputStream());
 				String serviceName = dis.readUTF();

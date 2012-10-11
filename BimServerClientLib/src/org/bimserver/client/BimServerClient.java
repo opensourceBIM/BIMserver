@@ -19,10 +19,8 @@ package org.bimserver.client;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.activation.DataHandler;
@@ -31,9 +29,6 @@ import org.bimserver.client.channels.Channel;
 import org.bimserver.client.channels.DirectChannel;
 import org.bimserver.client.channels.ProtocolBuffersChannel;
 import org.bimserver.client.channels.SoapChannel;
-import org.bimserver.client.factories.AuthenticationInfo;
-import org.bimserver.client.factories.AutologinAuthenticationInfo;
-import org.bimserver.client.factories.UsernamePasswordAuthenticationInfo;
 import org.bimserver.client.notifications.SocketNotificationsClient;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
@@ -56,7 +51,10 @@ import org.bimserver.plugins.serializers.EmfSerializerDataSource;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.AuthenticationInfo;
+import org.bimserver.shared.AutologinAuthenticationInfo;
 import org.bimserver.shared.ConnectDisconnectListener;
+import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
@@ -64,6 +62,7 @@ import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -83,15 +82,15 @@ public class BimServerClient implements ConnectDisconnectListener {
 	private final PluginManager pluginManager;
 	private boolean connected = false;
 	private AuthenticationInfo authenticationInfo;
-	private Map<String, SService> sServices = new HashMap<String, SService>();
+	private ServicesMap servicesMap = new ServicesMap();
 
 	public BimServerClient(PluginManager pluginManager) {
 		this(pluginManager, createDefaultSServices());
 	}
 	
-	public BimServerClient(PluginManager pluginManager, Map<String, SService> sServices) {
+	public BimServerClient(PluginManager pluginManager, ServicesMap servicesMap) {
+		this.servicesMap = servicesMap;
 		this.pluginManager = pluginManager;
-		this.sServices = sServices;
 		protocolBuffersMetaData = new ProtocolBuffersMetaData();
 		try {
 			protocolBuffersMetaData.load(getClass().getClassLoader().getResource("service.desc"));
@@ -102,10 +101,10 @@ public class BimServerClient implements ConnectDisconnectListener {
 		notificationsClient = new SocketNotificationsClient();
 	}
 
-	private static Map<String, SService> createDefaultSServices() {
-		Map<String, SService> map = new HashMap<String, SService>();
-		map.put(ServiceInterface.class.getSimpleName(), new SService(null, ServiceInterface.class));
-		return map;
+	private static ServicesMap createDefaultSServices() {
+		ServicesMap services = new ServicesMap();
+		services.add(new SService(null, ServiceInterface.class));
+		return services;
 	}
 	
 	public void setAuthentication(AuthenticationInfo authenticationInfo) {
@@ -125,7 +124,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 //			throw new ConnectionException("Authentication information required, use \"setAuthentication\" first");
 //		}
 		disconnect();
-		ProtocolBuffersChannel protocolBuffersChannel = new ProtocolBuffersChannel(protocolBuffersMetaData, sServices);
+		ProtocolBuffersChannel protocolBuffersChannel = new ProtocolBuffersChannel(protocolBuffersMetaData, servicesMap);
 		this.channel = protocolBuffersChannel;
 		protocolBuffersChannel.registerConnectDisconnectListener(this);
 		try {
@@ -137,7 +136,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 	public void connectJson(final String address, boolean useHttpSession) throws ConnectionException {
 		disconnect();
-		JsonChannel jsonChannel = new JsonChannel(sServices);
+		JsonChannel jsonChannel = new JsonChannel(servicesMap);
 		this.channel = jsonChannel;
 		jsonChannel.connect(address, useHttpSession, authenticationInfo);
 	}
@@ -232,7 +231,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 	public void setNotificationsEnabled(boolean enabled) {
 		if (enabled && !notificationsClient.isRunning()) {
-			notificationsClient.connect(protocolBuffersMetaData, sServices, new InetSocketAddress("localhost", 8055));
+			notificationsClient.connect(protocolBuffersMetaData, servicesMap, new InetSocketAddress("localhost", 8055));
 			notificationsClient.startAndWaitForInit();
 			if (connected) {
 //				try {
