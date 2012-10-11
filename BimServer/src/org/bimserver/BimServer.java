@@ -192,7 +192,7 @@ public class BimServer {
 			notificationsManager = new NotificationsManager(this);
 			serviceFactory = new PublicInterfaceFactory(this);
 
-			pluginManager = new PluginManager(new File(config.getHomeDir(), "tmp"), config.getClassPath(), serviceFactory, notificationsManager);
+			pluginManager = new PluginManager(new File(config.getHomeDir(), "tmp"), config.getClassPath(), serviceFactory, notificationsManager, servicesMap);
 			
 			versionChecker = new VersionChecker(config.getResourceFetcher());
 

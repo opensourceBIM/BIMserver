@@ -86,6 +86,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 	public BimServerClient(PluginManager pluginManager) {
 		this(pluginManager, createDefaultSServices());
+		this.servicesMap = pluginManager.getServicesMap();
 	}
 	
 	public BimServerClient(PluginManager pluginManager, ServicesMap servicesMap) {
@@ -428,5 +429,9 @@ public class BimServerClient implements ConnectDisconnectListener {
 			return channel.getNotificationInterface();
 		}
 		return null;
+	}
+	
+	public ServicesMap getServicesMap() {
+		return servicesMap;
 	}
 }

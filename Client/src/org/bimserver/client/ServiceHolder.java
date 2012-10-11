@@ -40,7 +40,7 @@ public class ServiceHolder {
 	}
 
 	public boolean connect(final String address, final String username, final String password) {
-		PluginManager pluginManager = new PluginManager(new File("tmp"), null, null, null);
+		PluginManager pluginManager = new PluginManager(new File("tmp"), null, null, null, null);
 		try {
 			pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
 		} catch (PluginException e) {
