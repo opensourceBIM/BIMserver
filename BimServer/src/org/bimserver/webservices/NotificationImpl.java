@@ -42,8 +42,8 @@ public class NotificationImpl implements NotificationInterface {
 	}
 
 	@Override
-	public void newLogAction(SLogAction logAction, String serviceIdentifier, SToken token, String apiUrl) throws UserException, ServerException {
-		bimServer.getNotificationsManager().notify(logAction, serviceIdentifier, token, apiUrl);
+	public void newLogAction(SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) throws UserException, ServerException {
+		bimServer.getNotificationsManager().notify(logAction, serviceIdentifier, profileIdentifier, token, apiUrl);
 	}
 
 	@Override

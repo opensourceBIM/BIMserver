@@ -52,6 +52,8 @@ public class Step0024 extends Migration {
 		schema.createEReference(objectType, "parameters", parameter, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
 		schema.createEAttribute(parameter, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEReference(parameter, "value", type, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReference());
+
+		schema.createEReference(parameterDefinition, "defaultValue", type, Multiplicity.SINGLE);
 		
 		schema.createEReference(arrayType, "values", type, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
 		

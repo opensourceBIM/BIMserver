@@ -1,9 +1,7 @@
 package org.bimserver.servlets;
 
-import java.util.Map;
-
-import org.bimserver.client.JsonReflector;
-import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.json.JsonReflector;
+import org.bimserver.shared.meta.ServicesMap;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
@@ -11,8 +9,8 @@ public class JsonWebsocketReflector extends JsonReflector {
 
 	private StreamingSocketInterface streamingSocket;
 
-	public JsonWebsocketReflector(Map<String, SService> services, StreamingSocketInterface streamingSocket) {
-		super(services);
+	public JsonWebsocketReflector(ServicesMap servicesMap, StreamingSocketInterface streamingSocket) {
+		super(servicesMap);
 		this.streamingSocket = streamingSocket;
 	}
 

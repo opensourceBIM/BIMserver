@@ -29,6 +29,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.ParameterDefinition#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ParameterDefinition#isRequired <em>Required</em>}</li>
  *   <li>{@link org.bimserver.models.store.ParameterDefinition#getType <em>Type</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ParameterDefinition#getDefaultValue <em>Default Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -115,5 +116,31 @@ public interface ParameterDefinition extends IdEObject {
 	 * @generated
 	 */
 	void setType(TypeDefinition value);
+
+	/**
+	 * Returns the value of the '<em><b>Default Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Default Value</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default Value</em>' reference.
+	 * @see #setDefaultValue(Type)
+	 * @see org.bimserver.models.store.StorePackage#getParameterDefinition_DefaultValue()
+	 * @model
+	 * @generated
+	 */
+	Type getDefaultValue();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ParameterDefinition#getDefaultValue <em>Default Value</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default Value</em>' reference.
+	 * @see #getDefaultValue()
+	 * @generated
+	 */
+	void setDefaultValue(Type value);
 
 } // ParameterDefinition

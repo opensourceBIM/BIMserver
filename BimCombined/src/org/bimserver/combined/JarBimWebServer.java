@@ -24,7 +24,6 @@ import org.bimserver.BimServerConfig;
 import org.bimserver.EmbeddedWebServer;
 import org.bimserver.JarBimServer;
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
@@ -35,6 +34,7 @@ import org.bimserver.resources.JarResourceFetcher;
 import org.bimserver.servlets.DownloadServlet;
 import org.bimserver.servlets.JsonApiServlet;
 import org.bimserver.servlets.UploadServlet;
+import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
@@ -100,12 +100,12 @@ public class JarBimWebServer {
 		 	embeddedWebServer.getContext().addServlet(JsonApiServlet.class, "/json/*");
 		 	embeddedWebServer.getContext().setResourceBase("www");
 		 	
-		 	BimWebServer bimWebServer = new BimWebServer(bimServer.getServiceInterfaces());
+		 	BimWebServer bimWebServer = new BimWebServer(bimServer.getServicesMap());
 		 	
 		 	bimWebServer.setBimServerClientFactory(new BimServerClientFactory() {
 				@Override
 				public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServerException, UserException {
-					BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager(), bimServer.getServiceInterfaces());
+					BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager(), bimServer.getServicesMap());
 					bimServerClient.setAuthentication(authenticationInfo);
 					bimServerClient.connectDirect(ServiceInterface.class, bimServer.getServiceFactory().newServiceMap(AccessMethod.WEB_INTERFACE, remoteAddress).get((ServiceInterface.class)));
 					return bimServerClient;

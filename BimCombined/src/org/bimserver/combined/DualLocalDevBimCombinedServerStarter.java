@@ -25,7 +25,6 @@ import org.bimserver.EmbeddedWebServer;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.LocalVersionConstructor;
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
@@ -37,6 +36,7 @@ import org.bimserver.servlets.DownloadServlet;
 import org.bimserver.servlets.JsonApiServlet;
 import org.bimserver.servlets.StreamingServlet;
 import org.bimserver.servlets.UploadServlet;
+import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -87,12 +87,12 @@ public class DualLocalDevBimCombinedServerStarter {
 					 	embeddedWebServer.getContext().addServlet(JsonApiServlet.class, "/json/*");
 					 	embeddedWebServer.getContext().addServlet(StreamingServlet.class, "/stream/*");
 					 	embeddedWebServer.getContext().setResourceBase("../BimWebServer/www");
-					 	BimWebServer bimWebServer = new BimWebServer(bimServer.getServiceInterfaces());
+					 	BimWebServer bimWebServer = new BimWebServer(bimServer.getServicesMap());
 					 	
 					 	bimWebServer.setBimServerClientFactory(new BimServerClientFactory() {
 							@Override
 							public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServerException, UserException {
-								BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager(), bimServer.getServiceInterfaces());
+								BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager(), bimServer.getServicesMap());
 								bimServerClient.setAuthentication(authenticationInfo);
 								bimServerClient.connectDirect(ServiceInterface.class, bimServer.getServiceFactory().newServiceMap(AccessMethod.WEB_INTERFACE, remoteAddress).get(ServiceInterface.class));
 								return bimServerClient;

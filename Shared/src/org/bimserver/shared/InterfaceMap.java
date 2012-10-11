@@ -16,4 +16,8 @@ public class InterfaceMap {
 	public <T extends PublicInterface> T get(Class<T> clazz) {
 		return (T) map.get(clazz);
 	}
+
+	public boolean contains(String serviceName) {
+		return map.containsKey(serviceName);
+	}
 }

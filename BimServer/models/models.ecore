@@ -530,6 +530,7 @@
           eOpposite="#/0/Project/services"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"
           eOpposite="#/0/User/services"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="internalService" eType="#/0/InternalServicePluginConfiguration"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Token">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="tokenString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -615,6 +616,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#/0/TypeDefinition">
         <eAnnotations source="embedsreference"/>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultValue" eType="#/0/Type"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Type"/>
     <eClassifiers xsi:type="ecore:EClass" name="ObjectType" eSuperTypes="#/0/Type">

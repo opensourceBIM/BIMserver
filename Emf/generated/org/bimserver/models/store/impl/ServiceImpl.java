@@ -19,6 +19,7 @@ package org.bimserver.models.store.impl;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ExtendedDataSchema;
+import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.StorePackage;
@@ -52,6 +53,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#isProfilePublic <em>Profile Public</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getProject <em>Project</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getUser <em>User</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceImpl#getInternalService <em>Internal Service</em>}</li>
  * </ul>
  * </p>
  *
@@ -427,6 +429,24 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 */
 	public void setUser(User newUser) {
 		eSet(StorePackage.Literals.SERVICE__USER, newUser);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InternalServicePluginConfiguration getInternalService() {
+		return (InternalServicePluginConfiguration) eGet(StorePackage.Literals.SERVICE__INTERNAL_SERVICE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInternalService(InternalServicePluginConfiguration newInternalService) {
+		eSet(StorePackage.Literals.SERVICE__INTERNAL_SERVICE, newInternalService);
 	}
 
 } //ServiceImpl

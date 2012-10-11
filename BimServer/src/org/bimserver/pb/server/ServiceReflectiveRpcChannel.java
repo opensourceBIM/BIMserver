@@ -17,16 +17,14 @@ package org.bimserver.pb.server;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.Map;
-
 import org.bimserver.shared.interfaces.PublicInterface;
-import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ReflectiveRpcChannel;
 
 public abstract class ServiceReflectiveRpcChannel extends ReflectiveRpcChannel {
 
-	public ServiceReflectiveRpcChannel(PublicInterface serviceFactory, ProtocolBuffersMetaData protocolBuffersMetaData, Map<String, SService> sServices) {
-		super(serviceFactory, protocolBuffersMetaData, sServices);
+	public ServiceReflectiveRpcChannel(PublicInterface serviceFactory, ProtocolBuffersMetaData protocolBuffersMetaData, ServicesMap servicesMap) {
+		super(serviceFactory, protocolBuffersMetaData, servicesMap);
 	}
 }

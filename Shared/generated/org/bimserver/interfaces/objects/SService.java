@@ -47,6 +47,7 @@ public class SService implements SDataBase
 	private boolean profilePublic;
 	private long projectId = -1;
 	private long userId = -1;
+	private long internalServiceId = -1;
 	public long getOid() {
 		return oid;
 	}
@@ -121,6 +122,9 @@ public class SService implements SDataBase
 		}
 		if (sField.getName().equals("userId")) {
 			return getUserId();
+		}
+		if (sField.getName().equals("internalServiceId")) {
+			return getInternalServiceId();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -203,6 +207,10 @@ public class SService implements SDataBase
 		}
 		if (sField.getName().equals("userId")) {
 			setUserId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("internalServiceId")) {
+			setInternalServiceId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -362,6 +370,14 @@ public class SService implements SDataBase
 
 	public void setUserId(long userId) {
 		this.userId = userId;
+	}
+	
+	public long getInternalServiceId() {
+		return internalServiceId;
+	}
+
+	public void setInternalServiceId(long internalServiceId) {
+		this.internalServiceId = internalServiceId;
 	}
 	
 	@Override

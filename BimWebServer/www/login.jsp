@@ -1,8 +1,8 @@
 <%@page import="org.bimserver.shared.interfaces.ServiceInterface"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@page import="org.bimserver.client.factories.AutologinAuthenticationInfo"%>
-<%@page import="org.bimserver.client.factories.UsernamePasswordAuthenticationInfo"%>
-<%@page import="org.bimserver.client.factories.AuthenticationInfo"%>
+<%@page import="org.bimserver.shared.AutologinAuthenticationInfo"%>
+<%@page import="org.bimserver.shared.UsernamePasswordAuthenticationInfo"%>
+<%@page import="org.bimserver.shared.AuthenticationInfo"%>
 <%@page import="org.bimserver.interfaces.objects.SVersion"%>
 <%@page import="org.bimserver.interfaces.objects.SServerState"%>
 <%@page import="org.bimserver.interfaces.objects.SServerInfo"%>

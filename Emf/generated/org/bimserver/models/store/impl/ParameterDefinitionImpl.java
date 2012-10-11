@@ -21,6 +21,7 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.ParameterDefinition;
 import org.bimserver.models.store.StorePackage;
 
+import org.bimserver.models.store.Type;
 import org.bimserver.models.store.TypeDefinition;
 import org.eclipse.emf.ecore.EClass;
 
@@ -34,6 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ParameterDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ParameterDefinitionImpl#isRequired <em>Required</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ParameterDefinitionImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ParameterDefinitionImpl#getDefaultValue <em>Default Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -121,6 +123,24 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements ParameterD
 	 */
 	public void setType(TypeDefinition newType) {
 		eSet(StorePackage.Literals.PARAMETER_DEFINITION__TYPE, newType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Type getDefaultValue() {
+		return (Type) eGet(StorePackage.Literals.PARAMETER_DEFINITION__DEFAULT_VALUE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefaultValue(Type newDefaultValue) {
+		eSet(StorePackage.Literals.PARAMETER_DEFINITION__DEFAULT_VALUE, newDefaultValue);
 	}
 
 } //ParameterDefinitionImpl

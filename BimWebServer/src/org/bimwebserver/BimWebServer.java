@@ -1,25 +1,24 @@
 package org.bimwebserver;
 
-import java.util.Map;
-
 import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.meta.ServicesMap;
 
 public class BimWebServer {
 
-	private final Map<String, SService> sServices;
+	private final ServicesMap servicesMap;
 	private BimServerClientFactory bimServerClientFactory;
 	
-	public BimWebServer(Map<String, SService> sServices) {
-		this.sServices = sServices;
+	public BimWebServer(ServicesMap servicesMap) {
+		this.servicesMap = servicesMap;
 	}
 	
-	public Map<String, SService> getServicesInterfaces() {
-		return sServices;
+	public ServicesMap getServicesMap() {
+		return servicesMap;
 	}
 
 	public SService getServiceInterface(String interfaceName) {
-		return sServices.get(interfaceName);
+		return servicesMap.get(interfaceName);
 	}
 
 	public BimServerClientFactory getBimServerClientFactory() {

@@ -46,6 +46,7 @@ import org.bimserver.models.log.AccessMethod;
  *   <li>{@link org.bimserver.models.store.Service#isProfilePublic <em>Profile Public</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getProject <em>Project</em>}</li>
  *   <li>{@link org.bimserver.models.store.Service#getUser <em>User</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Service#getInternalService <em>Internal Service</em>}</li>
  * </ul>
  * </p>
  *
@@ -558,5 +559,31 @@ public interface Service extends IdEObject {
 	 * @generated
 	 */
 	void setUser(User value);
+
+	/**
+	 * Returns the value of the '<em><b>Internal Service</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Internal Service</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Internal Service</em>' reference.
+	 * @see #setInternalService(InternalServicePluginConfiguration)
+	 * @see org.bimserver.models.store.StorePackage#getService_InternalService()
+	 * @model
+	 * @generated
+	 */
+	InternalServicePluginConfiguration getInternalService();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Service#getInternalService <em>Internal Service</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Internal Service</em>' reference.
+	 * @see #getInternalService()
+	 * @generated
+	 */
+	void setInternalService(InternalServicePluginConfiguration value);
 
 } // Service

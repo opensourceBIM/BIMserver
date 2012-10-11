@@ -25,7 +25,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.activation.DataHandler;
@@ -35,7 +34,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SMethod;
-import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
 import org.bimserver.shared.reflector.KeyValuePair;
 import org.bimserver.shared.reflector.Reflector;
@@ -56,12 +55,12 @@ public class ProtocolBuffersReflector extends ProtocolBuffersConverter implement
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersReflector.class);
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
 	private final Channel channel;
-	private Map<String, SService> sServices;
+	private ServicesMap servicesMap;
 
-	public ProtocolBuffersReflector(ProtocolBuffersMetaData protocolBuffersMetaData, Map<String, SService> sServices, Channel channel) {
+	public ProtocolBuffersReflector(ProtocolBuffersMetaData protocolBuffersMetaData, ServicesMap servicesMap, Channel channel) {
 		super(protocolBuffersMetaData);
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
-		this.sServices = sServices;
+		this.servicesMap = servicesMap;
 		this.channel = channel;
 	}
 
@@ -70,7 +69,7 @@ public class ProtocolBuffersReflector extends ProtocolBuffersConverter implement
 	public Object callMethod(String interfaceName, String methodName, Class<?> definedReturnType, KeyValuePair... args) throws ServerException, UserException {
 		try {
 			MethodDescriptorContainer methodDescriptorContainer = protocolBuffersMetaData.getMethod(interfaceName, methodName);
-			SMethod sMethod = sServices.get(interfaceName).getSMethod(methodName);
+			SMethod sMethod = servicesMap.get(interfaceName).getSMethod(methodName);
 			Descriptor inputDescriptor = methodDescriptorContainer.getInputDescriptor();
 			Builder builder = DynamicMessage.newBuilder(methodDescriptorContainer.getInputDescriptor());
 			int i = 0;

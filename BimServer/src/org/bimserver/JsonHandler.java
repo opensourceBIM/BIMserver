@@ -22,7 +22,7 @@ public class JsonHandler {
 
 	public JsonHandler(BimServer bimServer) {
 		this.bimServer = bimServer;
-		converter = new JsonConverter(bimServer.getServiceInterfaces());
+		converter = new JsonConverter(bimServer.getServicesMap());
 	}
 
 	@SuppressWarnings("unchecked")
@@ -37,7 +37,7 @@ public class JsonHandler {
 				String interfaceName = request.getString("interface");
 				Class<? extends PublicInterface> clazz = (Class<? extends PublicInterface>) Class.forName("org.bimserver.shared.interfaces." + interfaceName);
 				String methodName = request.getString("method");
-				SService sService = bimServer.getServiceInterface(interfaceName);
+				SService sService = bimServer.getServicesMap().get(interfaceName);
 				if (sService == null) {
 					throw new UserException("No service found with name " + interfaceName);
 				}
@@ -64,7 +64,6 @@ public class JsonHandler {
 					responseObject.put("result", converter.toJson(result));
 				}
 			} catch (Exception exception) {
-				exception.printStackTrace();
 				if (exception instanceof ServiceException) {
 					ServiceException serviceException = (ServiceException)exception;
 					JSONObject exceptionJson = new JSONObject();

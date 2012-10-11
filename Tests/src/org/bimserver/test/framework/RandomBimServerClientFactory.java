@@ -17,18 +17,16 @@ package org.bimserver.test.framework;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
-import org.bimserver.client.factories.AuthenticationInfo;
 import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.meta.ServicesMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,7 +45,7 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 	private static final Logger LOGGER = LoggerFactory.getLogger(RandomBimServerClientFactory.class);
 	private int current = 0;
 	private final Type[] types;
-	private Map<String, SService> map;
+	private ServicesMap servicesMap;
 	private PluginManager pluginManager;
 	
 	public RandomBimServerClientFactory(TestFramework testFramework, Type... types) {
@@ -56,8 +54,8 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 		} else {
 			this.types = types;
 		}
-		map = new HashMap<String, SService>();
-		map.put(ServiceInterface.class.getSimpleName(), new SService(null, ServiceInterface.class));
+		servicesMap = new ServicesMap();
+		servicesMap.add(new SService(null, ServiceInterface.class));
 		try {
 			pluginManager = LocalDevPluginLoader.createPluginManager(testFramework.getTestConfiguration().getHomeDir());
 		} catch (PluginException e) {
@@ -68,7 +66,7 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 	
 	public synchronized BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
 		try {
-			BimServerClient bimServerClient = new BimServerClient(pluginManager, map);
+			BimServerClient bimServerClient = new BimServerClient(pluginManager, servicesMap);
 			bimServerClient.setAuthentication(authenticationInfo);
 			Type type = types[current];
 			switch (type) {

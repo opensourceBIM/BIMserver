@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.activation.DataHandler;
 import javax.mail.util.ByteArrayDataSource;
@@ -18,7 +17,7 @@ import org.apache.commons.io.IOUtils;
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
-import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.meta.ServicesMap;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
@@ -27,10 +26,10 @@ import com.google.common.base.Charsets;
 
 public class JsonConverter {
 
-	private Map<String, SService> services;
+	private final ServicesMap servicesMap;
 
-	public JsonConverter(Map<String, SService> services) {
-		this.services = services;
+	public JsonConverter(ServicesMap servicesMap) {
+		this.servicesMap = servicesMap;
 	}
 	
 	public Object toJson(Object object) throws JSONException {
@@ -65,22 +64,12 @@ public class JsonConverter {
 		return object;
 	}
 
-	public SClass getType(String name) {
-		for (SService sService : services.values()) {
-			SClass type = sService.getSType(name);
-			if (type != null) {
-				return type;
-			}
-		}
-		return null;
-	}
-	
 	public Object fromJson(SClass definedType, SClass genericType, Object object) throws JSONException, ConvertException {
 		if (object instanceof JSONObject) {
 			JSONObject jsonObject = (JSONObject) object;
 			if (jsonObject.has("__type")) {
 				String type = jsonObject.getString("__type");
-				SClass sClass = getType(type);
+				SClass sClass = servicesMap.getType(type);
 				SBase newObject = sClass.newInstance();
 				for (SField field : newObject.getSClass().getAllFields()) {
 					if (jsonObject.has(field.getName())) {

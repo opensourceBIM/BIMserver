@@ -10,9 +10,9 @@ import org.apache.catalina.websocket.StreamInbound;
 import org.apache.catalina.websocket.WsOutbound;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
-import org.bimserver.client.JsonReflector;
 import org.bimserver.interfaces.NotificationInterfaceReflectorImpl;
 import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.json.JsonReflector;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.codehaus.jettison.json.JSONTokener;
@@ -32,7 +32,7 @@ public class TomcatStreamInbound extends StreamInbound implements EndPoint, Stre
 	public TomcatStreamInbound(BimServer bimServer) {
 		this.bimServer = bimServer;
 		this.endpointid = bimServer.getEndPointManager().register(this);
-		JsonReflector jsonReflector = new JsonWebsocketReflector(bimServer.getServiceInterfaces(), this);
+		JsonReflector jsonReflector = new JsonWebsocketReflector(bimServer.getServicesMap(), this);
 		reflectorImpl = new NotificationInterfaceReflectorImpl(jsonReflector);
 	}
 

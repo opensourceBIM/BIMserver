@@ -95,6 +95,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		newRevisionAdded.setDate(new Date());
 		newRevisionAdded.setExecutor(user);
 		newRevisionAdded.setRevision(concreteRevision.getRevisions().get(0));
+		newRevisionAdded.setProject(project);
 		newRevisionAdded.setAccessMethod(getAccessMethod());
 		
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {

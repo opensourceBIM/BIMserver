@@ -24,7 +24,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.activation.DataHandler;
@@ -34,7 +33,7 @@ import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
-import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,13 +52,13 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReflectiveRpcChannel.class);
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
 	private final PublicInterface service;
-	private Map<String, SService> services;
+	private ServicesMap servicesMap;
 
-	public ReflectiveRpcChannel(PublicInterface service, ProtocolBuffersMetaData protocolBuffersMetaData, Map<String, SService> services) {
+	public ReflectiveRpcChannel(PublicInterface service, ProtocolBuffersMetaData protocolBuffersMetaData, ServicesMap servicesMap) {
 		super(protocolBuffersMetaData);
 		this.service = service;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
-		this.services = services;
+		this.servicesMap = servicesMap;
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -67,7 +66,7 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 		FieldDescriptor errorMessageField = methodDescriptor.getOutputField("errorMessage");
 		DynamicMessage response = DynamicMessage.getDefaultInstance(methodDescriptor.getOutputDescriptor());
 		Descriptor inputType = methodDescriptor.getInputDescriptor();
-		SMethod sMethod = services.get(methodDescriptor.getServiceDescriptorContainer().getName()).getSMethod(methodDescriptor.getName());
+		SMethod sMethod = servicesMap.get(methodDescriptor.getServiceDescriptorContainer().getName()).getSMethod(methodDescriptor.getName());
 		if (sMethod == null) {
 			LOGGER.info("Method " + methodDescriptor.getName() + " not found");
 		}

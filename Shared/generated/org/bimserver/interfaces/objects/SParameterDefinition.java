@@ -30,6 +30,7 @@ public class SParameterDefinition implements SBase
 	private java.lang.String name;
 	private boolean required;
 	private STypeDefinition type;
+	private long defaultValueId = -1;
 	
 	@XmlTransient
 	public SClass getSClass() {
@@ -50,6 +51,9 @@ public class SParameterDefinition implements SBase
 		if (sField.getName().equals("type")) {
 			return getType();
 		}
+		if (sField.getName().equals("defaultValueId")) {
+			return getDefaultValueId();
+		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 
@@ -64,6 +68,10 @@ public class SParameterDefinition implements SBase
 		}
 		if (sField.getName().equals("type")) {
 			setType((STypeDefinition)val);
+			return;
+		}
+		if (sField.getName().equals("defaultValueId")) {
+			setDefaultValueId((Long)val);
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
@@ -93,5 +101,13 @@ public class SParameterDefinition implements SBase
 		this.type = type;
 	}
 	
+	
+	public long getDefaultValueId() {
+		return defaultValueId;
+	}
+
+	public void setDefaultValueId(long defaultValueId) {
+		this.defaultValueId = defaultValueId;
+	}
 	
 }

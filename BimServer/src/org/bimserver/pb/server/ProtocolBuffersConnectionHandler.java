@@ -23,13 +23,12 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.SocketException;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.shared.InterfaceMap;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
 import org.bimserver.shared.pb.ReflectiveRpcChannel;
@@ -46,13 +45,13 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 	private OutputStream outputStream;
 	private DataInputStream dataInputStream;
 	private final ProtocolBuffersServer protocolBuffersServer;
-	private final Map<String, PublicInterface> services = new HashMap<String, PublicInterface>();
-	private Map<String, SService> sServices;
+	private final InterfaceMap services = new InterfaceMap();
+	private ServicesMap servicesMap;
 
-	public ProtocolBuffersConnectionHandler(Socket socket, ProtocolBuffersServer protocolBuffersServer, Map<String, SService> sServices) {
+	public ProtocolBuffersConnectionHandler(Socket socket, ProtocolBuffersServer protocolBuffersServer, ServicesMap servicesMap) {
 		this.socket = socket;
 		this.protocolBuffersServer = protocolBuffersServer;
-		this.sServices = sServices;
+		this.servicesMap = servicesMap;
 		setName("ProtocolBuffersConnectionHandler");
 		try {
 			dataInputStream = new DataInputStream(socket.getInputStream());
@@ -69,10 +68,10 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 				String serviceName = dataInputStream.readUTF();
 				String methodName = dataInputStream.readUTF();
 				ProtocolBuffersMetaData protocolBuffersMetaData = protocolBuffersServer.getProtocolBuffersMetaData();
-				if (!services.containsKey(serviceName)) {
-					services.put(serviceName, protocolBuffersServer.getServiceFactoryRegistry().createServiceFactory(serviceName).newServiceMap(AccessMethod.PROTOCOL_BUFFERS, socket.getRemoteSocketAddress().toString()).get(ServiceInterface.class));
+				if (!services.contains(serviceName)) {
+					services.add(ServiceInterface.class, protocolBuffersServer.getServiceFactoryRegistry().createServiceFactory(serviceName).newServiceMap(AccessMethod.PROTOCOL_BUFFERS, socket.getRemoteSocketAddress().toString()).get(ServiceInterface.class));
 				}
-				ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(services.get(serviceName), protocolBuffersMetaData, sServices);
+				ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel((PublicInterface) services.get((Class<PublicInterface>)Class.forName(serviceName)), protocolBuffersMetaData, servicesMap);
 				MethodDescriptorContainer method = protocolBuffersMetaData.getMethod(serviceName, methodName);
 				Builder requestBuilder = DynamicMessage.getDefaultInstance(method.getInputDescriptor()).newBuilderForType();
 				requestBuilder.mergeDelimitedFrom(dataInputStream);

@@ -1575,4 +1575,10 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		store(idEObject);
 		return (T) idEObject;
 	}
+
+	public <T extends IdEObject> T cloneAndAdd(T object) throws BimserverDatabaseException {
+		// TODO
+		store(object);
+		return object;
+	}
 }

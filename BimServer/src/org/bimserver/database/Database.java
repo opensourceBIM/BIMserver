@@ -19,13 +19,14 @@ package org.bimserver.database;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.actions.AddUserDatabaseAction;
@@ -71,7 +72,7 @@ public class Database implements BimDatabase {
 	private volatile int pidCounter = 1;
 	private final Registry registry;
 	private Date created;
-	private final Set<DatabaseSession> sessions = new HashSet<DatabaseSession>();
+	private final Set<DatabaseSession> sessions = Collections.newSetFromMap(new ConcurrentHashMap<DatabaseSession, Boolean>());
 	private int databaseSchemaVersion;
 	private short tableId;
 	private Migrator migrator;

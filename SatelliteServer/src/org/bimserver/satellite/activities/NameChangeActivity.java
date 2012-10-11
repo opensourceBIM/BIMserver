@@ -28,7 +28,7 @@ public class NameChangeActivity extends Activity {
 	}
 
 	@Override
-	public void newLogAction(SLogAction logAction, String serviceIdentifier, SToken token, String apiUrl) throws UserException, ServerException {
+	public void newLogAction(SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) throws UserException, ServerException {
 		try {
 			if (logAction instanceof SNewRevisionAdded) {
 				SNewRevisionAdded newRevisionAdded = (SNewRevisionAdded)logAction;
