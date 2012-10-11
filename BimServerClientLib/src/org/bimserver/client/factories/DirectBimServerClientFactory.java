@@ -23,20 +23,20 @@ import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.PublicInterface;
 
-public class DirectBimServerClientFactory implements BimServerClientFactory {
+public class DirectBimServerClientFactory<T extends PublicInterface> implements BimServerClientFactory {
 
 	private final PluginManager pluginManager;
-	private final PublicInterface publicInterface;
-	private Class interfaceClass;
+	private final T publicInterface;
+	private Class<T> interfaceClass;
 
-	public <T extends PublicInterface> DirectBimServerClientFactory(Class<T> interfaceClass, T publicInterface) {
+	public DirectBimServerClientFactory(Class<T> interfaceClass, T publicInterface) {
 		this.interfaceClass = interfaceClass;
 		this.publicInterface = publicInterface;
 		pluginManager = new PluginManager();
 		pluginManager.loadPluginsFromCurrentClassloader();
 	}
 
-	public DirectBimServerClientFactory(PublicInterface publicInterface, PluginManager pluginManager) {
+	public DirectBimServerClientFactory(T publicInterface, PluginManager pluginManager) {
 		this.publicInterface = publicInterface;
 		this.pluginManager = pluginManager;
 	}

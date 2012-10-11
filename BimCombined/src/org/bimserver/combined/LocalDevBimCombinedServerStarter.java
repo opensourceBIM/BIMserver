@@ -44,7 +44,6 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimwebserver.BimWebServer;
-import org.eclipse.jetty.servlet.ServletHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -84,7 +83,7 @@ public class LocalDevBimCombinedServerStarter {
 		 	embeddedWebServer.getContext().addServlet(UploadServlet.class, "/upload/*");
 		 	embeddedWebServer.getContext().addServlet(JsonApiServlet.class, "/json/*");
 		 	embeddedWebServer.getContext().addServlet(StreamingServlet.class, "/stream/*");
-		 	ServletHolder servletHolder = embeddedWebServer.getContext().addServlet(RestServlet.class, "/rest/*");
+		 	embeddedWebServer.getContext().addServlet(RestServlet.class, "/rest/*");
 //		 	servletHolder.setInitParameter("javax.ws.rs.Application", "willbeoverridden");
 		 	embeddedWebServer.getContext().setResourceBase("../BimWebServer/www");
 

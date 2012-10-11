@@ -61,6 +61,7 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void run() {
 		try {
