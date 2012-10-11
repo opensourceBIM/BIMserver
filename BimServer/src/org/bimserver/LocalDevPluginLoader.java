@@ -44,7 +44,7 @@ public class LocalDevPluginLoader {
 		if (!home.exists()) {
 			home.mkdir();
 		}
-		PluginManager pluginManager = new PluginManager(new File(home, "tmp"), System.getProperty("java.class.path"), null, null);
+		PluginManager pluginManager = new PluginManager(new File(home, "tmp"), System.getProperty("java.class.path"), null, null, null);
 		loadPlugins(pluginManager);
 		pluginManager.initAllLoadedPlugins();
 		return pluginManager;

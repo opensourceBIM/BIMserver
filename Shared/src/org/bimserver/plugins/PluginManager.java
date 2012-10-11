@@ -60,6 +60,7 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.shared.ServiceFactory;
+import org.bimserver.shared.meta.ServicesMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -71,12 +72,14 @@ public class PluginManager {
 	private final String baseClassPath;
 	private ServiceFactory serviceFactory;
 	private NotificationsManagerInterface notificationsManagerInterface;
+	private ServicesMap servicesMap;
 
-	public PluginManager(File tempDir, String baseClassPath, ServiceFactory serviceFactory, NotificationsManagerInterface notificationsManagerInterface) {
+	public PluginManager(File tempDir, String baseClassPath, ServiceFactory serviceFactory, NotificationsManagerInterface notificationsManagerInterface, ServicesMap servicesMap) {
 		this.tempDir = tempDir;
 		this.baseClassPath = baseClassPath;
 		this.serviceFactory = serviceFactory;
 		this.notificationsManagerInterface = notificationsManagerInterface;
+		this.servicesMap = servicesMap;
 	}
 
 	public PluginManager() {
@@ -522,5 +525,9 @@ public class PluginManager {
 
 	public void registerNewRevisionHandler(ServiceDescriptor serviceDescriptor, NewRevisionHandler newRevisionHandler) {
 		notificationsManagerInterface.registerNewRevisionHandler(serviceDescriptor, newRevisionHandler);
+	}
+	
+	public ServicesMap getServicesMap() {
+		return servicesMap;
 	}
 }
