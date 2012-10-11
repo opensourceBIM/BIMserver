@@ -21,6 +21,7 @@ import org.bimserver.shared.meta.ServicesMap;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.codehaus.jettison.json.JSONWriter;
 
 import com.google.common.base.Charsets;
 
@@ -30,6 +31,10 @@ public class JsonConverter {
 
 	public JsonConverter(ServicesMap servicesMap) {
 		this.servicesMap = servicesMap;
+	}
+	
+	public void toJson(Object object, JSONWriter out) {
+		
 	}
 	
 	public Object toJson(Object object) throws JSONException {

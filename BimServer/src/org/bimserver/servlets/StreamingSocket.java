@@ -48,7 +48,7 @@ public class StreamingSocket implements WebSocket.OnTextMessage, EndPoint, Strea
 	public void onMessage(String message) {
 		try {
 			JSONObject request = new JSONObject(new JSONTokener(message));
-			bimServer.getJsonHandler().execute(request, null);
+			bimServer.getJsonHandler().execute(request, null, null);
 		} catch (JSONException e) {
 			LOGGER.error("", e);
 		}

@@ -79,7 +79,7 @@ public class TomcatStreamInbound extends StreamInbound implements EndPoint, Stre
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			IOUtils.copy(reader, baos);
 			JSONObject request = new JSONObject(new JSONTokener(new String(baos.toByteArray(), Charsets.UTF_8)));
-			bimServer.getJsonHandler().execute(request, null);
+			bimServer.getJsonHandler().execute(request, null, null);
 		} catch (JSONException e) {
 			LOGGER.error("", e);
 		}
