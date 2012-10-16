@@ -77,7 +77,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		clashDetection.setDescription("Clashdetection");
 		clashDetection.setNotificationProtocol(AccessMethod.INTERNAL);
 		clashDetection.setReadRevision(true);
-		clashDetection.setWriteExtendedData("clashdetection");
+		clashDetection.setWriteExtendedData("http://www.buildingsmart-tech.org/specifications/bcf-releases");
 		clashDetection.setTrigger(Trigger.NEW_REVISION);
 		
 		registerNewRevisionHandler(clashDetection, new NewRevisionHandler(){
