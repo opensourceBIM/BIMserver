@@ -84,6 +84,7 @@ import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SExtendedDataSchemaType;
+import org.bimserver.interfaces.objects.SExternalServiceUpdate;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration;
@@ -102,6 +103,7 @@ import org.bimserver.interfaces.objects.SObjectDefinition;
 import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectType;
+import org.bimserver.interfaces.objects.SPercentageChange;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProject;
@@ -160,6 +162,7 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.UserType;
+import org.bimserver.notifications.RunningExternalService;
 import org.bimserver.notifications.TokenAuthorization;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginContext;
@@ -3862,6 +3865,15 @@ public class Service implements ServiceInterface {
 			handleException(e);
 		} finally {
 			session.close();
+		}
+	}
+	
+	@Override
+	public void externalServiceUpdate(String uuid, SExternalServiceUpdate sExternalServiceUpdate) throws ServerException, UserException {
+		RunningExternalService runningExternalService = bimServer.getNotificationsManager().getRunningExternalService(uuid);
+		if (sExternalServiceUpdate instanceof SPercentageChange) {
+			SPercentageChange sPercentageChange = (SPercentageChange)sExternalServiceUpdate;
+			runningExternalService.updatePercentage(sPercentageChange.getPercentage());
 		}
 	}
 }

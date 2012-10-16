@@ -50,7 +50,7 @@ public class SocketNotificationsClient extends NotificationsClient {
 					while (running) {
 						Socket socket = serverSocket.accept();
 						notifyConnect();
-						Handler handler = new Handler(SocketNotificationsClient.this, socket, multiCastNotificationImpl, protocolBuffersMetaData, servicesMap);
+						Handler handler = new Handler(SocketNotificationsClient.this, socket, null, protocolBuffersMetaData, servicesMap);
 						handlers.add(handler);
 						handler.start();
 					}

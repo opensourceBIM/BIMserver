@@ -19,6 +19,7 @@ package org.bimserver.shared;
 
 import java.util.List;
 
+import org.bimserver.interfaces.objects.SImmediateNotificationResult;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
@@ -31,7 +32,8 @@ import org.bimserver.shared.interfaces.NotificationInterface;
 public class NotificationInterfaceAdapter implements NotificationInterface {
 
 	@Override
-	public void newLogAction(SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) throws UserException, ServerException {
+	public SImmediateNotificationResult newLogAction(String uuid, SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) throws UserException, ServerException {
+		return null;
 	}
 	
 	public void progress(long topicId, SLongActionState state) throws UserException, ServerException {

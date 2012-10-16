@@ -9,6 +9,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
+import org.bimserver.interfaces.objects.SImmediateNotificationResult;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
@@ -42,8 +43,8 @@ public class NotificationImpl implements NotificationInterface {
 	}
 
 	@Override
-	public void newLogAction(SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) throws UserException, ServerException {
-		bimServer.getNotificationsManager().notify(logAction, serviceIdentifier, profileIdentifier, token, apiUrl);
+	public SImmediateNotificationResult newLogAction(String uuid, SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) throws UserException, ServerException {
+		return bimServer.getNotificationsManager().notify(logAction, serviceIdentifier, profileIdentifier, token, apiUrl);
 	}
 
 	@Override

@@ -47,6 +47,7 @@ import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
+import org.bimserver.interfaces.objects.SExternalServiceUpdate;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration;
@@ -2296,4 +2297,9 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "poid", partName = "addLocalServiceToProject.poid") Long poid, 
 		@WebParam(name = "sService", partName = "addLocalServiceToProject.sService") SService sService,
 		@WebParam(name = "internalServiceOid", partName = "addLocalServiceToProject.internalServiceOid") Long internalServiceOid) throws ServerException, UserException;
+	
+	@WebMethod(action = "externalServiceUpdate")
+	void externalServiceUpdate(
+		@WebParam(name = "uuid", partName = "externalServiceUpdate.uuid") String uuid,
+		@WebParam(name = "sExternalServiceUpdate", partName = "externalServiceUpdate.sExternalServiceUpdate") SExternalServiceUpdate sExternalServiceUpdate) throws ServerException, UserException;
 }

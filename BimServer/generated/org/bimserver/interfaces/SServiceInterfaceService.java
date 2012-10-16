@@ -121,6 +121,10 @@ public class SServiceInterfaceService extends SService {
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SBooleanType")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SArrayType")));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SParameter")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SNotifictionResultEnum")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SImmediateNotificationResult")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SExternalServiceUpdate")));
+		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SPercentageChange")));
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);
 		}

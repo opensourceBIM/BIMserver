@@ -17,6 +17,8 @@ package org.bimserver.interfaces.objects;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -35,6 +37,7 @@ public class SCheckout implements SDataBase
 	private java.util.Date date;
 	private long checkinId = -1;
 	private java.lang.Boolean active;
+	private List<Long> logs = new ArrayList<Long>();
 	public long getOid() {
 		return oid;
 	}
@@ -71,11 +74,15 @@ public class SCheckout implements SDataBase
 		if (sField.getName().equals("active")) {
 			return getActive();
 		}
+		if (sField.getName().equals("logs")) {
+			return getLogs();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+	@SuppressWarnings("unchecked")
 
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("userId")) {
@@ -100,6 +107,10 @@ public class SCheckout implements SDataBase
 		}
 		if (sField.getName().equals("active")) {
 			setActive((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("logs")) {
+			setLogs((List<Long>)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -155,6 +166,14 @@ public class SCheckout implements SDataBase
 
 	public void setActive(java.lang.Boolean active) {
 		this.active = active;
+	}
+	
+	public List<Long> getLogs() {
+		return logs;
+	}
+
+	public void setLogs(List<Long> logs) {
+		this.logs = logs;
 	}
 	
 	@Override

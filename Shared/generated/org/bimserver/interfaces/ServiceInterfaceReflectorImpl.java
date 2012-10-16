@@ -194,6 +194,9 @@ private Reflector reflector;
 	public void enablePlugin(java.lang.String name) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		reflector.callMethod("ServiceInterface", "enablePlugin", void.class, new KeyValuePair("name", name));
 	}
+	public void externalServiceUpdate(java.lang.String uuid, org.bimserver.interfaces.objects.SExternalServiceUpdate sExternalServiceUpdate) throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
+		reflector.callMethod("ServiceInterface", "externalServiceUpdate", void.class, new KeyValuePair("uuid", uuid), new KeyValuePair("sExternalServiceUpdate", sExternalServiceUpdate));
+	}
 	public org.bimserver.interfaces.objects.SAccessMethod getAccessMethod() throws org.bimserver.shared.exceptions.UserException, org.bimserver.shared.exceptions.ServerException {
 		return (org.bimserver.interfaces.objects.SAccessMethod) reflector.callMethod("ServiceInterface", "getAccessMethod", org.bimserver.interfaces.objects.SAccessMethod.class);
 	}

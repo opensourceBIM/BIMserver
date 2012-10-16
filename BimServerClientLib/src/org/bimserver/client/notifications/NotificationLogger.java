@@ -20,6 +20,7 @@ package org.bimserver.client.notifications;
 import java.io.PrintWriter;
 import java.util.List;
 
+import org.bimserver.interfaces.objects.SImmediateNotificationResult;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
@@ -38,9 +39,10 @@ public class NotificationLogger implements NotificationInterface {
 	}
 
 	@Override
-	public void newLogAction(SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) {
+	public SImmediateNotificationResult newLogAction(String uuid, SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) {
 		out.println(logAction);
 		out.flush();
+		return null;
 	}
 	
 	@Override

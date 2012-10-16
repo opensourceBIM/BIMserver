@@ -46,6 +46,7 @@ public class SRevision implements SDataBase
 	private java.lang.Long laid;
 	private long summaryId = -1;
 	private List<Long> extendedData = new ArrayList<Long>();
+	private List<Long> logs = new ArrayList<Long>();
 	public long getOid() {
 		return oid;
 	}
@@ -108,6 +109,9 @@ public class SRevision implements SDataBase
 		}
 		if (sField.getName().equals("extendedData")) {
 			return getExtendedData();
+		}
+		if (sField.getName().equals("logs")) {
+			return getLogs();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -175,6 +179,10 @@ public class SRevision implements SDataBase
 		}
 		if (sField.getName().equals("extendedData")) {
 			setExtendedData((List<Long>)val);
+			return;
+		}
+		if (sField.getName().equals("logs")) {
+			setLogs((List<Long>)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -302,6 +310,14 @@ public class SRevision implements SDataBase
 
 	public void setExtendedData(List<Long> extendedData) {
 		this.extendedData = extendedData;
+	}
+	
+	public List<Long> getLogs() {
+		return logs;
+	}
+
+	public void setLogs(List<Long> logs) {
+		this.logs = logs;
 	}
 	
 	@Override
