@@ -248,6 +248,13 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass externalServiceCalledEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum accessMethodEEnum = null;
 
 	/**
@@ -918,6 +925,72 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 */
 	public EReference getExtendedDataAddedToProject_ExtendedData() {
 		return (EReference) getExtendedDataAddedToProject().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExternalServiceCalled() {
+		if (externalServiceCalledEClass == null) {
+			externalServiceCalledEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(27);
+		}
+		return externalServiceCalledEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExternalServiceCalled_Service() {
+		return (EReference) getExternalServiceCalled().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExternalServiceCalled_State() {
+		return (EAttribute) getExternalServiceCalled().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExternalServiceCalled_Percentage() {
+		return (EAttribute) getExternalServiceCalled().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExternalServiceCalled_Infos() {
+		return (EAttribute) getExternalServiceCalled().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExternalServiceCalled_Warnings() {
+		return (EAttribute) getExternalServiceCalled().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExternalServiceCalled_Errors() {
+		return (EAttribute) getExternalServiceCalled().getEStructuralFeatures().get(5);
 	}
 
 	/**

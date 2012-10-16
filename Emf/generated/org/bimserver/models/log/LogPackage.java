@@ -1501,6 +1501,106 @@ public interface LogPackage extends EPackage {
 	int EXTENDED_DATA_ADDED_TO_PROJECT_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.log.impl.ExternalServiceCalledImpl <em>External Service Called</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.log.impl.ExternalServiceCalledImpl
+	 * @see org.bimserver.models.log.impl.LogPackageImpl#getExternalServiceCalled()
+	 * @generated
+	 */
+	int EXTERNAL_SERVICE_CALLED = 26;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_SERVICE_CALLED__DATE = LOG_ACTION__DATE;
+
+	/**
+	 * The feature id for the '<em><b>Executor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_SERVICE_CALLED__EXECUTOR = LOG_ACTION__EXECUTOR;
+
+	/**
+	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_SERVICE_CALLED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+
+	/**
+	 * The feature id for the '<em><b>Service</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_SERVICE_CALLED__SERVICE = LOG_ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_SERVICE_CALLED__STATE = LOG_ACTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Percentage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_SERVICE_CALLED__PERCENTAGE = LOG_ACTION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_SERVICE_CALLED__INFOS = LOG_ACTION_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Warnings</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_SERVICE_CALLED__WARNINGS = LOG_ACTION_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Errors</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_SERVICE_CALLED__ERRORS = LOG_ACTION_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of structural features of the '<em>External Service Called</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_SERVICE_CALLED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 6;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.AccessMethod <em>Access Method</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1508,7 +1608,7 @@ public interface LogPackage extends EPackage {
 	 * @see org.bimserver.models.log.impl.LogPackageImpl#getAccessMethod()
 	 * @generated
 	 */
-	int ACCESS_METHOD = 26;
+	int ACCESS_METHOD = 27;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.log.LogAction <em>Action</em>}'.
@@ -2123,6 +2223,82 @@ public interface LogPackage extends EPackage {
 	EReference getExtendedDataAddedToProject_ExtendedData();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.log.ExternalServiceCalled <em>External Service Called</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>External Service Called</em>'.
+	 * @see org.bimserver.models.log.ExternalServiceCalled
+	 * @generated
+	 */
+	EClass getExternalServiceCalled();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.log.ExternalServiceCalled#getService <em>Service</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Service</em>'.
+	 * @see org.bimserver.models.log.ExternalServiceCalled#getService()
+	 * @see #getExternalServiceCalled()
+	 * @generated
+	 */
+	EReference getExternalServiceCalled_Service();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.log.ExternalServiceCalled#getState <em>State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>State</em>'.
+	 * @see org.bimserver.models.log.ExternalServiceCalled#getState()
+	 * @see #getExternalServiceCalled()
+	 * @generated
+	 */
+	EAttribute getExternalServiceCalled_State();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.log.ExternalServiceCalled#getPercentage <em>Percentage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Percentage</em>'.
+	 * @see org.bimserver.models.log.ExternalServiceCalled#getPercentage()
+	 * @see #getExternalServiceCalled()
+	 * @generated
+	 */
+	EAttribute getExternalServiceCalled_Percentage();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.bimserver.models.log.ExternalServiceCalled#getInfos <em>Infos</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Infos</em>'.
+	 * @see org.bimserver.models.log.ExternalServiceCalled#getInfos()
+	 * @see #getExternalServiceCalled()
+	 * @generated
+	 */
+	EAttribute getExternalServiceCalled_Infos();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.bimserver.models.log.ExternalServiceCalled#getWarnings <em>Warnings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Warnings</em>'.
+	 * @see org.bimserver.models.log.ExternalServiceCalled#getWarnings()
+	 * @see #getExternalServiceCalled()
+	 * @generated
+	 */
+	EAttribute getExternalServiceCalled_Warnings();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.bimserver.models.log.ExternalServiceCalled#getErrors <em>Errors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Errors</em>'.
+	 * @see org.bimserver.models.log.ExternalServiceCalled#getErrors()
+	 * @see #getExternalServiceCalled()
+	 * @generated
+	 */
+	EAttribute getExternalServiceCalled_Errors();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.log.AccessMethod <em>Access Method</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2669,6 +2845,64 @@ public interface LogPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EXTENDED_DATA_ADDED_TO_PROJECT__EXTENDED_DATA = eINSTANCE.getExtendedDataAddedToProject_ExtendedData();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.log.impl.ExternalServiceCalledImpl <em>External Service Called</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.log.impl.ExternalServiceCalledImpl
+		 * @see org.bimserver.models.log.impl.LogPackageImpl#getExternalServiceCalled()
+		 * @generated
+		 */
+		EClass EXTERNAL_SERVICE_CALLED = eINSTANCE.getExternalServiceCalled();
+
+		/**
+		 * The meta object literal for the '<em><b>Service</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXTERNAL_SERVICE_CALLED__SERVICE = eINSTANCE.getExternalServiceCalled_Service();
+
+		/**
+		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTERNAL_SERVICE_CALLED__STATE = eINSTANCE.getExternalServiceCalled_State();
+
+		/**
+		 * The meta object literal for the '<em><b>Percentage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTERNAL_SERVICE_CALLED__PERCENTAGE = eINSTANCE.getExternalServiceCalled_Percentage();
+
+		/**
+		 * The meta object literal for the '<em><b>Infos</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTERNAL_SERVICE_CALLED__INFOS = eINSTANCE.getExternalServiceCalled_Infos();
+
+		/**
+		 * The meta object literal for the '<em><b>Warnings</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTERNAL_SERVICE_CALLED__WARNINGS = eINSTANCE.getExternalServiceCalled_Warnings();
+
+		/**
+		 * The meta object literal for the '<em><b>Errors</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTERNAL_SERVICE_CALLED__ERRORS = eINSTANCE.getExternalServiceCalled_Errors();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.AccessMethod <em>Access Method</em>}' enum.

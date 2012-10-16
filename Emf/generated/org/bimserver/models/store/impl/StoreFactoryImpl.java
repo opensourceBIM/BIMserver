@@ -301,6 +301,12 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createArrayType();
 		case StorePackage.PARAMETER:
 			return (EObject) createParameter();
+		case StorePackage.IMMEDIATE_NOTIFICATION_RESULT:
+			return (EObject) createImmediateNotificationResult();
+		case StorePackage.EXTERNAL_SERVICE_UPDATE:
+			return (EObject) createExternalServiceUpdate();
+		case StorePackage.PERCENTAGE_CHANGE:
+			return (EObject) createPercentageChange();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -334,6 +340,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return createTriggerFromString(eDataType, initialValue);
 		case StorePackage.PRIMITIVE_ENUM:
 			return createPrimitiveEnumFromString(eDataType, initialValue);
+		case StorePackage.NOTIFICTION_RESULT_ENUM:
+			return createNotifictionResultEnumFromString(eDataType, initialValue);
 		case StorePackage.DATA_HANDLER:
 			return createDataHandlerFromString(eDataType, initialValue);
 		default:
@@ -369,6 +377,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return convertTriggerToString(eDataType, instanceValue);
 		case StorePackage.PRIMITIVE_ENUM:
 			return convertPrimitiveEnumToString(eDataType, instanceValue);
+		case StorePackage.NOTIFICTION_RESULT_ENUM:
+			return convertNotifictionResultEnumToString(eDataType, instanceValue);
 		case StorePackage.DATA_HANDLER:
 			return convertDataHandlerToString(eDataType, instanceValue);
 		default:
@@ -1171,6 +1181,36 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ImmediateNotificationResult createImmediateNotificationResult() {
+		ImmediateNotificationResultImpl immediateNotificationResult = new ImmediateNotificationResultImpl();
+		return immediateNotificationResult;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExternalServiceUpdate createExternalServiceUpdate() {
+		ExternalServiceUpdateImpl externalServiceUpdate = new ExternalServiceUpdateImpl();
+		return externalServiceUpdate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PercentageChange createPercentageChange() {
+		PercentageChangeImpl percentageChange = new PercentageChangeImpl();
+		return percentageChange;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public UserType createUserTypeFromString(EDataType eDataType, String initialValue) {
 		UserType result = UserType.get(initialValue);
 		if (result == null)
@@ -1373,6 +1413,27 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertPrimitiveEnumToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotifictionResultEnum createNotifictionResultEnumFromString(EDataType eDataType, String initialValue) {
+		NotifictionResultEnum result = NotifictionResultEnum.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertNotifictionResultEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

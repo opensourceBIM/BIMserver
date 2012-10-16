@@ -270,6 +270,15 @@ public interface LogFactory extends EFactory {
 	ExtendedDataAddedToProject createExtendedDataAddedToProject();
 
 	/**
+	 * Returns a new object of class '<em>External Service Called</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>External Service Called</em>'.
+	 * @generated
+	 */
+	ExternalServiceCalled createExternalServiceCalled();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

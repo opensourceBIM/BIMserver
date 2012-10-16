@@ -310,6 +310,15 @@ public class LogSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case LogPackage.EXTERNAL_SERVICE_CALLED: {
+			ExternalServiceCalled externalServiceCalled = (ExternalServiceCalled) theEObject;
+			T result = caseExternalServiceCalled(externalServiceCalled);
+			if (result == null)
+				result = caseLogAction(externalServiceCalled);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -702,6 +711,21 @@ public class LogSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseExtendedDataAddedToProject(ExtendedDataAddedToProject object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>External Service Called</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>External Service Called</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExternalServiceCalled(ExternalServiceCalled object) {
 		return null;
 	}
 
