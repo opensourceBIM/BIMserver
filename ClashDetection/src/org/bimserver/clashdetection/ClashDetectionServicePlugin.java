@@ -31,7 +31,9 @@ import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
+import org.bimserver.interfaces.objects.SImmediateNotificationResult;
 import org.bimserver.interfaces.objects.SNewRevisionAdded;
+import org.bimserver.interfaces.objects.SNotifictionResultEnum;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
@@ -81,7 +83,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		clashDetection.setTrigger(Trigger.NEW_REVISION);
 		
 		registerNewRevisionHandler(clashDetection, new NewRevisionHandler(){
-			public void newRevision(ServiceInterface serviceInterface, SNewRevisionAdded notification, SObjectType settings) throws ServerException, UserException {
+			public void newRevision(String uuid, ServiceInterface serviceInterface, SNewRevisionAdded notification, SObjectType settings) throws ServerException, UserException {
 				Bcf bcf = new Bcf();
 				
 				SSerializerPluginConfiguration sSerializer = serviceInterface.getSerializerByContentType("application/ifc");
@@ -210,6 +212,14 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+			}
+
+			@Override
+			public SImmediateNotificationResult getImmediateNotificationResult() {
+				SImmediateNotificationResult sImmediateNotificationResult = new SImmediateNotificationResult();
+				sImmediateNotificationResult.setResult(SNotifictionResultEnum.PROGRESS_UNKNOWN);
+				sImmediateNotificationResult.setDescription("Running ClashDetection");
+				return sImmediateNotificationResult;
 			}
 		});
 	}
