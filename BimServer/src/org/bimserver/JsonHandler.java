@@ -1,5 +1,6 @@
 package org.bimserver;
 
+import java.io.IOException;
 import java.io.Writer;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,17 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.json.JsonConverter;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
-import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
-import org.codehaus.jettison.json.JSONWriter;
+import org.slf4j.LoggerFactory;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.stream.JsonWriter;
 
 public class JsonHandler {
 	private BimServer bimServer;
@@ -28,32 +30,36 @@ public class JsonHandler {
 		converter = new JsonConverter(bimServer.getServicesMap());
 	}
 
-	public void execute(JSONObject incomingMessage, HttpServletRequest httpRequest, Writer out) throws JSONException {
-		JSONWriter jsonWriter = new JSONWriter(out);
+	public void execute(JsonObject incomingMessage, HttpServletRequest httpRequest, Writer out) throws IOException, JSONException {
+		JsonWriter jsonWriter = new JsonWriter(out);
+		JsonObject token = incomingMessage.has("token") ? incomingMessage.getAsJsonObject("token") : null;
 		if (incomingMessage.has("request")) {
-			processSingleRequest(incomingMessage.getJSONObject("request"), httpRequest, jsonWriter);
+			jsonWriter.beginObject();
+			jsonWriter.name("response");
+			processSingleRequest(incomingMessage.getAsJsonObject("request"), token, httpRequest, jsonWriter);
+			jsonWriter.endObject();
 		} else if (incomingMessage.has("requests")) {
-			processMultiRequest(incomingMessage.getJSONArray("requests"), httpRequest, jsonWriter);
+			processMultiRequest(incomingMessage.getAsJsonArray("requests"), token, httpRequest, jsonWriter);
 		}
 	}
 
-	private void processMultiRequest(JSONArray requests, HttpServletRequest httpRequest, JSONWriter out) throws JSONException {
-		out.object();
-		out.key("responses");
-		out.array();
-		for (int r = 0; r < requests.length(); r++) {
-			processSingleRequest(requests.getJSONObject(r), httpRequest, out);
+	private void processMultiRequest(JsonArray requests, JsonObject token, HttpServletRequest httpRequest, JsonWriter out) throws IOException, JSONException {
+		out.beginObject();
+		out.name("responses");
+		out.beginArray();
+		for (int r = 0; r < requests.size(); r++) {
+			processSingleRequest((JsonObject) requests.get(r), token, httpRequest, out);
 		}
 		out.endArray();
 		out.endObject();
 	}
 
-	private void processSingleRequest(JSONObject request, HttpServletRequest httpRequest, JSONWriter writer) throws JSONException {
+	private void processSingleRequest(JsonObject request, JsonObject token, HttpServletRequest httpRequest, JsonWriter writer) {
 		try {
-			String interfaceName = request.getString("interface");
+			String interfaceName = request.get("interface").getAsString();
 			@SuppressWarnings("unchecked")
 			Class<? extends PublicInterface> clazz = (Class<? extends PublicInterface>) Class.forName("org.bimserver.shared.interfaces." + interfaceName);
-			String methodName = request.getString("method");
+			String methodName = request.get("method").getAsString();
 			SService sService = bimServer.getServicesMap().get(interfaceName);
 			if (sService == null) {
 				throw new UserException("No service found with name " + interfaceName);
@@ -64,7 +70,7 @@ public class JsonHandler {
 			}
 			Object[] parameters = new Object[method.getParameters().size()];
 			if (request.has("parameters")) {
-				JSONObject parametersJson = request.getJSONObject("parameters");
+				JsonObject parametersJson = request.getAsJsonObject("parameters");
 				for (int i = 0; i < method.getParameters().size(); i++) {
 					SParameter parameter = method.getParameter(i);
 					if (parametersJson.has(parameter.getName())) {
@@ -73,40 +79,52 @@ public class JsonHandler {
 				}
 			}
 
-			Object service = getServiceInterface(httpRequest, bimServer, clazz, request);
+			Object service = getServiceInterface(httpRequest, bimServer, clazz, token);
 			Object result = method.invoke(service, parameters);
 			
 			// When we have managed to get here, no exceptions have been thrown. We can safely assume further serialization to JSON won't fail. So now we can start streaming
 			if (writer != null) {
 				if (result == null) {
-					writer.key("result");
-					writer.object();
+					writer.beginObject();
+					writer.name("result");
+					writer.beginObject();
+					writer.endObject();
 					writer.endObject();
 				} else {
+					writer.beginObject();
+					writer.name("result");
 					converter.toJson(result, writer);
+					writer.endObject();
 				}
 			}
 		} catch (Exception exception) {
-			JSONObject responseObject = new JSONObject();
-			ServiceException serviceException = (ServiceException)exception;
-			JSONObject exceptionJson = new JSONObject();
-			exceptionJson.put("message", exception.getMessage());
-			exceptionJson.put("__type", serviceException.getClass().getSimpleName());
-			responseObject.put("exception", exceptionJson);
+			LoggerFactory.getLogger(JsonHandler.class).error("", exception);
+			try {
+				writer.beginObject();
+				writer.name("exception");
+				writer.beginObject();
+				writer.name("__type");
+				writer.value(exception.getClass().getSimpleName());
+				writer.name("message");
+				writer.value(exception.getMessage());
+				writer.endObject();
+				writer.endObject();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
-	private <T extends PublicInterface> T getServiceInterface(HttpServletRequest httpRequest, BimServer bimServer, Class<T> interfaceClass, JSONObject request) throws JSONException, UserException, ServerException {
+	private <T extends PublicInterface> T getServiceInterface(HttpServletRequest httpRequest, BimServer bimServer, Class<T> interfaceClass, JsonObject jsonToken) throws JSONException, UserException, ServerException {
 		SToken token = httpRequest == null ? null : (SToken) httpRequest.getSession().getAttribute("token");
 		T service = null;
 		if (token == null) {
 			// There is no token in the HTTP Session, but we also allow the user
 			// to not use sessions and provide the token in the json request
-			if (request.has("token")) {
-				JSONObject jsonToken = request.getJSONObject("token");
+			if (jsonToken != null) {
 				token = new SToken();
-				token.setTokenString(jsonToken.getString("tokenString"));
-				token.setExpires(jsonToken.getLong("expires"));
+				token.setTokenString(jsonToken.get("tokenString").getAsString());
+				token.setExpires(jsonToken.get("expires").getAsLong());
 				service = bimServer.getServiceFactory().getService(interfaceClass, token);
 				token = service.getCurrentToken();
 			}

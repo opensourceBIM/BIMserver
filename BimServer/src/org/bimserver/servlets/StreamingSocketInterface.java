@@ -1,8 +1,8 @@
 package org.bimserver.servlets;
 
-import org.codehaus.jettison.json.JSONObject;
+import com.google.gson.JsonObject;
 
 public interface StreamingSocketInterface {
 
-	void send(JSONObject request);
+	void send(JsonObject request);
 }

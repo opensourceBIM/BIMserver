@@ -1,6 +1,5 @@
 package org.bimserver.servlets;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -9,12 +8,10 @@ import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.shared.meta.SClass;
@@ -25,9 +22,10 @@ import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.ServicesMap;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import org.codehaus.jettison.json.JSONTokener;
 
-import com.google.common.base.Charsets;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
 
 public class JsonApiServlet extends HttpServlet {
 	private static final long serialVersionUID = 186486233172374336L;
@@ -51,11 +49,9 @@ public class JsonApiServlet extends HttpServlet {
 	private void handleRequest(HttpServletRequest httpRequest, HttpServletResponse response, BimServer bimServer) {
 		try {
 			response.setCharacterEncoding("UTF-8");
-			ServletInputStream inputStream = httpRequest.getInputStream();
-			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			IOUtils.copy(inputStream, outputStream);
-			String incomingText = new String(outputStream.toByteArray(), Charsets.UTF_8);
-			JSONObject request = new JSONObject(new JSONTokener(incomingText));
+			JsonReader reader = new JsonReader(httpRequest.getReader());
+			JsonParser parser = new JsonParser();
+			JsonObject request = (JsonObject) parser.parse(reader);
 			response.setHeader("Content-Type", "application/json");
 
 			bimServer.getJsonHandler().execute(request, httpRequest, response.getWriter());
