@@ -19,11 +19,13 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.models.log.LogAction;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -39,6 +41,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.CheckoutImpl#getDate <em>Date</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.CheckoutImpl#getCheckin <em>Checkin</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.CheckoutImpl#getActive <em>Active</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.CheckoutImpl#getLogs <em>Logs</em>}</li>
  * </ul>
  * </p>
  *
@@ -180,6 +183,16 @@ public class CheckoutImpl extends IdEObjectImpl implements Checkout {
 	 */
 	public void setActive(Boolean newActive) {
 		eSet(StorePackage.Literals.CHECKOUT__ACTIVE, newActive);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<LogAction> getLogs() {
+		return (EList<LogAction>) eGet(StorePackage.Literals.CHECKOUT__LOGS, true);
 	}
 
 } //CheckoutImpl

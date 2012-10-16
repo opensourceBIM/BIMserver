@@ -19,6 +19,8 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.models.log.LogAction;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,6 +36,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.Checkout#getDate <em>Date</em>}</li>
  *   <li>{@link org.bimserver.models.store.Checkout#getCheckin <em>Checkin</em>}</li>
  *   <li>{@link org.bimserver.models.store.Checkout#getActive <em>Active</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Checkout#getLogs <em>Logs</em>}</li>
  * </ul>
  * </p>
  *
@@ -202,5 +205,21 @@ public interface Checkout extends IdEObject {
 	 * @generated
 	 */
 	void setActive(Boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Logs</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.log.LogAction}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Logs</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Logs</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getCheckout_Logs()
+	 * @model
+	 * @generated
+	 */
+	EList<LogAction> getLogs();
 
 } // Checkout

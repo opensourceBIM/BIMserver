@@ -122,6 +122,8 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 			return (EObject) createExtendedDataAddedToRevision();
 		case LogPackage.EXTENDED_DATA_ADDED_TO_PROJECT:
 			return (EObject) createExtendedDataAddedToProject();
+		case LogPackage.EXTERNAL_SERVICE_CALLED:
+			return (EObject) createExternalServiceCalled();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -415,6 +417,16 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	public ExtendedDataAddedToProject createExtendedDataAddedToProject() {
 		ExtendedDataAddedToProjectImpl extendedDataAddedToProject = new ExtendedDataAddedToProjectImpl();
 		return extendedDataAddedToProject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExternalServiceCalled createExternalServiceCalled() {
+		ExternalServiceCalledImpl externalServiceCalled = new ExternalServiceCalledImpl();
+		return externalServiceCalled;
 	}
 
 	/**

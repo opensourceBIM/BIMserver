@@ -476,6 +476,21 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseImmediateNotificationResult(ImmediateNotificationResult object) {
+			return createImmediateNotificationResultAdapter();
+		}
+
+		@Override
+		public Adapter caseExternalServiceUpdate(ExternalServiceUpdate object) {
+			return createExternalServiceUpdateAdapter();
+		}
+
+		@Override
+		public Adapter casePercentageChange(PercentageChange object) {
+			return createPercentageChangeAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -1597,6 +1612,48 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ImmediateNotificationResult <em>Immediate Notification Result</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ImmediateNotificationResult
+	 * @generated
+	 */
+	public Adapter createImmediateNotificationResultAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ExternalServiceUpdate <em>External Service Update</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ExternalServiceUpdate
+	 * @generated
+	 */
+	public Adapter createExternalServiceUpdateAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.PercentageChange <em>Percentage Change</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.PercentageChange
+	 * @generated
+	 */
+	public Adapter createPercentageChangeAdapter() {
 		return null;
 	}
 

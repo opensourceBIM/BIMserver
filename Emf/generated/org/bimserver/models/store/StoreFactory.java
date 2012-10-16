@@ -747,6 +747,33 @@ public interface StoreFactory extends EFactory {
 	Parameter createParameter();
 
 	/**
+	 * Returns a new object of class '<em>Immediate Notification Result</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Immediate Notification Result</em>'.
+	 * @generated
+	 */
+	ImmediateNotificationResult createImmediateNotificationResult();
+
+	/**
+	 * Returns a new object of class '<em>External Service Update</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>External Service Update</em>'.
+	 * @generated
+	 */
+	ExternalServiceUpdate createExternalServiceUpdate();
+
+	/**
+	 * Returns a new object of class '<em>Percentage Change</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Percentage Change</em>'.
+	 * @generated
+	 */
+	PercentageChange createPercentageChange();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

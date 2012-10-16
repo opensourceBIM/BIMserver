@@ -19,6 +19,7 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.models.log.LogAction;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
@@ -58,6 +59,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getExportLengthMeasurePrefix <em>Export Length Measure Prefix</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getExtendedData <em>Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getServices <em>Services</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getLogs <em>Logs</em>}</li>
  * </ul>
  * </p>
  *
@@ -359,6 +361,16 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	@SuppressWarnings("unchecked")
 	public EList<Service> getServices() {
 		return (EList<Service>) eGet(StorePackage.Literals.PROJECT__SERVICES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<LogAction> getLogs() {
+		return (EList<LogAction>) eGet(StorePackage.Literals.PROJECT__LOGS, true);
 	}
 
 } //ProjectImpl

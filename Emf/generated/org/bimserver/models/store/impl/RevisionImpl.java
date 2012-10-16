@@ -19,6 +19,7 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.models.log.LogAction;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
@@ -52,6 +53,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLaid <em>Laid</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getSummary <em>Summary</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getExtendedData <em>Extended Data</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLogs <em>Logs</em>}</li>
  * </ul>
  * </p>
  *
@@ -331,6 +333,16 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	@SuppressWarnings("unchecked")
 	public EList<ExtendedData> getExtendedData() {
 		return (EList<ExtendedData>) eGet(StorePackage.Literals.REVISION__EXTENDED_DATA, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<LogAction> getLogs() {
+		return (EList<LogAction>) eGet(StorePackage.Literals.REVISION__LOGS, true);
 	}
 
 } //RevisionImpl

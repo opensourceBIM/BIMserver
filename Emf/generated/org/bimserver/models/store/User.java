@@ -19,6 +19,7 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.models.log.LogAction;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -46,6 +47,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.User#getSchemas <em>Schemas</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getExtendedData <em>Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getServices <em>Services</em>}</li>
+ *   <li>{@link org.bimserver.models.store.User#getLogs <em>Logs</em>}</li>
  * </ul>
  * </p>
  *
@@ -462,5 +464,21 @@ public interface User extends IdEObject {
 	 * @generated
 	 */
 	EList<Service> getServices();
+
+	/**
+	 * Returns the value of the '<em><b>Logs</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.log.LogAction}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Logs</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Logs</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getUser_Logs()
+	 * @model
+	 * @generated
+	 */
+	EList<LogAction> getLogs();
 
 } // User

@@ -59,6 +59,7 @@
         eType="#//ExtendedData" eOpposite="#//ExtendedData/project"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="services" upperBound="-1"
         eType="#//Service" eOpposite="#//Service/project"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="logs" upperBound="-1" eType="ecore:EClass log#//LogAction"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="User">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -84,6 +85,7 @@
         eType="#//ExtendedData" eOpposite="#//ExtendedData/user"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="services" upperBound="-1"
         eType="#//Service" eOpposite="#//Service/user"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="logs" upperBound="-1" eType="ecore:EClass log#//LogAction"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Revision">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -105,6 +107,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="summary" eType="#//RevisionSummary"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
         eType="#//ExtendedData" eOpposite="#//ExtendedData/revision"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="logs" upperBound="-1" eType="ecore:EClass log#//LogAction"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConcreteRevision">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -137,6 +140,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="checkin" eType="#//Revision"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="active" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="logs" upperBound="-1" eType="ecore:EClass log#//LogAction"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ServerSettings">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="showVersionUpgradeAvailable"
@@ -636,5 +640,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Type">
       <eAnnotations source="embedsreference"/>
     </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="NotifictionResultEnum">
+    <eLiterals name="ERROR"/>
+    <eLiterals name="SUCCESS" value="1"/>
+    <eLiterals name="PROGRESS_UNKNOWN" value="2"/>
+    <eLiterals name="PROGRESS_PERCENTAGE" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImmediateNotificationResult">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="result" eType="#//NotifictionResultEnum"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExternalServiceUpdate"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PercentageChange" eSuperTypes="#//ExternalServiceUpdate">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="percentage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
 </ecore:EPackage>

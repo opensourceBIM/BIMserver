@@ -244,13 +244,22 @@ public interface StorePackage extends EPackage {
 	int PROJECT__SERVICES = 17;
 
 	/**
+	 * The feature id for the '<em><b>Logs</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__LOGS = 18;
+
+	/**
 	 * The number of structural features of the '<em>Project</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_FEATURE_COUNT = 18;
+	int PROJECT_FEATURE_COUNT = 19;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserImpl <em>User</em>}' class.
@@ -416,13 +425,22 @@ public interface StorePackage extends EPackage {
 	int USER__SERVICES = 16;
 
 	/**
+	 * The feature id for the '<em><b>Logs</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__LOGS = 17;
+
+	/**
 	 * The number of structural features of the '<em>User</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_FEATURE_COUNT = 17;
+	int USER_FEATURE_COUNT = 18;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.RevisionImpl <em>Revision</em>}' class.
@@ -570,13 +588,22 @@ public interface StorePackage extends EPackage {
 	int REVISION__EXTENDED_DATA = 14;
 
 	/**
+	 * The feature id for the '<em><b>Logs</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION__LOGS = 15;
+
+	/**
 	 * The number of structural features of the '<em>Revision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_FEATURE_COUNT = 15;
+	int REVISION_FEATURE_COUNT = 16;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -816,13 +843,22 @@ public interface StorePackage extends EPackage {
 	int CHECKOUT__ACTIVE = 5;
 
 	/**
+	 * The feature id for the '<em><b>Logs</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKOUT__LOGS = 6;
+
+	/**
 	 * The number of structural features of the '<em>Checkout</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHECKOUT_FEATURE_COUNT = 6;
+	int CHECKOUT_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServerSettingsImpl <em>Server Settings</em>}' class.
@@ -5029,6 +5065,90 @@ public interface StorePackage extends EPackage {
 	int PARAMETER_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ImmediateNotificationResultImpl <em>Immediate Notification Result</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ImmediateNotificationResultImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getImmediateNotificationResult()
+	 * @generated
+	 */
+	int IMMEDIATE_NOTIFICATION_RESULT = 79;
+
+	/**
+	 * The feature id for the '<em><b>Result</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMMEDIATE_NOTIFICATION_RESULT__RESULT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMMEDIATE_NOTIFICATION_RESULT__DESCRIPTION = 1;
+
+	/**
+	 * The number of structural features of the '<em>Immediate Notification Result</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMMEDIATE_NOTIFICATION_RESULT_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ExternalServiceUpdateImpl <em>External Service Update</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ExternalServiceUpdateImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExternalServiceUpdate()
+	 * @generated
+	 */
+	int EXTERNAL_SERVICE_UPDATE = 80;
+
+	/**
+	 * The number of structural features of the '<em>External Service Update</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_SERVICE_UPDATE_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.PercentageChangeImpl <em>Percentage Change</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.PercentageChangeImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPercentageChange()
+	 * @generated
+	 */
+	int PERCENTAGE_CHANGE = 81;
+
+	/**
+	 * The feature id for the '<em><b>Percentage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERCENTAGE_CHANGE__PERCENTAGE = EXTERNAL_SERVICE_UPDATE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Percentage Change</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERCENTAGE_CHANGE_FEATURE_COUNT = EXTERNAL_SERVICE_UPDATE_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5036,7 +5156,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 79;
+	int USER_TYPE = 82;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -5046,7 +5166,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 80;
+	int SI_PREFIX = 83;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -5056,7 +5176,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 81;
+	int OBJECT_STATE = 84;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -5066,7 +5186,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 82;
+	int COMPARE_TYPE = 85;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -5076,7 +5196,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 83;
+	int ACTION_STATE = 86;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -5086,7 +5206,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 84;
+	int SERVER_STATE = 87;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinStatus <em>Checkin Status</em>}' enum.
@@ -5096,7 +5216,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinStatus()
 	 * @generated
 	 */
-	int CHECKIN_STATUS = 85;
+	int CHECKIN_STATUS = 88;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
@@ -5106,7 +5226,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA_TYPE = 86;
+	int EXTENDED_DATA_SCHEMA_TYPE = 89;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
@@ -5116,7 +5236,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 87;
+	int TRIGGER = 90;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.
@@ -5126,7 +5246,17 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_ENUM = 88;
+	int PRIMITIVE_ENUM = 91;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.NotifictionResultEnum
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotifictionResultEnum()
+	 * @generated
+	 */
+	int NOTIFICTION_RESULT_ENUM = 92;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -5136,7 +5266,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 89;
+	int DATA_HANDLER = 93;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -5347,6 +5477,17 @@ public interface StorePackage extends EPackage {
 	EReference getProject_Services();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Project#getLogs <em>Logs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Logs</em>'.
+	 * @see org.bimserver.models.store.Project#getLogs()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EReference getProject_Logs();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.User <em>User</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5544,6 +5685,17 @@ public interface StorePackage extends EPackage {
 	EReference getUser_Services();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.User#getLogs <em>Logs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Logs</em>'.
+	 * @see org.bimserver.models.store.User#getLogs()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EReference getUser_Logs();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Revision <em>Revision</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5717,6 +5869,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRevision_ExtendedData();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Revision#getLogs <em>Logs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Logs</em>'.
+	 * @see org.bimserver.models.store.Revision#getLogs()
+	 * @see #getRevision()
+	 * @generated
+	 */
+	EReference getRevision_Logs();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ConcreteRevision <em>Concrete Revision</em>}'.
@@ -5978,6 +6141,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getCheckout_Active();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Checkout#getLogs <em>Logs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Logs</em>'.
+	 * @see org.bimserver.models.store.Checkout#getLogs()
+	 * @see #getCheckout()
+	 * @generated
+	 */
+	EReference getCheckout_Logs();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ServerSettings <em>Server Settings</em>}'.
@@ -9174,6 +9348,69 @@ public interface StorePackage extends EPackage {
 	EReference getParameter_Value();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ImmediateNotificationResult <em>Immediate Notification Result</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Immediate Notification Result</em>'.
+	 * @see org.bimserver.models.store.ImmediateNotificationResult
+	 * @generated
+	 */
+	EClass getImmediateNotificationResult();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ImmediateNotificationResult#getResult <em>Result</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Result</em>'.
+	 * @see org.bimserver.models.store.ImmediateNotificationResult#getResult()
+	 * @see #getImmediateNotificationResult()
+	 * @generated
+	 */
+	EAttribute getImmediateNotificationResult_Result();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ImmediateNotificationResult#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.bimserver.models.store.ImmediateNotificationResult#getDescription()
+	 * @see #getImmediateNotificationResult()
+	 * @generated
+	 */
+	EAttribute getImmediateNotificationResult_Description();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ExternalServiceUpdate <em>External Service Update</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>External Service Update</em>'.
+	 * @see org.bimserver.models.store.ExternalServiceUpdate
+	 * @generated
+	 */
+	EClass getExternalServiceUpdate();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.PercentageChange <em>Percentage Change</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Percentage Change</em>'.
+	 * @see org.bimserver.models.store.PercentageChange
+	 * @generated
+	 */
+	EClass getPercentageChange();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PercentageChange#getPercentage <em>Percentage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Percentage</em>'.
+	 * @see org.bimserver.models.store.PercentageChange#getPercentage()
+	 * @see #getPercentageChange()
+	 * @generated
+	 */
+	EAttribute getPercentageChange_Percentage();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9272,6 +9509,16 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getPrimitiveEnum();
+
+	/**
+	 * Returns the meta object for enum '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Notifiction Result Enum</em>'.
+	 * @see org.bimserver.models.store.NotifictionResultEnum
+	 * @generated
+	 */
+	EEnum getNotifictionResultEnum();
 
 	/**
 	 * Returns the meta object for data type '{@link javax.activation.DataHandler <em>Data Handler</em>}'.
@@ -9461,6 +9708,14 @@ public interface StorePackage extends EPackage {
 		EReference PROJECT__SERVICES = eINSTANCE.getProject_Services();
 
 		/**
+		 * The meta object literal for the '<em><b>Logs</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROJECT__LOGS = eINSTANCE.getProject_Logs();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.UserImpl <em>User</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9607,6 +9862,14 @@ public interface StorePackage extends EPackage {
 		EReference USER__SERVICES = eINSTANCE.getUser_Services();
 
 		/**
+		 * The meta object literal for the '<em><b>Logs</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER__LOGS = eINSTANCE.getUser_Logs();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.RevisionImpl <em>Revision</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9735,6 +9998,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference REVISION__EXTENDED_DATA = eINSTANCE.getRevision_ExtendedData();
+
+		/**
+		 * The meta object literal for the '<em><b>Logs</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REVISION__LOGS = eINSTANCE.getRevision_Logs();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -9933,6 +10204,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CHECKOUT__ACTIVE = eINSTANCE.getCheckout_Active();
+
+		/**
+		 * The meta object literal for the '<em><b>Logs</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHECKOUT__LOGS = eINSTANCE.getCheckout_Logs();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServerSettingsImpl <em>Server Settings</em>}' class.
@@ -12457,6 +12736,60 @@ public interface StorePackage extends EPackage {
 		EReference PARAMETER__VALUE = eINSTANCE.getParameter_Value();
 
 		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ImmediateNotificationResultImpl <em>Immediate Notification Result</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ImmediateNotificationResultImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getImmediateNotificationResult()
+		 * @generated
+		 */
+		EClass IMMEDIATE_NOTIFICATION_RESULT = eINSTANCE.getImmediateNotificationResult();
+
+		/**
+		 * The meta object literal for the '<em><b>Result</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMMEDIATE_NOTIFICATION_RESULT__RESULT = eINSTANCE.getImmediateNotificationResult_Result();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMMEDIATE_NOTIFICATION_RESULT__DESCRIPTION = eINSTANCE.getImmediateNotificationResult_Description();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ExternalServiceUpdateImpl <em>External Service Update</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ExternalServiceUpdateImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getExternalServiceUpdate()
+		 * @generated
+		 */
+		EClass EXTERNAL_SERVICE_UPDATE = eINSTANCE.getExternalServiceUpdate();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.PercentageChangeImpl <em>Percentage Change</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.PercentageChangeImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getPercentageChange()
+		 * @generated
+		 */
+		EClass PERCENTAGE_CHANGE = eINSTANCE.getPercentageChange();
+
+		/**
+		 * The meta object literal for the '<em><b>Percentage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PERCENTAGE_CHANGE__PERCENTAGE = eINSTANCE.getPercentageChange_Percentage();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -12555,6 +12888,16 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum PRIMITIVE_ENUM = eINSTANCE.getPrimitiveEnum();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.NotifictionResultEnum
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotifictionResultEnum()
+		 * @generated
+		 */
+		EEnum NOTIFICTION_RESULT_ENUM = eINSTANCE.getNotifictionResultEnum();
 
 		/**
 		 * The meta object literal for the '<em>Data Handler</em>' data type.
