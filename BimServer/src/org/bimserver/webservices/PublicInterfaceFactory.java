@@ -70,7 +70,11 @@ public class PublicInterfaceFactory implements ServiceFactory {
 	}
 
 	public synchronized <T extends PublicInterface> T getService(Class<T> publicInterface, SToken token) throws UserException {
-		return tokens.get(new TokenWrapper(token)).get(publicInterface);
+		InterfaceMap interfaceMap = tokens.get(new TokenWrapper(token));
+		if (interfaceMap == null) {
+			throw new UserException("Invalid token");
+		}
+		return interfaceMap.get(publicInterface);
 	}
 
 	public synchronized void cleanup() {

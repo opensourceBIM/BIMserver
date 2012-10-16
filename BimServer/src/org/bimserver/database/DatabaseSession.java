@@ -86,7 +86,7 @@ import com.sleepycat.je.TransactionTimeoutException;
 
 public class DatabaseSession implements LazyLoader, OidProvider {
 	private static final int DEFAULT_CONFLICT_RETRIES = 10;
-	private static boolean DEVELOPER_DEBUG = true;
+	private static boolean DEVELOPER_DEBUG = false;
 	private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseSession.class);
 	private static final EcorePackage ECORE_PACKAGE = EcorePackage.eINSTANCE;
 	public static final String WRAPPED_VALUE = "wrappedValue";

@@ -79,7 +79,7 @@ public class JsonHandler {
 				}
 			}
 
-			Object service = getServiceInterface(httpRequest, bimServer, clazz, token);
+			Object service = getServiceInterface(httpRequest, bimServer, clazz, methodName, token);
 			Object result = method.invoke(service, parameters);
 			
 			// When we have managed to get here, no exceptions have been thrown. We can safely assume further serialization to JSON won't fail. So now we can start streaming
@@ -115,8 +115,11 @@ public class JsonHandler {
 		}
 	}
 
-	private <T extends PublicInterface> T getServiceInterface(HttpServletRequest httpRequest, BimServer bimServer, Class<T> interfaceClass, JsonObject jsonToken) throws JSONException, UserException, ServerException {
+	private <T extends PublicInterface> T getServiceInterface(HttpServletRequest httpRequest, BimServer bimServer, Class<T> interfaceClass, String methodName, JsonObject jsonToken) throws JSONException, UserException, ServerException {
 		SToken token = httpRequest == null ? null : (SToken) httpRequest.getSession().getAttribute("token");
+		if (methodName.equals("login") || methodName.equals("autologin")) {
+			return bimServer.getServiceFactory().newServiceMap(AccessMethod.INTERNAL, "").get(interfaceClass);
+		}
 		T service = null;
 		if (token == null) {
 			// There is no token in the HTTP Session, but we also allow the user
