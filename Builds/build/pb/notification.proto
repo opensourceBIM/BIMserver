@@ -79,8 +79,9 @@ message GetServiceResponse {
 message NewLogActionRequest {
 	optional SLogAction logAction = 1;
 	optional string serviceIdentifier = 2;
-	optional SToken token = 3;
-	optional string apiUrl = 4;
+	optional string profileIdentifer = 3;
+	optional SToken token = 4;
+	optional string apiUrl = 5;
 }
 
 message ProgressRequest {

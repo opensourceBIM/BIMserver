@@ -1,6 +1,5 @@
 package org.bimserver.servlets;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
@@ -8,18 +7,18 @@ import java.nio.CharBuffer;
 
 import org.apache.catalina.websocket.StreamInbound;
 import org.apache.catalina.websocket.WsOutbound;
-import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
 import org.bimserver.interfaces.NotificationInterfaceReflectorImpl;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.json.JsonReflector;
 import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
-import org.codehaus.jettison.json.JSONTokener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.base.Charsets;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.stream.JsonReader;
 
 public class TomcatStreamInbound extends StreamInbound implements EndPoint, StreamingSocketInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(TomcatStreamInbound.class);
@@ -39,13 +38,9 @@ public class TomcatStreamInbound extends StreamInbound implements EndPoint, Stre
 	@Override
 	protected void onOpen(WsOutbound outbound) {
 		this.outbound = outbound;
-		try {
-			JSONObject welcome = new JSONObject();
-			welcome.put("endpointid", endpointid);
-			send(welcome);
-		} catch (JSONException e) {
-			LOGGER.error("", e);
-		}
+		JsonObject welcome = new JsonObject();
+		welcome.add("endpointid", new JsonPrimitive(endpointid));
+		send(welcome);
 	}
 	
 	@Override
@@ -64,7 +59,7 @@ public class TomcatStreamInbound extends StreamInbound implements EndPoint, Stre
 	}
 
 	@Override
-	public void send(JSONObject request) {
+	public void send(JsonObject request) {
 		CharBuffer charBuffer = CharBuffer.wrap(request.toString().toCharArray());
 		try {
 			outbound.writeTextMessage(charBuffer);
@@ -76,9 +71,9 @@ public class TomcatStreamInbound extends StreamInbound implements EndPoint, Stre
 	@Override
 	protected void onTextData(Reader reader) throws IOException {
 		try {
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			IOUtils.copy(reader, baos);
-			JSONObject request = new JSONObject(new JSONTokener(new String(baos.toByteArray(), Charsets.UTF_8)));
+			JsonReader jsonreader = new JsonReader(reader);
+			JsonParser parser = new JsonParser();
+			JsonObject request = (JsonObject) parser.parse(jsonreader);
 			bimServer.getJsonHandler().execute(request, null, null);
 		} catch (JSONException e) {
 			LOGGER.error("", e);

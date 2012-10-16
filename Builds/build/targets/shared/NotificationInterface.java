@@ -36,6 +36,7 @@ public interface NotificationInterface extends PublicInterface {
 	void newLogAction(
 		@WebParam(name = "logAction", partName = "newLogAction.logAction") SLogAction logAction,
 		@WebParam(name = "serviceIdentifier", partName = "newLogAction.serviceIdentifier") String serviceIdentifier,
+		@WebParam(name = "profileIdentifer", partName = "newLogAction.profileIdentifer") String profileIdentifer,
 		@WebParam(name = "token", partName = "newRevision.token") SToken token,
 		@WebParam(name = "apiUrl", partName = "newRevision.apiUrl") String apiUrl) throws UserException, ServerException;
 

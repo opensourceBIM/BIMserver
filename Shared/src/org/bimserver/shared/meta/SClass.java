@@ -236,7 +236,7 @@ public class SClass {
 	}
 
 	public boolean isList() {
-		return false;
+		return name.equals("java.util.List");
 	}
 
 	public String getPrintableName() {
@@ -277,5 +277,13 @@ public class SClass {
 
 	public boolean isFloat() {
 		return name.equals("java.lang.Float") || name.equals("float");
+	}
+
+	public boolean isInteger() {
+		return name.equals("java.lang.Integer") || name.equals("int");
+	}
+
+	public boolean isVoid() {
+		return name.equals("void") || name.equals("Void");
 	}
 }

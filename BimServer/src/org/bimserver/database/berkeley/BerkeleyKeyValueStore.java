@@ -18,6 +18,7 @@ package org.bimserver.database.berkeley;
  *****************************************************************************/
 
 import java.io.File;
+import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -349,7 +350,15 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 			Database database = getDatabase(tableName);
 			OperationStatus putNoOverwrite = database.putNoOverwrite(getTransaction(databaseSession), dbKey, dbValue);
 			if (putNoOverwrite == OperationStatus.KEYEXIST) {
-				throw new BimserverConcurrentModificationDatabaseException("Key exists");
+				ByteBuffer keyBuffer = ByteBuffer.wrap(key);
+				if (key.length == 16) {
+					int pid = keyBuffer.getInt();
+					long oid = keyBuffer.getLong();
+					int rid = -keyBuffer.getInt();
+					throw new BimserverConcurrentModificationDatabaseException("Key exists: pid: " + pid + ", oid: " + oid + ", rid: " + rid);
+				} else {
+					throw new BimserverConcurrentModificationDatabaseException("Key exists: " );
+				}
 			}
 		} catch (LockConflictException e) {
 			throw new BimserverLockConflictException(e);

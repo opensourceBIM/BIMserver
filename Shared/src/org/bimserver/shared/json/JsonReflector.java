@@ -6,9 +6,10 @@ import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.reflector.KeyValuePair;
 import org.bimserver.shared.reflector.Reflector;
-import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 
 public abstract class JsonReflector implements Reflector {
 
@@ -23,26 +24,23 @@ public abstract class JsonReflector implements Reflector {
 	@Override
 	public Object callMethod(String interfaceName, String methodName, Class<?> definedReturnType, KeyValuePair... args) throws ServerException, UserException {
 		try {
-			JSONObject request = new JSONObject();
-			request.put("interface", interfaceName);
-			request.put("method", methodName);
-			JSONObject parameters = new JSONObject();
+			JsonObject request = new JsonObject();
+			request.add("interface", new JsonPrimitive(interfaceName));
+			request.add("method", new JsonPrimitive(methodName));
+			JsonObject parameters = new JsonObject();
 			for (KeyValuePair arg : args) {
-				parameters.put(arg.getFieldName(), converter.toJson(arg.getValue()));
+				parameters.add(arg.getFieldName(), converter.toJson(arg.getValue()));
 			}
-			request.put("parameters", parameters);
-			JSONObject requestObject = new JSONObject();
-			JSONArray requests = new JSONArray();
-			requests.put(request);
-			requestObject.put("requests", requests);
-			JSONObject jsonResult = call(requestObject);
+			request.add("parameters", parameters);
+			JsonObject requestObject = new JsonObject();
+			requestObject.add("request", request);
+			JsonObject jsonResult = call(requestObject);
 			if (!isOneWay()) {
-				JSONArray responses = jsonResult.getJSONArray("responses");
-				JSONObject response = responses.getJSONObject(0);
+				JsonObject response = jsonResult.getAsJsonObject("response");
 				if (response.has("exception")) {
-					JSONObject exceptionJson = response.getJSONObject("exception");
-					String exceptionType = exceptionJson.getString("__type");
-					String message = exceptionJson.has("message") ? exceptionJson.getString("message") : "unknown";
+					JsonObject exceptionJson = response.getAsJsonObject("exception");
+					String exceptionType = exceptionJson.get("__type").getAsString();
+					String message = exceptionJson.has("message") ? exceptionJson.get("message").getAsString() : "unknown";
 					if (exceptionType.equals(UserException.class.getSimpleName())) {
 						throw new UserException(message);
 					} else if (exceptionType.equals(ServerException.class.getSimpleName())) {
@@ -70,5 +68,5 @@ public abstract class JsonReflector implements Reflector {
 		return false;
 	}
 
-	public abstract JSONObject call(JSONObject request) throws JSONException;
+	public abstract JsonObject call(JsonObject request) throws JSONException;
 }

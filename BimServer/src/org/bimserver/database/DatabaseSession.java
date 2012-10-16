@@ -86,7 +86,7 @@ import com.sleepycat.je.TransactionTimeoutException;
 
 public class DatabaseSession implements LazyLoader, OidProvider {
 	private static final int DEFAULT_CONFLICT_RETRIES = 10;
-	private static boolean DEVELOPER_DEBUG = false;
+	private static boolean DEVELOPER_DEBUG = true;
 	private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseSession.class);
 	private static final EcorePackage ECORE_PACKAGE = EcorePackage.eINSTANCE;
 	public static final String WRAPPED_VALUE = "wrappedValue";
@@ -200,7 +200,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 					throw new BimserverDatabaseException("Cannot store object with oid -1");
 				}
 				fillKeyBuffer(keyBuffer, object);
-				if (DEVELOPER_DEBUG && StorePackage.eINSTANCE == object.eClass().getEPackage()) {
+				if (DEVELOPER_DEBUG) {
 					LOGGER.info("Write: " + object.eClass().getName() + " " + "pid=" + object.getPid() + " oid=" + object.getOid() + " rid=" + object.getRid());
 				}
 				database.getKeyValueStore().storeNoOverwrite(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(),

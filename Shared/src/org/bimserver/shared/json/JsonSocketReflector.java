@@ -1,10 +1,8 @@
 package org.bimserver.shared.json;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.InputStreamReader;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
@@ -22,10 +20,11 @@ import org.bimserver.shared.TokenAuthentication;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.meta.ServicesMap;
 import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
-import org.codehaus.jettison.json.JSONTokener;
 
 import com.google.common.base.Charsets;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
 
 public class JsonSocketReflector extends JsonReflector {
 
@@ -49,7 +48,7 @@ public class JsonSocketReflector extends JsonReflector {
 		httpclient.getConnectionManager().shutdown();
 	}
 	
-	public JSONObject call(JSONObject request) throws JSONException {
+	public JsonObject call(JsonObject request) throws JSONException {
 		try {
 			if (useHttpSession) {
 				if (authenticationInfo != null && authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
@@ -66,21 +65,20 @@ public class JsonSocketReflector extends JsonReflector {
 				}
 				if (token != null) {
 					// But we have to provide the token ourselves
-					JSONObject tokenObject = new JSONObject();
-					tokenObject.put("tokenString", token.getTokenString());
-					tokenObject.put("expires", token.getExpires());
-					request.put("token", tokenObject);
+					JsonObject tokenObject = new JsonObject();
+					tokenObject.add("tokenString", new JsonPrimitive(token.getTokenString()));
+					tokenObject.add("expires", new JsonPrimitive(token.getExpires()));
+					request.add("token", tokenObject);
 				}
 			}
 			HttpPost httppost = new HttpPost(remoteAddress);
-			httppost.setEntity(new StringEntity(request.toString(2)));
+			httppost.setEntity(new StringEntity(request.toString()));
 
 			HttpResponse response = httpclient.execute(httppost, context);
 			HttpEntity resultEntity = response.getEntity();
-			InputStream inputStream = resultEntity.getContent();
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			IOUtils.copy(inputStream, baos);
-			JSONObject resultObject = new JSONObject(new JSONTokener(new String(baos.toByteArray(), Charsets.UTF_8)));
+			
+			JsonParser parser = new JsonParser();
+			JsonObject resultObject = (JsonObject) parser.parse(new InputStreamReader(resultEntity.getContent(), Charsets.UTF_8));
 			return resultObject;
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();

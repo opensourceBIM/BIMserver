@@ -1,16 +1,21 @@
 package org.bimserver.servlets;
 
 import java.io.IOException;
+import java.io.StringReader;
 
+import org.apache.commons.io.output.NullWriter;
 import org.bimserver.BimServer;
 import org.bimserver.interfaces.NotificationInterfaceReflectorImpl;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
-import org.codehaus.jettison.json.JSONTokener;
 import org.eclipse.jetty.websocket.WebSocket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.stream.JsonReader;
 
 public class StreamingSocket implements WebSocket.OnTextMessage, EndPoint, StreamingSocketInterface {
 
@@ -35,26 +40,26 @@ public class StreamingSocket implements WebSocket.OnTextMessage, EndPoint, Strea
 	@Override
 	public void onOpen(Connection connection) {
 		this.connection = connection;
-		try {
-			JSONObject welcome = new JSONObject();
-			welcome.put("endpointid", endpointid);
-			send(welcome);
-		} catch (JSONException e) {
-			LOGGER.error("", e);
-		}
+		JsonObject welcome = new JsonObject();
+		welcome.add("endpointid", new JsonPrimitive(endpointid));
+		send(welcome);
 	}
 
 	@Override
 	public void onMessage(String message) {
 		try {
-			JSONObject request = new JSONObject(new JSONTokener(message));
-			bimServer.getJsonHandler().execute(request, null, null);
+			JsonReader reader = new JsonReader(new StringReader(message));
+			JsonParser parser = new JsonParser();
+			JsonObject request = (JsonObject) parser.parse(reader);
+			bimServer.getJsonHandler().execute(request, null, new NullWriter());
 		} catch (JSONException e) {
+			LOGGER.error("", e);
+		} catch (IOException e) {
 			LOGGER.error("", e);
 		}
 	}
 
-	public void send(JSONObject object) {
+	public void send(JsonObject object) {
 		try {
 //			LOGGER.info("sending " + object.toString(2));
 			connection.sendMessage(object.toString());
