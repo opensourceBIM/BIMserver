@@ -33,7 +33,7 @@ import org.apache.cxf.jaxb.JAXBDataBinding;
 import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
 import org.apache.cxf.transport.servlet.CXFNonSpringServlet;
 import org.bimserver.BimServer;
-import org.bimserver.models.store.Token;
+import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.webservices.CustomInvoker;
 import org.slf4j.Logger;
@@ -53,7 +53,7 @@ public class WebServiceServlet extends CXFNonSpringServlet {
 		headerManager.registerHeaderProcessor(new HeaderProcessor() {
 			@Override
 			public String getNamespace() {
-				return "uri:org.bimserver";
+				return "uri:org.bimserver.interfaces.objects";
 			}
 			
 			@Override
@@ -64,7 +64,7 @@ public class WebServiceServlet extends CXFNonSpringServlet {
 			@Override
 			public DataBinding getDataBinding() {
 				try {
-					return new JAXBDataBinding(Token.class);
+					return new JAXBDataBinding(SToken.class);
 				} catch (JAXBException e) {
 					LOGGER.error("", e);
 				}

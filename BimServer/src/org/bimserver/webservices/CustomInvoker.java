@@ -26,8 +26,8 @@ import org.apache.cxf.message.Exchange;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.service.invoker.AbstractInvoker;
 import org.apache.cxf.transport.http.AbstractHTTPDestination;
+import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.Token;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
@@ -49,13 +49,13 @@ public class CustomInvoker extends AbstractInvoker {
 		HttpServletRequest httpRequest = (HttpServletRequest) inMessage.get(AbstractHTTPDestination.HTTP_REQUEST);
 		if (inMessage instanceof SoapMessage) {
 			SoapMessage soapMessage = (SoapMessage) inMessage;
-			Header header = soapMessage.getHeader(new QName("uri:org.bimserver", "token"));
-			Token token = null;
+			Header header = soapMessage.getHeader(new QName("uri:org.bimserver.interfaces.objects", "token"));
+			SToken token = null;
 			if (header != null) {
-				token = (Token) header.getObject();
+				token = (SToken) header.getObject();
 			}
 			if (token == null) {
-				token = (Token) context.getSession().get("token");
+				token = (SToken) context.getSession().get("token");
 			}
 			if (token != null) {
 				try {

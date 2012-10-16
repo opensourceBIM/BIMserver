@@ -33,7 +33,6 @@ import org.apache.cxf.jaxb.JAXBDataBinding;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
 import org.bimserver.interfaces.objects.SToken;
-import org.bimserver.models.store.Token;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.slf4j.Logger;
@@ -71,7 +70,7 @@ public class SoapChannel extends Channel {
 				SToken token = serviceInterface.getCurrentToken();
 				List<Header> headers = new ArrayList<Header>();
 				try {
-					Header sessionHeader = new Header(new QName("uri:org.bimserver", "token"), token, new JAXBDataBinding(Token.class));
+					Header sessionHeader = new Header(new QName("uri:org.bimserver.interfaces.objects", "token"), token, new JAXBDataBinding(SToken.class));
 					headers.add(sessionHeader);
 				} catch (JAXBException e) {
 					LOGGER.error("", e);
