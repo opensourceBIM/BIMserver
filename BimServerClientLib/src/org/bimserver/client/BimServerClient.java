@@ -219,7 +219,6 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 	public void registerNotificationListener(NotificationInterface notificationInterface) {
 		setNotificationsEnabled(true);
-		notificationsClient.registerNotifictionListener(notificationInterface);
 	}
 
 	public void setNotificationsEnabled(boolean enabled) {

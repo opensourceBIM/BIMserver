@@ -17,23 +17,26 @@ package org.bimserver.interfaces.objects;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import java.util.Date;
-import javax.xml.bind.annotation.XmlSeeAlso;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SNewCheckoutAdded.class, SDatabaseCreated.class, SDownload.class, SNewRevisionAdded.class, SSettingsSaved.class, SExternalServiceCalled.class, SServerStarted.class, SNewObjectIDMUploaded.class, SPasswordReset.class, SNewUserAdded.class, SProjectDeleted.class, SProjectUndeleted.class, SExtendedDataAddedToProject.class, SGeoTagUpdated.class, SRevisionUpdated.class, SUserRemovedFromProject.class, SUserDeleted.class, SNewProjectAdded.class, SProjectUpdated.class, SUserUndeleted.class, SRevisionBranched.class, SUserAddedToProject.class, SUserChanged.class, SExtendedDataAddedToRevision.class, SPasswordChanged.class})
-public class SLogAction implements SDataBase
+public class SExternalServiceCalled extends SLogAction implements SDataBase
 {
 	private long oid = -1;
 
 	@XmlTransient
 	private static SClass sClass;
-	private java.util.Date date;
-	private long executorId = -1;
-	private SAccessMethod accessMethod;
+	private long serviceId = -1;
+	private SNotifictionResultEnum state;
+	private int percentage;
+	private List<java.lang.String> infos = new ArrayList<java.lang.String>();
+	private List<java.lang.String> warnings = new ArrayList<java.lang.String>();
+	private List<java.lang.String> errors = new ArrayList<java.lang.String>();
 	public long getOid() {
 		return oid;
 	}
@@ -48,7 +51,7 @@ public class SLogAction implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SLogAction.sClass = sClass;
+		SExternalServiceCalled.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
@@ -61,11 +64,30 @@ public class SLogAction implements SDataBase
 		if (sField.getName().equals("accessMethod")) {
 			return getAccessMethod();
 		}
+		if (sField.getName().equals("serviceId")) {
+			return getServiceId();
+		}
+		if (sField.getName().equals("state")) {
+			return getState();
+		}
+		if (sField.getName().equals("percentage")) {
+			return getPercentage();
+		}
+		if (sField.getName().equals("infos")) {
+			return getInfos();
+		}
+		if (sField.getName().equals("warnings")) {
+			return getWarnings();
+		}
+		if (sField.getName().equals("errors")) {
+			return getErrors();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+	@SuppressWarnings("unchecked")
 
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("date")) {
@@ -80,6 +102,30 @@ public class SLogAction implements SDataBase
 			setAccessMethod((SAccessMethod)val);
 			return;
 		}
+		if (sField.getName().equals("serviceId")) {
+			setServiceId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("state")) {
+			setState((SNotifictionResultEnum)val);
+			return;
+		}
+		if (sField.getName().equals("percentage")) {
+			setPercentage((Integer)val);
+			return;
+		}
+		if (sField.getName().equals("infos")) {
+			setInfos((List<String>)val);
+			return;
+		}
+		if (sField.getName().equals("warnings")) {
+			setWarnings((List<String>)val);
+			return;
+		}
+		if (sField.getName().equals("errors")) {
+			setErrors((List<String>)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -87,28 +133,55 @@ public class SLogAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	public java.util.Date getDate() {
-		return date;
+	public long getServiceId() {
+		return serviceId;
 	}
 
-	public void setDate(java.util.Date date) {
-		this.date = date;
+	public void setServiceId(long serviceId) {
+		this.serviceId = serviceId;
 	}
 	
-	public long getExecutorId() {
-		return executorId;
+	public SNotifictionResultEnum getState() {
+		return state;
 	}
 
-	public void setExecutorId(long executorId) {
-		this.executorId = executorId;
+	public void setState(SNotifictionResultEnum state) {
+		this.state = state;
 	}
 	
-	public SAccessMethod getAccessMethod() {
-		return accessMethod;
+	public int getPercentage() {
+		return percentage;
 	}
 
-	public void setAccessMethod(SAccessMethod accessMethod) {
-		this.accessMethod = accessMethod;
+	public void setPercentage(int percentage) {
+		this.percentage = percentage;
+	}
+	
+
+	public List<java.lang.String> getInfos() {
+		return infos;
+	}
+
+	public void setInfos(List<java.lang.String> infos) {
+		this.infos = infos;
+	}
+	
+
+	public List<java.lang.String> getWarnings() {
+		return warnings;
+	}
+
+	public void setWarnings(List<java.lang.String> warnings) {
+		this.warnings = warnings;
+	}
+	
+
+	public List<java.lang.String> getErrors() {
+		return errors;
+	}
+
+	public void setErrors(List<java.lang.String> errors) {
+		this.errors = errors;
 	}
 	
 	@Override
@@ -127,7 +200,7 @@ public class SLogAction implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SLogAction other = (SLogAction) obj;
+		SExternalServiceCalled other = (SExternalServiceCalled) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

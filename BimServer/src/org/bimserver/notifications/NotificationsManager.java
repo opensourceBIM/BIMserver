@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -32,6 +33,7 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.ServiceInterfaceReflectorImpl;
+import org.bimserver.interfaces.objects.SImmediateNotificationResult;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SNewProjectAdded;
 import org.bimserver.interfaces.objects.SNewRevisionAdded;
@@ -61,6 +63,7 @@ import org.slf4j.LoggerFactory;
 
 public class NotificationsManager extends Thread implements NotificationsManagerInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(NotificationsManager.class);
+	private final Map<String, RunningExternalService> runningServices = new HashMap<String, RunningExternalService>();
 	private final Map<Long, Set<EndPoint>> endPoints = new HashMap<Long, Set<EndPoint>>();
 	private final Map<String, ServiceDescriptor> internalServices = new HashMap<String, ServiceDescriptor>();
 	private final Map<String, NotificationInterface> x = new HashMap<String, NotificationInterface>();
@@ -109,7 +112,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 					try {
 						for (Entry<Long, Set<EndPoint>> endPoints : this.endPoints.entrySet()) {
 							for (EndPoint endPoint : endPoints.getValue()) {
-								endPoint.getNotificationInterface().newLogAction(notification, null, null, null, null);
+								endPoint.getNotificationInterface().newLogAction(UUID.randomUUID().toString(), notification, null, null, null, null);
 							}
 						}
 						if (notification instanceof SNewProjectAdded) {
@@ -156,6 +159,8 @@ public class NotificationsManager extends Thread implements NotificationsManager
 			Channel channel = getChannel(service);
 			try {
 				NotificationInterface notificationInterface = channel.getNotificationInterface();
+				String uuid = UUID.randomUUID().toString();
+				runningServices.put(uuid, new RunningExternalService());
 				if (service.isReadRevision() || service.getReadExtendedData() != null || service.getWriteExtendedData() != null || service.getWriteRevision() != null) {
 					// This service will be needing a token
 					ServiceInterface newService = bimServer.getServiceFactory().newServiceMap(service.getNotificationProtocol(), "").get(ServiceInterface.class);
@@ -165,9 +170,9 @@ public class NotificationsManager extends Thread implements NotificationsManager
 					long readExtendedDataRoid = service.getReadExtendedData() != null ? newRevisionNotification.getRevisionId() : -1;
 					TokenAuthorization authorization = new TokenAuthorization(service.getUser().getOid(), readRevisionRoid, writeProjectPoid, readExtendedDataRoid, writeExtendedDataRoid);
 					((org.bimserver.webservices.Service)newService).setAuthorization(authorization);
-					notificationInterface.newLogAction(newRevisionNotification, service.getServiceIdentifier(), service.getProfileIdentifier(), newService.getCurrentToken(), siteAddress + "/jsonapi");
+					notificationInterface.newLogAction(uuid, newRevisionNotification, service.getServiceIdentifier(), service.getProfileIdentifier(), newService.getCurrentToken(), siteAddress + "/jsonapi");
 				} else {
-					notificationInterface.newLogAction(newRevisionNotification, service.getServiceIdentifier(), service.getProfileIdentifier(), null, null);
+					notificationInterface.newLogAction(uuid, newRevisionNotification, service.getServiceIdentifier(), service.getProfileIdentifier(), null, null);
 				}
 			} finally {
 				channel.disconnect();
@@ -175,6 +180,10 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		}
 	}
 
+	public RunningExternalService getRunningExternalService(String uuid) {
+		return runningServices.get(uuid);
+	}
+	
 	private Channel getChannel(Service service) {
 		if (service.getInternalService() != null) {
 			// Overrule definition
@@ -223,30 +232,33 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		}
 	}
 
-	public void notify(SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) {
+	public SImmediateNotificationResult notify(SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) {
 		try {
 			NotificationInterface notificationInterface = x.get(serviceIdentifier);
-			notificationInterface.newLogAction(logAction, serviceIdentifier, profileIdentifier, token, apiUrl);
+			return notificationInterface.newLogAction(UUID.randomUUID().toString(), logAction, serviceIdentifier, profileIdentifier, token, apiUrl);
 		} catch (UserException e) {
 			e.printStackTrace();
 		} catch (ServerException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	@Override
 	public void registerNewRevisionHandler(ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
 		register(serviceDescriptor, new NotificationInterfaceAdapter(){
 			@Override
-			public void newLogAction(SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) throws UserException, ServerException {
+			public SImmediateNotificationResult newLogAction(String uuid, SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) throws UserException, ServerException {
 				if (logAction instanceof SNewRevisionAdded) {
 					SNewRevisionAdded newRevisionAdded = (SNewRevisionAdded)logAction;
 					JsonReflector jsonReflector = new JsonSocketReflector(bimServer.getServicesMap(), apiUrl, false, new TokenAuthentication(token));
 					ServiceInterfaceReflectorImpl serviceInterfaceReflectorImpl = new ServiceInterfaceReflectorImpl(jsonReflector);
 					SService service = serviceInterfaceReflectorImpl.getService(Long.parseLong(profileIdentifier));
 					SObjectType settings = serviceInterfaceReflectorImpl.getPluginSettings(service.getInternalServiceId());
-					newRevisionHandler.newRevision(serviceInterfaceReflectorImpl, newRevisionAdded, settings);
+					runningServices.put(uuid, new RunningExternalService());
+					newRevisionHandler.newRevision(uuid, serviceInterfaceReflectorImpl, newRevisionAdded, settings);
 				}
+				return null;
 			}
 		});
 	}

@@ -16,35 +16,19 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlTransient;
-import org.bimserver.shared.meta.*;
-import javax.xml.bind.annotation.XmlRootElement;
 
+public enum SNotifictionResultEnum {
+	ERROR(0),
+	SUCCESS(1),
+	PROGRESS_UNKNOWN(2),
+	PROGRESS_PERCENTAGE(3);
+	int ordinal;
 
-@XmlRootElement
-@XmlSeeAlso(value={SPrimitiveDefinition.class, SArrayDefinition.class, SObjectDefinition.class})
-public class STypeDefinition implements SBase
-{
-
-	@XmlTransient
-	private static SClass sClass;
-	
-	@XmlTransient
-	public SClass getSClass() {
-		return sClass;
+	SNotifictionResultEnum(int ordinal) {
+		this.ordinal = ordinal;
 	}
 	
-	public static void setSClass(SClass sClass) {
-		STypeDefinition.sClass = sClass;
+	public int getOrdinal() {
+		return ordinal;
 	}
-
-	public Object sGet(SField sField) {
-		throw new RuntimeException("Field " + sField.getName() + " not found");
-	}
-
-	public void sSet(SField sField, Object val) {
-		throw new RuntimeException("Field " + sField.getName() + " not found");
-	}
-	
 }

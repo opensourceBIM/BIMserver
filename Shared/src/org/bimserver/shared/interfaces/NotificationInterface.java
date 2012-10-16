@@ -22,6 +22,7 @@ import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 
+import org.bimserver.interfaces.objects.SImmediateNotificationResult;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
@@ -33,7 +34,8 @@ import org.bimserver.shared.exceptions.UserException;
 public interface NotificationInterface extends PublicInterface {
 	
 	@WebMethod(action = "newLogAction")
-	void newLogAction(
+	SImmediateNotificationResult newLogAction(
+		@WebParam(name = "uuid", partName = "newLogAction.uuid") String uuid,
 		@WebParam(name = "logAction", partName = "newLogAction.logAction") SLogAction logAction,
 		@WebParam(name = "serviceIdentifier", partName = "newLogAction.serviceIdentifier") String serviceIdentifier,
 		@WebParam(name = "profileIdentifer", partName = "newLogAction.profileIdentifer") String profileIdentifer,

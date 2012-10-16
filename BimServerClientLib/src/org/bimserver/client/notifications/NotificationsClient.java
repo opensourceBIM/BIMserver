@@ -25,7 +25,6 @@ import org.bimserver.shared.interfaces.NotificationInterface;
 
 public abstract class NotificationsClient {
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
-	protected MultiCastNotificationImpl multiCastNotificationImpl = new MultiCastNotificationImpl();
 	
 	public void registerConnectDisconnectListener(ConnectDisconnectListener connectDisconnectListener) {
 		connectDisconnectListeners.add(connectDisconnectListener);
@@ -45,13 +44,5 @@ public abstract class NotificationsClient {
 		for (ConnectDisconnectListener connectDisconnectListener : connectDisconnectListeners) {
 			connectDisconnectListener.disconnected();
 		}
-	}
-	
-	public void registerNotifictionListener(NotificationInterface notificationInterface) {
-		multiCastNotificationImpl.add(notificationInterface);
-	}
-	
-	public void unregisterNotificationListener(NotificationInterface notificationInterface) {
-		multiCastNotificationImpl.remove(notificationInterface);
 	}
 }

@@ -49,6 +49,7 @@ public class SProject implements SDataBase
 	private SSIPrefix exportLengthMeasurePrefix;
 	private List<Long> extendedData = new ArrayList<Long>();
 	private List<Long> services = new ArrayList<Long>();
+	private List<Long> logs = new ArrayList<Long>();
 	public long getOid() {
 		return oid;
 	}
@@ -120,6 +121,9 @@ public class SProject implements SDataBase
 		}
 		if (sField.getName().equals("services")) {
 			return getServices();
+		}
+		if (sField.getName().equals("logs")) {
+			return getLogs();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -199,6 +203,10 @@ public class SProject implements SDataBase
 		}
 		if (sField.getName().equals("services")) {
 			setServices((List<Long>)val);
+			return;
+		}
+		if (sField.getName().equals("logs")) {
+			setLogs((List<Long>)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -350,6 +358,14 @@ public class SProject implements SDataBase
 
 	public void setServices(List<Long> services) {
 		this.services = services;
+	}
+	
+	public List<Long> getLogs() {
+		return logs;
+	}
+
+	public void setLogs(List<Long> logs) {
+		this.logs = logs;
 	}
 	
 	@Override
