@@ -19,6 +19,7 @@ package org.bimserver.models.store.impl;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.StorePackage;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -39,6 +40,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getEmailSenderAddress <em>Email Sender Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getCustomLogoAddress <em>Custom Logo Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSiteAddress <em>Site Address</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getWhitelistedDomains <em>Whitelisted Domains</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getProtocolBuffersPort <em>Protocol Buffers Port</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getHeaderAddition <em>Header Addition</em>}</li>
@@ -276,6 +278,16 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 */
 	public void setSiteAddress(String newSiteAddress) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__SITE_ADDRESS, newSiteAddress);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<String> getWhitelistedDomains() {
+		return (EList<String>) eGet(StorePackage.Literals.SERVER_SETTINGS__WHITELISTED_DOMAINS, true);
 	}
 
 	/**

@@ -58,6 +58,7 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 
 	@Override
 	public int getRid() {
+		load();
 		return rid;
 	}
 

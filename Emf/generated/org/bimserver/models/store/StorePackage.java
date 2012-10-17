@@ -970,13 +970,22 @@ public interface StorePackage extends EPackage {
 	int SERVER_SETTINGS__SITE_ADDRESS = 10;
 
 	/**
+	 * The feature id for the '<em><b>Whitelisted Domains</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_SETTINGS__WHITELISTED_DOMAINS = 11;
+
+	/**
 	 * The feature id for the '<em><b>Hide User List For Non Admin</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN = 11;
+	int SERVER_SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN = 12;
 
 	/**
 	 * The feature id for the '<em><b>Protocol Buffers Port</b></em>' attribute.
@@ -985,7 +994,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__PROTOCOL_BUFFERS_PORT = 12;
+	int SERVER_SETTINGS__PROTOCOL_BUFFERS_PORT = 13;
 
 	/**
 	 * The feature id for the '<em><b>Header Addition</b></em>' attribute.
@@ -994,7 +1003,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__HEADER_ADDITION = 13;
+	int SERVER_SETTINGS__HEADER_ADDITION = 14;
 
 	/**
 	 * The feature id for the '<em><b>Footer Addition</b></em>' attribute.
@@ -1003,7 +1012,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__FOOTER_ADDITION = 14;
+	int SERVER_SETTINGS__FOOTER_ADDITION = 15;
 
 	/**
 	 * The feature id for the '<em><b>Cache Output Files</b></em>' attribute.
@@ -1012,7 +1021,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__CACHE_OUTPUT_FILES = 15;
+	int SERVER_SETTINGS__CACHE_OUTPUT_FILES = 16;
 
 	/**
 	 * The feature id for the '<em><b>Service Repository Url</b></em>' attribute.
@@ -1021,7 +1030,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__SERVICE_REPOSITORY_URL = 16;
+	int SERVER_SETTINGS__SERVICE_REPOSITORY_URL = 17;
 
 	/**
 	 * The number of structural features of the '<em>Server Settings</em>' class.
@@ -1030,7 +1039,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS_FEATURE_COUNT = 17;
+	int SERVER_SETTINGS_FEATURE_COUNT = 18;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.
@@ -6285,6 +6294,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getServerSettings_SiteAddress();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.ServerSettings#getWhitelistedDomains <em>Whitelisted Domains</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Whitelisted Domains</em>'.
+	 * @see org.bimserver.models.store.ServerSettings#getWhitelistedDomains()
+	 * @see #getServerSettings()
+	 * @generated
+	 */
+	EAttribute getServerSettings_WhitelistedDomains();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10310,6 +10330,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERVER_SETTINGS__SITE_ADDRESS = eINSTANCE.getServerSettings_SiteAddress();
+
+		/**
+		 * The meta object literal for the '<em><b>Whitelisted Domains</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVER_SETTINGS__WHITELISTED_DOMAINS = eINSTANCE.getServerSettings_WhitelistedDomains();
 
 		/**
 		 * The meta object literal for the '<em><b>Hide User List For Non Admin</b></em>' attribute feature.
