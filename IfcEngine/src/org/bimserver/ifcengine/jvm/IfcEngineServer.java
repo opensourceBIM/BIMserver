@@ -36,7 +36,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.ifcengine.Command;
-import org.bimserver.ifcengine.SdaiTypes;
 import org.bimserver.ifcengine.jvm.IfcEngine.SurfaceProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineClash;
 import org.bimserver.plugins.ifcengine.IfcEngineException;

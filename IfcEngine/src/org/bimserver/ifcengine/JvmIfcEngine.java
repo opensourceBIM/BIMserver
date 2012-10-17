@@ -40,8 +40,8 @@ import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class FailSafeIfcEngine implements IfcEngine {
-	private static final Logger LOGGER = LoggerFactory.getLogger(FailSafeIfcEngine.class);
+public class JvmIfcEngine implements IfcEngine {
+	private static final Logger LOGGER = LoggerFactory.getLogger(JvmIfcEngine.class);
 	private Process process;
 	private DataInputStream in;
 	private DataOutputStream out;
@@ -53,7 +53,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 	private final File tempDir;
 	private volatile IfcEngineException lastException;
 
-	public FailSafeIfcEngine(File schemaFile, File nativeBaseDir, File tempDir, String classPath) throws IfcEngineException {
+	public JvmIfcEngine(File schemaFile, File nativeBaseDir, File tempDir, String classPath) throws IfcEngineException {
 		this.schemaFile = schemaFile;
 		this.nativeBaseDir = nativeBaseDir;
 		this.tempDir = tempDir;
@@ -179,16 +179,16 @@ public class FailSafeIfcEngine implements IfcEngine {
 		thread.start();
 	}
 
-	public synchronized IfcEngineModelImpl openModel(File ifcFile) throws IfcEngineException {
+	public synchronized JvmIfcEngineModel openModel(File ifcFile) throws IfcEngineException {
 		checkRunning();
 		writeCommand(Command.OPEN_MODEL);
 		writeUTF(ifcFile.getAbsolutePath());
 		flush();
 		int modelId = readInt();
-		return new IfcEngineModelImpl(this, modelId);
+		return new JvmIfcEngineModel(this, modelId);
 	}
 
-	public synchronized IfcEngineModelImpl openModel(InputStream inputStream, int size) throws IfcEngineException {
+	public synchronized JvmIfcEngineModel openModel(InputStream inputStream, int size) throws IfcEngineException {
 		checkRunning();
 		writeCommand(Command.OPEN_MODEL_STREAMING);
 		try {
@@ -208,7 +208,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 		}
 		flush();
 		int modelId = readInt();
-		return new IfcEngineModelImpl(this, modelId);
+		return new JvmIfcEngineModel(this, modelId);
 	}
 
 	private void checkRunning() throws IfcEngineException {
@@ -319,7 +319,7 @@ public class FailSafeIfcEngine implements IfcEngine {
 		}
 	}
 
-	public IfcEngineModelImpl openModel(byte[] bytes) throws IfcEngineException {
+	public JvmIfcEngineModel openModel(byte[] bytes) throws IfcEngineException {
 		checkRunning();
 		return openModel(new ByteArrayInputStream(bytes), bytes.length);
 	}

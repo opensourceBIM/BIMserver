@@ -5,7 +5,6 @@ import java.io.StringReader;
 
 import org.apache.commons.io.output.NullWriter;
 import org.bimserver.BimServer;
-import org.bimserver.interfaces.NotificationInterfaceReflectorImpl;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.codehaus.jettison.json.JSONException;
 import org.eclipse.jetty.websocket.WebSocket;
@@ -24,12 +23,12 @@ public class StreamingSocket implements WebSocket.OnTextMessage, EndPoint, Strea
 	private BimServer bimServer;
 	private long uoid;
 	private long endpointid;
-	private NotificationInterfaceReflectorImpl reflectorImpl;
+	private NotificationInterface reflectorImpl;
 
 	public StreamingSocket(BimServer bimServer) {
 		this.bimServer = bimServer;
 		this.endpointid = bimServer.getEndPointManager().register(this);
-		reflectorImpl = new NotificationInterfaceReflectorImpl(new JsonWebsocketReflector(bimServer.getServicesMap(), this));
+		reflectorImpl = bimServer.getReflectorFactory().createReflector(NotificationInterface.class, new JsonWebsocketReflector(bimServer.getServicesMap(), this));
 	}
 
 	@Override

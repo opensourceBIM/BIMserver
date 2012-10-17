@@ -22,9 +22,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.interfaces.NotificationInterfaceReflectorImpl;
-import org.bimserver.interfaces.ServiceInterfaceReflectorImpl;
 import org.bimserver.shared.ConnectDisconnectListener;
+import org.bimserver.shared.ReflectorFactory;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
@@ -66,9 +65,9 @@ public abstract class Channel {
 		}
 	}
 
-	protected void finish(Reflector reflector) {
-		serviceInterfaces.put(ServiceInterface.class, new ServiceInterfaceReflectorImpl(reflector));
-		serviceInterfaces.put(NotificationInterface.class, new NotificationInterfaceReflectorImpl(reflector));
+	protected void finish(Reflector reflector, ReflectorFactory reflectorFactory) {
+		serviceInterfaces.put(ServiceInterface.class, reflectorFactory.createReflector(ServiceInterface.class, reflector));
+		serviceInterfaces.put(NotificationInterface.class, reflectorFactory.createReflector(NotificationInterface.class, reflector));
 	}
 	
 	public abstract void disconnect();

@@ -1534,6 +1534,17 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
+	 * @param value New String value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getStringAttribute")
+	String getStringAttribute(
+			@WebParam(name = "oid", partName = "getStringAttribute.oid") Long oid, 
+			@WebParam(name = "attributeName", partName = "getStringAttribute.attributeName") String attributeName) throws ServerException, UserException;
+	
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
 	 * @param value New Double value
 	 * @throws ServerException, UserException
 	 */
@@ -1543,6 +1554,17 @@ public interface ServiceInterface extends PublicInterface {
 			@WebParam(name = "attributeName", partName = "setDoubleAttribute.attributeName") String attributeName, 
 			@WebParam(name = "value", partName = "setDoubleAttribute.value") Double value) throws ServerException, UserException;
 
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value New Double value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getDoubleAttribute")
+	Double getDoubleAttribute(
+			@WebParam(name = "oid", partName = "getDoubleAttribute.oid") Long oid, 
+			@WebParam(name = "attributeName", partName = "getDoubleAttribute.attributeName") String attributeName) throws ServerException, UserException;
+	
 	/**
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
@@ -1558,6 +1580,17 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
+	 * @param value New Enum value (name of the enum item)
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getEnumAttribute")
+	String getEnumAttribute(
+			@WebParam(name = "oid", partName = "getEnumAttribute.oid") Long oid, 
+			@WebParam(name = "attributeName", partName = "getEnumAttribute.attributeName") String attributeName) throws ServerException, UserException;
+	
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
 	 * @param value new Integer value
 	 * @throws ServerException, UserException
 	 */
@@ -1567,6 +1600,17 @@ public interface ServiceInterface extends PublicInterface {
 			@WebParam(name = "attributeName", partName = "setIntegerAttribute.attributeName") String attributeName, 
 			@WebParam(name = "value", partName = "setIntegerAttribute.value") Integer value) throws ServerException, UserException;
 
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value new Integer value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getIntegerAttribute")
+	Integer getIntegerAttribute(
+			@WebParam(name = "oid", partName = "getIntegerAttribute.oid") Long oid, 
+			@WebParam(name = "attributeName", partName = "getIntegerAttribute.attributeName") String attributeName) throws ServerException, UserException;
+	
 	/**
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
@@ -1581,6 +1625,17 @@ public interface ServiceInterface extends PublicInterface {
 
 	/**
 	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value New Boolean value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getBooleanAttribute")
+	Boolean getBooleanAttribute(
+			@WebParam(name = "oid", partName = "getBooleanAttribute.oid") Long oid, 
+			@WebParam(name = "attributeName", partName = "getBooleanAttribute.attributeName") String attributeName) throws ServerException, UserException;
+	
+	/**
+	 * @param oid ObjectID of the object to change
 	 * @param referenceName Name of the reference
 	 * @param referenceOid ObjectID of the newly referred object
 	 * @throws ServerException, UserException
@@ -1590,6 +1645,17 @@ public interface ServiceInterface extends PublicInterface {
 			@WebParam(name = "oid", partName = "setReference.oid") Long oid, 
 			@WebParam(name = "referenceName", partName = "setReference.referenceName") String referenceName, 
 			@WebParam(name = "referenceOid", partName = "setReference.referenceOid") Long referenceOid) throws ServerException, UserException;
+
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param referenceName Name of the reference
+	 * @param referenceOid ObjectID of the newly referred object
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getReference")
+	Long getReference(
+			@WebParam(name = "oid", partName = "getReference.oid") Long oid, 
+			@WebParam(name = "referenceName", partName = "getReference.referenceName") String referenceName) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1833,27 +1899,27 @@ public interface ServiceInterface extends PublicInterface {
 
 	@WebMethod(action="setDefaultIfcEngine")
 	void setDefaultIfcEngine(
-		@WebParam(name = "oid", partName = "setDefaultIfcEngine.oid")	long oid) throws UserException, ServerException;
+		@WebParam(name = "oid", partName = "setDefaultIfcEngine.oid") Long oid) throws UserException, ServerException;
 
 	@WebMethod(action="setDefaultQueryEngine")
 	void setDefaultQueryEngine(
-		@WebParam(name = "oid", partName = "setDefaultQueryEngine.oid") long oid) throws UserException, ServerException;
+		@WebParam(name = "oid", partName = "setDefaultQueryEngine.oid") Long oid) throws UserException, ServerException;
 
 	@WebMethod(action="setDefaultModelCompare")
 	void setDefaultModelCompare(
-		@WebParam(name = "oid", partName = "setDefaultModelCompare.oid") long oid) throws UserException, ServerException;
+		@WebParam(name = "oid", partName = "setDefaultModelCompare.oid") Long oid) throws UserException, ServerException;
 
 	@WebMethod(action="setDefaultModelMerger")
 	void setDefaultModelMerger(
-		@WebParam(name = "oid", partName = "setDefaultModelMerger.oid") long oid) throws UserException, ServerException;
+		@WebParam(name = "oid", partName = "setDefaultModelMerger.oid") Long oid) throws UserException, ServerException;
 
 	@WebMethod(action="setDefaultSerializer")
 	void setDefaultSerializer(
-		@WebParam(name = "oid", partName = "setDefaultSerializer.oid") long oid) throws UserException, ServerException;
+		@WebParam(name = "oid", partName = "setDefaultSerializer.oid") Long oid) throws UserException, ServerException;
 
 	@WebMethod(action="setDefaultObjectIDM")
 	void setDefaultObjectIDM(
-		@WebParam(name = "oid", partName = "setDefaultObjectIDM.oid") long oid) throws UserException, ServerException;
+		@WebParam(name = "oid", partName = "setDefaultObjectIDM.oid") Long oid) throws UserException, ServerException;
 
 	@WebMethod(action="getServiceRepositoryUrl")
 	String getServiceRepositoryUrl() throws ServerException, UserException;
@@ -2248,7 +2314,7 @@ public interface ServiceInterface extends PublicInterface {
 	
 	@WebMethod(action = "registerAll")
 	void registerAll(
-		@WebParam(name = "endPointId", partName = "registerAll.endPointId") long endPointId) throws ServerException, UserException;
+		@WebParam(name = "endPointId", partName = "registerAll.endPointId") Long endPointId) throws ServerException, UserException;
 
 	@WebMethod(action = "getAllPrivateProfiles")
 	List<SProfileDescriptor> getAllPrivateProfiles(
@@ -2262,12 +2328,12 @@ public interface ServiceInterface extends PublicInterface {
 
 	@WebMethod(action = "setPluginSettings")
 	void setPluginSettings(
-		@WebParam(name = "poid", partName = "setPluginSettings.poid") long poid, 
+		@WebParam(name = "poid", partName = "setPluginSettings.poid") Long poid, 
 		@WebParam(name = "settings", partName = "setPluginSettings.settings") SObjectType settings) throws ServerException, UserException;
 
 	@WebMethod(action = "getPluginSettings")
 	SObjectType getPluginSettings(
-		@WebParam(name = "poid", partName = "getPluginSettings.poid") long poid) throws ServerException, UserException;
+		@WebParam(name = "poid", partName = "getPluginSettings.poid") Long poid) throws ServerException, UserException;
 	
 	@WebMethod(action = "getServerSettings")
 	SServerSettings getServerSettings() throws ServerException, UserException;
@@ -2278,12 +2344,12 @@ public interface ServiceInterface extends PublicInterface {
 
 	@WebMethod(action = "getFile")
 	SFile getFile(
-		@WebParam(name = "fileId", partName = "getFile.fileId") long fileId) throws ServerException, UserException;
+		@WebParam(name = "fileId", partName = "getFile.fileId") Long fileId) throws ServerException, UserException;
 	
 	@WebMethod(action = "triggerNewRevision")
 	void triggerNewRevision(
-		@WebParam(name = "roid", partName = "triggerNewRevision.roid") long roid, 
-		@WebParam(name = "soid", partName = "triggerNewRevision.soid") long soid) throws ServerException, UserException;
+		@WebParam(name = "roid", partName = "triggerNewRevision.roid") Long roid, 
+		@WebParam(name = "soid", partName = "triggerNewRevision.soid") Long soid) throws ServerException, UserException;
 
 	@WebMethod(action = "getAllLocalServiceDescriptors")
 	List<SServiceDescriptor> getAllLocalServiceDescriptors() throws ServerException, UserException;

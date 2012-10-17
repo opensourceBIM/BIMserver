@@ -54,6 +54,8 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.AutologinAuthenticationInfo;
 import org.bimserver.shared.ConnectDisconnectListener;
+import org.bimserver.shared.ReflectorBuilder;
+import org.bimserver.shared.ReflectorFactory;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -82,9 +84,11 @@ public class BimServerClient implements ConnectDisconnectListener {
 	private boolean connected = false;
 	private AuthenticationInfo authenticationInfo;
 	private ServicesMap servicesMap = new ServicesMap();
+	private ReflectorFactory reflectorFactory;
 
 	public BimServerClient(PluginManager pluginManager) {
 		this(pluginManager, pluginManager.getServicesMap());
+		reflectorFactory = new ReflectorBuilder(servicesMap).newReflectorFactory();
 	}
 	
 	public BimServerClient(PluginManager pluginManager, ServicesMap servicesMap) {
@@ -117,7 +121,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 //			throw new ConnectionException("Authentication information required, use \"setAuthentication\" first");
 //		}
 		disconnect();
-		ProtocolBuffersChannel protocolBuffersChannel = new ProtocolBuffersChannel(protocolBuffersMetaData, servicesMap);
+		ProtocolBuffersChannel protocolBuffersChannel = new ProtocolBuffersChannel(protocolBuffersMetaData, servicesMap, reflectorFactory);
 		this.channel = protocolBuffersChannel;
 		protocolBuffersChannel.registerConnectDisconnectListener(this);
 		try {
@@ -129,7 +133,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 	public void connectJson(final String address, boolean useHttpSession) throws ConnectionException {
 		disconnect();
-		JsonChannel jsonChannel = new JsonChannel(servicesMap);
+		JsonChannel jsonChannel = new JsonChannel(servicesMap, reflectorFactory);
 		this.channel = jsonChannel;
 		jsonChannel.connect(address, useHttpSession, authenticationInfo);
 	}

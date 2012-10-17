@@ -44,7 +44,7 @@ public interface NotificationInterface extends PublicInterface {
 
 	@WebMethod(action = "progress")
 	void progress(
-		@WebParam(name = "topicId", partName = "progress.topicId") long topicId, 
+		@WebParam(name = "topicId", partName = "progress.topicId") Long topicId, 
 		@WebParam(name = "state", partName = "progress.state") SLongActionState state) throws UserException, ServerException;
 	
 	@WebMethod(action = "getPublicProfiles")

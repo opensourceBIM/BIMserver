@@ -1,4 +1,4 @@
-package org.bimserver.ifcengine;
+package org.bimserver.ifcengine.jvm;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org

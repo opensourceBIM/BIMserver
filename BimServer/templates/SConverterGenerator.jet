@@ -89,6 +89,7 @@ public class SConverter {
 		S<%=eClass.getName()%> result = new S<%=eClass.getName()%>();
 <% if (eClass.getEAnnotation("nodatabase") == null) {%>
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 <% } %>
 <%
 	for (EAttribute eAttribute : eClass.getEAllAttributes()) {
@@ -163,6 +164,7 @@ public class SConverter {
 		<%=eClass.getName()%> result = <%=StringUtils.firstUpperCase(eClass.getEPackage().getName())%>Factory.eINSTANCE.create<%=eClass.getName()%>();
 <% if (eClass.getEAnnotation("nodatabase") == null) { %>
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 <% } %>
 <%
 	for (EAttribute eAttribute : eClass.getEAllAttributes()) {

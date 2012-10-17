@@ -48,7 +48,7 @@ public class JsonSocketReflector extends JsonReflector {
 		httpclient.getConnectionManager().shutdown();
 	}
 	
-	public JsonObject call(JsonObject request) throws JSONException {
+	public JsonObject call(JsonObject request) throws JSONException, ReflectorException {
 		try {
 			if (useHttpSession) {
 				if (authenticationInfo != null && authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
@@ -75,11 +75,15 @@ public class JsonSocketReflector extends JsonReflector {
 			httppost.setEntity(new StringEntity(request.toString()));
 
 			HttpResponse response = httpclient.execute(httppost, context);
-			HttpEntity resultEntity = response.getEntity();
-			
-			JsonParser parser = new JsonParser();
-			JsonObject resultObject = (JsonObject) parser.parse(new InputStreamReader(resultEntity.getContent(), Charsets.UTF_8));
-			return resultObject;
+			if (response.getStatusLine().getStatusCode() == 200) {
+				HttpEntity resultEntity = response.getEntity();
+				
+				JsonParser parser = new JsonParser();
+				JsonObject resultObject = (JsonObject) parser.parse(new InputStreamReader(resultEntity.getContent(), Charsets.UTF_8));
+				return resultObject;
+			} else {
+				throw new ReflectorException("Call unsuccessful, status code: " + response.getStatusLine().getStatusCode());
+			}
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

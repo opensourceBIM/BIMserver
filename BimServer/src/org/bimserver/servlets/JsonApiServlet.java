@@ -32,9 +32,13 @@ public class JsonApiServlet extends HttpServlet {
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
+		if (request.getHeader("Origin") != null && !bimServer.isHostAllowed(request.getHeader("Origin"))) {
+			response.setStatus(403);
+			return;
+		}
 		response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
 		response.setHeader("Access-Control-Allow-Headers", "Content-Type");
-		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
 		try {
 			if (request.getParameter("doc") != null) {
 				writeDocumentation(request, response, bimServer);
@@ -103,16 +107,17 @@ public class JsonApiServlet extends HttpServlet {
 		writer.println("</div>");
 		writeFooter(writer);
 	}
-	
+
 	private void writeMenu(PrintWriter writer, SService sService) {
 		writer.println("<div class=\"menu\">");
 		writer.println("<h2>" + sService.getName() + "</h2>");
 		List<SMethod> methods = new ArrayList<SMethod>(sService.getMethods());
-		Collections.sort(methods, new Comparator<SMethod>(){
+		Collections.sort(methods, new Comparator<SMethod>() {
 			@Override
 			public int compare(SMethod o1, SMethod o2) {
 				return o1.getName().compareTo(o2.getName());
-			}});
+			}
+		});
 		writer.println("<ul>");
 		for (SMethod sMethod : methods) {
 			writer.println("<li>");
@@ -164,7 +169,7 @@ public class JsonApiServlet extends HttpServlet {
 		writer.println("</div>");
 		writer.println("</body>");
 	}
-	
+
 	private void writeTypeDocumentation(PrintWriter writer, SClass sType, BimServer bimServer) {
 		writer.println("<pre>");
 		if (sType.isEnum()) {
@@ -205,11 +210,12 @@ public class JsonApiServlet extends HttpServlet {
 
 	private void writeAllMethodsDocumentation(PrintWriter writer, HttpServletRequest request, SService sService, BimServer bimServer, String siteAddress) {
 		List<SMethod> methods = new ArrayList<SMethod>(sService.getMethods());
-		Collections.sort(methods, new Comparator<SMethod>(){
+		Collections.sort(methods, new Comparator<SMethod>() {
 			@Override
 			public int compare(SMethod o1, SMethod o2) {
 				return o1.getName().compareTo(o2.getName());
-			}});
+			}
+		});
 		writer.println("<h1>" + sService.getName() + "</h1>");
 		for (SMethod sMethod : methods) {
 			writeMethodDocumentation(writer, request, sMethod, bimServer, siteAddress);
@@ -219,7 +225,7 @@ public class JsonApiServlet extends HttpServlet {
 	private void writeMethodDocumentation(PrintWriter writer, HttpServletRequest request, SMethod sMethod, BimServer bimServer, String siteAddress) {
 		writer.println("<div class=\"method\">");
 		writer.println("<a name=\"" + sMethod.getName() + "\" href=\"#" + sMethod.getName() + "\"><h1>GET " + sMethod.getName() + "</h1></a>");
-//		writer.println("<h1>GET " + sMethod.getName() + "</h1>");
+		// writer.println("<h1>GET " + sMethod.getName() + "</h1>");
 		writer.println(sMethod.getDoc());
 		writer.println("<h2>Resource URL</h2>");
 		writer.println(siteAddress + request.getServletPath() + "/" + sMethod.getName());
@@ -234,7 +240,7 @@ public class JsonApiServlet extends HttpServlet {
 			}
 			writer.println("</table>");
 		}
-		
+
 		writer.println("<h2>Response</h2>");
 		if (sMethod.getReturnType() == null || sMethod.getReturnType().getName().equals("void")) {
 			writer.println("No response");

@@ -54,10 +54,14 @@ public class UploadServlet extends HttpServlet {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
+		if (!bimServer.isHostAllowed(request.getHeader("Origin"))) {
+			response.setStatus(403);
+			return;
+		}
 		response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
 		response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 		
-		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
 		SToken token = (SToken)request.getSession().getAttribute("token");
 		String tokenString = null;
 		long tokenExpires = -1;

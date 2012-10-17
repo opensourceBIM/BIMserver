@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 
 import org.bimserver.shared.ConnectDisconnectListener;
+import org.bimserver.shared.ReflectorFactory;
 import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersReflector;
@@ -31,17 +32,18 @@ public class ProtocolBuffersChannel extends Channel implements ConnectDisconnect
 	private SocketChannel channel;
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
 	private ServicesMap servicesMap;
+	private ReflectorFactory reflectorFactory;
 
-	public ProtocolBuffersChannel(ProtocolBuffersMetaData protocolBuffersMetaData, ServicesMap servicesMap) {
+	public ProtocolBuffersChannel(ProtocolBuffersMetaData protocolBuffersMetaData, ServicesMap servicesMap, ReflectorFactory reflectorFactory) {
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
 		this.servicesMap = servicesMap;
+		this.reflectorFactory = reflectorFactory;
 	}
 	
 	public void connect(String address, int port) throws IOException {
 		channel = new SocketChannel();
 		channel.registerConnectDisconnectListener(this);
-		ProtocolBuffersReflector reflector = new ProtocolBuffersReflector(protocolBuffersMetaData, servicesMap, channel);
-		finish(reflector);
+		finish(new ProtocolBuffersReflector(protocolBuffersMetaData, servicesMap, channel), reflectorFactory);
 		channel.connect(new InetSocketAddress(address, port));
 	}
 

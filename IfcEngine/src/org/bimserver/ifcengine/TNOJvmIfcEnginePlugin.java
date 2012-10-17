@@ -41,9 +41,9 @@ import org.bimserver.plugins.schema.SchemaPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TNOIfcEnginePlugin implements IfcEnginePlugin {
+public class TNOJvmIfcEnginePlugin implements IfcEnginePlugin {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(TNOIfcEnginePlugin.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(TNOJvmIfcEnginePlugin.class);
 	private PluginManager pluginManager;
 	private boolean initialized = false;
 	private File nativeFolder;
@@ -107,7 +107,7 @@ public class TNOIfcEnginePlugin implements IfcEnginePlugin {
 
 	@Override
 	public IfcEngine createIfcEngine() throws IfcEngineException {
-		return new FailSafeIfcEngine(schemaFile, nativeFolder, pluginManager.getTempDir(), pluginManager.getCompleteClassPath());
+		return new JvmIfcEngine(schemaFile, nativeFolder, pluginManager.getTempDir(), pluginManager.getCompleteClassPath());
 	}
 
 	@Override

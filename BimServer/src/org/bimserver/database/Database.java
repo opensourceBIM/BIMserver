@@ -206,6 +206,7 @@ public class Database implements BimDatabase {
 		settings.setShowVersionUpgradeAvailable(false);
 		settings.setCacheOutputFiles(false);
 		settings.setServiceRepositoryUrl("http://extend.bimserver.org");
+		settings.getWhitelistedDomains().add("localhost");
 		return settings;
 	}
 	

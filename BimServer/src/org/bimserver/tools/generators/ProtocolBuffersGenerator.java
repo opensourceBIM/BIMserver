@@ -354,7 +354,7 @@ public class ProtocolBuffersGenerator {
 			}
 			out.println("option java_generic_services = true;\n");
 			out.println("option java_outer_classname = \"" + service.getName() + "Impl\";\n");
-			out.println("option optimize_for = SPEED;\n");
+			out.println("option optimize_for = CODE_SIZE;\n"); // or SPEED
 			StringBuilder serviceBuilder = new StringBuilder();
 			StringBuilder messageBuilder = new StringBuilder();
 			serviceBuilder.append("service " + service.getName() + " {\n");
