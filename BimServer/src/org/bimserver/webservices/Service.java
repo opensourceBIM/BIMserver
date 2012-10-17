@@ -61,6 +61,7 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.*;
+import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.database.migrations.Migrator;
@@ -188,6 +189,7 @@ import org.bimserver.utils.NetUtils;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.codehaus.jettison.json.JSONTokener;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -391,6 +393,8 @@ public class Service implements ServiceInterface {
 		} else if (e instanceof ServerException) {
 			LOGGER.error("", e);
 			throw (ServerException) e;
+		} else if (e instanceof BimserverConcurrentModificationDatabaseException) {
+			throw new ServerException("Concurrent modification of object, please try again", e);
 		} else if (e instanceof BimserverDatabaseException) {
 			LOGGER.error("", e);
 			throw new ServerException("Database error", e);
@@ -2467,19 +2471,36 @@ public class Service implements ServiceInterface {
 		requireOpenTransaction();
 		changes.add(new SetAttributeChange(oid, attributeName, value));
 	}
-
+	
+	@Override
+	public String getStringAttribute(Long oid, String attributeName) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		return (String)getAttribute(oid, attributeName);
+	}
+	
 	@Override
 	public void setIntegerAttribute(Long oid, String attributeName, Integer value) throws UserException {
 		requireAuthenticationAndRunningServer();
 		requireOpenTransaction();
 		changes.add(new SetAttributeChange(oid, attributeName, value));
 	}
+	
+	public Integer getIntegerAttribute(Long oid, String attributeName) throws ServerException ,UserException {
+		requireAuthenticationAndRunningServer();
+		return (Integer)getAttribute(oid, attributeName);
+	};
 
 	@Override
 	public void setBooleanAttribute(Long oid, String attributeName, Boolean value) throws UserException {
 		requireAuthenticationAndRunningServer();
 		requireOpenTransaction();
 		changes.add(new SetAttributeChange(oid, attributeName, value));
+	}
+	
+	@Override
+	public Boolean getBooleanAttribute(Long oid, String attributeName) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		return (Boolean)getAttribute(oid, attributeName);
 	}
 
 	@Override
@@ -2488,6 +2509,24 @@ public class Service implements ServiceInterface {
 		requireOpenTransaction();
 		changes.add(new SetAttributeChange(oid, attributeName, value));
 	}
+	
+	@Override
+	public Double getDoubleAttribute(Long oid, String attributeName) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		return (Double)getAttribute(oid, attributeName);
+	}
+
+	private Object getAttribute(Long oid, String attributeName) throws ServerException, UserException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			IdEObject object = session.get(session.getEClassForOid(oid), oid, false, null);
+			return object.eGet(object.eClass().getEStructuralFeature(attributeName));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
 
 	@Override
 	public void setEnumAttribute(Long oid, String attributeName, String value) throws UserException {
@@ -2495,12 +2534,24 @@ public class Service implements ServiceInterface {
 		requireOpenTransaction();
 		changes.add(new SetAttributeChange(oid, attributeName, value));
 	}
+	
+	@Override
+	public String getEnumAttribute(Long oid, String attributeName) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		return (String)getAttribute(oid, attributeName);
+	}
 
 	@Override
 	public void setReference(Long oid, String referenceName, Long referenceOid) throws UserException {
 		requireAuthenticationAndRunningServer();
 		requireOpenTransaction();
 		changes.add(new SetReferenceChange(oid, referenceName, referenceOid));
+	}
+	
+	@Override
+	public Long getReference(Long oid, String referenceName) throws ServerException, UserException {
+		IdEObject idEObject = (IdEObject) getAttribute(oid, referenceName);
+		return idEObject.getOid();
 	}
 
 	@Override
@@ -3242,7 +3293,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public void setDefaultIfcEngine(long oid) throws ServerException, UserException {
+	public void setDefaultIfcEngine(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -3257,7 +3308,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public void setDefaultQueryEngine(long oid) throws ServerException, UserException {
+	public void setDefaultQueryEngine(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -3272,7 +3323,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public void setDefaultModelCompare(long oid) throws ServerException, UserException {
+	public void setDefaultModelCompare(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -3287,7 +3338,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public void setDefaultModelMerger(long oid) throws ServerException, UserException {
+	public void setDefaultModelMerger(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -3302,7 +3353,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public void setDefaultSerializer(long oid) throws ServerException, UserException {
+	public void setDefaultSerializer(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -3317,7 +3368,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public void setDefaultObjectIDM(long oid) throws ServerException, UserException {
+	public void setDefaultObjectIDM(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
@@ -3620,8 +3671,9 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			return converter
+			SInternalServicePluginConfiguration convertToSObject = converter
 					.convertToSObject(session.executeAndCommitAction(new GetByIdDatabaseAction<InternalServicePluginConfiguration>(session, accessMethod, oid, StorePackage.eINSTANCE.getInternalServicePluginConfiguration())));
+			return convertToSObject;
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -3634,7 +3686,8 @@ public class Service implements ServiceInterface {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			session.executeAndCommitAction(new UpdateDatabaseAction<InternalServicePluginConfiguration>(session, accessMethod, converter.convertFromSObject(internalService, session)));
+			InternalServicePluginConfiguration convertFromSObject = converter.convertFromSObject(internalService, session);
+			session.executeAndCommitAction(new UpdateDatabaseAction<InternalServicePluginConfiguration>(session, accessMethod, convertFromSObject));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -3673,7 +3726,9 @@ public class Service implements ServiceInterface {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			List<SInternalServicePluginConfiguration> services = converter.convertToSListInternalServicePluginConfiguration(getUserSettings(session).getServices());
+			UserSettings userSettings = getUserSettings(session);
+			EList<InternalServicePluginConfiguration> services2 = userSettings.getServices();
+			List<SInternalServicePluginConfiguration> services = converter.convertToSListInternalServicePluginConfiguration(services2);
 			Collections.sort(services, new SPluginConfigurationComparator());
 			return services;
 		} catch (Exception e) {
@@ -3683,7 +3738,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public void registerAll(long endPointId) throws ServerException, UserException {
+	public void registerAll(Long endPointId) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
 		bimServer.getNotificationsManager().register(getCurrentUser().getOid(), endPoint);
@@ -3726,7 +3781,7 @@ public class Service implements ServiceInterface {
 			User user = session.querySingle(condition, User.class, false, null);
 			if (user != null) {
 				for (InternalServicePluginConfiguration internalServicePluginConfiguration : user.getUserSettings().getServices()) {
-					if (internalServicePluginConfiguration.getClassName().equals(serviceIdentifier)) {
+					if (internalServicePluginConfiguration.getClassName().equals(serviceIdentifier) && internalServicePluginConfiguration.isRemoteAccessible()) {
 						SProfileDescriptor sProfileDescriptor = new SProfileDescriptor();
 						descriptors.add(sProfileDescriptor);
 						
@@ -3750,11 +3805,12 @@ public class Service implements ServiceInterface {
 		return converter.convertToSObject(bimServer.getPluginManager().getPlugin(className, false).getSettingsDefinition());
 	}
 
-	public SObjectType getPluginSettings(long poid) throws ServerException, UserException {
+	public SObjectType getPluginSettings(Long poid) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			PluginConfiguration pluginConfiguration = session.get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, false, null);
-			return converter.convertToSObject(pluginConfiguration.getSettings());
+			ObjectType settings = pluginConfiguration.getSettings();
+			return converter.convertToSObject(settings);
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -3763,14 +3819,14 @@ public class Service implements ServiceInterface {
 	}
 	
 	@Override
-	public void setPluginSettings(long poid, SObjectType settings) throws ServerException, UserException {
+	public void setPluginSettings(Long poid, SObjectType settings) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			PluginConfiguration pluginConfiguration = session.get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, false, null);
 			ObjectType convertedSettings = converter.convertFromSObject(settings, session);
 			pluginConfiguration.setSettings(convertedSettings);
-			session.store(pluginConfiguration);
 			session.store(convertedSettings, true);
+			session.store(pluginConfiguration);
 			session.commit();
 		} catch (Exception e) {
 			handleException(e);
@@ -3824,7 +3880,7 @@ public class Service implements ServiceInterface {
 	}
 	
 	@Override
-	public SFile getFile(long fileId) throws ServerException, UserException {
+	public SFile getFile(Long fileId) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			org.bimserver.models.store.File file = (org.bimserver.models.store.File)session.get(StorePackage.eINSTANCE.getFile(), fileId, false, null);
@@ -3852,7 +3908,7 @@ public class Service implements ServiceInterface {
 	}
 	
 	@Override
-	public void triggerNewRevision(long roid, long soid) throws ServerException, UserException {
+	public void triggerNewRevision(Long roid, Long soid) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			org.bimserver.models.store.Service service = (org.bimserver.models.store.Service)session.get(StorePackage.eINSTANCE.getService(), soid, false, null);

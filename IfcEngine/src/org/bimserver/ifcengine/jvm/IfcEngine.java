@@ -32,9 +32,7 @@ import java.nio.ByteBuffer;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.ifcengine.IfcEngineInterface;
-import org.bimserver.ifcengine.IfcEngineInterface.StreamCallback;
-import org.bimserver.ifcengine.SdaiTypes;
+import org.bimserver.ifcengine.jvm.IfcEngineInterface.StreamCallback;
 import org.bimserver.plugins.ifcengine.IfcEngineClash;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 

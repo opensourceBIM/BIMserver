@@ -59,9 +59,12 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.ServerStarted;
+import org.bimserver.models.store.BooleanType;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
+import org.bimserver.models.store.DoubleType;
 import org.bimserver.models.store.IfcEnginePluginConfiguration;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
+import org.bimserver.models.store.LongType;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.ObjectDefinition;
@@ -77,6 +80,7 @@ import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.StringType;
 import org.bimserver.models.store.Type;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
@@ -100,6 +104,8 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.servlets.EndPointManager;
+import org.bimserver.shared.ReflectorBuilder;
+import org.bimserver.shared.ReflectorFactory;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.NotificationInterface;
@@ -147,6 +153,8 @@ public class BimServer {
 	private CommandLine commandLine;
 
 	private EndPointManager endPointManager = new EndPointManager();
+
+	private ReflectorFactory reflectorFactory;
 
 	/**
 	 * Create a new BIMserver
@@ -226,6 +234,10 @@ public class BimServer {
 		return null;
 	}
 
+	public ReflectorFactory getReflectorFactory() {
+		return reflectorFactory;
+	}
+	
 	public void start() throws DatabaseInitException, BimserverDatabaseException, PluginException, DatabaseRestartRequiredException, ServerException {
 		try {
 			SVersion localVersion = versionChecker.getLocalVersion();
@@ -359,6 +371,9 @@ public class BimServer {
 				LOGGER.error("", e);
 			}
 
+			ReflectorBuilder reflectorBuilder = new ReflectorBuilder(servicesMap);
+			reflectorFactory = reflectorBuilder.newReflectorFactory();
+			
 			bimScheduler = new JobScheduler(this);
 			bimScheduler.start();
 			
@@ -598,7 +613,7 @@ public class BimServer {
 					Parameter parameter = session.create(StorePackage.eINSTANCE.getParameter());
 					parameter.setName(parameterDefinition.getName());
 					if (parameterDefinition.getDefaultValue() != null) {
-						Type value = session.cloneAndAdd(parameterDefinition.getDefaultValue());
+						Type value = cloneAndAdd(session, parameterDefinition.getDefaultValue());
 						parameter.setValue(value);
 					}
 					settings.getParameters().add(parameter);
@@ -637,6 +652,31 @@ public class BimServer {
 			}
 		}
 		session.store(userSettings);
+	}
+
+	private Type cloneAndAdd(DatabaseSession session, Type input) throws BimserverDatabaseException {
+		if (input instanceof BooleanType) {
+			BooleanType booleanType = session.create(StorePackage.eINSTANCE.getBooleanType());
+			booleanType.setValue(((BooleanType)input).isValue());
+			session.store(booleanType);
+			return booleanType;
+		} else if (input instanceof StringType) {
+			StringType stringType = session.create(StorePackage.eINSTANCE.getStringType());
+			stringType.setValue(((StringType)input).getValue());
+			session.store(stringType);
+			return stringType;
+		} else if (input instanceof DoubleType) {
+			DoubleType doubleType = session.create(StorePackage.eINSTANCE.getDoubleType());
+			doubleType.setValue(((DoubleType)input).getValue());
+			session.store(doubleType);
+			return doubleType;
+		} else if (input instanceof LongType) {
+			LongType longType = session.create(StorePackage.eINSTANCE.getLongType());
+			longType.setValue(((LongType)input).getValue());
+			session.store(longType);
+			return longType;
+		}
+		return null;
 	}
 
 	private void initDatabaseDependantItems() throws BimserverDatabaseException {
@@ -822,5 +862,25 @@ public class BimServer {
 
 	public EndPointManager getEndPointManager() {
 		return endPointManager ;
+	}
+
+	public boolean isHostAllowed(String address) {
+		if (address.startsWith("http://")) {
+			address = address.substring(7);
+		}
+		DatabaseSession session = getDatabase().createSession();
+		try {
+			ServerSettings serverSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), ServerSettings.class);
+			for (String domain : serverSettings.getWhitelistedDomains()) {
+				if (domain.equals(address)) {
+					return true;
+				}
+			}
+		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return false;
 	}
 }

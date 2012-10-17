@@ -46,7 +46,7 @@ public class NotificationLogger implements NotificationInterface {
 	}
 	
 	@Override
-	public void progress(long topicId, SLongActionState state) throws UserException, ServerException {
+	public void progress(Long topicId, SLongActionState state) throws UserException, ServerException {
 	}
 
 	@Override

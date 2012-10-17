@@ -36,7 +36,7 @@ public class NotificationInterfaceAdapter implements NotificationInterface {
 		return null;
 	}
 	
-	public void progress(long topicId, SLongActionState state) throws UserException, ServerException {
+	public void progress(Long topicId, SLongActionState state) throws UserException, ServerException {
 	}
 
 	@Override

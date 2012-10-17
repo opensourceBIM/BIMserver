@@ -8,7 +8,6 @@ import java.nio.CharBuffer;
 import org.apache.catalina.websocket.StreamInbound;
 import org.apache.catalina.websocket.WsOutbound;
 import org.bimserver.BimServer;
-import org.bimserver.interfaces.NotificationInterfaceReflectorImpl;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.json.JsonReflector;
 import org.codehaus.jettison.json.JSONException;
@@ -25,14 +24,14 @@ public class TomcatStreamInbound extends StreamInbound implements EndPoint, Stre
 	private BimServer bimServer;
 	private long uoid;
 	private long endpointid;
-	private NotificationInterfaceReflectorImpl reflectorImpl;
+	private NotificationInterface reflectorImpl;
 	private WsOutbound outbound;
 
 	public TomcatStreamInbound(BimServer bimServer) {
 		this.bimServer = bimServer;
 		this.endpointid = bimServer.getEndPointManager().register(this);
 		JsonReflector jsonReflector = new JsonWebsocketReflector(bimServer.getServicesMap(), this);
-		reflectorImpl = new NotificationInterfaceReflectorImpl(jsonReflector);
+		reflectorImpl = bimServer.getReflectorFactory().createReflector(NotificationInterface.class, jsonReflector);
 	}
 
 	@Override

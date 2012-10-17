@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.bimserver.ifcengine;
 
 /******************************************************************************
@@ -26,12 +23,28 @@ package org.bimserver.ifcengine;
  * Within the Open Source BIMserver software there is one exception to the normal conditions: A special version of the IFC Engine DLL is used that includes Clashdetection functionality, this version is not commercially available. For more information, please contact the owner at info@ifcengine.com
  *****************************************************************************/
 
-public enum IfcEntities {
-	WINDOW, ANNOTATION, BEAM, BUILDINGELEMENTCOMPONENT, STRUCTURALCURVEMEMBER, STRUCTURALSURFACEMEMBER, BUILDINGELEMENTPROXY, COLUMN, COVERING, CURTAINWALL, DOOR, ELEMENTASSEMBLY, FASTENER, FOOTING, MECHANICALFASTENER, MEMBER, PILE, PLATE, RAILING, RAMP, RAMPFLIGHT, ROOF, SLAB, STAIR, STAIRFLIGHT, SPACE, WALL, WALLSTANDARDCASE, AIRTERMINAL, DISTRIBUTIONELEMENT, ENERGYCONVERSIONDEVICE, FURNISHINGELEMENT, FLOWCONTROLLER, FLOWFITTING, FLOWMOVINGDEVICE, FLOWSEGMENT, FLOWSTORAGEDEVICE, FLOWTERMINAL, FLOWTREATMENTDEVICE, GRID;
+import org.bimserver.plugins.ifcengine.IfcEngineException;
+import org.bimserver.plugins.ifcengine.IfcEngineInstance;
+import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 
-	@Override
-	public String toString() {
-		return "IFC" + name();
+public class JvmIfcEngineInstance implements IfcEngineInstance {
+	private final JvmIfcEngine failSafeIfcEngine;
+	private final int instanceId;
+	private final int modelId;
+
+	public JvmIfcEngineInstance(JvmIfcEngine failSafeIfcEngine, int modelId, int instanceId) {
+		this.failSafeIfcEngine = failSafeIfcEngine;
+		this.modelId = modelId;
+		this.instanceId = instanceId;
 	}
 
+	public IfcEngineInstanceVisualisationProperties getVisualisationProperties() throws IfcEngineException {
+		synchronized (failSafeIfcEngine) {
+			failSafeIfcEngine.writeCommand(Command.GET_VISUALISATION_PROPERTIES);
+			failSafeIfcEngine.writeInt(modelId);
+			failSafeIfcEngine.writeInt(instanceId);
+			failSafeIfcEngine.flush();
+			return new IfcEngineInstanceVisualisationProperties(failSafeIfcEngine.readInt(), failSafeIfcEngine.readInt(), failSafeIfcEngine.readInt());
+		}
+	}
 }

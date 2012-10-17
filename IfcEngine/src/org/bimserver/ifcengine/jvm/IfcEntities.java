@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.bimserver.ifcengine;
+package org.bimserver.ifcengine.jvm;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
@@ -26,12 +26,12 @@ package org.bimserver.ifcengine;
  * Within the Open Source BIMserver software there is one exception to the normal conditions: A special version of the IFC Engine DLL is used that includes Clashdetection functionality, this version is not commercially available. For more information, please contact the owner at info@ifcengine.com
  *****************************************************************************/
 
-public enum SdaiTypes {
-	NULL, ADB, AGGR, BINARY, BOOLEAN, ENUM, INSTANCE, INTEGER, LOGICAL, REAL, STRING;
+public enum IfcEntities {
+	WINDOW, ANNOTATION, BEAM, BUILDINGELEMENTCOMPONENT, STRUCTURALCURVEMEMBER, STRUCTURALSURFACEMEMBER, BUILDINGELEMENTPROXY, COLUMN, COVERING, CURTAINWALL, DOOR, ELEMENTASSEMBLY, FASTENER, FOOTING, MECHANICALFASTENER, MEMBER, PILE, PLATE, RAILING, RAMP, RAMPFLIGHT, ROOF, SLAB, STAIR, STAIRFLIGHT, SPACE, WALL, WALLSTANDARDCASE, AIRTERMINAL, DISTRIBUTIONELEMENT, ENERGYCONVERSIONDEVICE, FURNISHINGELEMENT, FLOWCONTROLLER, FLOWFITTING, FLOWMOVINGDEVICE, FLOWSEGMENT, FLOWSTORAGEDEVICE, FLOWTERMINAL, FLOWTREATMENTDEVICE, GRID;
 
 	@Override
 	public String toString() {
-		return "sdai" + name();
+		return "IFC" + name();
 	}
 
 }

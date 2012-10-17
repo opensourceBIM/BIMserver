@@ -60,6 +60,8 @@ public abstract class JsonReflector implements Reflector {
 			e.printStackTrace();
 		} catch (ConvertException e) {
 			e.printStackTrace();
+		} catch (ReflectorException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
@@ -68,5 +70,5 @@ public abstract class JsonReflector implements Reflector {
 		return false;
 	}
 
-	public abstract JsonObject call(JsonObject request) throws JSONException;
+	public abstract JsonObject call(JsonObject request) throws JSONException, ReflectorException;
 }

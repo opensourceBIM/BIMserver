@@ -32,7 +32,6 @@ import org.bimserver.client.channels.Channel;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.interfaces.SConverter;
-import org.bimserver.interfaces.ServiceInterfaceReflectorImpl;
 import org.bimserver.interfaces.objects.SImmediateNotificationResult;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SNewProjectAdded;
@@ -191,7 +190,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		}
 		switch (service.getNotificationProtocol()) {
 		case JSON:
-			JsonChannel jsonChannel = new JsonChannel(bimServer.getServicesMap());
+			JsonChannel jsonChannel = new JsonChannel(bimServer.getServicesMap(), bimServer.getReflectorFactory());
 			jsonChannel.connect(service.getUrl(), true, null);
 			return jsonChannel;
 		case INTERNAL:
@@ -252,7 +251,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 				if (logAction instanceof SNewRevisionAdded) {
 					SNewRevisionAdded newRevisionAdded = (SNewRevisionAdded)logAction;
 					JsonReflector jsonReflector = new JsonSocketReflector(bimServer.getServicesMap(), apiUrl, false, new TokenAuthentication(token));
-					ServiceInterfaceReflectorImpl serviceInterfaceReflectorImpl = new ServiceInterfaceReflectorImpl(jsonReflector);
+					ServiceInterface serviceInterfaceReflectorImpl = bimServer.getReflectorFactory().createReflector(ServiceInterface.class, jsonReflector);
 					SService service = serviceInterfaceReflectorImpl.getService(Long.parseLong(profileIdentifier));
 					SObjectType settings = serviceInterfaceReflectorImpl.getPluginSettings(service.getInternalServiceId());
 					runningServices.put(uuid, new RunningExternalService());

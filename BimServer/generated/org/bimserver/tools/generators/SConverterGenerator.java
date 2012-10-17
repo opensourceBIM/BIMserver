@@ -57,7 +57,7 @@ public class SConverterGenerator
   protected final String TEXT_36 = NL + "\t\tS";
   protected final String TEXT_37 = " result = new S";
   protected final String TEXT_38 = "();";
-  protected final String TEXT_39 = NL + "\t\tresult.setOid(input.getOid());";
+  protected final String TEXT_39 = NL + "\t\tresult.setOid(input.getOid());" + NL + "\t\tresult.setRid(input.getRid());";
   protected final String TEXT_40 = NL + "\t\tresult.set";
   protected final String TEXT_41 = "(S";
   protected final String TEXT_42 = ".values()[input.get";
@@ -108,7 +108,7 @@ public class SConverterGenerator
   protected final String TEXT_87 = " result = ";
   protected final String TEXT_88 = "Factory.eINSTANCE.create";
   protected final String TEXT_89 = "();";
-  protected final String TEXT_90 = NL + "\t\t((IdEObjectImpl)result).setOid(input.getOid());";
+  protected final String TEXT_90 = NL + "\t\t((IdEObjectImpl)result).setOid(input.getOid());" + NL + "\t\t((IdEObjectImpl)result).setRid(input.getRid());";
   protected final String TEXT_91 = NL + "\t\tresult.set";
   protected final String TEXT_92 = "(";
   protected final String TEXT_93 = ".values()[input.get";

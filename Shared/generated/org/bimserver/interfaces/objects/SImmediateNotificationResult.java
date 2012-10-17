@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SImmediateNotificationResult implements SDataBase
 {
 	private long oid = -1;
+	private int rid = 0;
 
 	@XmlTransient
 	private static SClass sClass;
@@ -36,6 +37,14 @@ public class SImmediateNotificationResult implements SDataBase
 	
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+
+	public int getRid() {
+		return rid;
+	}
+	
+	public void setRid(int rid) {
+		this.rid = rid;
 	}
 	
 	@XmlTransient
@@ -57,6 +66,9 @@ public class SImmediateNotificationResult implements SDataBase
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
+		if (sField.getName().equals("rid")) {
+			return getRid();
+		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 
@@ -71,6 +83,10 @@ public class SImmediateNotificationResult implements SDataBase
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
+		}
+		if (sField.getName().equals("rid")) {
+			setRid((Integer)val);
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");

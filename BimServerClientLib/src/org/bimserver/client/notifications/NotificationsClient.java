@@ -21,7 +21,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.shared.ConnectDisconnectListener;
-import org.bimserver.shared.interfaces.NotificationInterface;
 
 public abstract class NotificationsClient {
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();

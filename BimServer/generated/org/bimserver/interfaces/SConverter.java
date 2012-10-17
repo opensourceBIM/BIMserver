@@ -87,6 +87,7 @@ public class SConverter {
 		
 		SProject result = new SProject();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setId(input.getId());
 		result.setName(input.getName());
 		result.setState(SObjectState.values()[input.getState().ordinal()]);
@@ -152,6 +153,7 @@ public class SConverter {
 		}		
 		Project result = StoreFactory.eINSTANCE.createProject();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setId(input.getId());
 		result.setName(input.getName());
 		result.setState(ObjectState.values()[input.getState().ordinal()]);
@@ -237,6 +239,7 @@ public class SConverter {
 		
 		SUser result = new SUser();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setName(input.getName());
 		result.setPassword(input.getPassword());
 		result.setState(SObjectState.values()[input.getState().ordinal()]);
@@ -290,6 +293,7 @@ public class SConverter {
 		}		
 		User result = StoreFactory.eINSTANCE.createUser();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setName(input.getName());
 		result.setPassword(input.getPassword());
 		result.setState(ObjectState.values()[input.getState().ordinal()]);
@@ -368,6 +372,7 @@ public class SConverter {
 		
 		SRevision result = new SRevision();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setId(input.getId());
 		result.setDate(input.getDate());
 		result.setComment(input.getComment());
@@ -413,6 +418,7 @@ public class SConverter {
 		}		
 		Revision result = StoreFactory.eINSTANCE.createRevision();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setId(input.getId());
 		result.setDate(input.getDate());
 		result.setComment(input.getComment());
@@ -483,6 +489,7 @@ public class SConverter {
 		
 		SConcreteRevision result = new SConcreteRevision();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setId(input.getId());
 		result.setChecksum(input.getChecksum());
 		result.setSize(input.getSize());
@@ -506,6 +513,7 @@ public class SConverter {
 		}		
 		ConcreteRevision result = StoreFactory.eINSTANCE.createConcreteRevision();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setId(input.getId());
 		result.setChecksum(input.getChecksum());
 		result.setSize(input.getSize());
@@ -559,6 +567,7 @@ public class SConverter {
 		
 		SGeoTag result = new SGeoTag();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setEnabled(input.getEnabled());
 		result.setX(input.getX());
 		result.setY(input.getY());
@@ -579,6 +588,7 @@ public class SConverter {
 		}		
 		GeoTag result = StoreFactory.eINSTANCE.createGeoTag();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setEnabled(input.getEnabled());
 		result.setX(input.getX());
 		result.setY(input.getY());
@@ -631,6 +641,7 @@ public class SConverter {
 		
 		SCheckout result = new SCheckout();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setActive(input.getActive());
 		User userVal = input.getUser();
@@ -655,6 +666,7 @@ public class SConverter {
 		}		
 		Checkout result = StoreFactory.eINSTANCE.createCheckout();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setActive(input.getActive());
 		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), false, null));
@@ -707,6 +719,7 @@ public class SConverter {
 		
 		SServerSettings result = new SServerSettings();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setShowVersionUpgradeAvailable(input.getShowVersionUpgradeAvailable());
 		result.setSendConfirmationEmailAfterRegistration(input.isSendConfirmationEmailAfterRegistration());
 		result.setUseCaching(input.getUseCaching());
@@ -718,6 +731,7 @@ public class SConverter {
 		result.setEmailSenderAddress(input.getEmailSenderAddress());
 		result.setCustomLogoAddress(input.getCustomLogoAddress());
 		result.setSiteAddress(input.getSiteAddress());
+		result.getWhitelistedDomains().addAll(input.getWhitelistedDomains());
 		result.setHideUserListForNonAdmin(input.getHideUserListForNonAdmin());
 		result.setProtocolBuffersPort(input.getProtocolBuffersPort());
 		result.setHeaderAddition(input.getHeaderAddition());
@@ -733,6 +747,7 @@ public class SConverter {
 		}		
 		ServerSettings result = StoreFactory.eINSTANCE.createServerSettings();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setShowVersionUpgradeAvailable(input.getShowVersionUpgradeAvailable());
 		result.setSendConfirmationEmailAfterRegistration(input.isSendConfirmationEmailAfterRegistration());
 		result.setUseCaching(input.getUseCaching());
@@ -744,6 +759,7 @@ public class SConverter {
 		result.setEmailSenderAddress(input.getEmailSenderAddress());
 		result.setCustomLogoAddress(input.getCustomLogoAddress());
 		result.setSiteAddress(input.getSiteAddress());
+		result.getWhitelistedDomains().addAll(input.getWhitelistedDomains());
 		result.setHideUserListForNonAdmin(input.getHideUserListForNonAdmin());
 		result.setProtocolBuffersPort(input.getProtocolBuffersPort());
 		result.setHeaderAddition(input.getHeaderAddition());
@@ -792,6 +808,7 @@ public class SConverter {
 		
 		SUserSettings result = new SUserSettings();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		List<Long> listserializers = new ArrayList<Long>();
 		for (SerializerPluginConfiguration v : input.getSerializers()) {
 			listserializers.add(v.getOid());
@@ -853,6 +870,7 @@ public class SConverter {
 		}		
 		UserSettings result = StoreFactory.eINSTANCE.createUserSettings();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		List<SerializerPluginConfiguration> listserializers = result.getSerializers();
 		for (long oid : input.getSerializers()) {
 			listserializers.add((SerializerPluginConfiguration)session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), oid, false, null));
@@ -957,6 +975,7 @@ public class SConverter {
 		}
 		SPluginConfiguration result = new SPluginConfiguration();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
@@ -996,6 +1015,7 @@ public class SConverter {
 		}		
 		PluginConfiguration result = StoreFactory.eINSTANCE.createPluginConfiguration();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
@@ -1043,6 +1063,7 @@ public class SConverter {
 		
 		SSerializerPluginConfiguration result = new SSerializerPluginConfiguration();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
@@ -1066,6 +1087,7 @@ public class SConverter {
 		}		
 		SerializerPluginConfiguration result = StoreFactory.eINSTANCE.createSerializerPluginConfiguration();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
@@ -1118,6 +1140,7 @@ public class SConverter {
 		
 		SObjectIDMPluginConfiguration result = new SObjectIDMPluginConfiguration();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
@@ -1140,6 +1163,7 @@ public class SConverter {
 		}		
 		ObjectIDMPluginConfiguration result = StoreFactory.eINSTANCE.createObjectIDMPluginConfiguration();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
@@ -1192,6 +1216,7 @@ public class SConverter {
 		
 		SIfcEnginePluginConfiguration result = new SIfcEnginePluginConfiguration();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
@@ -1214,6 +1239,7 @@ public class SConverter {
 		}		
 		IfcEnginePluginConfiguration result = StoreFactory.eINSTANCE.createIfcEnginePluginConfiguration();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
@@ -1266,6 +1292,7 @@ public class SConverter {
 		
 		SDeserializerPluginConfiguration result = new SDeserializerPluginConfiguration();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
@@ -1283,6 +1310,7 @@ public class SConverter {
 		}		
 		DeserializerPluginConfiguration result = StoreFactory.eINSTANCE.createDeserializerPluginConfiguration();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
@@ -1331,6 +1359,7 @@ public class SConverter {
 		
 		SCheckinResult result = new SCheckinResult();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setProgress(input.getProgress());
 		result.setLastError(input.getLastError());
 		result.setStatus(SCheckinStatus.values()[input.getStatus().ordinal()]);
@@ -1347,6 +1376,7 @@ public class SConverter {
 		}		
 		CheckinResult result = StoreFactory.eINSTANCE.createCheckinResult();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setProgress(input.getProgress());
 		result.setLastError(input.getLastError());
 		result.setStatus(CheckinStatus.values()[input.getStatus().ordinal()]);
@@ -1397,6 +1427,7 @@ public class SConverter {
 		}
 		SDownloadResult result = new SDownloadResult();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setProjectName(input.getProjectName());
 		result.setRevisionNr(input.getRevisionNr());
 		result.setFile(input.getFile());
@@ -1412,6 +1443,7 @@ public class SConverter {
 		}		
 		DownloadResult result = StoreFactory.eINSTANCE.createDownloadResult();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setProjectName(input.getProjectName());
 		result.setRevisionNr(input.getRevisionNr());
 		result.setFile(input.getFile());
@@ -1457,6 +1489,7 @@ public class SConverter {
 		
 		SCheckoutResult result = new SCheckoutResult();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setProjectName(input.getProjectName());
 		result.setRevisionNr(input.getRevisionNr());
 		result.setFile(input.getFile());
@@ -1469,6 +1502,7 @@ public class SConverter {
 		}		
 		CheckoutResult result = StoreFactory.eINSTANCE.createCheckoutResult();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setProjectName(input.getProjectName());
 		result.setRevisionNr(input.getRevisionNr());
 		result.setFile(input.getFile());
@@ -1523,6 +1557,7 @@ public class SConverter {
 		}
 		SDataValue result = new SDataValue();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setFieldName(input.getFieldName());
 		return result;
 	}
@@ -1542,6 +1577,7 @@ public class SConverter {
 		}		
 		DataValue result = StoreFactory.eINSTANCE.createDataValue();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setFieldName(input.getFieldName());
 		return result;
 	}
@@ -1585,6 +1621,7 @@ public class SConverter {
 		
 		SDataObject result = new SDataObject();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setType(input.getType());
 		result.setGuid(input.getGuid());
 		result.setName(input.getName());
@@ -1602,6 +1639,7 @@ public class SConverter {
 		}		
 		DataObject result = StoreFactory.eINSTANCE.createDataObject();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setType(input.getType());
 		result.setGuid(input.getGuid());
 		result.setName(input.getName());
@@ -1651,6 +1689,7 @@ public class SConverter {
 		
 		SUserSession result = new SUserSession();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setUsername(input.getUsername());
 		result.setName(input.getName());
 		result.setType(SUserType.values()[input.getType().ordinal()]);
@@ -1669,6 +1708,7 @@ public class SConverter {
 		}		
 		UserSession result = StoreFactory.eINSTANCE.createUserSession();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setUsername(input.getUsername());
 		result.setName(input.getName());
 		result.setType(UserType.values()[input.getType().ordinal()]);
@@ -1719,6 +1759,7 @@ public class SConverter {
 		
 		SMigration result = new SMigration();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setNumber(input.getNumber());
 		result.setDescription(input.getDescription());
 		result.setExecuted(input.getExecuted());
@@ -1731,6 +1772,7 @@ public class SConverter {
 		}		
 		Migration result = StoreFactory.eINSTANCE.createMigration();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setNumber(input.getNumber());
 		result.setDescription(input.getDescription());
 		result.setExecuted(input.getExecuted());
@@ -1776,6 +1818,7 @@ public class SConverter {
 		
 		SReferenceDataValue result = new SReferenceDataValue();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setFieldName(input.getFieldName());
 		result.setTypeName(input.getTypeName());
 		result.setGuid(input.getGuid());
@@ -1788,6 +1831,7 @@ public class SConverter {
 		}		
 		ReferenceDataValue result = StoreFactory.eINSTANCE.createReferenceDataValue();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setFieldName(input.getFieldName());
 		result.setTypeName(input.getTypeName());
 		result.setGuid(input.getGuid());
@@ -1833,6 +1877,7 @@ public class SConverter {
 		
 		SListDataValue result = new SListDataValue();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setFieldName(input.getFieldName());
 		List<SDataValue> listvalues = new ArrayList<SDataValue>();
 		for (DataValue v : input.getValues()) {
@@ -1848,6 +1893,7 @@ public class SConverter {
 		}		
 		ListDataValue result = StoreFactory.eINSTANCE.createListDataValue();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setFieldName(input.getFieldName());
 		List<DataValue> listvalues = result.getValues();
 		for (SDataValue v : input.getValues()) {
@@ -1895,6 +1941,7 @@ public class SConverter {
 		
 		SSimpleDataValue result = new SSimpleDataValue();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setFieldName(input.getFieldName());
 		result.setStringValue(input.getStringValue());
 		return result;
@@ -1906,6 +1953,7 @@ public class SConverter {
 		}		
 		SimpleDataValue result = StoreFactory.eINSTANCE.createSimpleDataValue();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setFieldName(input.getFieldName());
 		result.setStringValue(input.getStringValue());
 		return result;
@@ -1950,6 +1998,7 @@ public class SConverter {
 		
 		SDatabaseInformationItem result = new SDatabaseInformationItem();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setKey(input.getKey());
 		result.setValue(input.getValue());
 		return result;
@@ -1961,6 +2010,7 @@ public class SConverter {
 		}		
 		DatabaseInformationItem result = StoreFactory.eINSTANCE.createDatabaseInformationItem();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setKey(input.getKey());
 		result.setValue(input.getValue());
 		return result;
@@ -2005,6 +2055,7 @@ public class SConverter {
 		
 		SDatabaseInformationCategory result = new SDatabaseInformationCategory();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setTitle(input.getTitle());
 		List<SDatabaseInformationItem> listitems = new ArrayList<SDatabaseInformationItem>();
 		for (DatabaseInformationItem v : input.getItems()) {
@@ -2020,6 +2071,7 @@ public class SConverter {
 		}		
 		DatabaseInformationCategory result = StoreFactory.eINSTANCE.createDatabaseInformationCategory();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setTitle(input.getTitle());
 		List<DatabaseInformationItem> listitems = result.getItems();
 		for (SDatabaseInformationItem v : input.getItems()) {
@@ -2067,6 +2119,7 @@ public class SConverter {
 		
 		SDatabaseInformation result = new SDatabaseInformation();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setNumberOfProjects(input.getNumberOfProjects());
 		result.setNumberOfUsers(input.getNumberOfUsers());
 		result.setNumberOfRevisions(input.getNumberOfRevisions());
@@ -2090,6 +2143,7 @@ public class SConverter {
 		}		
 		DatabaseInformation result = StoreFactory.eINSTANCE.createDatabaseInformation();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setNumberOfProjects(input.getNumberOfProjects());
 		result.setNumberOfUsers(input.getNumberOfUsers());
 		result.setNumberOfRevisions(input.getNumberOfRevisions());
@@ -2166,6 +2220,7 @@ public class SConverter {
 		}
 		SPluginDescriptor result = new SPluginDescriptor();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDefaultName(input.getDefaultName());
 		result.setPluginClassName(input.getPluginClassName());
 		result.setDescription(input.getDescription());
@@ -2201,6 +2256,7 @@ public class SConverter {
 		}		
 		PluginDescriptor result = StoreFactory.eINSTANCE.createPluginDescriptor();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDefaultName(input.getDefaultName());
 		result.setPluginClassName(input.getPluginClassName());
 		result.setDescription(input.getDescription());
@@ -2248,6 +2304,7 @@ public class SConverter {
 		
 		SSerializerPluginDescriptor result = new SSerializerPluginDescriptor();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDefaultName(input.getDefaultName());
 		result.setPluginClassName(input.getPluginClassName());
 		result.setDescription(input.getDescription());
@@ -2264,6 +2321,7 @@ public class SConverter {
 		}		
 		SerializerPluginDescriptor result = StoreFactory.eINSTANCE.createSerializerPluginDescriptor();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDefaultName(input.getDefaultName());
 		result.setPluginClassName(input.getPluginClassName());
 		result.setDescription(input.getDescription());
@@ -2313,6 +2371,7 @@ public class SConverter {
 		
 		SDeserializerPluginDescriptor result = new SDeserializerPluginDescriptor();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDefaultName(input.getDefaultName());
 		result.setPluginClassName(input.getPluginClassName());
 		result.setDescription(input.getDescription());
@@ -2327,6 +2386,7 @@ public class SConverter {
 		}		
 		DeserializerPluginDescriptor result = StoreFactory.eINSTANCE.createDeserializerPluginDescriptor();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDefaultName(input.getDefaultName());
 		result.setPluginClassName(input.getPluginClassName());
 		result.setDescription(input.getDescription());
@@ -2374,6 +2434,7 @@ public class SConverter {
 		
 		SRevisionSummaryType result = new SRevisionSummaryType();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setName(input.getName());
 		result.setCount(input.getCount());
 		return result;
@@ -2385,6 +2446,7 @@ public class SConverter {
 		}		
 		RevisionSummaryType result = StoreFactory.eINSTANCE.createRevisionSummaryType();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setName(input.getName());
 		result.setCount(input.getCount());
 		return result;
@@ -2429,6 +2491,7 @@ public class SConverter {
 		
 		SRevisionSummaryContainer result = new SRevisionSummaryContainer();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setName(input.getName());
 		List<SRevisionSummaryType> listtypes = new ArrayList<SRevisionSummaryType>();
 		for (RevisionSummaryType v : input.getTypes()) {
@@ -2444,6 +2507,7 @@ public class SConverter {
 		}		
 		RevisionSummaryContainer result = StoreFactory.eINSTANCE.createRevisionSummaryContainer();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setName(input.getName());
 		List<RevisionSummaryType> listtypes = result.getTypes();
 		for (SRevisionSummaryType v : input.getTypes()) {
@@ -2491,6 +2555,7 @@ public class SConverter {
 		
 		SRevisionSummary result = new SRevisionSummary();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		List<SRevisionSummaryContainer> listlist = new ArrayList<SRevisionSummaryContainer>();
 		for (RevisionSummaryContainer v : input.getList()) {
 			listlist.add(convertToSObject(v));
@@ -2505,6 +2570,7 @@ public class SConverter {
 		}		
 		RevisionSummary result = StoreFactory.eINSTANCE.createRevisionSummary();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		List<RevisionSummaryContainer> listlist = result.getList();
 		for (SRevisionSummaryContainer v : input.getList()) {
 			listlist.add(convertFromSObject(v, session));
@@ -2554,6 +2620,7 @@ public class SConverter {
 		}
 		SLongAction result = new SLongAction();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setIdentification(input.getIdentification());
 		result.setStart(input.getStart());
 		result.setUsername(input.getUsername());
@@ -2572,6 +2639,7 @@ public class SConverter {
 		}		
 		LongAction result = StoreFactory.eINSTANCE.createLongAction();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setIdentification(input.getIdentification());
 		result.setStart(input.getStart());
 		result.setUsername(input.getUsername());
@@ -2619,6 +2687,7 @@ public class SConverter {
 		
 		SLongCheckinAction result = new SLongCheckinAction();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setIdentification(input.getIdentification());
 		result.setStart(input.getStart());
 		result.setUsername(input.getUsername());
@@ -2639,6 +2708,7 @@ public class SConverter {
 		}		
 		LongCheckinAction result = StoreFactory.eINSTANCE.createLongCheckinAction();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setIdentification(input.getIdentification());
 		result.setStart(input.getStart());
 		result.setUsername(input.getUsername());
@@ -2690,6 +2760,7 @@ public class SConverter {
 		
 		SObjectIDMPluginDescriptor result = new SObjectIDMPluginDescriptor();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setClassName(input.getClassName());
 		return result;
 	}
@@ -2700,6 +2771,7 @@ public class SConverter {
 		}		
 		ObjectIDMPluginDescriptor result = StoreFactory.eINSTANCE.createObjectIDMPluginDescriptor();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setClassName(input.getClassName());
 		return result;
 	}
@@ -2759,6 +2831,7 @@ public class SConverter {
 		}
 		SCompareItem result = new SCompareItem();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		DataObject dataObjectVal = input.getDataObject();
 		result.setDataObject(convertToSObject(dataObjectVal));
 		return result;
@@ -2779,6 +2852,7 @@ public class SConverter {
 		}		
 		CompareItem result = StoreFactory.eINSTANCE.createCompareItem();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDataObject(convertFromSObject(input.getDataObject(), session));
 		return result;
 	}
@@ -2822,6 +2896,7 @@ public class SConverter {
 		
 		SObjectAdded result = new SObjectAdded();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		DataObject dataObjectVal = input.getDataObject();
 		result.setDataObject(convertToSObject(dataObjectVal));
 		return result;
@@ -2833,6 +2908,7 @@ public class SConverter {
 		}		
 		ObjectAdded result = StoreFactory.eINSTANCE.createObjectAdded();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDataObject(convertFromSObject(input.getDataObject(), session));
 		return result;
 	}
@@ -2876,6 +2952,7 @@ public class SConverter {
 		
 		SObjectRemoved result = new SObjectRemoved();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		DataObject dataObjectVal = input.getDataObject();
 		result.setDataObject(convertToSObject(dataObjectVal));
 		return result;
@@ -2887,6 +2964,7 @@ public class SConverter {
 		}		
 		ObjectRemoved result = StoreFactory.eINSTANCE.createObjectRemoved();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDataObject(convertFromSObject(input.getDataObject(), session));
 		return result;
 	}
@@ -2930,6 +3008,7 @@ public class SConverter {
 		
 		SObjectModified result = new SObjectModified();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setFieldName(input.getFieldName());
 		result.setOldValue(input.getOldValue());
 		result.setNewValue(input.getNewValue());
@@ -2944,6 +3023,7 @@ public class SConverter {
 		}		
 		ObjectModified result = StoreFactory.eINSTANCE.createObjectModified();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setFieldName(input.getFieldName());
 		result.setOldValue(input.getOldValue());
 		result.setNewValue(input.getNewValue());
@@ -2990,6 +3070,7 @@ public class SConverter {
 		
 		SCompareContainer result = new SCompareContainer();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setType(input.getType());
 		List<SCompareItem> listitems = new ArrayList<SCompareItem>();
 		for (CompareItem v : input.getItems()) {
@@ -3005,6 +3086,7 @@ public class SConverter {
 		}		
 		CompareContainer result = StoreFactory.eINSTANCE.createCompareContainer();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setType(input.getType());
 		List<CompareItem> listitems = result.getItems();
 		for (SCompareItem v : input.getItems()) {
@@ -3052,6 +3134,7 @@ public class SConverter {
 		
 		SCompareResult result = new SCompareResult();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		List<SCompareContainer> listitems = new ArrayList<SCompareContainer>();
 		for (CompareContainer v : input.getItems()) {
 			listitems.add(convertToSObject(v));
@@ -3066,6 +3149,7 @@ public class SConverter {
 		}		
 		CompareResult result = StoreFactory.eINSTANCE.createCompareResult();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		List<CompareContainer> listitems = result.getItems();
 		for (SCompareContainer v : input.getItems()) {
 			listitems.add(convertFromSObject(v, session));
@@ -3119,6 +3203,7 @@ public class SConverter {
 		
 		SLongActionState result = new SLongActionState();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setProgress(input.getProgress());
 		result.setState(SActionState.values()[input.getState().ordinal()]);
 		result.getErrors().addAll(input.getErrors());
@@ -3133,6 +3218,7 @@ public class SConverter {
 		}		
 		LongActionState result = StoreFactory.eINSTANCE.createLongActionState();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setProgress(input.getProgress());
 		result.setState(ActionState.values()[input.getState().ordinal()]);
 		result.getErrors().addAll(input.getErrors());
@@ -3187,6 +3273,7 @@ public class SConverter {
 		
 		SServerInfo result = new SServerInfo();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setServerState(SServerState.values()[input.getServerState().ordinal()]);
 		result.setErrorMessage(input.getErrorMessage());
 		return result;
@@ -3198,6 +3285,7 @@ public class SConverter {
 		}		
 		ServerInfo result = StoreFactory.eINSTANCE.createServerInfo();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setServerState(ServerState.values()[input.getServerState().ordinal()]);
 		result.setErrorMessage(input.getErrorMessage());
 		return result;
@@ -3242,6 +3330,7 @@ public class SConverter {
 		
 		SVersion result = new SVersion();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setMajor(input.getMajor());
 		result.setMinor(input.getMinor());
 		result.setRevision(input.getRevision());
@@ -3258,6 +3347,7 @@ public class SConverter {
 		}		
 		Version result = StoreFactory.eINSTANCE.createVersion();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setMajor(input.getMajor());
 		result.setMinor(input.getMinor());
 		result.setRevision(input.getRevision());
@@ -3307,6 +3397,7 @@ public class SConverter {
 		
 		SIfcEnginePluginDescriptor result = new SIfcEnginePluginDescriptor();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDefaultName(input.getDefaultName());
 		result.setPluginClassName(input.getPluginClassName());
 		result.setDescription(input.getDescription());
@@ -3321,6 +3412,7 @@ public class SConverter {
 		}		
 		IfcEnginePluginDescriptor result = StoreFactory.eINSTANCE.createIfcEnginePluginDescriptor();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDefaultName(input.getDefaultName());
 		result.setPluginClassName(input.getPluginClassName());
 		result.setDescription(input.getDescription());
@@ -3382,6 +3474,7 @@ public class SConverter {
 		
 		SFile result = new SFile();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setData(input.getData());
 		result.setFilename(input.getFilename());
 		result.setMime(input.getMime());
@@ -3394,6 +3487,7 @@ public class SConverter {
 		}		
 		File result = StoreFactory.eINSTANCE.createFile();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setData(input.getData());
 		result.setFilename(input.getFilename());
 		result.setMime(input.getMime());
@@ -3439,6 +3533,7 @@ public class SConverter {
 		
 		SExtendedDataSchema result = new SExtendedDataSchema();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setName(input.getName());
 		result.setUrl(input.getUrl());
 		result.setNamespace(input.getNamespace());
@@ -3467,6 +3562,7 @@ public class SConverter {
 		}		
 		ExtendedDataSchema result = StoreFactory.eINSTANCE.createExtendedDataSchema();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setName(input.getName());
 		result.setUrl(input.getUrl());
 		result.setNamespace(input.getNamespace());
@@ -3525,6 +3621,7 @@ public class SConverter {
 		
 		SExtendedData result = new SExtendedData();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setUrl(input.getUrl());
 		result.setSize(input.getSize());
 		result.setTitle(input.getTitle());
@@ -3548,6 +3645,7 @@ public class SConverter {
 		}		
 		ExtendedData result = StoreFactory.eINSTANCE.createExtendedData();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setUrl(input.getUrl());
 		result.setSize(input.getSize());
 		result.setTitle(input.getTitle());
@@ -3599,6 +3697,7 @@ public class SConverter {
 		
 		SQueryEnginePluginDescriptor result = new SQueryEnginePluginDescriptor();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDefaultName(input.getDefaultName());
 		result.setPluginClassName(input.getPluginClassName());
 		result.setDescription(input.getDescription());
@@ -3613,6 +3712,7 @@ public class SConverter {
 		}		
 		QueryEnginePluginDescriptor result = StoreFactory.eINSTANCE.createQueryEnginePluginDescriptor();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDefaultName(input.getDefaultName());
 		result.setPluginClassName(input.getPluginClassName());
 		result.setDescription(input.getDescription());
@@ -3660,6 +3760,7 @@ public class SConverter {
 		
 		SQueryEnginePluginConfiguration result = new SQueryEnginePluginConfiguration();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
@@ -3677,6 +3778,7 @@ public class SConverter {
 		}		
 		QueryEnginePluginConfiguration result = StoreFactory.eINSTANCE.createQueryEnginePluginConfiguration();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
@@ -3725,6 +3827,7 @@ public class SConverter {
 		
 		SModelMergerPluginDescriptor result = new SModelMergerPluginDescriptor();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDefaultName(input.getDefaultName());
 		result.setPluginClassName(input.getPluginClassName());
 		result.setDescription(input.getDescription());
@@ -3739,6 +3842,7 @@ public class SConverter {
 		}		
 		ModelMergerPluginDescriptor result = StoreFactory.eINSTANCE.createModelMergerPluginDescriptor();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDefaultName(input.getDefaultName());
 		result.setPluginClassName(input.getPluginClassName());
 		result.setDescription(input.getDescription());
@@ -3786,6 +3890,7 @@ public class SConverter {
 		
 		SModelMergerPluginConfiguration result = new SModelMergerPluginConfiguration();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
@@ -3803,6 +3908,7 @@ public class SConverter {
 		}		
 		ModelMergerPluginConfiguration result = StoreFactory.eINSTANCE.createModelMergerPluginConfiguration();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
@@ -3851,6 +3957,7 @@ public class SConverter {
 		
 		SModelComparePluginDescriptor result = new SModelComparePluginDescriptor();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDefaultName(input.getDefaultName());
 		result.setPluginClassName(input.getPluginClassName());
 		result.setDescription(input.getDescription());
@@ -3865,6 +3972,7 @@ public class SConverter {
 		}		
 		ModelComparePluginDescriptor result = StoreFactory.eINSTANCE.createModelComparePluginDescriptor();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDefaultName(input.getDefaultName());
 		result.setPluginClassName(input.getPluginClassName());
 		result.setDescription(input.getDescription());
@@ -3912,6 +4020,7 @@ public class SConverter {
 		
 		SModelComparePluginConfiguration result = new SModelComparePluginConfiguration();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
@@ -3929,6 +4038,7 @@ public class SConverter {
 		}		
 		ModelComparePluginConfiguration result = StoreFactory.eINSTANCE.createModelComparePluginConfiguration();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
@@ -4114,6 +4224,7 @@ public class SConverter {
 		
 		SService result = new SService();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setName(input.getName());
 		result.setServiceName(input.getServiceName());
 		result.setServiceIdentifier(input.getServiceIdentifier());
@@ -4149,6 +4260,7 @@ public class SConverter {
 		}		
 		Service result = StoreFactory.eINSTANCE.createService();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setName(input.getName());
 		result.setServiceName(input.getServiceName());
 		result.setServiceIdentifier(input.getServiceIdentifier());
@@ -4211,6 +4323,7 @@ public class SConverter {
 		
 		SToken result = new SToken();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setTokenString(input.getTokenString());
 		result.setExpires(input.getExpires());
 		return result;
@@ -4222,6 +4335,7 @@ public class SConverter {
 		}		
 		Token result = StoreFactory.eINSTANCE.createToken();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setTokenString(input.getTokenString());
 		result.setExpires(input.getExpires());
 		return result;
@@ -4266,6 +4380,7 @@ public class SConverter {
 		
 		SServicePluginDescriptor result = new SServicePluginDescriptor();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDefaultName(input.getDefaultName());
 		result.setPluginClassName(input.getPluginClassName());
 		result.setDescription(input.getDescription());
@@ -4280,6 +4395,7 @@ public class SConverter {
 		}		
 		ServicePluginDescriptor result = StoreFactory.eINSTANCE.createServicePluginDescriptor();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDefaultName(input.getDefaultName());
 		result.setPluginClassName(input.getPluginClassName());
 		result.setDescription(input.getDescription());
@@ -4327,6 +4443,7 @@ public class SConverter {
 		
 		SInternalServicePluginConfiguration result = new SInternalServicePluginConfiguration();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
@@ -4345,6 +4462,7 @@ public class SConverter {
 		}		
 		InternalServicePluginConfiguration result = StoreFactory.eINSTANCE.createInternalServicePluginConfiguration();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
@@ -4559,6 +4677,7 @@ public class SConverter {
 		
 		SServiceType result = new SServiceType();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setName(input.getName());
 		result.setSimpleName(input.getSimpleName());
 		List<SServiceField> listfields = new ArrayList<SServiceField>();
@@ -4575,6 +4694,7 @@ public class SConverter {
 		}		
 		ServiceType result = StoreFactory.eINSTANCE.createServiceType();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setName(input.getName());
 		result.setSimpleName(input.getSimpleName());
 		List<ServiceField> listfields = result.getFields();
@@ -4985,6 +5105,7 @@ public class SConverter {
 		}
 		SType result = new SType();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		return result;
 	}
 
@@ -5003,6 +5124,7 @@ public class SConverter {
 		}		
 		Type result = StoreFactory.eINSTANCE.createType();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		return result;
 	}
 
@@ -5045,6 +5167,7 @@ public class SConverter {
 		
 		SObjectType result = new SObjectType();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setName(input.getName());
 		List<SParameter> listparameters = new ArrayList<SParameter>();
 		for (Parameter v : input.getParameters()) {
@@ -5060,6 +5183,7 @@ public class SConverter {
 		}		
 		ObjectType result = StoreFactory.eINSTANCE.createObjectType();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setName(input.getName());
 		List<Parameter> listparameters = result.getParameters();
 		for (SParameter v : input.getParameters()) {
@@ -5119,6 +5243,7 @@ public class SConverter {
 		}
 		SPrimitiveType result = new SPrimitiveType();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		return result;
 	}
 
@@ -5140,6 +5265,7 @@ public class SConverter {
 		}		
 		PrimitiveType result = StoreFactory.eINSTANCE.createPrimitiveType();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		return result;
 	}
 
@@ -5182,6 +5308,7 @@ public class SConverter {
 		
 		SLongType result = new SLongType();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setValue(input.getValue());
 		return result;
 	}
@@ -5192,6 +5319,7 @@ public class SConverter {
 		}		
 		LongType result = StoreFactory.eINSTANCE.createLongType();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setValue(input.getValue());
 		return result;
 	}
@@ -5235,6 +5363,7 @@ public class SConverter {
 		
 		SDoubleType result = new SDoubleType();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setValue(input.getValue());
 		return result;
 	}
@@ -5245,6 +5374,7 @@ public class SConverter {
 		}		
 		DoubleType result = StoreFactory.eINSTANCE.createDoubleType();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setValue(input.getValue());
 		return result;
 	}
@@ -5288,6 +5418,7 @@ public class SConverter {
 		
 		SStringType result = new SStringType();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setValue(input.getValue());
 		return result;
 	}
@@ -5298,6 +5429,7 @@ public class SConverter {
 		}		
 		StringType result = StoreFactory.eINSTANCE.createStringType();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setValue(input.getValue());
 		return result;
 	}
@@ -5341,6 +5473,7 @@ public class SConverter {
 		
 		SBooleanType result = new SBooleanType();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setValue(input.isValue());
 		return result;
 	}
@@ -5351,6 +5484,7 @@ public class SConverter {
 		}		
 		BooleanType result = StoreFactory.eINSTANCE.createBooleanType();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setValue(input.isValue());
 		return result;
 	}
@@ -5394,6 +5528,7 @@ public class SConverter {
 		
 		SArrayType result = new SArrayType();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		List<SType> listvalues = new ArrayList<SType>();
 		for (Type v : input.getValues()) {
 			listvalues.add(convertToSObject(v));
@@ -5408,6 +5543,7 @@ public class SConverter {
 		}		
 		ArrayType result = StoreFactory.eINSTANCE.createArrayType();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		List<Type> listvalues = result.getValues();
 		for (SType v : input.getValues()) {
 			listvalues.add(convertFromSObject(v, session));
@@ -5454,6 +5590,7 @@ public class SConverter {
 		
 		SParameter result = new SParameter();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setName(input.getName());
 		Type valueVal = input.getValue();
 		result.setValue(convertToSObject(valueVal));
@@ -5466,6 +5603,7 @@ public class SConverter {
 		}		
 		Parameter result = StoreFactory.eINSTANCE.createParameter();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setName(input.getName());
 		result.setValue(convertFromSObject(input.getValue(), session));
 		return result;
@@ -5517,6 +5655,7 @@ public class SConverter {
 		
 		SImmediateNotificationResult result = new SImmediateNotificationResult();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setResult(SNotifictionResultEnum.values()[input.getResult().ordinal()]);
 		result.setDescription(input.getDescription());
 		return result;
@@ -5528,6 +5667,7 @@ public class SConverter {
 		}		
 		ImmediateNotificationResult result = StoreFactory.eINSTANCE.createImmediateNotificationResult();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setResult(NotifictionResultEnum.values()[input.getResult().ordinal()]);
 		result.setDescription(input.getDescription());
 		return result;
@@ -5575,6 +5715,7 @@ public class SConverter {
 		}
 		SExternalServiceUpdate result = new SExternalServiceUpdate();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		return result;
 	}
 
@@ -5587,6 +5728,7 @@ public class SConverter {
 		}		
 		ExternalServiceUpdate result = StoreFactory.eINSTANCE.createExternalServiceUpdate();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		return result;
 	}
 
@@ -5629,6 +5771,7 @@ public class SConverter {
 		
 		SPercentageChange result = new SPercentageChange();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setPercentage(input.getPercentage());
 		return result;
 	}
@@ -5639,6 +5782,7 @@ public class SConverter {
 		}		
 		PercentageChange result = StoreFactory.eINSTANCE.createPercentageChange();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setPercentage(input.getPercentage());
 		return result;
 	}
@@ -5764,6 +5908,7 @@ public class SConverter {
 		}
 		SLogAction result = new SLogAction();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -5852,6 +5997,7 @@ public class SConverter {
 		}		
 		LogAction result = LogFactory.eINSTANCE.createLogAction();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -5897,6 +6043,7 @@ public class SConverter {
 		
 		SServerLog result = new SServerLog();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		List<Long> listactions = new ArrayList<Long>();
 		for (LogAction v : input.getActions()) {
 			listactions.add(v.getOid());
@@ -5911,6 +6058,7 @@ public class SConverter {
 		}		
 		ServerLog result = LogFactory.eINSTANCE.createServerLog();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		List<LogAction> listactions = result.getActions();
 		for (long oid : input.getActions()) {
 			listactions.add((LogAction)session.get(LogPackage.eINSTANCE.getLogAction(), oid, false, null));
@@ -5957,6 +6105,7 @@ public class SConverter {
 		
 		SNewUserAdded result = new SNewUserAdded();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -5972,6 +6121,7 @@ public class SConverter {
 		}		
 		NewUserAdded result = LogFactory.eINSTANCE.createNewUserAdded();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -6018,6 +6168,7 @@ public class SConverter {
 		
 		SNewProjectAdded result = new SNewProjectAdded();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -6035,6 +6186,7 @@ public class SConverter {
 		}		
 		NewProjectAdded result = LogFactory.eINSTANCE.createNewProjectAdded();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -6082,6 +6234,7 @@ public class SConverter {
 		
 		SRevisionBranched result = new SRevisionBranched();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -6099,6 +6252,7 @@ public class SConverter {
 		}		
 		RevisionBranched result = LogFactory.eINSTANCE.createRevisionBranched();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -6146,6 +6300,7 @@ public class SConverter {
 		
 		SNewRevisionAdded result = new SNewRevisionAdded();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -6163,6 +6318,7 @@ public class SConverter {
 		}		
 		NewRevisionAdded result = LogFactory.eINSTANCE.createNewRevisionAdded();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -6210,6 +6366,7 @@ public class SConverter {
 		
 		SNewCheckoutAdded result = new SNewCheckoutAdded();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -6225,6 +6382,7 @@ public class SConverter {
 		}		
 		NewCheckoutAdded result = LogFactory.eINSTANCE.createNewCheckoutAdded();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -6271,6 +6429,7 @@ public class SConverter {
 		
 		SSettingsSaved result = new SSettingsSaved();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -6284,6 +6443,7 @@ public class SConverter {
 		}		
 		SettingsSaved result = LogFactory.eINSTANCE.createSettingsSaved();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -6329,6 +6489,7 @@ public class SConverter {
 		
 		SUserAddedToProject result = new SUserAddedToProject();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -6346,6 +6507,7 @@ public class SConverter {
 		}		
 		UserAddedToProject result = LogFactory.eINSTANCE.createUserAddedToProject();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -6393,6 +6555,7 @@ public class SConverter {
 		
 		SNewObjectIDMUploaded result = new SNewObjectIDMUploaded();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -6406,6 +6569,7 @@ public class SConverter {
 		}		
 		NewObjectIDMUploaded result = LogFactory.eINSTANCE.createNewObjectIDMUploaded();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -6451,6 +6615,7 @@ public class SConverter {
 		
 		SDownload result = new SDownload();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -6464,6 +6629,7 @@ public class SConverter {
 		}		
 		Download result = LogFactory.eINSTANCE.createDownload();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -6509,6 +6675,7 @@ public class SConverter {
 		
 		SUserRemovedFromProject result = new SUserRemovedFromProject();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -6526,6 +6693,7 @@ public class SConverter {
 		}		
 		UserRemovedFromProject result = LogFactory.eINSTANCE.createUserRemovedFromProject();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -6573,6 +6741,7 @@ public class SConverter {
 		
 		SProjectDeleted result = new SProjectDeleted();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -6588,6 +6757,7 @@ public class SConverter {
 		}		
 		ProjectDeleted result = LogFactory.eINSTANCE.createProjectDeleted();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -6634,6 +6804,7 @@ public class SConverter {
 		
 		SUserDeleted result = new SUserDeleted();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -6649,6 +6820,7 @@ public class SConverter {
 		}		
 		UserDeleted result = LogFactory.eINSTANCE.createUserDeleted();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -6695,6 +6867,7 @@ public class SConverter {
 		
 		SPasswordReset result = new SPasswordReset();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -6710,6 +6883,7 @@ public class SConverter {
 		}		
 		PasswordReset result = LogFactory.eINSTANCE.createPasswordReset();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -6756,6 +6930,7 @@ public class SConverter {
 		
 		SDatabaseCreated result = new SDatabaseCreated();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setPath(input.getPath());
@@ -6771,6 +6946,7 @@ public class SConverter {
 		}		
 		DatabaseCreated result = LogFactory.eINSTANCE.createDatabaseCreated();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setPath(input.getPath());
@@ -6818,6 +6994,7 @@ public class SConverter {
 		
 		SServerStarted result = new SServerStarted();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -6831,6 +7008,7 @@ public class SConverter {
 		}		
 		ServerStarted result = LogFactory.eINSTANCE.createServerStarted();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -6876,6 +7054,7 @@ public class SConverter {
 		
 		SProjectUpdated result = new SProjectUpdated();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -6891,6 +7070,7 @@ public class SConverter {
 		}		
 		ProjectUpdated result = LogFactory.eINSTANCE.createProjectUpdated();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -6937,6 +7117,7 @@ public class SConverter {
 		
 		SUserUndeleted result = new SUserUndeleted();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -6952,6 +7133,7 @@ public class SConverter {
 		}		
 		UserUndeleted result = LogFactory.eINSTANCE.createUserUndeleted();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -6998,6 +7180,7 @@ public class SConverter {
 		
 		SProjectUndeleted result = new SProjectUndeleted();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -7013,6 +7196,7 @@ public class SConverter {
 		}		
 		ProjectUndeleted result = LogFactory.eINSTANCE.createProjectUndeleted();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -7059,6 +7243,7 @@ public class SConverter {
 		
 		SRevisionUpdated result = new SRevisionUpdated();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -7074,6 +7259,7 @@ public class SConverter {
 		}		
 		RevisionUpdated result = LogFactory.eINSTANCE.createRevisionUpdated();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -7120,6 +7306,7 @@ public class SConverter {
 		
 		SGeoTagUpdated result = new SGeoTagUpdated();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -7135,6 +7322,7 @@ public class SConverter {
 		}		
 		GeoTagUpdated result = LogFactory.eINSTANCE.createGeoTagUpdated();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -7181,6 +7369,7 @@ public class SConverter {
 		
 		SPasswordChanged result = new SPasswordChanged();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -7196,6 +7385,7 @@ public class SConverter {
 		}		
 		PasswordChanged result = LogFactory.eINSTANCE.createPasswordChanged();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -7242,6 +7432,7 @@ public class SConverter {
 		
 		SUserChanged result = new SUserChanged();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -7257,6 +7448,7 @@ public class SConverter {
 		}		
 		UserChanged result = LogFactory.eINSTANCE.createUserChanged();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -7303,6 +7495,7 @@ public class SConverter {
 		
 		SExtendedDataAddedToRevision result = new SExtendedDataAddedToRevision();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -7320,6 +7513,7 @@ public class SConverter {
 		}		
 		ExtendedDataAddedToRevision result = LogFactory.eINSTANCE.createExtendedDataAddedToRevision();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -7367,6 +7561,7 @@ public class SConverter {
 		
 		SExtendedDataAddedToProject result = new SExtendedDataAddedToProject();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		User executorVal = input.getExecutor();
@@ -7384,6 +7579,7 @@ public class SConverter {
 		}		
 		ExtendedDataAddedToProject result = LogFactory.eINSTANCE.createExtendedDataAddedToProject();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setExecutor((User)session.get(StorePackage.eINSTANCE.getUser(), input.getExecutorId(), false, null));
@@ -7431,6 +7627,7 @@ public class SConverter {
 		
 		SExternalServiceCalled result = new SExternalServiceCalled();
 		result.setOid(input.getOid());
+		result.setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(SAccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setState(SNotifictionResultEnum.values()[input.getState().ordinal()]);
@@ -7451,6 +7648,7 @@ public class SConverter {
 		}		
 		ExternalServiceCalled result = LogFactory.eINSTANCE.createExternalServiceCalled();
 		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
 		result.setState(NotifictionResultEnum.values()[input.getState().ordinal()]);

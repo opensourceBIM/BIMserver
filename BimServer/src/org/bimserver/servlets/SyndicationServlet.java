@@ -61,6 +61,10 @@ public class SyndicationServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
+		if (!bimServer.isHostAllowed(request.getHeader("Origin"))) {
+			response.setStatus(403);
+			return;
+		}
 		if (request.getHeader("Authorization") != null) {
 			String authorization = request.getHeader("Authorization");
 			String usernamePasswordEncoded = authorization.substring(6);

@@ -16,6 +16,8 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -25,6 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SServerSettings implements SDataBase
 {
 	private long oid = -1;
+	private int rid = 0;
 
 	@XmlTransient
 	private static SClass sClass;
@@ -39,6 +42,7 @@ public class SServerSettings implements SDataBase
 	private java.lang.String emailSenderAddress;
 	private java.lang.String customLogoAddress;
 	private java.lang.String siteAddress;
+	private List<java.lang.String> whitelistedDomains = new ArrayList<java.lang.String>();
 	private java.lang.Boolean hideUserListForNonAdmin;
 	private java.lang.Integer protocolBuffersPort;
 	private java.lang.String headerAddition;
@@ -51,6 +55,14 @@ public class SServerSettings implements SDataBase
 	
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+
+	public int getRid() {
+		return rid;
+	}
+	
+	public void setRid(int rid) {
+		this.rid = rid;
 	}
 	
 	@XmlTransient
@@ -96,6 +108,9 @@ public class SServerSettings implements SDataBase
 		if (sField.getName().equals("siteAddress")) {
 			return getSiteAddress();
 		}
+		if (sField.getName().equals("whitelistedDomains")) {
+			return getWhitelistedDomains();
+		}
 		if (sField.getName().equals("hideUserListForNonAdmin")) {
 			return getHideUserListForNonAdmin();
 		}
@@ -117,8 +132,12 @@ public class SServerSettings implements SDataBase
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
+		if (sField.getName().equals("rid")) {
+			return getRid();
+		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+	@SuppressWarnings("unchecked")
 
 	public void sSet(SField sField, Object val) {
 		if (sField.getName().equals("showVersionUpgradeAvailable")) {
@@ -165,6 +184,10 @@ public class SServerSettings implements SDataBase
 			setSiteAddress((String)val);
 			return;
 		}
+		if (sField.getName().equals("whitelistedDomains")) {
+			setWhitelistedDomains((List<String>)val);
+			return;
+		}
 		if (sField.getName().equals("hideUserListForNonAdmin")) {
 			setHideUserListForNonAdmin((Boolean)val);
 			return;
@@ -191,6 +214,10 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
+			return;
+		}
+		if (sField.getName().equals("rid")) {
+			setRid((Integer)val);
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
@@ -282,6 +309,15 @@ public class SServerSettings implements SDataBase
 
 	public void setSiteAddress(java.lang.String siteAddress) {
 		this.siteAddress = siteAddress;
+	}
+	
+
+	public List<java.lang.String> getWhitelistedDomains() {
+		return whitelistedDomains;
+	}
+
+	public void setWhitelistedDomains(List<java.lang.String> whitelistedDomains) {
+		this.whitelistedDomains = whitelistedDomains;
 	}
 	
 	public java.lang.Boolean getHideUserListForNonAdmin() {
