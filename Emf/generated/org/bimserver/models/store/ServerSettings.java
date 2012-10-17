@@ -17,6 +17,7 @@
 package org.bimserver.models.store;
 
 import org.bimserver.emf.IdEObject;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,6 +38,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.ServerSettings#getEmailSenderAddress <em>Email Sender Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getCustomLogoAddress <em>Custom Logo Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getSiteAddress <em>Site Address</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getWhitelistedDomains <em>Whitelisted Domains</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getProtocolBuffersPort <em>Protocol Buffers Port</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getHeaderAddition <em>Header Addition</em>}</li>
@@ -337,6 +339,22 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	void setSiteAddress(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Whitelisted Domains</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Whitelisted Domains</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Whitelisted Domains</em>' attribute list.
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_WhitelistedDomains()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getWhitelistedDomains();
 
 	/**
 	 * Returns the value of the '<em><b>Hide User List For Non Admin</b></em>' attribute.
