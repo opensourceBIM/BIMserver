@@ -256,6 +256,9 @@ public class NotificationsManager extends Thread implements NotificationsManager
 						LOGGER.error("No reflector");
 					}
 					SService service = serviceInterfaceReflectorImpl.getService(Long.parseLong(profileIdentifier));
+					if (service == null) {
+						LOGGER.error("No service for id " + profileIdentifier);
+					}
 					SObjectType settings = serviceInterfaceReflectorImpl.getPluginSettings(service.getInternalServiceId());
 					runningServices.put(uuid, new RunningExternalService());
 					newRevisionHandler.newRevision(uuid, serviceInterfaceReflectorImpl, newRevisionAdded, settings);
