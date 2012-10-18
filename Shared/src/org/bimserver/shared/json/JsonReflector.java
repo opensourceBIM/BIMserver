@@ -36,6 +36,9 @@ public abstract class JsonReflector implements Reflector {
 			requestObject.add("request", request);
 			JsonObject jsonResult = call(requestObject);
 			if (!isOneWay()) {
+				if (jsonResult == null) {
+					return null;
+				}
 				JsonObject response = jsonResult.getAsJsonObject("response");
 				if (response.has("exception")) {
 					JsonObject exceptionJson = response.getAsJsonObject("exception");
