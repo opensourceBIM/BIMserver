@@ -2,6 +2,6 @@
 <PluginDescriptor>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.ifcengine.IfcEnginePlugin</interfaceClass>
-		<implementationClass>org.bimserver.ifcengine.TNOIfcEnginePlugin</implementationClass>
+		<implementationClass>org.bimserver.ifcengine.TNOJvmIfcEnginePlugin</implementationClass>
 	</PluginImplementation>
 </PluginDescriptor>
