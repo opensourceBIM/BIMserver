@@ -252,6 +252,9 @@ public class NotificationsManager extends Thread implements NotificationsManager
 					SNewRevisionAdded newRevisionAdded = (SNewRevisionAdded)logAction;
 					JsonReflector jsonReflector = new JsonSocketReflector(bimServer.getServicesMap(), apiUrl, false, new TokenAuthentication(token));
 					ServiceInterface serviceInterfaceReflectorImpl = bimServer.getReflectorFactory().createReflector(ServiceInterface.class, jsonReflector);
+					if (serviceInterfaceReflectorImpl == null) {
+						LOGGER.error("No reflector");
+					}
 					SService service = serviceInterfaceReflectorImpl.getService(Long.parseLong(profileIdentifier));
 					SObjectType settings = serviceInterfaceReflectorImpl.getPluginSettings(service.getInternalServiceId());
 					runningServices.put(uuid, new RunningExternalService());
