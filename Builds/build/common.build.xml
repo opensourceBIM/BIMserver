@@ -121,7 +121,6 @@
 		<mkdir dir="builds/bimserverclientlib" />
 		<javac destdir="builds/bimserverclientlib" debug="on" fork="false" includeantruntime="false">
 			<src path="../../BimServerClientLib/src" />
-			<src path="../../BimServerClientLib/generated" />
 			<classpath>
 				<path>
 					<fileset refid="lib" />
