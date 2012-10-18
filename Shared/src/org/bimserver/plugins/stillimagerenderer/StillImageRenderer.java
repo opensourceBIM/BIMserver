@@ -10,5 +10,6 @@ public interface StillImageRenderer {
 	byte[] snapshotFront(int width, int height, ProgressHandler progressHandler);
 	byte[] snapshotLeft(int width, int height, ProgressHandler progressHandler);
 	byte[] snapshotTop(int width, int height, ProgressHandler progressHandler);
+	void close();
 	Vector3f getCenter();
 }
