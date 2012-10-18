@@ -59,11 +59,12 @@ public class TomcatStreamInbound extends StreamInbound implements EndPoint, Stre
 
 	@Override
 	public void send(JsonObject request) {
-		CharBuffer charBuffer = CharBuffer.wrap(request.toString().toCharArray());
+		String toString = request.toString();
+		CharBuffer charBuffer = CharBuffer.wrap(toString.toCharArray());
 		try {
 			outbound.writeTextMessage(charBuffer);
-			LOGGER.info("WS_OUT: " + charBuffer);
 			outbound.flush();
+			LOGGER.info("WS_OUT: " + toString);
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		}
