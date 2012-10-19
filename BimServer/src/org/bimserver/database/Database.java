@@ -207,6 +207,8 @@ public class Database implements BimDatabase {
 		settings.setCacheOutputFiles(false);
 		settings.setServiceRepositoryUrl("http://extend.bimserver.org");
 		settings.getWhitelistedDomains().add("localhost");
+		settings.getWhitelistedDomains().add("bimserver.logic-labs.nl");
+		settings.getWhitelistedDomains().add("demo.bimserver.org");
 		return settings;
 	}
 	
