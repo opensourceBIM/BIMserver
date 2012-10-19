@@ -868,12 +868,10 @@ public class BimServer {
 		if (address.startsWith("http://")) {
 			address = address.substring(7);
 		}
-		LOGGER.info("Checking address: " + address);
 		DatabaseSession session = getDatabase().createSession();
 		try {
 			ServerSettings serverSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), ServerSettings.class);
 			for (String domain : serverSettings.getWhitelistedDomains()) {
-				LOGGER.info("Found: " + domain);
 				if (domain.equals(address)) {
 					return true;
 				}
