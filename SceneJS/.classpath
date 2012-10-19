@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Ifc"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
+	<classpathentry kind="lib" path="/BimServer/lib/gson-2.2.2.jar" sourcepath="/BimServer/libsrc/gson-2.2.2-sources.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/BimServer"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
