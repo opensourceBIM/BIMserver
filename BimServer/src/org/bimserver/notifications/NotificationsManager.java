@@ -39,6 +39,7 @@ import org.bimserver.interfaces.objects.SNewRevisionAdded;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SService;
 import org.bimserver.interfaces.objects.SToken;
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.ServerSettings;
@@ -250,18 +251,16 @@ public class NotificationsManager extends Thread implements NotificationsManager
 			public SImmediateNotificationResult newLogAction(String uuid, SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) throws UserException, ServerException {
 				if (logAction instanceof SNewRevisionAdded) {
 					SNewRevisionAdded newRevisionAdded = (SNewRevisionAdded)logAction;
-					JsonReflector jsonReflector = new JsonSocketReflector(bimServer.getServicesMap(), apiUrl, false, new TokenAuthentication(token));
-					ServiceInterface serviceInterfaceReflectorImpl = bimServer.getReflectorFactory().createReflector(ServiceInterface.class, jsonReflector);
-					if (serviceInterfaceReflectorImpl == null) {
-						LOGGER.error("No reflector");
-					}
-					SService service = serviceInterfaceReflectorImpl.getService(Long.parseLong(profileIdentifier));
-					if (service == null) {
-						LOGGER.error("No service for id " + profileIdentifier);
-					}
-					SObjectType settings = serviceInterfaceReflectorImpl.getPluginSettings(service.getInternalServiceId());
+					InternalChannel internalChannel = new InternalChannel(x.get(serviceIdentifier));
+					ServiceInterface object = bimServer.getServiceFactory().getService(ServiceInterface.class, token);
+					internalChannel.addServiceInterface(ServiceInterface.class, object);
+					ServiceInterface serviceInterface = internalChannel.getServiceInterface();
+//					JsonReflector jsonReflector = new JsonSocketReflector(bimServer.getServicesMap(), apiUrl, false, new TokenAuthentication(token));
+//					ServiceInterface serviceInterfaceReflectorImpl = bimServer.getReflectorFactory().createReflector(ServiceInterface.class, jsonReflector);
+					SService service = serviceInterface.getService(Long.parseLong(profileIdentifier));
+					SObjectType settings = serviceInterface.getPluginSettings(service.getInternalServiceId());
 					runningServices.put(uuid, new RunningExternalService());
-					newRevisionHandler.newRevision(uuid, serviceInterfaceReflectorImpl, newRevisionAdded, settings);
+					newRevisionHandler.newRevision(uuid, serviceInterface, newRevisionAdded, settings);
 				}
 				return null;
 			}

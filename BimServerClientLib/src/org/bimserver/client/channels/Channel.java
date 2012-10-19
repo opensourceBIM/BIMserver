@@ -33,7 +33,7 @@ public abstract class Channel {
 	private final Map<Class<? extends PublicInterface>, PublicInterface> serviceInterfaces = new HashMap<Class<? extends PublicInterface>, PublicInterface>();
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
 
-	protected void addServiceInterface(Class<? extends PublicInterface> interfaceClass, PublicInterface object) {
+	public void addServiceInterface(Class<? extends PublicInterface> interfaceClass, PublicInterface object) {
 		serviceInterfaces.put(interfaceClass, object);
 	}
 
