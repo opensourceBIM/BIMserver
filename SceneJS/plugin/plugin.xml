@@ -2,6 +2,6 @@
 <PluginDescriptor>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
-		<implementationClass>org.bimserver.scenejs.SceneJSSerializerPlugin</implementationClass>
+		<implementationClass>org.bimserver.scenejs.StreamingSceneJSSerializerPlugin</implementationClass>
 	</PluginImplementation>
 </PluginDescriptor>
