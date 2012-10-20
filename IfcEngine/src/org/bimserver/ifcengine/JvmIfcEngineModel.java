@@ -156,7 +156,11 @@ public class JvmIfcEngineModel implements IfcEngineModel {
 			failSafeIfcEngine.writeInt(modelId);
 			failSafeIfcEngine.writeInt(oid);
 			failSafeIfcEngine.flush();
-			return new JvmIfcEngineInstance(failSafeIfcEngine, modelId, failSafeIfcEngine.readInt());
+			int instanceId = failSafeIfcEngine.readInt();
+			if (instanceId == -1) {
+				throw new IfcEngineException("Instance with express id " + oid + " not found");
+			}
+			return new JvmIfcEngineInstance(failSafeIfcEngine, modelId, instanceId);
 		}
 	}
 }

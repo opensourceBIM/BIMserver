@@ -40,6 +40,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.ifc2x3tc1.WrappedValue;
+import org.bimserver.models.store.Geometry;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.eclipse.emf.common.util.ECollections;
@@ -75,6 +76,7 @@ public class IfcModel implements IfcModelInterface {
 	private Map<EClass, Map<String, IdEObject>> nameIndex;
 	private long oidCounter = 1;
 	private boolean useDoubleStrings = true;
+	private Geometry geometry;
 
 	public IfcModel(BiMap<Long, IdEObject> objects) {
 		this.objects = objects;
@@ -583,6 +585,14 @@ public class IfcModel implements IfcModelInterface {
 		objects = temp;
 	}
 
+	public void fixOids() {
+		BiMap<Long, IdEObject> temp = HashBiMap.create();
+		for (IdEObject object : objects.values()) {
+			temp.put(object.getOid(), object);
+		}
+		objects = temp;
+	}
+	
 	@SuppressWarnings("rawtypes")
 	private void fixOids(IdEObject idEObject, OidProvider oidProvider, BiMap<Long, IdEObject> temp) {
 		if (idEObject == null) {
@@ -624,6 +634,11 @@ public class IfcModel implements IfcModelInterface {
 		return max;
 	}
 
+	public void changeOid(IdEObject object) {
+		objects.inverse().remove(object);
+		objects.put(object.getOid(), object);
+	}
+	
 	public IfcRoot get(String guid) {
 		if (guidIndexed == null) {
 			indexGuids();
@@ -783,5 +798,14 @@ public class IfcModel implements IfcModelInterface {
 			return 0;
 		}
 		return list.size();
+	}
+	
+	public void setGeometry(Geometry geometry) {
+		this.geometry = geometry;
+	}
+	
+	@Override
+	public Geometry getGeometry() {
+		return geometry;
 	}
 }
