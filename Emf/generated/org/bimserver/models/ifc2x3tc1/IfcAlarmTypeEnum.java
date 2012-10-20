@@ -50,76 +50,62 @@ public enum IfcAlarmTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BREAKGLASSBUTTON(1, "BREAKGLASSBUTTON", "BREAKGLASSBUTTON"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>BELL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BELL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BELL(3, "BELL", "BELL"),
-
-	/**
-	 * The '<em><b>WHISTLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WHISTLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WHISTLE(4, "WHISTLE", "WHISTLE"),
-
-	/**
-	 * The '<em><b>LIGHT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LIGHT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LIGHT(5, "LIGHT", "LIGHT"),
-
-	/**
-	 * The '<em><b>SIREN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SIREN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SIREN(6, "SIREN", "SIREN"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>MANUALPULLBOX</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MANUALPULLBOX_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	BREAKGLASSBUTTON(1, "BREAKGLASSBUTTON", "BREAKGLASSBUTTON"), /**
+																	 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #NOTDEFINED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>BELL</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #BELL_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	BELL(3, "BELL", "BELL"), /**
+								 * The '<em><b>WHISTLE</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #WHISTLE_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	WHISTLE(4, "WHISTLE", "WHISTLE"), /**
+										 * The '<em><b>LIGHT</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #LIGHT_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	LIGHT(5, "LIGHT", "LIGHT"), /**
+								 * The '<em><b>SIREN</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #SIREN_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	SIREN(6, "SIREN", "SIREN"), /**
+								 * The '<em><b>USERDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #USERDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>MANUALPULLBOX</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #MANUALPULLBOX_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	MANUALPULLBOX(8, "MANUALPULLBOX", "MANUALPULLBOX");
 
 	/**

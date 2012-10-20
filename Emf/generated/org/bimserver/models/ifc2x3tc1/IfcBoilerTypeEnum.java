@@ -50,36 +50,30 @@ public enum IfcBoilerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WATER(1, "WATER", "WATER"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>STEAM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STEAM_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	WATER(1, "WATER", "WATER"), /**
+								 * The '<em><b>NOTDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #NOTDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>USERDEFINED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #USERDEFINED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>STEAM</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #STEAM_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	STEAM(4, "STEAM", "STEAM");
 
 	/**

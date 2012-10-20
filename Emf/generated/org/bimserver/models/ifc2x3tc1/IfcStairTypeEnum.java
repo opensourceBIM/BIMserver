@@ -50,156 +50,126 @@ public enum IfcStairTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SPIRAL_STAIR(1, "SPIRAL_STAIR", "SPIRAL_STAIR"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>QUARTER WINDING STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #QUARTER_WINDING_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	QUARTER_WINDING_STAIR(3, "QUARTER_WINDING_STAIR", "QUARTER_WINDING_STAIR"),
-
-	/**
-	 * The '<em><b>HALF WINDING STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HALF_WINDING_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HALF_WINDING_STAIR(4, "HALF_WINDING_STAIR", "HALF_WINDING_STAIR"),
-
-	/**
-	 * The '<em><b>STRAIGHT RUN STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STRAIGHT_RUN_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STRAIGHT_RUN_STAIR(5, "STRAIGHT_RUN_STAIR", "STRAIGHT_RUN_STAIR"),
-
-	/**
-	 * The '<em><b>TWO CURVED RUN STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TWO_CURVED_RUN_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TWO_CURVED_RUN_STAIR(6, "TWO_CURVED_RUN_STAIR", "TWO_CURVED_RUN_STAIR"),
-
-	/**
-	 * The '<em><b>HALF TURN STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HALF_TURN_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HALF_TURN_STAIR(7, "HALF_TURN_STAIR", "HALF_TURN_STAIR"),
-
-	/**
-	 * The '<em><b>CURVED RUN STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CURVED_RUN_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CURVED_RUN_STAIR(8, "CURVED_RUN_STAIR", "CURVED_RUN_STAIR"),
-
-	/**
-	 * The '<em><b>DOUBLE RETURN STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_RETURN_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOUBLE_RETURN_STAIR(9, "DOUBLE_RETURN_STAIR", "DOUBLE_RETURN_STAIR"),
-
-	/**
-	 * The '<em><b>QUARTER TURN STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #QUARTER_TURN_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	QUARTER_TURN_STAIR(10, "QUARTER_TURN_STAIR", "QUARTER_TURN_STAIR"),
-
-	/**
-	 * The '<em><b>TWO QUARTER WINDING STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TWO_QUARTER_WINDING_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TWO_QUARTER_WINDING_STAIR(11, "TWO_QUARTER_WINDING_STAIR", "TWO_QUARTER_WINDING_STAIR"),
-
-	/**
-	 * The '<em><b>TWO QUARTER TURN STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TWO_QUARTER_TURN_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TWO_QUARTER_TURN_STAIR(12, "TWO_QUARTER_TURN_STAIR", "TWO_QUARTER_TURN_STAIR"),
-
-	/**
-	 * The '<em><b>THREE QUARTER TURN STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THREE_QUARTER_TURN_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	THREE_QUARTER_TURN_STAIR(13, "THREE_QUARTER_TURN_STAIR", "THREE_QUARTER_TURN_STAIR"),
-
-	/**
-	 * The '<em><b>TWO STRAIGHT RUN STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TWO_STRAIGHT_RUN_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TWO_STRAIGHT_RUN_STAIR(14, "TWO_STRAIGHT_RUN_STAIR", "TWO_STRAIGHT_RUN_STAIR"),
-
-	/**
-	 * The '<em><b>THREE QUARTER WINDING STAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THREE_QUARTER_WINDING_STAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	THREE_QUARTER_WINDING_STAIR(15, "THREE_QUARTER_WINDING_STAIR", "THREE_QUARTER_WINDING_STAIR"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	SPIRAL_STAIR(1, "SPIRAL_STAIR", "SPIRAL_STAIR"), /**
+														 * The '<em><b>NOTDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #NOTDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>QUARTER WINDING STAIR</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #QUARTER_WINDING_STAIR_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	QUARTER_WINDING_STAIR(3, "QUARTER_WINDING_STAIR", "QUARTER_WINDING_STAIR"), /**
+																				 * The '<em><b>HALF WINDING STAIR</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #HALF_WINDING_STAIR_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	HALF_WINDING_STAIR(4, "HALF_WINDING_STAIR", "HALF_WINDING_STAIR"), /**
+																		 * The '<em><b>STRAIGHT RUN STAIR</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #STRAIGHT_RUN_STAIR_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	STRAIGHT_RUN_STAIR(5, "STRAIGHT_RUN_STAIR", "STRAIGHT_RUN_STAIR"), /**
+																		 * The '<em><b>TWO CURVED RUN STAIR</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #TWO_CURVED_RUN_STAIR_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	TWO_CURVED_RUN_STAIR(6, "TWO_CURVED_RUN_STAIR", "TWO_CURVED_RUN_STAIR"), /**
+																				 * The '<em><b>HALF TURN STAIR</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #HALF_TURN_STAIR_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	HALF_TURN_STAIR(7, "HALF_TURN_STAIR", "HALF_TURN_STAIR"), /**
+																 * The '<em><b>CURVED RUN STAIR</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #CURVED_RUN_STAIR_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	CURVED_RUN_STAIR(8, "CURVED_RUN_STAIR", "CURVED_RUN_STAIR"), /**
+																	 * The '<em><b>DOUBLE RETURN STAIR</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #DOUBLE_RETURN_STAIR_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	DOUBLE_RETURN_STAIR(9, "DOUBLE_RETURN_STAIR", "DOUBLE_RETURN_STAIR"), /**
+																			 * The '<em><b>QUARTER TURN STAIR</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #QUARTER_TURN_STAIR_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	QUARTER_TURN_STAIR(10, "QUARTER_TURN_STAIR", "QUARTER_TURN_STAIR"), /**
+																		 * The '<em><b>TWO QUARTER WINDING STAIR</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #TWO_QUARTER_WINDING_STAIR_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	TWO_QUARTER_WINDING_STAIR(11, "TWO_QUARTER_WINDING_STAIR", "TWO_QUARTER_WINDING_STAIR"), /**
+																								 * The '<em><b>TWO QUARTER TURN STAIR</b></em>' literal object.
+																								 * <!-- begin-user-doc -->
+																								 * <!-- end-user-doc -->
+																								 * @see #TWO_QUARTER_TURN_STAIR_VALUE
+																								 * @generated
+																								 * @ordered
+																								 */
+	TWO_QUARTER_TURN_STAIR(12, "TWO_QUARTER_TURN_STAIR", "TWO_QUARTER_TURN_STAIR"), /**
+																					 * The '<em><b>THREE QUARTER TURN STAIR</b></em>' literal object.
+																					 * <!-- begin-user-doc -->
+																					 * <!-- end-user-doc -->
+																					 * @see #THREE_QUARTER_TURN_STAIR_VALUE
+																					 * @generated
+																					 * @ordered
+																					 */
+	THREE_QUARTER_TURN_STAIR(13, "THREE_QUARTER_TURN_STAIR", "THREE_QUARTER_TURN_STAIR"), /**
+																							 * The '<em><b>TWO STRAIGHT RUN STAIR</b></em>' literal object.
+																							 * <!-- begin-user-doc -->
+																							 * <!-- end-user-doc -->
+																							 * @see #TWO_STRAIGHT_RUN_STAIR_VALUE
+																							 * @generated
+																							 * @ordered
+																							 */
+	TWO_STRAIGHT_RUN_STAIR(14, "TWO_STRAIGHT_RUN_STAIR", "TWO_STRAIGHT_RUN_STAIR"), /**
+																					 * The '<em><b>THREE QUARTER WINDING STAIR</b></em>' literal object.
+																					 * <!-- begin-user-doc -->
+																					 * <!-- end-user-doc -->
+																					 * @see #THREE_QUARTER_WINDING_STAIR_VALUE
+																					 * @generated
+																					 * @ordered
+																					 */
+	THREE_QUARTER_WINDING_STAIR(15, "THREE_QUARTER_WINDING_STAIR", "THREE_QUARTER_WINDING_STAIR"), /**
+																									 * The '<em><b>USERDEFINED</b></em>' literal object.
+																									 * <!-- begin-user-doc -->
+																									 * <!-- end-user-doc -->
+																									 * @see #USERDEFINED_VALUE
+																									 * @generated
+																									 * @ordered
+																									 */
 	USERDEFINED(16, "USERDEFINED", "USERDEFINED");
 
 	/**

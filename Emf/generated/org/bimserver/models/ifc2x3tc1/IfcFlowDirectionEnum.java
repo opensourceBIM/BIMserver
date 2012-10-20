@@ -50,36 +50,30 @@ public enum IfcFlowDirectionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SOURCEANDSINK(1, "SOURCEANDSINK", "SOURCEANDSINK"),
-
-	/**
-	 * The '<em><b>SOURCE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SOURCE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SOURCE(2, "SOURCE", "SOURCE"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>SINK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SINK_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	SOURCEANDSINK(1, "SOURCEANDSINK", "SOURCEANDSINK"), /**
+														 * The '<em><b>SOURCE</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #SOURCE_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	SOURCE(2, "SOURCE", "SOURCE"), /**
+									 * The '<em><b>NOTDEFINED</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #NOTDEFINED_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>SINK</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #SINK_VALUE
+												 * @generated
+												 * @ordered
+												 */
 	SINK(4, "SINK", "SINK");
 
 	/**

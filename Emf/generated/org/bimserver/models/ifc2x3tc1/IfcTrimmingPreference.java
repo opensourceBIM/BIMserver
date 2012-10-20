@@ -50,26 +50,22 @@ public enum IfcTrimmingPreference implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CARTESIAN(1, "CARTESIAN", "CARTESIAN"),
-
-	/**
-	 * The '<em><b>UNSPECIFIED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UNSPECIFIED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	UNSPECIFIED(2, "UNSPECIFIED", "UNSPECIFIED"),
-
-	/**
-	 * The '<em><b>PARAMETER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PARAMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	CARTESIAN(1, "CARTESIAN", "CARTESIAN"), /**
+											 * The '<em><b>UNSPECIFIED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #UNSPECIFIED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	UNSPECIFIED(2, "UNSPECIFIED", "UNSPECIFIED"), /**
+													 * The '<em><b>PARAMETER</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #PARAMETER_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	PARAMETER(3, "PARAMETER", "PARAMETER");
 
 	/**

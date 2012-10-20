@@ -50,76 +50,62 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COMBINEDVALUE(1, "COMBINEDVALUE", "COMBINEDVALUE"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>MANUFACTURE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MANUFACTURE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MANUFACTURE(3, "MANUFACTURE", "MANUFACTURE"),
-
-	/**
-	 * The '<em><b>INSTALLATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INSTALLATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INSTALLATION(4, "INSTALLATION", "INSTALLATION"),
-
-	/**
-	 * The '<em><b>EXTRACTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXTRACTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXTRACTION(5, "EXTRACTION", "EXTRACTION"),
-
-	/**
-	 * The '<em><b>DISPOSAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DISPOSAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DISPOSAL(6, "DISPOSAL", "DISPOSAL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>TRANSPORTATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRANSPORTATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	COMBINEDVALUE(1, "COMBINEDVALUE", "COMBINEDVALUE"), /**
+														 * The '<em><b>NOTDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #NOTDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>MANUFACTURE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #MANUFACTURE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	MANUFACTURE(3, "MANUFACTURE", "MANUFACTURE"), /**
+													 * The '<em><b>INSTALLATION</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #INSTALLATION_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	INSTALLATION(4, "INSTALLATION", "INSTALLATION"), /**
+														 * The '<em><b>EXTRACTION</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #EXTRACTION_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	EXTRACTION(5, "EXTRACTION", "EXTRACTION"), /**
+												 * The '<em><b>DISPOSAL</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #DISPOSAL_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	DISPOSAL(6, "DISPOSAL", "DISPOSAL"), /**
+											 * The '<em><b>USERDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #USERDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>TRANSPORTATION</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #TRANSPORTATION_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	TRANSPORTATION(8, "TRANSPORTATION", "TRANSPORTATION");
 
 	/**

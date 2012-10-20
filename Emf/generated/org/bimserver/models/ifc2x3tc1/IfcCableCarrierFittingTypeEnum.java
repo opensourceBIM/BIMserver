@@ -50,56 +50,46 @@ public enum IfcCableCarrierFittingTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>TEE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TEE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TEE(2, "TEE", "TEE"),
-
-	/**
-	 * The '<em><b>REDUCER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REDUCER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REDUCER(3, "REDUCER", "REDUCER"),
-
-	/**
-	 * The '<em><b>CROSS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CROSS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CROSS(4, "CROSS", "CROSS"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>BEND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BEND_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>TEE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #TEE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	TEE(2, "TEE", "TEE"), /**
+							 * The '<em><b>REDUCER</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #REDUCER_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	REDUCER(3, "REDUCER", "REDUCER"), /**
+										 * The '<em><b>CROSS</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #CROSS_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	CROSS(4, "CROSS", "CROSS"), /**
+								 * The '<em><b>USERDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #USERDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>BEND</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #BEND_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	BEND(6, "BEND", "BEND");
 
 	/**

@@ -50,46 +50,38 @@ public enum IfcChillerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(2, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>WATERCOOLED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WATERCOOLED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WATERCOOLED(3, "WATERCOOLED", "WATERCOOLED"),
-
-	/**
-	 * The '<em><b>HEATRECOVERY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HEATRECOVERY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HEATRECOVERY(4, "HEATRECOVERY", "HEATRECOVERY"),
-
-	/**
-	 * The '<em><b>AIRCOOLED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AIRCOOLED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>USERDEFINED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #USERDEFINED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	USERDEFINED(2, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>WATERCOOLED</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #WATERCOOLED_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	WATERCOOLED(3, "WATERCOOLED", "WATERCOOLED"), /**
+													 * The '<em><b>HEATRECOVERY</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #HEATRECOVERY_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	HEATRECOVERY(4, "HEATRECOVERY", "HEATRECOVERY"), /**
+														 * The '<em><b>AIRCOOLED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #AIRCOOLED_VALUE
+														 * @generated
+														 * @ordered
+														 */
 	AIRCOOLED(5, "AIRCOOLED", "AIRCOOLED");
 
 	/**

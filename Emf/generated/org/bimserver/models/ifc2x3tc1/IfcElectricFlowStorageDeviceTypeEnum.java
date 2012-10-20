@@ -50,66 +50,54 @@ public enum IfcElectricFlowStorageDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>BATTERY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BATTERY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BATTERY(2, "BATTERY", "BATTERY"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>INDUCTORBANK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INDUCTORBANK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INDUCTORBANK(4, "INDUCTORBANK", "INDUCTORBANK"),
-
-	/**
-	 * The '<em><b>HARMONICFILTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HARMONICFILTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HARMONICFILTER(5, "HARMONICFILTER", "HARMONICFILTER"),
-
-	/**
-	 * The '<em><b>UPS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UPS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	UPS(6, "UPS", "UPS"),
-
-	/**
-	 * The '<em><b>CAPACITORBANK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CAPACITORBANK_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>BATTERY</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #BATTERY_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	BATTERY(2, "BATTERY", "BATTERY"), /**
+										 * The '<em><b>USERDEFINED</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #USERDEFINED_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>INDUCTORBANK</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #INDUCTORBANK_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	INDUCTORBANK(4, "INDUCTORBANK", "INDUCTORBANK"), /**
+														 * The '<em><b>HARMONICFILTER</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #HARMONICFILTER_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	HARMONICFILTER(5, "HARMONICFILTER", "HARMONICFILTER"), /**
+															 * The '<em><b>UPS</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #UPS_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	UPS(6, "UPS", "UPS"), /**
+							 * The '<em><b>CAPACITORBANK</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #CAPACITORBANK_VALUE
+							 * @generated
+							 * @ordered
+							 */
 	CAPACITORBANK(7, "CAPACITORBANK", "CAPACITORBANK");
 
 	/**

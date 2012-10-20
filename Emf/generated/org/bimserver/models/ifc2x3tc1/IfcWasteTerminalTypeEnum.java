@@ -50,116 +50,94 @@ public enum IfcWasteTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PETROLINTERCEPTOR(1, "PETROLINTERCEPTOR", "PETROLINTERCEPTOR"),
-
-	/**
-	 * The '<em><b>GULLYTRAP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GULLYTRAP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GULLYTRAP(2, "GULLYTRAP", "GULLYTRAP"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>WASTETRAP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WASTETRAP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WASTETRAP(4, "WASTETRAP", "WASTETRAP"),
-
-	/**
-	 * The '<em><b>FLOORTRAP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLOORTRAP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLOORTRAP(5, "FLOORTRAP", "FLOORTRAP"),
-
-	/**
-	 * The '<em><b>ROOFDRAIN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ROOFDRAIN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ROOFDRAIN(6, "ROOFDRAIN", "ROOFDRAIN"),
-
-	/**
-	 * The '<em><b>GREASEINTERCEPTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GREASEINTERCEPTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GREASEINTERCEPTOR(7, "GREASEINTERCEPTOR", "GREASEINTERCEPTOR"),
-
-	/**
-	 * The '<em><b>GULLYSUMP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GULLYSUMP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GULLYSUMP(8, "GULLYSUMP", "GULLYSUMP"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(9, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>WASTEDISPOSALUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WASTEDISPOSALUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WASTEDISPOSALUNIT(10, "WASTEDISPOSALUNIT", "WASTEDISPOSALUNIT"),
-
-	/**
-	 * The '<em><b>OILINTERCEPTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OILINTERCEPTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OILINTERCEPTOR(11, "OILINTERCEPTOR", "OILINTERCEPTOR"),
-
-	/**
-	 * The '<em><b>FLOORWASTE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLOORWASTE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	PETROLINTERCEPTOR(1, "PETROLINTERCEPTOR", "PETROLINTERCEPTOR"), /**
+																	 * The '<em><b>GULLYTRAP</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #GULLYTRAP_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	GULLYTRAP(2, "GULLYTRAP", "GULLYTRAP"), /**
+											 * The '<em><b>NOTDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #NOTDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>WASTETRAP</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #WASTETRAP_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	WASTETRAP(4, "WASTETRAP", "WASTETRAP"), /**
+											 * The '<em><b>FLOORTRAP</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #FLOORTRAP_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	FLOORTRAP(5, "FLOORTRAP", "FLOORTRAP"), /**
+											 * The '<em><b>ROOFDRAIN</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #ROOFDRAIN_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	ROOFDRAIN(6, "ROOFDRAIN", "ROOFDRAIN"), /**
+											 * The '<em><b>GREASEINTERCEPTOR</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #GREASEINTERCEPTOR_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	GREASEINTERCEPTOR(7, "GREASEINTERCEPTOR", "GREASEINTERCEPTOR"), /**
+																	 * The '<em><b>GULLYSUMP</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #GULLYSUMP_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	GULLYSUMP(8, "GULLYSUMP", "GULLYSUMP"), /**
+											 * The '<em><b>USERDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #USERDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	USERDEFINED(9, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>WASTEDISPOSALUNIT</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #WASTEDISPOSALUNIT_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	WASTEDISPOSALUNIT(10, "WASTEDISPOSALUNIT", "WASTEDISPOSALUNIT"), /**
+																		 * The '<em><b>OILINTERCEPTOR</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #OILINTERCEPTOR_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	OILINTERCEPTOR(11, "OILINTERCEPTOR", "OILINTERCEPTOR"), /**
+															 * The '<em><b>FLOORWASTE</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #FLOORWASTE_VALUE
+															 * @generated
+															 * @ordered
+															 */
 	FLOORWASTE(12, "FLOORWASTE", "FLOORWASTE");
 
 	/**

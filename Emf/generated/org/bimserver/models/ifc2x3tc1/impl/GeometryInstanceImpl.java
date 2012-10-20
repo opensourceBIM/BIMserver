@@ -14,12 +14,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.bimserver.models.store.impl;
+package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 
-import org.bimserver.models.store.GeometryInstance;
-import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.ifc2x3tc1.GeometryInstance;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -30,9 +30,9 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.GeometryInstanceImpl#getStartVertex <em>Start Vertex</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.GeometryInstanceImpl#getStartIndex <em>Start Index</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.GeometryInstanceImpl#getPrimitiveCount <em>Primitive Count</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInstanceImpl#getStartVertex <em>Start Vertex</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInstanceImpl#getStartIndex <em>Start Index</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInstanceImpl#getPrimitiveCount <em>Primitive Count</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,7 +55,7 @@ public class GeometryInstanceImpl extends IdEObjectImpl implements GeometryInsta
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StorePackage.Literals.GEOMETRY_INSTANCE;
+		return Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE;
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class GeometryInstanceImpl extends IdEObjectImpl implements GeometryInsta
 	 * @generated
 	 */
 	public Integer getStartVertex() {
-		return (Integer) eGet(StorePackage.Literals.GEOMETRY_INSTANCE__START_VERTEX, true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__START_VERTEX, true);
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class GeometryInstanceImpl extends IdEObjectImpl implements GeometryInsta
 	 * @generated
 	 */
 	public void setStartVertex(Integer newStartVertex) {
-		eSet(StorePackage.Literals.GEOMETRY_INSTANCE__START_VERTEX, newStartVertex);
+		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__START_VERTEX, newStartVertex);
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class GeometryInstanceImpl extends IdEObjectImpl implements GeometryInsta
 	 * @generated
 	 */
 	public Integer getStartIndex() {
-		return (Integer) eGet(StorePackage.Literals.GEOMETRY_INSTANCE__START_INDEX, true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__START_INDEX, true);
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class GeometryInstanceImpl extends IdEObjectImpl implements GeometryInsta
 	 * @generated
 	 */
 	public void setStartIndex(Integer newStartIndex) {
-		eSet(StorePackage.Literals.GEOMETRY_INSTANCE__START_INDEX, newStartIndex);
+		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__START_INDEX, newStartIndex);
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class GeometryInstanceImpl extends IdEObjectImpl implements GeometryInsta
 	 * @generated
 	 */
 	public Integer getPrimitiveCount() {
-		return (Integer) eGet(StorePackage.Literals.GEOMETRY_INSTANCE__PRIMITIVE_COUNT, true);
+		return (Integer) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__PRIMITIVE_COUNT, true);
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class GeometryInstanceImpl extends IdEObjectImpl implements GeometryInsta
 	 * @generated
 	 */
 	public void setPrimitiveCount(Integer newPrimitiveCount) {
-		eSet(StorePackage.Literals.GEOMETRY_INSTANCE__PRIMITIVE_COUNT, newPrimitiveCount);
+		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__PRIMITIVE_COUNT, newPrimitiveCount);
 	}
 
 } //GeometryInstanceImpl

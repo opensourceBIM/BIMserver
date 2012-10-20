@@ -50,36 +50,30 @@ public enum IfcLightFixtureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>DIRECTIONSOURCE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIRECTIONSOURCE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DIRECTIONSOURCE(2, "DIRECTIONSOURCE", "DIRECTIONSOURCE"),
-
-	/**
-	 * The '<em><b>POINTSOURCE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #POINTSOURCE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	POINTSOURCE(3, "POINTSOURCE", "POINTSOURCE"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>DIRECTIONSOURCE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #DIRECTIONSOURCE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	DIRECTIONSOURCE(2, "DIRECTIONSOURCE", "DIRECTIONSOURCE"), /**
+																 * The '<em><b>POINTSOURCE</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #POINTSOURCE_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	POINTSOURCE(3, "POINTSOURCE", "POINTSOURCE"), /**
+													 * The '<em><b>USERDEFINED</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #USERDEFINED_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	USERDEFINED(4, "USERDEFINED", "USERDEFINED");
 
 	/**

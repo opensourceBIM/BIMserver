@@ -50,16 +50,14 @@ public enum IfcLogicalOperatorEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LOGICALOR(1, "LOGICALOR", "LOGICALOR"),
-
-	/**
-	 * The '<em><b>LOGICALAND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LOGICALAND_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	LOGICALOR(1, "LOGICALOR", "LOGICALOR"), /**
+											 * The '<em><b>LOGICALAND</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #LOGICALAND_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	LOGICALAND(2, "LOGICALAND", "LOGICALAND");
 
 	/**

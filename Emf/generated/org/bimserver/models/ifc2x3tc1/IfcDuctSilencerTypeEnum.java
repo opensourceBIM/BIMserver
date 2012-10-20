@@ -50,46 +50,38 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ROUND(1, "ROUND", "ROUND"),
-
-	/**
-	 * The '<em><b>FLATOVAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLATOVAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLATOVAL(2, "FLATOVAL", "FLATOVAL"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>RECTANGULAR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RECTANGULAR_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	ROUND(1, "ROUND", "ROUND"), /**
+								 * The '<em><b>FLATOVAL</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #FLATOVAL_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	FLATOVAL(2, "FLATOVAL", "FLATOVAL"), /**
+											 * The '<em><b>NOTDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #NOTDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>USERDEFINED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #USERDEFINED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>RECTANGULAR</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #RECTANGULAR_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	RECTANGULAR(5, "RECTANGULAR", "RECTANGULAR");
 
 	/**

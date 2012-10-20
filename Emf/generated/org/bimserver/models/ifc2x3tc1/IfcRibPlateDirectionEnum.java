@@ -50,16 +50,14 @@ public enum IfcRibPlateDirectionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTION_Y(1, "DIRECTION_Y", "DIRECTION_Y"),
-
-	/**
-	 * The '<em><b>DIRECTION X</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIRECTION_X_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	DIRECTION_Y(1, "DIRECTION_Y", "DIRECTION_Y"), /**
+													 * The '<em><b>DIRECTION X</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #DIRECTION_X_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	DIRECTION_X(2, "DIRECTION_X", "DIRECTION_X");
 
 	/**

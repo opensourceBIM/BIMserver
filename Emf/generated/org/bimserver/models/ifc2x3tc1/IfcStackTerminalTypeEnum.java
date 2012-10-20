@@ -50,46 +50,38 @@ public enum IfcStackTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COWL(1, "COWL", "COWL"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>BIRDCAGE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BIRDCAGE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BIRDCAGE(3, "BIRDCAGE", "BIRDCAGE"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>RAINWATERHOPPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RAINWATERHOPPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	COWL(1, "COWL", "COWL"), /**
+								 * The '<em><b>NOTDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #NOTDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>BIRDCAGE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #BIRDCAGE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	BIRDCAGE(3, "BIRDCAGE", "BIRDCAGE"), /**
+											 * The '<em><b>USERDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #USERDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>RAINWATERHOPPER</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #RAINWATERHOPPER_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	RAINWATERHOPPER(5, "RAINWATERHOPPER", "RAINWATERHOPPER");
 
 	/**

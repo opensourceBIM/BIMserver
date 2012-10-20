@@ -309,8 +309,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createPercentageChange();
 		case StorePackage.GEOMETRY:
 			return (EObject) createGeometry();
-		case StorePackage.GEOMETRY_INSTANCE:
-			return (EObject) createGeometryInstance();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -1218,16 +1216,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public Geometry createGeometry() {
 		GeometryImpl geometry = new GeometryImpl();
 		return geometry;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GeometryInstance createGeometryInstance() {
-		GeometryInstanceImpl geometryInstance = new GeometryInstanceImpl();
-		return geometryInstance;
 	}
 
 	/**

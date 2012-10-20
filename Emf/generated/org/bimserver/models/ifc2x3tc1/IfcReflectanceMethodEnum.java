@@ -50,96 +50,78 @@ public enum IfcReflectanceMethodEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	METAL(1, "METAL", "METAL"),
-
-	/**
-	 * The '<em><b>MATT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MATT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MATT(2, "MATT", "MATT"),
-
-	/**
-	 * The '<em><b>MIRROR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MIRROR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MIRROR(3, "MIRROR", "MIRROR"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>FLAT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLAT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLAT(5, "FLAT", "FLAT"),
-
-	/**
-	 * The '<em><b>STRAUSS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STRAUSS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STRAUSS(6, "STRAUSS", "STRAUSS"),
-
-	/**
-	 * The '<em><b>BLINN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BLINN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BLINN(7, "BLINN", "BLINN"),
-
-	/**
-	 * The '<em><b>PLASTIC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PLASTIC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PLASTIC(8, "PLASTIC", "PLASTIC"),
-
-	/**
-	 * The '<em><b>GLASS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GLASS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GLASS(9, "GLASS", "GLASS"),
-
-	/**
-	 * The '<em><b>PHONG</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PHONG_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	METAL(1, "METAL", "METAL"), /**
+								 * The '<em><b>MATT</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #MATT_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	MATT(2, "MATT", "MATT"), /**
+								 * The '<em><b>MIRROR</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #MIRROR_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	MIRROR(3, "MIRROR", "MIRROR"), /**
+									 * The '<em><b>NOTDEFINED</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #NOTDEFINED_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>FLAT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #FLAT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	FLAT(5, "FLAT", "FLAT"), /**
+								 * The '<em><b>STRAUSS</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #STRAUSS_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	STRAUSS(6, "STRAUSS", "STRAUSS"), /**
+										 * The '<em><b>BLINN</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #BLINN_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	BLINN(7, "BLINN", "BLINN"), /**
+								 * The '<em><b>PLASTIC</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #PLASTIC_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	PLASTIC(8, "PLASTIC", "PLASTIC"), /**
+										 * The '<em><b>GLASS</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #GLASS_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	GLASS(9, "GLASS", "GLASS"), /**
+								 * The '<em><b>PHONG</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #PHONG_VALUE
+								 * @generated
+								 * @ordered
+								 */
 	PHONG(10, "PHONG", "PHONG");
 
 	/**

@@ -50,96 +50,78 @@ public enum IfcCoveringTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CEILING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CEILING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CEILING(2, "CEILING", "CEILING"),
-
-	/**
-	 * The '<em><b>MEMBRANE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MEMBRANE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MEMBRANE(3, "MEMBRANE", "MEMBRANE"),
-
-	/**
-	 * The '<em><b>ROOFING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ROOFING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ROOFING(4, "ROOFING", "ROOFING"),
-
-	/**
-	 * The '<em><b>CLADDING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CLADDING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CLADDING(5, "CLADDING", "CLADDING"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>WRAPPING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WRAPPING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WRAPPING(7, "WRAPPING", "WRAPPING"),
-
-	/**
-	 * The '<em><b>FLOORING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLOORING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLOORING(8, "FLOORING", "FLOORING"),
-
-	/**
-	 * The '<em><b>SLEEVING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SLEEVING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SLEEVING(9, "SLEEVING", "SLEEVING"),
-
-	/**
-	 * The '<em><b>INSULATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INSULATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>CEILING</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #CEILING_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	CEILING(2, "CEILING", "CEILING"), /**
+										 * The '<em><b>MEMBRANE</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #MEMBRANE_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	MEMBRANE(3, "MEMBRANE", "MEMBRANE"), /**
+											 * The '<em><b>ROOFING</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #ROOFING_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	ROOFING(4, "ROOFING", "ROOFING"), /**
+										 * The '<em><b>CLADDING</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #CLADDING_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	CLADDING(5, "CLADDING", "CLADDING"), /**
+											 * The '<em><b>USERDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #USERDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>WRAPPING</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #WRAPPING_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	WRAPPING(7, "WRAPPING", "WRAPPING"), /**
+											 * The '<em><b>FLOORING</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #FLOORING_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	FLOORING(8, "FLOORING", "FLOORING"), /**
+											 * The '<em><b>SLEEVING</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #SLEEVING_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	SLEEVING(9, "SLEEVING", "SLEEVING"), /**
+											 * The '<em><b>INSULATION</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #INSULATION_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	INSULATION(10, "INSULATION", "INSULATION");
 
 	/**

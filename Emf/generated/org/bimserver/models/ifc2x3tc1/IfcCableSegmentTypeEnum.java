@@ -50,36 +50,30 @@ public enum IfcCableSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CONDUCTORSEGMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONDUCTORSEGMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONDUCTORSEGMENT(2, "CONDUCTORSEGMENT", "CONDUCTORSEGMENT"),
-
-	/**
-	 * The '<em><b>CABLESEGMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CABLESEGMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CABLESEGMENT(3, "CABLESEGMENT", "CABLESEGMENT"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>CONDUCTORSEGMENT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #CONDUCTORSEGMENT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	CONDUCTORSEGMENT(2, "CONDUCTORSEGMENT", "CONDUCTORSEGMENT"), /**
+																	 * The '<em><b>CABLESEGMENT</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #CABLESEGMENT_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	CABLESEGMENT(3, "CABLESEGMENT", "CABLESEGMENT"), /**
+														 * The '<em><b>USERDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #USERDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
 	USERDEFINED(4, "USERDEFINED", "USERDEFINED");
 
 	/**

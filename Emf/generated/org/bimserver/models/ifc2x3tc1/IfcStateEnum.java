@@ -50,46 +50,38 @@ public enum IfcStateEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	READONLYLOCKED(1, "READONLYLOCKED", "READONLYLOCKED"),
-
-	/**
-	 * The '<em><b>READWRITELOCKED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #READWRITELOCKED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	READWRITELOCKED(2, "READWRITELOCKED", "READWRITELOCKED"),
-
-	/**
-	 * The '<em><b>READONLY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #READONLY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	READONLY(3, "READONLY", "READONLY"),
-
-	/**
-	 * The '<em><b>READWRITE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #READWRITE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	READWRITE(4, "READWRITE", "READWRITE"),
-
-	/**
-	 * The '<em><b>LOCKED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LOCKED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	READONLYLOCKED(1, "READONLYLOCKED", "READONLYLOCKED"), /**
+															 * The '<em><b>READWRITELOCKED</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #READWRITELOCKED_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	READWRITELOCKED(2, "READWRITELOCKED", "READWRITELOCKED"), /**
+																 * The '<em><b>READONLY</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #READONLY_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	READONLY(3, "READONLY", "READONLY"), /**
+											 * The '<em><b>READWRITE</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #READWRITE_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	READWRITE(4, "READWRITE", "READWRITE"), /**
+											 * The '<em><b>LOCKED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #LOCKED_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	LOCKED(5, "LOCKED", "LOCKED");
 
 	/**

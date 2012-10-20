@@ -50,16 +50,14 @@ public enum IfcDimensionExtentUsage implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TARGET(1, "TARGET", "TARGET"),
-
-	/**
-	 * The '<em><b>ORIGIN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ORIGIN_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	TARGET(1, "TARGET", "TARGET"), /**
+									 * The '<em><b>ORIGIN</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #ORIGIN_VALUE
+									 * @generated
+									 * @ordered
+									 */
 	ORIGIN(2, "ORIGIN", "ORIGIN");
 
 	/**

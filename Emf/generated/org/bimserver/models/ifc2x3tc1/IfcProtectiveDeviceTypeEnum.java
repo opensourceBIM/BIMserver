@@ -50,76 +50,62 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CIRCUITBREAKER(1, "CIRCUITBREAKER", "CIRCUITBREAKER"),
-
-	/**
-	 * The '<em><b>VARISTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VARISTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VARISTOR(2, "VARISTOR", "VARISTOR"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>FUSEDISCONNECTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FUSEDISCONNECTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FUSEDISCONNECTOR(4, "FUSEDISCONNECTOR", "FUSEDISCONNECTOR"),
-
-	/**
-	 * The '<em><b>EARTHFAILUREDEVICE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EARTHFAILUREDEVICE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EARTHFAILUREDEVICE(5, "EARTHFAILUREDEVICE", "EARTHFAILUREDEVICE"),
-
-	/**
-	 * The '<em><b>RESIDUALCURRENTCIRCUITBREAKER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RESIDUALCURRENTCIRCUITBREAKER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RESIDUALCURRENTCIRCUITBREAKER(6, "RESIDUALCURRENTCIRCUITBREAKER", "RESIDUALCURRENTCIRCUITBREAKER"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>RESIDUALCURRENTSWITCH</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RESIDUALCURRENTSWITCH_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	CIRCUITBREAKER(1, "CIRCUITBREAKER", "CIRCUITBREAKER"), /**
+															 * The '<em><b>VARISTOR</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #VARISTOR_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	VARISTOR(2, "VARISTOR", "VARISTOR"), /**
+											 * The '<em><b>NOTDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #NOTDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>FUSEDISCONNECTOR</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #FUSEDISCONNECTOR_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	FUSEDISCONNECTOR(4, "FUSEDISCONNECTOR", "FUSEDISCONNECTOR"), /**
+																	 * The '<em><b>EARTHFAILUREDEVICE</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #EARTHFAILUREDEVICE_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	EARTHFAILUREDEVICE(5, "EARTHFAILUREDEVICE", "EARTHFAILUREDEVICE"), /**
+																		 * The '<em><b>RESIDUALCURRENTCIRCUITBREAKER</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #RESIDUALCURRENTCIRCUITBREAKER_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	RESIDUALCURRENTCIRCUITBREAKER(6, "RESIDUALCURRENTCIRCUITBREAKER", "RESIDUALCURRENTCIRCUITBREAKER"), /**
+																										 * The '<em><b>USERDEFINED</b></em>' literal object.
+																										 * <!-- begin-user-doc -->
+																										 * <!-- end-user-doc -->
+																										 * @see #USERDEFINED_VALUE
+																										 * @generated
+																										 * @ordered
+																										 */
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>RESIDUALCURRENTSWITCH</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #RESIDUALCURRENTSWITCH_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	RESIDUALCURRENTSWITCH(8, "RESIDUALCURRENTSWITCH", "RESIDUALCURRENTSWITCH");
 
 	/**

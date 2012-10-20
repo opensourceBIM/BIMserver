@@ -50,106 +50,86 @@ public enum IfcElectricDistributionPointFunctionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CONSUMERUNIT(1, "CONSUMERUNIT", "CONSUMERUNIT"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>SWITCHBOARD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SWITCHBOARD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SWITCHBOARD(3, "SWITCHBOARD", "SWITCHBOARD"),
-
-	/**
-	 * The '<em><b>MIMICPANEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MIMICPANEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MIMICPANEL(4, "MIMICPANEL", "MIMICPANEL"),
-
-	/**
-	 * The '<em><b>GASDETECTORPANEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GASDETECTORPANEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GASDETECTORPANEL(5, "GASDETECTORPANEL", "GASDETECTORPANEL"),
-
-	/**
-	 * The '<em><b>CONTROLPANEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONTROLPANEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONTROLPANEL(6, "CONTROLPANEL", "CONTROLPANEL"),
-
-	/**
-	 * The '<em><b>MOTORCONTROLCENTRE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MOTORCONTROLCENTRE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MOTORCONTROLCENTRE(7, "MOTORCONTROLCENTRE", "MOTORCONTROLCENTRE"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(8, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>INDICATORPANEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INDICATORPANEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INDICATORPANEL(9, "INDICATORPANEL", "INDICATORPANEL"),
-
-	/**
-	 * The '<em><b>DISTRIBUTIONBOARD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DISTRIBUTIONBOARD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DISTRIBUTIONBOARD(10, "DISTRIBUTIONBOARD", "DISTRIBUTIONBOARD"),
-
-	/**
-	 * The '<em><b>ALARMPANEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ALARMPANEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	CONSUMERUNIT(1, "CONSUMERUNIT", "CONSUMERUNIT"), /**
+														 * The '<em><b>NOTDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #NOTDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>SWITCHBOARD</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #SWITCHBOARD_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	SWITCHBOARD(3, "SWITCHBOARD", "SWITCHBOARD"), /**
+													 * The '<em><b>MIMICPANEL</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #MIMICPANEL_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	MIMICPANEL(4, "MIMICPANEL", "MIMICPANEL"), /**
+												 * The '<em><b>GASDETECTORPANEL</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #GASDETECTORPANEL_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	GASDETECTORPANEL(5, "GASDETECTORPANEL", "GASDETECTORPANEL"), /**
+																	 * The '<em><b>CONTROLPANEL</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #CONTROLPANEL_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	CONTROLPANEL(6, "CONTROLPANEL", "CONTROLPANEL"), /**
+														 * The '<em><b>MOTORCONTROLCENTRE</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #MOTORCONTROLCENTRE_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	MOTORCONTROLCENTRE(7, "MOTORCONTROLCENTRE", "MOTORCONTROLCENTRE"), /**
+																		 * The '<em><b>USERDEFINED</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #USERDEFINED_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	USERDEFINED(8, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>INDICATORPANEL</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #INDICATORPANEL_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	INDICATORPANEL(9, "INDICATORPANEL", "INDICATORPANEL"), /**
+															 * The '<em><b>DISTRIBUTIONBOARD</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #DISTRIBUTIONBOARD_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	DISTRIBUTIONBOARD(10, "DISTRIBUTIONBOARD", "DISTRIBUTIONBOARD"), /**
+																		 * The '<em><b>ALARMPANEL</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #ALARMPANEL_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
 	ALARMPANEL(11, "ALARMPANEL", "ALARMPANEL");
 
 	/**

@@ -50,66 +50,54 @@ public enum IfcStairFlightTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SPIRAL(1, "SPIRAL", "SPIRAL"),
-
-	/**
-	 * The '<em><b>WINDER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WINDER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WINDER(2, "WINDER", "WINDER"),
-
-	/**
-	 * The '<em><b>FREEFORM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FREEFORM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FREEFORM(3, "FREEFORM", "FREEFORM"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CURVED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CURVED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CURVED(5, "CURVED", "CURVED"),
-
-	/**
-	 * The '<em><b>STRAIGHT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STRAIGHT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STRAIGHT(6, "STRAIGHT", "STRAIGHT"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	SPIRAL(1, "SPIRAL", "SPIRAL"), /**
+									 * The '<em><b>WINDER</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #WINDER_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	WINDER(2, "WINDER", "WINDER"), /**
+									 * The '<em><b>FREEFORM</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #FREEFORM_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	FREEFORM(3, "FREEFORM", "FREEFORM"), /**
+											 * The '<em><b>NOTDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #NOTDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>CURVED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #CURVED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	CURVED(5, "CURVED", "CURVED"), /**
+									 * The '<em><b>STRAIGHT</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #STRAIGHT_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	STRAIGHT(6, "STRAIGHT", "STRAIGHT"), /**
+											 * The '<em><b>USERDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #USERDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	USERDEFINED(7, "USERDEFINED", "USERDEFINED");
 
 	/**

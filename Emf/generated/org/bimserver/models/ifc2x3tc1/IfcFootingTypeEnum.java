@@ -50,56 +50,46 @@ public enum IfcFootingTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	STRIP_FOOTING(1, "STRIP_FOOTING", "STRIP_FOOTING"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>FOOTING BEAM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FOOTING_BEAM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FOOTING_BEAM(3, "FOOTING_BEAM", "FOOTING_BEAM"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>PILE CAP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PILE_CAP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PILE_CAP(5, "PILE_CAP", "PILE_CAP"),
-
-	/**
-	 * The '<em><b>PAD FOOTING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PAD_FOOTING_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	STRIP_FOOTING(1, "STRIP_FOOTING", "STRIP_FOOTING"), /**
+														 * The '<em><b>NOTDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #NOTDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>FOOTING BEAM</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #FOOTING_BEAM_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	FOOTING_BEAM(3, "FOOTING_BEAM", "FOOTING_BEAM"), /**
+														 * The '<em><b>USERDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #USERDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>PILE CAP</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #PILE_CAP_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	PILE_CAP(5, "PILE_CAP", "PILE_CAP"), /**
+											 * The '<em><b>PAD FOOTING</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #PAD_FOOTING_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	PAD_FOOTING(6, "PAD_FOOTING", "PAD_FOOTING");
 
 	/**

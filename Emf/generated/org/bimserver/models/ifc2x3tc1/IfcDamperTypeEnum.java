@@ -50,126 +50,102 @@ public enum IfcDamperTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BLASTDAMPER(1, "BLASTDAMPER", "BLASTDAMPER"),
-
-	/**
-	 * The '<em><b>FIRESMOKEDAMPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIRESMOKEDAMPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FIRESMOKEDAMPER(2, "FIRESMOKEDAMPER", "FIRESMOKEDAMPER"),
-
-	/**
-	 * The '<em><b>BALANCINGDAMPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BALANCINGDAMPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BALANCINGDAMPER(3, "BALANCINGDAMPER", "BALANCINGDAMPER"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>FIREDAMPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIREDAMPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FIREDAMPER(5, "FIREDAMPER", "FIREDAMPER"),
-
-	/**
-	 * The '<em><b>SMOKEDAMPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SMOKEDAMPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SMOKEDAMPER(6, "SMOKEDAMPER", "SMOKEDAMPER"),
-
-	/**
-	 * The '<em><b>RELIEFDAMPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RELIEFDAMPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RELIEFDAMPER(7, "RELIEFDAMPER", "RELIEFDAMPER"),
-
-	/**
-	 * The '<em><b>GRAVITYRELIEFDAMPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GRAVITYRELIEFDAMPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GRAVITYRELIEFDAMPER(8, "GRAVITYRELIEFDAMPER", "GRAVITYRELIEFDAMPER"),
-
-	/**
-	 * The '<em><b>BACKDRAFTDAMPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BACKDRAFTDAMPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BACKDRAFTDAMPER(9, "BACKDRAFTDAMPER", "BACKDRAFTDAMPER"),
-
-	/**
-	 * The '<em><b>GRAVITYDAMPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GRAVITYDAMPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GRAVITYDAMPER(10, "GRAVITYDAMPER", "GRAVITYDAMPER"),
-
-	/**
-	 * The '<em><b>FUMEHOODEXHAUST</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FUMEHOODEXHAUST_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FUMEHOODEXHAUST(11, "FUMEHOODEXHAUST", "FUMEHOODEXHAUST"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(12, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>CONTROLDAMPER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONTROLDAMPER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	BLASTDAMPER(1, "BLASTDAMPER", "BLASTDAMPER"), /**
+													 * The '<em><b>FIRESMOKEDAMPER</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #FIRESMOKEDAMPER_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	FIRESMOKEDAMPER(2, "FIRESMOKEDAMPER", "FIRESMOKEDAMPER"), /**
+																 * The '<em><b>BALANCINGDAMPER</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #BALANCINGDAMPER_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	BALANCINGDAMPER(3, "BALANCINGDAMPER", "BALANCINGDAMPER"), /**
+																 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #NOTDEFINED_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>FIREDAMPER</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #FIREDAMPER_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	FIREDAMPER(5, "FIREDAMPER", "FIREDAMPER"), /**
+												 * The '<em><b>SMOKEDAMPER</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #SMOKEDAMPER_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	SMOKEDAMPER(6, "SMOKEDAMPER", "SMOKEDAMPER"), /**
+													 * The '<em><b>RELIEFDAMPER</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #RELIEFDAMPER_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	RELIEFDAMPER(7, "RELIEFDAMPER", "RELIEFDAMPER"), /**
+														 * The '<em><b>GRAVITYRELIEFDAMPER</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #GRAVITYRELIEFDAMPER_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	GRAVITYRELIEFDAMPER(8, "GRAVITYRELIEFDAMPER", "GRAVITYRELIEFDAMPER"), /**
+																			 * The '<em><b>BACKDRAFTDAMPER</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #BACKDRAFTDAMPER_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	BACKDRAFTDAMPER(9, "BACKDRAFTDAMPER", "BACKDRAFTDAMPER"), /**
+																 * The '<em><b>GRAVITYDAMPER</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #GRAVITYDAMPER_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	GRAVITYDAMPER(10, "GRAVITYDAMPER", "GRAVITYDAMPER"), /**
+															 * The '<em><b>FUMEHOODEXHAUST</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #FUMEHOODEXHAUST_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	FUMEHOODEXHAUST(11, "FUMEHOODEXHAUST", "FUMEHOODEXHAUST"), /**
+																 * The '<em><b>USERDEFINED</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #USERDEFINED_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	USERDEFINED(12, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>CONTROLDAMPER</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #CONTROLDAMPER_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	CONTROLDAMPER(13, "CONTROLDAMPER", "CONTROLDAMPER");
 
 	/**

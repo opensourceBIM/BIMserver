@@ -50,86 +50,70 @@ public enum IfcSurfaceTextureEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OPACITY(1, "OPACITY", "OPACITY"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>SELFILLUMINATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SELFILLUMINATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SELFILLUMINATION(3, "SELFILLUMINATION", "SELFILLUMINATION"),
-
-	/**
-	 * The '<em><b>REFLECTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REFLECTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REFLECTION(4, "REFLECTION", "REFLECTION"),
-
-	/**
-	 * The '<em><b>TEXTURE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TEXTURE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TEXTURE(5, "TEXTURE", "TEXTURE"),
-
-	/**
-	 * The '<em><b>SPECULAR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SPECULAR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SPECULAR(6, "SPECULAR", "SPECULAR"),
-
-	/**
-	 * The '<em><b>BUMP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BUMP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BUMP(7, "BUMP", "BUMP"),
-
-	/**
-	 * The '<em><b>TRANSPARENCYMAP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRANSPARENCYMAP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRANSPARENCYMAP(8, "TRANSPARENCYMAP", "TRANSPARENCYMAP"),
-
-	/**
-	 * The '<em><b>SHININESS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHININESS_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	OPACITY(1, "OPACITY", "OPACITY"), /**
+										 * The '<em><b>NOTDEFINED</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #NOTDEFINED_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>SELFILLUMINATION</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #SELFILLUMINATION_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	SELFILLUMINATION(3, "SELFILLUMINATION", "SELFILLUMINATION"), /**
+																	 * The '<em><b>REFLECTION</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #REFLECTION_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	REFLECTION(4, "REFLECTION", "REFLECTION"), /**
+												 * The '<em><b>TEXTURE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #TEXTURE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	TEXTURE(5, "TEXTURE", "TEXTURE"), /**
+										 * The '<em><b>SPECULAR</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #SPECULAR_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	SPECULAR(6, "SPECULAR", "SPECULAR"), /**
+											 * The '<em><b>BUMP</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #BUMP_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	BUMP(7, "BUMP", "BUMP"), /**
+								 * The '<em><b>TRANSPARENCYMAP</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #TRANSPARENCYMAP_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	TRANSPARENCYMAP(8, "TRANSPARENCYMAP", "TRANSPARENCYMAP"), /**
+																 * The '<em><b>SHININESS</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #SHININESS_VALUE
+																 * @generated
+																 * @ordered
+																 */
 	SHININESS(9, "SHININESS", "SHININESS");
 
 	/**

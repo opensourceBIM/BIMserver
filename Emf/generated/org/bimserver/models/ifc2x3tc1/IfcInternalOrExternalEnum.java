@@ -50,26 +50,22 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INTERNAL(1, "INTERNAL", "INTERNAL"),
-
-	/**
-	 * The '<em><b>EXTERNAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXTERNAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXTERNAL(2, "EXTERNAL", "EXTERNAL"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	INTERNAL(1, "INTERNAL", "INTERNAL"), /**
+											 * The '<em><b>EXTERNAL</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #EXTERNAL_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	EXTERNAL(2, "EXTERNAL", "EXTERNAL"), /**
+											 * The '<em><b>NOTDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #NOTDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED");
 
 	/**

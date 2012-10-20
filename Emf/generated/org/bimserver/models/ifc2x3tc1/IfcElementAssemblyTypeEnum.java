@@ -50,106 +50,86 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SLAB_FIELD(1, "SLAB_FIELD", "SLAB_FIELD"),
-
-	/**
-	 * The '<em><b>BEAM GRID</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BEAM_GRID_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BEAM_GRID(2, "BEAM_GRID", "BEAM_GRID"),
-
-	/**
-	 * The '<em><b>ARCH</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ARCH_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ARCH(3, "ARCH", "ARCH"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>REINFORCEMENT UNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REINFORCEMENT_UNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REINFORCEMENT_UNIT(5, "REINFORCEMENT_UNIT", "REINFORCEMENT_UNIT"),
-
-	/**
-	 * The '<em><b>BRACED FRAME</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BRACED_FRAME_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BRACED_FRAME(6, "BRACED_FRAME", "BRACED_FRAME"),
-
-	/**
-	 * The '<em><b>GIRDER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GIRDER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GIRDER(7, "GIRDER", "GIRDER"),
-
-	/**
-	 * The '<em><b>RIGID FRAME</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RIGID_FRAME_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RIGID_FRAME(8, "RIGID_FRAME", "RIGID_FRAME"),
-
-	/**
-	 * The '<em><b>TRUSS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRUSS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRUSS(9, "TRUSS", "TRUSS"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(10, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>ACCESSORY ASSEMBLY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ACCESSORY_ASSEMBLY_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	SLAB_FIELD(1, "SLAB_FIELD", "SLAB_FIELD"), /**
+												 * The '<em><b>BEAM GRID</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #BEAM_GRID_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	BEAM_GRID(2, "BEAM_GRID", "BEAM_GRID"), /**
+											 * The '<em><b>ARCH</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #ARCH_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	ARCH(3, "ARCH", "ARCH"), /**
+								 * The '<em><b>NOTDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #NOTDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>REINFORCEMENT UNIT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #REINFORCEMENT_UNIT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	REINFORCEMENT_UNIT(5, "REINFORCEMENT_UNIT", "REINFORCEMENT_UNIT"), /**
+																		 * The '<em><b>BRACED FRAME</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #BRACED_FRAME_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	BRACED_FRAME(6, "BRACED_FRAME", "BRACED_FRAME"), /**
+														 * The '<em><b>GIRDER</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #GIRDER_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	GIRDER(7, "GIRDER", "GIRDER"), /**
+									 * The '<em><b>RIGID FRAME</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #RIGID_FRAME_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	RIGID_FRAME(8, "RIGID_FRAME", "RIGID_FRAME"), /**
+													 * The '<em><b>TRUSS</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #TRUSS_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	TRUSS(9, "TRUSS", "TRUSS"), /**
+								 * The '<em><b>USERDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #USERDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	USERDEFINED(10, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>ACCESSORY ASSEMBLY</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #ACCESSORY_ASSEMBLY_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	ACCESSORY_ASSEMBLY(11, "ACCESSORY_ASSEMBLY", "ACCESSORY_ASSEMBLY");
 
 	/**

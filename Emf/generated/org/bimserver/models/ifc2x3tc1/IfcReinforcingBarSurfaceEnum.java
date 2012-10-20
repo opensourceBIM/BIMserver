@@ -50,16 +50,14 @@ public enum IfcReinforcingBarSurfaceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TEXTURED(1, "TEXTURED", "TEXTURED"),
-
-	/**
-	 * The '<em><b>PLAIN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PLAIN_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	TEXTURED(1, "TEXTURED", "TEXTURED"), /**
+											 * The '<em><b>PLAIN</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #PLAIN_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	PLAIN(2, "PLAIN", "PLAIN");
 
 	/**

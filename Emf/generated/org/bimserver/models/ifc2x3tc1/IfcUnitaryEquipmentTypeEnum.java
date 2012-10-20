@@ -50,56 +50,46 @@ public enum IfcUnitaryEquipmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SPLITSYSTEM(1, "SPLITSYSTEM", "SPLITSYSTEM"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>ROOFTOPUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ROOFTOPUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ROOFTOPUNIT(3, "ROOFTOPUNIT", "ROOFTOPUNIT"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>AIRCONDITIONINGUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AIRCONDITIONINGUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AIRCONDITIONINGUNIT(5, "AIRCONDITIONINGUNIT", "AIRCONDITIONINGUNIT"),
-
-	/**
-	 * The '<em><b>AIRHANDLER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AIRHANDLER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	SPLITSYSTEM(1, "SPLITSYSTEM", "SPLITSYSTEM"), /**
+													 * The '<em><b>NOTDEFINED</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #NOTDEFINED_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>ROOFTOPUNIT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #ROOFTOPUNIT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	ROOFTOPUNIT(3, "ROOFTOPUNIT", "ROOFTOPUNIT"), /**
+													 * The '<em><b>USERDEFINED</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #USERDEFINED_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>AIRCONDITIONINGUNIT</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #AIRCONDITIONINGUNIT_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	AIRCONDITIONINGUNIT(5, "AIRCONDITIONINGUNIT", "AIRCONDITIONINGUNIT"), /**
+																			 * The '<em><b>AIRHANDLER</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #AIRHANDLER_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
 	AIRHANDLER(6, "AIRHANDLER", "AIRHANDLER");
 
 	/**

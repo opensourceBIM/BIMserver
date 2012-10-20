@@ -50,46 +50,38 @@ public enum IfcServiceLifeTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PESSIMISTICREFERENCESERVICELIFE(1, "PESSIMISTICREFERENCESERVICELIFE", "PESSIMISTICREFERENCESERVICELIFE"),
-
-	/**
-	 * The '<em><b>EXPECTEDSERVICELIFE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXPECTEDSERVICELIFE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXPECTEDSERVICELIFE(2, "EXPECTEDSERVICELIFE", "EXPECTEDSERVICELIFE"),
-
-	/**
-	 * The '<em><b>REFERENCESERVICELIFE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REFERENCESERVICELIFE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REFERENCESERVICELIFE(3, "REFERENCESERVICELIFE", "REFERENCESERVICELIFE"),
-
-	/**
-	 * The '<em><b>OPTIMISTICREFERENCESERVICELIFE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OPTIMISTICREFERENCESERVICELIFE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OPTIMISTICREFERENCESERVICELIFE(4, "OPTIMISTICREFERENCESERVICELIFE", "OPTIMISTICREFERENCESERVICELIFE"),
-
-	/**
-	 * The '<em><b>ACTUALSERVICELIFE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ACTUALSERVICELIFE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	PESSIMISTICREFERENCESERVICELIFE(1, "PESSIMISTICREFERENCESERVICELIFE", "PESSIMISTICREFERENCESERVICELIFE"), /**
+																												 * The '<em><b>EXPECTEDSERVICELIFE</b></em>' literal object.
+																												 * <!-- begin-user-doc -->
+																												 * <!-- end-user-doc -->
+																												 * @see #EXPECTEDSERVICELIFE_VALUE
+																												 * @generated
+																												 * @ordered
+																												 */
+	EXPECTEDSERVICELIFE(2, "EXPECTEDSERVICELIFE", "EXPECTEDSERVICELIFE"), /**
+																			 * The '<em><b>REFERENCESERVICELIFE</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #REFERENCESERVICELIFE_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	REFERENCESERVICELIFE(3, "REFERENCESERVICELIFE", "REFERENCESERVICELIFE"), /**
+																				 * The '<em><b>OPTIMISTICREFERENCESERVICELIFE</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #OPTIMISTICREFERENCESERVICELIFE_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	OPTIMISTICREFERENCESERVICELIFE(4, "OPTIMISTICREFERENCESERVICELIFE", "OPTIMISTICREFERENCESERVICELIFE"), /**
+																											 * The '<em><b>ACTUALSERVICELIFE</b></em>' literal object.
+																											 * <!-- begin-user-doc -->
+																											 * <!-- end-user-doc -->
+																											 * @see #ACTUALSERVICELIFE_VALUE
+																											 * @generated
+																											 * @ordered
+																											 */
 	ACTUALSERVICELIFE(5, "ACTUALSERVICELIFE", "ACTUALSERVICELIFE");
 
 	/**

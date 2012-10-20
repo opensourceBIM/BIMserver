@@ -50,86 +50,70 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	UNITHEATER(1, "UNITHEATER", "UNITHEATER"),
-
-	/**
-	 * The '<em><b>BASEBOARDHEATER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BASEBOARDHEATER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BASEBOARDHEATER(2, "BASEBOARDHEATER", "BASEBOARDHEATER"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>PANELRADIATOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PANELRADIATOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PANELRADIATOR(4, "PANELRADIATOR", "PANELRADIATOR"),
-
-	/**
-	 * The '<em><b>CONVECTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONVECTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONVECTOR(5, "CONVECTOR", "CONVECTOR"),
-
-	/**
-	 * The '<em><b>TUBULARRADIATOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TUBULARRADIATOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TUBULARRADIATOR(6, "TUBULARRADIATOR", "TUBULARRADIATOR"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>FINNEDTUBEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FINNEDTUBEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FINNEDTUBEUNIT(8, "FINNEDTUBEUNIT", "FINNEDTUBEUNIT"),
-
-	/**
-	 * The '<em><b>SECTIONALRADIATOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SECTIONALRADIATOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	UNITHEATER(1, "UNITHEATER", "UNITHEATER"), /**
+												 * The '<em><b>BASEBOARDHEATER</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #BASEBOARDHEATER_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	BASEBOARDHEATER(2, "BASEBOARDHEATER", "BASEBOARDHEATER"), /**
+																 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #NOTDEFINED_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>PANELRADIATOR</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #PANELRADIATOR_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	PANELRADIATOR(4, "PANELRADIATOR", "PANELRADIATOR"), /**
+														 * The '<em><b>CONVECTOR</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #CONVECTOR_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	CONVECTOR(5, "CONVECTOR", "CONVECTOR"), /**
+											 * The '<em><b>TUBULARRADIATOR</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #TUBULARRADIATOR_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	TUBULARRADIATOR(6, "TUBULARRADIATOR", "TUBULARRADIATOR"), /**
+																 * The '<em><b>USERDEFINED</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #USERDEFINED_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>FINNEDTUBEUNIT</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #FINNEDTUBEUNIT_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	FINNEDTUBEUNIT(8, "FINNEDTUBEUNIT", "FINNEDTUBEUNIT"), /**
+															 * The '<em><b>SECTIONALRADIATOR</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #SECTIONALRADIATOR_VALUE
+															 * @generated
+															 * @ordered
+															 */
 	SECTIONALRADIATOR(9, "SECTIONALRADIATOR", "SECTIONALRADIATOR");
 
 	/**

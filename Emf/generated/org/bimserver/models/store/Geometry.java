@@ -51,7 +51,7 @@ public interface Geometry extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Indices</em>' attribute list.
 	 * @see org.bimserver.models.store.StorePackage#getGeometry_Indices()
-	 * @model
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<Integer> getIndices();
@@ -67,7 +67,7 @@ public interface Geometry extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Vertices</em>' attribute list.
 	 * @see org.bimserver.models.store.StorePackage#getGeometry_Vertices()
-	 * @model
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<Float> getVertices();
@@ -83,7 +83,7 @@ public interface Geometry extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Normals</em>' attribute list.
 	 * @see org.bimserver.models.store.StorePackage#getGeometry_Normals()
-	 * @model
+	 * @model unique="false"
 	 * @generated
 	 */
 	EList<Float> getNormals();

@@ -50,86 +50,70 @@ public enum IfcOccupantTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>LESSEE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LESSEE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LESSEE(2, "LESSEE", "LESSEE"),
-
-	/**
-	 * The '<em><b>ASSIGNOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ASSIGNOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ASSIGNOR(3, "ASSIGNOR", "ASSIGNOR"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>OWNER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OWNER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OWNER(5, "OWNER", "OWNER"),
-
-	/**
-	 * The '<em><b>LETTINGAGENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LETTINGAGENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LETTINGAGENT(6, "LETTINGAGENT", "LETTINGAGENT"),
-
-	/**
-	 * The '<em><b>TENANT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TENANT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TENANT(7, "TENANT", "TENANT"),
-
-	/**
-	 * The '<em><b>LESSOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LESSOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LESSOR(8, "LESSOR", "LESSOR"),
-
-	/**
-	 * The '<em><b>ASSIGNEE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ASSIGNEE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>LESSEE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #LESSEE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	LESSEE(2, "LESSEE", "LESSEE"), /**
+									 * The '<em><b>ASSIGNOR</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #ASSIGNOR_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	ASSIGNOR(3, "ASSIGNOR", "ASSIGNOR"), /**
+											 * The '<em><b>USERDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #USERDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>OWNER</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #OWNER_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	OWNER(5, "OWNER", "OWNER"), /**
+								 * The '<em><b>LETTINGAGENT</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #LETTINGAGENT_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	LETTINGAGENT(6, "LETTINGAGENT", "LETTINGAGENT"), /**
+														 * The '<em><b>TENANT</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #TENANT_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	TENANT(7, "TENANT", "TENANT"), /**
+									 * The '<em><b>LESSOR</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #LESSOR_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	LESSOR(8, "LESSOR", "LESSOR"), /**
+									 * The '<em><b>ASSIGNEE</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #ASSIGNEE_VALUE
+									 * @generated
+									 * @ordered
+									 */
 	ASSIGNEE(9, "ASSIGNEE", "ASSIGNEE");
 
 	/**

@@ -50,46 +50,38 @@ public enum IfcPermeableCoveringOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>SCREEN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SCREEN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SCREEN(2, "SCREEN", "SCREEN"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>LOUVER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LOUVER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LOUVER(4, "LOUVER", "LOUVER"),
-
-	/**
-	 * The '<em><b>GRILL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GRILL_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>SCREEN</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #SCREEN_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	SCREEN(2, "SCREEN", "SCREEN"), /**
+									 * The '<em><b>USERDEFINED</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #USERDEFINED_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>LOUVER</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #LOUVER_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	LOUVER(4, "LOUVER", "LOUVER"), /**
+									 * The '<em><b>GRILL</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #GRILL_VALUE
+									 * @generated
+									 * @ordered
+									 */
 	GRILL(5, "GRILL", "GRILL");
 
 	/**

@@ -50,26 +50,22 @@ public enum IfcElementCompositionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ELEMENT(1, "ELEMENT", "ELEMENT"),
-
-	/**
-	 * The '<em><b>COMPLEX</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMPLEX_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMPLEX(2, "COMPLEX", "COMPLEX"),
-
-	/**
-	 * The '<em><b>PARTIAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PARTIAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	ELEMENT(1, "ELEMENT", "ELEMENT"), /**
+										 * The '<em><b>COMPLEX</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #COMPLEX_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	COMPLEX(2, "COMPLEX", "COMPLEX"), /**
+										 * The '<em><b>PARTIAL</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #PARTIAL_VALUE
+										 * @generated
+										 * @ordered
+										 */
 	PARTIAL(3, "PARTIAL", "PARTIAL");
 
 	/**

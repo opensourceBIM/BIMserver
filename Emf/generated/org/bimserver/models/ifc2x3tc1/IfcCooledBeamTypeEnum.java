@@ -50,36 +50,30 @@ public enum IfcCooledBeamTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>PASSIVE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PASSIVE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PASSIVE(2, "PASSIVE", "PASSIVE"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>ACTIVE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ACTIVE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>PASSIVE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #PASSIVE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	PASSIVE(2, "PASSIVE", "PASSIVE"), /**
+										 * The '<em><b>USERDEFINED</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #USERDEFINED_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>ACTIVE</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #ACTIVE_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	ACTIVE(4, "ACTIVE", "ACTIVE");
 
 	/**

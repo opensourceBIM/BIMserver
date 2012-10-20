@@ -50,76 +50,62 @@ public enum IfcControllerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TWOPOSITION(1, "TWOPOSITION", "TWOPOSITION"),
-
-	/**
-	 * The '<em><b>PROPORTIONALINTEGRALDERIVATIVE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROPORTIONALINTEGRALDERIVATIVE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROPORTIONALINTEGRALDERIVATIVE(2, "PROPORTIONALINTEGRALDERIVATIVE", "PROPORTIONALINTEGRALDERIVATIVE"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>FLOATING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLOATING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLOATING(4, "FLOATING", "FLOATING"),
-
-	/**
-	 * The '<em><b>PROPORTIONAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROPORTIONAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROPORTIONAL(5, "PROPORTIONAL", "PROPORTIONAL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>TIMEDTWOPOSITION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TIMEDTWOPOSITION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TIMEDTWOPOSITION(7, "TIMEDTWOPOSITION", "TIMEDTWOPOSITION"),
-
-	/**
-	 * The '<em><b>PROPORTIONALINTEGRAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROPORTIONALINTEGRAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	TWOPOSITION(1, "TWOPOSITION", "TWOPOSITION"), /**
+													 * The '<em><b>PROPORTIONALINTEGRALDERIVATIVE</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #PROPORTIONALINTEGRALDERIVATIVE_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	PROPORTIONALINTEGRALDERIVATIVE(2, "PROPORTIONALINTEGRALDERIVATIVE", "PROPORTIONALINTEGRALDERIVATIVE"), /**
+																											 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																											 * <!-- begin-user-doc -->
+																											 * <!-- end-user-doc -->
+																											 * @see #NOTDEFINED_VALUE
+																											 * @generated
+																											 * @ordered
+																											 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>FLOATING</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #FLOATING_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	FLOATING(4, "FLOATING", "FLOATING"), /**
+											 * The '<em><b>PROPORTIONAL</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #PROPORTIONAL_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	PROPORTIONAL(5, "PROPORTIONAL", "PROPORTIONAL"), /**
+														 * The '<em><b>USERDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #USERDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>TIMEDTWOPOSITION</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #TIMEDTWOPOSITION_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	TIMEDTWOPOSITION(7, "TIMEDTWOPOSITION", "TIMEDTWOPOSITION"), /**
+																	 * The '<em><b>PROPORTIONALINTEGRAL</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #PROPORTIONALINTEGRAL_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
 	PROPORTIONALINTEGRAL(8, "PROPORTIONALINTEGRAL", "PROPORTIONALINTEGRAL");
 
 	/**

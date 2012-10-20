@@ -50,16 +50,14 @@ public enum IfcProfileTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AREA(1, "AREA", "AREA"),
-
-	/**
-	 * The '<em><b>CURVE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CURVE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	AREA(1, "AREA", "AREA"), /**
+								 * The '<em><b>CURVE</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #CURVE_VALUE
+								 * @generated
+								 * @ordered
+								 */
 	CURVE(2, "CURVE", "CURVE");
 
 	/**

@@ -50,36 +50,30 @@ public enum IfcVibrationIsolatorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>SPRING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SPRING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SPRING(2, "SPRING", "SPRING"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>COMPRESSION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMPRESSION_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>SPRING</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #SPRING_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	SPRING(2, "SPRING", "SPRING"), /**
+									 * The '<em><b>USERDEFINED</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #USERDEFINED_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>COMPRESSION</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #COMPRESSION_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	COMPRESSION(4, "COMPRESSION", "COMPRESSION");
 
 	/**

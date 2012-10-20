@@ -50,66 +50,54 @@ public enum IfcPumpTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	VERTICALTURBINE(1, "VERTICALTURBINE", "VERTICALTURBINE"),
-
-	/**
-	 * The '<em><b>ENDSUCTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ENDSUCTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ENDSUCTION(2, "ENDSUCTION", "ENDSUCTION"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>SPLITCASE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SPLITCASE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SPLITCASE(4, "SPLITCASE", "SPLITCASE"),
-
-	/**
-	 * The '<em><b>VERTICALINLINE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VERTICALINLINE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VERTICALINLINE(5, "VERTICALINLINE", "VERTICALINLINE"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>CIRCULATOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CIRCULATOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	VERTICALTURBINE(1, "VERTICALTURBINE", "VERTICALTURBINE"), /**
+																 * The '<em><b>ENDSUCTION</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #ENDSUCTION_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	ENDSUCTION(2, "ENDSUCTION", "ENDSUCTION"), /**
+												 * The '<em><b>NOTDEFINED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #NOTDEFINED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>SPLITCASE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #SPLITCASE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	SPLITCASE(4, "SPLITCASE", "SPLITCASE"), /**
+											 * The '<em><b>VERTICALINLINE</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #VERTICALINLINE_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	VERTICALINLINE(5, "VERTICALINLINE", "VERTICALINLINE"), /**
+															 * The '<em><b>USERDEFINED</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #USERDEFINED_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>CIRCULATOR</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #CIRCULATOR_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	CIRCULATOR(7, "CIRCULATOR", "CIRCULATOR");
 
 	/**

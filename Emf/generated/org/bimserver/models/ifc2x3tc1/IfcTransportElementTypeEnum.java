@@ -50,46 +50,38 @@ public enum IfcTransportElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>ESCALATOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ESCALATOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ESCALATOR(2, "ESCALATOR", "ESCALATOR"),
-
-	/**
-	 * The '<em><b>MOVINGWALKWAY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MOVINGWALKWAY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MOVINGWALKWAY(3, "MOVINGWALKWAY", "MOVINGWALKWAY"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>ELEVATOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELEVATOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>ESCALATOR</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #ESCALATOR_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	ESCALATOR(2, "ESCALATOR", "ESCALATOR"), /**
+											 * The '<em><b>MOVINGWALKWAY</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #MOVINGWALKWAY_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	MOVINGWALKWAY(3, "MOVINGWALKWAY", "MOVINGWALKWAY"), /**
+														 * The '<em><b>USERDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #USERDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>ELEVATOR</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #ELEVATOR_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	ELEVATOR(5, "ELEVATOR", "ELEVATOR");
 
 	/**

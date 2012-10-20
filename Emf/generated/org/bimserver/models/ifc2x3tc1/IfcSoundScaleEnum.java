@@ -50,66 +50,54 @@ public enum IfcSoundScaleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DBB(1, "DBB", "DBB"),
-
-	/**
-	 * The '<em><b>DBC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DBC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DBC(2, "DBC", "DBC"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>DBA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DBA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DBA(4, "DBA", "DBA"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>NR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NR(6, "NR", "NR"),
-
-	/**
-	 * The '<em><b>NC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NC_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	DBB(1, "DBB", "DBB"), /**
+							 * The '<em><b>DBC</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #DBC_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	DBC(2, "DBC", "DBC"), /**
+							 * The '<em><b>NOTDEFINED</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #NOTDEFINED_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>DBA</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #DBA_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	DBA(4, "DBA", "DBA"), /**
+							 * The '<em><b>USERDEFINED</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #USERDEFINED_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>NR</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #NR_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	NR(6, "NR", "NR"), /**
+						 * The '<em><b>NC</b></em>' literal object.
+						 * <!-- begin-user-doc -->
+						 * <!-- end-user-doc -->
+						 * @see #NC_VALUE
+						 * @generated
+						 * @ordered
+						 */
 	NC(7, "NC", "NC");
 
 	/**

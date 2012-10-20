@@ -50,46 +50,38 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BELTDRIVE(1, "BELTDRIVE", "BELTDRIVE"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>COUPLING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COUPLING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COUPLING(4, "COUPLING", "COUPLING"),
-
-	/**
-	 * The '<em><b>DIRECTDRIVE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIRECTDRIVE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	BELTDRIVE(1, "BELTDRIVE", "BELTDRIVE"), /**
+											 * The '<em><b>NOTDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #NOTDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>USERDEFINED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #USERDEFINED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>COUPLING</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #COUPLING_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	COUPLING(4, "COUPLING", "COUPLING"), /**
+											 * The '<em><b>DIRECTDRIVE</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #DIRECTDRIVE_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	DIRECTDRIVE(5, "DIRECTDRIVE", "DIRECTDRIVE");
 
 	/**

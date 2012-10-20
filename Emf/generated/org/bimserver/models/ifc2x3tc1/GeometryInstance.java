@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.bimserver.models.store;
+package org.bimserver.models.ifc2x3tc1;
 
 import org.bimserver.emf.IdEObject;
 
@@ -26,13 +26,13 @@ import org.bimserver.emf.IdEObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.models.store.GeometryInstance#getStartVertex <em>Start Vertex</em>}</li>
- *   <li>{@link org.bimserver.models.store.GeometryInstance#getStartIndex <em>Start Index</em>}</li>
- *   <li>{@link org.bimserver.models.store.GeometryInstance#getPrimitiveCount <em>Primitive Count</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getStartVertex <em>Start Vertex</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getStartIndex <em>Start Index</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getPrimitiveCount <em>Primitive Count</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.bimserver.models.store.StorePackage#getGeometryInstance()
+ * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInstance()
  * @model
  * @extends IdEObject
  * @generated
@@ -48,14 +48,14 @@ public interface GeometryInstance extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Start Vertex</em>' attribute.
 	 * @see #setStartVertex(Integer)
-	 * @see org.bimserver.models.store.StorePackage#getGeometryInstance_StartVertex()
+	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInstance_StartVertex()
 	 * @model
 	 * @generated
 	 */
 	Integer getStartVertex();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.GeometryInstance#getStartVertex <em>Start Vertex</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getStartVertex <em>Start Vertex</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Start Vertex</em>' attribute.
@@ -74,14 +74,14 @@ public interface GeometryInstance extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Start Index</em>' attribute.
 	 * @see #setStartIndex(Integer)
-	 * @see org.bimserver.models.store.StorePackage#getGeometryInstance_StartIndex()
+	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInstance_StartIndex()
 	 * @model
 	 * @generated
 	 */
 	Integer getStartIndex();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.GeometryInstance#getStartIndex <em>Start Index</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getStartIndex <em>Start Index</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Start Index</em>' attribute.
@@ -100,14 +100,14 @@ public interface GeometryInstance extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Primitive Count</em>' attribute.
 	 * @see #setPrimitiveCount(Integer)
-	 * @see org.bimserver.models.store.StorePackage#getGeometryInstance_PrimitiveCount()
+	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInstance_PrimitiveCount()
 	 * @model
 	 * @generated
 	 */
 	Integer getPrimitiveCount();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.GeometryInstance#getPrimitiveCount <em>Primitive Count</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getPrimitiveCount <em>Primitive Count</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Primitive Count</em>' attribute.

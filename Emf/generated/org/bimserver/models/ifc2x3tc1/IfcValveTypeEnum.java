@@ -50,226 +50,182 @@ public enum IfcValveTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FAUCET(1, "FAUCET", "FAUCET"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>ISOLATING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ISOLATING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ISOLATING(3, "ISOLATING", "ISOLATING"),
-
-	/**
-	 * The '<em><b>COMMISSIONING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMMISSIONING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMMISSIONING(4, "COMMISSIONING", "COMMISSIONING"),
-
-	/**
-	 * The '<em><b>DOUBLECHECK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLECHECK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOUBLECHECK(5, "DOUBLECHECK", "DOUBLECHECK"),
-
-	/**
-	 * The '<em><b>STOPCOCK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STOPCOCK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STOPCOCK(6, "STOPCOCK", "STOPCOCK"),
-
-	/**
-	 * The '<em><b>PRESSUREREDUCING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PRESSUREREDUCING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PRESSUREREDUCING(7, "PRESSUREREDUCING", "PRESSUREREDUCING"),
-
-	/**
-	 * The '<em><b>STEAMTRAP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STEAMTRAP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STEAMTRAP(8, "STEAMTRAP", "STEAMTRAP"),
-
-	/**
-	 * The '<em><b>GASTAP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GASTAP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GASTAP(9, "GASTAP", "GASTAP"),
-
-	/**
-	 * The '<em><b>DOUBLEREGULATING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLEREGULATING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOUBLEREGULATING(10, "DOUBLEREGULATING", "DOUBLEREGULATING"),
-
-	/**
-	 * The '<em><b>ANTIVACUUM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ANTIVACUUM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ANTIVACUUM(11, "ANTIVACUUM", "ANTIVACUUM"),
-
-	/**
-	 * The '<em><b>SAFETYCUTOFF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SAFETYCUTOFF_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SAFETYCUTOFF(12, "SAFETYCUTOFF", "SAFETYCUTOFF"),
-
-	/**
-	 * The '<em><b>REGULATING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REGULATING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REGULATING(13, "REGULATING", "REGULATING"),
-
-	/**
-	 * The '<em><b>CHANGEOVER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CHANGEOVER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CHANGEOVER(14, "CHANGEOVER", "CHANGEOVER"),
-
-	/**
-	 * The '<em><b>CHECK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CHECK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CHECK(15, "CHECK", "CHECK"),
-
-	/**
-	 * The '<em><b>DIVERTING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIVERTING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DIVERTING(16, "DIVERTING", "DIVERTING"),
-
-	/**
-	 * The '<em><b>DRAWOFFCOCK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DRAWOFFCOCK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DRAWOFFCOCK(17, "DRAWOFFCOCK", "DRAWOFFCOCK"),
-
-	/**
-	 * The '<em><b>PRESSURERELIEF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PRESSURERELIEF_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PRESSURERELIEF(18, "PRESSURERELIEF", "PRESSURERELIEF"),
-
-	/**
-	 * The '<em><b>MIXING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MIXING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MIXING(19, "MIXING", "MIXING"),
-
-	/**
-	 * The '<em><b>FLUSHING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLUSHING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLUSHING(20, "FLUSHING", "FLUSHING"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(21, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>GASCOCK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GASCOCK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GASCOCK(22, "GASCOCK", "GASCOCK"),
-
-	/**
-	 * The '<em><b>AIRRELEASE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AIRRELEASE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	FAUCET(1, "FAUCET", "FAUCET"), /**
+									 * The '<em><b>NOTDEFINED</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #NOTDEFINED_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>ISOLATING</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #ISOLATING_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	ISOLATING(3, "ISOLATING", "ISOLATING"), /**
+											 * The '<em><b>COMMISSIONING</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #COMMISSIONING_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	COMMISSIONING(4, "COMMISSIONING", "COMMISSIONING"), /**
+														 * The '<em><b>DOUBLECHECK</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #DOUBLECHECK_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	DOUBLECHECK(5, "DOUBLECHECK", "DOUBLECHECK"), /**
+													 * The '<em><b>STOPCOCK</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #STOPCOCK_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	STOPCOCK(6, "STOPCOCK", "STOPCOCK"), /**
+											 * The '<em><b>PRESSUREREDUCING</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #PRESSUREREDUCING_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	PRESSUREREDUCING(7, "PRESSUREREDUCING", "PRESSUREREDUCING"), /**
+																	 * The '<em><b>STEAMTRAP</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #STEAMTRAP_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	STEAMTRAP(8, "STEAMTRAP", "STEAMTRAP"), /**
+											 * The '<em><b>GASTAP</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #GASTAP_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	GASTAP(9, "GASTAP", "GASTAP"), /**
+									 * The '<em><b>DOUBLEREGULATING</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #DOUBLEREGULATING_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	DOUBLEREGULATING(10, "DOUBLEREGULATING", "DOUBLEREGULATING"), /**
+																	 * The '<em><b>ANTIVACUUM</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #ANTIVACUUM_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	ANTIVACUUM(11, "ANTIVACUUM", "ANTIVACUUM"), /**
+												 * The '<em><b>SAFETYCUTOFF</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #SAFETYCUTOFF_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	SAFETYCUTOFF(12, "SAFETYCUTOFF", "SAFETYCUTOFF"), /**
+														 * The '<em><b>REGULATING</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #REGULATING_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	REGULATING(13, "REGULATING", "REGULATING"), /**
+												 * The '<em><b>CHANGEOVER</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #CHANGEOVER_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	CHANGEOVER(14, "CHANGEOVER", "CHANGEOVER"), /**
+												 * The '<em><b>CHECK</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #CHECK_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	CHECK(15, "CHECK", "CHECK"), /**
+									 * The '<em><b>DIVERTING</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #DIVERTING_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	DIVERTING(16, "DIVERTING", "DIVERTING"), /**
+												 * The '<em><b>DRAWOFFCOCK</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #DRAWOFFCOCK_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	DRAWOFFCOCK(17, "DRAWOFFCOCK", "DRAWOFFCOCK"), /**
+													 * The '<em><b>PRESSURERELIEF</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #PRESSURERELIEF_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	PRESSURERELIEF(18, "PRESSURERELIEF", "PRESSURERELIEF"), /**
+															 * The '<em><b>MIXING</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #MIXING_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	MIXING(19, "MIXING", "MIXING"), /**
+									 * The '<em><b>FLUSHING</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #FLUSHING_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	FLUSHING(20, "FLUSHING", "FLUSHING"), /**
+											 * The '<em><b>USERDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #USERDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	USERDEFINED(21, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>GASCOCK</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #GASCOCK_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	GASCOCK(22, "GASCOCK", "GASCOCK"), /**
+										 * The '<em><b>AIRRELEASE</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #AIRRELEASE_VALUE
+										 * @generated
+										 * @ordered
+										 */
 	AIRRELEASE(23, "AIRRELEASE", "AIRRELEASE");
 
 	/**

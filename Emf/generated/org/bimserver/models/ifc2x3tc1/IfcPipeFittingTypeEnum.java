@@ -50,86 +50,70 @@ public enum IfcPipeFittingTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EXIT(1, "EXIT", "EXIT"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>TRANSITION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRANSITION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRANSITION(3, "TRANSITION", "TRANSITION"),
-
-	/**
-	 * The '<em><b>OBSTRUCTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OBSTRUCTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OBSTRUCTION(4, "OBSTRUCTION", "OBSTRUCTION"),
-
-	/**
-	 * The '<em><b>ENTRY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ENTRY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ENTRY(5, "ENTRY", "ENTRY"),
-
-	/**
-	 * The '<em><b>JUNCTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #JUNCTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	JUNCTION(6, "JUNCTION", "JUNCTION"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>CONNECTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONNECTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONNECTOR(8, "CONNECTOR", "CONNECTOR"),
-
-	/**
-	 * The '<em><b>BEND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BEND_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	EXIT(1, "EXIT", "EXIT"), /**
+								 * The '<em><b>NOTDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #NOTDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>TRANSITION</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #TRANSITION_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	TRANSITION(3, "TRANSITION", "TRANSITION"), /**
+												 * The '<em><b>OBSTRUCTION</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #OBSTRUCTION_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	OBSTRUCTION(4, "OBSTRUCTION", "OBSTRUCTION"), /**
+													 * The '<em><b>ENTRY</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #ENTRY_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	ENTRY(5, "ENTRY", "ENTRY"), /**
+								 * The '<em><b>JUNCTION</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #JUNCTION_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	JUNCTION(6, "JUNCTION", "JUNCTION"), /**
+											 * The '<em><b>USERDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #USERDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>CONNECTOR</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #CONNECTOR_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	CONNECTOR(8, "CONNECTOR", "CONNECTOR"), /**
+											 * The '<em><b>BEND</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #BEND_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	BEND(9, "BEND", "BEND");
 
 	/**

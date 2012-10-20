@@ -50,126 +50,102 @@ public enum IfcThermalLoadSourceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	VENTILATIONINDOORAIR(1, "VENTILATIONINDOORAIR", "VENTILATIONINDOORAIR"),
-
-	/**
-	 * The '<em><b>RECIRCULATEDAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RECIRCULATEDAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RECIRCULATEDAIR(2, "RECIRCULATEDAIR", "RECIRCULATEDAIR"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>EXHAUSTAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXHAUSTAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXHAUSTAIR(4, "EXHAUSTAIR", "EXHAUSTAIR"),
-
-	/**
-	 * The '<em><b>VENTILATIONOUTSIDEAIR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VENTILATIONOUTSIDEAIR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VENTILATIONOUTSIDEAIR(5, "VENTILATIONOUTSIDEAIR", "VENTILATIONOUTSIDEAIR"),
-
-	/**
-	 * The '<em><b>EQUIPMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EQUIPMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EQUIPMENT(6, "EQUIPMENT", "EQUIPMENT"),
-
-	/**
-	 * The '<em><b>DRYBULBTEMPERATURE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DRYBULBTEMPERATURE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DRYBULBTEMPERATURE(7, "DRYBULBTEMPERATURE", "DRYBULBTEMPERATURE"),
-
-	/**
-	 * The '<em><b>RELATIVEHUMIDITY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RELATIVEHUMIDITY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RELATIVEHUMIDITY(8, "RELATIVEHUMIDITY", "RELATIVEHUMIDITY"),
-
-	/**
-	 * The '<em><b>PEOPLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PEOPLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PEOPLE(9, "PEOPLE", "PEOPLE"),
-
-	/**
-	 * The '<em><b>INFILTRATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INFILTRATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INFILTRATION(10, "INFILTRATION", "INFILTRATION"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(11, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>AIREXCHANGERATE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AIREXCHANGERATE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AIREXCHANGERATE(12, "AIREXCHANGERATE", "AIREXCHANGERATE"),
-
-	/**
-	 * The '<em><b>LIGHTING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LIGHTING_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	VENTILATIONINDOORAIR(1, "VENTILATIONINDOORAIR", "VENTILATIONINDOORAIR"), /**
+																				 * The '<em><b>RECIRCULATEDAIR</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #RECIRCULATEDAIR_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	RECIRCULATEDAIR(2, "RECIRCULATEDAIR", "RECIRCULATEDAIR"), /**
+																 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #NOTDEFINED_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>EXHAUSTAIR</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #EXHAUSTAIR_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	EXHAUSTAIR(4, "EXHAUSTAIR", "EXHAUSTAIR"), /**
+												 * The '<em><b>VENTILATIONOUTSIDEAIR</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #VENTILATIONOUTSIDEAIR_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	VENTILATIONOUTSIDEAIR(5, "VENTILATIONOUTSIDEAIR", "VENTILATIONOUTSIDEAIR"), /**
+																				 * The '<em><b>EQUIPMENT</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #EQUIPMENT_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	EQUIPMENT(6, "EQUIPMENT", "EQUIPMENT"), /**
+											 * The '<em><b>DRYBULBTEMPERATURE</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #DRYBULBTEMPERATURE_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	DRYBULBTEMPERATURE(7, "DRYBULBTEMPERATURE", "DRYBULBTEMPERATURE"), /**
+																		 * The '<em><b>RELATIVEHUMIDITY</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #RELATIVEHUMIDITY_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	RELATIVEHUMIDITY(8, "RELATIVEHUMIDITY", "RELATIVEHUMIDITY"), /**
+																	 * The '<em><b>PEOPLE</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #PEOPLE_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	PEOPLE(9, "PEOPLE", "PEOPLE"), /**
+									 * The '<em><b>INFILTRATION</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #INFILTRATION_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	INFILTRATION(10, "INFILTRATION", "INFILTRATION"), /**
+														 * The '<em><b>USERDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #USERDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	USERDEFINED(11, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>AIREXCHANGERATE</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #AIREXCHANGERATE_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	AIREXCHANGERATE(12, "AIREXCHANGERATE", "AIREXCHANGERATE"), /**
+																 * The '<em><b>LIGHTING</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #LIGHTING_VALUE
+																 * @generated
+																 * @ordered
+																 */
 	LIGHTING(13, "LIGHTING", "LIGHTING");
 
 	/**

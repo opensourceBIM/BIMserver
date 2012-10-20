@@ -50,106 +50,86 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	THERMOSIPHONCOILTYPEHEATEXCHANGERS(1, "THERMOSIPHONCOILTYPEHEATEXCHANGERS", "THERMOSIPHONCOILTYPEHEATEXCHANGERS"),
-
-	/**
-	 * The '<em><b>TWINTOWERENTHALPYRECOVERYLOOPS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TWINTOWERENTHALPYRECOVERYLOOPS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TWINTOWERENTHALPYRECOVERYLOOPS(2, "TWINTOWERENTHALPYRECOVERYLOOPS", "TWINTOWERENTHALPYRECOVERYLOOPS"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>HEATPIPE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HEATPIPE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HEATPIPE(4, "HEATPIPE", "HEATPIPE"),
-
-	/**
-	 * The '<em><b>FIXEDPLATECROSSFLOWEXCHANGER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIXEDPLATECROSSFLOWEXCHANGER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FIXEDPLATECROSSFLOWEXCHANGER(5, "FIXEDPLATECROSSFLOWEXCHANGER", "FIXEDPLATECROSSFLOWEXCHANGER"),
-
-	/**
-	 * The '<em><b>RUNAROUNDCOILLOOP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RUNAROUNDCOILLOOP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RUNAROUNDCOILLOOP(6, "RUNAROUNDCOILLOOP", "RUNAROUNDCOILLOOP"),
-
-	/**
-	 * The '<em><b>ROTARYWHEEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ROTARYWHEEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ROTARYWHEEL(7, "ROTARYWHEEL", "ROTARYWHEEL"),
-
-	/**
-	 * The '<em><b>FIXEDPLATECOUNTERFLOWEXCHANGER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIXEDPLATECOUNTERFLOWEXCHANGER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FIXEDPLATECOUNTERFLOWEXCHANGER(8, "FIXEDPLATECOUNTERFLOWEXCHANGER", "FIXEDPLATECOUNTERFLOWEXCHANGER"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(9, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>FIXEDPLATEPARALLELFLOWEXCHANGER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIXEDPLATEPARALLELFLOWEXCHANGER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FIXEDPLATEPARALLELFLOWEXCHANGER(10, "FIXEDPLATEPARALLELFLOWEXCHANGER", "FIXEDPLATEPARALLELFLOWEXCHANGER"),
-
-	/**
-	 * The '<em><b>THERMOSIPHONSEALEDTUBEHEATEXCHANGERS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THERMOSIPHONSEALEDTUBEHEATEXCHANGERS_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	THERMOSIPHONCOILTYPEHEATEXCHANGERS(1, "THERMOSIPHONCOILTYPEHEATEXCHANGERS", "THERMOSIPHONCOILTYPEHEATEXCHANGERS"), /**
+																														 * The '<em><b>TWINTOWERENTHALPYRECOVERYLOOPS</b></em>' literal object.
+																														 * <!-- begin-user-doc -->
+																														 * <!-- end-user-doc -->
+																														 * @see #TWINTOWERENTHALPYRECOVERYLOOPS_VALUE
+																														 * @generated
+																														 * @ordered
+																														 */
+	TWINTOWERENTHALPYRECOVERYLOOPS(2, "TWINTOWERENTHALPYRECOVERYLOOPS", "TWINTOWERENTHALPYRECOVERYLOOPS"), /**
+																											 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																											 * <!-- begin-user-doc -->
+																											 * <!-- end-user-doc -->
+																											 * @see #NOTDEFINED_VALUE
+																											 * @generated
+																											 * @ordered
+																											 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>HEATPIPE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #HEATPIPE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	HEATPIPE(4, "HEATPIPE", "HEATPIPE"), /**
+											 * The '<em><b>FIXEDPLATECROSSFLOWEXCHANGER</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #FIXEDPLATECROSSFLOWEXCHANGER_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	FIXEDPLATECROSSFLOWEXCHANGER(5, "FIXEDPLATECROSSFLOWEXCHANGER", "FIXEDPLATECROSSFLOWEXCHANGER"), /**
+																										 * The '<em><b>RUNAROUNDCOILLOOP</b></em>' literal object.
+																										 * <!-- begin-user-doc -->
+																										 * <!-- end-user-doc -->
+																										 * @see #RUNAROUNDCOILLOOP_VALUE
+																										 * @generated
+																										 * @ordered
+																										 */
+	RUNAROUNDCOILLOOP(6, "RUNAROUNDCOILLOOP", "RUNAROUNDCOILLOOP"), /**
+																	 * The '<em><b>ROTARYWHEEL</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #ROTARYWHEEL_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	ROTARYWHEEL(7, "ROTARYWHEEL", "ROTARYWHEEL"), /**
+													 * The '<em><b>FIXEDPLATECOUNTERFLOWEXCHANGER</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #FIXEDPLATECOUNTERFLOWEXCHANGER_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	FIXEDPLATECOUNTERFLOWEXCHANGER(8, "FIXEDPLATECOUNTERFLOWEXCHANGER", "FIXEDPLATECOUNTERFLOWEXCHANGER"), /**
+																											 * The '<em><b>USERDEFINED</b></em>' literal object.
+																											 * <!-- begin-user-doc -->
+																											 * <!-- end-user-doc -->
+																											 * @see #USERDEFINED_VALUE
+																											 * @generated
+																											 * @ordered
+																											 */
+	USERDEFINED(9, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>FIXEDPLATEPARALLELFLOWEXCHANGER</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #FIXEDPLATEPARALLELFLOWEXCHANGER_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	FIXEDPLATEPARALLELFLOWEXCHANGER(10, "FIXEDPLATEPARALLELFLOWEXCHANGER", "FIXEDPLATEPARALLELFLOWEXCHANGER"), /**
+																												 * The '<em><b>THERMOSIPHONSEALEDTUBEHEATEXCHANGERS</b></em>' literal object.
+																												 * <!-- begin-user-doc -->
+																												 * <!-- end-user-doc -->
+																												 * @see #THERMOSIPHONSEALEDTUBEHEATEXCHANGERS_VALUE
+																												 * @generated
+																												 * @ordered
+																												 */
 	THERMOSIPHONSEALEDTUBEHEATEXCHANGERS(11, "THERMOSIPHONSEALEDTUBEHEATEXCHANGERS", "THERMOSIPHONSEALEDTUBEHEATEXCHANGERS");
 
 	/**

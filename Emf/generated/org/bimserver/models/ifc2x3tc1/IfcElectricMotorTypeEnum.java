@@ -50,66 +50,54 @@ public enum IfcElectricMotorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RELUCTANCESYNCHRONOUS(1, "RELUCTANCESYNCHRONOUS", "RELUCTANCESYNCHRONOUS"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>SYNCHRONOUS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SYNCHRONOUS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SYNCHRONOUS(3, "SYNCHRONOUS", "SYNCHRONOUS"),
-
-	/**
-	 * The '<em><b>INDUCTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INDUCTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INDUCTION(4, "INDUCTION", "INDUCTION"),
-
-	/**
-	 * The '<em><b>POLYPHASE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #POLYPHASE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	POLYPHASE(5, "POLYPHASE", "POLYPHASE"),
-
-	/**
-	 * The '<em><b>DC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DC(6, "DC", "DC"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	RELUCTANCESYNCHRONOUS(1, "RELUCTANCESYNCHRONOUS", "RELUCTANCESYNCHRONOUS"), /**
+																				 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #NOTDEFINED_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>SYNCHRONOUS</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #SYNCHRONOUS_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	SYNCHRONOUS(3, "SYNCHRONOUS", "SYNCHRONOUS"), /**
+													 * The '<em><b>INDUCTION</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #INDUCTION_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	INDUCTION(4, "INDUCTION", "INDUCTION"), /**
+											 * The '<em><b>POLYPHASE</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #POLYPHASE_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	POLYPHASE(5, "POLYPHASE", "POLYPHASE"), /**
+											 * The '<em><b>DC</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #DC_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	DC(6, "DC", "DC"), /**
+						 * The '<em><b>USERDEFINED</b></em>' literal object.
+						 * <!-- begin-user-doc -->
+						 * <!-- end-user-doc -->
+						 * @see #USERDEFINED_VALUE
+						 * @generated
+						 * @ordered
+						 */
 	USERDEFINED(7, "USERDEFINED", "USERDEFINED");
 
 	/**

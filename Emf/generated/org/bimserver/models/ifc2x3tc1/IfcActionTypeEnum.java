@@ -50,46 +50,38 @@ public enum IfcActionTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>EXTRAORDINARY A</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXTRAORDINARY_A_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXTRAORDINARY_A(2, "EXTRAORDINARY_A", "EXTRAORDINARY_A"),
-
-	/**
-	 * The '<em><b>PERMANENT G</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PERMANENT_G_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PERMANENT_G(3, "PERMANENT_G", "PERMANENT_G"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>VARIABLE Q</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VARIABLE_Q_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>EXTRAORDINARY A</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #EXTRAORDINARY_A_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	EXTRAORDINARY_A(2, "EXTRAORDINARY_A", "EXTRAORDINARY_A"), /**
+																 * The '<em><b>PERMANENT G</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #PERMANENT_G_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	PERMANENT_G(3, "PERMANENT_G", "PERMANENT_G"), /**
+													 * The '<em><b>USERDEFINED</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #USERDEFINED_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>VARIABLE Q</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #VARIABLE_Q_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	VARIABLE_Q(5, "VARIABLE_Q", "VARIABLE_Q");
 
 	/**

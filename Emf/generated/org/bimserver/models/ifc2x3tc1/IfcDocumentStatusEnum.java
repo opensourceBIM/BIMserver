@@ -50,46 +50,38 @@ public enum IfcDocumentStatusEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FINAL(1, "FINAL", "FINAL"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>REVISION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REVISION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REVISION(3, "REVISION", "REVISION"),
-
-	/**
-	 * The '<em><b>DRAFT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DRAFT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DRAFT(4, "DRAFT", "DRAFT"),
-
-	/**
-	 * The '<em><b>FINALDRAFT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FINALDRAFT_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	FINAL(1, "FINAL", "FINAL"), /**
+								 * The '<em><b>NOTDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #NOTDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>REVISION</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #REVISION_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	REVISION(3, "REVISION", "REVISION"), /**
+											 * The '<em><b>DRAFT</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #DRAFT_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	DRAFT(4, "DRAFT", "DRAFT"), /**
+								 * The '<em><b>FINALDRAFT</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #FINALDRAFT_VALUE
+								 * @generated
+								 * @ordered
+								 */
 	FINALDRAFT(5, "FINALDRAFT", "FINALDRAFT");
 
 	/**

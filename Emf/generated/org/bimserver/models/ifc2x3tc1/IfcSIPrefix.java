@@ -50,156 +50,126 @@ public enum IfcSIPrefix implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ATTO(1, "ATTO", "ATTO"),
-
-	/**
-	 * The '<em><b>MICRO</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MICRO_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MICRO(2, "MICRO", "MICRO"),
-
-	/**
-	 * The '<em><b>PICO</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PICO_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PICO(3, "PICO", "PICO"),
-
-	/**
-	 * The '<em><b>CENTI</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CENTI_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CENTI(4, "CENTI", "CENTI"),
-
-	/**
-	 * The '<em><b>DECI</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DECI_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DECI(5, "DECI", "DECI"),
-
-	/**
-	 * The '<em><b>KILO</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #KILO_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	KILO(6, "KILO", "KILO"),
-
-	/**
-	 * The '<em><b>TERA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TERA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TERA(7, "TERA", "TERA"),
-
-	/**
-	 * The '<em><b>MEGA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MEGA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MEGA(8, "MEGA", "MEGA"),
-
-	/**
-	 * The '<em><b>PETA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PETA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PETA(9, "PETA", "PETA"),
-
-	/**
-	 * The '<em><b>FEMTO</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FEMTO_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FEMTO(10, "FEMTO", "FEMTO"),
-
-	/**
-	 * The '<em><b>EXA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXA(11, "EXA", "EXA"),
-
-	/**
-	 * The '<em><b>MILLI</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MILLI_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MILLI(12, "MILLI", "MILLI"),
-
-	/**
-	 * The '<em><b>GIGA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GIGA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GIGA(13, "GIGA", "GIGA"),
-
-	/**
-	 * The '<em><b>DECA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DECA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DECA(14, "DECA", "DECA"),
-
-	/**
-	 * The '<em><b>HECTO</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HECTO_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HECTO(15, "HECTO", "HECTO"),
-
-	/**
-	 * The '<em><b>NANO</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NANO_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	ATTO(1, "ATTO", "ATTO"), /**
+								 * The '<em><b>MICRO</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #MICRO_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	MICRO(2, "MICRO", "MICRO"), /**
+								 * The '<em><b>PICO</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #PICO_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	PICO(3, "PICO", "PICO"), /**
+								 * The '<em><b>CENTI</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #CENTI_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	CENTI(4, "CENTI", "CENTI"), /**
+								 * The '<em><b>DECI</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #DECI_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	DECI(5, "DECI", "DECI"), /**
+								 * The '<em><b>KILO</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #KILO_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	KILO(6, "KILO", "KILO"), /**
+								 * The '<em><b>TERA</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #TERA_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	TERA(7, "TERA", "TERA"), /**
+								 * The '<em><b>MEGA</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #MEGA_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	MEGA(8, "MEGA", "MEGA"), /**
+								 * The '<em><b>PETA</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #PETA_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	PETA(9, "PETA", "PETA"), /**
+								 * The '<em><b>FEMTO</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #FEMTO_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	FEMTO(10, "FEMTO", "FEMTO"), /**
+									 * The '<em><b>EXA</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #EXA_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	EXA(11, "EXA", "EXA"), /**
+							 * The '<em><b>MILLI</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #MILLI_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	MILLI(12, "MILLI", "MILLI"), /**
+									 * The '<em><b>GIGA</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #GIGA_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	GIGA(13, "GIGA", "GIGA"), /**
+								 * The '<em><b>DECA</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #DECA_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	DECA(14, "DECA", "DECA"), /**
+								 * The '<em><b>HECTO</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #HECTO_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	HECTO(15, "HECTO", "HECTO"), /**
+									 * The '<em><b>NANO</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #NANO_VALUE
+									 * @generated
+									 * @ordered
+									 */
 	NANO(16, "NANO", "NANO");
 
 	/**

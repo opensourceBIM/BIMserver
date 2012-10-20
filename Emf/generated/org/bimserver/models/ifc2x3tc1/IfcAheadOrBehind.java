@@ -50,16 +50,14 @@ public enum IfcAheadOrBehind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AHEAD(1, "AHEAD", "AHEAD"),
-
-	/**
-	 * The '<em><b>BEHIND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BEHIND_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	AHEAD(1, "AHEAD", "AHEAD"), /**
+								 * The '<em><b>BEHIND</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #BEHIND_VALUE
+								 * @generated
+								 * @ordered
+								 */
 	BEHIND(2, "BEHIND", "BEHIND");
 
 	/**

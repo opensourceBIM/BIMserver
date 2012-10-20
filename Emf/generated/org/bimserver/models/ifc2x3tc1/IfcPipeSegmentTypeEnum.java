@@ -50,56 +50,46 @@ public enum IfcPipeSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SPOOL(1, "SPOOL", "SPOOL"),
-
-	/**
-	 * The '<em><b>FLEXIBLESEGMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLEXIBLESEGMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLEXIBLESEGMENT(2, "FLEXIBLESEGMENT", "FLEXIBLESEGMENT"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>GUTTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GUTTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GUTTER(4, "GUTTER", "GUTTER"),
-
-	/**
-	 * The '<em><b>RIGIDSEGMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RIGIDSEGMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RIGIDSEGMENT(5, "RIGIDSEGMENT", "RIGIDSEGMENT"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	SPOOL(1, "SPOOL", "SPOOL"), /**
+								 * The '<em><b>FLEXIBLESEGMENT</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #FLEXIBLESEGMENT_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	FLEXIBLESEGMENT(2, "FLEXIBLESEGMENT", "FLEXIBLESEGMENT"), /**
+																 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #NOTDEFINED_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>GUTTER</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #GUTTER_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	GUTTER(4, "GUTTER", "GUTTER"), /**
+									 * The '<em><b>RIGIDSEGMENT</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #RIGIDSEGMENT_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	RIGIDSEGMENT(5, "RIGIDSEGMENT", "RIGIDSEGMENT"), /**
+														 * The '<em><b>USERDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #USERDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
 	USERDEFINED(6, "USERDEFINED", "USERDEFINED");
 
 	/**

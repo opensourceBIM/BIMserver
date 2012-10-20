@@ -50,16 +50,14 @@ public enum IfcGlobalOrLocalEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LOCAL_COORDS(1, "LOCAL_COORDS", "LOCAL_COORDS"),
-
-	/**
-	 * The '<em><b>GLOBAL COORDS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GLOBAL_COORDS_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	LOCAL_COORDS(1, "LOCAL_COORDS", "LOCAL_COORDS"), /**
+														 * The '<em><b>GLOBAL COORDS</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #GLOBAL_COORDS_VALUE
+														 * @generated
+														 * @ordered
+														 */
 	GLOBAL_COORDS(2, "GLOBAL_COORDS", "GLOBAL_COORDS");
 
 	/**

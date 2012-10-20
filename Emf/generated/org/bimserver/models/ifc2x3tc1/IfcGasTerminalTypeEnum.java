@@ -50,46 +50,38 @@ public enum IfcGasTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GASBURNER(1, "GASBURNER", "GASBURNER"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>GASBOOSTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GASBOOSTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GASBOOSTER(3, "GASBOOSTER", "GASBOOSTER"),
-
-	/**
-	 * The '<em><b>GASAPPLIANCE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GASAPPLIANCE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GASAPPLIANCE(4, "GASAPPLIANCE", "GASAPPLIANCE"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	GASBURNER(1, "GASBURNER", "GASBURNER"), /**
+											 * The '<em><b>NOTDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #NOTDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>GASBOOSTER</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #GASBOOSTER_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	GASBOOSTER(3, "GASBOOSTER", "GASBOOSTER"), /**
+												 * The '<em><b>GASAPPLIANCE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #GASAPPLIANCE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	GASAPPLIANCE(4, "GASAPPLIANCE", "GASAPPLIANCE"), /**
+														 * The '<em><b>USERDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #USERDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
 	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
 
 	/**

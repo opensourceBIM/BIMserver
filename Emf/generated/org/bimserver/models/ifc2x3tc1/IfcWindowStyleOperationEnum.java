@@ -50,106 +50,86 @@ public enum IfcWindowStyleOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TRIPLE_PANEL_RIGHT(1, "TRIPLE_PANEL_RIGHT", "TRIPLE_PANEL_RIGHT"),
-
-	/**
-	 * The '<em><b>TRIPLE PANEL VERTICAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRIPLE_PANEL_VERTICAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRIPLE_PANEL_VERTICAL(2, "TRIPLE_PANEL_VERTICAL", "TRIPLE_PANEL_VERTICAL"),
-
-	/**
-	 * The '<em><b>TRIPLE PANEL LEFT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRIPLE_PANEL_LEFT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRIPLE_PANEL_LEFT(3, "TRIPLE_PANEL_LEFT", "TRIPLE_PANEL_LEFT"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>TRIPLE PANEL BOTTOM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRIPLE_PANEL_BOTTOM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRIPLE_PANEL_BOTTOM(5, "TRIPLE_PANEL_BOTTOM", "TRIPLE_PANEL_BOTTOM"),
-
-	/**
-	 * The '<em><b>TRIPLE PANEL HORIZONTAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRIPLE_PANEL_HORIZONTAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRIPLE_PANEL_HORIZONTAL(6, "TRIPLE_PANEL_HORIZONTAL", "TRIPLE_PANEL_HORIZONTAL"),
-
-	/**
-	 * The '<em><b>TRIPLE PANEL TOP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRIPLE_PANEL_TOP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRIPLE_PANEL_TOP(7, "TRIPLE_PANEL_TOP", "TRIPLE_PANEL_TOP"),
-
-	/**
-	 * The '<em><b>DOUBLE PANEL VERTICAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_PANEL_VERTICAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOUBLE_PANEL_VERTICAL(8, "DOUBLE_PANEL_VERTICAL", "DOUBLE_PANEL_VERTICAL"),
-
-	/**
-	 * The '<em><b>SINGLE PANEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SINGLE_PANEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SINGLE_PANEL(9, "SINGLE_PANEL", "SINGLE_PANEL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(10, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>DOUBLE PANEL HORIZONTAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_PANEL_HORIZONTAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	TRIPLE_PANEL_RIGHT(1, "TRIPLE_PANEL_RIGHT", "TRIPLE_PANEL_RIGHT"), /**
+																		 * The '<em><b>TRIPLE PANEL VERTICAL</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #TRIPLE_PANEL_VERTICAL_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	TRIPLE_PANEL_VERTICAL(2, "TRIPLE_PANEL_VERTICAL", "TRIPLE_PANEL_VERTICAL"), /**
+																				 * The '<em><b>TRIPLE PANEL LEFT</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #TRIPLE_PANEL_LEFT_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	TRIPLE_PANEL_LEFT(3, "TRIPLE_PANEL_LEFT", "TRIPLE_PANEL_LEFT"), /**
+																	 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #NOTDEFINED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>TRIPLE PANEL BOTTOM</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #TRIPLE_PANEL_BOTTOM_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	TRIPLE_PANEL_BOTTOM(5, "TRIPLE_PANEL_BOTTOM", "TRIPLE_PANEL_BOTTOM"), /**
+																			 * The '<em><b>TRIPLE PANEL HORIZONTAL</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #TRIPLE_PANEL_HORIZONTAL_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	TRIPLE_PANEL_HORIZONTAL(6, "TRIPLE_PANEL_HORIZONTAL", "TRIPLE_PANEL_HORIZONTAL"), /**
+																						 * The '<em><b>TRIPLE PANEL TOP</b></em>' literal object.
+																						 * <!-- begin-user-doc -->
+																						 * <!-- end-user-doc -->
+																						 * @see #TRIPLE_PANEL_TOP_VALUE
+																						 * @generated
+																						 * @ordered
+																						 */
+	TRIPLE_PANEL_TOP(7, "TRIPLE_PANEL_TOP", "TRIPLE_PANEL_TOP"), /**
+																	 * The '<em><b>DOUBLE PANEL VERTICAL</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #DOUBLE_PANEL_VERTICAL_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	DOUBLE_PANEL_VERTICAL(8, "DOUBLE_PANEL_VERTICAL", "DOUBLE_PANEL_VERTICAL"), /**
+																				 * The '<em><b>SINGLE PANEL</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #SINGLE_PANEL_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	SINGLE_PANEL(9, "SINGLE_PANEL", "SINGLE_PANEL"), /**
+														 * The '<em><b>USERDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #USERDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	USERDEFINED(10, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>DOUBLE PANEL HORIZONTAL</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #DOUBLE_PANEL_HORIZONTAL_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	DOUBLE_PANEL_HORIZONTAL(11, "DOUBLE_PANEL_HORIZONTAL", "DOUBLE_PANEL_HORIZONTAL");
 
 	/**

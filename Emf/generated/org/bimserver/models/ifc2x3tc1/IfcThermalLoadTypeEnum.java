@@ -50,36 +50,30 @@ public enum IfcThermalLoadTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>RADIANT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RADIANT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RADIANT(2, "RADIANT", "RADIANT"),
-
-	/**
-	 * The '<em><b>LATENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LATENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LATENT(3, "LATENT", "LATENT"),
-
-	/**
-	 * The '<em><b>SENSIBLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SENSIBLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>RADIANT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #RADIANT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	RADIANT(2, "RADIANT", "RADIANT"), /**
+										 * The '<em><b>LATENT</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #LATENT_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	LATENT(3, "LATENT", "LATENT"), /**
+									 * The '<em><b>SENSIBLE</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #SENSIBLE_VALUE
+									 * @generated
+									 * @ordered
+									 */
 	SENSIBLE(4, "SENSIBLE", "SENSIBLE");
 
 	/**

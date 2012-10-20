@@ -50,46 +50,38 @@ public enum IfcOutletTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>AUDIOVISUALOUTLET</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AUDIOVISUALOUTLET_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AUDIOVISUALOUTLET(2, "AUDIOVISUALOUTLET", "AUDIOVISUALOUTLET"),
-
-	/**
-	 * The '<em><b>COMMUNICATIONSOUTLET</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMMUNICATIONSOUTLET_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMMUNICATIONSOUTLET(3, "COMMUNICATIONSOUTLET", "COMMUNICATIONSOUTLET"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>POWEROUTLET</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #POWEROUTLET_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>AUDIOVISUALOUTLET</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #AUDIOVISUALOUTLET_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	AUDIOVISUALOUTLET(2, "AUDIOVISUALOUTLET", "AUDIOVISUALOUTLET"), /**
+																	 * The '<em><b>COMMUNICATIONSOUTLET</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #COMMUNICATIONSOUTLET_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	COMMUNICATIONSOUTLET(3, "COMMUNICATIONSOUTLET", "COMMUNICATIONSOUTLET"), /**
+																				 * The '<em><b>USERDEFINED</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #USERDEFINED_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>POWEROUTLET</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #POWEROUTLET_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	POWEROUTLET(5, "POWEROUTLET", "POWEROUTLET");
 
 	/**

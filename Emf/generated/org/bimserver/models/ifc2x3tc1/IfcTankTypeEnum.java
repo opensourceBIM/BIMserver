@@ -50,56 +50,46 @@ public enum IfcTankTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PREFORMED(1, "PREFORMED", "PREFORMED"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>PRESSUREVESSEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PRESSUREVESSEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PRESSUREVESSEL(3, "PRESSUREVESSEL", "PRESSUREVESSEL"),
-
-	/**
-	 * The '<em><b>SECTIONAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SECTIONAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SECTIONAL(4, "SECTIONAL", "SECTIONAL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>EXPANSION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXPANSION_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	PREFORMED(1, "PREFORMED", "PREFORMED"), /**
+											 * The '<em><b>NOTDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #NOTDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>PRESSUREVESSEL</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #PRESSUREVESSEL_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	PRESSUREVESSEL(3, "PRESSUREVESSEL", "PRESSUREVESSEL"), /**
+															 * The '<em><b>SECTIONAL</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #SECTIONAL_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	SECTIONAL(4, "SECTIONAL", "SECTIONAL"), /**
+											 * The '<em><b>USERDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #USERDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>EXPANSION</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #EXPANSION_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	EXPANSION(6, "EXPANSION", "EXPANSION");
 
 	/**

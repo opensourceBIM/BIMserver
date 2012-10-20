@@ -50,46 +50,38 @@ public enum IfcAnalysisModelTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LOADING_3D(1, "LOADING_3D", "LOADING_3D"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>IN PLANE LOADING 2D</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #IN_PLANE_LOADING_2D_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	IN_PLANE_LOADING_2D(3, "IN_PLANE_LOADING_2D", "IN_PLANE_LOADING_2D"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>OUT PLANE LOADING 2D</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OUT_PLANE_LOADING_2D_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	LOADING_3D(1, "LOADING_3D", "LOADING_3D"), /**
+												 * The '<em><b>NOTDEFINED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #NOTDEFINED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>IN PLANE LOADING 2D</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #IN_PLANE_LOADING_2D_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	IN_PLANE_LOADING_2D(3, "IN_PLANE_LOADING_2D", "IN_PLANE_LOADING_2D"), /**
+																			 * The '<em><b>USERDEFINED</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #USERDEFINED_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>OUT PLANE LOADING 2D</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #OUT_PLANE_LOADING_2D_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	OUT_PLANE_LOADING_2D(5, "OUT_PLANE_LOADING_2D", "OUT_PLANE_LOADING_2D");
 
 	/**

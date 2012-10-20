@@ -50,86 +50,70 @@ public enum IfcFanTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CENTRIFUGALAIRFOIL(1, "CENTRIFUGALAIRFOIL", "CENTRIFUGALAIRFOIL"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CENTRIFUGALRADIAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CENTRIFUGALRADIAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CENTRIFUGALRADIAL(3, "CENTRIFUGALRADIAL", "CENTRIFUGALRADIAL"),
-
-	/**
-	 * The '<em><b>CENTRIFUGALBACKWARDINCLINEDCURVED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CENTRIFUGALBACKWARDINCLINEDCURVED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CENTRIFUGALBACKWARDINCLINEDCURVED(4, "CENTRIFUGALBACKWARDINCLINEDCURVED", "CENTRIFUGALBACKWARDINCLINEDCURVED"),
-
-	/**
-	 * The '<em><b>TUBEAXIAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TUBEAXIAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TUBEAXIAL(5, "TUBEAXIAL", "TUBEAXIAL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>CENTRIFUGALFORWARDCURVED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CENTRIFUGALFORWARDCURVED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CENTRIFUGALFORWARDCURVED(7, "CENTRIFUGALFORWARDCURVED", "CENTRIFUGALFORWARDCURVED"),
-
-	/**
-	 * The '<em><b>PROPELLORAXIAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROPELLORAXIAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROPELLORAXIAL(8, "PROPELLORAXIAL", "PROPELLORAXIAL"),
-
-	/**
-	 * The '<em><b>VANEAXIAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VANEAXIAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	CENTRIFUGALAIRFOIL(1, "CENTRIFUGALAIRFOIL", "CENTRIFUGALAIRFOIL"), /**
+																		 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #NOTDEFINED_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>CENTRIFUGALRADIAL</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #CENTRIFUGALRADIAL_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	CENTRIFUGALRADIAL(3, "CENTRIFUGALRADIAL", "CENTRIFUGALRADIAL"), /**
+																	 * The '<em><b>CENTRIFUGALBACKWARDINCLINEDCURVED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #CENTRIFUGALBACKWARDINCLINEDCURVED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	CENTRIFUGALBACKWARDINCLINEDCURVED(4, "CENTRIFUGALBACKWARDINCLINEDCURVED", "CENTRIFUGALBACKWARDINCLINEDCURVED"), /**
+																													 * The '<em><b>TUBEAXIAL</b></em>' literal object.
+																													 * <!-- begin-user-doc -->
+																													 * <!-- end-user-doc -->
+																													 * @see #TUBEAXIAL_VALUE
+																													 * @generated
+																													 * @ordered
+																													 */
+	TUBEAXIAL(5, "TUBEAXIAL", "TUBEAXIAL"), /**
+											 * The '<em><b>USERDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #USERDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>CENTRIFUGALFORWARDCURVED</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #CENTRIFUGALFORWARDCURVED_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	CENTRIFUGALFORWARDCURVED(7, "CENTRIFUGALFORWARDCURVED", "CENTRIFUGALFORWARDCURVED"), /**
+																							 * The '<em><b>PROPELLORAXIAL</b></em>' literal object.
+																							 * <!-- begin-user-doc -->
+																							 * <!-- end-user-doc -->
+																							 * @see #PROPELLORAXIAL_VALUE
+																							 * @generated
+																							 * @ordered
+																							 */
+	PROPELLORAXIAL(8, "PROPELLORAXIAL", "PROPELLORAXIAL"), /**
+															 * The '<em><b>VANEAXIAL</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #VANEAXIAL_VALUE
+															 * @generated
+															 * @ordered
+															 */
 	VANEAXIAL(9, "VANEAXIAL", "VANEAXIAL");
 
 	/**

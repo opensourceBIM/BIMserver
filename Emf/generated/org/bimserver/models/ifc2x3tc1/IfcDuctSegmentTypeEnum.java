@@ -50,36 +50,30 @@ public enum IfcDuctSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FLEXIBLESEGMENT(1, "FLEXIBLESEGMENT", "FLEXIBLESEGMENT"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>RIGIDSEGMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RIGIDSEGMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RIGIDSEGMENT(3, "RIGIDSEGMENT", "RIGIDSEGMENT"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	FLEXIBLESEGMENT(1, "FLEXIBLESEGMENT", "FLEXIBLESEGMENT"), /**
+																 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #NOTDEFINED_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>RIGIDSEGMENT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #RIGIDSEGMENT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	RIGIDSEGMENT(3, "RIGIDSEGMENT", "RIGIDSEGMENT"), /**
+														 * The '<em><b>USERDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #USERDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
 	USERDEFINED(4, "USERDEFINED", "USERDEFINED");
 
 	/**

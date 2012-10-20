@@ -50,76 +50,62 @@ public enum IfcDoorPanelOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DOUBLE_ACTING(1, "DOUBLE_ACTING", "DOUBLE_ACTING"),
-
-	/**
-	 * The '<em><b>SWINGING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SWINGING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SWINGING(2, "SWINGING", "SWINGING"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>REVOLVING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REVOLVING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REVOLVING(4, "REVOLVING", "REVOLVING"),
-
-	/**
-	 * The '<em><b>ROLLINGUP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ROLLINGUP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ROLLINGUP(5, "ROLLINGUP", "ROLLINGUP"),
-
-	/**
-	 * The '<em><b>FOLDING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FOLDING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FOLDING(6, "FOLDING", "FOLDING"),
-
-	/**
-	 * The '<em><b>SLIDING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SLIDING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SLIDING(7, "SLIDING", "SLIDING"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	DOUBLE_ACTING(1, "DOUBLE_ACTING", "DOUBLE_ACTING"), /**
+														 * The '<em><b>SWINGING</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #SWINGING_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	SWINGING(2, "SWINGING", "SWINGING"), /**
+											 * The '<em><b>NOTDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #NOTDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>REVOLVING</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #REVOLVING_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	REVOLVING(4, "REVOLVING", "REVOLVING"), /**
+											 * The '<em><b>ROLLINGUP</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #ROLLINGUP_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	ROLLINGUP(5, "ROLLINGUP", "ROLLINGUP"), /**
+											 * The '<em><b>FOLDING</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #FOLDING_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	FOLDING(6, "FOLDING", "FOLDING"), /**
+										 * The '<em><b>SLIDING</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #SLIDING_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	SLIDING(7, "SLIDING", "SLIDING"), /**
+										 * The '<em><b>USERDEFINED</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #USERDEFINED_VALUE
+										 * @generated
+										 * @ordered
+										 */
 	USERDEFINED(8, "USERDEFINED", "USERDEFINED");
 
 	/**

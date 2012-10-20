@@ -50,486 +50,390 @@ public enum IfcDerivedUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MOMENTOFINERTIAUNIT(1, "MOMENTOFINERTIAUNIT", "MOMENTOFINERTIAUNIT"),
-
-	/**
-	 * The '<em><b>MOLECULARWEIGHTUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MOLECULARWEIGHTUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MOLECULARWEIGHTUNIT(2, "MOLECULARWEIGHTUNIT", "MOLECULARWEIGHTUNIT"),
-
-	/**
-	 * The '<em><b>SECTIONMODULUSUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SECTIONMODULUSUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SECTIONMODULUSUNIT(3, "SECTIONMODULUSUNIT", "SECTIONMODULUSUNIT"),
-
-	/**
-	 * The '<em><b>HEATFLUXDENSITYUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HEATFLUXDENSITYUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HEATFLUXDENSITYUNIT(4, "HEATFLUXDENSITYUNIT", "HEATFLUXDENSITYUNIT"),
-
-	/**
-	 * The '<em><b>ROTATIONALFREQUENCYUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ROTATIONALFREQUENCYUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ROTATIONALFREQUENCYUNIT(5, "ROTATIONALFREQUENCYUNIT", "ROTATIONALFREQUENCYUNIT"),
-
-	/**
-	 * The '<em><b>THERMALTRANSMITTANCEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THERMALTRANSMITTANCEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	THERMALTRANSMITTANCEUNIT(6, "THERMALTRANSMITTANCEUNIT", "THERMALTRANSMITTANCEUNIT"),
-
-	/**
-	 * The '<em><b>KINEMATICVISCOSITYUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #KINEMATICVISCOSITYUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	KINEMATICVISCOSITYUNIT(7, "KINEMATICVISCOSITYUNIT", "KINEMATICVISCOSITYUNIT"),
-
-	/**
-	 * The '<em><b>VOLUMETRICFLOWRATEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VOLUMETRICFLOWRATEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VOLUMETRICFLOWRATEUNIT(8, "VOLUMETRICFLOWRATEUNIT", "VOLUMETRICFLOWRATEUNIT"),
-
-	/**
-	 * The '<em><b>SPECIFICHEATCAPACITYUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SPECIFICHEATCAPACITYUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SPECIFICHEATCAPACITYUNIT(9, "SPECIFICHEATCAPACITYUNIT", "SPECIFICHEATCAPACITYUNIT"),
-
-	/**
-	 * The '<em><b>HEATINGVALUEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HEATINGVALUEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HEATINGVALUEUNIT(10, "HEATINGVALUEUNIT", "HEATINGVALUEUNIT"),
-
-	/**
-	 * The '<em><b>TORQUEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TORQUEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TORQUEUNIT(11, "TORQUEUNIT", "TORQUEUNIT"),
-
-	/**
-	 * The '<em><b>THERMALRESISTANCEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THERMALRESISTANCEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	THERMALRESISTANCEUNIT(12, "THERMALRESISTANCEUNIT", "THERMALRESISTANCEUNIT"),
-
-	/**
-	 * The '<em><b>SHEARMODULUSUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHEARMODULUSUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SHEARMODULUSUNIT(13, "SHEARMODULUSUNIT", "SHEARMODULUSUNIT"),
-
-	/**
-	 * The '<em><b>MODULUSOFSUBGRADEREACTIONUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MODULUSOFSUBGRADEREACTIONUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MODULUSOFSUBGRADEREACTIONUNIT(14, "MODULUSOFSUBGRADEREACTIONUNIT", "MODULUSOFSUBGRADEREACTIONUNIT"),
-
-	/**
-	 * The '<em><b>DYNAMICVISCOSITYUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DYNAMICVISCOSITYUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DYNAMICVISCOSITYUNIT(15, "DYNAMICVISCOSITYUNIT", "DYNAMICVISCOSITYUNIT"),
-
-	/**
-	 * The '<em><b>ROTATIONALSTIFFNESSUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ROTATIONALSTIFFNESSUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ROTATIONALSTIFFNESSUNIT(16, "ROTATIONALSTIFFNESSUNIT", "ROTATIONALSTIFFNESSUNIT"),
-
-	/**
-	 * The '<em><b>MASSDENSITYUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MASSDENSITYUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MASSDENSITYUNIT(17, "MASSDENSITYUNIT", "MASSDENSITYUNIT"),
-
-	/**
-	 * The '<em><b>LINEARSTIFFNESSUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LINEARSTIFFNESSUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LINEARSTIFFNESSUNIT(18, "LINEARSTIFFNESSUNIT", "LINEARSTIFFNESSUNIT"),
-
-	/**
-	 * The '<em><b>VAPORPERMEABILITYUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VAPORPERMEABILITYUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VAPORPERMEABILITYUNIT(19, "VAPORPERMEABILITYUNIT", "VAPORPERMEABILITYUNIT"),
-
-	/**
-	 * The '<em><b>TEMPERATUREGRADIENTUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TEMPERATUREGRADIENTUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TEMPERATUREGRADIENTUNIT(20, "TEMPERATUREGRADIENTUNIT", "TEMPERATUREGRADIENTUNIT"),
-
-	/**
-	 * The '<em><b>ANGULARVELOCITYUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ANGULARVELOCITYUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ANGULARVELOCITYUNIT(21, "ANGULARVELOCITYUNIT", "ANGULARVELOCITYUNIT"),
-
-	/**
-	 * The '<em><b>CURVATUREUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CURVATUREUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CURVATUREUNIT(22, "CURVATUREUNIT", "CURVATUREUNIT"),
-
-	/**
-	 * The '<em><b>WARPINGMOMENTUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WARPINGMOMENTUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WARPINGMOMENTUNIT(23, "WARPINGMOMENTUNIT", "WARPINGMOMENTUNIT"),
-
-	/**
-	 * The '<em><b>ROTATIONALMASSUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ROTATIONALMASSUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ROTATIONALMASSUNIT(24, "ROTATIONALMASSUNIT", "ROTATIONALMASSUNIT"),
-
-	/**
-	 * The '<em><b>THERMALADMITTANCEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THERMALADMITTANCEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	THERMALADMITTANCEUNIT(25, "THERMALADMITTANCEUNIT", "THERMALADMITTANCEUNIT"),
-
-	/**
-	 * The '<em><b>MASSFLOWRATEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MASSFLOWRATEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MASSFLOWRATEUNIT(26, "MASSFLOWRATEUNIT", "MASSFLOWRATEUNIT"),
-
-	/**
-	 * The '<em><b>SOUNDPOWERUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SOUNDPOWERUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SOUNDPOWERUNIT(27, "SOUNDPOWERUNIT", "SOUNDPOWERUNIT"),
-
-	/**
-	 * The '<em><b>COMPOUNDPLANEANGLEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMPOUNDPLANEANGLEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMPOUNDPLANEANGLEUNIT(28, "COMPOUNDPLANEANGLEUNIT", "COMPOUNDPLANEANGLEUNIT"),
-
-	/**
-	 * The '<em><b>ISOTHERMALMOISTURECAPACITYUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ISOTHERMALMOISTURECAPACITYUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ISOTHERMALMOISTURECAPACITYUNIT(29, "ISOTHERMALMOISTURECAPACITYUNIT", "ISOTHERMALMOISTURECAPACITYUNIT"),
-
-	/**
-	 * The '<em><b>IONCONCENTRATIONUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #IONCONCENTRATIONUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	IONCONCENTRATIONUNIT(30, "IONCONCENTRATIONUNIT", "IONCONCENTRATIONUNIT"),
-
-	/**
-	 * The '<em><b>ACCELERATIONUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ACCELERATIONUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ACCELERATIONUNIT(31, "ACCELERATIONUNIT", "ACCELERATIONUNIT"),
-
-	/**
-	 * The '<em><b>MODULUSOFROTATIONALSUBGRADEREACTIONUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MODULUSOFROTATIONALSUBGRADEREACTIONUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MODULUSOFROTATIONALSUBGRADEREACTIONUNIT(32, "MODULUSOFROTATIONALSUBGRADEREACTIONUNIT", "MODULUSOFROTATIONALSUBGRADEREACTIONUNIT"),
-
-	/**
-	 * The '<em><b>PLANARFORCEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PLANARFORCEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PLANARFORCEUNIT(33, "PLANARFORCEUNIT", "PLANARFORCEUNIT"),
-
-	/**
-	 * The '<em><b>MOISTUREDIFFUSIVITYUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MOISTUREDIFFUSIVITYUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MOISTUREDIFFUSIVITYUNIT(34, "MOISTUREDIFFUSIVITYUNIT", "MOISTUREDIFFUSIVITYUNIT"),
-
-	/**
-	 * The '<em><b>SECTIONAREAINTEGRALUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SECTIONAREAINTEGRALUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SECTIONAREAINTEGRALUNIT(35, "SECTIONAREAINTEGRALUNIT", "SECTIONAREAINTEGRALUNIT"),
-
-	/**
-	 * The '<em><b>MODULUSOFELASTICITYUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MODULUSOFELASTICITYUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MODULUSOFELASTICITYUNIT(36, "MODULUSOFELASTICITYUNIT", "MODULUSOFELASTICITYUNIT"),
-
-	/**
-	 * The '<em><b>LINEARVELOCITYUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LINEARVELOCITYUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LINEARVELOCITYUNIT(37, "LINEARVELOCITYUNIT", "LINEARVELOCITYUNIT"),
-
-	/**
-	 * The '<em><b>MASSPERLENGTHUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MASSPERLENGTHUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MASSPERLENGTHUNIT(38, "MASSPERLENGTHUNIT", "MASSPERLENGTHUNIT"),
-
-	/**
-	 * The '<em><b>INTEGERCOUNTRATEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INTEGERCOUNTRATEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INTEGERCOUNTRATEUNIT(39, "INTEGERCOUNTRATEUNIT", "INTEGERCOUNTRATEUNIT"),
-
-	/**
-	 * The '<em><b>LINEARMOMENTUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LINEARMOMENTUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LINEARMOMENTUNIT(40, "LINEARMOMENTUNIT", "LINEARMOMENTUNIT"),
-
-	/**
-	 * The '<em><b>SOUNDPRESSUREUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SOUNDPRESSUREUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SOUNDPRESSUREUNIT(41, "SOUNDPRESSUREUNIT", "SOUNDPRESSUREUNIT"),
-
-	/**
-	 * The '<em><b>LINEARFORCEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LINEARFORCEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LINEARFORCEUNIT(42, "LINEARFORCEUNIT", "LINEARFORCEUNIT"),
-
-	/**
-	 * The '<em><b>LUMINOUSINTENSITYDISTRIBUTIONUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LUMINOUSINTENSITYDISTRIBUTIONUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LUMINOUSINTENSITYDISTRIBUTIONUNIT(43, "LUMINOUSINTENSITYDISTRIBUTIONUNIT", "LUMINOUSINTENSITYDISTRIBUTIONUNIT"),
-
-	/**
-	 * The '<em><b>PHUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PHUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PHUNIT(44, "PHUNIT", "PHUNIT"),
-
-	/**
-	 * The '<em><b>THERMALEXPANSIONCOEFFICIENTUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THERMALEXPANSIONCOEFFICIENTUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	THERMALEXPANSIONCOEFFICIENTUNIT(45, "THERMALEXPANSIONCOEFFICIENTUNIT", "THERMALEXPANSIONCOEFFICIENTUNIT"),
-
-	/**
-	 * The '<em><b>MODULUSOFLINEARSUBGRADEREACTIONUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MODULUSOFLINEARSUBGRADEREACTIONUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MODULUSOFLINEARSUBGRADEREACTIONUNIT(46, "MODULUSOFLINEARSUBGRADEREACTIONUNIT", "MODULUSOFLINEARSUBGRADEREACTIONUNIT"),
-
-	/**
-	 * The '<em><b>WARPINGCONSTANTUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WARPINGCONSTANTUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WARPINGCONSTANTUNIT(47, "WARPINGCONSTANTUNIT", "WARPINGCONSTANTUNIT"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(48, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>THERMALCONDUCTANCEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THERMALCONDUCTANCEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	MOMENTOFINERTIAUNIT(1, "MOMENTOFINERTIAUNIT", "MOMENTOFINERTIAUNIT"), /**
+																			 * The '<em><b>MOLECULARWEIGHTUNIT</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #MOLECULARWEIGHTUNIT_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	MOLECULARWEIGHTUNIT(2, "MOLECULARWEIGHTUNIT", "MOLECULARWEIGHTUNIT"), /**
+																			 * The '<em><b>SECTIONMODULUSUNIT</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #SECTIONMODULUSUNIT_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	SECTIONMODULUSUNIT(3, "SECTIONMODULUSUNIT", "SECTIONMODULUSUNIT"), /**
+																		 * The '<em><b>HEATFLUXDENSITYUNIT</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #HEATFLUXDENSITYUNIT_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	HEATFLUXDENSITYUNIT(4, "HEATFLUXDENSITYUNIT", "HEATFLUXDENSITYUNIT"), /**
+																			 * The '<em><b>ROTATIONALFREQUENCYUNIT</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #ROTATIONALFREQUENCYUNIT_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	ROTATIONALFREQUENCYUNIT(5, "ROTATIONALFREQUENCYUNIT", "ROTATIONALFREQUENCYUNIT"), /**
+																						 * The '<em><b>THERMALTRANSMITTANCEUNIT</b></em>' literal object.
+																						 * <!-- begin-user-doc -->
+																						 * <!-- end-user-doc -->
+																						 * @see #THERMALTRANSMITTANCEUNIT_VALUE
+																						 * @generated
+																						 * @ordered
+																						 */
+	THERMALTRANSMITTANCEUNIT(6, "THERMALTRANSMITTANCEUNIT", "THERMALTRANSMITTANCEUNIT"), /**
+																							 * The '<em><b>KINEMATICVISCOSITYUNIT</b></em>' literal object.
+																							 * <!-- begin-user-doc -->
+																							 * <!-- end-user-doc -->
+																							 * @see #KINEMATICVISCOSITYUNIT_VALUE
+																							 * @generated
+																							 * @ordered
+																							 */
+	KINEMATICVISCOSITYUNIT(7, "KINEMATICVISCOSITYUNIT", "KINEMATICVISCOSITYUNIT"), /**
+																					 * The '<em><b>VOLUMETRICFLOWRATEUNIT</b></em>' literal object.
+																					 * <!-- begin-user-doc -->
+																					 * <!-- end-user-doc -->
+																					 * @see #VOLUMETRICFLOWRATEUNIT_VALUE
+																					 * @generated
+																					 * @ordered
+																					 */
+	VOLUMETRICFLOWRATEUNIT(8, "VOLUMETRICFLOWRATEUNIT", "VOLUMETRICFLOWRATEUNIT"), /**
+																					 * The '<em><b>SPECIFICHEATCAPACITYUNIT</b></em>' literal object.
+																					 * <!-- begin-user-doc -->
+																					 * <!-- end-user-doc -->
+																					 * @see #SPECIFICHEATCAPACITYUNIT_VALUE
+																					 * @generated
+																					 * @ordered
+																					 */
+	SPECIFICHEATCAPACITYUNIT(9, "SPECIFICHEATCAPACITYUNIT", "SPECIFICHEATCAPACITYUNIT"), /**
+																							 * The '<em><b>HEATINGVALUEUNIT</b></em>' literal object.
+																							 * <!-- begin-user-doc -->
+																							 * <!-- end-user-doc -->
+																							 * @see #HEATINGVALUEUNIT_VALUE
+																							 * @generated
+																							 * @ordered
+																							 */
+	HEATINGVALUEUNIT(10, "HEATINGVALUEUNIT", "HEATINGVALUEUNIT"), /**
+																	 * The '<em><b>TORQUEUNIT</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #TORQUEUNIT_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	TORQUEUNIT(11, "TORQUEUNIT", "TORQUEUNIT"), /**
+												 * The '<em><b>THERMALRESISTANCEUNIT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #THERMALRESISTANCEUNIT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	THERMALRESISTANCEUNIT(12, "THERMALRESISTANCEUNIT", "THERMALRESISTANCEUNIT"), /**
+																					 * The '<em><b>SHEARMODULUSUNIT</b></em>' literal object.
+																					 * <!-- begin-user-doc -->
+																					 * <!-- end-user-doc -->
+																					 * @see #SHEARMODULUSUNIT_VALUE
+																					 * @generated
+																					 * @ordered
+																					 */
+	SHEARMODULUSUNIT(13, "SHEARMODULUSUNIT", "SHEARMODULUSUNIT"), /**
+																	 * The '<em><b>MODULUSOFSUBGRADEREACTIONUNIT</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #MODULUSOFSUBGRADEREACTIONUNIT_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	MODULUSOFSUBGRADEREACTIONUNIT(14, "MODULUSOFSUBGRADEREACTIONUNIT", "MODULUSOFSUBGRADEREACTIONUNIT"), /**
+																											 * The '<em><b>DYNAMICVISCOSITYUNIT</b></em>' literal object.
+																											 * <!-- begin-user-doc -->
+																											 * <!-- end-user-doc -->
+																											 * @see #DYNAMICVISCOSITYUNIT_VALUE
+																											 * @generated
+																											 * @ordered
+																											 */
+	DYNAMICVISCOSITYUNIT(15, "DYNAMICVISCOSITYUNIT", "DYNAMICVISCOSITYUNIT"), /**
+																				 * The '<em><b>ROTATIONALSTIFFNESSUNIT</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #ROTATIONALSTIFFNESSUNIT_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	ROTATIONALSTIFFNESSUNIT(16, "ROTATIONALSTIFFNESSUNIT", "ROTATIONALSTIFFNESSUNIT"), /**
+																						 * The '<em><b>MASSDENSITYUNIT</b></em>' literal object.
+																						 * <!-- begin-user-doc -->
+																						 * <!-- end-user-doc -->
+																						 * @see #MASSDENSITYUNIT_VALUE
+																						 * @generated
+																						 * @ordered
+																						 */
+	MASSDENSITYUNIT(17, "MASSDENSITYUNIT", "MASSDENSITYUNIT"), /**
+																 * The '<em><b>LINEARSTIFFNESSUNIT</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #LINEARSTIFFNESSUNIT_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	LINEARSTIFFNESSUNIT(18, "LINEARSTIFFNESSUNIT", "LINEARSTIFFNESSUNIT"), /**
+																			 * The '<em><b>VAPORPERMEABILITYUNIT</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #VAPORPERMEABILITYUNIT_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	VAPORPERMEABILITYUNIT(19, "VAPORPERMEABILITYUNIT", "VAPORPERMEABILITYUNIT"), /**
+																					 * The '<em><b>TEMPERATUREGRADIENTUNIT</b></em>' literal object.
+																					 * <!-- begin-user-doc -->
+																					 * <!-- end-user-doc -->
+																					 * @see #TEMPERATUREGRADIENTUNIT_VALUE
+																					 * @generated
+																					 * @ordered
+																					 */
+	TEMPERATUREGRADIENTUNIT(20, "TEMPERATUREGRADIENTUNIT", "TEMPERATUREGRADIENTUNIT"), /**
+																						 * The '<em><b>ANGULARVELOCITYUNIT</b></em>' literal object.
+																						 * <!-- begin-user-doc -->
+																						 * <!-- end-user-doc -->
+																						 * @see #ANGULARVELOCITYUNIT_VALUE
+																						 * @generated
+																						 * @ordered
+																						 */
+	ANGULARVELOCITYUNIT(21, "ANGULARVELOCITYUNIT", "ANGULARVELOCITYUNIT"), /**
+																			 * The '<em><b>CURVATUREUNIT</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #CURVATUREUNIT_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	CURVATUREUNIT(22, "CURVATUREUNIT", "CURVATUREUNIT"), /**
+															 * The '<em><b>WARPINGMOMENTUNIT</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #WARPINGMOMENTUNIT_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	WARPINGMOMENTUNIT(23, "WARPINGMOMENTUNIT", "WARPINGMOMENTUNIT"), /**
+																		 * The '<em><b>ROTATIONALMASSUNIT</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #ROTATIONALMASSUNIT_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	ROTATIONALMASSUNIT(24, "ROTATIONALMASSUNIT", "ROTATIONALMASSUNIT"), /**
+																		 * The '<em><b>THERMALADMITTANCEUNIT</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #THERMALADMITTANCEUNIT_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	THERMALADMITTANCEUNIT(25, "THERMALADMITTANCEUNIT", "THERMALADMITTANCEUNIT"), /**
+																					 * The '<em><b>MASSFLOWRATEUNIT</b></em>' literal object.
+																					 * <!-- begin-user-doc -->
+																					 * <!-- end-user-doc -->
+																					 * @see #MASSFLOWRATEUNIT_VALUE
+																					 * @generated
+																					 * @ordered
+																					 */
+	MASSFLOWRATEUNIT(26, "MASSFLOWRATEUNIT", "MASSFLOWRATEUNIT"), /**
+																	 * The '<em><b>SOUNDPOWERUNIT</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #SOUNDPOWERUNIT_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	SOUNDPOWERUNIT(27, "SOUNDPOWERUNIT", "SOUNDPOWERUNIT"), /**
+															 * The '<em><b>COMPOUNDPLANEANGLEUNIT</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #COMPOUNDPLANEANGLEUNIT_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	COMPOUNDPLANEANGLEUNIT(28, "COMPOUNDPLANEANGLEUNIT", "COMPOUNDPLANEANGLEUNIT"), /**
+																					 * The '<em><b>ISOTHERMALMOISTURECAPACITYUNIT</b></em>' literal object.
+																					 * <!-- begin-user-doc -->
+																					 * <!-- end-user-doc -->
+																					 * @see #ISOTHERMALMOISTURECAPACITYUNIT_VALUE
+																					 * @generated
+																					 * @ordered
+																					 */
+	ISOTHERMALMOISTURECAPACITYUNIT(29, "ISOTHERMALMOISTURECAPACITYUNIT", "ISOTHERMALMOISTURECAPACITYUNIT"), /**
+																											 * The '<em><b>IONCONCENTRATIONUNIT</b></em>' literal object.
+																											 * <!-- begin-user-doc -->
+																											 * <!-- end-user-doc -->
+																											 * @see #IONCONCENTRATIONUNIT_VALUE
+																											 * @generated
+																											 * @ordered
+																											 */
+	IONCONCENTRATIONUNIT(30, "IONCONCENTRATIONUNIT", "IONCONCENTRATIONUNIT"), /**
+																				 * The '<em><b>ACCELERATIONUNIT</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #ACCELERATIONUNIT_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	ACCELERATIONUNIT(31, "ACCELERATIONUNIT", "ACCELERATIONUNIT"), /**
+																	 * The '<em><b>MODULUSOFROTATIONALSUBGRADEREACTIONUNIT</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #MODULUSOFROTATIONALSUBGRADEREACTIONUNIT_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	MODULUSOFROTATIONALSUBGRADEREACTIONUNIT(32, "MODULUSOFROTATIONALSUBGRADEREACTIONUNIT", "MODULUSOFROTATIONALSUBGRADEREACTIONUNIT"), /**
+																																		 * The '<em><b>PLANARFORCEUNIT</b></em>' literal object.
+																																		 * <!-- begin-user-doc -->
+																																		 * <!-- end-user-doc -->
+																																		 * @see #PLANARFORCEUNIT_VALUE
+																																		 * @generated
+																																		 * @ordered
+																																		 */
+	PLANARFORCEUNIT(33, "PLANARFORCEUNIT", "PLANARFORCEUNIT"), /**
+																 * The '<em><b>MOISTUREDIFFUSIVITYUNIT</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #MOISTUREDIFFUSIVITYUNIT_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	MOISTUREDIFFUSIVITYUNIT(34, "MOISTUREDIFFUSIVITYUNIT", "MOISTUREDIFFUSIVITYUNIT"), /**
+																						 * The '<em><b>SECTIONAREAINTEGRALUNIT</b></em>' literal object.
+																						 * <!-- begin-user-doc -->
+																						 * <!-- end-user-doc -->
+																						 * @see #SECTIONAREAINTEGRALUNIT_VALUE
+																						 * @generated
+																						 * @ordered
+																						 */
+	SECTIONAREAINTEGRALUNIT(35, "SECTIONAREAINTEGRALUNIT", "SECTIONAREAINTEGRALUNIT"), /**
+																						 * The '<em><b>MODULUSOFELASTICITYUNIT</b></em>' literal object.
+																						 * <!-- begin-user-doc -->
+																						 * <!-- end-user-doc -->
+																						 * @see #MODULUSOFELASTICITYUNIT_VALUE
+																						 * @generated
+																						 * @ordered
+																						 */
+	MODULUSOFELASTICITYUNIT(36, "MODULUSOFELASTICITYUNIT", "MODULUSOFELASTICITYUNIT"), /**
+																						 * The '<em><b>LINEARVELOCITYUNIT</b></em>' literal object.
+																						 * <!-- begin-user-doc -->
+																						 * <!-- end-user-doc -->
+																						 * @see #LINEARVELOCITYUNIT_VALUE
+																						 * @generated
+																						 * @ordered
+																						 */
+	LINEARVELOCITYUNIT(37, "LINEARVELOCITYUNIT", "LINEARVELOCITYUNIT"), /**
+																		 * The '<em><b>MASSPERLENGTHUNIT</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #MASSPERLENGTHUNIT_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	MASSPERLENGTHUNIT(38, "MASSPERLENGTHUNIT", "MASSPERLENGTHUNIT"), /**
+																		 * The '<em><b>INTEGERCOUNTRATEUNIT</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #INTEGERCOUNTRATEUNIT_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	INTEGERCOUNTRATEUNIT(39, "INTEGERCOUNTRATEUNIT", "INTEGERCOUNTRATEUNIT"), /**
+																				 * The '<em><b>LINEARMOMENTUNIT</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #LINEARMOMENTUNIT_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	LINEARMOMENTUNIT(40, "LINEARMOMENTUNIT", "LINEARMOMENTUNIT"), /**
+																	 * The '<em><b>SOUNDPRESSUREUNIT</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #SOUNDPRESSUREUNIT_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	SOUNDPRESSUREUNIT(41, "SOUNDPRESSUREUNIT", "SOUNDPRESSUREUNIT"), /**
+																		 * The '<em><b>LINEARFORCEUNIT</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #LINEARFORCEUNIT_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	LINEARFORCEUNIT(42, "LINEARFORCEUNIT", "LINEARFORCEUNIT"), /**
+																 * The '<em><b>LUMINOUSINTENSITYDISTRIBUTIONUNIT</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #LUMINOUSINTENSITYDISTRIBUTIONUNIT_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	LUMINOUSINTENSITYDISTRIBUTIONUNIT(43, "LUMINOUSINTENSITYDISTRIBUTIONUNIT", "LUMINOUSINTENSITYDISTRIBUTIONUNIT"), /**
+																														 * The '<em><b>PHUNIT</b></em>' literal object.
+																														 * <!-- begin-user-doc -->
+																														 * <!-- end-user-doc -->
+																														 * @see #PHUNIT_VALUE
+																														 * @generated
+																														 * @ordered
+																														 */
+	PHUNIT(44, "PHUNIT", "PHUNIT"), /**
+									 * The '<em><b>THERMALEXPANSIONCOEFFICIENTUNIT</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #THERMALEXPANSIONCOEFFICIENTUNIT_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	THERMALEXPANSIONCOEFFICIENTUNIT(45, "THERMALEXPANSIONCOEFFICIENTUNIT", "THERMALEXPANSIONCOEFFICIENTUNIT"), /**
+																												 * The '<em><b>MODULUSOFLINEARSUBGRADEREACTIONUNIT</b></em>' literal object.
+																												 * <!-- begin-user-doc -->
+																												 * <!-- end-user-doc -->
+																												 * @see #MODULUSOFLINEARSUBGRADEREACTIONUNIT_VALUE
+																												 * @generated
+																												 * @ordered
+																												 */
+	MODULUSOFLINEARSUBGRADEREACTIONUNIT(46, "MODULUSOFLINEARSUBGRADEREACTIONUNIT", "MODULUSOFLINEARSUBGRADEREACTIONUNIT"), /**
+																															 * The '<em><b>WARPINGCONSTANTUNIT</b></em>' literal object.
+																															 * <!-- begin-user-doc -->
+																															 * <!-- end-user-doc -->
+																															 * @see #WARPINGCONSTANTUNIT_VALUE
+																															 * @generated
+																															 * @ordered
+																															 */
+	WARPINGCONSTANTUNIT(47, "WARPINGCONSTANTUNIT", "WARPINGCONSTANTUNIT"), /**
+																			 * The '<em><b>USERDEFINED</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #USERDEFINED_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	USERDEFINED(48, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>THERMALCONDUCTANCEUNIT</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #THERMALCONDUCTANCEUNIT_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	THERMALCONDUCTANCEUNIT(49, "THERMALCONDUCTANCEUNIT", "THERMALCONDUCTANCEUNIT");
 
 	/**

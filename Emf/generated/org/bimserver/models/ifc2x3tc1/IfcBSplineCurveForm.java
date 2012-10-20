@@ -50,56 +50,46 @@ public enum IfcBSplineCurveForm implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PARABOLIC_ARC(1, "PARABOLIC_ARC", "PARABOLIC_ARC"),
-
-	/**
-	 * The '<em><b>ELLIPTIC ARC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELLIPTIC_ARC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELLIPTIC_ARC(2, "ELLIPTIC_ARC", "ELLIPTIC_ARC"),
-
-	/**
-	 * The '<em><b>HYPERBOLIC ARC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HYPERBOLIC_ARC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HYPERBOLIC_ARC(3, "HYPERBOLIC_ARC", "HYPERBOLIC_ARC"),
-
-	/**
-	 * The '<em><b>UNSPECIFIED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UNSPECIFIED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	UNSPECIFIED(4, "UNSPECIFIED", "UNSPECIFIED"),
-
-	/**
-	 * The '<em><b>POLYLINE FORM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #POLYLINE_FORM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	POLYLINE_FORM(5, "POLYLINE_FORM", "POLYLINE_FORM"),
-
-	/**
-	 * The '<em><b>CIRCULAR ARC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CIRCULAR_ARC_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	PARABOLIC_ARC(1, "PARABOLIC_ARC", "PARABOLIC_ARC"), /**
+														 * The '<em><b>ELLIPTIC ARC</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #ELLIPTIC_ARC_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	ELLIPTIC_ARC(2, "ELLIPTIC_ARC", "ELLIPTIC_ARC"), /**
+														 * The '<em><b>HYPERBOLIC ARC</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #HYPERBOLIC_ARC_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	HYPERBOLIC_ARC(3, "HYPERBOLIC_ARC", "HYPERBOLIC_ARC"), /**
+															 * The '<em><b>UNSPECIFIED</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #UNSPECIFIED_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	UNSPECIFIED(4, "UNSPECIFIED", "UNSPECIFIED"), /**
+													 * The '<em><b>POLYLINE FORM</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #POLYLINE_FORM_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	POLYLINE_FORM(5, "POLYLINE_FORM", "POLYLINE_FORM"), /**
+														 * The '<em><b>CIRCULAR ARC</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #CIRCULAR_ARC_VALUE
+														 * @generated
+														 * @ordered
+														 */
 	CIRCULAR_ARC(6, "CIRCULAR_ARC", "CIRCULAR_ARC");
 
 	/**

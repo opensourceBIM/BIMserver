@@ -50,76 +50,62 @@ public enum IfcRampTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	QUARTER_TURN_RAMP(1, "QUARTER_TURN_RAMP", "QUARTER_TURN_RAMP"),
-
-	/**
-	 * The '<em><b>SPIRAL RAMP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SPIRAL_RAMP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SPIRAL_RAMP(2, "SPIRAL_RAMP", "SPIRAL_RAMP"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>STRAIGHT RUN RAMP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STRAIGHT_RUN_RAMP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STRAIGHT_RUN_RAMP(4, "STRAIGHT_RUN_RAMP", "STRAIGHT_RUN_RAMP"),
-
-	/**
-	 * The '<em><b>TWO STRAIGHT RUN RAMP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TWO_STRAIGHT_RUN_RAMP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TWO_STRAIGHT_RUN_RAMP(5, "TWO_STRAIGHT_RUN_RAMP", "TWO_STRAIGHT_RUN_RAMP"),
-
-	/**
-	 * The '<em><b>HALF TURN RAMP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HALF_TURN_RAMP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HALF_TURN_RAMP(6, "HALF_TURN_RAMP", "HALF_TURN_RAMP"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>TWO QUARTER TURN RAMP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TWO_QUARTER_TURN_RAMP_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	QUARTER_TURN_RAMP(1, "QUARTER_TURN_RAMP", "QUARTER_TURN_RAMP"), /**
+																	 * The '<em><b>SPIRAL RAMP</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #SPIRAL_RAMP_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	SPIRAL_RAMP(2, "SPIRAL_RAMP", "SPIRAL_RAMP"), /**
+													 * The '<em><b>NOTDEFINED</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #NOTDEFINED_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>STRAIGHT RUN RAMP</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #STRAIGHT_RUN_RAMP_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	STRAIGHT_RUN_RAMP(4, "STRAIGHT_RUN_RAMP", "STRAIGHT_RUN_RAMP"), /**
+																	 * The '<em><b>TWO STRAIGHT RUN RAMP</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #TWO_STRAIGHT_RUN_RAMP_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	TWO_STRAIGHT_RUN_RAMP(5, "TWO_STRAIGHT_RUN_RAMP", "TWO_STRAIGHT_RUN_RAMP"), /**
+																				 * The '<em><b>HALF TURN RAMP</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #HALF_TURN_RAMP_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	HALF_TURN_RAMP(6, "HALF_TURN_RAMP", "HALF_TURN_RAMP"), /**
+															 * The '<em><b>USERDEFINED</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #USERDEFINED_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>TWO QUARTER TURN RAMP</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #TWO_QUARTER_TURN_RAMP_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	TWO_QUARTER_TURN_RAMP(8, "TWO_QUARTER_TURN_RAMP", "TWO_QUARTER_TURN_RAMP");
 
 	/**

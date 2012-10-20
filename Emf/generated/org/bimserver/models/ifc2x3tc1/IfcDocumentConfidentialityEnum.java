@@ -50,56 +50,46 @@ public enum IfcDocumentConfidentialityEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RESTRICTED(1, "RESTRICTED", "RESTRICTED"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CONFIDENTIAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONFIDENTIAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONFIDENTIAL(3, "CONFIDENTIAL", "CONFIDENTIAL"),
-
-	/**
-	 * The '<em><b>PERSONAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PERSONAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PERSONAL(4, "PERSONAL", "PERSONAL"),
-
-	/**
-	 * The '<em><b>PUBLIC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PUBLIC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PUBLIC(5, "PUBLIC", "PUBLIC"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	RESTRICTED(1, "RESTRICTED", "RESTRICTED"), /**
+												 * The '<em><b>NOTDEFINED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #NOTDEFINED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>CONFIDENTIAL</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #CONFIDENTIAL_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	CONFIDENTIAL(3, "CONFIDENTIAL", "CONFIDENTIAL"), /**
+														 * The '<em><b>PERSONAL</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #PERSONAL_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	PERSONAL(4, "PERSONAL", "PERSONAL"), /**
+											 * The '<em><b>PUBLIC</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #PUBLIC_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	PUBLIC(5, "PUBLIC", "PUBLIC"), /**
+									 * The '<em><b>USERDEFINED</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #USERDEFINED_VALUE
+									 * @generated
+									 * @ordered
+									 */
 	USERDEFINED(6, "USERDEFINED", "USERDEFINED");
 
 	/**

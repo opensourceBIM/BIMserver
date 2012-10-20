@@ -50,826 +50,662 @@ public enum IfcCurrencyEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CNY(1, "CNY", "CNY"),
-
-	/**
-	 * The '<em><b>JPY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #JPY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	JPY(2, "JPY", "JPY"),
-
-	/**
-	 * The '<em><b>KYD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #KYD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	KYD(3, "KYD", "KYD"),
-
-	/**
-	 * The '<em><b>TTD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TTD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TTD(4, "TTD", "TTD"),
-
-	/**
-	 * The '<em><b>LKR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LKR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LKR(5, "LKR", "LKR"),
-
-	/**
-	 * The '<em><b>MXN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MXN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MXN(6, "MXN", "MXN"),
-
-	/**
-	 * The '<em><b>XEU</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #XEU_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	XEU(7, "XEU", "XEU"),
-
-	/**
-	 * The '<em><b>CAD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CAD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CAD(8, "CAD", "CAD"),
-
-	/**
-	 * The '<em><b>ZAR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ZAR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ZAR(9, "ZAR", "ZAR"),
-
-	/**
-	 * The '<em><b>AUD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AUD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AUD(10, "AUD", "AUD"),
-
-	/**
-	 * The '<em><b>DEM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DEM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DEM(11, "DEM", "DEM"),
-
-	/**
-	 * The '<em><b>NOK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOK(12, "NOK", "NOK"),
-
-	/**
-	 * The '<em><b>ILS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ILS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ILS(13, "ILS", "ILS"),
-
-	/**
-	 * The '<em><b>AES</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AES_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AES(14, "AES", "AES"),
-
-	/**
-	 * The '<em><b>FAK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FAK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FAK(15, "FAK", "FAK"),
-
-	/**
-	 * The '<em><b>PKR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PKR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PKR(16, "PKR", "PKR"),
-
-	/**
-	 * The '<em><b>BBD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BBD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BBD(17, "BBD", "BBD"),
-
-	/**
-	 * The '<em><b>THB</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THB_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	THB(18, "THB", "THB"),
-
-	/**
-	 * The '<em><b>SCR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SCR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SCR(19, "SCR", "SCR"),
-
-	/**
-	 * The '<em><b>FKP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FKP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FKP(20, "FKP", "FKP"),
-
-	/**
-	 * The '<em><b>ATS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ATS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ATS(21, "ATS", "ATS"),
-
-	/**
-	 * The '<em><b>FIM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FIM(22, "FIM", "FIM"),
-
-	/**
-	 * The '<em><b>IDR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #IDR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	IDR(23, "IDR", "IDR"),
-
-	/**
-	 * The '<em><b>AED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AED(24, "AED", "AED"),
-
-	/**
-	 * The '<em><b>PGK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PGK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PGK(25, "PGK", "PGK"),
-
-	/**
-	 * The '<em><b>GIP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GIP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GIP(26, "GIP", "GIP"),
-
-	/**
-	 * The '<em><b>QAR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #QAR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	QAR(27, "QAR", "QAR"),
-
-	/**
-	 * The '<em><b>BHD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BHD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BHD(28, "BHD", "BHD"),
-
-	/**
-	 * The '<em><b>BWP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BWP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BWP(29, "BWP", "BWP"),
-
-	/**
-	 * The '<em><b>BSD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BSD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BSD(30, "BSD", "BSD"),
-
-	/**
-	 * The '<em><b>IRP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #IRP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	IRP(31, "IRP", "IRP"),
-
-	/**
-	 * The '<em><b>DKK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DKK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DKK(32, "DKK", "DKK"),
-
-	/**
-	 * The '<em><b>SEK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SEK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SEK(33, "SEK", "SEK"),
-
-	/**
-	 * The '<em><b>MYR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MYR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MYR(34, "MYR", "MYR"),
-
-	/**
-	 * The '<em><b>FJD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FJD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FJD(35, "FJD", "FJD"),
-
-	/**
-	 * The '<em><b>DDP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DDP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DDP(36, "DDP", "DDP"),
-
-	/**
-	 * The '<em><b>GRX</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GRX_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GRX(37, "GRX", "GRX"),
-
-	/**
-	 * The '<em><b>JMD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #JMD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	JMD(38, "JMD", "JMD"),
-
-	/**
-	 * The '<em><b>KRW</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #KRW_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	KRW(39, "KRW", "KRW"),
-
-	/**
-	 * The '<em><b>EST</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EST_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EST(40, "EST", "EST"),
-
-	/**
-	 * The '<em><b>BGL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BGL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BGL(41, "BGL", "BGL"),
-
-	/**
-	 * The '<em><b>ZWD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ZWD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ZWD(42, "ZWD", "ZWD"),
-
-	/**
-	 * The '<em><b>CZK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CZK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CZK(43, "CZK", "CZK"),
-
-	/**
-	 * The '<em><b>FRF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FRF_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FRF(44, "FRF", "FRF"),
-
-	/**
-	 * The '<em><b>KWD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #KWD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	KWD(45, "KWD", "KWD"),
-
-	/**
-	 * The '<em><b>VEB</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VEB_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VEB(46, "VEB", "VEB"),
-
-	/**
-	 * The '<em><b>VND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VND_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VND(47, "VND", "VND"),
-
-	/**
-	 * The '<em><b>TRL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRL(48, "TRL", "TRL"),
-
-	/**
-	 * The '<em><b>JOD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #JOD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	JOD(49, "JOD", "JOD"),
-
-	/**
-	 * The '<em><b>NZD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NZD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NZD(50, "NZD", "NZD"),
-
-	/**
-	 * The '<em><b>CLP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CLP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CLP(51, "CLP", "CLP"),
-
-	/**
-	 * The '<em><b>GBP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GBP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GBP(52, "GBP", "GBP"),
-
-	/**
-	 * The '<em><b>KES</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #KES_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	KES(53, "KES", "KES"),
-
-	/**
-	 * The '<em><b>CHF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CHF_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CHF(54, "CHF", "CHF"),
-
-	/**
-	 * The '<em><b>EGL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EGL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EGL(55, "EGL", "EGL"),
-
-	/**
-	 * The '<em><b>MUR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MUR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MUR(56, "MUR", "MUR"),
-
-	/**
-	 * The '<em><b>SAR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SAR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SAR(57, "SAR", "SAR"),
-
-	/**
-	 * The '<em><b>BZD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BZD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BZD(58, "BZD", "BZD"),
-
-	/**
-	 * The '<em><b>INR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INR(59, "INR", "INR"),
-
-	/**
-	 * The '<em><b>PTN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PTN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PTN(60, "PTN", "PTN"),
-
-	/**
-	 * The '<em><b>TWD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TWD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TWD(61, "TWD", "TWD"),
-
-	/**
-	 * The '<em><b>BMD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BMD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BMD(62, "BMD", "BMD"),
-
-	/**
-	 * The '<em><b>ITL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ITL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ITL(63, "ITL", "ITL"),
-
-	/**
-	 * The '<em><b>OMR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OMR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OMR(64, "OMR", "OMR"),
-
-	/**
-	 * The '<em><b>SGD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SGD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SGD(65, "SGD", "SGD"),
-
-	/**
-	 * The '<em><b>NLG</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NLG_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NLG(66, "NLG", "NLG"),
-
-	/**
-	 * The '<em><b>SKP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SKP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SKP(67, "SKP", "SKP"),
-
-	/**
-	 * The '<em><b>HKD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HKD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HKD(68, "HKD", "HKD"),
-
-	/**
-	 * The '<em><b>RUR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RUR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RUR(69, "RUR", "RUR"),
-
-	/**
-	 * The '<em><b>GMD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GMD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GMD(70, "GMD", "GMD"),
-
-	/**
-	 * The '<em><b>CYS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CYS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CYS(71, "CYS", "CYS"),
-
-	/**
-	 * The '<em><b>CBD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CBD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CBD(72, "CBD", "CBD"),
-
-	/**
-	 * The '<em><b>BRL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BRL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BRL(73, "BRL", "BRL"),
-
-	/**
-	 * The '<em><b>EUR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EUR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EUR(74, "EUR", "EUR"),
-
-	/**
-	 * The '<em><b>ICK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ICK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ICK(75, "ICK", "ICK"),
-
-	/**
-	 * The '<em><b>BEG</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BEG_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BEG(76, "BEG", "BEG"),
-
-	/**
-	 * The '<em><b>PHP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PHP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PHP(77, "PHP", "PHP"),
-
-	/**
-	 * The '<em><b>HUF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HUF_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HUF(78, "HUF", "HUF"),
-
-	/**
-	 * The '<em><b>PLN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PLN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PLN(79, "PLN", "PLN"),
-
-	/**
-	 * The '<em><b>USD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USD(80, "USD", "USD"),
-
-	/**
-	 * The '<em><b>MTL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MTL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MTL(81, "MTL", "MTL"),
-
-	/**
-	 * The '<em><b>LUF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LUF_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LUF(82, "LUF", "LUF"),
-
-	/**
-	 * The '<em><b>BND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BND_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	CNY(1, "CNY", "CNY"), /**
+							 * The '<em><b>JPY</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #JPY_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	JPY(2, "JPY", "JPY"), /**
+							 * The '<em><b>KYD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #KYD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	KYD(3, "KYD", "KYD"), /**
+							 * The '<em><b>TTD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #TTD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	TTD(4, "TTD", "TTD"), /**
+							 * The '<em><b>LKR</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #LKR_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	LKR(5, "LKR", "LKR"), /**
+							 * The '<em><b>MXN</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #MXN_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	MXN(6, "MXN", "MXN"), /**
+							 * The '<em><b>XEU</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #XEU_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	XEU(7, "XEU", "XEU"), /**
+							 * The '<em><b>CAD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #CAD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	CAD(8, "CAD", "CAD"), /**
+							 * The '<em><b>ZAR</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #ZAR_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	ZAR(9, "ZAR", "ZAR"), /**
+							 * The '<em><b>AUD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #AUD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	AUD(10, "AUD", "AUD"), /**
+							 * The '<em><b>DEM</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #DEM_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	DEM(11, "DEM", "DEM"), /**
+							 * The '<em><b>NOK</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #NOK_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	NOK(12, "NOK", "NOK"), /**
+							 * The '<em><b>ILS</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #ILS_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	ILS(13, "ILS", "ILS"), /**
+							 * The '<em><b>AES</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #AES_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	AES(14, "AES", "AES"), /**
+							 * The '<em><b>FAK</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #FAK_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	FAK(15, "FAK", "FAK"), /**
+							 * The '<em><b>PKR</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #PKR_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	PKR(16, "PKR", "PKR"), /**
+							 * The '<em><b>BBD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #BBD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	BBD(17, "BBD", "BBD"), /**
+							 * The '<em><b>THB</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #THB_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	THB(18, "THB", "THB"), /**
+							 * The '<em><b>SCR</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #SCR_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	SCR(19, "SCR", "SCR"), /**
+							 * The '<em><b>FKP</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #FKP_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	FKP(20, "FKP", "FKP"), /**
+							 * The '<em><b>ATS</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #ATS_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	ATS(21, "ATS", "ATS"), /**
+							 * The '<em><b>FIM</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #FIM_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	FIM(22, "FIM", "FIM"), /**
+							 * The '<em><b>IDR</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #IDR_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	IDR(23, "IDR", "IDR"), /**
+							 * The '<em><b>AED</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #AED_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	AED(24, "AED", "AED"), /**
+							 * The '<em><b>PGK</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #PGK_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	PGK(25, "PGK", "PGK"), /**
+							 * The '<em><b>GIP</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #GIP_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	GIP(26, "GIP", "GIP"), /**
+							 * The '<em><b>QAR</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #QAR_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	QAR(27, "QAR", "QAR"), /**
+							 * The '<em><b>BHD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #BHD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	BHD(28, "BHD", "BHD"), /**
+							 * The '<em><b>BWP</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #BWP_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	BWP(29, "BWP", "BWP"), /**
+							 * The '<em><b>BSD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #BSD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	BSD(30, "BSD", "BSD"), /**
+							 * The '<em><b>IRP</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #IRP_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	IRP(31, "IRP", "IRP"), /**
+							 * The '<em><b>DKK</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #DKK_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	DKK(32, "DKK", "DKK"), /**
+							 * The '<em><b>SEK</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #SEK_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	SEK(33, "SEK", "SEK"), /**
+							 * The '<em><b>MYR</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #MYR_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	MYR(34, "MYR", "MYR"), /**
+							 * The '<em><b>FJD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #FJD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	FJD(35, "FJD", "FJD"), /**
+							 * The '<em><b>DDP</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #DDP_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	DDP(36, "DDP", "DDP"), /**
+							 * The '<em><b>GRX</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #GRX_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	GRX(37, "GRX", "GRX"), /**
+							 * The '<em><b>JMD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #JMD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	JMD(38, "JMD", "JMD"), /**
+							 * The '<em><b>KRW</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #KRW_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	KRW(39, "KRW", "KRW"), /**
+							 * The '<em><b>EST</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #EST_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	EST(40, "EST", "EST"), /**
+							 * The '<em><b>BGL</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #BGL_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	BGL(41, "BGL", "BGL"), /**
+							 * The '<em><b>ZWD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #ZWD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	ZWD(42, "ZWD", "ZWD"), /**
+							 * The '<em><b>CZK</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #CZK_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	CZK(43, "CZK", "CZK"), /**
+							 * The '<em><b>FRF</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #FRF_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	FRF(44, "FRF", "FRF"), /**
+							 * The '<em><b>KWD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #KWD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	KWD(45, "KWD", "KWD"), /**
+							 * The '<em><b>VEB</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #VEB_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	VEB(46, "VEB", "VEB"), /**
+							 * The '<em><b>VND</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #VND_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	VND(47, "VND", "VND"), /**
+							 * The '<em><b>TRL</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #TRL_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	TRL(48, "TRL", "TRL"), /**
+							 * The '<em><b>JOD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #JOD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	JOD(49, "JOD", "JOD"), /**
+							 * The '<em><b>NZD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #NZD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	NZD(50, "NZD", "NZD"), /**
+							 * The '<em><b>CLP</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #CLP_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	CLP(51, "CLP", "CLP"), /**
+							 * The '<em><b>GBP</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #GBP_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	GBP(52, "GBP", "GBP"), /**
+							 * The '<em><b>KES</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #KES_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	KES(53, "KES", "KES"), /**
+							 * The '<em><b>CHF</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #CHF_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	CHF(54, "CHF", "CHF"), /**
+							 * The '<em><b>EGL</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #EGL_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	EGL(55, "EGL", "EGL"), /**
+							 * The '<em><b>MUR</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #MUR_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	MUR(56, "MUR", "MUR"), /**
+							 * The '<em><b>SAR</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #SAR_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	SAR(57, "SAR", "SAR"), /**
+							 * The '<em><b>BZD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #BZD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	BZD(58, "BZD", "BZD"), /**
+							 * The '<em><b>INR</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #INR_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	INR(59, "INR", "INR"), /**
+							 * The '<em><b>PTN</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #PTN_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	PTN(60, "PTN", "PTN"), /**
+							 * The '<em><b>TWD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #TWD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	TWD(61, "TWD", "TWD"), /**
+							 * The '<em><b>BMD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #BMD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	BMD(62, "BMD", "BMD"), /**
+							 * The '<em><b>ITL</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #ITL_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	ITL(63, "ITL", "ITL"), /**
+							 * The '<em><b>OMR</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #OMR_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	OMR(64, "OMR", "OMR"), /**
+							 * The '<em><b>SGD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #SGD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	SGD(65, "SGD", "SGD"), /**
+							 * The '<em><b>NLG</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #NLG_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	NLG(66, "NLG", "NLG"), /**
+							 * The '<em><b>SKP</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #SKP_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	SKP(67, "SKP", "SKP"), /**
+							 * The '<em><b>HKD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #HKD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	HKD(68, "HKD", "HKD"), /**
+							 * The '<em><b>RUR</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #RUR_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	RUR(69, "RUR", "RUR"), /**
+							 * The '<em><b>GMD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #GMD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	GMD(70, "GMD", "GMD"), /**
+							 * The '<em><b>CYS</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #CYS_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	CYS(71, "CYS", "CYS"), /**
+							 * The '<em><b>CBD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #CBD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	CBD(72, "CBD", "CBD"), /**
+							 * The '<em><b>BRL</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #BRL_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	BRL(73, "BRL", "BRL"), /**
+							 * The '<em><b>EUR</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #EUR_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	EUR(74, "EUR", "EUR"), /**
+							 * The '<em><b>ICK</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #ICK_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	ICK(75, "ICK", "ICK"), /**
+							 * The '<em><b>BEG</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #BEG_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	BEG(76, "BEG", "BEG"), /**
+							 * The '<em><b>PHP</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #PHP_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	PHP(77, "PHP", "PHP"), /**
+							 * The '<em><b>HUF</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #HUF_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	HUF(78, "HUF", "HUF"), /**
+							 * The '<em><b>PLN</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #PLN_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	PLN(79, "PLN", "PLN"), /**
+							 * The '<em><b>USD</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #USD_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	USD(80, "USD", "USD"), /**
+							 * The '<em><b>MTL</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #MTL_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	MTL(81, "MTL", "MTL"), /**
+							 * The '<em><b>LUF</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #LUF_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	LUF(82, "LUF", "LUF"), /**
+							 * The '<em><b>BND</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #BND_VALUE
+							 * @generated
+							 * @ordered
+							 */
 	BND(83, "BND", "BND");
 
 	/**

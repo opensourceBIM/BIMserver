@@ -50,26 +50,22 @@ public enum IfcSurfaceSide implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BOTH(1, "BOTH", "BOTH"),
-
-	/**
-	 * The '<em><b>POSITIVE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #POSITIVE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	POSITIVE(2, "POSITIVE", "POSITIVE"),
-
-	/**
-	 * The '<em><b>NEGATIVE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NEGATIVE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	BOTH(1, "BOTH", "BOTH"), /**
+								 * The '<em><b>POSITIVE</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #POSITIVE_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	POSITIVE(2, "POSITIVE", "POSITIVE"), /**
+											 * The '<em><b>NEGATIVE</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #NEGATIVE_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	NEGATIVE(3, "NEGATIVE", "NEGATIVE");
 
 	/**

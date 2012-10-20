@@ -50,36 +50,30 @@ public enum IfcLightDistributionCurveEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>TYPE C</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TYPE_C_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TYPE_C(2, "TYPE_C", "TYPE_C"),
-
-	/**
-	 * The '<em><b>TYPE B</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TYPE_B_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TYPE_B(3, "TYPE_B", "TYPE_B"),
-
-	/**
-	 * The '<em><b>TYPE A</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TYPE_A_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>TYPE C</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #TYPE_C_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	TYPE_C(2, "TYPE_C", "TYPE_C"), /**
+									 * The '<em><b>TYPE B</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #TYPE_B_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	TYPE_B(3, "TYPE_B", "TYPE_B"), /**
+									 * The '<em><b>TYPE A</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #TYPE_A_VALUE
+									 * @generated
+									 * @ordered
+									 */
 	TYPE_A(4, "TYPE_A", "TYPE_A");
 
 	/**

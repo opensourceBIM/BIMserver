@@ -50,36 +50,30 @@ public enum IfcTransitionCode implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CONTSAMEGRADIENT(1, "CONTSAMEGRADIENT", "CONTSAMEGRADIENT"),
-
-	/**
-	 * The '<em><b>CONTSAMEGRADIENTSAMECURVATURE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONTSAMEGRADIENTSAMECURVATURE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONTSAMEGRADIENTSAMECURVATURE(2, "CONTSAMEGRADIENTSAMECURVATURE", "CONTSAMEGRADIENTSAMECURVATURE"),
-
-	/**
-	 * The '<em><b>CONTINUOUS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONTINUOUS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONTINUOUS(3, "CONTINUOUS", "CONTINUOUS"),
-
-	/**
-	 * The '<em><b>DISCONTINUOUS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DISCONTINUOUS_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	CONTSAMEGRADIENT(1, "CONTSAMEGRADIENT", "CONTSAMEGRADIENT"), /**
+																	 * The '<em><b>CONTSAMEGRADIENTSAMECURVATURE</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #CONTSAMEGRADIENTSAMECURVATURE_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	CONTSAMEGRADIENTSAMECURVATURE(2, "CONTSAMEGRADIENTSAMECURVATURE", "CONTSAMEGRADIENTSAMECURVATURE"), /**
+																										 * The '<em><b>CONTINUOUS</b></em>' literal object.
+																										 * <!-- begin-user-doc -->
+																										 * <!-- end-user-doc -->
+																										 * @see #CONTINUOUS_VALUE
+																										 * @generated
+																										 * @ordered
+																										 */
+	CONTINUOUS(3, "CONTINUOUS", "CONTINUOUS"), /**
+												 * The '<em><b>DISCONTINUOUS</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #DISCONTINUOUS_VALUE
+												 * @generated
+												 * @ordered
+												 */
 	DISCONTINUOUS(4, "DISCONTINUOUS", "DISCONTINUOUS");
 
 	/**

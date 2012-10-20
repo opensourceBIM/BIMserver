@@ -50,86 +50,70 @@ public enum IfcGeometricProjectionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ELEVATION_VIEW(1, "ELEVATION_VIEW", "ELEVATION_VIEW"),
-
-	/**
-	 * The '<em><b>SKETCH VIEW</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SKETCH_VIEW_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SKETCH_VIEW(2, "SKETCH_VIEW", "SKETCH_VIEW"),
-
-	/**
-	 * The '<em><b>REFLECTED PLAN VIEW</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REFLECTED_PLAN_VIEW_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REFLECTED_PLAN_VIEW(3, "REFLECTED_PLAN_VIEW", "REFLECTED_PLAN_VIEW"),
-
-	/**
-	 * The '<em><b>PLAN VIEW</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PLAN_VIEW_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PLAN_VIEW(4, "PLAN_VIEW", "PLAN_VIEW"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(5, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>GRAPH VIEW</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GRAPH_VIEW_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GRAPH_VIEW(6, "GRAPH_VIEW", "GRAPH_VIEW"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>SECTION VIEW</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SECTION_VIEW_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SECTION_VIEW(8, "SECTION_VIEW", "SECTION_VIEW"),
-
-	/**
-	 * The '<em><b>MODEL VIEW</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MODEL_VIEW_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	ELEVATION_VIEW(1, "ELEVATION_VIEW", "ELEVATION_VIEW"), /**
+															 * The '<em><b>SKETCH VIEW</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #SKETCH_VIEW_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	SKETCH_VIEW(2, "SKETCH_VIEW", "SKETCH_VIEW"), /**
+													 * The '<em><b>REFLECTED PLAN VIEW</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #REFLECTED_PLAN_VIEW_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	REFLECTED_PLAN_VIEW(3, "REFLECTED_PLAN_VIEW", "REFLECTED_PLAN_VIEW"), /**
+																			 * The '<em><b>PLAN VIEW</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #PLAN_VIEW_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	PLAN_VIEW(4, "PLAN_VIEW", "PLAN_VIEW"), /**
+											 * The '<em><b>NOTDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #NOTDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	NOTDEFINED(5, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>GRAPH VIEW</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #GRAPH_VIEW_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	GRAPH_VIEW(6, "GRAPH_VIEW", "GRAPH_VIEW"), /**
+												 * The '<em><b>USERDEFINED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #USERDEFINED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>SECTION VIEW</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #SECTION_VIEW_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	SECTION_VIEW(8, "SECTION_VIEW", "SECTION_VIEW"), /**
+														 * The '<em><b>MODEL VIEW</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #MODEL_VIEW_VALUE
+														 * @generated
+														 * @ordered
+														 */
 	MODEL_VIEW(9, "MODEL_VIEW", "MODEL_VIEW");
 
 	/**

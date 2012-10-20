@@ -50,26 +50,22 @@ public enum IfcBooleanOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DIFFERENCE(1, "DIFFERENCE", "DIFFERENCE"),
-
-	/**
-	 * The '<em><b>INTERSECTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INTERSECTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INTERSECTION(2, "INTERSECTION", "INTERSECTION"),
-
-	/**
-	 * The '<em><b>UNION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UNION_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	DIFFERENCE(1, "DIFFERENCE", "DIFFERENCE"), /**
+												 * The '<em><b>INTERSECTION</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #INTERSECTION_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	INTERSECTION(2, "INTERSECTION", "INTERSECTION"), /**
+														 * The '<em><b>UNION</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #UNION_VALUE
+														 * @generated
+														 * @ordered
+														 */
 	UNION(3, "UNION", "UNION");
 
 	/**

@@ -50,266 +50,214 @@ public enum IfcActionSourceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>PRESTRESSING P</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PRESTRESSING_P_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PRESTRESSING_P(2, "PRESTRESSING_P", "PRESTRESSING_P"),
-
-	/**
-	 * The '<em><b>SNOW S</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SNOW_S_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SNOW_S(3, "SNOW_S", "SNOW_S"),
-
-	/**
-	 * The '<em><b>ERECTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ERECTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ERECTION(4, "ERECTION", "ERECTION"),
-
-	/**
-	 * The '<em><b>SETTLEMENT U</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SETTLEMENT_U_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SETTLEMENT_U(5, "SETTLEMENT_U", "SETTLEMENT_U"),
-
-	/**
-	 * The '<em><b>IMPACT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #IMPACT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	IMPACT(6, "IMPACT", "IMPACT"),
-
-	/**
-	 * The '<em><b>LIVE LOAD Q</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LIVE_LOAD_Q_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LIVE_LOAD_Q(7, "LIVE_LOAD_Q", "LIVE_LOAD_Q"),
-
-	/**
-	 * The '<em><b>COMPLETION G1</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMPLETION_G1_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMPLETION_G1(8, "COMPLETION_G1", "COMPLETION_G1"),
-
-	/**
-	 * The '<em><b>BUOYANCY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BUOYANCY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BUOYANCY(9, "BUOYANCY", "BUOYANCY"),
-
-	/**
-	 * The '<em><b>EARTHQUAKE E</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EARTHQUAKE_E_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EARTHQUAKE_E(10, "EARTHQUAKE_E", "EARTHQUAKE_E"),
-
-	/**
-	 * The '<em><b>CURRENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CURRENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CURRENT(11, "CURRENT", "CURRENT"),
-
-	/**
-	 * The '<em><b>FIRE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIRE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FIRE(12, "FIRE", "FIRE"),
-
-	/**
-	 * The '<em><b>WAVE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WAVE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WAVE(13, "WAVE", "WAVE"),
-
-	/**
-	 * The '<em><b>TEMPERATURE T</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TEMPERATURE_T_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TEMPERATURE_T(14, "TEMPERATURE_T", "TEMPERATURE_T"),
-
-	/**
-	 * The '<em><b>ICE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ICE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ICE(15, "ICE", "ICE"),
-
-	/**
-	 * The '<em><b>CREEP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CREEP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CREEP(16, "CREEP", "CREEP"),
-
-	/**
-	 * The '<em><b>RAIN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RAIN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RAIN(17, "RAIN", "RAIN"),
-
-	/**
-	 * The '<em><b>PROPPING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROPPING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROPPING(18, "PROPPING", "PROPPING"),
-
-	/**
-	 * The '<em><b>SYSTEM IMPERFECTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SYSTEM_IMPERFECTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SYSTEM_IMPERFECTION(19, "SYSTEM_IMPERFECTION", "SYSTEM_IMPERFECTION"),
-
-	/**
-	 * The '<em><b>TRANSPORT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRANSPORT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRANSPORT(20, "TRANSPORT", "TRANSPORT"),
-
-	/**
-	 * The '<em><b>IMPULSE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #IMPULSE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	IMPULSE(21, "IMPULSE", "IMPULSE"),
-
-	/**
-	 * The '<em><b>BRAKES</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BRAKES_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BRAKES(22, "BRAKES", "BRAKES"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(23, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>SHRINKAGE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHRINKAGE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SHRINKAGE(24, "SHRINKAGE", "SHRINKAGE"),
-
-	/**
-	 * The '<em><b>DEAD LOAD G</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DEAD_LOAD_G_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DEAD_LOAD_G(25, "DEAD_LOAD_G", "DEAD_LOAD_G"),
-
-	/**
-	 * The '<em><b>WIND W</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WIND_W_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WIND_W(26, "WIND_W", "WIND_W"),
-
-	/**
-	 * The '<em><b>LACK OF FIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LACK_OF_FIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>PRESTRESSING P</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #PRESTRESSING_P_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	PRESTRESSING_P(2, "PRESTRESSING_P", "PRESTRESSING_P"), /**
+															 * The '<em><b>SNOW S</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #SNOW_S_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	SNOW_S(3, "SNOW_S", "SNOW_S"), /**
+									 * The '<em><b>ERECTION</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #ERECTION_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	ERECTION(4, "ERECTION", "ERECTION"), /**
+											 * The '<em><b>SETTLEMENT U</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #SETTLEMENT_U_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	SETTLEMENT_U(5, "SETTLEMENT_U", "SETTLEMENT_U"), /**
+														 * The '<em><b>IMPACT</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #IMPACT_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	IMPACT(6, "IMPACT", "IMPACT"), /**
+									 * The '<em><b>LIVE LOAD Q</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #LIVE_LOAD_Q_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	LIVE_LOAD_Q(7, "LIVE_LOAD_Q", "LIVE_LOAD_Q"), /**
+													 * The '<em><b>COMPLETION G1</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #COMPLETION_G1_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	COMPLETION_G1(8, "COMPLETION_G1", "COMPLETION_G1"), /**
+														 * The '<em><b>BUOYANCY</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #BUOYANCY_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	BUOYANCY(9, "BUOYANCY", "BUOYANCY"), /**
+											 * The '<em><b>EARTHQUAKE E</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #EARTHQUAKE_E_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	EARTHQUAKE_E(10, "EARTHQUAKE_E", "EARTHQUAKE_E"), /**
+														 * The '<em><b>CURRENT</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #CURRENT_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	CURRENT(11, "CURRENT", "CURRENT"), /**
+										 * The '<em><b>FIRE</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #FIRE_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	FIRE(12, "FIRE", "FIRE"), /**
+								 * The '<em><b>WAVE</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #WAVE_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	WAVE(13, "WAVE", "WAVE"), /**
+								 * The '<em><b>TEMPERATURE T</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #TEMPERATURE_T_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	TEMPERATURE_T(14, "TEMPERATURE_T", "TEMPERATURE_T"), /**
+															 * The '<em><b>ICE</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #ICE_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	ICE(15, "ICE", "ICE"), /**
+							 * The '<em><b>CREEP</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #CREEP_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	CREEP(16, "CREEP", "CREEP"), /**
+									 * The '<em><b>RAIN</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #RAIN_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	RAIN(17, "RAIN", "RAIN"), /**
+								 * The '<em><b>PROPPING</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #PROPPING_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	PROPPING(18, "PROPPING", "PROPPING"), /**
+											 * The '<em><b>SYSTEM IMPERFECTION</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #SYSTEM_IMPERFECTION_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	SYSTEM_IMPERFECTION(19, "SYSTEM_IMPERFECTION", "SYSTEM_IMPERFECTION"), /**
+																			 * The '<em><b>TRANSPORT</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #TRANSPORT_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	TRANSPORT(20, "TRANSPORT", "TRANSPORT"), /**
+												 * The '<em><b>IMPULSE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #IMPULSE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	IMPULSE(21, "IMPULSE", "IMPULSE"), /**
+										 * The '<em><b>BRAKES</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #BRAKES_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	BRAKES(22, "BRAKES", "BRAKES"), /**
+									 * The '<em><b>USERDEFINED</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #USERDEFINED_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	USERDEFINED(23, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>SHRINKAGE</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #SHRINKAGE_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	SHRINKAGE(24, "SHRINKAGE", "SHRINKAGE"), /**
+												 * The '<em><b>DEAD LOAD G</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #DEAD_LOAD_G_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	DEAD_LOAD_G(25, "DEAD_LOAD_G", "DEAD_LOAD_G"), /**
+													 * The '<em><b>WIND W</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #WIND_W_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	WIND_W(26, "WIND_W", "WIND_W"), /**
+									 * The '<em><b>LACK OF FIT</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #LACK_OF_FIT_VALUE
+									 * @generated
+									 * @ordered
+									 */
 	LACK_OF_FIT(27, "LACK_OF_FIT", "LACK_OF_FIT");
 
 	/**

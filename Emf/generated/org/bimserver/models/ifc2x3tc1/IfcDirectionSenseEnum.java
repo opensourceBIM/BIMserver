@@ -50,16 +50,14 @@ public enum IfcDirectionSenseEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	POSITIVE(1, "POSITIVE", "POSITIVE"),
-
-	/**
-	 * The '<em><b>NEGATIVE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NEGATIVE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	POSITIVE(1, "POSITIVE", "POSITIVE"), /**
+											 * The '<em><b>NEGATIVE</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #NEGATIVE_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	NEGATIVE(2, "NEGATIVE", "NEGATIVE");
 
 	/**

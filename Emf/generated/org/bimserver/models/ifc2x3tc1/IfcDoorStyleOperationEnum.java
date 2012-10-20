@@ -50,176 +50,142 @@ public enum IfcDoorStyleOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SINGLE_SWING_LEFT(1, "SINGLE_SWING_LEFT", "SINGLE_SWING_LEFT"),
-
-	/**
-	 * The '<em><b>FOLDING TO LEFT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FOLDING_TO_LEFT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FOLDING_TO_LEFT(2, "FOLDING_TO_LEFT", "FOLDING_TO_LEFT"),
-
-	/**
-	 * The '<em><b>SINGLE SWING RIGHT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SINGLE_SWING_RIGHT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SINGLE_SWING_RIGHT(3, "SINGLE_SWING_RIGHT", "SINGLE_SWING_RIGHT"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>ROLLINGUP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ROLLINGUP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ROLLINGUP(5, "ROLLINGUP", "ROLLINGUP"),
-
-	/**
-	 * The '<em><b>DOUBLE DOOR FOLDING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_DOOR_FOLDING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOUBLE_DOOR_FOLDING(6, "DOUBLE_DOOR_FOLDING", "DOUBLE_DOOR_FOLDING"),
-
-	/**
-	 * The '<em><b>DOUBLE DOOR DOUBLE SWING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_DOOR_DOUBLE_SWING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOUBLE_DOOR_DOUBLE_SWING(7, "DOUBLE_DOOR_DOUBLE_SWING", "DOUBLE_DOOR_DOUBLE_SWING"),
-
-	/**
-	 * The '<em><b>DOUBLE DOOR SINGLE SWING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_DOOR_SINGLE_SWING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOUBLE_DOOR_SINGLE_SWING(8, "DOUBLE_DOOR_SINGLE_SWING", "DOUBLE_DOOR_SINGLE_SWING"),
-
-	/**
-	 * The '<em><b>SLIDING TO LEFT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SLIDING_TO_LEFT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SLIDING_TO_LEFT(9, "SLIDING_TO_LEFT", "SLIDING_TO_LEFT"),
-
-	/**
-	 * The '<em><b>DOUBLE DOOR SLIDING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_DOOR_SLIDING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOUBLE_DOOR_SLIDING(10, "DOUBLE_DOOR_SLIDING", "DOUBLE_DOOR_SLIDING"),
-
-	/**
-	 * The '<em><b>DOUBLE DOOR SINGLE SWING OPPOSITE RIGHT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT(11, "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT", "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT"),
-
-	/**
-	 * The '<em><b>FOLDING TO RIGHT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FOLDING_TO_RIGHT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FOLDING_TO_RIGHT(12, "FOLDING_TO_RIGHT", "FOLDING_TO_RIGHT"),
-
-	/**
-	 * The '<em><b>REVOLVING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REVOLVING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REVOLVING(13, "REVOLVING", "REVOLVING"),
-
-	/**
-	 * The '<em><b>DOUBLE DOOR SINGLE SWING OPPOSITE LEFT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT(14, "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT", "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(15, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>SLIDING TO RIGHT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SLIDING_TO_RIGHT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SLIDING_TO_RIGHT(16, "SLIDING_TO_RIGHT", "SLIDING_TO_RIGHT"),
-
-	/**
-	 * The '<em><b>DOUBLE SWING LEFT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_SWING_LEFT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOUBLE_SWING_LEFT(17, "DOUBLE_SWING_LEFT", "DOUBLE_SWING_LEFT"),
-
-	/**
-	 * The '<em><b>DOUBLE SWING RIGHT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOUBLE_SWING_RIGHT_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	SINGLE_SWING_LEFT(1, "SINGLE_SWING_LEFT", "SINGLE_SWING_LEFT"), /**
+																	 * The '<em><b>FOLDING TO LEFT</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #FOLDING_TO_LEFT_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	FOLDING_TO_LEFT(2, "FOLDING_TO_LEFT", "FOLDING_TO_LEFT"), /**
+																 * The '<em><b>SINGLE SWING RIGHT</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #SINGLE_SWING_RIGHT_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	SINGLE_SWING_RIGHT(3, "SINGLE_SWING_RIGHT", "SINGLE_SWING_RIGHT"), /**
+																		 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #NOTDEFINED_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	NOTDEFINED(4, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>ROLLINGUP</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #ROLLINGUP_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	ROLLINGUP(5, "ROLLINGUP", "ROLLINGUP"), /**
+											 * The '<em><b>DOUBLE DOOR FOLDING</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #DOUBLE_DOOR_FOLDING_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	DOUBLE_DOOR_FOLDING(6, "DOUBLE_DOOR_FOLDING", "DOUBLE_DOOR_FOLDING"), /**
+																			 * The '<em><b>DOUBLE DOOR DOUBLE SWING</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #DOUBLE_DOOR_DOUBLE_SWING_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	DOUBLE_DOOR_DOUBLE_SWING(7, "DOUBLE_DOOR_DOUBLE_SWING", "DOUBLE_DOOR_DOUBLE_SWING"), /**
+																							 * The '<em><b>DOUBLE DOOR SINGLE SWING</b></em>' literal object.
+																							 * <!-- begin-user-doc -->
+																							 * <!-- end-user-doc -->
+																							 * @see #DOUBLE_DOOR_SINGLE_SWING_VALUE
+																							 * @generated
+																							 * @ordered
+																							 */
+	DOUBLE_DOOR_SINGLE_SWING(8, "DOUBLE_DOOR_SINGLE_SWING", "DOUBLE_DOOR_SINGLE_SWING"), /**
+																							 * The '<em><b>SLIDING TO LEFT</b></em>' literal object.
+																							 * <!-- begin-user-doc -->
+																							 * <!-- end-user-doc -->
+																							 * @see #SLIDING_TO_LEFT_VALUE
+																							 * @generated
+																							 * @ordered
+																							 */
+	SLIDING_TO_LEFT(9, "SLIDING_TO_LEFT", "SLIDING_TO_LEFT"), /**
+																 * The '<em><b>DOUBLE DOOR SLIDING</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #DOUBLE_DOOR_SLIDING_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	DOUBLE_DOOR_SLIDING(10, "DOUBLE_DOOR_SLIDING", "DOUBLE_DOOR_SLIDING"), /**
+																			 * The '<em><b>DOUBLE DOOR SINGLE SWING OPPOSITE RIGHT</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT(11, "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT", "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT"), /**
+																																		 * The '<em><b>FOLDING TO RIGHT</b></em>' literal object.
+																																		 * <!-- begin-user-doc -->
+																																		 * <!-- end-user-doc -->
+																																		 * @see #FOLDING_TO_RIGHT_VALUE
+																																		 * @generated
+																																		 * @ordered
+																																		 */
+	FOLDING_TO_RIGHT(12, "FOLDING_TO_RIGHT", "FOLDING_TO_RIGHT"), /**
+																	 * The '<em><b>REVOLVING</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #REVOLVING_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	REVOLVING(13, "REVOLVING", "REVOLVING"), /**
+												 * The '<em><b>DOUBLE DOOR SINGLE SWING OPPOSITE LEFT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT(14, "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT", "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT"), /**
+																																	 * The '<em><b>USERDEFINED</b></em>' literal object.
+																																	 * <!-- begin-user-doc -->
+																																	 * <!-- end-user-doc -->
+																																	 * @see #USERDEFINED_VALUE
+																																	 * @generated
+																																	 * @ordered
+																																	 */
+	USERDEFINED(15, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>SLIDING TO RIGHT</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #SLIDING_TO_RIGHT_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	SLIDING_TO_RIGHT(16, "SLIDING_TO_RIGHT", "SLIDING_TO_RIGHT"), /**
+																	 * The '<em><b>DOUBLE SWING LEFT</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #DOUBLE_SWING_LEFT_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	DOUBLE_SWING_LEFT(17, "DOUBLE_SWING_LEFT", "DOUBLE_SWING_LEFT"), /**
+																		 * The '<em><b>DOUBLE SWING RIGHT</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #DOUBLE_SWING_RIGHT_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
 	DOUBLE_SWING_RIGHT(18, "DOUBLE_SWING_RIGHT", "DOUBLE_SWING_RIGHT");
 
 	/**

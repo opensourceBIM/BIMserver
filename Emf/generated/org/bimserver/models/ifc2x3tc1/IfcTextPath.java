@@ -50,36 +50,30 @@ public enum IfcTextPath implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RIGHT(1, "RIGHT", "RIGHT"),
-
-	/**
-	 * The '<em><b>DOWN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOWN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOWN(2, "DOWN", "DOWN"),
-
-	/**
-	 * The '<em><b>UP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	UP(3, "UP", "UP"),
-
-	/**
-	 * The '<em><b>LEFT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LEFT_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	RIGHT(1, "RIGHT", "RIGHT"), /**
+								 * The '<em><b>DOWN</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #DOWN_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	DOWN(2, "DOWN", "DOWN"), /**
+								 * The '<em><b>UP</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #UP_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	UP(3, "UP", "UP"), /**
+						 * The '<em><b>LEFT</b></em>' literal object.
+						 * <!-- begin-user-doc -->
+						 * <!-- end-user-doc -->
+						 * @see #LEFT_VALUE
+						 * @generated
+						 * @ordered
+						 */
 	LEFT(4, "LEFT", "LEFT");
 
 	/**
