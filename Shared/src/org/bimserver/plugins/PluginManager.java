@@ -524,7 +524,9 @@ public class PluginManager {
 	}
 
 	public void registerNewRevisionHandler(ServiceDescriptor serviceDescriptor, NewRevisionHandler newRevisionHandler) {
-		notificationsManagerInterface.registerNewRevisionHandler(serviceDescriptor, newRevisionHandler);
+		if (notificationsManagerInterface != null) {
+			notificationsManagerInterface.registerNewRevisionHandler(serviceDescriptor, newRevisionHandler);
+		}
 	}
 	
 	public ServicesMap getServicesMap() {

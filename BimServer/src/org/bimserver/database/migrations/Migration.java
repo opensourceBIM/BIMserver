@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 
 public abstract class Migration {
-	
+
 	public EcorePackage ecorePackage = EcorePackage.eINSTANCE;
 
 	public abstract void migrate(Schema schema);
@@ -42,6 +42,12 @@ public abstract class Migration {
 		embedsReferenceAnnotation.setSource("nodatabase");
 		return embedsReferenceAnnotation;
 	}
-	
+
+	protected EAnnotation createHiddenReference() {
+		EAnnotation hidden = EcoreFactory.eINSTANCE.createEAnnotation();
+		hidden.setSource("hidden");
+		return hidden;
+	}
+
 	public abstract String getDescription();
 }

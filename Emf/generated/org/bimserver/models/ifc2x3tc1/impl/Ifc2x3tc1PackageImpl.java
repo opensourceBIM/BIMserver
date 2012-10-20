@@ -23419,6 +23419,15 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getIfcProduct_GeometryInstance() {
+		return (EReference) getIfcProduct().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getIfcProductDefinitionShape() {
 		if (ifcProductDefinitionShapeEClass == null) {
 			ifcProductDefinitionShapeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc2x3tc1Package.eNS_URI).getEClassifiers().get(650);

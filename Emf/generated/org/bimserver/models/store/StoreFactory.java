@@ -774,6 +774,24 @@ public interface StoreFactory extends EFactory {
 	PercentageChange createPercentageChange();
 
 	/**
+	 * Returns a new object of class '<em>Geometry</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Geometry</em>'.
+	 * @generated
+	 */
+	Geometry createGeometry();
+
+	/**
+	 * Returns a new object of class '<em>Geometry Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Geometry Instance</em>'.
+	 * @generated
+	 */
+	GeometryInstance createGeometryInstance();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

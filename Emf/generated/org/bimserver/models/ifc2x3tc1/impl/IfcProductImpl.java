@@ -22,6 +22,7 @@ import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssignsToProduct;
 
+import org.bimserver.models.store.GeometryInstance;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -36,6 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProductImpl#getObjectPlacement <em>Object Placement</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProductImpl#getRepresentation <em>Representation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProductImpl#getReferencedBy <em>Referenced By</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProductImpl#getGeometryInstance <em>Geometry Instance</em>}</li>
  * </ul>
  * </p>
  *
@@ -159,6 +161,24 @@ public class IfcProductImpl extends IfcObjectImpl implements IfcProduct {
 	 */
 	public boolean isSetReferencedBy() {
 		return eIsSet(Ifc2x3tc1Package.Literals.IFC_PRODUCT__REFERENCED_BY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GeometryInstance getGeometryInstance() {
+		return (GeometryInstance) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCT__GEOMETRY_INSTANCE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGeometryInstance(GeometryInstance newGeometryInstance) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_PRODUCT__GEOMETRY_INSTANCE, newGeometryInstance);
 	}
 
 } //IfcProductImpl

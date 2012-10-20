@@ -108,6 +108,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
         eType="#//ExtendedData" eOpposite="#//ExtendedData/revision"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="logs" upperBound="-1" eType="ecore:EClass log#//LogAction"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="geometry" eType="#//Geometry"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConcreteRevision">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -656,5 +657,18 @@
   <eClassifiers xsi:type="ecore:EClass" name="ExternalServiceUpdate"/>
   <eClassifiers xsi:type="ecore:EClass" name="PercentageChange" eSuperTypes="#//ExternalServiceUpdate">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="percentage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Geometry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="indices" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vertices" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloatObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="normals" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloatObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GeometryInstance">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startVertex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="primitiveCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
   </eClassifiers>
 </ecore:EPackage>

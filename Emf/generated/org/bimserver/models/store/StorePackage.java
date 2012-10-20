@@ -597,13 +597,22 @@ public interface StorePackage extends EPackage {
 	int REVISION__LOGS = 15;
 
 	/**
+	 * The feature id for the '<em><b>Geometry</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION__GEOMETRY = 16;
+
+	/**
 	 * The number of structural features of the '<em>Revision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_FEATURE_COUNT = 16;
+	int REVISION_FEATURE_COUNT = 17;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -5158,6 +5167,98 @@ public interface StorePackage extends EPackage {
 	int PERCENTAGE_CHANGE_FEATURE_COUNT = EXTERNAL_SERVICE_UPDATE_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.GeometryImpl <em>Geometry</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.GeometryImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getGeometry()
+	 * @generated
+	 */
+	int GEOMETRY = 82;
+
+	/**
+	 * The feature id for the '<em><b>Indices</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY__INDICES = 0;
+
+	/**
+	 * The feature id for the '<em><b>Vertices</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY__VERTICES = 1;
+
+	/**
+	 * The feature id for the '<em><b>Normals</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY__NORMALS = 2;
+
+	/**
+	 * The number of structural features of the '<em>Geometry</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.GeometryInstanceImpl <em>Geometry Instance</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.GeometryInstanceImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getGeometryInstance()
+	 * @generated
+	 */
+	int GEOMETRY_INSTANCE = 83;
+
+	/**
+	 * The feature id for the '<em><b>Start Vertex</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_INSTANCE__START_VERTEX = 0;
+
+	/**
+	 * The feature id for the '<em><b>Start Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_INSTANCE__START_INDEX = 1;
+
+	/**
+	 * The feature id for the '<em><b>Primitive Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_INSTANCE__PRIMITIVE_COUNT = 2;
+
+	/**
+	 * The number of structural features of the '<em>Geometry Instance</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_INSTANCE_FEATURE_COUNT = 3;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5165,7 +5266,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 82;
+	int USER_TYPE = 84;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -5175,7 +5276,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 83;
+	int SI_PREFIX = 85;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -5185,7 +5286,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 84;
+	int OBJECT_STATE = 86;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -5195,7 +5296,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 85;
+	int COMPARE_TYPE = 87;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -5205,7 +5306,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 86;
+	int ACTION_STATE = 88;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -5215,7 +5316,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 87;
+	int SERVER_STATE = 89;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinStatus <em>Checkin Status</em>}' enum.
@@ -5225,7 +5326,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinStatus()
 	 * @generated
 	 */
-	int CHECKIN_STATUS = 88;
+	int CHECKIN_STATUS = 90;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
@@ -5235,7 +5336,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA_TYPE = 89;
+	int EXTENDED_DATA_SCHEMA_TYPE = 91;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
@@ -5245,7 +5346,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 90;
+	int TRIGGER = 92;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.
@@ -5255,7 +5356,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_ENUM = 91;
+	int PRIMITIVE_ENUM = 93;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}' enum.
@@ -5265,7 +5366,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotifictionResultEnum()
 	 * @generated
 	 */
-	int NOTIFICTION_RESULT_ENUM = 92;
+	int NOTIFICTION_RESULT_ENUM = 94;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -5275,7 +5376,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 93;
+	int DATA_HANDLER = 95;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -5889,6 +5990,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRevision_Logs();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Revision#getGeometry <em>Geometry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Geometry</em>'.
+	 * @see org.bimserver.models.store.Revision#getGeometry()
+	 * @see #getRevision()
+	 * @generated
+	 */
+	EReference getRevision_Geometry();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ConcreteRevision <em>Concrete Revision</em>}'.
@@ -9431,6 +9543,92 @@ public interface StorePackage extends EPackage {
 	EAttribute getPercentageChange_Percentage();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.Geometry <em>Geometry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Geometry</em>'.
+	 * @see org.bimserver.models.store.Geometry
+	 * @generated
+	 */
+	EClass getGeometry();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.Geometry#getIndices <em>Indices</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Indices</em>'.
+	 * @see org.bimserver.models.store.Geometry#getIndices()
+	 * @see #getGeometry()
+	 * @generated
+	 */
+	EAttribute getGeometry_Indices();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.Geometry#getVertices <em>Vertices</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Vertices</em>'.
+	 * @see org.bimserver.models.store.Geometry#getVertices()
+	 * @see #getGeometry()
+	 * @generated
+	 */
+	EAttribute getGeometry_Vertices();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.Geometry#getNormals <em>Normals</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Normals</em>'.
+	 * @see org.bimserver.models.store.Geometry#getNormals()
+	 * @see #getGeometry()
+	 * @generated
+	 */
+	EAttribute getGeometry_Normals();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.GeometryInstance <em>Geometry Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Geometry Instance</em>'.
+	 * @see org.bimserver.models.store.GeometryInstance
+	 * @generated
+	 */
+	EClass getGeometryInstance();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.GeometryInstance#getStartVertex <em>Start Vertex</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Start Vertex</em>'.
+	 * @see org.bimserver.models.store.GeometryInstance#getStartVertex()
+	 * @see #getGeometryInstance()
+	 * @generated
+	 */
+	EAttribute getGeometryInstance_StartVertex();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.GeometryInstance#getStartIndex <em>Start Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Start Index</em>'.
+	 * @see org.bimserver.models.store.GeometryInstance#getStartIndex()
+	 * @see #getGeometryInstance()
+	 * @generated
+	 */
+	EAttribute getGeometryInstance_StartIndex();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.GeometryInstance#getPrimitiveCount <em>Primitive Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Primitive Count</em>'.
+	 * @see org.bimserver.models.store.GeometryInstance#getPrimitiveCount()
+	 * @see #getGeometryInstance()
+	 * @generated
+	 */
+	EAttribute getGeometryInstance_PrimitiveCount();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10026,6 +10224,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference REVISION__LOGS = eINSTANCE.getRevision_Logs();
+
+		/**
+		 * The meta object literal for the '<em><b>Geometry</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REVISION__GEOMETRY = eINSTANCE.getRevision_Geometry();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -12816,6 +13022,74 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PERCENTAGE_CHANGE__PERCENTAGE = eINSTANCE.getPercentageChange_Percentage();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.GeometryImpl <em>Geometry</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.GeometryImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getGeometry()
+		 * @generated
+		 */
+		EClass GEOMETRY = eINSTANCE.getGeometry();
+
+		/**
+		 * The meta object literal for the '<em><b>Indices</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY__INDICES = eINSTANCE.getGeometry_Indices();
+
+		/**
+		 * The meta object literal for the '<em><b>Vertices</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY__VERTICES = eINSTANCE.getGeometry_Vertices();
+
+		/**
+		 * The meta object literal for the '<em><b>Normals</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY__NORMALS = eINSTANCE.getGeometry_Normals();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.GeometryInstanceImpl <em>Geometry Instance</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.GeometryInstanceImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getGeometryInstance()
+		 * @generated
+		 */
+		EClass GEOMETRY_INSTANCE = eINSTANCE.getGeometryInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Start Vertex</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY_INSTANCE__START_VERTEX = eINSTANCE.getGeometryInstance_StartVertex();
+
+		/**
+		 * The meta object literal for the '<em><b>Start Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY_INSTANCE__START_INDEX = eINSTANCE.getGeometryInstance_StartIndex();
+
+		/**
+		 * The meta object literal for the '<em><b>Primitive Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY_INSTANCE__PRIMITIVE_COUNT = eINSTANCE.getGeometryInstance_PrimitiveCount();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
