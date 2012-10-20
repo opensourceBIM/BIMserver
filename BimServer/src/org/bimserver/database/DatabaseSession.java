@@ -23,6 +23,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -306,6 +307,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 								 * Only can happen with non-unique references
 								 */
 								int listSize = buffer.getInt();
+								
 								BasicEList<Object> list = (BasicEList<Object>) idEObject.eGet(feature);
 								for (int i = 0; i < listSize; i++) {
 									IdEObject referencedObject = null;
@@ -1029,6 +1031,9 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		IdEObject idEObject = todoList.poll();
 		while (idEObject != null) {
 			IdEObject result = get(model, idEObject, pid, rid, idEObject.getOid(), deep, objectIDM, todoList);
+			if (result == null) {
+				throw new BimserverDatabaseException("Object not found: " + pid + " " + rid + " " + idEObject.getOid() + " " + idEObject.eClass().getName());
+			}
 			if (!model.contains(result.getOid())) {
 				try {
 					model.addAllowMultiModel(result.getOid(), result);
@@ -1353,7 +1358,11 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 			} else {
 				IdEObjectImpl newObject = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 				newObject.setOid(oid);
-				newObject.setPid(pid);
+				if (perRecordVersioning(newObject)) {
+					newObject.setPid(Database.STORE_PROJECT_ID);
+				} else {
+					newObject.setPid(pid);
+				}
 				newObject.setRid(perRecordVersioning(newObject) ? Integer.MAX_VALUE : rid);
 				RecordIdentifier recordIdentifier = new RecordIdentifier(pid, oid, rid);
 				objectCache.put(recordIdentifier, newObject);

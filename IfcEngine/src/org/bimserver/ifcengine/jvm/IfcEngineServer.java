@@ -203,7 +203,11 @@ public class IfcEngineServer extends Thread {
 					in.readInt(); // modelid
 					int expressId = in.readInt();
 					Pointer internalGetInstanceFromP21Line = ifcEngine.internalGetInstanceFromP21Line(expressId);
-					out.writeInt(savePointer(internalGetInstanceFromP21Line));
+					if (internalGetInstanceFromP21Line == Pointer.NULL) {
+						out.writeInt(-1);
+					} else {
+						out.writeInt(savePointer(internalGetInstanceFromP21Line));
+					}
 					break;
 				}
 				case CLOSE: {

@@ -1,5 +1,7 @@
 package org.bimserver.plugins.ifcengine;
 
+import java.util.Collection;
+
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
  * 
@@ -50,5 +52,17 @@ public class IfcEngineGeometry {
 
 	public int getNrIndices() {
 		return indices.length;
+	}
+
+	public float[] getVertices() {
+		return vertices;
+	}
+	
+	public float[] getNormals() {
+		return normals;
+	}
+	
+	public int[] getIndices() {
+		return indices;
 	}
 }

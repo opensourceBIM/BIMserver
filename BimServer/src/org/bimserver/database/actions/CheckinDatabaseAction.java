@@ -18,11 +18,16 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
@@ -37,6 +42,8 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.merging.RevisionMerger;
+import org.bimserver.models.ifc2x3tc1.GeometryInstance;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.log.AccessMethod;
@@ -44,7 +51,6 @@ import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Geometry;
-import org.bimserver.models.store.GeometryInstance;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
@@ -69,6 +75,7 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.IncrementingOidProvider;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -143,11 +150,21 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			} else {
 				ifcModel = getModel();
 			}
+
+			Geometry geometry = generateGeometry(ifcModel, project.getId(), concreteRevision.getId());
+			revision.setGeometry(geometry);
+			getDatabaseSession().store(geometry);
+			
+			for (IdEObject idEObject : ifcModel.getValues()) {
+				((IdEObjectImpl)idEObject).setOid(-1);
+			}
+			
 			if (nrConcreteRevisionsBefore != 0 && !merge && clean) {
 				// There already was a revision, lets delete it (only when not
 				// merging)
 				getDatabaseSession().planClearProject(project.getId(), concreteRevision.getId() - 1, concreteRevision.getId());
 			}
+			
 			if (ifcModel != null) {
 				getDatabaseSession().store(ifcModel.getValues(), project.getId(), concreteRevision.getId());
 			}
@@ -157,11 +174,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 					bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(newRevisionAdded));
 				}
 			});
-			
-			Geometry geometry = generateGeometry();
-			revision.setGeometry(geometry);
-			getDatabaseSession().store(geometry);
-			
+
 			getDatabaseSession().store(concreteRevision);
 			getDatabaseSession().store(newRevisionAdded);
 			getDatabaseSession().store(project);
@@ -179,15 +192,20 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		return concreteRevision;
 	}
 	
-	private Geometry generateGeometry() throws BimserverDatabaseException {
+	private Geometry generateGeometry(IfcModelInterface model, int pid, int rid) throws BimserverDatabaseException {
 		Collection<SerializerPlugin> allSerializerPlugins = bimServer.getPluginManager().getAllSerializerPlugins("application/ifc", true);
 		if (!allSerializerPlugins.isEmpty()) {
 			SerializerPlugin serializerPlugin = allSerializerPlugins.iterator().next();
 			Serializer serializer = serializerPlugin.createSerializer();
 			try {
-				serializer.init(getModel(), null, bimServer.getPluginManager(), null);
+				serializer.init(model, null, bimServer.getPluginManager(), null);
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 				serializer.writeToOutputStream(outputStream);
+				try {
+					FileUtils.writeByteArrayToFile(new File("test.ifc"), outputStream.toByteArray());
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 				Collection<IfcEnginePlugin> allIfcEnginePlugins = bimServer.getPluginManager().getAllIfcEnginePlugins(true);
 				if (!allIfcEnginePlugins.isEmpty()) {
 					IfcEnginePlugin ifcEnginePlugin = allIfcEnginePlugins.iterator().next();
@@ -200,25 +218,43 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 								ifcEngineModel.setPostProcessing(true);
 								IfcEngineGeometry ifcEngineGeometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
 								Geometry geometry = StoreFactory.eINSTANCE.createGeometry();
+								LOGGER.info("Generating geometry: " + ifcEngineGeometry.getNrIndices() + " / " + ifcEngineGeometry.getNrVertices());
+
+								EList<Integer> indices = geometry.getIndices();
+								List<Integer> indicesList = new ArrayList<Integer>(ifcEngineGeometry.getNrIndices());
 								for (int i=0; i<ifcEngineGeometry.getNrIndices(); i++) {
-									geometry.getIndices().add(ifcEngineGeometry.getIndex(i));
+									indicesList.add(ifcEngineGeometry.getIndex(i));
 								}
+								indices.addAll(indicesList);
+								
+								EList<Float> vertices = geometry.getVertices();
+								List<Float> verticesList = new ArrayList<Float>(ifcEngineGeometry.getNrVertices());
 								for (int i=0; i<ifcEngineGeometry.getNrVertices(); i++) {
-									geometry.getVertices().add(ifcEngineGeometry.getVertex(i));
+									verticesList.add(ifcEngineGeometry.getVertex(i));
 								}
+								vertices.addAll(verticesList);
+								
+								EList<Float> normals = geometry.getNormals();
+								List<Float> normalsList = new ArrayList<Float>(ifcEngineGeometry.getNrNormals());
 								for (int i=0; i<ifcEngineGeometry.getNrNormals(); i++) {
-									geometry.getNormals().add(ifcEngineGeometry.getNormal(i));
+									normalsList.add(ifcEngineGeometry.getNormal(i));
 								}
-								for (IfcProduct ifcProduct : getModel().getAllWithSubTypes(IfcProduct.class)) {
+								normals.addAll(normalsList);
+								
+								LOGGER.info("Done with geometry");
+								for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 									IfcEngineInstance ifcEngineInstance = ifcEngineModel.getInstanceFromExpressId((int) ifcProduct.getOid());
-									GeometryInstance geometryInstance = StoreFactory.eINSTANCE.createGeometryInstance();
-									getDatabaseSession().store(geometryInstance);
 									IfcEngineInstanceVisualisationProperties visualisationProperties = ifcEngineInstance.getVisualisationProperties();
-									geometryInstance.setPrimitiveCount(visualisationProperties.getPrimitiveCount());
-									geometryInstance.setStartIndex(visualisationProperties.getStartIndex());
-									geometryInstance.setStartVertex(visualisationProperties.getStartVertex());
-									ifcProduct.setGeometryInstance(geometryInstance);
+									if (visualisationProperties.getPrimitiveCount() > 0) {
+										GeometryInstance geometryInstance = Ifc2x3tc1Factory.eINSTANCE.createGeometryInstance();
+										getDatabaseSession().store(geometryInstance, pid, rid);
+										geometryInstance.setPrimitiveCount(visualisationProperties.getPrimitiveCount());
+										geometryInstance.setStartIndex(visualisationProperties.getStartIndex());
+										geometryInstance.setStartVertex(visualisationProperties.getStartVertex());
+										ifcProduct.setGeometryInstance(geometryInstance);
+									}
 								}
+								LOGGER.info("Done with products");
 								return geometry;
 							} finally {
 								ifcEngineModel.close();

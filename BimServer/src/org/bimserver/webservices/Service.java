@@ -261,7 +261,7 @@ public class Service implements ServiceInterface {
 				} catch (PluginException e) {
 					throw new UserException(e);
 				}
-				IfcModelInterface model = deserializer.read(inputStream, fileName, false, fileSize);
+				IfcModelInterface model = deserializer.read(inputStream, fileName, true, fileSize);
 				if (model.size() == 0) {
 					throw new DeserializeException("Cannot checkin empty model");
 				}
@@ -3476,11 +3476,11 @@ public class Service implements ServiceInterface {
 		}
 	}
 	
-	public org.bimserver.interfaces.objects.SService getService(Long epid) throws ServerException, UserException {
+	public org.bimserver.interfaces.objects.SService getService(Long soid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			org.bimserver.models.store.Service externalProfile = session.get(StorePackage.eINSTANCE.getService(), epid, false, null);
+			org.bimserver.models.store.Service externalProfile = session.get(StorePackage.eINSTANCE.getService(), soid, false, null);
 			return converter.convertToSObject(externalProfile);
 		} catch (Exception e) {
 			return handleException(e);

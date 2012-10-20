@@ -28,6 +28,7 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.Geometry;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
@@ -106,6 +107,11 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 		ifcModel.setRevisionNr(project.getRevisions().indexOf(revision) + 1);
 		ifcModel.setAuthorizedUser(user.getName());
 		ifcModel.setDate(revision.getDate());
+		Geometry geometry = revision.getGeometry();
+		if (geometry != null) {
+			geometry.load();
+			ifcModel.setGeometry(geometry);
+		}
 
 		if (revision.getProject().getGeoTag() != null) {
 			// ifcModel.setLon(revision.getProject().getGeoTag().getX());
