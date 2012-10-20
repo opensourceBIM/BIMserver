@@ -17,10 +17,13 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.ByteArrayInputStream;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
@@ -35,20 +38,34 @@ import org.bimserver.interfaces.SConverter;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.merging.RevisionMerger;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.Geometry;
+import org.bimserver.models.store.GeometryInstance;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.RevisionSummaryContainer;
 import org.bimserver.models.store.RevisionSummaryType;
+import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
+import org.bimserver.plugins.ifcengine.IfcEngine;
+import org.bimserver.plugins.ifcengine.IfcEngineException;
+import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
+import org.bimserver.plugins.ifcengine.IfcEngineInstance;
+import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
+import org.bimserver.plugins.ifcengine.IfcEngineModel;
+import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.modelmerger.MergeException;
+import org.bimserver.plugins.serializers.Serializer;
+import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.IncrementingOidProvider;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
@@ -140,6 +157,11 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 					bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(newRevisionAdded));
 				}
 			});
+			
+			Geometry geometry = generateGeometry();
+			revision.setGeometry(geometry);
+			getDatabaseSession().store(geometry);
+			
 			getDatabaseSession().store(concreteRevision);
 			getDatabaseSession().store(newRevisionAdded);
 			getDatabaseSession().store(project);
@@ -155,6 +177,64 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			throw new UserException(e);
 		}
 		return concreteRevision;
+	}
+	
+	private Geometry generateGeometry() throws BimserverDatabaseException {
+		Collection<SerializerPlugin> allSerializerPlugins = bimServer.getPluginManager().getAllSerializerPlugins("application/ifc", true);
+		if (!allSerializerPlugins.isEmpty()) {
+			SerializerPlugin serializerPlugin = allSerializerPlugins.iterator().next();
+			Serializer serializer = serializerPlugin.createSerializer();
+			try {
+				serializer.init(getModel(), null, bimServer.getPluginManager(), null);
+				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+				serializer.writeToOutputStream(outputStream);
+				Collection<IfcEnginePlugin> allIfcEnginePlugins = bimServer.getPluginManager().getAllIfcEnginePlugins(true);
+				if (!allIfcEnginePlugins.isEmpty()) {
+					IfcEnginePlugin ifcEnginePlugin = allIfcEnginePlugins.iterator().next();
+					try {
+						IfcEngine ifcEngine = ifcEnginePlugin.createIfcEngine();
+						ifcEngine.init();
+						try {
+							IfcEngineModel ifcEngineModel = ifcEngine.openModel(new ByteArrayInputStream(outputStream.toByteArray()), outputStream.size());
+							try {
+								ifcEngineModel.setPostProcessing(true);
+								IfcEngineGeometry ifcEngineGeometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
+								Geometry geometry = StoreFactory.eINSTANCE.createGeometry();
+								for (int i=0; i<ifcEngineGeometry.getNrIndices(); i++) {
+									geometry.getIndices().add(ifcEngineGeometry.getIndex(i));
+								}
+								for (int i=0; i<ifcEngineGeometry.getNrVertices(); i++) {
+									geometry.getVertices().add(ifcEngineGeometry.getVertex(i));
+								}
+								for (int i=0; i<ifcEngineGeometry.getNrNormals(); i++) {
+									geometry.getNormals().add(ifcEngineGeometry.getNormal(i));
+								}
+								for (IfcProduct ifcProduct : getModel().getAllWithSubTypes(IfcProduct.class)) {
+									IfcEngineInstance ifcEngineInstance = ifcEngineModel.getInstanceFromExpressId((int) ifcProduct.getOid());
+									GeometryInstance geometryInstance = StoreFactory.eINSTANCE.createGeometryInstance();
+									getDatabaseSession().store(geometryInstance);
+									IfcEngineInstanceVisualisationProperties visualisationProperties = ifcEngineInstance.getVisualisationProperties();
+									geometryInstance.setPrimitiveCount(visualisationProperties.getPrimitiveCount());
+									geometryInstance.setStartIndex(visualisationProperties.getStartIndex());
+									geometryInstance.setStartVertex(visualisationProperties.getStartVertex());
+									ifcProduct.setGeometryInstance(geometryInstance);
+								}
+								return geometry;
+							} finally {
+								ifcEngineModel.close();
+							}
+						} finally {
+							ifcEngine.close();
+						}
+					} catch (IfcEngineException e) {
+						e.printStackTrace();
+					}
+				}
+			} catch (SerializerException e1) {
+				e1.printStackTrace();
+			}
+		}
+		return null;
 	}
 
 	private RevisionSummary createSummary(IfcModelInterface model) throws BimserverDatabaseException {

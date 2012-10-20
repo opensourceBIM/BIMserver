@@ -16,6 +16,7 @@
  */
 package org.bimserver.models.ifc2x3tc1;
 
+import org.bimserver.models.store.GeometryInstance;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -29,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProduct#getObjectPlacement <em>Object Placement</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProduct#getRepresentation <em>Representation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProduct#getReferencedBy <em>Referenced By</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProduct#getGeometryInstance <em>Geometry Instance</em>}</li>
  * </ul>
  * </p>
  *
@@ -185,5 +187,31 @@ public interface IfcProduct extends IfcObject {
 	 * @generated
 	 */
 	boolean isSetReferencedBy();
+
+	/**
+	 * Returns the value of the '<em><b>Geometry Instance</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Geometry Instance</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Geometry Instance</em>' reference.
+	 * @see #setGeometryInstance(GeometryInstance)
+	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcProduct_GeometryInstance()
+	 * @model
+	 * @generated
+	 */
+	GeometryInstance getGeometryInstance();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcProduct#getGeometryInstance <em>Geometry Instance</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Geometry Instance</em>' reference.
+	 * @see #getGeometryInstance()
+	 * @generated
+	 */
+	void setGeometryInstance(GeometryInstance value);
 
 } // IfcProduct

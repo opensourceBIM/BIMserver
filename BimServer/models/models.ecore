@@ -115,6 +115,7 @@
           eType="#/0/ExtendedData" eOpposite="#/0/ExtendedData/revision"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="logs" upperBound="-1"
           eType="#/2/LogAction"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="geometry" eType="#/0/Geometry"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConcreteRevision">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -674,6 +675,19 @@
     <eClassifiers xsi:type="ecore:EClass" name="ExternalServiceUpdate"/>
     <eClassifiers xsi:type="ecore:EClass" name="PercentageChange" eSuperTypes="#/0/ExternalServiceUpdate">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="percentage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Geometry">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="indices" upperBound="-1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="vertices" upperBound="-1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloatObject"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="normals" upperBound="-1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloatObject"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="GeometryInstance">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="startVertex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="startIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="primitiveCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
     </eClassifiers>
   </ecore:EPackage>
   <ecore:EPackage name="ifc2x3tc1" nsURI="http:///buildingsmart.ifc.ecore" nsPrefix="iai">
@@ -4518,6 +4532,9 @@
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ReferencedBy" upperBound="-1"
           eType="#/1/IfcRelAssignsToProduct" unsettable="true" eOpposite="#/1/IfcRelAssignsToProduct/RelatingProduct"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="geometryInstance" eType="#/0/GeometryInstance">
+        <eAnnotations source="hidden"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcProductDefinitionShape" eSuperTypes="#/1/IfcProductRepresentation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ShapeOfProduct" upperBound="2"

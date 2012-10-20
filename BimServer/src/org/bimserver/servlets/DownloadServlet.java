@@ -19,8 +19,11 @@ package org.bimserver.servlets;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -62,6 +65,12 @@ public class DownloadServlet extends HttpServlet {
 			}
 			response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
 			response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+			boolean useGzip = true;
+			OutputStream outputStream = response.getOutputStream();
+			if (useGzip) {
+				response.setHeader("Content-Encoding", "gzip");
+				outputStream = new GZIPOutputStream(response.getOutputStream());
+			}
 			SToken token = (SToken) request.getSession().getAttribute("token");
 
 			if (token == null) {
@@ -82,7 +91,7 @@ public class DownloadServlet extends HttpServlet {
 				if (file.getFilename() != null) {
 					response.setHeader("Content-Disposition", "inline; filename=\"" + file.getFilename() + "\"");
 				}
-				response.getOutputStream().write(file.getData());
+				outputStream.write(file.getData());
 				return;
 			} else if (request.getParameter("action") != null && request.getParameter("action").equals("getfile")) {
 				if (request.getParameter("file") != null) {
@@ -90,13 +99,15 @@ public class DownloadServlet extends HttpServlet {
 					if (file.equals("service.proto")) {
 						try {
 							String protocolBuffersFile = service.getProtocolBuffersFile();
-							response.getOutputStream().write(protocolBuffersFile.getBytes(Charsets.UTF_8));
+							outputStream.write(protocolBuffersFile.getBytes(Charsets.UTF_8));
 						} catch (ServiceException e) {
 							LOGGER.error("", e);
 						}
 					} else if (file.equals("serverlog")) {
 						try {
-							response.getWriter().write(service.getServerLog());
+							OutputStreamWriter writer = new OutputStreamWriter(outputStream);
+							writer.write(service.getServerLog());
+							writer.flush();
 						} catch (ServerException e) {
 							LOGGER.error("", e);
 						} catch (UserException e) {
@@ -210,10 +221,13 @@ public class DownloadServlet extends HttpServlet {
 					response.setContentType(request.getParameter("mime"));
 				}
 				InputStream in = dataSource.getInputStream();
-				IOUtils.copy(in, response.getOutputStream());
+				IOUtils.copy(in, outputStream);
 				in.close();
-				response.getOutputStream().flush();
 			}
+			if (outputStream instanceof GZIPOutputStream) {
+				((GZIPOutputStream) outputStream).finish();
+			}
+			outputStream.flush();
 		} catch (NumberFormatException e) {
 			LOGGER.error("", e);
 			response.getWriter().println("Some number was incorrectly formatted");

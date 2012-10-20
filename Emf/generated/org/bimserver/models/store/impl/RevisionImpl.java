@@ -23,6 +23,7 @@ import org.bimserver.models.log.LogAction;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
+import org.bimserver.models.store.Geometry;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
@@ -54,6 +55,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getSummary <em>Summary</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getExtendedData <em>Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLogs <em>Logs</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getGeometry <em>Geometry</em>}</li>
  * </ul>
  * </p>
  *
@@ -343,6 +345,24 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	@SuppressWarnings("unchecked")
 	public EList<LogAction> getLogs() {
 		return (EList<LogAction>) eGet(StorePackage.Literals.REVISION__LOGS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Geometry getGeometry() {
+		return (Geometry) eGet(StorePackage.Literals.REVISION__GEOMETRY, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGeometry(Geometry newGeometry) {
+		eSet(StorePackage.Literals.REVISION__GEOMETRY, newGeometry);
 	}
 
 } //RevisionImpl

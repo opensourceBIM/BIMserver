@@ -46,6 +46,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Revision#getSummary <em>Summary</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getExtendedData <em>Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getLogs <em>Logs</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Revision#getGeometry <em>Geometry</em>}</li>
  * </ul>
  * </p>
  *
@@ -440,5 +441,31 @@ public interface Revision extends IdEObject {
 	 * @generated
 	 */
 	EList<LogAction> getLogs();
+
+	/**
+	 * Returns the value of the '<em><b>Geometry</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Geometry</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Geometry</em>' reference.
+	 * @see #setGeometry(Geometry)
+	 * @see org.bimserver.models.store.StorePackage#getRevision_Geometry()
+	 * @model
+	 * @generated
+	 */
+	Geometry getGeometry();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Revision#getGeometry <em>Geometry</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Geometry</em>' reference.
+	 * @see #getGeometry()
+	 * @generated
+	 */
+	void setGeometry(Geometry value);
 
 } // Revision
