@@ -50,26 +50,22 @@ public enum IfcLayerSetDirectionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AXIS2(1, "AXIS2", "AXIS2"),
-
-	/**
-	 * The '<em><b>AXIS1</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AXIS1_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AXIS1(2, "AXIS1", "AXIS1"),
-
-	/**
-	 * The '<em><b>AXIS3</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AXIS3_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	AXIS2(1, "AXIS2", "AXIS2"), /**
+								 * The '<em><b>AXIS1</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #AXIS1_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	AXIS1(2, "AXIS1", "AXIS1"), /**
+								 * The '<em><b>AXIS3</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #AXIS3_VALUE
+								 * @generated
+								 * @ordered
+								 */
 	AXIS3(3, "AXIS3", "AXIS3");
 
 	/**

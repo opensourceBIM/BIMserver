@@ -50,46 +50,38 @@ public enum IfcTransformerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FREQUENCY(1, "FREQUENCY", "FREQUENCY"),
-
-	/**
-	 * The '<em><b>VOLTAGE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VOLTAGE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VOLTAGE(2, "VOLTAGE", "VOLTAGE"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>CURRENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CURRENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	FREQUENCY(1, "FREQUENCY", "FREQUENCY"), /**
+											 * The '<em><b>VOLTAGE</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #VOLTAGE_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	VOLTAGE(2, "VOLTAGE", "VOLTAGE"), /**
+										 * The '<em><b>NOTDEFINED</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #NOTDEFINED_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>USERDEFINED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #USERDEFINED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>CURRENT</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #CURRENT_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	CURRENT(5, "CURRENT", "CURRENT");
 
 	/**

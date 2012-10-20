@@ -50,166 +50,134 @@ public enum IfcCompressorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BOOSTER(1, "BOOSTER", "BOOSTER"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>SINGLESCREW</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SINGLESCREW_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SINGLESCREW(3, "SINGLESCREW", "SINGLESCREW"),
-
-	/**
-	 * The '<em><b>ROTARYVANE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ROTARYVANE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ROTARYVANE(4, "ROTARYVANE", "ROTARYVANE"),
-
-	/**
-	 * The '<em><b>OPENTYPE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OPENTYPE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OPENTYPE(5, "OPENTYPE", "OPENTYPE"),
-
-	/**
-	 * The '<em><b>SINGLESTAGE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SINGLESTAGE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SINGLESTAGE(6, "SINGLESTAGE", "SINGLESTAGE"),
-
-	/**
-	 * The '<em><b>HERMETIC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HERMETIC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HERMETIC(7, "HERMETIC", "HERMETIC"),
-
-	/**
-	 * The '<em><b>SEMIHERMETIC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SEMIHERMETIC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SEMIHERMETIC(8, "SEMIHERMETIC", "SEMIHERMETIC"),
-
-	/**
-	 * The '<em><b>TWINSCREW</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TWINSCREW_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TWINSCREW(9, "TWINSCREW", "TWINSCREW"),
-
-	/**
-	 * The '<em><b>ROTARY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ROTARY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ROTARY(10, "ROTARY", "ROTARY"),
-
-	/**
-	 * The '<em><b>SCROLL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SCROLL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SCROLL(11, "SCROLL", "SCROLL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(12, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>ROLLINGPISTON</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ROLLINGPISTON_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ROLLINGPISTON(13, "ROLLINGPISTON", "ROLLINGPISTON"),
-
-	/**
-	 * The '<em><b>WELDEDSHELLHERMETIC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WELDEDSHELLHERMETIC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WELDEDSHELLHERMETIC(14, "WELDEDSHELLHERMETIC", "WELDEDSHELLHERMETIC"),
-
-	/**
-	 * The '<em><b>DYNAMIC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DYNAMIC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DYNAMIC(15, "DYNAMIC", "DYNAMIC"),
-
-	/**
-	 * The '<em><b>RECIPROCATING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RECIPROCATING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RECIPROCATING(16, "RECIPROCATING", "RECIPROCATING"),
-
-	/**
-	 * The '<em><b>TROCHOIDAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TROCHOIDAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	BOOSTER(1, "BOOSTER", "BOOSTER"), /**
+										 * The '<em><b>NOTDEFINED</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #NOTDEFINED_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>SINGLESCREW</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #SINGLESCREW_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	SINGLESCREW(3, "SINGLESCREW", "SINGLESCREW"), /**
+													 * The '<em><b>ROTARYVANE</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #ROTARYVANE_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	ROTARYVANE(4, "ROTARYVANE", "ROTARYVANE"), /**
+												 * The '<em><b>OPENTYPE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #OPENTYPE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	OPENTYPE(5, "OPENTYPE", "OPENTYPE"), /**
+											 * The '<em><b>SINGLESTAGE</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #SINGLESTAGE_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	SINGLESTAGE(6, "SINGLESTAGE", "SINGLESTAGE"), /**
+													 * The '<em><b>HERMETIC</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #HERMETIC_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	HERMETIC(7, "HERMETIC", "HERMETIC"), /**
+											 * The '<em><b>SEMIHERMETIC</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #SEMIHERMETIC_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	SEMIHERMETIC(8, "SEMIHERMETIC", "SEMIHERMETIC"), /**
+														 * The '<em><b>TWINSCREW</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #TWINSCREW_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	TWINSCREW(9, "TWINSCREW", "TWINSCREW"), /**
+											 * The '<em><b>ROTARY</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #ROTARY_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	ROTARY(10, "ROTARY", "ROTARY"), /**
+									 * The '<em><b>SCROLL</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #SCROLL_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	SCROLL(11, "SCROLL", "SCROLL"), /**
+									 * The '<em><b>USERDEFINED</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #USERDEFINED_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	USERDEFINED(12, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>ROLLINGPISTON</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #ROLLINGPISTON_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	ROLLINGPISTON(13, "ROLLINGPISTON", "ROLLINGPISTON"), /**
+															 * The '<em><b>WELDEDSHELLHERMETIC</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #WELDEDSHELLHERMETIC_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	WELDEDSHELLHERMETIC(14, "WELDEDSHELLHERMETIC", "WELDEDSHELLHERMETIC"), /**
+																			 * The '<em><b>DYNAMIC</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #DYNAMIC_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	DYNAMIC(15, "DYNAMIC", "DYNAMIC"), /**
+										 * The '<em><b>RECIPROCATING</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #RECIPROCATING_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	RECIPROCATING(16, "RECIPROCATING", "RECIPROCATING"), /**
+															 * The '<em><b>TROCHOIDAL</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #TROCHOIDAL_VALUE
+															 * @generated
+															 * @ordered
+															 */
 	TROCHOIDAL(17, "TROCHOIDAL", "TROCHOIDAL");
 
 	/**

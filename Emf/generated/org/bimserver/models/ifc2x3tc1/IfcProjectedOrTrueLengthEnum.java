@@ -50,16 +50,14 @@ public enum IfcProjectedOrTrueLengthEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TRUE_LENGTH(1, "TRUE_LENGTH", "TRUE_LENGTH"),
-
-	/**
-	 * The '<em><b>PROJECTED LENGTH</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROJECTED_LENGTH_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	TRUE_LENGTH(1, "TRUE_LENGTH", "TRUE_LENGTH"), /**
+													 * The '<em><b>PROJECTED LENGTH</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #PROJECTED_LENGTH_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	PROJECTED_LENGTH(2, "PROJECTED_LENGTH", "PROJECTED_LENGTH");
 
 	/**

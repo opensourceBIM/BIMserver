@@ -50,56 +50,46 @@ public enum IfcWindowPanelPositionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BOTTOM(1, "BOTTOM", "BOTTOM"),
-
-	/**
-	 * The '<em><b>RIGHT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RIGHT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RIGHT(2, "RIGHT", "RIGHT"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>TOP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TOP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TOP(4, "TOP", "TOP"),
-
-	/**
-	 * The '<em><b>LEFT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LEFT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LEFT(5, "LEFT", "LEFT"),
-
-	/**
-	 * The '<em><b>MIDDLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MIDDLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	BOTTOM(1, "BOTTOM", "BOTTOM"), /**
+									 * The '<em><b>RIGHT</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #RIGHT_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	RIGHT(2, "RIGHT", "RIGHT"), /**
+								 * The '<em><b>NOTDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #NOTDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>TOP</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #TOP_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	TOP(4, "TOP", "TOP"), /**
+							 * The '<em><b>LEFT</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #LEFT_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	LEFT(5, "LEFT", "LEFT"), /**
+								 * The '<em><b>MIDDLE</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #MIDDLE_VALUE
+								 * @generated
+								 * @ordered
+								 */
 	MIDDLE(6, "MIDDLE", "MIDDLE");
 
 	/**

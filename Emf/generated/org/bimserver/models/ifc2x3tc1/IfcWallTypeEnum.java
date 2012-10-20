@@ -50,66 +50,54 @@ public enum IfcWallTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>PLUMBINGWALL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PLUMBINGWALL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PLUMBINGWALL(2, "PLUMBINGWALL", "PLUMBINGWALL"),
-
-	/**
-	 * The '<em><b>SHEAR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHEAR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SHEAR(3, "SHEAR", "SHEAR"),
-
-	/**
-	 * The '<em><b>STANDARD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STANDARD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STANDARD(4, "STANDARD", "STANDARD"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>POLYGONAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #POLYGONAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	POLYGONAL(6, "POLYGONAL", "POLYGONAL"),
-
-	/**
-	 * The '<em><b>ELEMENTEDWALL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELEMENTEDWALL_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>PLUMBINGWALL</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #PLUMBINGWALL_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	PLUMBINGWALL(2, "PLUMBINGWALL", "PLUMBINGWALL"), /**
+														 * The '<em><b>SHEAR</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #SHEAR_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	SHEAR(3, "SHEAR", "SHEAR"), /**
+								 * The '<em><b>STANDARD</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #STANDARD_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	STANDARD(4, "STANDARD", "STANDARD"), /**
+											 * The '<em><b>USERDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #USERDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>POLYGONAL</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #POLYGONAL_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	POLYGONAL(6, "POLYGONAL", "POLYGONAL"), /**
+											 * The '<em><b>ELEMENTEDWALL</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #ELEMENTEDWALL_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	ELEMENTEDWALL(7, "ELEMENTEDWALL", "ELEMENTEDWALL");
 
 	/**

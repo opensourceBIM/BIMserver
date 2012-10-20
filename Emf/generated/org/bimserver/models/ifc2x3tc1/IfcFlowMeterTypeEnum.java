@@ -50,76 +50,62 @@ public enum IfcFlowMeterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WATERMETER(1, "WATERMETER", "WATERMETER"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>GASMETER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GASMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GASMETER(3, "GASMETER", "GASMETER"),
-
-	/**
-	 * The '<em><b>ELECTRICMETER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELECTRICMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELECTRICMETER(4, "ELECTRICMETER", "ELECTRICMETER"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>FLOWMETER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLOWMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLOWMETER(6, "FLOWMETER", "FLOWMETER"),
-
-	/**
-	 * The '<em><b>ENERGYMETER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ENERGYMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ENERGYMETER(7, "ENERGYMETER", "ENERGYMETER"),
-
-	/**
-	 * The '<em><b>OILMETER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OILMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	WATERMETER(1, "WATERMETER", "WATERMETER"), /**
+												 * The '<em><b>NOTDEFINED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #NOTDEFINED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>GASMETER</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #GASMETER_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	GASMETER(3, "GASMETER", "GASMETER"), /**
+											 * The '<em><b>ELECTRICMETER</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #ELECTRICMETER_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	ELECTRICMETER(4, "ELECTRICMETER", "ELECTRICMETER"), /**
+														 * The '<em><b>USERDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #USERDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>FLOWMETER</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #FLOWMETER_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	FLOWMETER(6, "FLOWMETER", "FLOWMETER"), /**
+											 * The '<em><b>ENERGYMETER</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #ENERGYMETER_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	ENERGYMETER(7, "ENERGYMETER", "ENERGYMETER"), /**
+													 * The '<em><b>OILMETER</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #OILMETER_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	OILMETER(8, "OILMETER", "OILMETER");
 
 	/**

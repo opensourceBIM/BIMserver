@@ -50,86 +50,70 @@ public enum IfcAirTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>GRILLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GRILLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GRILLE(2, "GRILLE", "GRILLE"),
-
-	/**
-	 * The '<em><b>LINEARGRILLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LINEARGRILLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LINEARGRILLE(3, "LINEARGRILLE", "LINEARGRILLE"),
-
-	/**
-	 * The '<em><b>IRIS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #IRIS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	IRIS(4, "IRIS", "IRIS"),
-
-	/**
-	 * The '<em><b>DIFFUSER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIFFUSER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DIFFUSER(5, "DIFFUSER", "DIFFUSER"),
-
-	/**
-	 * The '<em><b>LINEARDIFFUSER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LINEARDIFFUSER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LINEARDIFFUSER(6, "LINEARDIFFUSER", "LINEARDIFFUSER"),
-
-	/**
-	 * The '<em><b>REGISTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REGISTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REGISTER(7, "REGISTER", "REGISTER"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(8, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>EYEBALL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EYEBALL_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>GRILLE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #GRILLE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	GRILLE(2, "GRILLE", "GRILLE"), /**
+									 * The '<em><b>LINEARGRILLE</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #LINEARGRILLE_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	LINEARGRILLE(3, "LINEARGRILLE", "LINEARGRILLE"), /**
+														 * The '<em><b>IRIS</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #IRIS_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	IRIS(4, "IRIS", "IRIS"), /**
+								 * The '<em><b>DIFFUSER</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #DIFFUSER_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	DIFFUSER(5, "DIFFUSER", "DIFFUSER"), /**
+											 * The '<em><b>LINEARDIFFUSER</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #LINEARDIFFUSER_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	LINEARDIFFUSER(6, "LINEARDIFFUSER", "LINEARDIFFUSER"), /**
+															 * The '<em><b>REGISTER</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #REGISTER_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	REGISTER(7, "REGISTER", "REGISTER"), /**
+											 * The '<em><b>USERDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #USERDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	USERDEFINED(8, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>EYEBALL</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #EYEBALL_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	EYEBALL(9, "EYEBALL", "EYEBALL");
 
 	/**

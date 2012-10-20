@@ -50,46 +50,38 @@ public enum IfcInventoryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SPACEINVENTORY(1, "SPACEINVENTORY", "SPACEINVENTORY"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>ASSETINVENTORY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ASSETINVENTORY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ASSETINVENTORY(3, "ASSETINVENTORY", "ASSETINVENTORY"),
-
-	/**
-	 * The '<em><b>FURNITUREINVENTORY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FURNITUREINVENTORY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FURNITUREINVENTORY(4, "FURNITUREINVENTORY", "FURNITUREINVENTORY"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	SPACEINVENTORY(1, "SPACEINVENTORY", "SPACEINVENTORY"), /**
+															 * The '<em><b>NOTDEFINED</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #NOTDEFINED_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>ASSETINVENTORY</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #ASSETINVENTORY_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	ASSETINVENTORY(3, "ASSETINVENTORY", "ASSETINVENTORY"), /**
+															 * The '<em><b>FURNITUREINVENTORY</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #FURNITUREINVENTORY_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	FURNITUREINVENTORY(4, "FURNITUREINVENTORY", "FURNITUREINVENTORY"), /**
+																		 * The '<em><b>USERDEFINED</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #USERDEFINED_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
 	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
 
 	/**

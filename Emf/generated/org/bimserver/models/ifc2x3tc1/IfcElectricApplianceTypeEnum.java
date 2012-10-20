@@ -50,256 +50,206 @@ public enum IfcElectricApplianceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FRIDGE_FREEZER(1, "FRIDGE_FREEZER", "FRIDGE_FREEZER"),
-
-	/**
-	 * The '<em><b>REFRIGERATOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REFRIGERATOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REFRIGERATOR(2, "REFRIGERATOR", "REFRIGERATOR"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>WASHINGMACHINE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WASHINGMACHINE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WASHINGMACHINE(4, "WASHINGMACHINE", "WASHINGMACHINE"),
-
-	/**
-	 * The '<em><b>SCANNER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SCANNER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SCANNER(5, "SCANNER", "SCANNER"),
-
-	/**
-	 * The '<em><b>FREEZER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FREEZER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FREEZER(6, "FREEZER", "FREEZER"),
-
-	/**
-	 * The '<em><b>COMPUTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMPUTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMPUTER(7, "COMPUTER", "COMPUTER"),
-
-	/**
-	 * The '<em><b>PHOTOCOPIER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PHOTOCOPIER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PHOTOCOPIER(8, "PHOTOCOPIER", "PHOTOCOPIER"),
-
-	/**
-	 * The '<em><b>INDIRECTWATERHEATER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INDIRECTWATERHEATER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INDIRECTWATERHEATER(9, "INDIRECTWATERHEATER", "INDIRECTWATERHEATER"),
-
-	/**
-	 * The '<em><b>FACSIMILE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FACSIMILE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FACSIMILE(10, "FACSIMILE", "FACSIMILE"),
-
-	/**
-	 * The '<em><b>VENDINGMACHINE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VENDINGMACHINE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VENDINGMACHINE(11, "VENDINGMACHINE", "VENDINGMACHINE"),
-
-	/**
-	 * The '<em><b>DISHWASHER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DISHWASHER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DISHWASHER(12, "DISHWASHER", "DISHWASHER"),
-
-	/**
-	 * The '<em><b>HANDDRYER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HANDDRYER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HANDDRYER(13, "HANDDRYER", "HANDDRYER"),
-
-	/**
-	 * The '<em><b>MICROWAVE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MICROWAVE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MICROWAVE(14, "MICROWAVE", "MICROWAVE"),
-
-	/**
-	 * The '<em><b>FREESTANDINGFAN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FREESTANDINGFAN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FREESTANDINGFAN(15, "FREESTANDINGFAN", "FREESTANDINGFAN"),
-
-	/**
-	 * The '<em><b>PRINTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PRINTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PRINTER(16, "PRINTER", "PRINTER"),
-
-	/**
-	 * The '<em><b>RADIANTHEATER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RADIANTHEATER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RADIANTHEATER(17, "RADIANTHEATER", "RADIANTHEATER"),
-
-	/**
-	 * The '<em><b>ELECTRICHEATER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELECTRICHEATER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELECTRICHEATER(18, "ELECTRICHEATER", "ELECTRICHEATER"),
-
-	/**
-	 * The '<em><b>WATERCOOLER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WATERCOOLER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WATERCOOLER(19, "WATERCOOLER", "WATERCOOLER"),
-
-	/**
-	 * The '<em><b>TELEPHONE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TELEPHONE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TELEPHONE(20, "TELEPHONE", "TELEPHONE"),
-
-	/**
-	 * The '<em><b>WATERHEATER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WATERHEATER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WATERHEATER(21, "WATERHEATER", "WATERHEATER"),
-
-	/**
-	 * The '<em><b>DIRECTWATERHEATER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIRECTWATERHEATER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DIRECTWATERHEATER(22, "DIRECTWATERHEATER", "DIRECTWATERHEATER"),
-
-	/**
-	 * The '<em><b>TUMBLEDRYER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TUMBLEDRYER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TUMBLEDRYER(23, "TUMBLEDRYER", "TUMBLEDRYER"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(24, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>ELECTRICCOOKER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELECTRICCOOKER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELECTRICCOOKER(25, "ELECTRICCOOKER", "ELECTRICCOOKER"),
-
-	/**
-	 * The '<em><b>TV</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TV_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	FRIDGE_FREEZER(1, "FRIDGE_FREEZER", "FRIDGE_FREEZER"), /**
+															 * The '<em><b>REFRIGERATOR</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #REFRIGERATOR_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	REFRIGERATOR(2, "REFRIGERATOR", "REFRIGERATOR"), /**
+														 * The '<em><b>NOTDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #NOTDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>WASHINGMACHINE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #WASHINGMACHINE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	WASHINGMACHINE(4, "WASHINGMACHINE", "WASHINGMACHINE"), /**
+															 * The '<em><b>SCANNER</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #SCANNER_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	SCANNER(5, "SCANNER", "SCANNER"), /**
+										 * The '<em><b>FREEZER</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #FREEZER_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	FREEZER(6, "FREEZER", "FREEZER"), /**
+										 * The '<em><b>COMPUTER</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #COMPUTER_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	COMPUTER(7, "COMPUTER", "COMPUTER"), /**
+											 * The '<em><b>PHOTOCOPIER</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #PHOTOCOPIER_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	PHOTOCOPIER(8, "PHOTOCOPIER", "PHOTOCOPIER"), /**
+													 * The '<em><b>INDIRECTWATERHEATER</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #INDIRECTWATERHEATER_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	INDIRECTWATERHEATER(9, "INDIRECTWATERHEATER", "INDIRECTWATERHEATER"), /**
+																			 * The '<em><b>FACSIMILE</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #FACSIMILE_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	FACSIMILE(10, "FACSIMILE", "FACSIMILE"), /**
+												 * The '<em><b>VENDINGMACHINE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #VENDINGMACHINE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	VENDINGMACHINE(11, "VENDINGMACHINE", "VENDINGMACHINE"), /**
+															 * The '<em><b>DISHWASHER</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #DISHWASHER_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	DISHWASHER(12, "DISHWASHER", "DISHWASHER"), /**
+												 * The '<em><b>HANDDRYER</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #HANDDRYER_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	HANDDRYER(13, "HANDDRYER", "HANDDRYER"), /**
+												 * The '<em><b>MICROWAVE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #MICROWAVE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	MICROWAVE(14, "MICROWAVE", "MICROWAVE"), /**
+												 * The '<em><b>FREESTANDINGFAN</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #FREESTANDINGFAN_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	FREESTANDINGFAN(15, "FREESTANDINGFAN", "FREESTANDINGFAN"), /**
+																 * The '<em><b>PRINTER</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #PRINTER_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	PRINTER(16, "PRINTER", "PRINTER"), /**
+										 * The '<em><b>RADIANTHEATER</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #RADIANTHEATER_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	RADIANTHEATER(17, "RADIANTHEATER", "RADIANTHEATER"), /**
+															 * The '<em><b>ELECTRICHEATER</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #ELECTRICHEATER_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	ELECTRICHEATER(18, "ELECTRICHEATER", "ELECTRICHEATER"), /**
+															 * The '<em><b>WATERCOOLER</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #WATERCOOLER_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	WATERCOOLER(19, "WATERCOOLER", "WATERCOOLER"), /**
+													 * The '<em><b>TELEPHONE</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #TELEPHONE_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	TELEPHONE(20, "TELEPHONE", "TELEPHONE"), /**
+												 * The '<em><b>WATERHEATER</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #WATERHEATER_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	WATERHEATER(21, "WATERHEATER", "WATERHEATER"), /**
+													 * The '<em><b>DIRECTWATERHEATER</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #DIRECTWATERHEATER_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	DIRECTWATERHEATER(22, "DIRECTWATERHEATER", "DIRECTWATERHEATER"), /**
+																		 * The '<em><b>TUMBLEDRYER</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #TUMBLEDRYER_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	TUMBLEDRYER(23, "TUMBLEDRYER", "TUMBLEDRYER"), /**
+													 * The '<em><b>USERDEFINED</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #USERDEFINED_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	USERDEFINED(24, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>ELECTRICCOOKER</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #ELECTRICCOOKER_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	ELECTRICCOOKER(25, "ELECTRICCOOKER", "ELECTRICCOOKER"), /**
+															 * The '<em><b>TV</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #TV_VALUE
+															 * @generated
+															 * @ordered
+															 */
 	TV(26, "TV", "TV");
 
 	/**

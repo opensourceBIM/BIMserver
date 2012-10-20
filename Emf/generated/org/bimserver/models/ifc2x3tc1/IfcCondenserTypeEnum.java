@@ -50,76 +50,62 @@ public enum IfcCondenserTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EVAPORATIVECOOLED(1, "EVAPORATIVECOOLED", "EVAPORATIVECOOLED"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>WATERCOOLEDSHELLTUBE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WATERCOOLEDSHELLTUBE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WATERCOOLEDSHELLTUBE(4, "WATERCOOLEDSHELLTUBE", "WATERCOOLEDSHELLTUBE"),
-
-	/**
-	 * The '<em><b>WATERCOOLEDTUBEINTUBE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WATERCOOLEDTUBEINTUBE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WATERCOOLEDTUBEINTUBE(5, "WATERCOOLEDTUBEINTUBE", "WATERCOOLEDTUBEINTUBE"),
-
-	/**
-	 * The '<em><b>WATERCOOLEDBRAZEDPLATE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WATERCOOLEDBRAZEDPLATE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WATERCOOLEDBRAZEDPLATE(6, "WATERCOOLEDBRAZEDPLATE", "WATERCOOLEDBRAZEDPLATE"),
-
-	/**
-	 * The '<em><b>WATERCOOLEDSHELLCOIL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WATERCOOLEDSHELLCOIL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WATERCOOLEDSHELLCOIL(7, "WATERCOOLEDSHELLCOIL", "WATERCOOLEDSHELLCOIL"),
-
-	/**
-	 * The '<em><b>AIRCOOLED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AIRCOOLED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	EVAPORATIVECOOLED(1, "EVAPORATIVECOOLED", "EVAPORATIVECOOLED"), /**
+																	 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #NOTDEFINED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>USERDEFINED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #USERDEFINED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>WATERCOOLEDSHELLTUBE</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #WATERCOOLEDSHELLTUBE_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	WATERCOOLEDSHELLTUBE(4, "WATERCOOLEDSHELLTUBE", "WATERCOOLEDSHELLTUBE"), /**
+																				 * The '<em><b>WATERCOOLEDTUBEINTUBE</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #WATERCOOLEDTUBEINTUBE_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	WATERCOOLEDTUBEINTUBE(5, "WATERCOOLEDTUBEINTUBE", "WATERCOOLEDTUBEINTUBE"), /**
+																				 * The '<em><b>WATERCOOLEDBRAZEDPLATE</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #WATERCOOLEDBRAZEDPLATE_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	WATERCOOLEDBRAZEDPLATE(6, "WATERCOOLEDBRAZEDPLATE", "WATERCOOLEDBRAZEDPLATE"), /**
+																					 * The '<em><b>WATERCOOLEDSHELLCOIL</b></em>' literal object.
+																					 * <!-- begin-user-doc -->
+																					 * <!-- end-user-doc -->
+																					 * @see #WATERCOOLEDSHELLCOIL_VALUE
+																					 * @generated
+																					 * @ordered
+																					 */
+	WATERCOOLEDSHELLCOIL(7, "WATERCOOLEDSHELLCOIL", "WATERCOOLEDSHELLCOIL"), /**
+																				 * The '<em><b>AIRCOOLED</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #AIRCOOLED_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
 	AIRCOOLED(8, "AIRCOOLED", "AIRCOOLED");
 
 	/**

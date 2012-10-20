@@ -50,86 +50,70 @@ public enum IfcPropertySourceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTKNOWN(1, "NOTKNOWN", "NOTKNOWN"),
-
-	/**
-	 * The '<em><b>DESIGN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DESIGN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DESIGN(2, "DESIGN", "DESIGN"),
-
-	/**
-	 * The '<em><b>ASBUILT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ASBUILT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ASBUILT(3, "ASBUILT", "ASBUILT"),
-
-	/**
-	 * The '<em><b>MEASURED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MEASURED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MEASURED(4, "MEASURED", "MEASURED"),
-
-	/**
-	 * The '<em><b>DESIGNMINIMUM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DESIGNMINIMUM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DESIGNMINIMUM(5, "DESIGNMINIMUM", "DESIGNMINIMUM"),
-
-	/**
-	 * The '<em><b>COMMISSIONING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMMISSIONING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMMISSIONING(6, "COMMISSIONING", "COMMISSIONING"),
-
-	/**
-	 * The '<em><b>DESIGNMAXIMUM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DESIGNMAXIMUM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DESIGNMAXIMUM(7, "DESIGNMAXIMUM", "DESIGNMAXIMUM"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(8, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>SIMULATED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SIMULATED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTKNOWN(1, "NOTKNOWN", "NOTKNOWN"), /**
+											 * The '<em><b>DESIGN</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #DESIGN_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	DESIGN(2, "DESIGN", "DESIGN"), /**
+									 * The '<em><b>ASBUILT</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #ASBUILT_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	ASBUILT(3, "ASBUILT", "ASBUILT"), /**
+										 * The '<em><b>MEASURED</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #MEASURED_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	MEASURED(4, "MEASURED", "MEASURED"), /**
+											 * The '<em><b>DESIGNMINIMUM</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #DESIGNMINIMUM_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	DESIGNMINIMUM(5, "DESIGNMINIMUM", "DESIGNMINIMUM"), /**
+														 * The '<em><b>COMMISSIONING</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #COMMISSIONING_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	COMMISSIONING(6, "COMMISSIONING", "COMMISSIONING"), /**
+														 * The '<em><b>DESIGNMAXIMUM</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #DESIGNMAXIMUM_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	DESIGNMAXIMUM(7, "DESIGNMAXIMUM", "DESIGNMAXIMUM"), /**
+														 * The '<em><b>USERDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #USERDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	USERDEFINED(8, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>SIMULATED</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #SIMULATED_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	SIMULATED(9, "SIMULATED", "SIMULATED");
 
 	/**

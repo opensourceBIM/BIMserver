@@ -50,136 +50,110 @@ public enum IfcRoofTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	HIPPED_GABLE_ROOF(1, "HIPPED_GABLE_ROOF", "HIPPED_GABLE_ROOF"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>SHED ROOF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHED_ROOF_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SHED_ROOF(3, "SHED_ROOF", "SHED_ROOF"),
-
-	/**
-	 * The '<em><b>HIP ROOF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HIP_ROOF_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HIP_ROOF(4, "HIP_ROOF", "HIP_ROOF"),
-
-	/**
-	 * The '<em><b>DOME ROOF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOME_ROOF_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOME_ROOF(5, "DOME_ROOF", "DOME_ROOF"),
-
-	/**
-	 * The '<em><b>PAVILION ROOF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PAVILION_ROOF_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PAVILION_ROOF(6, "PAVILION_ROOF", "PAVILION_ROOF"),
-
-	/**
-	 * The '<em><b>GABLE ROOF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GABLE_ROOF_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GABLE_ROOF(7, "GABLE_ROOF", "GABLE_ROOF"),
-
-	/**
-	 * The '<em><b>BARREL ROOF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BARREL_ROOF_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BARREL_ROOF(8, "BARREL_ROOF", "BARREL_ROOF"),
-
-	/**
-	 * The '<em><b>FREEFORM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FREEFORM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FREEFORM(9, "FREEFORM", "FREEFORM"),
-
-	/**
-	 * The '<em><b>MANSARD ROOF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MANSARD_ROOF_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MANSARD_ROOF(10, "MANSARD_ROOF", "MANSARD_ROOF"),
-
-	/**
-	 * The '<em><b>FLAT ROOF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLAT_ROOF_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLAT_ROOF(11, "FLAT_ROOF", "FLAT_ROOF"),
-
-	/**
-	 * The '<em><b>RAINBOW ROOF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RAINBOW_ROOF_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RAINBOW_ROOF(12, "RAINBOW_ROOF", "RAINBOW_ROOF"),
-
-	/**
-	 * The '<em><b>GAMBREL ROOF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GAMBREL_ROOF_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GAMBREL_ROOF(13, "GAMBREL_ROOF", "GAMBREL_ROOF"),
-
-	/**
-	 * The '<em><b>BUTTERFLY ROOF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BUTTERFLY_ROOF_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	HIPPED_GABLE_ROOF(1, "HIPPED_GABLE_ROOF", "HIPPED_GABLE_ROOF"), /**
+																	 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #NOTDEFINED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>SHED ROOF</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #SHED_ROOF_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	SHED_ROOF(3, "SHED_ROOF", "SHED_ROOF"), /**
+											 * The '<em><b>HIP ROOF</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #HIP_ROOF_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	HIP_ROOF(4, "HIP_ROOF", "HIP_ROOF"), /**
+											 * The '<em><b>DOME ROOF</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #DOME_ROOF_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	DOME_ROOF(5, "DOME_ROOF", "DOME_ROOF"), /**
+											 * The '<em><b>PAVILION ROOF</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #PAVILION_ROOF_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	PAVILION_ROOF(6, "PAVILION_ROOF", "PAVILION_ROOF"), /**
+														 * The '<em><b>GABLE ROOF</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #GABLE_ROOF_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	GABLE_ROOF(7, "GABLE_ROOF", "GABLE_ROOF"), /**
+												 * The '<em><b>BARREL ROOF</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #BARREL_ROOF_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	BARREL_ROOF(8, "BARREL_ROOF", "BARREL_ROOF"), /**
+													 * The '<em><b>FREEFORM</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #FREEFORM_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	FREEFORM(9, "FREEFORM", "FREEFORM"), /**
+											 * The '<em><b>MANSARD ROOF</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #MANSARD_ROOF_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	MANSARD_ROOF(10, "MANSARD_ROOF", "MANSARD_ROOF"), /**
+														 * The '<em><b>FLAT ROOF</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #FLAT_ROOF_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	FLAT_ROOF(11, "FLAT_ROOF", "FLAT_ROOF"), /**
+												 * The '<em><b>RAINBOW ROOF</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #RAINBOW_ROOF_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	RAINBOW_ROOF(12, "RAINBOW_ROOF", "RAINBOW_ROOF"), /**
+														 * The '<em><b>GAMBREL ROOF</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #GAMBREL_ROOF_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	GAMBREL_ROOF(13, "GAMBREL_ROOF", "GAMBREL_ROOF"), /**
+														 * The '<em><b>BUTTERFLY ROOF</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #BUTTERFLY_ROOF_VALUE
+														 * @generated
+														 * @ordered
+														 */
 	BUTTERFLY_ROOF(14, "BUTTERFLY_ROOF", "BUTTERFLY_ROOF");
 
 	/**

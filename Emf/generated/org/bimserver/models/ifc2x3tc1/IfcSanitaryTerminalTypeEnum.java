@@ -50,116 +50,94 @@ public enum IfcSanitaryTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TOILETPAN(1, "TOILETPAN", "TOILETPAN"),
-
-	/**
-	 * The '<em><b>BATH</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BATH_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BATH(2, "BATH", "BATH"),
-
-	/**
-	 * The '<em><b>CISTERN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CISTERN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CISTERN(3, "CISTERN", "CISTERN"),
-
-	/**
-	 * The '<em><b>BIDET</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BIDET_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BIDET(4, "BIDET", "BIDET"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(5, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>WASHHANDBASIN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WASHHANDBASIN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WASHHANDBASIN(6, "WASHHANDBASIN", "WASHHANDBASIN"),
-
-	/**
-	 * The '<em><b>SANITARYFOUNTAIN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SANITARYFOUNTAIN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SANITARYFOUNTAIN(7, "SANITARYFOUNTAIN", "SANITARYFOUNTAIN"),
-
-	/**
-	 * The '<em><b>URINAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #URINAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	URINAL(8, "URINAL", "URINAL"),
-
-	/**
-	 * The '<em><b>SINK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SINK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SINK(9, "SINK", "SINK"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(10, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>WCSEAT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WCSEAT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WCSEAT(11, "WCSEAT", "WCSEAT"),
-
-	/**
-	 * The '<em><b>SHOWER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHOWER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	TOILETPAN(1, "TOILETPAN", "TOILETPAN"), /**
+											 * The '<em><b>BATH</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #BATH_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	BATH(2, "BATH", "BATH"), /**
+								 * The '<em><b>CISTERN</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #CISTERN_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	CISTERN(3, "CISTERN", "CISTERN"), /**
+										 * The '<em><b>BIDET</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #BIDET_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	BIDET(4, "BIDET", "BIDET"), /**
+								 * The '<em><b>NOTDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #NOTDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	NOTDEFINED(5, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>WASHHANDBASIN</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #WASHHANDBASIN_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	WASHHANDBASIN(6, "WASHHANDBASIN", "WASHHANDBASIN"), /**
+														 * The '<em><b>SANITARYFOUNTAIN</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #SANITARYFOUNTAIN_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	SANITARYFOUNTAIN(7, "SANITARYFOUNTAIN", "SANITARYFOUNTAIN"), /**
+																	 * The '<em><b>URINAL</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #URINAL_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	URINAL(8, "URINAL", "URINAL"), /**
+									 * The '<em><b>SINK</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #SINK_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	SINK(9, "SINK", "SINK"), /**
+								 * The '<em><b>USERDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #USERDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	USERDEFINED(10, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>WCSEAT</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #WCSEAT_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	WCSEAT(11, "WCSEAT", "WCSEAT"), /**
+									 * The '<em><b>SHOWER</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #SHOWER_VALUE
+									 * @generated
+									 * @ordered
+									 */
 	SHOWER(12, "SHOWER", "SHOWER");
 
 	/**

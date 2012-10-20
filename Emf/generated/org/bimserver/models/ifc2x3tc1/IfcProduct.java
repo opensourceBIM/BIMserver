@@ -16,7 +16,6 @@
  */
 package org.bimserver.models.ifc2x3tc1;
 
-import org.bimserver.models.store.GeometryInstance;
 import org.eclipse.emf.common.util.EList;
 
 /**

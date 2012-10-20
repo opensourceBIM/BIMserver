@@ -50,36 +50,30 @@ public enum IfcConnectionTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ATPATH(1, "ATPATH", "ATPATH"),
-
-	/**
-	 * The '<em><b>ATEND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ATEND_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ATEND(2, "ATEND", "ATEND"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>ATSTART</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ATSTART_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	ATPATH(1, "ATPATH", "ATPATH"), /**
+									 * The '<em><b>ATEND</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #ATEND_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	ATEND(2, "ATEND", "ATEND"), /**
+								 * The '<em><b>NOTDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #NOTDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>ATSTART</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #ATSTART_VALUE
+												 * @generated
+												 * @ordered
+												 */
 	ATSTART(4, "ATSTART", "ATSTART");
 
 	/**

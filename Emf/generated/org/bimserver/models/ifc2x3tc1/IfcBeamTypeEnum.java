@@ -50,56 +50,46 @@ public enum IfcBeamTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LINTEL(1, "LINTEL", "LINTEL"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>TBEAM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TBEAM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TBEAM(3, "T_BEAM", "T_BEAM"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>JOIST</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #JOIST_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	JOIST(5, "JOIST", "JOIST"),
-
-	/**
-	 * The '<em><b>BEAM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BEAM_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	LINTEL(1, "LINTEL", "LINTEL"), /**
+									 * The '<em><b>NOTDEFINED</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #NOTDEFINED_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>TBEAM</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #TBEAM_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	TBEAM(3, "T_BEAM", "T_BEAM"), /**
+									 * The '<em><b>USERDEFINED</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #USERDEFINED_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>JOIST</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #JOIST_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	JOIST(5, "JOIST", "JOIST"), /**
+								 * The '<em><b>BEAM</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #BEAM_VALUE
+								 * @generated
+								 * @ordered
+								 */
 	BEAM(6, "BEAM", "BEAM");
 
 	/**

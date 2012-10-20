@@ -50,46 +50,38 @@ public enum IfcDataOriginEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>PREDICTED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PREDICTED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PREDICTED(2, "PREDICTED", "PREDICTED"),
-
-	/**
-	 * The '<em><b>MEASURED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MEASURED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MEASURED(3, "MEASURED", "MEASURED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>SIMULATED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SIMULATED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>PREDICTED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #PREDICTED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	PREDICTED(2, "PREDICTED", "PREDICTED"), /**
+											 * The '<em><b>MEASURED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #MEASURED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	MEASURED(3, "MEASURED", "MEASURED"), /**
+											 * The '<em><b>USERDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #USERDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>SIMULATED</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #SIMULATED_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	SIMULATED(5, "SIMULATED", "SIMULATED");
 
 	/**

@@ -50,66 +50,54 @@ public enum IfcTimeSeriesDataTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CONTINUOUS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONTINUOUS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONTINUOUS(2, "CONTINUOUS", "CONTINUOUS"),
-
-	/**
-	 * The '<em><b>DISCRETE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DISCRETE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DISCRETE(3, "DISCRETE", "DISCRETE"),
-
-	/**
-	 * The '<em><b>DISCRETEBINARY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DISCRETEBINARY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DISCRETEBINARY(4, "DISCRETEBINARY", "DISCRETEBINARY"),
-
-	/**
-	 * The '<em><b>PIECEWISEBINARY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PIECEWISEBINARY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PIECEWISEBINARY(5, "PIECEWISEBINARY", "PIECEWISEBINARY"),
-
-	/**
-	 * The '<em><b>PIECEWISECONSTANT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PIECEWISECONSTANT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PIECEWISECONSTANT(6, "PIECEWISECONSTANT", "PIECEWISECONSTANT"),
-
-	/**
-	 * The '<em><b>PIECEWISECONTINUOUS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PIECEWISECONTINUOUS_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>CONTINUOUS</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #CONTINUOUS_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	CONTINUOUS(2, "CONTINUOUS", "CONTINUOUS"), /**
+												 * The '<em><b>DISCRETE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #DISCRETE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	DISCRETE(3, "DISCRETE", "DISCRETE"), /**
+											 * The '<em><b>DISCRETEBINARY</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #DISCRETEBINARY_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	DISCRETEBINARY(4, "DISCRETEBINARY", "DISCRETEBINARY"), /**
+															 * The '<em><b>PIECEWISEBINARY</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #PIECEWISEBINARY_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	PIECEWISEBINARY(5, "PIECEWISEBINARY", "PIECEWISEBINARY"), /**
+																 * The '<em><b>PIECEWISECONSTANT</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #PIECEWISECONSTANT_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	PIECEWISECONSTANT(6, "PIECEWISECONSTANT", "PIECEWISECONSTANT"), /**
+																	 * The '<em><b>PIECEWISECONTINUOUS</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #PIECEWISECONTINUOUS_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
 	PIECEWISECONTINUOUS(7, "PIECEWISECONTINUOUS", "PIECEWISECONTINUOUS");
 
 	/**

@@ -50,66 +50,54 @@ public enum IfcProjectOrderRecordTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>MAINTENANCE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MAINTENANCE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MAINTENANCE(2, "MAINTENANCE", "MAINTENANCE"),
-
-	/**
-	 * The '<em><b>PURCHASE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PURCHASE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PURCHASE(3, "PURCHASE", "PURCHASE"),
-
-	/**
-	 * The '<em><b>WORK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WORK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WORK(4, "WORK", "WORK"),
-
-	/**
-	 * The '<em><b>MOVE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MOVE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MOVE(5, "MOVE", "MOVE"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>CHANGE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CHANGE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>MAINTENANCE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #MAINTENANCE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	MAINTENANCE(2, "MAINTENANCE", "MAINTENANCE"), /**
+													 * The '<em><b>PURCHASE</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #PURCHASE_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	PURCHASE(3, "PURCHASE", "PURCHASE"), /**
+											 * The '<em><b>WORK</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #WORK_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	WORK(4, "WORK", "WORK"), /**
+								 * The '<em><b>MOVE</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #MOVE_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	MOVE(5, "MOVE", "MOVE"), /**
+								 * The '<em><b>USERDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #USERDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>CHANGE</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #CHANGE_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	CHANGE(7, "CHANGE", "CHANGE");
 
 	/**

@@ -50,226 +50,182 @@ public enum IfcRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COSTENGINEER(1, "COSTENGINEER", "COSTENGINEER"),
-
-	/**
-	 * The '<em><b>COMISSIONINGENGINEER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMISSIONINGENGINEER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMISSIONINGENGINEER(2, "COMISSIONINGENGINEER", "COMISSIONINGENGINEER"),
-
-	/**
-	 * The '<em><b>BUILDINGOPERATOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BUILDINGOPERATOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BUILDINGOPERATOR(3, "BUILDINGOPERATOR", "BUILDINGOPERATOR"),
-
-	/**
-	 * The '<em><b>RESELLER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RESELLER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RESELLER(4, "RESELLER", "RESELLER"),
-
-	/**
-	 * The '<em><b>ENGINEER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ENGINEER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ENGINEER(5, "ENGINEER", "ENGINEER"),
-
-	/**
-	 * The '<em><b>ARCHITECT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ARCHITECT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ARCHITECT(6, "ARCHITECT", "ARCHITECT"),
-
-	/**
-	 * The '<em><b>CLIENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CLIENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CLIENT(7, "CLIENT", "CLIENT"),
-
-	/**
-	 * The '<em><b>ELECTRICALENGINEER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELECTRICALENGINEER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELECTRICALENGINEER(8, "ELECTRICALENGINEER", "ELECTRICALENGINEER"),
-
-	/**
-	 * The '<em><b>PROJECTMANAGER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROJECTMANAGER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROJECTMANAGER(9, "PROJECTMANAGER", "PROJECTMANAGER"),
-
-	/**
-	 * The '<em><b>CIVILENGINEER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CIVILENGINEER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CIVILENGINEER(10, "CIVILENGINEER", "CIVILENGINEER"),
-
-	/**
-	 * The '<em><b>SUPPLIER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SUPPLIER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SUPPLIER(11, "SUPPLIER", "SUPPLIER"),
-
-	/**
-	 * The '<em><b>CONTRACTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONTRACTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONTRACTOR(12, "CONTRACTOR", "CONTRACTOR"),
-
-	/**
-	 * The '<em><b>FIELDCONSTRUCTIONMANAGER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIELDCONSTRUCTIONMANAGER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FIELDCONSTRUCTIONMANAGER(13, "FIELDCONSTRUCTIONMANAGER", "FIELDCONSTRUCTIONMANAGER"),
-
-	/**
-	 * The '<em><b>FACILITIESMANAGER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FACILITIESMANAGER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FACILITIESMANAGER(14, "FACILITIESMANAGER", "FACILITIESMANAGER"),
-
-	/**
-	 * The '<em><b>OWNER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OWNER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OWNER(15, "OWNER", "OWNER"),
-
-	/**
-	 * The '<em><b>CONSTRUCTIONMANAGER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONSTRUCTIONMANAGER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONSTRUCTIONMANAGER(16, "CONSTRUCTIONMANAGER", "CONSTRUCTIONMANAGER"),
-
-	/**
-	 * The '<em><b>STRUCTURALENGINEER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STRUCTURALENGINEER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STRUCTURALENGINEER(17, "STRUCTURALENGINEER", "STRUCTURALENGINEER"),
-
-	/**
-	 * The '<em><b>MECHANICALENGINEER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MECHANICALENGINEER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MECHANICALENGINEER(18, "MECHANICALENGINEER", "MECHANICALENGINEER"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(19, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>CONSULTANT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONSULTANT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONSULTANT(20, "CONSULTANT", "CONSULTANT"),
-
-	/**
-	 * The '<em><b>MANUFACTURER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MANUFACTURER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MANUFACTURER(21, "MANUFACTURER", "MANUFACTURER"),
-
-	/**
-	 * The '<em><b>SUBCONTRACTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SUBCONTRACTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SUBCONTRACTOR(22, "SUBCONTRACTOR", "SUBCONTRACTOR"),
-
-	/**
-	 * The '<em><b>BUILDINGOWNER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BUILDINGOWNER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	COSTENGINEER(1, "COSTENGINEER", "COSTENGINEER"), /**
+														 * The '<em><b>COMISSIONINGENGINEER</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #COMISSIONINGENGINEER_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	COMISSIONINGENGINEER(2, "COMISSIONINGENGINEER", "COMISSIONINGENGINEER"), /**
+																				 * The '<em><b>BUILDINGOPERATOR</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #BUILDINGOPERATOR_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	BUILDINGOPERATOR(3, "BUILDINGOPERATOR", "BUILDINGOPERATOR"), /**
+																	 * The '<em><b>RESELLER</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #RESELLER_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	RESELLER(4, "RESELLER", "RESELLER"), /**
+											 * The '<em><b>ENGINEER</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #ENGINEER_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	ENGINEER(5, "ENGINEER", "ENGINEER"), /**
+											 * The '<em><b>ARCHITECT</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #ARCHITECT_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	ARCHITECT(6, "ARCHITECT", "ARCHITECT"), /**
+											 * The '<em><b>CLIENT</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #CLIENT_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	CLIENT(7, "CLIENT", "CLIENT"), /**
+									 * The '<em><b>ELECTRICALENGINEER</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #ELECTRICALENGINEER_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	ELECTRICALENGINEER(8, "ELECTRICALENGINEER", "ELECTRICALENGINEER"), /**
+																		 * The '<em><b>PROJECTMANAGER</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #PROJECTMANAGER_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	PROJECTMANAGER(9, "PROJECTMANAGER", "PROJECTMANAGER"), /**
+															 * The '<em><b>CIVILENGINEER</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #CIVILENGINEER_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	CIVILENGINEER(10, "CIVILENGINEER", "CIVILENGINEER"), /**
+															 * The '<em><b>SUPPLIER</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #SUPPLIER_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	SUPPLIER(11, "SUPPLIER", "SUPPLIER"), /**
+											 * The '<em><b>CONTRACTOR</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #CONTRACTOR_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	CONTRACTOR(12, "CONTRACTOR", "CONTRACTOR"), /**
+												 * The '<em><b>FIELDCONSTRUCTIONMANAGER</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #FIELDCONSTRUCTIONMANAGER_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	FIELDCONSTRUCTIONMANAGER(13, "FIELDCONSTRUCTIONMANAGER", "FIELDCONSTRUCTIONMANAGER"), /**
+																							 * The '<em><b>FACILITIESMANAGER</b></em>' literal object.
+																							 * <!-- begin-user-doc -->
+																							 * <!-- end-user-doc -->
+																							 * @see #FACILITIESMANAGER_VALUE
+																							 * @generated
+																							 * @ordered
+																							 */
+	FACILITIESMANAGER(14, "FACILITIESMANAGER", "FACILITIESMANAGER"), /**
+																		 * The '<em><b>OWNER</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #OWNER_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	OWNER(15, "OWNER", "OWNER"), /**
+									 * The '<em><b>CONSTRUCTIONMANAGER</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #CONSTRUCTIONMANAGER_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	CONSTRUCTIONMANAGER(16, "CONSTRUCTIONMANAGER", "CONSTRUCTIONMANAGER"), /**
+																			 * The '<em><b>STRUCTURALENGINEER</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #STRUCTURALENGINEER_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	STRUCTURALENGINEER(17, "STRUCTURALENGINEER", "STRUCTURALENGINEER"), /**
+																		 * The '<em><b>MECHANICALENGINEER</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #MECHANICALENGINEER_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	MECHANICALENGINEER(18, "MECHANICALENGINEER", "MECHANICALENGINEER"), /**
+																		 * The '<em><b>USERDEFINED</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #USERDEFINED_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	USERDEFINED(19, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>CONSULTANT</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #CONSULTANT_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	CONSULTANT(20, "CONSULTANT", "CONSULTANT"), /**
+												 * The '<em><b>MANUFACTURER</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #MANUFACTURER_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	MANUFACTURER(21, "MANUFACTURER", "MANUFACTURER"), /**
+														 * The '<em><b>SUBCONTRACTOR</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #SUBCONTRACTOR_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	SUBCONTRACTOR(22, "SUBCONTRACTOR", "SUBCONTRACTOR"), /**
+															 * The '<em><b>BUILDINGOWNER</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #BUILDINGOWNER_VALUE
+															 * @generated
+															 * @ordered
+															 */
 	BUILDINGOWNER(23, "BUILDINGOWNER", "BUILDINGOWNER");
 
 	/**

@@ -783,15 +783,6 @@ public interface StoreFactory extends EFactory {
 	Geometry createGeometry();
 
 	/**
-	 * Returns a new object of class '<em>Geometry Instance</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Geometry Instance</em>'.
-	 * @generated
-	 */
-	GeometryInstance createGeometryInstance();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

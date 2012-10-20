@@ -50,36 +50,30 @@ public enum IfcPlateTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CURTAIN PANEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CURTAIN_PANEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CURTAIN_PANEL(2, "CURTAIN_PANEL", "CURTAIN_PANEL"),
-
-	/**
-	 * The '<em><b>SHEET</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHEET_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SHEET(3, "SHEET", "SHEET"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>CURTAIN PANEL</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #CURTAIN_PANEL_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	CURTAIN_PANEL(2, "CURTAIN_PANEL", "CURTAIN_PANEL"), /**
+														 * The '<em><b>SHEET</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #SHEET_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	SHEET(3, "SHEET", "SHEET"), /**
+								 * The '<em><b>USERDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #USERDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
 	USERDEFINED(4, "USERDEFINED", "USERDEFINED");
 
 	/**

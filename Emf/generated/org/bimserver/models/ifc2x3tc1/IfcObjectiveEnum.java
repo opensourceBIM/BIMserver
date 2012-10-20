@@ -50,76 +50,62 @@ public enum IfcObjectiveEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DESIGNINTENT(1, "DESIGNINTENT", "DESIGNINTENT"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>TRIGGERCONDITION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRIGGERCONDITION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRIGGERCONDITION(3, "TRIGGERCONDITION", "TRIGGERCONDITION"),
-
-	/**
-	 * The '<em><b>CODECOMPLIANCE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CODECOMPLIANCE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CODECOMPLIANCE(4, "CODECOMPLIANCE", "CODECOMPLIANCE"),
-
-	/**
-	 * The '<em><b>HEALTHANDSAFETY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HEALTHANDSAFETY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HEALTHANDSAFETY(5, "HEALTHANDSAFETY", "HEALTHANDSAFETY"),
-
-	/**
-	 * The '<em><b>SPECIFICATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SPECIFICATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SPECIFICATION(6, "SPECIFICATION", "SPECIFICATION"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>REQUIREMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REQUIREMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	DESIGNINTENT(1, "DESIGNINTENT", "DESIGNINTENT"), /**
+														 * The '<em><b>NOTDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #NOTDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>TRIGGERCONDITION</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #TRIGGERCONDITION_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	TRIGGERCONDITION(3, "TRIGGERCONDITION", "TRIGGERCONDITION"), /**
+																	 * The '<em><b>CODECOMPLIANCE</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #CODECOMPLIANCE_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	CODECOMPLIANCE(4, "CODECOMPLIANCE", "CODECOMPLIANCE"), /**
+															 * The '<em><b>HEALTHANDSAFETY</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #HEALTHANDSAFETY_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	HEALTHANDSAFETY(5, "HEALTHANDSAFETY", "HEALTHANDSAFETY"), /**
+																 * The '<em><b>SPECIFICATION</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #SPECIFICATION_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	SPECIFICATION(6, "SPECIFICATION", "SPECIFICATION"), /**
+														 * The '<em><b>USERDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #USERDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>REQUIREMENT</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #REQUIREMENT_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	REQUIREMENT(8, "REQUIREMENT", "REQUIREMENT");
 
 	/**

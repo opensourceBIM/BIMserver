@@ -50,66 +50,54 @@ public enum IfcFilterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	STRAINER(1, "STRAINER", "STRAINER"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>WATERFILTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WATERFILTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WATERFILTER(3, "WATERFILTER", "WATERFILTER"),
-
-	/**
-	 * The '<em><b>ODORFILTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ODORFILTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ODORFILTER(4, "ODORFILTER", "ODORFILTER"),
-
-	/**
-	 * The '<em><b>OILFILTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OILFILTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OILFILTER(5, "OILFILTER", "OILFILTER"),
-
-	/**
-	 * The '<em><b>AIRPARTICLEFILTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AIRPARTICLEFILTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AIRPARTICLEFILTER(6, "AIRPARTICLEFILTER", "AIRPARTICLEFILTER"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	STRAINER(1, "STRAINER", "STRAINER"), /**
+											 * The '<em><b>NOTDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #NOTDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>WATERFILTER</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #WATERFILTER_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	WATERFILTER(3, "WATERFILTER", "WATERFILTER"), /**
+													 * The '<em><b>ODORFILTER</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #ODORFILTER_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	ODORFILTER(4, "ODORFILTER", "ODORFILTER"), /**
+												 * The '<em><b>OILFILTER</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #OILFILTER_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	OILFILTER(5, "OILFILTER", "OILFILTER"), /**
+											 * The '<em><b>AIRPARTICLEFILTER</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #AIRPARTICLEFILTER_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	AIRPARTICLEFILTER(6, "AIRPARTICLEFILTER", "AIRPARTICLEFILTER"), /**
+																	 * The '<em><b>USERDEFINED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #USERDEFINED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
 	USERDEFINED(7, "USERDEFINED", "USERDEFINED");
 
 	/**

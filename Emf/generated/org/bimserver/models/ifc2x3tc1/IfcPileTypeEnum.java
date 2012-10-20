@@ -50,46 +50,38 @@ public enum IfcPileTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SUPPORT(1, "SUPPORT", "SUPPORT"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>FRICTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FRICTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FRICTION(4, "FRICTION", "FRICTION"),
-
-	/**
-	 * The '<em><b>COHESION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COHESION_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	SUPPORT(1, "SUPPORT", "SUPPORT"), /**
+										 * The '<em><b>NOTDEFINED</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #NOTDEFINED_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>USERDEFINED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #USERDEFINED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>FRICTION</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #FRICTION_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	FRICTION(4, "FRICTION", "FRICTION"), /**
+											 * The '<em><b>COHESION</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #COHESION_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	COHESION(5, "COHESION", "COHESION");
 
 	/**

@@ -50,36 +50,30 @@ public enum IfcArithmeticOperatorEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	MULTIPLY(1, "MULTIPLY", "MULTIPLY"),
-
-	/**
-	 * The '<em><b>SUBTRACT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SUBTRACT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SUBTRACT(2, "SUBTRACT", "SUBTRACT"),
-
-	/**
-	 * The '<em><b>DIVIDE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIVIDE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DIVIDE(3, "DIVIDE", "DIVIDE"),
-
-	/**
-	 * The '<em><b>ADD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ADD_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	MULTIPLY(1, "MULTIPLY", "MULTIPLY"), /**
+											 * The '<em><b>SUBTRACT</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #SUBTRACT_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	SUBTRACT(2, "SUBTRACT", "SUBTRACT"), /**
+											 * The '<em><b>DIVIDE</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #DIVIDE_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	DIVIDE(3, "DIVIDE", "DIVIDE"), /**
+									 * The '<em><b>ADD</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #ADD_VALUE
+									 * @generated
+									 * @ordered
+									 */
 	ADD(4, "ADD", "ADD");
 
 	/**

@@ -50,136 +50,110 @@ public enum IfcWindowPanelOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SIDEHUNGLEFTHAND(1, "SIDEHUNGLEFTHAND", "SIDEHUNGLEFTHAND"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>TOPHUNG</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TOPHUNG_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TOPHUNG(3, "TOPHUNG", "TOPHUNG"),
-
-	/**
-	 * The '<em><b>TILTANDTURNRIGHTHAND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TILTANDTURNRIGHTHAND_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TILTANDTURNRIGHTHAND(4, "TILTANDTURNRIGHTHAND", "TILTANDTURNRIGHTHAND"),
-
-	/**
-	 * The '<em><b>PIVOTHORIZONTAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PIVOTHORIZONTAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PIVOTHORIZONTAL(5, "PIVOTHORIZONTAL", "PIVOTHORIZONTAL"),
-
-	/**
-	 * The '<em><b>SLIDINGHORIZONTAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SLIDINGHORIZONTAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SLIDINGHORIZONTAL(6, "SLIDINGHORIZONTAL", "SLIDINGHORIZONTAL"),
-
-	/**
-	 * The '<em><b>PIVOTVERTICAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PIVOTVERTICAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PIVOTVERTICAL(7, "PIVOTVERTICAL", "PIVOTVERTICAL"),
-
-	/**
-	 * The '<em><b>REMOVABLECASEMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #REMOVABLECASEMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	REMOVABLECASEMENT(8, "REMOVABLECASEMENT", "REMOVABLECASEMENT"),
-
-	/**
-	 * The '<em><b>OTHEROPERATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OTHEROPERATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OTHEROPERATION(9, "OTHEROPERATION", "OTHEROPERATION"),
-
-	/**
-	 * The '<em><b>SIDEHUNGRIGHTHAND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SIDEHUNGRIGHTHAND_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SIDEHUNGRIGHTHAND(10, "SIDEHUNGRIGHTHAND", "SIDEHUNGRIGHTHAND"),
-
-	/**
-	 * The '<em><b>BOTTOMHUNG</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BOTTOMHUNG_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BOTTOMHUNG(11, "BOTTOMHUNG", "BOTTOMHUNG"),
-
-	/**
-	 * The '<em><b>SLIDINGVERTICAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SLIDINGVERTICAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SLIDINGVERTICAL(12, "SLIDINGVERTICAL", "SLIDINGVERTICAL"),
-
-	/**
-	 * The '<em><b>FIXEDCASEMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIXEDCASEMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FIXEDCASEMENT(13, "FIXEDCASEMENT", "FIXEDCASEMENT"),
-
-	/**
-	 * The '<em><b>TILTANDTURNLEFTHAND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TILTANDTURNLEFTHAND_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	SIDEHUNGLEFTHAND(1, "SIDEHUNGLEFTHAND", "SIDEHUNGLEFTHAND"), /**
+																	 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #NOTDEFINED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>TOPHUNG</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #TOPHUNG_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	TOPHUNG(3, "TOPHUNG", "TOPHUNG"), /**
+										 * The '<em><b>TILTANDTURNRIGHTHAND</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #TILTANDTURNRIGHTHAND_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	TILTANDTURNRIGHTHAND(4, "TILTANDTURNRIGHTHAND", "TILTANDTURNRIGHTHAND"), /**
+																				 * The '<em><b>PIVOTHORIZONTAL</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #PIVOTHORIZONTAL_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	PIVOTHORIZONTAL(5, "PIVOTHORIZONTAL", "PIVOTHORIZONTAL"), /**
+																 * The '<em><b>SLIDINGHORIZONTAL</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #SLIDINGHORIZONTAL_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	SLIDINGHORIZONTAL(6, "SLIDINGHORIZONTAL", "SLIDINGHORIZONTAL"), /**
+																	 * The '<em><b>PIVOTVERTICAL</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #PIVOTVERTICAL_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	PIVOTVERTICAL(7, "PIVOTVERTICAL", "PIVOTVERTICAL"), /**
+														 * The '<em><b>REMOVABLECASEMENT</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #REMOVABLECASEMENT_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	REMOVABLECASEMENT(8, "REMOVABLECASEMENT", "REMOVABLECASEMENT"), /**
+																	 * The '<em><b>OTHEROPERATION</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #OTHEROPERATION_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	OTHEROPERATION(9, "OTHEROPERATION", "OTHEROPERATION"), /**
+															 * The '<em><b>SIDEHUNGRIGHTHAND</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #SIDEHUNGRIGHTHAND_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	SIDEHUNGRIGHTHAND(10, "SIDEHUNGRIGHTHAND", "SIDEHUNGRIGHTHAND"), /**
+																		 * The '<em><b>BOTTOMHUNG</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #BOTTOMHUNG_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	BOTTOMHUNG(11, "BOTTOMHUNG", "BOTTOMHUNG"), /**
+												 * The '<em><b>SLIDINGVERTICAL</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #SLIDINGVERTICAL_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	SLIDINGVERTICAL(12, "SLIDINGVERTICAL", "SLIDINGVERTICAL"), /**
+																 * The '<em><b>FIXEDCASEMENT</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #FIXEDCASEMENT_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	FIXEDCASEMENT(13, "FIXEDCASEMENT", "FIXEDCASEMENT"), /**
+															 * The '<em><b>TILTANDTURNLEFTHAND</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #TILTANDTURNLEFTHAND_VALUE
+															 * @generated
+															 * @ordered
+															 */
 	TILTANDTURNLEFTHAND(14, "TILTANDTURNLEFTHAND", "TILTANDTURNLEFTHAND");
 
 	/**

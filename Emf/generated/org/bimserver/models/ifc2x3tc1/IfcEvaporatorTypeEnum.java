@@ -50,66 +50,54 @@ public enum IfcEvaporatorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>FLOODEDSHELLANDTUBE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLOODEDSHELLANDTUBE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLOODEDSHELLANDTUBE(2, "FLOODEDSHELLANDTUBE", "FLOODEDSHELLANDTUBE"),
-
-	/**
-	 * The '<em><b>DIRECTEXPANSIONTUBEINTUBE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIRECTEXPANSIONTUBEINTUBE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DIRECTEXPANSIONTUBEINTUBE(3, "DIRECTEXPANSIONTUBEINTUBE", "DIRECTEXPANSIONTUBEINTUBE"),
-
-	/**
-	 * The '<em><b>DIRECTEXPANSIONBRAZEDPLATE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIRECTEXPANSIONBRAZEDPLATE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DIRECTEXPANSIONBRAZEDPLATE(4, "DIRECTEXPANSIONBRAZEDPLATE", "DIRECTEXPANSIONBRAZEDPLATE"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>DIRECTEXPANSIONSHELLANDTUBE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIRECTEXPANSIONSHELLANDTUBE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DIRECTEXPANSIONSHELLANDTUBE(6, "DIRECTEXPANSIONSHELLANDTUBE", "DIRECTEXPANSIONSHELLANDTUBE"),
-
-	/**
-	 * The '<em><b>SHELLANDCOIL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHELLANDCOIL_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>FLOODEDSHELLANDTUBE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #FLOODEDSHELLANDTUBE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	FLOODEDSHELLANDTUBE(2, "FLOODEDSHELLANDTUBE", "FLOODEDSHELLANDTUBE"), /**
+																			 * The '<em><b>DIRECTEXPANSIONTUBEINTUBE</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #DIRECTEXPANSIONTUBEINTUBE_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	DIRECTEXPANSIONTUBEINTUBE(3, "DIRECTEXPANSIONTUBEINTUBE", "DIRECTEXPANSIONTUBEINTUBE"), /**
+																							 * The '<em><b>DIRECTEXPANSIONBRAZEDPLATE</b></em>' literal object.
+																							 * <!-- begin-user-doc -->
+																							 * <!-- end-user-doc -->
+																							 * @see #DIRECTEXPANSIONBRAZEDPLATE_VALUE
+																							 * @generated
+																							 * @ordered
+																							 */
+	DIRECTEXPANSIONBRAZEDPLATE(4, "DIRECTEXPANSIONBRAZEDPLATE", "DIRECTEXPANSIONBRAZEDPLATE"), /**
+																								 * The '<em><b>USERDEFINED</b></em>' literal object.
+																								 * <!-- begin-user-doc -->
+																								 * <!-- end-user-doc -->
+																								 * @see #USERDEFINED_VALUE
+																								 * @generated
+																								 * @ordered
+																								 */
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>DIRECTEXPANSIONSHELLANDTUBE</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #DIRECTEXPANSIONSHELLANDTUBE_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	DIRECTEXPANSIONSHELLANDTUBE(6, "DIRECTEXPANSIONSHELLANDTUBE", "DIRECTEXPANSIONSHELLANDTUBE"), /**
+																									 * The '<em><b>SHELLANDCOIL</b></em>' literal object.
+																									 * <!-- begin-user-doc -->
+																									 * <!-- end-user-doc -->
+																									 * @see #SHELLANDCOIL_VALUE
+																									 * @generated
+																									 * @ordered
+																									 */
 	SHELLANDCOIL(7, "SHELLANDCOIL", "SHELLANDCOIL");
 
 	/**

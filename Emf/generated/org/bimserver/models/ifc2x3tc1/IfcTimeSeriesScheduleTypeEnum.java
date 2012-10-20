@@ -50,56 +50,46 @@ public enum IfcTimeSeriesScheduleTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>WEEKLY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WEEKLY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WEEKLY(2, "WEEKLY", "WEEKLY"),
-
-	/**
-	 * The '<em><b>MONTHLY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MONTHLY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MONTHLY(3, "MONTHLY", "MONTHLY"),
-
-	/**
-	 * The '<em><b>DAILY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DAILY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DAILY(4, "DAILY", "DAILY"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>ANNUAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ANNUAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>WEEKLY</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #WEEKLY_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	WEEKLY(2, "WEEKLY", "WEEKLY"), /**
+									 * The '<em><b>MONTHLY</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #MONTHLY_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	MONTHLY(3, "MONTHLY", "MONTHLY"), /**
+										 * The '<em><b>DAILY</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #DAILY_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	DAILY(4, "DAILY", "DAILY"), /**
+								 * The '<em><b>USERDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #USERDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>ANNUAL</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #ANNUAL_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	ANNUAL(6, "ANNUAL", "ANNUAL");
 
 	/**

@@ -50,296 +50,238 @@ public enum IfcUnitEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICRESISTANCEUNIT(1, "ELECTRICRESISTANCEUNIT", "ELECTRICRESISTANCEUNIT"),
-
-	/**
-	 * The '<em><b>ELECTRICCURRENTUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELECTRICCURRENTUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELECTRICCURRENTUNIT(2, "ELECTRICCURRENTUNIT", "ELECTRICCURRENTUNIT"),
-
-	/**
-	 * The '<em><b>ILLUMINANCEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ILLUMINANCEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ILLUMINANCEUNIT(3, "ILLUMINANCEUNIT", "ILLUMINANCEUNIT"),
-
-	/**
-	 * The '<em><b>FREQUENCYUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FREQUENCYUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FREQUENCYUNIT(4, "FREQUENCYUNIT", "FREQUENCYUNIT"),
-
-	/**
-	 * The '<em><b>AREAUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AREAUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AREAUNIT(5, "AREAUNIT", "AREAUNIT"),
-
-	/**
-	 * The '<em><b>TIMEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TIMEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TIMEUNIT(6, "TIMEUNIT", "TIMEUNIT"),
-
-	/**
-	 * The '<em><b>ELECTRICCHARGEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELECTRICCHARGEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELECTRICCHARGEUNIT(7, "ELECTRICCHARGEUNIT", "ELECTRICCHARGEUNIT"),
-
-	/**
-	 * The '<em><b>FORCEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FORCEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FORCEUNIT(8, "FORCEUNIT", "FORCEUNIT"),
-
-	/**
-	 * The '<em><b>LENGTHUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LENGTHUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LENGTHUNIT(9, "LENGTHUNIT", "LENGTHUNIT"),
-
-	/**
-	 * The '<em><b>RADIOACTIVITYUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RADIOACTIVITYUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RADIOACTIVITYUNIT(10, "RADIOACTIVITYUNIT", "RADIOACTIVITYUNIT"),
-
-	/**
-	 * The '<em><b>DOSEEQUIVALENTUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DOSEEQUIVALENTUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DOSEEQUIVALENTUNIT(11, "DOSEEQUIVALENTUNIT", "DOSEEQUIVALENTUNIT"),
-
-	/**
-	 * The '<em><b>INDUCTANCEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INDUCTANCEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INDUCTANCEUNIT(12, "INDUCTANCEUNIT", "INDUCTANCEUNIT"),
-
-	/**
-	 * The '<em><b>MAGNETICFLUXDENSITYUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MAGNETICFLUXDENSITYUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MAGNETICFLUXDENSITYUNIT(13, "MAGNETICFLUXDENSITYUNIT", "MAGNETICFLUXDENSITYUNIT"),
-
-	/**
-	 * The '<em><b>LUMINOUSINTENSITYUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LUMINOUSINTENSITYUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LUMINOUSINTENSITYUNIT(14, "LUMINOUSINTENSITYUNIT", "LUMINOUSINTENSITYUNIT"),
-
-	/**
-	 * The '<em><b>LUMINOUSFLUXUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LUMINOUSFLUXUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LUMINOUSFLUXUNIT(15, "LUMINOUSFLUXUNIT", "LUMINOUSFLUXUNIT"),
-
-	/**
-	 * The '<em><b>VOLUMEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VOLUMEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VOLUMEUNIT(16, "VOLUMEUNIT", "VOLUMEUNIT"),
-
-	/**
-	 * The '<em><b>ELECTRICCONDUCTANCEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELECTRICCONDUCTANCEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELECTRICCONDUCTANCEUNIT(17, "ELECTRICCONDUCTANCEUNIT", "ELECTRICCONDUCTANCEUNIT"),
-
-	/**
-	 * The '<em><b>AMOUNTOFSUBSTANCEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AMOUNTOFSUBSTANCEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AMOUNTOFSUBSTANCEUNIT(18, "AMOUNTOFSUBSTANCEUNIT", "AMOUNTOFSUBSTANCEUNIT"),
-
-	/**
-	 * The '<em><b>ENERGYUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ENERGYUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ENERGYUNIT(19, "ENERGYUNIT", "ENERGYUNIT"),
-
-	/**
-	 * The '<em><b>POWERUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #POWERUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	POWERUNIT(20, "POWERUNIT", "POWERUNIT"),
-
-	/**
-	 * The '<em><b>SOLIDANGLEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SOLIDANGLEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SOLIDANGLEUNIT(21, "SOLIDANGLEUNIT", "SOLIDANGLEUNIT"),
-
-	/**
-	 * The '<em><b>ELECTRICVOLTAGEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELECTRICVOLTAGEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELECTRICVOLTAGEUNIT(22, "ELECTRICVOLTAGEUNIT", "ELECTRICVOLTAGEUNIT"),
-
-	/**
-	 * The '<em><b>ELECTRICCAPACITANCEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELECTRICCAPACITANCEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELECTRICCAPACITANCEUNIT(23, "ELECTRICCAPACITANCEUNIT", "ELECTRICCAPACITANCEUNIT"),
-
-	/**
-	 * The '<em><b>PRESSUREUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PRESSUREUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PRESSUREUNIT(24, "PRESSUREUNIT", "PRESSUREUNIT"),
-
-	/**
-	 * The '<em><b>THERMODYNAMICTEMPERATUREUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THERMODYNAMICTEMPERATUREUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	THERMODYNAMICTEMPERATUREUNIT(25, "THERMODYNAMICTEMPERATUREUNIT", "THERMODYNAMICTEMPERATUREUNIT"),
-
-	/**
-	 * The '<em><b>MASSUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MASSUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MASSUNIT(26, "MASSUNIT", "MASSUNIT"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(27, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>ABSORBEDDOSEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ABSORBEDDOSEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ABSORBEDDOSEUNIT(28, "ABSORBEDDOSEUNIT", "ABSORBEDDOSEUNIT"),
-
-	/**
-	 * The '<em><b>MAGNETICFLUXUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MAGNETICFLUXUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MAGNETICFLUXUNIT(29, "MAGNETICFLUXUNIT", "MAGNETICFLUXUNIT"),
-
-	/**
-	 * The '<em><b>PLANEANGLEUNIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PLANEANGLEUNIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	ELECTRICRESISTANCEUNIT(1, "ELECTRICRESISTANCEUNIT", "ELECTRICRESISTANCEUNIT"), /**
+																					 * The '<em><b>ELECTRICCURRENTUNIT</b></em>' literal object.
+																					 * <!-- begin-user-doc -->
+																					 * <!-- end-user-doc -->
+																					 * @see #ELECTRICCURRENTUNIT_VALUE
+																					 * @generated
+																					 * @ordered
+																					 */
+	ELECTRICCURRENTUNIT(2, "ELECTRICCURRENTUNIT", "ELECTRICCURRENTUNIT"), /**
+																			 * The '<em><b>ILLUMINANCEUNIT</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #ILLUMINANCEUNIT_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	ILLUMINANCEUNIT(3, "ILLUMINANCEUNIT", "ILLUMINANCEUNIT"), /**
+																 * The '<em><b>FREQUENCYUNIT</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #FREQUENCYUNIT_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	FREQUENCYUNIT(4, "FREQUENCYUNIT", "FREQUENCYUNIT"), /**
+														 * The '<em><b>AREAUNIT</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #AREAUNIT_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	AREAUNIT(5, "AREAUNIT", "AREAUNIT"), /**
+											 * The '<em><b>TIMEUNIT</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #TIMEUNIT_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	TIMEUNIT(6, "TIMEUNIT", "TIMEUNIT"), /**
+											 * The '<em><b>ELECTRICCHARGEUNIT</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #ELECTRICCHARGEUNIT_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	ELECTRICCHARGEUNIT(7, "ELECTRICCHARGEUNIT", "ELECTRICCHARGEUNIT"), /**
+																		 * The '<em><b>FORCEUNIT</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #FORCEUNIT_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	FORCEUNIT(8, "FORCEUNIT", "FORCEUNIT"), /**
+											 * The '<em><b>LENGTHUNIT</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #LENGTHUNIT_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	LENGTHUNIT(9, "LENGTHUNIT", "LENGTHUNIT"), /**
+												 * The '<em><b>RADIOACTIVITYUNIT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #RADIOACTIVITYUNIT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	RADIOACTIVITYUNIT(10, "RADIOACTIVITYUNIT", "RADIOACTIVITYUNIT"), /**
+																		 * The '<em><b>DOSEEQUIVALENTUNIT</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #DOSEEQUIVALENTUNIT_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	DOSEEQUIVALENTUNIT(11, "DOSEEQUIVALENTUNIT", "DOSEEQUIVALENTUNIT"), /**
+																		 * The '<em><b>INDUCTANCEUNIT</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #INDUCTANCEUNIT_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	INDUCTANCEUNIT(12, "INDUCTANCEUNIT", "INDUCTANCEUNIT"), /**
+															 * The '<em><b>MAGNETICFLUXDENSITYUNIT</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #MAGNETICFLUXDENSITYUNIT_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	MAGNETICFLUXDENSITYUNIT(13, "MAGNETICFLUXDENSITYUNIT", "MAGNETICFLUXDENSITYUNIT"), /**
+																						 * The '<em><b>LUMINOUSINTENSITYUNIT</b></em>' literal object.
+																						 * <!-- begin-user-doc -->
+																						 * <!-- end-user-doc -->
+																						 * @see #LUMINOUSINTENSITYUNIT_VALUE
+																						 * @generated
+																						 * @ordered
+																						 */
+	LUMINOUSINTENSITYUNIT(14, "LUMINOUSINTENSITYUNIT", "LUMINOUSINTENSITYUNIT"), /**
+																					 * The '<em><b>LUMINOUSFLUXUNIT</b></em>' literal object.
+																					 * <!-- begin-user-doc -->
+																					 * <!-- end-user-doc -->
+																					 * @see #LUMINOUSFLUXUNIT_VALUE
+																					 * @generated
+																					 * @ordered
+																					 */
+	LUMINOUSFLUXUNIT(15, "LUMINOUSFLUXUNIT", "LUMINOUSFLUXUNIT"), /**
+																	 * The '<em><b>VOLUMEUNIT</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #VOLUMEUNIT_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	VOLUMEUNIT(16, "VOLUMEUNIT", "VOLUMEUNIT"), /**
+												 * The '<em><b>ELECTRICCONDUCTANCEUNIT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #ELECTRICCONDUCTANCEUNIT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	ELECTRICCONDUCTANCEUNIT(17, "ELECTRICCONDUCTANCEUNIT", "ELECTRICCONDUCTANCEUNIT"), /**
+																						 * The '<em><b>AMOUNTOFSUBSTANCEUNIT</b></em>' literal object.
+																						 * <!-- begin-user-doc -->
+																						 * <!-- end-user-doc -->
+																						 * @see #AMOUNTOFSUBSTANCEUNIT_VALUE
+																						 * @generated
+																						 * @ordered
+																						 */
+	AMOUNTOFSUBSTANCEUNIT(18, "AMOUNTOFSUBSTANCEUNIT", "AMOUNTOFSUBSTANCEUNIT"), /**
+																					 * The '<em><b>ENERGYUNIT</b></em>' literal object.
+																					 * <!-- begin-user-doc -->
+																					 * <!-- end-user-doc -->
+																					 * @see #ENERGYUNIT_VALUE
+																					 * @generated
+																					 * @ordered
+																					 */
+	ENERGYUNIT(19, "ENERGYUNIT", "ENERGYUNIT"), /**
+												 * The '<em><b>POWERUNIT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #POWERUNIT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	POWERUNIT(20, "POWERUNIT", "POWERUNIT"), /**
+												 * The '<em><b>SOLIDANGLEUNIT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #SOLIDANGLEUNIT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	SOLIDANGLEUNIT(21, "SOLIDANGLEUNIT", "SOLIDANGLEUNIT"), /**
+															 * The '<em><b>ELECTRICVOLTAGEUNIT</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #ELECTRICVOLTAGEUNIT_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	ELECTRICVOLTAGEUNIT(22, "ELECTRICVOLTAGEUNIT", "ELECTRICVOLTAGEUNIT"), /**
+																			 * The '<em><b>ELECTRICCAPACITANCEUNIT</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #ELECTRICCAPACITANCEUNIT_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	ELECTRICCAPACITANCEUNIT(23, "ELECTRICCAPACITANCEUNIT", "ELECTRICCAPACITANCEUNIT"), /**
+																						 * The '<em><b>PRESSUREUNIT</b></em>' literal object.
+																						 * <!-- begin-user-doc -->
+																						 * <!-- end-user-doc -->
+																						 * @see #PRESSUREUNIT_VALUE
+																						 * @generated
+																						 * @ordered
+																						 */
+	PRESSUREUNIT(24, "PRESSUREUNIT", "PRESSUREUNIT"), /**
+														 * The '<em><b>THERMODYNAMICTEMPERATUREUNIT</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #THERMODYNAMICTEMPERATUREUNIT_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	THERMODYNAMICTEMPERATUREUNIT(25, "THERMODYNAMICTEMPERATUREUNIT", "THERMODYNAMICTEMPERATUREUNIT"), /**
+																										 * The '<em><b>MASSUNIT</b></em>' literal object.
+																										 * <!-- begin-user-doc -->
+																										 * <!-- end-user-doc -->
+																										 * @see #MASSUNIT_VALUE
+																										 * @generated
+																										 * @ordered
+																										 */
+	MASSUNIT(26, "MASSUNIT", "MASSUNIT"), /**
+											 * The '<em><b>USERDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #USERDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	USERDEFINED(27, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>ABSORBEDDOSEUNIT</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #ABSORBEDDOSEUNIT_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	ABSORBEDDOSEUNIT(28, "ABSORBEDDOSEUNIT", "ABSORBEDDOSEUNIT"), /**
+																	 * The '<em><b>MAGNETICFLUXUNIT</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #MAGNETICFLUXUNIT_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	MAGNETICFLUXUNIT(29, "MAGNETICFLUXUNIT", "MAGNETICFLUXUNIT"), /**
+																	 * The '<em><b>PLANEANGLEUNIT</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #PLANEANGLEUNIT_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
 	PLANEANGLEUNIT(30, "PLANEANGLEUNIT", "PLANEANGLEUNIT");
 
 	/**

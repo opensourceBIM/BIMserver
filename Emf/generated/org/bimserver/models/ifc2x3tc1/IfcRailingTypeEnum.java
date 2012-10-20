@@ -50,46 +50,38 @@ public enum IfcRailingTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>HANDRAIL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HANDRAIL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HANDRAIL(2, "HANDRAIL", "HANDRAIL"),
-
-	/**
-	 * The '<em><b>GUARDRAIL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GUARDRAIL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GUARDRAIL(3, "GUARDRAIL", "GUARDRAIL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>BALUSTRADE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BALUSTRADE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>HANDRAIL</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #HANDRAIL_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	HANDRAIL(2, "HANDRAIL", "HANDRAIL"), /**
+											 * The '<em><b>GUARDRAIL</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #GUARDRAIL_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	GUARDRAIL(3, "GUARDRAIL", "GUARDRAIL"), /**
+											 * The '<em><b>USERDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #USERDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>BALUSTRADE</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #BALUSTRADE_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	BALUSTRADE(5, "BALUSTRADE", "BALUSTRADE");
 
 	/**

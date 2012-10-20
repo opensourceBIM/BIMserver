@@ -50,16 +50,14 @@ public enum IfcSectionTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	UNIFORM(1, "UNIFORM", "UNIFORM"),
-
-	/**
-	 * The '<em><b>TAPERED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TAPERED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	UNIFORM(1, "UNIFORM", "UNIFORM"), /**
+										 * The '<em><b>TAPERED</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #TAPERED_VALUE
+										 * @generated
+										 * @ordered
+										 */
 	TAPERED(2, "TAPERED", "TAPERED");
 
 	/**

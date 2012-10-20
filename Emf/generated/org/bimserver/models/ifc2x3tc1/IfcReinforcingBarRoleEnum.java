@@ -50,86 +50,70 @@ public enum IfcReinforcingBarRoleEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RING(1, "RING", "RING"),
-
-	/**
-	 * The '<em><b>MAIN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MAIN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MAIN(2, "MAIN", "MAIN"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>LIGATURE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LIGATURE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LIGATURE(4, "LIGATURE", "LIGATURE"),
-
-	/**
-	 * The '<em><b>PUNCHING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PUNCHING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PUNCHING(5, "PUNCHING", "PUNCHING"),
-
-	/**
-	 * The '<em><b>SHEAR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHEAR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SHEAR(6, "SHEAR", "SHEAR"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>STUD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STUD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STUD(8, "STUD", "STUD"),
-
-	/**
-	 * The '<em><b>EDGE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EDGE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	RING(1, "RING", "RING"), /**
+								 * The '<em><b>MAIN</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #MAIN_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	MAIN(2, "MAIN", "MAIN"), /**
+								 * The '<em><b>NOTDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #NOTDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>LIGATURE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #LIGATURE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	LIGATURE(4, "LIGATURE", "LIGATURE"), /**
+											 * The '<em><b>PUNCHING</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #PUNCHING_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	PUNCHING(5, "PUNCHING", "PUNCHING"), /**
+											 * The '<em><b>SHEAR</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #SHEAR_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	SHEAR(6, "SHEAR", "SHEAR"), /**
+								 * The '<em><b>USERDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #USERDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>STUD</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #STUD_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	STUD(8, "STUD", "STUD"), /**
+								 * The '<em><b>EDGE</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #EDGE_VALUE
+								 * @generated
+								 * @ordered
+								 */
 	EDGE(9, "EDGE", "EDGE");
 
 	/**

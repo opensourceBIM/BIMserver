@@ -50,76 +50,62 @@ public enum IfcLampTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	HIGHPRESSUREMERCURY(1, "HIGHPRESSUREMERCURY", "HIGHPRESSUREMERCURY"),
-
-	/**
-	 * The '<em><b>COMPACTFLUORESCENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMPACTFLUORESCENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMPACTFLUORESCENT(2, "COMPACTFLUORESCENT", "COMPACTFLUORESCENT"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>TUNGSTENFILAMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TUNGSTENFILAMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TUNGSTENFILAMENT(4, "TUNGSTENFILAMENT", "TUNGSTENFILAMENT"),
-
-	/**
-	 * The '<em><b>METALHALIDE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #METALHALIDE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	METALHALIDE(5, "METALHALIDE", "METALHALIDE"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>HIGHPRESSURESODIUM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HIGHPRESSURESODIUM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HIGHPRESSURESODIUM(7, "HIGHPRESSURESODIUM", "HIGHPRESSURESODIUM"),
-
-	/**
-	 * The '<em><b>FLUORESCENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLUORESCENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	HIGHPRESSUREMERCURY(1, "HIGHPRESSUREMERCURY", "HIGHPRESSUREMERCURY"), /**
+																			 * The '<em><b>COMPACTFLUORESCENT</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #COMPACTFLUORESCENT_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	COMPACTFLUORESCENT(2, "COMPACTFLUORESCENT", "COMPACTFLUORESCENT"), /**
+																		 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #NOTDEFINED_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>TUNGSTENFILAMENT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #TUNGSTENFILAMENT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	TUNGSTENFILAMENT(4, "TUNGSTENFILAMENT", "TUNGSTENFILAMENT"), /**
+																	 * The '<em><b>METALHALIDE</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #METALHALIDE_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	METALHALIDE(5, "METALHALIDE", "METALHALIDE"), /**
+													 * The '<em><b>USERDEFINED</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #USERDEFINED_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>HIGHPRESSURESODIUM</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #HIGHPRESSURESODIUM_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	HIGHPRESSURESODIUM(7, "HIGHPRESSURESODIUM", "HIGHPRESSURESODIUM"), /**
+																		 * The '<em><b>FLUORESCENT</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #FLUORESCENT_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
 	FLUORESCENT(8, "FLUORESCENT", "FLUORESCENT");
 
 	/**

@@ -50,56 +50,46 @@ public enum IfcEnergySequenceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SECONDARY(1, "SECONDARY", "SECONDARY"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>PRIMARY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PRIMARY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PRIMARY(3, "PRIMARY", "PRIMARY"),
-
-	/**
-	 * The '<em><b>TERTIARY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TERTIARY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TERTIARY(4, "TERTIARY", "TERTIARY"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>AUXILIARY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AUXILIARY_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	SECONDARY(1, "SECONDARY", "SECONDARY"), /**
+											 * The '<em><b>NOTDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #NOTDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>PRIMARY</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #PRIMARY_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	PRIMARY(3, "PRIMARY", "PRIMARY"), /**
+										 * The '<em><b>TERTIARY</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #TERTIARY_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	TERTIARY(4, "TERTIARY", "TERTIARY"), /**
+											 * The '<em><b>USERDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #USERDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>AUXILIARY</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #AUXILIARY_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	AUXILIARY(6, "AUXILIARY", "AUXILIARY");
 
 	/**

@@ -50,56 +50,46 @@ public enum IfcSlabTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>BASESLAB</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BASESLAB_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BASESLAB(2, "BASESLAB", "BASESLAB"),
-
-	/**
-	 * The '<em><b>FLOOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLOOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLOOR(3, "FLOOR", "FLOOR"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>LANDING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LANDING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LANDING(5, "LANDING", "LANDING"),
-
-	/**
-	 * The '<em><b>ROOF</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ROOF_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>BASESLAB</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #BASESLAB_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	BASESLAB(2, "BASESLAB", "BASESLAB"), /**
+											 * The '<em><b>FLOOR</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #FLOOR_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	FLOOR(3, "FLOOR", "FLOOR"), /**
+								 * The '<em><b>USERDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #USERDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>LANDING</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #LANDING_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	LANDING(5, "LANDING", "LANDING"), /**
+										 * The '<em><b>ROOF</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #ROOF_VALUE
+										 * @generated
+										 * @ordered
+										 */
 	ROOF(6, "ROOF", "ROOF");
 
 	/**

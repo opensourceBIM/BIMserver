@@ -50,46 +50,38 @@ public enum IfcStructuralSurfaceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SHELL(1, "SHELL", "SHELL"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>MEMBRANE ELEMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MEMBRANE_ELEMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MEMBRANE_ELEMENT(3, "MEMBRANE_ELEMENT", "MEMBRANE_ELEMENT"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>BENDING ELEMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BENDING_ELEMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	SHELL(1, "SHELL", "SHELL"), /**
+								 * The '<em><b>NOTDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #NOTDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>MEMBRANE ELEMENT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #MEMBRANE_ELEMENT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	MEMBRANE_ELEMENT(3, "MEMBRANE_ELEMENT", "MEMBRANE_ELEMENT"), /**
+																	 * The '<em><b>USERDEFINED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #USERDEFINED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>BENDING ELEMENT</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #BENDING_ELEMENT_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	BENDING_ELEMENT(5, "BENDING_ELEMENT", "BENDING_ELEMENT");
 
 	/**

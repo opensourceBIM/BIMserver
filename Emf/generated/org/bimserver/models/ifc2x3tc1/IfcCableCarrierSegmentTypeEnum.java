@@ -50,56 +50,46 @@ public enum IfcCableCarrierSegmentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CABLETRUNKINGSEGMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CABLETRUNKINGSEGMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CABLETRUNKINGSEGMENT(2, "CABLETRUNKINGSEGMENT", "CABLETRUNKINGSEGMENT"),
-
-	/**
-	 * The '<em><b>CABLETRAYSEGMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CABLETRAYSEGMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CABLETRAYSEGMENT(3, "CABLETRAYSEGMENT", "CABLETRAYSEGMENT"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>CABLELADDERSEGMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CABLELADDERSEGMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CABLELADDERSEGMENT(5, "CABLELADDERSEGMENT", "CABLELADDERSEGMENT"),
-
-	/**
-	 * The '<em><b>CONDUITSEGMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONDUITSEGMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>CABLETRUNKINGSEGMENT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #CABLETRUNKINGSEGMENT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	CABLETRUNKINGSEGMENT(2, "CABLETRUNKINGSEGMENT", "CABLETRUNKINGSEGMENT"), /**
+																				 * The '<em><b>CABLETRAYSEGMENT</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #CABLETRAYSEGMENT_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	CABLETRAYSEGMENT(3, "CABLETRAYSEGMENT", "CABLETRAYSEGMENT"), /**
+																	 * The '<em><b>USERDEFINED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #USERDEFINED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>CABLELADDERSEGMENT</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #CABLELADDERSEGMENT_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	CABLELADDERSEGMENT(5, "CABLELADDERSEGMENT", "CABLELADDERSEGMENT"), /**
+																		 * The '<em><b>CONDUITSEGMENT</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #CONDUITSEGMENT_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
 	CONDUITSEGMENT(6, "CONDUITSEGMENT", "CONDUITSEGMENT");
 
 	/**

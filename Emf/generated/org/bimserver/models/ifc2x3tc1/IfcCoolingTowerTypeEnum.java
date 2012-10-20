@@ -50,46 +50,38 @@ public enum IfcCoolingTowerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NATURALDRAFT(1, "NATURALDRAFT", "NATURALDRAFT"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>MECHANICALINDUCEDDRAFT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MECHANICALINDUCEDDRAFT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MECHANICALINDUCEDDRAFT(3, "MECHANICALINDUCEDDRAFT", "MECHANICALINDUCEDDRAFT"),
-
-	/**
-	 * The '<em><b>MECHANICALFORCEDDRAFT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MECHANICALFORCEDDRAFT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MECHANICALFORCEDDRAFT(4, "MECHANICALFORCEDDRAFT", "MECHANICALFORCEDDRAFT"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NATURALDRAFT(1, "NATURALDRAFT", "NATURALDRAFT"), /**
+														 * The '<em><b>NOTDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #NOTDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>MECHANICALINDUCEDDRAFT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #MECHANICALINDUCEDDRAFT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	MECHANICALINDUCEDDRAFT(3, "MECHANICALINDUCEDDRAFT", "MECHANICALINDUCEDDRAFT"), /**
+																					 * The '<em><b>MECHANICALFORCEDDRAFT</b></em>' literal object.
+																					 * <!-- begin-user-doc -->
+																					 * <!-- end-user-doc -->
+																					 * @see #MECHANICALFORCEDDRAFT_VALUE
+																					 * @generated
+																					 * @ordered
+																					 */
+	MECHANICALFORCEDDRAFT(4, "MECHANICALFORCEDDRAFT", "MECHANICALFORCEDDRAFT"), /**
+																				 * The '<em><b>USERDEFINED</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #USERDEFINED_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
 	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
 
 	/**

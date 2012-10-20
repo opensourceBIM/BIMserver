@@ -50,66 +50,54 @@ public enum IfcStructuralCurveTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CABLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CABLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CABLE(2, "CABLE", "CABLE"),
-
-	/**
-	 * The '<em><b>TENSION MEMBER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TENSION_MEMBER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TENSION_MEMBER(3, "TENSION_MEMBER", "TENSION_MEMBER"),
-
-	/**
-	 * The '<em><b>COMPRESSION MEMBER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMPRESSION_MEMBER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMPRESSION_MEMBER(4, "COMPRESSION_MEMBER", "COMPRESSION_MEMBER"),
-
-	/**
-	 * The '<em><b>PIN JOINED MEMBER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PIN_JOINED_MEMBER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PIN_JOINED_MEMBER(5, "PIN_JOINED_MEMBER", "PIN_JOINED_MEMBER"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>RIGID JOINED MEMBER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RIGID_JOINED_MEMBER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>CABLE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #CABLE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	CABLE(2, "CABLE", "CABLE"), /**
+								 * The '<em><b>TENSION MEMBER</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #TENSION_MEMBER_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	TENSION_MEMBER(3, "TENSION_MEMBER", "TENSION_MEMBER"), /**
+															 * The '<em><b>COMPRESSION MEMBER</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #COMPRESSION_MEMBER_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	COMPRESSION_MEMBER(4, "COMPRESSION_MEMBER", "COMPRESSION_MEMBER"), /**
+																		 * The '<em><b>PIN JOINED MEMBER</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #PIN_JOINED_MEMBER_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	PIN_JOINED_MEMBER(5, "PIN_JOINED_MEMBER", "PIN_JOINED_MEMBER"), /**
+																	 * The '<em><b>USERDEFINED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #USERDEFINED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>RIGID JOINED MEMBER</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #RIGID_JOINED_MEMBER_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	RIGID_JOINED_MEMBER(7, "RIGID_JOINED_MEMBER", "RIGID_JOINED_MEMBER");
 
 	/**

@@ -50,146 +50,118 @@ public enum IfcSensorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FIRESENSOR(1, "FIRESENSOR", "FIRESENSOR"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>HEATSENSOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HEATSENSOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HEATSENSOR(3, "HEATSENSOR", "HEATSENSOR"),
-
-	/**
-	 * The '<em><b>MOVEMENTSENSOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MOVEMENTSENSOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MOVEMENTSENSOR(4, "MOVEMENTSENSOR", "MOVEMENTSENSOR"),
-
-	/**
-	 * The '<em><b>FLOWSENSOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FLOWSENSOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FLOWSENSOR(5, "FLOWSENSOR", "FLOWSENSOR"),
-
-	/**
-	 * The '<em><b>MOISTURESENSOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MOISTURESENSOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MOISTURESENSOR(6, "MOISTURESENSOR", "MOISTURESENSOR"),
-
-	/**
-	 * The '<em><b>LIGHTSENSOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LIGHTSENSOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LIGHTSENSOR(7, "LIGHTSENSOR", "LIGHTSENSOR"),
-
-	/**
-	 * The '<em><b>SMOKESENSOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SMOKESENSOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SMOKESENSOR(8, "SMOKESENSOR", "SMOKESENSOR"),
-
-	/**
-	 * The '<em><b>GASSENSOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GASSENSOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GASSENSOR(9, "GASSENSOR", "GASSENSOR"),
-
-	/**
-	 * The '<em><b>TEMPERATURESENSOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TEMPERATURESENSOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TEMPERATURESENSOR(10, "TEMPERATURESENSOR", "TEMPERATURESENSOR"),
-
-	/**
-	 * The '<em><b>PRESSURESENSOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PRESSURESENSOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PRESSURESENSOR(11, "PRESSURESENSOR", "PRESSURESENSOR"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(12, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>HUMIDITYSENSOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HUMIDITYSENSOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HUMIDITYSENSOR(13, "HUMIDITYSENSOR", "HUMIDITYSENSOR"),
-
-	/**
-	 * The '<em><b>CO2SENSOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CO2SENSOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CO2SENSOR(14, "CO2SENSOR", "CO2SENSOR"),
-
-	/**
-	 * The '<em><b>SOUNDSENSOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SOUNDSENSOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	FIRESENSOR(1, "FIRESENSOR", "FIRESENSOR"), /**
+												 * The '<em><b>NOTDEFINED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #NOTDEFINED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>HEATSENSOR</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #HEATSENSOR_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	HEATSENSOR(3, "HEATSENSOR", "HEATSENSOR"), /**
+												 * The '<em><b>MOVEMENTSENSOR</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #MOVEMENTSENSOR_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	MOVEMENTSENSOR(4, "MOVEMENTSENSOR", "MOVEMENTSENSOR"), /**
+															 * The '<em><b>FLOWSENSOR</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #FLOWSENSOR_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	FLOWSENSOR(5, "FLOWSENSOR", "FLOWSENSOR"), /**
+												 * The '<em><b>MOISTURESENSOR</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #MOISTURESENSOR_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	MOISTURESENSOR(6, "MOISTURESENSOR", "MOISTURESENSOR"), /**
+															 * The '<em><b>LIGHTSENSOR</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #LIGHTSENSOR_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	LIGHTSENSOR(7, "LIGHTSENSOR", "LIGHTSENSOR"), /**
+													 * The '<em><b>SMOKESENSOR</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #SMOKESENSOR_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	SMOKESENSOR(8, "SMOKESENSOR", "SMOKESENSOR"), /**
+													 * The '<em><b>GASSENSOR</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #GASSENSOR_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	GASSENSOR(9, "GASSENSOR", "GASSENSOR"), /**
+											 * The '<em><b>TEMPERATURESENSOR</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #TEMPERATURESENSOR_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	TEMPERATURESENSOR(10, "TEMPERATURESENSOR", "TEMPERATURESENSOR"), /**
+																		 * The '<em><b>PRESSURESENSOR</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #PRESSURESENSOR_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	PRESSURESENSOR(11, "PRESSURESENSOR", "PRESSURESENSOR"), /**
+															 * The '<em><b>USERDEFINED</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #USERDEFINED_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	USERDEFINED(12, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>HUMIDITYSENSOR</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #HUMIDITYSENSOR_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	HUMIDITYSENSOR(13, "HUMIDITYSENSOR", "HUMIDITYSENSOR"), /**
+															 * The '<em><b>CO2SENSOR</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #CO2SENSOR_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	CO2SENSOR(14, "CO2SENSOR", "CO2SENSOR"), /**
+												 * The '<em><b>SOUNDSENSOR</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #SOUNDSENSOR_VALUE
+												 * @generated
+												 * @ordered
+												 */
 	SOUNDSENSOR(15, "SOUNDSENSOR", "SOUNDSENSOR");
 
 	/**

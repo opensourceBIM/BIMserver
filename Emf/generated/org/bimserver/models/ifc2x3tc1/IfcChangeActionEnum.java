@@ -50,56 +50,46 @@ public enum IfcChangeActionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOCHANGE(1, "NOCHANGE", "NOCHANGE"),
-
-	/**
-	 * The '<em><b>MODIFIEDADDED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MODIFIEDADDED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MODIFIEDADDED(2, "MODIFIEDADDED", "MODIFIEDADDED"),
-
-	/**
-	 * The '<em><b>MODIFIED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MODIFIED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MODIFIED(3, "MODIFIED", "MODIFIED"),
-
-	/**
-	 * The '<em><b>MODIFIEDDELETED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MODIFIEDDELETED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MODIFIEDDELETED(4, "MODIFIEDDELETED", "MODIFIEDDELETED"),
-
-	/**
-	 * The '<em><b>ADDED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ADDED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ADDED(5, "ADDED", "ADDED"),
-
-	/**
-	 * The '<em><b>DELETED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DELETED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOCHANGE(1, "NOCHANGE", "NOCHANGE"), /**
+											 * The '<em><b>MODIFIEDADDED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #MODIFIEDADDED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	MODIFIEDADDED(2, "MODIFIEDADDED", "MODIFIEDADDED"), /**
+														 * The '<em><b>MODIFIED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #MODIFIED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	MODIFIED(3, "MODIFIED", "MODIFIED"), /**
+											 * The '<em><b>MODIFIEDDELETED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #MODIFIEDDELETED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	MODIFIEDDELETED(4, "MODIFIEDDELETED", "MODIFIEDDELETED"), /**
+																 * The '<em><b>ADDED</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #ADDED_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	ADDED(5, "ADDED", "ADDED"), /**
+								 * The '<em><b>DELETED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #DELETED_VALUE
+								 * @generated
+								 * @ordered
+								 */
 	DELETED(6, "DELETED", "DELETED");
 
 	/**

@@ -50,46 +50,38 @@ public enum IfcElectricHeaterTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICMATHEATER(1, "ELECTRICMATHEATER", "ELECTRICMATHEATER"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>ELECTRICCABLEHEATER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELECTRICCABLEHEATER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELECTRICCABLEHEATER(3, "ELECTRICCABLEHEATER", "ELECTRICCABLEHEATER"),
-
-	/**
-	 * The '<em><b>ELECTRICPOINTHEATER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELECTRICPOINTHEATER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ELECTRICPOINTHEATER(4, "ELECTRICPOINTHEATER", "ELECTRICPOINTHEATER"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	ELECTRICMATHEATER(1, "ELECTRICMATHEATER", "ELECTRICMATHEATER"), /**
+																	 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #NOTDEFINED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>ELECTRICCABLEHEATER</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #ELECTRICCABLEHEATER_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	ELECTRICCABLEHEATER(3, "ELECTRICCABLEHEATER", "ELECTRICCABLEHEATER"), /**
+																			 * The '<em><b>ELECTRICPOINTHEATER</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #ELECTRICPOINTHEATER_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	ELECTRICPOINTHEATER(4, "ELECTRICPOINTHEATER", "ELECTRICPOINTHEATER"), /**
+																			 * The '<em><b>USERDEFINED</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #USERDEFINED_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
 	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
 
 	/**

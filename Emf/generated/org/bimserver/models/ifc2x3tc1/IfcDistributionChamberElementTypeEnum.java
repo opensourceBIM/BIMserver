@@ -50,96 +50,78 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	METERCHAMBER(1, "METERCHAMBER", "METERCHAMBER"),
-
-	/**
-	 * The '<em><b>MANHOLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MANHOLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MANHOLE(2, "MANHOLE", "MANHOLE"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>VALVECHAMBER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VALVECHAMBER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VALVECHAMBER(4, "VALVECHAMBER", "VALVECHAMBER"),
-
-	/**
-	 * The '<em><b>INSPECTIONPIT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INSPECTIONPIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INSPECTIONPIT(5, "INSPECTIONPIT", "INSPECTIONPIT"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>SUMP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SUMP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SUMP(7, "SUMP", "SUMP"),
-
-	/**
-	 * The '<em><b>TRENCH</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TRENCH_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TRENCH(8, "TRENCH", "TRENCH"),
-
-	/**
-	 * The '<em><b>INSPECTIONCHAMBER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INSPECTIONCHAMBER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INSPECTIONCHAMBER(9, "INSPECTIONCHAMBER", "INSPECTIONCHAMBER"),
-
-	/**
-	 * The '<em><b>FORMEDDUCT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FORMEDDUCT_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	METERCHAMBER(1, "METERCHAMBER", "METERCHAMBER"), /**
+														 * The '<em><b>MANHOLE</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #MANHOLE_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	MANHOLE(2, "MANHOLE", "MANHOLE"), /**
+										 * The '<em><b>NOTDEFINED</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #NOTDEFINED_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>VALVECHAMBER</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #VALVECHAMBER_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	VALVECHAMBER(4, "VALVECHAMBER", "VALVECHAMBER"), /**
+														 * The '<em><b>INSPECTIONPIT</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #INSPECTIONPIT_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	INSPECTIONPIT(5, "INSPECTIONPIT", "INSPECTIONPIT"), /**
+														 * The '<em><b>USERDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #USERDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>SUMP</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #SUMP_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	SUMP(7, "SUMP", "SUMP"), /**
+								 * The '<em><b>TRENCH</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #TRENCH_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	TRENCH(8, "TRENCH", "TRENCH"), /**
+									 * The '<em><b>INSPECTIONCHAMBER</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #INSPECTIONCHAMBER_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	INSPECTIONCHAMBER(9, "INSPECTIONCHAMBER", "INSPECTIONCHAMBER"), /**
+																	 * The '<em><b>FORMEDDUCT</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #FORMEDDUCT_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
 	FORMEDDUCT(10, "FORMEDDUCT", "FORMEDDUCT");
 
 	/**

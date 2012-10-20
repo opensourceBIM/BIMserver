@@ -50,146 +50,118 @@ public enum IfcHumidifierTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>ADIABATICULTRASONIC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ADIABATICULTRASONIC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ADIABATICULTRASONIC(2, "ADIABATICULTRASONIC", "ADIABATICULTRASONIC"),
-
-	/**
-	 * The '<em><b>STEAMINJECTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STEAMINJECTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STEAMINJECTION(3, "STEAMINJECTION", "STEAMINJECTION"),
-
-	/**
-	 * The '<em><b>ADIABATICWETTEDELEMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ADIABATICWETTEDELEMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ADIABATICWETTEDELEMENT(4, "ADIABATICWETTEDELEMENT", "ADIABATICWETTEDELEMENT"),
-
-	/**
-	 * The '<em><b>ASSISTEDSTEAM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ASSISTEDSTEAM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ASSISTEDSTEAM(5, "ASSISTEDSTEAM", "ASSISTEDSTEAM"),
-
-	/**
-	 * The '<em><b>ADIABATICATOMIZING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ADIABATICATOMIZING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ADIABATICATOMIZING(6, "ADIABATICATOMIZING", "ADIABATICATOMIZING"),
-
-	/**
-	 * The '<em><b>ADIABATICPAN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ADIABATICPAN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ADIABATICPAN(7, "ADIABATICPAN", "ADIABATICPAN"),
-
-	/**
-	 * The '<em><b>ASSISTEDELECTRIC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ASSISTEDELECTRIC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ASSISTEDELECTRIC(8, "ASSISTEDELECTRIC", "ASSISTEDELECTRIC"),
-
-	/**
-	 * The '<em><b>ASSISTEDBUTANE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ASSISTEDBUTANE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ASSISTEDBUTANE(9, "ASSISTEDBUTANE", "ASSISTEDBUTANE"),
-
-	/**
-	 * The '<em><b>ASSISTEDPROPANE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ASSISTEDPROPANE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ASSISTEDPROPANE(10, "ASSISTEDPROPANE", "ASSISTEDPROPANE"),
-
-	/**
-	 * The '<em><b>ADIABATICRIGIDMEDIA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ADIABATICRIGIDMEDIA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ADIABATICRIGIDMEDIA(11, "ADIABATICRIGIDMEDIA", "ADIABATICRIGIDMEDIA"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(12, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>ADIABATICCOMPRESSEDAIRNOZZLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ADIABATICCOMPRESSEDAIRNOZZLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ADIABATICCOMPRESSEDAIRNOZZLE(13, "ADIABATICCOMPRESSEDAIRNOZZLE", "ADIABATICCOMPRESSEDAIRNOZZLE"),
-
-	/**
-	 * The '<em><b>ADIABATICAIRWASHER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ADIABATICAIRWASHER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ADIABATICAIRWASHER(14, "ADIABATICAIRWASHER", "ADIABATICAIRWASHER"),
-
-	/**
-	 * The '<em><b>ASSISTEDNATURALGAS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ASSISTEDNATURALGAS_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>ADIABATICULTRASONIC</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #ADIABATICULTRASONIC_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	ADIABATICULTRASONIC(2, "ADIABATICULTRASONIC", "ADIABATICULTRASONIC"), /**
+																			 * The '<em><b>STEAMINJECTION</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #STEAMINJECTION_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	STEAMINJECTION(3, "STEAMINJECTION", "STEAMINJECTION"), /**
+															 * The '<em><b>ADIABATICWETTEDELEMENT</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #ADIABATICWETTEDELEMENT_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	ADIABATICWETTEDELEMENT(4, "ADIABATICWETTEDELEMENT", "ADIABATICWETTEDELEMENT"), /**
+																					 * The '<em><b>ASSISTEDSTEAM</b></em>' literal object.
+																					 * <!-- begin-user-doc -->
+																					 * <!-- end-user-doc -->
+																					 * @see #ASSISTEDSTEAM_VALUE
+																					 * @generated
+																					 * @ordered
+																					 */
+	ASSISTEDSTEAM(5, "ASSISTEDSTEAM", "ASSISTEDSTEAM"), /**
+														 * The '<em><b>ADIABATICATOMIZING</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #ADIABATICATOMIZING_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	ADIABATICATOMIZING(6, "ADIABATICATOMIZING", "ADIABATICATOMIZING"), /**
+																		 * The '<em><b>ADIABATICPAN</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #ADIABATICPAN_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	ADIABATICPAN(7, "ADIABATICPAN", "ADIABATICPAN"), /**
+														 * The '<em><b>ASSISTEDELECTRIC</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #ASSISTEDELECTRIC_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	ASSISTEDELECTRIC(8, "ASSISTEDELECTRIC", "ASSISTEDELECTRIC"), /**
+																	 * The '<em><b>ASSISTEDBUTANE</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #ASSISTEDBUTANE_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	ASSISTEDBUTANE(9, "ASSISTEDBUTANE", "ASSISTEDBUTANE"), /**
+															 * The '<em><b>ASSISTEDPROPANE</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #ASSISTEDPROPANE_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	ASSISTEDPROPANE(10, "ASSISTEDPROPANE", "ASSISTEDPROPANE"), /**
+																 * The '<em><b>ADIABATICRIGIDMEDIA</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #ADIABATICRIGIDMEDIA_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	ADIABATICRIGIDMEDIA(11, "ADIABATICRIGIDMEDIA", "ADIABATICRIGIDMEDIA"), /**
+																			 * The '<em><b>USERDEFINED</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #USERDEFINED_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	USERDEFINED(12, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>ADIABATICCOMPRESSEDAIRNOZZLE</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #ADIABATICCOMPRESSEDAIRNOZZLE_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	ADIABATICCOMPRESSEDAIRNOZZLE(13, "ADIABATICCOMPRESSEDAIRNOZZLE", "ADIABATICCOMPRESSEDAIRNOZZLE"), /**
+																										 * The '<em><b>ADIABATICAIRWASHER</b></em>' literal object.
+																										 * <!-- begin-user-doc -->
+																										 * <!-- end-user-doc -->
+																										 * @see #ADIABATICAIRWASHER_VALUE
+																										 * @generated
+																										 * @ordered
+																										 */
+	ADIABATICAIRWASHER(14, "ADIABATICAIRWASHER", "ADIABATICAIRWASHER"), /**
+																		 * The '<em><b>ASSISTEDNATURALGAS</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #ASSISTEDNATURALGAS_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
 	ASSISTEDNATURALGAS(15, "ASSISTEDNATURALGAS", "ASSISTEDNATURALGAS");
 
 	/**

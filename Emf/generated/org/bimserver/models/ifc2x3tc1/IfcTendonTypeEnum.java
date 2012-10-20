@@ -50,56 +50,46 @@ public enum IfcTendonTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COATED(1, "COATED", "COATED"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>WIRE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WIRE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WIRE(3, "WIRE", "WIRE"),
-
-	/**
-	 * The '<em><b>STRAND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STRAND_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STRAND(4, "STRAND", "STRAND"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>BAR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BAR_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	COATED(1, "COATED", "COATED"), /**
+									 * The '<em><b>NOTDEFINED</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #NOTDEFINED_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>WIRE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #WIRE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	WIRE(3, "WIRE", "WIRE"), /**
+								 * The '<em><b>STRAND</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #STRAND_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	STRAND(4, "STRAND", "STRAND"), /**
+									 * The '<em><b>USERDEFINED</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #USERDEFINED_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>BAR</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #BAR_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	BAR(6, "BAR", "BAR");
 
 	/**

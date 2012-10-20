@@ -50,26 +50,22 @@ public enum IfcElectricCurrentEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>DIRECT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIRECT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DIRECT(2, "DIRECT", "DIRECT"),
-
-	/**
-	 * The '<em><b>ALTERNATING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ALTERNATING_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>DIRECT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #DIRECT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	DIRECT(2, "DIRECT", "DIRECT"), /**
+									 * The '<em><b>ALTERNATING</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #ALTERNATING_VALUE
+									 * @generated
+									 * @ordered
+									 */
 	ALTERNATING(3, "ALTERNATING", "ALTERNATING");
 
 	/**

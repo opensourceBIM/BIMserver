@@ -50,76 +50,62 @@ public enum IfcCoilTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GASHEATINGCOIL(1, "GASHEATINGCOIL", "GASHEATINGCOIL"),
-
-	/**
-	 * The '<em><b>DXCOOLINGCOIL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DXCOOLINGCOIL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DXCOOLINGCOIL(2, "DXCOOLINGCOIL", "DXCOOLINGCOIL"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>WATERHEATINGCOIL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WATERHEATINGCOIL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WATERHEATINGCOIL(4, "WATERHEATINGCOIL", "WATERHEATINGCOIL"),
-
-	/**
-	 * The '<em><b>STEAMHEATINGCOIL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STEAMHEATINGCOIL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STEAMHEATINGCOIL(5, "STEAMHEATINGCOIL", "STEAMHEATINGCOIL"),
-
-	/**
-	 * The '<em><b>WATERCOOLINGCOIL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WATERCOOLINGCOIL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WATERCOOLINGCOIL(6, "WATERCOOLINGCOIL", "WATERCOOLINGCOIL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>ELECTRICHEATINGCOIL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ELECTRICHEATINGCOIL_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	GASHEATINGCOIL(1, "GASHEATINGCOIL", "GASHEATINGCOIL"), /**
+															 * The '<em><b>DXCOOLINGCOIL</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #DXCOOLINGCOIL_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	DXCOOLINGCOIL(2, "DXCOOLINGCOIL", "DXCOOLINGCOIL"), /**
+														 * The '<em><b>NOTDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #NOTDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>WATERHEATINGCOIL</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #WATERHEATINGCOIL_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	WATERHEATINGCOIL(4, "WATERHEATINGCOIL", "WATERHEATINGCOIL"), /**
+																	 * The '<em><b>STEAMHEATINGCOIL</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #STEAMHEATINGCOIL_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	STEAMHEATINGCOIL(5, "STEAMHEATINGCOIL", "STEAMHEATINGCOIL"), /**
+																	 * The '<em><b>WATERCOOLINGCOIL</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #WATERCOOLINGCOIL_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	WATERCOOLINGCOIL(6, "WATERCOOLINGCOIL", "WATERCOOLINGCOIL"), /**
+																	 * The '<em><b>USERDEFINED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #USERDEFINED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>ELECTRICHEATINGCOIL</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #ELECTRICHEATINGCOIL_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	ELECTRICHEATINGCOIL(8, "ELECTRICHEATINGCOIL", "ELECTRICHEATINGCOIL");
 
 	/**

@@ -50,56 +50,46 @@ public enum IfcLoadGroupTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LOAD_COMBINATION(1, "LOAD_COMBINATION", "LOAD_COMBINATION"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>LOAD COMBINATION GROUP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LOAD_COMBINATION_GROUP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LOAD_COMBINATION_GROUP(3, "LOAD_COMBINATION_GROUP", "LOAD_COMBINATION_GROUP"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>LOAD GROUP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LOAD_GROUP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LOAD_GROUP(5, "LOAD_GROUP", "LOAD_GROUP"),
-
-	/**
-	 * The '<em><b>LOAD CASE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LOAD_CASE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	LOAD_COMBINATION(1, "LOAD_COMBINATION", "LOAD_COMBINATION"), /**
+																	 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #NOTDEFINED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>LOAD COMBINATION GROUP</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #LOAD_COMBINATION_GROUP_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	LOAD_COMBINATION_GROUP(3, "LOAD_COMBINATION_GROUP", "LOAD_COMBINATION_GROUP"), /**
+																					 * The '<em><b>USERDEFINED</b></em>' literal object.
+																					 * <!-- begin-user-doc -->
+																					 * <!-- end-user-doc -->
+																					 * @see #USERDEFINED_VALUE
+																					 * @generated
+																					 * @ordered
+																					 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>LOAD GROUP</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #LOAD_GROUP_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	LOAD_GROUP(5, "LOAD_GROUP", "LOAD_GROUP"), /**
+												 * The '<em><b>LOAD CASE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #LOAD_CASE_VALUE
+												 * @generated
+												 * @ordered
+												 */
 	LOAD_CASE(6, "LOAD_CASE", "LOAD_CASE");
 
 	/**

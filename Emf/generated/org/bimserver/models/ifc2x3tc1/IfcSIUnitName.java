@@ -50,296 +50,238 @@ public enum IfcSIUnitName implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TESLA(1, "TESLA", "TESLA"),
-
-	/**
-	 * The '<em><b>HENRY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HENRY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HENRY(2, "HENRY", "HENRY"),
-
-	/**
-	 * The '<em><b>METRE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #METRE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	METRE(3, "METRE", "METRE"),
-
-	/**
-	 * The '<em><b>SECOND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SECOND_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SECOND(4, "SECOND", "SECOND"),
-
-	/**
-	 * The '<em><b>AMPERE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AMPERE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AMPERE(5, "AMPERE", "AMPERE"),
-
-	/**
-	 * The '<em><b>JOULE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #JOULE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	JOULE(6, "JOULE", "JOULE"),
-
-	/**
-	 * The '<em><b>KELVIN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #KELVIN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	KELVIN(7, "KELVIN", "KELVIN"),
-
-	/**
-	 * The '<em><b>GRAM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GRAM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GRAM(8, "GRAM", "GRAM"),
-
-	/**
-	 * The '<em><b>LUMEN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LUMEN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LUMEN(9, "LUMEN", "LUMEN"),
-
-	/**
-	 * The '<em><b>FARAD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FARAD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FARAD(10, "FARAD", "FARAD"),
-
-	/**
-	 * The '<em><b>STERADIAN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STERADIAN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STERADIAN(11, "STERADIAN", "STERADIAN"),
-
-	/**
-	 * The '<em><b>LUX</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LUX_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LUX(12, "LUX", "LUX"),
-
-	/**
-	 * The '<em><b>DEGREE CELSIUS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DEGREE_CELSIUS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DEGREE_CELSIUS(13, "DEGREE_CELSIUS", "DEGREE_CELSIUS"),
-
-	/**
-	 * The '<em><b>SIEVERT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SIEVERT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SIEVERT(14, "SIEVERT", "SIEVERT"),
-
-	/**
-	 * The '<em><b>CUBIC METRE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CUBIC_METRE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CUBIC_METRE(15, "CUBIC_METRE", "CUBIC_METRE"),
-
-	/**
-	 * The '<em><b>NEWTON</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NEWTON_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NEWTON(16, "NEWTON", "NEWTON"),
-
-	/**
-	 * The '<em><b>WATT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WATT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WATT(17, "WATT", "WATT"),
-
-	/**
-	 * The '<em><b>CANDELA</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CANDELA_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CANDELA(18, "CANDELA", "CANDELA"),
-
-	/**
-	 * The '<em><b>RADIAN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RADIAN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RADIAN(19, "RADIAN", "RADIAN"),
-
-	/**
-	 * The '<em><b>PASCAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PASCAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PASCAL(20, "PASCAL", "PASCAL"),
-
-	/**
-	 * The '<em><b>VOLT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VOLT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VOLT(21, "VOLT", "VOLT"),
-
-	/**
-	 * The '<em><b>WEBER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WEBER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WEBER(22, "WEBER", "WEBER"),
-
-	/**
-	 * The '<em><b>COULOMB</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COULOMB_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COULOMB(23, "COULOMB", "COULOMB"),
-
-	/**
-	 * The '<em><b>SQUARE METRE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SQUARE_METRE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SQUARE_METRE(24, "SQUARE_METRE", "SQUARE_METRE"),
-
-	/**
-	 * The '<em><b>HERTZ</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HERTZ_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HERTZ(25, "HERTZ", "HERTZ"),
-
-	/**
-	 * The '<em><b>SIEMENS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SIEMENS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SIEMENS(26, "SIEMENS", "SIEMENS"),
-
-	/**
-	 * The '<em><b>BECQUEREL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BECQUEREL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BECQUEREL(27, "BECQUEREL", "BECQUEREL"),
-
-	/**
-	 * The '<em><b>MOLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MOLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MOLE(28, "MOLE", "MOLE"),
-
-	/**
-	 * The '<em><b>OHM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OHM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OHM(29, "OHM", "OHM"),
-
-	/**
-	 * The '<em><b>GRAY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GRAY_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	TESLA(1, "TESLA", "TESLA"), /**
+								 * The '<em><b>HENRY</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #HENRY_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	HENRY(2, "HENRY", "HENRY"), /**
+								 * The '<em><b>METRE</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #METRE_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	METRE(3, "METRE", "METRE"), /**
+								 * The '<em><b>SECOND</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #SECOND_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	SECOND(4, "SECOND", "SECOND"), /**
+									 * The '<em><b>AMPERE</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #AMPERE_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	AMPERE(5, "AMPERE", "AMPERE"), /**
+									 * The '<em><b>JOULE</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #JOULE_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	JOULE(6, "JOULE", "JOULE"), /**
+								 * The '<em><b>KELVIN</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #KELVIN_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	KELVIN(7, "KELVIN", "KELVIN"), /**
+									 * The '<em><b>GRAM</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #GRAM_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	GRAM(8, "GRAM", "GRAM"), /**
+								 * The '<em><b>LUMEN</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #LUMEN_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	LUMEN(9, "LUMEN", "LUMEN"), /**
+								 * The '<em><b>FARAD</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #FARAD_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	FARAD(10, "FARAD", "FARAD"), /**
+									 * The '<em><b>STERADIAN</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #STERADIAN_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	STERADIAN(11, "STERADIAN", "STERADIAN"), /**
+												 * The '<em><b>LUX</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #LUX_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	LUX(12, "LUX", "LUX"), /**
+							 * The '<em><b>DEGREE CELSIUS</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #DEGREE_CELSIUS_VALUE
+							 * @generated
+							 * @ordered
+							 */
+	DEGREE_CELSIUS(13, "DEGREE_CELSIUS", "DEGREE_CELSIUS"), /**
+															 * The '<em><b>SIEVERT</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #SIEVERT_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	SIEVERT(14, "SIEVERT", "SIEVERT"), /**
+										 * The '<em><b>CUBIC METRE</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #CUBIC_METRE_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	CUBIC_METRE(15, "CUBIC_METRE", "CUBIC_METRE"), /**
+													 * The '<em><b>NEWTON</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #NEWTON_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	NEWTON(16, "NEWTON", "NEWTON"), /**
+									 * The '<em><b>WATT</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #WATT_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	WATT(17, "WATT", "WATT"), /**
+								 * The '<em><b>CANDELA</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #CANDELA_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	CANDELA(18, "CANDELA", "CANDELA"), /**
+										 * The '<em><b>RADIAN</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #RADIAN_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	RADIAN(19, "RADIAN", "RADIAN"), /**
+									 * The '<em><b>PASCAL</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #PASCAL_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	PASCAL(20, "PASCAL", "PASCAL"), /**
+									 * The '<em><b>VOLT</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #VOLT_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	VOLT(21, "VOLT", "VOLT"), /**
+								 * The '<em><b>WEBER</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #WEBER_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	WEBER(22, "WEBER", "WEBER"), /**
+									 * The '<em><b>COULOMB</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #COULOMB_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	COULOMB(23, "COULOMB", "COULOMB"), /**
+										 * The '<em><b>SQUARE METRE</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #SQUARE_METRE_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	SQUARE_METRE(24, "SQUARE_METRE", "SQUARE_METRE"), /**
+														 * The '<em><b>HERTZ</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #HERTZ_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	HERTZ(25, "HERTZ", "HERTZ"), /**
+									 * The '<em><b>SIEMENS</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #SIEMENS_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	SIEMENS(26, "SIEMENS", "SIEMENS"), /**
+										 * The '<em><b>BECQUEREL</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #BECQUEREL_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	BECQUEREL(27, "BECQUEREL", "BECQUEREL"), /**
+												 * The '<em><b>MOLE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #MOLE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	MOLE(28, "MOLE", "MOLE"), /**
+								 * The '<em><b>OHM</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #OHM_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	OHM(29, "OHM", "OHM"), /**
+							 * The '<em><b>GRAY</b></em>' literal object.
+							 * <!-- begin-user-doc -->
+							 * <!-- end-user-doc -->
+							 * @see #GRAY_VALUE
+							 * @generated
+							 * @ordered
+							 */
 	GRAY(30, "GRAY", "GRAY");
 
 	/**

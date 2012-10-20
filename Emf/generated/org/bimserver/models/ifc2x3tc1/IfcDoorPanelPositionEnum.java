@@ -50,36 +50,30 @@ public enum IfcDoorPanelPositionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RIGHT(1, "RIGHT", "RIGHT"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>LEFT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LEFT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LEFT(3, "LEFT", "LEFT"),
-
-	/**
-	 * The '<em><b>MIDDLE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MIDDLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	RIGHT(1, "RIGHT", "RIGHT"), /**
+								 * The '<em><b>NOTDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #NOTDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>LEFT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #LEFT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	LEFT(3, "LEFT", "LEFT"), /**
+								 * The '<em><b>MIDDLE</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #MIDDLE_VALUE
+								 * @generated
+								 * @ordered
+								 */
 	MIDDLE(4, "MIDDLE", "MIDDLE");
 
 	/**

@@ -50,76 +50,62 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CONSUMED(1, "CONSUMED", "CONSUMED"),
-
-	/**
-	 * The '<em><b>NOTCONSUMED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTCONSUMED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTCONSUMED(2, "NOTCONSUMED", "NOTCONSUMED"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>PARTIALLYCONSUMED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PARTIALLYCONSUMED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PARTIALLYCONSUMED(4, "PARTIALLYCONSUMED", "PARTIALLYCONSUMED"),
-
-	/**
-	 * The '<em><b>OCCUPIED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OCCUPIED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OCCUPIED(5, "OCCUPIED", "OCCUPIED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>NOTOCCUPIED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTOCCUPIED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTOCCUPIED(7, "NOTOCCUPIED", "NOTOCCUPIED"),
-
-	/**
-	 * The '<em><b>PARTIALLYOCCUPIED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PARTIALLYOCCUPIED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	CONSUMED(1, "CONSUMED", "CONSUMED"), /**
+											 * The '<em><b>NOTCONSUMED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #NOTCONSUMED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	NOTCONSUMED(2, "NOTCONSUMED", "NOTCONSUMED"), /**
+													 * The '<em><b>NOTDEFINED</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #NOTDEFINED_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>PARTIALLYCONSUMED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #PARTIALLYCONSUMED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	PARTIALLYCONSUMED(4, "PARTIALLYCONSUMED", "PARTIALLYCONSUMED"), /**
+																	 * The '<em><b>OCCUPIED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #OCCUPIED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	OCCUPIED(5, "OCCUPIED", "OCCUPIED"), /**
+											 * The '<em><b>USERDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #USERDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>NOTOCCUPIED</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #NOTOCCUPIED_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	NOTOCCUPIED(7, "NOTOCCUPIED", "NOTOCCUPIED"), /**
+													 * The '<em><b>PARTIALLYOCCUPIED</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #PARTIALLYOCCUPIED_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	PARTIALLYOCCUPIED(8, "PARTIALLYOCCUPIED", "PARTIALLYOCCUPIED");
 
 	/**

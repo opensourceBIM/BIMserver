@@ -50,66 +50,54 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CONTACTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONTACTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONTACTOR(2, "CONTACTOR", "CONTACTOR"),
-
-	/**
-	 * The '<em><b>SWITCHDISCONNECTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SWITCHDISCONNECTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SWITCHDISCONNECTOR(3, "SWITCHDISCONNECTOR", "SWITCHDISCONNECTOR"),
-
-	/**
-	 * The '<em><b>STARTER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STARTER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STARTER(4, "STARTER", "STARTER"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>EMERGENCYSTOP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EMERGENCYSTOP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EMERGENCYSTOP(6, "EMERGENCYSTOP", "EMERGENCYSTOP"),
-
-	/**
-	 * The '<em><b>TOGGLESWITCH</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TOGGLESWITCH_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>CONTACTOR</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #CONTACTOR_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	CONTACTOR(2, "CONTACTOR", "CONTACTOR"), /**
+											 * The '<em><b>SWITCHDISCONNECTOR</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #SWITCHDISCONNECTOR_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	SWITCHDISCONNECTOR(3, "SWITCHDISCONNECTOR", "SWITCHDISCONNECTOR"), /**
+																		 * The '<em><b>STARTER</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #STARTER_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	STARTER(4, "STARTER", "STARTER"), /**
+										 * The '<em><b>USERDEFINED</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #USERDEFINED_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>EMERGENCYSTOP</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #EMERGENCYSTOP_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	EMERGENCYSTOP(6, "EMERGENCYSTOP", "EMERGENCYSTOP"), /**
+														 * The '<em><b>TOGGLESWITCH</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #TOGGLESWITCH_VALUE
+														 * @generated
+														 * @ordered
+														 */
 	TOGGLESWITCH(7, "TOGGLESWITCH", "TOGGLESWITCH");
 
 	/**

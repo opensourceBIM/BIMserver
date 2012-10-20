@@ -50,46 +50,38 @@ public enum IfcAirTerminalBoxTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>VARIABLEFLOWPRESSUREINDEPENDANT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VARIABLEFLOWPRESSUREINDEPENDANT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VARIABLEFLOWPRESSUREINDEPENDANT(2, "VARIABLEFLOWPRESSUREINDEPENDANT", "VARIABLEFLOWPRESSUREINDEPENDANT"),
-
-	/**
-	 * The '<em><b>CONSTANTFLOW</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONSTANTFLOW_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONSTANTFLOW(3, "CONSTANTFLOW", "CONSTANTFLOW"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>VARIABLEFLOWPRESSUREDEPENDANT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VARIABLEFLOWPRESSUREDEPENDANT_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>VARIABLEFLOWPRESSUREINDEPENDANT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #VARIABLEFLOWPRESSUREINDEPENDANT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	VARIABLEFLOWPRESSUREINDEPENDANT(2, "VARIABLEFLOWPRESSUREINDEPENDANT", "VARIABLEFLOWPRESSUREINDEPENDANT"), /**
+																												 * The '<em><b>CONSTANTFLOW</b></em>' literal object.
+																												 * <!-- begin-user-doc -->
+																												 * <!-- end-user-doc -->
+																												 * @see #CONSTANTFLOW_VALUE
+																												 * @generated
+																												 * @ordered
+																												 */
+	CONSTANTFLOW(3, "CONSTANTFLOW", "CONSTANTFLOW"), /**
+														 * The '<em><b>USERDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #USERDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>VARIABLEFLOWPRESSUREDEPENDANT</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #VARIABLEFLOWPRESSUREDEPENDANT_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	VARIABLEFLOWPRESSUREDEPENDANT(5, "VARIABLEFLOWPRESSUREDEPENDANT", "VARIABLEFLOWPRESSUREDEPENDANT");
 
 	/**

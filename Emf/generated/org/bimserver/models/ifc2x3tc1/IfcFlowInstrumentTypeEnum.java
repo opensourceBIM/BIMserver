@@ -50,96 +50,78 @@ public enum IfcFlowInstrumentTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PHASEANGLEMETER(1, "PHASEANGLEMETER", "PHASEANGLEMETER"),
-
-	/**
-	 * The '<em><b>POWERFACTORMETER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #POWERFACTORMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	POWERFACTORMETER(2, "POWERFACTORMETER", "POWERFACTORMETER"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>VOLTMETER RMS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VOLTMETER_RMS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VOLTMETER_RMS(4, "VOLTMETER_RMS", "VOLTMETER_RMS"),
-
-	/**
-	 * The '<em><b>PRESSUREGAUGE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PRESSUREGAUGE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PRESSUREGAUGE(5, "PRESSUREGAUGE", "PRESSUREGAUGE"),
-
-	/**
-	 * The '<em><b>FREQUENCYMETER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FREQUENCYMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FREQUENCYMETER(6, "FREQUENCYMETER", "FREQUENCYMETER"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(7, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>VOLTMETER PEAK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VOLTMETER_PEAK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	VOLTMETER_PEAK(8, "VOLTMETER_PEAK", "VOLTMETER_PEAK"),
-
-	/**
-	 * The '<em><b>AMMETER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AMMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	AMMETER(9, "AMMETER", "AMMETER"),
-
-	/**
-	 * The '<em><b>THERMOMETER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THERMOMETER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	PHASEANGLEMETER(1, "PHASEANGLEMETER", "PHASEANGLEMETER"), /**
+																 * The '<em><b>POWERFACTORMETER</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #POWERFACTORMETER_VALUE
+																 * @generated
+																 * @ordered
+																 */
+	POWERFACTORMETER(2, "POWERFACTORMETER", "POWERFACTORMETER"), /**
+																	 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #NOTDEFINED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>VOLTMETER RMS</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #VOLTMETER_RMS_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	VOLTMETER_RMS(4, "VOLTMETER_RMS", "VOLTMETER_RMS"), /**
+														 * The '<em><b>PRESSUREGAUGE</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #PRESSUREGAUGE_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	PRESSUREGAUGE(5, "PRESSUREGAUGE", "PRESSUREGAUGE"), /**
+														 * The '<em><b>FREQUENCYMETER</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #FREQUENCYMETER_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	FREQUENCYMETER(6, "FREQUENCYMETER", "FREQUENCYMETER"), /**
+															 * The '<em><b>USERDEFINED</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #USERDEFINED_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	USERDEFINED(7, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>VOLTMETER PEAK</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #VOLTMETER_PEAK_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	VOLTMETER_PEAK(8, "VOLTMETER_PEAK", "VOLTMETER_PEAK"), /**
+															 * The '<em><b>AMMETER</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #AMMETER_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	AMMETER(9, "AMMETER", "AMMETER"), /**
+										 * The '<em><b>THERMOMETER</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #THERMOMETER_VALUE
+										 * @generated
+										 * @ordered
+										 */
 	THERMOMETER(10, "THERMOMETER", "THERMOMETER");
 
 	/**

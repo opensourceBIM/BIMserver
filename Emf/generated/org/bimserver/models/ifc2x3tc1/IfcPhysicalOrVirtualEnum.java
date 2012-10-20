@@ -50,26 +50,22 @@ public enum IfcPhysicalOrVirtualEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>PHYSICAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PHYSICAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PHYSICAL(2, "PHYSICAL", "PHYSICAL"),
-
-	/**
-	 * The '<em><b>VIRTUAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #VIRTUAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>PHYSICAL</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #PHYSICAL_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	PHYSICAL(2, "PHYSICAL", "PHYSICAL"), /**
+											 * The '<em><b>VIRTUAL</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #VIRTUAL_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	VIRTUAL(3, "VIRTUAL", "VIRTUAL");
 
 	/**

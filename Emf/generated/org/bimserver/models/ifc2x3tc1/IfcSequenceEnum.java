@@ -50,46 +50,38 @@ public enum IfcSequenceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FINISH_START(1, "FINISH_START", "FINISH_START"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>FINISH FINISH</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FINISH_FINISH_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FINISH_FINISH(3, "FINISH_FINISH", "FINISH_FINISH"),
-
-	/**
-	 * The '<em><b>START START</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #START_START_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	START_START(4, "START_START", "START_START"),
-
-	/**
-	 * The '<em><b>START FINISH</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #START_FINISH_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	FINISH_START(1, "FINISH_START", "FINISH_START"), /**
+														 * The '<em><b>NOTDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #NOTDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>FINISH FINISH</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #FINISH_FINISH_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	FINISH_FINISH(3, "FINISH_FINISH", "FINISH_FINISH"), /**
+														 * The '<em><b>START START</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #START_START_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	START_START(4, "START_START", "START_START"), /**
+													 * The '<em><b>START FINISH</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #START_FINISH_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	START_FINISH(5, "START_FINISH", "START_FINISH");
 
 	/**

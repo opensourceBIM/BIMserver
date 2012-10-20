@@ -50,56 +50,46 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LESSTHAN(1, "LESSTHAN", "LESSTHAN"),
-
-	/**
-	 * The '<em><b>GREATERTHANOREQUALTO</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GREATERTHANOREQUALTO_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GREATERTHANOREQUALTO(2, "GREATERTHANOREQUALTO", "GREATERTHANOREQUALTO"),
-
-	/**
-	 * The '<em><b>EQUALTO</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EQUALTO_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EQUALTO(3, "EQUALTO", "EQUALTO"),
-
-	/**
-	 * The '<em><b>LESSTHANOREQUALTO</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LESSTHANOREQUALTO_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	LESSTHANOREQUALTO(4, "LESSTHANOREQUALTO", "LESSTHANOREQUALTO"),
-
-	/**
-	 * The '<em><b>NOTEQUALTO</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTEQUALTO_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTEQUALTO(5, "NOTEQUALTO", "NOTEQUALTO"),
-
-	/**
-	 * The '<em><b>GREATERTHAN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GREATERTHAN_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	LESSTHAN(1, "LESSTHAN", "LESSTHAN"), /**
+											 * The '<em><b>GREATERTHANOREQUALTO</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #GREATERTHANOREQUALTO_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	GREATERTHANOREQUALTO(2, "GREATERTHANOREQUALTO", "GREATERTHANOREQUALTO"), /**
+																				 * The '<em><b>EQUALTO</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #EQUALTO_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	EQUALTO(3, "EQUALTO", "EQUALTO"), /**
+										 * The '<em><b>LESSTHANOREQUALTO</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #LESSTHANOREQUALTO_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	LESSTHANOREQUALTO(4, "LESSTHANOREQUALTO", "LESSTHANOREQUALTO"), /**
+																	 * The '<em><b>NOTEQUALTO</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #NOTEQUALTO_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	NOTEQUALTO(5, "NOTEQUALTO", "NOTEQUALTO"), /**
+												 * The '<em><b>GREATERTHAN</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #GREATERTHAN_VALUE
+												 * @generated
+												 * @ordered
+												 */
 	GREATERTHAN(6, "GREATERTHAN", "GREATERTHAN");
 
 	/**

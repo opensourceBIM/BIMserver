@@ -50,66 +50,54 @@ public enum IfcActuatorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ELECTRICACTUATOR(1, "ELECTRICACTUATOR", "ELECTRICACTUATOR"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>PNEUMATICACTUATOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PNEUMATICACTUATOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PNEUMATICACTUATOR(3, "PNEUMATICACTUATOR", "PNEUMATICACTUATOR"),
-
-	/**
-	 * The '<em><b>HANDOPERATEDACTUATOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HANDOPERATEDACTUATOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HANDOPERATEDACTUATOR(4, "HANDOPERATEDACTUATOR", "HANDOPERATEDACTUATOR"),
-
-	/**
-	 * The '<em><b>THERMOSTATICACTUATOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THERMOSTATICACTUATOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	THERMOSTATICACTUATOR(5, "THERMOSTATICACTUATOR", "THERMOSTATICACTUATOR"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>HYDRAULICACTUATOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HYDRAULICACTUATOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	ELECTRICACTUATOR(1, "ELECTRICACTUATOR", "ELECTRICACTUATOR"), /**
+																	 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #NOTDEFINED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>PNEUMATICACTUATOR</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #PNEUMATICACTUATOR_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	PNEUMATICACTUATOR(3, "PNEUMATICACTUATOR", "PNEUMATICACTUATOR"), /**
+																	 * The '<em><b>HANDOPERATEDACTUATOR</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #HANDOPERATEDACTUATOR_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	HANDOPERATEDACTUATOR(4, "HANDOPERATEDACTUATOR", "HANDOPERATEDACTUATOR"), /**
+																				 * The '<em><b>THERMOSTATICACTUATOR</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #THERMOSTATICACTUATOR_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	THERMOSTATICACTUATOR(5, "THERMOSTATICACTUATOR", "THERMOSTATICACTUATOR"), /**
+																				 * The '<em><b>USERDEFINED</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #USERDEFINED_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>HYDRAULICACTUATOR</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #HYDRAULICACTUATOR_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	HYDRAULICACTUATOR(7, "HYDRAULICACTUATOR", "HYDRAULICACTUATOR");
 
 	/**

@@ -50,26 +50,22 @@ public enum IfcAssemblyPlaceEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SITE(1, "SITE", "SITE"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>FACTORY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FACTORY_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	SITE(1, "SITE", "SITE"), /**
+								 * The '<em><b>NOTDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #NOTDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>FACTORY</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #FACTORY_VALUE
+												 * @generated
+												 * @ordered
+												 */
 	FACTORY(3, "FACTORY", "FACTORY");
 
 	/**

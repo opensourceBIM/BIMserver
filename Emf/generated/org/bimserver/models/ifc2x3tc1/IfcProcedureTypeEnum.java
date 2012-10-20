@@ -50,86 +50,70 @@ public enum IfcProcedureTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ADVICE_NOTE(1, "ADVICE_NOTE", "ADVICE_NOTE"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>SHUTDOWN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHUTDOWN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SHUTDOWN(3, "SHUTDOWN", "SHUTDOWN"),
-
-	/**
-	 * The '<em><b>ADVICE CAUTION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ADVICE_CAUTION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ADVICE_CAUTION(4, "ADVICE_CAUTION", "ADVICE_CAUTION"),
-
-	/**
-	 * The '<em><b>CALIBRATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CALIBRATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CALIBRATION(5, "CALIBRATION", "CALIBRATION"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>STARTUP</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STARTUP_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STARTUP(7, "STARTUP", "STARTUP"),
-
-	/**
-	 * The '<em><b>ADVICE WARNING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ADVICE_WARNING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ADVICE_WARNING(8, "ADVICE_WARNING", "ADVICE_WARNING"),
-
-	/**
-	 * The '<em><b>DIAGNOSTIC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIAGNOSTIC_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	ADVICE_NOTE(1, "ADVICE_NOTE", "ADVICE_NOTE"), /**
+													 * The '<em><b>NOTDEFINED</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #NOTDEFINED_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>SHUTDOWN</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #SHUTDOWN_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	SHUTDOWN(3, "SHUTDOWN", "SHUTDOWN"), /**
+											 * The '<em><b>ADVICE CAUTION</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #ADVICE_CAUTION_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	ADVICE_CAUTION(4, "ADVICE_CAUTION", "ADVICE_CAUTION"), /**
+															 * The '<em><b>CALIBRATION</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #CALIBRATION_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	CALIBRATION(5, "CALIBRATION", "CALIBRATION"), /**
+													 * The '<em><b>USERDEFINED</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #USERDEFINED_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>STARTUP</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #STARTUP_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	STARTUP(7, "STARTUP", "STARTUP"), /**
+										 * The '<em><b>ADVICE WARNING</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #ADVICE_WARNING_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	ADVICE_WARNING(8, "ADVICE_WARNING", "ADVICE_WARNING"), /**
+															 * The '<em><b>DIAGNOSTIC</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #DIAGNOSTIC_VALUE
+															 * @generated
+															 * @ordered
+															 */
 	DIAGNOSTIC(9, "DIAGNOSTIC", "DIAGNOSTIC");
 
 	/**

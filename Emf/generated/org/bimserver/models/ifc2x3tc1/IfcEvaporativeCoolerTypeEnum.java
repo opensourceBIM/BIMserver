@@ -50,106 +50,86 @@ public enum IfcEvaporativeCoolerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER(1, "DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER", "DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>INDIRECTDIRECTCOMBINATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INDIRECTDIRECTCOMBINATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INDIRECTDIRECTCOMBINATION(3, "INDIRECTDIRECTCOMBINATION", "INDIRECTDIRECTCOMBINATION"),
-
-	/**
-	 * The '<em><b>DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER(4, "DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER", "DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER"),
-
-	/**
-	 * The '<em><b>DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER(5, "DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER", "DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>INDIRECTEVAPORATIVEPACKAGEAIRCOOLER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INDIRECTEVAPORATIVEPACKAGEAIRCOOLER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INDIRECTEVAPORATIVEPACKAGEAIRCOOLER(7, "INDIRECTEVAPORATIVEPACKAGEAIRCOOLER", "INDIRECTEVAPORATIVEPACKAGEAIRCOOLER"),
-
-	/**
-	 * The '<em><b>INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER(8, "INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER", "INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER"),
-
-	/**
-	 * The '<em><b>INDIRECTEVAPORATIVEWETCOIL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INDIRECTEVAPORATIVEWETCOIL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INDIRECTEVAPORATIVEWETCOIL(9, "INDIRECTEVAPORATIVEWETCOIL", "INDIRECTEVAPORATIVEWETCOIL"),
-
-	/**
-	 * The '<em><b>DIRECTEVAPORATIVEAIRWASHER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIRECTEVAPORATIVEAIRWASHER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DIRECTEVAPORATIVEAIRWASHER(10, "DIRECTEVAPORATIVEAIRWASHER", "DIRECTEVAPORATIVEAIRWASHER"),
-
-	/**
-	 * The '<em><b>DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER(1, "DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER", "DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER"), /**
+																																 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																																 * <!-- begin-user-doc -->
+																																 * <!-- end-user-doc -->
+																																 * @see #NOTDEFINED_VALUE
+																																 * @generated
+																																 * @ordered
+																																 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>INDIRECTDIRECTCOMBINATION</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #INDIRECTDIRECTCOMBINATION_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	INDIRECTDIRECTCOMBINATION(3, "INDIRECTDIRECTCOMBINATION", "INDIRECTDIRECTCOMBINATION"), /**
+																							 * The '<em><b>DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER</b></em>' literal object.
+																							 * <!-- begin-user-doc -->
+																							 * <!-- end-user-doc -->
+																							 * @see #DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER_VALUE
+																							 * @generated
+																							 * @ordered
+																							 */
+	DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER(4, "DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER", "DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER"), /**
+																																 * The '<em><b>DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER</b></em>' literal object.
+																																 * <!-- begin-user-doc -->
+																																 * <!-- end-user-doc -->
+																																 * @see #DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER_VALUE
+																																 * @generated
+																																 * @ordered
+																																 */
+	DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER(5, "DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER", "DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER"), /**
+																																				 * The '<em><b>USERDEFINED</b></em>' literal object.
+																																				 * <!-- begin-user-doc -->
+																																				 * <!-- end-user-doc -->
+																																				 * @see #USERDEFINED_VALUE
+																																				 * @generated
+																																				 * @ordered
+																																				 */
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>INDIRECTEVAPORATIVEPACKAGEAIRCOOLER</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #INDIRECTEVAPORATIVEPACKAGEAIRCOOLER_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	INDIRECTEVAPORATIVEPACKAGEAIRCOOLER(7, "INDIRECTEVAPORATIVEPACKAGEAIRCOOLER", "INDIRECTEVAPORATIVEPACKAGEAIRCOOLER"), /**
+																															 * The '<em><b>INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER</b></em>' literal object.
+																															 * <!-- begin-user-doc -->
+																															 * <!-- end-user-doc -->
+																															 * @see #INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER_VALUE
+																															 * @generated
+																															 * @ordered
+																															 */
+	INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER(8, "INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER", "INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER"), /**
+																																					 * The '<em><b>INDIRECTEVAPORATIVEWETCOIL</b></em>' literal object.
+																																					 * <!-- begin-user-doc -->
+																																					 * <!-- end-user-doc -->
+																																					 * @see #INDIRECTEVAPORATIVEWETCOIL_VALUE
+																																					 * @generated
+																																					 * @ordered
+																																					 */
+	INDIRECTEVAPORATIVEWETCOIL(9, "INDIRECTEVAPORATIVEWETCOIL", "INDIRECTEVAPORATIVEWETCOIL"), /**
+																								 * The '<em><b>DIRECTEVAPORATIVEAIRWASHER</b></em>' literal object.
+																								 * <!-- begin-user-doc -->
+																								 * <!-- end-user-doc -->
+																								 * @see #DIRECTEVAPORATIVEAIRWASHER_VALUE
+																								 * @generated
+																								 * @ordered
+																								 */
+	DIRECTEVAPORATIVEAIRWASHER(10, "DIRECTEVAPORATIVEAIRWASHER", "DIRECTEVAPORATIVEAIRWASHER"), /**
+																								 * The '<em><b>DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER</b></em>' literal object.
+																								 * <!-- begin-user-doc -->
+																								 * <!-- end-user-doc -->
+																								 * @see #DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER_VALUE
+																								 * @generated
+																								 * @ordered
+																								 */
 	DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER(11, "DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER", "DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER");
 
 	/**

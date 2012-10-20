@@ -50,86 +50,70 @@ public enum IfcCostScheduleTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TENDER(1, "TENDER", "TENDER"),
-
-	/**
-	 * The '<em><b>BUDGET</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BUDGET_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BUDGET(2, "BUDGET", "BUDGET"),
-
-	/**
-	 * The '<em><b>COSTPLAN</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COSTPLAN_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COSTPLAN(3, "COSTPLAN", "COSTPLAN"),
-
-	/**
-	 * The '<em><b>PRICEDBILLOFQUANTITIES</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PRICEDBILLOFQUANTITIES_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PRICEDBILLOFQUANTITIES(4, "PRICEDBILLOFQUANTITIES", "PRICEDBILLOFQUANTITIES"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(5, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>UNPRICEDBILLOFQUANTITIES</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UNPRICEDBILLOFQUANTITIES_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	UNPRICEDBILLOFQUANTITIES(7, "UNPRICEDBILLOFQUANTITIES", "UNPRICEDBILLOFQUANTITIES"),
-
-	/**
-	 * The '<em><b>SCHEDULEOFRATES</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SCHEDULEOFRATES_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SCHEDULEOFRATES(8, "SCHEDULEOFRATES", "SCHEDULEOFRATES"),
-
-	/**
-	 * The '<em><b>ESTIMATE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ESTIMATE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	TENDER(1, "TENDER", "TENDER"), /**
+									 * The '<em><b>BUDGET</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #BUDGET_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	BUDGET(2, "BUDGET", "BUDGET"), /**
+									 * The '<em><b>COSTPLAN</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #COSTPLAN_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	COSTPLAN(3, "COSTPLAN", "COSTPLAN"), /**
+											 * The '<em><b>PRICEDBILLOFQUANTITIES</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #PRICEDBILLOFQUANTITIES_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	PRICEDBILLOFQUANTITIES(4, "PRICEDBILLOFQUANTITIES", "PRICEDBILLOFQUANTITIES"), /**
+																					 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																					 * <!-- begin-user-doc -->
+																					 * <!-- end-user-doc -->
+																					 * @see #NOTDEFINED_VALUE
+																					 * @generated
+																					 * @ordered
+																					 */
+	NOTDEFINED(5, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>USERDEFINED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #USERDEFINED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>UNPRICEDBILLOFQUANTITIES</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #UNPRICEDBILLOFQUANTITIES_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	UNPRICEDBILLOFQUANTITIES(7, "UNPRICEDBILLOFQUANTITIES", "UNPRICEDBILLOFQUANTITIES"), /**
+																							 * The '<em><b>SCHEDULEOFRATES</b></em>' literal object.
+																							 * <!-- begin-user-doc -->
+																							 * <!-- end-user-doc -->
+																							 * @see #SCHEDULEOFRATES_VALUE
+																							 * @generated
+																							 * @ordered
+																							 */
+	SCHEDULEOFRATES(8, "SCHEDULEOFRATES", "SCHEDULEOFRATES"), /**
+																 * The '<em><b>ESTIMATE</b></em>' literal object.
+																 * <!-- begin-user-doc -->
+																 * <!-- end-user-doc -->
+																 * @see #ESTIMATE_VALUE
+																 * @generated
+																 * @ordered
+																 */
 	ESTIMATE(9, "ESTIMATE", "ESTIMATE");
 
 	/**

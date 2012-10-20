@@ -50,76 +50,62 @@ public enum IfcObjectTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GROUP(1, "GROUP", "GROUP"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>CONTROL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CONTROL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CONTROL(3, "CONTROL", "CONTROL"),
-
-	/**
-	 * The '<em><b>PROJECT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROJECT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROJECT(4, "PROJECT", "PROJECT"),
-
-	/**
-	 * The '<em><b>PROCESS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PROCESS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PROCESS(5, "PROCESS", "PROCESS"),
-
-	/**
-	 * The '<em><b>RESOURCE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RESOURCE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	RESOURCE(6, "RESOURCE", "RESOURCE"),
-
-	/**
-	 * The '<em><b>PRODUCT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PRODUCT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PRODUCT(7, "PRODUCT", "PRODUCT"),
-
-	/**
-	 * The '<em><b>ACTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ACTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	GROUP(1, "GROUP", "GROUP"), /**
+								 * The '<em><b>NOTDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #NOTDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>CONTROL</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #CONTROL_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	CONTROL(3, "CONTROL", "CONTROL"), /**
+										 * The '<em><b>PROJECT</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #PROJECT_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	PROJECT(4, "PROJECT", "PROJECT"), /**
+										 * The '<em><b>PROCESS</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #PROCESS_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	PROCESS(5, "PROCESS", "PROCESS"), /**
+										 * The '<em><b>RESOURCE</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #RESOURCE_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	RESOURCE(6, "RESOURCE", "RESOURCE"), /**
+											 * The '<em><b>PRODUCT</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #PRODUCT_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	PRODUCT(7, "PRODUCT", "PRODUCT"), /**
+										 * The '<em><b>ACTOR</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #ACTOR_VALUE
+										 * @generated
+										 * @ordered
+										 */
 	ACTOR(8, "ACTOR", "ACTOR");
 
 	/**

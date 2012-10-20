@@ -50,36 +50,30 @@ public enum IfcHeatExchangerTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>SHELLANDTUBE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SHELLANDTUBE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SHELLANDTUBE(2, "SHELLANDTUBE", "SHELLANDTUBE"),
-
-	/**
-	 * The '<em><b>PLATE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PLATE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PLATE(3, "PLATE", "PLATE"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>SHELLANDTUBE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #SHELLANDTUBE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	SHELLANDTUBE(2, "SHELLANDTUBE", "SHELLANDTUBE"), /**
+														 * The '<em><b>PLATE</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #PLATE_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	PLATE(3, "PLATE", "PLATE"), /**
+								 * The '<em><b>USERDEFINED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #USERDEFINED_VALUE
+								 * @generated
+								 * @ordered
+								 */
 	USERDEFINED(4, "USERDEFINED", "USERDEFINED");
 
 	/**

@@ -50,46 +50,38 @@ public enum IfcElectricTimeControlTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TIMEDELAY(1, "TIMEDELAY", "TIMEDELAY"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>TIMECLOCK</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #TIMECLOCK_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	TIMECLOCK(4, "TIMECLOCK", "TIMECLOCK"),
-
-	/**
-	 * The '<em><b>RELAY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #RELAY_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	TIMEDELAY(1, "TIMEDELAY", "TIMEDELAY"), /**
+											 * The '<em><b>NOTDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #NOTDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>USERDEFINED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #USERDEFINED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>TIMECLOCK</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #TIMECLOCK_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	TIMECLOCK(4, "TIMECLOCK", "TIMECLOCK"), /**
+											 * The '<em><b>RELAY</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #RELAY_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	RELAY(5, "RELAY", "RELAY");
 
 	/**

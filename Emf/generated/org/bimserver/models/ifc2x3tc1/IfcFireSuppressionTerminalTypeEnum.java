@@ -50,66 +50,54 @@ public enum IfcFireSuppressionTerminalTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>HOSEREEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HOSEREEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HOSEREEL(2, "HOSEREEL", "HOSEREEL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(3, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>SPRINKLERDEFLECTOR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SPRINKLERDEFLECTOR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SPRINKLERDEFLECTOR(4, "SPRINKLERDEFLECTOR", "SPRINKLERDEFLECTOR"),
-
-	/**
-	 * The '<em><b>BREECHINGINLET</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BREECHINGINLET_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BREECHINGINLET(5, "BREECHINGINLET", "BREECHINGINLET"),
-
-	/**
-	 * The '<em><b>SPRINKLER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SPRINKLER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SPRINKLER(6, "SPRINKLER", "SPRINKLER"),
-
-	/**
-	 * The '<em><b>FIREHYDRANT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIREHYDRANT_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>HOSEREEL</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #HOSEREEL_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	HOSEREEL(2, "HOSEREEL", "HOSEREEL"), /**
+											 * The '<em><b>USERDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #USERDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	USERDEFINED(3, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>SPRINKLERDEFLECTOR</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #SPRINKLERDEFLECTOR_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	SPRINKLERDEFLECTOR(4, "SPRINKLERDEFLECTOR", "SPRINKLERDEFLECTOR"), /**
+																		 * The '<em><b>BREECHINGINLET</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #BREECHINGINLET_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	BREECHINGINLET(5, "BREECHINGINLET", "BREECHINGINLET"), /**
+															 * The '<em><b>SPRINKLER</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #SPRINKLER_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	SPRINKLER(6, "SPRINKLER", "SPRINKLER"), /**
+											 * The '<em><b>FIREHYDRANT</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #FIREHYDRANT_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	FIREHYDRANT(7, "FIREHYDRANT", "FIREHYDRANT");
 
 	/**

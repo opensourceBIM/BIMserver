@@ -50,56 +50,46 @@ public enum IfcAnalysisTheoryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FULL_NONLINEAR_THEORY(1, "FULL_NONLINEAR_THEORY", "FULL_NONLINEAR_THEORY"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>THIRD ORDER THEORY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #THIRD_ORDER_THEORY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	THIRD_ORDER_THEORY(3, "THIRD_ORDER_THEORY", "THIRD_ORDER_THEORY"),
-
-	/**
-	 * The '<em><b>FIRST ORDER THEORY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FIRST_ORDER_THEORY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FIRST_ORDER_THEORY(4, "FIRST_ORDER_THEORY", "FIRST_ORDER_THEORY"),
-
-	/**
-	 * The '<em><b>SECOND ORDER THEORY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SECOND_ORDER_THEORY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	SECOND_ORDER_THEORY(5, "SECOND_ORDER_THEORY", "SECOND_ORDER_THEORY"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	FULL_NONLINEAR_THEORY(1, "FULL_NONLINEAR_THEORY", "FULL_NONLINEAR_THEORY"), /**
+																				 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #NOTDEFINED_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>THIRD ORDER THEORY</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #THIRD_ORDER_THEORY_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	THIRD_ORDER_THEORY(3, "THIRD_ORDER_THEORY", "THIRD_ORDER_THEORY"), /**
+																		 * The '<em><b>FIRST ORDER THEORY</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #FIRST_ORDER_THEORY_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	FIRST_ORDER_THEORY(4, "FIRST_ORDER_THEORY", "FIRST_ORDER_THEORY"), /**
+																		 * The '<em><b>SECOND ORDER THEORY</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #SECOND_ORDER_THEORY_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	SECOND_ORDER_THEORY(5, "SECOND_ORDER_THEORY", "SECOND_ORDER_THEORY"), /**
+																			 * The '<em><b>USERDEFINED</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #USERDEFINED_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
 	USERDEFINED(6, "USERDEFINED", "USERDEFINED");
 
 	/**

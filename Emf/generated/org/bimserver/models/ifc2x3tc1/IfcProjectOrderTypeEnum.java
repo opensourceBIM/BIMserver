@@ -50,66 +50,54 @@ public enum IfcProjectOrderTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PURCHASEORDER(1, "PURCHASEORDER", "PURCHASEORDER"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>MOVEORDER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MOVEORDER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MOVEORDER(3, "MOVEORDER", "MOVEORDER"),
-
-	/**
-	 * The '<em><b>MAINTENANCEWORKORDER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #MAINTENANCEWORKORDER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	MAINTENANCEWORKORDER(4, "MAINTENANCEWORKORDER", "MAINTENANCEWORKORDER"),
-
-	/**
-	 * The '<em><b>WORKORDER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WORKORDER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WORKORDER(5, "WORKORDER", "WORKORDER"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>CHANGEORDER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CHANGEORDER_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	PURCHASEORDER(1, "PURCHASEORDER", "PURCHASEORDER"), /**
+														 * The '<em><b>NOTDEFINED</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #NOTDEFINED_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	NOTDEFINED(2, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>MOVEORDER</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #MOVEORDER_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	MOVEORDER(3, "MOVEORDER", "MOVEORDER"), /**
+											 * The '<em><b>MAINTENANCEWORKORDER</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #MAINTENANCEWORKORDER_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	MAINTENANCEWORKORDER(4, "MAINTENANCEWORKORDER", "MAINTENANCEWORKORDER"), /**
+																				 * The '<em><b>WORKORDER</b></em>' literal object.
+																				 * <!-- begin-user-doc -->
+																				 * <!-- end-user-doc -->
+																				 * @see #WORKORDER_VALUE
+																				 * @generated
+																				 * @ordered
+																				 */
+	WORKORDER(5, "WORKORDER", "WORKORDER"), /**
+											 * The '<em><b>USERDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #USERDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>CHANGEORDER</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #CHANGEORDER_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	CHANGEORDER(7, "CHANGEORDER", "CHANGEORDER");
 
 	/**

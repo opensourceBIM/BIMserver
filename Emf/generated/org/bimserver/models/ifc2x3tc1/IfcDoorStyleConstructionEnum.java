@@ -50,86 +50,70 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ALUMINIUM_WOOD(1, "ALUMINIUM_WOOD", "ALUMINIUM_WOOD"),
-
-	/**
-	 * The '<em><b>HIGH GRADE STEEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HIGH_GRADE_STEEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HIGH_GRADE_STEEL(2, "HIGH_GRADE_STEEL", "HIGH_GRADE_STEEL"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>ALUMINIUM PLASTIC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ALUMINIUM_PLASTIC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ALUMINIUM_PLASTIC(4, "ALUMINIUM_PLASTIC", "ALUMINIUM_PLASTIC"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(5, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>PLASTIC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PLASTIC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PLASTIC(6, "PLASTIC", "PLASTIC"),
-
-	/**
-	 * The '<em><b>WOOD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WOOD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WOOD(7, "WOOD", "WOOD"),
-
-	/**
-	 * The '<em><b>ALUMINIUM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ALUMINIUM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ALUMINIUM(8, "ALUMINIUM", "ALUMINIUM"),
-
-	/**
-	 * The '<em><b>STEEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STEEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	ALUMINIUM_WOOD(1, "ALUMINIUM_WOOD", "ALUMINIUM_WOOD"), /**
+															 * The '<em><b>HIGH GRADE STEEL</b></em>' literal object.
+															 * <!-- begin-user-doc -->
+															 * <!-- end-user-doc -->
+															 * @see #HIGH_GRADE_STEEL_VALUE
+															 * @generated
+															 * @ordered
+															 */
+	HIGH_GRADE_STEEL(2, "HIGH_GRADE_STEEL", "HIGH_GRADE_STEEL"), /**
+																	 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #NOTDEFINED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>ALUMINIUM PLASTIC</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #ALUMINIUM_PLASTIC_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	ALUMINIUM_PLASTIC(4, "ALUMINIUM_PLASTIC", "ALUMINIUM_PLASTIC"), /**
+																	 * The '<em><b>USERDEFINED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #USERDEFINED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	USERDEFINED(5, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>PLASTIC</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #PLASTIC_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	PLASTIC(6, "PLASTIC", "PLASTIC"), /**
+										 * The '<em><b>WOOD</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #WOOD_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	WOOD(7, "WOOD", "WOOD"), /**
+								 * The '<em><b>ALUMINIUM</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #ALUMINIUM_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	ALUMINIUM(8, "ALUMINIUM", "ALUMINIUM"), /**
+											 * The '<em><b>STEEL</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #STEEL_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	STEEL(9, "STEEL", "STEEL");
 
 	/**

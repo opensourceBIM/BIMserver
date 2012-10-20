@@ -50,46 +50,38 @@ public enum IfcWorkControlTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>BASELINE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BASELINE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BASELINE(2, "BASELINE", "BASELINE"),
-
-	/**
-	 * The '<em><b>PLANNED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PLANNED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PLANNED(3, "PLANNED", "PLANNED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>ACTUAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ACTUAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>BASELINE</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #BASELINE_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	BASELINE(2, "BASELINE", "BASELINE"), /**
+											 * The '<em><b>PLANNED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #PLANNED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	PLANNED(3, "PLANNED", "PLANNED"), /**
+										 * The '<em><b>USERDEFINED</b></em>' literal object.
+										 * <!-- begin-user-doc -->
+										 * <!-- end-user-doc -->
+										 * @see #USERDEFINED_VALUE
+										 * @generated
+										 * @ordered
+										 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>ACTUAL</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #ACTUAL_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	ACTUAL(5, "ACTUAL", "ACTUAL");
 
 	/**

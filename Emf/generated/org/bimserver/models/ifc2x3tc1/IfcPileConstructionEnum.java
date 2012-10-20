@@ -50,56 +50,46 @@ public enum IfcPileConstructionEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PRECAST_CONCRETE(1, "PRECAST_CONCRETE", "PRECAST_CONCRETE"),
-
-	/**
-	 * The '<em><b>COMPOSITE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COMPOSITE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COMPOSITE(2, "COMPOSITE", "COMPOSITE"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(4, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>PREFAB STEEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #PREFAB_STEEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PREFAB_STEEL(5, "PREFAB_STEEL", "PREFAB_STEEL"),
-
-	/**
-	 * The '<em><b>CAST IN PLACE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CAST_IN_PLACE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	PRECAST_CONCRETE(1, "PRECAST_CONCRETE", "PRECAST_CONCRETE"), /**
+																	 * The '<em><b>COMPOSITE</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #COMPOSITE_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	COMPOSITE(2, "COMPOSITE", "COMPOSITE"), /**
+											 * The '<em><b>NOTDEFINED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #NOTDEFINED_VALUE
+											 * @generated
+											 * @ordered
+											 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>USERDEFINED</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #USERDEFINED_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	USERDEFINED(4, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>PREFAB STEEL</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #PREFAB_STEEL_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	PREFAB_STEEL(5, "PREFAB_STEEL", "PREFAB_STEEL"), /**
+														 * The '<em><b>CAST IN PLACE</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #CAST_IN_PLACE_VALUE
+														 * @generated
+														 * @ordered
+														 */
 	CAST_IN_PLACE(6, "CAST_IN_PLACE", "CAST_IN_PLACE");
 
 	/**

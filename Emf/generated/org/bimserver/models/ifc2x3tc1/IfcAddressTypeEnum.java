@@ -50,46 +50,38 @@ public enum IfcAddressTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SITE(1, "SITE", "SITE"),
-
-	/**
-	 * The '<em><b>HOME</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HOME_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	HOME(2, "HOME", "HOME"),
-
-	/**
-	 * The '<em><b>OFFICE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OFFICE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	OFFICE(3, "OFFICE", "OFFICE"),
-
-	/**
-	 * The '<em><b>DISTRIBUTIONPOINT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DISTRIBUTIONPOINT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DISTRIBUTIONPOINT(4, "DISTRIBUTIONPOINT", "DISTRIBUTIONPOINT"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	SITE(1, "SITE", "SITE"), /**
+								 * The '<em><b>HOME</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #HOME_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	HOME(2, "HOME", "HOME"), /**
+								 * The '<em><b>OFFICE</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #OFFICE_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	OFFICE(3, "OFFICE", "OFFICE"), /**
+									 * The '<em><b>DISTRIBUTIONPOINT</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #DISTRIBUTIONPOINT_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	DISTRIBUTIONPOINT(4, "DISTRIBUTIONPOINT", "DISTRIBUTIONPOINT"), /**
+																	 * The '<em><b>USERDEFINED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #USERDEFINED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
 	USERDEFINED(5, "USERDEFINED", "USERDEFINED");
 
 	/**

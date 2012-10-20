@@ -50,86 +50,70 @@ public enum IfcServiceLifeFactorTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EOUTDOORENVIRONMENT(1, "E_OUTDOORENVIRONMENT", "E_OUTDOORENVIRONMENT"),
-
-	/**
-	 * The '<em><b>FINUSECONDITIONS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #FINUSECONDITIONS_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	FINUSECONDITIONS(2, "F_INUSECONDITIONS", "F_INUSECONDITIONS"),
-
-	/**
-	 * The '<em><b>NOTDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #NOTDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"),
-
-	/**
-	 * The '<em><b>DINDOORENVIRONMENT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #DINDOORENVIRONMENT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	DINDOORENVIRONMENT(4, "D_INDOORENVIRONMENT", "D_INDOORENVIRONMENT"),
-
-	/**
-	 * The '<em><b>GMAINTENANCELEVEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #GMAINTENANCELEVEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	GMAINTENANCELEVEL(5, "G_MAINTENANCELEVEL", "G_MAINTENANCELEVEL"),
-
-	/**
-	 * The '<em><b>BDESIGNLEVEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BDESIGNLEVEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BDESIGNLEVEL(6, "B_DESIGNLEVEL", "B_DESIGNLEVEL"),
-
-	/**
-	 * The '<em><b>CWORKEXECUTIONLEVEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CWORKEXECUTIONLEVEL_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CWORKEXECUTIONLEVEL(7, "C_WORKEXECUTIONLEVEL", "C_WORKEXECUTIONLEVEL"),
-
-	/**
-	 * The '<em><b>USERDEFINED</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #USERDEFINED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	USERDEFINED(8, "USERDEFINED", "USERDEFINED"),
-
-	/**
-	 * The '<em><b>AQUALITYOFCOMPONENTS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #AQUALITYOFCOMPONENTS_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	EOUTDOORENVIRONMENT(1, "E_OUTDOORENVIRONMENT", "E_OUTDOORENVIRONMENT"), /**
+																			 * The '<em><b>FINUSECONDITIONS</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #FINUSECONDITIONS_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	FINUSECONDITIONS(2, "F_INUSECONDITIONS", "F_INUSECONDITIONS"), /**
+																	 * The '<em><b>NOTDEFINED</b></em>' literal object.
+																	 * <!-- begin-user-doc -->
+																	 * <!-- end-user-doc -->
+																	 * @see #NOTDEFINED_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	NOTDEFINED(3, "NOTDEFINED", "NOTDEFINED"), /**
+												 * The '<em><b>DINDOORENVIRONMENT</b></em>' literal object.
+												 * <!-- begin-user-doc -->
+												 * <!-- end-user-doc -->
+												 * @see #DINDOORENVIRONMENT_VALUE
+												 * @generated
+												 * @ordered
+												 */
+	DINDOORENVIRONMENT(4, "D_INDOORENVIRONMENT", "D_INDOORENVIRONMENT"), /**
+																			 * The '<em><b>GMAINTENANCELEVEL</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #GMAINTENANCELEVEL_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	GMAINTENANCELEVEL(5, "G_MAINTENANCELEVEL", "G_MAINTENANCELEVEL"), /**
+																		 * The '<em><b>BDESIGNLEVEL</b></em>' literal object.
+																		 * <!-- begin-user-doc -->
+																		 * <!-- end-user-doc -->
+																		 * @see #BDESIGNLEVEL_VALUE
+																		 * @generated
+																		 * @ordered
+																		 */
+	BDESIGNLEVEL(6, "B_DESIGNLEVEL", "B_DESIGNLEVEL"), /**
+														 * The '<em><b>CWORKEXECUTIONLEVEL</b></em>' literal object.
+														 * <!-- begin-user-doc -->
+														 * <!-- end-user-doc -->
+														 * @see #CWORKEXECUTIONLEVEL_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	CWORKEXECUTIONLEVEL(7, "C_WORKEXECUTIONLEVEL", "C_WORKEXECUTIONLEVEL"), /**
+																			 * The '<em><b>USERDEFINED</b></em>' literal object.
+																			 * <!-- begin-user-doc -->
+																			 * <!-- end-user-doc -->
+																			 * @see #USERDEFINED_VALUE
+																			 * @generated
+																			 * @ordered
+																			 */
+	USERDEFINED(8, "USERDEFINED", "USERDEFINED"), /**
+													 * The '<em><b>AQUALITYOFCOMPONENTS</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #AQUALITYOFCOMPONENTS_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	AQUALITYOFCOMPONENTS(9, "A_QUALITYOFCOMPONENTS", "A_QUALITYOFCOMPONENTS");
 
 	/**
