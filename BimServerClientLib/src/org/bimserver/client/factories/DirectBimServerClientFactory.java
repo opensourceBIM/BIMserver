@@ -17,33 +17,31 @@ package org.bimserver.client.factories;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.client.AbstractBimServerClientFactory;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.PublicInterface;
+import org.bimserver.shared.meta.ServicesMap;
 
-public class DirectBimServerClientFactory<T extends PublicInterface> implements BimServerClientFactory {
+public class DirectBimServerClientFactory<T extends PublicInterface> extends AbstractBimServerClientFactory {
 
 	private final PluginManager pluginManager;
 	private final T publicInterface;
 	private Class<T> interfaceClass;
 
-	public DirectBimServerClientFactory(Class<T> interfaceClass, T publicInterface) {
+	public DirectBimServerClientFactory(Class<T> interfaceClass, T publicInterface, ServicesMap servicesMap) {
+		super(servicesMap);
 		this.interfaceClass = interfaceClass;
 		this.publicInterface = publicInterface;
 		pluginManager = new PluginManager();
 		pluginManager.loadPluginsFromCurrentClassloader();
 	}
 
-	public DirectBimServerClientFactory(T publicInterface, PluginManager pluginManager) {
-		this.publicInterface = publicInterface;
-		this.pluginManager = pluginManager;
-	}
-
 	@Override
 	public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServiceException {
-		BimServerClient bimServerClient = new BimServerClient(pluginManager);
+		BimServerClient bimServerClient = new BimServerClient(remoteAddress, getServicesMap());
 		bimServerClient.setAuthentication(authenticationInfo);
 		bimServerClient.connectDirect(interfaceClass, publicInterface);
 		return bimServerClient;

@@ -5177,13 +5177,31 @@ public interface StorePackage extends EPackage {
 	int GEOMETRY = 82;
 
 	/**
+	 * The feature id for the '<em><b>Extends Min</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY__EXTENDS_MIN = 0;
+
+	/**
+	 * The feature id for the '<em><b>Extends Max</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY__EXTENDS_MAX = 1;
+
+	/**
 	 * The feature id for the '<em><b>Indices</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY__INDICES = 0;
+	int GEOMETRY__INDICES = 2;
 
 	/**
 	 * The feature id for the '<em><b>Vertices</b></em>' attribute list.
@@ -5192,7 +5210,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY__VERTICES = 1;
+	int GEOMETRY__VERTICES = 3;
 
 	/**
 	 * The feature id for the '<em><b>Normals</b></em>' attribute list.
@@ -5201,7 +5219,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY__NORMALS = 2;
+	int GEOMETRY__NORMALS = 4;
 
 	/**
 	 * The number of structural features of the '<em>Geometry</em>' class.
@@ -5210,7 +5228,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_FEATURE_COUNT = 3;
+	int GEOMETRY_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
@@ -9507,6 +9525,28 @@ public interface StorePackage extends EPackage {
 	EClass getGeometry();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.Geometry#getExtendsMin <em>Extends Min</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Extends Min</em>'.
+	 * @see org.bimserver.models.store.Geometry#getExtendsMin()
+	 * @see #getGeometry()
+	 * @generated
+	 */
+	EAttribute getGeometry_ExtendsMin();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.Geometry#getExtendsMax <em>Extends Max</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Extends Max</em>'.
+	 * @see org.bimserver.models.store.Geometry#getExtendsMax()
+	 * @see #getGeometry()
+	 * @generated
+	 */
+	EAttribute getGeometry_ExtendsMax();
+
+	/**
 	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.Geometry#getIndices <em>Indices</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12943,6 +12983,22 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EClass GEOMETRY = eINSTANCE.getGeometry();
+
+		/**
+		 * The meta object literal for the '<em><b>Extends Min</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY__EXTENDS_MIN = eINSTANCE.getGeometry_ExtendsMin();
+
+		/**
+		 * The meta object literal for the '<em><b>Extends Max</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY__EXTENDS_MAX = eINSTANCE.getGeometry_ExtendsMax();
 
 		/**
 		 * The meta object literal for the '<em><b>Indices</b></em>' attribute list feature.

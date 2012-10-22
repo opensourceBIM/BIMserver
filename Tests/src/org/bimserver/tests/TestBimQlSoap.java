@@ -9,7 +9,6 @@ import java.util.List;
 import javax.activation.DataHandler;
 
 import org.apache.commons.io.IOUtils;
-import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
 import org.bimserver.interfaces.objects.SDownloadResult;
@@ -17,7 +16,6 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -27,9 +25,9 @@ public class TestBimQlSoap {
 	public static void main(String[] args) {
 		BimServerClient bimServerClient;
 		try {
-			bimServerClient = new BimServerClient(LocalDevPluginLoader.createPluginManager(new File("home")));
+			bimServerClient = new BimServerClient("", null);
 			bimServerClient.setAuthentication(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-			bimServerClient.connectSoap("http://localhost:8080/soap", false);
+			bimServerClient.connectSoap(false);
 			ServiceInterface service = bimServerClient.getServiceInterface();
 			List<SProject> projects = service.getAllProjects(true);
 			if (projects.isEmpty()) {
@@ -50,8 +48,6 @@ public class TestBimQlSoap {
 					IOUtils.copy(dataHandler.getInputStream(), new FileOutputStream(new File("test.ifc")));
 				}
 			}
-		} catch (PluginException e) {
-			e.printStackTrace();
 		} catch (ConnectionException e) {
 			e.printStackTrace();
 		} catch (ServerException e) {

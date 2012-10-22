@@ -26,16 +26,26 @@ import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersReflector;
 import org.bimserver.shared.pb.SocketChannel;
+import org.slf4j.LoggerFactory;
 
 public class ProtocolBuffersChannel extends Channel implements ConnectDisconnectListener {
 
 	private SocketChannel channel;
-	private final ProtocolBuffersMetaData protocolBuffersMetaData;
+	private final static ProtocolBuffersMetaData protocolBuffersMetaData;
 	private ServicesMap servicesMap;
 	private ReflectorFactory reflectorFactory;
 
-	public ProtocolBuffersChannel(ProtocolBuffersMetaData protocolBuffersMetaData, ServicesMap servicesMap, ReflectorFactory reflectorFactory) {
-		this.protocolBuffersMetaData = protocolBuffersMetaData;
+	static {
+		protocolBuffersMetaData = new ProtocolBuffersMetaData();
+		try {
+			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("service.desc"));
+			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("notification.desc"));
+		} catch (IOException e) {
+			LoggerFactory.getLogger(ProtocolBuffersChannel.class).error("", e);
+		}
+	}
+	
+	public ProtocolBuffersChannel(ServicesMap servicesMap, ReflectorFactory reflectorFactory) {
 		this.servicesMap = servicesMap;
 		this.reflectorFactory = reflectorFactory;
 	}

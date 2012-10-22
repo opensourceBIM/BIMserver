@@ -18,16 +18,13 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.nio.ByteBuffer;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
@@ -75,7 +72,6 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.IncrementingOidProvider;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -136,9 +132,9 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			newRevisionAdded.setDate(new Date());
 			newRevisionAdded.setExecutor(user);
 			Revision revision = concreteRevision.getRevisions().get(0);
-			
+
 			revision.setSummary(createSummary(getModel()));
-			
+
 			newRevisionAdded.setRevision(revision);
 			newRevisionAdded.setProject(project);
 			newRevisionAdded.setAccessMethod(getAccessMethod());
@@ -154,17 +150,17 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			Geometry geometry = generateGeometry(ifcModel, project.getId(), concreteRevision.getId());
 			revision.setGeometry(geometry);
 			getDatabaseSession().store(geometry);
-			
+
 			for (IdEObject idEObject : ifcModel.getValues()) {
-				((IdEObjectImpl)idEObject).setOid(-1);
+				((IdEObjectImpl) idEObject).setOid(-1);
 			}
-			
+
 			if (nrConcreteRevisionsBefore != 0 && !merge && clean) {
 				// There already was a revision, lets delete it (only when not
 				// merging)
 				getDatabaseSession().planClearProject(project.getId(), concreteRevision.getId() - 1, concreteRevision.getId());
 			}
-			
+
 			if (ifcModel != null) {
 				getDatabaseSession().store(ifcModel.getValues(), project.getId(), concreteRevision.getId());
 			}
@@ -191,7 +187,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		}
 		return concreteRevision;
 	}
-	
+
 	private Geometry generateGeometry(IfcModelInterface model, int pid, int rid) throws BimserverDatabaseException {
 		Collection<SerializerPlugin> allSerializerPlugins = bimServer.getPluginManager().getAllSerializerPlugins("application/ifc", true);
 		if (!allSerializerPlugins.isEmpty()) {
@@ -201,11 +197,12 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				serializer.init(model, null, bimServer.getPluginManager(), null);
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 				serializer.writeToOutputStream(outputStream);
-				try {
-					FileUtils.writeByteArrayToFile(new File("test.ifc"), outputStream.toByteArray());
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+				// try {
+				// FileUtils.writeByteArrayToFile(new File("test.ifc"),
+				// outputStream.toByteArray());
+				// } catch (IOException e1) {
+				// e1.printStackTrace();
+				// }
 				Collection<IfcEnginePlugin> allIfcEnginePlugins = bimServer.getPluginManager().getAllIfcEnginePlugins(true);
 				if (!allIfcEnginePlugins.isEmpty()) {
 					IfcEnginePlugin ifcEnginePlugin = allIfcEnginePlugins.iterator().next();
@@ -220,40 +217,76 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 								Geometry geometry = StoreFactory.eINSTANCE.createGeometry();
 								LOGGER.info("Generating geometry: " + ifcEngineGeometry.getNrIndices() + " / " + ifcEngineGeometry.getNrVertices());
 
-								EList<Integer> indices = geometry.getIndices();
-								List<Integer> indicesList = new ArrayList<Integer>(ifcEngineGeometry.getNrIndices());
-								for (int i=0; i<ifcEngineGeometry.getNrIndices(); i++) {
-									indicesList.add(ifcEngineGeometry.getIndex(i));
-								}
-								indices.addAll(indicesList);
-								
-								EList<Float> vertices = geometry.getVertices();
-								List<Float> verticesList = new ArrayList<Float>(ifcEngineGeometry.getNrVertices());
-								for (int i=0; i<ifcEngineGeometry.getNrVertices(); i++) {
-									verticesList.add(ifcEngineGeometry.getVertex(i));
-								}
-								vertices.addAll(verticesList);
-								
-								EList<Float> normals = geometry.getNormals();
-								List<Float> normalsList = new ArrayList<Float>(ifcEngineGeometry.getNrNormals());
-								for (int i=0; i<ifcEngineGeometry.getNrNormals(); i++) {
-									normalsList.add(ifcEngineGeometry.getNormal(i));
-								}
-								normals.addAll(normalsList);
-								
+//								EList<Integer> indices = geometry.getIndices();
+//								List<Integer> indicesList = new ArrayList<Integer>(ifcEngineGeometry.getNrIndices());
+//								for (int i = 0; i < ifcEngineGeometry.getNrIndices(); i++) {
+//									indicesList.add(ifcEngineGeometry.getIndex(i));
+//								}
+//								indices.addAll(indicesList);
+//
+//								EList<Float> vertices = geometry.getVertices();
+//								List<Float> verticesList = new ArrayList<Float>(ifcEngineGeometry.getNrVertices());
+//								for (int i = 0; i < ifcEngineGeometry.getNrVertices(); i++) {
+//									verticesList.add(ifcEngineGeometry.getVertex(i));
+//								}
+//								vertices.addAll(verticesList);
+//
+//								EList<Float> normals = geometry.getNormals();
+//								List<Float> normalsList = new ArrayList<Float>(ifcEngineGeometry.getNrNormals());
+//								for (int i = 0; i < ifcEngineGeometry.getNrNormals(); i++) {
+//									normalsList.add(ifcEngineGeometry.getNormal(i));
+//								}
+//								normals.addAll(normalsList);
+
 								LOGGER.info("Done with geometry");
+
+								float[] totalMinExtends = new float[] { Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY };
+								float[] totalMaxExtends = new float[] { Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY };
+
 								for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 									IfcEngineInstance ifcEngineInstance = ifcEngineModel.getInstanceFromExpressId((int) ifcProduct.getOid());
 									IfcEngineInstanceVisualisationProperties visualisationProperties = ifcEngineInstance.getVisualisationProperties();
 									if (visualisationProperties.getPrimitiveCount() > 0) {
+										ByteBuffer verticesBuffer = ByteBuffer.allocate(visualisationProperties.getPrimitiveCount() * 3 * 3 * 4);
+										ByteBuffer normalsBuffer = ByteBuffer.allocate(visualisationProperties.getPrimitiveCount() * 3 * 3 * 4);
+										
 										GeometryInstance geometryInstance = Ifc2x3tc1Factory.eINSTANCE.createGeometryInstance();
-										getDatabaseSession().store(geometryInstance, pid, rid);
 										geometryInstance.setPrimitiveCount(visualisationProperties.getPrimitiveCount());
 										geometryInstance.setStartIndex(visualisationProperties.getStartIndex());
 										geometryInstance.setStartVertex(visualisationProperties.getStartVertex());
+
+										float[] minExtends = new float[] { Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY };
+										float[] maxExtends = new float[] { Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY };
+
+										for (int i = geometryInstance.getStartIndex(); i < geometryInstance.getPrimitiveCount() * 3 + geometryInstance.getStartIndex(); i++) {
+											int index = ifcEngineGeometry.getIndex(i) * 3;
+											processExtends(minExtends, maxExtends, ifcEngineGeometry, verticesBuffer, normalsBuffer, index);
+										}
+										
+										geometryInstance.getExtendsMin().add(minExtends[0]);
+										geometryInstance.getExtendsMin().add(minExtends[1]);
+										geometryInstance.getExtendsMin().add(minExtends[2]);
+										geometryInstance.getExtendsMax().add(maxExtends[0]);
+										geometryInstance.getExtendsMax().add(maxExtends[1]);
+										geometryInstance.getExtendsMax().add(maxExtends[2]);
+										
+										processExtends(minExtends, maxExtends, totalMinExtends, totalMaxExtends);
+										geometryInstance.setVertices(verticesBuffer.array());
+										geometryInstance.setNormals(normalsBuffer.array());
+
 										ifcProduct.setGeometryInstance(geometryInstance);
+										getDatabaseSession().store(geometryInstance, pid, rid);
 									}
 								}
+								geometry.getExtendsMin().add(totalMinExtends[0]);
+								geometry.getExtendsMin().add(totalMinExtends[1]);
+								geometry.getExtendsMin().add(totalMinExtends[2]);
+								geometry.getExtendsMax().add(totalMaxExtends[0]);
+								geometry.getExtendsMax().add(totalMaxExtends[1]);
+								geometry.getExtendsMax().add(totalMaxExtends[2]);
+
+								System.out.println(Arrays.toString(totalMinExtends));
+								System.out.println(Arrays.toString(totalMaxExtends));
 								LOGGER.info("Done with products");
 								return geometry;
 							} finally {
@@ -273,6 +306,47 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		return null;
 	}
 
+	private void processExtends(float[] minExtends, float[] maxExtends, float[] totalMinExtends, float[] totalMaxExtends) {
+		for (int i = 0; i < minExtends.length; i++) {
+			if (minExtends[i] < totalMinExtends[i]) {
+				totalMinExtends[i] = minExtends[i];
+			}
+			if (maxExtends[i] > totalMaxExtends[i]) {
+				totalMaxExtends[i] = maxExtends[i];
+			}
+		}
+	}
+
+	private void processExtends(float[] minExtends, float[] maxExtends, IfcEngineGeometry geometry, ByteBuffer verticesBuffer, ByteBuffer normalsBuffer, int index) {
+		float x = geometry.getVertex(index);
+		float y = geometry.getVertex(index + 1);
+		float z = geometry.getVertex(index + 2);
+		verticesBuffer.putFloat(x);
+		verticesBuffer.putFloat(y);
+		verticesBuffer.putFloat(z);
+		normalsBuffer.putFloat(geometry.getNormal(index));
+		normalsBuffer.putFloat(geometry.getNormal(index + 1));
+		normalsBuffer.putFloat(geometry.getNormal(index + 2));
+		if (x < minExtends[0]) {
+			minExtends[0] = x;
+		}
+		if (x > maxExtends[0]) {
+			maxExtends[0] = x;
+		}
+		if (y < minExtends[1]) {
+			minExtends[1] = y;
+		}
+		if (y > maxExtends[1]) {
+			maxExtends[1] = y;
+		}
+		if (z < minExtends[2]) {
+			minExtends[2] = z;
+		}
+		if (z > maxExtends[2]) {
+			maxExtends[2] = z;
+		}
+	}
+
 	private RevisionSummary createSummary(IfcModelInterface model) throws BimserverDatabaseException {
 		RevisionSummary revisionSummary = getDatabaseSession().create(StorePackage.eINSTANCE.getRevisionSummary());
 		revisionSummaryContainerEntities = getDatabaseSession().create(StorePackage.eINSTANCE.getRevisionSummaryContainer());
@@ -287,7 +361,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		revisionSummaryContainerOther = getDatabaseSession().create(StorePackage.eINSTANCE.getRevisionSummaryContainer());
 		revisionSummaryContainerOther.setName("Rest");
 		revisionSummary.getList().add(revisionSummaryContainerOther);
-		
+
 		for (EClass eClass : getDatabaseSession().getClasses()) {
 			add(revisionSummary, eClass, model.count(eClass));
 		}
@@ -319,7 +393,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		}
 		map.put(eClass, count);
 	}
-	
+
 	private IfcModelInterface checkinMerge(Revision lastRevision) throws BimserverLockConflictException, BimserverDatabaseException, UserException {
 		IfcModelInterface ifcModel;
 		IfcModelSet ifcModelSet = new IfcModelSet();

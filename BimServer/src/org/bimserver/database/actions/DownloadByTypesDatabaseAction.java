@@ -29,6 +29,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.Geometry;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
@@ -40,6 +41,7 @@ import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 
 public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
 
@@ -73,12 +75,18 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 		for (String className : classNames) {
 			eClasses.add(getDatabaseSession().getEClassForName(className));
 			if (includeAllSubtypes) {
-				eClasses.addAll(bimServer.getDatabase().getMetaDataManager().getAllSubClasses((EClass)Ifc2x3tc1Package.eINSTANCE.getEClassifier(className)));
+				EClassifier eClassifier = Ifc2x3tc1Package.eINSTANCE.getEClassifier(className);
+				if (eClassifier == null) {
+					throw new UserException("Class " + className + " not found");
+				}
+				eClasses.addAll(bimServer.getDatabase().getMetaDataManager().getAllSubClasses((EClass)eClassifier));
 			}
 		}
 		String name = "";
+		Geometry geometry = null;
 		for (Long roid : roids) {
 			Revision virtualRevision = getVirtualRevision(roid);
+			geometry = virtualRevision.getGeometry();
 			project = virtualRevision.getProject();
 			name += project.getName() + "-" + virtualRevision.getId() + "-";
 			if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
@@ -108,6 +116,10 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());
 		} catch (MergeException e) {
 			throw new UserException(e);
+		}
+		if (geometry != null) {
+			ifcModel.setGeometry(geometry);
+			geometry.load();
 		}
 		if (name.endsWith("-")) {
 			name = name.substring(0, name.length()-1);

@@ -42,6 +42,8 @@ import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SToken;
+import org.bimserver.plugins.serializers.EmfSerializerDataSource;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
@@ -220,9 +222,11 @@ public class DownloadServlet extends HttpServlet {
 				} else {
 					response.setContentType(request.getParameter("mime"));
 				}
-				InputStream in = dataSource.getInputStream();
-				IOUtils.copy(in, outputStream);
-				in.close();
+				try {
+					((EmfSerializerDataSource)dataSource).getSerializer().writeToOutputStream(outputStream);
+				} catch (SerializerException e) {
+					e.printStackTrace();
+				}
 			}
 			if (outputStream instanceof GZIPOutputStream) {
 				((GZIPOutputStream) outputStream).finish();

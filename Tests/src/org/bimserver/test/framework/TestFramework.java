@@ -28,6 +28,7 @@ import org.bimserver.BimServerConfig;
 import org.bimserver.EmbeddedWebServer;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.models.store.ServerState;
+import org.bimserver.plugins.PluginManager;
 import org.bimserver.servlets.StreamingServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.slf4j.Logger;
@@ -128,5 +129,9 @@ public class TestFramework {
 
 	public TestResults getResults() {
 		return testResults;
+	}
+
+	public PluginManager getPluginManager() {
+		return null;
 	}
 }

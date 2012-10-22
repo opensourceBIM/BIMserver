@@ -35051,6 +35051,51 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getGeometryInstance_ExtendsMin() {
+		return (EAttribute) getGeometryInstance().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGeometryInstance_ExtendsMax() {
+		return (EAttribute) getGeometryInstance().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGeometryInstance_Indices() {
+		return (EAttribute) getGeometryInstance().getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGeometryInstance_Vertices() {
+		return (EAttribute) getGeometryInstance().getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGeometryInstance_Normals() {
+		return (EAttribute) getGeometryInstance().getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getTristate() {
 		if (tristateEEnum == null) {
 			tristateEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(Ifc2x3tc1Package.eNS_URI).getEClassifiers().get(0);

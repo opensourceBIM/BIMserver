@@ -19,15 +19,12 @@ package org.bimserver.unittests;
 
 import static org.junit.Assert.fail;
 
-import java.io.File;
 import java.util.Random;
 
-import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
 import org.bimserver.client.Session;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.junit.AfterClass;
@@ -40,18 +37,14 @@ public class TestClientEmfModelRemoteProtocolBuffers {
 
 	@BeforeClass
 	public static void setup() {
+		bimServerClient = new BimServerClient("", null);
 		try {
-			bimServerClient = new BimServerClient(LocalDevPluginLoader.createPluginManager(new File("home")));
-			try {
-				UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
-				bimServerClient.setAuthentication(usernamePasswordAuthenticationInfo);
-				bimServerClient.connectProtocolBuffers("localhost", 8020);
-			} catch (ConnectionException e1) {
-				e1.printStackTrace();
-			}
-		} catch (PluginException e) {
-			e.printStackTrace();
-		}		
+			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
+			bimServerClient.setAuthentication(usernamePasswordAuthenticationInfo);
+			bimServerClient.connectProtocolBuffers("localhost", 8020);
+		} catch (ConnectionException e1) {
+			e1.printStackTrace();
+		}
 	}
 
 	@AfterClass

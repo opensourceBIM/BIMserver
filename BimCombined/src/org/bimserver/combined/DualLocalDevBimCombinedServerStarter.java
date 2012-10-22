@@ -92,7 +92,7 @@ public class DualLocalDevBimCombinedServerStarter {
 					 	bimWebServer.setBimServerClientFactory(new BimServerClientFactory() {
 							@Override
 							public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServerException, UserException {
-								BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager(), bimServer.getServicesMap());
+								BimServerClient bimServerClient = new BimServerClient(remoteAddress, bimServer.getServicesMap());
 								bimServerClient.setAuthentication(authenticationInfo);
 								bimServerClient.connectDirect(ServiceInterface.class, bimServer.getServiceFactory().newServiceMap(AccessMethod.WEB_INTERFACE, remoteAddress).get(ServiceInterface.class));
 								return bimServerClient;

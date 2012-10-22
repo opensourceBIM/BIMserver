@@ -63,8 +63,7 @@ public class SocketNotificationsClient extends NotificationsClient {
 		thread.start();
 	}
 
-	public void connect(ProtocolBuffersMetaData protocolBuffersMetaData, ServicesMap servicesMap, InetSocketAddress address) {
-		this.protocolBuffersMetaData = protocolBuffersMetaData;
+	public void connect(ServicesMap servicesMap, InetSocketAddress address) {
 		this.servicesMap = servicesMap;
 		this.address = address;
 	}
