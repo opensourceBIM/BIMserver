@@ -23,15 +23,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.apache.commons.io.IOUtils;
-import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
 import org.bimserver.client.Session;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
-import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -43,8 +40,7 @@ public class YetAnotherTest {
 
 	private void start() {
 		try {
-			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
-			BimServerClient bimServerClient = new BimServerClient(pluginManager);
+			BimServerClient bimServerClient = new BimServerClient("", null);
 			bimServerClient.setAuthentication(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			bimServerClient.connectProtocolBuffers("localhost", 8020);
 			String pName = "p java client" + new java.util.Date();
@@ -67,8 +63,6 @@ public class YetAnotherTest {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (PluginException e) {
 			e.printStackTrace();
 		}
 	}

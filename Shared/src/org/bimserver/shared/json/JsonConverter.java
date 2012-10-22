@@ -7,7 +7,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.activation.DataHandler;
 import javax.mail.util.ByteArrayDataSource;
@@ -152,11 +154,19 @@ public class JsonConverter {
 			}
 		} else if (object instanceof JsonArray) {
 			JsonArray array = (JsonArray)object;
-			List<Object> list = new ArrayList<Object>();
-			for (int i=0; i<array.size(); i++) {
-				list.add(fromJson(definedType, genericType, array.get(i)));
+			if (definedType.isList()) {
+				List<Object> list = new ArrayList<Object>();
+				for (int i=0; i<array.size(); i++) {
+					list.add(fromJson(definedType, genericType, array.get(i)));
+				}
+				return list;
+			} else if(definedType.isSet()) {
+				Set<Object> set = new HashSet<Object>();
+				for (int i=0; i<array.size(); i++) {
+					set.add(fromJson(definedType, genericType, array.get(i)));
+				}
+				return set;
 			}
-			return list;
 		} else if (object instanceof JsonNull) {
 			return null;
 		} else if (definedType.isByteArray()) {
@@ -213,6 +223,20 @@ public class JsonConverter {
 			} else if (genericType.isInteger()) {
 				if (object instanceof JsonPrimitive) {
 					return ((JsonPrimitive)object).getAsInt();
+				}
+			}
+		} else if (definedType.isSet()) {
+			if (genericType.isLong()) {
+				if (object instanceof JsonPrimitive) {
+					return ((JsonPrimitive)object).getAsLong();
+				}
+			} else if (genericType.isInteger()) {
+				if (object instanceof JsonPrimitive) {
+					return ((JsonPrimitive)object).getAsInt();
+				}
+			} else if (genericType.isString()) {
+				if (object instanceof JsonPrimitive) {
+					return ((JsonPrimitive)object).getAsString();
 				}
 			}
 		} else if (definedType.isDouble()) {

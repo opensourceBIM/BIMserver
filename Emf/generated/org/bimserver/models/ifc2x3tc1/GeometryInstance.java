@@ -17,6 +17,7 @@
 package org.bimserver.models.ifc2x3tc1;
 
 import org.bimserver.emf.IdEObject;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,6 +30,11 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getStartVertex <em>Start Vertex</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getStartIndex <em>Start Index</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getPrimitiveCount <em>Primitive Count</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getExtendsMin <em>Extends Min</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getExtendsMax <em>Extends Max</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getIndices <em>Indices</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getVertices <em>Vertices</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getNormals <em>Normals</em>}</li>
  * </ul>
  * </p>
  *
@@ -115,5 +121,115 @@ public interface GeometryInstance extends IdEObject {
 	 * @generated
 	 */
 	void setPrimitiveCount(Integer value);
+
+	/**
+	 * Returns the value of the '<em><b>Extends Min</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.Float}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extends Min</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extends Min</em>' attribute list.
+	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInstance_ExtendsMin()
+	 * @model unique="false"
+	 * @generated
+	 */
+	EList<Float> getExtendsMin();
+
+	/**
+	 * Returns the value of the '<em><b>Extends Max</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.Float}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extends Max</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extends Max</em>' attribute list.
+	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInstance_ExtendsMax()
+	 * @model unique="false"
+	 * @generated
+	 */
+	EList<Float> getExtendsMax();
+
+	/**
+	 * Returns the value of the '<em><b>Indices</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Indices</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Indices</em>' attribute.
+	 * @see #setIndices(byte[])
+	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInstance_Indices()
+	 * @model
+	 * @generated
+	 */
+	byte[] getIndices();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getIndices <em>Indices</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Indices</em>' attribute.
+	 * @see #getIndices()
+	 * @generated
+	 */
+	void setIndices(byte[] value);
+
+	/**
+	 * Returns the value of the '<em><b>Vertices</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Vertices</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Vertices</em>' attribute.
+	 * @see #setVertices(byte[])
+	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInstance_Vertices()
+	 * @model
+	 * @generated
+	 */
+	byte[] getVertices();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getVertices <em>Vertices</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Vertices</em>' attribute.
+	 * @see #getVertices()
+	 * @generated
+	 */
+	void setVertices(byte[] value);
+
+	/**
+	 * Returns the value of the '<em><b>Normals</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Normals</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Normals</em>' attribute.
+	 * @see #setNormals(byte[])
+	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInstance_Normals()
+	 * @model
+	 * @generated
+	 */
+	byte[] getNormals();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getNormals <em>Normals</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Normals</em>' attribute.
+	 * @see #getNormals()
+	 * @generated
+	 */
+	void setNormals(byte[] value);
 
 } // GeometryInstance

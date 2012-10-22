@@ -23,7 +23,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -1542,7 +1541,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		writePrimitiveValue(eStructuralFeature, wrappedValue.eGet(eStructuralFeature), buffer);
 		if (wrappedValue instanceof IfcGloballyUniqueId) {
 			if (wrappedValue.getOid() == -1) {
-				((IdEObjectImpl) wrappedValue).setOid(newOid(Ifc2x3tc1Package.eINSTANCE.getWrappedValue()));
+				((IdEObjectImpl) wrappedValue).setOid(newOid(Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId()));
 			}
 			ByteBuffer convertObjectToByteArray = convertObjectToByteArray(wrappedValue);
 			ByteBuffer createKeyBuffer = createKeyBuffer(pid, wrappedValue.getOid(), rid);

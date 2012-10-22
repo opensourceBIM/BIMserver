@@ -17,34 +17,31 @@ package org.bimserver.client.factories;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.client.AbstractBimServerClientFactory;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.meta.ServicesMap;
 
-public class ProtocolBuffersBimServerClientFactory implements BimServerClientFactory {
+public class ProtocolBuffersBimServerClientFactory extends AbstractBimServerClientFactory {
 
 	private final PluginManager pluginManager;
 	private final String address;
 	private final int port;
 
-	public ProtocolBuffersBimServerClientFactory(String address, int port) {
+	public ProtocolBuffersBimServerClientFactory(String address, int port, ServicesMap servicesMap) {
+		super(servicesMap);
 		this.address = address;
 		this.port = port;
 		pluginManager = new PluginManager();
 		pluginManager.loadPluginsFromCurrentClassloader();
 	}
 
-	public ProtocolBuffersBimServerClientFactory(String address, int port, PluginManager pluginManager) {
-		this.address = address;
-		this.port = port;
-		this.pluginManager = pluginManager;
-	}
-
 	@Override
 	public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServiceException, ConnectionException {
-		BimServerClient bimServerClient = new BimServerClient(pluginManager);
+		BimServerClient bimServerClient = new BimServerClient(remoteAddress, getServicesMap());
 		bimServerClient.setAuthentication(authenticationInfo);
 		bimServerClient.connectProtocolBuffers(address, port);
 		return bimServerClient;

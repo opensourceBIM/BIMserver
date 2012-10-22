@@ -17,9 +17,11 @@ package org.bimserver.scenejs;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.OutputStreamWriter;
+import java.nio.ByteBuffer;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -123,6 +125,7 @@ import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Charsets;
 import com.google.gson.stream.JsonWriter;
 
 public class StreamingSceneJSSerializer extends EmfSerializer {
@@ -135,6 +138,30 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 	private class Extents {
 		public float[] min = { Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY };
 		public float[] max = { Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY };
+		
+		public void addToExtents(EList<Float> extents) {
+			for (int i=0; i<extents.size(); i++) {
+				float f = extents.get(i);
+				if (f < min[i]) {
+					min[i] = f;
+				}
+				if (f > max[i]) {
+					max[i] = f;
+				}
+			}
+		}
+
+		public void setMin(EList<Float> extendsMin) {
+			for (int i=0; i<extendsMin.size(); i++) {
+				this.min[i] = extendsMin.get(i);
+			}
+		}
+
+		public void setMax(EList<Float> extendsMax) {
+			for (int i=0; i<extendsMax.size(); i++) {
+				this.max[i] = extendsMax.get(i);
+			}
+		}
 	}
 	private Extents sceneExtents = new Extents();
 	private HashMap<String, Extents> geometryExtents = new HashMap<String, Extents>();
@@ -156,8 +183,6 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 				ifcEngineModel = ifcEngine.openModel(serializer.getBytes());
 				ifcEngineModel.setPostProcessing(true);
 				geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
-			} else {
-				System.out.println(getModel().getGeometry().getIndices().size() + " / " + getModel().getGeometry().getVertices().size());
 			}
 		} catch (PluginException e) {
 			throw new SerializerException(e);
@@ -213,12 +238,16 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 	@Override
 	public boolean write(OutputStream out) throws SerializerException {
 		if (getMode() == Mode.BODY) {
-			PrintWriter writer = new PrintWriter(out);
+			OutputStreamWriter outputStreamWriter = new OutputStreamWriter(out, Charsets.UTF_8);
 			try {
 				// Pre-calculate information for use during the export
 				calculateGeometryExtents();
+				if (getModel().getGeometry() != null) {
+					sceneExtents.setMin(getModel().getGeometry().getExtendsMin());
+					sceneExtents.setMax(getModel().getGeometry().getExtendsMax());
+				}
 				
-				JsonWriter jsonWriter = new JsonWriter(writer);
+				JsonWriter jsonWriter = new JsonWriter(new BufferedWriter(outputStreamWriter));
 //				jsonWriter.setIndent("  ");
 				
 				/* Write data to stream
@@ -234,7 +263,7 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 				jsonWriter.name("flags").beginObject().name("backfaces").value(false).endObject();
 				jsonWriter.name("nodes");
 				jsonWriter.beginArray();
-				jsonWriter.beginObject().name("type").value("library").name("nodes").beginArray();
+				jsonWriter.beginObject().name("id").value("library").name("type").value("library").name("nodes").beginArray();
 				writeMaterials(jsonWriter);
 				writeGeometries(jsonWriter);
 				jsonWriter.endArray();
@@ -258,13 +287,13 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 				jsonWriter.endObject();
 				
 				jsonWriter.flush();
-				writer.flush();
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
-			writer.flush();
 			setMode(Mode.FINISHED);
-			getIfcEngine().close();
+			if (getIfcEngine() != null) {
+				getIfcEngine().close();
+			}
 			return true;
 		} else if (getMode() == Mode.FINISHED) {
 			return false;
@@ -340,24 +369,15 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 				// Use the vertex to calculate the boundaries of the geometric object
 				addToExtents(extents, new float[] { getVertex(i + 0), getVertex(i + 1), getVertex(i + 2) });	
 			}
+			// Add the object's extents to the scene's total extents
+			addToExtents(sceneExtents, extents.min);
+			addToExtents(sceneExtents, extents.max);
 		} else {
-			GeometryInstance geometryInstance = ifcObject.getGeometryInstance();
-			if (geometryInstance != null) {
-				for (int i=0; i<geometryInstance.getPrimitiveCount(); i+=3) {
-					Integer index1 = getModel().getGeometry().getIndices().get(i);
-					Integer index2 = getModel().getGeometry().getIndices().get(i + 1);
-					Integer index3 = getModel().getGeometry().getIndices().get(i + 2);
-					
-					addToExtents(extents, new float[] { getVertex(index1 + 0), getVertex(index1 + 1), getVertex(index1 + 2) });	
-					addToExtents(extents, new float[] { getVertex(index2 + 0), getVertex(index2 + 1), getVertex(index2 + 2) });	
-					addToExtents(extents, new float[] { getVertex(index3 + 0), getVertex(index3 + 1), getVertex(index3 + 2) });	
-				}
+			if (ifcObject.getGeometryInstance() != null) {
+				extents.addToExtents(ifcObject.getGeometryInstance().getExtendsMin());
+				extents.addToExtents(ifcObject.getGeometryInstance().getExtendsMax());
 			}
 		}
-
-		// Add the object's extents to the scene's total extents
-		addToExtents(sceneExtents, extents.min);
-		addToExtents(sceneExtents, extents.max);
 	}
 
 	private void writeGeometries(JsonWriter jsonWriter) throws IfcEngineException, SerializerException, IOException {
@@ -544,7 +564,7 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 
 		jsonWriter.beginObject();
 		
-		if (getModel().getGeometry() == null) {
+		if (ifcObject.getGeometryInstance() == null) {
 			jsonWriter.name("type").value("geometry");
 			jsonWriter.name("coreId").value(ifcObject.getGlobalId().getWrappedValue());
 			jsonWriter.name("primitive").value("triangles");
@@ -586,50 +606,84 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 			}
 			jsonWriter.endArray();
 		} else {
-			GeometryInstance geometryInstance = ifcObject.getGeometryInstance();
-			
-			if (geometryInstance != null) {
-				jsonWriter.name("type").value("geometry");
-				jsonWriter.name("coreId").value(ifcObject.getGlobalId().getWrappedValue());
-				jsonWriter.name("primitive").value("triangles");
-				jsonWriter.name("positions").beginArray();
-				
-				for (int i = geometryInstance.getStartIndex(); i < geometryInstance.getPrimitiveCount() * 3 + geometryInstance.getStartIndex(); i++) {
-					int index = getIndex(i) * 3;
-					
-					float x = getVertex(index);
-					float y = getVertex(index + 1);
-					float z = getVertex(index + 2);
-					
-					jsonWriter.value((Float.isInfinite(x) || Float.isNaN(x)? 0.0f : x) + modelOffset[0]);
-					jsonWriter.value((Float.isInfinite(y) || Float.isNaN(y)? 0.0f : y) + modelOffset[1]);
-					jsonWriter.value((Float.isInfinite(z) || Float.isNaN(z)? 0.0f : z) + modelOffset[2]);
-				}
-				
-				jsonWriter.endArray();
-				jsonWriter.name("normals").beginArray();
-				
-				for (int i = geometryInstance.getStartIndex(); i < geometryInstance.getPrimitiveCount() * 3 + geometryInstance.getStartIndex(); i++) {
-					int index = getIndex(i) * 3;
-					
-					float x = getNormal(index);
-					float y = getNormal(index + 1);
-					float z = getNormal(index + 2);
-					
-					jsonWriter.value(x).value(y).value(z);
-				}
-				
-				jsonWriter.endArray();
-				
-				jsonWriter.name("indices").beginArray();
-				for (int i = 0; i < geometryInstance.getPrimitiveCount() * 3; i++) {
-					jsonWriter.value(i);
-				}
-				jsonWriter.endArray();
-			}
+			writeGeometryFromInstancesGeometryObject(jsonWriter, ifcObject, modelOffset);
+			//writeGeometryFromGenericGeometryObject(jsonWriter, ifcObject, modelOffset);
 		}
-		
 		jsonWriter.endObject();
+	}
+
+	private void writeGeometryFromInstancesGeometryObject(JsonWriter jsonWriter, IfcProduct ifcObject, float[] modelOffset) throws IOException {
+		GeometryInstance geometryInstance = ifcObject.getGeometryInstance();
+		
+		if (geometryInstance != null) {
+			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryInstance.getVertices());
+			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryInstance.getNormals());
+
+			jsonWriter.name("type").value("geometry");
+			jsonWriter.name("coreId").value(ifcObject.getGlobalId().getWrappedValue());
+			jsonWriter.name("primitive").value("triangles");
+			jsonWriter.name("positions").beginArray();
+			for (int i=0; i<geometryInstance.getPrimitiveCount() * 3 * 3; i++) {
+				jsonWriter.value(verticesBuffer.getFloat() + modelOffset[i % 3]);
+			}
+			jsonWriter.endArray();
+			jsonWriter.name("normals").beginArray();
+			for (int i=0; i<geometryInstance.getPrimitiveCount() * 3 * 3; i++) {
+				jsonWriter.value(normalsBuffer.getFloat());
+			}
+			jsonWriter.endArray();
+			
+			jsonWriter.name("indices").beginArray();
+			for (int i = 0; i < geometryInstance.getPrimitiveCount() * 3; i++) {
+				jsonWriter.value(i);
+			}
+			jsonWriter.endArray();
+		}
+	}
+
+	@SuppressWarnings("unused")
+	private void writeGeometryFromGenericGeometryObject(JsonWriter jsonWriter, IfcProduct ifcObject, float[] modelOffset) throws IOException {
+		GeometryInstance geometryInstance = ifcObject.getGeometryInstance();
+		
+		if (geometryInstance != null) {
+			jsonWriter.name("type").value("geometry");
+			jsonWriter.name("coreId").value(ifcObject.getGlobalId().getWrappedValue());
+			jsonWriter.name("primitive").value("triangles");
+			jsonWriter.name("positions").beginArray();
+			
+			for (int i = geometryInstance.getStartIndex(); i < geometryInstance.getPrimitiveCount() * 3 + geometryInstance.getStartIndex(); i++) {
+				int index = getIndex(i) * 3;
+				
+				float x = getVertex(index);
+				float y = getVertex(index + 1);
+				float z = getVertex(index + 2);
+				
+				jsonWriter.value((Float.isInfinite(x) || Float.isNaN(x)? 0.0f : x) + modelOffset[0]);
+				jsonWriter.value((Float.isInfinite(y) || Float.isNaN(y)? 0.0f : y) + modelOffset[1]);
+				jsonWriter.value((Float.isInfinite(z) || Float.isNaN(z)? 0.0f : z) + modelOffset[2]);
+			}
+			
+			jsonWriter.endArray();
+			jsonWriter.name("normals").beginArray();
+			
+			for (int i = geometryInstance.getStartIndex(); i < geometryInstance.getPrimitiveCount() * 3 + geometryInstance.getStartIndex(); i++) {
+				int index = getIndex(i) * 3;
+				
+				float x = getNormal(index);
+				float y = getNormal(index + 1);
+				float z = getNormal(index + 2);
+				
+				jsonWriter.value(x).value(y).value(z);
+			}
+			
+			jsonWriter.endArray();
+			
+			jsonWriter.name("indices").beginArray();
+			for (int i = 0; i < geometryInstance.getPrimitiveCount() * 3; i++) {
+				jsonWriter.value(i);
+			}
+			jsonWriter.endArray();
+		}
 	}
 
 	private void writeVisualScenes(JsonWriter jsonWriter) throws IOException {

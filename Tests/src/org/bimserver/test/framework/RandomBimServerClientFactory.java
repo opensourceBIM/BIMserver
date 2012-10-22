@@ -17,12 +17,9 @@ package org.bimserver.test.framework;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
 import org.bimserver.client.factories.BimServerClientFactory;
-import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
@@ -46,7 +43,6 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 	private int current = 0;
 	private final Type[] types;
 	private ServicesMap servicesMap;
-	private PluginManager pluginManager;
 	
 	public RandomBimServerClientFactory(TestFramework testFramework, Type... types) {
 		if (types.length == 0) {
@@ -56,17 +52,11 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 		}
 		servicesMap = new ServicesMap();
 		servicesMap.add(new SService(null, ServiceInterface.class));
-		try {
-			pluginManager = LocalDevPluginLoader.createPluginManager(testFramework.getTestConfiguration().getHomeDir());
-		} catch (PluginException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	public synchronized BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
 		try {
-			BimServerClient bimServerClient = new BimServerClient(pluginManager, servicesMap);
+			BimServerClient bimServerClient = new BimServerClient(remoteAddress, servicesMap);
 			bimServerClient.setAuthentication(authenticationInfo);
 			Type type = types[current];
 			switch (type) {
@@ -76,19 +66,19 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 				break;
 			case SOAP_HEADER:
 				LOGGER.info("New BimServerClient: SOAP/useSoapHeaderSessions");
-				bimServerClient.connectSoap("http://localhost:8080/soap", true);
+				bimServerClient.connectSoap(true);
 				break;
 			case SOAP_NO_HEADERS:
 				LOGGER.info("New BimServerClient: SOAP");
-				bimServerClient.connectSoap("http://localhost:8080/soap", false);
+				bimServerClient.connectSoap(false);
 				break;
 			case JSON_SESSION_BASED:
 				LOGGER.info("New BimServerClient: JSON");
-				bimServerClient.connectJson("http://localhost:8080/jsonapi", true);
+				bimServerClient.connectJson(true);
 				break;
 			case JSON_TOKEN_BASED:
 				LOGGER.info("New BimServerClient: JSON");
-				bimServerClient.connectJson("http://localhost:8080/jsonapi", false);
+				bimServerClient.connectJson(false);
 				break;
 			}
 			current = (current + 1) % types.length;

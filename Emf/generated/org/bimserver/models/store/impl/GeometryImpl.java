@@ -32,6 +32,8 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.bimserver.models.store.impl.GeometryImpl#getExtendsMin <em>Extends Min</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.GeometryImpl#getExtendsMax <em>Extends Max</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.GeometryImpl#getIndices <em>Indices</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.GeometryImpl#getVertices <em>Vertices</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.GeometryImpl#getNormals <em>Normals</em>}</li>
@@ -68,6 +70,26 @@ public class GeometryImpl extends IdEObjectImpl implements Geometry {
 	@Override
 	protected int eStaticFeatureCount() {
 		return 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Float> getExtendsMin() {
+		return (EList<Float>) eGet(StorePackage.Literals.GEOMETRY__EXTENDS_MIN, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Float> getExtendsMax() {
+		return (EList<Float>) eGet(StorePackage.Literals.GEOMETRY__EXTENDS_MAX, true);
 	}
 
 	/**

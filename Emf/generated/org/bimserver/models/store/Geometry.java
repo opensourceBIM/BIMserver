@@ -28,6 +28,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.bimserver.models.store.Geometry#getExtendsMin <em>Extends Min</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Geometry#getExtendsMax <em>Extends Max</em>}</li>
  *   <li>{@link org.bimserver.models.store.Geometry#getIndices <em>Indices</em>}</li>
  *   <li>{@link org.bimserver.models.store.Geometry#getVertices <em>Vertices</em>}</li>
  *   <li>{@link org.bimserver.models.store.Geometry#getNormals <em>Normals</em>}</li>
@@ -40,6 +42,38 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Geometry extends IdEObject {
+	/**
+	 * Returns the value of the '<em><b>Extends Min</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.Float}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extends Min</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extends Min</em>' attribute list.
+	 * @see org.bimserver.models.store.StorePackage#getGeometry_ExtendsMin()
+	 * @model unique="false"
+	 * @generated
+	 */
+	EList<Float> getExtendsMin();
+
+	/**
+	 * Returns the value of the '<em><b>Extends Max</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.Float}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extends Max</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extends Max</em>' attribute list.
+	 * @see org.bimserver.models.store.StorePackage#getGeometry_ExtendsMax()
+	 * @model unique="false"
+	 * @generated
+	 */
+	EList<Float> getExtendsMax();
+
 	/**
 	 * Returns the value of the '<em><b>Indices</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.Integer}.

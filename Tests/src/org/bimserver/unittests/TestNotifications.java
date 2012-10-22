@@ -86,13 +86,13 @@ public class TestNotifications {
 		try {
 			ServicesMap servicesMap = new ServicesMap();
 			servicesMap.add(new SService(FileUtils.readFileToString(new File("../Shared/src/org/bimserver/shared/NotificationInterface.java")), NotificationInterface.class));
-			socketNotificationsClient.connect(protocolBuffersMetaData, servicesMap, new InetSocketAddress("localhost", 8055));
+			socketNotificationsClient.connect(servicesMap, new InetSocketAddress("localhost", 8055));
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		}
 		socketNotificationsClient.start();
 		
-		BimServerClient bimServerClient = new BimServerClient(bimServer.getPluginManager());
+		BimServerClient bimServerClient = new BimServerClient("", null);
 		try {
 			bimServerClient.connectProtocolBuffers("localhost", 8020);
 		} catch (ConnectionException e1) {

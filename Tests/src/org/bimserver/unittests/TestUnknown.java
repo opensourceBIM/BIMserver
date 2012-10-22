@@ -17,15 +17,12 @@ package org.bimserver.unittests;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.File;
 import java.util.List;
 
-import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDataValue;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -35,7 +32,7 @@ public class TestUnknown {
 	@Test
 	public void test() {
 		try {
-			BimServerClient bimServerClient = new BimServerClient(LocalDevPluginLoader.createPluginManager(new File("home")));
+			BimServerClient bimServerClient = new BimServerClient("", null);
 			bimServerClient.setAuthentication(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			bimServerClient.connectProtocolBuffers("localhost", 8020);
 			Long roid = 47L;
@@ -46,8 +43,6 @@ public class TestUnknown {
 					System.out.println(sDataValue.getClass().getName());
 				}
 			}
-		} catch (PluginException e) {
-			e.printStackTrace();
 		} catch (ConnectionException e) {
 			e.printStackTrace();
 		} catch (ServerException e) {

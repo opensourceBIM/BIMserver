@@ -3748,8 +3748,8 @@ public class Service implements ServiceInterface {
 	public List<SProfileDescriptor> getAllPublicProfiles(String notificationsUrl, String serviceIdentifier) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClient client = new BimServerClient(bimServer.getPluginManager(), bimServer.getServicesMap());
-			client.connectJson(notificationsUrl, false);
+			BimServerClient client = new BimServerClient(notificationsUrl, bimServer.getServicesMap());
+			client.connectJson(false);
 			NotificationInterface notificationInterface = client.getNotificationInterface();
 			return notificationInterface.getPublicProfiles(serviceIdentifier);
 		} catch (Exception e) {
@@ -3761,8 +3761,8 @@ public class Service implements ServiceInterface {
 	public List<SProfileDescriptor> getAllPrivateProfiles(String notificationsUrl, String serviceIdentifier, String token) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClient client = new BimServerClient(bimServer.getPluginManager(), bimServer.getServicesMap());
-			client.connectJson(notificationsUrl, false);
+			BimServerClient client = new BimServerClient(notificationsUrl, bimServer.getServicesMap());
+			client.connectJson(false);
 			NotificationInterface notificationInterface = client.getNotificationInterface();
 			return notificationInterface.getPrivateProfiles(serviceIdentifier, token);
 		} catch (Exception e) {

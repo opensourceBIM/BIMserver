@@ -1,6 +1,5 @@
 package org.bimserver.plugins.ifcengine;
 
-import java.util.Collection;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org

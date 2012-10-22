@@ -17,12 +17,8 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.File;
-
 import javax.xml.ws.soap.SOAPFaultException;
 
-import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.slf4j.Logger;
@@ -40,19 +36,13 @@ public class ServiceHolder {
 	}
 
 	public boolean connect(final String address, final String username, final String password) {
-		PluginManager pluginManager = new PluginManager(new File("tmp"), null, null, null, null);
-		try {
-			pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
-		} catch (PluginException e) {
-			LOGGER.error("", e);
-		}
-		bimServerClient = new BimServerClient(pluginManager);
+		bimServerClient = new BimServerClient(address, null);
 		this.address = address;
 		this.username = username;
 		this.password = password;
 		LOGGER.info("Connecting to " + address);
 		try {
-			bimServerClient.connectSoap(address, true);
+			bimServerClient.connectSoap(true);
 		} catch (ConnectionException e) {
 			LOGGER.error("", e);
 		}

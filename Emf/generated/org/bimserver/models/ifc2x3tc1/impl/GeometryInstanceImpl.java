@@ -21,6 +21,7 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.ifc2x3tc1.GeometryInstance;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -33,6 +34,11 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInstanceImpl#getStartVertex <em>Start Vertex</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInstanceImpl#getStartIndex <em>Start Index</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInstanceImpl#getPrimitiveCount <em>Primitive Count</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInstanceImpl#getExtendsMin <em>Extends Min</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInstanceImpl#getExtendsMax <em>Extends Max</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInstanceImpl#getIndices <em>Indices</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInstanceImpl#getVertices <em>Vertices</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.GeometryInstanceImpl#getNormals <em>Normals</em>}</li>
  * </ul>
  * </p>
  *
@@ -120,6 +126,80 @@ public class GeometryInstanceImpl extends IdEObjectImpl implements GeometryInsta
 	 */
 	public void setPrimitiveCount(Integer newPrimitiveCount) {
 		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__PRIMITIVE_COUNT, newPrimitiveCount);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Float> getExtendsMin() {
+		return (EList<Float>) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__EXTENDS_MIN, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Float> getExtendsMax() {
+		return (EList<Float>) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__EXTENDS_MAX, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public byte[] getIndices() {
+		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__INDICES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIndices(byte[] newIndices) {
+		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__INDICES, newIndices);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public byte[] getVertices() {
+		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__VERTICES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setVertices(byte[] newVertices) {
+		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__VERTICES, newVertices);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public byte[] getNormals() {
+		return (byte[]) eGet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__NORMALS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNormals(byte[] newNormals) {
+		eSet(Ifc2x3tc1Package.Literals.GEOMETRY_INSTANCE__NORMALS, newNormals);
 	}
 
 } //GeometryInstanceImpl

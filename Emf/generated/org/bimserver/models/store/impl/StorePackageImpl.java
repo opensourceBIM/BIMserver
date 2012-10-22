@@ -4524,7 +4524,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGeometry_Indices() {
+	public EAttribute getGeometry_ExtendsMin() {
 		return (EAttribute) getGeometry().getEStructuralFeatures().get(0);
 	}
 
@@ -4533,7 +4533,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGeometry_Vertices() {
+	public EAttribute getGeometry_ExtendsMax() {
 		return (EAttribute) getGeometry().getEStructuralFeatures().get(1);
 	}
 
@@ -4542,8 +4542,26 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGeometry_Normals() {
+	public EAttribute getGeometry_Indices() {
 		return (EAttribute) getGeometry().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGeometry_Vertices() {
+		return (EAttribute) getGeometry().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGeometry_Normals() {
+		return (EAttribute) getGeometry().getEStructuralFeatures().get(4);
 	}
 
 	/**

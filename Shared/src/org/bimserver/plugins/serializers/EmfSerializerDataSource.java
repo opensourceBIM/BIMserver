@@ -23,7 +23,6 @@ import java.io.OutputStream;
 
 import javax.activation.DataSource;
 
-
 public class EmfSerializerDataSource implements DataSource {
 
 	private final Serializer serializer;

@@ -84,7 +84,7 @@ public class TestClientEmfModelLocal {
 
 	@Test
 	public void test() {
-		bimServerClient = new BimServerClient(bimServer.getPluginManager());
+		bimServerClient = new BimServerClient("", null);
 		try {
 			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
 			bimServerClient.setAuthentication(usernamePasswordAuthenticationInfo);

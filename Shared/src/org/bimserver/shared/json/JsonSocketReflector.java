@@ -44,6 +44,14 @@ public class JsonSocketReflector extends JsonReflector {
 		context = new BasicHttpContext();
 	}
 	
+	public SToken getToken() {
+		return token;
+	}
+	
+	public void setToken(SToken token) {
+		this.token = token;
+	}
+	
 	public void close() {
 		httpclient.getConnectionManager().shutdown();
 	}
