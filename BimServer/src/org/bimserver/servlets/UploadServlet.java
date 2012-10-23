@@ -55,7 +55,8 @@ public class UploadServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
-		if (!bimServer.isHostAllowed(request.getHeader("Origin"))) {
+		if (request.getHeader("Origin") != null && !bimServer.isHostAllowed(request.getHeader("Origin"))) {
+			LOGGER.info(request.getHeader("Origin"));
 			response.setStatus(403);
 			return;
 		}
