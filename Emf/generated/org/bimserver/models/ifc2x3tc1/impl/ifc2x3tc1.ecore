@@ -6804,6 +6804,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="IfcVectorOrDirection" abstract="true"
       interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="GeometryInstance">
+    <eAnnotations source="hidden"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="startVertex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="startIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="primitiveCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>

@@ -22,6 +22,7 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.eclipse.emf.common.util.EList;
@@ -41,6 +42,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getDate <em>Date</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getLastError <em>Last Error</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getSummary <em>Summary</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getUser <em>User</em>}</li>
  * </ul>
  * </p>
@@ -193,6 +195,24 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 */
 	public void setLastError(String newLastError) {
 		eSet(StorePackage.Literals.CONCRETE_REVISION__LAST_ERROR, newLastError);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RevisionSummary getSummary() {
+		return (RevisionSummary) eGet(StorePackage.Literals.CONCRETE_REVISION__SUMMARY, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSummary(RevisionSummary newSummary) {
+		eSet(StorePackage.Literals.CONCRETE_REVISION__SUMMARY, newSummary);
 	}
 
 	/**

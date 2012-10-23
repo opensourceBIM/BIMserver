@@ -570,22 +570,13 @@ public interface StorePackage extends EPackage {
 	int REVISION__LAID = 12;
 
 	/**
-	 * The feature id for the '<em><b>Summary</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REVISION__SUMMARY = 13;
-
-	/**
 	 * The feature id for the '<em><b>Extended Data</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION__EXTENDED_DATA = 14;
+	int REVISION__EXTENDED_DATA = 13;
 
 	/**
 	 * The feature id for the '<em><b>Logs</b></em>' reference list.
@@ -594,7 +585,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION__LOGS = 15;
+	int REVISION__LOGS = 14;
 
 	/**
 	 * The feature id for the '<em><b>Geometry</b></em>' reference.
@@ -603,7 +594,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION__GEOMETRY = 16;
+	int REVISION__GEOMETRY = 15;
 
 	/**
 	 * The number of structural features of the '<em>Revision</em>' class.
@@ -612,7 +603,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_FEATURE_COUNT = 17;
+	int REVISION_FEATURE_COUNT = 16;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -688,13 +679,22 @@ public interface StorePackage extends EPackage {
 	int CONCRETE_REVISION__LAST_ERROR = 6;
 
 	/**
+	 * The feature id for the '<em><b>Summary</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_REVISION__SUMMARY = 7;
+
+	/**
 	 * The feature id for the '<em><b>User</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION__USER = 7;
+	int CONCRETE_REVISION__USER = 8;
 
 	/**
 	 * The number of structural features of the '<em>Concrete Revision</em>' class.
@@ -703,7 +703,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION_FEATURE_COUNT = 8;
+	int CONCRETE_REVISION_FEATURE_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.GeoTagImpl <em>Geo Tag</em>}' class.
@@ -5931,17 +5931,6 @@ public interface StorePackage extends EPackage {
 	EAttribute getRevision_Laid();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Revision#getSummary <em>Summary</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Summary</em>'.
-	 * @see org.bimserver.models.store.Revision#getSummary()
-	 * @see #getRevision()
-	 * @generated
-	 */
-	EReference getRevision_Summary();
-
-	/**
 	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Revision#getExtendedData <em>Extended Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6060,6 +6049,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getConcreteRevision_LastError();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ConcreteRevision#getSummary <em>Summary</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Summary</em>'.
+	 * @see org.bimserver.models.store.ConcreteRevision#getSummary()
+	 * @see #getConcreteRevision()
+	 * @generated
+	 */
+	EReference getConcreteRevision_Summary();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ConcreteRevision#getUser <em>User</em>}'.
@@ -10153,14 +10153,6 @@ public interface StorePackage extends EPackage {
 		EAttribute REVISION__LAID = eINSTANCE.getRevision_Laid();
 
 		/**
-		 * The meta object literal for the '<em><b>Summary</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference REVISION__SUMMARY = eINSTANCE.getRevision_Summary();
-
-		/**
 		 * The meta object literal for the '<em><b>Extended Data</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10249,6 +10241,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CONCRETE_REVISION__LAST_ERROR = eINSTANCE.getConcreteRevision_LastError();
+
+		/**
+		 * The meta object literal for the '<em><b>Summary</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONCRETE_REVISION__SUMMARY = eINSTANCE.getConcreteRevision_Summary();
 
 		/**
 		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
