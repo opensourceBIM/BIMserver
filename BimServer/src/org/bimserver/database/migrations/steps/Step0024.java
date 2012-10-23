@@ -18,25 +18,25 @@ public class Step0024 extends Migration {
 		schema.createEEnumLiteral(primitiveEnum, "STRING");
 
 		EClass typeDefinition = schema.createEClass("store", "TypeDefinition");
-		typeDefinition.getEAnnotations().add(createNoDatabase());
+		typeDefinition.getEAnnotations().add(createNoDatabaseAnnotation());
 		EClass objectDefinition = schema.createEClass("store", "ObjectDefinition", typeDefinition);
-		objectDefinition.getEAnnotations().add(createNoDatabase());
+		objectDefinition.getEAnnotations().add(createNoDatabaseAnnotation());
 		EClass primitiveDefinition = schema.createEClass("store", "PrimitiveDefinition", typeDefinition);
-		primitiveDefinition.getEAnnotations().add(createNoDatabase());
+		primitiveDefinition.getEAnnotations().add(createNoDatabaseAnnotation());
 		EClass arrayDefinition = schema.createEClass("store", "ArrayDefinition", typeDefinition);
-		arrayDefinition.getEAnnotations().add(createNoDatabase());
+		arrayDefinition.getEAnnotations().add(createNoDatabaseAnnotation());
 		EClass parameterDefinition = schema.createEClass("store", "ParameterDefinition");
-		parameterDefinition.getEAnnotations().add(createNoDatabase());
+		parameterDefinition.getEAnnotations().add(createNoDatabaseAnnotation());
 		
 		schema.createEAttribute(parameterDefinition, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(parameterDefinition, "required", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
-		schema.createEReference(parameterDefinition, "type", typeDefinition, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReference());
+		schema.createEReference(parameterDefinition, "type", typeDefinition, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		
-		schema.createEReference(objectDefinition, "parameters", parameterDefinition, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
+		schema.createEReference(objectDefinition, "parameters", parameterDefinition, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		
 		schema.createEAttribute(primitiveDefinition, "type", primitiveEnum, Multiplicity.SINGLE);
 		
-		schema.createEReference(arrayDefinition, "type", typeDefinition, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReference());
+		schema.createEReference(arrayDefinition, "type", typeDefinition, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		
 		EClass type = schema.createEClass("store", "Type");
 		EClass objectType = schema.createEClass("store", "ObjectType", type);
@@ -49,13 +49,13 @@ public class Step0024 extends Migration {
 		EClass parameter = schema.createEClass("store", "Parameter");
 		
 		schema.createEAttribute(objectType, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEReference(objectType, "parameters", parameter, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
+		schema.createEReference(objectType, "parameters", parameter, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		schema.createEAttribute(parameter, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEReference(parameter, "value", type, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReference());
+		schema.createEReference(parameter, "value", type, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
 
 		schema.createEReference(parameterDefinition, "defaultValue", type, Multiplicity.SINGLE);
 		
-		schema.createEReference(arrayType, "values", type, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
+		schema.createEReference(arrayType, "values", type, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		
 		schema.createEAttribute(longType, "value", EcorePackage.eINSTANCE.getELong(), Multiplicity.SINGLE);
 		schema.createEAttribute(doubleType, "value", EcorePackage.eINSTANCE.getEDouble(), Multiplicity.SINGLE);

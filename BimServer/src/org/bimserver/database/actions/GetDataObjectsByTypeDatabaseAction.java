@@ -68,12 +68,14 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<D
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
+		long s = System.nanoTime();
 		IfcModelInterface ifcModel;
 		try {
 			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper());
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}
+		System.out.println(((System.nanoTime() - s) / 1000000) + " ms merge");
 		List<DataObject> dataObjects = new ArrayList<DataObject>();
 		for (Long oid : ifcModel.keySet()) {
 			EObject eObject = ifcModel.get(oid);

@@ -24,6 +24,7 @@ import java.io.OutputStreamWriter;
 import java.nio.ByteBuffer;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -109,7 +110,6 @@ import org.bimserver.models.ifc2x3tc1.IfcWall;
 import org.bimserver.models.ifc2x3tc1.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.models.store.SIPrefix;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
@@ -139,62 +139,70 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 		public float[] min = { Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY };
 		public float[] max = { Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY };
 		
-		public void addToExtents(EList<Float> extents) {
-			for (int i=0; i<extents.size(); i++) {
-				float f = extents.get(i);
-				if (f < min[i]) {
-					min[i] = f;
-				}
-				if (f > max[i]) {
-					max[i] = f;
-				}
-			}
+		public void addToMinExtents(EList<Float> extents) {
+			addToMinExtents(new float[]{extents.get(0), extents.get(1), extents.get(2)});
 		}
 
-		public void setMin(EList<Float> extendsMin) {
-			for (int i=0; i<extendsMin.size(); i++) {
-				this.min[i] = extendsMin.get(i);
-			}
+		public void addToMaxExtents(EList<Float> extents) {
+			addToMaxExtents(new float[]{extents.get(0), extents.get(1), extents.get(2)});
 		}
 
-		public void setMax(EList<Float> extendsMax) {
-			for (int i=0; i<extendsMax.size(); i++) {
-				this.max[i] = extendsMax.get(i);
+		public void addToMinExtents(float[] vertex) {
+			for (int i=0; i<vertex.length; i++) {
+				min[i] = Math.min(vertex[i], min[i]);
 			}
+		}
+		
+		public void addToMaxExtents(float[] vertex) {
+			for (int i=0; i<vertex.length; i++) {
+				max[i] = Math.max(vertex[i], max[i]);
+			}
+		}
+		
+		@Override
+		public String toString() {
+			return "min: " + Arrays.toString(min) + ", max: " + Arrays.toString(max);
 		}
 	}
 	private Extents sceneExtents = new Extents();
 	private HashMap<String, Extents> geometryExtents = new HashMap<String, Extents>();
 	private HashMap<String, HashMap<String, HashSet<String>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<String>>>();
-	// private materialGeometryRel = new HashMap<String, Set<String>>();
 	private List<String> surfaceStyleIds;
 	private IfcEngineGeometry geometry;
 	private IfcEngineModel ifcEngineModel;
+	private IfcEngine ifcEngine;
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine) throws SerializerException {
 		super.init(model, projectInfo, pluginManager, ifcEngine);
+		this.ifcEngine = ifcEngine;
 		this.surfaceStyleIds = new ArrayList<String>();
-		try {
-			if (model.getGeometry() == null) {
+	}
+
+	private IfcEngineGeometry getGeometry() {
+		if (geometry == null) {
+			try {
 				ifcEngine.init();
 				Serializer serializer = getPluginManager().requireIfcStepSerializer();
 				serializer.init(model, getProjectInfo(), getPluginManager(), ifcEngine);
 				ifcEngineModel = ifcEngine.openModel(serializer.getBytes());
 				ifcEngineModel.setPostProcessing(true);
 				geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
+			} catch (IfcEngineException e) {
+				e.printStackTrace();
+			} catch (SerializerException e) {
+				e.printStackTrace();
 			}
-		} catch (PluginException e) {
-			throw new SerializerException(e);
 		}
+		return geometry;
 	}
-
+	
 	@SuppressWarnings("unused")
 	private int getNrIndices() {
 		if (getModel().getGeometry() != null) {
 			return getModel().getGeometry().getIndices().size();
 		} else {
-			return geometry.getNrIndices();
+			return getGeometry().getNrIndices();
 		}
 	}
 	
@@ -202,7 +210,7 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 		if (getModel().getGeometry() != null) {
 			return getModel().getGeometry().getVertices().size();
 		} else {
-			return geometry.getNrVertices();
+			return getGeometry().getNrVertices();
 		}
 	}
 	
@@ -210,7 +218,7 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 		if (getModel().getGeometry() != null) {
 			return getModel().getGeometry().getVertices().get(index);
 		} else {
-			return geometry.getVertex(index);
+			return getGeometry().getVertex(index);
 		}
 	}
 	
@@ -218,7 +226,7 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 		if (getModel().getGeometry() != null) {
 			return getModel().getGeometry().getNormals().get(index);
 		} else {
-			return geometry.getNormal(index);
+			return getGeometry().getNormal(index);
 		}
 	}
 	
@@ -226,7 +234,7 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 		if (getModel().getGeometry() != null) {
 			return getModel().getGeometry().getIndices().get(index);
 		} else {
-			return geometry.getIndex(index);
+			return getGeometry().getIndex(index);
 		}
 	}
 	
@@ -240,12 +248,8 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 		if (getMode() == Mode.BODY) {
 			OutputStreamWriter outputStreamWriter = new OutputStreamWriter(out, Charsets.UTF_8);
 			try {
-				// Pre-calculate information for use during the export
 				calculateGeometryExtents();
-				if (getModel().getGeometry() != null) {
-					sceneExtents.setMin(getModel().getGeometry().getExtendsMin());
-					sceneExtents.setMax(getModel().getGeometry().getExtendsMax());
-				}
+				System.out.println(sceneExtents);
 				
 				JsonWriter jsonWriter = new JsonWriter(new BufferedWriter(outputStreamWriter));
 //				jsonWriter.setIndent("  ");
@@ -364,20 +368,17 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 		}
 		Extents extents = geometryExtents.get(id);
 
-		if (getModel().getGeometry() == null) {
+		if (ifcObject.getGeometryInstance() == null) {
 			for (int i = 0; i < getNrVertices(); i += 3) {
-				// Use the vertex to calculate the boundaries of the geometric object
-				addToExtents(extents, new float[] { getVertex(i + 0), getVertex(i + 1), getVertex(i + 2) });	
+				extents.addToMinExtents(new float[] { getVertex(i + 0), getVertex(i + 1), getVertex(i + 2) });
+				extents.addToMaxExtents(new float[] { getVertex(i + 0), getVertex(i + 1), getVertex(i + 2) });
 			}
-			// Add the object's extents to the scene's total extents
-			addToExtents(sceneExtents, extents.min);
-			addToExtents(sceneExtents, extents.max);
 		} else {
-			if (ifcObject.getGeometryInstance() != null) {
-				extents.addToExtents(ifcObject.getGeometryInstance().getExtendsMin());
-				extents.addToExtents(ifcObject.getGeometryInstance().getExtendsMax());
-			}
+			extents.addToMinExtents(ifcObject.getGeometryInstance().getExtendsMin());
+			extents.addToMaxExtents(ifcObject.getGeometryInstance().getExtendsMax());
 		}
+		sceneExtents.addToMinExtents(extents.min);
+		sceneExtents.addToMaxExtents(extents.max);
 	}
 
 	private void writeGeometries(JsonWriter jsonWriter) throws IfcEngineException, SerializerException, IOException {
@@ -1471,20 +1472,6 @@ jsonWriter						.endArray()
 			indexOfChar = builder.indexOf("/");
 		}
 		return builder.toString();
-	}
-
-	private void addToExtents(Extents extents, float[] vertex) {
-		// if (!materialGeometryRel.containsKey(material)) {
-		// materialGeometryRel.put(material, new Extents);
-		// }
-		// materialGeometryRel.get(material).add(id);
-		// geometryExtents.
-		extents.min[0] = Math.min(vertex[0], extents.min[0]);
-		extents.min[1] = Math.min(vertex[1], extents.min[1]);
-		extents.min[2] = Math.min(vertex[2], extents.min[2]);
-		extents.max[0] = Math.max(vertex[0], extents.max[0]);
-		extents.max[1] = Math.max(vertex[1], extents.max[1]);
-		extents.max[2] = Math.max(vertex[2], extents.max[2]);
 	}
 
 	private String stripClassName(Class<?> classObject) {
