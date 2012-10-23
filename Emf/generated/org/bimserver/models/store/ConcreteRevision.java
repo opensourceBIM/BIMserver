@@ -36,6 +36,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getSize <em>Size</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getDate <em>Date</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getLastError <em>Last Error</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ConcreteRevision#getSummary <em>Summary</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getUser <em>User</em>}</li>
  * </ul>
  * </p>
@@ -221,6 +222,32 @@ public interface ConcreteRevision extends IdEObject {
 	 * @generated
 	 */
 	void setLastError(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Summary</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Summary</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Summary</em>' reference.
+	 * @see #setSummary(RevisionSummary)
+	 * @see org.bimserver.models.store.StorePackage#getConcreteRevision_Summary()
+	 * @model
+	 * @generated
+	 */
+	RevisionSummary getSummary();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ConcreteRevision#getSummary <em>Summary</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Summary</em>' reference.
+	 * @see #getSummary()
+	 * @generated
+	 */
+	void setSummary(RevisionSummary value);
 
 	/**
 	 * Returns the value of the '<em><b>User</b></em>' reference.

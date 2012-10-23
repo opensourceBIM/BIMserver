@@ -1278,7 +1278,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRevision_Summary() {
+	public EReference getRevision_ExtendedData() {
 		return (EReference) getRevision().getEStructuralFeatures().get(13);
 	}
 
@@ -1287,7 +1287,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRevision_ExtendedData() {
+	public EReference getRevision_Logs() {
 		return (EReference) getRevision().getEStructuralFeatures().get(14);
 	}
 
@@ -1296,17 +1296,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRevision_Logs() {
-		return (EReference) getRevision().getEStructuralFeatures().get(15);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getRevision_Geometry() {
-		return (EReference) getRevision().getEStructuralFeatures().get(16);
+		return (EReference) getRevision().getEStructuralFeatures().get(15);
 	}
 
 	/**
@@ -1389,8 +1380,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConcreteRevision_User() {
+	public EReference getConcreteRevision_Summary() {
 		return (EReference) getConcreteRevision().getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConcreteRevision_User() {
+		return (EReference) getConcreteRevision().getEStructuralFeatures().get(8);
 	}
 
 	/**
