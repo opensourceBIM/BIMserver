@@ -110,7 +110,6 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastError" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="bmi" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="laid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="summary" eType="#/0/RevisionSummary"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
           eType="#/0/ExtendedData" eOpposite="#/0/ExtendedData/revision"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="logs" upperBound="-1"
@@ -127,6 +126,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastError" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="summary" eType="#/0/RevisionSummary"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GeoTag">
@@ -7933,6 +7933,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcVectorOrDirection" abstract="true"
         interface="true"/>
     <eClassifiers xsi:type="ecore:EClass" name="GeometryInstance">
+      <eAnnotations source="hidden"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="startVertex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="startIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="primitiveCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>

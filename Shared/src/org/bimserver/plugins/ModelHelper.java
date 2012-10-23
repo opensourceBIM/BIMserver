@@ -35,6 +35,9 @@ public class ModelHelper {
 	
 	@SuppressWarnings("unchecked")
 	private IdEObject copy(EClass originalEClass, IdEObject original, IfcModelInterface newModel) throws IfcModelInterfaceException {
+		if (!((IdEObjectImpl)original).isLoadedOrLoading()) {
+			return null;
+		}
 		if (converted.containsKey(original)) {
 			return converted.get(original);
 		}

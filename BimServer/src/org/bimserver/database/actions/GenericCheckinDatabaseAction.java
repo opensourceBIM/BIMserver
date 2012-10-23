@@ -17,8 +17,10 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
@@ -37,6 +39,27 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 
 	private final IfcModelInterface model;
 
+	public static class CreateRevisionResult {
+		private final List<Revision> revisions = new ArrayList<Revision>();
+		private ConcreteRevision concreteRevision;
+		
+		public void addRevision(Revision revision) {
+			this.revisions.add(revision);
+		}
+
+		public List<Revision> getRevisions() {
+			return revisions;
+		}
+		
+		public void setConcreteRevision(ConcreteRevision concreteRevision) {
+			this.concreteRevision = concreteRevision;
+		}
+		
+		public ConcreteRevision getConcreteRevision() {
+			return concreteRevision;
+		}
+	}
+	
 	public GenericCheckinDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, IfcModelInterface model) {
 		super(databaseSession, accessMethod);
 		this.model = model;
@@ -60,7 +83,8 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		}
 	}
 	
-	public ConcreteRevision createNewConcreteRevision(DatabaseSession session, long size, Project project, User user, String comment) throws BimserverDatabaseException, BimserverLockConflictException {
+	public CreateRevisionResult createNewConcreteRevision(DatabaseSession session, long size, Project project, User user, String comment) throws BimserverDatabaseException, BimserverLockConflictException {
+		CreateRevisionResult result = new CreateRevisionResult();
 		ConcreteRevision concreteRevision = StoreFactory.eINSTANCE.createConcreteRevision();
 		concreteRevision.setSize(size);
 		Date date = new Date();
@@ -82,6 +106,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		Project parent = project.getParent();
 		while (parent != null) {
 			Revision revision = StoreFactory.eINSTANCE.createRevision();
+			result.addRevision(revision);
 			revision.setComment("generated for subproject " + project.getName() + ", revision " + concreteRevision.getId() + ", by " + user.getName());
 			revision.setDate(date);
 			revision.setUser(getSystemUser());
@@ -113,7 +138,8 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		session.store(project);
 		session.store(user);
 		session.store(concreteRevision);
-		return concreteRevision;
+		result.setConcreteRevision(concreteRevision);
+		return result;
 	}
 
 	private Revision createNewVirtualRevision(DatabaseSession session, Project project, ConcreteRevision concreteRevision, String comment, Date date, User user, long size)

@@ -284,6 +284,9 @@ public class IfcStepSerializer extends IfcSerializer {
 
 	private void write(PrintWriter out, Long key, EObject object) throws SerializerException {
 		EClass eClass = object.eClass();
+		if (eClass.getEAnnotation("hidden") != null) {
+			return;
+		}
 		out.print(DASH);
 		out.print(String.valueOf(key));
 		out.print("= ");
@@ -291,7 +294,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		out.print(OPEN_PAREN);
 		boolean isFirst = true;
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
-			if (!feature.isDerived() && !feature.isVolatile() && !feature.getName().endsWith("AsString")) {
+			if (!feature.isDerived() && !feature.isVolatile() && !feature.getName().endsWith("AsString") && feature.getEAnnotation("hidden") == null) {
 				EClassifier type = feature.getEType();
 				if (type instanceof EEnum) {
 					if (!isFirst) {

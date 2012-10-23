@@ -26,12 +26,13 @@ public class Step0026 extends Migration {
 		schema.createEAttribute(geometryInstance, "indices", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
 		schema.createEAttribute(geometryInstance, "vertices", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
 		schema.createEAttribute(geometryInstance, "normals", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
+		geometryInstance.getEAnnotations().add(createHiddenAnnotation());
 
 		EClass revision = schema.getEClass("store", "Revision");
 		schema.createEReference(revision, "geometry", geometry, Multiplicity.SINGLE);
 
 		EClass ifcProduct = schema.getEClass("ifc2x3tc1", "IfcProduct");
-		schema.createEReference(ifcProduct, "geometryInstance", geometryInstance, Multiplicity.SINGLE).getEAnnotations().add(createHiddenReference());
+		schema.createEReference(ifcProduct, "geometryInstance", geometryInstance, Multiplicity.SINGLE).getEAnnotations().add(createHiddenAnnotation());
 	}
 
 	@Override

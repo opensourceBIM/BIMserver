@@ -24,6 +24,7 @@ import org.bimserver.shared.reflector.Reflector;
 public class ReflectorBuilder {
 	private ServicesMap servicesMap;
 	private ClassPool pool;
+	private static int implementationCounter = 0;
 
 	public ReflectorBuilder(ServicesMap servicesMap) {
 		this.servicesMap = servicesMap;
@@ -49,6 +50,7 @@ public class ReflectorBuilder {
 	
 	@SuppressWarnings("unchecked")
 	public ReflectorFactory newReflectorFactory() {
+		implementationCounter++;
 		try {
 			pool = ClassPool.getDefault();
 			pool.insertClassPath(new ClassClassPath(this.getClass()));
@@ -58,7 +60,7 @@ public class ReflectorBuilder {
 				build("org.bimserver.interfaces", (Class<? extends PublicInterface>) Class.forName("org.bimserver.shared.interfaces." + name), sService);
 			}
 			
-			CtClass reflectorFactoryImpl = pool.makeClass("org.bimserver.reflector.ReflectorFactoryImpl");
+			CtClass reflectorFactoryImpl = pool.makeClass("org.bimserver.reflector.ReflectorFactoryImpl" + implementationCounter);
 			reflectorFactoryImpl.addInterface(pool.get("org.bimserver.shared.ReflectorFactory"));
 			CtClass[] parameters = new CtClass[2];
 			parameters[0] = pool.get("java.lang.Class");
@@ -69,7 +71,7 @@ public class ReflectorBuilder {
 			methodBuilder.append("if (1==0) {");
 			for (String name : servicesMap.keySet()) {
 				methodBuilder.append("} else if ($1.getSimpleName().equals(\"" + name + "\")) {");
-				methodBuilder.append("return new org.bimserver.interfaces." + name + "Impl($2);");
+				methodBuilder.append("return new org.bimserver.interfaces." + name + "Impl" + implementationCounter + "($2);");
 			}
 			methodBuilder.append("}");
 			methodBuilder.append("return null;");
@@ -94,7 +96,7 @@ public class ReflectorBuilder {
 	
 	public void build(String implPackageName, Class<? extends PublicInterface> interfaceClass, org.bimserver.shared.meta.SService sService) {
 		try {
-			CtClass reflectorImplClass = pool.makeClass(implPackageName + "." + interfaceClass.getSimpleName() + "Impl");
+			CtClass reflectorImplClass = pool.makeClass(implPackageName + "." + interfaceClass.getSimpleName() + "Impl" + implementationCounter);
 			reflectorImplClass.addInterface(pool.get(interfaceClass.getName()));
 			CtClass reflectorClass = pool.get("org.bimserver.shared.reflector.Reflector");
 			CtField reflectorField = new CtField(reflectorClass, "reflector", reflectorImplClass);

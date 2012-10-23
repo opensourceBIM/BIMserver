@@ -17,13 +17,13 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.HashMap;
+import java.util.Comparator;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
@@ -42,7 +42,12 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 	private RevisionSummaryContainer revisionSummaryContainerRelations;
 	private RevisionSummaryContainer revisionSummaryContainerPrimitives;
 	private RevisionSummaryContainer revisionSummaryContainerOther;
-	private Map<EClass, Integer> map = new HashMap<EClass, Integer>();
+	private Map<EClass, Integer> map = new TreeMap<EClass, Integer>(new Comparator<EClass>() {
+		@Override
+		public int compare(EClass o1, EClass o2) {
+			return o1.getName().compareTo(o2.getName());
+		}
+	});
 
 	public GetRevisionSummaryDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long roid) {
 		super(databaseSession, accessMethod);
@@ -52,9 +57,16 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 	@Override
 	public RevisionSummary execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision revision = getVirtualRevision(roid);
-		if (revision.getSummary() != null) {
-			return revision.getSummary();
+		if (revision.getConcreteRevisions().size() == 1 && revision.getConcreteRevisions().get(0).getSummary() != null) {
+			return revision.getConcreteRevisions().get(0).getSummary();
 		}
+		for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
+			merge(concreteRevision.getSummary());
+		}
+		return createSummary();
+	}
+	
+	private RevisionSummary createSummary() {
 		RevisionSummary revisionSummary = StoreFactory.eINSTANCE.createRevisionSummary();
 		revisionSummaryContainerEntities = StoreFactory.eINSTANCE.createRevisionSummaryContainer();
 		revisionSummaryContainerEntities.setName("IFC Entities");
@@ -68,12 +80,6 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 		revisionSummaryContainerOther = StoreFactory.eINSTANCE.createRevisionSummaryContainer();
 		revisionSummaryContainerOther.setName("Rest");
 		revisionSummary.getList().add(revisionSummaryContainerOther);
-		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
-			for (EClass eClass : getDatabaseSession().getClasses()) {
-				int count = getDatabaseSession().getCount(eClass, new IfcModel(), subRevision.getProject().getId(), subRevision.getId());
-				add(revisionSummary, eClass, count);
-			}
-		}
 		for (EClass eClass : map.keySet()) {
 			RevisionSummaryContainer subMap = null;
 			if (Ifc2x3tc1Package.eINSTANCE.getIfcObject().isSuperTypeOf(eClass)) {
@@ -92,14 +98,16 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 		}
 		return revisionSummary;
 	}
-	
-	public void add(RevisionSummary revisionSummary, EClass eClass, int count) {
-		if (count == 0) {
-			return;
+
+	private void merge(RevisionSummary add) {
+		for (RevisionSummaryContainer summaryContainer : add.getList()) {
+			for (RevisionSummaryType revisionSummaryType : summaryContainer.getTypes()) {
+				if (!map.containsKey(getDatabaseSession().getEClassForName(revisionSummaryType.getName()))) {
+					map.put(getDatabaseSession().getEClassForName(revisionSummaryType.getName()), revisionSummaryType.getCount());
+				} else {
+					map.put(getDatabaseSession().getEClassForName(revisionSummaryType.getName()), map.get(getDatabaseSession().getEClassForName(revisionSummaryType.getName())) + revisionSummaryType.getCount());
+				}
+			}
 		}
-		if (!map.containsKey(eClass)) {
-			map.put(eClass, count);
-		}
-		map.put(eClass, count);
 	}
 }

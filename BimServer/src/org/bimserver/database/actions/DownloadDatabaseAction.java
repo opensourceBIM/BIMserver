@@ -26,6 +26,8 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
+import org.bimserver.models.ifc2x3tc1.GeometryInstance;
+import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Geometry;
@@ -111,6 +113,12 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 		if (geometry != null) {
 			geometry.load();
 			ifcModel.setGeometry(geometry);
+		}
+		for (IfcProduct ifcProduct : ifcModel.getAllWithSubTypes(IfcProduct.class)) {
+			GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
+			if (geometryInstance != null) {
+				geometryInstance.load();
+			}
 		}
 
 		if (revision.getProject().getGeoTag() != null) {

@@ -23,6 +23,7 @@ import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
@@ -115,6 +116,9 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 	public static void fillDataObject(BiMap<? extends Long, ? extends EObject> mapResult, EObject eObject, DataObject dataObject) {
 		for (EStructuralFeature eStructuralFeature : eObject.eClass().getEAllStructuralFeatures()) {
 			Object eGet = eObject.eGet(eStructuralFeature);
+			if (eStructuralFeature.getEAnnotation("hidden") != null) {
+				continue;
+			}
 			if (eStructuralFeature instanceof EAttribute) {
 				if (!eStructuralFeature.getName().endsWith("AsString")) {
 					if (eStructuralFeature.isMany()) {
@@ -176,7 +180,7 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 								simpleDataValue.setStringValue(referenceEObject.eGet(referenceEObject.eClass().getEStructuralFeature("wrappedValue")).toString());
 								dataValue.getValues().add(simpleDataValue);
 							} else {
-								Long oid = mapResult.inverse().get(item);
+								Long oid = ((IdEObject)item).getOid();
 								String guid = getGuid(item);
 								ReferenceDataValue referenceDataValue = StoreFactory.eINSTANCE.createReferenceDataValue();
 								referenceDataValue.setTypeName(item.eClass().getName());
@@ -206,7 +210,7 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 							e.setFieldName(eStructuralFeature.getName());
 							dataObject.getValues().add(e);
 						} else {
-							Long oid = mapResult.inverse().get(eObject2);
+							Long oid = ((IdEObject)eObject2).getOid();
 							String guid = getGuid(eObject2);
 							ReferenceDataValue reference = StoreFactory.eINSTANCE.createReferenceDataValue();
 							reference.setTypeName(eObject2.eClass().getName());

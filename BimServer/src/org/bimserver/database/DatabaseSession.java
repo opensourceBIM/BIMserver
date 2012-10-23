@@ -768,15 +768,6 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		return database.getAvailableClasses();
 	}
 
-	private EClass getClassOfObjectId(int pid, int rid, long oid, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException {
-		for (EClass eClass : database.getClasses()) {
-			if (get(null, oid, pid, rid, new IfcModel(), deep, objectIDM) != null) {
-				return eClass;
-			}
-		}
-		return null;
-	}
-
 	public int getCount(EClass eClass, IfcModelInterface model, int pid, int rid) throws BimserverDatabaseException {
 		checkOpen();
 		int count = 0;
@@ -989,8 +980,10 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		checkOpen();
 		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
 		for (EClass eClass : database.getClasses()) {
-			if (objectIDM == null || objectIDM.shouldIncludeClass(eClass, eClass)) {
-				getMap(eClass, pid, rid, ifcModel, deep, objectIDM, todoList);
+			if (eClass.getEAnnotation("hidden") == null && eClass.getEAnnotation("nodatabase") == null) {
+				if (objectIDM == null || objectIDM.shouldIncludeClass(eClass, eClass)) {
+					getMap(eClass, pid, rid, ifcModel, deep, objectIDM, todoList);
+				}
 			}
 		}
 		processTodoList(ifcModel, todoList, pid, rid, deep, objectIDM);
@@ -1047,9 +1040,11 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	public void getMapWithOids(IfcModelInterface model, int pid, int rid, Set<Long> oids, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException {
 		checkOpen();
 		for (Long oid : oids) {
-			EClass eClass = getClassOfObjectId(pid, rid, oid, deep, objectIDM);
+			EClass eClass = getEClassForOid(oid);
 			if (eClass != null) {
 				getMapWithOid(pid, rid, database.getCidOfEClass(eClass), oid, model, deep, objectIDM);
+			} else {
+				throw new BimserverDatabaseException("No class found for oid " + oid);
 			}
 		}
 	}
@@ -1365,10 +1360,9 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 				newObject.setRid(perRecordVersioning(newObject) ? Integer.MAX_VALUE : rid);
 				RecordIdentifier recordIdentifier = new RecordIdentifier(pid, oid, rid);
 				objectCache.put(recordIdentifier, newObject);
-				if (deep) {
+				if (deep && feature.getEAnnotation("hidden") == null) {
 					todoList.add(newObject);
-				}
-				if (!deep) {
+				} else {
 					newObject.setLazyLoader(this);
 					if (!(object instanceof WrappedValue) && !(object instanceof IfcGloballyUniqueId)) {
 						try {

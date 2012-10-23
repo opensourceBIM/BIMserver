@@ -20,14 +20,14 @@ public class Step0021 extends Migration {
 		schema.createEEnumLiteral(trigger, "NEW_PROJECT");
 		
 		EClass profileDescriptor = schema.createEClass(schema.getEPackage("store"), "ProfileDescriptor");
-		profileDescriptor.getEAnnotations().add(createNoDatabase());
+		profileDescriptor.getEAnnotations().add(createNoDatabaseAnnotation());
 		schema.createEAttribute(profileDescriptor, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(profileDescriptor, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(profileDescriptor, "publicProfile", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
 		schema.createEAttribute(profileDescriptor, "identifier", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 
 		EClass serviceDescriptor = schema.createEClass(schema.getEPackage("store"), "ServiceDescriptor");
-		serviceDescriptor.getEAnnotations().add(createNoDatabase());
+		serviceDescriptor.getEAnnotations().add(createNoDatabaseAnnotation());
 		schema.createEAttribute(serviceDescriptor, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serviceDescriptor, "url", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serviceDescriptor, "token", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);

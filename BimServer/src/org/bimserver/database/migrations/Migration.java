@@ -31,19 +31,19 @@ public abstract class Migration {
 	public void upgrade(Database database) {
 	}
 
-	protected EAnnotation createEmbedsReference() {
+	protected EAnnotation createEmbedsReferenceAnnotation() {
 		EAnnotation embedsReferenceAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 		embedsReferenceAnnotation.setSource("embedsreference");
 		return embedsReferenceAnnotation;
 	}
 
-	protected EAnnotation createNoDatabase() {
+	protected EAnnotation createNoDatabaseAnnotation() {
 		EAnnotation embedsReferenceAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 		embedsReferenceAnnotation.setSource("nodatabase");
 		return embedsReferenceAnnotation;
 	}
 
-	protected EAnnotation createHiddenReference() {
+	protected EAnnotation createHiddenAnnotation() {
 		EAnnotation hidden = EcoreFactory.eINSTANCE.createEAnnotation();
 		hidden.setSource("hidden");
 		return hidden;

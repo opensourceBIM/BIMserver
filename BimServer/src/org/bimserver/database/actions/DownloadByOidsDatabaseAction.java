@@ -28,6 +28,8 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
+import org.bimserver.models.ifc2x3tc1.GeometryInstance;
+import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -85,6 +87,14 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModelInte
 				});
 				getDatabaseSession().getMapWithOids(subModel, concreteRevision.getProject().getId(), concreteRevision.getId(), oids, true, objectIDM);
 				subModel.setDate(concreteRevision.getDate());
+				
+				for (IfcProduct ifcProduct : subModel.getAllWithSubTypes(IfcProduct.class)) {
+					GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
+					if (geometryInstance != null) {
+						geometryInstance.load();
+					}
+				}
+				
 				ifcModelSet.add(subModel);
 				// for (Long oid : oids) {
 				// IfcModel subModel =

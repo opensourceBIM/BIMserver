@@ -56,7 +56,7 @@ public class Step0010 extends Migration {
 		schema.createEAttribute(dataObjectClass, "type", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(dataObjectClass, "guid", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(dataObjectClass, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEReference(dataObjectClass, "values", dataValue, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
+		schema.createEReference(dataObjectClass, "values", dataValue, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		
 		EClass userSessionClass = schema.createEClass(schema.getEPackage("store"), "UserSession");
 		schema.createEReference(userSessionClass, "user", schema.getEClass("store", "User"), Multiplicity.SINGLE);
@@ -78,7 +78,7 @@ public class Step0010 extends Migration {
 		schema.createEAttribute(referenceDataValue, "guid", ecorePackage.getEString(), Multiplicity.SINGLE);
 		
 		EClass listDataValue = schema.createEClass(schema.getEPackage("store"), "ListDataValue", dataValue);
-		schema.createEReference(listDataValue, "values", dataValue, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());;
+		schema.createEReference(listDataValue, "values", dataValue, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());;
 		
 		EClass simpleDataValue = schema.createEClass(schema.getEPackage("store"), "SimpleDataValue", dataValue);
 		schema.createEAttribute(simpleDataValue, "stringValue", ecorePackage.getEString(), Multiplicity.SINGLE);
@@ -89,7 +89,7 @@ public class Step0010 extends Migration {
 		
 		EClass databaseInformationCategoryClass = schema.createEClass(schema.getEPackage("store"), "DatabaseInformationCategory");
 		schema.createEAttribute(databaseInformationCategoryClass, "title", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEReference(databaseInformationCategoryClass, "items", databaseInformationItem, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
+		schema.createEReference(databaseInformationCategoryClass, "items", databaseInformationItem, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		
 		EClass databaseInformationClass = schema.createEClass(schema.getEPackage("store"), "DatabaseInformation");
 		schema.createEAttribute(databaseInformationClass, "numberOfProjects", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
@@ -101,7 +101,7 @@ public class Step0010 extends Migration {
 		schema.createEAttribute(databaseInformationClass, "created", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEAttribute(databaseInformationClass, "location", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(databaseInformationClass, "schemaVersion", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
-		schema.createEReference(databaseInformationClass, "categories", databaseInformationCategoryClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
+		schema.createEReference(databaseInformationClass, "categories", databaseInformationCategoryClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		
 		EClass pluginDescriptorClass = schema.createEClass(schema.getEPackage("store"), "PluginDescriptor");
 		schema.createEAttribute(pluginDescriptorClass, "defaultName", ecorePackage.getEString(), Multiplicity.SINGLE);
@@ -122,11 +122,11 @@ public class Step0010 extends Migration {
 		
 		EClass revisionSummaryContainerClass = schema.createEClass(schema.getEPackage("store"), "RevisionSummaryContainer");
 		schema.createEAttribute(revisionSummaryContainerClass, "name", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEReference(revisionSummaryContainerClass, "types", revisionSummaryTypeClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
+		schema.createEReference(revisionSummaryContainerClass, "types", revisionSummaryTypeClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		
 		EClass revisionSummaryClass = schema.createEClass(schema.getEPackage("store"), "RevisionSummary");
-		schema.createEReference(revisionSummaryClass, "list", revisionSummaryContainerClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
-		schema.createEReference(schema.getEClass("store", "Revision"), "summary", revisionSummaryClass, Multiplicity.SINGLE);
+		schema.createEReference(revisionSummaryClass, "list", revisionSummaryContainerClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());
+		schema.createEReference(schema.getEClass("store", "ConcreteRevision"), "summary", revisionSummaryClass, Multiplicity.SINGLE);
 		
 		EClass longActionClass = schema.createEClass(schema.getEPackage("store"), "LongAction");
 		schema.createEAttribute(longActionClass, "identification", ecorePackage.getEString(), Multiplicity.SINGLE);
@@ -148,7 +148,7 @@ public class Step0010 extends Migration {
 		schema.createEEnumLiteral(compareTypeEnum, "DELETE");
 		
 		EClass compareItemClass = schema.createEClass(schema.getEPackage("store"), "CompareItem");
-		schema.createEReference(compareItemClass, "dataObject", dataObjectClass, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReference());
+		schema.createEReference(compareItemClass, "dataObject", dataObjectClass, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		
 		schema.createEClass(schema.getEPackage("store"), "ObjectAdded", compareItemClass);
 		
@@ -161,10 +161,10 @@ public class Step0010 extends Migration {
 		
 		EClass compareContainerClass = schema.createEClass(schema.getEPackage("store"), "CompareContainer");
 		schema.createEAttribute(compareContainerClass, "type", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEReference(compareContainerClass, "items", compareItemClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
+		schema.createEReference(compareContainerClass, "items", compareItemClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());
 
 		EClass compareResultClass = schema.createEClass(schema.getEPackage("store"), "CompareResult");		
-		schema.createEReference(compareResultClass, "items", compareContainerClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReference());
+		schema.createEReference(compareResultClass, "items", compareContainerClass, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		
 		EEnum actionStateEnum = schema.createEEnum(schema.getEPackage("store"), "ActionState");
 		schema.createEEnumLiteral(actionStateEnum, "UNKNOWN");
