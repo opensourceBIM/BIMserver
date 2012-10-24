@@ -28,8 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.models.store.Geometry#getExtendsMin <em>Extends Min</em>}</li>
- *   <li>{@link org.bimserver.models.store.Geometry#getExtendsMax <em>Extends Max</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Geometry#getBounds <em>Bounds</em>}</li>
  *   <li>{@link org.bimserver.models.store.Geometry#getIndices <em>Indices</em>}</li>
  *   <li>{@link org.bimserver.models.store.Geometry#getVertices <em>Vertices</em>}</li>
  *   <li>{@link org.bimserver.models.store.Geometry#getNormals <em>Normals</em>}</li>
@@ -43,36 +42,30 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Geometry extends IdEObject {
 	/**
-	 * Returns the value of the '<em><b>Extends Min</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Float}.
+	 * Returns the value of the '<em><b>Bounds</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Extends Min</em>' attribute list isn't clear,
+	 * If the meaning of the '<em>Bounds</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Extends Min</em>' attribute list.
-	 * @see org.bimserver.models.store.StorePackage#getGeometry_ExtendsMin()
-	 * @model unique="false"
+	 * @return the value of the '<em>Bounds</em>' reference.
+	 * @see #setBounds(Bounds)
+	 * @see org.bimserver.models.store.StorePackage#getGeometry_Bounds()
+	 * @model
 	 * @generated
 	 */
-	EList<Float> getExtendsMin();
+	Bounds getBounds();
 
 	/**
-	 * Returns the value of the '<em><b>Extends Max</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Float}.
+	 * Sets the value of the '{@link org.bimserver.models.store.Geometry#getBounds <em>Bounds</em>}' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Extends Max</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Extends Max</em>' attribute list.
-	 * @see org.bimserver.models.store.StorePackage#getGeometry_ExtendsMax()
-	 * @model unique="false"
+	 * @param value the new value of the '<em>Bounds</em>' reference.
+	 * @see #getBounds()
 	 * @generated
 	 */
-	EList<Float> getExtendsMax();
+	void setBounds(Bounds value);
 
 	/**
 	 * Returns the value of the '<em><b>Indices</b></em>' attribute list.

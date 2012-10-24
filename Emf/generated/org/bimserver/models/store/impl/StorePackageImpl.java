@@ -631,6 +631,20 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass boundsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass vector3fEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass geometryEClass = null;
 
 	/**
@@ -4512,9 +4526,78 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getBounds() {
+		if (boundsEClass == null) {
+			boundsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(94);
+		}
+		return boundsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBounds_Min() {
+		return (EReference) getBounds().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBounds_Max() {
+		return (EReference) getBounds().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getVector3f() {
+		if (vector3fEClass == null) {
+			vector3fEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(95);
+		}
+		return vector3fEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVector3f_X() {
+		return (EAttribute) getVector3f().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVector3f_Y() {
+		return (EAttribute) getVector3f().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVector3f_Z() {
+		return (EAttribute) getVector3f().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getGeometry() {
 		if (geometryEClass == null) {
-			geometryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(94);
+			geometryEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(96);
 		}
 		return geometryEClass;
 	}
@@ -4524,17 +4607,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGeometry_ExtendsMin() {
-		return (EAttribute) getGeometry().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getGeometry_ExtendsMax() {
-		return (EAttribute) getGeometry().getEStructuralFeatures().get(1);
+	public EReference getGeometry_Bounds() {
+		return (EReference) getGeometry().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -4543,7 +4617,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EAttribute getGeometry_Indices() {
-		return (EAttribute) getGeometry().getEStructuralFeatures().get(2);
+		return (EAttribute) getGeometry().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -4552,7 +4626,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EAttribute getGeometry_Vertices() {
-		return (EAttribute) getGeometry().getEStructuralFeatures().get(3);
+		return (EAttribute) getGeometry().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -4561,7 +4635,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EAttribute getGeometry_Normals() {
-		return (EAttribute) getGeometry().getEStructuralFeatures().get(4);
+		return (EAttribute) getGeometry().getEStructuralFeatures().get(3);
 	}
 
 	/**

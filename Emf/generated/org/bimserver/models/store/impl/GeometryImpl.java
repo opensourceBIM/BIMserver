@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 
+import org.bimserver.models.store.Bounds;
 import org.bimserver.models.store.Geometry;
 import org.bimserver.models.store.StorePackage;
 
@@ -32,8 +33,7 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.GeometryImpl#getExtendsMin <em>Extends Min</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.GeometryImpl#getExtendsMax <em>Extends Max</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.GeometryImpl#getBounds <em>Bounds</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.GeometryImpl#getIndices <em>Indices</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.GeometryImpl#getVertices <em>Vertices</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.GeometryImpl#getNormals <em>Normals</em>}</li>
@@ -77,9 +77,8 @@ public class GeometryImpl extends IdEObjectImpl implements Geometry {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	public EList<Float> getExtendsMin() {
-		return (EList<Float>) eGet(StorePackage.Literals.GEOMETRY__EXTENDS_MIN, true);
+	public Bounds getBounds() {
+		return (Bounds) eGet(StorePackage.Literals.GEOMETRY__BOUNDS, true);
 	}
 
 	/**
@@ -87,9 +86,8 @@ public class GeometryImpl extends IdEObjectImpl implements Geometry {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	public EList<Float> getExtendsMax() {
-		return (EList<Float>) eGet(StorePackage.Literals.GEOMETRY__EXTENDS_MAX, true);
+	public void setBounds(Bounds newBounds) {
+		eSet(StorePackage.Literals.GEOMETRY__BOUNDS, newBounds);
 	}
 
 	/**

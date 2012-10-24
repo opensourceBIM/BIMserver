@@ -491,6 +491,16 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseBounds(Bounds object) {
+			return createBoundsAdapter();
+		}
+
+		@Override
+		public Adapter caseVector3f(Vector3f object) {
+			return createVector3fAdapter();
+		}
+
+		@Override
 		public Adapter caseGeometry(Geometry object) {
 			return createGeometryAdapter();
 		}
@@ -1659,6 +1669,34 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPercentageChangeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Bounds <em>Bounds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.Bounds
+	 * @generated
+	 */
+	public Adapter createBoundsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Vector3f <em>Vector3f</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.Vector3f
+	 * @generated
+	 */
+	public Adapter createVector3fAdapter() {
 		return null;
 	}
 

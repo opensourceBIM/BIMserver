@@ -17,6 +17,7 @@
 package org.bimserver.models.ifc2x3tc1;
 
 import org.bimserver.emf.IdEObject;
+import org.bimserver.models.store.Bounds;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -30,8 +31,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getStartVertex <em>Start Vertex</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getStartIndex <em>Start Index</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getPrimitiveCount <em>Primitive Count</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getExtendsMin <em>Extends Min</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getExtendsMax <em>Extends Max</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getBounds <em>Bounds</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getIndices <em>Indices</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getVertices <em>Vertices</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getNormals <em>Normals</em>}</li>
@@ -123,36 +123,30 @@ public interface GeometryInstance extends IdEObject {
 	void setPrimitiveCount(Integer value);
 
 	/**
-	 * Returns the value of the '<em><b>Extends Min</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Float}.
+	 * Returns the value of the '<em><b>Bounds</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Extends Min</em>' attribute list isn't clear,
+	 * If the meaning of the '<em>Bounds</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Extends Min</em>' attribute list.
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInstance_ExtendsMin()
-	 * @model unique="false"
+	 * @return the value of the '<em>Bounds</em>' reference.
+	 * @see #setBounds(Bounds)
+	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInstance_Bounds()
+	 * @model
 	 * @generated
 	 */
-	EList<Float> getExtendsMin();
+	Bounds getBounds();
 
 	/**
-	 * Returns the value of the '<em><b>Extends Max</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Float}.
+	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getBounds <em>Bounds</em>}' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Extends Max</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Extends Max</em>' attribute list.
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInstance_ExtendsMax()
-	 * @model unique="false"
+	 * @param value the new value of the '<em>Bounds</em>' reference.
+	 * @see #getBounds()
 	 * @generated
 	 */
-	EList<Float> getExtendsMax();
+	void setBounds(Bounds value);
 
 	/**
 	 * Returns the value of the '<em><b>Indices</b></em>' attribute.

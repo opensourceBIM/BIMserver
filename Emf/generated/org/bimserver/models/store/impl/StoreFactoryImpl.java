@@ -307,6 +307,10 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createExternalServiceUpdate();
 		case StorePackage.PERCENTAGE_CHANGE:
 			return (EObject) createPercentageChange();
+		case StorePackage.BOUNDS:
+			return (EObject) createBounds();
+		case StorePackage.VECTOR3F:
+			return (EObject) createVector3f();
 		case StorePackage.GEOMETRY:
 			return (EObject) createGeometry();
 		default:
@@ -1206,6 +1210,26 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public PercentageChange createPercentageChange() {
 		PercentageChangeImpl percentageChange = new PercentageChangeImpl();
 		return percentageChange;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Bounds createBounds() {
+		BoundsImpl bounds = new BoundsImpl();
+		return bounds;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Vector3f createVector3f() {
+		Vector3fImpl vector3f = new Vector3fImpl();
+		return vector3f;
 	}
 
 	/**

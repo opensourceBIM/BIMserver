@@ -1,0 +1,2 @@
+write byte 1
+write string C:\Users\Ruben de Laat\Workspace\BIMserver\IfcEngine\AC11-Institute-Var-2-IFC.ifc
