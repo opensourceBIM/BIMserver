@@ -35051,17 +35051,8 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGeometryInstance_ExtendsMin() {
-		return (EAttribute) getGeometryInstance().getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getGeometryInstance_ExtendsMax() {
-		return (EAttribute) getGeometryInstance().getEStructuralFeatures().get(4);
+	public EReference getGeometryInstance_Bounds() {
+		return (EReference) getGeometryInstance().getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -35070,7 +35061,7 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 	 * @generated
 	 */
 	public EAttribute getGeometryInstance_Indices() {
-		return (EAttribute) getGeometryInstance().getEStructuralFeatures().get(5);
+		return (EAttribute) getGeometryInstance().getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -35079,7 +35070,7 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 	 * @generated
 	 */
 	public EAttribute getGeometryInstance_Vertices() {
-		return (EAttribute) getGeometryInstance().getEStructuralFeatures().get(6);
+		return (EAttribute) getGeometryInstance().getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -35088,7 +35079,7 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 	 * @generated
 	 */
 	public EAttribute getGeometryInstance_Normals() {
-		return (EAttribute) getGeometryInstance().getEStructuralFeatures().get(7);
+		return (EAttribute) getGeometryInstance().getEStructuralFeatures().get(6);
 	}
 
 	/**

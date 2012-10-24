@@ -730,6 +730,20 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case StorePackage.BOUNDS: {
+			Bounds bounds = (Bounds) theEObject;
+			T result = caseBounds(bounds);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.VECTOR3F: {
+			Vector3f vector3f = (Vector3f) theEObject;
+			T result = caseVector3f(vector3f);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case StorePackage.GEOMETRY: {
 			Geometry geometry = (Geometry) theEObject;
 			T result = caseGeometry(geometry);
@@ -1969,6 +1983,36 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePercentageChange(PercentageChange object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Bounds</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Bounds</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBounds(Bounds object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Vector3f</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Vector3f</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVector3f(Vector3f object) {
 		return null;
 	}
 

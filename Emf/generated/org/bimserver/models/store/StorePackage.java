@@ -5167,6 +5167,89 @@ public interface StorePackage extends EPackage {
 	int PERCENTAGE_CHANGE_FEATURE_COUNT = EXTERNAL_SERVICE_UPDATE_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.BoundsImpl <em>Bounds</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.BoundsImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getBounds()
+	 * @generated
+	 */
+	int BOUNDS = 82;
+
+	/**
+	 * The feature id for the '<em><b>Min</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDS__MIN = 0;
+
+	/**
+	 * The feature id for the '<em><b>Max</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDS__MAX = 1;
+
+	/**
+	 * The number of structural features of the '<em>Bounds</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDS_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.Vector3fImpl <em>Vector3f</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.Vector3fImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getVector3f()
+	 * @generated
+	 */
+	int VECTOR3F = 83;
+
+	/**
+	 * The feature id for the '<em><b>X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VECTOR3F__X = 0;
+
+	/**
+	 * The feature id for the '<em><b>Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VECTOR3F__Y = 1;
+
+	/**
+	 * The feature id for the '<em><b>Z</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VECTOR3F__Z = 2;
+
+	/**
+	 * The number of structural features of the '<em>Vector3f</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VECTOR3F_FEATURE_COUNT = 3;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.GeometryImpl <em>Geometry</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5174,25 +5257,16 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getGeometry()
 	 * @generated
 	 */
-	int GEOMETRY = 82;
+	int GEOMETRY = 84;
 
 	/**
-	 * The feature id for the '<em><b>Extends Min</b></em>' attribute list.
+	 * The feature id for the '<em><b>Bounds</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY__EXTENDS_MIN = 0;
-
-	/**
-	 * The feature id for the '<em><b>Extends Max</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOMETRY__EXTENDS_MAX = 1;
+	int GEOMETRY__BOUNDS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Indices</b></em>' attribute list.
@@ -5201,7 +5275,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY__INDICES = 2;
+	int GEOMETRY__INDICES = 1;
 
 	/**
 	 * The feature id for the '<em><b>Vertices</b></em>' attribute list.
@@ -5210,7 +5284,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY__VERTICES = 3;
+	int GEOMETRY__VERTICES = 2;
 
 	/**
 	 * The feature id for the '<em><b>Normals</b></em>' attribute list.
@@ -5219,7 +5293,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY__NORMALS = 4;
+	int GEOMETRY__NORMALS = 3;
 
 	/**
 	 * The number of structural features of the '<em>Geometry</em>' class.
@@ -5228,7 +5302,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_FEATURE_COUNT = 5;
+	int GEOMETRY_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
@@ -5238,7 +5312,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 83;
+	int USER_TYPE = 85;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -5248,7 +5322,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 84;
+	int SI_PREFIX = 86;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -5258,7 +5332,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 85;
+	int OBJECT_STATE = 87;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -5268,7 +5342,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 86;
+	int COMPARE_TYPE = 88;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -5278,7 +5352,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 87;
+	int ACTION_STATE = 89;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -5288,7 +5362,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 88;
+	int SERVER_STATE = 90;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CheckinStatus <em>Checkin Status</em>}' enum.
@@ -5298,7 +5372,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCheckinStatus()
 	 * @generated
 	 */
-	int CHECKIN_STATUS = 89;
+	int CHECKIN_STATUS = 91;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
@@ -5308,7 +5382,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA_TYPE = 90;
+	int EXTENDED_DATA_SCHEMA_TYPE = 92;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
@@ -5318,7 +5392,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 91;
+	int TRIGGER = 93;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.
@@ -5328,7 +5402,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_ENUM = 92;
+	int PRIMITIVE_ENUM = 94;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}' enum.
@@ -5338,7 +5412,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotifictionResultEnum()
 	 * @generated
 	 */
-	int NOTIFICTION_RESULT_ENUM = 93;
+	int NOTIFICTION_RESULT_ENUM = 95;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -5348,7 +5422,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 94;
+	int DATA_HANDLER = 96;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -9515,6 +9589,81 @@ public interface StorePackage extends EPackage {
 	EAttribute getPercentageChange_Percentage();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.Bounds <em>Bounds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bounds</em>'.
+	 * @see org.bimserver.models.store.Bounds
+	 * @generated
+	 */
+	EClass getBounds();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Bounds#getMin <em>Min</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Min</em>'.
+	 * @see org.bimserver.models.store.Bounds#getMin()
+	 * @see #getBounds()
+	 * @generated
+	 */
+	EReference getBounds_Min();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Bounds#getMax <em>Max</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Max</em>'.
+	 * @see org.bimserver.models.store.Bounds#getMax()
+	 * @see #getBounds()
+	 * @generated
+	 */
+	EReference getBounds_Max();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.Vector3f <em>Vector3f</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Vector3f</em>'.
+	 * @see org.bimserver.models.store.Vector3f
+	 * @generated
+	 */
+	EClass getVector3f();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Vector3f#getX <em>X</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>X</em>'.
+	 * @see org.bimserver.models.store.Vector3f#getX()
+	 * @see #getVector3f()
+	 * @generated
+	 */
+	EAttribute getVector3f_X();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Vector3f#getY <em>Y</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Y</em>'.
+	 * @see org.bimserver.models.store.Vector3f#getY()
+	 * @see #getVector3f()
+	 * @generated
+	 */
+	EAttribute getVector3f_Y();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Vector3f#getZ <em>Z</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Z</em>'.
+	 * @see org.bimserver.models.store.Vector3f#getZ()
+	 * @see #getVector3f()
+	 * @generated
+	 */
+	EAttribute getVector3f_Z();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Geometry <em>Geometry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9525,26 +9674,15 @@ public interface StorePackage extends EPackage {
 	EClass getGeometry();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.Geometry#getExtendsMin <em>Extends Min</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Geometry#getBounds <em>Bounds</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Extends Min</em>'.
-	 * @see org.bimserver.models.store.Geometry#getExtendsMin()
+	 * @return the meta object for the reference '<em>Bounds</em>'.
+	 * @see org.bimserver.models.store.Geometry#getBounds()
 	 * @see #getGeometry()
 	 * @generated
 	 */
-	EAttribute getGeometry_ExtendsMin();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.Geometry#getExtendsMax <em>Extends Max</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Extends Max</em>'.
-	 * @see org.bimserver.models.store.Geometry#getExtendsMax()
-	 * @see #getGeometry()
-	 * @generated
-	 */
-	EAttribute getGeometry_ExtendsMax();
+	EReference getGeometry_Bounds();
 
 	/**
 	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.Geometry#getIndices <em>Indices</em>}'.
@@ -12975,6 +13113,66 @@ public interface StorePackage extends EPackage {
 		EAttribute PERCENTAGE_CHANGE__PERCENTAGE = eINSTANCE.getPercentageChange_Percentage();
 
 		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.BoundsImpl <em>Bounds</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.BoundsImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getBounds()
+		 * @generated
+		 */
+		EClass BOUNDS = eINSTANCE.getBounds();
+
+		/**
+		 * The meta object literal for the '<em><b>Min</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BOUNDS__MIN = eINSTANCE.getBounds_Min();
+
+		/**
+		 * The meta object literal for the '<em><b>Max</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BOUNDS__MAX = eINSTANCE.getBounds_Max();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.Vector3fImpl <em>Vector3f</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.Vector3fImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getVector3f()
+		 * @generated
+		 */
+		EClass VECTOR3F = eINSTANCE.getVector3f();
+
+		/**
+		 * The meta object literal for the '<em><b>X</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VECTOR3F__X = eINSTANCE.getVector3f_X();
+
+		/**
+		 * The meta object literal for the '<em><b>Y</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VECTOR3F__Y = eINSTANCE.getVector3f_Y();
+
+		/**
+		 * The meta object literal for the '<em><b>Z</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VECTOR3F__Z = eINSTANCE.getVector3f_Z();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.GeometryImpl <em>Geometry</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -12985,20 +13183,12 @@ public interface StorePackage extends EPackage {
 		EClass GEOMETRY = eINSTANCE.getGeometry();
 
 		/**
-		 * The meta object literal for the '<em><b>Extends Min</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Bounds</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GEOMETRY__EXTENDS_MIN = eINSTANCE.getGeometry_ExtendsMin();
-
-		/**
-		 * The meta object literal for the '<em><b>Extends Max</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute GEOMETRY__EXTENDS_MAX = eINSTANCE.getGeometry_ExtendsMax();
+		EReference GEOMETRY__BOUNDS = eINSTANCE.getGeometry_Bounds();
 
 		/**
 		 * The meta object literal for the '<em><b>Indices</b></em>' attribute list feature.
