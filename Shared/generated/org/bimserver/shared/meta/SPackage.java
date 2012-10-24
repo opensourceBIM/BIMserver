@@ -128,6 +128,8 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SImmediateNotificationResult");
 		Class.forName("org.bimserver.interfaces.objects.SExternalServiceUpdate");
 		Class.forName("org.bimserver.interfaces.objects.SPercentageChange");
+		Class.forName("org.bimserver.interfaces.objects.SBounds");
+		Class.forName("org.bimserver.interfaces.objects.SVector3f");
 		Class.forName("org.bimserver.interfaces.objects.SGeometry");
 		Class.forName("org.bimserver.interfaces.objects.SAccessMethod");
 		Class.forName("org.bimserver.interfaces.objects.SLogAction");

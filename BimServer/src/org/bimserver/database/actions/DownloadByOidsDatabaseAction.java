@@ -92,6 +92,9 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModelInte
 					GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
 					if (geometryInstance != null) {
 						geometryInstance.load();
+						geometryInstance.getBounds().load();
+						geometryInstance.getBounds().getMin().load();
+						geometryInstance.getBounds().getMax().load();
 					}
 				}
 				

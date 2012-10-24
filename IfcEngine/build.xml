@@ -1,41 +1,34 @@
 <project name="BIMserver IFCEngine">
 	<tstamp>
-		<format property="touch.time" pattern="yyyy-MM-dd'T'HH:mm:ss.S'+01:00'"/>
+		<format property="touch.time" pattern="yyyy-MM-dd'T'HH:mm:ss.S'+01:00'" />
 	</tstamp>
+	<fileset id="lib" dir="../BimServer">
+		<include name="**/*.jar" />
+		<exclude name="**tomcat*" />
+	</fileset>
 	<target name="engine">
-		<delete dir="build" failonerror="false"/>
+		<delete dir="build" failonerror="false" />
 		<mkdir dir="build" />
 		<mkdir dir="build/classes" />
 		<javac srcdir="src" destdir="build/classes" debug="on" fork="true" memorymaximumsize="512m">
+			<src path="../IfcEngine/test" />
 			<src path="../Utils/src" />
-			<src path="../Plugins/src" />
 			<src path="../Emf/src" />
-			<src path="../Store/generated" />
+			<src path="../Emf/generated" />
+			<src path="../Shared/src" />
+			<src path="../Shared/imported" />
+			<src path="../Shared/generated" />
 			<classpath>
-				<fileset dir="../BimServer/lib">
-					<include name="*.jar" />
-				</fileset>
-				<fileset dir="../BimServer/lib/emf">
-					<include name="*.jar" />
-				</fileset>
-				<fileset dir="lib">
-					<include name="*.jar" />
-				</fileset>
+				<path>
+					<fileset refid="lib" />
+				</path>
 			</classpath>
 		</javac>
-		<jar jarfile="builds/BuildJar/lib/bimserver.jar" manifest="../${deploydir}/MAIN-MANIFEST.MF">
-			<fileset dir="builds/BuildJar/classes"/>
-		</jar>
-		<delete dir="builds/BuildJar/classes"/>
-		<javac destdir="builds/BuildJar" debug="on" srcdir="../expander" />
-		<copy todir="builds/BuildJar/org/bimserver">
-			<fileset dir="../expander/org/bimserver">
-				<include name="*.png" />
-			</fileset>
-		</copy>
-		<mkdir dir="builds/BuildJar/tmp"/>
-		<jar jarfile="builds/bimserver-${version}.jar" manifest="../${deploydir}/MANIFEST.MF">
-			<fileset dir="builds/BuildJar">
+		<jar jarfile="ifcenginetest.jar">
+			<manifest>
+				<attribute name="Main-Class" value="org.bimserver.ifcengine.tests.TestExecutable" />
+			</manifest>
+			<fileset dir="build/classes">
 				<exclude name="*.svn" />
 			</fileset>
 		</jar>

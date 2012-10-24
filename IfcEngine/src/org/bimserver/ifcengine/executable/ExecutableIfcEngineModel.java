@@ -44,113 +44,113 @@ import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
  *****************************************************************************/
 public class ExecutableIfcEngineModel implements IfcEngineModel {
 	private final int modelId;
-	private final ExecutableIfcEngine failSafeIfcEngine;
+	private final ExecutableIfcEngine ifcEngine;
 
-	public ExecutableIfcEngineModel(ExecutableIfcEngine failSafeIfcEngine, int modelId) {
-		this.failSafeIfcEngine = failSafeIfcEngine;
+	public ExecutableIfcEngineModel(ExecutableIfcEngine ifcEngine, int modelId) {
+		this.ifcEngine = ifcEngine;
 		this.modelId = modelId;
 	}
 
 	public IfcEngineSurfaceProperties initializeModelling() throws IfcEngineException {
-		synchronized (failSafeIfcEngine) {
-			failSafeIfcEngine.writeCommand(Command.INITIALIZE_MODELLING);
-			failSafeIfcEngine.writeInt(modelId);
-			failSafeIfcEngine.flush();
-			int noIndices = failSafeIfcEngine.readInt();
-			int noVertices = failSafeIfcEngine.readInt();
+		synchronized (ifcEngine) {
+			ifcEngine.writeCommand(Command.INITIALIZE_MODELLING);
+			ifcEngine.writeInt(modelId);
+			ifcEngine.flush();
+			int noIndices = ifcEngine.readInt();
+			int noVertices = ifcEngine.readInt();
 			return new IfcEngineSurfaceProperties(modelId, noVertices, noIndices, 0.0);
 		}
 	}
 
 	public void setPostProcessing(boolean postProcessing) throws IfcEngineException {
-		synchronized (failSafeIfcEngine) {
-			failSafeIfcEngine.writeCommand(Command.SET_POSTPROCESSING);
-			failSafeIfcEngine.writeInt(modelId);
-			failSafeIfcEngine.writeBoolean(postProcessing);
-			failSafeIfcEngine.flush();
+		synchronized (ifcEngine) {
+			ifcEngine.writeCommand(Command.SET_POSTPROCESSING);
+			ifcEngine.writeInt(modelId);
+			ifcEngine.writeBoolean(postProcessing);
+			ifcEngine.flush();
 		}
 	}
 
 	public IfcEngineGeometry finalizeModelling(IfcEngineSurfaceProperties surfaceProperties) throws IfcEngineException {
-		synchronized (failSafeIfcEngine) {
+		synchronized (ifcEngine) {
 			if (surfaceProperties.getIndicesCount() == 0 || surfaceProperties.getVerticesCount() == 0) {
 				return null;
 			}
-			failSafeIfcEngine.writeCommand(Command.FINALIZE_MODELLING);
-			failSafeIfcEngine.writeInt(modelId);
-			failSafeIfcEngine.writeInt(surfaceProperties.getIndicesCount());
-			failSafeIfcEngine.writeInt(surfaceProperties.getVerticesCount());
-			failSafeIfcEngine.flush();
+			ifcEngine.writeCommand(Command.FINALIZE_MODELLING);
+			ifcEngine.writeInt(modelId);
+			ifcEngine.writeInt(surfaceProperties.getIndicesCount());
+			ifcEngine.writeInt(surfaceProperties.getVerticesCount());
+			ifcEngine.flush();
 			int[] indices = new int[surfaceProperties.getIndicesCount()];
 			float[] vertices = new float[surfaceProperties.getVerticesCount() * 3];
 			float[] normals = new float[surfaceProperties.getVerticesCount() * 3];
 			for (int i = 0; i < indices.length; i++) {
-				indices[i] = failSafeIfcEngine.readInt();
+				indices[i] = ifcEngine.readInt();
 			}
 			for (int i = 0; i < vertices.length; i++) {
-				vertices[i] = failSafeIfcEngine.readFloat();
+				vertices[i] = ifcEngine.readFloat();
 			}
 			for (int i = 0; i < normals.length; i++) {
-				normals[i] = failSafeIfcEngine.readFloat();
+				normals[i] = ifcEngine.readFloat();
 			}
 			return new IfcEngineGeometry(indices, vertices, normals);
 		}
 	}
 
 	public List<? extends IfcEngineInstance> getInstances(String name) throws IfcEngineException {
-		synchronized (failSafeIfcEngine) {
-			failSafeIfcEngine.writeCommand(Command.GET_INSTANCES);
-			failSafeIfcEngine.writeInt(modelId);
-			failSafeIfcEngine.writeUTF(name);
-			failSafeIfcEngine.flush();
-			int nrInstances = failSafeIfcEngine.readInt();
+		synchronized (ifcEngine) {
+			ifcEngine.writeCommand(Command.GET_INSTANCES);
+			ifcEngine.writeInt(modelId);
+			ifcEngine.writeUTF(name);
+			ifcEngine.flush();
+			int nrInstances = ifcEngine.readInt();
 			List<ExecutableIfcEngineInstance> instances = new ArrayList<ExecutableIfcEngineInstance>();
 			for (int i = 0; i < nrInstances; i++) {
-				instances.add(new ExecutableIfcEngineInstance(failSafeIfcEngine, modelId, failSafeIfcEngine.readInt()));
+				instances.add(new ExecutableIfcEngineInstance(ifcEngine, modelId, ifcEngine.readInt()));
 			}
 			return instances;
 		}
 	}
 
 	public void close() throws IfcEngineException {
-		synchronized (failSafeIfcEngine) {
-			failSafeIfcEngine.writeCommand(Command.CLOSE_MODEL);
-			failSafeIfcEngine.writeInt(modelId);
-			failSafeIfcEngine.flush();
+		synchronized (ifcEngine) {
+			ifcEngine.writeCommand(Command.CLOSE_MODEL);
+			ifcEngine.writeInt(modelId);
+			ifcEngine.flush();
 		}
 	}
 
 	public Set<IfcEngineClash> findClashesWithEids(double d) throws IfcEngineException {
-		synchronized (failSafeIfcEngine) {
-			failSafeIfcEngine.writeCommand(Command.FIND_CLASHES_BY_EID);
-			failSafeIfcEngine.writeInt(modelId);
-			failSafeIfcEngine.writeDouble(d);
-			failSafeIfcEngine.flush();
-			int nrClashes = failSafeIfcEngine.readInt();
+		synchronized (ifcEngine) {
+			ifcEngine.writeCommand(Command.FIND_CLASHES_BY_EID);
+			ifcEngine.writeInt(modelId);
+			ifcEngine.writeDouble(d);
+			ifcEngine.flush();
+			int nrClashes = ifcEngine.readInt();
 			Set<IfcEngineClash> clashes = new HashSet<IfcEngineClash>();
 			for (int i = 0; i < nrClashes; i++) {
 				IfcEngineClash clash = new IfcEngineClash();
 				clashes.add(clash);
-				clash.setEid1(failSafeIfcEngine.readLong());
-				clash.setEid2(failSafeIfcEngine.readLong());
+				clash.setEid1(ifcEngine.readLong());
+				clash.setEid2(ifcEngine.readLong());
 			}
 			return clashes;
 		}
 	}
 
 	public Set<IfcEngineClash> findClashesWithGuids(double d) throws IfcEngineException {
-		synchronized (failSafeIfcEngine) {
-			failSafeIfcEngine.writeCommand(Command.FIND_CLASHES_BY_GUID);
-			failSafeIfcEngine.writeInt(modelId);
-			failSafeIfcEngine.writeDouble(d);
-			failSafeIfcEngine.flush();
-			int nrClashes = failSafeIfcEngine.readInt();
+		synchronized (ifcEngine) {
+			ifcEngine.writeCommand(Command.FIND_CLASHES_BY_GUID);
+			ifcEngine.writeInt(modelId);
+			ifcEngine.writeDouble(d);
+			ifcEngine.flush();
+			int nrClashes = ifcEngine.readInt();
 			Set<IfcEngineClash> clashes = new HashSet<IfcEngineClash>();
 			for (int i = 0; i < nrClashes; i++) {
 				IfcEngineClash clash = new IfcEngineClash();
 				clashes.add(clash);
-				clash.setGuid1(failSafeIfcEngine.readString());
-				clash.setGuid2(failSafeIfcEngine.readString());
+				clash.setGuid1(ifcEngine.readString());
+				clash.setGuid2(ifcEngine.readString());
 			}
 			return clashes;
 		}
@@ -158,12 +158,12 @@ public class ExecutableIfcEngineModel implements IfcEngineModel {
 
 	@Override
 	public IfcEngineInstance getInstanceFromExpressId(int oid) throws IfcEngineException {
-		synchronized (failSafeIfcEngine) {
-			failSafeIfcEngine.writeCommand(Command.GET_INSTANCE_FROM_EXPRESSID);
-			failSafeIfcEngine.writeInt(modelId);
-			failSafeIfcEngine.writeInt(oid);
-			failSafeIfcEngine.flush();
-			return new ExecutableIfcEngineInstance(failSafeIfcEngine, modelId, failSafeIfcEngine.readInt());
+		synchronized (ifcEngine) {
+			ifcEngine.writeCommand(Command.GET_INSTANCE_FROM_EXPRESSID);
+			ifcEngine.writeInt(modelId);
+			ifcEngine.writeInt(oid);
+			ifcEngine.flush();
+			return new ExecutableIfcEngineInstance(ifcEngine, modelId, ifcEngine.readInt());
 		}
 	}
 }

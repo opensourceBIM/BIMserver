@@ -109,6 +109,7 @@ import org.bimserver.models.ifc2x3tc1.IfcUnitEnum;
 import org.bimserver.models.ifc2x3tc1.IfcWall;
 import org.bimserver.models.ifc2x3tc1.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
+import org.bimserver.models.store.Bounds;
 import org.bimserver.models.store.SIPrefix;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
@@ -162,6 +163,11 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 		@Override
 		public String toString() {
 			return "min: " + Arrays.toString(min) + ", max: " + Arrays.toString(max);
+		}
+
+		public void integrate(Bounds bounds) {
+			addToMinExtents(new float[]{bounds.getMin().getX(), bounds.getMin().getY(), bounds.getMin().getZ()});
+			addToMaxExtents(new float[]{bounds.getMax().getX(), bounds.getMax().getY(), bounds.getMax().getZ()});
 		}
 	}
 	private Extents sceneExtents = new Extents();
@@ -374,8 +380,7 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 				extents.addToMaxExtents(new float[] { getVertex(i + 0), getVertex(i + 1), getVertex(i + 2) });
 			}
 		} else {
-			extents.addToMinExtents(ifcObject.getGeometryInstance().getExtendsMin());
-			extents.addToMaxExtents(ifcObject.getGeometryInstance().getExtendsMax());
+			extents.integrate(ifcObject.getGeometryInstance().getBounds());
 		}
 		sceneExtents.addToMinExtents(extents.min);
 		sceneExtents.addToMaxExtents(extents.max);
