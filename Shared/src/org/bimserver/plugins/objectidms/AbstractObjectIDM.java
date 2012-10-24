@@ -65,12 +65,16 @@ public class AbstractObjectIDM implements ObjectIDM {
 	
 	protected boolean isInverse(EStructuralFeature eStructuralFeature) throws ObjectIDMException {
 		if (eStructuralFeature instanceof EReference && !(Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eStructuralFeature.getEContainingClass()))) {
-			EntityDefinition entityBN = schema.getEntityBN(eStructuralFeature.getEContainingClass().getName());
-			if (entityBN == null) {
-				throw new ObjectIDMException(eStructuralFeature.getEContainingClass().getName() + " not found");
+			if (eStructuralFeature.getEAnnotation("hidden") == null && eStructuralFeature.getEContainingClass().getEAnnotation("hidden") == null) {
+				EntityDefinition entityBN = schema.getEntityBN(eStructuralFeature.getEContainingClass().getName());
+				if (entityBN == null) {
+					throw new ObjectIDMException(eStructuralFeature.getEContainingClass().getName() + " not found");
+				}
+				Attribute attribute = entityBN.getAttributeBNWithSuper(eStructuralFeature.getName());
+				return attribute instanceof InverseAttribute;
+			} else {
+				return false;
 			}
-			Attribute attribute = entityBN.getAttributeBNWithSuper(eStructuralFeature.getName());
-			return attribute instanceof InverseAttribute;
 		}
 		return false;
 	}

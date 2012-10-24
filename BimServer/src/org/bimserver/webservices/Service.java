@@ -36,6 +36,7 @@ import java.util.Set;
 
 import javax.activation.DataHandler;
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -72,6 +73,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SAccessMethod;
+import org.bimserver.interfaces.objects.SBounds;
 import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SCheckoutResult;
@@ -3930,6 +3932,19 @@ public class Service implements ServiceInterface {
 		if (sExternalServiceUpdate instanceof SPercentageChange) {
 			SPercentageChange sPercentageChange = (SPercentageChange)sExternalServiceUpdate;
 			runningExternalService.updatePercentage(sPercentageChange.getPercentage());
+		}
+	}
+	
+	@Override
+	public SBounds getBoundsOfRevision(Long roid) throws ServerException, UserException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
+			return converter.convertToSObject(revision.getGeometry().getBounds());
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
 		}
 	}
 }

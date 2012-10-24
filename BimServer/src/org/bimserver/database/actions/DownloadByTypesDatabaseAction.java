@@ -26,7 +26,9 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.models.ifc2x3tc1.GeometryInstance;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Geometry;
@@ -42,6 +44,8 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+
+import sun.net.www.protocol.gopher.GopherClient;
 
 public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
 
@@ -110,6 +114,15 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 			ifcModel.setRevisionNr(project.getRevisions().indexOf(virtualRevision) + 1);
 			ifcModel.setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
 			ifcModel.setDate(virtualRevision.getDate());
+			for (IfcProduct ifcProduct : ifcModel.getAllWithSubTypes(IfcProduct.class)) {
+				GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
+				if (geometryInstance != null) {
+					geometryInstance.load();
+					geometryInstance.getBounds().load();
+					geometryInstance.getBounds().getMin().load();
+					geometryInstance.getBounds().getMax().load();
+				}
+			}
 		}
 		IfcModelInterface ifcModel;
 		try {

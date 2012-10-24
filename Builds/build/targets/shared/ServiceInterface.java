@@ -36,6 +36,7 @@ import javax.ws.rs.QueryParam;
 import javax.xml.bind.annotation.XmlMimeType;
 
 import org.bimserver.interfaces.objects.SAccessMethod;
+import org.bimserver.interfaces.objects.SBounds;
 import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SCompareResult;
@@ -2368,4 +2369,8 @@ public interface ServiceInterface extends PublicInterface {
 	void externalServiceUpdate(
 		@WebParam(name = "uuid", partName = "externalServiceUpdate.uuid") String uuid,
 		@WebParam(name = "sExternalServiceUpdate", partName = "externalServiceUpdate.sExternalServiceUpdate") SExternalServiceUpdate sExternalServiceUpdate) throws ServerException, UserException;
+	
+	@WebMethod(action = "getBoundsOfRevision")
+	SBounds getBoundsOfRevision(
+		@WebParam(name = "roid", partName = "getBoundsOfRevision.roid") Long roid) throws ServerException, UserException;
 }

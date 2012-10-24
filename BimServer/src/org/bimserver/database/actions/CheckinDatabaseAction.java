@@ -46,6 +46,7 @@ import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.NewRevisionAdded;
+import org.bimserver.models.store.Bounds;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Geometry;
 import org.bimserver.models.store.Project;
@@ -56,6 +57,7 @@ import org.bimserver.models.store.RevisionSummaryType;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.models.store.Vector3f;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.ifcengine.IfcEngine;
@@ -243,9 +245,11 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 //								}
 //								normals.addAll(normalsList);
 
-								float[] totalMinExtends = new float[] { Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY };
-								float[] totalMaxExtends = new float[] { Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY };
-
+								Bounds modelBounds = getDatabaseSession().create(StorePackage.eINSTANCE.getBounds());
+								modelBounds.setMin(createVector3f(Float.POSITIVE_INFINITY));
+								modelBounds.setMax(createVector3f(Float.NEGATIVE_INFINITY));
+								geometry.setBounds(modelBounds);
+								
 								for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 									IfcEngineInstance ifcEngineInstance = ifcEngineModel.getInstanceFromExpressId((int) ifcProduct.getOid());
 									IfcEngineInstanceVisualisationProperties visualisationProperties = ifcEngineInstance.getVisualisationProperties();
@@ -253,34 +257,22 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 									geometryInstance.setPrimitiveCount(visualisationProperties.getPrimitiveCount());
 									geometryInstance.setStartIndex(visualisationProperties.getStartIndex());
 									geometryInstance.setStartVertex(visualisationProperties.getStartVertex());
-									float[] minExtends = new float[] { Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY };
-									float[] maxExtends = new float[] { Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY };
 									ByteBuffer verticesBuffer = ByteBuffer.allocate(visualisationProperties.getPrimitiveCount() * 3 * 3 * 4);
 									ByteBuffer normalsBuffer = ByteBuffer.allocate(visualisationProperties.getPrimitiveCount() * 3 * 3 * 4);
+									Bounds instanceBounds = getDatabaseSession().create(StorePackage.eINSTANCE.getBounds());
+									instanceBounds.setMin(createVector3f(Float.POSITIVE_INFINITY));
+									instanceBounds.setMax(createVector3f(Float.NEGATIVE_INFINITY));
+									geometryInstance.setBounds(instanceBounds);
 									for (int i = geometryInstance.getStartIndex(); i < geometryInstance.getPrimitiveCount() * 3 + geometryInstance.getStartIndex(); i++) {
 										int index = ifcEngineGeometry.getIndex(i) * 3;
-										processExtends(minExtends, maxExtends, ifcEngineGeometry, verticesBuffer, normalsBuffer, index);
+										processExtends(instanceBounds, ifcEngineGeometry, verticesBuffer, normalsBuffer, index);
 									}
-									
-									geometryInstance.getExtendsMin().add(minExtends[0]);
-									geometryInstance.getExtendsMin().add(minExtends[1]);
-									geometryInstance.getExtendsMin().add(minExtends[2]);
-									geometryInstance.getExtendsMax().add(maxExtends[0]);
-									geometryInstance.getExtendsMax().add(maxExtends[1]);
-									geometryInstance.getExtendsMax().add(maxExtends[2]);
-									
-									processExtends(minExtends, maxExtends, totalMinExtends, totalMaxExtends);
+									processExtends(instanceBounds, modelBounds);
 									geometryInstance.setVertices(verticesBuffer.array());
 									geometryInstance.setNormals(normalsBuffer.array());
 									ifcProduct.setGeometryInstance(geometryInstance);
 									getDatabaseSession().store(geometryInstance, pid, rid);
 								}
-								geometry.getExtendsMin().add(totalMinExtends[0]);
-								geometry.getExtendsMin().add(totalMinExtends[1]);
-								geometry.getExtendsMin().add(totalMinExtends[2]);
-								geometry.getExtendsMax().add(totalMaxExtends[0]);
-								geometry.getExtendsMax().add(totalMaxExtends[1]);
-								geometry.getExtendsMax().add(totalMaxExtends[2]);
 
 								return geometry;
 							} finally {
@@ -300,18 +292,24 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		return null;
 	}
 
-	private void processExtends(float[] minExtends, float[] maxExtends, float[] totalMinExtends, float[] totalMaxExtends) {
-		for (int i = 0; i < minExtends.length; i++) {
-			if (minExtends[i] < totalMinExtends[i]) {
-				totalMinExtends[i] = minExtends[i];
-			}
-			if (maxExtends[i] > totalMaxExtends[i]) {
-				totalMaxExtends[i] = maxExtends[i];
-			}
-		}
+	private Vector3f createVector3f(float defaultValue) throws BimserverDatabaseException {
+		Vector3f vector3f = (Vector3f) getDatabaseSession().create(StorePackage.eINSTANCE.getVector3f());
+		vector3f.setX(defaultValue);
+		vector3f.setY(defaultValue);
+		vector3f.setZ(defaultValue);
+		return vector3f;
 	}
 
-	private void processExtends(float[] minExtends, float[] maxExtends, IfcEngineGeometry geometry, ByteBuffer verticesBuffer, ByteBuffer normalsBuffer, int index) {
+	private void processExtends(Bounds instanceBounds, Bounds modelBounds) {
+		modelBounds.getMin().setX(Math.min(instanceBounds.getMin().getX(), modelBounds.getMin().getX()));
+		modelBounds.getMin().setY(Math.min(instanceBounds.getMin().getY(), modelBounds.getMin().getY()));
+		modelBounds.getMin().setZ(Math.min(instanceBounds.getMin().getZ(), modelBounds.getMin().getZ()));
+		modelBounds.getMax().setX(Math.max(instanceBounds.getMax().getX(), modelBounds.getMax().getX()));
+		modelBounds.getMax().setY(Math.max(instanceBounds.getMax().getY(), modelBounds.getMax().getY()));
+		modelBounds.getMax().setZ(Math.max(instanceBounds.getMax().getZ(), modelBounds.getMax().getZ()));
+	}
+
+	private void processExtends(Bounds bounds, IfcEngineGeometry geometry, ByteBuffer verticesBuffer, ByteBuffer normalsBuffer, int index) {
 		float x = geometry.getVertex(index);
 		float y = geometry.getVertex(index + 1);
 		float z = geometry.getVertex(index + 2);
@@ -321,24 +319,12 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		normalsBuffer.putFloat(geometry.getNormal(index));
 		normalsBuffer.putFloat(geometry.getNormal(index + 1));
 		normalsBuffer.putFloat(geometry.getNormal(index + 2));
-		if (x < minExtends[0]) {
-			minExtends[0] = x;
-		}
-		if (x > maxExtends[0]) {
-			maxExtends[0] = x;
-		}
-		if (y < minExtends[1]) {
-			minExtends[1] = y;
-		}
-		if (y > maxExtends[1]) {
-			maxExtends[1] = y;
-		}
-		if (z < minExtends[2]) {
-			minExtends[2] = z;
-		}
-		if (z > maxExtends[2]) {
-			maxExtends[2] = z;
-		}
+		bounds.getMin().setX(Math.min(x, bounds.getMin().getX()));
+		bounds.getMin().setY(Math.min(y, bounds.getMin().getY()));
+		bounds.getMin().setZ(Math.min(z, bounds.getMin().getZ()));
+		bounds.getMax().setX(Math.max(x, bounds.getMax().getX()));
+		bounds.getMax().setY(Math.max(y, bounds.getMax().getY()));
+		bounds.getMax().setZ(Math.max(z, bounds.getMax().getZ()));
 	}
 
 	private RevisionSummary createSummary(IfcModelInterface model) throws BimserverDatabaseException {

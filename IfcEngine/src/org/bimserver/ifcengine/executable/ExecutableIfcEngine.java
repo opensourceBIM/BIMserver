@@ -1,8 +1,6 @@
 package org.bimserver.ifcengine.executable;
 
 import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,14 +12,15 @@ import org.bimserver.plugins.ifcengine.IfcEngineModel;
 
 public class ExecutableIfcEngine implements IfcEngine {
 
-	private DataOutputStream outputStream;
-	private DataInputStream inputStream;
+	private LoggingDataOutputStream outputStream;
+	private LoggingDataInputStream inputStream;
 
 	public ExecutableIfcEngine(File schemaFile, File executableLocation, File tmp, String classPath) {
 		try {
 			Process process = Runtime.getRuntime().exec(executableLocation + File.separator + "engine.exe");
-			outputStream = new DataOutputStream(process.getOutputStream());
-			inputStream = new DataInputStream(process.getInputStream());
+			LogWriter logWriter = new LogWriter(new File("log.txt"));
+			outputStream = new LoggingDataOutputStream(process.getOutputStream(), logWriter);
+			inputStream = new LoggingDataInputStream(process.getInputStream(), logWriter);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

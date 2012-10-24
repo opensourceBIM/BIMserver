@@ -10,9 +10,16 @@ public class Step0026 extends Migration {
 
 	@Override
 	public void migrate(Schema schema) {
+		EClass bounds = schema.createEClass("store", "Bounds");
+		EClass vector3f = schema.createEClass("store", "Vector3f");
+		schema.createEAttribute(vector3f, "x", EcorePackage.eINSTANCE.getEFloat(), Multiplicity.SINGLE);
+		schema.createEAttribute(vector3f, "y", EcorePackage.eINSTANCE.getEFloat(), Multiplicity.SINGLE);
+		schema.createEAttribute(vector3f, "z", EcorePackage.eINSTANCE.getEFloat(), Multiplicity.SINGLE);
+		schema.createEReference(bounds, "min", vector3f, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
+		schema.createEReference(bounds, "max", vector3f, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
+
 		EClass geometry = schema.createEClass("store", "Geometry");
-		schema.createEAttribute(geometry, "extendsMin", EcorePackage.eINSTANCE.getEFloatObject(), Multiplicity.MANY).setUnique(false);
-		schema.createEAttribute(geometry, "extendsMax", EcorePackage.eINSTANCE.getEFloatObject(), Multiplicity.MANY).setUnique(false);
+		schema.createEReference(geometry, "bounds", bounds, Multiplicity.SINGLE).getEAnnotations().add(createHiddenAnnotation());;
 		schema.createEAttribute(geometry, "indices", EcorePackage.eINSTANCE.getEIntegerObject(), Multiplicity.MANY).setUnique(false);
 		schema.createEAttribute(geometry, "vertices", EcorePackage.eINSTANCE.getEFloatObject(), Multiplicity.MANY).setUnique(false);
 		schema.createEAttribute(geometry, "normals", EcorePackage.eINSTANCE.getEFloatObject(), Multiplicity.MANY).setUnique(false);
@@ -21,8 +28,7 @@ public class Step0026 extends Migration {
 		schema.createEAttribute(geometryInstance, "startVertex", EcorePackage.eINSTANCE.getEIntegerObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(geometryInstance, "startIndex", EcorePackage.eINSTANCE.getEIntegerObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(geometryInstance, "primitiveCount", EcorePackage.eINSTANCE.getEIntegerObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(geometryInstance, "extendsMin", EcorePackage.eINSTANCE.getEFloatObject(), Multiplicity.MANY).setUnique(false);
-		schema.createEAttribute(geometryInstance, "extendsMax", EcorePackage.eINSTANCE.getEFloatObject(), Multiplicity.MANY).setUnique(false);
+		schema.createEReference(geometryInstance, "bounds", bounds, Multiplicity.SINGLE).getEAnnotations().add(createHiddenAnnotation());;
 		schema.createEAttribute(geometryInstance, "indices", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
 		schema.createEAttribute(geometryInstance, "vertices", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
 		schema.createEAttribute(geometryInstance, "normals", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
