@@ -26,11 +26,11 @@ import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
+import org.bimserver.LocalDevBimServerStarter;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientException;
 import org.bimserver.client.ConnectionException;
 import org.bimserver.client.Session;
-import org.bimserver.combined.LocalDevBimCombinedServerStarter;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SProject;
@@ -59,7 +59,7 @@ public class TestClientEmfModelLocal {
 				FileUtils.deleteDirectory(home);
 			}
 
-			LocalDevBimCombinedServerStarter localDevBimWebServerStarter = new LocalDevBimCombinedServerStarter();
+			LocalDevBimServerStarter localDevBimWebServerStarter = new LocalDevBimServerStarter();
 			localDevBimWebServerStarter.start("localhost", 8082);
 			bimServer = localDevBimWebServerStarter.getBimServer();
 		} catch (IOException e) {

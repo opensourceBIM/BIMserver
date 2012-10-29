@@ -26,11 +26,10 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
-import org.bimserver.BimServer;
+import org.bimserver.LocalDevBimServerStarter;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
 import org.bimserver.client.notifications.SocketNotificationsClient;
-import org.bimserver.combined.LocalDevBimCombinedServerStarter;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.meta.SService;
@@ -41,7 +40,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TestNotifications {
-	private static BimServer bimServer;
 
 	@BeforeClass
 	public static void before() {
@@ -51,9 +49,8 @@ public class TestNotifications {
 				FileUtils.deleteDirectory(home);
 			}
 
-			LocalDevBimCombinedServerStarter localDevBimWebServerStarter = new LocalDevBimCombinedServerStarter();
+			LocalDevBimServerStarter localDevBimWebServerStarter = new LocalDevBimServerStarter();
 			localDevBimWebServerStarter.start("localhost", 80);
-			bimServer = localDevBimWebServerStarter.getBimServer();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -61,7 +58,6 @@ public class TestNotifications {
 	
 	@AfterClass
 	public static void after() {
-		
 	}
 	
 	@Test

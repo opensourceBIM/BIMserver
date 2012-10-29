@@ -70,4 +70,14 @@
 		<servlet-name>DownloadServlet</servlet-name>
 		<url-pattern>/download/*</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>StreamingServlet</servlet-name>
+		<servlet-class>org.bimserver.servlets.StreamingServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>StreamingServlet</servlet-name>
+		<url-pattern>/stream/*</url-pattern>
+	</servlet-mapping>
 </web-app>
