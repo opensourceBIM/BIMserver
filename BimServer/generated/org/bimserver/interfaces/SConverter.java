@@ -1071,6 +1071,7 @@ public class SConverter {
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
 		result.setClassName(input.getClassName());
+		result.setNeedsGeometry(input.isNeedsGeometry());
 		result.setExtension(input.getExtension());
 		result.setContentType(input.getContentType());
 		ObjectType settingsVal = input.getSettings();
@@ -1095,6 +1096,7 @@ public class SConverter {
 		result.setEnabled(input.getEnabled());
 		result.setDescription(input.getDescription());
 		result.setClassName(input.getClassName());
+		result.setNeedsGeometry(input.isNeedsGeometry());
 		result.setExtension(input.getExtension());
 		result.setContentType(input.getContentType());
 		result.setSettings((ObjectType)session.get(StorePackage.eINSTANCE.getObjectType(), input.getSettingsId(), false, null));

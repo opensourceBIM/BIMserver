@@ -33,6 +33,8 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Geometry;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.SerializerPluginConfiguration;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
@@ -49,13 +51,15 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 	private final ObjectIDM objectIDM;
 	private final long ignoreUoid;
 	private Authorization authorization;
+	private long serializerOid;
 
-	public DownloadDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long ignoreUoid, Authorization authorization,
+	public DownloadDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long ignoreUoid, long serializerOid, Authorization authorization,
 			ObjectIDM objectIDM, Reporter reporter) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.ignoreUoid = ignoreUoid;
+		this.serializerOid = serializerOid;
 		this.authorization = authorization;
 		this.objectIDM = objectIDM;
 	}
@@ -63,6 +67,7 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 	@Override
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision revision = getVirtualRevision(roid);
+		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), SerializerPluginConfiguration.class, serializerOid);
 		authorization.canDownload(roid);
 		if (revision == null) {
 			throw new UserException("Revision with oid " + roid + " not found");
@@ -94,13 +99,15 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 					}
 				});
 				getDatabaseSession().getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true, objectIDM);
-				for (IfcProduct ifcProduct : subModel.getAllWithSubTypes(IfcProduct.class)) {
-					GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
-					if (geometryInstance != null) {
-						geometryInstance.load();
-						geometryInstance.getBounds().load();
-						geometryInstance.getBounds().getMin().load();
-						geometryInstance.getBounds().getMax().load();
+				if (serializerPluginConfiguration.isNeedsGeometry()) {
+					for (IfcProduct ifcProduct : subModel.getAllWithSubTypes(IfcProduct.class)) {
+						GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
+						if (geometryInstance != null) {
+							geometryInstance.load();
+							geometryInstance.getBounds().load();
+							geometryInstance.getBounds().getMin().load();
+							geometryInstance.getBounds().getMax().load();
+						}
 					}
 				}
 				subModel.setDate(subRevision.getDate());

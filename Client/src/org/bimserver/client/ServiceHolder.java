@@ -19,7 +19,6 @@ package org.bimserver.client;
 
 import javax.xml.ws.soap.SOAPFaultException;
 
-import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.slf4j.Logger;

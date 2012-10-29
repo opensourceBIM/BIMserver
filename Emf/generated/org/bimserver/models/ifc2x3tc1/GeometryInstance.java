@@ -18,7 +18,6 @@ package org.bimserver.models.ifc2x3tc1;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.models.store.Bounds;
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->

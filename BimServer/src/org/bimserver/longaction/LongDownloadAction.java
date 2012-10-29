@@ -94,16 +94,16 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 		Reporter reporter = this;
 		switch (downloadParameters.getDownloadType()) {
 		case DOWNLOAD_REVISION:
-			action = new DownloadDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getIgnoreUoid(), getAuthorization(), objectIDM, reporter);
+			action = new DownloadDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getIgnoreUoid(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM, reporter);
 			break;
 		case DOWNLOAD_BY_OIDS:
-			action = new DownloadByOidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getOids(), getAuthorization(), objectIDM, reporter);
+			action = new DownloadByOidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getOids(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM, reporter);
 			break;
 		case DOWNLOAD_BY_GUIDS:
 			action = new DownloadByGuidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getGuids(), getAuthorization(), objectIDM, reporter);
 			break;
 		case DOWNLOAD_OF_TYPE:
-			action = new DownloadByTypesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getClassNames(), downloadParameters.isIncludeAllSubtypes(), getAuthorization(), objectIDM, reporter);
+			action = new DownloadByTypesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getClassNames(), downloadParameters.getSerializerOid(), downloadParameters.isIncludeAllSubtypes(), getAuthorization(), objectIDM, reporter);
 			break;
 		case DOWNLOAD_PROJECTS:
 			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), getAuthorization(), objectIDM, reporter);
@@ -112,7 +112,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			action = new DownloadCompareDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getModelCompareIdentifier(), downloadParameters.getCompareType(), getAuthorization(), objectIDM, reporter);
 			break;
 		case DOWNLOAD_QUERY:
-			action = new DownloadQueryDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getQeid(), downloadParameters.getCode(), getAuthorization(), objectIDM, reporter);
+			action = new DownloadQueryDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getQeid(), downloadParameters.getSerializerOid(), downloadParameters.getCode(), getAuthorization(), objectIDM, reporter);
 			break;
 		}
 		action.addProgressListener(this);

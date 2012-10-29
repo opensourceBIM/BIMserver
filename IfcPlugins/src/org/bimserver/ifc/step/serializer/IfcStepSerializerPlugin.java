@@ -43,6 +43,11 @@ public class IfcStepSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
+	public boolean needsGeometry() {
+		return false;
+	}
+	
+	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
 		pluginManager.requireSchemaDefinition();
 		initialized = true;

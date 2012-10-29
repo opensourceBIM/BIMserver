@@ -1594,4 +1594,8 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		}
 		return null;
 	}
+
+	public <T> T get(EClass eClass, Class<T> clazz, long oid) throws BimserverDatabaseException {
+		return get(eClass, oid, false, null);
+	}
 }

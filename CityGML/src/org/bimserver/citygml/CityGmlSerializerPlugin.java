@@ -43,6 +43,11 @@ public class CityGmlSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
+	public boolean needsGeometry() {
+		return true;
+	}
+	
+	@Override
 	public void init(PluginManager pluginManager) throws SchemaException, PluginException, IfcEngineException {
 		pluginManager.requireSchemaDefinition();
 		pluginManager.requireIfcEngine();

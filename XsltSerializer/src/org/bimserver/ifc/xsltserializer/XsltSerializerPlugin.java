@@ -36,6 +36,11 @@ public class XsltSerializerPlugin implements SerializerPlugin {
 	public String getDescription() {
 		return "XsltSerializer";
 	}
+	
+	@Override
+	public boolean needsGeometry() {
+		return false;
+	}
 
 	@Override
 	public String getVersion() {

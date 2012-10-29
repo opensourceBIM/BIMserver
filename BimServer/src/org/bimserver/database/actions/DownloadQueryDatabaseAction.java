@@ -24,6 +24,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.QueryEnginePluginConfiguration;
+import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.Reporter;
@@ -42,12 +43,14 @@ public class DownloadQueryDatabaseAction extends BimDatabaseAction<IfcModelInter
 	private final long roid;
 	private final Reporter reporter;
 	private Authorization authorization;
+	private long serializerOid;
 
-	public DownloadQueryDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long qeid, String code, Authorization authorization, ObjectIDM objectIDM, Reporter reporter) {
+	public DownloadQueryDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long qeid, long serializerOid, String code, Authorization authorization, ObjectIDM objectIDM, Reporter reporter) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.qeid = qeid;
+		this.serializerOid = serializerOid;
 		this.code = code;
 		this.authorization = authorization;
 		this.objectIDM = objectIDM;
@@ -58,7 +61,8 @@ public class DownloadQueryDatabaseAction extends BimDatabaseAction<IfcModelInter
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, -1, authorization, null, reporter);
+			SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), SerializerPluginConfiguration.class, serializerOid);
+			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, -1, serializerPluginConfiguration.getOid(), authorization, null, reporter);
 			IfcModelInterface ifcModel = session.executeAndCommitAction(action);
 			QueryEnginePluginConfiguration queryEngineObject = session.get(StorePackage.eINSTANCE.getQueryEnginePluginConfiguration(), qeid, false, null);
 			if (queryEngineObject != null) {

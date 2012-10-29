@@ -41,12 +41,14 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 	private final BimServer bimServer;
 	private final long mcid;
 	private Authorization authorization;
+	private long serializerOid;
 
-	public CompareDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long roid1, long roid2,
+	public CompareDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long serializerOid, long roid1, long roid2,
 			CompareType sCompareType, long mcid) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.authorization = authorization;
+		this.serializerOid = serializerOid;
 		this.roid1 = roid1;
 		this.roid2 = roid2;
 		this.sCompareType = sCompareType;
@@ -74,8 +76,8 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 											// roid2, sCompareType,
 											// sCompareIdentifier);
 		if (compareResults == null) {
-			IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, -1, authorization, null, new VoidReporter()).execute();
-			IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, -1, authorization, null, new VoidReporter()).execute();
+			IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, -1, serializerOid, authorization, null, new VoidReporter()).execute();
+			IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, -1, serializerOid, authorization, null, new VoidReporter()).execute();
 			try {
 				compareResults =  getModelCompare().compare(model1, model2, sCompareType);
 			} catch (ModelCompareException e) {
