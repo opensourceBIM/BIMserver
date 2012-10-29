@@ -31,14 +31,20 @@ import org.slf4j.LoggerFactory;
 
 public class LocalDevBimServerStarter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevBimServerStarter.class);
+	private BimServer bimServer;
 	
 	public static void main(String[] args) {
+		new LocalDevBimServerStarter().start("localhost", 8080);
+	}
+
+	public void start(String address, int port) {
 		BimServerConfig config = new BimServerConfig();
 		config.setHomeDir(new File("home"));
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher());
 		config.setStartEmbeddedWebServer(true);
-		config.setPort(80);
-		BimServer bimServer = new BimServer(config);
+		config.setClassPath(System.getProperty("java.class.path"));
+		config.setPort(port);
+		bimServer = new BimServer(config);
 		LocalVersionConstructor.augmentWithSvn(bimServer.getVersionChecker().getLocalVersion());
 		try {
 	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
@@ -57,5 +63,9 @@ public class LocalDevBimServerStarter {
 		} catch (DatabaseRestartRequiredException e) {
 			LOGGER.error("", e);
 		}
+	}
+
+	public BimServer getBimServer() {
+		return bimServer;
 	}
 }

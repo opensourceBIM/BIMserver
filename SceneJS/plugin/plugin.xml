@@ -4,4 +4,12 @@
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.scenejs.StreamingSceneJSSerializerPlugin</implementationClass>
 	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.geometry.json.JsonGeometrySerializerPlugin</implementationClass>
+	</PluginImplementation>
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.geometry.jsonshell.SceneJsShellSerializerPlugin</implementationClass>
+	</PluginImplementation>
 </PluginDescriptor>

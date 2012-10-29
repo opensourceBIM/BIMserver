@@ -28,9 +28,9 @@ import javax.activation.DataSource;
 
 import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
+import org.bimserver.LocalDevBimServerStarter;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
-import org.bimserver.combined.LocalDevBimCombinedServerStarter;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SCheckinResult;
@@ -53,7 +53,7 @@ public class TestClientEmfModelCheckin {
 				FileUtils.deleteDirectory(home);
 			}
 
-			LocalDevBimCombinedServerStarter localDevBimWebServerStarter = new LocalDevBimCombinedServerStarter();
+			LocalDevBimServerStarter localDevBimWebServerStarter = new LocalDevBimServerStarter();
 			localDevBimWebServerStarter.start("localhost", 8082);
 			bimServer = localDevBimWebServerStarter.getBimServer();
 		} catch (IOException e) {
