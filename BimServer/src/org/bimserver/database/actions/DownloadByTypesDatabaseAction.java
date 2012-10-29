@@ -34,6 +34,8 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Geometry;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.SerializerPluginConfiguration;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
@@ -45,8 +47,6 @@ import org.bimserver.webservices.Authorization;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 
-import sun.net.www.protocol.gopher.GopherClient;
-
 public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
 
 	private final Set<String> classNames;
@@ -56,11 +56,13 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 	private final ObjectIDM objectIDM;
 	private final boolean includeAllSubtypes;
 	private Authorization authorization;
+	private long serializerOid;
 
-	public DownloadByTypesDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> classNames, boolean includeAllSubtypes, Authorization authorization, ObjectIDM objectIDM, Reporter reporter) {
+	public DownloadByTypesDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> classNames, long serializerOid, boolean includeAllSubtypes, Authorization authorization, ObjectIDM objectIDM, Reporter reporter) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roids = roids;
+		this.serializerOid = serializerOid;
 		this.includeAllSubtypes = includeAllSubtypes;
 		this.authorization = authorization;
 		this.classNames = classNames;
@@ -76,6 +78,7 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 //		eClasses.add(getDatabaseSession().getEClassForName("IfcProject"));
 //		eClasses.add(getDatabaseSession().getEClassForName("IfcUnitAssignment"));
 //		eClasses.add(getDatabaseSession().getEClassForName("IfcSIUnit"));
+		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), SerializerPluginConfiguration.class, serializerOid);
 		for (String className : classNames) {
 			eClasses.add(getDatabaseSession().getEClassForName(className));
 			if (includeAllSubtypes) {
@@ -114,13 +117,17 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 			ifcModel.setRevisionNr(project.getRevisions().indexOf(virtualRevision) + 1);
 			ifcModel.setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
 			ifcModel.setDate(virtualRevision.getDate());
-			for (IfcProduct ifcProduct : ifcModel.getAllWithSubTypes(IfcProduct.class)) {
-				GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
-				if (geometryInstance != null) {
-					geometryInstance.load();
-					geometryInstance.getBounds().load();
-					geometryInstance.getBounds().getMin().load();
-					geometryInstance.getBounds().getMax().load();
+			
+			getDatabaseSession().getMap(ifcModel, virtualRevision.getProject().getId(), virtualRevision.getId(), true, objectIDM);
+			if (serializerPluginConfiguration.isNeedsGeometry()) {
+				for (IfcProduct ifcProduct : ifcModel.getAllWithSubTypes(IfcProduct.class)) {
+					GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
+					if (geometryInstance != null) {
+						geometryInstance.load();
+						geometryInstance.getBounds().load();
+						geometryInstance.getBounds().getMin().load();
+						geometryInstance.getBounds().getMax().load();
+					}
 				}
 			}
 		}

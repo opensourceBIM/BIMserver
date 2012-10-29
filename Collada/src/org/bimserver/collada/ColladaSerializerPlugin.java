@@ -43,6 +43,11 @@ public class ColladaSerializerPlugin implements SerializerPlugin {
 		pluginManager.requireIfcEngine();
 		initialized = true;
 	}
+	
+	@Override
+	public boolean needsGeometry() {
+		return true;
+	}
 
 	@Override
 	public EmfSerializer createSerializer() {

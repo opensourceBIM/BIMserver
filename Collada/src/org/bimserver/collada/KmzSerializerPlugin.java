@@ -43,6 +43,11 @@ public class KmzSerializerPlugin implements SerializerPlugin {
 	}
 	
 	@Override
+	public boolean needsGeometry() {
+		return true;
+	}
+	
+	@Override
 	public void init(PluginManager pluginManager) throws PluginException {
 		pluginManager.requireSchemaDefinition();
 		pluginManager.requireIfcEngine();

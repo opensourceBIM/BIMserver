@@ -1315,13 +1315,22 @@ public interface StorePackage extends EPackage {
 	int SERIALIZER_PLUGIN_CONFIGURATION__SETTINGS = PLUGIN_CONFIGURATION__SETTINGS;
 
 	/**
+	 * The feature id for the '<em><b>Needs Geometry</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER_PLUGIN_CONFIGURATION__NEEDS_GEOMETRY = PLUGIN_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Extension</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER_PLUGIN_CONFIGURATION__EXTENSION = PLUGIN_CONFIGURATION_FEATURE_COUNT + 0;
+	int SERIALIZER_PLUGIN_CONFIGURATION__EXTENSION = PLUGIN_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Content Type</b></em>' attribute.
@@ -1330,7 +1339,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER_PLUGIN_CONFIGURATION__CONTENT_TYPE = PLUGIN_CONFIGURATION_FEATURE_COUNT + 1;
+	int SERIALIZER_PLUGIN_CONFIGURATION__CONTENT_TYPE = PLUGIN_CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Object IDM</b></em>' reference.
@@ -1339,7 +1348,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER_PLUGIN_CONFIGURATION__OBJECT_IDM = PLUGIN_CONFIGURATION_FEATURE_COUNT + 2;
+	int SERIALIZER_PLUGIN_CONFIGURATION__OBJECT_IDM = PLUGIN_CONFIGURATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>User Settings</b></em>' reference.
@@ -1348,7 +1357,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = PLUGIN_CONFIGURATION_FEATURE_COUNT + 3;
+	int SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = PLUGIN_CONFIGURATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Ifc Engine</b></em>' reference.
@@ -1357,7 +1366,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER_PLUGIN_CONFIGURATION__IFC_ENGINE = PLUGIN_CONFIGURATION_FEATURE_COUNT + 4;
+	int SERIALIZER_PLUGIN_CONFIGURATION__IFC_ENGINE = PLUGIN_CONFIGURATION_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Serializer Plugin Configuration</em>' class.
@@ -1366,7 +1375,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER_PLUGIN_CONFIGURATION_FEATURE_COUNT = PLUGIN_CONFIGURATION_FEATURE_COUNT + 5;
+	int SERIALIZER_PLUGIN_CONFIGURATION_FEATURE_COUNT = PLUGIN_CONFIGURATION_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ObjectIDMPluginConfigurationImpl <em>Object IDM Plugin Configuration</em>}' class.
@@ -6768,6 +6777,17 @@ public interface StorePackage extends EPackage {
 	EClass getSerializerPluginConfiguration();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.SerializerPluginConfiguration#isNeedsGeometry <em>Needs Geometry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Needs Geometry</em>'.
+	 * @see org.bimserver.models.store.SerializerPluginConfiguration#isNeedsGeometry()
+	 * @see #getSerializerPluginConfiguration()
+	 * @generated
+	 */
+	EAttribute getSerializerPluginConfiguration_NeedsGeometry();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.SerializerPluginConfiguration#getExtension <em>Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10863,6 +10883,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EClass SERIALIZER_PLUGIN_CONFIGURATION = eINSTANCE.getSerializerPluginConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>Needs Geometry</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERIALIZER_PLUGIN_CONFIGURATION__NEEDS_GEOMETRY = eINSTANCE.getSerializerPluginConfiguration_NeedsGeometry();
 
 		/**
 		 * The meta object literal for the '<em><b>Extension</b></em>' attribute feature.

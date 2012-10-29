@@ -29,6 +29,7 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 
 	@XmlTransient
 	private static SClass sClass;
+	private boolean needsGeometry;
 	private java.lang.String extension;
 	private java.lang.String contentType;
 	private long objectIDMId = -1;
@@ -75,6 +76,9 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 		if (sField.getName().equals("settingsId")) {
 			return getSettingsId();
 		}
+		if (sField.getName().equals("needsGeometry")) {
+			return isNeedsGeometry();
+		}
 		if (sField.getName().equals("extension")) {
 			return getExtension();
 		}
@@ -120,6 +124,10 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 			setSettingsId((Long)val);
 			return;
 		}
+		if (sField.getName().equals("needsGeometry")) {
+			setNeedsGeometry((Boolean)val);
+			return;
+		}
 		if (sField.getName().equals("extension")) {
 			setExtension((String)val);
 			return;
@@ -149,6 +157,14 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
+	public boolean isNeedsGeometry() {
+		return needsGeometry;
+	}
+
+	public void setNeedsGeometry(boolean needsGeometry) {
+		this.needsGeometry = needsGeometry;
 	}
 	
 	public java.lang.String getExtension() {

@@ -34,6 +34,8 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.SerializerPluginConfiguration;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
@@ -51,12 +53,14 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModelInte
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private Authorization authorization;
+	private long serializerOid;
 
-	public DownloadByOidsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<Long> oids, Authorization authorization, ObjectIDM objectIDM, Reporter reporter) {
+	public DownloadByOidsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<Long> oids, long serializerOid, Authorization authorization, ObjectIDM objectIDM, Reporter reporter) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roids = roids;
 		this.oids = oids;
+		this.serializerOid = serializerOid;
 		this.authorization = authorization;
 		this.objectIDM = objectIDM;
 	}
@@ -67,6 +71,7 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModelInte
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		Project project = null;
 		long incrSize = 0L;
+		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), SerializerPluginConfiguration.class, serializerOid);
 		for (Long roid : roids) {
 			Revision virtualRevision = getVirtualRevision(roid);
 			project = virtualRevision.getProject();
@@ -88,13 +93,15 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModelInte
 				getDatabaseSession().getMapWithOids(subModel, concreteRevision.getProject().getId(), concreteRevision.getId(), oids, true, objectIDM);
 				subModel.setDate(concreteRevision.getDate());
 				
-				for (IfcProduct ifcProduct : subModel.getAllWithSubTypes(IfcProduct.class)) {
-					GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
-					if (geometryInstance != null) {
-						geometryInstance.load();
-						geometryInstance.getBounds().load();
-						geometryInstance.getBounds().getMin().load();
-						geometryInstance.getBounds().getMax().load();
+				if (serializerPluginConfiguration.isNeedsGeometry()) {
+					for (IfcProduct ifcProduct : subModel.getAllWithSubTypes(IfcProduct.class)) {
+						GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
+						if (geometryInstance != null) {
+							geometryInstance.load();
+							geometryInstance.getBounds().load();
+							geometryInstance.getBounds().getMin().load();
+							geometryInstance.getBounds().getMax().load();
+						}
 					}
 				}
 				

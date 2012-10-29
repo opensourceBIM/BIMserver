@@ -21,6 +21,7 @@ import org.bimserver.plugins.Plugin;
 
 public interface SerializerPlugin extends Plugin {
 	Serializer createSerializer();
+	boolean needsGeometry();
 	String getDefaultExtension();
 	String getDefaultContentType();
 }

@@ -45,6 +45,11 @@ public class SceneJSSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
+	public boolean needsGeometry() {
+		return true;
+	}
+	
+	@Override
 	public EmfSerializer createSerializer() {
 		return new SceneJSSerializer();
 	}

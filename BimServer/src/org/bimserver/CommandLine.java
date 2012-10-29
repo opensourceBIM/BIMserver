@@ -76,7 +76,7 @@ public class CommandLine extends Thread {
 						long roid = Long.parseLong(line.substring(9).trim());
 						DatabaseSession databaseSession = bimServer.getDatabase().createSession();	
 						try {
-							DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, roid, -1, ((Service)bimServer.getSystemService()).getAuthorization(), null, new Reporter(){
+							DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, roid, -1, -1, ((Service)bimServer.getSystemService()).getAuthorization(), null, new Reporter(){
 								@Override
 								public void error(String error) {
 								}

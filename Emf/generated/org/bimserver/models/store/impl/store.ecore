@@ -202,6 +202,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#//ObjectType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SerializerPluginConfiguration" eSuperTypes="#//PluginConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="needsGeometry" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="extension" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="contentType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="objectIDM" eType="#//ObjectIDMPluginConfiguration"

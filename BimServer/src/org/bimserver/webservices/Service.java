@@ -36,7 +36,6 @@ import java.util.Set;
 
 import javax.activation.DataHandler;
 import javax.jws.WebMethod;
-import javax.jws.WebParam;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -963,7 +962,7 @@ public class Service implements ServiceInterface {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(bimServer, session, accessMethod, authorization, roid1, roid2,
+			BimDatabaseAction<CompareResult> action = new CompareDatabaseAction(bimServer, session, accessMethod, authorization, -1, roid1, roid2,
 					converter.convertFromSObject(sCompareType), mcid);
 			return converter.convertToSObject(session.executeAndCommitAction(action));
 		} catch (Exception e) {

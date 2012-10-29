@@ -49,6 +49,11 @@ public class Report1SystemSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
+	public boolean needsGeometry() {
+		return false;
+	}
+	
+	@Override
 	public boolean isInitialized() {
 		return initialized;
 	}

@@ -42,6 +42,11 @@ public class ObjectInfoSerializerPlugin implements SerializerPlugin {
 		pluginManager.requireSchemaDefinition();
 		initialized = true;
 	}
+	
+	@Override
+	public boolean needsGeometry() {
+		return false;
+	}
 
 	@Override
 	public EmfSerializer createSerializer() {

@@ -24,6 +24,7 @@ package org.bimserver.models.store;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#isNeedsGeometry <em>Needs Geometry</em>}</li>
  *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#getExtension <em>Extension</em>}</li>
  *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#getContentType <em>Content Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#getObjectIDM <em>Object IDM</em>}</li>
@@ -37,6 +38,32 @@ package org.bimserver.models.store;
  * @generated
  */
 public interface SerializerPluginConfiguration extends PluginConfiguration {
+	/**
+	 * Returns the value of the '<em><b>Needs Geometry</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Needs Geometry</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Needs Geometry</em>' attribute.
+	 * @see #setNeedsGeometry(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getSerializerPluginConfiguration_NeedsGeometry()
+	 * @model
+	 * @generated
+	 */
+	boolean isNeedsGeometry();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.SerializerPluginConfiguration#isNeedsGeometry <em>Needs Geometry</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Needs Geometry</em>' attribute.
+	 * @see #isNeedsGeometry()
+	 * @generated
+	 */
+	void setNeedsGeometry(boolean value);
+
 	/**
 	 * Returns the value of the '<em><b>Extension</b></em>' attribute.
 	 * <!-- begin-user-doc -->

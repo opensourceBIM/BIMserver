@@ -1943,7 +1943,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSerializerPluginConfiguration_Extension() {
+	public EAttribute getSerializerPluginConfiguration_NeedsGeometry() {
 		return (EAttribute) getSerializerPluginConfiguration().getEStructuralFeatures().get(0);
 	}
 
@@ -1952,7 +1952,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSerializerPluginConfiguration_ContentType() {
+	public EAttribute getSerializerPluginConfiguration_Extension() {
 		return (EAttribute) getSerializerPluginConfiguration().getEStructuralFeatures().get(1);
 	}
 
@@ -1961,8 +1961,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSerializerPluginConfiguration_ObjectIDM() {
-		return (EReference) getSerializerPluginConfiguration().getEStructuralFeatures().get(2);
+	public EAttribute getSerializerPluginConfiguration_ContentType() {
+		return (EAttribute) getSerializerPluginConfiguration().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1970,7 +1970,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSerializerPluginConfiguration_UserSettings() {
+	public EReference getSerializerPluginConfiguration_ObjectIDM() {
 		return (EReference) getSerializerPluginConfiguration().getEStructuralFeatures().get(3);
 	}
 
@@ -1979,8 +1979,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSerializerPluginConfiguration_IfcEngine() {
+	public EReference getSerializerPluginConfiguration_UserSettings() {
 		return (EReference) getSerializerPluginConfiguration().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSerializerPluginConfiguration_IfcEngine() {
+		return (EReference) getSerializerPluginConfiguration().getEStructuralFeatures().get(5);
 	}
 
 	/**

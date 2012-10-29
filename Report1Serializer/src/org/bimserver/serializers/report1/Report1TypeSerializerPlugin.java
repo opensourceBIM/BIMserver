@@ -42,6 +42,11 @@ public class Report1TypeSerializerPlugin implements SerializerPlugin {
 	public String getDescription() {
 		return "Report1Type";
 	}
+	
+	@Override
+	public boolean needsGeometry() {
+		return false;
+	}
 
 	@Override
 	public String getVersion() {

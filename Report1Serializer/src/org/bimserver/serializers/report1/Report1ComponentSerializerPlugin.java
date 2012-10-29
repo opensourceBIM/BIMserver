@@ -47,6 +47,11 @@ public class Report1ComponentSerializerPlugin implements SerializerPlugin {
 	public String getVersion() {
 		return "1.0";
 	}
+	
+	@Override
+	public boolean needsGeometry() {
+		return false;
+	}
 
 	@Override
 	public boolean isInitialized() {

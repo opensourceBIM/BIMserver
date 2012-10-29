@@ -157,7 +157,7 @@ public class TestEmbeddedBimServer {
 			}
 			if (firstProjectWithRevisions != null) {
 				long roid = firstProjectWithRevisions.getLastRevisionId();
-				DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, -1, ((Service)service).getAuthorization(), null, new VoidReporter());
+				DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, -1, -1, ((Service)service).getAuthorization(), null, new VoidReporter());
 				IfcModelInterface ifcModelInterface = downloadDatabaseAction.execute();
 				for (IfcWall ifcWall : ifcModelInterface.getAllWithSubTypes(IfcWall.class)) {
 					System.out.println(ifcWall.getName());

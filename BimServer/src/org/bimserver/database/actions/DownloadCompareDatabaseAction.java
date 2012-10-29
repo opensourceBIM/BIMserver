@@ -119,8 +119,8 @@ public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInt
 			CompareResult compareResults = null;// bimServer.getCompareCache().getCompareResults(roid1,
 												// roid2, compareType,
 												// compareIdentifier);
-			IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, -1, authorization, null, reporter).execute();
-			IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, -1, authorization, null, reporter).execute();
+			IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, -1, -1, authorization, null, reporter).execute();
+			IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, -1, -1, authorization, null, reporter).execute();
 
 			try {
 				compareResults = getModelCompare().compare(model1, model2, compareType);
