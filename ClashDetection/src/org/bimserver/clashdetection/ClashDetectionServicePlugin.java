@@ -13,7 +13,6 @@ import javax.imageio.ImageIO;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 
-import org.apache.commons.io.IOUtils;
 import org.bimserver.bcf.markup.Header;
 import org.bimserver.bcf.markup.Header.File;
 import org.bimserver.bcf.markup.Markup;
@@ -57,6 +56,8 @@ import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
+import org.bimserver.plugins.serializers.EmfSerializerDataSource;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.shared.exceptions.ServerException;
@@ -93,7 +94,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 				
 				try {
 					ByteArrayOutputStream baos = new ByteArrayOutputStream();
-					IOUtils.copy(downloadData.getFile().getInputStream(), baos);
+					((EmfSerializerDataSource)downloadData.getFile().getDataSource()).getSerializer().writeToOutputStream(baos);
 
 					Deserializer deserializer = pluginManager.requireDeserializer("ifc").createDeserializer();
 					deserializer.init(pluginManager.requireSchemaDefinition());
@@ -187,6 +188,8 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 				} catch (DatatypeConfigurationException e) {
 					e.printStackTrace();
 				} catch (DeserializeException e) {
+					e.printStackTrace();
+				} catch (SerializerException e) {
 					e.printStackTrace();
 				}
 				
