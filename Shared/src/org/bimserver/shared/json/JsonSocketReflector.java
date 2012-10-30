@@ -80,6 +80,7 @@ public class JsonSocketReflector extends JsonReflector {
 				}
 			}
 			HttpPost httppost = new HttpPost(remoteAddress);
+			System.out.println(request.toString());
 			httppost.setEntity(new StringEntity(request.toString()));
 
 			HttpResponse response = httpclient.execute(httppost, context);
