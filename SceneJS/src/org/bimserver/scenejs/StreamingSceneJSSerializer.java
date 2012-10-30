@@ -179,8 +179,8 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 	private IfcEngine ifcEngine;
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEngine);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, ifcEngine, normalizeOids);
 		this.ifcEngine = ifcEngine;
 		this.surfaceStyleIds = new ArrayList<String>();
 	}
@@ -190,7 +190,7 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 			try {
 				ifcEngine.init();
 				Serializer serializer = getPluginManager().requireIfcStepSerializer();
-				serializer.init(model, getProjectInfo(), getPluginManager(), ifcEngine);
+				serializer.init(model, getProjectInfo(), getPluginManager(), ifcEngine, false);
 				ifcEngineModel = ifcEngine.openModel(serializer.getBytes());
 				ifcEngineModel.setPostProcessing(true);
 				geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());

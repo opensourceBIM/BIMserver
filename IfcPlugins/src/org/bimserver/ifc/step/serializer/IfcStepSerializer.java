@@ -79,7 +79,7 @@ public class IfcStepSerializer extends IfcSerializer {
 	private static final String BOOLEAN_TRUE = ".T.";
 	private static final String DOLLAR = "$";
 	private static final String WRAPPED_VALUE = "wrappedValue";
-
+	
 	private String fileDescription = "";
 	private String name = "";
 	private String author = "";
@@ -94,8 +94,8 @@ public class IfcStepSerializer extends IfcSerializer {
 	private SchemaDefinition schema;
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEngine);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, ifcEngine, normalizeOids);
 		try {
 			schema = getPluginManager().requireSchemaDefinition();
 		} catch (PluginException e) {
@@ -288,7 +288,8 @@ public class IfcStepSerializer extends IfcSerializer {
 			return;
 		}
 		out.print(DASH);
-		out.print(String.valueOf(key));
+		long convertedKey = convertKey(key);
+		out.print(String.valueOf(convertedKey));
 		out.print("= ");
 		out.print(upperCases.get(eClass));
 		out.print(OPEN_PAREN);
@@ -341,7 +342,7 @@ public class IfcStepSerializer extends IfcSerializer {
 			EntityDefinition entityBN = schema.getEntityBNNoCaseConvert(upperCases.get(object.eClass()));
 			if (referencedObject instanceof EObject && model.contains((IdEObject) referencedObject)) {
 				out.print(DASH);
-				out.print(String.valueOf(model.get((IdEObject) referencedObject)));
+				out.print(String.valueOf(convertKey(model.get((IdEObject) referencedObject))));
 			} else {
 				if (entityBN != null && entityBN.isDerived(feature.getName())) {
 					out.print(ASTERISK);
@@ -448,7 +449,7 @@ public class IfcStepSerializer extends IfcSerializer {
 				if ((listObject instanceof IdEObject) && model.contains((IdEObject)listObject)) {
 					IdEObject eObject = (IdEObject) listObject;
 					out.print(DASH);
-					out.print(String.valueOf(model.get(eObject)));
+					out.print(String.valueOf(convertKey(model.get(eObject))));
 				} else {
 					if (listObject == null) {
 						out.print(DOLLAR);

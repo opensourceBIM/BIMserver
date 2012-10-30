@@ -44,8 +44,8 @@ public class XsltSerializer extends EmfSerializer {
 	private Set<XsltParameter> parameters = new HashSet<XsltParameter>();
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEngine);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, ifcEngine, normalizeOids);
 	}
 
 	public void setXsltUrl(URL url) {
@@ -63,7 +63,7 @@ public class XsltSerializer extends EmfSerializer {
 		case BODY:
 			SerializerPlugin plugin = (SerializerPlugin) getPluginManager().getPlugin("org.bimserver.ifc.xml.serializer.IfcXmlSerializerPlugin", true);
 			Serializer ifcXmlSerializer = plugin.createSerializer();
-			ifcXmlSerializer.init(model, null, getPluginManager(), null);
+			ifcXmlSerializer.init(model, null, getPluginManager(), null, false);
 			TransformerFactory factory = TransformerFactory.newInstance();
 			try {
 				StreamSource xslStream = new StreamSource(xsltUrl.openStream());

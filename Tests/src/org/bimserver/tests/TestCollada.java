@@ -36,7 +36,7 @@ public class TestCollada {
 					deserializer.init(pluginManager.requireSchemaDefinition());
 //					IfcModelInterface model = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Logic Labs\\Clients\\TNO\\m1-bevinding\\M1_project.ifc"), true);
 					IfcModelInterface model = deserializer.read(TestFile.WALL_ONLY.getFile(), true);
-					serializer.init(model, null, pluginManager, ifcEngine.createIfcEngine());
+					serializer.init(model, null, pluginManager, ifcEngine.createIfcEngine(), false);
 					serializer.writeToFile(new File("output/ac11.dae"));
 				}
 			}

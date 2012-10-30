@@ -33,7 +33,7 @@ public class Test1 {
 			
 			SerializerPlugin streamingSerializerPlugin = (SerializerPlugin) pluginManager.getPlugin("org.bimserver.scenejs.StreamingSceneJSSerializerPlugin", true);
 			Serializer streamingSerializer = streamingSerializerPlugin.createSerializer();
-			streamingSerializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine());
+			streamingSerializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine(), false);
 			long start = System.nanoTime();
 			streamingSerializer.writeToFile(new File("str-" + file.getName() + ".json"));
 			long end = System.nanoTime();

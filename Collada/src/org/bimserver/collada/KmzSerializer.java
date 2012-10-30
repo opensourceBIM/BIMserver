@@ -38,11 +38,11 @@ public class KmzSerializer extends EmfSerializer {
 	private ColladaSerializer ifcToCollada;
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEngine);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, ifcEngine, normalizeOids);
 		try {
 			ifcToCollada = new ColladaSerializer();
-			ifcToCollada.init(model, projectInfo, pluginManager, ifcEngine);
+			ifcToCollada.init(model, projectInfo, pluginManager, ifcEngine, normalizeOids);
 		} catch (SerializerException e) {
 			throw new SerializerException(e);
 		}

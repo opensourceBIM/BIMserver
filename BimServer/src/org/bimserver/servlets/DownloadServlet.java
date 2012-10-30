@@ -94,6 +94,10 @@ public class DownloadServlet extends HttpServlet {
 					response.setHeader("Content-Disposition", "inline; filename=\"" + file.getFilename() + "\"");
 				}
 				outputStream.write(file.getData());
+				if (outputStream instanceof GZIPOutputStream) {
+					((GZIPOutputStream) outputStream).finish();
+				}
+				outputStream.flush();
 				return;
 			} else if (request.getParameter("action") != null && request.getParameter("action").equals("getfile")) {
 				if (request.getParameter("file") != null) {

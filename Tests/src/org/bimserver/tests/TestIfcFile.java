@@ -44,7 +44,7 @@ public class TestIfcFile {
 			IfcModelInterface model = deserializer.read(TestFile.AC11.getFile(), true);
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
 			Serializer serializer = serializerPlugin.createSerializer();
-			serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine());
+			serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine(), false);
 			serializer.writeToFile(new File("tes.ifc"));
 		} catch (PluginException e) {
 			e.printStackTrace();
