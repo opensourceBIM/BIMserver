@@ -87,7 +87,7 @@
 	
 	<servlet>
 		<servlet-name>StreamingServlet</servlet-name>
-		<servlet-class>org.bimserver.servlets.StreamingServlet</servlet-class>
+		<servlet-class>org.bimserver.servlets.TomcatStreamingServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
