@@ -211,6 +211,7 @@ public class Database implements BimDatabase {
 		settings.getWhitelistedDomains().add("bimserver.logic-labs.nl");
 		settings.getWhitelistedDomains().add("demo.bimserver.org");
 		settings.getWhitelistedDomains().add("e-bouw.org:8080");
+		settings.getWhitelistedDomains().add("bimgui.logic-labs.nl");
 		return settings;
 	}
 	
