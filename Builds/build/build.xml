@@ -21,18 +21,6 @@
 	<target name="clientlib">
 		<ant antfile="clientlib.build.xml" target="Build ClientLib"></ant>
 	</target>
-	<target name="combinedjar">
-		<ant antfile="combined.build.xml" target="Build CombinedJar"></ant>
-	</target>
-	<target name="combinedwar">
-		<ant antfile="combined.build.xml" target="Build CombinedWar"></ant>
-	</target>
-	<target name="satellitejar">
-		<ant antfile="satellite.build.xml" target="Build SatelliteJar"></ant>
-	</target>
-	<target name="satellitewar">
-		<ant antfile="satellite.build.xml" target="Build SatelliteWar"></ant>
-	</target>
 	<target name="serverlib">
 		<ant antfile="bimserverlib.build.xml" target="Build ServerLib"></ant>
 	</target>
