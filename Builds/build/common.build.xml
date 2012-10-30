@@ -17,8 +17,6 @@
 		<antcall target="BimServerClientLib" />
 		<antcall target="XsltSerializer" />
 		<antcall target="BimServer" />
-		<antcall target="BimWebServer" />
-		<antcall target="BimCombinedServer" />
 		<antcall target="CityGML" />
 		<antcall target="Collada" />
 		<antcall target="SceneJS" />
@@ -31,36 +29,6 @@
 		<antcall target="FileBasedObjectIDM" />
 		<antcall target="Report1Serializer" />
 		<antcall target="Tests" />
-	</target>
-	<target name="BimCombinedServer">
-		<mkdir dir="builds/bimcombined" />
-		<javac destdir="builds/bimcombined" debug="on" includeantruntime="false">
-			<src path="../../BimCombined/src" />
-			<classpath>
-				<path>
-					<fileset refid="lib" />
-					<fileset refid="buildlib" />
-				</path>
-			</classpath>
-		</javac>
-		<jar destfile="builds/lib/bimserver-${version}-combined.jar">
-			<fileset dir="builds/bimcombined"/>
-		</jar>
-	</target>
-	<target name="BimWebServer">
-		<mkdir dir="builds/bimwebserver" />
-		<javac destdir="builds/bimwebserver" debug="on" includeantruntime="false">
-			<src path="../../BimWebServer/src" />
-			<classpath>
-				<path>
-					<fileset refid="lib" />
-					<fileset refid="buildlib" />
-				</path>
-			</classpath>
-		</javac>
-		<jar destfile="builds/lib/bimserver-${version}-webserver.jar">
-			<fileset dir="builds/bimwebserver"/>
-		</jar>
 	</target>
 	<target name="SatelliteServer">
 		<mkdir dir="builds/satelliteserver" />
