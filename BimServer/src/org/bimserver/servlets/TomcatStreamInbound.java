@@ -7,6 +7,7 @@ import java.nio.CharBuffer;
 
 import org.apache.catalina.websocket.StreamInbound;
 import org.apache.catalina.websocket.WsOutbound;
+import org.apache.commons.io.output.NullWriter;
 import org.bimserver.BimServer;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.json.JsonReflector;
@@ -76,7 +77,7 @@ public class TomcatStreamInbound extends StreamInbound implements EndPoint, Stre
 			JsonReader jsonreader = new JsonReader(reader);
 			JsonParser parser = new JsonParser();
 			JsonObject request = (JsonObject) parser.parse(jsonreader);
-			bimServer.getJsonHandler().execute(request, null, null);
+			bimServer.getJsonHandler().execute(request, null, new NullWriter());
 		} catch (JSONException e) {
 			LOGGER.error("", e);
 		}
