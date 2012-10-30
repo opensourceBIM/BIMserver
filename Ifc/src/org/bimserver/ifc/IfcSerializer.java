@@ -42,8 +42,8 @@ public abstract class IfcSerializer extends EmfSerializer {
 	private static final Map<EStructuralFeature, Boolean> inverseCache = new HashMap<EStructuralFeature, Boolean>();
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEngine);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, ifcEngine, normalizeOids);
 	}
 
 	private static Map<EClassifier, String> initUpperCases() {

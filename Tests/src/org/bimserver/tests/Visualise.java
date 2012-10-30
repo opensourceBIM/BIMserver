@@ -76,7 +76,7 @@ public class Visualise extends JFrame {
 			IfcModel merged = new RevisionMerger(model1, model2).merge();
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
 			Serializer serializer = serializerPlugin.createSerializer();
-			serializer.init(merged, null, null, pluginManager.requireIfcEngine().createIfcEngine());
+			serializer.init(merged, null, null, pluginManager.requireIfcEngine().createIfcEngine(), false);
 			serializer.writeToFile(new File("merged.ifc"));
 			new Visualise().start(model1b, "Model 1");
 			new Visualise().start(model2b, "Model 2");

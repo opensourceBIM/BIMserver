@@ -202,7 +202,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			SerializerPlugin serializerPlugin = allSerializerPlugins.iterator().next();
 			Serializer serializer = serializerPlugin.createSerializer();
 			try {
-				serializer.init(model, null, bimServer.getPluginManager(), null);
+				serializer.init(model, null, bimServer.getPluginManager(), null, false);
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 				serializer.writeToOutputStream(outputStream);
 				// try {

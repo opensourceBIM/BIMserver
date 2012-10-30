@@ -23,7 +23,7 @@ public abstract class GeometrySerializer extends EmfSerializer {
 			try {
 				ifcEngine.init();
 				Serializer serializer = getPluginManager().requireIfcStepSerializer();
-				serializer.init(model, getProjectInfo(), getPluginManager(), ifcEngine);
+				serializer.init(model, getProjectInfo(), getPluginManager(), ifcEngine, false);
 				ifcEngineModel = ifcEngine.openModel(serializer.getBytes());
 				ifcEngineModel.setPostProcessing(true);
 				geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());

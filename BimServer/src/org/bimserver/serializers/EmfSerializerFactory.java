@@ -117,7 +117,7 @@ public class EmfSerializerFactory {
 					projectInfo.setDirectionAngle(geoTag.getDirectionAngle());
 				}
 				projectInfo.setAuthorName(username);
-				serializer.init(model, projectInfo, pluginManager, ifcEngine);
+				serializer.init(model, projectInfo, pluginManager, ifcEngine, false);
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}

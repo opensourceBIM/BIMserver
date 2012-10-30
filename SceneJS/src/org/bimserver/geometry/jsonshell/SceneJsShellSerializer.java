@@ -93,8 +93,8 @@ public class SceneJsShellSerializer extends GeometrySerializer {
 	private List<String> surfaceStyleIds;
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEngine);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, ifcEngine, normalizeOids);
 		this.surfaceStyleIds = new ArrayList<String>();
 	}
 

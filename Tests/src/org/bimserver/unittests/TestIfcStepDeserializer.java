@@ -46,7 +46,7 @@ public class TestIfcStepDeserializer {
 			
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
 			Serializer serializer = serializerPlugin.createSerializer();
-			serializer.init(modelInterface, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine());
+			serializer.init(modelInterface, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine(), false);
 			serializer.writeToFile(new File("output/test.ifc"));
 		} catch (PluginException e) {
 			e.printStackTrace();

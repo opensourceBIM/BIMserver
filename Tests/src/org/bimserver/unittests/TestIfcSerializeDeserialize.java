@@ -36,7 +36,7 @@ public class TestIfcSerializeDeserialize {
 				e.printStackTrace();
 			}
 			wall.setName("Test with 'quote and \\backslash");
-			serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine());
+			serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine(), false);
 			serializer.writeToFile(new File("output/test.ifc"));
 		} catch (PluginException e) {
 			e.printStackTrace();

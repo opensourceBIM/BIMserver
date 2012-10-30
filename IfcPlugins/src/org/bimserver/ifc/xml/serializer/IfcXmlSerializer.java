@@ -65,8 +65,8 @@ public class IfcXmlSerializer extends IfcSerializer {
 	private int tabs;
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEngine);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, ifcEngine, normalizeOids);
 		objectToOidMap = new HashMap<EObject, Long>((int) model.size());
 		for (Long key : model.keySet()) {
 			objectToOidMap.put(model.get(key), key);

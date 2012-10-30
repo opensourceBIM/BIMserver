@@ -31,7 +31,7 @@ public class TestIfcStepSerializer {
 				e.printStackTrace();
 			}
 			wall.setName("Test with 'quotes");
-			serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine());
+			serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine(), false);
 			serializer.writeToFile(new File("output/test.ifc"));
 		} catch (PluginException e) {
 			e.printStackTrace();
