@@ -21,7 +21,7 @@
 		<property name="version" value="${majorversion}.${minorversion}.${revisionversion}-${builddate}"/>
 
 		<ant antfile="bimserver.build.xml" target="Build War"></ant>
-		<undeploy url="http://demo.bimserver.org/manager" username="${tomcat_username}" password="${tomcat_password}" path="/" failonerror="false" />
-		<deploy url="http://demo.bimserver.org/manager" username="${tomcat_username}" password="${tomcat_password}" path="/" war="file:builds/bimserver-${version}.war" />
+		<undeploy url="${tomcat_manager_url}" username="${tomcat_username}" password="${tomcat_password}" path="/" failonerror="false" />
+		<deploy url="${tomcat_manager_url}" username="${tomcat_username}" password="${tomcat_password}" path="/" war="file:builds/bimserver-${version}.war" />
 	</target>
 </project>
