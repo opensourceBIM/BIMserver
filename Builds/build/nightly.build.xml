@@ -15,12 +15,6 @@
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}">
 			<fileset file="README.txt" />
 		</ftp>
-		
-		<ant antfile="javadoc.build.xml" target="Build JavaDoc"/>
-
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly build javadoc">
-			<fileset dir="builds/bimserver-javadoc-${version}" />
-		</ftp>
 
 		<ant antfile="bimserver.build.xml" target="Build War"/>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}">
@@ -32,29 +26,9 @@
 			<fileset file="builds/bimserver-${version}.jar" />
 		</ftp>
 		
-		<ant antfile="combined.build.xml" target="Build CombinedWar"/>
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}">
-			<fileset file="builds/bimserver-combined-${version}.war" />
-		</ftp>
-
-		<ant antfile="combined.build.xml" target="Build CombinedJar"/>
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}">
-			<fileset file="builds/bimserver-combined-${version}.jar" />
-		</ftp>
-
 		<ant antfile="clientlib.build.xml" target="Build ClientLib"/>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}">
 			<fileset file="builds/bimserver-client-lib-${version}.zip" />
-		</ftp>
-
-		<ant antfile="satellite.build.xml" target="Build SatelliteJar"/>
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}">
-			<fileset file="builds/bimserver-satellite-${version}.jar" />
-		</ftp>
-
-		<ant antfile="satellite.build.xml" target="Build SatelliteWar"/>
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}">
-			<fileset file="builds/bimserver-satellite-${version}.war" />
 		</ftp>
 
 		<ant antfile="bimserverlib.build.xml" target="Build ServerLib"/>
@@ -62,15 +36,16 @@
 			<fileset file="builds/bimserver-lib-${version}.zip" />
 		</ftp>
 
-		<ant antfile="client.build.xml" target="Build Client"/>
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}">
-			<fileset file="builds/bimserver-client-${version}.jar" />
-		</ftp>
-		
 		<ant antfile="source.build.xml" target="Build Source">
 		</ant>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly builds/${version}">
 			<fileset file="builds/bimserver-source-${version}.zip" />
+		</ftp>
+
+		<ant antfile="javadoc.build.xml" target="Build JavaDoc"/>
+
+		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/nightly build javadoc">
+			<fileset dir="builds/bimserver-javadoc-${version}" />
 		</ftp>
 	</target>
 </project>
