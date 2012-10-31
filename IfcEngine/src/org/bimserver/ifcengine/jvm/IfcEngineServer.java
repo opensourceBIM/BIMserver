@@ -199,6 +199,13 @@ public class IfcEngineServer extends Thread {
 					pointers.remove(modelId);
 					break;
 				}
+				case SET_FORMAT: {
+					int modelId = in.readInt();
+					int format = in.readInt();
+					int mask = in.readInt();
+					ifcEngine.setFormat(pointers.get(modelId), format, mask);
+				}
+					break;
 				case GET_INSTANCE_FROM_EXPRESSID: {
 					in.readInt(); // modelid
 					int expressId = in.readInt();

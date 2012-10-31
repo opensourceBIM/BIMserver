@@ -23,6 +23,7 @@ import java.util.Set;
 public interface IfcEngineModel {
 	IfcEngineSurfaceProperties initializeModelling() throws IfcEngineException;
 	void setPostProcessing(boolean postProcessing) throws IfcEngineException;
+	void setFormat(int format, int mask) throws IfcEngineException;
 	IfcEngineGeometry finalizeModelling(IfcEngineSurfaceProperties surfaceProperties) throws IfcEngineException;
 	List<? extends IfcEngineInstance> getInstances(String name) throws IfcEngineException;
 	void close() throws IfcEngineException;

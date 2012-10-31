@@ -43,7 +43,8 @@ public enum Command {
 	FIND_CLASHES_BY_GUID, 
 	FIND_CLASHES_BY_EID, 
 	CLOSE, 
-	GET_INSTANCE_FROM_EXPRESSID;
+	GET_INSTANCE_FROM_EXPRESSID,
+	SET_FORMAT;
 
 	private static final Map<Byte, Command> map = initMap();
 	private byte id;

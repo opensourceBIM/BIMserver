@@ -349,6 +349,10 @@ public class IfcEngine {
 	public void circleSegments(int circles, int smallCircles) {
 		engine.circleSegments(circles, smallCircles);
 	}
+	
+	public void setFormat(Pointer modelId, int format, int mask) {
+		engine.setFormat(modelId, format, mask);
+	}
 
 	/**
 	 * Returns a data field in the actual aggregate element.

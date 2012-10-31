@@ -166,4 +166,8 @@ public class ExecutableIfcEngineModel implements IfcEngineModel {
 			return new ExecutableIfcEngineInstance(ifcEngine, modelId, ifcEngine.readInt());
 		}
 	}
+
+	@Override
+	public void setFormat(int format, int mask) throws IfcEngineException {
+	}
 }
