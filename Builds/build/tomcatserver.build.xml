@@ -23,7 +23,7 @@
 		<ant antfile="bimserver.build.xml" target="Build War"></ant>
 
 		<copy tofile="builds/BuildWar/META-INF/context.xml" file="context.xml"/>
-		<jar destfile="builds/bimserver-${version}.war">
+		<jar destfile="builds/ROOT.war">
 			<fileset dir="builds/BuildWar">
 				<exclude name="*.svn" />
 			</fileset>
@@ -31,6 +31,6 @@
 		<delete dir="builds/BuildWar" failonerror="false" />
 		
 		<undeploy url="${tomcat_manager_url}" username="${tomcat_username}" password="${tomcat_password}" path="/" failonerror="false" />
-		<deploy url="${tomcat_manager_url}" username="${tomcat_username}" password="${tomcat_password}" path="/" war="file:builds/bimserver-${version}.war" />
+		<deploy url="${tomcat_manager_url}" username="${tomcat_username}" password="${tomcat_password}" path="/" war="file:builds/ROOT.war" />
 	</target>
 </project>
