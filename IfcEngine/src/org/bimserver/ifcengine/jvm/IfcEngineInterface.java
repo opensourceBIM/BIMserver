@@ -47,6 +47,8 @@ public interface IfcEngineInterface extends Library {
 		int invoke(Pointer pointer);
 	}
 
+	void setFormat(Pointer modelId, int format, int mask);
+	
 	Pointer xxxxOpenModelByStream(int repository, StreamCallback callbackAddress, String schemaName);
 
 	/**

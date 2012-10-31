@@ -64,6 +64,16 @@ public class JvmIfcEngineModel implements IfcEngineModel {
 		}
 	}
 
+	public void setFormat(int format, int mask) throws IfcEngineException {
+		synchronized (failSafeIfcEngine) {
+			failSafeIfcEngine.writeCommand(Command.SET_FORMAT);
+			failSafeIfcEngine.writeInt(modelId);
+			failSafeIfcEngine.writeInt(format);
+			failSafeIfcEngine.writeInt(mask);
+			failSafeIfcEngine.flush();
+		}
+	}
+
 	public IfcEngineGeometry finalizeModelling(IfcEngineSurfaceProperties surfaceProperties) throws IfcEngineException {
 		synchronized (failSafeIfcEngine) {
 			if (surfaceProperties.getIndicesCount() == 0 || surfaceProperties.getVerticesCount() == 0) {

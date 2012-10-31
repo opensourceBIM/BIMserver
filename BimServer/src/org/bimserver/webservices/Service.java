@@ -325,7 +325,7 @@ public class Service implements ServiceInterface {
 	public Long checkout(Long roid, Long serializerOid, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		authorization.canDownload(roid);
-		org.bimserver.plugins.serializers.Serializer serializer = bimServer.getEmfSerializerFactory().get(serializerOid);
+		org.bimserver.plugins.serializers.Serializer serializer = bimServer.getEmfSerializerFactory().get(serializerOid).createSerializer();
 		if (serializer == null) {
 			throw new UserException("No serializer with id " + serializerOid + " could be found");
 		}

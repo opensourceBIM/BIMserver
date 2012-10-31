@@ -123,9 +123,6 @@ public class JvmIfcEngine implements IfcEngine {
 			command.append(" -Xmx" + mem);
 			command.append(" -Xms" + mem);
 			
-			// THIS IS ONLY A TEMPORARY FIX FOR Eclipse 3.7.2/Java7
-			command.append(" -XX:-UseSplitVerifier");
-			
 			command.append(" org.bimserver.ifcengine.jvm.IfcEngineServer");
 			if (schemaFile.getAbsolutePath().contains(" ")) {
 				command.append(" \"" + schemaFile.getAbsolutePath() + "\"");
@@ -153,7 +150,7 @@ public class JvmIfcEngine implements IfcEngine {
 				}
 			};
 			thread.start();
-			Thread.sleep(1000);
+			Thread.sleep(100);
 		} catch (Exception e) {
 			throw new IfcEngineException(e);
 		}

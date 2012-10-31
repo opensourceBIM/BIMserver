@@ -77,7 +77,6 @@ public abstract class EmfSerializer implements Serializer {
 		this.mode = mode;
 	}
 
-
 	protected long convertKey(Long key) {
 		if (!normalizeOids) {
 			return key;

@@ -219,8 +219,8 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 						ifcEngine.init();
 						try {
 							IfcEngineModel ifcEngineModel = ifcEngine.openModel(new ByteArrayInputStream(outputStream.toByteArray()), outputStream.size());
+							ifcEngineModel.setFormat(48, 48);
 							try {
-								ifcEngineModel.setPostProcessing(true);
 								IfcEngineGeometry ifcEngineGeometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
 								Geometry geometry = StoreFactory.eINSTANCE.createGeometry();
 

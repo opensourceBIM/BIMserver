@@ -160,7 +160,8 @@ public interface ServiceInterface extends PublicInterface {
 	@Path("/checkin")
 	@Produces("text/plain")
 	@WebMethod(action = "checkin")
-	Long checkin(@WebParam(name = "poid", partName = "checkin.poid") Long poid,
+	Long checkin(
+			@WebParam(name = "poid", partName = "checkin.poid") Long poid,
 			@QueryParam("comment") @WebParam(name = "comment", partName = "checkin.comment") String comment,
 			@QueryParam("deserializerOid") @WebParam(name = "deserializerOid", partName = "checkin.deserializerOid") Long deserializerOid,
 			@QueryParam("fileSize") @WebParam(name = "fileSize", partName = "checkin.fileSize") Long fileSize,
