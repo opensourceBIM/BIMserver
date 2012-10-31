@@ -16,7 +16,7 @@ function BimServerApi(baseUrl, notifier) {
 		};
 		othis.call("ServiceInterface", "autologin", request, function(data){
 			othis.token = data;
-			if (notifier != null) {
+			if (othis.notifier != null) {
 				othis.notifier.info("Auto login successful, logout to disable autologin");
 			}
 			othis.resolveUser();
@@ -25,7 +25,7 @@ function BimServerApi(baseUrl, notifier) {
 		}, errorCallback);
 	};
 	
-	this.login = function(username, password, rememberme, callback) {
+	this.login = function(username, password, rememberme, callback, errorCallback) {
 		var request = {
 			username: username,
 			password: password
@@ -38,12 +38,12 @@ function BimServerApi(baseUrl, notifier) {
 				$.cookie("autologin", autologin, { expires: 31 });
 				$.cookie("address", othis.baseUrl, { expires: 31 });
 			}
-			if (notifier != null) {
+			if (othis.notifier != null) {
 				othis.notifier.info("Login successful");
 			}
 			othis.resolveUser();
 			callback();
-		});
+		}, errorCallback);
 	};
 
 	this.processNotification = function(message) {
@@ -72,7 +72,7 @@ function BimServerApi(baseUrl, notifier) {
 		$.removeCookie("autologin");
 		$.removeCookie("address");
 		othis.call("ServiceInterface", "logout", {}, function(){
-			if (notifier != null) {
+			if (othis.notifier != null) {
 				othis.notifier.info("Logout successful");
 			}
 			callback();
@@ -156,8 +156,8 @@ function BimServerApi(baseUrl, notifier) {
 			};
 		}
 
-		if (notifier != null) {
-			notifier.clear();
+		if (othis.notifier != null) {
+			othis.notifier.clear();
 		}
 		
 		if (othis.token != null) {
@@ -182,7 +182,7 @@ function BimServerApi(baseUrl, notifier) {
 								othis.multiCall(requests, callback, errorCallback);
 							});
 						} else {
-							if (errorCallback == null && notifier != null) {
+							if (errorCallback == null && othis.notifier != null) {
 								othis.notifier.error(data.response.exception.message);
 							} else {
 								errorsToReport.push(data.response.exception);
@@ -192,7 +192,7 @@ function BimServerApi(baseUrl, notifier) {
 				} else if (requests.length > 1) {
 					data.responses.forEach(function(response){
 						if (response.exception != null) {
-							if (errorCallback == null && notifier != null) {
+							if (errorCallback == null && othis.notifier != null) {
 								othis.notifier.error(response.exception.message);
 							} else {
 								errorsToReport.push(response.exception);
@@ -211,7 +211,7 @@ function BimServerApi(baseUrl, notifier) {
 				}
 			},
 			error: function(){
-				if (notifier != null) {
+				if (othis.notifier != null) {
 					othis.notifier.error("connection error");
 				}
 				if (errorCallback != null) {
