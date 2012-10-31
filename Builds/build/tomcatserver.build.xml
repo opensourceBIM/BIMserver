@@ -1,6 +1,6 @@
 <project name="BIMserver Demo Server">
 	<path id="catalina-ant-classpath">
-		<fileset dir="../BimServer/lib/tomcat/">
+		<fileset dir="../../BimServer/lib/tomcat/">
 			<include name="tomcat-coyote.jar" />
 			<include name="tomcat-util.jar" />
 			<include name="tomcat-juli.jar" />
