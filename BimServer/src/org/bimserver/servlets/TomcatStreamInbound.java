@@ -65,9 +65,7 @@ public class TomcatStreamInbound extends StreamInbound implements EndPoint, Stre
 		try {
 			outbound.writeTextMessage(charBuffer);
 			outbound.flush();
-			LOGGER.info("WS_OUT: " + toString);
 		} catch (IOException e) {
-			LOGGER.error("", e);
 		}
 	}
 	
