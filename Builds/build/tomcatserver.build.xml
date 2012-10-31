@@ -3,7 +3,6 @@
 	<taskdef name="list" classname="org.apache.catalina.ant.ListTask" classpath="antlibs/catalina-ant.jar"/>
 	<taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask" classpath="antlibs/catalina-ant.jar"/>
 	<taskdef name="resources" classname="org.apache.catalina.ant.ResourcesTask" classpath="antlibs/catalina-ant.jar"/>
-	<taskdef name="roles" classname="org.apache.catalina.ant.RolesTask" classpath="antlibs/catalina-ant.jar"/>
 	<taskdef name="start" classname="org.apache.catalina.ant.StartTask" classpath="antlibs/catalina-ant.jar"/>
 	<taskdef name="stop" classname="org.apache.catalina.ant.StopTask" classpath="antlibs/catalina-ant.jar"/>
 	<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" classpath="antlibs/catalina-ant.jar"/>
