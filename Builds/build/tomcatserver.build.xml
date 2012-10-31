@@ -21,6 +21,15 @@
 		<property name="version" value="${majorversion}.${minorversion}.${revisionversion}-${builddate}"/>
 
 		<ant antfile="bimserver.build.xml" target="Build War"></ant>
+
+		<copyfile dest="builds/BuildWar/META-INF/context.xml" src="context.xml"/>
+		<jar destfile="builds/bimserver-${version}.war">
+			<fileset dir="builds/BuildWar">
+				<exclude name="*.svn" />
+			</fileset>
+		</jar>
+		<delete dir="builds/BuildWar" failonerror="false" />
+		
 		<undeploy url="${tomcat_manager_url}" username="${tomcat_username}" password="${tomcat_password}" path="/" failonerror="false" />
 		<deploy url="${tomcat_manager_url}" username="${tomcat_username}" password="${tomcat_password}" path="/" war="file:builds/bimserver-${version}.war" />
 	</target>
