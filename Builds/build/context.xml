@@ -1,3 +1,4 @@
-<Context>
+<?xml version='1.0' encoding='utf-8'?> 
+<Context reloadable="true" allowLinking="true" /> 
 	<Parameter name="homedir" value="C:\bimserver\home"></Parameter>
 </Context>
