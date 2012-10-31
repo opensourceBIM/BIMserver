@@ -22,7 +22,7 @@
 
 		<ant antfile="bimserver.build.xml" target="Build War"></ant>
 
-		<copy tofile="builds/BuildWar/META-INF/context.xml" file="context.xml"/>
+		<copy tofile="builds/BuildWar/META-INF/context.xml" file="context.xml" overwrite="true"/>
 		<jar destfile="builds/ROOT.war">
 			<fileset dir="builds/BuildWar">
 				<exclude name="*.svn" />
