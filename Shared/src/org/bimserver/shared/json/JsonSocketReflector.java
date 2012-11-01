@@ -1,8 +1,12 @@
 package org.bimserver.shared.json;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
@@ -20,6 +24,8 @@ import org.bimserver.shared.TokenAuthentication;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.meta.ServicesMap;
 import org.codehaus.jettison.json.JSONException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
 import com.google.gson.JsonObject;
@@ -28,6 +34,7 @@ import com.google.gson.JsonPrimitive;
 
 public class JsonSocketReflector extends JsonReflector {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(JsonSocketReflector.class);
 	private SToken token;
 	private String remoteAddress;
 	private boolean useHttpSession;
@@ -88,8 +95,18 @@ public class JsonSocketReflector extends JsonReflector {
 				HttpEntity resultEntity = response.getEntity();
 				
 				JsonParser parser = new JsonParser();
-				JsonObject resultObject = (JsonObject) parser.parse(new InputStreamReader(resultEntity.getContent(), Charsets.UTF_8));
-				return resultObject;
+				boolean debug = true;
+				if (debug ) {
+					InputStream inputStream = resultEntity.getContent();
+					ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+					IOUtils.copy(inputStream, byteArrayOutputStream);
+					LOGGER.info(new String(byteArrayOutputStream.toByteArray(), Charsets.UTF_8));
+					JsonObject resultObject = (JsonObject) parser.parse(new InputStreamReader(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()), Charsets.UTF_8));
+					return resultObject;
+				} else {
+					JsonObject resultObject = (JsonObject) parser.parse(new InputStreamReader(resultEntity.getContent(), Charsets.UTF_8));
+					return resultObject;
+				}
 			} else {
 				throw new ReflectorException("Call unsuccessful, status code: " + response.getStatusLine().getStatusCode());
 			}
