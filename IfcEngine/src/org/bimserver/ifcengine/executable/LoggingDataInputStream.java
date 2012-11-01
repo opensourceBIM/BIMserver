@@ -106,6 +106,7 @@ public class LoggingDataInputStream implements DataInput {
 
 	@Override
 	public String readLine() throws IOException {
+		@SuppressWarnings("deprecation")
 		String readLine = dataInputStream.readLine();
 		logWriter.write("read line " + readLine);
 		return readLine;
