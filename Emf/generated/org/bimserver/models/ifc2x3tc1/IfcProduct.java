@@ -16,6 +16,7 @@
  */
 package org.bimserver.models.ifc2x3tc1;
 
+import org.bimserver.models.store.Bounds;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -30,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProduct#getRepresentation <em>Representation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProduct#getReferencedBy <em>Referenced By</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProduct#getGeometryInstance <em>Geometry Instance</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProduct#getBounds <em>Bounds</em>}</li>
  * </ul>
  * </p>
  *
@@ -212,5 +214,31 @@ public interface IfcProduct extends IfcObject {
 	 * @generated
 	 */
 	void setGeometryInstance(GeometryInstance value);
+
+	/**
+	 * Returns the value of the '<em><b>Bounds</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bounds</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bounds</em>' reference.
+	 * @see #setBounds(Bounds)
+	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcProduct_Bounds()
+	 * @model
+	 * @generated
+	 */
+	Bounds getBounds();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcProduct#getBounds <em>Bounds</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Bounds</em>' reference.
+	 * @see #getBounds()
+	 * @generated
+	 */
+	void setBounds(Bounds value);
 
 } // IfcProduct

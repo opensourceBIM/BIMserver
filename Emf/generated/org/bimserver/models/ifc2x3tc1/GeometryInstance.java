@@ -30,7 +30,6 @@ import org.bimserver.models.store.Bounds;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getStartVertex <em>Start Vertex</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getStartIndex <em>Start Index</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getPrimitiveCount <em>Primitive Count</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getBounds <em>Bounds</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getIndices <em>Indices</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getVertices <em>Vertices</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getNormals <em>Normals</em>}</li>
@@ -120,32 +119,6 @@ public interface GeometryInstance extends IdEObject {
 	 * @generated
 	 */
 	void setPrimitiveCount(Integer value);
-
-	/**
-	 * Returns the value of the '<em><b>Bounds</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Bounds</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Bounds</em>' reference.
-	 * @see #setBounds(Bounds)
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getGeometryInstance_Bounds()
-	 * @model
-	 * @generated
-	 */
-	Bounds getBounds();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.GeometryInstance#getBounds <em>Bounds</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Bounds</em>' reference.
-	 * @see #getBounds()
-	 * @generated
-	 */
-	void setBounds(Bounds value);
 
 	/**
 	 * Returns the value of the '<em><b>Indices</b></em>' attribute.

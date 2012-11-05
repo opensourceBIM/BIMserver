@@ -31,8 +31,6 @@ import java.util.List;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.GeometryInstance;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingElementProxy;
-import org.bimserver.models.ifc2x3tc1.IfcColourOrFactor;
-import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
 import org.bimserver.models.ifc2x3tc1.IfcColumn;
 import org.bimserver.models.ifc2x3tc1.IfcCurtainWall;
 import org.bimserver.models.ifc2x3tc1.IfcDoor;
@@ -64,8 +62,6 @@ import org.bimserver.models.ifc2x3tc1.IfcStair;
 import org.bimserver.models.ifc2x3tc1.IfcStairFlight;
 import org.bimserver.models.ifc2x3tc1.IfcStyledItem;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyle;
-import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleElementSelect;
-import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleRendering;
 import org.bimserver.models.ifc2x3tc1.IfcWall;
 import org.bimserver.models.ifc2x3tc1.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
@@ -135,108 +131,58 @@ public class JsonGeometrySerializer extends GeometrySerializer {
 		return false;
 	}
 
-	private void writeMaterials(JsonWriter jsonWriter) throws IOException {
-		writeMaterial(jsonWriter, "Space", new double[] { 0.137255f, 0.403922f, 0.870588f }, 1.0f);
-		writeMaterial(jsonWriter, "Roof", new double[] { 0.837255f, 0.203922f, 0.270588f }, 1.0f);
-		writeMaterial(jsonWriter, "Slab", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
-		writeMaterial(jsonWriter, "Wall", new double[] { 0.537255f, 0.337255f, 0.237255f }, 1.0f);
-		writeMaterial(jsonWriter, "WallStandardCase", new double[] { 1.0f, 1.0f, 1.0f }, 1.0f);
-		writeMaterial(jsonWriter, "Door", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
-		writeMaterial(jsonWriter, "Window", new double[] { 0.2f, 0.2f, 0.8f }, 0.2f);
-		writeMaterial(jsonWriter, "Railing", new double[] { 0.137255f, 0.203922f, 0.270588f }, 1.0f);
-		writeMaterial(jsonWriter, "Column", new double[] { 0.437255f, 0.603922f, 0.370588f, }, 1.0f);
-		writeMaterial(jsonWriter, "FurnishingElement", new double[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f);
-		writeMaterial(jsonWriter, "CurtainWall", new double[] { 0.5f, 0.5f, 0.5f }, 0.5f);
-		writeMaterial(jsonWriter, "Stair", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
-		writeMaterial(jsonWriter, "BuildingElementProxy", new double[] { 0.5f, 0.5f, 0.5f }, 1.0f);
-		writeMaterial(jsonWriter, "FlowSegment", new double[] { 0.6f, 0.4f, 0.5f }, 1.0f);
-
-		List<IfcSurfaceStyle> listSurfaceStyles = model.getAll(IfcSurfaceStyle.class);
-		for (IfcSurfaceStyle ss : listSurfaceStyles) {
-			EList<IfcSurfaceStyleElementSelect> styles = ss.getStyles();
-			for (IfcSurfaceStyleElementSelect style : styles) {
-				if (style instanceof IfcSurfaceStyleRendering) {
-					IfcSurfaceStyleRendering ssr = (IfcSurfaceStyleRendering) style;
-					IfcColourRgb colour = null;
-					IfcColourOrFactor surfaceColour = ssr.getSurfaceColour();
-					if (surfaceColour instanceof IfcColourRgb) {
-						colour = (IfcColourRgb) surfaceColour;
-					}
-					String name = fitNameForQualifiedName(ss.getName());
-					if (!surfaceStyleIds.contains(name)) {
-						surfaceStyleIds.add(name);
-						writeMaterial(jsonWriter, name, 
-								new double[] { colour.getRed(), colour.getGreen(), colour.getBlue() },
-								ssr.isSetTransparency() && ssr.getTransparency() < 1.0f ? 1.0f - ssr.getTransparency() : 1.0f);
-						break;
-					}
-				}
-			}
-		}
-	}
-
-	private void writeMaterial(JsonWriter jsonWriter, String name, double[] colors, double opacity) throws IOException {
-		jsonWriter.beginObject();
-		jsonWriter.name("type").value("material");
-		jsonWriter.name("coreId").value(name + "Material");
-		jsonWriter.name("baseColor").beginObject().name("r").value(colors[0]).name("g").value(colors[1]).name("b").value(colors[2]).endObject();
-		jsonWriter.name("alpha").value(opacity);
-		jsonWriter.name("emit").value(0.0);
-		jsonWriter.endObject();
-	}
-
 	private void writeGeometries(JsonWriter jsonWriter) throws IfcEngineException, SerializerException, IOException {
 		for (IfcRoof ifcRoof : model.getAll(IfcRoof.class)) {
-			writeGeometricObject(jsonWriter, ifcRoof, ifcRoof.getGlobalId().getWrappedValue(), "Roof");
+			writeGeometricObject(jsonWriter, ifcRoof, ifcRoof.getGlobalId().getWrappedValue(), "IfcRoof");
 		}
 		for (IfcSlab ifcSlab : model.getAll(IfcSlab.class)) {
 			if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.ROOF) {
-				writeGeometricObject(jsonWriter, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Roof");
+				writeGeometricObject(jsonWriter, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "IfcRoof");
 			} else {
-				writeGeometricObject(jsonWriter, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Slab");
+				writeGeometricObject(jsonWriter, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "IfcSlab");
 			}
 		}
 		for (IfcWindow ifcWindow : model.getAll(IfcWindow.class)) {
-			writeGeometricObject(jsonWriter, ifcWindow, ifcWindow.getGlobalId().getWrappedValue(), "Window");
+			writeGeometricObject(jsonWriter, ifcWindow, ifcWindow.getGlobalId().getWrappedValue(), "IfcWindow");
 		}
 		for (IfcDoor ifcDoor : model.getAll(IfcDoor.class)) {
-			writeGeometricObject(jsonWriter, ifcDoor, ifcDoor.getGlobalId().getWrappedValue(), "Door");
+			writeGeometricObject(jsonWriter, ifcDoor, ifcDoor.getGlobalId().getWrappedValue(), "IfcDoor");
 		}
 		for (IfcWall ifcWall : model.getAll(IfcWall.class)) {
-			writeGeometricObject(jsonWriter, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "Wall");
+			writeGeometricObject(jsonWriter, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "IfcWall");
 		}
 		for (IfcStair ifcStair : model.getAll(IfcStair.class)) {
-			writeGeometricObject(jsonWriter, ifcStair, ifcStair.getGlobalId().getWrappedValue(), "Stair");
+			writeGeometricObject(jsonWriter, ifcStair, ifcStair.getGlobalId().getWrappedValue(), "IfcStair");
 		}
 		for (IfcStairFlight ifcStairFlight : model.getAll(IfcStairFlight.class)) {
-			writeGeometricObject(jsonWriter, ifcStairFlight, ifcStairFlight.getGlobalId().getWrappedValue(), "StairFlight");
+			writeGeometricObject(jsonWriter, ifcStairFlight, ifcStairFlight.getGlobalId().getWrappedValue(), "IfcStairFlight");
 		}
 		for (IfcFlowSegment ifcFlowSegment : model.getAll(IfcFlowSegment.class)) {
-			writeGeometricObject(jsonWriter, ifcFlowSegment, ifcFlowSegment.getGlobalId().getWrappedValue(), "FlowSegment");
+			writeGeometricObject(jsonWriter, ifcFlowSegment, ifcFlowSegment.getGlobalId().getWrappedValue(), "IfcFlowSegment");
 		}
 		for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
-			writeGeometricObject(jsonWriter, ifcFurnishingElement, ifcFurnishingElement.getGlobalId().getWrappedValue(), "FurnishingElement");
+			writeGeometricObject(jsonWriter, ifcFurnishingElement, ifcFurnishingElement.getGlobalId().getWrappedValue(), "IfcFurnishingElement");
 		}
 		for (IfcPlate ifcPlate : model.getAll(IfcPlate.class)) {
-			writeGeometricObject(jsonWriter, ifcPlate, ifcPlate.getGlobalId().getWrappedValue(), "Plate");
+			writeGeometricObject(jsonWriter, ifcPlate, ifcPlate.getGlobalId().getWrappedValue(), "IfcPlate");
 		}
 		for (IfcMember ifcMember : model.getAll(IfcMember.class)) {
-			writeGeometricObject(jsonWriter, ifcMember, ifcMember.getGlobalId().getWrappedValue(), "Member");
+			writeGeometricObject(jsonWriter, ifcMember, ifcMember.getGlobalId().getWrappedValue(), "IfcMember");
 		}
 		for (IfcWallStandardCase ifcWall : model.getAll(IfcWallStandardCase.class)) {
-			writeGeometricObject(jsonWriter, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "WallStandardCase");
+			writeGeometricObject(jsonWriter, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "IfcWallStandardCase");
 		}
 		for (IfcCurtainWall ifcCurtainWall : model.getAll(IfcCurtainWall.class)) {
-			writeGeometricObject(jsonWriter, ifcCurtainWall, ifcCurtainWall.getGlobalId().getWrappedValue(), "CurtainWall");
+			writeGeometricObject(jsonWriter, ifcCurtainWall, ifcCurtainWall.getGlobalId().getWrappedValue(), "IfcCurtainWall");
 		}
 		for (IfcRailing ifcRailing : model.getAll(IfcRailing.class)) {
-			writeGeometricObject(jsonWriter, ifcRailing, ifcRailing.getGlobalId().getWrappedValue(), "Railing");
+			writeGeometricObject(jsonWriter, ifcRailing, ifcRailing.getGlobalId().getWrappedValue(), "IfcRailing");
 		}
 		for (IfcColumn ifcColumn : model.getAll(IfcColumn.class)) {
-			writeGeometricObject(jsonWriter, ifcColumn, ifcColumn.getGlobalId().getWrappedValue(), "Column");
+			writeGeometricObject(jsonWriter, ifcColumn, ifcColumn.getGlobalId().getWrappedValue(), "IfcColumn");
 		}
 		for (IfcBuildingElementProxy ifcBuildingElementProxy : model.getAll(IfcBuildingElementProxy.class)) {
-			writeGeometricObject(jsonWriter, ifcBuildingElementProxy, ifcBuildingElementProxy.getGlobalId().getWrappedValue(), "BuildingElementProxy");
+			writeGeometricObject(jsonWriter, ifcBuildingElementProxy, ifcBuildingElementProxy.getGlobalId().getWrappedValue(), "IfcBuildingElementProxy");
 		}
 	}
 
@@ -249,17 +195,17 @@ public class JsonGeometrySerializer extends GeometrySerializer {
 		if (ifcRootObject instanceof IfcProduct) {
 			IfcProduct ifcProduct = (IfcProduct) ifcRootObject;
 			
-			// If this product is composed of other objects, output each object separately
-			EList<IfcRelDecomposes> isDecomposedBy = ifcProduct.getIsDecomposedBy();
-			if (isDecomposedBy != null && !isDecomposedBy.isEmpty()) {
-				for (IfcRelDecomposes dcmp : isDecomposedBy) {
-					EList<IfcObjectDefinition> relatedObjects = dcmp.getRelatedObjects();
-					for (IfcObjectDefinition relatedObject : relatedObjects) {
-						writeGeometricObject(jsonWriter, (IfcProduct) relatedObject, relatedObject.getGlobalId().getWrappedValue(), ifcObjectType);
-					}
-				}
-				return;
-			}
+//			// If this product is composed of other objects, output each object separately
+//			EList<IfcRelDecomposes> isDecomposedBy = ifcProduct.getIsDecomposedBy();
+//			if (isDecomposedBy != null && !isDecomposedBy.isEmpty()) {
+//				for (IfcRelDecomposes dcmp : isDecomposedBy) {
+//					EList<IfcObjectDefinition> relatedObjects = dcmp.getRelatedObjects();
+//					for (IfcObjectDefinition relatedObject : relatedObjects) {
+//						writeGeometricObject(jsonWriter, (IfcProduct) relatedObject, relatedObject.getGlobalId().getWrappedValue(), ifcObjectType);
+//					}
+//				}
+//				return;
+//			}
 
 			// Get the relating material for this model 
 			Iterator<IfcRelAssociatesMaterial> ramIter = model.getAll(IfcRelAssociatesMaterial.class).iterator();
@@ -352,10 +298,10 @@ public class JsonGeometrySerializer extends GeometrySerializer {
 		materialGeometryRel.get(material).add(id);
 
 		// Serialize the geometric data itself
-		writeGeometry(jsonWriter, ifcRootObject, id);
+		writeGeometry(jsonWriter, ifcRootObject, id, material);
 	}
 
-	private void writeGeometry(JsonWriter jsonWriter, IfcProduct ifcObject, String id) throws IfcEngineException, SerializerException, IOException {
+	private void writeGeometry(JsonWriter jsonWriter, IfcProduct ifcObject, String id, String material) throws IfcEngineException, SerializerException, IOException {
 		// Calculate an offset for the model to find its relative coordinates inside the bounding box (in order to center the scene) 
 		// TODO: In future use the geometry's bounding box to calculate a transformation matrix for the node along with relative coordinates
 		Extends sceneExtends = getSceneExtends();
@@ -364,13 +310,19 @@ public class JsonGeometrySerializer extends GeometrySerializer {
 			-(sceneExtends.min[1] + sceneExtends.max[1]) * 0.5f,
 			-(sceneExtends.min[2] + sceneExtends.max[2]) * 0.5f };
 		
-		modelOffset[0] = Float.isInfinite(modelOffset[0]) || Float.isNaN(modelOffset[0])? 0.0f : modelOffset[0];
-		modelOffset[1] = Float.isInfinite(modelOffset[1]) || Float.isNaN(modelOffset[1])? 0.0f : modelOffset[1];
-		modelOffset[2] = Float.isInfinite(modelOffset[2]) || Float.isNaN(modelOffset[2])? 0.0f : modelOffset[2];
+//		modelOffset[0] = Float.isInfinite(modelOffset[0]) || Float.isNaN(modelOffset[0])? 0.0f : modelOffset[0];
+//		modelOffset[1] = Float.isInfinite(modelOffset[1]) || Float.isNaN(modelOffset[1])? 0.0f : modelOffset[1];
+//		modelOffset[2] = Float.isInfinite(modelOffset[2]) || Float.isNaN(modelOffset[2])? 0.0f : modelOffset[2];
 
+		modelOffset[0] = 0f;
+		modelOffset[1] = 0f;
+		modelOffset[2] = 0f;
+
+		
 		jsonWriter.beginObject();
 		
 		if (ifcObject.getGeometryInstance() == null) {
+			jsonWriter.name("material").value(material);
 			jsonWriter.name("type").value("geometry");
 			jsonWriter.name("coreId").value(ifcObject.getOid());
 			jsonWriter.name("primitive").value("triangles");
@@ -412,19 +364,20 @@ public class JsonGeometrySerializer extends GeometrySerializer {
 			}
 			jsonWriter.endArray();
 		} else {
-			writeGeometryFromInstancesGeometryObject(jsonWriter, ifcObject, modelOffset);
+			writeGeometryFromInstancesGeometryObject(jsonWriter, ifcObject, modelOffset, material);
 			//writeGeometryFromGenericGeometryObject(jsonWriter, ifcObject, modelOffset);
 		}
 		jsonWriter.endObject();
 	}
 
-	private void writeGeometryFromInstancesGeometryObject(JsonWriter jsonWriter, IfcProduct ifcObject, float[] modelOffset) throws IOException {
+	private void writeGeometryFromInstancesGeometryObject(JsonWriter jsonWriter, IfcProduct ifcObject, float[] modelOffset, String material) throws IOException {
 		GeometryInstance geometryInstance = ifcObject.getGeometryInstance();
 		
 		if (geometryInstance != null) {
 			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryInstance.getVertices());
 			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryInstance.getNormals());
 
+			jsonWriter.name("material").value(material);
 			jsonWriter.name("type").value("geometry");
 			jsonWriter.name("coreId").value(ifcObject.getOid());
 			jsonWriter.name("primitive").value("triangles");

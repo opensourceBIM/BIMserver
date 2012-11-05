@@ -99,7 +99,7 @@ public abstract class GeometrySerializer extends EmfSerializer {
 				extents.addToMaxExtents(new float[] { getVertex(i + 0), getVertex(i + 1), getVertex(i + 2) });
 			}
 		} else {
-			extents.integrate(ifcObject.getGeometryInstance().getBounds());
+			extents.integrate(ifcObject.getBounds());
 		}
 		sceneExtends.addToMinExtents(extents.min);
 		sceneExtends.addToMaxExtents(extents.max);

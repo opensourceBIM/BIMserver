@@ -99,16 +99,16 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 					}
 				});
 				getDatabaseSession().getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true, objectIDM);
-				if (serializerPluginConfiguration.isNeedsGeometry()) {
-					for (IfcProduct ifcProduct : subModel.getAllWithSubTypes(IfcProduct.class)) {
+				for (IfcProduct ifcProduct : subModel.getAllWithSubTypes(IfcProduct.class)) {
+					if (serializerPluginConfiguration.isNeedsGeometry()) {
 						GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
 						if (geometryInstance != null) {
 							geometryInstance.load();
-							geometryInstance.getBounds().load();
-							geometryInstance.getBounds().getMin().load();
-							geometryInstance.getBounds().getMax().load();
 						}
 					}
+					ifcProduct.getBounds().load();
+					ifcProduct.getBounds().getMin().load();
+					ifcProduct.getBounds().getMax().load();
 				}
 				subModel.setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);

@@ -25,6 +25,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -33,22 +34,41 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.IfcActorRole;
 import org.bimserver.models.ifc2x3tc1.IfcApplication;
 import org.bimserver.models.ifc2x3tc1.IfcBuilding;
+import org.bimserver.models.ifc2x3tc1.IfcBuildingElementProxy;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3tc1.IfcColourOrFactor;
 import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
+import org.bimserver.models.ifc2x3tc1.IfcColumn;
+import org.bimserver.models.ifc2x3tc1.IfcCurtainWall;
+import org.bimserver.models.ifc2x3tc1.IfcDoor;
 import org.bimserver.models.ifc2x3tc1.IfcElement;
+import org.bimserver.models.ifc2x3tc1.IfcFlowSegment;
+import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
+import org.bimserver.models.ifc2x3tc1.IfcMaterial;
+import org.bimserver.models.ifc2x3tc1.IfcMaterialLayer;
+import org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSet;
+import org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSetUsage;
+import org.bimserver.models.ifc2x3tc1.IfcMaterialSelect;
+import org.bimserver.models.ifc2x3tc1.IfcMember;
 import org.bimserver.models.ifc2x3tc1.IfcObject;
 import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcOrganization;
 import org.bimserver.models.ifc2x3tc1.IfcOwnerHistory;
 import org.bimserver.models.ifc2x3tc1.IfcPerson;
 import org.bimserver.models.ifc2x3tc1.IfcPersonAndOrganization;
+import org.bimserver.models.ifc2x3tc1.IfcPlate;
 import org.bimserver.models.ifc2x3tc1.IfcPostalAddress;
+import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleAssignment;
+import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleSelect;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.models.ifc2x3tc1.IfcProductDefinitionShape;
+import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
+import org.bimserver.models.ifc2x3tc1.IfcRailing;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssigns;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssignsToProduct;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssociates;
+import org.bimserver.models.ifc2x3tc1.IfcRelAssociatesMaterial;
 import org.bimserver.models.ifc2x3tc1.IfcRelConnectsElements;
 import org.bimserver.models.ifc2x3tc1.IfcRelConnectsPortToElement;
 import org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralElement;
@@ -62,20 +82,33 @@ import org.bimserver.models.ifc2x3tc1.IfcRelReferencedInSpatialStructure;
 import org.bimserver.models.ifc2x3tc1.IfcRelServicesBuildings;
 import org.bimserver.models.ifc2x3tc1.IfcRelSpaceBoundary;
 import org.bimserver.models.ifc2x3tc1.IfcRelVoidsElement;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentationContext;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
+import org.bimserver.models.ifc2x3tc1.IfcRoof;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.ifc2x3tc1.IfcSIUnit;
+import org.bimserver.models.ifc2x3tc1.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcSite;
+import org.bimserver.models.ifc2x3tc1.IfcSlab;
+import org.bimserver.models.ifc2x3tc1.IfcSlabTypeEnum;
 import org.bimserver.models.ifc2x3tc1.IfcSpatialStructureElement;
+import org.bimserver.models.ifc2x3tc1.IfcStair;
+import org.bimserver.models.ifc2x3tc1.IfcStairFlight;
+import org.bimserver.models.ifc2x3tc1.IfcStyledItem;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyle;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleElementSelect;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleRendering;
 import org.bimserver.models.ifc2x3tc1.IfcUnit;
 import org.bimserver.models.ifc2x3tc1.IfcUnitAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcUnitEnum;
+import org.bimserver.models.ifc2x3tc1.IfcWall;
+import org.bimserver.models.ifc2x3tc1.IfcWallStandardCase;
+import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.models.store.SIPrefix;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
+import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.scenejs.Extends;
@@ -89,7 +122,7 @@ import com.google.gson.stream.JsonWriter;
 
 public class SceneJsShellSerializer extends GeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SceneJsShellSerializer.class);
-	private HashMap<String, HashMap<String, HashSet<String>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<String>>>();
+	private HashMap<String, HashMap<String, HashSet<Long>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<Long>>>();
 	private List<String> surfaceStyleIds;
 
 	@Override
@@ -108,6 +141,7 @@ public class SceneJsShellSerializer extends GeometrySerializer {
 		if (getMode() == Mode.BODY) {
 			OutputStreamWriter outputStreamWriter = new OutputStreamWriter(out, Charsets.UTF_8);
 			try {
+				calculateGeometryExtents();
 				JsonWriter jsonWriter = new JsonWriter(new BufferedWriter(outputStreamWriter));
 								
 				jsonWriter.beginObject();
@@ -120,6 +154,7 @@ public class SceneJsShellSerializer extends GeometrySerializer {
 				jsonWriter.beginArray();
 				jsonWriter.beginObject().name("id").value("library").name("type").value("library").name("nodes").beginArray();
 				writeMaterials(jsonWriter);
+				writeGeometries(jsonWriter);
 				jsonWriter.endArray();
 				jsonWriter.endObject();
 				writeVisualScenes(jsonWriter);
@@ -129,6 +164,8 @@ public class SceneJsShellSerializer extends GeometrySerializer {
 				jsonWriter.name("data").beginObject();
 				jsonWriter.name("bounds");
 				writeBounds(jsonWriter);
+				jsonWriter.name("bounds2");
+				writeBounds2(jsonWriter);
 				jsonWriter.name("unit");
 				writeUnit(jsonWriter);
 				jsonWriter.name("ifcTypes");
@@ -156,20 +193,20 @@ public class SceneJsShellSerializer extends GeometrySerializer {
 	}
 
 	private void writeMaterials(JsonWriter jsonWriter) throws IOException {
-		writeMaterial(jsonWriter, "Space", new double[] { 0.137255f, 0.403922f, 0.870588f }, 1.0f);
-		writeMaterial(jsonWriter, "Roof", new double[] { 0.837255f, 0.203922f, 0.270588f }, 1.0f);
-		writeMaterial(jsonWriter, "Slab", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
-		writeMaterial(jsonWriter, "Wall", new double[] { 0.537255f, 0.337255f, 0.237255f }, 1.0f);
-		writeMaterial(jsonWriter, "WallStandardCase", new double[] { 1.0f, 1.0f, 1.0f }, 1.0f);
-		writeMaterial(jsonWriter, "Door", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
-		writeMaterial(jsonWriter, "Window", new double[] { 0.2f, 0.2f, 0.8f }, 0.2f);
-		writeMaterial(jsonWriter, "Railing", new double[] { 0.137255f, 0.203922f, 0.270588f }, 1.0f);
-		writeMaterial(jsonWriter, "Column", new double[] { 0.437255f, 0.603922f, 0.370588f, }, 1.0f);
-		writeMaterial(jsonWriter, "FurnishingElement", new double[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f);
-		writeMaterial(jsonWriter, "CurtainWall", new double[] { 0.5f, 0.5f, 0.5f }, 0.5f);
-		writeMaterial(jsonWriter, "Stair", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
-		writeMaterial(jsonWriter, "BuildingElementProxy", new double[] { 0.5f, 0.5f, 0.5f }, 1.0f);
-		writeMaterial(jsonWriter, "FlowSegment", new double[] { 0.6f, 0.4f, 0.5f }, 1.0f);
+		writeMaterial(jsonWriter, "IfcSpace", new double[] { 0.137255f, 0.403922f, 0.870588f }, 1.0f);
+		writeMaterial(jsonWriter, "IfcRoof", new double[] { 0.837255f, 0.203922f, 0.270588f }, 1.0f);
+		writeMaterial(jsonWriter, "IfcSlab", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
+		writeMaterial(jsonWriter, "IfcWall", new double[] { 0.537255f, 0.337255f, 0.237255f }, 1.0f);
+		writeMaterial(jsonWriter, "IfcWallStandardCase", new double[] { 1.0f, 1.0f, 1.0f }, 1.0f);
+		writeMaterial(jsonWriter, "IfcDoor", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
+		writeMaterial(jsonWriter, "IfcWindow", new double[] { 0.2f, 0.2f, 0.8f }, 0.2f);
+		writeMaterial(jsonWriter, "IfcRailing", new double[] { 0.137255f, 0.203922f, 0.270588f }, 1.0f);
+		writeMaterial(jsonWriter, "IfcColumn", new double[] { 0.437255f, 0.603922f, 0.370588f, }, 1.0f);
+		writeMaterial(jsonWriter, "IfcFurnishingElement", new double[] { 0.437255f, 0.603922f, 0.370588f }, 1.0f);
+		writeMaterial(jsonWriter, "IfcCurtainWall", new double[] { 0.5f, 0.5f, 0.5f }, 0.5f);
+		writeMaterial(jsonWriter, "IfcStair", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
+		writeMaterial(jsonWriter, "IfcBuildingElementProxy", new double[] { 0.5f, 0.5f, 0.5f }, 1.0f);
+		writeMaterial(jsonWriter, "IfcFlowSegment", new double[] { 0.6f, 0.4f, 0.5f }, 1.0f);
 
 		List<IfcSurfaceStyle> listSurfaceStyles = model.getAll(IfcSurfaceStyle.class);
 		for (IfcSurfaceStyle ss : listSurfaceStyles) {
@@ -292,12 +329,182 @@ public class SceneJsShellSerializer extends GeometrySerializer {
 										.name("diffuse").value(true)
 										.name("specular").value(true)
 									.endObject();
+//		writeNodes(jsonWriter);
 jsonWriter						.endArray()
 							.endObject()
 						.endArray()
 					.endObject()
 				.endArray()
 			.endObject();
+	}
+	
+	private void writeGeometricObject(JsonWriter jsonWriter, IfcProduct ifcRootObject, String ifcObjectType) throws IfcEngineException, SerializerException, IOException {
+		//id = id.replace('$', '-'); // Remove the $ character from geometry id's.
+		//id = "_" + id; // Ensure that the id does not start with a digit
+
+		boolean materialFound = false;
+		String material = ifcObjectType;
+		if (ifcRootObject instanceof IfcProduct) {
+			IfcProduct ifcProduct = (IfcProduct) ifcRootObject;
+			
+			// If this product is composed of other objects, output each object separately
+			EList<IfcRelDecomposes> isDecomposedBy = ifcProduct.getIsDecomposedBy();
+			if (isDecomposedBy != null && !isDecomposedBy.isEmpty()) {
+				for (IfcRelDecomposes dcmp : isDecomposedBy) {
+					EList<IfcObjectDefinition> relatedObjects = dcmp.getRelatedObjects();
+					for (IfcObjectDefinition relatedObject : relatedObjects) {
+						writeGeometricObject(jsonWriter, (IfcProduct) relatedObject, ifcObjectType);
+					}
+				}
+				return;
+			}
+
+			// Get the relating material for this model 
+			Iterator<IfcRelAssociatesMaterial> ramIter = model.getAll(IfcRelAssociatesMaterial.class).iterator();
+			boolean found = false;
+			IfcMaterialSelect relatingMaterial = null;
+			while (!found && ramIter.hasNext()) {
+				IfcRelAssociatesMaterial ram = ramIter.next();
+				if (ram.getRelatedObjects().contains(ifcProduct)) {
+					found = true;
+					relatingMaterial = ram.getRelatingMaterial();
+				}
+			}
+
+			// Try to find the IFC material name
+			if (found && relatingMaterial instanceof IfcMaterialLayerSetUsage) {
+				IfcMaterialLayerSetUsage mlsu = (IfcMaterialLayerSetUsage) relatingMaterial;
+				IfcMaterialLayerSet forLayerSet = mlsu.getForLayerSet();
+				if (forLayerSet != null) {
+					EList<IfcMaterialLayer> materialLayers = forLayerSet.getMaterialLayers();
+					for (IfcMaterialLayer ml : materialLayers) {
+						IfcMaterial ifcMaterial = ml.getMaterial();
+						if (ifcMaterial != null) {
+							String name = ifcMaterial.getName();
+							String filterSpaces = fitNameForQualifiedName(name);
+							materialFound = surfaceStyleIds.contains(filterSpaces);
+							if (materialFound) {
+								material = filterSpaces;
+							}
+						}
+					}
+				}
+			} else if (found && relatingMaterial instanceof IfcMaterial) {
+				IfcMaterial ifcMaterial = (IfcMaterial) relatingMaterial;
+				String name = ifcMaterial.getName();
+				String filterSpaces = fitNameForQualifiedName(name);
+				materialFound = surfaceStyleIds.contains(filterSpaces);
+				if (materialFound) {
+					material = filterSpaces;
+				}
+			}
+
+			// If no material was found then derive one from the presentation style
+			if (!materialFound) {
+				IfcProductRepresentation representation = ifcProduct.getRepresentation();
+				if (representation instanceof IfcProductDefinitionShape) {
+					IfcProductDefinitionShape pds = (IfcProductDefinitionShape) representation;
+					EList<IfcRepresentation> representations = pds.getRepresentations();
+					for (IfcRepresentation rep : representations) {
+						if (rep instanceof IfcShapeRepresentation) {
+							IfcShapeRepresentation sRep = (IfcShapeRepresentation) rep;
+							EList<IfcRepresentationItem> items = sRep.getItems();
+							for (IfcRepresentationItem item : items) {
+								EList<IfcStyledItem> styledByItem = item.getStyledByItem();
+								for (IfcStyledItem sItem : styledByItem) {
+									EList<IfcPresentationStyleAssignment> styles = sItem.getStyles();
+									for (IfcPresentationStyleAssignment sa : styles) {
+										EList<IfcPresentationStyleSelect> styles2 = sa.getStyles();
+										for (IfcPresentationStyleSelect pss : styles2) {
+											if (pss instanceof IfcSurfaceStyle) {
+												IfcSurfaceStyle ss = (IfcSurfaceStyle) pss;
+												String name = ss.getName();
+												String filterSpaces = fitNameForQualifiedName(name);
+												materialFound = surfaceStyleIds.contains(filterSpaces);
+												if (materialFound) {
+													material = filterSpaces;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// Add the object id to the related ifc type & material in the hash map
+		HashMap<String, HashSet<Long>> materialGeometryRel = null;
+		if (!typeMaterialGeometryRel.containsKey(ifcObjectType)) {
+			materialGeometryRel = new HashMap<String, HashSet<Long>>();
+			typeMaterialGeometryRel.put(ifcObjectType, materialGeometryRel);
+		} else {
+			materialGeometryRel = typeMaterialGeometryRel.get(ifcObjectType);
+		}
+
+		if (!materialGeometryRel.containsKey(material)) {
+			materialGeometryRel.put(material, new HashSet<Long>());
+		}
+		materialGeometryRel.get(material).add(ifcRootObject.getOid());
+
+		// Serialize the geometric data itself
+	}
+	
+	private void writeGeometries(JsonWriter jsonWriter) throws IfcEngineException, SerializerException, IOException {
+		for (IfcRoof ifcRoof : model.getAll(IfcRoof.class)) {
+			writeGeometricObject(jsonWriter, ifcRoof, "IfcRoof");
+		}
+		for (IfcSlab ifcSlab : model.getAll(IfcSlab.class)) {
+			if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.ROOF) {
+				writeGeometricObject(jsonWriter, ifcSlab, "IfcRoof");
+			} else {
+				writeGeometricObject(jsonWriter, ifcSlab, "IfcSlab");
+			}
+		}
+		for (IfcWindow ifcWindow : model.getAll(IfcWindow.class)) {
+			writeGeometricObject(jsonWriter, ifcWindow, "IfcWindow");
+		}
+		for (IfcDoor ifcDoor : model.getAll(IfcDoor.class)) {
+			writeGeometricObject(jsonWriter, ifcDoor, "IfcDoor");
+		}
+		for (IfcWall ifcWall : model.getAll(IfcWall.class)) {
+			writeGeometricObject(jsonWriter, ifcWall, "IfcWall");
+		}
+		for (IfcStair ifcStair : model.getAll(IfcStair.class)) {
+			writeGeometricObject(jsonWriter, ifcStair, "IfcStair");
+		}
+		for (IfcStairFlight ifcStairFlight : model.getAll(IfcStairFlight.class)) {
+			writeGeometricObject(jsonWriter, ifcStairFlight, "IfcStairFlight");
+		}
+		for (IfcFlowSegment ifcFlowSegment : model.getAll(IfcFlowSegment.class)) {
+			writeGeometricObject(jsonWriter, ifcFlowSegment, "IfcFlowSegment");
+		}
+		for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
+			writeGeometricObject(jsonWriter, ifcFurnishingElement, "IfcFurnishingElement");
+		}
+		for (IfcPlate ifcPlate : model.getAll(IfcPlate.class)) {
+			writeGeometricObject(jsonWriter, ifcPlate, "IfcPlate");
+		}
+		for (IfcMember ifcMember : model.getAll(IfcMember.class)) {
+			writeGeometricObject(jsonWriter, ifcMember, "IfcMember");
+		}
+		for (IfcWallStandardCase ifcWall : model.getAll(IfcWallStandardCase.class)) {
+			writeGeometricObject(jsonWriter, ifcWall, "IfcWallStandardCase");
+		}
+		for (IfcCurtainWall ifcCurtainWall : model.getAll(IfcCurtainWall.class)) {
+			writeGeometricObject(jsonWriter, ifcCurtainWall, "IfcCurtainWall");
+		}
+		for (IfcRailing ifcRailing : model.getAll(IfcRailing.class)) {
+			writeGeometricObject(jsonWriter, ifcRailing, "IfcRailing");
+		}
+		for (IfcColumn ifcColumn : model.getAll(IfcColumn.class)) {
+			writeGeometricObject(jsonWriter, ifcColumn, "IfcColumn");
+		}
+		for (IfcBuildingElementProxy ifcBuildingElementProxy : model.getAll(IfcBuildingElementProxy.class)) {
+			writeGeometricObject(jsonWriter, ifcBuildingElementProxy, "IfcBuildingElementProxy");
+		}
 	}
 
 	private void writeBounds(JsonWriter jsonWriter) throws IOException {
@@ -310,16 +517,26 @@ jsonWriter						.endArray()
 		jsonWriter.endArray();
 	}
 
+	private void writeBounds2(JsonWriter jsonWriter) throws IOException {
+		Extends sceneExtends = getSceneExtends();
+		float[] bounds = {(sceneExtends.max[0] + sceneExtends.min[0]) * 0.5f, (sceneExtends.max[1] + sceneExtends.min[1]) * 0.5f, (sceneExtends.max[2] + sceneExtends.min[2]) * 0.5f};
+		jsonWriter.beginArray();
+		jsonWriter.value(Float.isInfinite(bounds[0])? 50.0f : bounds[0]);
+		jsonWriter.value(Float.isInfinite(bounds[1])? 50.0f : bounds[1]);
+		jsonWriter.value(Float.isInfinite(bounds[2])? 50.0f : bounds[2]);
+		jsonWriter.endArray();
+	}
+
 	private void writeUnit(JsonWriter jsonWriter) throws IOException {
 		SIPrefix lengthUnitPrefix = getLengthUnitPrefix(model);
 		jsonWriter.value(lengthUnitPrefix == null? "1 meter" : Math.pow(10.0, lengthUnitPrefix.getValue()) + " " + lengthUnitPrefix.name().toLowerCase());
 	}
 
-	private void writeIfcTreeRelatedObject(JsonWriter jsonWriter, HashSet<String> visitedIds, IfcObject object) throws IOException {
+	private void writeIfcTreeRelatedObject(JsonWriter jsonWriter, HashSet<Long> visitedIds, IfcObject object) throws IOException {
 		jsonWriter.beginObject();
 		jsonWriter.name("type").value(object.isSetObjectType() ? object.getObjectType() : stripClassName(object.getClass()));
 		jsonWriter.name("name").value(object.isSetName() ? object.getName() : "unknown");
-		jsonWriter.name("id").value(object.getGlobalId().getWrappedValue());
+		jsonWriter.name("id").value(object.getOid());
 		jsonWriter.name("decomposedBy");
 		writeIfcTreeDecomposedBy(jsonWriter, visitedIds, object);
 		jsonWriter.name("definedBy");
@@ -334,7 +551,7 @@ jsonWriter						.endArray()
 
 	private void writeIfcTree(JsonWriter jsonWriter) throws IOException {
 		jsonWriter.beginArray();
-		HashSet<String> visitedIds = new HashSet<String>();
+		HashSet<Long> visitedIds = new HashSet<Long>();
 
 		// Output the object relationships
 		Map<Long, IdEObject> objects = model.getObjects();
@@ -346,7 +563,7 @@ jsonWriter						.endArray()
 		jsonWriter.endArray();
 	}
 
-	private void writeIfcTreeDecomposedBy(JsonWriter jsonWriter, HashSet<String> visitedIds, IfcObjectDefinition objectDefinition) throws IOException {
+	private void writeIfcTreeDecomposedBy(JsonWriter jsonWriter, HashSet<Long> visitedIds, IfcObjectDefinition objectDefinition) throws IOException {
 		jsonWriter.beginArray();
 		EList<IfcRelDecomposes> relList = objectDefinition.getIsDecomposedBy();
 		if (relList != null && !relList.isEmpty()) {
@@ -354,8 +571,8 @@ jsonWriter						.endArray()
 				EList<IfcObjectDefinition> relatedObjects = rel.getRelatedObjects();
 				for (IfcObjectDefinition relatedObject : relatedObjects) {
 					if (relatedObject instanceof IfcObject) {
-						if (!visitedIds.contains(relatedObject.getGlobalId().getWrappedValue())) {
-							visitedIds.add(relatedObject.getGlobalId().getWrappedValue());
+						if (!visitedIds.contains(relatedObject.getOid())) {
+							visitedIds.add(relatedObject.getOid());
 							writeIfcTreeRelatedObject(jsonWriter, visitedIds, (IfcObject) relatedObject);
 						}
 					}
@@ -365,15 +582,15 @@ jsonWriter						.endArray()
 		jsonWriter.endArray();
 	}
 
-	private void writeIfcTreeDefinedBy(JsonWriter jsonWriter, HashSet<String> visitedIds, IfcObject object) throws IOException {
+	private void writeIfcTreeDefinedBy(JsonWriter jsonWriter, HashSet<Long> visitedIds, IfcObject object) throws IOException {
 		jsonWriter.beginArray();
 		EList<IfcRelDefines> relList = object.getIsDefinedBy();
 		if (relList != null && !relList.isEmpty()) {
 			for (IfcRelDefines rel : relList) {
 				EList<IfcObject> relatedObjects = rel.getRelatedObjects();
 				for (IfcObject relatedObject : relatedObjects) {
-					if (!visitedIds.contains(relatedObject.getGlobalId().getWrappedValue())) {
-						visitedIds.add(relatedObject.getGlobalId().getWrappedValue());
+					if (!visitedIds.contains(relatedObject.getOid())) {
+						visitedIds.add(relatedObject.getOid());
 						writeIfcTreeRelatedObject(jsonWriter, visitedIds, relatedObject);
 					}
 				}
@@ -386,7 +603,7 @@ jsonWriter						.endArray()
 		jsonWriter.beginObject();
 		jsonWriter.name("type").value(object.isSetObjectType() ? object.getObjectType() : stripClassName(object.getClass()));
 		jsonWriter.name("name").value(object.isSetName() ? object.getName() : "unknown");
-		jsonWriter.name("id").value(object.getGlobalId().getWrappedValue());
+		jsonWriter.name("id").value(object.getOid());
 		jsonWriter.endObject();
 		// writeIfcTreeDecomposedBy(object);
 		// writeIfcTreeDefinedBy((IfcObject) object);
@@ -395,14 +612,14 @@ jsonWriter						.endArray()
 		// }
 	}
 
-	private void writeIfcTreeContainsElements(JsonWriter jsonWriter, HashSet<String> visitedIds, IfcSpatialStructureElement spatialStructureElement) throws IOException {
+	private void writeIfcTreeContainsElements(JsonWriter jsonWriter, HashSet<Long> visitedIds, IfcSpatialStructureElement spatialStructureElement) throws IOException {
 		jsonWriter.beginArray();
 		EList<IfcRelContainedInSpatialStructure> relList = spatialStructureElement.getContainsElements();
 		if (relList != null && !relList.isEmpty()) {
 			for (IfcRelContainedInSpatialStructure rel : relList) {
 				for (IfcProduct relatedObject : rel.getRelatedElements()) {
-					if (!visitedIds.contains(relatedObject.getGlobalId().getWrappedValue())){
-						visitedIds.add(relatedObject.getGlobalId().getWrappedValue());
+					if (!visitedIds.contains(relatedObject.getOid())){
+						visitedIds.add(relatedObject.getOid());
 						writeIfcTreeProduct(jsonWriter, relatedObject);
 					}
 				}
@@ -905,7 +1122,7 @@ jsonWriter						.endArray()
 	private void writeLink(JsonWriter jsonWriter, IfcRoot root) throws IOException {
 		// TODO: Might return a JSONObject later (with link name & global id)
 		jsonWriter.beginObject();
-		jsonWriter.name("link").value(root.getGlobalId().getWrappedValue());
+		jsonWriter.name("link").value(root.getOid());
 		jsonWriter.endObject();
 	}
 

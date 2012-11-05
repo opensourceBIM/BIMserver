@@ -23,6 +23,7 @@ import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssignsToProduct;
 
+import org.bimserver.models.store.Bounds;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -38,6 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProductImpl#getRepresentation <em>Representation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProductImpl#getReferencedBy <em>Referenced By</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProductImpl#getGeometryInstance <em>Geometry Instance</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcProductImpl#getBounds <em>Bounds</em>}</li>
  * </ul>
  * </p>
  *
@@ -179,6 +181,24 @@ public class IfcProductImpl extends IfcObjectImpl implements IfcProduct {
 	 */
 	public void setGeometryInstance(GeometryInstance newGeometryInstance) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_PRODUCT__GEOMETRY_INSTANCE, newGeometryInstance);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Bounds getBounds() {
+		return (Bounds) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCT__BOUNDS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBounds(Bounds newBounds) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_PRODUCT__BOUNDS, newBounds);
 	}
 
 } //IfcProductImpl

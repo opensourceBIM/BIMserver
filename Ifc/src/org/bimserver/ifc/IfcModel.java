@@ -106,12 +106,8 @@ public class IfcModel implements IfcModelInterface {
 	@SuppressWarnings("unchecked")
 	private void buildIndex() {
 		index = new HashMap<EClass, List<? extends EObject>>();
-		for (EPackage ePackage : new EPackage[] { Ifc2x3tc1Package.eINSTANCE, StorePackage.eINSTANCE }) {
-			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
-				if (eClassifier instanceof EClass) {
-					index.put((EClass) eClassifier, new ArrayList<EObject>());
-				}
-			}
+		for (EClass eClass : eClassClassMap.keySet()) {
+			index.put((EClass) eClass, new ArrayList<EObject>());
 		}
 		for (Long key : objects.keySet()) {
 			EObject value = objects.get((Long) key);
@@ -123,10 +119,8 @@ public class IfcModel implements IfcModelInterface {
 
 	private void buildIndexWithSubTypes() {
 		indexWithSubTypes = new HashMap<EClass, List<? extends EObject>>();
-		for (EClassifier eClassifier : Ifc2x3tc1Package.eINSTANCE.getEClassifiers()) {
-			if (eClassifier instanceof EClass) {
-				indexWithSubTypes.put((EClass) eClassifier, new ArrayList<EObject>());
-			}
+		for (EClass eClass : eClassClassMap.keySet()) {
+			indexWithSubTypes.put((EClass) eClass, new ArrayList<EObject>());
 		}
 		for (Long key : objects.keySet()) {
 			IdEObject idEObject = objects.get(key);

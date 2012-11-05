@@ -20,6 +20,7 @@ import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.log.LogAction;
+import org.bimserver.models.store.Bounds;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
@@ -54,6 +55,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getExtendedData <em>Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLogs <em>Logs</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getGeometry <em>Geometry</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getBounds <em>Bounds</em>}</li>
  * </ul>
  * </p>
  *
@@ -343,6 +345,24 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 */
 	public void setGeometry(Geometry newGeometry) {
 		eSet(StorePackage.Literals.REVISION__GEOMETRY, newGeometry);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Bounds getBounds() {
+		return (Bounds) eGet(StorePackage.Literals.REVISION__BOUNDS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBounds(Bounds newBounds) {
+		eSet(StorePackage.Literals.REVISION__BOUNDS, newBounds);
 	}
 
 } //RevisionImpl

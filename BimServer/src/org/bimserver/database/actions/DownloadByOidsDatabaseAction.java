@@ -93,15 +93,15 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModelInte
 				getDatabaseSession().getMapWithOids(subModel, concreteRevision.getProject().getId(), concreteRevision.getId(), oids, true, objectIDM);
 				subModel.setDate(concreteRevision.getDate());
 				
-				if (serializerPluginConfiguration.isNeedsGeometry()) {
-					for (IfcProduct ifcProduct : subModel.getAllWithSubTypes(IfcProduct.class)) {
-						GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
-						if (geometryInstance != null) {
+				for (IfcProduct ifcProduct : subModel.getAllWithSubTypes(IfcProduct.class)) {
+					GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
+					if (geometryInstance != null) {
+						if (serializerPluginConfiguration.isNeedsGeometry()) {
 							geometryInstance.load();
-							geometryInstance.getBounds().load();
-							geometryInstance.getBounds().getMin().load();
-							geometryInstance.getBounds().getMax().load();
 						}
+						ifcProduct.getBounds().load();
+						ifcProduct.getBounds().getMin().load();
+						ifcProduct.getBounds().getMax().load();
 					}
 				}
 				

@@ -768,9 +768,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Long downloadByTypes(Set<Long> roids, Set<String> classNames, Long serializerOid, Boolean includeAllSubtypes, Boolean sync) throws ServerException, UserException {
+	public Long downloadByTypes(Set<Long> roids, Set<String> classNames, Long serializerOid, Boolean includeAllSubtypes, Boolean useObjectIDM, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromClassNames(bimServer, roids, classNames, includeAllSubtypes, serializerOid), sync);
+		DownloadParameters fromClassNames = DownloadParameters.fromClassNames(bimServer, roids, classNames, includeAllSubtypes, serializerOid);
+		fromClassNames.setUseObjectIDM(useObjectIDM);
+		return download(fromClassNames, sync);
 	}
 
 	@Override
@@ -3939,7 +3941,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
-			return converter.convertToSObject(revision.getGeometry().getBounds());
+			return converter.convertToSObject(revision.getBounds());
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {

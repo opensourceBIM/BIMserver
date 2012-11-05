@@ -19,7 +19,6 @@ public class Step0026 extends Migration {
 		schema.createEReference(bounds, "max", vector3f, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
 
 		EClass geometry = schema.createEClass("store", "Geometry");
-		schema.createEReference(geometry, "bounds", bounds, Multiplicity.SINGLE).getEAnnotations().add(createHiddenAnnotation());;
 		schema.createEAttribute(geometry, "indices", EcorePackage.eINSTANCE.getEIntegerObject(), Multiplicity.MANY).setUnique(false);
 		schema.createEAttribute(geometry, "vertices", EcorePackage.eINSTANCE.getEFloatObject(), Multiplicity.MANY).setUnique(false);
 		schema.createEAttribute(geometry, "normals", EcorePackage.eINSTANCE.getEFloatObject(), Multiplicity.MANY).setUnique(false);
@@ -28,17 +27,18 @@ public class Step0026 extends Migration {
 		schema.createEAttribute(geometryInstance, "startVertex", EcorePackage.eINSTANCE.getEIntegerObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(geometryInstance, "startIndex", EcorePackage.eINSTANCE.getEIntegerObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(geometryInstance, "primitiveCount", EcorePackage.eINSTANCE.getEIntegerObject(), Multiplicity.SINGLE);
-		schema.createEReference(geometryInstance, "bounds", bounds, Multiplicity.SINGLE).getEAnnotations().add(createHiddenAnnotation());;
 		schema.createEAttribute(geometryInstance, "indices", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
 		schema.createEAttribute(geometryInstance, "vertices", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
 		schema.createEAttribute(geometryInstance, "normals", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
 		geometryInstance.getEAnnotations().add(createHiddenAnnotation());
 
 		EClass revision = schema.getEClass("store", "Revision");
-		schema.createEReference(revision, "geometry", geometry, Multiplicity.SINGLE);
+		schema.createEReference(revision, "geometry", geometry, Multiplicity.SINGLE).getEAnnotations().add(createHiddenAnnotation());
+		schema.createEReference(revision, "bounds", bounds, Multiplicity.SINGLE).getEAnnotations().add(createHiddenAnnotation());
 
 		EClass ifcProduct = schema.getEClass("ifc2x3tc1", "IfcProduct");
 		schema.createEReference(ifcProduct, "geometryInstance", geometryInstance, Multiplicity.SINGLE).getEAnnotations().add(createHiddenAnnotation());
+		schema.createEReference(ifcProduct, "bounds", bounds, Multiplicity.SINGLE).getEAnnotations().add(createHiddenAnnotation());
 	}
 
 	@Override

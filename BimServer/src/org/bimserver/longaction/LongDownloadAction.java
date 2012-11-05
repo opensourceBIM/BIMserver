@@ -103,7 +103,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			action = new DownloadByGuidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getGuids(), getAuthorization(), objectIDM, reporter);
 			break;
 		case DOWNLOAD_OF_TYPE:
-			action = new DownloadByTypesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getClassNames(), downloadParameters.getSerializerOid(), downloadParameters.isIncludeAllSubtypes(), getAuthorization(), objectIDM, reporter);
+			action = new DownloadByTypesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getClassNames(), downloadParameters.getSerializerOid(), downloadParameters.isIncludeAllSubtypes(), downloadParameters.getUseObjectIDM(), getAuthorization(), objectIDM, reporter);
 			break;
 		case DOWNLOAD_PROJECTS:
 			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), getAuthorization(), objectIDM, reporter);
