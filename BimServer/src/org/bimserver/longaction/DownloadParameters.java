@@ -44,6 +44,7 @@ public class DownloadParameters extends LongActionKey {
 	private String code;
 	private long qeid;
 	private long serializerOid;
+	private Boolean useObjectIDM;
 
 	public DownloadParameters(BimServer bimServer, long roid, long serializerOid, long ignoreUoid) {
 		this.bimServer = bimServer;
@@ -377,5 +378,13 @@ public class DownloadParameters extends LongActionKey {
 
 	public void setModelCompareIdentifier(long modelCompareIdentifier) {
 		this.modelCompareIdentifier = modelCompareIdentifier;
+	}
+
+	public Boolean getUseObjectIDM() {
+		return useObjectIDM;
+	}
+	
+	public void setUseObjectIDM(Boolean useObjectIDM) {
+		this.useObjectIDM = useObjectIDM;
 	}
 }

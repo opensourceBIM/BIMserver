@@ -48,6 +48,7 @@ public class SRevision implements SDataBase
 	private List<Long> extendedData = new ArrayList<Long>();
 	private List<Long> logs = new ArrayList<Long>();
 	private long geometryId = -1;
+	private long boundsId = -1;
 	public long getOid() {
 		return oid;
 	}
@@ -122,6 +123,9 @@ public class SRevision implements SDataBase
 		if (sField.getName().equals("geometryId")) {
 			return getGeometryId();
 		}
+		if (sField.getName().equals("boundsId")) {
+			return getBoundsId();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -195,6 +199,10 @@ public class SRevision implements SDataBase
 		}
 		if (sField.getName().equals("geometryId")) {
 			setGeometryId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("boundsId")) {
+			setBoundsId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -334,6 +342,14 @@ public class SRevision implements SDataBase
 
 	public void setGeometryId(long geometryId) {
 		this.geometryId = geometryId;
+	}
+	
+	public long getBoundsId() {
+		return boundsId;
+	}
+
+	public void setBoundsId(long boundsId) {
+		this.boundsId = boundsId;
 	}
 	
 	@Override

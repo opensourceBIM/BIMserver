@@ -409,6 +409,8 @@ public class SConverter {
 		result.setLogs(listlogs);
 		Geometry geometryVal = input.getGeometry();
 		result.setGeometryId(geometryVal == null ? -1 : geometryVal.getOid());
+		Bounds boundsVal = input.getBounds();
+		result.setBoundsId(boundsVal == null ? -1 : boundsVal.getOid());
 		return result;
 	}
 
@@ -447,6 +449,7 @@ public class SConverter {
 			listlogs.add((LogAction)session.get(LogPackage.eINSTANCE.getLogAction(), oid, false, null));
 		}
 		result.setGeometry((Geometry)session.get(StorePackage.eINSTANCE.getGeometry(), input.getGeometryId(), false, null));
+		result.setBounds((Bounds)session.get(StorePackage.eINSTANCE.getBounds(), input.getBoundsId(), false, null));
 		return result;
 	}
 
@@ -5953,8 +5956,6 @@ public class SConverter {
 		result.getIndices().addAll(input.getIndices());
 		result.getVertices().addAll(input.getVertices());
 		result.getNormals().addAll(input.getNormals());
-		Bounds boundsVal = input.getBounds();
-		result.setBoundsId(boundsVal == null ? -1 : boundsVal.getOid());
 		return result;
 	}
 
@@ -5968,7 +5969,6 @@ public class SConverter {
 		result.getIndices().addAll(input.getIndices());
 		result.getVertices().addAll(input.getVertices());
 		result.getNormals().addAll(input.getNormals());
-		result.setBounds((Bounds)session.get(StorePackage.eINSTANCE.getBounds(), input.getBoundsId(), false, null));
 		return result;
 	}
 		public SAccessMethod convertToSObject(AccessMethod input) {

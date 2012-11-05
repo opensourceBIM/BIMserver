@@ -28,7 +28,6 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.models.store.Geometry#getBounds <em>Bounds</em>}</li>
  *   <li>{@link org.bimserver.models.store.Geometry#getIndices <em>Indices</em>}</li>
  *   <li>{@link org.bimserver.models.store.Geometry#getVertices <em>Vertices</em>}</li>
  *   <li>{@link org.bimserver.models.store.Geometry#getNormals <em>Normals</em>}</li>
@@ -41,32 +40,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Geometry extends IdEObject {
-	/**
-	 * Returns the value of the '<em><b>Bounds</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Bounds</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Bounds</em>' reference.
-	 * @see #setBounds(Bounds)
-	 * @see org.bimserver.models.store.StorePackage#getGeometry_Bounds()
-	 * @model
-	 * @generated
-	 */
-	Bounds getBounds();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Geometry#getBounds <em>Bounds</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Bounds</em>' reference.
-	 * @see #getBounds()
-	 * @generated
-	 */
-	void setBounds(Bounds value);
-
 	/**
 	 * Returns the value of the '<em><b>Indices</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.Integer}.

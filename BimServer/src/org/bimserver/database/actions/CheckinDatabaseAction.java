@@ -155,7 +155,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				ifcModel = getModel();
 			}
 
-			Geometry geometry = generateGeometry(ifcModel, project.getId(), concreteRevision.getId());
+			Geometry geometry = generateGeometry(ifcModel, project.getId(), concreteRevision.getId(), revision);
 			revision.setGeometry(geometry);
 			getDatabaseSession().store(geometry);
 
@@ -196,7 +196,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		return concreteRevision;
 	}
 
-	private Geometry generateGeometry(IfcModelInterface model, int pid, int rid) throws BimserverDatabaseException {
+	private Geometry generateGeometry(IfcModelInterface model, int pid, int rid, Revision revision) throws BimserverDatabaseException {
 		Collection<SerializerPlugin> allSerializerPlugins = bimServer.getPluginManager().getAllSerializerPlugins("application/ifc", true);
 		if (!allSerializerPlugins.isEmpty()) {
 			SerializerPlugin serializerPlugin = allSerializerPlugins.iterator().next();
@@ -219,6 +219,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 						ifcEngine.init();
 						try {
 							IfcEngineModel ifcEngineModel = ifcEngine.openModel(new ByteArrayInputStream(outputStream.toByteArray()), outputStream.size());
+							ifcEngineModel.setPostProcessing(true);
 //							ifcEngineModel.setFormat(48, 48);
 							try {
 								IfcEngineGeometry ifcEngineGeometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
@@ -248,7 +249,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 								Bounds modelBounds = getDatabaseSession().create(StorePackage.eINSTANCE.getBounds());
 								modelBounds.setMin(createVector3f(Float.POSITIVE_INFINITY));
 								modelBounds.setMax(createVector3f(Float.NEGATIVE_INFINITY));
-								geometry.setBounds(modelBounds);
+								revision.setBounds(modelBounds);
 								
 								for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 									IfcEngineInstance ifcEngineInstance = ifcEngineModel.getInstanceFromExpressId((int) ifcProduct.getOid());
@@ -262,7 +263,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 									Bounds instanceBounds = getDatabaseSession().create(StorePackage.eINSTANCE.getBounds());
 									instanceBounds.setMin(createVector3f(Float.POSITIVE_INFINITY));
 									instanceBounds.setMax(createVector3f(Float.NEGATIVE_INFINITY));
-									geometryInstance.setBounds(instanceBounds);
+									ifcProduct.setBounds(instanceBounds);
 									for (int i = geometryInstance.getStartIndex(); i < geometryInstance.getPrimitiveCount() * 3 + geometryInstance.getStartIndex(); i++) {
 										int index = ifcEngineGeometry.getIndex(i) * 3;
 										processExtends(instanceBounds, ifcEngineGeometry, verticesBuffer, normalsBuffer, index);

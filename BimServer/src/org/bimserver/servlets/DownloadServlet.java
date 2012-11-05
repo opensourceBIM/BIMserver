@@ -177,7 +177,7 @@ public class DownloadServlet extends HttpServlet {
 						}
 						Set<Long> roids = new HashSet<Long>();
 						roids.add(roid);
-						downloadId = service.downloadByTypes(roids, classes, serializer.getOid(), false, true);
+						downloadId = service.downloadByTypes(roids, classes, serializer.getOid(), false, true, true);
 					} else if (request.getParameter("oids") != null) {
 						Set<Long> oids = new HashSet<Long>();
 						for (String oidString : request.getParameter("oids").split(";")) {

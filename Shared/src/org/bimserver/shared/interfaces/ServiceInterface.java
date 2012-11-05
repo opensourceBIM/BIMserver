@@ -297,6 +297,7 @@ public interface ServiceInterface extends PublicInterface {
 			@WebParam(name = "classNames", partName = "downloadByTypes.classNames") Set<String> classNames,
 			@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
 			@WebParam(name = "includeAllSubtypes", partName = "downloadByTypes.includeAllSubtypes") Boolean includeAllSubtypes,
+			@WebParam(name = "useObjectIDM", partName = "downloadByTypes.useObjectIDM") Boolean useObjectIDM,
 			@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
 
 	/**

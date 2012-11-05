@@ -33,7 +33,6 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.GeometryImpl#getBounds <em>Bounds</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.GeometryImpl#getIndices <em>Indices</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.GeometryImpl#getVertices <em>Vertices</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.GeometryImpl#getNormals <em>Normals</em>}</li>
@@ -70,24 +69,6 @@ public class GeometryImpl extends IdEObjectImpl implements Geometry {
 	@Override
 	protected int eStaticFeatureCount() {
 		return 0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Bounds getBounds() {
-		return (Bounds) eGet(StorePackage.Literals.GEOMETRY__BOUNDS, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setBounds(Bounds newBounds) {
-		eSet(StorePackage.Literals.GEOMETRY__BOUNDS, newBounds);
 	}
 
 	/**

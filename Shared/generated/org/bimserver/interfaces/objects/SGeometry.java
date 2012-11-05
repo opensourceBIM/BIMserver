@@ -31,7 +31,6 @@ public class SGeometry implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	private long boundsId = -1;
 	private List<java.lang.Integer> indices = new ArrayList<java.lang.Integer>();
 	private List<java.lang.Float> vertices = new ArrayList<java.lang.Float>();
 	private List<java.lang.Float> normals = new ArrayList<java.lang.Float>();
@@ -61,9 +60,6 @@ public class SGeometry implements SDataBase
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("boundsId")) {
-			return getBoundsId();
-		}
 		if (sField.getName().equals("indices")) {
 			return getIndices();
 		}
@@ -84,10 +80,6 @@ public class SGeometry implements SDataBase
 	@SuppressWarnings("unchecked")
 
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("boundsId")) {
-			setBoundsId((Long)val);
-			return;
-		}
 		if (sField.getName().equals("indices")) {
 			setIndices((List<Integer>)val);
 			return;
@@ -109,14 +101,6 @@ public class SGeometry implements SDataBase
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
-	}
-	
-	public long getBoundsId() {
-		return boundsId;
-	}
-
-	public void setBoundsId(long boundsId) {
-		this.boundsId = boundsId;
 	}
 	
 

@@ -597,13 +597,22 @@ public interface StorePackage extends EPackage {
 	int REVISION__GEOMETRY = 15;
 
 	/**
+	 * The feature id for the '<em><b>Bounds</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION__BOUNDS = 16;
+
+	/**
 	 * The number of structural features of the '<em>Revision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_FEATURE_COUNT = 16;
+	int REVISION_FEATURE_COUNT = 17;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -5269,22 +5278,13 @@ public interface StorePackage extends EPackage {
 	int GEOMETRY = 84;
 
 	/**
-	 * The feature id for the '<em><b>Bounds</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOMETRY__BOUNDS = 0;
-
-	/**
 	 * The feature id for the '<em><b>Indices</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY__INDICES = 1;
+	int GEOMETRY__INDICES = 0;
 
 	/**
 	 * The feature id for the '<em><b>Vertices</b></em>' attribute list.
@@ -5293,7 +5293,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY__VERTICES = 2;
+	int GEOMETRY__VERTICES = 1;
 
 	/**
 	 * The feature id for the '<em><b>Normals</b></em>' attribute list.
@@ -5302,7 +5302,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY__NORMALS = 3;
+	int GEOMETRY__NORMALS = 2;
 
 	/**
 	 * The number of structural features of the '<em>Geometry</em>' class.
@@ -5311,7 +5311,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_FEATURE_COUNT = 4;
+	int GEOMETRY_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
@@ -6045,6 +6045,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRevision_Geometry();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Revision#getBounds <em>Bounds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Bounds</em>'.
+	 * @see org.bimserver.models.store.Revision#getBounds()
+	 * @see #getRevision()
+	 * @generated
+	 */
+	EReference getRevision_Bounds();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ConcreteRevision <em>Concrete Revision</em>}'.
@@ -9694,17 +9705,6 @@ public interface StorePackage extends EPackage {
 	EClass getGeometry();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Geometry#getBounds <em>Bounds</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Bounds</em>'.
-	 * @see org.bimserver.models.store.Geometry#getBounds()
-	 * @see #getGeometry()
-	 * @generated
-	 */
-	EReference getGeometry_Bounds();
-
-	/**
 	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.Geometry#getIndices <em>Indices</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10333,6 +10333,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference REVISION__GEOMETRY = eINSTANCE.getRevision_Geometry();
+
+		/**
+		 * The meta object literal for the '<em><b>Bounds</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REVISION__BOUNDS = eINSTANCE.getRevision_Bounds();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -13209,14 +13217,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EClass GEOMETRY = eINSTANCE.getGeometry();
-
-		/**
-		 * The meta object literal for the '<em><b>Bounds</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GEOMETRY__BOUNDS = eINSTANCE.getGeometry_Bounds();
 
 		/**
 		 * The meta object literal for the '<em><b>Indices</b></em>' attribute list feature.
