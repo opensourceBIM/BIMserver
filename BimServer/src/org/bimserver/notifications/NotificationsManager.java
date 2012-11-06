@@ -106,9 +106,11 @@ public class NotificationsManager extends Thread implements NotificationsManager
 					SLogAction notification = queue.take();
 					DatabaseSession session = bimServer.getDatabase().createSession();
 					try {
-						for (Entry<Long, Set<EndPoint>> endPoints : this.endPoints.entrySet()) {
-							for (EndPoint endPoint : endPoints.getValue()) {
-								endPoint.getNotificationInterface().newLogAction(UUID.randomUUID().toString(), notification, null, null, null, null);
+						synchronized(this.endPoints) {
+							for (Entry<Long, Set<EndPoint>> endPoints : this.endPoints.entrySet()) {
+								for (EndPoint endPoint : endPoints.getValue()) {
+									endPoint.getNotificationInterface().newLogAction(UUID.randomUUID().toString(), notification, null, null, null, null);
+								}
 							}
 						}
 						if (notification instanceof SNewProjectAdded) {
@@ -215,14 +217,16 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	}
 
 	public void updateProgress(long id, LongActionState actionState) {
-		for (Entry<Long, Set<EndPoint>> endPoints : this.endPoints.entrySet()) {
-			for (EndPoint endPoint : endPoints.getValue()) {
-				try {
-					endPoint.getNotificationInterface().progress(id, new SConverter().convertToSObject(actionState));
-				} catch (UserException e) {
-					e.printStackTrace();
-				} catch (ServerException e) {
-					e.printStackTrace();
+		synchronized(this.endPoints) {
+			for (Entry<Long, Set<EndPoint>> endPoints : this.endPoints.entrySet()) {
+				for (EndPoint endPoint : endPoints.getValue()) {
+					try {
+						endPoint.getNotificationInterface().progress(id, new SConverter().convertToSObject(actionState));
+					} catch (UserException e) {
+						e.printStackTrace();
+					} catch (ServerException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}

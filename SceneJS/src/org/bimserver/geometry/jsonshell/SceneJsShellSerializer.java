@@ -634,7 +634,7 @@ jsonWriter						.endArray()
 		for (IdEObject object : objects.values()) {
 			if (object instanceof IfcObject) {
 				IfcObject ifcObject = (IfcObject) object;
-				jsonWriter.name(ifcObject.getGlobalId().getWrappedValue());
+				jsonWriter.name("" + ifcObject.getOid());
 				jsonWriter.beginObject();
 
 				writeIfcPropertiesObject(jsonWriter, ifcObject);

@@ -1119,16 +1119,19 @@ supportUrl (	
 oid (
 	projectId (
 
-revisionId ("A
+revisionId ("1
+SNewObjectIDMUploaded
+rid (
+oid (">
+SProjectUpdated
+rid (
+oid (
+	projectId ("A
 SNewCheckoutAdded
 rid (
 oid (
 
-checkoutId (">
-SProjectUpdated
-rid (
-oid (
-	projectId (":
+checkoutId (":
 SPasswordReset
 rid (
 oid (
@@ -1172,10 +1175,7 @@ percentage (
 rid (
 oid (7
 state (2(.org.bimserver.pb.SNotifictionResultEnum
-warnings (	"1
-SNewObjectIDMUploaded
-rid (
-oid ("%
+warnings (	"%
 	SDownload
 rid (
 oid ("9
@@ -1201,18 +1201,18 @@ SLogAction
 __SServerStarted
  (2 .org.bimserver.pb.SServerStarted6
 __SUserDeleted (2.org.bimserver.pb.SUserDeleted@
-__SNewRevisionAdded (2#.org.bimserver.pb.SNewRevisionAdded@
-__SNewCheckoutAdded (2#.org.bimserver.pb.SNewCheckoutAdded<
-__SProjectUpdated (2!.org.bimserver.pb.SProjectUpdated:
-__SPasswordReset (2 .org.bimserver.pb.SPasswordReset>
-__SPasswordChanged (2".org.bimserver.pb.SPasswordChangedD
-__SUserAddedToProject (2%.org.bimserver.pb.SUserAddedToProjectT
-__SExtendedDataAddedToProject (2-.org.bimserver.pb.SExtendedDataAddedToProject>
-__SDatabaseCreated (2".org.bimserver.pb.SDatabaseCreatedV
-__SExtendedDataAddedToRevision (2..org.bimserver.pb.SExtendedDataAddedToRevision>
-__SRevisionUpdated (2".org.bimserver.pb.SRevisionUpdatedJ
-__SExternalServiceCalled (2(.org.bimserver.pb.SExternalServiceCalledH
-__SNewObjectIDMUploaded (2'.org.bimserver.pb.SNewObjectIDMUploaded0
+__SNewRevisionAdded (2#.org.bimserver.pb.SNewRevisionAddedH
+__SNewObjectIDMUploaded (2'.org.bimserver.pb.SNewObjectIDMUploaded<
+__SProjectUpdated (2!.org.bimserver.pb.SProjectUpdated@
+__SNewCheckoutAdded (2#.org.bimserver.pb.SNewCheckoutAdded:
+__SPasswordReset (2 .org.bimserver.pb.SPasswordReset>
+__SPasswordChanged (2".org.bimserver.pb.SPasswordChangedD
+__SUserAddedToProject (2%.org.bimserver.pb.SUserAddedToProjectT
+__SExtendedDataAddedToProject (2-.org.bimserver.pb.SExtendedDataAddedToProject>
+__SDatabaseCreated (2".org.bimserver.pb.SDatabaseCreatedV
+__SExtendedDataAddedToRevision (2..org.bimserver.pb.SExtendedDataAddedToRevision>
+__SRevisionUpdated (2".org.bimserver.pb.SRevisionUpdatedJ
+__SExternalServiceCalled (2(.org.bimserver.pb.SExternalServiceCalled0
 __SDownload (2.org.bimserver.pb.SDownload8
 __SNewUserAdded (2.org.bimserver.pb.SNewUserAdded:
 __SUserUndeleted (2 .org.bimserver.pb.SUserUndeleted

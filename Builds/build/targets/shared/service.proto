@@ -2342,16 +2342,21 @@ message SNewRevisionAdded {
 	optional int64 revisionId = 4;
 }
 
-message SNewCheckoutAdded {
+message SNewObjectIDMUploaded {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
-	optional int64 checkoutId = 3;
 }
 
 message SProjectUpdated {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 	optional int64 projectId = 3;
+}
+
+message SNewCheckoutAdded {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 checkoutId = 3;
 }
 
 message SPasswordReset {
@@ -2418,11 +2423,6 @@ message SExternalServiceCalled {
 	repeated string warnings = 8;
 }
 
-message SNewObjectIDMUploaded {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
 message SDownload {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
@@ -2453,17 +2453,17 @@ message SLogAction {
 	optional SServerStarted __SServerStarted = 10;
 	optional SUserDeleted __SUserDeleted = 11;
 	optional SNewRevisionAdded __SNewRevisionAdded = 12;
-	optional SNewCheckoutAdded __SNewCheckoutAdded = 13;
+	optional SNewObjectIDMUploaded __SNewObjectIDMUploaded = 13;
 	optional SProjectUpdated __SProjectUpdated = 14;
-	optional SPasswordReset __SPasswordReset = 15;
-	optional SPasswordChanged __SPasswordChanged = 16;
-	optional SUserAddedToProject __SUserAddedToProject = 17;
-	optional SExtendedDataAddedToProject __SExtendedDataAddedToProject = 18;
-	optional SDatabaseCreated __SDatabaseCreated = 19;
-	optional SExtendedDataAddedToRevision __SExtendedDataAddedToRevision = 20;
-	optional SRevisionUpdated __SRevisionUpdated = 21;
-	optional SExternalServiceCalled __SExternalServiceCalled = 22;
-	optional SNewObjectIDMUploaded __SNewObjectIDMUploaded = 23;
+	optional SNewCheckoutAdded __SNewCheckoutAdded = 15;
+	optional SPasswordReset __SPasswordReset = 16;
+	optional SPasswordChanged __SPasswordChanged = 17;
+	optional SUserAddedToProject __SUserAddedToProject = 18;
+	optional SExtendedDataAddedToProject __SExtendedDataAddedToProject = 19;
+	optional SDatabaseCreated __SDatabaseCreated = 20;
+	optional SExtendedDataAddedToRevision __SExtendedDataAddedToRevision = 21;
+	optional SRevisionUpdated __SRevisionUpdated = 22;
+	optional SExternalServiceCalled __SExternalServiceCalled = 23;
 	optional SDownload __SDownload = 24;
 	optional SNewUserAdded __SNewUserAdded = 25;
 	optional SUserUndeleted __SUserUndeleted = 26;
