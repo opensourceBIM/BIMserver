@@ -104,7 +104,7 @@ public class IfcStepSerializer extends IfcSerializer {
 	}
 
 	@Override
-	protected void reset() {
+	public void reset() {
 		setMode(Mode.HEADER);
 		out = null;
 	}
@@ -291,7 +291,11 @@ public class IfcStepSerializer extends IfcSerializer {
 		long convertedKey = convertKey(key);
 		out.print(String.valueOf(convertedKey));
 		out.print("= ");
-		out.print(upperCases.get(eClass));
+		String upperCase = upperCases.get(eClass);
+		if (upperCase == null) {
+			throw new SerializerException("Type not found: " + eClass.getName());
+		}
+		out.print(upperCase);
 		out.print(OPEN_PAREN);
 		boolean isFirst = true;
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {

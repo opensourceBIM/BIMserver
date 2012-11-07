@@ -35,6 +35,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
+import org.bimserver.cache.FileInputStreamDataSource;
 import org.bimserver.interfaces.objects.SCompareType;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
@@ -69,7 +70,8 @@ public class DownloadServlet extends HttpServlet {
 			response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 			boolean useGzip = true;
 			OutputStream outputStream = response.getOutputStream();
-			if (useGzip) {
+			boolean zip = request.getParameter("zip") != null && request.getParameter("zip").equals("on");
+			if (useGzip && !zip) {
 				response.setHeader("Content-Encoding", "gzip");
 				outputStream = new GZIPOutputStream(response.getOutputStream());
 			}
@@ -205,7 +207,7 @@ public class DownloadServlet extends HttpServlet {
 			}
 			SDownloadResult checkoutResult = service.getDownloadData(downloadId);
 			DataSource dataSource = checkoutResult.getFile().getDataSource();
-			if (request.getParameter("zip") != null && request.getParameter("zip").equals("on")) {
+			if (zip) {
 				if (serializer.getClassName().equals("IfcStepSerializer")) {
 					response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName().replace(".ifc", ".ifczip") + "\"");
 				} else {
@@ -213,11 +215,15 @@ public class DownloadServlet extends HttpServlet {
 				}
 				response.setContentType("application/zip");
 				String name = checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "." + serializer.getExtension();
-				ZipOutputStream zipOutputStream = new ZipOutputStream(response.getOutputStream());
+				ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream);
 				zipOutputStream.putNextEntry(new ZipEntry(name));
-				InputStream in = dataSource.getInputStream();
-				IOUtils.copy(in, zipOutputStream);
-				in.close();
+				if (dataSource instanceof FileInputStreamDataSource) {
+					InputStream inputStream = ((FileInputStreamDataSource)dataSource).getInputStream();
+					IOUtils.copy(inputStream, zipOutputStream);
+					inputStream.close();
+				} else {
+					((EmfSerializerDataSource)dataSource).writeToOutputStream(zipOutputStream);
+				}
 				zipOutputStream.finish();
 			} else {
 				if (request.getParameter("mime") == null) {
@@ -227,9 +233,15 @@ public class DownloadServlet extends HttpServlet {
 					response.setContentType(request.getParameter("mime"));
 				}
 				try {
-					((EmfSerializerDataSource)dataSource).getSerializer().writeToOutputStream(outputStream);
+					if (dataSource instanceof FileInputStreamDataSource) {
+						InputStream inputStream = ((FileInputStreamDataSource)dataSource).getInputStream();
+						IOUtils.copy(inputStream, outputStream);
+						inputStream.close();
+					} else {
+						((EmfSerializerDataSource)dataSource).writeToOutputStream(outputStream);
+					}
 				} catch (SerializerException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 			}
 			if (outputStream instanceof GZIPOutputStream) {
@@ -242,6 +254,8 @@ public class DownloadServlet extends HttpServlet {
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
 			response.getWriter().println(e.getUserMessage());
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 	}
 }

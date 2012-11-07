@@ -92,9 +92,9 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 					public void objectAdded() {
 						total.incrementAndGet();
 						if (totalSize == 0) {
-							setProgress(0);
+							setProgress("Downloading", 0);
 						} else {
-							setProgress(Math.round(100L * total.get() / totalSize));
+							setProgress("Downloading", Math.round(100L * total.get() / totalSize));
 						}
 					}
 				});

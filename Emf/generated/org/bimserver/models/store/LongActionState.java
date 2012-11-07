@@ -29,6 +29,8 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.bimserver.models.store.LongActionState#getProgress <em>Progress</em>}</li>
  *   <li>{@link org.bimserver.models.store.LongActionState#getState <em>State</em>}</li>
+ *   <li>{@link org.bimserver.models.store.LongActionState#getTitle <em>Title</em>}</li>
+ *   <li>{@link org.bimserver.models.store.LongActionState#getStage <em>Stage</em>}</li>
  *   <li>{@link org.bimserver.models.store.LongActionState#getErrors <em>Errors</em>}</li>
  *   <li>{@link org.bimserver.models.store.LongActionState#getWarnings <em>Warnings</em>}</li>
  *   <li>{@link org.bimserver.models.store.LongActionState#getInfos <em>Infos</em>}</li>
@@ -95,6 +97,58 @@ public interface LongActionState extends IdEObject {
 	 * @generated
 	 */
 	void setState(ActionState value);
+
+	/**
+	 * Returns the value of the '<em><b>Title</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Title</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Title</em>' attribute.
+	 * @see #setTitle(String)
+	 * @see org.bimserver.models.store.StorePackage#getLongActionState_Title()
+	 * @model
+	 * @generated
+	 */
+	String getTitle();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.LongActionState#getTitle <em>Title</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Title</em>' attribute.
+	 * @see #getTitle()
+	 * @generated
+	 */
+	void setTitle(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Stage</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Stage</em>' attribute.
+	 * @see #setStage(int)
+	 * @see org.bimserver.models.store.StorePackage#getLongActionState_Stage()
+	 * @model
+	 * @generated
+	 */
+	int getStage();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.LongActionState#getStage <em>Stage</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Stage</em>' attribute.
+	 * @see #getStage()
+	 * @generated
+	 */
+	void setStage(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Errors</b></em>' attribute list.

@@ -95,7 +95,7 @@ function BimServerApi(baseUrl, notifier) {
 		}
 	};
 	
-	this.register = function(interfaceName, methodName, callback) {
+	this.register = function(interfaceName, methodName, callback, registerCallback) {
 		if (othis.listeners[interfaceName] == null) {
 			othis.listeners[interfaceName] = {};
 		}
@@ -104,7 +104,7 @@ function BimServerApi(baseUrl, notifier) {
 		}
 		othis.listeners[interfaceName][methodName].push(callback);
 		othis.openWebSocket(function(){
-			othis.callWs("ServiceInterface", "registerAll", {endPointId: othis.server.endPointId});
+			othis.call("ServiceInterface", "registerAll", {endPointId: othis.server.endPointId}, registerCallback);
 		});
 	};
 	
@@ -228,7 +228,9 @@ function BimServerApi(baseUrl, notifier) {
 			data
 		]], function(data){
 			if (data.exception == null) {
-				callback(data.result);
+				if (callback != null) {
+					callback(data.result);
+				}
 			}
 		}, errorCallback == null ? null : function(error){
 			errorCallback(error);

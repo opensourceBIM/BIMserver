@@ -168,8 +168,8 @@ public class BinUtils {
 	}
 
 	public static String readString(ByteBuffer buffer, int length) {
-		byte[] charBuffer = new byte[length];
-		buffer.get(charBuffer);
-		return new String(charBuffer, Charsets.UTF_8);
+		String string = new String(buffer.array(), buffer.position(), length, Charsets.UTF_8);
+		buffer.position(buffer.position() + length);
+		return string;
 	}
 }

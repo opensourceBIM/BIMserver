@@ -3065,7 +3065,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLongActionState_Errors() {
+	public EAttribute getLongActionState_Title() {
 		return (EAttribute) getLongActionState().getEStructuralFeatures().get(2);
 	}
 
@@ -3074,7 +3074,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLongActionState_Warnings() {
+	public EAttribute getLongActionState_Stage() {
 		return (EAttribute) getLongActionState().getEStructuralFeatures().get(3);
 	}
 
@@ -3083,8 +3083,26 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLongActionState_Infos() {
+	public EAttribute getLongActionState_Errors() {
 		return (EAttribute) getLongActionState().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLongActionState_Warnings() {
+		return (EAttribute) getLongActionState().getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLongActionState_Infos() {
+		return (EAttribute) getLongActionState().getEStructuralFeatures().get(6);
 	}
 
 	/**

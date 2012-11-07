@@ -3012,13 +3012,31 @@ public interface StorePackage extends EPackage {
 	int LONG_ACTION_STATE__STATE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_ACTION_STATE__TITLE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_ACTION_STATE__STAGE = 3;
+
+	/**
 	 * The feature id for the '<em><b>Errors</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LONG_ACTION_STATE__ERRORS = 2;
+	int LONG_ACTION_STATE__ERRORS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Warnings</b></em>' attribute list.
@@ -3027,7 +3045,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LONG_ACTION_STATE__WARNINGS = 3;
+	int LONG_ACTION_STATE__WARNINGS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Infos</b></em>' attribute list.
@@ -3036,7 +3054,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LONG_ACTION_STATE__INFOS = 4;
+	int LONG_ACTION_STATE__INFOS = 6;
 
 	/**
 	 * The number of structural features of the '<em>Long Action State</em>' class.
@@ -3045,7 +3063,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LONG_ACTION_STATE_FEATURE_COUNT = 5;
+	int LONG_ACTION_STATE_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServerInfoImpl <em>Server Info</em>}' class.
@@ -7999,6 +8017,28 @@ public interface StorePackage extends EPackage {
 	EAttribute getLongActionState_State();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.LongActionState#getTitle <em>Title</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Title</em>'.
+	 * @see org.bimserver.models.store.LongActionState#getTitle()
+	 * @see #getLongActionState()
+	 * @generated
+	 */
+	EAttribute getLongActionState_Title();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.LongActionState#getStage <em>Stage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stage</em>'.
+	 * @see org.bimserver.models.store.LongActionState#getStage()
+	 * @see #getLongActionState()
+	 * @generated
+	 */
+	EAttribute getLongActionState_Stage();
+
+	/**
 	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.LongActionState#getErrors <em>Errors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11859,6 +11899,22 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LONG_ACTION_STATE__STATE = eINSTANCE.getLongActionState_State();
+
+		/**
+		 * The meta object literal for the '<em><b>Title</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LONG_ACTION_STATE__TITLE = eINSTANCE.getLongActionState_Title();
+
+		/**
+		 * The meta object literal for the '<em><b>Stage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LONG_ACTION_STATE__STAGE = eINSTANCE.getLongActionState_Stage();
 
 		/**
 		 * The meta object literal for the '<em><b>Errors</b></em>' attribute list feature.

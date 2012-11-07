@@ -179,7 +179,7 @@ public abstract class EmfSerializer implements Serializer {
 	 * to do anything. Only when reusing a serializer, this method can be used
 	 * to cleanup/setup
 	 */
-	protected abstract void reset();
+	public abstract void reset();
 
 	/*
 	 * The serializer must implement this method and write data to the

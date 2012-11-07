@@ -37,21 +37,23 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	private CheckinStatus status = CheckinStatus.CH_NONE;
 	private String lastError;
 
-	public LongCheckinAction(BimServer bimServer, String username, String userUsername, Authorization authorization, CheckinDatabaseAction createCheckinAction) {
+	public LongCheckinAction(BimServer bimServer, String username, String userUsername, Authorization authorization, CheckinDatabaseAction checkinDatabaseAction) {
 		super(bimServer, username, userUsername, authorization);
-		this.checkinDatabaseAction = createCheckinAction;
+		this.checkinDatabaseAction = checkinDatabaseAction;
+		checkinDatabaseAction.addProgressListener(this);
 	}
 
 	public void execute() {
 		changeActionState(ActionState.STARTED);
 		status = CheckinStatus.CH_STARTED;
+		updateProgress("Storing data...", 0);
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			checkinDatabaseAction.setDatabaseSession(session);
 			session.executeAndCommitAction(checkinDatabaseAction, 10, new ProgressHandler() {
 				@Override
 				public void progress(int current, int max) {
-					updateProgress(current * 100 / max);
+					updateProgress("Storing data...", current * 100 / max);
 				}
 			});
 		} catch (OutOfMemoryError e) {

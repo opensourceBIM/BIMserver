@@ -70,19 +70,20 @@ import com.google.common.base.Charsets;
 public class JsonGeometrySerializer extends GeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JsonGeometrySerializer.class);
 
-	private HashMap<String, HashMap<String, HashSet<Long>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<Long>>>();
-	private List<String> surfaceStyleIds;
-
+	private final HashMap<String, HashMap<String, HashSet<Long>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<Long>>>();
+	private final List<String> surfaceStyleIds = new ArrayList<String>();
 	private boolean isFirst = true;
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine, boolean normalizeOids) throws SerializerException {
 		super.init(model, projectInfo, pluginManager, ifcEngine, normalizeOids);
-		this.surfaceStyleIds = new ArrayList<String>();
 	}
 
 	@Override
-	protected void reset() {
+	public void reset() {
+		isFirst = true;
+		typeMaterialGeometryRel.clear();
+		surfaceStyleIds.clear();
 		setMode(Mode.BODY);
 	}
 
@@ -102,9 +103,6 @@ public class JsonGeometrySerializer extends GeometrySerializer {
 				LOGGER.error("", e);
 			}
 			setMode(Mode.FINISHED);
-			if (getIfcEngine() != null) {
-				getIfcEngine().close();
-			}
 			return true;
 		} else if (getMode() == Mode.FINISHED) {
 			return false;
@@ -124,8 +122,6 @@ public class JsonGeometrySerializer extends GeometrySerializer {
 		if (ifcProduct instanceof IfcSlab && ((IfcSlab)ifcProduct).getPredefinedType() == IfcSlabTypeEnum.ROOF) {
 			material = Ifc2x3tc1Package.eINSTANCE.getIfcRoof().getName();
 		}
-
-		boolean found = false;
 		
 		IfcMaterialSelect relatingMaterial = null;
 		for (IfcRelAssociates ifcRelAssociates : ifcProduct.getHasAssociations()) {
@@ -136,7 +132,7 @@ public class JsonGeometrySerializer extends GeometrySerializer {
 		}
 
 		// Try to find the IFC material name
-		if (found && relatingMaterial instanceof IfcMaterialLayerSetUsage) {
+		if (relatingMaterial instanceof IfcMaterialLayerSetUsage) {
 			IfcMaterialLayerSetUsage mlsu = (IfcMaterialLayerSetUsage) relatingMaterial;
 			IfcMaterialLayerSet forLayerSet = mlsu.getForLayerSet();
 			if (forLayerSet != null) {
@@ -153,7 +149,7 @@ public class JsonGeometrySerializer extends GeometrySerializer {
 					}
 				}
 			}
-		} else if (found && relatingMaterial instanceof IfcMaterial) {
+		} else if (relatingMaterial instanceof IfcMaterial) {
 			IfcMaterial ifcMaterial = (IfcMaterial) relatingMaterial;
 			String name = ifcMaterial.getName();
 			String filterSpaces = fitNameForQualifiedName(name);
@@ -251,7 +247,7 @@ public class JsonGeometrySerializer extends GeometrySerializer {
 				}
 			}
 			writer.print("]");
-			writer.print(", \"nrindices\":" + (geometryInstance.getPrimitiveCount() * 3));
+			writer.print(",\"nrindices\":" + (geometryInstance.getPrimitiveCount() * 3));
 		}
 	}
 

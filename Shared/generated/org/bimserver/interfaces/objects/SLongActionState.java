@@ -33,6 +33,8 @@ public class SLongActionState implements SDataBase
 	private static SClass sClass;
 	private java.lang.Integer progress;
 	private SActionState state;
+	private java.lang.String title;
+	private int stage;
 	private List<java.lang.String> errors = new ArrayList<java.lang.String>();
 	private List<java.lang.String> warnings = new ArrayList<java.lang.String>();
 	private List<java.lang.String> infos = new ArrayList<java.lang.String>();
@@ -68,6 +70,12 @@ public class SLongActionState implements SDataBase
 		if (sField.getName().equals("state")) {
 			return getState();
 		}
+		if (sField.getName().equals("title")) {
+			return getTitle();
+		}
+		if (sField.getName().equals("stage")) {
+			return getStage();
+		}
 		if (sField.getName().equals("errors")) {
 			return getErrors();
 		}
@@ -94,6 +102,14 @@ public class SLongActionState implements SDataBase
 		}
 		if (sField.getName().equals("state")) {
 			setState((SActionState)val);
+			return;
+		}
+		if (sField.getName().equals("title")) {
+			setTitle((String)val);
+			return;
+		}
+		if (sField.getName().equals("stage")) {
+			setStage((Integer)val);
 			return;
 		}
 		if (sField.getName().equals("errors")) {
@@ -133,6 +149,22 @@ public class SLongActionState implements SDataBase
 
 	public void setState(SActionState state) {
 		this.state = state;
+	}
+	
+	public java.lang.String getTitle() {
+		return title;
+	}
+
+	public void setTitle(java.lang.String title) {
+		this.title = title;
+	}
+	
+	public int getStage() {
+		return stage;
+	}
+
+	public void setStage(int stage) {
+		this.stage = stage;
 	}
 	
 
