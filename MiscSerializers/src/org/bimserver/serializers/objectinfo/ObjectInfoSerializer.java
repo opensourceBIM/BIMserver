@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 public class ObjectInfoSerializer extends EmfSerializer {
 
 	@Override
-	protected void reset() {
+	public void reset() {
 		setMode(Mode.BODY);
 	}
 	

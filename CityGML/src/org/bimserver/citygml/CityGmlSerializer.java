@@ -156,7 +156,7 @@ public class CityGmlSerializer extends EmfSerializer {
 	}
 
 	@Override
-	protected void reset() {
+	public void reset() {
 		setMode(Mode.BODY);
 	}
 

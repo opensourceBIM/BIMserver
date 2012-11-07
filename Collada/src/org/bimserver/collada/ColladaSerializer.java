@@ -132,7 +132,7 @@ public class ColladaSerializer extends EmfSerializer {
 	}
 
 	@Override
-	protected void reset() {
+	public void reset() {
 		setMode(Mode.BODY);
 	}
 

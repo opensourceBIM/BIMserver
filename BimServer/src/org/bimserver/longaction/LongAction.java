@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 import org.bimserver.BimServer;
+import org.bimserver.database.actions.ProgressListener;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.StoreFactory;
@@ -31,12 +32,12 @@ import org.bimserver.webservices.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class LongAction<T extends LongActionKey> implements Reporter {
+public abstract class LongAction<T extends LongActionKey> implements Reporter, ProgressListener {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongAction.class);
 	private final GregorianCalendar start;
 	private long id;
-	private int progress;
+	private int progress = -1;
 	private final CountDownLatch latch = new CountDownLatch(1);
 	private final BimServer bimServer;
 	private final String username;
@@ -47,6 +48,8 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter {
 	private final List<String> warnings = new ArrayList<String>();
 	private final List<String> infos = new ArrayList<String>();
 	private Authorization authorization;
+	private String title = "Unknown";
+	private int stage = 0;
 
 	public LongAction(BimServer bimServer, String username, String userUsername, Authorization authorization) {
 		start = new GregorianCalendar();
@@ -122,10 +125,15 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter {
 		this.id = id;
 	}
 
-	public void updateProgress(int progress) {
+	public void updateProgress(String title, int progress) {
 		int oldProgress = this.progress;
+		String oldTitle = this.title;
+		this.title = title;
 		this.progress = progress;
-		if (progress != oldProgress) {
+		if (progress != oldProgress || !oldTitle.equals(title)) {
+			if (!title.equals(oldTitle)) {
+				stage ++;
+			}
 			bimServer.getNotificationsManager().updateProgress(id, getState());
 		}
 	}
@@ -138,6 +146,8 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter {
 		LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
 		ds.setProgress(getProgress());
 		ds.setState(getActionState());
+		ds.setTitle(title);
+		ds.setStage(stage);
 		ds.getErrors().addAll(errors);
 		ds.getInfos().addAll(infos);
 		ds.getWarnings().addAll(warnings);

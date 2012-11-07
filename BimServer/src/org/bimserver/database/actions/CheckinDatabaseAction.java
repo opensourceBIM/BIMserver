@@ -155,6 +155,8 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				ifcModel = getModel();
 			}
 
+			setProgress("Generating Geometry...", -1);
+			
 			Geometry geometry = generateGeometry(ifcModel, project.getId(), concreteRevision.getId(), revision);
 			revision.setGeometry(geometry);
 			getDatabaseSession().store(geometry);
@@ -166,6 +168,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			if (nrConcreteRevisionsBefore != 0 && !merge && clean) {
 				// There already was a revision, lets delete it (only when not
 				// merging)
+				setProgress("Cleaning up older revision...", -1);
 				getDatabaseSession().planClearProject(project.getId(), concreteRevision.getId() - 1, concreteRevision.getId());
 			}
 
@@ -205,12 +208,6 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				serializer.init(model, null, bimServer.getPluginManager(), null, false);
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 				serializer.writeToOutputStream(outputStream);
-				// try {
-				// FileUtils.writeByteArrayToFile(new File("test.ifc"),
-				// outputStream.toByteArray());
-				// } catch (IOException e1) {
-				// e1.printStackTrace();
-				// }
 				Collection<IfcEnginePlugin> allIfcEnginePlugins = bimServer.getPluginManager().getAllIfcEnginePlugins(true);
 				if (!allIfcEnginePlugins.isEmpty()) {
 					IfcEnginePlugin ifcEnginePlugin = allIfcEnginePlugins.iterator().next();
@@ -274,7 +271,6 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 									ifcProduct.setGeometryInstance(geometryInstance);
 									getDatabaseSession().store(geometryInstance, pid, rid);
 								}
-
 								return geometry;
 							} finally {
 								ifcEngineModel.close();

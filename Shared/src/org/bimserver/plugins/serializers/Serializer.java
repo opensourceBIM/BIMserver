@@ -16,4 +16,5 @@ public interface Serializer {
 	IfcModelInterface getModel();
 	InputStream getInputStream() throws IOException;
 	void writeToOutputStream(OutputStream outputStream) throws SerializerException;
+	void reset();
 }

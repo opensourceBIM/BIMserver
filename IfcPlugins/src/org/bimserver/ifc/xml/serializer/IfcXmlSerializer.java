@@ -74,7 +74,7 @@ public class IfcXmlSerializer extends IfcSerializer {
 	}
 
 	@Override
-	protected void reset() {
+	public void reset() {
 		setMode(Mode.BODY);
 	}
 	

@@ -17,9 +17,12 @@ package org.bimserver.cache;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -27,6 +30,7 @@ import javax.activation.DataSource;
 import org.bimserver.BimServer;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.longaction.DownloadParameters;
+import org.bimserver.plugins.serializers.DiskCacheOutputStream;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.slf4j.Logger;
@@ -55,7 +59,7 @@ public class DiskCacheManager {
 		}
 	}
 	
-	private boolean isEnabled() {
+	public boolean isEnabled() {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			return bimServer.getServerSettings(session).getCacheOutputFiles();
@@ -70,6 +74,7 @@ public class DiskCacheManager {
 				EmfSerializerDataSource emfSerializerDataSource = (EmfSerializerDataSource)dataHandler.getDataSource();
 				FileOutputStream fileOutputStream = new FileOutputStream(new File(cacheDir, downloadParameters.getId()));
 				emfSerializerDataSource.getSerializer().writeToOutputStream(fileOutputStream);
+				emfSerializerDataSource.getSerializer().reset();
 				fileOutputStream.close();
 			} catch (IOException e) {
 				LOGGER.error("", e);
@@ -84,6 +89,15 @@ public class DiskCacheManager {
 			FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(new File(cacheDir, downloadParameters.getId()));
 			fileInputStreamDataSource.setName(downloadParameters.getFileName());
 			return fileInputStreamDataSource;
+		}
+		return null;
+	}
+
+	public OutputStream startCaching(DownloadParameters downloadParameters) {
+		try {
+			return new BufferedOutputStream(new DiskCacheOutputStream(new File(cacheDir, downloadParameters.getId())));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}

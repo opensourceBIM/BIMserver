@@ -54,4 +54,8 @@ public class EmfSerializerDataSource implements DataSource {
 	public Serializer getSerializer() {
 		return serializer;
 	}
+
+	public void writeToOutputStream(OutputStream outputStream) throws SerializerException {
+		serializer.writeToOutputStream(outputStream);
+	}
 }

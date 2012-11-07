@@ -17,11 +17,13 @@ public class Step0026 extends Migration {
 		schema.createEAttribute(vector3f, "z", EcorePackage.eINSTANCE.getEFloat(), Multiplicity.SINGLE);
 		schema.createEReference(bounds, "min", vector3f, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		schema.createEReference(bounds, "max", vector3f, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
+		bounds.getEAnnotations().add(createHiddenAnnotation());
 
 		EClass geometry = schema.createEClass("store", "Geometry");
 		schema.createEAttribute(geometry, "indices", EcorePackage.eINSTANCE.getEIntegerObject(), Multiplicity.MANY).setUnique(false);
 		schema.createEAttribute(geometry, "vertices", EcorePackage.eINSTANCE.getEFloatObject(), Multiplicity.MANY).setUnique(false);
 		schema.createEAttribute(geometry, "normals", EcorePackage.eINSTANCE.getEFloatObject(), Multiplicity.MANY).setUnique(false);
+		geometry.getEAnnotations().add(createHiddenAnnotation());
 
 		EClass geometryInstance = schema.createEClass("ifc2x3tc1", "GeometryInstance");
 		schema.createEAttribute(geometryInstance, "startVertex", EcorePackage.eINSTANCE.getEIntegerObject(), Multiplicity.SINGLE);

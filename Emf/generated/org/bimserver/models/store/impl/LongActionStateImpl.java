@@ -32,6 +32,8 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getProgress <em>Progress</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getState <em>State</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getTitle <em>Title</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getStage <em>Stage</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getErrors <em>Errors</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getWarnings <em>Warnings</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getInfos <em>Infos</em>}</li>
@@ -104,6 +106,42 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 */
 	public void setState(ActionState newState) {
 		eSet(StorePackage.Literals.LONG_ACTION_STATE__STATE, newState);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getTitle() {
+		return (String) eGet(StorePackage.Literals.LONG_ACTION_STATE__TITLE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTitle(String newTitle) {
+		eSet(StorePackage.Literals.LONG_ACTION_STATE__TITLE, newTitle);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getStage() {
+		return (Integer) eGet(StorePackage.Literals.LONG_ACTION_STATE__STAGE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStage(int newStage) {
+		eSet(StorePackage.Literals.LONG_ACTION_STATE__STAGE, newStage);
 	}
 
 	/**
