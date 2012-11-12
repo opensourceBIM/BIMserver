@@ -1,6 +1,5 @@
 package org.bimserver.tests;
 
-import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SNewRevisionAdded;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.ReflectorBuilder;

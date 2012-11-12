@@ -21,9 +21,7 @@ import org.bimserver.models.ifc2x3tc1.IfcCovering;
 import org.bimserver.models.ifc2x3tc1.IfcCoveringTypeEnum;
 import org.bimserver.models.ifc2x3tc1.IfcRelCoversBldgElements;
 import org.bimserver.models.ifc2x3tc1.IfcRelCoversSpaces;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

@@ -20,7 +20,6 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralActivity;
 import org.bimserver.models.ifc2x3tc1.IfcStructuralActivity;
 import org.bimserver.models.ifc2x3tc1.IfcStructuralActivityAssignmentSelect;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

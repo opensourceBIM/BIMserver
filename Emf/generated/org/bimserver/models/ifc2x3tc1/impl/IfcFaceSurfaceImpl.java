@@ -20,7 +20,6 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcFaceSurface;
 import org.bimserver.models.ifc2x3tc1.IfcSurface;
 import org.bimserver.models.ifc2x3tc1.Tristate;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

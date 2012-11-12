@@ -20,7 +20,6 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAnnotationFillAreaOccurrence;
 import org.bimserver.models.ifc2x3tc1.IfcGlobalOrLocalEnum;
 import org.bimserver.models.ifc2x3tc1.IfcPoint;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

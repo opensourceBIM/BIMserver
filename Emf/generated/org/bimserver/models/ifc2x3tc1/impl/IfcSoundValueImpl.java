@@ -20,7 +20,6 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcDerivedMeasureValue;
 import org.bimserver.models.ifc2x3tc1.IfcSoundValue;
 import org.bimserver.models.ifc2x3tc1.IfcTimeSeries;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

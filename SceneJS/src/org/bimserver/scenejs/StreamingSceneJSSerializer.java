@@ -140,14 +140,6 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 		public float[] min = { Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY };
 		public float[] max = { Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY };
 		
-		public void addToMinExtents(EList<Float> extents) {
-			addToMinExtents(new float[]{extents.get(0), extents.get(1), extents.get(2)});
-		}
-
-		public void addToMaxExtents(EList<Float> extents) {
-			addToMaxExtents(new float[]{extents.get(0), extents.get(1), extents.get(2)});
-		}
-
 		public void addToMinExtents(float[] vertex) {
 			for (int i=0; i<vertex.length; i++) {
 				min[i] = Math.min(vertex[i], min[i]);
