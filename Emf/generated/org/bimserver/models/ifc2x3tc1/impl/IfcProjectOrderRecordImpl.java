@@ -20,9 +20,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProjectOrderRecord;
 import org.bimserver.models.ifc2x3tc1.IfcProjectOrderRecordTypeEnum;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssignsToProjectOrder;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

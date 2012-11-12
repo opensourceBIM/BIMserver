@@ -21,7 +21,6 @@ import org.bimserver.models.ifc2x3tc1.IfcDoorPanelOperationEnum;
 import org.bimserver.models.ifc2x3tc1.IfcDoorPanelPositionEnum;
 import org.bimserver.models.ifc2x3tc1.IfcDoorPanelProperties;
 import org.bimserver.models.ifc2x3tc1.IfcShapeAspect;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

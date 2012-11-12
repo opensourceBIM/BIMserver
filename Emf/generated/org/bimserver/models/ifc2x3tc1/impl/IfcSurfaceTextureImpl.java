@@ -17,13 +17,11 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcCartesianTransformationOperator2D;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceTexture;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceTextureEnum;
 import org.bimserver.models.ifc2x3tc1.Tristate;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

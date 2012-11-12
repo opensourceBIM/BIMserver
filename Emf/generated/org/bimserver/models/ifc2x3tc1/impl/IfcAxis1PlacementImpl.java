@@ -19,7 +19,6 @@ package org.bimserver.models.ifc2x3tc1.impl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAxis1Placement;
 import org.bimserver.models.ifc2x3tc1.IfcDirection;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
