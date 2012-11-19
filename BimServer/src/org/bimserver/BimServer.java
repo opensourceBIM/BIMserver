@@ -468,6 +468,7 @@ public class BimServer {
 				userSettings.getObjectIDMs().add(objectIdmPluginConfiguration);
 				objectIdmPluginConfiguration.setName(name);
 				objectIdmPluginConfiguration.setClassName(objectIDMPlugin.getClass().getName());
+				objectIdmPluginConfiguration.setDescription(objectIDMPlugin.getDescription());
 				objectIdmPluginConfiguration.setEnabled(true);
 				if (userSettings.getDefaultObjectIDM() == null && objectIDMPlugin.getClass() == SchemaFieldObjectIDMPlugin.class) {
 					userSettings.setDefaultObjectIDM(objectIdmPluginConfiguration);
@@ -490,6 +491,7 @@ public class BimServer {
 				userSettings.getIfcEngines().add(ifcEnginePluginConfiguration);
 				ifcEnginePluginConfiguration.setClassName(ifcEnginePlugin.getClass().getName());
 				ifcEnginePluginConfiguration.setName(name);
+				ifcEnginePluginConfiguration.setDescription(ifcEnginePlugin.getDescription());
 				ifcEnginePluginConfiguration.setEnabled(true);
 				session.store(ifcEnginePluginConfiguration);
 				if (userSettings.getDefaultIfcEngine() == null && ifcEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOIfcEnginePlugin")) {
@@ -512,6 +514,7 @@ public class BimServer {
 				userSettings.getQueryengines().add(queryEnginePluginConfiguration);
 				queryEnginePluginConfiguration.setClassName(queryEnginePlugin.getClass().getName());
 				queryEnginePluginConfiguration.setName(name);
+				queryEnginePluginConfiguration.setDescription(queryEnginePlugin.getDescription());
 				queryEnginePluginConfiguration.setEnabled(true);
 				if (userSettings.getDefaultQueryEngine() == null && queryEnginePlugin.getClass().getName().equals("nl.wietmazairac.bimql.BimQLQueryEnginePlugin")) {
 					userSettings.setDefaultQueryEngine(queryEnginePluginConfiguration);
@@ -534,6 +537,7 @@ public class BimServer {
 				userSettings.getModelmergers().add(modelMergerPluginConfiguration);
 				modelMergerPluginConfiguration.setClassName(modelMergerPlugin.getClass().getName());
 				modelMergerPluginConfiguration.setName(name);
+				modelMergerPluginConfiguration.setDescription(modelMergerPlugin.getDescription());
 				modelMergerPluginConfiguration.setEnabled(true);
 				if (userSettings.getDefaultModelMerger() == null && modelMergerPlugin.getClass().getName().equals("org.bimserver.merging.BasicModelMergerPlugin")) {
 					userSettings.setDefaultModelMerger(modelMergerPluginConfiguration);
@@ -556,6 +560,7 @@ public class BimServer {
 				userSettings.getModelcompares().add(modelComparePluginConfiguration);
 				modelComparePluginConfiguration.setClassName(modelComparePlugin.getClass().getName());
 				modelComparePluginConfiguration.setName(name);
+				modelComparePluginConfiguration.setDescription(modelComparePlugin.getDescription());
 				modelComparePluginConfiguration.setEnabled(true);
 				if (userSettings.getDefaultModelCompare() == null && modelComparePlugin.getClass().getName().equals("org.bimserver.ifc.compare.GuidBasedModelComparePlugin")) {
 					userSettings.setDefaultModelCompare(modelComparePluginConfiguration);

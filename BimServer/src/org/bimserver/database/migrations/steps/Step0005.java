@@ -32,8 +32,5 @@ public class Step0005 extends Migration {
 
 	@Override
 	public void migrate(Schema schema) {
-		EClass serverSettingsClass = schema.getEClass("store", "ServerSettings");
-		schema.createEAttribute(serverSettingsClass, "headerAddition", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(serverSettingsClass, "footerAddition", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 	}
 }

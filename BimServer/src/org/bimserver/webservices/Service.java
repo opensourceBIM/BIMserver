@@ -1358,35 +1358,6 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public String getSettingCustomLogoAddress() throws ServerException, UserException {
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			return settings.getCustomLogoAddress();
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void setSettingCustomLogoAddress(String customLogoAddress) throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			settings.setCustomLogoAddress(customLogoAddress);
-			session.store(settings);
-			session.commit();
-		} catch (BimserverDatabaseException e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
 	public String getSettingEmailSenderAddress() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
@@ -1472,36 +1443,6 @@ public class Service implements ServiceInterface {
 		try {
 			ServerSettings settings = getServerSettings(session);
 			settings.setEmailSenderAddress(emailSenderAddress);
-			session.store(settings);
-			session.commit();
-		} catch (BimserverDatabaseException e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public String getSettingRegistrationAddition() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			return settings.getRegistrationAddition();
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void setSettingRegistrationAddition(String registrationAddition) throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			settings.setRegistrationAddition(registrationAddition);
 			session.store(settings);
 			session.commit();
 		} catch (BimserverDatabaseException e) {
@@ -1723,36 +1664,6 @@ public class Service implements ServiceInterface {
 		try {
 			ServerSettings settings = getServerSettings(session);
 			settings.setSendConfirmationEmailAfterRegistration(sendConfirmationEmailAfterRegistration);
-			session.store(settings);
-			session.commit();
-		} catch (BimserverDatabaseException e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public Boolean isSettingShowVersionUpgradeAvailable() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			return settings.getShowVersionUpgradeAvailable();
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void setSettingShowVersionUpgradeAvailable(Boolean showVersionUpgradeAvailable) throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			settings.setShowVersionUpgradeAvailable(showVersionUpgradeAvailable);
 			session.store(settings);
 			session.commit();
 		} catch (BimserverDatabaseException e) {
@@ -2204,64 +2115,6 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void setSettingFooterAddition(String footerAddition) throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			settings.setFooterAddition(footerAddition);
-			session.store(settings);
-			session.commit();
-		} catch (BimserverDatabaseException e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void setSettingHeaderAddition(String headerAddition) throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			settings.setHeaderAddition(headerAddition);
-			session.store(settings);
-			session.commit();
-		} catch (BimserverDatabaseException e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public String getSettingFooterAddition() throws ServerException, UserException {
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			return settings.getFooterAddition();
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public String getSettingHeaderAddition() throws ServerException, UserException {
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			return settings.getHeaderAddition();
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
 	public SSerializerPluginConfiguration getSerializerByName(String serializerName) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
@@ -2339,13 +2192,14 @@ public class Service implements ServiceInterface {
 		List<SPluginDescriptor> result = new ArrayList<SPluginDescriptor>();
 		Collection<Plugin> plugins = bimServer.getPluginManager().getAllPlugins(false);
 		for (Plugin plugin : plugins) {
-			SPluginDescriptor sPlugin = new SPluginDescriptor();
-			sPlugin.setDefaultName(plugin.getClass().getName());
+			SPluginDescriptor sPluginDescriptor = new SPluginDescriptor();
+			sPluginDescriptor.setSimpleName(plugin.getClass().getSimpleName());
+			sPluginDescriptor.setDefaultName(plugin.getClass().getName());
 			PluginContext pluginContext = bimServer.getPluginManager().getPluginContext(plugin);
-			sPlugin.setLocation(pluginContext.getLocation());
-			sPlugin.setDescription(plugin.getDescription());
-			sPlugin.setEnabled(pluginContext.isEnabled());
-			result.add(sPlugin);
+			sPluginDescriptor.setLocation(pluginContext.getLocation());
+			sPluginDescriptor.setDescription(plugin.getDescription());
+			sPluginDescriptor.setEnabled(pluginContext.isEnabled());
+			result.add(sPluginDescriptor);
 		}
 		Collections.sort(result, new SPluginDescriptorComparator());
 		return result;
@@ -3944,6 +3798,38 @@ public class Service implements ServiceInterface {
 			return converter.convertToSObject(revision.getBounds());
 		} catch (Exception e) {
 			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public void setWhiteListedDomains(List<String> domains) throws ServerException, UserException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			ServerSettings serverSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), ServerSettings.class);
+			serverSettings.getWhitelistedDomains().clear();
+			serverSettings.getWhitelistedDomains().addAll(domains);
+			session.store(serverSettings);
+			session.commit();
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public void setServerSettings(SServerSettings serverSettings) throws ServerException, UserException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			ServerSettings existingServerSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), ServerSettings.class);
+			existingServerSettings.getWhitelistedDomains().clear();
+			converter.convertFromSObject(serverSettings, existingServerSettings, session);
+			session.store(existingServerSettings);
+			session.commit();
+		} catch (Exception e) {
+			handleException(e);
 		} finally {
 			session.close();
 		}

@@ -191,19 +191,15 @@ public class Database implements BimDatabase {
 
 	public ServerSettings createDefaultSettings() {
 		ServerSettings settings = StoreFactory.eINSTANCE.createServerSettings();
-		settings.setCustomLogoAddress("http://www.bimserver.org/version/defaultlogo.gif");
 		settings.setEmailSenderAddress("no-reply@bimserver.org");
+		settings.setEmailSenderName("Administrator");
 		settings.setSiteAddress("");
 		settings.setSmtpServer("");
-		settings.setRegistrationAddition("");
-		settings.setHeaderAddition("");
-		settings.setFooterAddition("<script type=\"text/javascript\">var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-12034708-3']);_gaq.push(['_trackPageview']);(function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();</script>");
 		settings.setProtocolBuffersPort(8020);
 		settings.setAllowSelfRegistration(false);
 		settings.setAllowUsersToCreateTopLevelProjects(false);
 		settings.setCheckinMergingEnabled(false);
 		settings.setHideUserListForNonAdmin(true);
-		settings.setShowVersionUpgradeAvailable(false);
 		settings.setCacheOutputFiles(true);
 		settings.setServiceRepositoryUrl("http://extend.bimserver.org");
 		settings.getWhitelistedDomains().add("localhost");

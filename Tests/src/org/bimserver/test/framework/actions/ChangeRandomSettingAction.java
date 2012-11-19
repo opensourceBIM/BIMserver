@@ -56,26 +56,14 @@ public class ChangeRandomSettingAction extends Action {
 		case 6:
 //			serviceInterface.setSettingEmailSenderAddress("");
 			break;
-		case 7:
-			serviceInterface.setSettingFooterAddition(randomString());
-			break;
-		case 8:
-			serviceInterface.setSettingHeaderAddition(randomString());
-			break;
 		case 9:
 			serviceInterface.setSettingHideUserListForNonAdmin(nextBoolean());
 			break;
 		case 12:
 			serviceInterface.setSettingProtocolBuffersPort(1024 + nextInt(1024));
 			break;
-		case 13:
-			serviceInterface.setSettingRegistrationAddition(randomString());
-			break;
 		case 14:
 			serviceInterface.setSettingSendConfirmationEmailAfterRegistration(nextBoolean());
-			break;
-		case 15:
-			serviceInterface.setSettingShowVersionUpgradeAvailable(nextBoolean());
 			break;
 		case 16:
 //			serviceInterface.setSettingSiteAddress("");

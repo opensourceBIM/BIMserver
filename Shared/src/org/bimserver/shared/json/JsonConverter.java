@@ -222,6 +222,10 @@ public class JsonConverter {
 				if (object instanceof JsonPrimitive) {
 					return ((JsonPrimitive)object).getAsInt();
 				}
+			} else if (genericType.isString()) {
+				if (object instanceof JsonPrimitive) {
+					return ((JsonPrimitive)object).getAsString();
+				}
 			}
 		} else if (definedType.isSet()) {
 			if (genericType.isLong()) {

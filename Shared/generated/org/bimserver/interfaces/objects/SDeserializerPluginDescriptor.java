@@ -55,6 +55,9 @@ public class SDeserializerPluginDescriptor extends SPluginDescriptor implements 
 	}
 
 	public Object sGet(SField sField) {
+		if (sField.getName().equals("simpleName")) {
+			return getSimpleName();
+		}
 		if (sField.getName().equals("defaultName")) {
 			return getDefaultName();
 		}
@@ -80,6 +83,10 @@ public class SDeserializerPluginDescriptor extends SPluginDescriptor implements 
 	}
 
 	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("simpleName")) {
+			setSimpleName((String)val);
+			return;
+		}
 		if (sField.getName().equals("defaultName")) {
 			setDefaultName((String)val);
 			return;

@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SIfcEnginePluginDescriptor.class, SQueryEnginePluginDescriptor.class, SDeserializerPluginDescriptor.class, SServicePluginDescriptor.class, SModelComparePluginDescriptor.class, SSerializerPluginDescriptor.class, SModelMergerPluginDescriptor.class})
+@XmlSeeAlso(value={SQueryEnginePluginDescriptor.class, SIfcEnginePluginDescriptor.class, SServicePluginDescriptor.class, SModelMergerPluginDescriptor.class, SModelComparePluginDescriptor.class, SDeserializerPluginDescriptor.class, SSerializerPluginDescriptor.class})
 public class SPluginDescriptor implements SDataBase
 {
 	private long oid = -1;
@@ -31,6 +31,7 @@ public class SPluginDescriptor implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
+	private java.lang.String simpleName;
 	private java.lang.String defaultName;
 	private java.lang.String pluginClassName;
 	private java.lang.String description;
@@ -62,6 +63,9 @@ public class SPluginDescriptor implements SDataBase
 	}
 
 	public Object sGet(SField sField) {
+		if (sField.getName().equals("simpleName")) {
+			return getSimpleName();
+		}
 		if (sField.getName().equals("defaultName")) {
 			return getDefaultName();
 		}
@@ -87,6 +91,10 @@ public class SPluginDescriptor implements SDataBase
 	}
 
 	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("simpleName")) {
+			setSimpleName((String)val);
+			return;
+		}
 		if (sField.getName().equals("defaultName")) {
 			setDefaultName((String)val);
 			return;
@@ -116,6 +124,14 @@ public class SPluginDescriptor implements SDataBase
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
+	public java.lang.String getSimpleName() {
+		return simpleName;
+	}
+
+	public void setSimpleName(java.lang.String simpleName) {
+		this.simpleName = simpleName;
 	}
 	
 	public java.lang.String getDefaultName() {
