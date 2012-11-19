@@ -225,16 +225,13 @@ public class Step0000 extends Migration {
 	}
 
 	private void createServerSettingsClass() {
-		schema.createEAttribute(serverSettingsClass, "showVersionUpgradeAvailable", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(serverSettingsClass, "sendConfirmationEmailAfterRegistration", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
-		schema.createEAttribute(serverSettingsClass, "useCaching", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(serverSettingsClass, "allowSelfRegistration", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(serverSettingsClass, "allowUsersToCreateTopLevelProjects", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
 		schema.createEAttribute(serverSettingsClass, "checkinMergingEnabled", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(serverSettingsClass, "registrationAddition", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serverSettingsClass, "smtpServer", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serverSettingsClass, "emailSenderAddress", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(serverSettingsClass, "customLogoAddress", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(serverSettingsClass, "emailSenderName", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serverSettingsClass, "siteAddress", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serverSettingsClass, "whitelistedDomains", ecorePackage.getEString(), Multiplicity.MANY);
 		schema.createEAttribute(serverSettingsClass, "hideUserListForNonAdmin", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);

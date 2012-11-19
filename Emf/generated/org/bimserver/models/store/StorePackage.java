@@ -889,31 +889,13 @@ public interface StorePackage extends EPackage {
 	int SERVER_SETTINGS = 6;
 
 	/**
-	 * The feature id for the '<em><b>Show Version Upgrade Available</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVER_SETTINGS__SHOW_VERSION_UPGRADE_AVAILABLE = 0;
-
-	/**
 	 * The feature id for the '<em><b>Send Confirmation Email After Registration</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION = 1;
-
-	/**
-	 * The feature id for the '<em><b>Use Caching</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVER_SETTINGS__USE_CACHING = 2;
+	int SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Allow Self Registration</b></em>' attribute.
@@ -922,7 +904,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__ALLOW_SELF_REGISTRATION = 3;
+	int SERVER_SETTINGS__ALLOW_SELF_REGISTRATION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Allow Users To Create Top Level Projects</b></em>' attribute.
@@ -931,7 +913,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS = 4;
+	int SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Checkin Merging Enabled</b></em>' attribute.
@@ -940,16 +922,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__CHECKIN_MERGING_ENABLED = 5;
-
-	/**
-	 * The feature id for the '<em><b>Registration Addition</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVER_SETTINGS__REGISTRATION_ADDITION = 6;
+	int SERVER_SETTINGS__CHECKIN_MERGING_ENABLED = 3;
 
 	/**
 	 * The feature id for the '<em><b>Smtp Server</b></em>' attribute.
@@ -958,7 +931,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__SMTP_SERVER = 7;
+	int SERVER_SETTINGS__SMTP_SERVER = 4;
 
 	/**
 	 * The feature id for the '<em><b>Email Sender Address</b></em>' attribute.
@@ -967,16 +940,16 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__EMAIL_SENDER_ADDRESS = 8;
+	int SERVER_SETTINGS__EMAIL_SENDER_ADDRESS = 5;
 
 	/**
-	 * The feature id for the '<em><b>Custom Logo Address</b></em>' attribute.
+	 * The feature id for the '<em><b>Email Sender Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__CUSTOM_LOGO_ADDRESS = 9;
+	int SERVER_SETTINGS__EMAIL_SENDER_NAME = 6;
 
 	/**
 	 * The feature id for the '<em><b>Site Address</b></em>' attribute.
@@ -985,7 +958,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__SITE_ADDRESS = 10;
+	int SERVER_SETTINGS__SITE_ADDRESS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Whitelisted Domains</b></em>' attribute list.
@@ -994,7 +967,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__WHITELISTED_DOMAINS = 11;
+	int SERVER_SETTINGS__WHITELISTED_DOMAINS = 8;
 
 	/**
 	 * The feature id for the '<em><b>Hide User List For Non Admin</b></em>' attribute.
@@ -1003,7 +976,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN = 12;
+	int SERVER_SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN = 9;
 
 	/**
 	 * The feature id for the '<em><b>Protocol Buffers Port</b></em>' attribute.
@@ -1012,25 +985,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__PROTOCOL_BUFFERS_PORT = 13;
-
-	/**
-	 * The feature id for the '<em><b>Header Addition</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVER_SETTINGS__HEADER_ADDITION = 14;
-
-	/**
-	 * The feature id for the '<em><b>Footer Addition</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVER_SETTINGS__FOOTER_ADDITION = 15;
+	int SERVER_SETTINGS__PROTOCOL_BUFFERS_PORT = 10;
 
 	/**
 	 * The feature id for the '<em><b>Cache Output Files</b></em>' attribute.
@@ -1039,7 +994,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__CACHE_OUTPUT_FILES = 16;
+	int SERVER_SETTINGS__CACHE_OUTPUT_FILES = 11;
 
 	/**
 	 * The feature id for the '<em><b>Service Repository Url</b></em>' attribute.
@@ -1048,7 +1003,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__SERVICE_REPOSITORY_URL = 17;
+	int SERVER_SETTINGS__SERVICE_REPOSITORY_URL = 12;
 
 	/**
 	 * The number of structural features of the '<em>Server Settings</em>' class.
@@ -1057,7 +1012,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS_FEATURE_COUNT = 18;
+	int SERVER_SETTINGS_FEATURE_COUNT = 13;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.
@@ -2363,13 +2318,22 @@ public interface StorePackage extends EPackage {
 	int PLUGIN_DESCRIPTOR = 26;
 
 	/**
+	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_DESCRIPTOR__SIMPLE_NAME = 0;
+
+	/**
 	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR__DEFAULT_NAME = 0;
+	int PLUGIN_DESCRIPTOR__DEFAULT_NAME = 1;
 
 	/**
 	 * The feature id for the '<em><b>Plugin Class Name</b></em>' attribute.
@@ -2378,7 +2342,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = 1;
+	int PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = 2;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -2387,7 +2351,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR__DESCRIPTION = 2;
+	int PLUGIN_DESCRIPTOR__DESCRIPTION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -2396,7 +2360,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR__LOCATION = 3;
+	int PLUGIN_DESCRIPTOR__LOCATION = 4;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -2405,7 +2369,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR__ENABLED = 4;
+	int PLUGIN_DESCRIPTOR__ENABLED = 5;
 
 	/**
 	 * The number of structural features of the '<em>Plugin Descriptor</em>' class.
@@ -2414,7 +2378,16 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR_FEATURE_COUNT = 5;
+	int PLUGIN_DESCRIPTOR_FEATURE_COUNT = 6;
+
+	/**
+	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER_PLUGIN_DESCRIPTOR__SIMPLE_NAME = PLUGIN_DESCRIPTOR__SIMPLE_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
@@ -2487,6 +2460,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int SERIALIZER_PLUGIN_DESCRIPTOR_FEATURE_COUNT = PLUGIN_DESCRIPTOR_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESERIALIZER_PLUGIN_DESCRIPTOR__SIMPLE_NAME = PLUGIN_DESCRIPTOR__SIMPLE_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
@@ -3195,6 +3177,15 @@ public interface StorePackage extends EPackage {
 	int IFC_ENGINE_PLUGIN_DESCRIPTOR = 44;
 
 	/**
+	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IFC_ENGINE_PLUGIN_DESCRIPTOR__SIMPLE_NAME = PLUGIN_DESCRIPTOR__SIMPLE_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3514,6 +3505,15 @@ public interface StorePackage extends EPackage {
 	int QUERY_ENGINE_PLUGIN_DESCRIPTOR = 48;
 
 	/**
+	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__SIMPLE_NAME = PLUGIN_DESCRIPTOR__SIMPLE_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3651,6 +3651,15 @@ public interface StorePackage extends EPackage {
 	int MODEL_MERGER_PLUGIN_DESCRIPTOR = 50;
 
 	/**
+	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_MERGER_PLUGIN_DESCRIPTOR__SIMPLE_NAME = PLUGIN_DESCRIPTOR__SIMPLE_NAME;
+
+	/**
 	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3786,6 +3795,15 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	int MODEL_COMPARE_PLUGIN_DESCRIPTOR = 52;
+
+	/**
+	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__SIMPLE_NAME = PLUGIN_DESCRIPTOR__SIMPLE_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
@@ -4341,6 +4359,15 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	int SERVICE_PLUGIN_DESCRIPTOR = 58;
+
+	/**
+	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PLUGIN_DESCRIPTOR__SIMPLE_NAME = PLUGIN_DESCRIPTOR__SIMPLE_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
@@ -6369,17 +6396,6 @@ public interface StorePackage extends EPackage {
 	EClass getServerSettings();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getShowVersionUpgradeAvailable <em>Show Version Upgrade Available</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Show Version Upgrade Available</em>'.
-	 * @see org.bimserver.models.store.ServerSettings#getShowVersionUpgradeAvailable()
-	 * @see #getServerSettings()
-	 * @generated
-	 */
-	EAttribute getServerSettings_ShowVersionUpgradeAvailable();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#isSendConfirmationEmailAfterRegistration <em>Send Confirmation Email After Registration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6389,17 +6405,6 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getServerSettings_SendConfirmationEmailAfterRegistration();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getUseCaching <em>Use Caching</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Use Caching</em>'.
-	 * @see org.bimserver.models.store.ServerSettings#getUseCaching()
-	 * @see #getServerSettings()
-	 * @generated
-	 */
-	EAttribute getServerSettings_UseCaching();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getAllowSelfRegistration <em>Allow Self Registration</em>}'.
@@ -6435,17 +6440,6 @@ public interface StorePackage extends EPackage {
 	EAttribute getServerSettings_CheckinMergingEnabled();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getRegistrationAddition <em>Registration Addition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Registration Addition</em>'.
-	 * @see org.bimserver.models.store.ServerSettings#getRegistrationAddition()
-	 * @see #getServerSettings()
-	 * @generated
-	 */
-	EAttribute getServerSettings_RegistrationAddition();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getSmtpServer <em>Smtp Server</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6468,15 +6462,15 @@ public interface StorePackage extends EPackage {
 	EAttribute getServerSettings_EmailSenderAddress();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getCustomLogoAddress <em>Custom Logo Address</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getEmailSenderName <em>Email Sender Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Custom Logo Address</em>'.
-	 * @see org.bimserver.models.store.ServerSettings#getCustomLogoAddress()
+	 * @return the meta object for the attribute '<em>Email Sender Name</em>'.
+	 * @see org.bimserver.models.store.ServerSettings#getEmailSenderName()
 	 * @see #getServerSettings()
 	 * @generated
 	 */
-	EAttribute getServerSettings_CustomLogoAddress();
+	EAttribute getServerSettings_EmailSenderName();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getSiteAddress <em>Site Address</em>}'.
@@ -6521,28 +6515,6 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getServerSettings_ProtocolBuffersPort();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getHeaderAddition <em>Header Addition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Header Addition</em>'.
-	 * @see org.bimserver.models.store.ServerSettings#getHeaderAddition()
-	 * @see #getServerSettings()
-	 * @generated
-	 */
-	EAttribute getServerSettings_HeaderAddition();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getFooterAddition <em>Footer Addition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Footer Addition</em>'.
-	 * @see org.bimserver.models.store.ServerSettings#getFooterAddition()
-	 * @see #getServerSettings()
-	 * @generated
-	 */
-	EAttribute getServerSettings_FooterAddition();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#getCacheOutputFiles <em>Cache Output Files</em>}'.
@@ -7684,6 +7656,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPluginDescriptor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginDescriptor#getSimpleName <em>Simple Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Simple Name</em>'.
+	 * @see org.bimserver.models.store.PluginDescriptor#getSimpleName()
+	 * @see #getPluginDescriptor()
+	 * @generated
+	 */
+	EAttribute getPluginDescriptor_SimpleName();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginDescriptor#getDefaultName <em>Default Name</em>}'.
@@ -10607,28 +10590,12 @@ public interface StorePackage extends EPackage {
 		EClass SERVER_SETTINGS = eINSTANCE.getServerSettings();
 
 		/**
-		 * The meta object literal for the '<em><b>Show Version Upgrade Available</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SERVER_SETTINGS__SHOW_VERSION_UPGRADE_AVAILABLE = eINSTANCE.getServerSettings_ShowVersionUpgradeAvailable();
-
-		/**
 		 * The meta object literal for the '<em><b>Send Confirmation Email After Registration</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION = eINSTANCE.getServerSettings_SendConfirmationEmailAfterRegistration();
-
-		/**
-		 * The meta object literal for the '<em><b>Use Caching</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SERVER_SETTINGS__USE_CACHING = eINSTANCE.getServerSettings_UseCaching();
 
 		/**
 		 * The meta object literal for the '<em><b>Allow Self Registration</b></em>' attribute feature.
@@ -10655,14 +10622,6 @@ public interface StorePackage extends EPackage {
 		EAttribute SERVER_SETTINGS__CHECKIN_MERGING_ENABLED = eINSTANCE.getServerSettings_CheckinMergingEnabled();
 
 		/**
-		 * The meta object literal for the '<em><b>Registration Addition</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SERVER_SETTINGS__REGISTRATION_ADDITION = eINSTANCE.getServerSettings_RegistrationAddition();
-
-		/**
 		 * The meta object literal for the '<em><b>Smtp Server</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10679,12 +10638,12 @@ public interface StorePackage extends EPackage {
 		EAttribute SERVER_SETTINGS__EMAIL_SENDER_ADDRESS = eINSTANCE.getServerSettings_EmailSenderAddress();
 
 		/**
-		 * The meta object literal for the '<em><b>Custom Logo Address</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Email Sender Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SERVER_SETTINGS__CUSTOM_LOGO_ADDRESS = eINSTANCE.getServerSettings_CustomLogoAddress();
+		EAttribute SERVER_SETTINGS__EMAIL_SENDER_NAME = eINSTANCE.getServerSettings_EmailSenderName();
 
 		/**
 		 * The meta object literal for the '<em><b>Site Address</b></em>' attribute feature.
@@ -10717,22 +10676,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERVER_SETTINGS__PROTOCOL_BUFFERS_PORT = eINSTANCE.getServerSettings_ProtocolBuffersPort();
-
-		/**
-		 * The meta object literal for the '<em><b>Header Addition</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SERVER_SETTINGS__HEADER_ADDITION = eINSTANCE.getServerSettings_HeaderAddition();
-
-		/**
-		 * The meta object literal for the '<em><b>Footer Addition</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SERVER_SETTINGS__FOOTER_ADDITION = eINSTANCE.getServerSettings_FooterAddition();
 
 		/**
 		 * The meta object literal for the '<em><b>Cache Output Files</b></em>' attribute feature.
@@ -11631,6 +11574,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EClass PLUGIN_DESCRIPTOR = eINSTANCE.getPluginDescriptor();
+
+		/**
+		 * The meta object literal for the '<em><b>Simple Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_DESCRIPTOR__SIMPLE_NAME = eINSTANCE.getPluginDescriptor_SimpleName();
 
 		/**
 		 * The meta object literal for the '<em><b>Default Name</b></em>' attribute feature.

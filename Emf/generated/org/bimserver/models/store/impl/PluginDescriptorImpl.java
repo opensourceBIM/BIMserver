@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getSimpleName <em>Simple Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getDefaultName <em>Default Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getPluginClassName <em>Plugin Class Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getDescription <em>Description</em>}</li>
@@ -66,6 +67,24 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	@Override
 	protected int eStaticFeatureCount() {
 		return 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSimpleName() {
+		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__SIMPLE_NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSimpleName(String newSimpleName) {
+		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__SIMPLE_NAME, newSimpleName);
 	}
 
 	/**

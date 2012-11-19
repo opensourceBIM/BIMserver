@@ -27,22 +27,17 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.models.store.ServerSettings#getShowVersionUpgradeAvailable <em>Show Version Upgrade Available</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#isSendConfirmationEmailAfterRegistration <em>Send Confirmation Email After Registration</em>}</li>
- *   <li>{@link org.bimserver.models.store.ServerSettings#getUseCaching <em>Use Caching</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getAllowSelfRegistration <em>Allow Self Registration</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#isAllowUsersToCreateTopLevelProjects <em>Allow Users To Create Top Level Projects</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getCheckinMergingEnabled <em>Checkin Merging Enabled</em>}</li>
- *   <li>{@link org.bimserver.models.store.ServerSettings#getRegistrationAddition <em>Registration Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getSmtpServer <em>Smtp Server</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getEmailSenderAddress <em>Email Sender Address</em>}</li>
- *   <li>{@link org.bimserver.models.store.ServerSettings#getCustomLogoAddress <em>Custom Logo Address</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getEmailSenderName <em>Email Sender Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getSiteAddress <em>Site Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getWhitelistedDomains <em>Whitelisted Domains</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getProtocolBuffersPort <em>Protocol Buffers Port</em>}</li>
- *   <li>{@link org.bimserver.models.store.ServerSettings#getHeaderAddition <em>Header Addition</em>}</li>
- *   <li>{@link org.bimserver.models.store.ServerSettings#getFooterAddition <em>Footer Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getCacheOutputFiles <em>Cache Output Files</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getServiceRepositoryUrl <em>Service Repository Url</em>}</li>
  * </ul>
@@ -54,32 +49,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface ServerSettings extends IdEObject {
-	/**
-	 * Returns the value of the '<em><b>Show Version Upgrade Available</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Show Version Upgrade Available</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Show Version Upgrade Available</em>' attribute.
-	 * @see #setShowVersionUpgradeAvailable(Boolean)
-	 * @see org.bimserver.models.store.StorePackage#getServerSettings_ShowVersionUpgradeAvailable()
-	 * @model
-	 * @generated
-	 */
-	Boolean getShowVersionUpgradeAvailable();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getShowVersionUpgradeAvailable <em>Show Version Upgrade Available</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Show Version Upgrade Available</em>' attribute.
-	 * @see #getShowVersionUpgradeAvailable()
-	 * @generated
-	 */
-	void setShowVersionUpgradeAvailable(Boolean value);
-
 	/**
 	 * Returns the value of the '<em><b>Send Confirmation Email After Registration</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -105,32 +74,6 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	void setSendConfirmationEmailAfterRegistration(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Use Caching</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Use Caching</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Use Caching</em>' attribute.
-	 * @see #setUseCaching(Boolean)
-	 * @see org.bimserver.models.store.StorePackage#getServerSettings_UseCaching()
-	 * @model
-	 * @generated
-	 */
-	Boolean getUseCaching();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getUseCaching <em>Use Caching</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Use Caching</em>' attribute.
-	 * @see #getUseCaching()
-	 * @generated
-	 */
-	void setUseCaching(Boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Allow Self Registration</b></em>' attribute.
@@ -211,32 +154,6 @@ public interface ServerSettings extends IdEObject {
 	void setCheckinMergingEnabled(Boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Registration Addition</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Registration Addition</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Registration Addition</em>' attribute.
-	 * @see #setRegistrationAddition(String)
-	 * @see org.bimserver.models.store.StorePackage#getServerSettings_RegistrationAddition()
-	 * @model
-	 * @generated
-	 */
-	String getRegistrationAddition();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getRegistrationAddition <em>Registration Addition</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Registration Addition</em>' attribute.
-	 * @see #getRegistrationAddition()
-	 * @generated
-	 */
-	void setRegistrationAddition(String value);
-
-	/**
 	 * Returns the value of the '<em><b>Smtp Server</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -289,30 +206,30 @@ public interface ServerSettings extends IdEObject {
 	void setEmailSenderAddress(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Custom Logo Address</b></em>' attribute.
+	 * Returns the value of the '<em><b>Email Sender Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Custom Logo Address</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Email Sender Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Custom Logo Address</em>' attribute.
-	 * @see #setCustomLogoAddress(String)
-	 * @see org.bimserver.models.store.StorePackage#getServerSettings_CustomLogoAddress()
+	 * @return the value of the '<em>Email Sender Name</em>' attribute.
+	 * @see #setEmailSenderName(String)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_EmailSenderName()
 	 * @model
 	 * @generated
 	 */
-	String getCustomLogoAddress();
+	String getEmailSenderName();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getCustomLogoAddress <em>Custom Logo Address</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getEmailSenderName <em>Email Sender Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Custom Logo Address</em>' attribute.
-	 * @see #getCustomLogoAddress()
+	 * @param value the new value of the '<em>Email Sender Name</em>' attribute.
+	 * @see #getEmailSenderName()
 	 * @generated
 	 */
-	void setCustomLogoAddress(String value);
+	void setEmailSenderName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Site Address</b></em>' attribute.
@@ -407,58 +324,6 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	void setProtocolBuffersPort(Integer value);
-
-	/**
-	 * Returns the value of the '<em><b>Header Addition</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Header Addition</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Header Addition</em>' attribute.
-	 * @see #setHeaderAddition(String)
-	 * @see org.bimserver.models.store.StorePackage#getServerSettings_HeaderAddition()
-	 * @model
-	 * @generated
-	 */
-	String getHeaderAddition();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getHeaderAddition <em>Header Addition</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Header Addition</em>' attribute.
-	 * @see #getHeaderAddition()
-	 * @generated
-	 */
-	void setHeaderAddition(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Footer Addition</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Footer Addition</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Footer Addition</em>' attribute.
-	 * @see #setFooterAddition(String)
-	 * @see org.bimserver.models.store.StorePackage#getServerSettings_FooterAddition()
-	 * @model
-	 * @generated
-	 */
-	String getFooterAddition();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getFooterAddition <em>Footer Addition</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Footer Addition</em>' attribute.
-	 * @see #getFooterAddition()
-	 * @generated
-	 */
-	void setFooterAddition(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Cache Output Files</b></em>' attribute.

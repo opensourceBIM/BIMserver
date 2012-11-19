@@ -150,7 +150,6 @@ public class JvmIfcEngine implements IfcEngine {
 				}
 			};
 			thread.start();
-			Thread.sleep(100);
 		} catch (Exception e) {
 			throw new IfcEngineException(e);
 		}

@@ -29,22 +29,17 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getShowVersionUpgradeAvailable <em>Show Version Upgrade Available</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isSendConfirmationEmailAfterRegistration <em>Send Confirmation Email After Registration</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getUseCaching <em>Use Caching</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getAllowSelfRegistration <em>Allow Self Registration</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isAllowUsersToCreateTopLevelProjects <em>Allow Users To Create Top Level Projects</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getCheckinMergingEnabled <em>Checkin Merging Enabled</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getRegistrationAddition <em>Registration Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSmtpServer <em>Smtp Server</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getEmailSenderAddress <em>Email Sender Address</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getCustomLogoAddress <em>Custom Logo Address</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getEmailSenderName <em>Email Sender Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSiteAddress <em>Site Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getWhitelistedDomains <em>Whitelisted Domains</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getProtocolBuffersPort <em>Protocol Buffers Port</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getHeaderAddition <em>Header Addition</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getFooterAddition <em>Footer Addition</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getCacheOutputFiles <em>Cache Output Files</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getServiceRepositoryUrl <em>Service Repository Url</em>}</li>
  * </ul>
@@ -87,24 +82,6 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Boolean getShowVersionUpgradeAvailable() {
-		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__SHOW_VERSION_UPGRADE_AVAILABLE, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setShowVersionUpgradeAvailable(Boolean newShowVersionUpgradeAvailable) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__SHOW_VERSION_UPGRADE_AVAILABLE, newShowVersionUpgradeAvailable);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean isSendConfirmationEmailAfterRegistration() {
 		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION, true);
 	}
@@ -116,24 +93,6 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 */
 	public void setSendConfirmationEmailAfterRegistration(boolean newSendConfirmationEmailAfterRegistration) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION, newSendConfirmationEmailAfterRegistration);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Boolean getUseCaching() {
-		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__USE_CACHING, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setUseCaching(Boolean newUseCaching) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__USE_CACHING, newUseCaching);
 	}
 
 	/**
@@ -195,24 +154,6 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getRegistrationAddition() {
-		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__REGISTRATION_ADDITION, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRegistrationAddition(String newRegistrationAddition) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__REGISTRATION_ADDITION, newRegistrationAddition);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getSmtpServer() {
 		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__SMTP_SERVER, true);
 	}
@@ -249,8 +190,8 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCustomLogoAddress() {
-		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__CUSTOM_LOGO_ADDRESS, true);
+	public String getEmailSenderName() {
+		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__EMAIL_SENDER_NAME, true);
 	}
 
 	/**
@@ -258,8 +199,8 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCustomLogoAddress(String newCustomLogoAddress) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__CUSTOM_LOGO_ADDRESS, newCustomLogoAddress);
+	public void setEmailSenderName(String newEmailSenderName) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__EMAIL_SENDER_NAME, newEmailSenderName);
 	}
 
 	/**
@@ -324,42 +265,6 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 */
 	public void setProtocolBuffersPort(Integer newProtocolBuffersPort) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__PROTOCOL_BUFFERS_PORT, newProtocolBuffersPort);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getHeaderAddition() {
-		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__HEADER_ADDITION, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setHeaderAddition(String newHeaderAddition) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__HEADER_ADDITION, newHeaderAddition);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getFooterAddition() {
-		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__FOOTER_ADDITION, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFooterAddition(String newFooterAddition) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__FOOTER_ADDITION, newFooterAddition);
 	}
 
 	/**

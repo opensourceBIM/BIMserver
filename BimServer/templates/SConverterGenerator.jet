@@ -145,8 +145,16 @@ public class SConverter {
 %>
 		return result;
 	}
-
 	public <%=eClass.getName()%> convertFromSObject(S<%=eClass.getName()%> input, DatabaseSession session) throws BimserverDatabaseException {
+		<%=eClass.getName()%> result = convertFromSObject(input, <%=StringUtils.firstUpperCase(eClass.getEPackage().getName())%>Factory.eINSTANCE.create<%=eClass.getName()%>(), session);
+		<% if (eClass.getEAnnotation("nodatabase") == null) { %>
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		<% } %>
+		return result;
+	}
+
+	public <%=eClass.getName()%> convertFromSObject(S<%=eClass.getName()%> input, <%=eClass.getName()%> result, DatabaseSession session) throws BimserverDatabaseException {
 		if (input == null) {
 			return null;
 		}
@@ -160,13 +168,6 @@ public class SConverter {
 <%
 		}
 		}
-%>		
-		<%=eClass.getName()%> result = <%=StringUtils.firstUpperCase(eClass.getEPackage().getName())%>Factory.eINSTANCE.create<%=eClass.getName()%>();
-<% if (eClass.getEAnnotation("nodatabase") == null) { %>
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-<% } %>
-<%
 	for (EAttribute eAttribute : eClass.getEAllAttributes()) {
 		if (eAttribute.getEType() instanceof EEnum) {
 %>

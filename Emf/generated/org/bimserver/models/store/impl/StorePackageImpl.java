@@ -1583,7 +1583,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerSettings_ShowVersionUpgradeAvailable() {
+	public EAttribute getServerSettings_SendConfirmationEmailAfterRegistration() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(0);
 	}
 
@@ -1592,7 +1592,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerSettings_SendConfirmationEmailAfterRegistration() {
+	public EAttribute getServerSettings_AllowSelfRegistration() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(1);
 	}
 
@@ -1601,7 +1601,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerSettings_UseCaching() {
+	public EAttribute getServerSettings_AllowUsersToCreateTopLevelProjects() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(2);
 	}
 
@@ -1610,7 +1610,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerSettings_AllowSelfRegistration() {
+	public EAttribute getServerSettings_CheckinMergingEnabled() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(3);
 	}
 
@@ -1619,7 +1619,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerSettings_AllowUsersToCreateTopLevelProjects() {
+	public EAttribute getServerSettings_SmtpServer() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(4);
 	}
 
@@ -1628,7 +1628,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerSettings_CheckinMergingEnabled() {
+	public EAttribute getServerSettings_EmailSenderAddress() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(5);
 	}
 
@@ -1637,7 +1637,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerSettings_RegistrationAddition() {
+	public EAttribute getServerSettings_EmailSenderName() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(6);
 	}
 
@@ -1646,7 +1646,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerSettings_SmtpServer() {
+	public EAttribute getServerSettings_SiteAddress() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(7);
 	}
 
@@ -1655,7 +1655,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerSettings_EmailSenderAddress() {
+	public EAttribute getServerSettings_WhitelistedDomains() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(8);
 	}
 
@@ -1664,7 +1664,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerSettings_CustomLogoAddress() {
+	public EAttribute getServerSettings_HideUserListForNonAdmin() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(9);
 	}
 
@@ -1673,7 +1673,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerSettings_SiteAddress() {
+	public EAttribute getServerSettings_ProtocolBuffersPort() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(10);
 	}
 
@@ -1682,7 +1682,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerSettings_WhitelistedDomains() {
+	public EAttribute getServerSettings_CacheOutputFiles() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(11);
 	}
 
@@ -1691,53 +1691,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerSettings_HideUserListForNonAdmin() {
-		return (EAttribute) getServerSettings().getEStructuralFeatures().get(12);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getServerSettings_ProtocolBuffersPort() {
-		return (EAttribute) getServerSettings().getEStructuralFeatures().get(13);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getServerSettings_HeaderAddition() {
-		return (EAttribute) getServerSettings().getEStructuralFeatures().get(14);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getServerSettings_FooterAddition() {
-		return (EAttribute) getServerSettings().getEStructuralFeatures().get(15);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getServerSettings_CacheOutputFiles() {
-		return (EAttribute) getServerSettings().getEStructuralFeatures().get(16);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getServerSettings_ServiceRepositoryUrl() {
-		return (EAttribute) getServerSettings().getEStructuralFeatures().get(17);
+		return (EAttribute) getServerSettings().getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -2756,7 +2711,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPluginDescriptor_DefaultName() {
+	public EAttribute getPluginDescriptor_SimpleName() {
 		return (EAttribute) getPluginDescriptor().getEStructuralFeatures().get(0);
 	}
 
@@ -2765,7 +2720,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPluginDescriptor_PluginClassName() {
+	public EAttribute getPluginDescriptor_DefaultName() {
 		return (EAttribute) getPluginDescriptor().getEStructuralFeatures().get(1);
 	}
 
@@ -2774,7 +2729,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPluginDescriptor_Description() {
+	public EAttribute getPluginDescriptor_PluginClassName() {
 		return (EAttribute) getPluginDescriptor().getEStructuralFeatures().get(2);
 	}
 
@@ -2783,7 +2738,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPluginDescriptor_Location() {
+	public EAttribute getPluginDescriptor_Description() {
 		return (EAttribute) getPluginDescriptor().getEStructuralFeatures().get(3);
 	}
 
@@ -2792,8 +2747,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPluginDescriptor_Enabled() {
+	public EAttribute getPluginDescriptor_Location() {
 		return (EAttribute) getPluginDescriptor().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPluginDescriptor_Enabled() {
+		return (EAttribute) getPluginDescriptor().getEStructuralFeatures().get(5);
 	}
 
 	/**

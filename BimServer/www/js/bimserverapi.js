@@ -1,9 +1,21 @@
 function BimServerApi(baseUrl, notifier) {
 	var othis = this;
+	
+	othis.translations = {
+		GETDATAOBJECTSBYTYPE_BUSY: "Loading objects"
+	}
+	
 	othis.token = null;
 	othis.baseUrl = baseUrl;
 	othis.address = baseUrl + "/jsonapi";
 	othis.notifier = notifier;
+	if (othis.notifier == null) {
+		othis.notifier = {
+			error: function(){},
+			info: function(){},
+			warn: function(){}
+		};
+	}
 	othis.server = new BimServerWebSocket(baseUrl);
 	othis.user = null;
 	othis.listeners = {};
@@ -16,13 +28,20 @@ function BimServerApi(baseUrl, notifier) {
 		};
 		othis.call("ServiceInterface", "autologin", request, function(data){
 			othis.token = data;
-			if (othis.notifier != null) {
-				othis.notifier.info("Auto login successful, logout to disable autologin");
-			}
+			othis.notifier.info("Auto login successful, logout to disable autologin");
 			othis.resolveUser();
 			callback();
 			othis.autoLoginTried = false;
 		}, errorCallback);
+	};
+	
+	this.translate = function(key) {
+		key = key.toUpperCase();
+		if (othis.translations[key] != null) {
+			return othis.translations[key];
+		}
+		console.log("translation for " + key + " not found");
+		return key;
 	};
 	
 	this.login = function(username, password, rememberme, callback, errorCallback) {
@@ -38,9 +57,7 @@ function BimServerApi(baseUrl, notifier) {
 				$.cookie("autologin", autologin, { expires: 31 });
 				$.cookie("address", othis.baseUrl, { expires: 31 });
 			}
-			if (othis.notifier != null) {
-				othis.notifier.info("Login successful");
-			}
+			othis.notifier.info("Login successful");
 			othis.resolveUser();
 			callback();
 		}, errorCallback);
@@ -72,9 +89,7 @@ function BimServerApi(baseUrl, notifier) {
 		$.removeCookie("autologin");
 		$.removeCookie("address");
 		othis.call("ServiceInterface", "logout", {}, function(){
-			if (othis.notifier != null) {
-				othis.notifier.info("Logout successful");
-			}
+			othis.notifier.info("Logout successful");
 			callback();
 		});
 	};
@@ -141,7 +156,7 @@ function BimServerApi(baseUrl, notifier) {
 		return object;
 	};
 	
-	this.multiCall = function(requests, callback, errorCallback) {
+	this.multiCall = function(requests, callback, showBusy, showDone, showError) {
 		var request = null;
 		if (requests.length == 1) {
 			var request = requests[0];
@@ -156,12 +171,29 @@ function BimServerApi(baseUrl, notifier) {
 			};
 		}
 
-		if (othis.notifier != null) {
-			othis.notifier.clear();
-		}
+		othis.notifier.clear();
 		
 		if (othis.token != null) {
 			request.token = othis.token;
+		}
+		
+		var key = requests[0][1];
+		requests.forEach(function(item, index){
+			if (index > 0) {
+				key += "_" + item;
+			}
+		});
+		
+		var showedBusy = false;
+		if (showBusy) {
+			if (othis.lastBusyTimeOut != null) {
+				clearTimeout(othis.lastBusyTimeOut);
+				othis.lastBusyTimeOut = null;
+			}
+			othis.lastBusyTimeOut = setTimeout(function(){
+				othis.notifier.setStatus(othis.translate(key + "_BUSY"), -1);
+				showedBusy = true;
+			}, 200);
 		}
 		
 		console.log("request", request);
@@ -175,6 +207,14 @@ function BimServerApi(baseUrl, notifier) {
 				console.log("response", data);
 				var errorsToReport = [];
 				if (requests.length == 1) {
+					if (showBusy) {
+						if (othis.lastBusyTimeOut != null) {
+							clearTimeout(othis.lastBusyTimeOut);
+						}
+						if (showedBusy) {
+							othis.notifier.resetStatus();
+						}
+					}
 					if (data.response.exception != null) {
 						if (data.response.exception.message == "Invalid token" && !othis.autoLoginTried && $.cookie("username") != null && $.cookie("autologin") != null) {
 							othis.autologin($.cookie("username"), $.cookie("autologin"), function(){
@@ -182,17 +222,22 @@ function BimServerApi(baseUrl, notifier) {
 								othis.multiCall(requests, callback, errorCallback);
 							});
 						} else {
-							if (errorCallback == null && othis.notifier != null) {
-								othis.notifier.error(data.response.exception.message);
-							} else {
-								errorsToReport.push(data.response.exception);
+							if (showError) {
+								if (othis.lastTimeOut != null) {
+									clearTimeout(othis.lastTimeOut);
+								}
+								othis.notifier.setError(data.response.exception.message);
 							}
+						}
+					} else {
+						if (showDone) {
+							othis.setStatus(translate(key + "_DONE"), 5000);
 						}
 					}
 				} else if (requests.length > 1) {
 					data.responses.forEach(function(response){
 						if (response.exception != null) {
-							if (errorCallback == null && othis.notifier != null) {
+							if (errorCallback == null) {
 								othis.notifier.error(response.exception.message);
 							} else {
 								errorsToReport.push(response.exception);
@@ -211,20 +256,47 @@ function BimServerApi(baseUrl, notifier) {
 				}
 			},
 			error: function(){
-				if (othis.notifier != null) {
-					othis.notifier.error("connection error");
+				if (textStatus == "abort") {
+					// ignore
+				} else {
+					console.log(errorThrown);
+					console.log(textStatus);
+					console.log(jqXHR);
+					if (othis.lastTimeOut != null) {
+						clearTimeout(othis.lastTimeOut);
+					}
+					othis.notifier.error("ERROR_REMOTE_METHOD_CALL");
 				}
-				if (errorCallback != null) {
-					errorCallback();
+				if (callback != null) {
+					var result = new Object();
+					result.error = textStatus;
+					result.ok = false;
+					callback(result);
 				}
 			}
 		});		
 	};
 	
-	this.call = function(interfaceName, method, data, callback, errorCallback) {
+	this.callWithFullIndication = function(interfaceName, methodName, data, callback) {
+		this.call(interfaceName, methodName, data, callback, true, true, true);
+	};
+
+	this.callWithUserErrorIndication = function(action, data, callback) {
+		this.call(interfaceName, methodName, data, callback, false, false, true);
+	};
+
+	this.callWithUserErrorAndDoneIndication = function(action, data, callback) {
+		this.call(interfaceName, methodName, data, callback, false, true, true);
+	};
+	
+	this.call = function(interfaceName, methodName, data, callback, showBusy, showDone, showError) {
+		var showBusy = typeof showBusy !== 'undefined' ? showBusy : true;
+		var showDone = typeof showDone !== 'undefined' ? showDone : false;
+		var showError = typeof showError !== 'undefined' ? showError : true;
+
 		othis.multiCall([[
 		    interfaceName,
-			method,
+		    methodName,
 			data
 		]], function(data){
 			if (data.exception == null) {
@@ -232,9 +304,7 @@ function BimServerApi(baseUrl, notifier) {
 					callback(data.result);
 				}
 			}
-		}, errorCallback == null ? null : function(error){
-			errorCallback(error);
-		});
+		}, showBusy, showDone, showError);
 	};
 	
 	othis.server.listener = othis.processNotification;

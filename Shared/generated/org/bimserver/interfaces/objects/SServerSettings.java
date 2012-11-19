@@ -31,22 +31,17 @@ public class SServerSettings implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	private java.lang.Boolean showVersionUpgradeAvailable;
 	private boolean sendConfirmationEmailAfterRegistration;
-	private java.lang.Boolean useCaching;
 	private java.lang.Boolean allowSelfRegistration;
 	private boolean allowUsersToCreateTopLevelProjects;
 	private java.lang.Boolean checkinMergingEnabled;
-	private java.lang.String registrationAddition;
 	private java.lang.String smtpServer;
 	private java.lang.String emailSenderAddress;
-	private java.lang.String customLogoAddress;
+	private java.lang.String emailSenderName;
 	private java.lang.String siteAddress;
 	private List<java.lang.String> whitelistedDomains = new ArrayList<java.lang.String>();
 	private java.lang.Boolean hideUserListForNonAdmin;
 	private java.lang.Integer protocolBuffersPort;
-	private java.lang.String headerAddition;
-	private java.lang.String footerAddition;
 	private java.lang.Boolean cacheOutputFiles;
 	private java.lang.String serviceRepositoryUrl;
 	public long getOid() {
@@ -75,14 +70,8 @@ public class SServerSettings implements SDataBase
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("showVersionUpgradeAvailable")) {
-			return getShowVersionUpgradeAvailable();
-		}
 		if (sField.getName().equals("sendConfirmationEmailAfterRegistration")) {
 			return isSendConfirmationEmailAfterRegistration();
-		}
-		if (sField.getName().equals("useCaching")) {
-			return getUseCaching();
 		}
 		if (sField.getName().equals("allowSelfRegistration")) {
 			return getAllowSelfRegistration();
@@ -93,17 +82,14 @@ public class SServerSettings implements SDataBase
 		if (sField.getName().equals("checkinMergingEnabled")) {
 			return getCheckinMergingEnabled();
 		}
-		if (sField.getName().equals("registrationAddition")) {
-			return getRegistrationAddition();
-		}
 		if (sField.getName().equals("smtpServer")) {
 			return getSmtpServer();
 		}
 		if (sField.getName().equals("emailSenderAddress")) {
 			return getEmailSenderAddress();
 		}
-		if (sField.getName().equals("customLogoAddress")) {
-			return getCustomLogoAddress();
+		if (sField.getName().equals("emailSenderName")) {
+			return getEmailSenderName();
 		}
 		if (sField.getName().equals("siteAddress")) {
 			return getSiteAddress();
@@ -116,12 +102,6 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("protocolBuffersPort")) {
 			return getProtocolBuffersPort();
-		}
-		if (sField.getName().equals("headerAddition")) {
-			return getHeaderAddition();
-		}
-		if (sField.getName().equals("footerAddition")) {
-			return getFooterAddition();
 		}
 		if (sField.getName().equals("cacheOutputFiles")) {
 			return getCacheOutputFiles();
@@ -140,16 +120,8 @@ public class SServerSettings implements SDataBase
 	@SuppressWarnings("unchecked")
 
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("showVersionUpgradeAvailable")) {
-			setShowVersionUpgradeAvailable((Boolean)val);
-			return;
-		}
 		if (sField.getName().equals("sendConfirmationEmailAfterRegistration")) {
 			setSendConfirmationEmailAfterRegistration((Boolean)val);
-			return;
-		}
-		if (sField.getName().equals("useCaching")) {
-			setUseCaching((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("allowSelfRegistration")) {
@@ -164,10 +136,6 @@ public class SServerSettings implements SDataBase
 			setCheckinMergingEnabled((Boolean)val);
 			return;
 		}
-		if (sField.getName().equals("registrationAddition")) {
-			setRegistrationAddition((String)val);
-			return;
-		}
 		if (sField.getName().equals("smtpServer")) {
 			setSmtpServer((String)val);
 			return;
@@ -176,8 +144,8 @@ public class SServerSettings implements SDataBase
 			setEmailSenderAddress((String)val);
 			return;
 		}
-		if (sField.getName().equals("customLogoAddress")) {
-			setCustomLogoAddress((String)val);
+		if (sField.getName().equals("emailSenderName")) {
+			setEmailSenderName((String)val);
 			return;
 		}
 		if (sField.getName().equals("siteAddress")) {
@@ -194,14 +162,6 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("protocolBuffersPort")) {
 			setProtocolBuffersPort((Integer)val);
-			return;
-		}
-		if (sField.getName().equals("headerAddition")) {
-			setHeaderAddition((String)val);
-			return;
-		}
-		if (sField.getName().equals("footerAddition")) {
-			setFooterAddition((String)val);
 			return;
 		}
 		if (sField.getName().equals("cacheOutputFiles")) {
@@ -223,28 +183,12 @@ public class SServerSettings implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	public java.lang.Boolean getShowVersionUpgradeAvailable() {
-		return showVersionUpgradeAvailable;
-	}
-
-	public void setShowVersionUpgradeAvailable(java.lang.Boolean showVersionUpgradeAvailable) {
-		this.showVersionUpgradeAvailable = showVersionUpgradeAvailable;
-	}
-	
 	public boolean isSendConfirmationEmailAfterRegistration() {
 		return sendConfirmationEmailAfterRegistration;
 	}
 
 	public void setSendConfirmationEmailAfterRegistration(boolean sendConfirmationEmailAfterRegistration) {
 		this.sendConfirmationEmailAfterRegistration = sendConfirmationEmailAfterRegistration;
-	}
-	
-	public java.lang.Boolean getUseCaching() {
-		return useCaching;
-	}
-
-	public void setUseCaching(java.lang.Boolean useCaching) {
-		this.useCaching = useCaching;
 	}
 	
 	public java.lang.Boolean getAllowSelfRegistration() {
@@ -271,14 +215,6 @@ public class SServerSettings implements SDataBase
 		this.checkinMergingEnabled = checkinMergingEnabled;
 	}
 	
-	public java.lang.String getRegistrationAddition() {
-		return registrationAddition;
-	}
-
-	public void setRegistrationAddition(java.lang.String registrationAddition) {
-		this.registrationAddition = registrationAddition;
-	}
-	
 	public java.lang.String getSmtpServer() {
 		return smtpServer;
 	}
@@ -295,12 +231,12 @@ public class SServerSettings implements SDataBase
 		this.emailSenderAddress = emailSenderAddress;
 	}
 	
-	public java.lang.String getCustomLogoAddress() {
-		return customLogoAddress;
+	public java.lang.String getEmailSenderName() {
+		return emailSenderName;
 	}
 
-	public void setCustomLogoAddress(java.lang.String customLogoAddress) {
-		this.customLogoAddress = customLogoAddress;
+	public void setEmailSenderName(java.lang.String emailSenderName) {
+		this.emailSenderName = emailSenderName;
 	}
 	
 	public java.lang.String getSiteAddress() {
@@ -334,22 +270,6 @@ public class SServerSettings implements SDataBase
 
 	public void setProtocolBuffersPort(java.lang.Integer protocolBuffersPort) {
 		this.protocolBuffersPort = protocolBuffersPort;
-	}
-	
-	public java.lang.String getHeaderAddition() {
-		return headerAddition;
-	}
-
-	public void setHeaderAddition(java.lang.String headerAddition) {
-		this.headerAddition = headerAddition;
-	}
-	
-	public java.lang.String getFooterAddition() {
-		return footerAddition;
-	}
-
-	public void setFooterAddition(java.lang.String footerAddition) {
-		this.footerAddition = footerAddition;
 	}
 	
 	public java.lang.Boolean getCacheOutputFiles() {

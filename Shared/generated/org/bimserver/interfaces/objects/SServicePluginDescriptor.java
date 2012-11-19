@@ -55,6 +55,9 @@ public class SServicePluginDescriptor extends SPluginDescriptor implements SData
 	}
 
 	public Object sGet(SField sField) {
+		if (sField.getName().equals("simpleName")) {
+			return getSimpleName();
+		}
 		if (sField.getName().equals("defaultName")) {
 			return getDefaultName();
 		}
@@ -80,6 +83,10 @@ public class SServicePluginDescriptor extends SPluginDescriptor implements SData
 	}
 
 	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("simpleName")) {
+			setSimpleName((String)val);
+			return;
+		}
 		if (sField.getName().equals("defaultName")) {
 			setDefaultName((String)val);
 			return;
