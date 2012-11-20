@@ -297,6 +297,7 @@ public interface ServiceInterface extends PublicInterface {
 			@WebParam(name = "classNames", partName = "downloadByTypes.classNames") Set<String> classNames,
 			@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
 			@WebParam(name = "includeAllSubtypes", partName = "downloadByTypes.includeAllSubtypes") Boolean includeAllSubtypes,
+			@WebParam(name = "useObjectIDM", partName = "downloadByTypes.useObjectIDM") Boolean useObjectIDM,
 			@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
@@ -1994,51 +1995,6 @@ public interface ServiceInterface extends PublicInterface {
 	List<SInternalServicePluginConfiguration> getAllInternalServices(
 		@WebParam(name = "onlyEnabled", partName = "getAllInternalServices.onlyEnabled") Boolean onlyEnabled) throws UserException, ServerException;
 	
-	/**
-	 * @return The location of a custom Logo (URL) for the BIMserver
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSettingCustomLogoAddress")
-	String getSettingCustomLogoAddress() throws ServerException, UserException;
-
-	/**
-	 * @param customLogoAddress The new location for the custom logo
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingCustomLogoAddress")
-	void setSettingCustomLogoAddress(
-			@WebParam(name = "customLogoAddress", partName = "setSettingsCustomLogoAddress.customLogoAddress") String customLogoAddress) throws ServerException, UserException;
-
-	/**
-	 * @return An addition to the JSP header
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSettingHeaderAddition")
-	String getSettingHeaderAddition() throws ServerException, UserException;
-	
-	/**
-	 * @param headerAddition The new header addition
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingHeaderAddition")
-	void setSettingHeaderAddition (
-			@WebParam(name = "headerAddition", partName = "setSettingHeaderAddition.headerAddition") String headerAddition) throws ServerException, UserException;
-
-	/**
-	 * @return An addition to the JSP footer
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSettingFooterAddition")
-	String getSettingFooterAddition() throws ServerException, UserException;
-
-	/**
-	 * @param footerAddition The new footer addition
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingFooterAddition")
-	void setSettingFooterAddition(
-			@WebParam(name = "footerAddition", partName = "setSettingFooterAddition.footerAddition") String footerAddition) throws ServerException, UserException;
-
 	@WebMethod(action = "getSettingEmailSenderAddress")
 	String getSettingEmailSenderAddress() throws ServerException, UserException;
 
@@ -2049,21 +2005,6 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "setSettingEmailSenderAddress")
 	void setSettingEmailSenderAddress(
 			@WebParam(name = "emailSenderAddress", partName = "setSettingsEmailSenderAddress.emailSenderAddress") String emailSenderAddress) throws ServerException, UserException;
-
-	/**
-	 * @return The registration addition text
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSettingRegistrationAddition")
-	String getSettingRegistrationAddition() throws ServerException, UserException;
-
-	/**
-	 * @param registrationAddition The new registration addition text
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingRegistrationAddition")
-	void setSettingRegistrationAddition(
-			@WebParam(name = "registrationAddition", partName = "setSettingsRegistrationAddition.registrationAddition") String registrationAddition) throws ServerException, UserException;
 
 	/**
 	 * @return The port on which the ProtocolBuffers server runs
@@ -2186,21 +2127,6 @@ public interface ServiceInterface extends PublicInterface {
 			@WebParam(name = "sendConfirmationEmailAfterRegistration", partName = "setSettingSendConfirmationEmailAfterRegistration.sendConfirmationEmailAfterRegistration") Boolean sendConfirmationEmailAfterRegistration) throws ServerException, UserException;
 
 	/**
-	 * @return Whether it should be shown to the user that a new version of the BIMserver is available
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "isSettingShowVersionUpgradeAvailable")
-	Boolean isSettingShowVersionUpgradeAvailable() throws ServerException, UserException;
-
-	/**
-	 * @param showVersionUpgradeAvailable Set whether it should be shown to the user that a new version of the BIMserver is available
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingShowVersionUpgradeAvailable")
-	void setSettingShowVersionUpgradeAvailable(
-			@WebParam(name = "showVersionUpgradeAvailable", partName = "setSettingShowVersionUpgradeAvailable.showVersionUpgradeAvailable") Boolean showVersionUpgradeAvailable) throws ServerException, UserException;
-
-	/**
 	 * @return Whether output files (serialized version) should be cached on disk
 	 * @throws ServerException, UserException
 	 */
@@ -2305,7 +2231,6 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "migrateDatabase")
 	void migrateDatabase() throws ServerException, UserException;
 	
-	
 	/**
 	 * Get information about this BIMserver's state
 	 * @return A SServerInfo object containing information about the current state
@@ -2340,6 +2265,10 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getServerSettings")
 	SServerSettings getServerSettings() throws ServerException, UserException;
 
+	@WebMethod(action = "setServerSettings")
+	void setServerSettings(
+		@WebParam(name = "serverSettings", partName = "setServerSettings.serverSettings") SServerSettings serverSettings) throws ServerException, UserException;
+	
 	@WebMethod(action = "uploadFile")
 	Long uploadFile(
 		@WebParam(name = "file", partName = "uploadFile.file") SFile file) throws ServerException, UserException;
@@ -2374,4 +2303,8 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getBoundsOfRevision")
 	SBounds getBoundsOfRevision(
 		@WebParam(name = "roid", partName = "getBoundsOfRevision.roid") Long roid) throws ServerException, UserException;
+	
+	@WebMethod(action = "setWhiteListedDomains")
+	void setWhiteListedDomains(
+		@WebParam(name = "domains", partName = "setWhiteListedDomains.domains") List<String> domains) throws ServerException, UserException;
 }
