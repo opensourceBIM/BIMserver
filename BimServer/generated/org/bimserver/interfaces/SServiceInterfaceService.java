@@ -33,11 +33,8 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 		public void init() {
 			try {
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SUserType"), null));
-
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SSIPrefix"), null));
-
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SObjectState"), null));
-
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SProject"), new SConstructor(){
 			public Object newInstance() {
 				return new org.bimserver.interfaces.objects.SProject();
@@ -214,7 +211,6 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 			}
 		}));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SCompareType"), null));
-
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SCompareItem"), new SConstructor(){
 			public Object newInstance() {
 				return new org.bimserver.interfaces.objects.SCompareItem();
@@ -246,14 +242,12 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 			}
 		}));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SActionState"), null));
-
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SLongActionState"), new SConstructor(){
 			public Object newInstance() {
 				return new org.bimserver.interfaces.objects.SLongActionState();
 			}
 		}));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SServerState"), null));
-
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SServerInfo"), new SConstructor(){
 			public Object newInstance() {
 				return new org.bimserver.interfaces.objects.SServerInfo();
@@ -270,9 +264,7 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 			}
 		}));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SCheckinStatus"), null));
-
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SExtendedDataSchemaType"), null));
-
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SFile"), new SConstructor(){
 			public Object newInstance() {
 				return new org.bimserver.interfaces.objects.SFile();
@@ -319,7 +311,6 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 			}
 		}));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.STrigger"), null));
-
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SProfileDescriptor"), new SConstructor(){
 			public Object newInstance() {
 				return new org.bimserver.interfaces.objects.SProfileDescriptor();
@@ -376,7 +367,6 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 			}
 		}));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SPrimitiveEnum"), null));
-
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.STypeDefinition"), new SConstructor(){
 			public Object newInstance() {
 				return new org.bimserver.interfaces.objects.STypeDefinition();
@@ -448,7 +438,6 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 			}
 		}));
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SNotifictionResultEnum"), null));
-
 		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SImmediateNotificationResult"), new SConstructor(){
 			public Object newInstance() {
 				return new org.bimserver.interfaces.objects.SImmediateNotificationResult();

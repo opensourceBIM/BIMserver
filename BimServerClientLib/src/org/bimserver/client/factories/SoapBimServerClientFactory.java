@@ -26,11 +26,8 @@ import org.bimserver.shared.meta.ServicesMap;
 
 public class SoapBimServerClientFactory extends AbstractBimServerClientFactory {
 
-	private final String address;
-
 	public SoapBimServerClientFactory(String address, ServicesMap servicesMap) {
 		super(servicesMap);
-		this.address = address;
 	}
 
 	@Override
