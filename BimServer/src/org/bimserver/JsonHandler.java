@@ -14,6 +14,7 @@ import org.bimserver.shared.json.JsonConverter;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.reflector.KeyValuePair;
 import org.codehaus.jettison.json.JSONException;
 import org.slf4j.LoggerFactory;
 
@@ -60,7 +61,7 @@ public class JsonHandler {
 			@SuppressWarnings("unchecked")
 			Class<? extends PublicInterface> clazz = (Class<? extends PublicInterface>) Class.forName("org.bimserver.shared.interfaces." + interfaceName);
 			String methodName = request.get("method").getAsString();
-			SService sService = bimServer.getServicesMap().get(interfaceName);
+			SService sService = bimServer.getServicesMap().getBySimpleName(interfaceName);
 			if (sService == null) {
 				throw new UserException("No service found with name " + interfaceName);
 			}
@@ -68,19 +69,19 @@ public class JsonHandler {
 			if (method == null) {
 				throw new UserException("Method " + methodName + " not found on " + interfaceName);
 			}
-			Object[] parameters = new Object[method.getParameters().size()];
+			KeyValuePair[] parameters = new KeyValuePair[method.getParameters().size()];
 			if (request.has("parameters")) {
 				JsonObject parametersJson = request.getAsJsonObject("parameters");
 				for (int i = 0; i < method.getParameters().size(); i++) {
 					SParameter parameter = method.getParameter(i);
 					if (parametersJson.has(parameter.getName())) {
-						parameters[i] = converter.fromJson(parameter.getType(), parameter.getGenericType(), parametersJson.get(parameter.getName()));
+						parameters[i] = new KeyValuePair(parameter.getName(), converter.fromJson(parameter.getType(), parameter.getGenericType(), parametersJson.get(parameter.getName())));
 					}
 				}
 			}
 
-			Object service = getServiceInterface(httpRequest, bimServer, clazz, methodName, token);
-			Object result = method.invoke(service, parameters);
+			PublicInterface service = getServiceInterface(httpRequest, bimServer, clazz, methodName, token);
+			Object result = method.invoke(clazz, service, parameters);
 			
 			// When we have managed to get here, no exceptions have been thrown. We can safely assume further serialization to JSON won't fail. So now we can start streaming
 			if (writer != null) {

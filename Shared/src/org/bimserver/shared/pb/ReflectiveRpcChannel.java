@@ -17,8 +17,6 @@ package org.bimserver.shared.pb;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -35,6 +33,7 @@ import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
+import org.bimserver.shared.reflector.KeyValuePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,13 +65,12 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 		FieldDescriptor errorMessageField = methodDescriptor.getOutputField("errorMessage");
 		DynamicMessage response = DynamicMessage.getDefaultInstance(methodDescriptor.getOutputDescriptor());
 		Descriptor inputType = methodDescriptor.getInputDescriptor();
-		SMethod sMethod = servicesMap.get(methodDescriptor.getServiceDescriptorContainer().getName()).getSMethod(methodDescriptor.getName());
+		SMethod sMethod = servicesMap.getBySimpleName(methodDescriptor.getServiceDescriptorContainer().getName()).getSMethod(methodDescriptor.getName());
 		if (sMethod == null) {
 			LOGGER.info("Method " + methodDescriptor.getName() + " not found");
 		}
 		try {
-			Method method = sMethod.getMethod();
-			Object[] arguments = new Object[inputType.getFields().size()];
+			KeyValuePair[] arguments = new KeyValuePair[inputType.getFields().size()];
 			int i = 0;
 			for (FieldDescriptor fieldDescriptor : inputType.getFields()) {
 				SParameter sParameter = sMethod.getParameter(i);
@@ -80,29 +78,29 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 				if (value instanceof EnumValueDescriptor) {
 					EnumValueDescriptor enumValueDescriptor = (EnumValueDescriptor)value;
 					Class en = getJavaType(fieldDescriptor);
-					arguments[i] = en.getEnumConstants()[enumValueDescriptor.getIndex()];
+					arguments[i] = new KeyValuePair(fieldDescriptor.getName(), en.getEnumConstants()[enumValueDescriptor.getIndex()]);
 				} else if (value instanceof ByteString) {
 					ByteString byteString = (ByteString)value;
 					DataSource dataSource = new org.bimserver.utils.ByteArrayDataSource("bytes", byteString.toByteArray());
 					DataHandler dataHandler = new DataHandler(dataSource);
-					arguments[i] = dataHandler;
+					arguments[i] = new KeyValuePair(fieldDescriptor.getName(), dataHandler);
 				} else if (value instanceof DynamicMessage) {
-					arguments[i] = convertProtocolBuffersMessageToSObject((DynamicMessage)value, null, sParameter.getType());
+					arguments[i] = new KeyValuePair(fieldDescriptor.getName(), convertProtocolBuffersMessageToSObject((DynamicMessage)value, null, sParameter.getType()));
 				} else if (value instanceof Collection) {
 					Collection col = (Collection)value;
 					if (sParameter.getType().isList()) {
 						List list = new ArrayList(col);
-						arguments[i] = list;
+						arguments[i] = new KeyValuePair(fieldDescriptor.getName(), list);
 					} else if (sParameter.getType().isSet()) {
 						Set set = new HashSet(col);
-						arguments[i] = set;
+						arguments[i] = new KeyValuePair(fieldDescriptor.getName(), set);
 					}
 				} else {
-					arguments[i] = value;
+					arguments[i] = new KeyValuePair(fieldDescriptor.getName(), value);
 				}
 				i++;
 			}
-			Object result = method.invoke(service, arguments);
+			Object result = sMethod.invoke(service.getClass(), service, arguments);
 			Builder builder = response.newBuilderForType();
 			if (methodDescriptor.getOutputDescriptor().getName().equals("VoidResponse")) {
 				builder.setField(errorMessageField, "OKE");
@@ -142,18 +140,18 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 				builder.setField(errorMessageField, "OKE");
 			}
 			return builder.build();
-		} catch (InvocationTargetException e) {
-			Builder errorMessage = response.newBuilderForType();
-			if (e.getTargetException() != null && e.getTargetException().getMessage() != null) {
-				errorMessage.setField(errorMessageField, e.getTargetException().getMessage());
-			} else {
-				if (e.getMessage() != null) {
-					errorMessage.setField(errorMessageField, e.getMessage());
-				} else {
-					errorMessage.setField(errorMessageField, "Unknown error");
-				}
-			}
-			return errorMessage.build();
+//		} catch (InvocationTargetException e) {
+//			Builder errorMessage = response.newBuilderForType();
+//			if (e.getTargetException() != null && e.getTargetException().getMessage() != null) {
+//				errorMessage.setField(errorMessageField, e.getTargetException().getMessage());
+//			} else {
+//				if (e.getMessage() != null) {
+//					errorMessage.setField(errorMessageField, e.getMessage());
+//				} else {
+//					errorMessage.setField(errorMessageField, "Unknown error");
+//				}
+//			}
+//			return errorMessage.build();
 		} catch (Exception e) {
 			if (!(e instanceof org.bimserver.shared.exceptions.ServiceException)) {
 				LOGGER.error("", e);

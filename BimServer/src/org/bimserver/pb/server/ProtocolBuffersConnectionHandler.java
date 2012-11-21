@@ -26,8 +26,11 @@ import java.net.SocketException;
 
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.InterfaceMap;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.meta.SMethod;
+import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
@@ -61,7 +64,6 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void run() {
 		try {
@@ -72,11 +74,21 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 				if (!services.contains(serviceName)) {
 					services.add(ServiceInterface.class, protocolBuffersServer.getServiceFactoryRegistry().createServiceFactory(serviceName).newServiceMap(AccessMethod.PROTOCOL_BUFFERS, socket.getRemoteSocketAddress().toString()).get(ServiceInterface.class));
 				}
-				ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel((PublicInterface) services.get((Class<PublicInterface>)Class.forName(serviceName)), protocolBuffersMetaData, servicesMap);
-				MethodDescriptorContainer method = protocolBuffersMetaData.getMethod(serviceName, methodName);
-				Builder requestBuilder = DynamicMessage.getDefaultInstance(method.getInputDescriptor()).newBuilderForType();
+				
+				SService sService = servicesMap.getBySimpleName(serviceName);
+				if (sService == null) {
+					throw new UserException("No service found with name " + serviceName);
+				}
+				SMethod method = sService.getSMethod(methodName);
+				if (method == null) {
+					throw new UserException("Method " + methodName + " not found on " + serviceName);
+				}
+
+				ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel((PublicInterface) services.get(serviceName), protocolBuffersMetaData, servicesMap);
+				MethodDescriptorContainer pbMethod = protocolBuffersMetaData.getMethod(serviceName, methodName);
+				Builder requestBuilder = DynamicMessage.getDefaultInstance(pbMethod.getInputDescriptor()).newBuilderForType();
 				requestBuilder.mergeDelimitedFrom(dataInputStream);
-				Message response = reflectiveRpcChannel.callBlockingMethod(method, requestBuilder.build());
+				Message response = reflectiveRpcChannel.callBlockingMethod(pbMethod, requestBuilder.build());
 				response.writeDelimitedTo(outputStream);
 				outputStream.flush();
 			}

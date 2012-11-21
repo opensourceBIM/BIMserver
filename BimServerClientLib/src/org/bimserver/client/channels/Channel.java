@@ -24,11 +24,11 @@ import java.util.Set;
 
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.ConnectDisconnectListener;
-import org.bimserver.shared.ReflectorFactory;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.reflector.Reflector;
+import org.bimserver.shared.reflector.ReflectorFactory;
 
 public abstract class Channel {
 	private final Map<Class<? extends PublicInterface>, PublicInterface> serviceInterfaces = new HashMap<Class<? extends PublicInterface>, PublicInterface>();

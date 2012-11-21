@@ -47,19 +47,22 @@ public class SService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SService.class);
 	private final Map<String, SMethod> methods = new TreeMap<String, SMethod>();
 	private final Map<String, SClass> types = new TreeMap<String, SClass>();
-	private final String name;
+	private final String fullName;
 	private final Class<?> clazz;
 	private String sourceCode;
 
 	// Disabled for now, makes the deployed JAR stop at this point
 	private boolean processJavaDoc = true;
 	private SService[] others;
+	private ServicesMap servicesMap;
+	private String simpleName;
 
 	public SService(String sourceCode, Class<?> clazz, SService...others) {
 		this.sourceCode = sourceCode;
 		this.clazz = clazz;
 		this.others = others;
-		this.name = clazz.getSimpleName();
+		this.fullName = clazz.getName();
+		this.simpleName = clazz.getSimpleName();
 		init();
 		if (processJavaDoc && sourceCode != null) {
 			extractJavaDoc();
@@ -167,7 +170,7 @@ public class SService {
 
 	private void addType(Class<?> type) {
 		if (!types.containsKey(type.getSimpleName())) {
-			SClass sClass = new SClass(this, type);
+			SClass sClass = new SClass(this, type, null);
 			types.put(sClass.getSimpleName(), sClass);
 			types.put(sClass.getName(), sClass);
 			addRelatedTypes(type);
@@ -209,7 +212,7 @@ public class SService {
 	}
 
 	public String getName() {
-		return name;
+		return fullName;
 	}
 
 	public Set<SMethod> getMethods() {
@@ -270,5 +273,17 @@ public class SService {
 			}
 			System.out.println();
 		}
+	}
+
+	public void setServicesMap(ServicesMap servicesMap) {
+		this.servicesMap = servicesMap;
+	}
+	
+	public ServicesMap getServicesMap() {
+		return servicesMap;
+	}
+
+	public String getSimpleName() {
+		return simpleName;
 	}
 }

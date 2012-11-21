@@ -18,12 +18,10 @@ package org.bimserver.shared.meta;
  *****************************************************************************/
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -31,7 +29,9 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.PublicInterface;
+import org.bimserver.shared.reflector.KeyValuePair;
+import org.bimserver.shared.reflector.Reflector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,8 +44,10 @@ public class SMethod {
 	private SClass genericReturnType;
 	private String returnDoc;
 	private String name;
+	private SService service;
 	
 	public SMethod(SService service, Method method) {
+		this.service = service;
 		this.method = method;
 		
 		WebMethod webMethod = method.getAnnotation(WebMethod.class);
@@ -173,39 +175,49 @@ public class SMethod {
 		return returnDoc;
 	}
 
-	public Object invoke(Object service, Object[] parameters) throws ServiceException {
-		for (Method method : service.getClass().getMethods()) {
-			if (method.getName().equals(getName())) {
-				try {
-					return method.invoke(service, parameters);
-				} catch (Exception e) {
-					if (e instanceof ServiceException) {
-						throw (ServiceException)e;
-					} else if (e instanceof InvocationTargetException) {
-						if (e.getCause() instanceof ServiceException) {
-							throw (ServiceException)(e.getCause());
-						} else {
-							dumpError(parameters, method, e);
-						}
-					} else {
-						dumpError(parameters, method, e);
-						throw new UserException("Invalid arguments");
-					}
-				}
-			}
-		}
-		return null;
+	public <T extends PublicInterface, K extends PublicInterface> Object invoke(Class<K> clazz, T service, KeyValuePair[] keyValuePairs) throws ServiceException {
+		Reflector reflector = this.service.getServicesMap().getReflectorFactory().createReflector(clazz, service);
+		return reflector.callMethod(clazz.getName(), getName(), getReturnType().getInstanceClass(), keyValuePairs);
 	}
+	
+//	public <T extends PublicInterface> Object invoke(Class clazz, T service, Object[] parameters) throws ServiceException {
+//		KeyValuePair[] keyValuePairs = new KeyValuePair[parameters.length];
+//		int i=0;
+//		for (Object value : parameters) {
+//			keyValuePairs[i++] = new KeyValuePair("", value);
+//		}
+//		return invoke(clazz, service, keyValuePairs);
+//		for (Method method : service.getClass().getMethods()) {
+//			if (method.getName().equals(getName())) {
+//				try {
+//					return method.invoke(service, parameters);
+//				} catch (Exception e) {
+//					if (e instanceof ServiceException) {
+//						throw (ServiceException)e;
+//					} else if (e instanceof InvocationTargetException) {
+//						if (e.getCause() instanceof ServiceException) {
+//							throw (ServiceException)(e.getCause());
+//						} else {
+//							dumpError(parameters, method, e);
+//						}
+//					} else {
+//						dumpError(parameters, method, e);
+//						throw new UserException("Invalid arguments");
+//					}
+//				}
+//			}
+//		}
+//	}
 
-	private void dumpError(Object[] parameters, Method method, Exception e) {
-		LOGGER.error(method.getName());
-		LOGGER.error(Arrays.toString(parameters));
-		StringBuilder sb = new StringBuilder();
-		for (Object o : parameters) {
-			sb.append((o == null ? "null" : o.getClass().getName()) + ", ");
-		}
-		LOGGER.error(sb.toString());
-		LOGGER.error(Arrays.toString(method.getParameterTypes()));
-		e.printStackTrace();
-	}
+//	private void dumpError(Object[] parameters, Method method, Exception e) {
+//		LOGGER.error(method.getName());
+//		LOGGER.error(Arrays.toString(parameters));
+//		StringBuilder sb = new StringBuilder();
+//		for (Object o : parameters) {
+//			sb.append((o == null ? "null" : o.getClass().getName()) + ", ");
+//		}
+//		LOGGER.error(sb.toString());
+//		LOGGER.error(Arrays.toString(method.getParameterTypes()));
+//		e.printStackTrace();
+//	}
 }

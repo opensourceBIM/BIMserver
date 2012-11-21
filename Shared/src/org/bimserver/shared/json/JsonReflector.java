@@ -51,7 +51,7 @@ public abstract class JsonReflector implements Reflector {
 					}
 				} else if (response.has("result")) {
 					Object result = response.get("result");
-					SMethod method = servicesMap.get(interfaceName).getSMethod(methodName);
+					SMethod method = servicesMap.getBySimpleName(interfaceName).getSMethod(methodName);
 					return converter.fromJson(method.getReturnType(), method.getGenericReturnType(), result);
 				} else {
 					return null;

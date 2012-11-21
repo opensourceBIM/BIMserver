@@ -126,7 +126,7 @@ public class VirtualUser extends Thread {
 		return null;
 	}
 
-	public SProject getRandomProject() {
+	public SProject getRandomProject() throws UserException {
 		try {
 			List<SProject> allProjects = bimServerClient.getServiceInterface().getAllProjects(false);
 			if (allProjects == null || allProjects.isEmpty()) {
@@ -138,8 +138,6 @@ public class VirtualUser extends Thread {
 				return allProjects.get(random.nextInt(allProjects.size()));
 			}
 		} catch (ServerException e) {
-			LOGGER.error("", e);
-		} catch (UserException e) {
 			LOGGER.error("", e);
 		}
 		return null;
