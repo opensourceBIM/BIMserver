@@ -18,7 +18,7 @@ public class BimWebServer {
 	}
 
 	public SService getServiceInterface(String interfaceName) {
-		return servicesMap.get(interfaceName);
+		return servicesMap.getByName(interfaceName);
 	}
 
 	public BimServerClientFactory getBimServerClientFactory() {
