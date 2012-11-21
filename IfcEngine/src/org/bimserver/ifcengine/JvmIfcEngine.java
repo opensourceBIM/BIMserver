@@ -135,7 +135,7 @@ public class JvmIfcEngine implements IfcEngine {
 			out = new DataOutputStream(new BufferedOutputStream(process.getOutputStream()));
 			err = process.getErrorStream();
 			startErrorHandler();
-			Thread thread = new Thread(){
+			Thread thread = new Thread("JvmIfcEngine"){
 				@Override
 				public void run() {
 					int result;

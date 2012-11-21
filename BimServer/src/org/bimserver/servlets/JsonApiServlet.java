@@ -90,19 +90,19 @@ public class JsonApiServlet extends HttpServlet {
 		writeHeader(writer);
 		writer.println("<h1>BIMserver JSON API Documentation</h1>");
 		ServicesMap serviceInterfaces = bimServer.getServicesMap();
-		for (String name : serviceInterfaces.keySet()) {
-			writeMenu(writer, serviceInterfaces.get(name));
+		for (String name : serviceInterfaces.keySetName()) {
+			writeMenu(writer, serviceInterfaces.getByName(name));
 		}
 		writer.println("<div class=\"main\">");
 		String show = request.getParameter("show");
 		if (show == null) {
-			for (String name : serviceInterfaces.keySet()) {
-				writeAllMethodsDocumentation(writer, request, serviceInterfaces.get(name), bimServer, siteAddress);
+			for (String name : serviceInterfaces.keySetName()) {
+				writeAllMethodsDocumentation(writer, request, serviceInterfaces.getByName(name), bimServer, siteAddress);
 			}
 		} else if (show.equals("method")) {
-			writeMethodDocumentation(writer, request, serviceInterfaces.get(request.getParameter("interface")).getSMethod(request.getParameter("method")), bimServer, siteAddress);
+			writeMethodDocumentation(writer, request, serviceInterfaces.getByName(request.getParameter("interface")).getSMethod(request.getParameter("method")), bimServer, siteAddress);
 		} else if (show.equals("type")) {
-			writeTypeDocumentation(writer, serviceInterfaces.get(request.getParameter("interface")).getSType(request.getParameter("type")), bimServer);
+			writeTypeDocumentation(writer, serviceInterfaces.getByName(request.getParameter("interface")).getSType(request.getParameter("type")), bimServer);
 		}
 		writer.println("</div>");
 		writeFooter(writer);

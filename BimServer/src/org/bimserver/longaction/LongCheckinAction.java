@@ -21,6 +21,7 @@ import org.bimserver.BimServer;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.ProgressHandler;
 import org.bimserver.database.actions.CheckinDatabaseAction;
+import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.CheckinStatus;
@@ -62,6 +63,8 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 			getBimServer().getServerInfoManager().setOutOfMemory();
 		} catch (Exception e) {
 			if (e instanceof UserException) {
+			} else if (e instanceof BimserverConcurrentModificationDatabaseException) {
+				// Ignore
 			} else {
 				LOGGER.error("", e);
 			}

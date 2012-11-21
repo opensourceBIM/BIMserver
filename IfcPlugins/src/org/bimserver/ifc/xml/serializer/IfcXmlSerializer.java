@@ -63,6 +63,7 @@ public class IfcXmlSerializer extends IfcSerializer {
 	private PrintWriter out;
 	private Map<EObject, Long> objectToOidMap;
 	private int tabs;
+	private SchemaDefinition schema;
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine, boolean normalizeOids) throws SerializerException {
@@ -70,6 +71,11 @@ public class IfcXmlSerializer extends IfcSerializer {
 		objectToOidMap = new HashMap<EObject, Long>((int) model.size());
 		for (Long key : model.keySet()) {
 			objectToOidMap.put(model.get(key), key);
+		}
+		try {
+			schema = getPluginManager().requireSchemaDefinition();
+		} catch (PluginException e) {
+			throw new SerializerException(e);
 		}
 	}
 
@@ -126,14 +132,14 @@ public class IfcXmlSerializer extends IfcSerializer {
 	 * shortcomings are solved the hacks will be removed. (PW)
 	 */
 	private void store(Long key, EObject object) throws SerializerException {
+		if (object.eClass().getEAnnotation("hidden") != null) {
+			return;
+		}
 		printLineTabbed("<" + object.eClass().getName() + " id=\"i" + key + "\">");
 		tabs++;
 		for (EStructuralFeature structuralFeature : object.eClass().getEAllStructuralFeatures()) {
-			SchemaDefinition schema;
-			try {
-				schema = getPluginManager().requireSchemaDefinition();
-			} catch (PluginException e) {
-				throw new SerializerException(e);
+			if (structuralFeature.getEAnnotation("hidden") != null) {
+				continue;
 			}
 			EntityDefinition entityBN = schema.getEntityBN(object.eClass().getName().toUpperCase());
 			Attribute attributeBN = entityBN != null ? entityBN.getAttributeBNWithSuper(structuralFeature.getName()) : null;

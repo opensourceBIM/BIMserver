@@ -69,7 +69,7 @@ public class ProtocolBuffersReflector extends ProtocolBuffersConverter implement
 	public Object callMethod(String interfaceName, String methodName, Class<?> definedReturnType, KeyValuePair... args) throws ServerException, UserException {
 		try {
 			MethodDescriptorContainer methodDescriptorContainer = protocolBuffersMetaData.getMethod(interfaceName, methodName);
-			SMethod sMethod = servicesMap.get(interfaceName).getSMethod(methodName);
+			SMethod sMethod = servicesMap.getBySimpleName(interfaceName).getSMethod(methodName);
 			Descriptor inputDescriptor = methodDescriptorContainer.getInputDescriptor();
 			Builder builder = DynamicMessage.newBuilder(methodDescriptorContainer.getInputDescriptor());
 			int i = 0;

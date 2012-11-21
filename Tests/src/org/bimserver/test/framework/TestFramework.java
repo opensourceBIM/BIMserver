@@ -63,6 +63,7 @@ public class TestFramework {
 			bimServerConfig.setPort(8080);
 			bimServerConfig.setResourceFetcher(new LocalDevelopmentResourceFetcher());
 			bimServerConfig.setClassPath(System.getProperty("java.class.path"));
+			bimServerConfig.setInitialProtocolBuffersPort(8020);
 			bimServer = new BimServer(bimServerConfig);
 			EmbeddedWebServer embeddedWebServer = bimServer.getEmbeddedWebServer();
 		 	embeddedWebServer.getContext().addServlet(StreamingServlet.class, "/stream/*");
@@ -85,7 +86,7 @@ public class TestFramework {
 		}
 		VirtualUserFactory virtualUserFactory = new VirtualUserFactory(this, testConfiguration.getBimServerClientFactory());
 		for (int i=0; i<testConfiguration.getNrVirtualUsers(); i++) {
-			VirtualUser virtualUser = virtualUserFactory.create("" + i);
+			VirtualUser virtualUser = virtualUserFactory.create("Virtual User " + i);
 			virtualUsers.add(virtualUser);
 		}
 		for (VirtualUser virtualUser : virtualUsers) {

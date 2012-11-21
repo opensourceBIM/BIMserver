@@ -104,8 +104,6 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.servlets.EndPointManager;
-import org.bimserver.shared.ReflectorBuilder;
-import org.bimserver.shared.ReflectorFactory;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.NotificationInterface;
@@ -113,6 +111,8 @@ import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
+import org.bimserver.shared.reflector.ReflectorBuilder;
+import org.bimserver.shared.reflector.ReflectorFactory;
 import org.bimserver.templating.TemplateEngine;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.version.VersionChecker;
@@ -373,6 +373,7 @@ public class BimServer {
 
 			ReflectorBuilder reflectorBuilder = new ReflectorBuilder(servicesMap);
 			reflectorFactory = reflectorBuilder.newReflectorFactory();
+			servicesMap.setReflectorFactory(reflectorFactory);
 			
 			bimScheduler = new JobScheduler(this);
 			bimScheduler.start();

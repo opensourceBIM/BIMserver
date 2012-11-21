@@ -45,8 +45,10 @@ public class SClass {
 	private final SService sService;
 	private SClass superClass;
 	private Set<SClass> subClasses = new HashSet<SClass>();
+	private SConstructor sConstructor;
 	
-	public SClass(SService sService, Class<?> instanceClass) {
+	public SClass(SService sService, Class<?> instanceClass, SConstructor sConstructor) {
+		this.sConstructor = sConstructor;
 		if (instanceClass == null) {
 			throw new RuntimeException("InstanceClass cannot be null " + sService.getName());
 		}
@@ -180,16 +182,7 @@ public class SClass {
 	}
 	
 	public SBase newInstance() {
-		try {
-			return (SBase) Class.forName(name).newInstance();
-		} catch (InstantiationException e) {
-			LOGGER.error("", e);
-		} catch (IllegalAccessException e) {
-			LOGGER.error("", e);
-		} catch (ClassNotFoundException e) {
-			LOGGER.error("", e);
-		}
-		return null;
+		return (SBase) sConstructor.newInstance();
 	}
 
 	public boolean isPrimitive() {

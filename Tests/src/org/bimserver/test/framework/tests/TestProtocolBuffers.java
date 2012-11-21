@@ -2,11 +2,11 @@ package org.bimserver.test.framework.tests;
 
 import java.io.File;
 
-import org.bimserver.test.framework.FolderWalker;
 import org.bimserver.test.framework.RandomBimServerClientFactory;
-import org.bimserver.test.framework.TestConfiguration;
-import org.bimserver.test.framework.TestFramework;
 import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
+import org.bimserver.test.framework.TestConfiguration;
+import org.bimserver.test.framework.TestFileProvider;
+import org.bimserver.test.framework.TestFramework;
 import org.bimserver.test.framework.actions.AllActionsFactory;
 import org.bimserver.tests.TestFileConstants;
 
@@ -18,9 +18,15 @@ public class TestProtocolBuffers {
 		testConfiguration.setHomeDir(new File("C:\\Test"));
 		testConfiguration.setActionFactory(new AllActionsFactory(testFramework));
 		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.PROTOCOL_BUFFERS));
-		testConfiguration.setTestFileProvider(new FolderWalker(TestFileConstants.DATA_FOLDER, testFramework));
+		testConfiguration.setTestFileProvider(new TestFileProvider() {
+			
+			@Override
+			public File getNewFile() {
+				return new File(TestFileConstants.DATA_FOLDER, "AC11-Institute-Var-2-IFC.ifc");
+			}
+		});
 		testConfiguration.setOutputFolder(new File("output"));
-		testConfiguration.setNrVirtualUsers(1);
+		testConfiguration.setNrVirtualUsers(2);
 		
 		testFramework.start();
 	}

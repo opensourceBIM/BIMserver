@@ -423,7 +423,6 @@
 		<javac destdir="builds/shared" debug="on" includeantruntime="false">
 			<src path="../../Shared/src" />
 			<src path="../../Shared/generated" />
-			<src path="../../Shared/imported" />
 			<classpath>
 				<path>
 					<fileset refid="lib" />

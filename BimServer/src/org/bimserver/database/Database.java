@@ -27,6 +27,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.actions.AddUserDatabaseAction;
@@ -68,8 +70,8 @@ public class Database implements BimDatabase {
 	private final KeyValueStore keyValueStore;
 	private final DoubleHashMap<Short, EClass> classifiers = new DoubleHashMap<Short, EClass>();
 	private final List<String> realClasses = new ArrayList<String>();
-	private final Map<EClass, Long> oidCounters = new HashMap<EClass, Long>();
-	private volatile int pidCounter = 1;
+	private final Map<EClass, AtomicLong> oidCounters = new HashMap<EClass, AtomicLong>();
+	private AtomicInteger pidCounter = new AtomicInteger(1);
 	private final Registry registry;
 	private Date created;
 	private final Set<DatabaseSession> sessions = Collections.newSetFromMap(new ConcurrentHashMap<DatabaseSession, Boolean>());
@@ -212,11 +214,8 @@ public class Database implements BimDatabase {
 		return settings;
 	}
 	
-	public synchronized long newOid(EClass eClass) {
-		long id = oidCounters.get(eClass);
-		long newId = id + 65536;
-		oidCounters.put(eClass, newId);
-		return newId;
+	public long newOid(EClass eClass) {
+		return oidCounters.get(eClass).addAndGet(65536);
 	}
 
 	private EClassifier getEClassifier(String classifierName) {
@@ -257,11 +256,11 @@ public class Database implements BimDatabase {
 						ByteBuffer buffer = ByteBuffer.wrap(record.getKey());
 						int pid = buffer.getInt();
 						long oid = buffer.getLong();
-						if (oid > oidCounters.get(eClass)) {
-							oidCounters.put(eClass, oid);
+						if (oid > oidCounters.get(eClass).get()) {
+							oidCounters.put(eClass, new AtomicLong(oid));
 						}
-						if (pid > pidCounter) {
-							pidCounter = pid;
+						if (pid > pidCounter.get()) {
+							pidCounter = new AtomicInteger(pid);
 						}
 					}
 				} finally {
@@ -277,11 +276,11 @@ public class Database implements BimDatabase {
 		ByteBuffer cidBuffer = ByteBuffer.wrap(new byte[8]);
 		cidBuffer.putShort(6, getCidOfEClass(eClass));
 		long startOid = cidBuffer.getLong(0);
-		oidCounters.put(eClass, startOid);
+		oidCounters.put(eClass, new AtomicLong(startOid));
 	}
 
-	public synchronized int newPid() {
-		return ++pidCounter;
+	public int newPid() {
+		return pidCounter.incrementAndGet();
 	}
 
 	public void close() {
@@ -317,10 +316,6 @@ public class Database implements BimDatabase {
 
 	public EClass getEClassForCid(short cid) {
 		return classifiers.getB(cid);
-	}
-
-	public int getPidCounter() {
-		return pidCounter;
 	}
 
 	public Short getCidOfEClass(EClass eClass) {

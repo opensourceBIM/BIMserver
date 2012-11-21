@@ -1,8 +1,8 @@
-package org.bimserver.shared;
+package org.bimserver.shared.reflector;
 
 import org.bimserver.shared.interfaces.PublicInterface;
-import org.bimserver.shared.reflector.Reflector;
 
 public interface ReflectorFactory {
 	<T extends PublicInterface> T createReflector(Class<T> clazz, Reflector reflector);
+	<T extends PublicInterface, K extends PublicInterface> Reflector createReflector(Class<K> clazz, T t);
 }

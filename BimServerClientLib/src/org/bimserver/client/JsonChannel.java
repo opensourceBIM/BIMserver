@@ -3,12 +3,12 @@ package org.bimserver.client;
 import org.bimserver.client.channels.Channel;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.AuthenticationInfo;
-import org.bimserver.shared.ReflectorFactory;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.json.JsonSocketReflector;
 import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.reflector.ReflectorFactory;
 
 public class JsonChannel extends Channel {
 

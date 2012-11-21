@@ -21,11 +21,11 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 
 import org.bimserver.shared.ConnectDisconnectListener;
-import org.bimserver.shared.ReflectorFactory;
 import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersReflector;
 import org.bimserver.shared.pb.SocketChannel;
+import org.bimserver.shared.reflector.ReflectorFactory;
 import org.slf4j.LoggerFactory;
 
 public class ProtocolBuffersChannel extends Channel implements ConnectDisconnectListener {

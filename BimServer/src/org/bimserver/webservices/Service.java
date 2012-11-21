@@ -3402,7 +3402,7 @@ public class Service implements ServiceInterface {
 	public List<SServiceInterface> getServiceInterfaces() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		List<SServiceInterface> sServiceInterfaces = new ArrayList<SServiceInterface>();
-		for (String name : bimServer.getServicesMap().keySet()) {
+		for (String name : bimServer.getServicesMap().keySetName()) {
 			SServiceInterface sServiceInterface = new SServiceInterface();
 			sServiceInterface.setName(name);
 			sServiceInterfaces.add(sServiceInterface);
@@ -3414,7 +3414,7 @@ public class Service implements ServiceInterface {
 	public List<SServiceMethod> getServiceMethods(String serviceInterfaceName) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		List<SServiceMethod> sServiceMethods = new ArrayList<SServiceMethod>();
-		SService sService = bimServer.getServicesMap().get(serviceInterfaceName);
+		SService sService = bimServer.getServicesMap().getByName(serviceInterfaceName);
 		if (sService == null) {
 			throw new UserException("Service \"" + serviceInterfaceName + "\" not found");
 		}
@@ -3433,7 +3433,7 @@ public class Service implements ServiceInterface {
 	public List<SServiceType> getServiceTypes(String serviceInterfaceName) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		List<SServiceType> sServiceTypes = new ArrayList<SServiceType>();
-		SService serviceInterface = bimServer.getServicesMap().get(serviceInterfaceName);
+		SService serviceInterface = bimServer.getServicesMap().getByName(serviceInterfaceName);
 		if (serviceInterface == null) {
 			throw new UserException("Service \"" + serviceInterfaceName + "\" not found");
 		}
@@ -3469,7 +3469,7 @@ public class Service implements ServiceInterface {
 	public List<SServiceParameter> getServiceMethodParameters(String serviceInterfaceName, String serviceMethodName) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		List<SServiceParameter> sServiceParameters = new ArrayList<SServiceParameter>();
-		SService serviceInterface = bimServer.getServicesMap().get(serviceInterfaceName);
+		SService serviceInterface = bimServer.getServicesMap().getByName(serviceInterfaceName);
 		if (serviceInterface == null) {
 			throw new UserException("Service \"" + serviceInterfaceName + "\" not found");
 		}
