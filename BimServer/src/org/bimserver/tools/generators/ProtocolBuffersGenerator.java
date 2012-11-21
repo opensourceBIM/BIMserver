@@ -353,11 +353,11 @@ public class ProtocolBuffersGenerator {
 				out.println("import \"" + importFile + ".proto\";");
 			}
 			out.println("option java_generic_services = true;\n");
-			out.println("option java_outer_classname = \"" + service.getName() + "Impl\";\n");
-			out.println("option optimize_for = CODE_SIZE;\n"); // or SPEED
+			out.println("option java_outer_classname = \"" + service.getSimpleName() + "Impl\";\n");
+			out.println("option optimize_for = SPEED;\n"); // or CODE_SIZE
 			StringBuilder serviceBuilder = new StringBuilder();
 			StringBuilder messageBuilder = new StringBuilder();
-			serviceBuilder.append("service " + service.getName() + " {\n");
+			serviceBuilder.append("service " + service.getSimpleName() + " {\n");
 			if (createBaseMessages) {
 				createVoidResponseMessage(messageBuilder);
 				generateVoidMessage(messageBuilder);
