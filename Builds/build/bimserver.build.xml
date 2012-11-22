@@ -152,5 +152,10 @@
 		<copy todir="builds/BuildWar/WEB-INF/classes">
 			<fileset file="${defaultsettings}/${target}/log4j.xml" />
 		</copy>
+		<jar destfile="builds/bimserver-${version}.war">
+			<fileset dir="builds/BuildWar">
+				<exclude name="*.svn" />
+			</fileset>
+		</jar>
 	</target>
 </project>
