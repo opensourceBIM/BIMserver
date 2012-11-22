@@ -468,6 +468,7 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 				return new org.bimserver.interfaces.objects.SGeometry();
 			}
 		}));
+		super.init();
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);
 		}

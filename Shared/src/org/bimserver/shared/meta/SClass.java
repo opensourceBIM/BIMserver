@@ -182,6 +182,9 @@ public class SClass {
 	}
 	
 	public SBase newInstance() {
+		if (sConstructor == null) {
+			throw new RuntimeException("No constructor for " + getName() + "!");
+		}
 		return (SBase) sConstructor.newInstance();
 	}
 

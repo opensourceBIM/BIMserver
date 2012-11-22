@@ -62,7 +62,7 @@ public class DownloadServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
 		try {
-			if (request.getHeader("Origin") != null && !bimServer.isHostAllowed(request.getHeader("Origin"))) {
+			if (request.getHeader("Origin") != null && !bimServer.getAccessRightsCache().isHostAllowed(request.getHeader("Origin"))) {
 				response.setStatus(403);
 				return;
 			}
