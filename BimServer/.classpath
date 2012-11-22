@@ -14,6 +14,7 @@
 	<classpathentry kind="lib" path="lib/openmali.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="starter"/>
 	<classpathentry kind="src" path="generated"/>
 	<classpathentry exported="true" kind="lib" path="lib/geoapi/geoapi-2.3-M1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/geoapi/geoapi-pending-2.3-M1.jar"/>
