@@ -51,6 +51,7 @@ import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.deserializers.EmfDeserializerFactory;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.logging.CustomFileAppender;
 import org.bimserver.longaction.LongActionManager;
@@ -151,6 +152,7 @@ public class BimServer {
 	private ProtocolBuffersServer protocolBuffersServer;
 	private JsonHandler jsonHandler = new JsonHandler(this);
 	private CommandLine commandLine;
+	private AccessRightsCache accessRightsCache;
 
 	private EndPointManager endPointManager = new EndPointManager();
 
@@ -308,6 +310,8 @@ public class BimServer {
 				serverInfoManager.setServerState(ServerState.FATAL_ERROR);
 				serverInfoManager.setErrorMessage("Inconsistent models");
 			}
+
+			accessRightsCache = new AccessRightsCache(bimDatabase);
 			
 			notificationsManager.init();
 			
@@ -321,7 +325,7 @@ public class BimServer {
 
 			URL resource1 = config.getResourceFetcher().getResource("ServiceInterface.java");
 			String content1 = getContent(resource1);
-			SService serviceInterfaceMeta = new SService(content1, ServiceInterface.class);
+			SService serviceInterfaceMeta = new SServiceInterfaceService(content1, ServiceInterface.class);
 			servicesMap.add(serviceInterfaceMeta);
 
 			URL resource2 = config.getResourceFetcher().getResource("NotificationInterface.java");
@@ -870,24 +874,8 @@ public class BimServer {
 	public EndPointManager getEndPointManager() {
 		return endPointManager ;
 	}
-
-	public boolean isHostAllowed(String address) {
-		if (address.startsWith("http://")) {
-			address = address.substring(7);
-		}
-		DatabaseSession session = getDatabase().createSession();
-		try {
-			ServerSettings serverSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), ServerSettings.class);
-			for (String domain : serverSettings.getWhitelistedDomains()) {
-				if (domain.equals(address)) {
-					return true;
-				}
-			}
-		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return false;
+	
+	public AccessRightsCache getAccessRightsCache() {
+		return accessRightsCache;
 	}
 }

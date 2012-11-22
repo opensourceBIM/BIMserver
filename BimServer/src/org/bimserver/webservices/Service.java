@@ -3817,6 +3817,7 @@ public class Service implements ServiceInterface {
 		} finally {
 			session.close();
 		}
+		bimServer.getAccessRightsCache().updateCache();
 	}
 	
 	@Override
@@ -3833,5 +3834,6 @@ public class Service implements ServiceInterface {
 		} finally {
 			session.close();
 		}
+		bimServer.getAccessRightsCache().updateCache();
 	}
 }

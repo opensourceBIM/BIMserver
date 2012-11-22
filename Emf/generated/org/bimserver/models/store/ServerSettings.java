@@ -35,6 +35,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ServerSettings#getEmailSenderAddress <em>Email Sender Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getEmailSenderName <em>Email Sender Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getSiteAddress <em>Site Address</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#isAllowOnlyWhitelisted <em>Allow Only Whitelisted</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getWhitelistedDomains <em>Whitelisted Domains</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getProtocolBuffersPort <em>Protocol Buffers Port</em>}</li>
@@ -256,6 +257,32 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	void setSiteAddress(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Allow Only Whitelisted</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Allow Only Whitelisted</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Allow Only Whitelisted</em>' attribute.
+	 * @see #setAllowOnlyWhitelisted(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_AllowOnlyWhitelisted()
+	 * @model
+	 * @generated
+	 */
+	boolean isAllowOnlyWhitelisted();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#isAllowOnlyWhitelisted <em>Allow Only Whitelisted</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Allow Only Whitelisted</em>' attribute.
+	 * @see #isAllowOnlyWhitelisted()
+	 * @generated
+	 */
+	void setAllowOnlyWhitelisted(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Whitelisted Domains</b></em>' attribute list.

@@ -209,6 +209,8 @@ public class SService {
 
 	public void addType(SClass type) {
 		types.put(type.getSimpleName(), type);
+		types.put(type.getName(), type);
+		addRelatedTypes(type.getInstanceClass());
 	}
 
 	public String getName() {

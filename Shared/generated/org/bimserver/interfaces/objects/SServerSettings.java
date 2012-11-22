@@ -39,6 +39,7 @@ public class SServerSettings implements SDataBase
 	private java.lang.String emailSenderAddress;
 	private java.lang.String emailSenderName;
 	private java.lang.String siteAddress;
+	private boolean allowOnlyWhitelisted;
 	private List<java.lang.String> whitelistedDomains = new ArrayList<java.lang.String>();
 	private java.lang.Boolean hideUserListForNonAdmin;
 	private java.lang.Integer protocolBuffersPort;
@@ -93,6 +94,9 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("siteAddress")) {
 			return getSiteAddress();
+		}
+		if (sField.getName().equals("allowOnlyWhitelisted")) {
+			return isAllowOnlyWhitelisted();
 		}
 		if (sField.getName().equals("whitelistedDomains")) {
 			return getWhitelistedDomains();
@@ -150,6 +154,10 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("siteAddress")) {
 			setSiteAddress((String)val);
+			return;
+		}
+		if (sField.getName().equals("allowOnlyWhitelisted")) {
+			setAllowOnlyWhitelisted((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("whitelistedDomains")) {
@@ -245,6 +253,14 @@ public class SServerSettings implements SDataBase
 
 	public void setSiteAddress(java.lang.String siteAddress) {
 		this.siteAddress = siteAddress;
+	}
+	
+	public boolean isAllowOnlyWhitelisted() {
+		return allowOnlyWhitelisted;
+	}
+
+	public void setAllowOnlyWhitelisted(boolean allowOnlyWhitelisted) {
+		this.allowOnlyWhitelisted = allowOnlyWhitelisted;
 	}
 	
 

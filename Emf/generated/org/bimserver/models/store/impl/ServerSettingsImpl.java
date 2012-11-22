@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getEmailSenderAddress <em>Email Sender Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getEmailSenderName <em>Email Sender Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSiteAddress <em>Site Address</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isAllowOnlyWhitelisted <em>Allow Only Whitelisted</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getWhitelistedDomains <em>Whitelisted Domains</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getProtocolBuffersPort <em>Protocol Buffers Port</em>}</li>
@@ -219,6 +220,24 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 */
 	public void setSiteAddress(String newSiteAddress) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__SITE_ADDRESS, newSiteAddress);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isAllowOnlyWhitelisted() {
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_ONLY_WHITELISTED, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAllowOnlyWhitelisted(boolean newAllowOnlyWhitelisted) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_ONLY_WHITELISTED, newAllowOnlyWhitelisted);
 	}
 
 	/**
