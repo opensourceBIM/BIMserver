@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="generated"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/guava-13.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/guava-13.0.1.jar" sourcepath="/BimServer/libsrc/guava-11.0.1-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf_2.6.0.v20120608-0554.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.codegen_2.8.0.v20120608-0554.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.codegen.ecore_2.8.0.v20120608-0554.jar"/>
