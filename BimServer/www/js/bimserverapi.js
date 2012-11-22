@@ -255,7 +255,7 @@ function BimServerApi(baseUrl, notifier) {
 					}
 				}
 			},
-			error: function(){
+			error: function(jqXHR, textStatus, errorThrown){
 				if (textStatus == "abort") {
 					// ignore
 				} else {
