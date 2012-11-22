@@ -269,7 +269,7 @@ public class IfcStepSerializer extends IfcSerializer {
 							}
 						} else {
 							// UCS-2 will do
-							out.write("\\X2\\" + new String(Hex.encode(Charsets.UTF_16.encode(CharBuffer.wrap(new char[]{c})).array()), Charsets.UTF_8).toUpperCase() + "\\X0\\");
+							out.write("\\X2\\" + new String(Hex.encode(Charsets.UTF_16BE.encode(CharBuffer.wrap(new char[]{c})).array()), Charsets.UTF_8).toUpperCase() + "\\X0\\");
 						}
 					}
 				}

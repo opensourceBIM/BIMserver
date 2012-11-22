@@ -484,7 +484,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 						}
 						try {
 							ByteBuffer buffer = ByteBuffer.wrap(Hex.decodeHex(result.substring(index + 4, indexOfEnd).toCharArray()));
-							CharBuffer decode = Charsets.UTF_16.decode(buffer);
+							CharBuffer decode = Charsets.UTF_16BE.decode(buffer);
 							result = result.substring(0, index) + decode.toString() + result.substring(indexOfEnd + 4);
 						} catch (DecoderException e) {
 							throw new DeserializeException(e);
