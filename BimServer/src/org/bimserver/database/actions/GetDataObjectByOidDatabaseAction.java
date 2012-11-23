@@ -51,6 +51,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
+import com.google.common.base.Charsets;
 import com.google.common.collect.BiMap;
 
 public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObject> {
@@ -148,7 +149,11 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 					} else {
 						SimpleDataValue dataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
 						if (eGet != null) {
-							dataValue.setStringValue(eGet.toString());
+							if (eGet instanceof byte[]) {
+								dataValue.setStringValue(new String(((byte[])eGet), Charsets.UTF_8));
+							} else {
+								dataValue.setStringValue(eGet.toString());
+							}
 						} else {
 							dataValue.setStringValue(null);
 						}

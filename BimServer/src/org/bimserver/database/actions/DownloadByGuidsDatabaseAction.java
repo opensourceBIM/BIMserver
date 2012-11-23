@@ -32,10 +32,14 @@ import org.bimserver.database.ObjectIdentifier;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
+import org.bimserver.models.ifc2x3tc1.GeometryInstance;
+import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.SerializerPluginConfiguration;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
@@ -53,12 +57,14 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModelInt
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private Authorization authorization;
+	private long serializerOid;
 
-	public DownloadByGuidsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> guids, Authorization authorization, ObjectIDM objectIDM, Reporter reporter) {
+	public DownloadByGuidsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> guids, long serializerOid, Authorization authorization, ObjectIDM objectIDM, Reporter reporter) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roids = roids;
 		this.guids = guids;
+		this.serializerOid = serializerOid;
 		this.authorization = authorization;
 		this.objectIDM = objectIDM;
 	}
@@ -70,6 +76,9 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModelInt
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		Project project = null;
 		long incrSize = 0L;
+		
+		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), SerializerPluginConfiguration.class, serializerOid);
+		
 		for (Long roid : roids) {
 			Revision virtualRevision = getVirtualRevision(roid);
 			project = virtualRevision.getProject();
@@ -108,6 +117,21 @@ public class DownloadByGuidsDatabaseAction extends BimDatabaseAction<IfcModelInt
 				Set<Long> oids = map.get(concreteRevision);
 				getDatabaseSession().getMapWithOids(subModel, concreteRevision.getProject().getId(), concreteRevision.getId(), oids, true, objectIDM);
 				subModel.setDate(concreteRevision.getDate());
+				
+				for (IfcProduct ifcProduct : subModel.getAllWithSubTypes(IfcProduct.class)) {
+					GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
+					if (geometryInstance != null) {
+						if (serializerPluginConfiguration.isNeedsGeometry()) {
+							geometryInstance.load();
+						}
+						if (ifcProduct.getBounds() != null) {
+							ifcProduct.getBounds().load();
+							ifcProduct.getBounds().getMin().load();
+							ifcProduct.getBounds().getMax().load();
+						}
+					}
+				}
+				
 				ifcModelSet.add(subModel);
 			}
 		}

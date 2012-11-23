@@ -33,8 +33,6 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.Reporter;
-import org.bimserver.plugins.ifcengine.IfcEngine;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.serializers.CacheStoringEmfSerializerDataSource;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
@@ -61,14 +59,14 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 		return checkoutResult;
 	}
 
-	protected SCheckoutResult convertModelToCheckoutResult(Project project, String username, IfcModelInterface model, IfcEngine ifcEngine, DownloadParameters downloadParameters)
+	protected SCheckoutResult convertModelToCheckoutResult(Project project, String username, IfcModelInterface model, IfcEnginePlugin ifcEnginePlugin, DownloadParameters downloadParameters)
 			throws UserException, NoSerializerFoundException {
 		SCheckoutResult checkoutResult = new SCheckoutResult();
 		if (model.isValid()) {
 			checkoutResult.setProjectName(project.getName());
 			checkoutResult.setRevisionNr(model.getRevisionNr());
 			try {
-				org.bimserver.plugins.serializers.Serializer serializer = getBimServer().getEmfSerializerFactory().create(project, username, model, ifcEngine, downloadParameters);
+				org.bimserver.plugins.serializers.Serializer serializer = getBimServer().getEmfSerializerFactory().create(project, username, model, ifcEnginePlugin, downloadParameters);
 				if (serializer == null) {
 					throw new UserException("Error, no serializer found " + downloadParameters.getSerializerOid());
 				}
@@ -118,16 +116,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 					newSession.close();
 				}
 
-				IfcEngine ifcEngine = null;
-				if (ifcEnginePlugin != null) {
-					try {
-						ifcEngine = ifcEnginePlugin.createIfcEngine();
-					} catch (IfcEngineException e) {
-						LOGGER.error("", e);
-					}
-				}
-
-				checkoutResult = convertModelToCheckoutResult(revision.getProject(), getUserName(), ifcModel, ifcEngine, downloadParameters);
+				checkoutResult = convertModelToCheckoutResult(revision.getProject(), getUserName(), ifcModel, ifcEnginePlugin, downloadParameters);
 			}
 		} finally {
 			done();

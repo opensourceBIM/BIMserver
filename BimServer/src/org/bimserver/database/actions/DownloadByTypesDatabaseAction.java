@@ -131,9 +131,11 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 					if (serializerPluginConfiguration.isNeedsGeometry()) {
 						geometryInstance.load();
 					}
-					ifcProduct.getBounds().load();
-					ifcProduct.getBounds().getMin().load();
-					ifcProduct.getBounds().getMax().load();
+					if (ifcProduct.getBounds() != null) {
+						ifcProduct.getBounds().load();
+						ifcProduct.getBounds().getMin().load();
+						ifcProduct.getBounds().getMax().load();
+					}
 				}
 			}
 		}

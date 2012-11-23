@@ -45,19 +45,20 @@ public class S<%=cl.getSimpleName()%>Service extends org.bimserver.shared.meta.S
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 			if (eClassifier instanceof EClass) {
 %>
-		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.S<%=eClassifier.getName()%>"), new SConstructor(){
-			public Object newInstance() {
-				return new org.bimserver.interfaces.objects.S<%=eClassifier.getName()%>();
-			}
-		}));
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.S<%=eClassifier.getName()%>"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.S<%=eClassifier.getName()%>();
+					}
+				}));
 <%
 			} else if (eClassifier instanceof EEnum) {
 %>
-		addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.S<%=eClassifier.getName()%>"), null));
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.S<%=eClassifier.getName()%>"), null));
 <%
 			}
 		}
 %>
+			super.init();
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);
 		}
