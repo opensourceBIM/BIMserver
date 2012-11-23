@@ -106,9 +106,11 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 							geometryInstance.load();
 						}
 					}
-					ifcProduct.getBounds().load();
-					ifcProduct.getBounds().getMin().load();
-					ifcProduct.getBounds().getMax().load();
+					if (ifcProduct.getBounds() != null) {
+						ifcProduct.getBounds().load();
+						ifcProduct.getBounds().getMin().load();
+						ifcProduct.getBounds().getMax().load();
+					}
 				}
 				subModel.setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);

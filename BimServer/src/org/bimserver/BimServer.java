@@ -36,6 +36,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.log4j.LogManager;
 import org.bimserver.cache.CompareCache;
 import org.bimserver.cache.DiskCacheManager;
+import org.bimserver.client.JsonSocketReflectorFactory;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
@@ -197,9 +198,11 @@ public class BimServer {
 			} else {
 				LOGGER.info("Not using a homedir");
 			}
+			
+			JsonSocketReflectorFactory jsonSocketReflectorFactory = new JsonSocketReflectorFactory(servicesMap);
 
 			serverInfoManager = new ServerInfoManager();
-			notificationsManager = new NotificationsManager(this);
+			notificationsManager = new NotificationsManager(this, jsonSocketReflectorFactory);
 			serviceFactory = new PublicInterfaceFactory(this);
 
 			pluginManager = new PluginManager(new File(config.getHomeDir(), "tmp"), config.getClassPath(), serviceFactory, notificationsManager, servicesMap);

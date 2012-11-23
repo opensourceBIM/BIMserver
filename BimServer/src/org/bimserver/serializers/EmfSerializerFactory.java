@@ -36,7 +36,6 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
@@ -102,7 +101,7 @@ public class EmfSerializerFactory {
 		return null;
 	}
 	
-	public org.bimserver.plugins.serializers.Serializer create(Project project, String username, IfcModelInterface model, IfcEngine ifcEngine, DownloadParameters downloadParameters) throws SerializerException {
+	public org.bimserver.plugins.serializers.Serializer create(Project project, String username, IfcModelInterface model, IfcEnginePlugin ifcEnginePlugin, DownloadParameters downloadParameters) throws SerializerException {
 		SerializerPlugin serializerPlugin = get(downloadParameters.getSerializerOid());
 		org.bimserver.plugins.serializers.Serializer serializer = serializerPlugin.createSerializer();
 		if (serializer != null) {
@@ -118,7 +117,7 @@ public class EmfSerializerFactory {
 					projectInfo.setDirectionAngle(geoTag.getDirectionAngle());
 				}
 				projectInfo.setAuthorName(username);
-				serializer.init(model, projectInfo, pluginManager, ifcEngine, true);
+				serializer.init(model, projectInfo, pluginManager, ifcEnginePlugin, true);
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}

@@ -33,6 +33,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 import org.bimserver.database.actions.BimDatabaseAction;
+import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
 import org.bimserver.emf.IdEObject;
@@ -526,6 +527,11 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 					commit(progressHandler);
 				}
 				return result;
+			} catch (BimserverConcurrentModificationDatabaseException e) {
+				bimTransaction.rollback();
+				objectCache.clear();
+				objectsToCommit.clear();
+				bimTransaction = database.getKeyValueStore().startTransaction();
 			} catch (BimserverLockConflictException e) {
 				bimTransaction.rollback();
 				objectCache.clear();

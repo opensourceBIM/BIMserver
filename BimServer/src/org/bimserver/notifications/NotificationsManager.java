@@ -28,6 +28,7 @@ import java.util.concurrent.BlockingQueue;
 
 import org.bimserver.BimServer;
 import org.bimserver.client.JsonChannel;
+import org.bimserver.client.JsonSocketReflectorFactory;
 import org.bimserver.client.channels.Channel;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
@@ -64,12 +65,14 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	private final Map<String, ServiceDescriptor> internalServices = new HashMap<String, ServiceDescriptor>();
 	private final Map<String, NotificationInterface> x = new HashMap<String, NotificationInterface>();
 	private final BlockingQueue<SLogAction> queue = new ArrayBlockingQueue<SLogAction>(1000);
+	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private final BimServer bimServer;
 	private volatile boolean running;
 	private String url;
 
-	public NotificationsManager(BimServer bimServer) {
+	public NotificationsManager(BimServer bimServer, JsonSocketReflectorFactory jsonSocketReflectorFactory) {
 		setName("NotificationsManager");
+		this.jsonSocketReflectorFactory = jsonSocketReflectorFactory;
 		this.bimServer = bimServer;
 	}
 
@@ -189,7 +192,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		}
 		switch (service.getNotificationProtocol()) {
 		case JSON:
-			JsonChannel jsonChannel = new JsonChannel(bimServer.getServicesMap(), bimServer.getReflectorFactory());
+			JsonChannel jsonChannel = new JsonChannel(bimServer.getReflectorFactory(), jsonSocketReflectorFactory);
 			jsonChannel.connect(service.getUrl(), true, null);
 			return jsonChannel;
 		case INTERNAL:
