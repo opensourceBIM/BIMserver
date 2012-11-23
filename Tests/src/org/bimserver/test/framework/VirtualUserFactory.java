@@ -17,12 +17,14 @@ package org.bimserver.test.framework;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.client.ConnectionException;
 import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class VirtualUserFactory {
+	private static final Logger LOGGER = LoggerFactory.getLogger(VirtualUserFactory.class);
 	private final BimServerClientFactory randomBimServerClientFactory;
 	private final TestFramework testFramework;
 
@@ -33,11 +35,11 @@ public class VirtualUserFactory {
 
 	public VirtualUser create(String name) {
 		try {
-			return new VirtualUser(testFramework, randomBimServerClientFactory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"), "localhost"), name);
+			return new VirtualUser(testFramework, randomBimServerClientFactory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"), "http://localhost:8080"), name);
 		} catch (ServiceException e) {
-			e.printStackTrace();
-		} catch (ConnectionException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 		return null;
 	}

@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getEmailSenderAddress <em>Email Sender Address</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getEmailSenderName <em>Email Sender Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getSiteAddress <em>Site Address</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isGenerateGeometryOnCheckin <em>Generate Geometry On Checkin</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isAllowOnlyWhitelisted <em>Allow Only Whitelisted</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getWhitelistedDomains <em>Whitelisted Domains</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
@@ -220,6 +221,24 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 */
 	public void setSiteAddress(String newSiteAddress) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__SITE_ADDRESS, newSiteAddress);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isGenerateGeometryOnCheckin() {
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__GENERATE_GEOMETRY_ON_CHECKIN, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGenerateGeometryOnCheckin(boolean newGenerateGeometryOnCheckin) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__GENERATE_GEOMETRY_ON_CHECKIN, newGenerateGeometryOnCheckin);
 	}
 
 	/**

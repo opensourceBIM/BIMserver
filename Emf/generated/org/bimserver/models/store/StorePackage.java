@@ -961,13 +961,22 @@ public interface StorePackage extends EPackage {
 	int SERVER_SETTINGS__SITE_ADDRESS = 7;
 
 	/**
+	 * The feature id for the '<em><b>Generate Geometry On Checkin</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_SETTINGS__GENERATE_GEOMETRY_ON_CHECKIN = 8;
+
+	/**
 	 * The feature id for the '<em><b>Allow Only Whitelisted</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__ALLOW_ONLY_WHITELISTED = 8;
+	int SERVER_SETTINGS__ALLOW_ONLY_WHITELISTED = 9;
 
 	/**
 	 * The feature id for the '<em><b>Whitelisted Domains</b></em>' attribute list.
@@ -976,7 +985,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__WHITELISTED_DOMAINS = 9;
+	int SERVER_SETTINGS__WHITELISTED_DOMAINS = 10;
 
 	/**
 	 * The feature id for the '<em><b>Hide User List For Non Admin</b></em>' attribute.
@@ -985,7 +994,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN = 10;
+	int SERVER_SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN = 11;
 
 	/**
 	 * The feature id for the '<em><b>Protocol Buffers Port</b></em>' attribute.
@@ -994,7 +1003,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__PROTOCOL_BUFFERS_PORT = 11;
+	int SERVER_SETTINGS__PROTOCOL_BUFFERS_PORT = 12;
 
 	/**
 	 * The feature id for the '<em><b>Cache Output Files</b></em>' attribute.
@@ -1003,7 +1012,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__CACHE_OUTPUT_FILES = 12;
+	int SERVER_SETTINGS__CACHE_OUTPUT_FILES = 13;
 
 	/**
 	 * The feature id for the '<em><b>Service Repository Url</b></em>' attribute.
@@ -1012,7 +1021,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS__SERVICE_REPOSITORY_URL = 13;
+	int SERVER_SETTINGS__SERVICE_REPOSITORY_URL = 14;
 
 	/**
 	 * The number of structural features of the '<em>Server Settings</em>' class.
@@ -1021,7 +1030,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS_FEATURE_COUNT = 14;
+	int SERVER_SETTINGS_FEATURE_COUNT = 15;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.
@@ -6493,6 +6502,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getServerSettings_SiteAddress();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#isGenerateGeometryOnCheckin <em>Generate Geometry On Checkin</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Generate Geometry On Checkin</em>'.
+	 * @see org.bimserver.models.store.ServerSettings#isGenerateGeometryOnCheckin()
+	 * @see #getServerSettings()
+	 * @generated
+	 */
+	EAttribute getServerSettings_GenerateGeometryOnCheckin();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerSettings#isAllowOnlyWhitelisted <em>Allow Only Whitelisted</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10672,6 +10692,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERVER_SETTINGS__SITE_ADDRESS = eINSTANCE.getServerSettings_SiteAddress();
+
+		/**
+		 * The meta object literal for the '<em><b>Generate Geometry On Checkin</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVER_SETTINGS__GENERATE_GEOMETRY_ON_CHECKIN = eINSTANCE.getServerSettings_GenerateGeometryOnCheckin();
 
 		/**
 		 * The meta object literal for the '<em><b>Allow Only Whitelisted</b></em>' attribute feature.

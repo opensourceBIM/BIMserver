@@ -50,11 +50,11 @@ import org.bimserver.models.ifc2x3tc1.IfcSlabTypeEnum;
 import org.bimserver.models.ifc2x3tc1.IfcStyledItem;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyle;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
+import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.scenejs.GeometrySerializer;
+import org.bimserver.scenejs.AbstractGeometrySerializer;
 import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,7 +67,7 @@ import com.google.common.base.Charsets;
  *  - Not sending indices because the client can figure those out themselves (just count from 0 -> primitivecount * 3)
  */
 
-public class JsonGeometrySerializer extends GeometrySerializer {
+public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JsonGeometrySerializer.class);
 
 	private final HashMap<String, HashMap<String, HashSet<Long>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<Long>>>();
@@ -75,8 +75,8 @@ public class JsonGeometrySerializer extends GeometrySerializer {
 	private boolean isFirst = true;
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine, boolean normalizeOids) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEngine, normalizeOids);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, ifcEnginePlugin, normalizeOids);
 	}
 
 	@Override

@@ -112,6 +112,7 @@ import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
 import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
+import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.Serializer;
@@ -143,13 +144,14 @@ public class SceneJSSerializer extends EmfSerializer {
 	private IfcEngineModel ifcEngineModel;
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine, boolean normalizeOids) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEngine, false);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, ifcEnginePlugin, false);
 		this.surfaceStyleIds = new ArrayList<String>();
 		try {
+			IfcEngine ifcEngine = ifcEnginePlugin.createIfcEngine();
 			ifcEngine.init();
 			Serializer serializer = getPluginManager().requireIfcStepSerializer();
-			serializer.init(model, getProjectInfo(), getPluginManager(), ifcEngine, false);
+			serializer.init(model, getProjectInfo(), getPluginManager(), ifcEnginePlugin, false);
 			ifcEngineModel = ifcEngine.openModel(serializer.getBytes());
 			ifcEngineModel.setPostProcessing(true);
 			geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
@@ -205,7 +207,6 @@ public class SceneJSSerializer extends EmfSerializer {
 			}
 			writer.flush();
 			setMode(Mode.FINISHED);
-			getIfcEngine().close();
 			return true;
 		} else if (getMode() == Mode.FINISHED) {
 			return false;

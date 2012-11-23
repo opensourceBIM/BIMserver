@@ -32,7 +32,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngine;
+import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.schema.Attribute;
 import org.bimserver.plugins.schema.BaseType;
 import org.bimserver.plugins.schema.DefinedType;
@@ -66,8 +66,8 @@ public class IfcXmlSerializer extends IfcSerializer {
 	private SchemaDefinition schema;
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine, boolean normalizeOids) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEngine, normalizeOids);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, ifcEnginePlugin, normalizeOids);
 		objectToOidMap = new HashMap<EObject, Long>((int) model.size());
 		for (Long key : model.keySet()) {
 			objectToOidMap.put(model.get(key), key);

@@ -29,7 +29,7 @@ import java.util.Map;
 
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngine;
+import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,7 +40,7 @@ public abstract class EmfSerializer implements Serializer {
 	private Mode mode;
 	private ProjectInfo projectInfo;
 	private PluginManager pluginManager;
-	private IfcEngine ifcEngine;
+	private IfcEnginePlugin ifcEnginePlugin;
 	private boolean normalizeOids;
 	private final Map<Long, Long> oidMapper = new HashMap<Long, Long>();
 
@@ -48,17 +48,17 @@ public abstract class EmfSerializer implements Serializer {
 		HEADER, BODY, FOOTER, FINISHED
 	}
 
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine, boolean normalizeOids) throws SerializerException {
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException {
 		this.model = model;
 		this.projectInfo = projectInfo;
-		this.ifcEngine = ifcEngine;
+		this.ifcEnginePlugin = ifcEnginePlugin;
 		this.normalizeOids = normalizeOids;
 		this.setPluginManager(pluginManager);
 		reset();
 	}
 
-	public IfcEngine getIfcEngine() {
-		return ifcEngine;
+	public IfcEnginePlugin getIfcEnginePlugin() {
+		return ifcEnginePlugin;
 	}
 	
 	public ProjectInfo getProjectInfo() {

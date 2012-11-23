@@ -1,12 +1,8 @@
 package org.bimserver.shared.json;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
@@ -42,9 +38,9 @@ public class JsonSocketReflector extends JsonReflector {
 	private AuthenticationInfo authenticationInfo;
 	private HttpContext context;
 
-	public JsonSocketReflector(ServicesMap servicesMap, String remoteAddress, boolean useHttpSession, AuthenticationInfo authenticationInfo) {
+	public JsonSocketReflector(DefaultHttpClient httpclient, ServicesMap servicesMap, String remoteAddress, boolean useHttpSession, AuthenticationInfo authenticationInfo) {
 		super(servicesMap);
-		httpclient = new DefaultHttpClient();
+		this.httpclient = httpclient;
 		this.remoteAddress = remoteAddress;
 		this.useHttpSession = useHttpSession;
 		this.authenticationInfo = authenticationInfo;
@@ -57,10 +53,6 @@ public class JsonSocketReflector extends JsonReflector {
 	
 	public void setToken(SToken token) {
 		this.token = token;
-	}
-	
-	public void close() {
-		httpclient.getConnectionManager().shutdown();
 	}
 	
 	public JsonObject call(JsonObject request) throws JSONException, ReflectorException {
@@ -87,33 +79,36 @@ public class JsonSocketReflector extends JsonReflector {
 				}
 			}
 			HttpPost httppost = new HttpPost(remoteAddress);
-			System.out.println(request.toString());
 			httppost.setEntity(new StringEntity(request.toString()));
 
 			HttpResponse response = httpclient.execute(httppost, context);
-			if (response.getStatusLine().getStatusCode() == 200) {
-				HttpEntity resultEntity = response.getEntity();
-				
-				JsonParser parser = new JsonParser();
-				boolean debug = true;
-				if (debug ) {
-					InputStream inputStream = resultEntity.getContent();
-					ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-					IOUtils.copy(inputStream, byteArrayOutputStream);
-					LOGGER.info(new String(byteArrayOutputStream.toByteArray(), Charsets.UTF_8));
-					JsonObject resultObject = (JsonObject) parser.parse(new InputStreamReader(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()), Charsets.UTF_8));
-					return resultObject;
+			try {
+				if (response.getStatusLine().getStatusCode() == 200) {
+					HttpEntity resultEntity = response.getEntity();
+					
+					JsonParser parser = new JsonParser();
+					boolean debug = true;
+					if (debug ) {
+						InputStream inputStream = resultEntity.getContent();
+//					ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//					IOUtils.copy(inputStream, byteArrayOutputStream);
+//					LOGGER.info(new String(byteArrayOutputStream.toByteArray(), Charsets.UTF_8));
+						JsonObject resultObject = (JsonObject) parser.parse(new InputStreamReader(inputStream, Charsets.UTF_8));
+						return resultObject;
+					} else {
+						JsonObject resultObject = (JsonObject) parser.parse(new InputStreamReader(resultEntity.getContent(), Charsets.UTF_8));
+						return resultObject;
+					}
 				} else {
-					JsonObject resultObject = (JsonObject) parser.parse(new InputStreamReader(resultEntity.getContent(), Charsets.UTF_8));
-					return resultObject;
+					throw new ReflectorException("Call unsuccessful, status code: " + response.getStatusLine().getStatusCode());
 				}
-			} else {
-				throw new ReflectorException("Call unsuccessful, status code: " + response.getStatusLine().getStatusCode());
+			} finally {
+				httppost.releaseConnection();
 			}
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 		return null;
 	}

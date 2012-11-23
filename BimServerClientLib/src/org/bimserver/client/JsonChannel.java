@@ -7,18 +7,17 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.json.JsonSocketReflector;
-import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.reflector.ReflectorFactory;
 
 public class JsonChannel extends Channel {
 
-	private ServicesMap servicesMap;
 	private ReflectorFactory reflectorFactory;
 	private JsonSocketReflector reflector;
+	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
 
-	public JsonChannel(ServicesMap servicesMap, ReflectorFactory reflectorFactory) {
-		this.servicesMap = servicesMap;
+	public JsonChannel(ReflectorFactory reflectorFactory, JsonSocketReflectorFactory jsonSocketReflectorFactory) {
 		this.reflectorFactory = reflectorFactory;
+		this.jsonSocketReflectorFactory = jsonSocketReflectorFactory;
 	}
 
 	@Override
@@ -31,7 +30,7 @@ public class JsonChannel extends Channel {
 	}
 
 	public void connect(String address, boolean useHttpSession, AuthenticationInfo authenticationInfo) {
-		reflector = new JsonSocketReflector(servicesMap, address, useHttpSession, authenticationInfo);
+		reflector = jsonSocketReflectorFactory.create(address, useHttpSession, authenticationInfo);
 		finish(reflector, reflectorFactory);
 		if (authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
 			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo)authenticationInfo;

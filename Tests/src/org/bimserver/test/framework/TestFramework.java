@@ -41,7 +41,7 @@ public class TestFramework {
 	private final TestConfiguration testConfiguration;
 	private final TestResults testResults = new TestResults();
 	private BimServer bimServer;
-	
+
 	public TestFramework(TestConfiguration testConfiguration) {
 		this.testConfiguration = testConfiguration;
 	}
@@ -133,6 +133,6 @@ public class TestFramework {
 	}
 
 	public PluginManager getPluginManager() {
-		return null;
+		return bimServer.getPluginManager();
 	}
 }
