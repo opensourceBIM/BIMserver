@@ -77,6 +77,8 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Charsets;
+
 public class BimServerClient implements ConnectDisconnectListener {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BimServerClient.class);
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
@@ -88,12 +90,17 @@ public class BimServerClient implements ConnectDisconnectListener {
 	private ServicesMap servicesMap = new ServicesMap();
 	private ReflectorFactory reflectorFactory;
 	private String baseAddress;
+	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
 
 	public BimServerClient(String baseAddress, ServicesMap servicesMap) {
 		this.baseAddress = baseAddress;
 		this.servicesMap = servicesMap;
 		notificationsClient = new SocketNotificationsClient();
 		reflectorFactory = new ReflectorBuilder(servicesMap).newReflectorFactory();
+	}
+	
+	public void setJsonSocketReflectorFactory(JsonSocketReflectorFactory jsonSocketReflectorFactory) {
+		this.jsonSocketReflectorFactory = jsonSocketReflectorFactory;
 	}
 
 	public void setAuthentication(AuthenticationInfo authenticationInfo) {
@@ -125,7 +132,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 	public void connectJson(boolean useHttpSession) throws ConnectionException {
 		disconnect();
-		JsonChannel jsonChannel = new JsonChannel(servicesMap, reflectorFactory);
+		JsonChannel jsonChannel = new JsonChannel(reflectorFactory, jsonSocketReflectorFactory );
 		this.channel = jsonChannel;
 		jsonChannel.connect(baseAddress + "/jsonapi", useHttpSession, authenticationInfo);
 	}
@@ -363,6 +370,8 @@ public class BimServerClient implements ConnectDisconnectListener {
 			return Boolean.parseBoolean(stringValue);
 		} else if (eType == einstance.getEInt() || eType == einstance.getEIntegerObject()) {
 			return Integer.parseInt(stringValue);
+		} else if (eType == einstance.getEByteArray()) {
+			return stringValue.getBytes(Charsets.UTF_8);
 		} else if (eType instanceof EEnum) {
 			EEnum eEnum = (EEnum) eType;
 			return eEnum.getEEnumLiteral(stringValue).getInstance();

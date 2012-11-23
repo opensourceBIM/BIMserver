@@ -38,7 +38,7 @@ import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.models.ifc2x3tc1.WrappedValue;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngine;
+import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.serializers.ProjectInfo;
@@ -94,8 +94,8 @@ public class IfcStepSerializer extends IfcSerializer {
 	private SchemaDefinition schema;
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine, boolean normalizeOids) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEngine, normalizeOids);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, ifcEnginePlugin, normalizeOids);
 		try {
 			schema = getPluginManager().requireSchemaDefinition();
 		} catch (PluginException e) {

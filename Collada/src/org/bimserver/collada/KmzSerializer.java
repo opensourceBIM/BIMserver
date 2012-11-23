@@ -26,6 +26,7 @@ import java.util.zip.ZipOutputStream;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
+import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -38,11 +39,11 @@ public class KmzSerializer extends EmfSerializer {
 	private ColladaSerializer ifcToCollada;
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine, boolean normalizeOids) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEngine, normalizeOids);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, ifcEnginePlugin, normalizeOids);
 		try {
 			ifcToCollada = new ColladaSerializer();
-			ifcToCollada.init(model, projectInfo, pluginManager, ifcEngine, normalizeOids);
+			ifcToCollada.init(model, projectInfo, pluginManager, ifcEnginePlugin, normalizeOids);
 		} catch (SerializerException e) {
 			throw new SerializerException(e);
 		}

@@ -1655,7 +1655,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerSettings_AllowOnlyWhitelisted() {
+	public EAttribute getServerSettings_GenerateGeometryOnCheckin() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(8);
 	}
 
@@ -1664,7 +1664,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerSettings_WhitelistedDomains() {
+	public EAttribute getServerSettings_AllowOnlyWhitelisted() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(9);
 	}
 
@@ -1673,7 +1673,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerSettings_HideUserListForNonAdmin() {
+	public EAttribute getServerSettings_WhitelistedDomains() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(10);
 	}
 
@@ -1682,7 +1682,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerSettings_ProtocolBuffersPort() {
+	public EAttribute getServerSettings_HideUserListForNonAdmin() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(11);
 	}
 
@@ -1691,7 +1691,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerSettings_CacheOutputFiles() {
+	public EAttribute getServerSettings_ProtocolBuffersPort() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(12);
 	}
 
@@ -1700,8 +1700,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServerSettings_ServiceRepositoryUrl() {
+	public EAttribute getServerSettings_CacheOutputFiles() {
 		return (EAttribute) getServerSettings().getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getServerSettings_ServiceRepositoryUrl() {
+		return (EAttribute) getServerSettings().getEStructuralFeatures().get(14);
 	}
 
 	/**

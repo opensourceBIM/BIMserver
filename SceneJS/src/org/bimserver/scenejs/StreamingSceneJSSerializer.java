@@ -118,6 +118,7 @@ import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
 import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
+import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.Serializer;
@@ -171,18 +172,18 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 	private IfcEngine ifcEngine;
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine, boolean normalizeOids) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEngine, normalizeOids);
-		this.ifcEngine = ifcEngine;
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, ifcEnginePlugin, normalizeOids);
 		this.surfaceStyleIds = new ArrayList<String>();
 	}
 
 	private IfcEngineGeometry getGeometry() {
 		if (geometry == null) {
 			try {
+				ifcEngine = getIfcEnginePlugin().createIfcEngine();
 				ifcEngine.init();
 				Serializer serializer = getPluginManager().requireIfcStepSerializer();
-				serializer.init(model, getProjectInfo(), getPluginManager(), ifcEngine, false);
+				serializer.init(model, getProjectInfo(), getPluginManager(), getIfcEnginePlugin(), false);
 				ifcEngineModel = ifcEngine.openModel(serializer.getBytes());
 				ifcEngineModel.setPostProcessing(true);
 				geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
@@ -301,6 +302,10 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 			return false;
 		}
 		return false;
+	}
+
+	public IfcEngine getIfcEngine() {
+		return ifcEngine;
 	}
 
 	private void writeMaterials(JsonWriter jsonWriter) throws IOException {

@@ -39,6 +39,7 @@ public class SServerSettings implements SDataBase
 	private java.lang.String emailSenderAddress;
 	private java.lang.String emailSenderName;
 	private java.lang.String siteAddress;
+	private boolean generateGeometryOnCheckin;
 	private boolean allowOnlyWhitelisted;
 	private List<java.lang.String> whitelistedDomains = new ArrayList<java.lang.String>();
 	private java.lang.Boolean hideUserListForNonAdmin;
@@ -94,6 +95,9 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("siteAddress")) {
 			return getSiteAddress();
+		}
+		if (sField.getName().equals("generateGeometryOnCheckin")) {
+			return isGenerateGeometryOnCheckin();
 		}
 		if (sField.getName().equals("allowOnlyWhitelisted")) {
 			return isAllowOnlyWhitelisted();
@@ -154,6 +158,10 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("siteAddress")) {
 			setSiteAddress((String)val);
+			return;
+		}
+		if (sField.getName().equals("generateGeometryOnCheckin")) {
+			setGenerateGeometryOnCheckin((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("allowOnlyWhitelisted")) {
@@ -253,6 +261,14 @@ public class SServerSettings implements SDataBase
 
 	public void setSiteAddress(java.lang.String siteAddress) {
 		this.siteAddress = siteAddress;
+	}
+	
+	public boolean isGenerateGeometryOnCheckin() {
+		return generateGeometryOnCheckin;
+	}
+
+	public void setGenerateGeometryOnCheckin(boolean generateGeometryOnCheckin) {
+		this.generateGeometryOnCheckin = generateGeometryOnCheckin;
 	}
 	
 	public boolean isAllowOnlyWhitelisted() {

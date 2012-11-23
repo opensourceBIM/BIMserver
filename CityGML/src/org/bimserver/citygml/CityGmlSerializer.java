@@ -65,6 +65,7 @@ import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
 import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
+import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.Serializer;
@@ -121,13 +122,14 @@ public class CityGmlSerializer extends EmfSerializer {
 	private CityGMLContext ctx;
 	private IfcEngineModel ifcEngineModel;
 	private IfcEngineGeometry geometry;
+	private IfcEngine ifcEngine;
 
 	// private ObjectFactory xbuilding;
 	// private org.citygml4j.jaxb.gml._3_1_1.ObjectFactory gmlObjectFactory;
 
 	@Override
-	public void init(IfcModelInterface ifcModel, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine, boolean normalizeOids) throws SerializerException {
-		super.init(ifcModel, projectInfo, pluginManager, ifcEngine, normalizeOids);
+	public void init(IfcModelInterface ifcModel, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException {
+		super.init(ifcModel, projectInfo, pluginManager, ifcEnginePlugin, normalizeOids);
 		this.model = ifcModel;
 		ctx = new CityGMLContext();
 		citygml = new CityGMLFactory();
@@ -138,8 +140,9 @@ public class CityGmlSerializer extends EmfSerializer {
 		convertedObjects = new HashMap<EObject, AbstractCityObject>();
 
 		Serializer serializer = getPluginManager().requireIfcStepSerializer();
-		serializer.init(ifcModel, getProjectInfo(), getPluginManager(), ifcEngine, false);
+		serializer.init(ifcModel, getProjectInfo(), getPluginManager(), ifcEnginePlugin, false);
 		try {
+			ifcEngine = ifcEnginePlugin.createIfcEngine();
 			ifcEngine.init();
 			ifcEngineModel = ifcEngine.openModel(serializer.getBytes());
 			ifcEngineModel.setPostProcessing(true);
@@ -149,6 +152,10 @@ public class CityGmlSerializer extends EmfSerializer {
 		}
 	}
 
+	public IfcEngine getIfcEngine() {
+		return ifcEngine;
+	}
+	
 	private Code createName(String value) {
 		Code code = gml.createCode();
 		code.setValue(value);

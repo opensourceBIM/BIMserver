@@ -63,6 +63,7 @@ import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
 import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
+import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.Serializer;
@@ -80,6 +81,7 @@ public class ColladaSerializer extends EmfSerializer {
 	private IfcEngineModel ifcEngineModel;
 	private IfcEngineGeometry geometry;
 	private int idCounter;
+	private IfcEngine ifcEngine;
 
 	private static <T extends IfcProduct> void addConvertor(Convertor<T> convertor) {
 		convertors.put(convertor.getCl(), convertor);
@@ -116,12 +118,13 @@ public class ColladaSerializer extends EmfSerializer {
 	}
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine, boolean normalizeOids) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEngine, normalizeOids);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, ifcEnginePlugin, normalizeOids);
 		this.lengthUnitPrefix = getLengthUnitPrefix(model);
 		try {
 			Serializer serializer = getPluginManager().requireIfcStepSerializer();
-			serializer.init(model, getProjectInfo(), getPluginManager(), ifcEngine, false);
+			serializer.init(model, getProjectInfo(), getPluginManager(), ifcEnginePlugin, false);
+			ifcEngine = ifcEnginePlugin.createIfcEngine();
 			ifcEngine.init();
 			ifcEngineModel = ifcEngine.openModel(serializer.getBytes());
 			ifcEngineModel.setPostProcessing(true);
@@ -131,6 +134,10 @@ public class ColladaSerializer extends EmfSerializer {
 		}
 	}
 
+	public IfcEngine getIfcEngine() {
+		return ifcEngine;
+	}
+	
 	@Override
 	public void reset() {
 		setMode(Mode.BODY);

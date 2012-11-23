@@ -89,12 +89,12 @@ import org.bimserver.models.ifc2x3tc1.IfcUnitAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcUnitEnum;
 import org.bimserver.models.store.SIPrefix;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
+import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.scenejs.AbstractGeometrySerializer;
 import org.bimserver.scenejs.Extends;
-import org.bimserver.scenejs.GeometrySerializer;
 import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -102,14 +102,14 @@ import org.slf4j.LoggerFactory;
 import com.google.common.base.Charsets;
 import com.google.gson.stream.JsonWriter;
 
-public class SceneJsShellSerializer extends GeometrySerializer {
+public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SceneJsShellSerializer.class);
 	private final HashMap<String, HashMap<String, HashSet<Long>>> typeMaterialGeometryRel = new HashMap<String, HashMap<String, HashSet<Long>>>();
 	private final List<String> surfaceStyleIds = new ArrayList<String>();
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEngine ifcEngine, boolean normalizeOids) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEngine, normalizeOids);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, ifcEnginePlugin, normalizeOids);
 	}
 
 	@Override
@@ -165,9 +165,6 @@ public class SceneJsShellSerializer extends GeometrySerializer {
 				LOGGER.error("", e);
 			}
 			setMode(Mode.FINISHED);
-			if (getIfcEngine() != null) {
-				getIfcEngine().close();
-			}
 			return true;
 		} else if (getMode() == Mode.FINISHED) {
 			return false;

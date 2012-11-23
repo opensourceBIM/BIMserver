@@ -19,7 +19,9 @@ package org.bimserver.test.framework;
 
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ConnectionException;
+import org.bimserver.client.JsonSocketReflectorFactory;
 import org.bimserver.client.factories.BimServerClientFactory;
+import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
@@ -43,6 +45,7 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 	private int current = 0;
 	private final Type[] types;
 	private ServicesMap servicesMap;
+	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	
 	public RandomBimServerClientFactory(TestFramework testFramework, Type... types) {
 		if (types.length == 0) {
@@ -51,7 +54,8 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 			this.types = types;
 		}
 		servicesMap = new ServicesMap();
-		servicesMap.add(new SService(null, ServiceInterface.class));
+		servicesMap.add(new SServiceInterfaceService(null, ServiceInterface.class));
+		jsonSocketReflectorFactory = new JsonSocketReflectorFactory(servicesMap);
 	}
 	
 	public synchronized BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
@@ -74,10 +78,12 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 				break;
 			case JSON_SESSION_BASED:
 				LOGGER.info("New BimServerClient: JSON");
+				bimServerClient.setJsonSocketReflectorFactory(jsonSocketReflectorFactory);
 				bimServerClient.connectJson(true);
 				break;
 			case JSON_TOKEN_BASED:
 				LOGGER.info("New BimServerClient: JSON");
+				bimServerClient.setJsonSocketReflectorFactory(jsonSocketReflectorFactory);
 				bimServerClient.connectJson(false);
 				break;
 			}
