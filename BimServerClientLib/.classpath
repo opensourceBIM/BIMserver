@@ -33,5 +33,6 @@
 	<classpathentry kind="lib" path="/BimServer/lib/httpclient/httpclient-4.2.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/httpclient/httpcore-4.2.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/jetty/servlet-api-3.0.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/cxf/cxf-2.6.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
