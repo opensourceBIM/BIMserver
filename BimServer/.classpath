@@ -9,9 +9,10 @@
 	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.equinox.preferences_3.5.0.v20120522-1841.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.jdt.core_3.8.1.v20120531-0637.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.osgi_3.8.0.v20120529-1548.jar"/>
-	<classpathentry kind="lib" path="lib/tomcat/tomcat-coyote.jar"/>
-	<classpathentry kind="lib" path="lib/gson-2.2.2.jar" sourcepath="libsrc/gson-2.2.2-sources.jar"/>
-	<classpathentry kind="lib" path="lib/openmali.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/tomcat/tomcat-coyote.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/gson-2.2.2.jar" sourcepath="libsrc/gson-2.2.2-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/openmali.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/je-5.0.58.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="starter"/>
@@ -69,7 +70,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/logging/log4j-1.2.16.jar" sourcepath="libsrc/log4j.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/logging/slf4j-api-1.6.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/logging/slf4j-log4j12-1.6.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/je-5.0.34.jar" sourcepath="libsrc/je-5.0.34-src.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/BimServerClientLib"/>
 	<classpathentry exported="true" kind="lib" path="lib/jetty/jsp/com.sun.el-2.2.0.v201108011116.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jetty/jsp/javax.el-2.2.0.v201108011116.jar"/>
@@ -139,7 +139,7 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/tomcat/catalina.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/tomcat/catalina.jar"/>
 	<classpathentry kind="output" path="bin"/>
 	<referencedentry exported="true" kind="lib" path="lib/cxf/cxf-2.4.4.jar" sourcepath="libsrc/apache-cxf-2.4.3-src.zip"/>
 </classpath>
