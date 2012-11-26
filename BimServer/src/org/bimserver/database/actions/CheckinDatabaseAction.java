@@ -150,9 +150,8 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				ifcModel = getModel();
 			}
 
-			setProgress("Generating Geometry...", -1);
-			
 			if (getServerSettings().isGenerateGeometryOnCheckin()) {
+				setProgress("Generating Geometry...", -1);
 				Geometry geometry = generateGeometry(ifcModel, project.getId(), concreteRevision.getId(), revision);
 				revision.setGeometry(geometry);
 				getDatabaseSession().store(geometry);
