@@ -1,18 +1,5 @@
 package org.bimserver.tests;
 
-import org.bimserver.interfaces.objects.SNewRevisionAdded;
-import org.bimserver.interfaces.objects.SToken;
-import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.NotificationInterface;
-import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.json.JsonSocketReflector;
-import org.bimserver.shared.meta.SService;
-import org.bimserver.shared.meta.ServicesMap;
-import org.bimserver.shared.reflector.ReflectorBuilder;
-import org.bimserver.shared.reflector.ReflectorFactory;
-
 public class TestJsonCall {
 	public static void main(String[] args) {
 //		ServicesMap servicesMap = new ServicesMap();

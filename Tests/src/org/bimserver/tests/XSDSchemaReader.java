@@ -1,4 +1,4 @@
-package org.bimserver;
+package org.bimserver.tests;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org

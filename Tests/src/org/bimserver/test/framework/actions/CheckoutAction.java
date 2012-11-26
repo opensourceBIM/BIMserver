@@ -48,13 +48,13 @@ public class CheckoutAction extends Action {
 			boolean sync = nextBoolean();
 			getActionResults().setText("Checking out revision " + project.getLastRevisionId() + " of project " + project.getName() + " with serializer " + serializer.getName() + " sync: " + sync);
 			long download = virtualUser.getBimServerClient().getServiceInterface().checkout(project.getLastRevisionId(), serializer.getOid(), sync);
-			SLongActionState downloadState = virtualUser.getBimServerClient().getServiceInterface().getDownloadState(download);
+			SLongActionState downloadState = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(download);
 			while (downloadState.getState() != SActionState.FINISHED) {
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 				}
-				downloadState = virtualUser.getBimServerClient().getServiceInterface().getDownloadState(download);
+				downloadState = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(download);
 			}
 			virtualUser.getLogger().info("Done preparing checkout, downloading");
 			SDownloadResult downloadData = virtualUser.getBimServerClient().getServiceInterface().getDownloadData(download);

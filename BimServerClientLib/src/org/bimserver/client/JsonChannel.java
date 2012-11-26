@@ -4,13 +4,14 @@ import org.bimserver.client.channels.Channel;
 import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.json.JsonSocketReflector;
 import org.bimserver.shared.reflector.ReflectorFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JsonChannel extends Channel {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(JsonChannel.class);
 	private ReflectorFactory reflectorFactory;
 	private JsonSocketReflector reflector;
 	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
@@ -37,10 +38,8 @@ public class JsonChannel extends Channel {
 			try {
 				SToken sToken = getServiceInterface().login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword());
 				reflector.setToken(sToken);
-			} catch (ServerException e) {
-				e.printStackTrace();
-			} catch (UserException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				LOGGER.error("", e);
 			}
 		}
 	}

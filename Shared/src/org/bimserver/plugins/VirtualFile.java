@@ -87,11 +87,11 @@ public class VirtualFile implements JavaFileObject {
 		}
 	}
 
-	public VirtualFile(File file) {
+	public VirtualFile(File file) throws IOException {
 		this(null, file);
 	}
 	
-	public VirtualFile(VirtualFile parent, File file) {
+	public VirtualFile(VirtualFile parent, File file) throws IOException {
 		this.parent = parent;
 		this.name = file.getName();
 		if (file.isDirectory()) {
@@ -99,11 +99,7 @@ public class VirtualFile implements JavaFileObject {
 				files.put(f.getName(), new VirtualFile(this, f));
 			}
 		} else {
-			try {
-				setData(FileUtils.readFileToByteArray(file));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			setData(FileUtils.readFileToByteArray(file));
 		}
 	}
 
@@ -415,25 +411,19 @@ public class VirtualFile implements JavaFileObject {
 		return data;
 	}
 
-	public static VirtualFile fromJar(File file) {
+	public static VirtualFile fromJar(File file) throws IOException {
 		VirtualFile result = new VirtualFile();
-		try {
-			JarInputStream jarInputStream = new JarInputStream(new FileInputStream(file));
-			JarEntry jarEntry = jarInputStream.getNextJarEntry();
-			while (jarEntry != null) {
-				String n = jarEntry.getName();
-				n = n.replace("/", File.separator);
-				n = n.replace("\\", File.separator);
-				VirtualFile newFile = result.createFile(n);
-				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-				IOUtils.copy(jarInputStream, byteArrayOutputStream);
-				newFile.setData(byteArrayOutputStream.toByteArray());
-				jarEntry = jarInputStream.getNextJarEntry();
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		JarInputStream jarInputStream = new JarInputStream(new FileInputStream(file));
+		JarEntry jarEntry = jarInputStream.getNextJarEntry();
+		while (jarEntry != null) {
+			String n = jarEntry.getName();
+			n = n.replace("/", File.separator);
+			n = n.replace("\\", File.separator);
+			VirtualFile newFile = result.createFile(n);
+			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+			IOUtils.copy(jarInputStream, byteArrayOutputStream);
+			newFile.setData(byteArrayOutputStream.toByteArray());
+			jarEntry = jarInputStream.getNextJarEntry();
 		}
 		return result;
 	}
@@ -446,7 +436,7 @@ public class VirtualFile implements JavaFileObject {
 		
 	}
 	
-	public static VirtualFile fromDirectory(File file) {
+	public static VirtualFile fromDirectory(File file) throws IOException {
 		return new VirtualFile(file);
 	}
 }

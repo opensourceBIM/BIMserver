@@ -17,7 +17,7 @@ package org.bimserver.notifications;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.servlets.EndPoint;
+import org.bimserver.endpoints.EndPoint;
 
 public class NotificationContainer {
 

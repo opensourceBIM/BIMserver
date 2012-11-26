@@ -398,10 +398,14 @@ public class PluginManager {
 			implementations.put(interfaceClass, new LinkedHashSet<PluginContext>());
 		}
 		Set<PluginContext> set = (Set<PluginContext>) implementations.get(interfaceClass);
-		PluginContext pluginContext = new PluginContext(this, classLoader, pluginType, location);
-		pluginContext.setPlugin(plugin);
-		pluginContext.setClassLocation(classLocation);
-		set.add(pluginContext);
+		try {
+			PluginContext pluginContext = new PluginContext(this, classLoader, pluginType, location);
+			pluginContext.setPlugin(plugin);
+			pluginContext.setClassLocation(classLocation);
+			set.add(pluginContext);
+		} catch (IOException e) {
+			throw new PluginException(e);
+		}
 	}
 	
 	public void initAllLoadedPlugins() {
@@ -479,17 +483,13 @@ public class PluginManager {
 		return getPluginByClassName(QueryEnginePlugin.class, className, onlyEnabled);
 	}
 
-	public void loadAllPluginsFromEclipseWorkspace(File file) {
+	public void loadAllPluginsFromEclipseWorkspace(File file) throws PluginException {
 		for (File project : file.listFiles()) {
 			File pluginDir = new File(project, "plugin");
 			if (pluginDir.exists()) {
 				File pluginFile = new File(pluginDir, "plugin.xml");
 				if (pluginFile.exists()) {
-					try {
-						loadPluginsFromEclipseProject(project);
-					} catch (PluginException e) {
-						e.printStackTrace();
-					}
+					loadPluginsFromEclipseProject(project);
 				}
 			}
 		}

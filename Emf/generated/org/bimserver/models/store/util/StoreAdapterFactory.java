@@ -146,11 +146,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseCheckinResult(CheckinResult object) {
-			return createCheckinResultAdapter();
-		}
-
-		@Override
 		public Adapter caseDownloadResult(DownloadResult object) {
 			return createDownloadResultAdapter();
 		}
@@ -243,11 +238,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseLongAction(LongAction object) {
 			return createLongActionAdapter();
-		}
-
-		@Override
-		public Adapter caseLongCheckinAction(LongCheckinAction object) {
-			return createLongCheckinActionAdapter();
 		}
 
 		@Override
@@ -707,20 +697,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.CheckinResult <em>Checkin Result</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.CheckinResult
-	 * @generated
-	 */
-	public Adapter createCheckinResultAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.DownloadResult <em>Download Result</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -983,20 +959,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLongActionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.LongCheckinAction <em>Long Checkin Action</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.LongCheckinAction
-	 * @generated
-	 */
-	public Adapter createLongCheckinActionAdapter() {
 		return null;
 	}
 

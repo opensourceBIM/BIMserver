@@ -53,14 +53,22 @@ public enum ActionState implements Enumerator {
 	STARTED(1, "STARTED", "STARTED"),
 
 	/**
-	 * The '<em><b>FINISHED</b></em>' literal object.
+	 * The '<em><b>ERROR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FINISHED_VALUE
+	 * @see #ERROR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FINISHED(2, "FINISHED", "FINISHED");
+	ERROR(2, "ERROR", "ERROR"), /**
+								 * The '<em><b>FINISHED</b></em>' literal object.
+								 * <!-- begin-user-doc -->
+								 * <!-- end-user-doc -->
+								 * @see #FINISHED_VALUE
+								 * @generated
+								 * @ordered
+								 */
+	FINISHED(3, "FINISHED", "FINISHED");
 
 	/**
 	 * The '<em><b>UNKNOWN</b></em>' literal value.
@@ -93,6 +101,21 @@ public enum ActionState implements Enumerator {
 	public static final int STARTED_VALUE = 1;
 
 	/**
+	 * The '<em><b>ERROR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ERROR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ERROR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ERROR_VALUE = 2;
+
+	/**
 	 * The '<em><b>FINISHED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -105,7 +128,7 @@ public enum ActionState implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FINISHED_VALUE = 2;
+	public static final int FINISHED_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>Action State</b></em>' enumerators.
@@ -113,7 +136,7 @@ public enum ActionState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ActionState[] VALUES_ARRAY = new ActionState[] { UNKNOWN, STARTED, FINISHED, };
+	private static final ActionState[] VALUES_ARRAY = new ActionState[] { UNKNOWN, STARTED, ERROR, FINISHED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Action State</b></em>' enumerators.
@@ -167,6 +190,8 @@ public enum ActionState implements Enumerator {
 			return UNKNOWN;
 		case STARTED_VALUE:
 			return STARTED;
+		case ERROR_VALUE:
+			return ERROR;
 		case FINISHED_VALUE:
 			return FINISHED;
 		}

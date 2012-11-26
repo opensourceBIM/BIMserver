@@ -34,7 +34,7 @@ public class FileBasedObjectIDMPlugin implements ObjectIDMPlugin {
 		try {
 			fileBasedObjectIDM = new FileBasedObjectIDM(pluginManager.requireSchemaDefinition(), pluginManager.getPluginContext(this));
 		} catch (ObjectIDMException e) {
-			e.printStackTrace();
+			throw new PluginException(e);
 		}
 		initialized = true;
 	}

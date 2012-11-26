@@ -153,15 +153,6 @@ public interface StoreFactory extends EFactory {
 	DeserializerPluginConfiguration createDeserializerPluginConfiguration();
 
 	/**
-	 * Returns a new object of class '<em>Checkin Result</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Checkin Result</em>'.
-	 * @generated
-	 */
-	CheckinResult createCheckinResult();
-
-	/**
 	 * Returns a new object of class '<em>Download Result</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -331,15 +322,6 @@ public interface StoreFactory extends EFactory {
 	 * @generated
 	 */
 	LongAction createLongAction();
-
-	/**
-	 * Returns a new object of class '<em>Long Checkin Action</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Long Checkin Action</em>'.
-	 * @generated
-	 */
-	LongCheckinAction createLongCheckinAction();
 
 	/**
 	 * Returns a new object of class '<em>Object IDM Plugin Descriptor</em>'.

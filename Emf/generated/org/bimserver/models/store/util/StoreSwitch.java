@@ -179,13 +179,6 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.CHECKIN_RESULT: {
-			CheckinResult checkinResult = (CheckinResult) theEObject;
-			T result = caseCheckinResult(checkinResult);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case StorePackage.DOWNLOAD_RESULT: {
 			DownloadResult downloadResult = (DownloadResult) theEObject;
 			T result = caseDownloadResult(downloadResult);
@@ -327,15 +320,6 @@ public class StoreSwitch<T> extends Switch<T> {
 		case StorePackage.LONG_ACTION: {
 			LongAction longAction = (LongAction) theEObject;
 			T result = caseLongAction(longAction);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case StorePackage.LONG_CHECKIN_ACTION: {
-			LongCheckinAction longCheckinAction = (LongCheckinAction) theEObject;
-			T result = caseLongCheckinAction(longCheckinAction);
-			if (result == null)
-				result = caseLongAction(longCheckinAction);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -952,21 +936,6 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Checkin Result</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Checkin Result</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCheckinResult(CheckinResult object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Download Result</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1248,21 +1217,6 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLongAction(LongAction object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Long Checkin Action</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Long Checkin Action</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLongCheckinAction(LongCheckinAction object) {
 		return null;
 	}
 

@@ -9,6 +9,7 @@ import org.apache.catalina.websocket.StreamInbound;
 import org.apache.catalina.websocket.WsOutbound;
 import org.apache.commons.io.output.NullWriter;
 import org.bimserver.BimServer;
+import org.bimserver.endpoints.EndPoint;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.json.JsonReflector;
 import org.codehaus.jettison.json.JSONException;

@@ -10,8 +10,11 @@ import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class AbstractGeometrySerializer extends EmfSerializer {
+	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractGeometrySerializer.class);
 	private Extends sceneExtends = new Extends();
 	private IfcEngineGeometry geometry;
 	private HashMap<String, Extends> geometryExtents = new HashMap<String, Extends>();
@@ -29,9 +32,9 @@ public abstract class AbstractGeometrySerializer extends EmfSerializer {
 				ifcEngineModel.setPostProcessing(true);
 				geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
 			} catch (IfcEngineException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (SerializerException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		return geometry;

@@ -19,22 +19,11 @@ package org.bimserver.database.migrations.steps;
 
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
-import org.bimserver.database.migrations.Schema.Multiplicity;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 
 public class Step0015 extends Migration {
 
 	@Override
 	public void migrate(Schema schema) {
-		EEnum checkintStatusEnum = schema.createEEnum(schema.getEPackage("store"), "CheckinStatus");
-		schema.createEEnumLiteral(checkintStatusEnum, "CH_NONE");
-		schema.createEEnumLiteral(checkintStatusEnum, "CH_STARTED");
-		schema.createEEnumLiteral(checkintStatusEnum, "CH_FINISHED");
-		schema.createEEnumLiteral(checkintStatusEnum, "CH_ERROR");
-		
-		EClass checkinResultClass = schema.getEClass("store", "CheckinResult");
-		schema.createEAttribute(checkinResultClass, "status", checkintStatusEnum,  Multiplicity.SINGLE);
 	}
 
 	@Override

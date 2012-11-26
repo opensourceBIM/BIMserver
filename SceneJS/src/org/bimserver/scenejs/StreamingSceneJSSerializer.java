@@ -188,9 +188,9 @@ public class StreamingSceneJSSerializer extends EmfSerializer {
 				ifcEngineModel.setPostProcessing(true);
 				geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
 			} catch (IfcEngineException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			} catch (SerializerException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		return geometry;

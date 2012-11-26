@@ -133,7 +133,7 @@ public class UploadServlet extends HttpServlet {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 			try {
 				result.put("error", (e.getMessage() == null ? "Unknown error" : e.getMessage()));
 			} catch (JSONException e1) {

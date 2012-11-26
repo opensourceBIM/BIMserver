@@ -24,10 +24,14 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
 import org.bimserver.BimServer;
+import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MailSystem {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(MailSystem.class);
 	private final BimServer bimServer;
 
 	public MailSystem(BimServer bimServer) {
@@ -42,6 +46,9 @@ public class MailSystem {
 			props.put("mail.smtp.localhost", "bimserver.org");
 			Session mailSession = Session.getDefaultInstance(props);
 			return mailSession;
+		} catch (BimserverDatabaseException e) {
+			LOGGER.error("", e);
+			return null;
 		} finally {
 			session.close();
 		}

@@ -20,13 +20,13 @@ package org.bimserver.database.actions;
 import java.io.ByteArrayInputStream;
 import java.nio.ByteBuffer;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.bimserver.BimServer;
+import org.bimserver.EClassNameComparator;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -93,12 +93,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private RevisionSummaryContainer revisionSummaryContainerRelations;
 	private RevisionSummaryContainer revisionSummaryContainerPrimitives;
 	private RevisionSummaryContainer revisionSummaryContainerOther;
-	private Map<EClass, Integer> map = new TreeMap<EClass, Integer>(new Comparator<EClass>() {
-		@Override
-		public int compare(EClass o1, EClass o2) {
-			return o1.getName().compareTo(o2.getName());
-		}
-	});
+	private final Map<EClass, Integer> map = new TreeMap<EClass, Integer>(new EClassNameComparator());
 
 	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface model,
 			String comment, boolean merge, boolean clean) {
@@ -281,11 +276,11 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 							ifcEngine.close();
 						}
 					} catch (IfcEngineException e) {
-						e.printStackTrace();
+						LOGGER.error("", e);
 					}
 				}
-			} catch (SerializerException e1) {
-				e1.printStackTrace();
+			} catch (SerializerException e) {
+				LOGGER.error("", e);
 			}
 		}
 		return null;

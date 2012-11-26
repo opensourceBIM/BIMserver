@@ -132,6 +132,8 @@ public class CommandLine extends Thread {
 					} catch (InterruptedException e) {
 						LOGGER.error("", e);
 					}
+				} else if (line.equals("clearendpoints")) {
+					bimServer.getEndPointManager().clear();
 				} else if (line.startsWith("showall")) {
 					KeyValueStore keyValueStore = ((Database) bimServer.getDatabase()).getKeyValueStore();
 					Set<String> allTableNames = keyValueStore.getAllTableNames();
@@ -144,6 +146,8 @@ public class CommandLine extends Thread {
 						}
 					}
 					LOGGER.info("total: " + total);
+				} else {
+					LOGGER.info("Unknown command");
 				}
 			} catch (IOException e) {
 				LOGGER.error("", e);

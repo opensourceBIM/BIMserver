@@ -53,33 +53,21 @@ public abstract class BimDatabaseAction<T> {
 		this.accessMethod = accessMethod;
 	}
 
-	public UserSettings getUserSettings() {
-		try {
-			IfcModelInterface allOfType = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getUserSettings(), false, null);
-			List<UserSettings> settingsList = allOfType.getAll(UserSettings.class);
-			if (settingsList.size() == 1) {
-				UserSettings settings = settingsList.get(0);
-				return settings;
-			}
-		} catch (BimserverLockConflictException e) {
-			e.printStackTrace();
-		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
+	public UserSettings getUserSettings() throws BimserverDatabaseException {
+		IfcModelInterface allOfType = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getUserSettings(), false, null);
+		List<UserSettings> settingsList = allOfType.getAll(UserSettings.class);
+		if (settingsList.size() == 1) {
+			UserSettings settings = settingsList.get(0);
+			return settings;
 		}
 		return null;
 	}
 	
-	public ServerSettings getServerSettings() {
-		try {
-			IfcModelInterface allOfType = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getServerSettings(), false, null);
-			List<ServerSettings> settingsList = allOfType.getAll(ServerSettings.class);
-			if (settingsList.size() == 1) {
-				return settingsList.get(0);
-			}
-		} catch (BimserverLockConflictException e) {
-			e.printStackTrace();
-		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
+	public ServerSettings getServerSettings() throws BimserverDatabaseException {
+		IfcModelInterface allOfType = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getServerSettings(), false, null);
+		List<ServerSettings> settingsList = allOfType.getAll(ServerSettings.class);
+		if (settingsList.size() == 1) {
+			return settingsList.get(0);
 		}
 		return null;
 	}

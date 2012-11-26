@@ -3,7 +3,6 @@ package org.bimserver.plugins;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -27,19 +26,13 @@ public class PhysicalJavaFileObject implements JavaFileObject {
 	private final File file;
 	private byte[] data;
 
-	public PhysicalJavaFileObject(File file) {
+	public PhysicalJavaFileObject(File file) throws IOException {
 		this.file = file;
-		try {
-			if (file.isFile()) {
-				FileInputStream fis = new FileInputStream(file);
-				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-				IOUtils.copy(fis, byteArrayOutputStream);
-				data = byteArrayOutputStream.toByteArray();
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (file.isFile()) {
+			FileInputStream fis = new FileInputStream(file);
+			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+			IOUtils.copy(fis, byteArrayOutputStream);
+			data = byteArrayOutputStream.toByteArray();
 		}
 	}
 

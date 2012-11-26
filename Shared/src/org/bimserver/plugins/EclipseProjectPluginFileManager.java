@@ -11,7 +11,11 @@ import javax.tools.JavaFileManager;
 import javax.tools.JavaFileObject;
 import javax.tools.JavaFileObject.Kind;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class EclipseProjectPluginFileManager implements JavaFileManager {
+	private static final Logger LOGGER = LoggerFactory.getLogger(EclipseProjectPluginFileManager.class);
 	private final JavaFileManager fallbackFileManager;
 	private final ClassLoader classLoader;
 	private final File classDir;
@@ -124,7 +128,11 @@ public class EclipseProjectPluginFileManager implements JavaFileManager {
 				if (baseIterator.hasNext()) {
 					next = baseIterator.next();
 				} else if (arrayList.hasNext()) {
-					next = new PhysicalJavaFileObject(arrayList.next());
+					try {
+						next = new PhysicalJavaFileObject(arrayList.next());
+					} catch (IOException e) {
+						LOGGER.error("", e);
+					}
 				}
 				return next;
 			}

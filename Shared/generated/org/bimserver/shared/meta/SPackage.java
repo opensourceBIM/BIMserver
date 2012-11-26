@@ -79,7 +79,6 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration");
 		Class.forName("org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration");
 		Class.forName("org.bimserver.interfaces.objects.SDeserializerPluginConfiguration");
-		Class.forName("org.bimserver.interfaces.objects.SCheckinResult");
 		Class.forName("org.bimserver.interfaces.objects.SDownloadResult");
 		Class.forName("org.bimserver.interfaces.objects.SCheckoutResult");
 		Class.forName("org.bimserver.interfaces.objects.SDataValue");
@@ -99,7 +98,6 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SRevisionSummaryContainer");
 		Class.forName("org.bimserver.interfaces.objects.SRevisionSummary");
 		Class.forName("org.bimserver.interfaces.objects.SLongAction");
-		Class.forName("org.bimserver.interfaces.objects.SLongCheckinAction");
 		Class.forName("org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor");
 		Class.forName("org.bimserver.interfaces.objects.SCompareType");
 		Class.forName("org.bimserver.interfaces.objects.SCompareItem");
@@ -114,7 +112,6 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SServerInfo");
 		Class.forName("org.bimserver.interfaces.objects.SVersion");
 		Class.forName("org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor");
-		Class.forName("org.bimserver.interfaces.objects.SCheckinStatus");
 		Class.forName("org.bimserver.interfaces.objects.SExtendedDataSchemaType");
 		Class.forName("org.bimserver.interfaces.objects.SFile");
 		Class.forName("org.bimserver.interfaces.objects.SExtendedDataSchema");

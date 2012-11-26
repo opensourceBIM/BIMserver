@@ -20,7 +20,8 @@ package org.bimserver.interfaces.objects;
 public enum SActionState {
 	UNKNOWN(0),
 	STARTED(1),
-	FINISHED(2);
+	ERROR(2),
+	FINISHED(3);
 	int ordinal;
 
 	SActionState(int ordinal) {

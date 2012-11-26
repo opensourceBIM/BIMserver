@@ -71,7 +71,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 import org.eclipse.emf.common.util.EList;
 
-public class DownloadCompareDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
+public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 
 	private long roid1;
 	private long roid2;

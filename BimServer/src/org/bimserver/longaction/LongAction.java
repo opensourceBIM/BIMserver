@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.actions.ProgressListener;
@@ -37,7 +38,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongAction.class);
 	private final GregorianCalendar start;
 	private long id;
-	private int progress = -1;
+	private AtomicInteger progress = new AtomicInteger(-1);
 	private final CountDownLatch latch = new CountDownLatch(1);
 	private final BimServer bimServer;
 	private final String username;
@@ -47,7 +48,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	private final List<String> errors = new ArrayList<String>();
 	private final List<String> warnings = new ArrayList<String>();
 	private final List<String> infos = new ArrayList<String>();
-	private Authorization authorization;
+	private final Authorization authorization;
 	private String title = "Unknown";
 	private int stage = 0;
 
@@ -59,13 +60,20 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 		this.bimServer = bimServer;
 	}
 
-	protected void changeActionState(ActionState actiontState) {
+	protected void changeActionState(ActionState actiontState, String title, int progress) {
 		ActionState oldState = this.actionState;
 		if (actiontState == ActionState.FINISHED) {
 			stop = new GregorianCalendar();
 		}
+		int oldProgress = this.progress.get();
+		String oldTitle = this.title;
+		this.title = title;
+		this.progress.set(progress);
 		this.actionState = actiontState;
-		if (oldState != actiontState) {
+		if (oldState != actiontState || progress != oldProgress || !oldTitle.equals(title)) {
+			if (!title.equals(oldTitle)) {
+				stage++;
+			}
 			bimServer.getNotificationsManager().updateProgress(id, getState());
 		}
 	}
@@ -121,15 +129,15 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 		return start;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
 	public void updateProgress(String title, int progress) {
-		int oldProgress = this.progress;
+		int oldProgress = this.progress.get();
 		String oldTitle = this.title;
 		this.title = title;
-		this.progress = progress;
+		this.progress.set(progress);
 		if (progress != oldProgress || !oldTitle.equals(title)) {
 			if (!title.equals(oldTitle)) {
 				stage ++;
@@ -139,7 +147,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	}
 
 	public int getProgress() {
-		return progress;
+		return progress.get();
 	}
 
 	public synchronized LongActionState getState() {
@@ -160,6 +168,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	@Override
 	public void error(String error) {
 		errors.add(error);
+		changeActionState(ActionState.ERROR, "Error", 0);
 	}
 	
 	@Override

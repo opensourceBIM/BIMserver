@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.bimserver.BimServer;
+import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
@@ -22,12 +23,15 @@ import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.ServicesMap;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
 public class JsonApiServlet extends HttpServlet {
+	private static final Logger LOGGER = LoggerFactory.getLogger(JsonApiServlet.class);
 	private static final long serialVersionUID = 186486233172374336L;
 
 	@Override
@@ -46,7 +50,7 @@ public class JsonApiServlet extends HttpServlet {
 				handleRequest(request, response, bimServer);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -84,6 +88,8 @@ public class JsonApiServlet extends HttpServlet {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			siteAddress = bimServer.getServerSettings(session).getSiteAddress();
+		} catch (BimserverDatabaseException e) {
+			LOGGER.error("", e);
 		} finally {
 			session.close();
 		}

@@ -19,8 +19,8 @@ package org.bimserver.notifications;
 
 import java.net.Socket;
 
+import org.bimserver.endpoints.EndPoint;
 import org.bimserver.models.store.User;
-import org.bimserver.servlets.EndPoint;
 
 public class NotificationSocketHandler extends NotificationContainer implements Runnable {
 

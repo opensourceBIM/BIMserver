@@ -18,8 +18,11 @@ import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.ServicesMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ReflectorBuilder {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ReflectorBuilder.class);
 	private ServicesMap servicesMap;
 	private ClassPool pool;
 	private static int implementationCounter = 0;
@@ -69,16 +72,8 @@ public class ReflectorBuilder {
 			
 			Class<?> class1 = pool.toClass(reflectorFactoryImpl, getClass().getClassLoader(), getClass().getProtectionDomain());
 			return (ReflectorFactory) class1.newInstance();
-		} catch (NotFoundException e) {
-			e.printStackTrace();
-		} catch (CannotCompileException e) {
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 		return null;
 	}
@@ -173,12 +168,8 @@ public class ReflectorBuilder {
 				reflectorImplClass.addMethod(method);
 			}
 			pool.toClass(reflectorImplClass, getClass().getClassLoader(), getClass().getProtectionDomain());
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-		} catch (NotFoundException e) {
-			e.printStackTrace();
-		} catch (CannotCompileException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 	}
 	
@@ -231,12 +222,8 @@ public class ReflectorBuilder {
 			reflectorImplClass.addMethod(method);
 			
 			pool.toClass(reflectorImplClass, getClass().getClassLoader(), getClass().getProtectionDomain());
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-		} catch (NotFoundException e) {
-			e.printStackTrace();
-		} catch (CannotCompileException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 	}
 }

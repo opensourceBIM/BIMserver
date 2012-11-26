@@ -32,6 +32,7 @@ import org.bimserver.client.JsonSocketReflectorFactory;
 import org.bimserver.client.channels.Channel;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SImmediateNotificationResult;
 import org.bimserver.interfaces.objects.SLogAction;
@@ -49,7 +50,6 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.Trigger;
 import org.bimserver.plugins.NotificationsManagerInterface;
 import org.bimserver.plugins.services.NewRevisionHandler;
-import org.bimserver.servlets.EndPoint;
 import org.bimserver.shared.NotificationInterfaceAdapter;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -65,7 +65,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	private final Map<String, ServiceDescriptor> internalServices = new HashMap<String, ServiceDescriptor>();
 	private final Map<String, NotificationInterface> x = new HashMap<String, NotificationInterface>();
 	private final BlockingQueue<SLogAction> queue = new ArrayBlockingQueue<SLogAction>(1000);
-	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
+	private final JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private final BimServer bimServer;
 	private volatile boolean running;
 	private String url;
@@ -149,7 +149,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 				internalServices.get(s).setUrl(url);
 			}
 		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} finally {
 			session.close();
 		}
@@ -225,10 +225,8 @@ public class NotificationsManager extends Thread implements NotificationsManager
 				for (EndPoint endPoint : endPoints.getValue()) {
 					try {
 						endPoint.getNotificationInterface().progress(id, new SConverter().convertToSObject(actionState));
-					} catch (UserException e) {
-						e.printStackTrace();
-					} catch (ServerException e) {
-						e.printStackTrace();
+					} catch (Exception e) {
+						LOGGER.error("", e);
 					}
 				}
 			}
@@ -240,9 +238,9 @@ public class NotificationsManager extends Thread implements NotificationsManager
 			NotificationInterface notificationInterface = x.get(serviceIdentifier);
 			return notificationInterface.newLogAction(UUID.randomUUID().toString(), logAction, serviceIdentifier, profileIdentifier, token, apiUrl);
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (ServerException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}
