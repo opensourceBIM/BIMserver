@@ -1,4 +1,4 @@
-package org.bimserver.servlets;
+package org.bimserver.endpoints;
 
 import org.bimserver.shared.interfaces.NotificationInterface;
 

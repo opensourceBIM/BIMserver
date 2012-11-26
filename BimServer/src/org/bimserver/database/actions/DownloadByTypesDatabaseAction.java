@@ -27,9 +27,7 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.models.ifc2x3tc1.GeometryInstance;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Geometry;
@@ -49,9 +47,12 @@ import org.bimserver.utils.CollectionUtils;
 import org.bimserver.webservices.Authorization;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
+public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(DownloadByTypesDatabaseAction.class);
 	private final Set<String> classNames;
 	private final Set<Long> roids;
 	private int progress;
@@ -111,7 +112,7 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 					subModel.setDate(concreteRevision.getDate());
 					ifcModelSet.add(subModel);
 				} catch (PluginException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 			}
 			IfcModelInterface ifcModel;
@@ -125,19 +126,7 @@ public class DownloadByTypesDatabaseAction extends BimDatabaseAction<IfcModelInt
 			ifcModel.setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
 			ifcModel.setDate(virtualRevision.getDate());
 			
-			for (IfcProduct ifcProduct : ifcModel.getAllWithSubTypes(IfcProduct.class)) {
-				GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
-				if (geometryInstance != null) {
-					if (serializerPluginConfiguration.isNeedsGeometry()) {
-						geometryInstance.load();
-					}
-					if (ifcProduct.getBounds() != null) {
-						ifcProduct.getBounds().load();
-						ifcProduct.getBounds().getMin().load();
-						ifcProduct.getBounds().getMax().load();
-					}
-				}
-			}
+			checkGeometry(serializerPluginConfiguration, ifcModel);
 		}
 		IfcModelInterface ifcModel;
 		try {

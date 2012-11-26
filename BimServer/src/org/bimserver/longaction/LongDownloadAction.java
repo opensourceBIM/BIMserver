@@ -51,7 +51,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 	}
 
 	public void execute() {
-		changeActionState(ActionState.STARTED);
+		changeActionState(ActionState.STARTED, "Starting download", 0);
 		try {
 			executeAction(action, downloadParameters, session, false);
  		} catch (UserException e) {
@@ -64,7 +64,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 				session.close();
 			}
 			updateProgress("Done", 100);
-			changeActionState(ActionState.FINISHED);
+			changeActionState(ActionState.FINISHED, "Done", 100);
 		}
 	}
 

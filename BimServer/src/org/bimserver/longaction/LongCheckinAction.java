@@ -23,9 +23,6 @@ import org.bimserver.database.ProgressHandler;
 import org.bimserver.database.actions.CheckinDatabaseAction;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.models.store.ActionState;
-import org.bimserver.models.store.CheckinResult;
-import org.bimserver.models.store.CheckinStatus;
-import org.bimserver.models.store.StoreFactory;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 import org.slf4j.Logger;
@@ -35,8 +32,6 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongCheckinAction.class);
 	private CheckinDatabaseAction checkinDatabaseAction;
-	private CheckinStatus status = CheckinStatus.CH_NONE;
-	private String lastError;
 
 	public LongCheckinAction(BimServer bimServer, String username, String userUsername, Authorization authorization, CheckinDatabaseAction checkinDatabaseAction) {
 		super(bimServer, username, userUsername, authorization);
@@ -45,9 +40,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	}
 
 	public void execute() {
-		changeActionState(ActionState.STARTED);
-		status = CheckinStatus.CH_STARTED;
-		updateProgress("Storing data...", 0);
+		changeActionState(ActionState.STARTED, "Storing data...", 0);
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			checkinDatabaseAction.setDatabaseSession(session);
@@ -57,10 +50,6 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 					updateProgress("Storing data...", current * 100 / max);
 				}
 			});
-		} catch (OutOfMemoryError e) {
-			lastError = e.getMessage();
-			status = CheckinStatus.CH_ERROR;
-			getBimServer().getServerInfoManager().setOutOfMemory();
 		} catch (Exception e) {
 			if (e instanceof UserException) {
 			} else if (e instanceof BimserverConcurrentModificationDatabaseException) {
@@ -68,21 +57,19 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 			} else {
 				LOGGER.error("", e);
 			}
-			lastError = e.getMessage();
-			status = CheckinStatus.CH_ERROR;
+			error(e.getMessage());
 		} finally {
 			session.close();
 			done();
-			changeActionState(ActionState.FINISHED);
+			if (getActionState() != ActionState.ERROR) {
+				changeActionState(ActionState.FINISHED, "Done", 100);
+			}
 		}
 	}
 	
 	@Override
 	protected void done() {
 		super.done();
-		if (status != CheckinStatus.CH_ERROR) {
-			status = CheckinStatus.CH_FINISHED;
-		}
 
 		// This is very important! The LongCheckinAction will probably live another 30 minutes 
 		// before it will be cleaned up (this is useful for clients asking for the progress/status of this checkin)
@@ -92,14 +79,6 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	@Override
 	public String getDescription() {
 		return getClass().getSimpleName();
-	}
-
-	public CheckinResult getCheckinResult() {
-		CheckinResult checkinResult = StoreFactory.eINSTANCE.createCheckinResult();
-		checkinResult.setProgress(getProgress());
-		checkinResult.setStatus(status);
-		checkinResult.setLastError(lastError);
-		return checkinResult;
 	}
 	
 	@Override

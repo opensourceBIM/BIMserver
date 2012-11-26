@@ -179,45 +179,4 @@ public class SMethod {
 		Reflector reflector = this.service.getServicesMap().getReflectorFactory().createReflector(clazz, service);
 		return reflector.callMethod(clazz.getName(), getName(), getReturnType().getInstanceClass(), keyValuePairs);
 	}
-	
-//	public <T extends PublicInterface> Object invoke(Class clazz, T service, Object[] parameters) throws ServiceException {
-//		KeyValuePair[] keyValuePairs = new KeyValuePair[parameters.length];
-//		int i=0;
-//		for (Object value : parameters) {
-//			keyValuePairs[i++] = new KeyValuePair("", value);
-//		}
-//		return invoke(clazz, service, keyValuePairs);
-//		for (Method method : service.getClass().getMethods()) {
-//			if (method.getName().equals(getName())) {
-//				try {
-//					return method.invoke(service, parameters);
-//				} catch (Exception e) {
-//					if (e instanceof ServiceException) {
-//						throw (ServiceException)e;
-//					} else if (e instanceof InvocationTargetException) {
-//						if (e.getCause() instanceof ServiceException) {
-//							throw (ServiceException)(e.getCause());
-//						} else {
-//							dumpError(parameters, method, e);
-//						}
-//					} else {
-//						dumpError(parameters, method, e);
-//						throw new UserException("Invalid arguments");
-//					}
-//				}
-//			}
-//		}
-//	}
-
-//	private void dumpError(Object[] parameters, Method method, Exception e) {
-//		LOGGER.error(method.getName());
-//		LOGGER.error(Arrays.toString(parameters));
-//		StringBuilder sb = new StringBuilder();
-//		for (Object o : parameters) {
-//			sb.append((o == null ? "null" : o.getClass().getName()) + ", ");
-//		}
-//		LOGGER.error(sb.toString());
-//		LOGGER.error(Arrays.toString(method.getParameterTypes()));
-//		e.printStackTrace();
-//	}
 }

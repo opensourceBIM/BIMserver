@@ -5,6 +5,7 @@ import java.io.StringReader;
 
 import org.apache.commons.io.output.NullWriter;
 import org.bimserver.BimServer;
+import org.bimserver.endpoints.EndPoint;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.codehaus.jettison.json.JSONException;
 import org.eclipse.jetty.websocket.WebSocket;

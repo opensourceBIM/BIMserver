@@ -60,14 +60,10 @@ public class JsonConverter {
 			out.value(((Date)object).getTime());
 		} else if (object instanceof DataHandler) {
 			DataHandler dataHandler = (DataHandler)object;
-			try {
-				InputStream inputStream = dataHandler.getInputStream();
-				ByteArrayOutputStream baos = new ByteArrayOutputStream();
-				IOUtils.copy(inputStream, baos);
-				out.value(new String(Base64.encodeBase64(baos.toByteArray()), Charsets.UTF_8));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			InputStream inputStream = dataHandler.getInputStream();
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			IOUtils.copy(inputStream, baos);
+			out.value(new String(Base64.encodeBase64(baos.toByteArray()), Charsets.UTF_8));
 		} else if (object instanceof String) {
 			out.value((String)object);
 		} else if (object instanceof Number) {
@@ -83,7 +79,7 @@ public class JsonConverter {
 		}
 	}
 	
-	public JsonElement toJson(Object object) throws JSONException {
+	public JsonElement toJson(Object object) throws JSONException, IOException {
 		if (object instanceof SBase) {
 			SBase base = (SBase)object;
 			JsonObject jsonObject = new JsonObject();
@@ -103,14 +99,10 @@ public class JsonConverter {
 			return new JsonPrimitive(((Date)object).getTime());
 		} else if (object instanceof DataHandler) {
 			DataHandler dataHandler = (DataHandler)object;
-			try {
-				InputStream inputStream = dataHandler.getInputStream();
-				ByteArrayOutputStream out = new ByteArrayOutputStream();
-				IOUtils.copy(inputStream, out);
-				return new JsonPrimitive(new String(Base64.encodeBase64(out.toByteArray()), Charsets.UTF_8));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			InputStream inputStream = dataHandler.getInputStream();
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			IOUtils.copy(inputStream, out);
+			return new JsonPrimitive(new String(Base64.encodeBase64(out.toByteArray()), Charsets.UTF_8));
 		} else if (object instanceof Boolean) {
 			return new JsonPrimitive((Boolean)object);
 		} else if (object instanceof String) {
@@ -130,7 +122,7 @@ public class JsonConverter {
 		throw new UnsupportedOperationException(object.toString());
 	}
 
-	public Object fromJson(SClass definedType, SClass genericType, Object object) throws JSONException, ConvertException {
+	public Object fromJson(SClass definedType, SClass genericType, Object object) throws JSONException, ConvertException, IOException {
 		if (object instanceof JsonObject) {
 			JsonObject jsonObject = (JsonObject) object;
 			if (jsonObject.has("__type")) {
@@ -176,12 +168,7 @@ public class JsonConverter {
 			if (object instanceof JsonPrimitive) {
 				JsonPrimitive jsonPrimitive = (JsonPrimitive)object;
 				byte[] data = Base64.decodeBase64(jsonPrimitive.getAsString().getBytes(Charsets.UTF_8));
-				try {
-					DataHandler dataHandler = new DataHandler(new ByteArrayDataSource(new ByteArrayInputStream(data), null));
-					return dataHandler;
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				return new DataHandler(new ByteArrayDataSource(new ByteArrayInputStream(data), null));
 			}
 		} else if (definedType.isInteger()) {
 			if (object instanceof JsonPrimitive) {

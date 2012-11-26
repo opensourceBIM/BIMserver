@@ -24,11 +24,9 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.CheckinResult;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
@@ -37,7 +35,7 @@ import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
-public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<CheckinResult> {
+public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<ConcreteRevision> {
 	private final Long roid;
 	private final Long destPoid;
 	private final String comment;
@@ -54,7 +52,7 @@ public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<Che
 	}
 
 	@Override
-	public CheckinResult execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+	public ConcreteRevision execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision oldRevision = getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
 		Project oldProject = oldRevision.getProject();
 		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
@@ -77,10 +75,6 @@ public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<Che
 		}
 		model.resetOids();
 		CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), destPoid, authorization, model, comment, false, true);
-		ConcreteRevision execute = checkinDatabaseAction.execute();
-		CheckinResult checkinResult = StoreFactory.eINSTANCE.createCheckinResult();
-		checkinResult.setProject(oldProject);
-		checkinResult.setRevision(execute.getRevisions().get(0));
-		return checkinResult;
+		return checkinDatabaseAction.execute();
 	}
 }

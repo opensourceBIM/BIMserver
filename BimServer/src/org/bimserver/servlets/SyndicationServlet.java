@@ -81,9 +81,9 @@ public class SyndicationServlet extends HttpServlet {
 				try {
 					service = bimServer.getServiceFactory().newServiceMap(AccessMethod.SYNDICATION, request.getRemoteAddr()).get(ServiceInterface.class);
 				} catch (ServerException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				} catch (UserException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				}
 			}
 			try {

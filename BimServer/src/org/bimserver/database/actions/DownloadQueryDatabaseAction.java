@@ -34,7 +34,7 @@ import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
-public class DownloadQueryDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
+public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;

@@ -119,7 +119,7 @@ public class EmfSerializerFactory {
 				projectInfo.setAuthorName(username);
 				serializer.init(model, projectInfo, pluginManager, ifcEnginePlugin, true);
 			} catch (NullPointerException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		return serializer;

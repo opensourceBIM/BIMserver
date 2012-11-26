@@ -35,8 +35,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RandomIfcGenerator {
+	private static final Logger LOGGER = LoggerFactory.getLogger(RandomIfcGenerator.class);
 	private List<IdEObject> objects;
 	private final ExtendedMetaModel metaModel = new ExtendedMetaModel(Ifc2x3tc1Package.eINSTANCE);
 	private final Random random = new Random();
@@ -60,7 +63,7 @@ public class RandomIfcGenerator {
 			try {
 				ifcModel.add(i++, idEObject);
 			} catch (IfcModelInterfaceException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 	}

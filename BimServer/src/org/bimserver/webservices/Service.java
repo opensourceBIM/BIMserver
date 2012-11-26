@@ -70,10 +70,10 @@ import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SBounds;
-import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.interfaces.objects.SCompareResult;
@@ -132,6 +132,7 @@ import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.longaction.CannotBeScheduledException;
 import org.bimserver.longaction.DownloadParameters;
+import org.bimserver.longaction.LongBranchAction;
 import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.longaction.LongCheckoutAction;
 import org.bimserver.longaction.LongDownloadAction;
@@ -174,7 +175,6 @@ import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
-import org.bimserver.servlets.EndPoint;
 import org.bimserver.shared.compare.CompareWriter;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -287,23 +287,6 @@ public class Service implements ServiceInterface {
 			throw new ServerException(e);
 		} finally {
 			session.close();
-		}
-	}
-
-	@Override
-	public SCheckinResult getCheckinState(Long actionId) throws ServerException, UserException {
-		requireAuthenticationAndRunningServer();
-		try {
-			LongCheckinAction longAction = (LongCheckinAction) bimServer.getLongActionManager().getLongAction(actionId);
-			if (longAction != null) {
-				return converter.convertToSObject(longAction.getCheckinResult());
-			} else {
-				throw new UserException("No state found for laid " + actionId);
-			}
-		} catch (UserException e) {
-			throw e;
-		} catch (Throwable e) {
-			throw new UserException(e);
 		}
 	}
 
@@ -708,7 +691,7 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SLongActionState getDownloadState(Long actionId) throws ServerException, UserException {
+	public SLongActionState getLongActionState(Long actionId) throws ServerException, UserException {
 		Object longAction2 = bimServer.getLongActionManager().getLongAction(actionId);
 		if (longAction2 != null) {
 			LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) longAction2;
@@ -1097,12 +1080,20 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SCheckinResult branchToNewProject(Long roid, String projectName, String comment) throws UserException, ServerException {
+	public Long branchToNewProject(Long roid, String projectName, String comment, Boolean sync) throws UserException, ServerException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BranchToNewProjectDatabaseAction action = new BranchToNewProjectDatabaseAction(session, accessMethod, bimServer, authorization, roid, projectName, comment);
-			return converter.convertToSObject(session.executeAndCommitAction(action));
+			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
+			String username = user.getName();
+			String userUsername = user.getUsername();
+			LongBranchAction longAction = new LongBranchAction(bimServer, username, userUsername, authorization, action);
+			bimServer.getLongActionManager().start(longAction);
+			if (sync) {
+				longAction.waitForCompletion();
+			}
+			return longAction.getId();
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -1111,13 +1102,21 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SCheckinResult branchToExistingProject(Long roid, Long destPoid, String comment) throws UserException, ServerException {
+	public Long branchToExistingProject(Long roid, Long destPoid, String comment, Boolean sync) throws UserException, ServerException {
 		requireRealUserAuthentication();
 		final DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BranchToExistingProjectDatabaseAction action = new BranchToExistingProjectDatabaseAction(session, accessMethod, bimServer, authorization, roid, destPoid, comment);
-			return converter.convertToSObject(session.executeAndCommitAction(action));
-		} catch (BimserverDatabaseException e) {
+			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
+			String username = user.getName();
+			String userUsername = user.getUsername();
+			LongBranchAction longBranchAction = new LongBranchAction(bimServer, username, userUsername, authorization, action);
+			bimServer.getLongActionManager().start(longBranchAction);
+			if (sync) {
+				longBranchAction.waitForCompletion();
+			}
+			return longBranchAction.getId();
+		} catch (Exception e) {
 			return handleException(e);
 		} finally {
 			session.close();
@@ -1195,11 +1194,6 @@ public class Service implements ServiceInterface {
 		} finally {
 			session.close();
 		}
-	}
-
-	@Override
-	public String ping(String in) {
-		return in;
 	}
 
 	public List<SUser> getAllNonAuthorizedUsersOfProject(Long poid) throws ServerException, UserException {

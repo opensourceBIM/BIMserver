@@ -32,12 +32,6 @@ public class Step0010 extends Migration {
 
 	@Override
 	public void migrate(Schema schema) {
-		EClass checkinResultClass = schema.createEClass(schema.getEPackage("store"), "CheckinResult");
-		schema.createEReference(checkinResultClass, "revision", schema.getEClass("store", "Revision"), Multiplicity.SINGLE);
-		schema.createEReference(checkinResultClass, "project", schema.getEClass("store", "Project"), Multiplicity.SINGLE);
-		schema.createEAttribute(checkinResultClass, "progress", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(checkinResultClass, "lastError", ecorePackage.getEString(), Multiplicity.SINGLE);
-		
 		EDataType dataHandler = schema.createEDataType(schema.getEPackage("store"), EcoreFactory.eINSTANCE.createEDataType());
 		dataHandler.setName("DataHandler");
 		dataHandler.setInstanceClass(DataHandler.class);
@@ -136,9 +130,6 @@ public class Step0010 extends Migration {
 		schema.createEAttribute(longActionClass, "username", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(longActionClass, "name", ecorePackage.getEString(), Multiplicity.SINGLE);
 		
-		EClass longCheckinActionClass = schema.createEClass(schema.getEPackage("store"), "LongCheckinAction", longActionClass);
-		schema.createEReference(longCheckinActionClass, "revisions", schema.getEClass("store", "Revision"), Multiplicity.MANY);
-		
 		EClass objectIDMPluginDescriptor = schema.createEClass(schema.getEPackage("store"), "ObjectIDMPluginDescriptor");
 		schema.createEAttribute(objectIDMPluginDescriptor, "className", ecorePackage.getEString(), Multiplicity.SINGLE);
 		
@@ -170,6 +161,7 @@ public class Step0010 extends Migration {
 		EEnum actionStateEnum = schema.createEEnum(schema.getEPackage("store"), "ActionState");
 		schema.createEEnumLiteral(actionStateEnum, "UNKNOWN");
 		schema.createEEnumLiteral(actionStateEnum, "STARTED");
+		schema.createEEnumLiteral(actionStateEnum, "ERROR");
 		schema.createEEnumLiteral(actionStateEnum, "FINISHED");
 		
 		EClass longActionStateClass = schema.createEClass(schema.getEPackage("store"), "LongActionState");

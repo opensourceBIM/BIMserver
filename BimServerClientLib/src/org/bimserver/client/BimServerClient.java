@@ -471,9 +471,9 @@ public class BimServerClient implements ConnectDisconnectListener {
 				return httpResponse.getEntity().getContent();
 			}
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}

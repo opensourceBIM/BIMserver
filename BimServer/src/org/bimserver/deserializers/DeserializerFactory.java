@@ -21,8 +21,11 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class EmfDeserializerFactory {
+public class DeserializerFactory {
+	private static final Logger LOGGER = LoggerFactory.getLogger(DeserializerFactory.class);
 	private PluginManager pluginManager;
 
 	public void init(PluginManager pluginManager) {
@@ -36,7 +39,7 @@ public class EmfDeserializerFactory {
 			try {
 				deserializer.init(pluginManager.requireSchemaDefinition());
 			} catch (PluginException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 			return deserializer;
 		}

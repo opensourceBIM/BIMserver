@@ -28,8 +28,6 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
-import org.bimserver.models.ifc2x3tc1.GeometryInstance;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -45,7 +43,7 @@ import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
-public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
+public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 
 	private final Set<Long> oids;
 	private final Set<Long> roids;
@@ -93,19 +91,7 @@ public class DownloadByOidsDatabaseAction extends BimDatabaseAction<IfcModelInte
 				getDatabaseSession().getMapWithOids(subModel, concreteRevision.getProject().getId(), concreteRevision.getId(), oids, true, objectIDM);
 				subModel.setDate(concreteRevision.getDate());
 				
-				for (IfcProduct ifcProduct : subModel.getAllWithSubTypes(IfcProduct.class)) {
-					GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
-					if (geometryInstance != null) {
-						if (serializerPluginConfiguration.isNeedsGeometry()) {
-							geometryInstance.load();
-						}
-						if (ifcProduct.getBounds() != null) {
-							ifcProduct.getBounds().load();
-							ifcProduct.getBounds().getMin().load();
-							ifcProduct.getBounds().getMax().load();
-						}
-					}
-				}
+				checkGeometry(serializerPluginConfiguration, subModel);
 				
 				ifcModelSet.add(subModel);
 				// for (Long oid : oids) {

@@ -38,12 +38,9 @@ import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.schema.SchemaPlugin;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class TNOJvmIfcEnginePlugin implements IfcEnginePlugin {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(TNOJvmIfcEnginePlugin.class);
 	private PluginManager pluginManager;
 	private boolean initialized = false;
 	private File nativeFolder;
@@ -55,7 +52,7 @@ public class TNOJvmIfcEnginePlugin implements IfcEnginePlugin {
 	}
 
 	@Override
-	public void init(PluginManager pluginManager) {
+	public void init(PluginManager pluginManager) throws PluginException {
 		this.pluginManager = pluginManager;
 		try {
 			SchemaPlugin schemaPlugin = pluginManager.getFirstSchemaPlugin(true);
@@ -77,7 +74,6 @@ public class TNOJvmIfcEnginePlugin implements IfcEnginePlugin {
 			if (inputStream != null) {
 				File tmpFolder = pluginManager.getTempDir();
 				nativeFolder = new File(tmpFolder, "TNOEngineSeries");
-				try {
 					File file = new File(nativeFolder, libraryName);
 					if (nativeFolder.exists()) {
 						try {
@@ -91,12 +87,9 @@ public class TNOJvmIfcEnginePlugin implements IfcEnginePlugin {
 					IOUtils.copy(inputStream, fileOutputStream);
 					fileOutputStream.close();
 					initialized = true;
-				} catch (IOException e) {
-					LOGGER.error("", e);
-				}
 			}
-		} catch (PluginException e) {
-			LOGGER.error("", e);
+		} catch (Exception e) {
+			throw new PluginException(e);
 		}
 	}
 

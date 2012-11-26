@@ -44,7 +44,7 @@ import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
 
-public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface> {
+public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 
 	private final long roid;
 	private final BimServer bimServer;
@@ -99,19 +99,7 @@ public class DownloadDatabaseAction extends BimDatabaseAction<IfcModelInterface>
 					}
 				});
 				getDatabaseSession().getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true, objectIDM);
-				for (IfcProduct ifcProduct : subModel.getAllWithSubTypes(IfcProduct.class)) {
-					if (serializerPluginConfiguration.isNeedsGeometry()) {
-						GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
-						if (geometryInstance != null) {
-							geometryInstance.load();
-						}
-					}
-					if (ifcProduct.getBounds() != null) {
-						ifcProduct.getBounds().load();
-						ifcProduct.getBounds().getMin().load();
-						ifcProduct.getBounds().getMax().load();
-					}
-				}
+				checkGeometry(serializerPluginConfiguration, subModel);
 				subModel.setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);
 			}

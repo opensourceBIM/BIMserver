@@ -24,7 +24,6 @@ import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.ServicesMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

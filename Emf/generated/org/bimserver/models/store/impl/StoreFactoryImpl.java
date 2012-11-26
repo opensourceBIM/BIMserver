@@ -18,14 +18,11 @@ package org.bimserver.models.store.impl;
 
 import javax.activation.DataHandler;
 
-import org.bimserver.models.store.*;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.ArrayDefinition;
 import org.bimserver.models.store.ArrayType;
 import org.bimserver.models.store.BooleanType;
 import org.bimserver.models.store.Bounds;
-import org.bimserver.models.store.CheckinResult;
-import org.bimserver.models.store.CheckinStatus;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CheckoutResult;
 import org.bimserver.models.store.CompareContainer;
@@ -56,7 +53,6 @@ import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.ListDataValue;
 import org.bimserver.models.store.LongAction;
 import org.bimserver.models.store.LongActionState;
-import org.bimserver.models.store.LongCheckinAction;
 import org.bimserver.models.store.LongType;
 import org.bimserver.models.store.Migration;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
@@ -193,8 +189,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createIfcEnginePluginConfiguration();
 		case StorePackage.DESERIALIZER_PLUGIN_CONFIGURATION:
 			return (EObject) createDeserializerPluginConfiguration();
-		case StorePackage.CHECKIN_RESULT:
-			return (EObject) createCheckinResult();
 		case StorePackage.DOWNLOAD_RESULT:
 			return (EObject) createDownloadResult();
 		case StorePackage.CHECKOUT_RESULT:
@@ -233,8 +227,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createRevisionSummary();
 		case StorePackage.LONG_ACTION:
 			return (EObject) createLongAction();
-		case StorePackage.LONG_CHECKIN_ACTION:
-			return (EObject) createLongCheckinAction();
 		case StorePackage.OBJECT_IDM_PLUGIN_DESCRIPTOR:
 			return (EObject) createObjectIDMPluginDescriptor();
 		case StorePackage.COMPARE_ITEM:
@@ -362,8 +354,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return createActionStateFromString(eDataType, initialValue);
 		case StorePackage.SERVER_STATE:
 			return createServerStateFromString(eDataType, initialValue);
-		case StorePackage.CHECKIN_STATUS:
-			return createCheckinStatusFromString(eDataType, initialValue);
 		case StorePackage.EXTENDED_DATA_SCHEMA_TYPE:
 			return createExtendedDataSchemaTypeFromString(eDataType, initialValue);
 		case StorePackage.TRIGGER:
@@ -399,8 +389,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return convertActionStateToString(eDataType, instanceValue);
 		case StorePackage.SERVER_STATE:
 			return convertServerStateToString(eDataType, instanceValue);
-		case StorePackage.CHECKIN_STATUS:
-			return convertCheckinStatusToString(eDataType, instanceValue);
 		case StorePackage.EXTENDED_DATA_SCHEMA_TYPE:
 			return convertExtendedDataSchemaTypeToString(eDataType, instanceValue);
 		case StorePackage.TRIGGER:
@@ -544,16 +532,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public DeserializerPluginConfiguration createDeserializerPluginConfiguration() {
 		DeserializerPluginConfigurationImpl deserializerPluginConfiguration = new DeserializerPluginConfigurationImpl();
 		return deserializerPluginConfiguration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CheckinResult createCheckinResult() {
-		CheckinResultImpl checkinResult = new CheckinResultImpl();
-		return checkinResult;
 	}
 
 	/**
@@ -744,16 +722,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public LongAction createLongAction() {
 		LongActionImpl longAction = new LongActionImpl();
 		return longAction;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LongCheckinAction createLongCheckinAction() {
-		LongCheckinActionImpl longCheckinAction = new LongCheckinActionImpl();
-		return longCheckinAction;
 	}
 
 	/**
@@ -1389,27 +1357,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertServerStateToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CheckinStatus createCheckinStatusFromString(EDataType eDataType, String initialValue) {
-		CheckinStatus result = CheckinStatus.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertCheckinStatusToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

@@ -4,16 +4,16 @@ import java.io.File;
 
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
-import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Test1 {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Test1.class);
 	public static void main(String[] args) {
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
@@ -39,12 +39,8 @@ public class Test1 {
 			long end = System.nanoTime();
 
 			System.out.println(((end - start) / 1000000) + " ms");
-		} catch (PluginException e) {
-			e.printStackTrace();
-		} catch (DeserializeException e) {
-			e.printStackTrace();
-		} catch (SerializerException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 	}
 }

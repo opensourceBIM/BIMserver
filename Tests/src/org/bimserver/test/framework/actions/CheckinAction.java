@@ -22,9 +22,9 @@ import java.io.File;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 
-import org.bimserver.interfaces.objects.SCheckinResult;
-import org.bimserver.interfaces.objects.SCheckinStatus;
+import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
+import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -60,11 +60,11 @@ public class CheckinAction extends Action {
 		long checkinId = virtualUser.getBimServerClient().getServiceInterface()
 				.checkin(project.getOid(), randomString(), suggestedDeserializerForExtension.getOid(), randomFile.length(), fileName, new DataHandler(dataSource), merge, sync);
 		if (sync) {
-			virtualUser.getBimServerClient().getServiceInterface().getCheckinState(checkinId);
+			virtualUser.getBimServerClient().getServiceInterface().getLongActionState(checkinId);
 		} else {
 			while (true) {
-				SCheckinResult checkinState = virtualUser.getBimServerClient().getServiceInterface().getCheckinState(checkinId);
-				if (checkinState.getStatus() == SCheckinStatus.CH_FINISHED || checkinState.getStatus() == SCheckinStatus.CH_ERROR) {
+				SLongActionState checkinState = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(checkinId);
+				if (checkinState.getState() == SActionState.FINISHED || checkinState.getState() == SActionState.UNKNOWN) {
 					break;
 				}
 				try {

@@ -23,6 +23,7 @@ import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
@@ -40,10 +41,10 @@ import com.google.common.collect.HashBiMap;
 public class LongActionManager {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongActionManager.class);
-	private static final int FIVE_MINUTES_IN_MS = 5;
+	private static final int FIVE_MINUTES_IN_MS = 5 * 60 * 1000;
 	private final BiMap<Long, LongAction<?>> actions = HashBiMap.create();
 	private volatile boolean running = true;
-	private int actionNumberCounter = 0;
+	private final AtomicLong actionNumberCounter = new AtomicLong();
 	private final BimServer bimServer;
 
 	public LongActionManager(BimServer bimServer) {
@@ -58,7 +59,7 @@ public class LongActionManager {
 					longAction.execute();
 				}
 			});
-			longAction.setId(actionNumberCounter++);
+			longAction.setId(actionNumberCounter.incrementAndGet());
 			longAction.init();
 			thread.setDaemon(true);
 			thread.setName(longAction.getDescription());
@@ -78,14 +79,7 @@ public class LongActionManager {
 		try {
 			List<org.bimserver.models.store.LongAction> result = new ArrayList<org.bimserver.models.store.LongAction>();
 			for (LongAction<?> longAction : actions.values()) {
-				org.bimserver.models.store.LongAction storeLongAction = null;
-//			if (longAction instanceof LongCheckinAction) {
-//				LongCheckinAction longCheckinAction = (LongCheckinAction)longAction;
-//				org.bimserver.models.store.LongCheckinAction storeLongCheckinAction = StoreFactory.eINSTANCE.createLongCheckinAction();
-//				storeLongCheckinAction.getRevisions().addAll(longCheckinAction.getCreateCheckinAction().getCroid());
-//			} else {
-				storeLongAction = StoreFactory.eINSTANCE.createLongAction();
-//			}
+				org.bimserver.models.store.LongAction storeLongAction = StoreFactory.eINSTANCE.createLongAction();
 				User user = session.get(StorePackage.eINSTANCE.getUser(), longAction.getAuthorization().getUoid(), false, null);
 				storeLongAction.setIdentification(longAction.getDescription());
 				storeLongAction.setUser(user);
@@ -142,7 +136,7 @@ public class LongActionManager {
 		actions.remove(actionId);
 	}
 
-	public void remove(LongAction<?> action) {
+	public synchronized void remove(LongAction<?> action) {
 		actions.inverse().remove(action);
 	}
 }

@@ -1,5 +1,7 @@
 package org.bimserver.shared.json;
 
+import java.io.IOException;
+
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.meta.SMethod;
@@ -7,18 +9,21 @@ import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.reflector.KeyValuePair;
 import org.bimserver.shared.reflector.Reflector;
 import org.codehaus.jettison.json.JSONException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
 public abstract class JsonReflector implements Reflector {
 
-	private JsonConverter converter;
-	private ServicesMap servicesMap;
+	private static final Logger LOGGER = LoggerFactory.getLogger(JsonReflector.class);
+	private final JsonConverter converter;
+	private final ServicesMap servicesMap;
 
 	public JsonReflector(ServicesMap servicesMap) {
 		this.servicesMap = servicesMap;
-		converter = new JsonConverter(servicesMap);
+		this.converter = new JsonConverter(servicesMap);
 	}
 
 	@Override
@@ -60,11 +65,13 @@ public abstract class JsonReflector implements Reflector {
 				return null;
 			}
 		} catch (JSONException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (ConvertException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (ReflectorException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
+		} catch (IOException e) {
+			LOGGER.error("", e);
 		}
 		return null;
 	}

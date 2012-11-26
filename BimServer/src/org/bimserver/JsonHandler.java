@@ -16,6 +16,7 @@ import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.reflector.KeyValuePair;
 import org.codehaus.jettison.json.JSONException;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.JsonArray;
@@ -23,12 +24,13 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonWriter;
 
 public class JsonHandler {
-	private BimServer bimServer;
-	private JsonConverter converter;
+	private static final Logger LOGGER = LoggerFactory.getLogger(JsonHandler.class);
+	private final BimServer bimServer;
+	private final JsonConverter converter;
 
 	public JsonHandler(BimServer bimServer) {
 		this.bimServer = bimServer;
-		converter = new JsonConverter(bimServer.getServicesMap());
+		this.converter = new JsonConverter(bimServer.getServicesMap());
 	}
 
 	public void execute(JsonObject incomingMessage, HttpServletRequest httpRequest, Writer out) throws IOException, JSONException {
@@ -111,7 +113,7 @@ public class JsonHandler {
 				writer.endObject();
 				writer.endObject();
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 	}

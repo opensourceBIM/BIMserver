@@ -50,8 +50,9 @@ import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
-import org.bimserver.deserializers.EmfDeserializerFactory;
+import org.bimserver.deserializers.DeserializerFactory;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.endpoints.EndPointManager;
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.logging.CustomFileAppender;
@@ -105,7 +106,6 @@ import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.serializers.EmfSerializerFactory;
-import org.bimserver.servlets.EndPointManager;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.NotificationInterface;
@@ -135,7 +135,7 @@ public class BimServer {
 	private LongActionManager longActionManager;
 	private ServiceInterface systemService;
 	private EmfSerializerFactory emfSerializerFactory;
-	private EmfDeserializerFactory emfDeserializerFactory;
+	private DeserializerFactory emfDeserializerFactory;
 	private MergerFactory mergerFactory;
 	private PluginManager pluginManager;
 	private MailSystem mailSystem;
@@ -341,7 +341,7 @@ public class BimServer {
 			serverInfoManager.update();
 
 			emfSerializerFactory = new EmfSerializerFactory();
-			emfDeserializerFactory = new EmfDeserializerFactory();
+			emfDeserializerFactory = new DeserializerFactory();
 
 			if (serverInfoManager.getServerState() == ServerState.MIGRATION_REQUIRED) {
 				serverInfoManager.registerStateChangeListener(new StateChangeListener() {
@@ -421,18 +421,12 @@ public class BimServer {
 		}
 	}
 
-	public ServerSettings getServerSettings(DatabaseSession session) {
-		try {
-			IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getServerSettings(), false, null);
-			List<ServerSettings> settingsList = allOfType.getAll(ServerSettings.class);
-			if (settingsList.size() == 1) {
-				ServerSettings settings = settingsList.get(0);
-				return settings;
-			}
-		} catch (BimserverLockConflictException e) {
-			e.printStackTrace();
-		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
+	public ServerSettings getServerSettings(DatabaseSession session) throws BimserverDatabaseException {
+		IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getServerSettings(), false, null);
+		List<ServerSettings> settingsList = allOfType.getAll(ServerSettings.class);
+		if (settingsList.size() == 1) {
+			ServerSettings settings = settingsList.get(0);
+			return settings;
 		}
 		return null;
 	}
@@ -814,7 +808,7 @@ public class BimServer {
 		return emfSerializerFactory;
 	}
 
-	public EmfDeserializerFactory getEmfDeserializerFactory() {
+	public DeserializerFactory getEmfDeserializerFactory() {
 		return emfDeserializerFactory;
 	}
 

@@ -20,6 +20,7 @@ package org.bimserver.plugins;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class PluginContext {
 	private final ClassLoader classLoader;
 	private VirtualFile virtualFile;
 
-	public PluginContext(PluginManager pluginManager, ClassLoader classLoader, PluginType pluginType, String location) {
+	public PluginContext(PluginManager pluginManager, ClassLoader classLoader, PluginType pluginType, String location) throws IOException {
 		this.pluginManager = pluginManager;
 		this.classLoader = classLoader;
 		this.pluginType = pluginType;
@@ -88,16 +89,12 @@ public class PluginContext {
 		return enabled;
 	}
 
-	public InputStream getResourceAsInputStream(String name) {
+	public InputStream getResourceAsInputStream(String name) throws FileNotFoundException {
 		InputStream resourceAsStream = plugin.getClass().getClassLoader().getResourceAsStream(name);
 		if (resourceAsStream == null) {
 			File file = new File(location + File.separator + name);
 			if (file.exists()) {
-				try {
-					return new FileInputStream(file);
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				}
+				return new FileInputStream(file);
 			}
 		}
 		return resourceAsStream;

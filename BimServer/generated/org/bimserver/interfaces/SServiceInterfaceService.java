@@ -100,11 +100,6 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SDeserializerPluginConfiguration();
 					}
 				}));
-				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SCheckinResult"), new SConstructor(){
-					public Object newInstance() {
-						return new org.bimserver.interfaces.objects.SCheckinResult();
-					}
-				}));
 				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SDownloadResult"), new SConstructor(){
 					public Object newInstance() {
 						return new org.bimserver.interfaces.objects.SDownloadResult();
@@ -200,11 +195,6 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SLongAction();
 					}
 				}));
-				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SLongCheckinAction"), new SConstructor(){
-					public Object newInstance() {
-						return new org.bimserver.interfaces.objects.SLongCheckinAction();
-					}
-				}));
 				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor"), new SConstructor(){
 					public Object newInstance() {
 						return new org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor();
@@ -263,7 +253,6 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor();
 					}
 				}));
-				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SCheckinStatus"), null));
 				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SExtendedDataSchemaType"), null));
 				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SFile"), new SConstructor(){
 					public Object newInstance() {

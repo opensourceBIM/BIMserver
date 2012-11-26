@@ -4,7 +4,12 @@ import java.io.File;
 
 import javax.xml.bind.JAXBException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class DefaultWriter {
+	private static final Logger LOGGER = LoggerFactory.getLogger(DefaultWriter.class);
+	
 	public static void main(String[] args) {
 		new DefaultWriter().write();
 	}
@@ -49,7 +54,7 @@ public class DefaultWriter {
 		try {
 			packageDefinition.writeToFile(new File("objectidm.xml"));
 		} catch (JAXBException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }

@@ -44,6 +44,7 @@ public class LocalDevBimServerStarter {
 		config.setStartEmbeddedWebServer(true);
 		config.setClassPath(System.getProperty("java.class.path"));
 		config.setPort(port);
+		config.setStartCommandLine(true);
 		bimServer = new BimServer(config);
 		LocalVersionConstructor.augmentWithSvn(bimServer.getVersionChecker().getLocalVersion());
 		try {

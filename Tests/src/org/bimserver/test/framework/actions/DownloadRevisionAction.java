@@ -63,14 +63,14 @@ public class DownloadRevisionAction extends Action {
 				getActionResults().setText("Downloading revision " + project.getLastRevisionId() + " of project " + project.getName() + " with serializer " + serializer.getName() + " sync: " + sync);
 				SRevision revision = virtualUser.getBimServerClient().getServiceInterface().getRevision(project.getLastRevisionId());
 				long download = virtualUser.getBimServerClient().getServiceInterface().download(project.getLastRevisionId(), serializer.getOid(), true, sync);
-				SActionState state = virtualUser.getBimServerClient().getServiceInterface().getDownloadState(download).getState();
+				SActionState state = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(download).getState();
 				while (state != SActionState.FINISHED) {
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 					}
 					virtualUser.getLogger().info("SActionState: " + state);
-					state = virtualUser.getBimServerClient().getServiceInterface().getDownloadState(download).getState();
+					state = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(download).getState();
 				}
 				virtualUser.getLogger().info("Done preparing download, downloading");
 				SDownloadResult downloadData = virtualUser.getBimServerClient().getServiceInterface().getDownloadData(download);

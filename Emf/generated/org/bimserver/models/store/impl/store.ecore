@@ -230,13 +230,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#//UserSettings"
         eOpposite="#//UserSettings/deserializers"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CheckinResult">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#//Revision"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#//Project"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="progress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastError" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//CheckinStatus"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="DataHandler" instanceClassName="javax.activation.DataHandler"/>
   <eClassifiers xsi:type="ecore:EClass" name="DownloadResult">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="projectName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -346,10 +339,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LongCheckinAction" eSuperTypes="#//LongAction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="revisions" upperBound="-1"
-        eType="#//Revision"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ObjectIDMPluginDescriptor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -387,7 +376,8 @@
   <eClassifiers xsi:type="ecore:EEnum" name="ActionState">
     <eLiterals name="UNKNOWN"/>
     <eLiterals name="STARTED" value="1"/>
-    <eLiterals name="FINISHED" value="2"/>
+    <eLiterals name="ERROR" value="2"/>
+    <eLiterals name="FINISHED" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LongActionState">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="progress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -423,12 +413,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="supportEmail" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcEnginePluginDescriptor" eSuperTypes="#//PluginDescriptor"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="CheckinStatus">
-    <eLiterals name="CH_NONE"/>
-    <eLiterals name="CH_STARTED" value="1"/>
-    <eLiterals name="CH_FINISHED" value="2"/>
-    <eLiterals name="CH_ERROR" value="3"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ExtendedDataSchemaType">
     <eLiterals name="XSD"/>
     <eLiterals name="PDF" value="1"/>

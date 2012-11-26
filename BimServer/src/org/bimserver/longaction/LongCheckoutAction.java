@@ -36,7 +36,7 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 
 	@Override
 	public void execute() {
-		changeActionState(ActionState.STARTED);
+		changeActionState(ActionState.STARTED, "Starting checkout", 0);
 		try {
 			executeAction(action, downloadParameters, session, true);
 		} catch (Exception e) {
@@ -47,7 +47,7 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 			}
 		} finally {
 			session.close();
-			changeActionState(ActionState.FINISHED);
+			changeActionState(ActionState.FINISHED, "Checkout finished", 100);
 		}
 	}
 
