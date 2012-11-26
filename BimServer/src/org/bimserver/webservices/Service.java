@@ -3600,6 +3600,7 @@ public class Service implements ServiceInterface {
 		requireRealUserAuthentication();
 		try {
 			BimServerClient client = new BimServerClient(notificationsUrl, bimServer.getServicesMap());
+			client.setJsonSocketReflectorFactory(bimServer.getJsonSocketReflectorFactory());
 			client.connectJson(false);
 			NotificationInterface notificationInterface = client.getNotificationInterface();
 			return notificationInterface.getPublicProfiles(serviceIdentifier);
