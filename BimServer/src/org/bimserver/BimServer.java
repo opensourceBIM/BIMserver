@@ -154,10 +154,10 @@ public class BimServer {
 	private JsonHandler jsonHandler = new JsonHandler(this);
 	private CommandLine commandLine;
 	private AccessRightsCache accessRightsCache;
-
+	private ReflectorFactory reflectorFactory;
 	private EndPointManager endPointManager = new EndPointManager();
 
-	private ReflectorFactory reflectorFactory;
+	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
 
 	/**
 	 * Create a new BIMserver
@@ -199,7 +199,7 @@ public class BimServer {
 				LOGGER.info("Not using a homedir");
 			}
 			
-			JsonSocketReflectorFactory jsonSocketReflectorFactory = new JsonSocketReflectorFactory(servicesMap);
+			jsonSocketReflectorFactory = new JsonSocketReflectorFactory(servicesMap);
 
 			serverInfoManager = new ServerInfoManager();
 			notificationsManager = new NotificationsManager(this, jsonSocketReflectorFactory);
@@ -220,6 +220,10 @@ public class BimServer {
 			LOGGER.error("", e);
 			serverInfoManager.setErrorMessage(e.getMessage());
 		}
+	}
+	
+	public JsonSocketReflectorFactory getJsonSocketReflectorFactory() {
+		return jsonSocketReflectorFactory;
 	}
 	
 	public String getContent(URL url) {
@@ -380,6 +384,9 @@ public class BimServer {
 
 			ReflectorBuilder reflectorBuilder = new ReflectorBuilder(servicesMap);
 			reflectorFactory = reflectorBuilder.newReflectorFactory();
+			if (reflectorFactory == null) {
+				throw new RuntimeException("No reflector factory!");
+			}
 			servicesMap.setReflectorFactory(reflectorFactory);
 			
 			bimScheduler = new JobScheduler(this);

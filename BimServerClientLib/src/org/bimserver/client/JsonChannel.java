@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
 public class JsonChannel extends Channel {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(JsonChannel.class);
-	private ReflectorFactory reflectorFactory;
+	private final ReflectorFactory reflectorFactory;
+	private final JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private JsonSocketReflector reflector;
-	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
 
 	public JsonChannel(ReflectorFactory reflectorFactory, JsonSocketReflectorFactory jsonSocketReflectorFactory) {
 		this.reflectorFactory = reflectorFactory;
