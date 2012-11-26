@@ -3,14 +3,12 @@ package org.bimserver.clashdetection;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
-import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 
 import org.bimserver.bcf.markup.Header;
@@ -23,7 +21,6 @@ import org.bimserver.bcf.visinfo.PerspectiveCamera;
 import org.bimserver.bcf.visinfo.Point;
 import org.bimserver.bcf.visinfo.VisualizationInfo;
 import org.bimserver.clashdetection.bcf.Bcf;
-import org.bimserver.clashdetection.bcf.BcfException;
 import org.bimserver.clashdetection.bcf.Issue;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SDownloadResult;
@@ -48,24 +45,24 @@ import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.Trigger;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineClash;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
-import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ClashDetectionServicePlugin extends ServicePlugin {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ClashDetectionServicePlugin.class);
 	private boolean initialized;
 
 	@Override
@@ -179,18 +176,8 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						
 						bcf.addIssue(issue);
 					}
-				} catch (IfcEngineException e) {
-					e.printStackTrace();
-				} catch (PluginException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (DatatypeConfigurationException e) {
-					e.printStackTrace();
-				} catch (DeserializeException e) {
-					e.printStackTrace();
-				} catch (SerializerException e) {
-					e.printStackTrace();
+				} catch (Exception e) {
+					LOGGER.error("", e);
 				}
 				
 				SExtendedDataSchema extendedDataSchemaByNamespace = serviceInterface.getExtendedDataSchemaByNamespace("http://www.buildingsmart-tech.org/specifications/bcf-releases");
@@ -210,10 +197,8 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 					extendedData.setFileId(fileId);
 					
 					serviceInterface.addExtendedDataToRevision(notification.getRevisionId(), extendedData);
-				} catch (BcfException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
+				} catch (Exception e) {
+					LOGGER.error("", e);
 				}
 			}
 

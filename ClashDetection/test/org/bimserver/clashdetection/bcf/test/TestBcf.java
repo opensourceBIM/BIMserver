@@ -1,20 +1,21 @@
 package org.bimserver.clashdetection.bcf.test;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.GregorianCalendar;
 import java.util.Random;
 
-import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 
 import org.bimserver.bcf.markup.Comment;
 import org.bimserver.bcf.markup.CommentStatus;
 import org.bimserver.clashdetection.bcf.Bcf;
-import org.bimserver.clashdetection.bcf.BcfException;
 import org.bimserver.clashdetection.bcf.Issue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestBcf {
+	private static final Logger LOGGER = LoggerFactory.getLogger(TestBcf.class);
+
 	public static void main(String[] args) {
 		try {
 			Bcf bcf = Bcf.read(new File("test/ex1.bcfzip"));
@@ -43,12 +44,8 @@ public class TestBcf {
 				issue.getMarkup().getComment().add(newComment);
 			}
 			bcf.write(new File("notes.bcfzip"));
-		} catch (BcfException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (DatatypeConfigurationException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 	}
 }
