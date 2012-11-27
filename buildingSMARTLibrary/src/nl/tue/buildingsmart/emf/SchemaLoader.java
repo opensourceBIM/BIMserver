@@ -49,7 +49,7 @@ public class SchemaLoader {
 	}
 
 	public static SchemaDefinition loadSchema(File schemaFile) {
-		ExpressSchemaParser schemaParser = new ExpressSchemaParser(DEFAULT_SCHEMA_FILE);
+		ExpressSchemaParser schemaParser = new ExpressSchemaParser(schemaFile);
 		schemaParser.parse();
 		SchemaDefinition schema = schemaParser.getSchema();
 		try {

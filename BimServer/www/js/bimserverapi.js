@@ -196,6 +196,8 @@ function BimServerApi(baseUrl, notifier) {
 			}, 200);
 		}
 		
+		othis.notifier.resetStatusQuick();
+		
 		console.log("request", request);
 
 		$.ajax(othis.address, {
