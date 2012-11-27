@@ -96,7 +96,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 	private final Map<Long, List<WaitingObject>> waitingObjects = new HashMap<Long, List<WaitingObject>>();
 	private SchemaDefinition schema;
 	private Mode mode = Mode.HEADER;
-	private IfcModel model;
+	private IfcModelInterface model;
 
 	public enum Mode {
 		HEADER, DATA, FOOTER, DONE
@@ -181,7 +181,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		return model;
 	}
 
-	public IfcModel read(File sourceFile, boolean setOids) throws DeserializeException {
+	public IfcModelInterface read(File sourceFile, boolean setOids) throws DeserializeException {
 		if (schema == null) {
 			throw new DeserializeException("No schema");
 		}
@@ -199,7 +199,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		}
 	}
 
-	public IfcModel getModel() {
+	public IfcModelInterface getModel() {
 		return model;
 	}
 

@@ -29,15 +29,10 @@ import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.ParameterStyle;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.xml.bind.annotation.XmlMimeType;
 
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SBounds;
-import org.bimserver.interfaces.objects.SCheckinResult;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SCompareResult;
 import org.bimserver.interfaces.objects.SCompareType;
@@ -97,26 +92,8 @@ import org.bimserver.shared.exceptions.UserException;
  * also used by the JSP web interface
  */
 @WebService(name = "soap")
-@Path("/")
-@Produces({"application/xml", "application/json"})
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface ServiceInterface extends PublicInterface {
-	/**
-	 * Method to test the connection, will return the given string
-	 * 
-	 * Available as REST call
-	 * 
-	 * @param in A random string
-	 * @return The string passed as "in"
-	 * @throws ServerException, UserException
-	 */
-	@GET
-	@Path("/ping")
-	@Produces({"text/plain"})
-	@WebMethod(action = "ping")
-	String ping(
-			@QueryParam("in") @WebParam(name = "in", partName = "ping.in") String in) throws ServerException, UserException;
-
 	/**
 	 * Login with a username/password combination
 	 * @param username The username (must be a valid e-mail address)
@@ -126,8 +103,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "login")
 	SToken login(
-			@WebParam(name = "username", partName = "login.username") String username,
-			@WebParam(name = "password", partName = "login.password") String password) throws ServerException, UserException;
+		@WebParam(name = "username", partName = "login.username") String username,
+		@WebParam(name = "password", partName = "login.password") String password) throws ServerException, UserException;
 
 	/**
 	 * Login with an autologin hash (useful for the "remember-me" functionality in web-interfaces)
@@ -138,8 +115,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "autologin")
 	SToken autologin(
-			@WebParam(name = "username", partName = "autologin.username") String username,
-			@WebParam(name = "hash", partName = "autologin.hash") String hash) throws ServerException, UserException;
+		@WebParam(name = "username", partName = "autologin.username") String username,
+		@WebParam(name = "hash", partName = "autologin.hash") String hash) throws ServerException, UserException;
 
 	/**
 	 * Checkin a new model by sending a serialized form
@@ -156,33 +133,17 @@ public interface ServiceInterface extends PublicInterface {
 	 * @return An id, which you can use for the getCheckinState method
 	 * @throws ServerException, UserException
 	 */
-	@GET
-	@Path("/checkin")
-	@Produces("text/plain")
 	@WebMethod(action = "checkin")
 	Long checkin(
-			@WebParam(name = "poid", partName = "checkin.poid") Long poid,
-			@QueryParam("comment") @WebParam(name = "comment", partName = "checkin.comment") String comment,
-			@QueryParam("deserializerOid") @WebParam(name = "deserializerOid", partName = "checkin.deserializerOid") Long deserializerOid,
-			@QueryParam("fileSize") @WebParam(name = "fileSize", partName = "checkin.fileSize") Long fileSize,
-			@QueryParam("fileName") @WebParam(name = "fileName", partName = "checkin.fileName") String fileName,
-			@QueryParam("ifcFile") @WebParam(name = "ifcFile", partName = "checkin.ifcFile") @XmlMimeType("application/octet-stream") DataHandler ifcFile,
-			@QueryParam("merge") @WebParam(name = "merge", partName = "checkin.merge") Boolean merge,
-			@QueryParam("sync") @WebParam(name = "sync", partName = "checkin.sync") Boolean sync) throws ServerException, UserException;
+		@WebParam(name = "poid", partName = "checkin.poid") Long poid,
+		@WebParam(name = "comment", partName = "checkin.comment") String comment,
+		@WebParam(name = "deserializerOid", partName = "checkin.deserializerOid") Long deserializerOid,
+		@WebParam(name = "fileSize", partName = "checkin.fileSize") Long fileSize,
+		@WebParam(name = "fileName", partName = "checkin.fileName") String fileName,
+		@WebParam(name = "ifcFile", partName = "checkin.ifcFile") @XmlMimeType("application/octet-stream") DataHandler ifcFile,
+		@WebParam(name = "merge", partName = "checkin.merge") Boolean merge,
+		@WebParam(name = "sync", partName = "checkin.sync") Boolean sync) throws ServerException, UserException;
 
-	/**
-	 * Get the current state of a running checkin
-	 * @param actionId The ID returned by the checkin function
-	 * @return An object with information about the checkin state
-	 * @throws ServerException, UserException
-	 */
-	@GET
-	@Path("/getCheckinState")
-	@Produces({"application/xml", "application/json"})
-	@WebMethod(action = "getCheckinState")
-	SCheckinResult getCheckinState(
-			@QueryParam("actionID") @WebParam(name = "actionID", partName = "getCheckinState.actionID") Long actionId) throws ServerException, UserException;
-	
 	/**
 	 * Checkout an existing model, cehckout is the same as download, except a "checkout" will tell the server and other users you are working on it
 	 * 
@@ -194,14 +155,11 @@ public interface ServiceInterface extends PublicInterface {
 	 * @return An id, which you can use for the getDownloadState method
 	 * @throws ServerException, UserException
 	 */
-	@GET
-	@Path("/checkout")
-	@Produces("text/plain")
 	@WebMethod(action = "checkout")
 	Long checkout(
-			@QueryParam("roid") @WebParam(name = "roid", partName = "checkout.roid") Long roid,
-			@QueryParam("serializerOid") @WebParam(name = "serializerOid", partName = "checkout.serializerOid") Long serializerOid,
-			@QueryParam("sync") @WebParam(name = "sync", partName = "checkout.sync") Boolean sync) throws ServerException, UserException;
+		@WebParam(name = "roid", partName = "checkout.roid") Long roid,
+		@WebParam(name = "serializerOid", partName = "checkout.serializerOid") Long serializerOid,
+		@WebParam(name = "sync", partName = "checkout.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
 	 * Same as checkout, only this will automatically select the last revision to checkout
@@ -214,14 +172,11 @@ public interface ServiceInterface extends PublicInterface {
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
 	 * @throws ServerException, UserException
 	 */
-	@GET
-	@Path("/checkoutLastRevision")
-	@Produces("text/plain")
 	@WebMethod(action = "checkoutLastRevision")
 	Long checkoutLastRevision(
-			@QueryParam("poid") @WebParam(name = "poid", partName = "checkoutLastRevision.poid") Long poid,
-			@QueryParam("serializerOid") @WebParam(name = "serializerOid", partName = "checkoutLastRevision.serializerOid") Long serializerOid,
-			@QueryParam("sync") @WebParam(name = "sync", partName = "checkoutLastRevision.sync") Boolean sync) throws ServerException, UserException;
+		@WebParam(name = "poid", partName = "checkoutLastRevision.poid") Long poid,
+		@WebParam(name = "serializerOid", partName = "checkoutLastRevision.serializerOid") Long serializerOid,
+		@WebParam(name = "sync", partName = "checkoutLastRevision.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
 	 * Download a single revision of a model in a serialized format
@@ -235,15 +190,12 @@ public interface ServiceInterface extends PublicInterface {
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
 	 * @throws ServerException, UserException
 	 */
-	@GET
-	@Path("/download")
-	@Produces({"text/plain"})
 	@WebMethod(action = "download")
 	Long download(
-			@QueryParam("roid") @WebParam(name = "roid", partName = "download.roid") Long roid,
-			@QueryParam("serializerOid") @WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
-			@QueryParam("showOwn") @WebParam(name = "showOwn", partName = "download.showOwn") Boolean showOwn,
-			@QueryParam("sync") @WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
+		@WebParam(name = "roid", partName = "download.roid") Long roid,
+		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
+		@WebParam(name = "showOwn", partName = "download.showOwn") Boolean showOwn,
+		@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
 	 * Download a compare of a model
@@ -257,12 +209,12 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "downloadCompareResults")
 	Long downloadCompareResults(
-			@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
-			@WebParam(name = "roid1", partName = "downloadByOids.roid1") Long roid1,
-			@WebParam(name = "roid2", partName = "downloadByOids.roid2") Long roid2,
-			@WebParam(name = "mcid", partName = "downloadByOids.mcid") Long mcid,
-			@WebParam(name = "type", partName = "downloadByOids.type") SCompareType type,
-			@WebParam(name = "sync", partName = "downloadByOids.sync") Boolean sync) throws ServerException, UserException;
+		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
+		@WebParam(name = "roid1", partName = "downloadByOids.roid1") Long roid1,
+		@WebParam(name = "roid2", partName = "downloadByOids.roid2") Long roid2,
+		@WebParam(name = "mcid", partName = "downloadByOids.mcid") Long mcid,
+		@WebParam(name = "type", partName = "downloadByOids.type") SCompareType type,
+		@WebParam(name = "sync", partName = "downloadByOids.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
 	 * Download a model in a serialized format by giving a set of revisions and a set of Object IDs
@@ -276,10 +228,10 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "downloadByOids")
 	Long downloadByOids(
-			@WebParam(name = "roids", partName = "downloadCompareResults.roids") Set<Long> roids,
-			@WebParam(name = "oids", partName = "downloadCompareResults.oids") Set<Long> oids,
-			@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
-			@WebParam(name = "sync", partName = "downloadCompareResults.sync") Boolean sync) throws ServerException, UserException;
+		@WebParam(name = "roids", partName = "downloadCompareResults.roids") Set<Long> roids,
+		@WebParam(name = "oids", partName = "downloadCompareResults.oids") Set<Long> oids,
+		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
+		@WebParam(name = "sync", partName = "downloadCompareResults.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
 	 * Download a model in serialized format by giving a set of revisions and a set of class names to filter on
@@ -293,12 +245,12 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "downloadByTypes")
 	Long downloadByTypes(
-			@WebParam(name = "roids", partName = "downloadByTypes.roids") Set<Long> roids,
-			@WebParam(name = "classNames", partName = "downloadByTypes.classNames") Set<String> classNames,
-			@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
-			@WebParam(name = "includeAllSubtypes", partName = "downloadByTypes.includeAllSubtypes") Boolean includeAllSubtypes,
-			@WebParam(name = "useObjectIDM", partName = "downloadByTypes.useObjectIDM") Boolean useObjectIDM,
-			@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
+		@WebParam(name = "roids", partName = "downloadByTypes.roids") Set<Long> roids,
+		@WebParam(name = "classNames", partName = "downloadByTypes.classNames") Set<String> classNames,
+		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
+		@WebParam(name = "includeAllSubtypes", partName = "downloadByTypes.includeAllSubtypes") Boolean includeAllSubtypes,
+		@WebParam(name = "useObjectIDM", partName = "downloadByTypes.useObjectIDM") Boolean useObjectIDM,
+		@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
 	 * Download a model in a serialized format by giving a set of revisins and a set of guids to filter on
@@ -312,10 +264,10 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "downloadByGuids")
 	Long downloadByGuids(
-			@WebParam(name = "roids", partName = "downloadByGuids.roids") Set<Long> roids,
-			@WebParam(name = "guids", partName = "downloadByGuids.guids") Set<String> guids,
-			@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
-			@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
+		@WebParam(name = "roids", partName = "downloadByGuids.roids") Set<Long> roids,
+		@WebParam(name = "guids", partName = "downloadByGuids.guids") Set<String> guids,
+		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
+		@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
 	 * Download a model in a serialized format by giving a set of revisions
@@ -327,9 +279,9 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "downloadRevisions")
 	Long downloadRevisions(
-			@WebParam(name = "roids", partName = "downloadRevisions.roids") Set<Long> roids,
-			@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
-			@WebParam(name = "sync", partName = "downloadRevisions.sync") Boolean sync) throws ServerException, UserException;
+		@WebParam(name = "roids", partName = "downloadRevisions.roids") Set<Long> roids,
+		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
+		@WebParam(name = "sync", partName = "downloadRevisions.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
 	 * Get the data for a download/checkout
@@ -340,12 +292,9 @@ public interface ServiceInterface extends PublicInterface {
 	 * @return An SDownloadResult containing the serialized data
 	 * @throws ServerException, UserException
 	 */
-	@GET
-	@Path("/getDownloadData")
-	@Produces({"application/xml", "application/json"})
 	@WebMethod(action = "getDownloadData")
 	SDownloadResult getDownloadData(
-			@QueryParam("actionId") @WebParam(name = "actionId", partName = "getDownloadData.actionId") Long actionId) throws ServerException, UserException;
+		@WebParam(name = "actionId", partName = "getDownloadData.actionId") Long actionId) throws ServerException, UserException;
 
 	/**
 	 * Get the current state of a download/checkout
@@ -353,9 +302,9 @@ public interface ServiceInterface extends PublicInterface {
 	 * @return A SLongActionState object containing details about the download/checkout 
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "getDownloadState")
-	SLongActionState getDownloadState(
-			@WebParam(name = "actionId", partName = "getDownloadState.actionId") Long actionId) throws ServerException, UserException;
+	@WebMethod(action = "getLongActionState")
+	SLongActionState getLongActionState(
+		@WebParam(name = "actionId", partName = "getLongActionState.actionId") Long actionId) throws ServerException, UserException;
 
 	/**
 	 * Add a new user
@@ -368,10 +317,10 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addUser")
 	SUser addUser(
-			@WebParam(name = "username", partName = "addUser.username") String username,
-			@WebParam(name = "name", partName = "addUser.name") String name,
-			@WebParam(name = "type", partName = "addUser.type") SUserType type,
-			@WebParam(name = "selfRegistration", partName = "addUser.selfRegistration") Boolean selfRegistration) throws ServerException, UserException;
+		@WebParam(name = "username", partName = "addUser.username") String username,
+		@WebParam(name = "name", partName = "addUser.name") String name,
+		@WebParam(name = "type", partName = "addUser.type") SUserType type,
+		@WebParam(name = "selfRegistration", partName = "addUser.selfRegistration") Boolean selfRegistration) throws ServerException, UserException;
 
 	/**
 	 * Change the type of a user
@@ -381,8 +330,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "changeUserType")
 	void changeUserType(
-			@WebParam(name = "uoid", partName = "changeUserType.uoid") Long uoid,
-			@WebParam(name = "userType", partName = "changeUserType.userType") SUserType userType) throws ServerException, UserException;
+		@WebParam(name = "uoid", partName = "changeUserType.uoid") Long uoid,
+		@WebParam(name = "userType", partName = "changeUserType.userType") SUserType userType) throws ServerException, UserException;
 
 	/**
 	 * Add a new project
@@ -392,7 +341,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addProject")
 	SProject addProject(
-			@WebParam(name = "projectName", partName = "addProject.projectName") String projectName) throws ServerException, UserException;
+		@WebParam(name = "projectName", partName = "addProject.projectName") String projectName) throws ServerException, UserException;
 
 	/**
 	 * Add a new project as a subproject of another project
@@ -403,8 +352,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addProjectAsSubProject")
 	SProject addProjectAsSubProject(
-			@WebParam(name = "projectName", partName = "addProjectAsSubProject.projectName") String projectName,
-			@WebParam(name = "parentPoid", partName = "addProjectAsSubProject.parentPoid") Long parentPoid) throws ServerException, UserException;
+		@WebParam(name = "projectName", partName = "addProjectAsSubProject.projectName") String projectName,
+		@WebParam(name = "parentPoid", partName = "addProjectAsSubProject.parentPoid") Long parentPoid) throws ServerException, UserException;
 
 	/**
 	 * Update project properties
@@ -413,7 +362,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "updateProject")
 	void updateProject(
-			@WebParam(name = "sProject", partName = "updateProject.sProject") SProject sProject) throws ServerException, UserException;
+		@WebParam(name = "sProject", partName = "updateProject.sProject") SProject sProject) throws ServerException, UserException;
 
 	/**
 	 * Update a revision, not much can be changed afterwards, actually only the tag
@@ -422,7 +371,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "updateRevision")
 	void updateRevision(
-			@WebParam(name = "sRevision", partName = "updateRevision.sRevision") SRevision sRevision) throws ServerException, UserException;
+		@WebParam(name = "sRevision", partName = "updateRevision.sRevision") SRevision sRevision) throws ServerException, UserException;
 
 	/**
 	 * Add a user to a project (authorization wise)
@@ -433,8 +382,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addUserToProject")
 	Boolean addUserToProject(
-			@WebParam(name = "uoid", partName = "addUserToProject.uoid") Long uoid,
-			@WebParam(name = "poid", partName = "addUserToProject.poid") Long poid) throws ServerException, UserException;
+		@WebParam(name = "uoid", partName = "addUserToProject.uoid") Long uoid,
+		@WebParam(name = "poid", partName = "addUserToProject.poid") Long poid) throws ServerException, UserException;
 
 	/**
 	 * Remove a user from a project (authorization wise)
@@ -445,8 +394,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "removeUserFromProject")
 	Boolean removeUserFromProject(
-			@WebParam(name = "uoid", partName = "removeProjectFromUser.uoid") Long uoid,
-			@WebParam(name = "poid", partName = "removeUserFromProject.poid") Long poid) throws ServerException, UserException;
+		@WebParam(name = "uoid", partName = "removeProjectFromUser.uoid") Long uoid,
+		@WebParam(name = "poid", partName = "removeUserFromProject.poid") Long poid) throws ServerException, UserException;
 
 	/**
 	 * Delete a Project, Projects can be undeleted with the undeleteProject method
@@ -456,7 +405,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "deleteProject")
 	Boolean deleteProject(
-			@WebParam(name = "poid", partName = "deleteProject.poid") Long poid) throws ServerException, UserException;
+		@WebParam(name = "poid", partName = "deleteProject.poid") Long poid) throws ServerException, UserException;
 
 	/**
 	 * Delete a User, Users van be undeleted with the undeleteUser method
@@ -466,7 +415,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "deleteUser")
 	Boolean deleteUser(
-			@WebParam(name = "uoid", partName = "deleteUser.uoid") Long uoid) throws ServerException, UserException;
+		@WebParam(name = "uoid", partName = "deleteUser.uoid") Long uoid) throws ServerException, UserException;
 
 	/**
 	 * Get a list of all Projects the user is authorized for
@@ -476,9 +425,6 @@ public interface ServiceInterface extends PublicInterface {
 	 * @return A list of Projects
 	 * @throws ServerException, UserException
 	 */
-	@GET
-	@Path("/getAllProjects")
-	@Produces({"application/xml", "application/json"})
 	@WebMethod(action = "getAllProjects")
 	List<SProject> getAllProjects(
 		@WebParam(name = "onlyTopLevel", partName = "getAllProjects.onlyTopLevel") Boolean onlyTopLevel) throws ServerException, UserException;
@@ -491,9 +437,6 @@ public interface ServiceInterface extends PublicInterface {
 	 * @return A list of all projects that are readable for the current user
 	 * @throws ServerException, UserException
 	 */
-	@GET
-	@Path("/getAllReadableProjects")
-	@Produces({"application/xml", "application/json"})
 	@WebMethod(action = "getAllReadableProjects")
 	List<SProject> getAllReadableProjects() throws ServerException, UserException;
 
@@ -503,22 +446,17 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Get a list of all Revisions of a Project
 	 * 
-	 * Available as REST call
-	 * 
 	 * @param poid ObjectID of the Project
 	 * @return A list of all Revisions
 	 * @throws ServerException, UserException
 	 */
-	@GET
-	@Path("/getAllRevisionsOfProject")
-	@Produces({"application/xml", "application/json"})
 	@WebMethod(action = "getAllRevisionsOfProject")
 	List<SRevision> getAllRevisionsOfProject(
-			@QueryParam("poid") @WebParam(name = "poid", partName = "getAllRevisionsOfProject.poid") Long poid) throws ServerException, UserException;
+		@WebParam(name = "poid", partName = "getAllRevisionsOfProject.poid") Long poid) throws ServerException, UserException;
 
 	@WebMethod(action = "getAllServicesOfProject")
 	List<SService> getAllServicesOfProject(
-			@WebParam(name = "poid", partName = "getAllServicesOfProject.poid") Long poid) throws ServerException, UserException;
+		@WebParam(name = "poid", partName = "getAllServicesOfProject.poid") Long poid) throws ServerException, UserException;
 	
 	/**
 	 * @param poid The ObjectID of the Project
@@ -527,7 +465,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllCheckoutsOfProject")
 	List<SCheckout> getAllCheckoutsOfProject(
-			@WebParam(name = "poid", partName = "getAllCheckoutsOfProject.poid") Long poid)	throws ServerException, UserException;
+		@WebParam(name = "poid", partName = "getAllCheckoutsOfProject.poid") Long poid)	throws ServerException, UserException;
 
 	/**
 	 * @param uoid ObjectID of the Project
@@ -536,7 +474,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllRevisionsByUser")
 	List<SRevision> getAllRevisionsByUser(
-			@WebParam(name = "uoid", partName = "getAllRevisionsOfUser.uoid") Long uoid) throws ServerException, UserException;
+		@WebParam(name = "uoid", partName = "getAllRevisionsOfUser.uoid") Long uoid) throws ServerException, UserException;
 
 	/**
 	 * @param uoid ObjectID of the User
@@ -545,7 +483,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllCheckoutsByUser")
 	List<SCheckout> getAllCheckoutsByUser(
-			@WebParam(name = "uoid", partName = "getAllCheckoutsByUser.uoid") Long uoid) throws ServerException, UserException;
+		@WebParam(name = "uoid", partName = "getAllCheckoutsByUser.uoid") Long uoid) throws ServerException, UserException;
 
 	/**
 	 * @param roid ObjectID of the Revision
@@ -554,7 +492,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllCheckoutsOfRevision")
 	List<SCheckout> getAllCheckoutsOfRevision(
-			@WebParam(name = "roid", partName = "getAllCheckoutsOfRevision.roid") Long roid) throws ServerException, UserException;
+		@WebParam(name = "roid", partName = "getAllCheckoutsOfRevision.roid") Long roid) throws ServerException, UserException;
 
 	/**
 	 * @param poid ObjectID of the Project
@@ -563,7 +501,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getProjectByPoid")
 	SProject getProjectByPoid(
-			@WebParam(name = "poid", partName = "getProjectByPoid.poid") Long poid) throws ServerException, UserException;
+		@WebParam(name = "poid", partName = "getProjectByPoid.poid") Long poid) throws ServerException, UserException;
 
 	/**
 	 * @param roid ObjectID of the Revision
@@ -572,7 +510,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getRevision")
 	SRevision getRevision(
-			@WebParam(name = "roid", partName = "getRevision.roid") Long roid) throws ServerException, UserException;
+		@WebParam(name = "roid", partName = "getRevision.roid") Long roid) throws ServerException, UserException;
 
 	/**
 	 * @return A list of available classes in the BIMserver, only classes from the IFC model will be returned
@@ -605,7 +543,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllNonAuthorizedProjectsOfUser")
 	List<SProject> getAllNonAuthorizedProjectsOfUser(
-			@WebParam(name = "uoid", partName = "getAllNonAuthorizedProjectsOfUser.uoid") Long uoid) throws ServerException, UserException;
+		@WebParam(name = "uoid", partName = "getAllNonAuthorizedProjectsOfUser.uoid") Long uoid) throws ServerException, UserException;
 
 	/**
 	 * Logout from this ServiceInterface (beware, the ServiceInterface is not closed and is still usable)
@@ -631,9 +569,9 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "changePassword")
 	Boolean changePassword(
-			@WebParam(name = "uoid", partName = "changePassword.uoid") Long uoid,
-			@WebParam(name = "oldPassword", partName = "changePassword.oldPassword") String oldPassword,
-			@WebParam(name = "newPassword", partName = "changePassword.newPassword") String newPassword) throws ServerException, UserException;
+		@WebParam(name = "uoid", partName = "changePassword.uoid") Long uoid,
+		@WebParam(name = "oldPassword", partName = "changePassword.oldPassword") String oldPassword,
+		@WebParam(name = "newPassword", partName = "changePassword.newPassword") String newPassword) throws ServerException, UserException;
 
 	/**
 	 * Get a User by its UserNmae (e-mail address)
@@ -643,7 +581,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getUserByUserName")
 	SUser getUserByUserName(
-			@WebParam(name = "username", partName = "getUserByUserName.username") String username) throws ServerException, UserException;
+		@WebParam(name = "username", partName = "getUserByUserName.username") String username) throws ServerException, UserException;
 
 	/**
 	 * Undelete a previously deleted Project, Projets can be deleted with the deleteProject method
@@ -653,7 +591,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "undeleteProject")
 	Boolean undeleteProject(
-			@WebParam(name = "poid", partName = "undeleteProject.poid") Long poid) throws ServerException, UserException;
+		@WebParam(name = "poid", partName = "undeleteProject.poid") Long poid) throws ServerException, UserException;
 
 	/**
 	 * Undelete a previously deleted User, Users can be deleted with the deleteUser method
@@ -663,7 +601,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "undeleteUser")
 	Boolean undeleteUser(
-			@WebParam(name = "uoid", partName = "undeleteUser.uoid") Long uoid) throws ServerException, UserException;
+		@WebParam(name = "uoid", partName = "undeleteUser.uoid") Long uoid) throws ServerException, UserException;
 
 	/**
 	 * Compare two models
@@ -676,10 +614,10 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "compare")
 	SCompareResult compare(
-			@WebParam(name = "roid1", partName = "compare.roid1") Long roid1,
-			@WebParam(name = "roid2", partName = "compare.roid2") Long roid2,
-			@WebParam(name = "sCompareType", partName = "compare.sCompareType") SCompareType sCompareType, 
-			@WebParam(name = "mcid", partName = "compare.mcid") Long mcid) throws ServerException, UserException;
+		@WebParam(name = "roid1", partName = "compare.roid1") Long roid1,
+		@WebParam(name = "roid2", partName = "compare.roid2") Long roid2,
+		@WebParam(name = "sCompareType", partName = "compare.sCompareType") SCompareType sCompareType, 
+		@WebParam(name = "mcid", partName = "compare.mcid") Long mcid) throws ServerException, UserException;
 
 	/**
 	 * @param roid ObjectID of the Revision
@@ -688,7 +626,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getRevisionSummary")
 	SRevisionSummary getRevisionSummary(
-			@WebParam(name = "roid", partName = "getRevisionSummary.roid") Long roid) throws ServerException, UserException;		
+		@WebParam(name = "roid", partName = "getRevisionSummary.roid") Long roid) throws ServerException, UserException;		
 
 	/**
 	 * @param poid ObjectID of the Project
@@ -697,8 +635,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "userHasCheckinRights")
 	Boolean userHasCheckinRights(
-			@WebParam(name = "uoid", partName = "userHasCheckinRights.uoid") Long uoid, 
-			@WebParam(name = "poid", partName = "userHasCheckinRights.poid") Long poid) throws ServerException, UserException;
+		@WebParam(name = "uoid", partName = "userHasCheckinRights.uoid") Long uoid, 
+		@WebParam(name = "poid", partName = "userHasCheckinRights.poid") Long poid) throws ServerException, UserException;
 
 	/**
 	 * Checkout warnings are given to users when checkouts are done by other users
@@ -708,7 +646,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getCheckoutWarnings")
 	Set<String> getCheckoutWarnings(
-			@WebParam(name = "poid", partName = "getCheckoutWarnings.poid") Long poid) throws ServerException, UserException;
+		@WebParam(name = "poid", partName = "getCheckoutWarnings.poid") Long poid) throws ServerException, UserException;
 
 	/**
 	 * @param poid ObjectID of the Project
@@ -717,12 +655,12 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "userHasRights")
 	Boolean userHasRights(
-			@WebParam(name = "poid", partName = "userHasRights.poid") Long poid) throws ServerException, UserException;
+		@WebParam(name = "poid", partName = "userHasRights.poid") Long poid) throws ServerException, UserException;
 
 	@WebMethod(action = "getDataObjectByOid")
 	SDataObject getDataObjectByOid(
-			@WebParam(name = "roid", partName = "getDataObjectByOid.roid") Long roid,
-			@WebParam(name = "oid", partName = "getDataObjectByOid.oid") Long oid) throws ServerException, UserException;
+		@WebParam(name = "roid", partName = "getDataObjectByOid.roid") Long roid,
+		@WebParam(name = "oid", partName = "getDataObjectByOid.oid") Long oid) throws ServerException, UserException;
 
 	/**
 	 * Get DataObjects based on a list of GUIDs
@@ -734,13 +672,10 @@ public interface ServiceInterface extends PublicInterface {
 	 * @return The object with the given GUID in the given Revision, of null if not found
 	 * @throws ServerException, UserException
 	 */
-	@GET
-	@Path("/getDataObjectByGuid")
-	@Produces({"application/xml", "application/json"})
 	@WebMethod(action = "getDataObjectByGuid")
 	SDataObject getDataObjectByGuid(
-			@QueryParam("roid") @WebParam(name = "roid", partName = "getDataObjectByGuid.roid") Long roid,
-			@QueryParam("guid") @WebParam(name = "guid", partName = "getDataObjectByGuid.guid") String guid) throws ServerException, UserException;
+		@WebParam(name = "roid", partName = "getDataObjectByGuid.roid") Long roid,
+		@WebParam(name = "guid", partName = "getDataObjectByGuid.guid") String guid) throws ServerException, UserException;
 
 	/**
 	 * @param roid ObjectID of the Revision
@@ -750,8 +685,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getDataObjectsByType")
 	List<SDataObject> getDataObjectsByType(
-			@WebParam(name = "roid", partName = "getDataObjectsByType.roid") Long roid,
-			@WebParam(name = "className", partName = "getDataObjectsByType.className") String className) throws ServerException, UserException;
+		@WebParam(name = "roid", partName = "getDataObjectsByType.roid") Long roid,
+		@WebParam(name = "className", partName = "getDataObjectsByType.className") String className) throws ServerException, UserException;
 
 	/**
 	 * @param roid ObjectID of the Revision
@@ -771,10 +706,11 @@ public interface ServiceInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "branchToNewProject")
-	SCheckinResult branchToNewProject(
-			@WebParam(name = "roid", partName = "branchToNewProject.roid") Long roid,
-			@WebParam(name = "projectName", partName = "branchToNewProject.projectName") String projectName,
-			@WebParam(name = "comment", partName = "branchToNewProject.comment") String comment) throws ServerException, UserException;
+	Long branchToNewProject(
+		@WebParam(name = "roid", partName = "branchToNewProject.roid") Long roid,
+		@WebParam(name = "projectName", partName = "branchToNewProject.projectName") String projectName,
+		@WebParam(name = "comment", partName = "branchToNewProject.comment") String comment,
+		@WebParam(name = "sync", partName = "branchToNewProject.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
 	 * Branch a given Revision as a new Revision in the given Project, branching is always synchronous
@@ -785,10 +721,11 @@ public interface ServiceInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "branchToExistingProject")
-	SCheckinResult branchToExistingProject(
-			@WebParam(name = "roid", partName = "branchToExistingProject.roid") Long roid,
-			@WebParam(name = "destPoid", partName = "branchToExistingProject.destPoid") Long destPoid,
-			@WebParam(name = "comment", partName = "branchToExistingProject.comment") String comment) throws ServerException, UserException;
+	Long branchToExistingProject(
+		@WebParam(name = "roid", partName = "branchToExistingProject.roid") Long roid,
+		@WebParam(name = "destPoid", partName = "branchToExistingProject.destPoid") Long destPoid,
+		@WebParam(name = "comment", partName = "branchToExistingProject.comment") String comment,
+		@WebParam(name = "sync", partName = "branchToNewProject.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
 	 * @param goid The ObjectID of the GeoTag
@@ -797,7 +734,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getGeoTag")
 	SGeoTag getGeoTag(
-			@WebParam(name = "goid", partName = "getGeoTag.goid") Long goid) throws ServerException, UserException;
+		@WebParam(name = "goid", partName = "getGeoTag.goid") Long goid) throws ServerException, UserException;
 
 	/**
 	 * @param sGeoTag A GeoTag object containing the new properties
@@ -805,7 +742,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "updateGeoTag")
 	void updateGeoTag(
-			@WebParam(name = "sGeoTag", partName = "updateGeoTag.sGeoTag") SGeoTag sGeoTag) throws ServerException, UserException;
+		@WebParam(name = "sGeoTag", partName = "updateGeoTag.sGeoTag") SGeoTag sGeoTag) throws ServerException, UserException;
 
 	/**
 	 * @param uoid The ObjectID of the User
@@ -814,7 +751,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getUserByUoid")
 	SUser getUserByUoid(
-			@WebParam(name = "uoid", partName = "getUserByUoid.uoid") Long uoid) throws ServerException, UserException;
+		@WebParam(name = "uoid", partName = "getUserByUoid.uoid") Long uoid) throws ServerException, UserException;
 
 	/**
 	 * Get a list of all Users not authoriazed on the given Project
@@ -824,7 +761,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllNonAuthorizedUsersOfProject")
 	List<SUser> getAllNonAuthorizedUsersOfProject(
-			@WebParam(name = "poid", partName = "getAllNonAuthorizedUsersOfProject.poid") Long poid) throws ServerException, UserException;
+		@WebParam(name = "poid", partName = "getAllNonAuthorizedUsersOfProject.poid") Long poid) throws ServerException, UserException;
 
 	/**
 	 * @param poid
@@ -833,7 +770,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllAuthorizedUsersOfProject")
 	List<SUser> getAllAuthorizedUsersOfProject(
-			@WebParam(name = "poid", partName = "getAllAuthorizedUsersOfProject.poid") Long poid) throws ServerException, UserException;
+		@WebParam(name = "poid", partName = "getAllAuthorizedUsersOfProject.poid") Long poid) throws ServerException, UserException;
 
 	/**
 	 * @param uoid
@@ -842,7 +779,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getUsersProjects")
 	List<SProject> getUsersProjects(
-			@WebParam(name = "uoid", partName = "getUsersProjects.uoid") Long uoid) throws ServerException, UserException;
+		@WebParam(name = "uoid", partName = "getUsersProjects.uoid") Long uoid) throws ServerException, UserException;
 
 	/**
 	 * @param name
@@ -851,7 +788,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getProjectsByName")
 	List<SProject> getProjectsByName(
-			@WebParam(name = "name", partName = "getProjectsByName.name") String name) throws ServerException, UserException;
+		@WebParam(name = "name", partName = "getProjectsByName.name") String name) throws ServerException, UserException;
 
 	/**
 	 * @param roid
@@ -860,8 +797,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setRevisionTag")
 	void setRevisionTag(
-			@WebParam(name = "roid", partName = "setRevisionTag.roid") Long roid,
-			@WebParam(name = "tag", partName = "setRevisionTag.tag") String tag) throws ServerException, UserException;
+		@WebParam(name = "roid", partName = "setRevisionTag.roid") Long roid,
+		@WebParam(name = "tag", partName = "setRevisionTag.tag") String tag) throws ServerException, UserException;
 
 	/**
 	 * @param poid
@@ -870,7 +807,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getSubProjects")
 	List<SProject> getSubProjects(
-			@WebParam(name = "poid", partName = "getSubProjects.poid") Long poid) throws ServerException, UserException;
+		@WebParam(name = "poid", partName = "getSubProjects.poid") Long poid) throws ServerException, UserException;
 
 	/**
 	 * @return The currently logged-in User
@@ -916,7 +853,7 @@ public interface ServiceInterface extends PublicInterface {
 
 	@WebMethod(action = "getAllCheckoutsOfProjectAndSubProjects")
 	List<SCheckout> getAllCheckoutsOfProjectAndSubProjects(
-			@WebParam(name = "poid", partName = "getAllCheckoutsOfProjectAndSubProjects.poid") Long poid) throws ServerException, UserException;
+		@WebParam(name = "poid", partName = "getAllCheckoutsOfProjectAndSubProjects.poid") Long poid) throws ServerException, UserException;
 
 	/**
 	 * Request a password change, an e-mail will be send with a validation url
@@ -925,7 +862,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "requestPasswordChange")
 	void requestPasswordChange(
-			@WebParam(name = "username", partName = "requestPasswordChange.username") String username) throws ServerException, UserException;
+		@WebParam(name = "username", partName = "requestPasswordChange.username") String username) throws ServerException, UserException;
 
 	/**
 	 * @param uoid The ObejctID of the User
@@ -936,9 +873,9 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "validateAccount")
 	SUser validateAccount(
-			@WebParam(name = "uoid", partName = "validateAccount.uoid") Long uoid,
-			@WebParam(name = "token", partName = "validateAccount.token") String token,
-			@WebParam(name = "password", partName = "validateAccount.password") String password) throws ServerException, UserException;
+		@WebParam(name = "uoid", partName = "validateAccount.uoid") Long uoid,
+		@WebParam(name = "token", partName = "validateAccount.token") String token,
+		@WebParam(name = "password", partName = "validateAccount.password") String password) throws ServerException, UserException;
 
 	/**
 	 * Send an e-mail with the results of a compare
@@ -952,12 +889,12 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "sendCompareEmail")
 	void sendCompareEmail(
-			@WebParam(name = "sCompareType", partName = "sendClashesEmail.sCompareType") SCompareType sCompareType,
-			@WebParam(name = "mcid", partName = "sendClashesEmail.mcid") Long mcid,
-			@WebParam(name = "poid", partName = "sendClashesEmail.poid") Long poid,
-			@WebParam(name = "roid1", partName = "sendClashesEmail.roid1") Long roid1,
-			@WebParam(name = "roid2", partName = "sendClashesEmail.roid2") Long roid2,
-			@WebParam(name = "address", partName = "sendClashesEmail.address") String address) throws ServerException, UserException;
+		@WebParam(name = "sCompareType", partName = "sendClashesEmail.sCompareType") SCompareType sCompareType,
+		@WebParam(name = "mcid", partName = "sendClashesEmail.mcid") Long mcid,
+		@WebParam(name = "poid", partName = "sendClashesEmail.poid") Long poid,
+		@WebParam(name = "roid1", partName = "sendClashesEmail.roid1") Long roid1,
+		@WebParam(name = "roid2", partName = "sendClashesEmail.roid2") Long roid2,
+		@WebParam(name = "address", partName = "sendClashesEmail.address") String address) throws ServerException, UserException;
 	
 	/**
 	 * @param onlyEnabled Whether to only include enabled serializers
@@ -966,7 +903,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllSerializers")
 	List<SSerializerPluginConfiguration> getAllSerializers(
-			@WebParam(name = "onlyEnabled", partName = "getAllSerializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
+		@WebParam(name = "onlyEnabled", partName = "getAllSerializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 
 	/**
 	 * @param onlyEnabled Whether to only include enabled IFC engines
@@ -975,7 +912,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllIfcEngines")
 	List<SIfcEnginePluginConfiguration> getAllIfcEngines(
-			@WebParam(name = "onlyEnabled", partName = "getAllIfcEngines.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
+		@WebParam(name = "onlyEnabled", partName = "getAllIfcEngines.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 
 	/**
 	 * @param onlyEnabled Whether to only include enabled query engines
@@ -984,7 +921,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllQueryEngines")
 	List<SQueryEnginePluginConfiguration> getAllQueryEngines(
-			@WebParam(name = "onlyEnabled", partName = "getAllQueryEngines.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
+		@WebParam(name = "onlyEnabled", partName = "getAllQueryEngines.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 	
 	/**
 	 * @param onlyEnabled Whether to only include enabled model mergers
@@ -993,7 +930,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllModelMergers")
 	List<SModelMergerPluginConfiguration> getAllModelMergers(
-			@WebParam(name = "onlyEnabled", partName = "getAllModelMergers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
+		@WebParam(name = "onlyEnabled", partName = "getAllModelMergers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 	
 	/**
 	 * @param onlyEnabled Whether to only include enabled model compare
@@ -1002,7 +939,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllModelCompares")
 	List<SModelComparePluginConfiguration> getAllModelCompares(
-			@WebParam(name = "onlyEnabled", partName = "getAllModelCompares.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
+		@WebParam(name = "onlyEnabled", partName = "getAllModelCompares.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 	
 	/**
 	 * @param onlyEnabled Whether to only include enabled query engines
@@ -1011,7 +948,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getQueryEngineExampleKeys")
 	List<String> getQueryEngineExampleKeys(
-			@WebParam(name = "qeid", partName = "getQueryEngineExampleKeys.qeid") Long qeid) throws ServerException, UserException;
+		@WebParam(name = "qeid", partName = "getQueryEngineExampleKeys.qeid") Long qeid) throws ServerException, UserException;
 
 	/**
 	 * @param onlyEnabled Whether to only include enabled query engines
@@ -1020,8 +957,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getQueryEngineExample")
 	String getQueryEngineExample(
-			@WebParam(name = "qeid", partName = "getQueryEngineExample.qeid") Long qeid,
-			@WebParam(name = "key", partName = "getQueryEngineExample.key") String key) throws ServerException, UserException;
+		@WebParam(name = "qeid", partName = "getQueryEngineExample.qeid") Long qeid,
+		@WebParam(name = "key", partName = "getQueryEngineExample.key") String key) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the Serializer
@@ -1030,7 +967,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getSerializerById")
 	SSerializerPluginConfiguration getSerializerById(
-			@WebParam(name = "oid", partName = "getSerializerById.oid") Long oid) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "getSerializerById.oid") Long oid) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the ExtendedDataSchema
@@ -1039,7 +976,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getExtendedDataSchemaById")
 	SExtendedDataSchema getExtendedDataSchemaById(
-			@WebParam(name = "oid", partName = "getExtendedDataSchemaById.oid") Long oid) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "getExtendedDataSchemaById.oid") Long oid) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the ExtendedData
@@ -1048,7 +985,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getExtendedData")
 	SExtendedData getExtendedData(
-			@WebParam(name = "oid", partName = "getExtendedData.oid") Long oid) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "getExtendedData.oid") Long oid) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the ExtendedData
@@ -1057,7 +994,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllExtendedDataOfRevision")
 	List<SExtendedData> getAllExtendedDataOfRevision(
-			@WebParam(name = "roid", partName = "getAllExtendedDataOfRevision.roid") Long roid) throws ServerException, UserException;
+		@WebParam(name = "roid", partName = "getAllExtendedDataOfRevision.roid") Long roid) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the IfcEngine
@@ -1066,7 +1003,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getIfcEngineById")
 	SIfcEnginePluginConfiguration getIfcEngineById(
-			@WebParam(name = "oid", partName = "getIfcEngineById.oid") Long oid) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "getIfcEngineById.oid") Long oid) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the QueryEngine
@@ -1075,7 +1012,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getQueryEngineById")
 	SQueryEnginePluginConfiguration getQueryEngineById(
-			@WebParam(name = "oid", partName = "getQueryEngineById.oid") Long oid) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "getQueryEngineById.oid") Long oid) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the ModelMerger
@@ -1084,7 +1021,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getModelMergerById")
 	SModelMergerPluginConfiguration getModelMergerById(
-			@WebParam(name = "oid", partName = "getModelMergerById.oid") Long oid) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "getModelMergerById.oid") Long oid) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the ModelCompare
@@ -1093,7 +1030,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getModelCompareById")
 	SModelComparePluginConfiguration getModelCompareById(
-			@WebParam(name = "oid", partName = "getModelCompareById.oid") Long oid) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "getModelCompareById.oid") Long oid) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the Deserializer
@@ -1102,7 +1039,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getDeserializerById")
 	SDeserializerPluginConfiguration getDeserializerById(
-			@WebParam(name = "oid", partName = "getDeserializerById.oid") Long oid) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "getDeserializerById.oid") Long oid) throws ServerException, UserException;
 
 	/**
 	 * @param serializer Serializer to add
@@ -1110,7 +1047,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addSerializer")
 	void addSerializer(
-			@WebParam(name = "serializer", partName = "addSerializer.serializer") SSerializerPluginConfiguration serializer) throws ServerException, UserException;
+		@WebParam(name = "serializer", partName = "addSerializer.serializer") SSerializerPluginConfiguration serializer) throws ServerException, UserException;
 
 	/**
 	 * @param extendedDataSchema ExtendedDataSchema to add
@@ -1118,7 +1055,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addExtendedDataSchema")
 	void addExtendedDataSchema(
-			@WebParam(name = "extendedDataSchema", partName = "addExtendedDataSchema.extendedDataSchema") SExtendedDataSchema extendedDataSchema) throws ServerException, UserException;
+		@WebParam(name = "extendedDataSchema", partName = "addExtendedDataSchema.extendedDataSchema") SExtendedDataSchema extendedDataSchema) throws ServerException, UserException;
 
 	/**
 	 * @param uoid ObjectID of the User
@@ -1128,8 +1065,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addUserToExtendedDataSchema")
 	void addUserToExtendedDataSchema(
-			@WebParam(name = "uoid", partName = "addUserToExtendedDataSchema.uoid") Long uoid,
-			@WebParam(name = "edsid", partName = "addUserToExtendedDataSchema.edsid") Long edsid) throws ServerException, UserException;
+		@WebParam(name = "uoid", partName = "addUserToExtendedDataSchema.uoid") Long uoid,
+		@WebParam(name = "edsid", partName = "addUserToExtendedDataSchema.edsid") Long edsid) throws ServerException, UserException;
 	
 	/**
 	 * @param uoid ObjectID of the User
@@ -1139,8 +1076,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "removeUserFromExtendedDataSchema")
 	void removeUserFromExtendedDataSchema(
-			@WebParam(name = "uoid", partName = "removeUserFromExtendedDataSchema.uoid") Long uoid,
-			@WebParam(name = "edsid", partName = "removeUserFromExtendedDataSchema.edsid") Long edsid) throws ServerException, UserException;
+		@WebParam(name = "uoid", partName = "removeUserFromExtendedDataSchema.uoid") Long uoid,
+		@WebParam(name = "edsid", partName = "removeUserFromExtendedDataSchema.edsid") Long edsid) throws ServerException, UserException;
 	
 	/**
 	 * @param roid ObjectID of the Revision
@@ -1149,16 +1086,16 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addExtendedDataToRevision")
 	void addExtendedDataToRevision(
-			@WebParam(name = "roid", partName = "addExtendedDataToRevision.roid") Long roid,
-			@WebParam(name = "extendedData", partName = "addExtendedDataToRevision.extendedData") SExtendedData extendedData) throws ServerException, UserException;
+		@WebParam(name = "roid", partName = "addExtendedDataToRevision.roid") Long roid,
+		@WebParam(name = "extendedData", partName = "addExtendedDataToRevision.extendedData") SExtendedData extendedData) throws ServerException, UserException;
 
 	@WebMethod(action = "getExtendedDataSchemaByNamespace")
 	SExtendedDataSchema getExtendedDataSchemaByNamespace(
-			@WebParam(name = "namespace", partName = "getExtendedDataSchemaByNamespace.namespace") String namespace) throws UserException, ServerException;
+		@WebParam(name = "namespace", partName = "getExtendedDataSchemaByNamespace.namespace") String namespace) throws UserException, ServerException;
 
 	@WebMethod(action = "getExtendedDataSchemaFromRepository")
 	SExtendedDataSchema getExtendedDataSchemaFromRepository(
-			@WebParam(name = "namespace", partName = "getExtendedDataSchemaFromRepository.namespace") String namespace) throws UserException, ServerException;
+		@WebParam(name = "namespace", partName = "getExtendedDataSchemaFromRepository.namespace") String namespace) throws UserException, ServerException;
 	
 	/**
 	 * @param roid ObjectID of the Revision
@@ -1167,8 +1104,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addExtendedDataToProject")
 	void addExtendedDataToProject(
-			@WebParam(name = "poid", partName = "addExtendedDataToProject.poid") Long poid,
-			@WebParam(name = "extendedData", partName = "addExtendedDataToProject.extendedData") SExtendedData extendedData) throws ServerException, UserException;
+		@WebParam(name = "poid", partName = "addExtendedDataToProject.poid") Long poid,
+		@WebParam(name = "extendedData", partName = "addExtendedDataToProject.extendedData") SExtendedData extendedData) throws ServerException, UserException;
 	
 	/**
 	 * @param ifcEngine IfcEngine to add
@@ -1176,7 +1113,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addIfcEngine")
 	void addIfcEngine(
-			@WebParam(name = "ifcEngine", partName = "addIfcEngine.ifcEngine") SIfcEnginePluginConfiguration ifcEngine) throws ServerException, UserException;
+		@WebParam(name = "ifcEngine", partName = "addIfcEngine.ifcEngine") SIfcEnginePluginConfiguration ifcEngine) throws ServerException, UserException;
 
 	/**
 	 * @param queryEngine QueryEngine to add
@@ -1184,7 +1121,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addQueryEngine")
 	void addQueryEngine(
-			@WebParam(name = "queryEngine", partName = "addQueryEngine.queryEngine") SQueryEnginePluginConfiguration queryEngine) throws ServerException, UserException;
+		@WebParam(name = "queryEngine", partName = "addQueryEngine.queryEngine") SQueryEnginePluginConfiguration queryEngine) throws ServerException, UserException;
 
 	/**
 	 * @param modelMerger ModelMerger to add
@@ -1192,7 +1129,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addModelMerger")
 	void addModelMerger(
-			@WebParam(name = "modelMerger", partName = "addModelMerger.modelMerger") SModelMergerPluginConfiguration modelMerger) throws ServerException, UserException;
+		@WebParam(name = "modelMerger", partName = "addModelMerger.modelMerger") SModelMergerPluginConfiguration modelMerger) throws ServerException, UserException;
 
 	/**
 	 * @param modelCompare ModelCompare to add
@@ -1200,7 +1137,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addModelCompare")
 	void addModelCompare(
-			@WebParam(name = "modelCompare", partName = "addModelCompare.modelCompare") SModelComparePluginConfiguration modelCompare) throws ServerException, UserException;
+		@WebParam(name = "modelCompare", partName = "addModelCompare.modelCompare") SModelComparePluginConfiguration modelCompare) throws ServerException, UserException;
 
 	/**
 	 * @param deserializer Deserializer to add
@@ -1208,7 +1145,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addDeserializer")
 	void addDeserializer(
-			@WebParam(name = "deserializer", partName = "addDeserializer.deserializer") SDeserializerPluginConfiguration deserializer) throws ServerException, UserException;
+		@WebParam(name = "deserializer", partName = "addDeserializer.deserializer") SDeserializerPluginConfiguration deserializer) throws ServerException, UserException;
 
 	/**
 	 * @param serializer Serializer to update
@@ -1216,7 +1153,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "updateSerializer")
 	void updateSerializer(
-			@WebParam(name = "serializer", partName = "updateSerializer.serializer") SSerializerPluginConfiguration serializer) throws ServerException, UserException;
+		@WebParam(name = "serializer", partName = "updateSerializer.serializer") SSerializerPluginConfiguration serializer) throws ServerException, UserException;
 
 	/**
 	 * @param ifcEngine IfcEngine to update
@@ -1224,7 +1161,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "updateIfcEngine")
 	void updateIfcEngine(
-			@WebParam(name = "ifcEngine", partName = "updateIfcEngine.ifcEngine") SIfcEnginePluginConfiguration ifcEngine) throws ServerException, UserException;
+		@WebParam(name = "ifcEngine", partName = "updateIfcEngine.ifcEngine") SIfcEnginePluginConfiguration ifcEngine) throws ServerException, UserException;
 
 	/**
 	 * @param queryEngine QueryEngine to update
@@ -1232,7 +1169,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "updateQueryEngine")
 	void updateQueryEngine(
-			@WebParam(name = "queryEngine", partName = "updateQueryEngine.queryEngine") SQueryEnginePluginConfiguration queryEngine) throws ServerException, UserException;
+		@WebParam(name = "queryEngine", partName = "updateQueryEngine.queryEngine") SQueryEnginePluginConfiguration queryEngine) throws ServerException, UserException;
 
 	/**
 	 * @param modelMerger ModelMerger to update
@@ -1240,7 +1177,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "updateModelMerger")
 	void updateModelMerger(
-			@WebParam(name = "modelMerger", partName = "updateModelMerger.modelMerger") SModelMergerPluginConfiguration modelMerger) throws ServerException, UserException;
+		@WebParam(name = "modelMerger", partName = "updateModelMerger.modelMerger") SModelMergerPluginConfiguration modelMerger) throws ServerException, UserException;
 
 	/**
 	 * @param modelCompare ModelCompare to update
@@ -1248,7 +1185,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "updateModelCompare")
 	void updateModelCompare(
-			@WebParam(name = "modelCompare", partName = "updateModelCompare.modelCompare") SModelComparePluginConfiguration modelCompare) throws ServerException, UserException;
+		@WebParam(name = "modelCompare", partName = "updateModelCompare.modelCompare") SModelComparePluginConfiguration modelCompare) throws ServerException, UserException;
 
 	/**
 	 * @param deserializer Deserializer to update
@@ -1256,7 +1193,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "updateDeserializer")
 	void updateDeserializer(
-			@WebParam(name = "deserializer", partName = "updateDeserializer.deserializer") SDeserializerPluginConfiguration deserializer) throws ServerException, UserException;
+		@WebParam(name = "deserializer", partName = "updateDeserializer.deserializer") SDeserializerPluginConfiguration deserializer) throws ServerException, UserException;
 
 	/**
 	 * @param onlyEnabled Whether to include only enabled ObjectIDMs
@@ -1265,7 +1202,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllObjectIDMs")
 	List<SObjectIDMPluginConfiguration> getAllObjectIDMs(
-			@WebParam(name = "onlyEnabled", partName = "getAllSerializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
+		@WebParam(name = "onlyEnabled", partName = "getAllSerializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the ObjectIDM
@@ -1274,7 +1211,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getObjectIDMById")
 	SObjectIDMPluginConfiguration getObjectIDMById(
-			@WebParam(name = "oid", partName = "getObjectIDMById.oid") Long oid) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "getObjectIDMById.oid") Long oid) throws ServerException, UserException;
 	
 	/**
 	 * @param objectIDM The ObjectIDM to add
@@ -1282,7 +1219,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addObjectIDM")
 	void addObjectIDM(
-			@WebParam(name = "objectIDM", partName = "addObjectIDM.objectIDM") SObjectIDMPluginConfiguration objectIDM) throws ServerException, UserException;
+		@WebParam(name = "objectIDM", partName = "addObjectIDM.objectIDM") SObjectIDMPluginConfiguration objectIDM) throws ServerException, UserException;
 	
 	/**
 	 * @param objectIDM The ObjectIDM to update
@@ -1290,7 +1227,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "updateObjectIDM")
 	void updateObjectIDM(
-			@WebParam(name = "objectIDM", partName = "updateObjectIDM.objectIDM") SObjectIDMPluginConfiguration objectIDM) throws ServerException, UserException;
+		@WebParam(name = "objectIDM", partName = "updateObjectIDM.objectIDM") SObjectIDMPluginConfiguration objectIDM) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the ObjectIDM to delete
@@ -1298,7 +1235,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "deleteObjectIDM")
 	void deleteObjectIDM(
-			@WebParam(name = "oid", partName = "deleteObjectIDM.oid") Long oid) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "deleteObjectIDM.oid") Long oid) throws ServerException, UserException;
 
 	/**
 	 * @param sid ObjectID of the Serializer to delete
@@ -1306,7 +1243,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "deleteSerializer")
 	void deleteSerializer(
-			@WebParam(name = "sid", partName = "deleteSerializer.sid") Long sid) throws ServerException, UserException;
+		@WebParam(name = "sid", partName = "deleteSerializer.sid") Long sid) throws ServerException, UserException;
 
 	/**
 	 * @param iid ObjectID of the IfcEngine to delete
@@ -1314,7 +1251,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "deleteIfcEngine")
 	void deleteIfcEngine(
-			@WebParam(name = "iid", partName = "deleteIfcEngine.iid") Long iid) throws ServerException, UserException;
+		@WebParam(name = "iid", partName = "deleteIfcEngine.iid") Long iid) throws ServerException, UserException;
 
 	/**
 	 * @param iid ObjectID of the ModelMerger to delete
@@ -1322,7 +1259,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "deleteModelMerger")
 	void deleteModelMerger(
-			@WebParam(name = "iid", partName = "deleteModelMerger.iid") Long iid) throws ServerException, UserException;
+		@WebParam(name = "iid", partName = "deleteModelMerger.iid") Long iid) throws ServerException, UserException;
 
 	/**
 	 * @param iid ObjectID of the ModelCompare to delete
@@ -1330,7 +1267,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "deleteModelCompare")
 	void deleteModelCompare(
-			@WebParam(name = "iid", partName = "deleteModelCompare.iid") Long iid) throws ServerException, UserException;
+		@WebParam(name = "iid", partName = "deleteModelCompare.iid") Long iid) throws ServerException, UserException;
 
 	/**
 	 * @param iid ObjectID of the QueryEngine to delete
@@ -1338,7 +1275,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "deleteQueryEngine")
 	void deleteQueryEngine(
-			@WebParam(name = "iid", partName = "deleteQueryEngine.iid") Long iid) throws ServerException, UserException;
+		@WebParam(name = "iid", partName = "deleteQueryEngine.iid") Long iid) throws ServerException, UserException;
 
 	/**
 	 * @param sid ObjectID of the Deserializer to delete
@@ -1346,7 +1283,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "deleteDeserializer")
 	void deleteDeserializer(
-			@WebParam(name = "sid", partName = "deleteDeserializer.sid") Long sid) throws ServerException, UserException;
+		@WebParam(name = "sid", partName = "deleteDeserializer.sid") Long sid) throws ServerException, UserException;
 
 	/**
 	 * @return List of all SerializerPluginDescriptors
@@ -1404,7 +1341,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getSerializerByName")
 	SSerializerPluginConfiguration getSerializerByName(
-			@WebParam(name = "serializerName", partName = "getSerializerByName.serializerName") String serializerName) throws ServerException, UserException;
+		@WebParam(name = "serializerName", partName = "getSerializerByName.serializerName") String serializerName) throws ServerException, UserException;
 
 	/**
 	 * @param name Name of the IfcEngine
@@ -1413,7 +1350,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getIfcEngineByName")
 	SIfcEnginePluginConfiguration getIfcEngineByName(
-			@WebParam(name = "name", partName = "getIfcEngineByName.name") String name) throws ServerException, UserException;
+		@WebParam(name = "name", partName = "getIfcEngineByName.name") String name) throws ServerException, UserException;
 
 	/**
 	 * @param name Name of the QueryEngine
@@ -1422,7 +1359,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getQueryEngineByName")
 	SQueryEnginePluginConfiguration getQueryEngineByName(
-			@WebParam(name = "name", partName = "getQueryEngineByName.name") String name) throws ServerException, UserException;
+		@WebParam(name = "name", partName = "getQueryEngineByName.name") String name) throws ServerException, UserException;
 
 	/**
 	 * @param name Name of the ModelMerger
@@ -1431,7 +1368,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getModelMergerByName")
 	SModelMergerPluginConfiguration getModelMergerByName(
-			@WebParam(name = "name", partName = "getModelMergerByName.name") String name) throws ServerException, UserException;
+		@WebParam(name = "name", partName = "getModelMergerByName.name") String name) throws ServerException, UserException;
 
 	/**
 	 * @param name Name of the ModelCompare
@@ -1440,7 +1377,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getModelCompareByName")
 	SModelComparePluginConfiguration getModelCompareByName(
-			@WebParam(name = "name", partName = "getModelCompareByName.name") String name) throws ServerException, UserException;
+		@WebParam(name = "name", partName = "getModelCompareByName.name") String name) throws ServerException, UserException;
 
 	/**
 	 * @param objectIDMName Name of the ObjectIDM
@@ -1449,7 +1386,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getObjectIDMByName")
 	SObjectIDMPluginConfiguration getObjectIDMByName(
-			@WebParam(name = "objectIDMName", partName = "getObjectIDMByName.objectIDMName") String objectIDMName) throws ServerException, UserException;
+		@WebParam(name = "objectIDMName", partName = "getObjectIDMByName.objectIDMName") String objectIDMName) throws ServerException, UserException;
 
 	/**
 	 * @param deserializerName Name of the Deserializer
@@ -1458,7 +1395,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getDeserializerByName")
 	SDeserializerPluginConfiguration getDeserializerByName(
-			@WebParam(name = "deserializerName", partName = "getDeserializerByName.deserializerName") String deserializerName) throws ServerException, UserException;
+		@WebParam(name = "deserializerName", partName = "getDeserializerByName.deserializerName") String deserializerName) throws ServerException, UserException;
 
 	/**
 	 * @param contentType Content type
@@ -1484,7 +1421,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "startTransaction")
 	void startTransaction(
-			@WebParam(name = "poid", partName = "startTransaction.poid") Long poid) throws ServerException, UserException;
+		@WebParam(name = "poid", partName = "startTransaction.poid") Long poid) throws ServerException, UserException;
 
 	/**
 	 * Commit the current transaction, changes will be saved, a transaction must be started by startTransaction first
@@ -1494,7 +1431,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "commitTransaction")
 	Long commitTransaction(
-			@WebParam(name = "comment", partName = "commitTransaction.comment") String comment) throws ServerException, UserException;
+		@WebParam(name = "comment", partName = "commitTransaction.comment") String comment) throws ServerException, UserException;
 	
 	/**
 	 * Abort the current transaction, changes will not be saved
@@ -1511,7 +1448,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "createObject")
 	Long createObject(
-			@WebParam(name = "className", partName = "createObject.className") String className) throws ServerException, UserException;
+		@WebParam(name = "className", partName = "createObject.className") String className) throws ServerException, UserException;
 	
 	/**
 	 * Remove an object
@@ -1520,7 +1457,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "removeObject")
 	void removeObject(
-			@WebParam(name = "oid", partName = "removeObject.oid") Long oid) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "removeObject.oid") Long oid) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1530,9 +1467,9 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setStringAttribute")
 	void setStringAttribute(
-			@WebParam(name = "oid", partName = "setStringAttribute.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "setStringAttribute.attributeName") String attributeName, 
-			@WebParam(name = "value", partName = "setStringAttribute.value") String value) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "setStringAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "setStringAttribute.attributeName") String attributeName, 
+		@WebParam(name = "value", partName = "setStringAttribute.value") String value) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1542,8 +1479,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getStringAttribute")
 	String getStringAttribute(
-			@WebParam(name = "oid", partName = "getStringAttribute.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "getStringAttribute.attributeName") String attributeName) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "getStringAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "getStringAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1553,9 +1490,9 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setDoubleAttribute")
 	void setDoubleAttribute(
-			@WebParam(name = "oid", partName = "setDoubleAttribute.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "setDoubleAttribute.attributeName") String attributeName, 
-			@WebParam(name = "value", partName = "setDoubleAttribute.value") Double value) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "setDoubleAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "setDoubleAttribute.attributeName") String attributeName, 
+		@WebParam(name = "value", partName = "setDoubleAttribute.value") Double value) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1565,8 +1502,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getDoubleAttribute")
 	Double getDoubleAttribute(
-			@WebParam(name = "oid", partName = "getDoubleAttribute.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "getDoubleAttribute.attributeName") String attributeName) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "getDoubleAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "getDoubleAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1576,9 +1513,9 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setEnumAttribute")
 	void setEnumAttribute(
-			@WebParam(name = "oid", partName = "setEnumAttribute.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "setEnumAttribute.attributeName") String attributeName, 
-			@WebParam(name = "value", partName = "setEnumAttribute.value") String value) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "setEnumAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "setEnumAttribute.attributeName") String attributeName, 
+		@WebParam(name = "value", partName = "setEnumAttribute.value") String value) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1588,8 +1525,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getEnumAttribute")
 	String getEnumAttribute(
-			@WebParam(name = "oid", partName = "getEnumAttribute.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "getEnumAttribute.attributeName") String attributeName) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "getEnumAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "getEnumAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1599,9 +1536,9 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setIntegerAttribute")
 	void setIntegerAttribute(
-			@WebParam(name = "oid", partName = "setIntegerAttribute.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "setIntegerAttribute.attributeName") String attributeName, 
-			@WebParam(name = "value", partName = "setIntegerAttribute.value") Integer value) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "setIntegerAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "setIntegerAttribute.attributeName") String attributeName, 
+		@WebParam(name = "value", partName = "setIntegerAttribute.value") Integer value) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1611,8 +1548,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getIntegerAttribute")
 	Integer getIntegerAttribute(
-			@WebParam(name = "oid", partName = "getIntegerAttribute.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "getIntegerAttribute.attributeName") String attributeName) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "getIntegerAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "getIntegerAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1622,9 +1559,9 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setBooleanAttribute")
 	void setBooleanAttribute(
-			@WebParam(name = "oid", partName = "setBooleanAttribute.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "setBooleanAttribute.attributeName") String attributeName, 
-			@WebParam(name = "value", partName = "setBooleanAttribute.value") Boolean value) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "setBooleanAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "setBooleanAttribute.attributeName") String attributeName, 
+		@WebParam(name = "value", partName = "setBooleanAttribute.value") Boolean value) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1634,8 +1571,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getBooleanAttribute")
 	Boolean getBooleanAttribute(
-			@WebParam(name = "oid", partName = "getBooleanAttribute.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "getBooleanAttribute.attributeName") String attributeName) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "getBooleanAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "getBooleanAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1645,9 +1582,9 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setReference")
 	void setReference(
-			@WebParam(name = "oid", partName = "setReference.oid") Long oid, 
-			@WebParam(name = "referenceName", partName = "setReference.referenceName") String referenceName, 
-			@WebParam(name = "referenceOid", partName = "setReference.referenceOid") Long referenceOid) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "setReference.oid") Long oid, 
+		@WebParam(name = "referenceName", partName = "setReference.referenceName") String referenceName, 
+		@WebParam(name = "referenceOid", partName = "setReference.referenceOid") Long referenceOid) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1657,8 +1594,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getReference")
 	Long getReference(
-			@WebParam(name = "oid", partName = "getReference.oid") Long oid, 
-			@WebParam(name = "referenceName", partName = "getReference.referenceName") String referenceName) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "getReference.oid") Long oid, 
+		@WebParam(name = "referenceName", partName = "getReference.referenceName") String referenceName) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1667,8 +1604,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "unsetAttribute")
 	void unsetAttribute(
-			@WebParam(name = "oid", partName = "unsetAttribute.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "unsetAttribute.attributeName") String attributeName) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "unsetAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "unsetAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1677,8 +1614,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "unsetReference")
 	void unsetReference(
-			@WebParam(name = "oid", partName = "unsetReference.oid") Long oid,
-			@WebParam(name = "referenceName", partName = "unsetReference.referenceName") String referenceName) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "unsetReference.oid") Long oid,
+		@WebParam(name = "referenceName", partName = "unsetReference.referenceName") String referenceName) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1688,9 +1625,9 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addStringAttribute")
 	void addStringAttribute(
-			@WebParam(name = "oid", partName = "addStringAttribute.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "addStringAttribute.attributeName") String attributeName,
-			@WebParam(name = "value", partName = "addStringAttribute.value") String value) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "addStringAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "addStringAttribute.attributeName") String attributeName,
+		@WebParam(name = "value", partName = "addStringAttribute.value") String value) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1700,9 +1637,9 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addDoubleAttribute")
 	void addDoubleAttribute(
-			@WebParam(name = "oid", partName = "addDoubleAttribute.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "addDoubleAttribute.attributeName") String attributeName,
-			@WebParam(name = "value", partName = "addDoubleAttribute.value") Double value) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "addDoubleAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "addDoubleAttribute.attributeName") String attributeName,
+		@WebParam(name = "value", partName = "addDoubleAttribute.value") Double value) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1712,9 +1649,9 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addIntegerAttribute")
 	void addIntegerAttribute(
-			@WebParam(name = "oid", partName = "addIntegerAttribute.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "addIntegerAttribute.attributeName") String attributeName,
-			@WebParam(name = "value", partName = "addIntegerAttribute.value") Integer value) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "addIntegerAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "addIntegerAttribute.attributeName") String attributeName,
+		@WebParam(name = "value", partName = "addIntegerAttribute.value") Integer value) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1724,9 +1661,9 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addBooleanAttribute")
 	void addBooleanAttribute(
-			@WebParam(name = "oid", partName = "addBooleanAttribute.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "addBooleanAttribute.attributeName") String attributeName,
-			@WebParam(name = "value", partName = "addBooleanAttribute.value") Boolean value) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "addBooleanAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "addBooleanAttribute.attributeName") String attributeName,
+		@WebParam(name = "value", partName = "addBooleanAttribute.value") Boolean value) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1736,9 +1673,9 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addReference")
 	void addReference(
-			@WebParam(name = "oid", partName = "addReference.oid") Long oid, 
-			@WebParam(name = "referenceName", partName = "addReference.referenceName") String referenceName, 
-			@WebParam(name = "referenceOid", partName = "addReference.referenceOid") Long referenceOid) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "addReference.oid") Long oid, 
+		@WebParam(name = "referenceName", partName = "addReference.referenceName") String referenceName, 
+		@WebParam(name = "referenceOid", partName = "addReference.referenceOid") Long referenceOid) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1748,9 +1685,9 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "removeAttribute")
 	void removeAttribute(
-			@WebParam(name = "oid", partName = "removeAttribute.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "removeAttribute.attributeName") String attributeName, 
-			@WebParam(name = "index", partName = "removeAttribute.index") Integer index) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "removeAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "removeAttribute.attributeName") String attributeName, 
+		@WebParam(name = "index", partName = "removeAttribute.index") Integer index) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1760,9 +1697,9 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "removeReference")
 	void removeReference(
-			@WebParam(name = "oid", partName = "removeReference.oid") Long oid, 
-			@WebParam(name = "referenceName", partName = "removeReference.referenceName") String referenceName, 
-			@WebParam(name = "index", partName = "removeReference.index") Integer index) throws ServerException, UserException;
+		@WebParam(name = "oid", partName = "removeReference.oid") Long oid, 
+		@WebParam(name = "referenceName", partName = "removeReference.referenceName") String referenceName, 
+		@WebParam(name = "index", partName = "removeReference.index") Integer index) throws ServerException, UserException;
 	
 	/**
 	 * @return The Date when the BIMserver was last started
@@ -1778,7 +1715,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getSerializerPluginDescriptor")
 	SSerializerPluginDescriptor getSerializerPluginDescriptor(
-			@WebParam(name = "type", partName = "getSerializerPluginDescriptor.type") String type) throws ServerException, UserException;
+		@WebParam(name = "type", partName = "getSerializerPluginDescriptor.type") String type) throws ServerException, UserException;
 	
 	/**
 	 * @return A list of available IDMPlugins
@@ -1794,7 +1731,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllDeserializers")
 	List<SDeserializerPluginConfiguration> getAllDeserializers(
-			@WebParam(name = "onlyEnabled", partName = "getAllDeserializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
+		@WebParam(name = "onlyEnabled", partName = "getAllDeserializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 	
 	/**
 	 * @param roid ObjectID of the Revision to perform this query on
@@ -1804,11 +1741,11 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "downloadQuery")
 	Long downloadQuery(
-			@WebParam(name = "roid", partName = "downloadQuery.roid") Long roid, 
-			@WebParam(name = "qeid", partName = "downloadQuery.qeid") Long qeid, 
-			@WebParam(name = "code", partName = "downloadQuery.code") String code,
-			@WebParam(name = "sync", partName = "downloadQuery.sync") Boolean sync,
-			@WebParam(name = "serializerOid", partName = "downloadQuery.serializerOid") Long serializerOid) throws ServerException, UserException;
+		@WebParam(name = "roid", partName = "downloadQuery.roid") Long roid, 
+		@WebParam(name = "qeid", partName = "downloadQuery.qeid") Long qeid, 
+		@WebParam(name = "code", partName = "downloadQuery.code") String code,
+		@WebParam(name = "sync", partName = "downloadQuery.sync") Boolean sync,
+		@WebParam(name = "serializerOid", partName = "downloadQuery.serializerOid") Long serializerOid) throws ServerException, UserException;
 
 	/**
 	 * Thsi will return the content of the .proto file (equivalent for SOAP's WSDL) for the ProtocolBuffers interface
@@ -2004,7 +1941,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setSettingEmailSenderAddress")
 	void setSettingEmailSenderAddress(
-			@WebParam(name = "emailSenderAddress", partName = "setSettingsEmailSenderAddress.emailSenderAddress") String emailSenderAddress) throws ServerException, UserException;
+		@WebParam(name = "emailSenderAddress", partName = "setSettingsEmailSenderAddress.emailSenderAddress") String emailSenderAddress) throws ServerException, UserException;
 
 	/**
 	 * @return The port on which the ProtocolBuffers server runs
@@ -2019,7 +1956,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setSettingProtocolBuffersPort")
 	void setSettingProtocolBuffersPort(
-			@WebParam(name = "port", partName = "setSettingsProtocolBuffersPort.port") Integer port) throws ServerException, UserException;
+		@WebParam(name = "port", partName = "setSettingsProtocolBuffersPort.port") Integer port) throws ServerException, UserException;
 	
 	/**
 	 * @return The address the BIMserver is running on (used for links in e-mail for example)
@@ -2034,7 +1971,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setSettingSiteAddress")
 	void setSettingSiteAddress(
-			@WebParam(name = "siteAddress", partName = "setSettingsSiteAddress.siteAddress") String siteAddress) throws ServerException, UserException;
+		@WebParam(name = "siteAddress", partName = "setSettingsSiteAddress.siteAddress") String siteAddress) throws ServerException, UserException;
 
 	/**
 	 * @return Address of the SMTP server used for sending e-mails
@@ -2049,7 +1986,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setSettingSmtpServer")
 	void setSettingSmtpServer(
-			@WebParam(name = "smtpServer", partName = "setSettingsSmtpServer.smtpServer") String smtpServer) throws ServerException, UserException;
+		@WebParam(name = "smtpServer", partName = "setSettingsSmtpServer.smtpServer") String smtpServer) throws ServerException, UserException;
 
 	/**
 	 * @return Whether self-registration is enabled
@@ -2064,7 +2001,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setSettingAllowSelfRegistration")
 	void setSettingAllowSelfRegistration(
-			@WebParam(name = "allowSelfRegistration", partName = "setSettingAllowSelfRegistration.allowSelfRegistration") Boolean allowSelfRegistration)throws ServerException, UserException;
+		@WebParam(name = "allowSelfRegistration", partName = "setSettingAllowSelfRegistration.allowSelfRegistration") Boolean allowSelfRegistration)throws ServerException, UserException;
 
 	/**
 	 * @return Whether to hide user lists (pricacy)
@@ -2079,7 +2016,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setSettingHideUserListForNonAdmin")
 	void setSettingHideUserListForNonAdmin(
-			@WebParam(name = "hideUserListForNonAdmin", partName = "setSettingHideUserListForNonAdmin.hideUserListForNonAdmin") Boolean hideUserListForNonAdmin) throws ServerException, UserException;
+		@WebParam(name = "hideUserListForNonAdmin", partName = "setSettingHideUserListForNonAdmin.hideUserListForNonAdmin") Boolean hideUserListForNonAdmin) throws ServerException, UserException;
 
 	/**
 	 * @return Whether a user can create top level projects
@@ -2094,7 +2031,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setSettingAllowUsersToCreateTopLevelProjects")
 	void setSettingAllowUsersToCreateTopLevelProjects(
-			@WebParam(name = "allowUsersToCreateTopLevelProjects", partName = "setSettingAllowUsersToCreateTopLevelProjects.allowUsersToCreateTopLevelProjects") Boolean allowUsersToCreateTopLevelProjects) throws ServerException, UserException;
+		@WebParam(name = "allowUsersToCreateTopLevelProjects", partName = "setSettingAllowUsersToCreateTopLevelProjects.allowUsersToCreateTopLevelProjects") Boolean allowUsersToCreateTopLevelProjects) throws ServerException, UserException;
 
 	/**
 	 * @return Whether the BIMserver should do checkin merging (warning: this will alter your models)
@@ -2109,7 +2046,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setSettingCheckinMergingEnabled")
 	void setSettingCheckinMergingEnabled(
-			@WebParam(name = "checkinMergingEnabled", partName = "setSettingCheckinMergingEnabled.checkinMergingEnabled") Boolean checkinMergingEnabled) throws ServerException, UserException;
+		@WebParam(name = "checkinMergingEnabled", partName = "setSettingCheckinMergingEnabled.checkinMergingEnabled") Boolean checkinMergingEnabled) throws ServerException, UserException;
 
 	/**
 	 * @return Whether a confirmation e-mail should be send after registration
@@ -2124,7 +2061,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setSettingSendConfirmationEmailAfterRegistration")
 	void setSettingSendConfirmationEmailAfterRegistration(
-			@WebParam(name = "sendConfirmationEmailAfterRegistration", partName = "setSettingSendConfirmationEmailAfterRegistration.sendConfirmationEmailAfterRegistration") Boolean sendConfirmationEmailAfterRegistration) throws ServerException, UserException;
+		@WebParam(name = "sendConfirmationEmailAfterRegistration", partName = "setSettingSendConfirmationEmailAfterRegistration.sendConfirmationEmailAfterRegistration") Boolean sendConfirmationEmailAfterRegistration) throws ServerException, UserException;
 
 	/**
 	 * @return Whether output files (serialized version) should be cached on disk
@@ -2139,7 +2076,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setSettingCacheOutputFiles")
 	void setSettingCacheOutputFiles(
-			@WebParam(name = "cacheOutputFiles", partName = "setCacheOutputFiles.cacheOutputFiles") Boolean cacheOutputFiles) throws ServerException, UserException;
+		@WebParam(name = "cacheOutputFiles", partName = "setCacheOutputFiles.cacheOutputFiles") Boolean cacheOutputFiles) throws ServerException, UserException;
 
 	/**
 	 * @return A list of all plugins
@@ -2190,11 +2127,11 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setup")
 	void setup(@WebParam(name = "siteAddress", partName = "setup.siteAddress") String siteAddress,
-			@WebParam(name = "smtpServer", partName = "setup.smtpServer") String smtpServer,
-			@WebParam(name = "smtpSender", partName = "setup.smtpSender") String smtpSender,
-			@WebParam(name = "adminName", partName = "setup.adminName") String adminName,
-			@WebParam(name = "adminUsername", partName = "setup.adminUsername") String adminUsername,
-			@WebParam(name = "adminPassword", partName = "setup.adminPassword") String adminPassword) throws ServerException, UserException;
+		@WebParam(name = "smtpServer", partName = "setup.smtpServer") String smtpServer,
+		@WebParam(name = "smtpSender", partName = "setup.smtpSender") String smtpSender,
+		@WebParam(name = "adminName", partName = "setup.adminName") String adminName,
+		@WebParam(name = "adminUsername", partName = "setup.adminUsername") String adminUsername,
+		@WebParam(name = "adminPassword", partName = "setup.adminPassword") String adminPassword) throws ServerException, UserException;
 	
 	/**
 	 * @return A list with all Log objects, Log objects contain information about action performed on the BIMserver like ProjectAdded, UserAdded etc...
