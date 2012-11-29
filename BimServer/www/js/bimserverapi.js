@@ -13,7 +13,11 @@ function BimServerApi(baseUrl, notifier) {
 		othis.notifier = {
 			error: function(){},
 			info: function(){},
-			warn: function(){}
+			warn: function(){},
+			setStatus: function(message, timeout){},
+			resetStatus: function(){},
+			resetStatusQuick: function(){},
+			clear: function(){}
 		};
 	}
 	othis.server = new BimServerWebSocket(baseUrl);
