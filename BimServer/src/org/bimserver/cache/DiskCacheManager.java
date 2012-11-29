@@ -105,4 +105,14 @@ public class DiskCacheManager {
 		}
 		return null;
 	}
+
+	public Integer cleanup() {
+		int removed = 0;
+		for (File file : cacheDir.listFiles()) {
+			if (file.delete()) {
+				removed++;
+			}
+		}
+		return removed;
+	}
 }

@@ -201,7 +201,7 @@ public class Database implements BimDatabase {
 		settings.setAllowUsersToCreateTopLevelProjects(false);
 		settings.setCheckinMergingEnabled(false);
 		settings.setHideUserListForNonAdmin(true);
-		settings.setCacheOutputFiles(true);
+		settings.setCacheOutputFiles(false);
 		settings.setServiceRepositoryUrl("http://extend.bimserver.org");
 		settings.setAllowOnlyWhitelisted(false);
 		settings.getWhitelistedDomains().add("localhost");
