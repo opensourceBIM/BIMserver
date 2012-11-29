@@ -15,6 +15,7 @@ function BimServerApi(baseUrl, notifier) {
 			info: function(){},
 			warn: function(){},
 			setStatus: function(message, timeout){},
+			setError: function(){},
 			resetStatus: function(){},
 			resetStatusQuick: function(){},
 			clear: function(){}
