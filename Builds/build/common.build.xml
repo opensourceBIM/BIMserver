@@ -28,7 +28,6 @@
 		<antcall target="buildingSMARTLibrary" />
 		<antcall target="FileBasedObjectIDM" />
 		<antcall target="Report1Serializer" />
-		<antcall target="Tests" />
 	</target>
 	<target name="SatelliteServer">
 		<mkdir dir="builds/satelliteserver" />
