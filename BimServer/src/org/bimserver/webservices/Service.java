@@ -3831,4 +3831,9 @@ public class Service implements ServiceInterface {
 		}
 		bimServer.getAccessRightsCache().updateCache();
 	}
+	
+	@Override
+	public Integer clearOutputFileCache() {
+		return bimServer.getDiskCacheManager().cleanup();
+	}
 }
