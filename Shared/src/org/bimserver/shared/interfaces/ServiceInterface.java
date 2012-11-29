@@ -2244,4 +2244,7 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "setWhiteListedDomains")
 	void setWhiteListedDomains(
 		@WebParam(name = "domains", partName = "setWhiteListedDomains.domains") List<String> domains) throws ServerException, UserException;
+
+	@WebMethod(action = "clearOutputFileCache")
+	Integer clearOutputFileCache();
 }

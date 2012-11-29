@@ -40,6 +40,10 @@ public abstract class AbstractGeometrySerializer extends EmfSerializer {
 		return geometry;
 	}
 	
+	public IfcEngineModel getIfcEngineModel() {
+		return ifcEngineModel;
+	}
+	
 	public IfcEngine getIfcEngine() {
 		return ifcEngine;
 	}
