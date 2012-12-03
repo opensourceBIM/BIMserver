@@ -95,7 +95,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 
 					Deserializer deserializer = pluginManager.requireDeserializer("ifc").createDeserializer();
 					deserializer.init(pluginManager.requireSchemaDefinition());
-					IfcModelInterface model = deserializer.read(new ByteArrayInputStream(baos.toByteArray()), "test.ifc", true, baos.size());
+					IfcModelInterface model = deserializer.read(new ByteArrayInputStream(baos.toByteArray()), "test.ifc", baos.size());
 					List<IfcProject> ifcProjects = model.getAll(IfcProject.class);
 					IfcProject mainIfcProject = null;
 					if (!ifcProjects.isEmpty()) {
