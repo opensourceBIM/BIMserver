@@ -59,7 +59,7 @@ import com.google.common.base.Charsets;
 
 public class IfcStepSerializer extends IfcSerializer {
 	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(IfcStepSerializer.class);
-	private boolean useIso8859_1 = false;
+	private static final boolean useIso8859_1 = false;
 	private static final EcorePackage ECORE_PACKAGE_INSTANCE = EcorePackage.eINSTANCE;
 	private static final String NULL = "NULL";
 	private static final String OPEN_CLOSE_PAREN = "()";
@@ -89,7 +89,7 @@ public class IfcStepSerializer extends IfcSerializer {
 	private String preProcessorVersion = "";
 	private Date date = new Date();
 
-	private Iterator<Long> iterator;
+	private Iterator<IdEObject> iterator;
 	private UTF8PrintWriter out;
 	private SchemaDefinition schema;
 
@@ -116,15 +116,12 @@ public class IfcStepSerializer extends IfcSerializer {
 		if (getMode() == Mode.HEADER) {
 			writeHeader(out);
 			setMode(Mode.BODY);
-			iterator = model.keySet().iterator();
+			iterator = model.getValues().iterator();
 			out.flush();
 			return true;
 		} else if (getMode() == Mode.BODY) {
 			if (iterator.hasNext()) {
-				long key = iterator.next();
-				if (key != -1) {
-					write(out, key, model.get(key));
-				}
+				write(out, iterator.next());
 			} else {
 				iterator = null;
 				setMode(Mode.FOOTER);
@@ -282,13 +279,13 @@ public class IfcStepSerializer extends IfcSerializer {
 		}
 	}
 
-	private void write(PrintWriter out, Long key, EObject object) throws SerializerException {
+	private void write(PrintWriter out, IdEObject object) throws SerializerException {
 		EClass eClass = object.eClass();
 		if (eClass.getEAnnotation("hidden") != null) {
 			return;
 		}
 		out.print(DASH);
-		long convertedKey = convertKey(key);
+		int convertedKey = getExpressId(object);
 		out.print(String.valueOf(convertedKey));
 		out.print("= ");
 		String upperCase = upperCases.get(eClass);
@@ -299,6 +296,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		out.print(OPEN_PAREN);
 		boolean isFirst = true;
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
+			// TODO make the AsString feature a hidden feature and remove all checks for AsString everywhere
 			if (!feature.isDerived() && !feature.isVolatile() && !feature.getName().endsWith("AsString") && feature.getEAnnotation("hidden") == null) {
 				EClassifier type = feature.getEType();
 				if (type instanceof EEnum) {
@@ -346,7 +344,7 @@ public class IfcStepSerializer extends IfcSerializer {
 			EntityDefinition entityBN = schema.getEntityBNNoCaseConvert(upperCases.get(object.eClass()));
 			if (referencedObject instanceof EObject && model.contains((IdEObject) referencedObject)) {
 				out.print(DASH);
-				out.print(String.valueOf(convertKey(model.get((IdEObject) referencedObject))));
+				out.print(String.valueOf(getExpressId((IdEObject) referencedObject)));
 			} else {
 				if (entityBN != null && entityBN.isDerived(feature.getName())) {
 					out.print(ASTERISK);
@@ -453,7 +451,7 @@ public class IfcStepSerializer extends IfcSerializer {
 				if ((listObject instanceof IdEObject) && model.contains((IdEObject)listObject)) {
 					IdEObject eObject = (IdEObject) listObject;
 					out.print(DASH);
-					out.print(String.valueOf(convertKey(model.get(eObject))));
+					out.print(String.valueOf(getExpressId(eObject)));
 				} else {
 					if (listObject == null) {
 						out.print(DOLLAR);

@@ -376,7 +376,7 @@
   <eClassifiers xsi:type="ecore:EEnum" name="ActionState">
     <eLiterals name="UNKNOWN"/>
     <eLiterals name="STARTED" value="1"/>
-    <eLiterals name="ERROR" value="2"/>
+    <eLiterals name="AS_ERROR" value="2"/>
     <eLiterals name="FINISHED" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LongActionState">
@@ -635,7 +635,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="NotifictionResultEnum">
-    <eLiterals name="ERROR"/>
+    <eLiterals name="NR_ERROR"/>
     <eLiterals name="SUCCESS" value="1"/>
     <eLiterals name="PROGRESS_UNKNOWN" value="2"/>
     <eLiterals name="PROGRESS_PERCENTAGE" value="3"/>

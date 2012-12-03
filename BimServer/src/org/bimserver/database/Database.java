@@ -204,6 +204,7 @@ public class Database implements BimDatabase {
 		settings.setCacheOutputFiles(false);
 		settings.setServiceRepositoryUrl("http://extend.bimserver.org");
 		settings.setAllowOnlyWhitelisted(false);
+		settings.setGenerateGeometryOnCheckin(true);
 		settings.getWhitelistedDomains().add("localhost");
 		settings.getWhitelistedDomains().add("localhost:8080");
 		return settings;

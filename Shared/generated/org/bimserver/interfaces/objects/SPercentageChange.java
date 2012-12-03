@@ -30,10 +30,11 @@ public class SPercentageChange extends SExternalServiceUpdate implements SDataBa
 	@XmlTransient
 	private static SClass sClass;
 	private int percentage;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

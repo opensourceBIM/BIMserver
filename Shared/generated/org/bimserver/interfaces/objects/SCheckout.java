@@ -39,10 +39,11 @@ public class SCheckout implements SDataBase
 	private long checkinId = -1;
 	private java.lang.Boolean active;
 	private List<Long> logs = new ArrayList<Long>();
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

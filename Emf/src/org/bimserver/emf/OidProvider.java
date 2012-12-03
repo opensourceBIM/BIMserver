@@ -19,6 +19,6 @@ import org.eclipse.emf.ecore.EClass;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-public interface OidProvider {
-	long newOid(EClass eClass);
+public interface OidProvider<T> {
+	T newOid(EClass eClass);
 }

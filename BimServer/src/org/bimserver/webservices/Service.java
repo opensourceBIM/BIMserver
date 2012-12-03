@@ -262,7 +262,7 @@ public class Service implements ServiceInterface {
 				} catch (PluginException e) {
 					throw new UserException(e);
 				}
-				IfcModelInterface model = deserializer.read(inputStream, fileName, true, fileSize);
+				IfcModelInterface model = deserializer.read(inputStream, fileName, fileSize);
 				if (model.size() == 0) {
 					throw new DeserializeException("Cannot checkin empty model");
 				}

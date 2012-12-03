@@ -41,10 +41,11 @@ public class SExtendedDataSchema implements SDataBase
 	private SExtendedDataSchemaType type;
 	private List<Long> users = new ArrayList<Long>();
 	private List<Long> extendedData = new ArrayList<Long>();
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

@@ -34,10 +34,11 @@ public class SServiceType implements SDataBase
 	private java.lang.String name;
 	private java.lang.String simpleName;
 	private List<SServiceField> fields = new ArrayList<SServiceField>();
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

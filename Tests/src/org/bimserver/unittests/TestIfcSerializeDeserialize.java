@@ -50,7 +50,7 @@ public class TestIfcSerializeDeserialize {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
-			IfcModelInterface modelInterface = deserializer.read(new File("output/test.ifc"), true);
+			IfcModelInterface modelInterface = deserializer.read(new File("output/test.ifc"));
 			
 			IdEObject object = modelInterface.iterator().next();
 			System.out.println(((IfcWall)object).getName());

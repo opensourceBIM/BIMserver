@@ -42,7 +42,7 @@ public class TestIfcStepDeserializer {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
-			IfcModelInterface modelInterface = deserializer.read(TestFile.AC11.getFile(), true);
+			IfcModelInterface modelInterface = deserializer.read(TestFile.AC11.getFile());
 			
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
 			Serializer serializer = serializerPlugin.createSerializer();

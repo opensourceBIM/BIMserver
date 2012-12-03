@@ -42,10 +42,11 @@ public class SDatabaseInformation implements SDataBase
 	private java.lang.String location;
 	private java.lang.Integer schemaVersion;
 	private List<SDatabaseInformationCategory> categories = new ArrayList<SDatabaseInformationCategory>();
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

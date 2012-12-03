@@ -61,7 +61,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 		} finally {
 			session.close();
 			done();
-			if (getActionState() != ActionState.ERROR) {
+			if (getActionState() != ActionState.AS_ERROR) {
 				changeActionState(ActionState.FINISHED, "Done", 100);
 			}
 		}

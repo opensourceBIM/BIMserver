@@ -24,9 +24,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.HashMap;
-import java.util.Map;
 
+import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
@@ -42,7 +42,7 @@ public abstract class EmfSerializer implements Serializer {
 	private PluginManager pluginManager;
 	private IfcEnginePlugin ifcEnginePlugin;
 	private boolean normalizeOids;
-	private final Map<Long, Long> oidMapper = new HashMap<Long, Long>();
+	private int expressIdCounter = 1;
 
 	protected static enum Mode {
 		HEADER, BODY, FOOTER, FINISHED
@@ -77,17 +77,11 @@ public abstract class EmfSerializer implements Serializer {
 		this.mode = mode;
 	}
 
-	protected long convertKey(Long key) {
-		if (!normalizeOids) {
-			return key;
+	protected int getExpressId(IdEObject object) {
+		if (normalizeOids && object.getExpressId() == -1) {
+			((IdEObjectImpl)object).setExpressId(expressIdCounter ++);
 		}
-		if (oidMapper.containsKey(key)) {
-			return oidMapper.get(key);
-		} else {
-			long size = oidMapper.size();
-			oidMapper.put(key, size);
-			return size;
-		}
+		return object.getExpressId();
 	}
 	
 	public byte[] getBytes() {

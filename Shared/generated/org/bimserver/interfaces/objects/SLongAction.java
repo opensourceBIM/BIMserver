@@ -35,10 +35,11 @@ public class SLongAction implements SDataBase
 	private java.util.Date start;
 	private java.lang.String username;
 	private java.lang.String name;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

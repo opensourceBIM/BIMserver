@@ -45,10 +45,11 @@ public class SUserSettings implements SDataBase
 	private long defaultSerializerId = -1;
 	private long defaultObjectIDMId = -1;
 	private List<Long> services = new ArrayList<Long>();
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

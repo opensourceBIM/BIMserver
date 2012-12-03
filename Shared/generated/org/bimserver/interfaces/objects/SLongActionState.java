@@ -38,10 +38,11 @@ public class SLongActionState implements SDataBase
 	private List<java.lang.String> errors = new ArrayList<java.lang.String>();
 	private List<java.lang.String> warnings = new ArrayList<java.lang.String>();
 	private List<java.lang.String> infos = new ArrayList<java.lang.String>();
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

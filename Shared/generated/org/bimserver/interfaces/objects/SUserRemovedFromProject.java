@@ -32,10 +32,11 @@ public class SUserRemovedFromProject extends SLogAction implements SDataBase
 	private static SClass sClass;
 	private long userId = -1;
 	private long projectId = -1;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

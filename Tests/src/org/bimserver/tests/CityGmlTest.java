@@ -39,7 +39,7 @@ public class CityGmlTest {
 			DeserializerPlugin deserializerPlugin = pluginManager.requireDeserializer("ifc");
 			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
-			IfcModelInterface model = deserializer.read(TestFile.AC11.getFile(), true);
+			IfcModelInterface model = deserializer.read(TestFile.AC11.getFile());
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/gml", true);
 			Serializer serializer = serializerPlugin.createSerializer();
 			serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine(), false);

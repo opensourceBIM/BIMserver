@@ -35,10 +35,11 @@ public class SDataObject implements SDataBase
 	private java.lang.String guid;
 	private java.lang.String name;
 	private List<SDataValue> values = new ArrayList<SDataValue>();
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

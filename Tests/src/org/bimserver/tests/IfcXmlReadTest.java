@@ -43,7 +43,7 @@ public class IfcXmlReadTest {
 			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			try {
 				File file = TestFile.AC11_XML.getFile();
-				IfcModelInterface model = deserializer.read(new FileInputStream(file), "ac11.ifcxml", false, file.length());
+				IfcModelInterface model = deserializer.read(new FileInputStream(file), "ac11.ifcxml", file.length());
 				
 				File outFile = new File("out.ifc");
 				SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
@@ -58,7 +58,7 @@ public class IfcXmlReadTest {
 				DeserializerPlugin deserializerPlugin2 = pluginManager.getFirstDeserializer("ifc", true);
 				Deserializer deserializer2 = deserializerPlugin2.createDeserializer();
 				deserializer2.init(pluginManager.requireSchemaDefinition());
-				deserializer2.read(outFile, true);
+				deserializer2.read(outFile);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (Exception e) {

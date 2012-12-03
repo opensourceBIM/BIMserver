@@ -46,10 +46,11 @@ public class SServerSettings implements SDataBase
 	private java.lang.Integer protocolBuffersPort;
 	private java.lang.Boolean cacheOutputFiles;
 	private java.lang.String serviceRepositoryUrl;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

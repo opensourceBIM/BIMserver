@@ -29,10 +29,11 @@ public class SIfcEnginePluginDescriptor extends SPluginDescriptor implements SDa
 
 	@XmlTransient
 	private static SClass sClass;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

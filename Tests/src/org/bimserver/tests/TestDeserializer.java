@@ -40,7 +40,7 @@ public class TestDeserializer {
 
 			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.getFirstSchemaPlugin(true).getSchemaDefinition());
-			IfcModelInterface model = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Shared\\BIMserver\\Atrium%20Offices%20-%20PROJETO_EXECUTIVO%20-%202012.05.03.ifc"), true);
+			IfcModelInterface model = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Shared\\BIMserver\\Atrium%20Offices%20-%20PROJETO_EXECUTIVO%20-%202012.05.03.ifc"));
 			
 			for (IdEObject idEObject : model.getValues()) {
 				System.out.println(idEObject);

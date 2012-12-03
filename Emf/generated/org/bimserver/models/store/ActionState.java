@@ -53,21 +53,21 @@ public enum ActionState implements Enumerator {
 	STARTED(1, "STARTED", "STARTED"),
 
 	/**
-	 * The '<em><b>ERROR</b></em>' literal object.
+	 * The '<em><b>AS ERROR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ERROR_VALUE
+	 * @see #AS_ERROR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ERROR(2, "ERROR", "ERROR"), /**
-								 * The '<em><b>FINISHED</b></em>' literal object.
-								 * <!-- begin-user-doc -->
-								 * <!-- end-user-doc -->
-								 * @see #FINISHED_VALUE
-								 * @generated
-								 * @ordered
-								 */
+	AS_ERROR(2, "AS_ERROR", "AS_ERROR"), /**
+											 * The '<em><b>FINISHED</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #FINISHED_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	FINISHED(3, "FINISHED", "FINISHED");
 
 	/**
@@ -101,19 +101,19 @@ public enum ActionState implements Enumerator {
 	public static final int STARTED_VALUE = 1;
 
 	/**
-	 * The '<em><b>ERROR</b></em>' literal value.
+	 * The '<em><b>AS ERROR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ERROR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>AS ERROR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ERROR
+	 * @see #AS_ERROR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ERROR_VALUE = 2;
+	public static final int AS_ERROR_VALUE = 2;
 
 	/**
 	 * The '<em><b>FINISHED</b></em>' literal value.
@@ -136,7 +136,7 @@ public enum ActionState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ActionState[] VALUES_ARRAY = new ActionState[] { UNKNOWN, STARTED, ERROR, FINISHED, };
+	private static final ActionState[] VALUES_ARRAY = new ActionState[] { UNKNOWN, STARTED, AS_ERROR, FINISHED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Action State</b></em>' enumerators.
@@ -190,8 +190,8 @@ public enum ActionState implements Enumerator {
 			return UNKNOWN;
 		case STARTED_VALUE:
 			return STARTED;
-		case ERROR_VALUE:
-			return ERROR;
+		case AS_ERROR_VALUE:
+			return AS_ERROR;
 		case FINISHED_VALUE:
 			return FINISHED;
 		}

@@ -53,7 +53,7 @@ public class IfcRioleringTest {
 			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
 			try {
-				model = deserializer.read(src, true);
+				model = deserializer.read(src);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

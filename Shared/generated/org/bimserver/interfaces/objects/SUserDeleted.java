@@ -31,10 +31,11 @@ public class SUserDeleted extends SLogAction implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private long userId = -1;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

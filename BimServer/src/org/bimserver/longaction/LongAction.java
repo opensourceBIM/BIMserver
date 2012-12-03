@@ -168,7 +168,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	@Override
 	public void error(String error) {
 		errors.add(error);
-		changeActionState(ActionState.ERROR, "Error", 0);
+		changeActionState(ActionState.AS_ERROR, "Error", 0);
 	}
 	
 	@Override

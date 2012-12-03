@@ -35,10 +35,11 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 	private long objectIDMId = -1;
 	private long userSettingsId = -1;
 	private long ifcEngineId = -1;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

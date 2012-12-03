@@ -33,10 +33,11 @@ public class SObjectType extends SType implements SDataBase
 	private static SClass sClass;
 	private java.lang.String name;
 	private List<SParameter> parameters = new ArrayList<SParameter>();
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

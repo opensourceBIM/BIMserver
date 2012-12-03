@@ -41,8 +41,8 @@ public class RevisionMergeTest {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
-			IfcModelInterface model1 = deserializer.read(TestFile.EXPORT1.getFile(), true);
-			IfcModelInterface model2 = deserializer.read(TestFile.EXPORT3.getFile(), true);
+			IfcModelInterface model1 = deserializer.read(TestFile.EXPORT1.getFile());
+			IfcModelInterface model2 = deserializer.read(TestFile.EXPORT3.getFile());
 			model1.setObjectOids();
 			model2.setObjectOids();
 			model1.indexGuids();

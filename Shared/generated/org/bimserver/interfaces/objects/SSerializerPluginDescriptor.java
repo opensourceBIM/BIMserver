@@ -31,10 +31,11 @@ public class SSerializerPluginDescriptor extends SPluginDescriptor implements SD
 	private static SClass sClass;
 	private java.lang.String defaultExtension;
 	private java.lang.String defaultContentType;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

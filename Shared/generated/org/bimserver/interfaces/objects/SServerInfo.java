@@ -31,10 +31,11 @@ public class SServerInfo implements SDataBase
 	private static SClass sClass;
 	private SServerState serverState;
 	private java.lang.String errorMessage;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

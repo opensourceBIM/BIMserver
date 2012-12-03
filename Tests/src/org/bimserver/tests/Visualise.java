@@ -62,10 +62,10 @@ public class Visualise extends JFrame {
 			DeserializerPlugin deserializerPlugin = pluginManager.requireDeserializer("application/ifc");
 			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
-			IfcModelInterface model1 = deserializer.read(TestFile.EXPORT1.getFile(), true);
-			IfcModelInterface model1b = deserializer.read(TestFile.EXPORT1.getFile(), true);
-			IfcModelInterface model2 = deserializer.read(TestFile.EXPORT3.getFile(), true);
-			IfcModelInterface model2b = deserializer.read(TestFile.EXPORT3.getFile(), true);
+			IfcModelInterface model1 = deserializer.read(TestFile.EXPORT1.getFile());
+			IfcModelInterface model1b = deserializer.read(TestFile.EXPORT1.getFile());
+			IfcModelInterface model2 = deserializer.read(TestFile.EXPORT3.getFile());
+			IfcModelInterface model2b = deserializer.read(TestFile.EXPORT3.getFile());
 			model1.setObjectOids();
 			model1b.setObjectOids();
 			model2.setObjectOids();

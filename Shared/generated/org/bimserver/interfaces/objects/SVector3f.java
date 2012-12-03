@@ -32,10 +32,11 @@ public class SVector3f implements SDataBase
 	private float x;
 	private float y;
 	private float z;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

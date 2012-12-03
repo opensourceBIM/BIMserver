@@ -34,7 +34,7 @@ public class TestKmz {
 					DeserializerPlugin deserializerPlugin = allDeserializerPlugins.iterator().next();
 					Deserializer deserializer = deserializerPlugin.createDeserializer();
 					deserializer.init(pluginManager.requireSchemaDefinition());
-					IfcModelInterface model = deserializer.read(TestFile.WALL_ONLY.getFile(), true);
+					IfcModelInterface model = deserializer.read(TestFile.WALL_ONLY.getFile());
 //					IfcModelInterface model = deserializer.read(TestFile.ADTHAUS.getFile(), true);
 					serializer.init(model, null, pluginManager, ifcEnginePlugin, false);
 					serializer.writeToFile(new File("output/ac11.kmz"));

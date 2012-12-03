@@ -50,7 +50,7 @@ public class IfcXmlDeserializer extends EmfDeserializer {
 	private final IfcModel model = new IfcModel();
 
 	@Override
-	public IfcModelInterface read(InputStream inputStream, String filename, boolean setOids, long fileSize) throws DeserializeException {
+	public IfcModelInterface read(InputStream inputStream, String filename, long fileSize) throws DeserializeException {
 		if (filename != null && (filename.toUpperCase().endsWith(".ZIP") || filename.toUpperCase().endsWith(".IFCZIP"))) {
 			ZipInputStream zipInputStream = new ZipInputStream(inputStream);
 			ZipEntry nextEntry;

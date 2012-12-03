@@ -41,10 +41,11 @@ public class SConcreteRevision implements SDataBase
 	private java.lang.String lastError;
 	private long summaryId = -1;
 	private long userId = -1;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

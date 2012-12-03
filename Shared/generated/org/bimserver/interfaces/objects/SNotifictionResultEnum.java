@@ -18,7 +18,7 @@ package org.bimserver.interfaces.objects;
  *****************************************************************************/
 
 public enum SNotifictionResultEnum {
-	ERROR(0),
+	NR_ERROR(0),
 	SUCCESS(1),
 	PROGRESS_UNKNOWN(2),
 	PROGRESS_PERCENTAGE(3);
