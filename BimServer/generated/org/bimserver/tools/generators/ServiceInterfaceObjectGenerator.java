@@ -59,7 +59,7 @@ public class ServiceInterfaceObjectGenerator
   protected final String TEXT_38 = ";";
   protected final String TEXT_39 = NL + "\tprivate long ";
   protected final String TEXT_40 = "Id = -1;";
-  protected final String TEXT_41 = NL + "\tpublic long getOid() {" + NL + "\t\treturn oid;" + NL + "\t}" + NL + "\t" + NL + "\tpublic void setOid(long oid) {" + NL + "\t\tthis.oid = oid;" + NL + "\t}" + NL + "" + NL + "\tpublic int getRid() {" + NL + "\t\treturn rid;" + NL + "\t}" + NL + "\t" + NL + "\tpublic void setRid(int rid) {" + NL + "\t\tthis.rid = rid;" + NL + "\t}";
+  protected final String TEXT_41 = NL + NL + "\tpublic long getOid() {" + NL + "\t\treturn this.oid;" + NL + "\t}" + NL + "" + NL + "\tpublic void setOid(long oid) {" + NL + "\t\tthis.oid = oid;" + NL + "\t}" + NL + "" + NL + "\tpublic int getRid() {" + NL + "\t\treturn rid;" + NL + "\t}" + NL + "\t" + NL + "\tpublic void setRid(int rid) {" + NL + "\t\tthis.rid = rid;" + NL + "\t}";
   protected final String TEXT_42 = NL + "\t" + NL + "\t@XmlTransient" + NL + "\tpublic SClass getSClass() {" + NL + "\t\treturn sClass;" + NL + "\t}" + NL + "\t" + NL + "\tpublic static void setSClass(SClass sClass) {" + NL + "\t\tS";
   protected final String TEXT_43 = ".sClass = sClass;" + NL + "\t}" + NL + "" + NL + "\tpublic Object sGet(SField sField) {";
   protected final String TEXT_44 = NL + "\t\tif (sField.getName().equals(\"";

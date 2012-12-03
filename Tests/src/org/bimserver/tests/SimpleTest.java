@@ -43,7 +43,7 @@ public class SimpleTest {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
-			IfcModelInterface model = deserializer.read(TestFile.HAUS_SOURCE_FILE.getFile(), true);
+			IfcModelInterface model = deserializer.read(TestFile.HAUS_SOURCE_FILE.getFile());
             List<IfcBuildingStorey> stories = model.getAll(IfcBuildingStorey.class);
             Map<Double, IfcBuildingStorey> orderedStories = new TreeMap<Double, IfcBuildingStorey>();
             for (IfcBuildingStorey storey : stories) {

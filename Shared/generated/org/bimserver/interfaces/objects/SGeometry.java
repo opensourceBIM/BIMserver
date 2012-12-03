@@ -34,10 +34,11 @@ public class SGeometry implements SDataBase
 	private List<java.lang.Integer> indices = new ArrayList<java.lang.Integer>();
 	private List<java.lang.Float> vertices = new ArrayList<java.lang.Float>();
 	private List<java.lang.Float> normals = new ArrayList<java.lang.Float>();
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

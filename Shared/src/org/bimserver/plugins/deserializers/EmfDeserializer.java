@@ -32,11 +32,11 @@ public abstract class EmfDeserializer implements Deserializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmfDeserializer.class);
 	public abstract void init(SchemaDefinition schema);
 
-	public abstract IfcModelInterface read(InputStream in, String filename, boolean setOids, long fileSize) throws DeserializeException;
+	public abstract IfcModelInterface read(InputStream in, String filename, long fileSize) throws DeserializeException;
 
-	public IfcModelInterface read(File file, boolean setOids) throws DeserializeException {
+	public IfcModelInterface read(File file) throws DeserializeException {
 		try {
-			return read(new FileInputStream(file), file.getName(), setOids, file.length());
+			return read(new FileInputStream(file), file.getName(), file.length());
 		} catch (FileNotFoundException e) {
 			LOGGER.error("", e);
 			return null;

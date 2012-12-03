@@ -46,7 +46,7 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	long size();
 	int getSize();
 	byte[] getChecksum();
-	void fixOids(OidProvider oidProvider);
+	void fixOids(OidProvider<Long> oidProvider);
 	void setObjectOids();
 	void indexGuids();
 	void setDate(Date date);
@@ -57,6 +57,7 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	Date getDate();
 	void remove(IdEObject objectToRemove);
 	void resetOids();
+	void resetOidsFlat();
 	void setName(String string);
 	void setRevisionNr(int i);
 	void setAuthorizedUser(String name);
@@ -81,4 +82,5 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	void setGeometry(Geometry geometry);
 	void changeOid(IdEObject object);
 	void fixOids();
+	void generateMinimalExpressIds();
 }

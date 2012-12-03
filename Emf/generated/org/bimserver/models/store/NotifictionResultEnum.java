@@ -33,23 +33,21 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum NotifictionResultEnum implements Enumerator {
 	/**
-	 * The '<em><b>ERROR</b></em>' literal object.
+	 * The '<em><b>NR ERROR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ERROR_VALUE
+	 * @see #NR_ERROR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ERROR(0, "ERROR", "ERROR"),
-
-	/**
-	 * The '<em><b>SUCCESS</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SUCCESS_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	NR_ERROR(0, "NR_ERROR", "NR_ERROR"), /**
+											 * The '<em><b>SUCCESS</b></em>' literal object.
+											 * <!-- begin-user-doc -->
+											 * <!-- end-user-doc -->
+											 * @see #SUCCESS_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	SUCCESS(1, "SUCCESS", "SUCCESS"),
 
 	/**
@@ -73,19 +71,19 @@ public enum NotifictionResultEnum implements Enumerator {
 	PROGRESS_PERCENTAGE(3, "PROGRESS_PERCENTAGE", "PROGRESS_PERCENTAGE");
 
 	/**
-	 * The '<em><b>ERROR</b></em>' literal value.
+	 * The '<em><b>NR ERROR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ERROR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NR ERROR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ERROR
+	 * @see #NR_ERROR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ERROR_VALUE = 0;
+	public static final int NR_ERROR_VALUE = 0;
 
 	/**
 	 * The '<em><b>SUCCESS</b></em>' literal value.
@@ -138,7 +136,7 @@ public enum NotifictionResultEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final NotifictionResultEnum[] VALUES_ARRAY = new NotifictionResultEnum[] { ERROR, SUCCESS, PROGRESS_UNKNOWN, PROGRESS_PERCENTAGE, };
+	private static final NotifictionResultEnum[] VALUES_ARRAY = new NotifictionResultEnum[] { NR_ERROR, SUCCESS, PROGRESS_UNKNOWN, PROGRESS_PERCENTAGE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Notifiction Result Enum</b></em>' enumerators.
@@ -188,8 +186,8 @@ public enum NotifictionResultEnum implements Enumerator {
 	 */
 	public static NotifictionResultEnum get(int value) {
 		switch (value) {
-		case ERROR_VALUE:
-			return ERROR;
+		case NR_ERROR_VALUE:
+			return NR_ERROR;
 		case SUCCESS_VALUE:
 			return SUCCESS;
 		case PROGRESS_UNKNOWN_VALUE:

@@ -32,10 +32,11 @@ public class SFile implements SDataBase
 	private byte[] data;
 	private java.lang.String filename;
 	private java.lang.String mime;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

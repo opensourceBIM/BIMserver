@@ -40,7 +40,7 @@ public class ReadTest2 {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
-			IfcModelInterface model =  deserializer.read(TestFile.HAUS_SOURCE_FILE.getFile(), true);
+			IfcModelInterface model =  deserializer.read(TestFile.HAUS_SOURCE_FILE.getFile());
 
 			List<IdEObject> windows = model.getAllWithSubTypes(IdEObject.class);
 			System.out.println(windows.size());

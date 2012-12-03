@@ -318,7 +318,7 @@ public class TestLowLevelChanges {
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
-			IfcModelInterface model = deserializer.read(dataHandler.getInputStream(), "test.ifc", true, 0);
+			IfcModelInterface model = deserializer.read(dataHandler.getInputStream(), "test.ifc", 0);
 			return model;
 		} catch (PluginException e) {
 			e.printStackTrace();

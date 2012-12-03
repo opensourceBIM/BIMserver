@@ -33,10 +33,11 @@ public class SRevisionSummaryContainer implements SDataBase
 	private static SClass sClass;
 	private java.lang.String name;
 	private List<SRevisionSummaryType> types = new ArrayList<SRevisionSummaryType>();
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

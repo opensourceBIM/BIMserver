@@ -54,7 +54,7 @@ public class TestColladaSerializer {
 					
 					Deserializer ifcDeserializer = ifcDeserializerPlugin.createDeserializer();
 					ifcDeserializer.init(pluginManager.requireSchemaDefinition());
-					IfcModelInterface model = ifcDeserializer.read(file, true);
+					IfcModelInterface model = ifcDeserializer.read(file);
 
 					Serializer serializer = serializerPlugin.createSerializer();
 					serializer.init(model, projectInfo, pluginManager, pluginManager.requireIfcEngine(), false);

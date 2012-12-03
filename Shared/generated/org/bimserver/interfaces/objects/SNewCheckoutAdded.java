@@ -31,10 +31,11 @@ public class SNewCheckoutAdded extends SLogAction implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private long checkoutId = -1;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

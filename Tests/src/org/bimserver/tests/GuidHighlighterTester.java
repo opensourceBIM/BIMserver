@@ -77,7 +77,7 @@ public class GuidHighlighterTester {
 			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(schema);
 			try {
-				IfcModelInterface model = deserializer.read(file, true);
+				IfcModelInterface model = deserializer.read(file);
 				return model;
 			} catch (Exception e) {
 				e.printStackTrace();

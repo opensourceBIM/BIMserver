@@ -161,7 +161,7 @@ public class Step0010 extends Migration {
 		EEnum actionStateEnum = schema.createEEnum(schema.getEPackage("store"), "ActionState");
 		schema.createEEnumLiteral(actionStateEnum, "UNKNOWN");
 		schema.createEEnumLiteral(actionStateEnum, "STARTED");
-		schema.createEEnumLiteral(actionStateEnum, "ERROR");
+		schema.createEEnumLiteral(actionStateEnum, "AS_ERROR");
 		schema.createEEnumLiteral(actionStateEnum, "FINISHED");
 		
 		EClass longActionStateClass = schema.createEClass(schema.getEPackage("store"), "LongActionState");

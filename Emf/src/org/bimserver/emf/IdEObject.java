@@ -20,6 +20,7 @@ package org.bimserver.emf;
 import org.eclipse.emf.ecore.EObject;
 
 public interface IdEObject extends EObject {
+	int getExpressId();
 	long getOid();
 	int getRid();
 	int getPid();

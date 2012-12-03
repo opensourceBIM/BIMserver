@@ -83,17 +83,17 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CheckinDatabaseAction.class);
 	private final String comment;
 	private final long poid;
-	private ConcreteRevision concreteRevision;
 	private final boolean merge;
 	private final BimServer bimServer;
 	private final boolean clean;
+	private ConcreteRevision concreteRevision;
 	private Project project;
 	private Authorization authorization;
 	private RevisionSummaryContainer revisionSummaryContainerEntities;
 	private RevisionSummaryContainer revisionSummaryContainerRelations;
 	private RevisionSummaryContainer revisionSummaryContainerPrimitives;
 	private RevisionSummaryContainer revisionSummaryContainerOther;
-	private final Map<EClass, Integer> map = new TreeMap<EClass, Integer>(new EClassNameComparator());
+	private final Map<EClass, Integer> summaryMap = new TreeMap<EClass, Integer>(new EClassNameComparator());
 
 	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface model,
 			String comment, boolean merge, boolean clean) {
@@ -157,10 +157,6 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				getDatabaseSession().store(geometry);
 			}
 
-			for (IdEObject idEObject : ifcModel.getValues()) {
-				((IdEObjectImpl) idEObject).setOid(-1);
-			}
-
 			if (nrConcreteRevisionsBefore != 0 && !merge && clean) {
 				// There already was a revision, lets delete it (only when not
 				// merging)
@@ -201,6 +197,9 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			SerializerPlugin serializerPlugin = allSerializerPlugins.iterator().next();
 			Serializer serializer = serializerPlugin.createSerializer();
 			try {
+				// Make sure we have minimal express ids
+				model.generateMinimalExpressIds();
+
 				serializer.init(model, null, bimServer.getPluginManager(), null, false);
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 				serializer.writeToOutputStream(outputStream);
@@ -245,7 +244,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 								revision.setBounds(modelBounds);
 								
 								for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
-									IfcEngineInstance ifcEngineInstance = ifcEngineModel.getInstanceFromExpressId((int) ifcProduct.getOid());
+									IfcEngineInstance ifcEngineInstance = ifcEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
 									IfcEngineInstanceVisualisationProperties visualisationProperties = ifcEngineInstance.getVisualisationProperties();
 									GeometryInstance geometryInstance = Ifc2x3tc1Factory.eINSTANCE.createGeometryInstance();
 									geometryInstance.setPrimitiveCount(visualisationProperties.getPrimitiveCount());
@@ -338,7 +337,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		for (EClass eClass : getDatabaseSession().getClasses()) {
 			add(revisionSummary, eClass, model.count(eClass));
 		}
-		for (EClass eClass : map.keySet()) {
+		for (EClass eClass : summaryMap.keySet()) {
 			RevisionSummaryContainer subMap = null;
 			if (Ifc2x3tc1Package.eINSTANCE.getIfcObject().isSuperTypeOf(eClass)) {
 				subMap = revisionSummaryContainerEntities;
@@ -350,7 +349,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				subMap = revisionSummaryContainerOther;
 			}
 			RevisionSummaryType createRevisionSummaryType = getDatabaseSession().create(StorePackage.eINSTANCE.getRevisionSummaryType());
-			createRevisionSummaryType.setCount(map.get(eClass));
+			createRevisionSummaryType.setCount(summaryMap.get(eClass));
 			createRevisionSummaryType.setName(eClass.getName());
 			subMap.getTypes().add(createRevisionSummaryType);
 		}
@@ -361,14 +360,13 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		if (count == 0) {
 			return;
 		}
-		if (!map.containsKey(eClass)) {
-			map.put(eClass, count);
+		if (!summaryMap.containsKey(eClass)) {
+			summaryMap.put(eClass, count);
 		}
-		map.put(eClass, count);
+		summaryMap.put(eClass, count);
 	}
 
 	private IfcModelInterface checkinMerge(Revision lastRevision) throws BimserverLockConflictException, BimserverDatabaseException, UserException {
-		IfcModelInterface ifcModel;
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision subRevision : lastRevision.getConcreteRevisions()) {
 			if (concreteRevision != subRevision) {
@@ -380,7 +378,6 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		}
 		IfcModelInterface newModel = new IfcModel();
 		newModel.setDate(new Date());
-		newModel.fixOids(getDatabaseSession());
 		IfcModelInterface oldModel;
 		try {
 			oldModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());
@@ -395,6 +392,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		newModel.fixOids(new IncrementingOidProvider(oldModel.getHighestOid() + 1));
 
 		RevisionMerger revisionMerger = new RevisionMerger(oldModel, (IfcModel) newModel);
+		IfcModelInterface ifcModel;
 		try {
 			ifcModel = revisionMerger.merge();
 		} catch (IfcModelInterfaceException e) {

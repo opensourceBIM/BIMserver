@@ -31,10 +31,11 @@ public class SParameter implements SDataBase
 	private static SClass sClass;
 	private java.lang.String name;
 	private SType value;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SUserAddedToProject.class, SServerStarted.class, SExtendedDataAddedToRevision.class, SUserChanged.class, SUserRemovedFromProject.class, SProjectUndeleted.class, SNewProjectAdded.class, SDownload.class, SProjectUpdated.class, SRevisionUpdated.class, SSettingsSaved.class, SNewRevisionAdded.class, SExternalServiceCalled.class, SNewObjectIDMUploaded.class, SUserUndeleted.class, SDatabaseCreated.class, SPasswordChanged.class, SGeoTagUpdated.class, SNewUserAdded.class, SPasswordReset.class, SUserDeleted.class, SExtendedDataAddedToProject.class, SNewCheckoutAdded.class, SProjectDeleted.class, SRevisionBranched.class})
+@XmlSeeAlso(value={SSettingsSaved.class, SServerStarted.class, SUserRemovedFromProject.class, SNewCheckoutAdded.class, SUserAddedToProject.class, SNewUserAdded.class, SProjectUpdated.class, SDownload.class, SDatabaseCreated.class, SNewProjectAdded.class, SUserDeleted.class, SRevisionUpdated.class, SExternalServiceCalled.class, SPasswordChanged.class, SGeoTagUpdated.class, SProjectDeleted.class, SPasswordReset.class, SRevisionBranched.class, SUserUndeleted.class, SProjectUndeleted.class, SNewRevisionAdded.class, SNewObjectIDMUploaded.class, SExtendedDataAddedToRevision.class, SExtendedDataAddedToProject.class, SUserChanged.class})
 public class SLogAction implements SDataBase
 {
 	private long oid = -1;
@@ -35,10 +35,11 @@ public class SLogAction implements SDataBase
 	private java.util.Date date;
 	private long executorId = -1;
 	private SAccessMethod accessMethod;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

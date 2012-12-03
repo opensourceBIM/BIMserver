@@ -21,7 +21,7 @@ public class Test1 {
 			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.requireSchemaDefinition());
 			File file = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
-			IfcModelInterface model = deserializer.read(file, true);
+			IfcModelInterface model = deserializer.read(file);
 
 //			SerializerPlugin defaultSerializerPlugin = (SerializerPlugin) pluginManager.getPlugin("org.bimserver.scenejs.SceneJSSerializerPlugin", true);
 //			Serializer defaultSerializer = defaultSerializerPlugin.createSerializer();

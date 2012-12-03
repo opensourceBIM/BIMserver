@@ -32,10 +32,11 @@ public class SServerLog implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private List<Long> actions = new ArrayList<Long>();
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

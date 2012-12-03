@@ -30,6 +30,7 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 
 	private IfcModelInterface model;
 	private long oid = -1;
+	private int expressId = -1;
 	private int rid;
 	private int pid;
 	private State state = State.NONE;
@@ -152,5 +153,13 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 	
 	public boolean hasModel() {
 		return getModel() != null;
+	}
+
+	public int getExpressId() {
+		return expressId;
+	}
+
+	public void setExpressId(int expressId) {
+		this.expressId = expressId;
 	}
 }

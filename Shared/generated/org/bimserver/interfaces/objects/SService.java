@@ -49,10 +49,11 @@ public class SService implements SDataBase
 	private long projectId = -1;
 	private long userId = -1;
 	private long internalServiceId = -1;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

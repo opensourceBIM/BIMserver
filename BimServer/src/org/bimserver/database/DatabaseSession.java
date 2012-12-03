@@ -1187,7 +1187,7 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		}
 	}
 
-	public long newOid(EClass eClass) {
+	public Long newOid(EClass eClass) {
 		return database.newOid(eClass);
 	}
 

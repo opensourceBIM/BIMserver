@@ -32,10 +32,11 @@ public class SDatabaseCreated extends SLogAction implements SDataBase
 	private static SClass sClass;
 	private java.lang.String path;
 	private java.lang.Integer version;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

@@ -33,10 +33,11 @@ public class SObjectIDMPluginConfiguration extends SPluginConfiguration implemen
 	private static SClass sClass;
 	private List<Long> serializers = new ArrayList<Long>();
 	private long userSettingsId = -1;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

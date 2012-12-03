@@ -31,10 +31,11 @@ public class SGeoTagUpdated extends SLogAction implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private long geoTagId = -1;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

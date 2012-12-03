@@ -20,7 +20,7 @@ package org.bimserver.shared;
 import org.bimserver.emf.OidProvider;
 import org.eclipse.emf.ecore.EClass;
 
-public class IncrementingOidProvider implements OidProvider {
+public class IncrementingOidProvider implements OidProvider<Long> {
 
 	private long counter;
 
@@ -33,7 +33,7 @@ public class IncrementingOidProvider implements OidProvider {
 	}
 	
 	@Override
-	public long newOid(EClass eClass) {
+	public Long newOid(EClass eClass) {
 		return counter++;
 	}
 }

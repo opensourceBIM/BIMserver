@@ -28,8 +28,10 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
@@ -571,7 +573,7 @@ public class IfcModel implements IfcModelInterface {
 		objects.forcePut(oid, object);
 	}
 
-	public void fixOids(OidProvider oidProvider) {
+	public void fixOids(OidProvider<Long> oidProvider) {
 		BiMap<Long, IdEObject> temp = HashBiMap.create();
 		for (long oid : objects.keySet()) {
 			fixOids(objects.get(oid), oidProvider, temp);
@@ -588,7 +590,7 @@ public class IfcModel implements IfcModelInterface {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	private void fixOids(IdEObject idEObject, OidProvider oidProvider, BiMap<Long, IdEObject> temp) {
+	private void fixOids(IdEObject idEObject, OidProvider<Long> oidProvider, BiMap<Long, IdEObject> temp) {
 		if (idEObject == null) {
 			return;
 		}
@@ -729,6 +731,12 @@ public class IfcModel implements IfcModelInterface {
 		}
 	}
 
+	public void resetOidsFlat() {
+		for (IdEObject idEObject : objects.values()) {
+			((IdEObjectImpl) idEObject).setOid(-1);
+		}
+	}
+
 	public void resetOids() {
 		Set<IdEObject> done = new HashSet<IdEObject>();
 		for (IdEObject idEObject : objects.values()) {
@@ -801,5 +809,55 @@ public class IfcModel implements IfcModelInterface {
 	@Override
 	public Geometry getGeometry() {
 		return geometry;
+	}
+	
+	public Iterator<IdEObject> iterateAllObjects() {
+		return new Iterator<IdEObject>() {
+			private final Queue<IdEObject> todo = new LinkedBlockingQueue<IdEObject>(getValues());
+			private final Set<IdEObject> done = new HashSet<IdEObject>();
+			
+			@Override
+			public boolean hasNext() {
+				return !todo.isEmpty();
+			}
+
+			@SuppressWarnings("rawtypes")
+			@Override
+			public IdEObject next() {
+				IdEObject idEObject = todo.poll();
+				done.add(idEObject);
+				for (EReference eReference : idEObject.eClass().getEAllReferences()) {
+					Object val = idEObject.eGet(eReference);
+					if (eReference.isMany()) {
+						List list = (List) val;
+						for (Object o : list) {
+							if (!done.contains(o)) {
+								todo.add((IdEObject) o);
+							}
+						}
+					} else {
+						if (val != null && !done.contains(val)) {
+							todo.add((IdEObject) val);
+						}
+					}
+				}
+				return idEObject;
+			}
+
+			@Override
+			public void remove() {
+				throw new UnsupportedOperationException();
+			}
+		};
+	}
+	
+	@Override
+	public void generateMinimalExpressIds() {
+		int expressId = 1;
+		Iterator<IdEObject> iterateAllObjects = iterateAllObjects();
+		while (iterateAllObjects.hasNext()) {
+			IdEObject idEObject = iterateAllObjects.next();
+			((IdEObjectImpl)idEObject).setExpressId(expressId++);
+		}
 	}
 }

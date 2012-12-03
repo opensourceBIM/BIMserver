@@ -31,10 +31,11 @@ public class SInternalServicePluginConfiguration extends SPluginConfiguration im
 	private static SClass sClass;
 	private boolean remoteAccessible;
 	private long userSettingsId = -1;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

@@ -31,10 +31,11 @@ public class SImmediateNotificationResult implements SDataBase
 	private static SClass sClass;
 	private SNotifictionResultEnum result;
 	private java.lang.String description;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

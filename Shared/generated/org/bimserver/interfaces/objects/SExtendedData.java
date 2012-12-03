@@ -39,10 +39,11 @@ public class SExtendedData implements SDataBase
 	private long schemaId = -1;
 	private long revisionId = -1;
 	private long projectId = -1;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

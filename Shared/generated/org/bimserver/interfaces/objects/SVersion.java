@@ -37,10 +37,11 @@ public class SVersion implements SDataBase
 	private java.lang.String downloadUrl;
 	private java.lang.String supportUrl;
 	private java.lang.String supportEmail;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

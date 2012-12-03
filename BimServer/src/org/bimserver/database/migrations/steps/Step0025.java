@@ -12,7 +12,7 @@ public class Step0025 extends Migration {
 	@Override
 	public void migrate(Schema schema) {
 		EEnum notificationResultEnum = schema.createEEnum("store", "NotifictionResultEnum");
-		schema.createEEnumLiteral(notificationResultEnum, "ERROR");
+		schema.createEEnumLiteral(notificationResultEnum, "NR_ERROR");
 		schema.createEEnumLiteral(notificationResultEnum, "SUCCESS");
 		schema.createEEnumLiteral(notificationResultEnum, "PROGRESS_UNKNOWN");
 		schema.createEEnumLiteral(notificationResultEnum, "PROGRESS_PERCENTAGE");

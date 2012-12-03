@@ -49,10 +49,11 @@ public class SRevision implements SDataBase
 	private List<Long> logs = new ArrayList<Long>();
 	private long geometryId = -1;
 	private long boundsId = -1;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}

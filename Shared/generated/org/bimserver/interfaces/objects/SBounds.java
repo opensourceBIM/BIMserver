@@ -31,10 +31,11 @@ public class SBounds implements SDataBase
 	private static SClass sClass;
 	private SVector3f min;
 	private SVector3f max;
+
 	public long getOid() {
-		return oid;
+		return this.oid;
 	}
-	
+
 	public void setOid(long oid) {
 		this.oid = oid;
 	}
