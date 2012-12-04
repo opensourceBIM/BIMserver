@@ -20,20 +20,18 @@ package org.bimserver.cache;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
-import javax.activation.DataHandler;
 import javax.activation.DataSource;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.longaction.DownloadParameters;
-import org.bimserver.plugins.serializers.DiskCacheOutputStream;
-import org.bimserver.plugins.serializers.EmfSerializerDataSource;
-import org.bimserver.plugins.serializers.SerializerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,6 +40,8 @@ public class DiskCacheManager {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DiskCacheManager.class);
 	private final File cacheDir;
 	private final BimServer bimServer;
+	private final Set<String> cachedFileNames = new HashSet<String>();
+	private final Map<DownloadParameters, DiskCacheOutputStream> busyCaching = new HashMap<DownloadParameters, DiskCacheOutputStream>();
 
 	public DiskCacheManager(BimServer bimServer, File cacheDir) {
 		this.bimServer = bimServer;
@@ -49,12 +49,21 @@ public class DiskCacheManager {
 		if (!cacheDir.exists()) {
 			cacheDir.mkdir();
 		}
+		for (File file : this.cacheDir.listFiles()) {
+			cachedFileNames.add(file.getName());
+		}
 	}
 	
 	public boolean contains(DownloadParameters downloadParameters) {
 		if (isEnabled()) {
-			File cachefile = new File(cacheDir, downloadParameters.getId());
-			return cachefile.exists();
+			synchronized (busyCaching) {
+				if (busyCaching.containsKey(downloadParameters)) {
+					return true;
+				}
+			}
+			synchronized (cachedFileNames) {
+				return cachedFileNames.contains(downloadParameters.getId());
+			}
 		} else {
 			return false;
 		}
@@ -72,24 +81,19 @@ public class DiskCacheManager {
 		}
 	}
 
-	public void store(DownloadParameters downloadParameters, DataHandler dataHandler) {
-		if (isEnabled()) {
-			try {
-				EmfSerializerDataSource emfSerializerDataSource = (EmfSerializerDataSource)dataHandler.getDataSource();
-				FileOutputStream fileOutputStream = new FileOutputStream(new File(cacheDir, downloadParameters.getId()));
-				emfSerializerDataSource.getSerializer().writeToOutputStream(fileOutputStream);
-				emfSerializerDataSource.getSerializer().reset();
-				fileOutputStream.close();
-			} catch (IOException e) {
-				LOGGER.error("", e);
-			} catch (SerializerException e) {
-				LOGGER.error("", e);
-			}
-		}
-	}
-
 	public DataSource get(DownloadParameters downloadParameters) {
 		if (isEnabled()) {
+			DiskCacheOutputStream diskCacheOutputStream = null;
+			synchronized (busyCaching) {
+				diskCacheOutputStream = busyCaching.get(downloadParameters);
+			}
+			if (diskCacheOutputStream != null) {
+				try {
+					diskCacheOutputStream.waitForFinish();
+				} catch (InterruptedException e) {
+					LOGGER.error("", e);
+				}
+			}
 			FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(new File(cacheDir, downloadParameters.getId()));
 			fileInputStreamDataSource.setName(downloadParameters.getFileName());
 			return fileInputStreamDataSource;
@@ -99,20 +103,32 @@ public class DiskCacheManager {
 
 	public OutputStream startCaching(DownloadParameters downloadParameters) {
 		try {
-			return new BufferedOutputStream(new DiskCacheOutputStream(new File(cacheDir, downloadParameters.getId())));
+			DiskCacheOutputStream out = new DiskCacheOutputStream(this, new File(cacheDir, downloadParameters.getId()));
+			synchronized (busyCaching) {
+				busyCaching.put(downloadParameters, out);
+			}
+			return new BufferedOutputStream(out);
 		} catch (FileNotFoundException e) {
 			LOGGER.error("", e);
 		}
 		return null;
 	}
 
-	public Integer cleanup() {
+	public synchronized Integer cleanup() {
 		int removed = 0;
 		for (File file : cacheDir.listFiles()) {
 			if (file.delete()) {
 				removed++;
 			}
 		}
+		cachedFileNames.clear();
 		return removed;
+	}
+
+	public void doneGenerating(DiskCacheOutputStream diskCacheOutputStream) {
+		synchronized (busyCaching) {
+			busyCaching.remove(diskCacheOutputStream.getName());
+			cachedFileNames.add(diskCacheOutputStream.getName());
+		}
 	}
 }

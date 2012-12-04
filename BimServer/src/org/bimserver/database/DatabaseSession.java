@@ -84,7 +84,7 @@ import com.sleepycat.je.LockConflictException;
 import com.sleepycat.je.LockTimeoutException;
 import com.sleepycat.je.TransactionTimeoutException;
 
-public class DatabaseSession implements LazyLoader, OidProvider {
+public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	private static final int DEFAULT_CONFLICT_RETRIES = 10;
 	private static boolean DEVELOPER_DEBUG = false;
 	private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseSession.class);
@@ -174,10 +174,6 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 		}
 	}
 
-	public void commit() throws BimserverDatabaseException {
-		commit(null);
-	}
-
 	public void commit(ProgressHandler progressHandler) throws BimserverDatabaseException {
 		checkOpen();
 		try {
@@ -203,8 +199,13 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 				if (DEVELOPER_DEBUG) {
 					LOGGER.info("Write: " + object.eClass().getName() + " " + "pid=" + object.getPid() + " oid=" + object.getOid() + " rid=" + object.getRid());
 				}
-				database.getKeyValueStore().storeNoOverwrite(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(),
-						convertObjectToByteArray(object).array(), this);
+				if (object.eClass().getEAnnotation("hidden") == null) {
+					database.getKeyValueStore().storeNoOverwrite(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(),
+							convertObjectToByteArray(object).array(), this);
+				} else {
+					database.getKeyValueStore().store(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(),
+							convertObjectToByteArray(object).array(), this);
+				}
 				if (progressHandler != null) {
 					progressHandler.progress(++current, objectsToCommit.size());
 				}
@@ -528,6 +529,9 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 				}
 				return result;
 			} catch (BimserverConcurrentModificationDatabaseException e) {
+				if (progressHandler != null) {
+					progressHandler.retry(i + 1);
+				}
 				bimTransaction.rollback();
 				objectCache.clear();
 				objectsToCommit.clear();
@@ -1586,10 +1590,10 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T> T create(EClass eClass) throws BimserverDatabaseException {
+	public <T> T create(EClass eClass, int pid, int rid) throws BimserverDatabaseException {
 		checkOpen();
 		IdEObject idEObject = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
-		store(idEObject);
+		store(idEObject, pid, rid);
 		return (T) idEObject;
 	}
 
@@ -1603,5 +1607,21 @@ public class DatabaseSession implements LazyLoader, OidProvider {
 
 	public <T extends IdEObject> T get(EClass eClass, Class<T> clazz, long oid) throws BimserverDatabaseException {
 		return get(eClass, oid, false, null);
+	}
+
+	/**
+	 * Only call this method when you are sure no other processes are altering/using the same data. Basically only when the server is starting
+	 * @throws BimserverDatabaseException
+	 */
+	public void commit() throws BimserverDatabaseException {
+		commit(null);
+	}
+
+	@SuppressWarnings("unchecked")
+	public <T> T create(EClass eClass) throws BimserverDatabaseException {
+		checkOpen();
+		IdEObject idEObject = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		store(idEObject, Database.STORE_PROJECT_ID, Integer.MAX_VALUE);
+		return (T) idEObject;
 	}
 }

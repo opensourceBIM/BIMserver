@@ -110,6 +110,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 					HideAllInversesObjectIDM hideAllInversesObjectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), bimServer.getPluginManager().requireSchemaDefinition());
 					IfcModelInterface subModel = getDatabaseSession().getAllOfTypes(eClasses, concreteRevision.getProject().getId(), concreteRevision.getId(), true, useObjectIDM ? objectIDM : hideAllInversesObjectIDM);
 					subModel.setDate(concreteRevision.getDate());
+					checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, virtualRevision);
 					ifcModelSet.add(subModel);
 				} catch (PluginException e) {
 					LOGGER.error("", e);
@@ -126,7 +127,6 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			ifcModel.setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
 			ifcModel.setDate(virtualRevision.getDate());
 			
-			checkGeometry(serializerPluginConfiguration, ifcModel);
 		}
 		IfcModelInterface ifcModel;
 		try {

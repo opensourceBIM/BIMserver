@@ -17,6 +17,7 @@ package org.bimserver.plugins.serializers;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -55,7 +56,12 @@ public class EmfSerializerDataSource implements DataSource {
 		return serializer;
 	}
 
-	public void writeToOutputStream(OutputStream outputStream) throws SerializerException {
+	public void writeToOutputStream(OutputStream outputStream) throws SerializerException, IOException {
 		serializer.writeToOutputStream(outputStream);
+		try {
+			outputStream.close();
+		} catch (EOFException e) {
+			// let this one slide
+		}
 	}
 }

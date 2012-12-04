@@ -17,16 +17,13 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.ByteArrayInputStream;
-import java.nio.ByteBuffer;
-import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.bimserver.BimServer;
 import org.bimserver.EClassNameComparator;
+import org.bimserver.GeometryGenerator;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -39,14 +36,10 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.merging.RevisionMerger;
-import org.bimserver.models.ifc2x3tc1.GeometryInstance;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.NewRevisionAdded;
-import org.bimserver.models.store.Bounds;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Geometry;
 import org.bimserver.models.store.Project;
@@ -54,23 +47,11 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.RevisionSummaryContainer;
 import org.bimserver.models.store.RevisionSummaryType;
-import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-import org.bimserver.models.store.Vector3f;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
-import org.bimserver.plugins.ifcengine.IfcEngine;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
-import org.bimserver.plugins.ifcengine.IfcEngineInstance;
-import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
-import org.bimserver.plugins.ifcengine.IfcEngineModel;
-import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.modelmerger.MergeException;
-import org.bimserver.plugins.serializers.Serializer;
-import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.IncrementingOidProvider;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
@@ -152,7 +133,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 
 			if (getServerSettings().isGenerateGeometryOnCheckin()) {
 				setProgress("Generating Geometry...", -1);
-				Geometry geometry = generateGeometry(ifcModel, project.getId(), concreteRevision.getId(), revision);
+				Geometry geometry = new GeometryGenerator().generateGeometry(bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), revision, true);
 				revision.setGeometry(geometry);
 				getDatabaseSession().store(geometry);
 			}
@@ -189,134 +170,6 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			throw new UserException(e);
 		}
 		return concreteRevision;
-	}
-
-	private Geometry generateGeometry(IfcModelInterface model, int pid, int rid, Revision revision) throws BimserverDatabaseException {
-		Collection<SerializerPlugin> allSerializerPlugins = bimServer.getPluginManager().getAllSerializerPlugins("application/ifc", true);
-		if (!allSerializerPlugins.isEmpty()) {
-			SerializerPlugin serializerPlugin = allSerializerPlugins.iterator().next();
-			Serializer serializer = serializerPlugin.createSerializer();
-			try {
-				// Make sure we have minimal express ids
-				model.generateMinimalExpressIds();
-
-				serializer.init(model, null, bimServer.getPluginManager(), null, false);
-				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-				serializer.writeToOutputStream(outputStream);
-				Collection<IfcEnginePlugin> allIfcEnginePlugins = bimServer.getPluginManager().getAllIfcEnginePlugins(true);
-				if (!allIfcEnginePlugins.isEmpty()) {
-					IfcEnginePlugin ifcEnginePlugin = allIfcEnginePlugins.iterator().next();
-					try {
-						IfcEngine ifcEngine = ifcEnginePlugin.createIfcEngine();
-						ifcEngine.init();
-						try {
-							IfcEngineModel ifcEngineModel = ifcEngine.openModel(new ByteArrayInputStream(outputStream.toByteArray()), outputStream.size());
-							ifcEngineModel.setPostProcessing(true);
-//							ifcEngineModel.setFormat(48, 48);
-							try {
-								IfcEngineGeometry ifcEngineGeometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
-								Geometry geometry = StoreFactory.eINSTANCE.createGeometry();
-
-//								EList<Integer> indices = geometry.getIndices();
-//								List<Integer> indicesList = new ArrayList<Integer>(ifcEngineGeometry.getNrIndices());
-//								for (int i = 0; i < ifcEngineGeometry.getNrIndices(); i++) {
-//									indicesList.add(ifcEngineGeometry.getIndex(i));
-//								}
-//								indices.addAll(indicesList);
-//
-//								EList<Float> vertices = geometry.getVertices();
-//								List<Float> verticesList = new ArrayList<Float>(ifcEngineGeometry.getNrVertices());
-//								for (int i = 0; i < ifcEngineGeometry.getNrVertices(); i++) {
-//									verticesList.add(ifcEngineGeometry.getVertex(i));
-//								}
-//								vertices.addAll(verticesList);
-//
-//								EList<Float> normals = geometry.getNormals();
-//								List<Float> normalsList = new ArrayList<Float>(ifcEngineGeometry.getNrNormals());
-//								for (int i = 0; i < ifcEngineGeometry.getNrNormals(); i++) {
-//									normalsList.add(ifcEngineGeometry.getNormal(i));
-//								}
-//								normals.addAll(normalsList);
-
-								Bounds modelBounds = getDatabaseSession().create(StorePackage.eINSTANCE.getBounds());
-								modelBounds.setMin(createVector3f(Float.POSITIVE_INFINITY));
-								modelBounds.setMax(createVector3f(Float.NEGATIVE_INFINITY));
-								revision.setBounds(modelBounds);
-								
-								for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
-									IfcEngineInstance ifcEngineInstance = ifcEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
-									IfcEngineInstanceVisualisationProperties visualisationProperties = ifcEngineInstance.getVisualisationProperties();
-									GeometryInstance geometryInstance = Ifc2x3tc1Factory.eINSTANCE.createGeometryInstance();
-									geometryInstance.setPrimitiveCount(visualisationProperties.getPrimitiveCount());
-									geometryInstance.setStartIndex(visualisationProperties.getStartIndex());
-									geometryInstance.setStartVertex(visualisationProperties.getStartVertex());
-									ByteBuffer verticesBuffer = ByteBuffer.allocate(visualisationProperties.getPrimitiveCount() * 3 * 3 * 4);
-									ByteBuffer normalsBuffer = ByteBuffer.allocate(visualisationProperties.getPrimitiveCount() * 3 * 3 * 4);
-									Bounds instanceBounds = getDatabaseSession().create(StorePackage.eINSTANCE.getBounds());
-									instanceBounds.setMin(createVector3f(Float.POSITIVE_INFINITY));
-									instanceBounds.setMax(createVector3f(Float.NEGATIVE_INFINITY));
-									ifcProduct.setBounds(instanceBounds);
-									for (int i = geometryInstance.getStartIndex(); i < geometryInstance.getPrimitiveCount() * 3 + geometryInstance.getStartIndex(); i++) {
-										int index = ifcEngineGeometry.getIndex(i) * 3;
-										processExtends(instanceBounds, ifcEngineGeometry, verticesBuffer, normalsBuffer, index);
-									}
-									processExtends(instanceBounds, modelBounds);
-									geometryInstance.setVertices(verticesBuffer.array());
-									geometryInstance.setNormals(normalsBuffer.array());
-									ifcProduct.setGeometryInstance(geometryInstance);
-									getDatabaseSession().store(geometryInstance, pid, rid);
-								}
-								return geometry;
-							} finally {
-								ifcEngineModel.close();
-							}
-						} finally {
-							ifcEngine.close();
-						}
-					} catch (IfcEngineException e) {
-						LOGGER.error("", e);
-					}
-				}
-			} catch (SerializerException e) {
-				LOGGER.error("", e);
-			}
-		}
-		return null;
-	}
-
-	private Vector3f createVector3f(float defaultValue) throws BimserverDatabaseException {
-		Vector3f vector3f = (Vector3f) getDatabaseSession().create(StorePackage.eINSTANCE.getVector3f());
-		vector3f.setX(defaultValue);
-		vector3f.setY(defaultValue);
-		vector3f.setZ(defaultValue);
-		return vector3f;
-	}
-
-	private void processExtends(Bounds instanceBounds, Bounds modelBounds) {
-		modelBounds.getMin().setX(Math.min(instanceBounds.getMin().getX(), modelBounds.getMin().getX()));
-		modelBounds.getMin().setY(Math.min(instanceBounds.getMin().getY(), modelBounds.getMin().getY()));
-		modelBounds.getMin().setZ(Math.min(instanceBounds.getMin().getZ(), modelBounds.getMin().getZ()));
-		modelBounds.getMax().setX(Math.max(instanceBounds.getMax().getX(), modelBounds.getMax().getX()));
-		modelBounds.getMax().setY(Math.max(instanceBounds.getMax().getY(), modelBounds.getMax().getY()));
-		modelBounds.getMax().setZ(Math.max(instanceBounds.getMax().getZ(), modelBounds.getMax().getZ()));
-	}
-
-	private void processExtends(Bounds bounds, IfcEngineGeometry geometry, ByteBuffer verticesBuffer, ByteBuffer normalsBuffer, int index) {
-		float x = geometry.getVertex(index);
-		float y = geometry.getVertex(index + 1);
-		float z = geometry.getVertex(index + 2);
-		verticesBuffer.putFloat(x);
-		verticesBuffer.putFloat(y);
-		verticesBuffer.putFloat(z);
-		normalsBuffer.putFloat(geometry.getNormal(index));
-		normalsBuffer.putFloat(geometry.getNormal(index + 1));
-		normalsBuffer.putFloat(geometry.getNormal(index + 2));
-		bounds.getMin().setX(Math.min(x, bounds.getMin().getX()));
-		bounds.getMin().setY(Math.min(y, bounds.getMin().getY()));
-		bounds.getMin().setZ(Math.min(z, bounds.getMin().getZ()));
-		bounds.getMax().setX(Math.max(x, bounds.getMax().getX()));
-		bounds.getMax().setY(Math.max(y, bounds.getMax().getY()));
-		bounds.getMax().setZ(Math.max(z, bounds.getMax().getZ()));
 	}
 
 	private RevisionSummary createSummary(IfcModelInterface model) throws BimserverDatabaseException {

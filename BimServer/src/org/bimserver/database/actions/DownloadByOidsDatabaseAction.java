@@ -91,7 +91,7 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 				getDatabaseSession().getMapWithOids(subModel, concreteRevision.getProject().getId(), concreteRevision.getId(), oids, true, objectIDM);
 				subModel.setDate(concreteRevision.getDate());
 				
-				checkGeometry(serializerPluginConfiguration, subModel);
+				checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, virtualRevision);
 				
 				ifcModelSet.add(subModel);
 				// for (Long oid : oids) {
