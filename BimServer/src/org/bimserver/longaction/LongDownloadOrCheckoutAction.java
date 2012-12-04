@@ -35,7 +35,6 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.serializers.CacheStoringEmfSerializerDataSource;
-import org.bimserver.plugins.serializers.EmfSerializerDataSource;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.Authorization;
@@ -70,10 +69,10 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				if (serializer == null) {
 					throw new UserException("Error, no serializer found " + downloadParameters.getSerializerOid());
 				}
-				if (getBimServer().getDiskCacheManager().isEnabled() && !getBimServer().getDiskCacheManager().contains(downloadParameters)) {
-					checkoutResult.setFile(new DataHandler(new CacheStoringEmfSerializerDataSource(serializer, getBimServer().getDiskCacheManager().startCaching(downloadParameters))));
+				if (getBimServer().getDiskCacheManager().contains(downloadParameters)) {
+					checkoutResult.setFile(new DataHandler(getBimServer().getDiskCacheManager().get(downloadParameters)));
 				} else {
-					checkoutResult.setFile(new DataHandler(new EmfSerializerDataSource(serializer)));
+					checkoutResult.setFile(new DataHandler(new CacheStoringEmfSerializerDataSource(serializer, getBimServer().getDiskCacheManager().startCaching(downloadParameters))));
 				}
 			} catch (SerializerException e) {
 				LOGGER.error("", e);

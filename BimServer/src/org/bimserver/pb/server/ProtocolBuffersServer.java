@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 
 public class ProtocolBuffersServer extends Thread {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersServer.class);
-	private boolean running;
+	private volatile boolean running;
 	private final Set<ProtocolBuffersConnectionHandler> activeHandlers = new HashSet<ProtocolBuffersConnectionHandler>();
 	private final ServiceFactoryRegistry serviceFactoryRegistry;
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;

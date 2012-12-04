@@ -17,6 +17,7 @@ public class Step0026 extends Migration {
 		schema.createEAttribute(vector3f, "z", EcorePackage.eINSTANCE.getEFloat(), Multiplicity.SINGLE);
 		schema.createEReference(bounds, "min", vector3f, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		schema.createEReference(bounds, "max", vector3f, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
+		vector3f.getEAnnotations().add(createHiddenAnnotation());
 		bounds.getEAnnotations().add(createHiddenAnnotation());
 
 		EClass geometry = schema.createEClass("store", "Geometry");

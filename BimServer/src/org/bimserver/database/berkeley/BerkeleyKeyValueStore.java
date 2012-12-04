@@ -103,6 +103,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		transactionConfig.setReadCommitted(true);
 
 		cursorConfig = new CursorConfig();
+		cursorConfig.setReadCommitted(true);
 	}
 
 	public boolean isNew() {

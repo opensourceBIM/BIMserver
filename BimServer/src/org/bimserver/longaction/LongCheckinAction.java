@@ -45,9 +45,20 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 		try {
 			checkinDatabaseAction.setDatabaseSession(session);
 			session.executeAndCommitAction(checkinDatabaseAction, 10, new ProgressHandler() {
+				private int count;
+
 				@Override
 				public void progress(int current, int max) {
-					updateProgress("Storing data...", current * 100 / max);
+					if (count == 0) {
+						updateProgress("Storing data...", current * 100 / max);
+					} else {
+						updateProgress("Storing data (" + (count + 1) + ")...", current * 100 / max);
+					}
+				}
+
+				@Override
+				public void retry(int count) {
+					this.count = count;
 				}
 			});
 		} catch (Exception e) {

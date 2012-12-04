@@ -2071,6 +2071,13 @@ public interface ServiceInterface extends PublicInterface {
 	Boolean isSettingCacheOutputFiles() throws ServerException, UserException;
 
 	/**
+	 * @return Whether output files (serialized version) should be cached on disk
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "isSettingGenerateGeometryOnCheckin")
+	Boolean isSettingGenerateGeometryOnCheckin() throws ServerException, UserException;
+	
+	/**
 	 * @param cacheOutputFiles Set whether output files (serialized version) should be cached on disk
 	 * @throws ServerException, UserException
 	 */
@@ -2078,6 +2085,14 @@ public interface ServiceInterface extends PublicInterface {
 	void setSettingCacheOutputFiles(
 		@WebParam(name = "cacheOutputFiles", partName = "setCacheOutputFiles.cacheOutputFiles") Boolean cacheOutputFiles) throws ServerException, UserException;
 
+	/**
+	 * @param cacheOutputFiles Set whether output files (serialized version) should be cached on disk
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setSettingGenerateGeometryOnCheckin")
+	void setSettingGenerateGeometryOnCheckin(
+		@WebParam(name = "generateGeometryOnCheckin", partName = "setSettingGenerateGeometryOnCheckin.generateGeometryOnCheckin") Boolean generateGeometryOnCheckin) throws ServerException, UserException;
+	
 	/**
 	 * @return A list of all plugins
 	 * @throws ServerException, UserException
@@ -2244,4 +2259,11 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "setWhiteListedDomains")
 	void setWhiteListedDomains(
 		@WebParam(name = "domains", partName = "setWhiteListedDomains.domains") List<String> domains) throws ServerException, UserException;
+
+	@WebMethod(action = "clearOutputFileCache")
+	Integer clearOutputFileCache();
+
+	@WebMethod(action = "cleanupDownload")
+	void cleanupDownload(
+		@WebParam(name = "download", partName = "cleanupDownload.download") Long download);
 }

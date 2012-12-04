@@ -26,11 +26,8 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
-import org.bimserver.models.ifc2x3tc1.GeometryInstance;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.Geometry;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.SerializerPluginConfiguration;
@@ -99,7 +96,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 					}
 				});
 				getDatabaseSession().getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true, objectIDM);
-				checkGeometry(serializerPluginConfiguration, subModel);
+				checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, subRevision, revision);
 				subModel.setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);
 			}
@@ -115,17 +112,6 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 		ifcModel.setRevisionNr(project.getRevisions().indexOf(revision) + 1);
 		ifcModel.setAuthorizedUser(user.getName());
 		ifcModel.setDate(revision.getDate());
-		Geometry geometry = revision.getGeometry();
-		if (geometry != null) {
-			geometry.load();
-			ifcModel.setGeometry(geometry);
-		}
-		for (IfcProduct ifcProduct : ifcModel.getAllWithSubTypes(IfcProduct.class)) {
-			GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
-			if (geometryInstance != null) {
-				geometryInstance.load();
-			}
-		}
 
 		if (revision.getProject().getGeoTag() != null) {
 			// ifcModel.setLon(revision.getProject().getGeoTag().getX());

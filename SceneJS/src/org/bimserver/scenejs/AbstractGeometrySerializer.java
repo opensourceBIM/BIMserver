@@ -3,90 +3,14 @@ package org.bimserver.scenejs;
 import java.util.HashMap;
 
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
-import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
-import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.serializers.EmfSerializer;
-import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.eclipse.emf.common.util.EList;
 
 public abstract class AbstractGeometrySerializer extends EmfSerializer {
-	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractGeometrySerializer.class);
 	private Extends sceneExtends = new Extends();
-	private IfcEngineGeometry geometry;
 	private HashMap<String, Extends> geometryExtents = new HashMap<String, Extends>();
-	private IfcEngineModel ifcEngineModel;
-	private IfcEngine ifcEngine;
-
-	protected IfcEngineGeometry getGeometry() {
-		if (geometry == null) {
-			try {
-				ifcEngine = getIfcEnginePlugin().createIfcEngine();
-				ifcEngine.init();
-				Serializer serializer = getPluginManager().requireIfcStepSerializer();
-				serializer.init(model, getProjectInfo(), getPluginManager(), getIfcEnginePlugin(), false);
-				ifcEngineModel = ifcEngine.openModel(serializer.getBytes());
-				ifcEngineModel.setPostProcessing(true);
-				geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
-			} catch (IfcEngineException e) {
-				LOGGER.error("", e);
-			} catch (SerializerException e) {
-				LOGGER.error("", e);
-			}
-		}
-		return geometry;
-	}
-	
-	public IfcEngineModel getIfcEngineModel() {
-		return ifcEngineModel;
-	}
-	
-	public IfcEngine getIfcEngine() {
-		return ifcEngine;
-	}
-	
-	protected int getNrIndices() {
-		if (getModel().getGeometry() != null) {
-			return getModel().getGeometry().getIndices().size();
-		} else {
-			return getGeometry().getNrIndices();
-		}
-	}
-	
-	protected int getNrVertices() {
-		if (getModel().getGeometry() != null) {
-			return getModel().getGeometry().getVertices().size();
-		} else {
-			return getGeometry().getNrVertices();
-		}
-	}
-	
-	protected float getVertex(int index) {
-		if (getModel().getGeometry() != null) {
-			return getModel().getGeometry().getVertices().get(index);
-		} else {
-			return getGeometry().getVertex(index);
-		}
-	}
-	
-	protected float getNormal(int index) {
-		if (getModel().getGeometry() != null) {
-			return getModel().getGeometry().getNormals().get(index);
-		} else {
-			return getGeometry().getNormal(index);
-		}
-	}
-	
-	protected int getIndex(int index) {
-		if (getModel().getGeometry() != null) {
-			return getModel().getGeometry().getIndices().get(index);
-		} else {
-			return getGeometry().getIndex(index);
-		}
-	}
 	
 	protected void calculateGeometryExtents() throws IfcEngineException, SerializerException {
 		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
@@ -106,9 +30,10 @@ public abstract class AbstractGeometrySerializer extends EmfSerializer {
 		Extends extents = geometryExtents.get(id);
 
 		if (ifcObject.getGeometryInstance() == null) {
-			for (int i = 0; i < getNrVertices(); i += 3) {
-				extents.addToMinExtents(new float[] { getVertex(i + 0), getVertex(i + 1), getVertex(i + 2) });
-				extents.addToMaxExtents(new float[] { getVertex(i + 0), getVertex(i + 1), getVertex(i + 2) });
+			EList<Float> vertices = getModel().getGeometry().getVertices();
+			for (int i = 0; i < vertices.size(); i += 3) {
+				extents.addToMinExtents(new float[] { vertices.get(i + 0), vertices.get(i + 1), vertices.get(i + 2) });
+				extents.addToMaxExtents(new float[] { vertices.get(i + 0), vertices.get(i + 1), vertices.get(i + 2) });
 			}
 		} else {
 			extents.integrate(ifcObject.getBounds());

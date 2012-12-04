@@ -116,7 +116,7 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 				getDatabaseSession().getMapWithOids(subModel, concreteRevision.getProject().getId(), concreteRevision.getId(), oids, true, objectIDM);
 				subModel.setDate(concreteRevision.getDate());
 				
-				checkGeometry(serializerPluginConfiguration, subModel);
+				checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, virtualRevision);
 				
 				ifcModelSet.add(subModel);
 			}

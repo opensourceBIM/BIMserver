@@ -95,7 +95,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 					projectName += concreteRevision.getProject().getName() + "-";
 					subModel.setDate(concreteRevision.getDate());
 
-					checkGeometry(serializerPluginConfiguration, subModel);
+					checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, revision);
 					
 					ifcModelSet.add(subModel);
 				}

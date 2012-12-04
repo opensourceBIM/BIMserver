@@ -119,7 +119,7 @@ public class LongActionManager {
 			}
 		}
 	}
-	
+
 	/*
 	 * Untested method
 	 */
@@ -132,7 +132,7 @@ public class LongActionManager {
 		}
 	}
 
-	public synchronized void remove(Integer actionId) {
+	public synchronized void remove(long actionId) {
 		actions.remove(actionId);
 	}
 

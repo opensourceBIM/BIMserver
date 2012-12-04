@@ -51,9 +51,6 @@ import org.bimserver.models.ifc2x3tc1.IfcStyledItem;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyle;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEngineInstance;
-import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
-import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -223,7 +220,6 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 
 	private void writeGeometryFromInstancesGeometryObject(PrintWriter writer, IfcProduct ifcObject, String material) throws IOException {
 		GeometryInstance geometryInstance = ifcObject.getGeometryInstance();
-
 		if (geometryInstance != null) {
 			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryInstance.getVertices());
 			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryInstance.getNormals());
@@ -251,42 +247,6 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 			}
 			writer.print("]");
 			writer.print(",\"nrindices\":" + (geometryInstance.getPrimitiveCount() * 3));
-		} else {
-			// This will trigger the IfcEngine startup
-			getGeometry();
-			IfcEngineModel ifcEngineModel = getIfcEngineModel();
-			try {
-				IfcEngineInstance ifcEngineInstance = ifcEngineModel.getInstanceFromExpressId((int) ifcObject.getOid());
-				IfcEngineInstanceVisualisationProperties visualisationProperties = ifcEngineInstance.getVisualisationProperties();
-				ByteBuffer verticesBuffer = ByteBuffer.allocate(visualisationProperties.getPrimitiveCount() * 3 * 3 * 4);
-				ByteBuffer normalsBuffer = ByteBuffer.allocate(visualisationProperties.getPrimitiveCount() * 3 * 3 * 4);
-
-				writer.print("\"material\":\"" + material + "\",");
-				writer.print("\"type\":\"geometry\",");
-				writer.print("\"coreId\":\"" + ifcObject.getOid() + "\",");
-				writer.print("\"primitive\":\"triangles\",");
-				writer.print("\"positions\":[");
-				int t = visualisationProperties.getPrimitiveCount() * 3 * 3;
-				for (int i = 0; i < t; i++) {
-					if (i < t - 1) {
-						writer.print(verticesBuffer.getFloat() + ",");
-					} else {
-						writer.print(verticesBuffer.getFloat());
-					}
-				}
-				writer.print("], \"normals\":[");
-				for (int i = 0; i < t; i++) {
-					if (i < t - 1) {
-						writer.print(normalsBuffer.getFloat() + ",");
-					} else {
-						writer.print(normalsBuffer.getFloat());
-					}
-				}
-				writer.print("]");
-				writer.print(",\"nrindices\":" + (visualisationProperties.getPrimitiveCount() * 3));
-			} catch (IfcEngineException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 

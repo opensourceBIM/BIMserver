@@ -1,5 +1,6 @@
 package org.bimserver.plugins.serializers;
 
+import java.io.IOException;
 import java.io.OutputStream;
 
 import org.bimserver.utils.MultiplexingOutputStream;
@@ -14,7 +15,7 @@ public class CacheStoringEmfSerializerDataSource extends EmfSerializerDataSource
 	}
 	
 	@Override
-	public void writeToOutputStream(OutputStream outputStream) throws SerializerException {
+	public void writeToOutputStream(OutputStream outputStream) throws SerializerException, IOException {
 		super.writeToOutputStream(new MultiplexingOutputStream(outputStream, diskCacheOutputStream));
 	}
 }
