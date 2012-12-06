@@ -22,10 +22,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.imageio.ImageIO;
@@ -61,17 +58,14 @@ import javax.vecmath.Vector3f;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.clients.j3d.behavior.OrbitBehaviorInterim;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.emf.IdEObjectImpl;
-import org.bimserver.ifc.IfcModel;
-import org.bimserver.ifc.step.serializer.IfcStepSerializer;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.models.ifc2x3tc1.IfcBeam;
 import org.bimserver.models.ifc2x3tc1.IfcColumn;
 import org.bimserver.models.ifc2x3tc1.IfcDistributionFlowElement;
 import org.bimserver.models.ifc2x3tc1.IfcDoor;
 import org.bimserver.models.ifc2x3tc1.IfcFlowTerminalType;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
-import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcOpeningElement;
 import org.bimserver.models.ifc2x3tc1.IfcRailing;
 import org.bimserver.models.ifc2x3tc1.IfcRoof;
@@ -83,11 +77,10 @@ import org.bimserver.models.ifc2x3tc1.IfcStair;
 import org.bimserver.models.ifc2x3tc1.IfcWall;
 import org.bimserver.models.ifc2x3tc1.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
-import org.bimserver.models.ifc2x3tc1.WrappedValue;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.deserializers.EmfDeserializer;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
@@ -95,15 +88,6 @@ import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
-import org.bimserver.plugins.objectidms.ObjectIDM;
-import org.bimserver.plugins.objectidms.ObjectIDMException;
-import org.bimserver.plugins.serializers.IfcModelInterface;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -128,17 +112,21 @@ public class IfcVisualiser extends JFrame {
 	private Appearances appearances = new Appearances();
 	private IfcEngine ifcEngine;
 	private PluginManager pluginManager;
-	private ObjectIDM objectIDM;
+	private IfcEngineGeometry geometry;
+	private IfcModelInterface model;
+	private IfcEngineModel ifcEngineModel;
 
 	public static void main(String[] args) {
 		try {
 			new IfcVisualiser().start();
 		} catch (PluginException e) {
 			LOGGER.error("", e);
+		} catch (IfcModelInterfaceException e) {
+			e.printStackTrace();
 		}
 	}
 
-	private void start() throws PluginException {
+	private void start() throws PluginException, IfcModelInterfaceException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		try {
 			setIconImage(ImageIO.read(getClass().getResource("haussmall.png")));
@@ -201,18 +189,40 @@ public class IfcVisualiser extends JFrame {
 		validate();
 
 		sharedGroup = new SharedGroup();
-
 		try {
 			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
-			objectIDM = pluginManager.requireObjectIDM();
 		} catch (PluginException e) {
 			LOGGER.error("", e);
-		} catch (ObjectIDMException e) {
+		}
+
+		DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
+		Deserializer deserializer = deserializerPlugin.createDeserializer();
+		deserializer.init(pluginManager.requireSchemaDefinition());
+		File file = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
+
+		try {
+			model = deserializer.read(file);
+		} catch (DeserializationException e) {
+			LOGGER.error("", e);
+		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
-		
-		createSceneGraph();
-		System.out.println("Done");
+
+		ifcEngine = pluginManager.requireIfcEngine().createIfcEngine();
+		ifcEngine.init();
+		try {
+			ifcEngineModel = ifcEngine.openModel(file);
+			try {
+				ifcEngineModel.setPostProcessing(true);
+				IfcEngineSurfaceProperties initializeModelling = ifcEngineModel.initializeModelling();
+				geometry = ifcEngineModel.finalizeModelling(initializeModelling);
+				createSceneGraph();
+			} finally {
+				ifcEngineModel.close();
+			}
+		} finally {
+			ifcEngine.close();
+		}
 	}
 
 	protected void createViewBranch() {
@@ -287,22 +297,8 @@ public class IfcVisualiser extends JFrame {
 		sceneBranchGroup.addChild(loaderBranchGroup);
 	}
 
-	private void createSceneGraph() throws PluginException {
+	private void createSceneGraph() throws PluginException, IfcModelInterfaceException {
 		buildingTransformGroup = new TransformGroup();
-		DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
-		EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
-		deserializer.init(pluginManager.requireSchemaDefinition());
-		IfcModelInterface model = null;
-		try {
-//			deserializer.read(new File("../TestData/data/export1.ifc"));
-			model = deserializer.read(new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"), true);
-		} catch (DeserializationException e) {
-			LOGGER.error("", e);
-		} catch (Exception e) {
-			LOGGER.error("", e);
-		}
-
-		model.setObjectOids();
 
 		Set<Class<? extends IfcRoot>> classesToConvert = new HashSet<Class<? extends IfcRoot>>();
 		classesToConvert.add(IfcWall.class);
@@ -321,7 +317,7 @@ public class IfcVisualiser extends JFrame {
 		classesToConvert.add(IfcFlowTerminalType.class);
 		classesToConvert.add(IfcDistributionFlowElement.class);
 		classesToConvert.add(IfcSite.class);
-//		classesToConvert.add(IfcProxy.class);
+		// classesToConvert.add(IfcProxy.class);
 
 		for (IdEObject idEObject : model.getValues()) {
 			if (classesToConvert.contains(idEObject.eClass().getInstanceClass())) {
@@ -335,18 +331,18 @@ public class IfcVisualiser extends JFrame {
 		sceneBranchGroup.removeChild(loaderBranchGroup);
 		sharedGroup.addChild(buildingBranchGroup);
 
-//		for (int x = 0; x < 5; x++) {
-//			for (int y = 0; y < 5; y++) {
-				Link link1 = new Link(sharedGroup);
-				Transform3D t3d1 = new Transform3D();
-//				t3d1.setTranslation(new Vector3f(x * 20, y * 20, 0f));
-				BranchGroup x1 = new BranchGroup();
-				TransformGroup t1 = new TransformGroup(t3d1);
-				x1.addChild(t1);
-				t1.addChild(link1);
-				sceneBranchGroup.addChild(x1);
-//			}
-//		}
+		// for (int x = 0; x < 5; x++) {
+		// for (int y = 0; y < 5; y++) {
+		Link link1 = new Link(sharedGroup);
+		Transform3D t3d1 = new Transform3D();
+		// t3d1.setTranslation(new Vector3f(x * 20, y * 20, 0f));
+		BranchGroup x1 = new BranchGroup();
+		TransformGroup t1 = new TransformGroup(t3d1);
+		x1.addChild(t1);
+		t1.addChild(link1);
+		sceneBranchGroup.addChild(x1);
+		// }
+		// }
 
 		reInitView();
 	}
@@ -370,58 +366,38 @@ public class IfcVisualiser extends JFrame {
 		transformGroup.addChild(light2);
 	}
 
-	public void createTriangles(IfcRoot ifcRootObject, IfcModel ifcModel, TransformGroup buildingTransformGroup) {
-		IfcStepSerializer ifcSerializer = new IfcStepSerializer();
-		try {
-			ifcSerializer.init(ifcModel, null, null, null);
-			IfcEngineModel model = ifcEngine.openModel(ifcSerializer.getBytes());
-			try {
-				model.setPostProcessing(true);
-				IfcEngineSurfaceProperties initializeModelling = model.initializeModelling();
-				IfcEngineGeometry geometry = model.finalizeModelling(initializeModelling);
-				if (geometry != null) {
-					List<? extends IfcEngineInstance> instances = model.getInstances(ifcRootObject.eClass().getName().toUpperCase());
-					for (IfcEngineInstance instance : instances) {
-						IfcEngineInstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
-						if (instanceInModelling.getPrimitiveCount() != 0) {
-							Appearance appearance = appearances.getAppearance(ifcRootObject);
-							if (appearance != null) {
-								Point3f[] coordinates = new Point3f[instanceInModelling.getPrimitiveCount() * 3];
-								Vector3f[] normals = new Vector3f[instanceInModelling.getPrimitiveCount() * 3];
-								for (int i = instanceInModelling.getStartIndex(); i < instanceInModelling.getPrimitiveCount() * 3 + instanceInModelling.getStartIndex(); i += 3) {
-									int offsetIndex = i - instanceInModelling.getStartIndex();
-									int i1 = geometry.getIndex(i);
-									int i2 = geometry.getIndex(i + 1);
-									int i3 = geometry.getIndex(i + 2);
+	public void createTriangles(IfcRoot ifcRootObject, IfcModelInterface ifcModel, TransformGroup buildingTransformGroup) throws IfcEngineException {
+		IfcEngineInstance instance = ifcEngineModel.getInstanceFromExpressId(ifcRootObject.getExpressId());
+		IfcEngineInstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
+		if (instanceInModelling.getPrimitiveCount() != 0) {
+			Appearance appearance = appearances.getAppearance(ifcRootObject);
+			if (appearance != null) {
+				Point3f[] coordinates = new Point3f[instanceInModelling.getPrimitiveCount() * 3];
+				Vector3f[] normals = new Vector3f[instanceInModelling.getPrimitiveCount() * 3];
+				for (int i = instanceInModelling.getStartIndex(); i < instanceInModelling.getPrimitiveCount() * 3 + instanceInModelling.getStartIndex(); i += 3) {
+					int offsetIndex = i - instanceInModelling.getStartIndex();
+					int i1 = geometry.getIndex(i);
+					int i2 = geometry.getIndex(i + 1);
+					int i3 = geometry.getIndex(i + 2);
 
-									coordinates[offsetIndex] = new Point3f(geometry.getVertex(i1 * 3), geometry.getVertex(i1 * 3 + 1), geometry.getVertex(i1 * 3 + 2));
-									coordinates[offsetIndex + 1] = new Point3f(geometry.getVertex(i3 * 3), geometry.getVertex(i3 * 3 + 1), geometry.getVertex(i3 * 3 + 2));
-									coordinates[offsetIndex + 2] = new Point3f(geometry.getVertex(i2 * 3), geometry.getVertex(i2 * 3 + 1), geometry.getVertex(i2 * 3 + 2));
+					coordinates[offsetIndex] = new Point3f(geometry.getVertex(i1 * 3), geometry.getVertex(i1 * 3 + 1), geometry.getVertex(i1 * 3 + 2));
+					coordinates[offsetIndex + 1] = new Point3f(geometry.getVertex(i3 * 3), geometry.getVertex(i3 * 3 + 1), geometry.getVertex(i3 * 3 + 2));
+					coordinates[offsetIndex + 2] = new Point3f(geometry.getVertex(i2 * 3), geometry.getVertex(i2 * 3 + 1), geometry.getVertex(i2 * 3 + 2));
 
-									normals[offsetIndex] = new Vector3f(geometry.getNormal(i1 * 3), geometry.getNormal(i1 * 3 + 1), geometry.getNormal(i1 * 3 + 2));
-									normals[offsetIndex + 1] = new Vector3f(geometry.getNormal(i3 * 3), geometry.getNormal(i3 * 3 + 1), geometry.getNormal(i3 * 3 + 2));
-									normals[offsetIndex + 2] = new Vector3f(geometry.getNormal(i2 * 3), geometry.getNormal(i2 * 3 + 1), geometry.getNormal(i2 * 3 + 2));
-								}
-								TriangleArray triangleArray = new TriangleArray(coordinates.length, GeometryArray.COORDINATES | GeometryArray.NORMALS);
-								triangleArray.setCoordinates(0, coordinates);
-								triangleArray.setNormals(0, normals);
-								Shape3D myShape = new Shape3D(triangleArray, appearance);
-								buildingTransformGroup.addChild(myShape);
-								myShape.setUserData(ifcRootObject);
-							}
-						}
-					}
+					normals[offsetIndex] = new Vector3f(geometry.getNormal(i1 * 3), geometry.getNormal(i1 * 3 + 1), geometry.getNormal(i1 * 3 + 2));
+					normals[offsetIndex + 1] = new Vector3f(geometry.getNormal(i3 * 3), geometry.getNormal(i3 * 3 + 1), geometry.getNormal(i3 * 3 + 2));
+					normals[offsetIndex + 2] = new Vector3f(geometry.getNormal(i2 * 3), geometry.getNormal(i2 * 3 + 1), geometry.getNormal(i2 * 3 + 2));
 				}
-			} finally {
-				model.close();
+				TriangleArray triangleArray = new TriangleArray(coordinates.length, GeometryArray.COORDINATES | GeometryArray.NORMALS);
+				triangleArray.setCoordinates(0, coordinates);
+				triangleArray.setNormals(0, normals);
+				Shape3D myShape = new Shape3D(triangleArray, appearance);
+				buildingTransformGroup.addChild(myShape);
+				myShape.setUserData(ifcRootObject);
 			}
-		} catch (IfcEngineException e) {
-			LOGGER.error("", e);
-		} catch (Exception e) {
-			LOGGER.error("", e);
 		}
 	}
-	
+
 	public float getViewPlatformDistance(BranchGroup scene, Component canvas, View view) {
 		BoundingSphere sceneSphere = getBoundingSphere(scene);
 		double sceneRadius = sceneSphere.getRadius();
@@ -447,59 +423,7 @@ public class IfcVisualiser extends JFrame {
 		return sceneSphere;
 	}
 
-	private void setGeometry(IfcRoot ifcRootObject) {
-		IfcModel ifcModel = new IfcModel();
-		convertToSubset(ifcRootObject.eClass(), ifcRootObject, ifcModel, new HashMap<EObject, EObject>());
-		createTriangles(ifcRootObject, ifcModel, buildingTransformGroup);
-	}
-
-	@SuppressWarnings("unchecked")
-	protected EObject convertToSubset(EClass originalClass, IdEObject ifcRootObject, IfcModel newModel, Map<EObject, EObject> converted) {
-		IdEObject newObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(ifcRootObject.eClass());
-		((IdEObjectImpl)newObject).setOid(ifcRootObject.getOid());
-		converted.put(ifcRootObject, newObject);
-		if (!(newObject instanceof WrappedValue) && !(newObject instanceof IfcGloballyUniqueId)) {
-			newModel.add(newObject.getOid(), newObject, true);
-		}
-		for (EStructuralFeature eStructuralFeature : ifcRootObject.eClass().getEAllStructuralFeatures()) {
-			if (objectIDM.shouldFollowReference(ifcRootObject.eClass(), ifcRootObject.eClass(), eStructuralFeature)) {
-				Object get = ifcRootObject.eGet(eStructuralFeature);
-				if (eStructuralFeature instanceof EAttribute) {
-					if (get instanceof Float || get instanceof Double) {
-						EStructuralFeature floatStringFeature = ifcRootObject.eClass().getEStructuralFeature("wrappedValueAsString");
-						if (floatStringFeature != null) {
-							Object floatString = ifcRootObject.eGet(floatStringFeature);
-							newObject.eSet(floatStringFeature, floatString);
-						} else {
-							newObject.eSet(eStructuralFeature, get);
-						}
-					} else {
-						newObject.eSet(eStructuralFeature, get);
-					}
-				} else if (eStructuralFeature instanceof EReference) {
-					if (get == null) {
-					} else {
-						if (eStructuralFeature.isMany()) {
-							BasicEList<EObject> list = (BasicEList<EObject>) get;
-							BasicEList<EObject> toList = (BasicEList<EObject>) newObject.eGet(eStructuralFeature);
-							for (Object o : list) {
-								if (converted.containsKey(o)) {
-									toList.addUnique(converted.get(o));
-								} else {
-									toList.addUnique(convertToSubset(originalClass, (IdEObject) o, newModel, converted));
-								}
-							}
-						} else {
-							if (converted.containsKey(get)) {
-								newObject.eSet(eStructuralFeature, converted.get(get));
-							} else {
-								newObject.eSet(eStructuralFeature, convertToSubset(originalClass, (IdEObject) get, newModel, converted));
-							}
-						}
-					}
-				}
-			}
-		}
-		return newObject;
+	private void setGeometry(IfcRoot ifcRootObject) throws IfcModelInterfaceException, IfcEngineException {
+		createTriangles(ifcRootObject, model, buildingTransformGroup);
 	}
 }
