@@ -22,7 +22,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
@@ -73,7 +72,7 @@ public abstract class Channel {
 	
 	public abstract void disconnect();
 
-	public SToken getToken() {
+	public String getToken() {
 		return null;
 	}
 }

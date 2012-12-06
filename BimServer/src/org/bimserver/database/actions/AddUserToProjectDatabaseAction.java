@@ -31,7 +31,7 @@ import org.bimserver.models.log.UserAddedToProject;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.webservices.Authorization;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class AddUserToProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 

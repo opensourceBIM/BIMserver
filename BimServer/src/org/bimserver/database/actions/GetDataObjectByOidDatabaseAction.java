@@ -43,7 +43,7 @@ import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.webservices.Authorization;
+import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
@@ -120,8 +120,8 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 			if (eStructuralFeature.getEAnnotation("hidden") != null) {
 				continue;
 			}
-			if (eStructuralFeature instanceof EAttribute) {
-				if (!eStructuralFeature.getName().endsWith("AsString")) {
+			if (eStructuralFeature.getEAnnotation("hidden") == null) {
+				if (eStructuralFeature instanceof EAttribute) {
 					if (eStructuralFeature.isMany()) {
 						ListDataValue listDataValue = StoreFactory.eINSTANCE.createListDataValue();
 						listDataValue.setFieldName(eStructuralFeature.getName());
@@ -160,69 +160,69 @@ public class GetDataObjectByOidDatabaseAction extends BimDatabaseAction<DataObje
 						dataValue.setFieldName(eStructuralFeature.getName());
 						dataObject.getValues().add(dataValue);
 					}
-				}
-			} else if (eStructuralFeature instanceof EReference) {
-				if (eStructuralFeature.isMany()) {
-					if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
-						List list = (List)eObject.eGet(eObject.eClass().getEStructuralFeature(eStructuralFeature.getName() + "AsString"));
-						ListDataValue dataValue = StoreFactory.eINSTANCE.createListDataValue();
-						dataValue.setFieldName(eStructuralFeature.getName());
-						dataObject.getValues().add(dataValue);
-						for (Object o : list) {
-							SimpleDataValue simpleDataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
-							simpleDataValue.setStringValue(o.toString());
-							dataValue.getValues().add(simpleDataValue);
-						}
-					} else {
-						EList<? extends EObject> list = (EList<EObject>) eGet;
-						ListDataValue dataValue = StoreFactory.eINSTANCE.createListDataValue();
-						dataObject.getValues().add(dataValue);
-						dataValue.setFieldName(eStructuralFeature.getName());
-						for (EObject item : list) {
-							if (item instanceof WrappedValue || item instanceof IfcGloballyUniqueId) {
-								EObject referenceEObject = (EObject) item;
+				} else if (eStructuralFeature instanceof EReference) {
+					if (eStructuralFeature.isMany()) {
+						if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
+							List list = (List)eObject.eGet(eObject.eClass().getEStructuralFeature(eStructuralFeature.getName() + "AsString"));
+							ListDataValue dataValue = StoreFactory.eINSTANCE.createListDataValue();
+							dataValue.setFieldName(eStructuralFeature.getName());
+							dataObject.getValues().add(dataValue);
+							for (Object o : list) {
 								SimpleDataValue simpleDataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
-								simpleDataValue.setStringValue(referenceEObject.eGet(referenceEObject.eClass().getEStructuralFeature("wrappedValue")).toString());
+								simpleDataValue.setStringValue(o.toString());
 								dataValue.getValues().add(simpleDataValue);
-							} else {
-								Long oid = ((IdEObject)item).getOid();
-								String guid = getGuid(item);
-								ReferenceDataValue referenceDataValue = StoreFactory.eINSTANCE.createReferenceDataValue();
-								referenceDataValue.setTypeName(item.eClass().getName());
-								((IdEObjectImpl)referenceDataValue).setOid(oid);
-								referenceDataValue.setGuid(guid);
-								dataValue.getValues().add(referenceDataValue);
+							}
+						} else {
+							EList<? extends EObject> list = (EList<EObject>) eGet;
+							ListDataValue dataValue = StoreFactory.eINSTANCE.createListDataValue();
+							dataObject.getValues().add(dataValue);
+							dataValue.setFieldName(eStructuralFeature.getName());
+							for (EObject item : list) {
+								if (item instanceof WrappedValue || item instanceof IfcGloballyUniqueId) {
+									EObject referenceEObject = (EObject) item;
+									SimpleDataValue simpleDataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
+									simpleDataValue.setStringValue(referenceEObject.eGet(referenceEObject.eClass().getEStructuralFeature("wrappedValue")).toString());
+									dataValue.getValues().add(simpleDataValue);
+								} else {
+									Long oid = ((IdEObject)item).getOid();
+									String guid = getGuid(item);
+									ReferenceDataValue referenceDataValue = StoreFactory.eINSTANCE.createReferenceDataValue();
+									referenceDataValue.setTypeName(item.eClass().getName());
+									((IdEObjectImpl)referenceDataValue).setOid(oid);
+									referenceDataValue.setGuid(guid);
+									dataValue.getValues().add(referenceDataValue);
+								}
 							}
 						}
-					}
-				} else {
-					EObject eObject2 = (EObject) eGet;
-					if (eObject2 != null) {
-						if (eObject2 instanceof WrappedValue || eObject2 instanceof IfcGloballyUniqueId) {
-							EObject referenceEObject = (EObject) eGet;
-							SimpleDataValue e = StoreFactory.eINSTANCE.createSimpleDataValue();
-							EStructuralFeature wrappedValueFeature = referenceEObject.eClass().getEStructuralFeature("wrappedValue");
-							Object eGet2 = referenceEObject.eGet(wrappedValueFeature);
-//							if (wrappedValueFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject() || wrappedValueFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-//								e.setStringValue((String)referenceEObject.eGet(referenceEObject.eClass().getEStructuralFeature("wrappedValueAsString")));
-//							} else {
-								if (eGet2 != null) {
-									e.setStringValue(eGet2.toString());
-								} else {
-									e.setStringValue(null);
-								}
-//							}
-							e.setFieldName(eStructuralFeature.getName());
-							dataObject.getValues().add(e);
-						} else {
-							Long oid = ((IdEObject)eObject2).getOid();
-							String guid = getGuid(eObject2);
-							ReferenceDataValue reference = StoreFactory.eINSTANCE.createReferenceDataValue();
-							reference.setTypeName(eObject2.eClass().getName());
-							((IdEObjectImpl)reference).setOid(oid);
-							reference.setGuid(guid);
-							reference.setFieldName(eStructuralFeature.getName());
-							dataObject.getValues().add(reference);
+					} else {
+						EObject eObject2 = (EObject) eGet;
+						if (eObject2 != null) {
+							if (eObject2 instanceof WrappedValue || eObject2 instanceof IfcGloballyUniqueId) {
+								EObject referenceEObject = (EObject) eGet;
+								SimpleDataValue e = StoreFactory.eINSTANCE.createSimpleDataValue();
+								EStructuralFeature wrappedValueFeature = referenceEObject.eClass().getEStructuralFeature("wrappedValue");
+								Object eGet2 = referenceEObject.eGet(wrappedValueFeature);
+	//							if (wrappedValueFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject() || wrappedValueFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+	//								e.setStringValue((String)referenceEObject.eGet(referenceEObject.eClass().getEStructuralFeature("wrappedValueAsString")));
+	//							} else {
+									if (eGet2 != null) {
+										e.setStringValue(eGet2.toString());
+									} else {
+										e.setStringValue(null);
+									}
+	//							}
+								e.setFieldName(eStructuralFeature.getName());
+								dataObject.getValues().add(e);
+							} else {
+								Long oid = ((IdEObject)eObject2).getOid();
+								String guid = getGuid(eObject2);
+								ReferenceDataValue reference = StoreFactory.eINSTANCE.createReferenceDataValue();
+								reference.setTypeName(eObject2.eClass().getName());
+								((IdEObjectImpl)reference).setOid(oid);
+								reference.setGuid(guid);
+								reference.setFieldName(eStructuralFeature.getName());
+								dataObject.getValues().add(reference);
+							}
 						}
 					}
 				}

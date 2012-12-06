@@ -59,7 +59,7 @@ public class ServerInfoManager {
 			DatabaseSession session = bimServer.getDatabase().createSession();
 			try {
 				boolean adminFound = false;
-				ServerSettings settings = bimServer.getServerSettings(session);
+				ServerSettings settings = bimServer.getServerSettingsCache().getServerSettings();
 				IfcModelInterface users = session.getAllOfType(StorePackage.eINSTANCE.getUser(), false, null);
 				for (IdEObject idEObject : users.getValues()) {
 					if (idEObject instanceof User) {

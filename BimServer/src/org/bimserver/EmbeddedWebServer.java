@@ -42,8 +42,6 @@ public class EmbeddedWebServer {
 		server.addConnector(socketConnector);
 		context = new WebAppContext(server, "", "/");
 		context.addServlet(WebServiceServlet.class.getName(), "/soap/*");
-//		ServletHolder restServletHolder = context.addServlet(RestServlet.class.getName(), "/rest/*");
-//		restServletHolder.setInitParameter("javax.ws.rs.Application", "willbeoverridden");
 		context.addServlet(SyndicationServlet.class.getName(), "/syndication/*");
 		context.getServletContext().setAttribute("bimserver", bimServer);
 	}

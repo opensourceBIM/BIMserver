@@ -44,7 +44,7 @@ import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
-import org.bimserver.webservices.Authorization;
+import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.slf4j.Logger;

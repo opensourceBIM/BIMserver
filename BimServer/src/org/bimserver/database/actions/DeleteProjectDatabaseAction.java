@@ -33,7 +33,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.webservices.Authorization;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class DeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 
@@ -52,7 +52,7 @@ public class DeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
 		User actingUser = getUserByUoid(authorization.getUoid());
 		final Project project = getProjectByPoid(poid);
-		if (actingUser.getUserType() == UserType.ADMIN || (actingUser.getHasRightsOn().contains(project) && getServerSettings().isAllowUsersToCreateTopLevelProjects())) {
+		if (actingUser.getUserType() == UserType.ADMIN || (actingUser.getHasRightsOn().contains(project) && bimServer.getServerSettingsCache().getServerSettings().isAllowUsersToCreateTopLevelProjects())) {
 			delete(project);
 			final ProjectDeleted projectDeleted = LogFactory.eINSTANCE.createProjectDeleted();
 			projectDeleted.setAccessMethod(getAccessMethod());

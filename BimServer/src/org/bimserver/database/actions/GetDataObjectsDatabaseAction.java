@@ -37,7 +37,7 @@ import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.webservices.Authorization;
+import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.ecore.EObject;
 
 public class GetDataObjectsDatabaseAction extends BimDatabaseAction<List<DataObject>> {

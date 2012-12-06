@@ -23,12 +23,10 @@ import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.serializers.CacheStoringEmfSerializerDataSource;
 import org.bimserver.plugins.serializers.SerializerException;
-import org.bimserver.shared.InterfaceMap;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -77,9 +75,8 @@ public class TestSimultaniousDownloadWithCaching {
 		}
 
 		try {
-			InterfaceMap interfaceMap = bimServer.getServiceFactory().newServiceMap(AccessMethod.INTERNAL, "");
-			ServiceInterface serviceInterface = interfaceMap.get(ServiceInterface.class);
-			serviceInterface.login("admin@bimserver.org", "admin");
+			ServiceInterface serviceInterface = bimServer.getServiceFactory().getService(ServiceInterface.class);
+			serviceInterface = bimServer.getServiceFactory().getService(ServiceInterface.class, serviceInterface.login("admin@bimserver.org", "admin"));
 			serviceInterface.setSettingCacheOutputFiles(true);
 			serviceInterface.setSettingGenerateGeometryOnCheckin(false);
 			final SProject project = serviceInterface.addProject("test");
@@ -93,9 +90,8 @@ public class TestSimultaniousDownloadWithCaching {
 					@Override
 					public void run() {
 						try {
-							InterfaceMap serviceMap = bimServer.getServiceFactory().newServiceMap(AccessMethod.INTERNAL, "");
-							ServiceInterface serviceInterface = serviceMap.get(ServiceInterface.class);
-							serviceInterface.login("admin@bimserver.org", "admin");
+							ServiceInterface serviceInterface = bimServer.getServiceFactory().getService(ServiceInterface.class);
+							serviceInterface = bimServer.getServiceFactory().getService(ServiceInterface.class, serviceInterface.login("admin@bimserver.org", "admin"));
 							SSerializerPluginConfiguration serializerPluginConfiguration = serviceInterface.getSerializerByName("Ifc2x3");
 							Long download = serviceInterface.download(projectUpdate.getLastRevisionId(), serializerPluginConfiguration.getOid(), true, true);
 							SDownloadResult downloadData = serviceInterface.getDownloadData(download);

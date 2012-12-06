@@ -24,7 +24,7 @@ import org.bimserver.database.actions.CheckinDatabaseAction;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.webservices.Authorization;
+import org.bimserver.webservices.authorization.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

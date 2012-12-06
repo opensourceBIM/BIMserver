@@ -43,6 +43,7 @@ import org.slf4j.LoggerFactory;
 public class ProtocolBuffersGenerator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersGenerator.class);
 	private final Map<Class<?>, String> generatedClasses = new HashMap<Class<?>, String>();
+	private final Map<String, String> generatedMessages = new HashMap<String, String>();
 
 	public void generate(Class<?> serviceInterfaceClass, File protoFile, File descFile, boolean createBaseMessages, SService service, String... imports) {
 		generateProtoFile(serviceInterfaceClass, protoFile, createBaseMessages, service, imports);
@@ -402,6 +403,10 @@ public class ProtocolBuffersGenerator {
 	}
 
 	private void createResponseMessage(StringBuilder builder, SMethod method, String messageName) {
+		if (generatedMessages.containsKey(messageName)) {
+			return;
+		}
+		generatedMessages.put(messageName, messageName);
 		StringBuilder messageBuilder = new StringBuilder();
 		messageBuilder.append("message " + messageName + " {\n");
 		messageBuilder.append("\toptional string errorMessage = 1;\n");
@@ -504,7 +509,11 @@ public class ProtocolBuffersGenerator {
 	}
 
 	private void createRequestMessage(StringBuilder builder, SMethod method, String messageName) {
+		if (generatedMessages.containsKey(messageName)) {
+			return;
+		}
 		StringBuilder messageBuilder = new StringBuilder();
+		generatedMessages.put(messageName, messageName);
 		messageBuilder.append("message " + messageName + " {\n");
 		int counter = 1;
 		for (SParameter sParameter : method.getParameters()) {

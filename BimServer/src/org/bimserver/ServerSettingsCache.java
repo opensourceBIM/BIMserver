@@ -11,21 +11,23 @@ import org.bimserver.models.store.StorePackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AccessRightsCache {
-	private static final Logger LOGGER = LoggerFactory.getLogger(AccessRightsCache.class);
+public class ServerSettingsCache {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ServerSettingsCache.class);
 	private BimDatabase database;
 	private final Set<String> allowedHosts = new HashSet<String>();
 	private boolean onlyWhitelistedDomains = false;
+	private ServerSettings serverSettings;
 
-	public AccessRightsCache(BimDatabase database) {
+	public ServerSettingsCache(BimDatabase database) {
 		this.database = database;
 		updateCache();
 	}
 
-	public void updateCache() {
+	public synchronized void updateCache() {
 		DatabaseSession session = database.createSession();
 		try {
-			ServerSettings serverSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), ServerSettings.class);
+			serverSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), ServerSettings.class);
+			allowedHosts.clear();
 			for (String domain : serverSettings.getWhitelistedDomains()) {
 				allowedHosts.add(domain);
 			}
@@ -35,7 +37,7 @@ public class AccessRightsCache {
 			session.close();
 		}
 	}
-	
+
 	public boolean isHostAllowed(String address) {
 		if (!onlyWhitelistedDomains) {
 			return true;
@@ -44,5 +46,9 @@ public class AccessRightsCache {
 			address = address.substring(7);
 		}
 		return allowedHosts.contains(address);
+	}
+
+	public ServerSettings getServerSettings() {
+		return serverSettings;
 	}
 }

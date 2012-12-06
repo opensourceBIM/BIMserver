@@ -34,7 +34,7 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.webservices.Authorization;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 

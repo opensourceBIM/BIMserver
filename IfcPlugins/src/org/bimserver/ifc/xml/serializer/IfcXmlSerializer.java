@@ -150,7 +150,7 @@ public class IfcXmlSerializer extends IfcSerializer {
 				// original string representations. These auxiliary attribute
 				// types should be skipped in the XML output. Though their value
 				// must be used instead of the original attribute types.
-				if (structuralFeature.getName().endsWith("AsString")) {
+				if (structuralFeature.getEAnnotation("hidden") != null) {
 					continue;
 				}
 				Object value = object.eGet(structuralFeature);

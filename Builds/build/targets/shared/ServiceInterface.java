@@ -79,9 +79,7 @@ import org.bimserver.interfaces.objects.SServiceMethod;
 import org.bimserver.interfaces.objects.SServiceParameter;
 import org.bimserver.interfaces.objects.SServicePluginDescriptor;
 import org.bimserver.interfaces.objects.SServiceType;
-import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.interfaces.objects.SUser;
-import org.bimserver.interfaces.objects.SUserSession;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.shared.exceptions.ServerException;
@@ -102,7 +100,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "login")
-	SToken login(
+	String login(
 		@WebParam(name = "username", partName = "login.username") String username,
 		@WebParam(name = "password", partName = "login.password") String password) throws ServerException, UserException;
 
@@ -114,7 +112,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "autologin")
-	SToken autologin(
+	String autologin(
 		@WebParam(name = "username", partName = "autologin.username") String username,
 		@WebParam(name = "hash", partName = "autologin.hash") String hash) throws ServerException, UserException;
 
@@ -553,13 +551,6 @@ public interface ServiceInterface extends PublicInterface {
 	void logout() throws ServerException, UserException;
 
 	/**
-	 * Close this ServiceInterface instance (it is important to close ServiceInterfaces for obvious reasons)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "close")
-	void close() throws ServerException, UserException;
-	
-	/**
 	 * Change a User's password, not the preferred way, use requestPasswordChange for a safer version
 	 * @param uoid The ObjectID of the User
 	 * @param oldPassword The old password
@@ -842,7 +833,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getCurrentToken")
-	SToken getCurrentToken() throws ServerException, UserException;
+	String getCurrentToken() throws ServerException, UserException;
 
 	/**
 	 * @return The method of access this ServiceInterface is using (SOAP, REST, PB etc...)
@@ -2154,13 +2145,6 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getLogs")
 	List<SLogAction> getLogs() throws ServerException, UserException;
-
-	/**
-	 * @return A list with the currently active User sessions
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getActiveUserSessions")
-	List<SUserSession> getActiveUserSessions() throws ServerException, UserException;
 
 	/**
 	 * @return A list with the currently running Long actions

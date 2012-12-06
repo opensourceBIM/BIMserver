@@ -67,7 +67,7 @@ public class SoapChannel extends Channel {
 
 		if (useSoapHeaderSessions) {
 			try {
-				SToken token = serviceInterface.getCurrentToken();
+				String token = serviceInterface.getCurrentToken();
 				List<Header> headers = new ArrayList<Header>();
 				try {
 					Header sessionHeader = new Header(new QName("uri:org.bimserver.interfaces.objects", "token"), token, new JAXBDataBinding(SToken.class));

@@ -33,7 +33,7 @@ import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.webservices.Authorization;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class BranchToNewProjectDatabaseAction extends BimDatabaseAction<ConcreteRevision> {
 	private final BimServer bimServer;

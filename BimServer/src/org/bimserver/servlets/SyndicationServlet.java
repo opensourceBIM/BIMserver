@@ -34,9 +34,7 @@ import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
-import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.comparators.SRevisionIdComparator;
-import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
@@ -61,7 +59,7 @@ public class SyndicationServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
-		if (request.getHeader("Origin") != null && !bimServer.getAccessRightsCache().isHostAllowed(request.getHeader("Origin"))) {
+		if (request.getHeader("Origin") != null && !bimServer.getServerSettingsCache().isHostAllowed(request.getHeader("Origin"))) {
 			response.setStatus(403);
 			return;
 		}
@@ -76,15 +74,16 @@ public class SyndicationServlet extends HttpServlet {
 			String[] split = decodeBase64.split(":");
 			String username = split[0];
 			String password = split[1];
-			ServiceInterface service = (ServiceInterface) getServletContext().getAttribute("service");
-			if (service == null) {
-				try {
-					service = bimServer.getServiceFactory().newServiceMap(AccessMethod.SYNDICATION, request.getRemoteAddr()).get(ServiceInterface.class);
-				} catch (ServerException e) {
-					LOGGER.error("", e);
-				} catch (UserException e) {
-					LOGGER.error("", e);
+			String token = (String) getServletContext().getAttribute("token");
+			ServiceInterface service = null;
+			try {
+				if (token == null) {
+					service = bimServer.getServiceFactory().getService(ServiceInterface.class);
+				} else {
+					service = bimServer.getServiceFactory().getService(ServiceInterface.class, token);
 				}
+			} catch (UserException e) {
+				LOGGER.error("", e);
 			}
 			try {
 				if (service.login(username, password) != null) {
@@ -182,7 +181,8 @@ public class SyndicationServlet extends HttpServlet {
 				entry.setPublishedDate(sVirtualRevision.getDate());
 				SyndContent description = new SyndContentImpl();
 				description.setType("text/html");
-				description.setValue("<table><tr><td>User</td><td>" + user.getUsername() + "</td></tr><tr><td>Comment</td><td>" + sVirtualRevision.getComment() + "</td></tr></table>");
+				description.setValue("<table><tr><td>User</td><td>" + user.getUsername() + "</td></tr><tr><td>Comment</td><td>" + sVirtualRevision.getComment()
+						+ "</td></tr></table>");
 				entry.setDescription(description);
 				entries.add(entry);
 			}
@@ -218,7 +218,8 @@ public class SyndicationServlet extends HttpServlet {
 				entry.setPublishedDate(sCheckout.getDate());
 				SyndContent description = new SyndContentImpl();
 				description.setType("text/plain");
-				description.setValue("<table><tr><td>User</td><td>" + user.getUsername() + "</td></tr><tr><td>Revision</td><td>" + sCheckout.getRevisionId() + "</td></tr></table>");
+				description
+						.setValue("<table><tr><td>User</td><td>" + user.getUsername() + "</td></tr><tr><td>Revision</td><td>" + sCheckout.getRevisionId() + "</td></tr></table>");
 				entry.setDescription(description);
 				entries.add(entry);
 			}

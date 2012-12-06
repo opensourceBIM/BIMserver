@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -148,7 +149,7 @@ public class Database implements BimDatabase {
 				databaseSession.store(settings);
 				
 				new CreateBaseProjectDatabaseAction(databaseSession, AccessMethod.INTERNAL).execute();
-				AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, "system", "system", "System", UserType.SYSTEM, new SystemAuthorization(), false);
+				AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, "system", "system", "System", UserType.SYSTEM, new SystemAuthorization(1, TimeUnit.HOURS), false);
 				addUserDatabaseAction.setCreateSystemUser();
 				User systemUser = addUserDatabaseAction.execute();
 				systemUser.setCreatedBy(systemUser);

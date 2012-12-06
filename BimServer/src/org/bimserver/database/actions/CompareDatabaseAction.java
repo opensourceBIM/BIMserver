@@ -31,7 +31,7 @@ import org.bimserver.plugins.VoidReporter;
 import org.bimserver.plugins.modelcompare.ModelCompareException;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.webservices.Authorization;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 

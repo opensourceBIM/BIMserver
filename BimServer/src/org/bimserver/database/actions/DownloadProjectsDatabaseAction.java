@@ -40,7 +40,7 @@ import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.webservices.Authorization;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 

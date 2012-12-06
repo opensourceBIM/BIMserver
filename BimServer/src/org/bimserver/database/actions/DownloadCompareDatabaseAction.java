@@ -68,7 +68,7 @@ import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.modelmerger.ModelMerger;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.webservices.Authorization;
+import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.common.util.EList;
 
 public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {

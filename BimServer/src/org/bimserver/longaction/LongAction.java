@@ -29,7 +29,7 @@ import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.plugins.Reporter;
-import org.bimserver.webservices.Authorization;
+import org.bimserver.webservices.authorization.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -136,7 +136,7 @@ public abstract class AbstractModelCompare implements ModelCompare {
 		if (sCompareType == CompareType.ALL || sCompareType == CompareType.MODIFY) {
 			for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
 				if (objectIDM.shouldFollowReference(originalQueryClass, eClass, eStructuralFeature)) {
-					if (eStructuralFeature.getName().endsWith("AsString")) {
+					if (eStructuralFeature.getEAnnotation("hidden") != null) {
 						continue;
 					}
 					Object value1 = eObject1.eGet(eStructuralFeature);

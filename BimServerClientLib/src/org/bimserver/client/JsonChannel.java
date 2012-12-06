@@ -1,7 +1,6 @@
 package org.bimserver.client;
 
 import org.bimserver.client.channels.Channel;
-import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.json.JsonSocketReflector;
@@ -26,7 +25,7 @@ public class JsonChannel extends Channel {
 	}
 	
 	@Override
-	public SToken getToken() {
+	public String getToken() {
 		return reflector.getToken();
 	}
 
@@ -36,8 +35,7 @@ public class JsonChannel extends Channel {
 		if (authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
 			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo)authenticationInfo;
 			try {
-				SToken sToken = getServiceInterface().login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword());
-				reflector.setToken(sToken);
+				reflector.setToken(getServiceInterface().login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword()));
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}

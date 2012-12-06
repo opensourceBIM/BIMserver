@@ -54,7 +54,7 @@ import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.shared.IncrementingOidProvider;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.webservices.Authorization;
+import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -131,7 +131,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				ifcModel = getModel();
 			}
 
-			if (getServerSettings().isGenerateGeometryOnCheckin()) {
+			if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin()) {
 				setProgress("Generating Geometry...", -1);
 				Geometry geometry = new GeometryGenerator().generateGeometry(bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), revision, true);
 				revision.setGeometry(geometry);

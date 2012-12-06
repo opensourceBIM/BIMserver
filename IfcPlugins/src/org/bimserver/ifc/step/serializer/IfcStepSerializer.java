@@ -296,8 +296,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		out.print(OPEN_PAREN);
 		boolean isFirst = true;
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
-			// TODO make the AsString feature a hidden feature and remove all checks for AsString everywhere
-			if (!feature.isDerived() && !feature.isVolatile() && !feature.getName().endsWith("AsString") && feature.getEAnnotation("hidden") == null) {
+			if (feature.getEAnnotation("hidden") == null) {
 				EClassifier type = feature.getEType();
 				if (type instanceof EEnum) {
 					if (!isFirst) {

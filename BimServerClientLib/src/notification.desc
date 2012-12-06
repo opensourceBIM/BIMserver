@@ -1,13 +1,41 @@
 
-ï
-notification.protoorg.bimserver.pbservice.proto"
-NewLogActionRequest/
-	logAction (2.org.bimserver.pb.SLogAction'
-token (2.org.bimserver.pb.SToken
-apiUrl (	"U
+Ö
+notification.protoorg.bimserver.pbservice.proto"E
+GetPrivateProfilesRequest
+serviceIdentifier (	
+token (	"g
+GetPrivateProfilesResponse
+errorMessage (	3
+value (2$.org.bimserver.pb.SProfileDescriptor"5
+GetPublicProfilesRequest
+serviceIdentifier (	"f
+GetPublicProfilesResponse
+errorMessage (	3
+value (2$.org.bimserver.pb.SProfileDescriptor"¨
+NewLogActionRequest
+uuid (	/
+	logAction (2.org.bimserver.pb.SLogAction
+serviceIdentifier (	
+profileIdentifer (	
+token (	
+apiUrl (	"‡
+SImmediateNotificationResult8
+result (2(.org.bimserver.pb.SNotifictionResultEnum
+rid (
+oid (
+description (	"k
+NewLogActionResponse
+errorMessage (	=
+value (2..org.bimserver.pb.SImmediateNotificationResult"U
 ProgressRequest
 topicId (1
-state (2".org.bimserver.pb.SLongActionState2½
-NotificationInterfaceU
-newLogAction%.org.bimserver.pb.NewLogActionRequest.org.bimserver.pb.VoidResponseM
-progress!.org.bimserver.pb.ProgressRequest.org.bimserver.pb.VoidResponseB BNotificationInterfaceImplHˆ
+state (2".org.bimserver.pb.SLongActionState2´
+NotificationInterfacef
+getCurrentToken(.org.bimserver.pb.GetCurrentTokenRequest).org.bimserver.pb.GetCurrentTokenResponseo
+getPrivateProfiles+.org.bimserver.pb.GetPrivateProfilesRequest,.org.bimserver.pb.GetPrivateProfilesResponsel
+getPublicProfiles*.org.bimserver.pb.GetPublicProfilesRequest+.org.bimserver.pb.GetPublicProfilesResponseW
+
+getService#.org.bimserver.pb.GetServiceRequest$.org.bimserver.pb.GetServiceResponse]
+newLogAction%.org.bimserver.pb.NewLogActionRequest&.org.bimserver.pb.NewLogActionResponseM
+progress!.org.bimserver.pb.ProgressRequest.org.bimserver.pb.VoidResponseM
+setToken!.org.bimserver.pb.SetTokenRequest.org.bimserver.pb.VoidResponseB BNotificationInterfaceImplHˆ
