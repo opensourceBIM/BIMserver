@@ -27,7 +27,7 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DataObject;
 import org.bimserver.models.store.Revision;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.webservices.Authorization;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class GetDataObjectByGuidDatabaseAction extends BimDatabaseAction<DataObject>{
 

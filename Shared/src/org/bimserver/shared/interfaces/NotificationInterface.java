@@ -27,7 +27,6 @@ import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SServiceDescriptor;
-import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -39,7 +38,7 @@ public interface NotificationInterface extends PublicInterface {
 		@WebParam(name = "logAction", partName = "newLogAction.logAction") SLogAction logAction,
 		@WebParam(name = "serviceIdentifier", partName = "newLogAction.serviceIdentifier") String serviceIdentifier,
 		@WebParam(name = "profileIdentifer", partName = "newLogAction.profileIdentifer") String profileIdentifer,
-		@WebParam(name = "token", partName = "newRevision.token") SToken token,
+		@WebParam(name = "token", partName = "newRevision.token") String token,
 		@WebParam(name = "apiUrl", partName = "newRevision.apiUrl") String apiUrl) throws UserException, ServerException;
 
 	@WebMethod(action = "progress")

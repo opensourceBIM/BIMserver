@@ -52,7 +52,6 @@ import org.bimserver.interfaces.objects.SDataValue;
 import org.bimserver.interfaces.objects.SListDataValue;
 import org.bimserver.interfaces.objects.SReferenceDataValue;
 import org.bimserver.interfaces.objects.SSimpleDataValue;
-import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
@@ -185,13 +184,6 @@ public class BimServerClient implements ConnectDisconnectListener {
 	}
 
 	public void disconnect() {
-		try {
-			if (getServiceInterface() != null) {
-				getServiceInterface().close();
-			}
-		} catch (ServiceException e) {
-			LOGGER.error("", e);
-		}
 		if (channel != null) {
 			channel.disconnect();
 		}
@@ -427,8 +419,8 @@ public class BimServerClient implements ConnectDisconnectListener {
 		return servicesMap;
 	}
 
-	public InputStream getDownloadData(long download, long serializerOid, SToken token) {
-		String address = baseAddress + "/download?tokenString=" + token.getTokenString() + "&tokenExpires=" + token.getExpires() + "&longActionId=" + download + "&serializerOid=" + serializerOid;
+	public InputStream getDownloadData(long download, long serializerOid, String token) {
+		String address = baseAddress + "/download?token=" + token + "&longActionId=" + download + "&serializerOid=" + serializerOid;
 		DefaultHttpClient httpclient = new DefaultHttpClient();
 		httpclient.addRequestInterceptor(new HttpRequestInterceptor() {
 

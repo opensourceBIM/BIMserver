@@ -14,36 +14,26 @@ import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SServiceDescriptor;
-import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class NotificationImpl implements NotificationInterface {
 
-	private SToken token;
 	private BimServer bimServer;
+	private Authorization authorization;
 
-	public NotificationImpl(BimServer bimServer, SToken token) {
+	public NotificationImpl(BimServer bimServer, Authorization authorization) {
 		this.bimServer = bimServer;
-		this.token = token;
+		this.authorization = authorization;
 	}
 
 	@Override
-	public void setToken(SToken token) throws ServerException, UserException {
-		this.token = token;
-	}
-
-	@Override
-	public SToken getCurrentToken() throws ServerException, UserException {
-		return token;
-	}
-
-	@Override
-	public SImmediateNotificationResult newLogAction(String uuid, SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) throws UserException, ServerException {
+	public SImmediateNotificationResult newLogAction(String uuid, SLogAction logAction, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) throws UserException, ServerException {
 		return bimServer.getNotificationsManager().notify(logAction, serviceIdentifier, profileIdentifier, token, apiUrl);
 	}
 
@@ -86,6 +76,15 @@ public class NotificationImpl implements NotificationInterface {
 
 	@Override
 	public SServiceDescriptor getService(String name) throws UserException, ServerException {
+		return null;
+	}
+
+	@Override
+	public void setToken(String token) throws ServerException, UserException {
+	}
+
+	@Override
+	public String getCurrentToken() throws ServerException, UserException {
 		return null;
 	}
 }

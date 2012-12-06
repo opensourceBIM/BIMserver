@@ -33,24 +33,11 @@ import org.slf4j.LoggerFactory;
 
 public class JobScheduler {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JobScheduler.class);
-	private static final int TOKEN_CLEAN_INTERVAL_MILLIS = 60 * 60 * 1000; // 1 hour
 	private static final int COMPARE_RESULT_CLEAN_INTERVAL_MILLIS = 30 * 60 * 1000; // 30 minutes
 	private static final int LONG_ACTION_MANAGER_CLEANUP_INTERVAL_MILLIS = 1 * 60 * 1000; // 1 minute
 	private SchedulerFactory sf;
 	private Scheduler sched;
 
-	public static class TokenCleaner implements Job {
-		@Override
-		public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-			try {
-				BimServer bimServer = (BimServer) (jobExecutionContext.getScheduler().getContext().get("bimserver"));
-				bimServer.getServiceFactory().cleanup();
-			} catch (SchedulerException e) {
-				LOGGER.error("", e);
-			}
-		}
-	}
-	
 	public static class CompareResultCacheCleaner implements Job {
 		@Override
 		public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
@@ -91,7 +78,6 @@ public class JobScheduler {
 
 	public void start() {
 		try {
-			addRecurringJob(TokenCleaner.class, TOKEN_CLEAN_INTERVAL_MILLIS);
 			addRecurringJob(CompareResultCacheCleaner.class, COMPARE_RESULT_CLEAN_INTERVAL_MILLIS);
 			addRecurringJob(LongActionManagerCleaner.class, LONG_ACTION_MANAGER_CLEANUP_INTERVAL_MILLIS);
 			sched.start();

@@ -23,6 +23,7 @@ import java.io.InputStream;
 import java.io.StringWriter;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.net.URL;
+import java.security.SecureRandom;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Enumeration;
@@ -30,6 +31,9 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -79,7 +83,6 @@ import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.ServerInfo;
-import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
@@ -107,7 +110,6 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.serializers.EmfSerializerFactory;
 import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
@@ -119,7 +121,7 @@ import org.bimserver.templating.TemplateEngine;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.version.VersionChecker;
 import org.bimserver.webservices.PublicInterfaceFactory;
-import org.bimserver.webservices.Service;
+import org.bimserver.webservices.SystemAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -127,13 +129,14 @@ import org.slf4j.LoggerFactory;
  * Main class to start a BIMserver
  */
 public class BimServer {
+	private static final String ENCRYPTIONKEY = "encryptionkey";
+
 	private Logger LOGGER;
 
 	private GregorianCalendar serverStartTime;
 	private BimDatabase bimDatabase;
 	private JobScheduler bimScheduler;
 	private LongActionManager longActionManager;
-	private ServiceInterface systemService;
 	private EmfSerializerFactory emfSerializerFactory;
 	private DeserializerFactory emfDeserializerFactory;
 	private MergerFactory mergerFactory;
@@ -153,11 +156,13 @@ public class BimServer {
 	private ProtocolBuffersServer protocolBuffersServer;
 	private JsonHandler jsonHandler = new JsonHandler(this);
 	private CommandLine commandLine;
-	private AccessRightsCache accessRightsCache;
+	private ServerSettingsCache serverSettingsCache;
 	private ReflectorFactory reflectorFactory;
 	private EndPointManager endPointManager = new EndPointManager();
 
 	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
+
+	private SecretKeySpec encryptionkey;
 
 	/**
 	 * Create a new BIMserver
@@ -198,7 +203,7 @@ public class BimServer {
 			} else {
 				LOGGER.info("Not using a homedir");
 			}
-			
+
 			jsonSocketReflectorFactory = new JsonSocketReflectorFactory(servicesMap);
 
 			serverInfoManager = new ServerInfoManager();
@@ -206,7 +211,7 @@ public class BimServer {
 			serviceFactory = new PublicInterfaceFactory(this);
 
 			pluginManager = new PluginManager(new File(config.getHomeDir(), "tmp"), config.getClassPath(), serviceFactory, notificationsManager, servicesMap);
-			
+
 			versionChecker = new VersionChecker(config.getResourceFetcher());
 
 			compareCache = new CompareCache();
@@ -221,11 +226,11 @@ public class BimServer {
 			serverInfoManager.setErrorMessage(e.getMessage());
 		}
 	}
-	
+
 	public JsonSocketReflectorFactory getJsonSocketReflectorFactory() {
 		return jsonSocketReflectorFactory;
 	}
-	
+
 	public String getContent(URL url) {
 		if (url != null) {
 			try {
@@ -246,7 +251,7 @@ public class BimServer {
 	public ReflectorFactory getReflectorFactory() {
 		return reflectorFactory;
 	}
-	
+
 	public void start() throws DatabaseInitException, BimserverDatabaseException, PluginException, DatabaseRestartRequiredException, ServerException {
 		try {
 			SVersion localVersion = versionChecker.getLocalVersion();
@@ -261,8 +266,8 @@ public class BimServer {
 					@Override
 					public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
 						// Reflect this change also in the database
-						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginConfiguration_Name(), new StringLiteral(pluginContext.getPlugin().getClass()
-								.getName()));
+						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginConfiguration_Name(), new StringLiteral(pluginContext.getPlugin()
+								.getClass().getName()));
 						DatabaseSession session = bimDatabase.createSession();
 						try {
 							Map<Long, PluginConfiguration> pluginsFound = session.query(pluginCondition, PluginConfiguration.class, false, null);
@@ -287,7 +292,7 @@ public class BimServer {
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
-			
+
 			pluginManager.initAllLoadedPlugins();
 			serverStartTime = new GregorianCalendar();
 
@@ -318,10 +323,25 @@ public class BimServer {
 				serverInfoManager.setErrorMessage("Inconsistent models");
 			}
 
-			accessRightsCache = new AccessRightsCache(bimDatabase);
-			
+			DatabaseSession encsession = bimDatabase.createSession();
+			try {
+				byte[] encryptionkeyBytes = null;
+				if (!bimDatabase.getRegistry().has(ENCRYPTIONKEY)) {
+					encryptionkeyBytes = new byte[16];
+					new SecureRandom().nextBytes(encryptionkeyBytes);
+					bimDatabase.getRegistry().save(ENCRYPTIONKEY, encryptionkeyBytes, encsession);
+					encsession.commit();
+				} else {
+					encryptionkeyBytes = bimDatabase.getRegistry().readByteArray(ENCRYPTIONKEY, encsession);
+				}
+				encryptionkey = new SecretKeySpec(encryptionkeyBytes, "AES");
+			} finally {
+				encsession.close();
+			}
+			serverSettingsCache = new ServerSettingsCache(bimDatabase);
+
 			notificationsManager.init();
-			
+
 			protocolBuffersMetaData = new ProtocolBuffersMetaData();
 			try {
 				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("service.desc"));
@@ -373,14 +393,6 @@ public class BimServer {
 			diskCacheManager = new DiskCacheManager(this, new File(config.getHomeDir(), "cache"));
 
 			mergerFactory = new MergerFactory(this);
-			setSystemService(serviceFactory.newServiceMap(AccessMethod.INTERNAL, "internal").get(ServiceInterface.class));
-			try {
-				if (!((Service) getSystemService()).loginAsSystem()) {
-					throw new RuntimeException("System user not found");
-				}
-			} catch (ServiceException e) {
-				LOGGER.error("", e);
-			}
 
 			ReflectorBuilder reflectorBuilder = new ReflectorBuilder(servicesMap);
 			reflectorFactory = reflectorBuilder.newReflectorFactory();
@@ -388,10 +400,10 @@ public class BimServer {
 				throw new RuntimeException("No reflector factory!");
 			}
 			servicesMap.setReflectorFactory(reflectorFactory);
-			
+
 			bimScheduler = new JobScheduler(this);
 			bimScheduler.start();
-			
+
 			DatabaseSession session = bimDatabase.createSession();
 			try {
 				ServiceFactoryRegistry serviceFactoryRegistry = new ServiceFactoryRegistry();
@@ -404,7 +416,7 @@ public class BimServer {
 
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral("system"));
 			User systemUser = session.querySingle(condition, User.class, false, null);
-			
+
 			ServerStarted serverStarted = LogFactory.eINSTANCE.createServerStarted();
 			serverStarted.setDate(new Date());
 			serverStarted.setAccessMethod(AccessMethod.INTERNAL);
@@ -428,14 +440,8 @@ public class BimServer {
 		}
 	}
 
-	public ServerSettings getServerSettings(DatabaseSession session) throws BimserverDatabaseException {
-		IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getServerSettings(), false, null);
-		List<ServerSettings> settingsList = allOfType.getAll(ServerSettings.class);
-		if (settingsList.size() == 1) {
-			ServerSettings settings = settingsList.get(0);
-			return settings;
-		}
-		return null;
+	public SecretKeySpec getEncryptionKey() {
+		return encryptionkey;
 	}
 
 	/*
@@ -460,7 +466,7 @@ public class BimServer {
 		}
 		return null;
 	}
-	
+
 	public void updateUserSettings(DatabaseSession session, User user) throws BimserverLockConflictException, BimserverDatabaseException {
 		UserSettings userSettings = user.getUserSettings();
 		if (userSettings == null) {
@@ -672,22 +678,22 @@ public class BimServer {
 	private Type cloneAndAdd(DatabaseSession session, Type input) throws BimserverDatabaseException {
 		if (input instanceof BooleanType) {
 			BooleanType booleanType = session.create(StorePackage.eINSTANCE.getBooleanType());
-			booleanType.setValue(((BooleanType)input).isValue());
+			booleanType.setValue(((BooleanType) input).isValue());
 			session.store(booleanType);
 			return booleanType;
 		} else if (input instanceof StringType) {
 			StringType stringType = session.create(StorePackage.eINSTANCE.getStringType());
-			stringType.setValue(((StringType)input).getValue());
+			stringType.setValue(((StringType) input).getValue());
 			session.store(stringType);
 			return stringType;
 		} else if (input instanceof DoubleType) {
 			DoubleType doubleType = session.create(StorePackage.eINSTANCE.getDoubleType());
-			doubleType.setValue(((DoubleType)input).getValue());
+			doubleType.setValue(((DoubleType) input).getValue());
 			session.store(doubleType);
 			return doubleType;
 		} else if (input instanceof LongType) {
 			LongType longType = session.create(StorePackage.eINSTANCE.getLongType());
-			longType.setValue(((LongType)input).getValue());
+			longType.setValue(((LongType) input).getValue());
 			session.store(longType);
 			return longType;
 		}
@@ -764,14 +770,6 @@ public class BimServer {
 
 	public GregorianCalendar getServerStartTime() {
 		return serverStartTime;
-	}
-
-	public void setSystemService(ServiceInterface systemService) {
-		this.systemService = systemService;
-	}
-
-	public ServiceInterface getSystemService() {
-		return systemService;
 	}
 
 	public MergerFactory getMergerFactory() {
@@ -876,10 +874,14 @@ public class BimServer {
 	}
 
 	public EndPointManager getEndPointManager() {
-		return endPointManager ;
+		return endPointManager;
 	}
-	
-	public AccessRightsCache getAccessRightsCache() {
-		return accessRightsCache;
+
+	public ServerSettingsCache getServerSettingsCache() {
+		return serverSettingsCache;
+	}
+
+	public ServiceInterface getSystemService() {
+		return getServiceFactory().getService(ServiceInterface.class, new SystemAuthorization(1, TimeUnit.HOURS));
 	}
 }

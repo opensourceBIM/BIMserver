@@ -32,7 +32,7 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.Hashers;
-import org.bimserver.webservices.Authorization;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 

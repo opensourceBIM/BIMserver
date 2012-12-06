@@ -17,6 +17,7 @@ package org.bimserver.servlets;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -42,7 +43,6 @@ import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.exceptions.ServerException;
@@ -62,7 +62,7 @@ public class DownloadServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
 		try {
-			if (request.getHeader("Origin") != null && !bimServer.getAccessRightsCache().isHostAllowed(request.getHeader("Origin"))) {
+			if (request.getHeader("Origin") != null && !bimServer.getServerSettingsCache().isHostAllowed(request.getHeader("Origin"))) {
 				response.setStatus(403);
 				return;
 			}
@@ -75,14 +75,10 @@ public class DownloadServlet extends HttpServlet {
 				response.setHeader("Content-Encoding", "gzip");
 				outputStream = new GZIPOutputStream(response.getOutputStream());
 			}
-			SToken token = (SToken) request.getSession().getAttribute("token");
+			String token = (String) request.getSession().getAttribute("token");
 
 			if (token == null) {
-				String tokenString = request.getParameter("tokenString");
-				long expires = Long.parseLong(request.getParameter("tokenExpires"));
-				token = new SToken();
-				token.setTokenString(tokenString);
-				token.setExpires(expires);
+				token = request.getParameter("token");
 			}
 			ServiceInterface service = bimServer.getServiceFactory().getService(ServiceInterface.class, token);
 
@@ -254,6 +250,7 @@ public class DownloadServlet extends HttpServlet {
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
 			response.getWriter().println(e.getUserMessage());
+		} catch (EOFException e) {
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}

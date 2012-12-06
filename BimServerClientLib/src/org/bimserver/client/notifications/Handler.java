@@ -21,9 +21,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ServiceFactory;
-import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
@@ -58,9 +56,10 @@ public class Handler extends Thread {
 	public void run() {
 		running = true;
 		try {
-			ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(serviceFactory.newServiceMap(AccessMethod.PROTOCOL_BUFFERS, socket.getRemoteSocketAddress().toString()).get(ServiceInterface.class), protocolBuffersMetaData, servicesMap);
+			DataInputStream dis = new DataInputStream(socket.getInputStream());
+			String token = dis.readUTF();
+			ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(serviceFactory.getService(ServiceInterface.class, token), protocolBuffersMetaData, servicesMap);
 			while (running) {
-				DataInputStream dis = new DataInputStream(socket.getInputStream());
 				String serviceName = dis.readUTF();
 				String methodName = dis.readUTF();
 				MethodDescriptorContainer methodDescriptorContainer = protocolBuffersMetaData.getMethod(serviceName, methodName);
@@ -72,8 +71,6 @@ public class Handler extends Thread {
 				response.writeDelimitedTo(socket.getOutputStream());
 			}
 		} catch (IOException e) {
-			LOGGER.error("", e);
-		} catch (ServerException e) {
 			LOGGER.error("", e);
 		} catch (UserException e) {
 			LOGGER.error("", e);

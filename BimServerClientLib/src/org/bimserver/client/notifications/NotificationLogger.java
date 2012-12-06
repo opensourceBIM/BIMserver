@@ -25,7 +25,6 @@ import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SServiceDescriptor;
-import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
@@ -39,7 +38,7 @@ public class NotificationLogger implements NotificationInterface {
 	}
 
 	@Override
-	public SImmediateNotificationResult newLogAction(String uuid, SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) {
+	public SImmediateNotificationResult newLogAction(String uuid, SLogAction logAction, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) {
 		out.println(logAction);
 		out.flush();
 		return null;
@@ -50,11 +49,11 @@ public class NotificationLogger implements NotificationInterface {
 	}
 
 	@Override
-	public void setToken(SToken token) {
+	public void setToken(String token) {
 	}
 
 	@Override
-	public SToken getCurrentToken() throws ServerException, UserException {
+	public String getCurrentToken() throws ServerException, UserException {
 		return null;
 	}
 

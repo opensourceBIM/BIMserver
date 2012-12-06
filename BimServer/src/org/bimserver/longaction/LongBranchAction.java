@@ -3,7 +3,7 @@ package org.bimserver.longaction;
 import org.bimserver.BimServer;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.webservices.Authorization;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class LongBranchAction extends LongAction<LongCheckinActionKey> {
 

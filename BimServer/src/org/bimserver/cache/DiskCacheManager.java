@@ -29,8 +29,6 @@ import java.util.Set;
 import javax.activation.DataSource;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.longaction.DownloadParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,15 +68,7 @@ public class DiskCacheManager {
 	}
 	
 	public boolean isEnabled() {
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			return bimServer.getServerSettings(session).getCacheOutputFiles();
-		} catch (BimserverDatabaseException e) {
-			LOGGER.error("", e);
-			return false;
-		} finally {
-			session.close();
-		}
+		return bimServer.getServerSettingsCache().getServerSettings().getCacheOutputFiles();
 	}
 
 	public DataSource get(DownloadParameters downloadParameters) {

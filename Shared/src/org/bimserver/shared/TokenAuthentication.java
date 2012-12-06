@@ -1,16 +1,14 @@
 package org.bimserver.shared;
 
-import org.bimserver.interfaces.objects.SToken;
-
 public class TokenAuthentication extends AuthenticationInfo {
 
-	private SToken token;
+	private String token;
 
-	public TokenAuthentication(SToken token) {
+	public TokenAuthentication(String token) {
 		this.token = token;
 	}
 
-	public SToken getToken() {
+	public String getToken() {
 		return token;
 	}
 }

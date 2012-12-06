@@ -100,11 +100,11 @@ function BimServerApi(baseUrl, notifier) {
 	};
 	
 	this.generateRevisionDownloadUrl = function(settings) {
-		return othis.baseUrl + "/download?tokenString=" + othis.token.tokenString + "&tokenExpires=" + othis.token.expires + "&longActionId=" + settings.laid + (settings.zip ? "&zip=on" : "") + "&serializerOid=" + settings.serializerOid;
+		return othis.baseUrl + "/download?token=" + othis.token + "&longActionId=" + settings.laid + (settings.zip ? "&zip=on" : "") + "&serializerOid=" + settings.serializerOid;
 	};
 
 	this.generateExtendedDataDownloadUrl = function(edid) {
-		return othis.baseUrl + "/download?tokenString=" + othis.token.tokenString + "&tokenExpires=" + othis.token.expires + "&action=extendeddata&edid=" + edid;
+		return othis.baseUrl + "/download?token=" + othis.token + "&action=extendeddata&edid=" + edid;
 	};
 	
 	this.openWebSocket = function(callback) {
@@ -285,15 +285,15 @@ function BimServerApi(baseUrl, notifier) {
 	};
 	
 	this.callWithFullIndication = function(interfaceName, methodName, data, callback) {
-		this.call(interfaceName, methodName, data, callback, true, true, true);
+		othis.call(interfaceName, methodName, data, callback, true, true, true);
 	};
 
 	this.callWithUserErrorIndication = function(action, data, callback) {
-		this.call(interfaceName, methodName, data, callback, false, false, true);
+		othis.call(interfaceName, methodName, data, callback, false, false, true);
 	};
 
 	this.callWithUserErrorAndDoneIndication = function(action, data, callback) {
-		this.call(interfaceName, methodName, data, callback, false, true, true);
+		othis.call(interfaceName, methodName, data, callback, false, true, true);
 	};
 	
 	this.call = function(interfaceName, methodName, data, callback, showBusy, showDone, showError) {

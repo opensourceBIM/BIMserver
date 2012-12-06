@@ -32,7 +32,7 @@ import org.bimserver.models.log.UserChanged;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.webservices.Authorization;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class ChangeUserTypeDatabaseAction extends BimDatabaseAction<Void> {
 

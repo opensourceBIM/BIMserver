@@ -30,7 +30,6 @@ import org.bimserver.BimServer;
 import org.bimserver.client.JsonChannel;
 import org.bimserver.client.JsonSocketReflectorFactory;
 import org.bimserver.client.channels.Channel;
-import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.SConverter;
@@ -40,7 +39,6 @@ import org.bimserver.interfaces.objects.SNewProjectAdded;
 import org.bimserver.interfaces.objects.SNewRevisionAdded;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SService;
-import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.ServerSettings;
@@ -55,6 +53,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -121,7 +120,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 							SNewRevisionAdded newRevisionNotification = (SNewRevisionAdded) notification;
 							Project project = session.get(StorePackage.eINSTANCE.getProject(), newRevisionNotification.getProjectId(), false, null);
 							for (Service service : project.getServices()) {
-								trigger(bimServer.getServerSettings(session).getSiteAddress(), newRevisionNotification, service);
+								trigger(bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), newRevisionNotification, service);
 							}
 						}
 					} finally {
@@ -141,17 +140,10 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	}
 
 	public void init() {
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings serverSettings = session.getAllOfType(StorePackage.eINSTANCE.getServerSettings(), false, null).getAll(ServerSettings.class).get(0);
-			this.url = serverSettings.getSiteAddress() + "/json";
-			for (String s : internalServices.keySet()) {
-				internalServices.get(s).setUrl(url);
-			}
-		} catch (BimserverDatabaseException e) {
-			LOGGER.error("", e);
-		} finally {
-			session.close();
+		ServerSettings serverSettings = bimServer.getServerSettingsCache().getServerSettings();
+		this.url = serverSettings.getSiteAddress() + "/json";
+		for (String s : internalServices.keySet()) {
+			internalServices.get(s).setUrl(url);
 		}
 	}
 
@@ -164,14 +156,15 @@ public class NotificationsManager extends Thread implements NotificationsManager
 				runningServices.put(uuid, new RunningExternalService());
 				if (service.isReadRevision() || service.getReadExtendedData() != null || service.getWriteExtendedData() != null || service.getWriteRevision() != null) {
 					// This service will be needing a token
-					ServiceInterface newService = bimServer.getServiceFactory().newServiceMap(service.getNotificationProtocol(), "").get(ServiceInterface.class);
 					long writeProjectPoid = service.getWriteRevision() == null ? -1 : service.getWriteRevision().getOid();
 					long writeExtendedDataRoid = service.getWriteExtendedData() != null ? newRevisionNotification.getRevisionId() : -1;
 					long readRevisionRoid = service.isReadRevision() ? newRevisionNotification.getRevisionId() : -1;
 					long readExtendedDataRoid = service.getReadExtendedData() != null ? newRevisionNotification.getRevisionId() : -1;
-					TokenAuthorization authorization = new TokenAuthorization(service.getUser().getOid(), readRevisionRoid, writeProjectPoid, readExtendedDataRoid, writeExtendedDataRoid);
+					ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(readRevisionRoid, writeProjectPoid, readExtendedDataRoid, writeExtendedDataRoid);
+					authorization.setUoid(service.getUser().getOid());
+					ServiceInterface newService = bimServer.getServiceFactory().getService(ServiceInterface.class, authorization);
 					((org.bimserver.webservices.Service)newService).setAuthorization(authorization);
-					notificationInterface.newLogAction(uuid, newRevisionNotification, service.getServiceIdentifier(), service.getProfileIdentifier(), newService.getCurrentToken(), siteAddress);
+					notificationInterface.newLogAction(uuid, newRevisionNotification, service.getServiceIdentifier(), service.getProfileIdentifier(), authorization.asHexToken(bimServer.getEncryptionKey()), siteAddress);
 				} else {
 					notificationInterface.newLogAction(uuid, newRevisionNotification, service.getServiceIdentifier(), service.getProfileIdentifier(), null, null);
 				}
@@ -233,7 +226,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		}
 	}
 
-	public SImmediateNotificationResult notify(SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) {
+	public SImmediateNotificationResult notify(SLogAction logAction, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) {
 		try {
 			NotificationInterface notificationInterface = x.get(serviceIdentifier);
 			return notificationInterface.newLogAction(UUID.randomUUID().toString(), logAction, serviceIdentifier, profileIdentifier, token, apiUrl);
@@ -249,7 +242,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	public void registerNewRevisionHandler(ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
 		register(serviceDescriptor, new NotificationInterfaceAdapter(){
 			@Override
-			public SImmediateNotificationResult newLogAction(String uuid, SLogAction logAction, String serviceIdentifier, String profileIdentifier, SToken token, String apiUrl) throws UserException, ServerException {
+			public SImmediateNotificationResult newLogAction(String uuid, SLogAction logAction, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) throws UserException, ServerException {
 				if (logAction instanceof SNewRevisionAdded) {
 					SNewRevisionAdded newRevisionAdded = (SNewRevisionAdded)logAction;
 					InternalChannel internalChannel = new InternalChannel(x.get(serviceIdentifier));

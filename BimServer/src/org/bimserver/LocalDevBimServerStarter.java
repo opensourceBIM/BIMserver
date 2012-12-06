@@ -18,6 +18,7 @@ package org.bimserver;
  *****************************************************************************/
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseRestartRequiredException;
@@ -26,6 +27,8 @@ import org.bimserver.models.store.ServerState;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.webservices.SystemAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,7 +54,7 @@ public class LocalDevBimServerStarter {
 	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
 			bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
-				bimServer.getSystemService().setup("http://localhost:8080", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
+				bimServer.getServiceFactory().getService(ServiceInterface.class, new SystemAuthorization(1, TimeUnit.HOURS)).setup("http://localhost:8080", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
 			}
 		} catch (PluginException e) {
 			LOGGER.error("", e);

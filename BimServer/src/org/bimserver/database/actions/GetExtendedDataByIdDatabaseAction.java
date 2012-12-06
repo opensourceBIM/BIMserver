@@ -24,7 +24,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.webservices.Authorization;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class GetExtendedDataByIdDatabaseAction extends GetByIdDatabaseAction<ExtendedData> {
 

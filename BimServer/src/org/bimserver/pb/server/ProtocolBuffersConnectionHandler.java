@@ -24,11 +24,9 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.SocketException;
 
-import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.InterfaceMap;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.PublicInterface;
-import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.ServicesMap;
@@ -44,7 +42,6 @@ import com.google.protobuf.Message;
 
 public class ProtocolBuffersConnectionHandler extends Thread {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersConnectionHandler.class);
-	private final Socket socket;
 	private OutputStream outputStream;
 	private DataInputStream dataInputStream;
 	private final ProtocolBuffersServer protocolBuffersServer;
@@ -52,7 +49,6 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 	private ServicesMap servicesMap;
 
 	public ProtocolBuffersConnectionHandler(Socket socket, ProtocolBuffersServer protocolBuffersServer, ServicesMap servicesMap) {
-		this.socket = socket;
 		this.protocolBuffersServer = protocolBuffersServer;
 		this.servicesMap = servicesMap;
 		setName("ProtocolBuffersConnectionHandler");
@@ -71,9 +67,6 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 				String serviceName = dataInputStream.readUTF();
 				String methodName = dataInputStream.readUTF();
 				ProtocolBuffersMetaData protocolBuffersMetaData = protocolBuffersServer.getProtocolBuffersMetaData();
-				if (!services.contains(serviceName)) {
-					services.add(ServiceInterface.class, protocolBuffersServer.getServiceFactoryRegistry().createServiceFactory(serviceName).newServiceMap(AccessMethod.PROTOCOL_BUFFERS, socket.getRemoteSocketAddress().toString()).get(ServiceInterface.class));
-				}
 				
 				SService sService = servicesMap.getBySimpleName(serviceName);
 				if (sService == null) {

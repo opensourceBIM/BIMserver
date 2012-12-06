@@ -1,6 +1,5 @@
 package org.bimserver.plugins.services;
 
-import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginException;
@@ -13,7 +12,7 @@ public abstract class ServicePlugin implements Plugin {
 	public abstract String getTitle();
 	private PluginManager pluginManager;
 	
-	public ServiceInterface getServiceInterface(SToken token) throws UserException {
+	public ServiceInterface getServiceInterface(String token) throws UserException {
 		return pluginManager.getServiceFactory().getService(ServiceInterface.class, token);
 	}
 

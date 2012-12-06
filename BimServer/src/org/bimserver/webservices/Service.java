@@ -124,10 +124,8 @@ import org.bimserver.interfaces.objects.SServiceMethod;
 import org.bimserver.interfaces.objects.SServiceParameter;
 import org.bimserver.interfaces.objects.SServicePluginDescriptor;
 import org.bimserver.interfaces.objects.SServiceType;
-import org.bimserver.interfaces.objects.SToken;
 import org.bimserver.interfaces.objects.STrigger;
 import org.bimserver.interfaces.objects.SUser;
-import org.bimserver.interfaces.objects.SUserSession;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.longaction.CannotBeScheduledException;
@@ -166,7 +164,6 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.UserType;
 import org.bimserver.notifications.RunningExternalService;
-import org.bimserver.notifications.TokenAuthorization;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginException;
@@ -187,6 +184,9 @@ import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.utils.MultiplexingInputStream;
 import org.bimserver.utils.NetUtils;
+import org.bimserver.webservices.authorization.AdminAuthorization;
+import org.bimserver.webservices.authorization.Authorization;
+import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.codehaus.jettison.json.JSONTokener;
@@ -197,7 +197,6 @@ import org.slf4j.LoggerFactory;
 
 public class Service implements ServiceInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Service.class);
-	private final PublicInterfaceFactory serviceFactory;
 	private final SConverter converter = new SConverter();
 
 	private final BimServer bimServer;
@@ -209,15 +208,14 @@ public class Service implements ServiceInterface {
 
 	private Date activeSince;
 	private Date lastActive;
-	private SToken token;
+	private String token;
 	private long transactionPoid;
 
-	public Service(BimServer bimServer, AccessMethod accessMethod, String remoteAddress, PublicInterfaceFactory serviceFactory, SToken token) {
+	public Service(BimServer bimServer, AccessMethod accessMethod, String remoteAddress, Authorization authorization) {
 		this.accessMethod = accessMethod;
 		this.remoteAddress = remoteAddress;
-		this.serviceFactory = serviceFactory;
 		this.bimServer = bimServer;
-		this.token = token;
+		this.authorization = authorization;
 		activeSince = new Date();
 		lastActive = new Date();
 	}
@@ -342,23 +340,13 @@ public class Service implements ServiceInterface {
 		return user.getUserSettings();
 	}
 
-	private ServerSettings getServerSettings(DatabaseSession session) throws BimserverDatabaseException {
-		IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getServerSettings(), false, null);
-		List<ServerSettings> settingsList = allOfType.getAll(ServerSettings.class);
-		if (settingsList.size() == 1) {
-			ServerSettings settings = settingsList.get(0);
-			return settings;
-		}
-		return null;
-	}
-
 	@Override
 	public SUser addUser(String username, String name, SUserType type, Boolean selfRegistration) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			if (!selfRegistration) {
 				requireRealUserAuthentication();
-			} else if (!getServerSettings(session).getAllowSelfRegistration()) {
+			} else if (!bimServer.getServerSettingsCache().getServerSettings().getAllowSelfRegistration()) {
 				requireSelfregistrationAllowed();
 			}
 			BimDatabaseAction<User> action = new AddUserDatabaseAction(bimServer, session, accessMethod, username, name, converter.convertFromSObject(type), authorization,
@@ -464,7 +452,7 @@ public class Service implements ServiceInterface {
 		if (authorization == null) {
 			throw new UserException("Authentication required for this call");
 		}
-		if (authorization instanceof TokenAuthorization) {
+		if (authorization instanceof ExplicitRightsAuthorization) {
 			throw new UserException("Real authentication required (this session has token authentication)");
 		}
 	}
@@ -474,12 +462,7 @@ public class Service implements ServiceInterface {
 		if (authorization == null) {
 			throw new UserException("Authentication required for this call");
 		}
-		if (authorization instanceof UserAuthorization) {
-			UserType userType = ((UserAuthorization) authorization).getUserType();
-			if (userType != UserType.ADMIN && userType != UserType.SYSTEM) {
-				throw new UserException("Administrator rights required for this call");
-			}
-		} else {
+		if (!(authorization instanceof AdminAuthorization)) {
 			throw new UserException("Administrator rights required for this call");
 		}
 	}
@@ -567,16 +550,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SToken login(String username, String password) throws ServerException, UserException {
+	public String login(String username, String password) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			LoginDatabaseAction loginDatabaseAction = new LoginDatabaseAction(session, this, accessMethod, username, password);
-			Boolean result = session.executeAndCommitAction(loginDatabaseAction);
-			if (result) {
-				return getCurrentToken();
-			} else {
-				return null;
-			}
+			LoginDatabaseAction loginDatabaseAction = new LoginDatabaseAction(bimServer, session, this, accessMethod, username, password);
+			return session.executeAndCommitAction(loginDatabaseAction);
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -841,28 +819,6 @@ public class Service implements ServiceInterface {
 				throw new UserException("User with username \"" + username + "\" not found");
 			}
 			return convert;
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	/*
-	 * Do not add this method to the ServiceInterface, it will allow everyone to
-	 * login as system
-	 */
-	public Boolean loginAsSystem() throws ServerException, UserException {
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(session, accessMethod, "system");
-			User user = session.executeAndCommitAction(action);
-			if (user != null) {
-				authorization = new UserAuthorization(user);
-				return true;
-			} else {
-				return false;
-			}
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -1250,16 +1206,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SToken autologin(String username, String hash) throws ServerException, UserException {
+	public String autologin(String username, String hash) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			AutologinDatabaseAction action = new AutologinDatabaseAction(session, this, accessMethod, username, hash);
-			Boolean result = session.executeAndCommitAction(action);
-			if (result) {
-				return getCurrentToken();
-			} else {
-				return null;
-			}
+			AutologinDatabaseAction action = new AutologinDatabaseAction(bimServer, session, this, accessMethod, username, hash);
+			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -1340,11 +1291,6 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void close() {
-		serviceFactory.remove(token);
-	}
-
-	@Override
 	public Boolean isLoggedIn() {
 		return authorization != null;
 	}
@@ -1352,29 +1298,13 @@ public class Service implements ServiceInterface {
 	@Override
 	public String getSettingEmailSenderAddress() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			return settings.getEmailSenderAddress();
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
+		return bimServer.getServerSettingsCache().getServerSettings().getEmailSenderAddress();
 	}
 
 	@Override
 	public String getServiceRepositoryUrl() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			return settings.getServiceRepositoryUrl();
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
+		return bimServer.getServerSettingsCache().getServerSettings().getServiceRepositoryUrl();
 	}
 
 	@Override
@@ -1382,7 +1312,7 @@ public class Service implements ServiceInterface {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(session, accessMethod, new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(bimServer, session, accessMethod, new ServerSettingsSetter(){
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setServiceRepositoryUrl(url);
@@ -1400,7 +1330,7 @@ public class Service implements ServiceInterface {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(session, accessMethod, new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(bimServer, session, accessMethod, new ServerSettingsSetter(){
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setProtocolBuffersPort(port);
@@ -1416,15 +1346,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public Integer getSettingProtocolBuffersPort() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			return settings.getProtocolBuffersPort();
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
+		return bimServer.getServerSettingsCache().getServerSettings().getProtocolBuffersPort();
 	}
 
 	@Override
@@ -1437,7 +1359,7 @@ public class Service implements ServiceInterface {
 		}
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(session, accessMethod, new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(bimServer, session, accessMethod, new ServerSettingsSetter(){
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setEmailSenderAddress(emailSenderAddress);
@@ -1453,15 +1375,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public String getSettingSiteAddress() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			return settings.getSiteAddress();
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
+		return bimServer.getServerSettingsCache().getServerSettings().getSiteAddress();
 	}
 
 	@Override
@@ -1476,7 +1390,7 @@ public class Service implements ServiceInterface {
 		}
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(session, accessMethod, new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(bimServer, session, accessMethod, new ServerSettingsSetter(){
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setSiteAddress(siteAddress);
@@ -1492,15 +1406,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public String getSettingSmtpServer() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			return settings.getSmtpServer();
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
+		return bimServer.getServerSettingsCache().getServerSettings().getSmtpServer();
 	}
 
 	@Override
@@ -1513,7 +1419,7 @@ public class Service implements ServiceInterface {
 		}
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(session, accessMethod, new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(bimServer, session, accessMethod, new ServerSettingsSetter(){
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setSmtpServer(smtpServer);
@@ -1528,29 +1434,13 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public Boolean isSettingAllowSelfRegistration() throws ServerException, UserException {
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			return settings.getAllowSelfRegistration();
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
+		return bimServer.getServerSettingsCache().getServerSettings().getAllowSelfRegistration();
 	}
 
 	@Override
 	public Boolean isSettingHideUserListForNonAdmin() throws ServerException, UserException {
 		requireAuthentication();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			return settings.getHideUserListForNonAdmin();
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
+		return bimServer.getServerSettingsCache().getServerSettings().getHideUserListForNonAdmin();
 	}
 
 	@Override
@@ -1558,7 +1448,7 @@ public class Service implements ServiceInterface {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(session, accessMethod, new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(bimServer, session, accessMethod, new ServerSettingsSetter(){
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setHideUserListForNonAdmin(hideUserListForNonAdmin);
@@ -1576,7 +1466,7 @@ public class Service implements ServiceInterface {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(session, accessMethod, new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(bimServer, session, accessMethod, new ServerSettingsSetter(){
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setAllowSelfRegistration(allowSelfRegistration);
@@ -1592,15 +1482,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public Boolean isSettingAllowUsersToCreateTopLevelProjects() throws ServerException, UserException {
 		requireAuthentication();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			return settings.isAllowUsersToCreateTopLevelProjects();
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
+		return bimServer.getServerSettingsCache().getServerSettings().isAllowUsersToCreateTopLevelProjects();
 	}
 
 	@Override
@@ -1608,7 +1490,7 @@ public class Service implements ServiceInterface {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(session, accessMethod, new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(bimServer, session, accessMethod, new ServerSettingsSetter(){
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setAllowUsersToCreateTopLevelProjects(allowUsersToCreateTopLevelProjects);
@@ -1624,15 +1506,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public Boolean isSettingCheckinMergingEnabled() throws ServerException, UserException {
 		requireAuthentication();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			return settings.getCheckinMergingEnabled();
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
+		return bimServer.getServerSettingsCache().getServerSettings().getCheckinMergingEnabled();
 	}
 
 	@Override
@@ -1640,7 +1514,7 @@ public class Service implements ServiceInterface {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(session, accessMethod, new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(bimServer, session, accessMethod, new ServerSettingsSetter(){
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setCheckinMergingEnabled(checkinMergingEnabled);
@@ -1656,15 +1530,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public Boolean isSettingSendConfirmationEmailAfterRegistration() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			return settings.isSendConfirmationEmailAfterRegistration();
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
+		return bimServer.getServerSettingsCache().getServerSettings().isSendConfirmationEmailAfterRegistration();
 	}
 
 	@Override
@@ -1672,7 +1538,7 @@ public class Service implements ServiceInterface {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(session, accessMethod, new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(bimServer, session, accessMethod, new ServerSettingsSetter(){
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setSendConfirmationEmailAfterRegistration(sendConfirmationEmailAfterRegistration);
@@ -1688,29 +1554,13 @@ public class Service implements ServiceInterface {
 	@Override
 	public Boolean isSettingCacheOutputFiles() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			return settings.getCacheOutputFiles();
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
+		return bimServer.getServerSettingsCache().getServerSettings().getCacheOutputFiles();
 	}
 
 	@Override
 	public Boolean isSettingGenerateGeometryOnCheckin() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			ServerSettings settings = getServerSettings(session);
-			return settings.isGenerateGeometryOnCheckin();
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
+		return bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin();
 	}
 	
 	@Override
@@ -1718,7 +1568,7 @@ public class Service implements ServiceInterface {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(session, accessMethod, new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(bimServer, session, accessMethod, new ServerSettingsSetter(){
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setCacheOutputFiles(cacheOutputFiles);
@@ -1736,7 +1586,7 @@ public class Service implements ServiceInterface {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(session, accessMethod, new ServerSettingsSetter(){
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(bimServer, session, accessMethod, new ServerSettingsSetter(){
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.setGenerateGeometryOnCheckin(generateGeometryOnCheckin);
@@ -1750,12 +1600,6 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SUserSession> getActiveUserSessions() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
-		return serviceFactory.getActiveUserSessions();
-	}
-
-	@Override
 	public Date getActiveSince() {
 		return activeSince;
 	}
@@ -1766,11 +1610,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SToken getCurrentToken() {
+	public String getCurrentToken() {
 		return token;
 	}
 
-	public void setToken(SToken token) {
+	public void setToken(String token) {
 		this.token = token;
 	}
 
@@ -1790,7 +1634,7 @@ public class Service implements ServiceInterface {
 			String senderName = currentUser.getName();
 			String senderAddress = currentUser.getUsername();
 			if (!senderAddress.contains("@") || !senderAddress.contains(".")) {
-				senderAddress = getServerSettings(session).getEmailSenderAddress();
+				senderAddress = bimServer.getServerSettingsCache().getServerSettings().getEmailSenderAddress();
 			}
 
 			Session mailSession = bimServer.getMailSystem().createMailSession();
@@ -2976,10 +2820,6 @@ public class Service implements ServiceInterface {
 		return null;
 	}
 
-	public void setCurrentUser(User user) {
-		authorization = new UserAuthorization(user);
-	}
-
 	@Override
 	public void addExtendedDataSchema(SExtendedDataSchema extendedDataSchema) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
@@ -3337,7 +3177,8 @@ public class Service implements ServiceInterface {
 		requireRealUserAuthentication();
 		try {
 			List<SServiceDescriptor> sServiceDescriptors = new ArrayList<SServiceDescriptor>();
-			String content = NetUtils.getContent(new URL(getServiceRepositoryUrl() + "/services"), 5000);
+			URL url = new URL(getServiceRepositoryUrl() + "/services");
+			String content = NetUtils.getContent(url, 5000);
 			JSONObject root = new JSONObject(new JSONTokener(content));
 			JSONArray services = root.getJSONArray("services");
 			for (int i = 0; i < services.length(); i++) {
@@ -3536,7 +3377,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public void setAuthorization(TokenAuthorization authorization) {
+	public void setAuthorization(Authorization authorization) {
 		this.authorization = authorization;
 	}
 
@@ -3804,7 +3645,7 @@ public class Service implements ServiceInterface {
 			SNewRevisionAdded newRevisionNotification = new SNewRevisionAdded();
 			newRevisionNotification.setRevisionId(revision.getOid());
 			newRevisionNotification.setProjectId(revision.getProject().getOid());
-			bimServer.getNotificationsManager().trigger(bimServer.getServerSettings(session).getSiteAddress(), newRevisionNotification, service);
+			bimServer.getNotificationsManager().trigger(bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), newRevisionNotification, service);
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -3838,7 +3679,7 @@ public class Service implements ServiceInterface {
 	public void setWhiteListedDomains(final List<String> domains) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(session, accessMethod, new ServerSettingsSetter() {
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(bimServer, session, accessMethod, new ServerSettingsSetter() {
 				@Override
 				public void set(ServerSettings serverSettings) {
 					serverSettings.getWhitelistedDomains().clear();
@@ -3846,12 +3687,12 @@ public class Service implements ServiceInterface {
 				}
 			});
 			session.executeAndCommitAction(action);
+			bimServer.getServerSettingsCache().updateCache();
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
 			session.close();
 		}
-		bimServer.getAccessRightsCache().updateCache();
 	}
 	
 	@Override
@@ -3860,12 +3701,12 @@ public class Service implements ServiceInterface {
 		try {
 			SetServerSettingsDatabaseAction action = new SetServerSettingsDatabaseAction(session, accessMethod, serverSettings);
 			session.executeAndCommitAction(action);
+			bimServer.getServerSettingsCache().updateCache();
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
 			session.close();
 		}
-		bimServer.getAccessRightsCache().updateCache();
 	}
 	
 	@Override

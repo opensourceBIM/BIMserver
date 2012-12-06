@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
 import org.bimserver.shared.meta.SMethod;
@@ -37,7 +35,7 @@ public class JsonApiServlet extends HttpServlet {
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
-		if (request.getHeader("Origin") != null && !bimServer.getAccessRightsCache().isHostAllowed(request.getHeader("Origin"))) {
+		if (request.getHeader("Origin") != null && !bimServer.getServerSettingsCache().isHostAllowed(request.getHeader("Origin"))) {
 			response.setStatus(403);
 			return;
 		}
@@ -85,14 +83,7 @@ public class JsonApiServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter writer = response.getWriter();
 		String siteAddress = "";
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			siteAddress = bimServer.getServerSettings(session).getSiteAddress();
-		} catch (BimserverDatabaseException e) {
-			LOGGER.error("", e);
-		} finally {
-			session.close();
-		}
+		siteAddress = bimServer.getServerSettingsCache().getServerSettings().getSiteAddress();
 		writeHeader(writer);
 		writer.println("<h1>BIMserver JSON API Documentation</h1>");
 		ServicesMap serviceInterfaces = bimServer.getServicesMap();

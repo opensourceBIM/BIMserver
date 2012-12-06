@@ -49,6 +49,7 @@ import org.bimserver.plugins.schema.SimpleType;
 import org.bimserver.plugins.schema.StringType;
 import org.bimserver.plugins.schema.UnderlyingType;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -224,6 +225,9 @@ public class Express2EMF {
 								if (type == EcorePackage.eINSTANCE.getEDouble()) {
 									EAttribute doubleStringAttribute = eFactory.createEAttribute();
 									doubleStringAttribute.setName(attributeName.getName() + "AsString");
+									EAnnotation hiddenAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+									hiddenAnnotation.setSource("hidden");
+									doubleStringAttribute.getEAnnotations().add(hiddenAnnotation);
 									doubleStringAttribute.setUnsettable(true); // TODO
 																				// find
 																				// out
@@ -407,6 +411,9 @@ public class Express2EMF {
 					if (type == EcorePackage.eINSTANCE.getEDouble()) {
 						EAttribute doubleStringAttribute = eFactory.createEAttribute();
 						doubleStringAttribute.setName(attrib.getName() + "AsString");
+						EAnnotation hiddenAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+						hiddenAnnotation.setSource("hidden");
+						doubleStringAttribute.getEAnnotations().add(hiddenAnnotation);
 						doubleStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
 						doubleStringAttribute.setUnsettable(expAttrib.isOptional());
 						cls.getEStructuralFeatures().add(doubleStringAttribute);
@@ -444,6 +451,9 @@ public class Express2EMF {
 					if (type == EcorePackage.eINSTANCE.getEDouble()) {
 						EAttribute doubleStringAttribute = eFactory.createEAttribute();
 						doubleStringAttribute.setName(attrib.getName() + "AsString");
+						EAnnotation hiddenAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+						hiddenAnnotation.setSource("hidden");
+						doubleStringAttribute.getEAnnotations().add(hiddenAnnotation);
 						doubleStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
 						doubleStringAttribute.setUpperBound(-1);
 						doubleStringAttribute.setUnsettable(expAttrib.isOptional());
@@ -460,6 +470,9 @@ public class Express2EMF {
 					cls.getEStructuralFeatures().add(eAttribute);
 
 					EAttribute doubleStringAttribute = eFactory.createEAttribute();
+					EAnnotation hiddenAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+					hiddenAnnotation.setSource("hidden");
+					doubleStringAttribute.getEAnnotations().add(hiddenAnnotation);
 					doubleStringAttribute.setName(attrib.getName() + "AsString");
 					doubleStringAttribute.setUpperBound(-1);
 					doubleStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
@@ -495,6 +508,9 @@ public class Express2EMF {
 				cls.getEStructuralFeatures().add(eAttribute);
 
 				EAttribute doubleStringAttribute = eFactory.createEAttribute();
+				EAnnotation hiddenAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+				hiddenAnnotation.setSource("hidden");
+				doubleStringAttribute.getEAnnotations().add(hiddenAnnotation);
 				doubleStringAttribute.setName(attrib.getName() + "AsString");
 				doubleStringAttribute.setUpperBound(-1);
 				doubleStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
@@ -553,6 +569,9 @@ public class Express2EMF {
 				eAttribute.setEType(EcorePackage.eINSTANCE.getEDouble());
 				cls.getEStructuralFeatures().add(eAttribute);
 				EAttribute eAttributeAsString = eFactory.createEAttribute();
+				EAnnotation hiddenAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+				hiddenAnnotation.setSource("hidden");
+				eAttributeAsString.getEAnnotations().add(hiddenAnnotation);
 				eAttributeAsString.setUnsettable(expAttrib.isOptional());
 				eAttributeAsString.setName(attrib.getName() + "AsString");
 				eAttributeAsString.setEType(EcorePackage.eINSTANCE.getEString());
@@ -677,6 +696,9 @@ public class Express2EMF {
 			EAttribute doubleStringAttribute = eFactory.createEAttribute();
 			doubleStringAttribute.setEType(ePackage.getEString());
 			doubleStringAttribute.setName("wrappedValueAsString");
+			EAnnotation hiddenAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+			hiddenAnnotation.setSource("hidden");
+			doubleStringAttribute.getEAnnotations().add(hiddenAnnotation);
 			doubleStringAttribute.setUnsettable(true);
 			testType.getEStructuralFeatures().add(doubleStringAttribute);
 		}

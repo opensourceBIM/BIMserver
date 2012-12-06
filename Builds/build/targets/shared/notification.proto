@@ -40,14 +40,6 @@ service NotificationInterface {
 
 }
 
-message GetCurrentTokenRequest {
-}
-
-message GetCurrentTokenResponse {
-	optional string errorMessage = 1;
-	optional SToken value = 2;
-}
-
 message GetPrivateProfilesRequest {
 	optional string serviceIdentifier = 1;
 	optional string token = 2;
@@ -67,29 +59,20 @@ message GetPublicProfilesResponse {
 	repeated SProfileDescriptor value = 2;
 }
 
-message GetServiceRequest {
-	optional string serviceIdentifier = 1;
-}
-
-message GetServiceResponse {
-	optional string errorMessage = 1;
-	optional SServiceDescriptor value = 2;
-}
-
 message NewLogActionRequest {
 	optional string uuid = 1;
 	optional SLogAction logAction = 2;
 	optional string serviceIdentifier = 3;
 	optional string profileIdentifer = 4;
-	optional SToken token = 5;
+	optional string token = 5;
 	optional string apiUrl = 6;
 }
 
 message SImmediateNotificationResult {
 	optional SNotifictionResultEnum result = 1;
 	optional int32 rid = 2;
-	optional string description = 3;
-	optional int64 oid = 4;
+	optional int64 oid = 3;
+	optional string description = 4;
 }
 
 message NewLogActionResponse {
@@ -100,9 +83,5 @@ message NewLogActionResponse {
 message ProgressRequest {
 	optional int64 topicId = 1;
 	optional SLongActionState state = 2;
-}
-
-message SetTokenRequest {
-	optional SToken token = 1;
 }
 

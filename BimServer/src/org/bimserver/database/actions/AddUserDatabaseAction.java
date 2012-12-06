@@ -45,8 +45,8 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.templating.TemplateIdentifier;
 import org.bimserver.utils.GeneratorUtils;
 import org.bimserver.utils.Hashers;
-import org.bimserver.webservices.Authorization;
 import org.bimserver.webservices.SystemAuthorization;
+import org.bimserver.webservices.authorization.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -148,52 +148,54 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		bimServer.updateUserSettings(getDatabaseSession(), user);
 		
 		getDatabaseSession().store(user);
-		final ServerSettings serverSettings = getServerSettings();
-		if (serverSettings != null && serverSettings.isSendConfirmationEmailAfterRegistration()) {
-			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
-				@Override
-				public void execute() throws UserException {
-					try {
-						if (MailSystem.isValidEmailAddress(user.getUsername())) {
-							Session mailSession = bimServer.getMailSystem().createMailSession();
-
-							Message msg = new MimeMessage(mailSession);
-							String emailSenderAddress = serverSettings.getEmailSenderAddress();
-							InternetAddress addressFrom = new InternetAddress(emailSenderAddress);
-							msg.setFrom(addressFrom);
-
-							InternetAddress[] addressTo = new InternetAddress[1];
-							addressTo[0] = new InternetAddress(user.getUsername());
-							msg.setRecipients(Message.RecipientType.TO, addressTo);
-
-							Map<String, Object> context = new HashMap<String, Object>();
-							context.put("name", user.getName());
-							context.put("username", user.getUsername());
-							context.put("siteaddress", serverSettings.getSiteAddress());
-							String validationLink = serverSettings.getSiteAddress() + "/validate.jsp?username=" + user.getUsername() + "&uoid=" + user.getOid() + "&token="
-									+ token;
-							context.put("validationlink", validationLink);
-							String body = null;
-							String subject = null;
-							if (selfRegistration) {
-								body = bimServer.getTemplateEngine().process(context, TemplateIdentifier.SELF_REGISTRATION_EMAIL_BODY);
-								subject = bimServer.getTemplateEngine().process(context, TemplateIdentifier.SELF_REGISTRATION_EMAIL_SUBJECT);
-							} else {
-								body = bimServer.getTemplateEngine().process(context, TemplateIdentifier.ADMIN_REGISTRATION_EMAIL_BODY);
-								subject = bimServer.getTemplateEngine().process(context, TemplateIdentifier.ADMIN_REGISTRATION_EMAIL_SUBJECT);
+		if (bimServer.getServerSettingsCache() != null) { // this is only null on server/database initialization
+			final ServerSettings serverSettings = bimServer.getServerSettingsCache().getServerSettings();
+			if (serverSettings.isSendConfirmationEmailAfterRegistration()) {
+				getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+					@Override
+					public void execute() throws UserException {
+						try {
+							if (MailSystem.isValidEmailAddress(user.getUsername())) {
+								Session mailSession = bimServer.getMailSystem().createMailSession();
+								
+								Message msg = new MimeMessage(mailSession);
+								String emailSenderAddress = serverSettings.getEmailSenderAddress();
+								InternetAddress addressFrom = new InternetAddress(emailSenderAddress);
+								msg.setFrom(addressFrom);
+								
+								InternetAddress[] addressTo = new InternetAddress[1];
+								addressTo[0] = new InternetAddress(user.getUsername());
+								msg.setRecipients(Message.RecipientType.TO, addressTo);
+								
+								Map<String, Object> context = new HashMap<String, Object>();
+								context.put("name", user.getName());
+								context.put("username", user.getUsername());
+								context.put("siteaddress", serverSettings.getSiteAddress());
+								String validationLink = serverSettings.getSiteAddress() + "/validate.jsp?username=" + user.getUsername() + "&uoid=" + user.getOid() + "&token="
+										+ token;
+								context.put("validationlink", validationLink);
+								String body = null;
+								String subject = null;
+								if (selfRegistration) {
+									body = bimServer.getTemplateEngine().process(context, TemplateIdentifier.SELF_REGISTRATION_EMAIL_BODY);
+									subject = bimServer.getTemplateEngine().process(context, TemplateIdentifier.SELF_REGISTRATION_EMAIL_SUBJECT);
+								} else {
+									body = bimServer.getTemplateEngine().process(context, TemplateIdentifier.ADMIN_REGISTRATION_EMAIL_BODY);
+									subject = bimServer.getTemplateEngine().process(context, TemplateIdentifier.ADMIN_REGISTRATION_EMAIL_SUBJECT);
+								}
+								msg.setContent(body, "text/html");
+								msg.setSubject(subject.trim());
+								
+								LOGGER.info("Sending registration e-mail to " + user.getUsername());
+								
+								Transport.send(msg);
 							}
-							msg.setContent(body, "text/html");
-							msg.setSubject(subject.trim());
-
-							LOGGER.info("Sending registration e-mail to " + user.getUsername());
-
-							Transport.send(msg);
+						} catch (Exception e) {
+							LOGGER.error("", e);
 						}
-					} catch (Exception e) {
-						LOGGER.error("", e);
 					}
-				}
-			});
+				});
+			}
 		}
 		return user;
 	}

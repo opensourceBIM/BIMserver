@@ -17,7 +17,6 @@ package org.bimserver.webservices;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import javax.servlet.http.HttpServletRequest;
 import javax.xml.namespace.QName;
 
 import org.apache.cxf.binding.soap.SoapMessage;
@@ -25,10 +24,6 @@ import org.apache.cxf.headers.Header;
 import org.apache.cxf.message.Exchange;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.service.invoker.AbstractInvoker;
-import org.apache.cxf.transport.http.AbstractHTTPDestination;
-import org.bimserver.interfaces.objects.SToken;
-import org.bimserver.models.log.AccessMethod;
-import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.slf4j.Logger;
@@ -46,16 +41,15 @@ public class CustomInvoker extends AbstractInvoker {
 	@Override
 	public Object getServiceObject(Exchange context) {
 		Message inMessage = context.getInMessage();
-		HttpServletRequest httpRequest = (HttpServletRequest) inMessage.get(AbstractHTTPDestination.HTTP_REQUEST);
 		if (inMessage instanceof SoapMessage) {
 			SoapMessage soapMessage = (SoapMessage) inMessage;
 			Header header = soapMessage.getHeader(new QName("uri:org.bimserver.interfaces.objects", "token"));
-			SToken token = null;
+			String token = null;
 			if (header != null) {
-				token = (SToken) header.getObject();
+				token = (String) header.getObject();
 			}
 			if (token == null) {
-				token = (SToken) context.getSession().get("token");
+				token = (String) context.getSession().get("token");
 			}
 			if (token != null) {
 				try {
@@ -67,20 +61,16 @@ public class CustomInvoker extends AbstractInvoker {
 			} else {
 				ServiceInterface newService;
 				try {
-					newService = serviceFactory.newServiceMap(AccessMethod.SOAP, httpRequest.getRemoteAddr()).get(ServiceInterface.class);
-					context.getSession().put("token", newService.getCurrentToken());
+					newService = serviceFactory.getService(ServiceInterface.class, token);
+					context.getSession().put("token", token);
 					return newService;
-				} catch (ServerException e1) {
-					LOGGER.error("", e1);
-				} catch (UserException e1) {
-					LOGGER.error("", e1);
+				} catch (UserException e) {
+					LOGGER.error("", e);
 				}
 			}
 		} else {
 			try {
-				return serviceFactory.newServiceMap(AccessMethod.REST, httpRequest.getRemoteAddr()).get(ServiceInterface.class);
-			} catch (ServerException e) {
-				LOGGER.error("", e);
+				return serviceFactory.getService(ServiceInterface.class);
 			} catch (UserException e) {
 				LOGGER.error("", e);
 			}
