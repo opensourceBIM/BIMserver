@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (C) 2011  BIMserver.org&#xD;&#xA;&#xD;&#xA;This program is free software: you can redistribute it and/or modify&#xD;&#xA;it under the terms of the GNU Affero General Public License as&#xD;&#xA;published by the Free Software Foundation, either version 3 of the&#xD;&#xA;License, or (at your option) any later version.&#xD;&#xA;&#xD;&#xA;This program is distributed in the hope that it will be useful,&#xD;&#xA;but WITHOUT ANY WARRANTY; without even the implied warranty of&#xD;&#xA;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#xD;&#xA;GNU Affero General Public License for more details.&#xD;&#xA;&#xD;&#xA;You should have received a copy of the GNU Affero General Public License&#xD;&#xA;along with this program.  If not, see &lt;http://www.gnu.org/licenses/>."
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (C) 2009-2013 BIMserver.org&#xD;&#xA;&#xD;&#xA;This program is free software: you can redistribute it and/or modify&#xD;&#xA;it under the terms of the GNU Affero General Public License as&#xD;&#xA;published by the Free Software Foundation, either version 3 of the&#xD;&#xA;License, or (at your option) any later version.&#xD;&#xA;&#xD;&#xA;This program is distributed in the hope that it will be useful,&#xD;&#xA;but WITHOUT ANY WARRANTY; without even the implied warranty of&#xD;&#xA;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#xD;&#xA;GNU Affero General Public License for more details.&#xD;&#xA;&#xD;&#xA;You should have received a copy of the GNU Affero General Public License&#xD;&#xA;along with this program.  If not, see &lt;http://www.gnu.org/licenses/>."
     modelDirectory="/Emf/generated" modelPluginID="BimServer" dynamicTemplates="true"
     forceOverwrite="true" modelName="Models" modelPluginClass="" updateClasspath="false"
     rootExtendsInterface="org.bimserver.emf.IdEObject" rootExtendsClass="org.bimserver.emf.IdEObjectImpl"
@@ -40,14 +39,6 @@
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ObjectState/ACTIVE"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ObjectState/DELETED"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/0/MergeIdentifier">
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/MergeIdentifier/NAME"/>
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/MergeIdentifier/GUID"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/0/CompareIdentifier">
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/CompareIdentifier/NAME_ID"/>
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/CompareIdentifier/GUID_ID"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/0/CompareType">
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/CompareType/ALL"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/CompareType/ADD"/>
@@ -57,6 +48,7 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/0/ActionState">
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ActionState/UNKNOWN"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ActionState/STARTED"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ActionState/AS_ERROR"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ActionState/FINISHED"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/0/ServerState">
@@ -67,11 +59,26 @@
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ServerState/FATAL_ERROR"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ServerState/RUNNING"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/0/CheckinStatus">
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/CheckinStatus/CH_NONE"/>
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/CheckinStatus/CH_STARTED"/>
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/CheckinStatus/CH_FINISHED"/>
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/CheckinStatus/CH_ERROR"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/0/ExtendedDataSchemaType">
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ExtendedDataSchemaType/XSD"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ExtendedDataSchemaType/PDF"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/ExtendedDataSchemaType/TXT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/0/Trigger">
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/Trigger/NEW_REVISION"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/Trigger/NEW_PROJECT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/0/PrimitiveEnum">
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/PrimitiveEnum/LONG"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/PrimitiveEnum/DOUBLE"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/PrimitiveEnum/BOOLEAN"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/PrimitiveEnum/STRING"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/0/NotifictionResultEnum">
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/NotifictionResultEnum/NR_ERROR"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/NotifictionResultEnum/SUCCESS"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/NotifictionResultEnum/PROGRESS_UNKNOWN"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/NotifictionResultEnum/PROGRESS_PERCENTAGE"/>
     </genEnums>
     <genDataTypes ecoreDataType="models.ecore#/0/DataHandler"/>
     <genClasses ecoreClass="models.ecore#/0/Project">
@@ -90,8 +97,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Project/subProjects"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Project/parent"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Project/description"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Project/clashDetectionSettings"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Project/exportLengthMeasurePrefix"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Project/extendedData"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Project/services"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Project/logs"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/User">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/User/name"/>
@@ -104,32 +113,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/User/userType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/User/username"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/User/lastSeen"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/User/token"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/User/validationToken"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/User/validationTokenCreated"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/User/notificationUrl"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/Clash">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Clash/name1"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Clash/name2"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Clash/type1"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Clash/type2"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Clash/revision1"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Clash/revision2"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/EidClash">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/EidClash/eid1"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/EidClash/eid2"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/GuidClash">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GuidClash/guid1"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GuidClash/guid2"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/ClashDetectionSettings">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ClashDetectionSettings/enabled"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ClashDetectionSettings/projects"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ClashDetectionSettings/margin"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ClashDetectionSettings/revisions"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ClashDetectionSettings/ignoredClasses"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/User/userSettings"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/User/schemas"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/User/extendedData"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/User/services"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/User/logs"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/Revision">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Revision/id"/>
@@ -141,12 +132,14 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Revision/lastConcreteRevision"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Revision/checkouts"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Revision/project"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Revision/lastClashes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Revision/tag"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Revision/lastError"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Revision/bmi"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Revision/nrClashes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Revision/laid"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Revision/extendedData"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Revision/logs"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Revision/geometry"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Revision/bounds"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/ConcreteRevision">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ConcreteRevision/id"/>
@@ -156,6 +149,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ConcreteRevision/size"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ConcreteRevision/date"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ConcreteRevision/lastError"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ConcreteRevision/summary"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ConcreteRevision/user"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/GeoTag">
@@ -174,79 +168,66 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Checkout/date"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Checkout/checkin"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Checkout/active"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Checkout/logs"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/Settings">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/showVersionUpgradeAvailable"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/sendConfirmationEmailAfterRegistration"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/useCaching"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/allowSelfRegistration"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/autoTestClashes"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/intelligentMerging"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/allowUsersToCreateTopLevelProjects"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/checkinMergingEnabled"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/registrationAddition"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/smtpServer"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/emailSenderAddress"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/customLogoAddress"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/siteAddress"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/hideUserListForNonAdmin"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/protocolBuffersPort"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Settings/serializers"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Settings/objectIDMs"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/headerAddition"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/footerAddition"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/mergeIdentifier"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Settings/cacheOutputFiles"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Settings/ifcEngines"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Settings/plugins"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Settings/deserializers"/>
+    <genClasses ecoreClass="models.ecore#/0/ServerSettings">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServerSettings/sendConfirmationEmailAfterRegistration"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServerSettings/allowSelfRegistration"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServerSettings/allowUsersToCreateTopLevelProjects"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServerSettings/checkinMergingEnabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServerSettings/smtpServer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServerSettings/emailSenderAddress"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServerSettings/emailSenderName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServerSettings/siteAddress"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServerSettings/generateGeometryOnCheckin"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServerSettings/allowOnlyWhitelisted"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServerSettings/whitelistedDomains"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServerSettings/hideUserListForNonAdmin"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServerSettings/protocolBuffersPort"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServerSettings/cacheOutputFiles"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServerSettings/serviceRepositoryUrl"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/Serializer">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Serializer/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Serializer/description"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Serializer/extension"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Serializer/contentType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Serializer/className"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Serializer/enabled"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Serializer/defaultSerializer"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Serializer/objectIDM"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Serializer/settings"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Serializer/ifcEngine"/>
+    <genClasses ecoreClass="models.ecore#/0/UserSettings">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/UserSettings/serializers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/UserSettings/objectIDMs"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/UserSettings/ifcEngines"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/UserSettings/deserializers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/UserSettings/queryengines"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/UserSettings/modelmergers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/UserSettings/modelcompares"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/UserSettings/defaultModelMerger"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/UserSettings/defaultModelCompare"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/UserSettings/defaultQueryEngine"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/UserSettings/defaultIfcEngine"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/UserSettings/defaultSerializer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/UserSettings/defaultObjectIDM"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/UserSettings/services"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/ObjectIDM">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ObjectIDM/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ObjectIDM/className"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ObjectIDM/enabled"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ObjectIDM/serializers"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ObjectIDM/settings"/>
+    <genClasses ecoreClass="models.ecore#/0/PluginConfiguration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/PluginConfiguration/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/PluginConfiguration/enabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/PluginConfiguration/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/PluginConfiguration/className"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/PluginConfiguration/settings"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcEngine">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcEngine/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcEngine/active"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcEngine/className"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcEngine/enabled"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/IfcEngine/serializers"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/IfcEngine/settings"/>
+    <genClasses ecoreClass="models.ecore#/0/SerializerPluginConfiguration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/SerializerPluginConfiguration/needsGeometry"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/SerializerPluginConfiguration/extension"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/SerializerPluginConfiguration/contentType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/SerializerPluginConfiguration/objectIDM"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/SerializerPluginConfiguration/userSettings"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/SerializerPluginConfiguration/ifcEngine"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/Plugin">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Plugin/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Plugin/enabled"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Plugin/settings"/>
+    <genClasses ecoreClass="models.ecore#/0/ObjectIDMPluginConfiguration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ObjectIDMPluginConfiguration/serializers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ObjectIDMPluginConfiguration/userSettings"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/Deserializer">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Deserializer/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Deserializer/description"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Deserializer/className"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Deserializer/enabled"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Deserializer/defaultDeserializer"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Deserializer/settings"/>
+    <genClasses ecoreClass="models.ecore#/0/IfcEnginePluginConfiguration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/IfcEnginePluginConfiguration/serializers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/IfcEnginePluginConfiguration/userSettings"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/CheckinResult">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/CheckinResult/revision"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/CheckinResult/project"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/CheckinResult/progress"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/CheckinResult/lastError"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/CheckinResult/status"/>
+    <genClasses ecoreClass="models.ecore#/0/DeserializerPluginConfiguration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/DeserializerPluginConfiguration/userSettings"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/DownloadResult">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/DownloadResult/projectName"/>
@@ -308,16 +289,19 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/DatabaseInformation/schemaVersion"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/DatabaseInformation/categories"/>
     </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/PluginDescriptor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/PluginDescriptor/simpleName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/PluginDescriptor/defaultName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/PluginDescriptor/pluginClassName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/PluginDescriptor/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/PluginDescriptor/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/PluginDescriptor/enabled"/>
+    </genClasses>
     <genClasses ecoreClass="models.ecore#/0/SerializerPluginDescriptor">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/SerializerPluginDescriptor/pluginClassName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/SerializerPluginDescriptor/defaultName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/SerializerPluginDescriptor/defaultExtension"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/SerializerPluginDescriptor/defaultContentType"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/DeserializerPluginDescriptor">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/DeserializerPluginDescriptor/pluginClassName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/DeserializerPluginDescriptor/defaultName"/>
-    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/DeserializerPluginDescriptor"/>
     <genClasses ecoreClass="models.ecore#/0/RevisionSummaryType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/RevisionSummaryType/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/RevisionSummaryType/count"/>
@@ -329,21 +313,12 @@
     <genClasses ecoreClass="models.ecore#/0/RevisionSummary">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/RevisionSummary/list"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/PluginDescriptor">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/PluginDescriptor/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/PluginDescriptor/description"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/PluginDescriptor/location"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/PluginDescriptor/enabled"/>
-    </genClasses>
     <genClasses ecoreClass="models.ecore#/0/LongAction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/LongAction/identification"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/LongAction/user"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/LongAction/start"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/LongAction/username"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/LongAction/name"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/LongCheckinAction">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/LongCheckinAction/revisions"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/ObjectIDMPluginDescriptor">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ObjectIDMPluginDescriptor/className"/>
@@ -368,25 +343,11 @@
     <genClasses ecoreClass="models.ecore#/0/LongActionState">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/LongActionState/progress"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/LongActionState/state"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/Notification"/>
-    <genClasses ecoreClass="models.ecore#/0/NewProjectNotification">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/NewProjectNotification/project"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/NewRevisionNotification">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/NewRevisionNotification/revision"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/NewRevisionNotification/project"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/CompileResult">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/CompileResult/compileOke"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/CompileResult/warnings"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/CompileResult/errors"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/RunResult">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/RunResult/runOke"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/RunResult/warnings"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/RunResult/errors"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/RunResult/output"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/LongActionState/title"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/LongActionState/stage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/LongActionState/errors"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/LongActionState/warnings"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/LongActionState/infos"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/ServerInfo">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServerInfo/serverState"/>
@@ -401,9 +362,185 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Version/supportUrl"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Version/supportEmail"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/IfcEnginePluginDescriptor">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcEnginePluginDescriptor/pluginClassName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/IfcEnginePluginDescriptor/defaultName"/>
+    <genClasses ecoreClass="models.ecore#/0/IfcEnginePluginDescriptor"/>
+    <genClasses ecoreClass="models.ecore#/0/File">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/File/data"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/File/filename"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/File/mime"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/ExtendedDataSchema">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ExtendedDataSchema/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ExtendedDataSchema/url"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ExtendedDataSchema/namespace"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ExtendedDataSchema/description"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ExtendedDataSchema/file"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ExtendedDataSchema/size"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ExtendedDataSchema/validate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ExtendedDataSchema/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ExtendedDataSchema/users"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ExtendedDataSchema/extendedData"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/ExtendedData">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ExtendedData/url"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ExtendedData/file"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ExtendedData/size"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ExtendedData/title"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ExtendedData/added"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ExtendedData/user"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ExtendedData/schema"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ExtendedData/revision"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ExtendedData/project"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/QueryEnginePluginDescriptor"/>
+    <genClasses ecoreClass="models.ecore#/0/QueryEnginePluginConfiguration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/QueryEnginePluginConfiguration/userSettings"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/ModelMergerPluginDescriptor"/>
+    <genClasses ecoreClass="models.ecore#/0/ModelMergerPluginConfiguration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ModelMergerPluginConfiguration/userSettings"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/ModelComparePluginDescriptor"/>
+    <genClasses ecoreClass="models.ecore#/0/ModelComparePluginConfiguration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ModelComparePluginConfiguration/userSettings"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/ProfileDescriptor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ProfileDescriptor/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ProfileDescriptor/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ProfileDescriptor/publicProfile"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ProfileDescriptor/identifier"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/ServiceDescriptor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceDescriptor/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceDescriptor/url"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceDescriptor/token"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceDescriptor/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceDescriptor/notificationProtocol"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceDescriptor/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceDescriptor/trigger"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceDescriptor/readRevision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceDescriptor/readExtendedData"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceDescriptor/writeRevision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceDescriptor/writeExtendedData"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceDescriptor/providerName"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/Service">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Service/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Service/serviceName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Service/serviceIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Service/providerName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Service/url"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Service/token"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Service/notificationProtocol"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Service/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Service/trigger"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Service/readRevision"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Service/readExtendedData"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Service/writeRevision"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Service/writeExtendedData"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Service/profileIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Service/profileName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Service/profileDescription"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Service/profilePublic"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Service/project"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Service/user"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Service/internalService"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/Token">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Token/tokenString"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Token/expires"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/ServicePluginDescriptor"/>
+    <genClasses ecoreClass="models.ecore#/0/InternalServicePluginConfiguration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/InternalServicePluginConfiguration/remoteAccessible"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/InternalServicePluginConfiguration/userSettings"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/ServiceInterface">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceInterface/name"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/ServiceMethod">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceMethod/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceMethod/doc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceMethod/returnDoc"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/ServiceField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceField/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ServiceField/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ServiceField/genericType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceField/doc"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/ServiceType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceType/simpleName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ServiceType/fields"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/ServiceParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceParameter/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ServiceParameter/doc"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ServiceParameter/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ServiceParameter/genericType"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/TypeDefinition"/>
+    <genClasses ecoreClass="models.ecore#/0/ObjectDefinition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ObjectDefinition/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/PrimitiveDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/PrimitiveDefinition/type"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/ArrayDefinition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ArrayDefinition/type"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/ParameterDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ParameterDefinition/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ParameterDefinition/required"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ParameterDefinition/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ParameterDefinition/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/Type"/>
+    <genClasses ecoreClass="models.ecore#/0/ObjectType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ObjectType/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ObjectType/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/PrimitiveType"/>
+    <genClasses ecoreClass="models.ecore#/0/LongType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/LongType/value"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/DoubleType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/DoubleType/value"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/StringType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/StringType/value"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/BooleanType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/BooleanType/value"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/ArrayType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ArrayType/values"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/Parameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Parameter/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Parameter/value"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/ImmediateNotificationResult">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ImmediateNotificationResult/result"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ImmediateNotificationResult/description"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/ExternalServiceUpdate"/>
+    <genClasses ecoreClass="models.ecore#/0/PercentageChange">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/PercentageChange/percentage"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/Bounds">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Bounds/min"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Bounds/max"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/Vector3f">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector3f/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector3f/y"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector3f/z"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/Geometry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Geometry/indices"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Geometry/vertices"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Geometry/normals"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Ifc2x3tc1" basePackage="org.bimserver.models" disposableProviderFactory="true"
@@ -4275,6 +4412,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/1/IfcProduct/ObjectPlacement"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/1/IfcProduct/Representation"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/1/IfcProduct/ReferencedBy"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/1/IfcProduct/geometryInstance"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/1/IfcProduct/bounds"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/1/IfcProductDefinitionShape">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/1/IfcProductDefinitionShape/ShapeOfProduct"/>
@@ -5691,6 +5830,14 @@
     <genClasses image="false" ecoreClass="models.ecore#/1/IfcUnit"/>
     <genClasses image="false" ecoreClass="models.ecore#/1/IfcValue"/>
     <genClasses image="false" ecoreClass="models.ecore#/1/IfcVectorOrDirection"/>
+    <genClasses ecoreClass="models.ecore#/1/GeometryInstance">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/GeometryInstance/startVertex"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/GeometryInstance/startIndex"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/GeometryInstance/primitiveCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/GeometryInstance/indices"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/GeometryInstance/vertices"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/GeometryInstance/normals"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="Log" basePackage="org.bimserver.models" disposableProviderFactory="true"
       loadInitialization="true" ecorePackage="models.ecore#/2">
@@ -5700,6 +5847,7 @@
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/AccessMethod/INTERNAL"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/AccessMethod/REST"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/AccessMethod/SYNDICATION"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/AccessMethod/JSON"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/AccessMethod/PROTOCOL_BUFFERS"/>
     </genEnums>
     <genClasses ecoreClass="models.ecore#/2/LogAction">
@@ -5723,6 +5871,7 @@
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/NewRevisionAdded">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/NewRevisionAdded/revision"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/NewRevisionAdded/project"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/NewCheckoutAdded">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/NewCheckoutAdded/checkout"/>
@@ -5767,14 +5916,27 @@
     <genClasses ecoreClass="models.ecore#/2/GeoTagUpdated">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/GeoTagUpdated/geoTag"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/2/ClashDetectionSettingsUpdated">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/ClashDetectionSettingsUpdated/clashDetectionSettings"/>
-    </genClasses>
     <genClasses ecoreClass="models.ecore#/2/PasswordChanged">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/PasswordChanged/user"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/UserChanged">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/UserChanged/user"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/ExtendedDataAddedToRevision">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/ExtendedDataAddedToRevision/revision"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/ExtendedDataAddedToRevision/extendedData"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/ExtendedDataAddedToProject">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/ExtendedDataAddedToProject/project"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/ExtendedDataAddedToProject/extendedData"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/ExternalServiceCalled">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/ExternalServiceCalled/service"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ExternalServiceCalled/state"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ExternalServiceCalled/percentage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ExternalServiceCalled/infos"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ExternalServiceCalled/warnings"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ExternalServiceCalled/errors"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
