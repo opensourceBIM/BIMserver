@@ -29,7 +29,9 @@ public class JavaQueryEnginePlugin implements QueryEnginePlugin {
 	private void initExamples(PluginManager pluginManager) {
 		PluginContext pluginContext = pluginManager.getPluginContext(this);
 		for (VirtualFile virtualFile : pluginContext.listResources("examples")) {
-			examples.put(virtualFile.getSimpleName(), new String(virtualFile.getData(), Charsets.UTF_8));
+			if (!virtualFile.getSimpleName().startsWith(".svn")) {
+				examples.put(virtualFile.getSimpleName(), new String(virtualFile.getData(), Charsets.UTF_8));
+			}
 		}
 	}
 

@@ -1,7 +1,7 @@
 package org.bimserver.cache;
 
 /******************************************************************************
- * Copyright (C) 2009-2012  BIMserver.org
+ * Copyright (C) 2009-2013  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,7 +17,6 @@ package org.bimserver.cache;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.models.store.CompareIdentifier;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.CompareType;
 
@@ -28,14 +27,12 @@ public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareC
 		private final long roid1;
 		private final long roid2;
 		private final CompareType sCompareType;
-		private final CompareIdentifier sCompareIdentifier;
 
-		public CompareKey(long roid1, long roid2, CompareType sCompareType, CompareIdentifier sCompareIdentifier) {
+		public CompareKey(long roid1, long roid2, CompareType sCompareType) {
 			super();
 			this.roid1 = roid1;
 			this.roid2 = roid2;
 			this.sCompareType = sCompareType;
-			this.sCompareIdentifier = sCompareIdentifier;
 		}
 
 		@Override
@@ -44,12 +41,7 @@ public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareC
 			int result = 1;
 			result = prime * result + (int) (roid1 ^ (roid1 >>> 32));
 			result = prime * result + (int) (roid2 ^ (roid2 >>> 32));
-			result = prime
-					* result
-					+ ((sCompareIdentifier == null) ? 0 : sCompareIdentifier
-							.hashCode());
-			result = prime * result
-					+ ((sCompareType == null) ? 0 : sCompareType.hashCode());
+			result = prime * result	+ ((sCompareType == null) ? 0 : sCompareType.hashCode());
 			return result;
 		}
 
@@ -65,11 +57,6 @@ public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareC
 			if (roid1 != other.roid1)
 				return false;
 			if (roid2 != other.roid2)
-				return false;
-			if (sCompareIdentifier == null) {
-				if (other.sCompareIdentifier != null)
-					return false;
-			} else if (!sCompareIdentifier.equals(other.sCompareIdentifier))
 				return false;
 			if (sCompareType == null) {
 				if (other.sCompareType != null)
@@ -98,8 +85,8 @@ public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareC
 		super();
 	}
 
-	public CompareResult getCompareResults(long roid1, long roid2, CompareType sCompareType, CompareIdentifier sCompareIdentifier) {
-		CompareValue compareValue = getValue(new CompareKey(roid1, roid2, sCompareType, sCompareIdentifier));
+	public CompareResult getCompareResults(long roid1, long roid2, CompareType sCompareType) {
+		CompareValue compareValue = getValue(new CompareKey(roid1, roid2, sCompareType));
 		if (compareValue != null) {
 			compareValue.access();
 			return compareValue.getCompareResults();
@@ -107,7 +94,7 @@ public class CompareCache extends GenericCache<CompareCache.CompareKey, CompareC
 		return null;
 	}
 
-	public void storeResults(long roid1, long roid2, CompareType sCompareType, CompareIdentifier sCompareIdentifier, CompareResult compareResults) {
-		store(new CompareKey(roid1, roid2, sCompareType, sCompareIdentifier), new CompareValue(compareResults));
+	public void storeResults(long roid1, long roid2, CompareType sCompareType, CompareResult compareResults) {
+		store(new CompareKey(roid1, roid2, sCompareType), new CompareValue(compareResults));
 	}
 }

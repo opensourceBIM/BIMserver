@@ -1,7 +1,7 @@
 package org.bimserver.plugins;
 
 /******************************************************************************
- * Copyright (C) 2009-2012  BIMserver.org
+ * Copyright (C) 2009-2013  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -59,6 +59,7 @@ import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
+import org.bimserver.plugins.stillimagerenderer.StillImageRenderPlugin;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.meta.ServicesMap;
 import org.slf4j.Logger;
@@ -201,6 +202,10 @@ public class PluginManager {
 
 	public Collection<IfcEnginePlugin> getAllIfcEnginePlugins(boolean onlyEnabled) {
 		return getPlugins(IfcEnginePlugin.class, onlyEnabled);
+	}
+
+	public Collection<StillImageRenderPlugin> getAllStillImageRenderPlugins(boolean onlyEnabled) {
+		return getPlugins(StillImageRenderPlugin.class, onlyEnabled);
 	}
 
 	public Collection<QueryEnginePlugin> getAllQueryEnginePlugins(boolean onlyEnabled) {
@@ -531,5 +536,18 @@ public class PluginManager {
 	
 	public ServicesMap getServicesMap() {
 		return servicesMap;
+	}
+
+	public StillImageRenderPlugin getFirstStillImageRenderPlugin() throws PluginException {
+		Collection<StillImageRenderPlugin> allPlugins = getAllStillImageRenderPlugins(true);
+		if (allPlugins.size() == 0) {
+			throw new PluginException("No still image render plugins found");
+		}
+		StillImageRenderPlugin plugin = allPlugins.iterator().next();
+		if (!plugin.isInitialized()) {
+			plugin.init(this);
+		}
+		return plugin;
+		
 	}
 }

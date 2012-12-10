@@ -238,7 +238,7 @@ function BimServerApi(baseUrl, notifier) {
 						}
 					} else {
 						if (showDone) {
-							othis.setStatus(translate(key + "_DONE"), 5000);
+							othis.notifier.setStatus(othis.translate(key + "_DONE"), 5000);
 						}
 					}
 				} else if (requests.length > 1) {
