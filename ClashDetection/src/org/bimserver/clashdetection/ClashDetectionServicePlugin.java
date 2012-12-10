@@ -1,6 +1,5 @@
 package org.bimserver.clashdetection;
 
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.GregorianCalendar;
@@ -8,7 +7,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import javax.imageio.ImageIO;
 import javax.xml.datatype.DatatypeFactory;
 
 import org.bimserver.bcf.markup.Header;
@@ -54,9 +52,11 @@ import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
+import org.bimserver.plugins.stillimagerenderer.StillImageRenderer;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.openmali.vecmath2.Vector3f;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -92,7 +92,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 				try {
 					ByteArrayOutputStream baos = new ByteArrayOutputStream();
 					((EmfSerializerDataSource)downloadData.getFile().getDataSource()).getSerializer().writeToOutputStream(baos);
-
+					
 					Deserializer deserializer = pluginManager.requireDeserializer("ifc").createDeserializer();
 					deserializer.init(pluginManager.requireSchemaDefinition());
 					IfcModelInterface model = deserializer.read(new ByteArrayInputStream(baos.toByteArray()), "test.ifc", baos.size());
@@ -144,12 +144,12 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						Component component1 = new Component();
 						component1.setIfcGuid(guid1);
 						component1.setOriginatingSystem("BIMserver");
-//						component1.setAuthoringToolId("" + clash.getEid1());
+						component1.setAuthoringToolId("" + clash.getEid1());
 
 						Component component2 = new Component();
 						component2.setIfcGuid(guid2);
 						component2.setOriginatingSystem("BIMserver");
-//						component2.setAuthoringToolId("" + clash.getEid2());
+						component2.setAuthoringToolId("" + clash.getEid2());
 						
 						VisualizationInfo.Components components = new VisualizationInfo.Components();
 						visualizationInfo.setComponents(components);
@@ -166,13 +166,13 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						visualizationInfo.setLines(new VisualizationInfo.Lines());
 						visualizationInfo.setClippingPlanes(new VisualizationInfo.ClippingPlanes());
 						
-						BufferedImage bufferedImage = new BufferedImage(500, 500, BufferedImage.TYPE_INT_RGB);
-						ByteArrayOutputStream baosImage = new ByteArrayOutputStream();
-						ImageIO.write(bufferedImage, "png", baosImage);
+						StillImageRenderer stillImageRenderer = pluginManager.getFirstStillImageRenderPlugin().create();
+						stillImageRenderer.init(model);
+						byte[] snapshot = stillImageRenderer.snapshot(new Vector3f(x- 100, y, z), new Vector3f(0, 0, 1), new Vector3f(x, y, z), 500, 500, null);
 						
 						issue.setMarkup(markup);
 						issue.setVisualizationInfo(visualizationInfo);
-						issue.setImageData(baosImage.toByteArray());
+						issue.setImageData(snapshot);
 						
 						bcf.addIssue(issue);
 					}
