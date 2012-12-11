@@ -42,20 +42,6 @@
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>RestServlet</servlet-name>
-		<servlet-class>org.bimserver.servlets.RestServlet</servlet-class>
-		<init-param>
-			<param-name>javax.ws.rs.Application</param-name>
-			<param-value>org.bimserver.webservices.RestApplication</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>RestServlet</servlet-name>
-		<url-pattern>/rest/*</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
 		<servlet-name>SyndicationServlet</servlet-name>
 		<servlet-class>org.bimserver.servlets.SyndicationServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
