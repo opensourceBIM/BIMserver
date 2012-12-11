@@ -1,0 +1,71 @@
+<div class="setup">
+	<h2>Setup BIMserver</h2>
+	<p>
+		This BIMserver has not yet been setup. You can setup this BIMserver right now.
+	</p>
+	<form class="form-horizontal">
+		<div class="control-group">
+			<label class="control-label" for="inputSiteAddress">Site address</label>
+			<div class="controls">
+				<input type="text" class="siteAddressInput" id="inputSiteAddress"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputStmpServer">SMTP Server</label>
+			<div class="controls">
+				<input type="text" class="smtpServerInput" id="inputStmpServer">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputEmailSender">Email sender</label>
+			<div class="controls">
+				<input type="text" class="smtpSenderInput" id="inputEmailSender">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputAdminName">Admin name</label>
+			<div class="controls">
+				<input type="text" class="adminNameInput" id="inputAdminName" value="Administrator">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputAdminUsername">Admin username</label>
+			<div class="controls">
+				<input type="text" class="adminUsernameInput" id="inputAdminUsername">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputAdminPassword">Admin password</label>
+			<div class="controls">
+				<input type="password" class="adminPasswordInput" id="inputAdminPassword">
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<button type="submit" class="setupButton btn">Setup</button>
+			</div>
+		</div>
+	</form>
+</div>
+<script>
+function Setup(address) {
+	var othis = this;
+	$(".setup .siteAddressInput").val(address);
+	
+	this.setup = function(event){
+		event.preventDefault();
+		bimServerApi.call("ServiceInterface", "setup", {
+			siteAddress: $(".setup .siteAddressInput").val(),
+			smtpServer: $(".setup .smtpServerInput").val(),
+			smtpSender: $(".setup .smtpSenderInput").val(),
+			adminName: $(".setup .adminNameInput").val(),
+			adminUsername: $(".setup .adminUsernameInput").val(),
+			adminPassword: $(".setup .adminPasswordInput").val()
+		}, function(){
+			updateStatus();
+		});
+	};
+
+	$(".setup .setupButton").click(othis.setup);
+}
+</script>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<script src="js/bimserverapi.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery-1.8.2.min.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/String.js"></script>
+		<script src="js/formatters.js"></script>
+		<script src="js/sha256.js"></script>
+	</head>
+	<body>
+		<div class="row-fluid show-grid">
+              <div class="span4"></div>
+              <div class="span4">
+					<img src="img/logo.gif"/>
+              		<div class="indexcontainer">
+					</div>
+              </div>
+              <div class="span4"></div>
+        </div>
+	</body>
+	<script>
+		$(function(){
+			var loc = new String(document.location);
+			var address = loc.substring(0, loc.length-1);
+			var bimServerApi = new BimServerApi(address);
+			
+			function updateStatus() {
+				bimServerApi.multiCall([
+	   				["ServiceInterface", "getServerInfo", {}],
+	   				["ServiceInterface", "getVersion", {}]
+	   			], function(data){
+	   				var infoDiv = $("<table class=\"table\">");
+	   				var serverInfo = data[0].result;
+	   				if (serverInfo.serverState == "NOT_SETUP") {
+	   					$(".indexcontainer").load("setup.html", function(){
+	   						new Setup(address);
+	   					});
+	   				} else {
+	   					infoDiv.append("<tr><td>Status</td><td>" + serverInfo.serverState + "</td></tr>");
+	   				}
+	   				var version = data[1].result;
+	   				infoDiv.append("<tr><td>Version</td><td>" + version.major + "." + version.minor + "." + version.revision + " (" + formatDate(new Date(version.date)) + ")</td></tr>");
+	   				$(".indexcontainer").html(infoDiv);
+	   			});
+			}
+			
+			bimServerApi.call("ServiceInterface", "getServerInfo", {}, function(serverInfo){
+				if (serverInfo.serverState == "NOT_SETUP") {
+					$(".indexcontainer").load("setup.html", function(){
+						new Setup(address);
+					});
+				} else {
+					updateStatus();
+				}
+			});
+		});
+	</script>
+</html>

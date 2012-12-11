@@ -53,9 +53,9 @@ public class LocalDevBimServerStarter {
 		try {
 	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
 			bimServer.start();
-			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
-				bimServer.getServiceFactory().getService(ServiceInterface.class, new SystemAuthorization(1, TimeUnit.HOURS)).setup("http://localhost:8080", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
-			}
+//			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
+//				bimServer.getServiceFactory().getService(ServiceInterface.class, new SystemAuthorization(1, TimeUnit.HOURS)).setup("http://localhost:8080", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
+//			}
 		} catch (PluginException e) {
 			LOGGER.error("", e);
 		} catch (ServiceException e) {
