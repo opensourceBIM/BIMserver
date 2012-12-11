@@ -22,10 +22,11 @@
         </div>
 	</body>
 	<script>
+		var bimServerApi = null;
 		$(function(){
 			var loc = new String(document.location);
 			var address = loc.substring(0, loc.length-1);
-			var bimServerApi = new BimServerApi(address);
+			bimServerApi = new BimServerApi(address);
 			
 			function updateStatus() {
 				bimServerApi.multiCall([
