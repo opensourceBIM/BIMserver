@@ -58,9 +58,6 @@ import javax.swing.UIManager;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class Starter extends JFrame {
 	private static final long serialVersionUID = 5356018168589837130L;
 	private Process exec;
