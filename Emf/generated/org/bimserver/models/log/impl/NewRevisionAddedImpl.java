@@ -18,10 +18,8 @@ package org.bimserver.models.log.impl;
 
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.NewRevisionAdded;
-
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

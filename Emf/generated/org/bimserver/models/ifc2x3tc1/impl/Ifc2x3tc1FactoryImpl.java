@@ -17,14 +17,11 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.*;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
@@ -1578,6 +1575,10 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 			return (EObject) createIfcCompoundPlaneAngleMeasure();
 		case Ifc2x3tc1Package.IFC_NULL_STYLE:
 			return (EObject) createIfcNullStyle();
+		case Ifc2x3tc1Package.BOUNDS:
+			return (EObject) createBounds();
+		case Ifc2x3tc1Package.VECTOR3F:
+			return (EObject) createVector3f();
 		case Ifc2x3tc1Package.GEOMETRY_INSTANCE:
 			return (EObject) createGeometryInstance();
 		default:
@@ -9809,6 +9810,26 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcNullStyle createIfcNullStyle() {
 		IfcNullStyleImpl ifcNullStyle = new IfcNullStyleImpl();
 		return ifcNullStyle;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Bounds createBounds() {
+		BoundsImpl bounds = new BoundsImpl();
+		return bounds;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Vector3f createVector3f() {
+		Vector3fImpl vector3f = new Vector3fImpl();
+		return vector3f;
 	}
 
 	/**

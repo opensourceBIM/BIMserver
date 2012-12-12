@@ -16,13 +16,90 @@
  */
 package org.bimserver.models.store.util;
 
-import org.bimserver.models.store.*;
-
+import org.bimserver.models.store.ArrayDefinition;
+import org.bimserver.models.store.ArrayType;
+import org.bimserver.models.store.BooleanType;
+import org.bimserver.models.store.Checkout;
+import org.bimserver.models.store.CheckoutResult;
+import org.bimserver.models.store.CompareContainer;
+import org.bimserver.models.store.CompareItem;
+import org.bimserver.models.store.CompareResult;
+import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.DataObject;
+import org.bimserver.models.store.DataValue;
+import org.bimserver.models.store.DatabaseInformation;
+import org.bimserver.models.store.DatabaseInformationCategory;
+import org.bimserver.models.store.DatabaseInformationItem;
+import org.bimserver.models.store.DeserializerPluginConfiguration;
+import org.bimserver.models.store.DeserializerPluginDescriptor;
+import org.bimserver.models.store.DoubleType;
+import org.bimserver.models.store.DownloadResult;
+import org.bimserver.models.store.ExtendedData;
+import org.bimserver.models.store.ExtendedDataSchema;
+import org.bimserver.models.store.ExternalServiceUpdate;
+import org.bimserver.models.store.File;
+import org.bimserver.models.store.GeoTag;
+import org.bimserver.models.store.IfcEnginePluginConfiguration;
+import org.bimserver.models.store.IfcEnginePluginDescriptor;
+import org.bimserver.models.store.ImmediateNotificationResult;
+import org.bimserver.models.store.InternalServicePluginConfiguration;
+import org.bimserver.models.store.ListDataValue;
+import org.bimserver.models.store.LongAction;
+import org.bimserver.models.store.LongActionState;
+import org.bimserver.models.store.LongType;
+import org.bimserver.models.store.Migration;
+import org.bimserver.models.store.ModelComparePluginConfiguration;
+import org.bimserver.models.store.ModelComparePluginDescriptor;
+import org.bimserver.models.store.ModelMergerPluginConfiguration;
+import org.bimserver.models.store.ModelMergerPluginDescriptor;
+import org.bimserver.models.store.ObjectAdded;
+import org.bimserver.models.store.ObjectDefinition;
+import org.bimserver.models.store.ObjectIDMPluginConfiguration;
+import org.bimserver.models.store.ObjectIDMPluginDescriptor;
+import org.bimserver.models.store.ObjectModified;
+import org.bimserver.models.store.ObjectRemoved;
+import org.bimserver.models.store.ObjectType;
+import org.bimserver.models.store.Parameter;
+import org.bimserver.models.store.ParameterDefinition;
+import org.bimserver.models.store.PercentageChange;
+import org.bimserver.models.store.PluginConfiguration;
+import org.bimserver.models.store.PluginDescriptor;
+import org.bimserver.models.store.PrimitiveDefinition;
+import org.bimserver.models.store.PrimitiveType;
+import org.bimserver.models.store.ProfileDescriptor;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.QueryEnginePluginConfiguration;
+import org.bimserver.models.store.QueryEnginePluginDescriptor;
+import org.bimserver.models.store.ReferenceDataValue;
+import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.RevisionSummary;
+import org.bimserver.models.store.RevisionSummaryContainer;
+import org.bimserver.models.store.RevisionSummaryType;
+import org.bimserver.models.store.SerializerPluginConfiguration;
+import org.bimserver.models.store.SerializerPluginDescriptor;
+import org.bimserver.models.store.ServerInfo;
+import org.bimserver.models.store.ServerSettings;
+import org.bimserver.models.store.Service;
+import org.bimserver.models.store.ServiceDescriptor;
+import org.bimserver.models.store.ServiceField;
+import org.bimserver.models.store.ServiceInterface;
+import org.bimserver.models.store.ServiceMethod;
+import org.bimserver.models.store.ServiceParameter;
+import org.bimserver.models.store.ServicePluginDescriptor;
+import org.bimserver.models.store.ServiceType;
+import org.bimserver.models.store.SimpleDataValue;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.StringType;
+import org.bimserver.models.store.Token;
+import org.bimserver.models.store.Type;
+import org.bimserver.models.store.TypeDefinition;
+import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserSession;
+import org.bimserver.models.store.UserSettings;
+import org.bimserver.models.store.Version;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -478,21 +555,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter casePercentageChange(PercentageChange object) {
 			return createPercentageChangeAdapter();
-		}
-
-		@Override
-		public Adapter caseBounds(Bounds object) {
-			return createBoundsAdapter();
-		}
-
-		@Override
-		public Adapter caseVector3f(Vector3f object) {
-			return createVector3fAdapter();
-		}
-
-		@Override
-		public Adapter caseGeometry(Geometry object) {
-			return createGeometryAdapter();
 		}
 
 		@Override
@@ -1631,48 +1693,6 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPercentageChangeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Bounds <em>Bounds</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.Bounds
-	 * @generated
-	 */
-	public Adapter createBoundsAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Vector3f <em>Vector3f</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.Vector3f
-	 * @generated
-	 */
-	public Adapter createVector3fAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Geometry <em>Geometry</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.store.Geometry
-	 * @generated
-	 */
-	public Adapter createGeometryAdapter() {
 		return null;
 	}
 

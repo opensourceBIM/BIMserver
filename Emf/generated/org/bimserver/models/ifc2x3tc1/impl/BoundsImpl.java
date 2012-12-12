@@ -14,37 +14,35 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.bimserver.models.store.impl;
+package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.Vector3f;
-
+import org.bimserver.models.ifc2x3tc1.Bounds;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.Vector3f;
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Vector3f</b></em>'.
+ * An implementation of the model object '<em><b>Bounds</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.Vector3fImpl#getX <em>X</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.Vector3fImpl#getY <em>Y</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.Vector3fImpl#getZ <em>Z</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.BoundsImpl#getMin <em>Min</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.BoundsImpl#getMax <em>Max</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class Vector3fImpl extends IdEObjectImpl implements Vector3f {
+public class BoundsImpl extends IdEObjectImpl implements Bounds {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Vector3fImpl() {
+	protected BoundsImpl() {
 		super();
 	}
 
@@ -55,7 +53,7 @@ public class Vector3fImpl extends IdEObjectImpl implements Vector3f {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StorePackage.Literals.VECTOR3F;
+		return Ifc2x3tc1Package.Literals.BOUNDS;
 	}
 
 	/**
@@ -73,8 +71,8 @@ public class Vector3fImpl extends IdEObjectImpl implements Vector3f {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getX() {
-		return (Float) eGet(StorePackage.Literals.VECTOR3F__X, true);
+	public Vector3f getMin() {
+		return (Vector3f) eGet(Ifc2x3tc1Package.Literals.BOUNDS__MIN, true);
 	}
 
 	/**
@@ -82,8 +80,8 @@ public class Vector3fImpl extends IdEObjectImpl implements Vector3f {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setX(float newX) {
-		eSet(StorePackage.Literals.VECTOR3F__X, newX);
+	public void setMin(Vector3f newMin) {
+		eSet(Ifc2x3tc1Package.Literals.BOUNDS__MIN, newMin);
 	}
 
 	/**
@@ -91,8 +89,8 @@ public class Vector3fImpl extends IdEObjectImpl implements Vector3f {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public float getY() {
-		return (Float) eGet(StorePackage.Literals.VECTOR3F__Y, true);
+	public Vector3f getMax() {
+		return (Vector3f) eGet(Ifc2x3tc1Package.Literals.BOUNDS__MAX, true);
 	}
 
 	/**
@@ -100,26 +98,8 @@ public class Vector3fImpl extends IdEObjectImpl implements Vector3f {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setY(float newY) {
-		eSet(StorePackage.Literals.VECTOR3F__Y, newY);
+	public void setMax(Vector3f newMax) {
+		eSet(Ifc2x3tc1Package.Literals.BOUNDS__MAX, newMax);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public float getZ() {
-		return (Float) eGet(StorePackage.Literals.VECTOR3F__Z, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setZ(float newZ) {
-		eSet(StorePackage.Literals.VECTOR3F__Z, newZ);
-	}
-
-} //Vector3fImpl
+} //BoundsImpl

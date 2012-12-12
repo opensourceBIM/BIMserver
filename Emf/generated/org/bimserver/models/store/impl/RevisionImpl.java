@@ -19,21 +19,15 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.log.LogAction;
-
-import org.bimserver.models.store.Bounds;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
-import org.bimserver.models.store.Geometry;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -58,8 +52,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLaid <em>Laid</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getExtendedData <em>Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLogs <em>Logs</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getGeometry <em>Geometry</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getBounds <em>Bounds</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#isHasGeometry <em>Has Geometry</em>}</li>
  * </ul>
  * </p>
  *
@@ -338,8 +331,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Geometry getGeometry() {
-		return (Geometry) eGet(StorePackage.Literals.REVISION__GEOMETRY, true);
+	public boolean isHasGeometry() {
+		return (Boolean) eGet(StorePackage.Literals.REVISION__HAS_GEOMETRY, true);
 	}
 
 	/**
@@ -347,26 +340,8 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGeometry(Geometry newGeometry) {
-		eSet(StorePackage.Literals.REVISION__GEOMETRY, newGeometry);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Bounds getBounds() {
-		return (Bounds) eGet(StorePackage.Literals.REVISION__BOUNDS, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setBounds(Bounds newBounds) {
-		eSet(StorePackage.Literals.REVISION__BOUNDS, newBounds);
+	public void setHasGeometry(boolean newHasGeometry) {
+		eSet(StorePackage.Literals.REVISION__HAS_GEOMETRY, newHasGeometry);
 	}
 
 } //RevisionImpl

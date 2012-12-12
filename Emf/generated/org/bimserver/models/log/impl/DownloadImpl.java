@@ -18,7 +18,6 @@ package org.bimserver.models.log.impl;
 
 import org.bimserver.models.log.Download;
 import org.bimserver.models.log.LogPackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

@@ -24,7 +24,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
-import org.bimserver.models.store.Geometry;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
@@ -78,8 +77,6 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	void setUseDoubleStrings(boolean useDoubleStrings);
 	boolean isUseDoubleStrings();
 	int count(EClass eClass);
-	Geometry getGeometry();
-	void setGeometry(Geometry geometry);
 	void changeOid(IdEObject object);
 	void fixOids();
 	void generateMinimalExpressIds();

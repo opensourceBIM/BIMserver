@@ -19,9 +19,7 @@ package org.bimserver.models.store;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
-
 import org.bimserver.models.log.LogAction;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -47,8 +45,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Revision#getLaid <em>Laid</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getExtendedData <em>Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getLogs <em>Logs</em>}</li>
- *   <li>{@link org.bimserver.models.store.Revision#getGeometry <em>Geometry</em>}</li>
- *   <li>{@link org.bimserver.models.store.Revision#getBounds <em>Bounds</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Revision#isHasGeometry <em>Has Geometry</em>}</li>
  * </ul>
  * </p>
  *
@@ -419,55 +416,29 @@ public interface Revision extends IdEObject {
 	EList<LogAction> getLogs();
 
 	/**
-	 * Returns the value of the '<em><b>Geometry</b></em>' reference.
+	 * Returns the value of the '<em><b>Has Geometry</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Geometry</em>' reference isn't clear,
+	 * If the meaning of the '<em>Has Geometry</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Geometry</em>' reference.
-	 * @see #setGeometry(Geometry)
-	 * @see org.bimserver.models.store.StorePackage#getRevision_Geometry()
+	 * @return the value of the '<em>Has Geometry</em>' attribute.
+	 * @see #setHasGeometry(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getRevision_HasGeometry()
 	 * @model
 	 * @generated
 	 */
-	Geometry getGeometry();
+	boolean isHasGeometry();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Revision#getGeometry <em>Geometry</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.store.Revision#isHasGeometry <em>Has Geometry</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Geometry</em>' reference.
-	 * @see #getGeometry()
+	 * @param value the new value of the '<em>Has Geometry</em>' attribute.
+	 * @see #isHasGeometry()
 	 * @generated
 	 */
-	void setGeometry(Geometry value);
-
-	/**
-	 * Returns the value of the '<em><b>Bounds</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Bounds</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Bounds</em>' reference.
-	 * @see #setBounds(Bounds)
-	 * @see org.bimserver.models.store.StorePackage#getRevision_Bounds()
-	 * @model
-	 * @generated
-	 */
-	Bounds getBounds();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Revision#getBounds <em>Bounds</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Bounds</em>' reference.
-	 * @see #getBounds()
-	 * @generated
-	 */
-	void setBounds(Bounds value);
+	void setHasGeometry(boolean value);
 
 } // Revision

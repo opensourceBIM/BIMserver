@@ -17,12 +17,10 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProfileDef;
 import org.bimserver.models.ifc2x3tc1.IfcSectionProperties;
 import org.bimserver.models.ifc2x3tc1.IfcSectionTypeEnum;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

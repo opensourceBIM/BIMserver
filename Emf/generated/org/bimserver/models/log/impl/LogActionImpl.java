@@ -19,13 +19,10 @@ package org.bimserver.models.log.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogAction;
 import org.bimserver.models.log.LogPackage;
-
 import org.bimserver.models.store.User;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
