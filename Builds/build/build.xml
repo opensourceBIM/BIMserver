@@ -15,9 +15,6 @@
 	<target name="war">
 		<ant antfile="bimserver.build.xml" target="Build War"></ant>
 	</target>
-	<target name="client">
-		<ant antfile="client.build.xml" target="Build Client"></ant>
-	</target>
 	<target name="clientlib">
 		<ant antfile="clientlib.build.xml" target="Build ClientLib"></ant>
 	</target>

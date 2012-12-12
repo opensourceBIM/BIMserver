@@ -101,11 +101,6 @@
 		<gcupload username="${googleuser}" password="${googlepassword}" projectname="bimserver" filename="builds/bimserver-lib-${version}.zip" targetfilename="bimserver-lib-${version}.zip" summary="bimserver ${version} library for developers (java)" description="Server library, useable for Java developers that want to embed a BIMserver in their own application.
 			Please note the open source license issues." labels="library, ${version}, OpSys-All" />
 
-		<ant antfile="client.build.xml" target="Build Client"/>
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.2/${version}">
-			<fileset file="builds/bimserver-client-${version}.jar" />
-		</ftp>
-		
 		<ant antfile="source.build.xml" target="Build Source">
 		</ant>
 		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.2/${version}">

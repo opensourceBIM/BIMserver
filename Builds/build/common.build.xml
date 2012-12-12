@@ -401,22 +401,6 @@
 			<fileset dir="builds/emf"/>
 		</jar>
 	</target>
-	<target name="Client">
-		<mkdir dir="builds/client" />
-		<javac destdir="builds/client" debug="on" includeantruntime="false">
-			<src path="../../Client/src" />
-			<classpath>
-				<path>
-					<fileset refid="lib" />
-					<fileset refid="buildlib" />
-				</path>
-			</classpath>
-		</javac>
-		<copy file="../../Client/src/org/bimserver/client/logo_small.png" todir="builds/client/org/bimserver/client" />
-		<jar destfile="builds/lib/bimserver-${version}-client.jar">
-			<fileset dir="builds/client"/>
-		</jar>
-	</target>
 	<target name="Shared">
 		<mkdir dir="builds/shared" />
 		<javac destdir="builds/shared" debug="on" includeantruntime="false">
