@@ -52,8 +52,8 @@ public class RemoveUserFromProjectDatabaseAction extends BimDatabaseAction<Boole
 
 	@Override
 	public Boolean execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
-		User user = getUserByUoid(uoid);
 		Project project = getProjectByPoid(poid);
+		User user = getUserByUoid(uoid);
 		User actingUser = getUserByUoid(authorization.getUoid());
 		if (authorization.hasRightsOnProject(actingUser, project)) {
 			if (user.getUserType() == UserType.ADMIN) {
