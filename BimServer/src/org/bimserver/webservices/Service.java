@@ -73,7 +73,6 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SAccessMethod;
-import org.bimserver.interfaces.objects.SBounds;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.interfaces.objects.SCompareResult;
@@ -462,7 +461,7 @@ public class Service implements ServiceInterface {
 		if (authorization == null) {
 			throw new UserException("Authentication required for this call");
 		}
-		if (!(authorization instanceof AdminAuthorization)) {
+		if (!(authorization instanceof AdminAuthorization) && !(authorization instanceof SystemAuthorization)) {
 			throw new UserException("Administrator rights required for this call");
 		}
 	}
@@ -3659,19 +3658,6 @@ public class Service implements ServiceInterface {
 		if (sExternalServiceUpdate instanceof SPercentageChange) {
 			SPercentageChange sPercentageChange = (SPercentageChange)sExternalServiceUpdate;
 			runningExternalService.updatePercentage(sPercentageChange.getPercentage());
-		}
-	}
-	
-	@Override
-	public SBounds getBoundsOfRevision(Long roid) throws ServerException, UserException {
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
-			return converter.convertToSObject(revision.getBounds());
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
 		}
 	}
 	

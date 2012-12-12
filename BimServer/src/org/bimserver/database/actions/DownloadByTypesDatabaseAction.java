@@ -30,7 +30,6 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.Geometry;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.SerializerPluginConfiguration;
@@ -93,10 +92,8 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			}
 		}
 		String name = "";
-		Geometry geometry = null;
 		for (Long roid : roids) {
 			Revision virtualRevision = getVirtualRevision(roid);
-			geometry = virtualRevision.getGeometry();
 			project = virtualRevision.getProject();
 			name += project.getName() + "-" + virtualRevision.getId() + "-";
 			if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
@@ -133,10 +130,6 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());
 		} catch (MergeException e) {
 			throw new UserException(e);
-		}
-		if (geometry != null) {
-			ifcModel.setGeometry(geometry);
-			geometry.load();
 		}
 		if (name.endsWith("-")) {
 			name = name.substring(0, name.length()-1);

@@ -72,25 +72,27 @@ public class GetDataObjectsDatabaseAction extends BimDatabaseAction<List<DataObj
 		List<DataObject> dataObjects = new ArrayList<DataObject>();
 		for (Long oid : ifcModel.keySet()) {
 			EObject eObject = ifcModel.get(oid);
-			DataObject dataObject = null;
-			if (eObject instanceof IfcRoot) {
-				IfcRoot ifcRoot = (IfcRoot)eObject;
-				String guid = ifcRoot.getGlobalId() != null ? ifcRoot.getGlobalId().getWrappedValue() : "";
-				String name = ifcRoot.getName() != null ? ifcRoot.getName() : "";
-				dataObject = StoreFactory.eINSTANCE.createDataObject();
-				dataObject.setType(eObject.eClass().getName());
-				((IdEObjectImpl)dataObject).setOid(oid);
-				dataObject.setGuid(guid);
-				dataObject.setName(name);
-			} else {
-				dataObject = StoreFactory.eINSTANCE.createDataObject();
-				dataObject.setType(eObject.eClass().getName());
-				((IdEObjectImpl)dataObject).setOid(oid);
-				dataObject.setGuid("");
-				dataObject.setName("");
+			if (eObject.eClass().getEAnnotation("hidden") == null) {
+				DataObject dataObject = null;
+				if (eObject instanceof IfcRoot) {
+					IfcRoot ifcRoot = (IfcRoot)eObject;
+					String guid = ifcRoot.getGlobalId() != null ? ifcRoot.getGlobalId().getWrappedValue() : "";
+					String name = ifcRoot.getName() != null ? ifcRoot.getName() : "";
+					dataObject = StoreFactory.eINSTANCE.createDataObject();
+					dataObject.setType(eObject.eClass().getName());
+					((IdEObjectImpl)dataObject).setOid(oid);
+					dataObject.setGuid(guid);
+					dataObject.setName(name);
+				} else {
+					dataObject = StoreFactory.eINSTANCE.createDataObject();
+					dataObject.setType(eObject.eClass().getName());
+					((IdEObjectImpl)dataObject).setOid(oid);
+					dataObject.setGuid("");
+					dataObject.setName("");
+				}
+				GetDataObjectByOidDatabaseAction.fillDataObject(ifcModel.getMap(), eObject, dataObject);
+				dataObjects.add(dataObject);
 			}
-			GetDataObjectByOidDatabaseAction.fillDataObject(ifcModel.getMap(), eObject, dataObject);
-			dataObjects.add(dataObject);
 		}
 		return dataObjects;
 	}
