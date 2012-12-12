@@ -22,9 +22,6 @@
 		<copy todir="builds/BuildSource/BIMserver/CityGML">
 			<fileset dir="../../CityGML" />
 		</copy>
-		<copy todir="builds/BuildSource/BIMserver/Client">
-			<fileset dir="../../Client" />
-		</copy>
 		<copy todir="builds/BuildSource/BIMserver/Collada">
 			<fileset dir="../../Collada" />
 		</copy>
@@ -51,9 +48,6 @@
 		</copy>
 		<copy todir="builds/BuildSource/BIMserver/MiscSerializers">
 			<fileset dir="../../MiscSerializers" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/Plugins">
-			<fileset dir="../../Plugins" />
 		</copy>
 		<copy todir="builds/BuildSource/BIMserver/Report1Serializer">
 			<fileset dir="../../Report1Serializer" />
