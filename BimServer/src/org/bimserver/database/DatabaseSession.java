@@ -86,7 +86,7 @@ import com.sleepycat.je.TransactionTimeoutException;
 
 public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	private static final int DEFAULT_CONFLICT_RETRIES = 10;
-	private static boolean DEVELOPER_DEBUG = true;
+	private static boolean DEVELOPER_DEBUG = false;
 	private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseSession.class);
 	private static final EcorePackage ECORE_PACKAGE = EcorePackage.eINSTANCE;
 	public static final String WRAPPED_VALUE = "wrappedValue";
@@ -667,9 +667,12 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		EClass eClass = getEClassForOid(oid);
 		RecordIdentifier recordIdentifier = new RecordIdentifier(pid, oid, rid);
 		IdEObjectImpl cachedObject = objectCache.get(recordIdentifier);
-		if (cachedObject != null && cachedObject.getRid() != Integer.MAX_VALUE) {
-			cachedObject.load();
-			return (T) cachedObject;
+		if (cachedObject != null) {
+			idEObject = cachedObject;
+			if (cachedObject.getLoadingState() == State.LOADED && cachedObject.getRid() != Integer.MAX_VALUE) {
+				cachedObject.load();
+				return (T) cachedObject;
+			}
 		}
 		ByteBuffer mustStartWith = ByteBuffer.wrap(new byte[12]);
 		mustStartWith.putInt(pid);
@@ -726,6 +729,11 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return getAllOfType(eClass, Database.STORE_PROJECT_ID, Integer.MAX_VALUE, deep, objectIDM);
 	}
 
+	public <T extends IdEObject> List<T> getAllOfType(EClass eClass, Class<T> clazz) throws BimserverDatabaseException {
+		IfcModelInterface allOfType = getAllOfType(eClass, false, null);
+		return allOfType.getAllWithSubTypes(clazz);
+	}
+	
 	public IfcModelInterface getAllOfType(EClass eClass, int pid, int rid, boolean deep, ObjectIDM objectIDM) throws BimserverDatabaseException {
 		checkOpen();
 		IfcModelInterface model = new IfcModel();
@@ -920,11 +928,12 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		if (keyPid == pid) {
 			if (keyRid <= rid) {
 				RecordIdentifier recordIdentifier = new RecordIdentifier(pid, keyOid, keyRid);
-				if (objectCache.contains(recordIdentifier)) {
-					IdEObject object = objectCache.get(recordIdentifier);
-					if (!model.contains(keyOid) && !(object instanceof WrappedValue) && !(object instanceof IfcGloballyUniqueId)) {
+				IdEObject cachedObject = objectCache.get(recordIdentifier);
+				if (cachedObject != null) {
+					cachedObject.load();
+					if (!model.contains(keyOid) && !(cachedObject instanceof WrappedValue) && !(cachedObject instanceof IfcGloballyUniqueId)) {
 						try {
-							model.addAllowMultiModel(keyOid, object);
+							model.addAllowMultiModel(keyOid, cachedObject);
 						} catch (IfcModelInterfaceException e) {
 							throw new BimserverDatabaseException(e);
 						}
