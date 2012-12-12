@@ -22,6 +22,7 @@ import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.xml.transform.ErrorListener;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -44,7 +45,8 @@ public class XsltSerializer extends EmfSerializer {
 	private Set<XsltParameter> parameters = new HashSet<XsltParameter>();
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException {
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids)
+			throws SerializerException {
 		super.init(model, projectInfo, pluginManager, ifcEnginePlugin, normalizeOids);
 	}
 
@@ -72,25 +74,19 @@ public class XsltSerializer extends EmfSerializer {
 					for (XsltParameter xsltParameter : parameters) {
 						transformer.setParameter(xsltParameter.getKey(), xsltParameter.getValue());
 					}
-					// transformer.setErrorListener(new ErrorListener() {
-					//
-					// @Override
-					// public void warning(TransformerException e) throws
-					// TransformerException {
-					// }
-					//
-					// @Override
-					// public void fatalError(TransformerException e) throws
-					// TransformerException {
-					// LOGGER.warn("", e);
-					// }
-					//
-					// @Override
-					// public void error(TransformerException e) throws
-					// TransformerException {
-					// LOGGER.warn("", e);
-					// }
-					// });
+					transformer.setErrorListener(new ErrorListener() {
+						@Override
+						public void warning(TransformerException e) throws TransformerException {
+						}
+
+						@Override
+						public void fatalError(TransformerException e) throws TransformerException {
+						}
+
+						@Override
+						public void error(TransformerException e) throws TransformerException {
+						}
+					});
 
 					StreamSource in = new StreamSource(ifcXmlSerializer.getInputStream());
 					StreamResult out = new StreamResult(outputStream);

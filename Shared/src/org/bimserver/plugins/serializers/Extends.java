@@ -1,4 +1,4 @@
-package org.bimserver.scenejs;
+package org.bimserver.plugins.serializers;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -19,7 +19,8 @@ package org.bimserver.scenejs;
 
 import java.util.Arrays;
 
-import org.bimserver.models.store.Bounds;
+import org.bimserver.models.ifc2x3tc1.Bounds;
+import org.bimserver.models.ifc2x3tc1.Vector3f;
 
 public class Extends {
 	public float[] min = { Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY };
@@ -43,7 +44,9 @@ public class Extends {
 	}
 
 	public void integrate(Bounds bounds) {
-		addToMinExtents(new float[]{bounds.getMin().getX(), bounds.getMin().getY(), bounds.getMin().getZ()});
-		addToMaxExtents(new float[]{bounds.getMax().getX(), bounds.getMax().getY(), bounds.getMax().getZ()});
+		Vector3f min = bounds.getMin();
+		Vector3f max = bounds.getMax();
+		addToMinExtents(new float[]{min.getX(), min.getY(), min.getZ()});
+		addToMaxExtents(new float[]{max.getX(), max.getY(), max.getZ()});
 	}
 }

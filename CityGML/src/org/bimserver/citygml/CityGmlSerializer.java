@@ -19,6 +19,7 @@ package org.bimserver.citygml;
 
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -29,6 +30,7 @@ import javax.xml.bind.JAXBException;
 
 import org.bimserver.citygml.xbuilding.GlobalIdType;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.models.ifc2x3tc1.GeometryInstance;
 import org.bimserver.models.ifc2x3tc1.IfcBuilding;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3tc1.IfcColumn;
@@ -57,18 +59,10 @@ import org.bimserver.models.ifc2x3tc1.IfcStair;
 import org.bimserver.models.ifc2x3tc1.IfcVirtualElement;
 import org.bimserver.models.ifc2x3tc1.IfcWall;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
-import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngine;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
-import org.bimserver.plugins.ifcengine.IfcEngineInstance;
-import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
-import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
-import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
-import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.citygml4j.CityGMLContext;
 import org.citygml4j.builder.jaxb.JAXBBuilder;
@@ -113,16 +107,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 
-public class CityGmlSerializer extends EmfSerializer {
+public class CityGmlSerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CityGmlSerializer.class);
 	private GMLFactory gml;
 	private XALFactory xal;
 	private CityGMLFactory citygml;
 	private Map<EObject, AbstractCityObject> convertedObjects;
 	private CityGMLContext ctx;
-	private IfcEngineModel ifcEngineModel;
-	private IfcEngineGeometry geometry;
-	private IfcEngine ifcEngine;
 
 	// private ObjectFactory xbuilding;
 	// private org.citygml4j.jaxb.gml._3_1_1.ObjectFactory gmlObjectFactory;
@@ -138,24 +129,8 @@ public class CityGmlSerializer extends EmfSerializer {
 		// xbuilding = new ObjectFactory();
 		// gmlObjectFactory = new org.citygml4j.jaxb.gml._3_1_1.ObjectFactory();
 		convertedObjects = new HashMap<EObject, AbstractCityObject>();
-
-		Serializer serializer = getPluginManager().requireIfcStepSerializer();
-		serializer.init(ifcModel, getProjectInfo(), getPluginManager(), ifcEnginePlugin, false);
-		try {
-			ifcEngine = ifcEnginePlugin.createIfcEngine();
-			ifcEngine.init();
-			ifcEngineModel = ifcEngine.openModel(serializer.getBytes());
-			ifcEngineModel.setPostProcessing(true);
-			geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
-		} catch (PluginException e) {
-			throw new SerializerException(e);
-		}
 	}
 
-	public IfcEngine getIfcEngine() {
-		return ifcEngine;
-	}
-	
 	private Code createName(String value) {
 		Code code = gml.createCode();
 		code.setValue(value);
@@ -221,7 +196,6 @@ public class CityGmlSerializer extends EmfSerializer {
 				LOGGER.error("", e);
 			}
 			setMode(Mode.FINISHED);
-			getIfcEngine().close();
 			return true;
 		} else if (getMode() == Mode.FINISHED) {
 			return false;
@@ -307,7 +281,7 @@ public class CityGmlSerializer extends EmfSerializer {
 					MultiSurface roofMs = gml.createMultiSurface();
 					roofMSP.setMultiSurface(roofMs);
 					roofSurface.setLod4MultiSurface(roofMSP);
-					setGeometry(roofMs, (IfcRoot) ifcProduct);
+					setGeometry(roofMs, (IfcProduct) ifcProduct);
 					BoundarySurfaceProperty boundarySurfaceProperty = citygml.createBoundarySurfaceProperty();
 					boundarySurfaceProperty.setObject(roofSurface);
 					convertedObjects.put(ifcProduct, roofSurface);
@@ -675,25 +649,29 @@ public class CityGmlSerializer extends EmfSerializer {
 		return addressProperty;
 	}
 
-	private void setGeometry(MultiSurface ms, IfcRoot ifcRootObject) throws SerializerException {
-		try {
-			IfcEngineInstance instance = ifcEngineModel.getInstanceFromExpressId((int) ifcRootObject.getOid());
-			IfcEngineInstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
-			for (int i = instanceInModelling.getStartIndex(); i < instanceInModelling.getPrimitiveCount() * 3 + instanceInModelling.getStartIndex(); i += 3) {
-				int i1 = geometry.getIndex(i);
-				int i2 = geometry.getIndex(i + 1);
-				int i3 = geometry.getIndex(i + 2);
+	private void setGeometry(MultiSurface ms, IfcProduct ifcProduct) {
+		GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
+		if (geometryInstance != null) {
+			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryInstance.getVertices());
+
+			while (verticesBuffer.hasRemaining()) {
+				float x1 = verticesBuffer.getFloat();
+				float y1 = verticesBuffer.getFloat();
+				float z1 = verticesBuffer.getFloat();
+				float x2 = verticesBuffer.getFloat();
+				float y2 = verticesBuffer.getFloat();
+				float z2 = verticesBuffer.getFloat();
+				float x3 = verticesBuffer.getFloat();
+				float y3 = verticesBuffer.getFloat();
+				float z3 = verticesBuffer.getFloat();
 				ms.addSurfaceMember(createSurfaceProperty(
 						gml,
-						Arrays.asList(new Double[] { (double) geometry.getVertex(i1 * 3), (double) geometry.getVertex(i1 * 3 + 1), (double) geometry.getVertex(i1 * 3 + 2),
-								(double) geometry.getVertex(i3 * 3), (double) geometry.getVertex(i3 * 3 + 1), (double) geometry.getVertex(i3 * 3 + 2),
-								(double) geometry.getVertex(i2 * 3), (double) geometry.getVertex(i2 * 3 + 1), (double) geometry.getVertex(i2 * 3 + 2),
-								(double) geometry.getVertex(i1 * 3), (double) geometry.getVertex(i1 * 3 + 1), (double) geometry.getVertex(i1 * 3 + 2) })));
+						Arrays.asList(new Double[] {
+								(double) x1, (double) y1, (double) z1,
+								(double) x2, (double) y2, (double) z2,
+								(double) x3, (double) y3, (double) z3,
+								(double) x1, (double) y1, (double) z1})));
 			}
-		} catch (IfcEngineException e) {
-			throw new SerializerException("IfcEngineException", e);
-		} catch (Exception e) {
-			LOGGER.error("", e);
 		}
 	}
 

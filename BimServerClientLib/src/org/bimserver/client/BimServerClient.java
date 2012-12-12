@@ -276,7 +276,11 @@ public class BimServerClient implements ConnectDisconnectListener {
 			List<SDataObject> dataObjects = getServiceInterface().getDataObjects(roid);
 			IfcModelInterface model = new IfcModel(dataObjects.size());
 			for (SDataObject dataObject : dataObjects) {
-				EClass eClass = (EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(dataObject.getType());
+				String type = dataObject.getType();
+				EClass eClass = (EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(type);
+				if (eClass == null) {
+					throw new BimServerClientException("No class found with name " + type);
+				}
 				IdEObject idEObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(eClass);
 				((IdEObjectImpl)idEObject).setOid(dataObject.getOid());
 				model.add(dataObject.getOid(), idEObject);

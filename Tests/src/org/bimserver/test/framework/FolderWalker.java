@@ -21,7 +21,7 @@ import java.io.File;
 
 public class FolderWalker implements TestFileProvider {
 
-	private int current = 0;
+	private volatile int current = 0;
 	private File[] listFiles;
 	private final TestFramework testFramework;
 

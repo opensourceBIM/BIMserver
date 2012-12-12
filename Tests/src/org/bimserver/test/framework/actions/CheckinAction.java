@@ -60,7 +60,10 @@ public class CheckinAction extends Action {
 		long checkinId = virtualUser.getBimServerClient().getServiceInterface()
 				.checkin(project.getOid(), randomString(), suggestedDeserializerForExtension.getOid(), randomFile.length(), fileName, new DataHandler(dataSource), merge, sync);
 		if (sync) {
-			virtualUser.getBimServerClient().getServiceInterface().getLongActionState(checkinId);
+			SLongActionState longActionState = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(checkinId);
+			if (longActionState.getState() == SActionState.AS_ERROR) {
+				getActionResults().setText("" + longActionState.getErrors());
+			}
 		} else {
 			while (true) {
 				SLongActionState checkinState = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(checkinId);

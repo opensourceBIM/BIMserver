@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2009-2012  BIMserver.org
+ * Copyright (C) 2009-2013  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -47,8 +47,7 @@ public class SRevision implements SDataBase
 	private java.lang.Long laid;
 	private List<Long> extendedData = new ArrayList<Long>();
 	private List<Long> logs = new ArrayList<Long>();
-	private long geometryId = -1;
-	private long boundsId = -1;
+	private boolean hasGeometry;
 
 	public long getOid() {
 		return this.oid;
@@ -121,11 +120,8 @@ public class SRevision implements SDataBase
 		if (sField.getName().equals("logs")) {
 			return getLogs();
 		}
-		if (sField.getName().equals("geometryId")) {
-			return getGeometryId();
-		}
-		if (sField.getName().equals("boundsId")) {
-			return getBoundsId();
+		if (sField.getName().equals("hasGeometry")) {
+			return isHasGeometry();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -198,12 +194,8 @@ public class SRevision implements SDataBase
 			setLogs((List<Long>)val);
 			return;
 		}
-		if (sField.getName().equals("geometryId")) {
-			setGeometryId((Long)val);
-			return;
-		}
-		if (sField.getName().equals("boundsId")) {
-			setBoundsId((Long)val);
+		if (sField.getName().equals("hasGeometry")) {
+			setHasGeometry((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -337,20 +329,12 @@ public class SRevision implements SDataBase
 		this.logs = logs;
 	}
 	
-	public long getGeometryId() {
-		return geometryId;
+	public boolean isHasGeometry() {
+		return hasGeometry;
 	}
 
-	public void setGeometryId(long geometryId) {
-		this.geometryId = geometryId;
-	}
-	
-	public long getBoundsId() {
-		return boundsId;
-	}
-
-	public void setBoundsId(long boundsId) {
-		this.boundsId = boundsId;
+	public void setHasGeometry(boolean hasGeometry) {
+		this.hasGeometry = hasGeometry;
 	}
 	
 	@Override
