@@ -62,7 +62,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Starter extends JFrame {
-	private static final Logger LOGGER = LoggerFactory.getLogger(Starter.class);
 	private static final long serialVersionUID = 5356018168589837130L;
 	private Process exec;
 	private JarSettings jarSettings = JarSettings.readFromFile();
@@ -108,14 +107,14 @@ public class Starter extends JFrame {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
-			LOGGER.error("", e);
+			e.printStackTrace();
 		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("BIMserver Starter");
 		try {
 			setIconImage(ImageIO.read(getClass().getResource("logo_small.png")));
 		} catch (IOException e) {
-			LOGGER.error("", e);
+			e.printStackTrace();
 		}
 		setSize(640, 500);
 		getContentPane().setLayout(new BorderLayout());
@@ -298,8 +297,8 @@ public class Starter extends JFrame {
 					if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 						exec.getOutputStream().flush();
 					}
-				} catch (IOException e1) {
-					LOGGER.error("", e);
+				} catch (IOException e2) {
+					e2.printStackTrace();
 				}
 			}
 		});
@@ -429,7 +428,7 @@ public class Starter extends JFrame {
 					}
 				}}).start();
 		} catch (IOException e) {
-			LOGGER.error("", e);
+			e.printStackTrace();
 		}
 	}
 
@@ -465,14 +464,14 @@ public class Starter extends JFrame {
 					is.close();
 				}
 			} catch (IOException e) {
-				LOGGER.error("", e);
+				e.printStackTrace();
 			} finally {
 				try {
 					if (jar != null) {
 						jar.close();
 					}
 				} catch (IOException e) {
-					LOGGER.error("", e);
+					e.printStackTrace();
 				}
 			}
 		} else {
@@ -489,7 +488,7 @@ public class Starter extends JFrame {
 		try {
 			return URLDecoder.decode(urlString, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			LOGGER.error("", e);
+			e.printStackTrace();
 		}
 		return null;
 	}
