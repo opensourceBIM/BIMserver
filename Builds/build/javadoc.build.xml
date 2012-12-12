@@ -3,7 +3,6 @@
 
 	<target name="Build JavaDoc">
 		<javadoc destdir="builds/bimserver-javadoc-${version}">
-			<fileset dir="../../BimCombined/src"/>
 			<fileset dir="../../BimServer/src"/>
 			<fileset dir="../../BimServer/generated"/>
 			<fileset dir="../../BimServerClientLib/src"/>
