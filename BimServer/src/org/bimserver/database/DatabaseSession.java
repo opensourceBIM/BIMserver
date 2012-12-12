@@ -86,7 +86,7 @@ import com.sleepycat.je.TransactionTimeoutException;
 
 public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	private static final int DEFAULT_CONFLICT_RETRIES = 10;
-	private static boolean DEVELOPER_DEBUG = false;
+	private static boolean DEVELOPER_DEBUG = true;
 	private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseSession.class);
 	private static final EcorePackage ECORE_PACKAGE = EcorePackage.eINSTANCE;
 	public static final String WRAPPED_VALUE = "wrappedValue";
@@ -665,6 +665,12 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			return (T) objectsToCommit.getByOid(oid);
 		}
 		EClass eClass = getEClassForOid(oid);
+		RecordIdentifier recordIdentifier = new RecordIdentifier(pid, oid, rid);
+		IdEObjectImpl cachedObject = objectCache.get(recordIdentifier);
+		if (cachedObject != null && cachedObject.getRid() != Integer.MAX_VALUE) {
+			cachedObject.load();
+			return (T) cachedObject;
+		}
 		ByteBuffer mustStartWith = ByteBuffer.wrap(new byte[12]);
 		mustStartWith.putInt(pid);
 		mustStartWith.putLong(oid);
@@ -690,26 +696,21 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				if (idEObject != null && idEObject.getRid() == Integer.MAX_VALUE) {
 					((IdEObjectImpl)idEObject).setRid(keyRid);
 				}
-				RecordIdentifier recordIdentifier = new RecordIdentifier(pid, keyOid, keyRid);
-				if (objectCache.contains(recordIdentifier) && objectCache.get(recordIdentifier).getLoadingState() == State.LOADED) {
-					return (T) objectCache.get(recordIdentifier);
+				if (model.contains(keyOid) && ((IdEObjectImpl) model.get(keyOid)).getLoadingState() == State.LOADED) {
+					return (T) model.get(keyOid);
 				} else {
-					if (model.contains(keyOid) && ((IdEObjectImpl) model.get(keyOid)).getLoadingState() == State.LOADED) {
-						return (T) model.get(keyOid);
+					if (valueBuffer.capacity() == 1 && valueBuffer.get(0) == -1) {
+						valueBuffer.position(valueBuffer.position() + 1);
+						return null;
+						// deleted entity
 					} else {
-						if (valueBuffer.capacity() == 1 && valueBuffer.get(0) == -1) {
-							valueBuffer.position(valueBuffer.position() + 1);
-							return null;
-							// deleted entity
-						} else {
-							T convertByteArrayToObject = (T) convertByteArrayToObject(idEObject, eClass, eClass, keyOid, valueBuffer, model, pid, rid == Integer.MAX_VALUE ? keyRid
-									: rid, deep, objectIDM, todoList);
-							if (convertByteArrayToObject.getRid() == Integer.MAX_VALUE) {
-								((IdEObjectImpl)convertByteArrayToObject).setRid(keyRid);
-							}
-							objectCache.put(recordIdentifier, convertByteArrayToObject);
-							return convertByteArrayToObject;
+						T convertByteArrayToObject = (T) convertByteArrayToObject(idEObject, eClass, eClass, keyOid, valueBuffer, model, pid, rid == Integer.MAX_VALUE ? keyRid
+								: rid, deep, objectIDM, todoList);
+						if (convertByteArrayToObject.getRid() == Integer.MAX_VALUE) {
+							((IdEObjectImpl)convertByteArrayToObject).setRid(keyRid);
 						}
+						objectCache.put(recordIdentifier, convertByteArrayToObject);
+						return convertByteArrayToObject;
 					}
 				}
 			} else {
@@ -1163,7 +1164,11 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	public boolean perRecordVersioning(IdEObject idEObject) {
-		return idEObject.eClass().getEPackage() != Ifc2x3tc1Package.eINSTANCE;
+		return perRecordVersioning(idEObject.eClass());
+	}
+
+	public boolean perRecordVersioning(EClass eClass) {
+		return eClass.getEPackage() != Ifc2x3tc1Package.eINSTANCE;
 	}
 
 	public IdEObject lazyLoad(IdEObject idEObject, int pid, int rid, ObjectIDM objectIDM) throws BimserverDatabaseException {
@@ -1174,7 +1179,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		idEObject = get(model, idEObject, pid, rid, idEObject.getOid(), false, objectIDM, new LinkedList<IdEObject>());
 		if (idEObject != null) {
 			if (idEObject.getRid() > 100000 || idEObject.getRid() < -100000) {
-				throw new RuntimeException("Unprobably rid " + idEObject.getRid() + " - " + idEObject);
+				throw new RuntimeException("Improbable rid " + idEObject.getRid() + " - " + idEObject);
 			}
 		}
 		return idEObject;
@@ -1354,37 +1359,36 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			return null;
 		}
 		long oid = buffer.getLong();
-		if (objectCache.contains(new RecordIdentifier(pid, oid, rid))) {
-			return objectCache.get(new RecordIdentifier(pid, oid, rid));
+		RecordIdentifier recordIdentifier = new RecordIdentifier(pid, oid, rid);
+		IdEObject foundInCache = objectCache.get(recordIdentifier);
+		if (foundInCache != null) {
+			return foundInCache;
+		}
+		if (model.contains(oid)) {
+			return model.get(oid);
+		}
+		IdEObjectImpl newObject = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		newObject.setOid(oid);
+		if (perRecordVersioning(newObject)) {
+			newObject.setPid(Database.STORE_PROJECT_ID);
 		} else {
-			if (model.contains(oid)) {
-				return model.get(oid);
-			} else {
-				IdEObjectImpl newObject = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
-				newObject.setOid(oid);
-				if (perRecordVersioning(newObject)) {
-					newObject.setPid(Database.STORE_PROJECT_ID);
-				} else {
-					newObject.setPid(pid);
+			newObject.setPid(pid);
+		}
+		newObject.setRid(rid);
+		objectCache.put(recordIdentifier, newObject);
+		if (deep && feature.getEAnnotation("hidden") == null) {
+			todoList.add(newObject);
+		} else {
+			newObject.setLazyLoader(this);
+			if (!(object instanceof WrappedValue) && !(object instanceof IfcGloballyUniqueId)) {
+				try {
+					model.addAllowMultiModel(oid, newObject);
+				} catch (IfcModelInterfaceException e) {
+					throw new BimserverDatabaseException(e);
 				}
-				newObject.setRid(perRecordVersioning(newObject) ? Integer.MAX_VALUE : rid);
-				RecordIdentifier recordIdentifier = new RecordIdentifier(pid, oid, rid);
-				objectCache.put(recordIdentifier, newObject);
-				if (deep && feature.getEAnnotation("hidden") == null) {
-					todoList.add(newObject);
-				} else {
-					newObject.setLazyLoader(this);
-					if (!(object instanceof WrappedValue) && !(object instanceof IfcGloballyUniqueId)) {
-						try {
-							model.addAllowMultiModel(oid, newObject);
-						} catch (IfcModelInterfaceException e) {
-							throw new BimserverDatabaseException(e);
-						}
-					}
-				}
-				return newObject;
 			}
 		}
+		return newObject;
 	}
 
 	private IdEObject readWrappedValue(EStructuralFeature feature, ByteBuffer buffer, EClass eClass) {
