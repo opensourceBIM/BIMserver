@@ -46,7 +46,7 @@ public class CheckinAction extends Action {
 		File randomFile = getTestFramework().getTestFile();
 		FileDataSource dataSource = new FileDataSource(randomFile);
 		String fileName = randomFile.getName();
-		String extension = fileName.substring(fileName.indexOf(".") + 1);
+		String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
 		SDeserializerPluginConfiguration suggestedDeserializerForExtension = virtualUser.getBimServerClient().getServiceInterface().getSuggestedDeserializerForExtension(extension);
 		
 		if (suggestedDeserializerForExtension == null) {
