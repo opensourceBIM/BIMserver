@@ -44,7 +44,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			checkinDatabaseAction.setDatabaseSession(session);
-			session.executeAndCommitAction(checkinDatabaseAction, 10, new ProgressHandler() {
+			session.executeAndCommitAction(checkinDatabaseAction, new ProgressHandler() {
 				private int count;
 
 				@Override

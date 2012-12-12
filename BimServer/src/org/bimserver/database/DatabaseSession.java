@@ -85,7 +85,7 @@ import com.sleepycat.je.LockTimeoutException;
 import com.sleepycat.je.TransactionTimeoutException;
 
 public class DatabaseSession implements LazyLoader, OidProvider<Long> {
-	private static final int DEFAULT_CONFLICT_RETRIES = 10;
+	public static final int DEFAULT_CONFLICT_RETRIES = 25;
 	private static boolean DEVELOPER_DEBUG = false;
 	private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseSession.class);
 	private static final EcorePackage ECORE_PACKAGE = EcorePackage.eINSTANCE;
@@ -514,6 +514,11 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		}
 	}
 
+	public <T> T executeAndCommitAction(BimDatabaseAction<T> action, ProgressHandler progressHandler) throws BimserverDatabaseException, UserException {
+		checkOpen();
+		return executeAndCommitAction(action, DEFAULT_CONFLICT_RETRIES, progressHandler);
+	}
+	
 	public <T> T executeAndCommitAction(BimDatabaseAction<T> action) throws BimserverDatabaseException, UserException {
 		checkOpen();
 		return executeAndCommitAction(action, DEFAULT_CONFLICT_RETRIES, null);

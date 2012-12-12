@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /******************************************************************************
- * Copyright (C) 2009-2012  BIMserver.org
+ * Copyright (C) 2009-2013  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -440,21 +440,6 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SPercentageChange"), new SConstructor(){
 					public Object newInstance() {
 						return new org.bimserver.interfaces.objects.SPercentageChange();
-					}
-				}));
-				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SBounds"), new SConstructor(){
-					public Object newInstance() {
-						return new org.bimserver.interfaces.objects.SBounds();
-					}
-				}));
-				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SVector3f"), new SConstructor(){
-					public Object newInstance() {
-						return new org.bimserver.interfaces.objects.SVector3f();
-					}
-				}));
-				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SGeometry"), new SConstructor(){
-					public Object newInstance() {
-						return new org.bimserver.interfaces.objects.SGeometry();
 					}
 				}));
 			super.init();

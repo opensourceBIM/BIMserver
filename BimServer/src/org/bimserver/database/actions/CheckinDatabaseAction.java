@@ -24,6 +24,7 @@ import java.util.TreeMap;
 import org.bimserver.BimServer;
 import org.bimserver.EClassNameComparator;
 import org.bimserver.GeometryGenerator;
+import org.bimserver.GeometryGenerator.GeometryCache;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -41,7 +42,6 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.Geometry;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
@@ -75,6 +75,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private RevisionSummaryContainer revisionSummaryContainerPrimitives;
 	private RevisionSummaryContainer revisionSummaryContainerOther;
 	private final Map<EClass, Integer> summaryMap = new TreeMap<EClass, Integer>(new EClassNameComparator());
+	private final GeometryCache geometryCache = new GeometryCache();
 
 	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface model,
 			String comment, boolean merge, boolean clean) {
@@ -133,9 +134,8 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 
 			if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin()) {
 				setProgress("Generating Geometry...", -1);
-				Geometry geometry = new GeometryGenerator().generateGeometry(bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), revision, true);
-				revision.setGeometry(geometry);
-				getDatabaseSession().store(geometry);
+				new GeometryGenerator().generateGeometry(bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), revision, true, geometryCache);
+				revision.setHasGeometry(true);
 			}
 
 			if (nrConcreteRevisionsBefore != 0 && !merge && clean) {
