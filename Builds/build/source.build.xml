@@ -4,17 +4,11 @@
 		<mkdir dir="builds" />
 		<mkdir dir="builds/BuildSource" />
 		<mkdir dir="builds/BuildSource/BIMserver" />
-		<copy todir="builds/BuildSource/BIMserver/BimCombined">
-			<fileset dir="../../BimCombined" />
-		</copy>
 		<copy todir="builds/BuildSource/BIMserver/BimServer">
 			<fileset dir="../../BimServer" />
 		</copy>
 		<copy todir="builds/BuildSource/BIMserver/BimServerClientLib">
 			<fileset dir="../../BimServerClientLib" />
-		</copy>
-		<copy todir="builds/BuildSource/BIMserver/BimWebServer">
-			<fileset dir="../../BimWebServer" />
 		</copy>
 		<copy todir="builds/BuildSource/BIMserver/buildingSMARTLibrary">
 			<fileset dir="../../buildingSMARTLibrary" />
