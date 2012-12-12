@@ -19,6 +19,7 @@ package org.bimserver.collada;
 
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.nio.ByteBuffer;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,6 +31,7 @@ import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.models.ifc2x3tc1.GeometryInstance;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingElementProxy;
 import org.bimserver.models.ifc2x3tc1.IfcColumn;
 import org.bimserver.models.ifc2x3tc1.IfcCurtainWall;
@@ -57,31 +59,22 @@ import org.bimserver.models.ifc2x3tc1.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.models.store.SIPrefix;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
-import org.bimserver.plugins.ifcengine.IfcEngineInstance;
-import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
-import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
-import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
-import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
 import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ColladaSerializer extends EmfSerializer {
+public class ColladaSerializer extends AbstractGeometrySerializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ColladaSerializer.class);
 	private static final Map<Class<? extends IfcProduct>, Convertor<? extends IfcProduct>> convertors = new LinkedHashMap<Class<? extends IfcProduct>, Convertor<? extends IfcProduct>>();
 	private final Map<String, Set<String>> converted = new HashMap<String, Set<String>>();
 	private SIPrefix lengthUnitPrefix;
-	private IfcEngineModel ifcEngineModel;
-	private IfcEngineGeometry geometry;
 	private int idCounter;
-	private IfcEngine ifcEngine;
 
 	private static <T extends IfcProduct> void addConvertor(Convertor<T> convertor) {
 		convertors.put(convertor.getCl(), convertor);
@@ -117,27 +110,11 @@ public class ColladaSerializer extends EmfSerializer {
 		addConvertor(new Convertor<IfcProduct>(IfcProduct.class, new double[] { 0.5f, 0.5f, 0.5f }, 1.0f));
 	}
 
-	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException {
 		super.init(model, projectInfo, pluginManager, ifcEnginePlugin, normalizeOids);
 		this.lengthUnitPrefix = getLengthUnitPrefix(model);
-		try {
-			Serializer serializer = getPluginManager().requireIfcStepSerializer();
-			serializer.init(model, getProjectInfo(), getPluginManager(), ifcEnginePlugin, false);
-			ifcEngine = ifcEnginePlugin.createIfcEngine();
-			ifcEngine.init();
-			ifcEngineModel = ifcEngine.openModel(serializer.getBytes());
-			ifcEngineModel.setPostProcessing(true);
-			geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
-		} catch (Exception e) {
-			throw new SerializerException(e);
-		}
 	}
 
-	public IfcEngine getIfcEngine() {
-		return ifcEngine;
-	}
-	
 	@Override
 	public void reset() {
 		setMode(Mode.BODY);
@@ -168,7 +145,6 @@ public class ColladaSerializer extends EmfSerializer {
 			}
 			writer.flush();
 			setMode(Mode.FINISHED);
-			getIfcEngine().close();
 			return true;
 		} else if (getMode() == Mode.FINISHED) {
 			return false;
@@ -323,9 +299,11 @@ public class ColladaSerializer extends EmfSerializer {
 			return;
 		}
 
-		IfcEngineInstance instance = ifcEngineModel.getInstanceFromExpressId((int) ifcProductObject.getOid());
-		IfcEngineInstanceVisualisationProperties visualisationProperties = instance.getVisualisationProperties();
-		if (visualisationProperties.getPrimitiveCount() > 0) {
+		GeometryInstance geometryInstance = ifcProductObject.getGeometryInstance();
+		if (geometryInstance != null) {
+			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryInstance.getVertices());
+			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryInstance.getNormals());
+
 			String id = generateId();
 			if (!converted.containsKey(material)) {
 				converted.put(material, new HashSet<String>());
@@ -337,26 +315,25 @@ public class ColladaSerializer extends EmfSerializer {
 				name = ifcProductObject.getGlobalId().getWrappedValue();
 			}
 
+			int t = geometryInstance.getPrimitiveCount() * 3 * 3;
+
 			out.println("      <geometry id=\"geom-" + id + "\" name=\"" + name + "\">");
 			out.println("                      <mesh>");
 			out.println("                                     <source id=\"positions-" + id + "\" name=\"positions-" + id + "\">");
 			out.print("                                                         <float_array id=\"positions-array-" + id + "\" count=\""
-					+ visualisationProperties.getPrimitiveCount() * 3 * 3 + "\">");
+					+ t + "\">");
 
-			int count = visualisationProperties.getPrimitiveCount() * 3 + visualisationProperties.getStartIndex();
-			for (int i = visualisationProperties.getStartIndex(); i < count; i++) {
-				int index = geometry.getIndex(i) * 3;
-				out.print(geometry.getVertex(index + 0) + " ");
-				out.print(geometry.getVertex(index + 1) + " ");
-				out.print(geometry.getVertex(index + 2));
-				if (i != count - 1) {
-					out.print(" ");
+			for (int i = 0; i < t; i++) {
+				if (i < t - 1) {
+					out.print(verticesBuffer.getFloat() + " ");
+				} else {
+					out.print(verticesBuffer.getFloat());
 				}
 			}
 
 			out.println("</float_array>");
 			out.println("                                                     <technique_common>");
-			out.println("                                                                     <accessor count=\"" + (visualisationProperties.getPrimitiveCount() * 3)
+			out.println("                                                                     <accessor count=\"" + (geometryInstance.getPrimitiveCount() * 3)
 					+ "\" offset=\"0\" source=\"#positions-array-" + id + "\" stride=\"3\">");
 			out.println("                                                                                    <param name=\"X\" type=\"float\"></param>");
 			out.println("                                                                                    <param name=\"Y\" type=\"float\"></param>");
@@ -367,20 +344,19 @@ public class ColladaSerializer extends EmfSerializer {
 
 			out.println("                                     <source id=\"normals-" + id + "\" name=\"normals-" + id + "\">");
 			out.print("                                                         <float_array id=\"normals-array-" + id + "\" count=\""
-					+ visualisationProperties.getPrimitiveCount() * 3 * 3 + "\">");
-			for (int i = visualisationProperties.getStartIndex(); i < count; i++) {
-				// Normals will also be scaled in Google Earth ...
-				int index = geometry.getIndex(i) * 3;
-				out.print(geometry.getNormal(index + 0) * 1000.0f + " ");
-				out.print(geometry.getNormal(index + 1) * 1000.0f + " ");
-				out.print(geometry.getNormal(index + 2) * 1000.0f);
-				if (i != count - 1) {
-					out.print(" ");
+					+ t + "\">");
+			
+			for (int i = 0; i < t; i++) {
+				if (i < t - 1) {
+					out.print(normalsBuffer.getFloat() * 1000.0f + " ");
+				} else {
+					out.print(normalsBuffer.getFloat() * 1000.0f);
 				}
 			}
+
 			out.println("</float_array>");
 			out.println("                                                     <technique_common>");
-			out.println("                                                                     <accessor count=\"" + (visualisationProperties.getPrimitiveCount() * 3)
+			out.println("                                                                     <accessor count=\"" + (geometryInstance.getPrimitiveCount() * 3)
 					+ "\" offset=\"0\" source=\"#normals-array-" + id + "\" stride=\"3\">");
 			out.println("                                                                                    <param name=\"X\" type=\"float\"></param>");
 			out.println("                                                                                    <param name=\"Y\" type=\"float\"></param>");
@@ -394,10 +370,11 @@ public class ColladaSerializer extends EmfSerializer {
 			out.println("                                                     <input semantic=\"NORMAL\" source=\"#normals-" + id + "\"/>");
 			out.println("                                     </vertices>");
 
-			out.println("                                     <triangles count=\"" + (visualisationProperties.getPrimitiveCount()) * 3 + "\" material=\"Material-" + id + "\">");
+			out.println("                                     <triangles count=\"" + (geometryInstance.getPrimitiveCount()) * 3 + "\" material=\"Material-" + id + "\">");
 			out.println("                                                     <input offset=\"0\" semantic=\"VERTEX\" source=\"#vertices-" + id + "\"/>");
 			out.print("                                                         <p>");
-			count = visualisationProperties.getPrimitiveCount() * 3;
+
+			int count = geometryInstance.getPrimitiveCount() * 3;
 			for (int i = 0; i < count; i += 3) {
 				out.print(i + " ");
 				out.print((i + 2)  + " ");

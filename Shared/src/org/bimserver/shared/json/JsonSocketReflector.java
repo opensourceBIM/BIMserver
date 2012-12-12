@@ -102,7 +102,7 @@ public class JsonSocketReflector extends JsonReflector {
 					HttpEntity resultEntity = response.getEntity();
 					
 					JsonParser parser = new JsonParser();
-					boolean debug = true;
+					boolean debug = false;
 					if (debug ) {
 						InputStream inputStream = resultEntity.getContent();
 						ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

@@ -42,7 +42,6 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.ifc2x3tc1.WrappedValue;
-import org.bimserver.models.store.Geometry;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.eclipse.emf.common.util.ECollections;
@@ -78,7 +77,6 @@ public class IfcModel implements IfcModelInterface {
 	private Map<EClass, Map<String, IdEObject>> nameIndex;
 	private long oidCounter = 1;
 	private boolean useDoubleStrings = true;
-	private Geometry geometry;
 
 	public IfcModel(BiMap<Long, IdEObject> objects) {
 		this.objects = objects;
@@ -800,15 +798,6 @@ public class IfcModel implements IfcModelInterface {
 			return 0;
 		}
 		return list.size();
-	}
-	
-	public void setGeometry(Geometry geometry) {
-		this.geometry = geometry;
-	}
-	
-	@Override
-	public Geometry getGeometry() {
-		return geometry;
 	}
 	
 	public Iterator<IdEObject> iterateAllObjects() {

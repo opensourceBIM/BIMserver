@@ -1,7 +1,7 @@
 package org.bimserver.interfaces.objects;
 
 /******************************************************************************
- * Copyright (C) 2009-2012  BIMserver.org
+ * Copyright (C) 2009-2013  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SProjectDeleted.class, SUserUndeleted.class, SPasswordReset.class, SUserRemovedFromProject.class, SDatabaseCreated.class, SUserDeleted.class, SSettingsSaved.class, SNewUserAdded.class, SPasswordChanged.class, SRevisionUpdated.class, SProjectUndeleted.class, SGeoTagUpdated.class, SUserChanged.class, SNewRevisionAdded.class, SRevisionBranched.class, SExtendedDataAddedToRevision.class, SDownload.class, SServerStarted.class, SNewProjectAdded.class, SExternalServiceCalled.class, SNewObjectIDMUploaded.class, SProjectUpdated.class, SExtendedDataAddedToProject.class, SNewCheckoutAdded.class, SUserAddedToProject.class})
+@XmlSeeAlso(value={SGeoTagUpdated.class, SUserRemovedFromProject.class, SDownload.class, SUserDeleted.class, SProjectUndeleted.class, SRevisionBranched.class, SUserChanged.class, SRevisionUpdated.class, SNewObjectIDMUploaded.class, SServerStarted.class, SProjectUpdated.class, SExtendedDataAddedToRevision.class, SNewUserAdded.class, SUserAddedToProject.class, SDatabaseCreated.class, SProjectDeleted.class, SNewCheckoutAdded.class, SExternalServiceCalled.class, SPasswordReset.class, SPasswordChanged.class, SNewProjectAdded.class, SExtendedDataAddedToProject.class, SSettingsSaved.class, SNewRevisionAdded.class, SUserUndeleted.class})
 public class SLogAction implements SDataBase
 {
 	private long oid = -1;

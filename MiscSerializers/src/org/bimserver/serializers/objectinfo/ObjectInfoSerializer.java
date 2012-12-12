@@ -46,7 +46,9 @@ public class ObjectInfoSerializer extends EmfSerializer {
 				writeTable(out, mainObject);
 			} else {
 				for (EObject eObject : model.getObjects().values()) {
-					writeTable(out, eObject);
+					if (eObject.eClass().getEAnnotation("hidden") == null) {
+						writeTable(out, eObject);
+					}
 				}
 			}
 			out.flush();
@@ -63,42 +65,44 @@ public class ObjectInfoSerializer extends EmfSerializer {
 		out.println("<h1>" + eObject.eClass().getName() + "</h1>");
 		out.println("<table>");
 		for (EStructuralFeature eStructuralFeature : eObject.eClass().getEAllStructuralFeatures()) {
-			out.println("<tr>");
-			out.println("<td>" + eStructuralFeature.getName() + "</td>");
-			Object eGet = eObject.eGet(eStructuralFeature);
-			if (eStructuralFeature instanceof EAttribute) {
-				if (eStructuralFeature.getUpperBound() == 1) {
-					out.println("<td>" + eGet + "</td>");
-				} else {
-					List<Object> list = (List<Object>) eGet;
-					out.println("<td>");
-					for (Object object : list) {
-						out.println(object + " ");
-					}
-					out.println("</td>");
-				}
-			} else if (eStructuralFeature instanceof EReference) {
-				if (eStructuralFeature.getUpperBound() == 1) {
-					if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) eStructuralFeature.getEType())
-							|| eStructuralFeature.getEType() == Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId()) {
-						EObject value = (EObject) eGet;
-						if (value != null) {
-							out.println("<td>" + value.eGet(value.eClass().getEStructuralFeature("wrappedValue")) + "</td>");
-						}
+			if (eStructuralFeature.getEAnnotation("hidden") == null) {
+				out.println("<tr>");
+				out.println("<td>" + eStructuralFeature.getName() + "</td>");
+				Object eGet = eObject.eGet(eStructuralFeature);
+				if (eStructuralFeature instanceof EAttribute) {
+					if (eStructuralFeature.getUpperBound() == 1) {
+						out.println("<td>" + eGet + "</td>");
 					} else {
-						
-					}
-				} else {
-					if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) eStructuralFeature.getEType())
-							|| eStructuralFeature.getEType() == Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId()) {
-						List<EObject> list = (List<EObject>) eGet;
+						List<Object> list = (List<Object>) eGet;
 						out.println("<td>");
-						for (EObject object : list) {
-							out.println("<td>" + object.eGet(object.eClass().getEStructuralFeature("wrappedValue")) + "</td>");
+						for (Object object : list) {
+							out.println(object + " ");
 						}
 						out.println("</td>");
+					}
+				} else if (eStructuralFeature instanceof EReference) {
+					if (eStructuralFeature.getUpperBound() == 1) {
+						if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) eStructuralFeature.getEType())
+								|| eStructuralFeature.getEType() == Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId()) {
+							EObject value = (EObject) eGet;
+							if (value != null) {
+								out.println("<td>" + value.eGet(value.eClass().getEStructuralFeature("wrappedValue")) + "</td>");
+							}
+						} else {
+							
+						}
 					} else {
-						
+						if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) eStructuralFeature.getEType())
+								|| eStructuralFeature.getEType() == Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId()) {
+							List<EObject> list = (List<EObject>) eGet;
+							out.println("<td>");
+							for (EObject object : list) {
+								out.println("<td>" + object.eGet(object.eClass().getEStructuralFeature("wrappedValue")) + "</td>");
+							}
+							out.println("</td>");
+						} else {
+							
+						}
 					}
 				}
 			}
