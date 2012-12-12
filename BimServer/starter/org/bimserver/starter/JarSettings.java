@@ -11,13 +11,9 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
 public class JarSettings {
-	private static final Logger LOGGER = LoggerFactory.getLogger(JarSettings.class);
 	private File lastFile;
 
 	@XmlElement
@@ -54,7 +50,7 @@ public class JarSettings {
 				unmarshal.setLastFile(file);
 				return unmarshal;
 			} catch (JAXBException e) {
-				LOGGER.error("", e);
+				e.printStackTrace();
 			}
 		} else {
 			return new JarSettings();
@@ -79,7 +75,7 @@ public class JarSettings {
 			Marshaller marshaller = jaxbContext.createMarshaller();
 			marshaller.marshal(this, file);
 		} catch (JAXBException e) {
-			LOGGER.error("", e);
+			e.printStackTrace();
 		}
 	}
 
