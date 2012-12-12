@@ -20,7 +20,6 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement;
 import org.bimserver.models.ifc2x3tc1.IfcConnectionPortGeometry;
 import org.bimserver.models.ifc2x3tc1.IfcProfileDef;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

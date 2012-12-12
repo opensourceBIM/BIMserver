@@ -18,15 +18,103 @@ package org.bimserver.models.store.impl;
 
 import javax.activation.DataHandler;
 
-import org.bimserver.models.store.*;
-
+import org.bimserver.models.store.ActionState;
+import org.bimserver.models.store.ArrayDefinition;
+import org.bimserver.models.store.ArrayType;
+import org.bimserver.models.store.BooleanType;
+import org.bimserver.models.store.Checkout;
+import org.bimserver.models.store.CheckoutResult;
+import org.bimserver.models.store.CompareContainer;
+import org.bimserver.models.store.CompareItem;
+import org.bimserver.models.store.CompareResult;
+import org.bimserver.models.store.CompareType;
+import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.DataObject;
+import org.bimserver.models.store.DataValue;
+import org.bimserver.models.store.DatabaseInformation;
+import org.bimserver.models.store.DatabaseInformationCategory;
+import org.bimserver.models.store.DatabaseInformationItem;
+import org.bimserver.models.store.DeserializerPluginConfiguration;
+import org.bimserver.models.store.DeserializerPluginDescriptor;
+import org.bimserver.models.store.DoubleType;
+import org.bimserver.models.store.DownloadResult;
+import org.bimserver.models.store.ExtendedData;
+import org.bimserver.models.store.ExtendedDataSchema;
+import org.bimserver.models.store.ExtendedDataSchemaType;
+import org.bimserver.models.store.ExternalServiceUpdate;
+import org.bimserver.models.store.File;
+import org.bimserver.models.store.GeoTag;
+import org.bimserver.models.store.IfcEnginePluginConfiguration;
+import org.bimserver.models.store.IfcEnginePluginDescriptor;
+import org.bimserver.models.store.ImmediateNotificationResult;
+import org.bimserver.models.store.InternalServicePluginConfiguration;
+import org.bimserver.models.store.ListDataValue;
+import org.bimserver.models.store.LongAction;
+import org.bimserver.models.store.LongActionState;
+import org.bimserver.models.store.LongType;
+import org.bimserver.models.store.Migration;
+import org.bimserver.models.store.ModelComparePluginConfiguration;
+import org.bimserver.models.store.ModelComparePluginDescriptor;
+import org.bimserver.models.store.ModelMergerPluginConfiguration;
+import org.bimserver.models.store.ModelMergerPluginDescriptor;
+import org.bimserver.models.store.NotifictionResultEnum;
+import org.bimserver.models.store.ObjectAdded;
+import org.bimserver.models.store.ObjectDefinition;
+import org.bimserver.models.store.ObjectIDMPluginConfiguration;
+import org.bimserver.models.store.ObjectIDMPluginDescriptor;
+import org.bimserver.models.store.ObjectModified;
+import org.bimserver.models.store.ObjectRemoved;
+import org.bimserver.models.store.ObjectState;
+import org.bimserver.models.store.ObjectType;
+import org.bimserver.models.store.Parameter;
+import org.bimserver.models.store.ParameterDefinition;
+import org.bimserver.models.store.PercentageChange;
+import org.bimserver.models.store.PluginConfiguration;
+import org.bimserver.models.store.PluginDescriptor;
+import org.bimserver.models.store.PrimitiveDefinition;
+import org.bimserver.models.store.PrimitiveEnum;
+import org.bimserver.models.store.PrimitiveType;
+import org.bimserver.models.store.ProfileDescriptor;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.QueryEnginePluginConfiguration;
+import org.bimserver.models.store.QueryEnginePluginDescriptor;
+import org.bimserver.models.store.ReferenceDataValue;
+import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.RevisionSummary;
+import org.bimserver.models.store.RevisionSummaryContainer;
+import org.bimserver.models.store.RevisionSummaryType;
+import org.bimserver.models.store.SIPrefix;
+import org.bimserver.models.store.SerializerPluginConfiguration;
+import org.bimserver.models.store.SerializerPluginDescriptor;
+import org.bimserver.models.store.ServerInfo;
+import org.bimserver.models.store.ServerSettings;
+import org.bimserver.models.store.ServerState;
+import org.bimserver.models.store.Service;
+import org.bimserver.models.store.ServiceDescriptor;
+import org.bimserver.models.store.ServiceField;
+import org.bimserver.models.store.ServiceInterface;
+import org.bimserver.models.store.ServiceMethod;
+import org.bimserver.models.store.ServiceParameter;
+import org.bimserver.models.store.ServicePluginDescriptor;
+import org.bimserver.models.store.ServiceType;
+import org.bimserver.models.store.SimpleDataValue;
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.StringType;
+import org.bimserver.models.store.Token;
+import org.bimserver.models.store.Trigger;
+import org.bimserver.models.store.Type;
+import org.bimserver.models.store.TypeDefinition;
+import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserSession;
+import org.bimserver.models.store.UserSettings;
+import org.bimserver.models.store.UserType;
+import org.bimserver.models.store.Version;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
@@ -232,12 +320,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createExternalServiceUpdate();
 		case StorePackage.PERCENTAGE_CHANGE:
 			return (EObject) createPercentageChange();
-		case StorePackage.BOUNDS:
-			return (EObject) createBounds();
-		case StorePackage.VECTOR3F:
-			return (EObject) createVector3f();
-		case StorePackage.GEOMETRY:
-			return (EObject) createGeometry();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -1111,36 +1193,6 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public PercentageChange createPercentageChange() {
 		PercentageChangeImpl percentageChange = new PercentageChangeImpl();
 		return percentageChange;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Bounds createBounds() {
-		BoundsImpl bounds = new BoundsImpl();
-		return bounds;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Vector3f createVector3f() {
-		Vector3fImpl vector3f = new Vector3fImpl();
-		return vector3f;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Geometry createGeometry() {
-		GeometryImpl geometry = new GeometryImpl();
-		return geometry;
 	}
 
 	/**

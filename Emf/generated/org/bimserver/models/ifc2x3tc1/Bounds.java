@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.bimserver.models.store;
+package org.bimserver.models.ifc2x3tc1;
 
 import org.bimserver.emf.IdEObject;
 
@@ -26,12 +26,12 @@ import org.bimserver.emf.IdEObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.bimserver.models.store.Bounds#getMin <em>Min</em>}</li>
- *   <li>{@link org.bimserver.models.store.Bounds#getMax <em>Max</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.Bounds#getMin <em>Min</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.Bounds#getMax <em>Max</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.bimserver.models.store.StorePackage#getBounds()
+ * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getBounds()
  * @model
  * @extends IdEObject
  * @generated
@@ -47,14 +47,14 @@ public interface Bounds extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Min</em>' reference.
 	 * @see #setMin(Vector3f)
-	 * @see org.bimserver.models.store.StorePackage#getBounds_Min()
+	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getBounds_Min()
 	 * @model
 	 * @generated
 	 */
 	Vector3f getMin();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Bounds#getMin <em>Min</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.Bounds#getMin <em>Min</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Min</em>' reference.
@@ -73,14 +73,14 @@ public interface Bounds extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Max</em>' reference.
 	 * @see #setMax(Vector3f)
-	 * @see org.bimserver.models.store.StorePackage#getBounds_Max()
+	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getBounds_Max()
 	 * @model
 	 * @generated
 	 */
 	Vector3f getMax();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Bounds#getMax <em>Max</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.Bounds#getMax <em>Max</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Max</em>' reference.

@@ -17,12 +17,10 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcOwnerHistory;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

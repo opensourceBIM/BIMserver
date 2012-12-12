@@ -16,11 +16,89 @@
  */
 package org.bimserver.models.store.util;
 
-import org.bimserver.models.store.*;
-
+import org.bimserver.models.store.ArrayDefinition;
+import org.bimserver.models.store.ArrayType;
+import org.bimserver.models.store.BooleanType;
+import org.bimserver.models.store.Checkout;
+import org.bimserver.models.store.CheckoutResult;
+import org.bimserver.models.store.CompareContainer;
+import org.bimserver.models.store.CompareItem;
+import org.bimserver.models.store.CompareResult;
+import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.DataObject;
+import org.bimserver.models.store.DataValue;
+import org.bimserver.models.store.DatabaseInformation;
+import org.bimserver.models.store.DatabaseInformationCategory;
+import org.bimserver.models.store.DatabaseInformationItem;
+import org.bimserver.models.store.DeserializerPluginConfiguration;
+import org.bimserver.models.store.DeserializerPluginDescriptor;
+import org.bimserver.models.store.DoubleType;
+import org.bimserver.models.store.DownloadResult;
+import org.bimserver.models.store.ExtendedData;
+import org.bimserver.models.store.ExtendedDataSchema;
+import org.bimserver.models.store.ExternalServiceUpdate;
+import org.bimserver.models.store.File;
+import org.bimserver.models.store.GeoTag;
+import org.bimserver.models.store.IfcEnginePluginConfiguration;
+import org.bimserver.models.store.IfcEnginePluginDescriptor;
+import org.bimserver.models.store.ImmediateNotificationResult;
+import org.bimserver.models.store.InternalServicePluginConfiguration;
+import org.bimserver.models.store.ListDataValue;
+import org.bimserver.models.store.LongAction;
+import org.bimserver.models.store.LongActionState;
+import org.bimserver.models.store.LongType;
+import org.bimserver.models.store.Migration;
+import org.bimserver.models.store.ModelComparePluginConfiguration;
+import org.bimserver.models.store.ModelComparePluginDescriptor;
+import org.bimserver.models.store.ModelMergerPluginConfiguration;
+import org.bimserver.models.store.ModelMergerPluginDescriptor;
+import org.bimserver.models.store.ObjectAdded;
+import org.bimserver.models.store.ObjectDefinition;
+import org.bimserver.models.store.ObjectIDMPluginConfiguration;
+import org.bimserver.models.store.ObjectIDMPluginDescriptor;
+import org.bimserver.models.store.ObjectModified;
+import org.bimserver.models.store.ObjectRemoved;
+import org.bimserver.models.store.ObjectType;
+import org.bimserver.models.store.Parameter;
+import org.bimserver.models.store.ParameterDefinition;
+import org.bimserver.models.store.PercentageChange;
+import org.bimserver.models.store.PluginConfiguration;
+import org.bimserver.models.store.PluginDescriptor;
+import org.bimserver.models.store.PrimitiveDefinition;
+import org.bimserver.models.store.PrimitiveType;
+import org.bimserver.models.store.ProfileDescriptor;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.QueryEnginePluginConfiguration;
+import org.bimserver.models.store.QueryEnginePluginDescriptor;
+import org.bimserver.models.store.ReferenceDataValue;
+import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.RevisionSummary;
+import org.bimserver.models.store.RevisionSummaryContainer;
+import org.bimserver.models.store.RevisionSummaryType;
+import org.bimserver.models.store.SerializerPluginConfiguration;
+import org.bimserver.models.store.SerializerPluginDescriptor;
+import org.bimserver.models.store.ServerInfo;
+import org.bimserver.models.store.ServerSettings;
+import org.bimserver.models.store.Service;
+import org.bimserver.models.store.ServiceDescriptor;
+import org.bimserver.models.store.ServiceField;
+import org.bimserver.models.store.ServiceInterface;
+import org.bimserver.models.store.ServiceMethod;
+import org.bimserver.models.store.ServiceParameter;
+import org.bimserver.models.store.ServicePluginDescriptor;
+import org.bimserver.models.store.ServiceType;
+import org.bimserver.models.store.SimpleDataValue;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.StringType;
+import org.bimserver.models.store.Token;
+import org.bimserver.models.store.Type;
+import org.bimserver.models.store.TypeDefinition;
+import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserSession;
+import org.bimserver.models.store.UserSettings;
+import org.bimserver.models.store.Version;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 
 /**
@@ -710,27 +788,6 @@ public class StoreSwitch<T> extends Switch<T> {
 			T result = casePercentageChange(percentageChange);
 			if (result == null)
 				result = caseExternalServiceUpdate(percentageChange);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case StorePackage.BOUNDS: {
-			Bounds bounds = (Bounds) theEObject;
-			T result = caseBounds(bounds);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case StorePackage.VECTOR3F: {
-			Vector3f vector3f = (Vector3f) theEObject;
-			T result = caseVector3f(vector3f);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case StorePackage.GEOMETRY: {
-			Geometry geometry = (Geometry) theEObject;
-			T result = caseGeometry(geometry);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -1937,51 +1994,6 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePercentageChange(PercentageChange object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Bounds</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Bounds</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBounds(Bounds object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Vector3f</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Vector3f</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseVector3f(Vector3f object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Geometry</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Geometry</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseGeometry(Geometry object) {
 		return null;
 	}
 

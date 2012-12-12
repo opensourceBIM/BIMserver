@@ -17,12 +17,9 @@
 package org.bimserver.models.ifc2x3tc1.util;
 
 import org.bimserver.models.ifc2x3tc1.*;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -4083,6 +4080,16 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseIfcVectorOrDirection(IfcVectorOrDirection object) {
 			return createIfcVectorOrDirectionAdapter();
+		}
+
+		@Override
+		public Adapter caseBounds(Bounds object) {
+			return createBoundsAdapter();
+		}
+
+		@Override
+		public Adapter caseVector3f(Vector3f object) {
+			return createVector3fAdapter();
 		}
 
 		@Override
@@ -15320,6 +15327,34 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcVectorOrDirectionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.Bounds <em>Bounds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.Bounds
+	 * @generated
+	 */
+	public Adapter createBoundsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.Vector3f <em>Vector3f</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.Vector3f
+	 * @generated
+	 */
+	public Adapter createVector3fAdapter() {
 		return null;
 	}
 

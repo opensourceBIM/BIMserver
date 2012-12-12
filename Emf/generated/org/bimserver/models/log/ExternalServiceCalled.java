@@ -18,7 +18,6 @@ package org.bimserver.models.log;
 
 import org.bimserver.models.store.NotifictionResultEnum;
 import org.bimserver.models.store.Service;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

@@ -19,9 +19,7 @@ package org.bimserver.models.store.impl;
 import org.bimserver.models.store.ArrayType;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.Type;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

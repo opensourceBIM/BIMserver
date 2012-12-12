@@ -18,7 +18,6 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAreaMeasure;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

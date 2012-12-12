@@ -6822,6 +6822,24 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	IfcNullStyle createIfcNullStyle();
 
 	/**
+	 * Returns a new object of class '<em>Bounds</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bounds</em>'.
+	 * @generated
+	 */
+	Bounds createBounds();
+
+	/**
+	 * Returns a new object of class '<em>Vector3f</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Vector3f</em>'.
+	 * @generated
+	 */
+	Vector3f createVector3f();
+
+	/**
 	 * Returns a new object of class '<em>Geometry Instance</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -20,7 +20,6 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement;
 import org.bimserver.models.ifc2x3tc1.IfcTextLiteral;
 import org.bimserver.models.ifc2x3tc1.IfcTextPath;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

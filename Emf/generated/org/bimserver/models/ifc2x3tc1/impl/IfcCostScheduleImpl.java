@@ -21,9 +21,7 @@ import org.bimserver.models.ifc2x3tc1.IfcActorSelect;
 import org.bimserver.models.ifc2x3tc1.IfcCostSchedule;
 import org.bimserver.models.ifc2x3tc1.IfcCostScheduleTypeEnum;
 import org.bimserver.models.ifc2x3tc1.IfcDateTimeSelect;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

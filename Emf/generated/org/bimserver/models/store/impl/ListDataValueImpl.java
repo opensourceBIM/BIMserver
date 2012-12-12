@@ -19,9 +19,7 @@ package org.bimserver.models.store.impl;
 import org.bimserver.models.store.DataValue;
 import org.bimserver.models.store.ListDataValue;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
