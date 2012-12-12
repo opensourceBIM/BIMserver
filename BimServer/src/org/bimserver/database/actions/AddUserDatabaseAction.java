@@ -143,12 +143,11 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 					bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(newUserAdded));
 				}
 			});
+			bimServer.updateUserSettings(getDatabaseSession(), user);
 		}
 		
-		bimServer.updateUserSettings(getDatabaseSession(), user);
-		
 		getDatabaseSession().store(user);
-		if (bimServer.getServerSettingsCache() != null) { // this is only null on server/database initialization
+		if (bimServer != null && bimServer.getServerSettingsCache() != null) { // this is only null on server/database initialization
 			final ServerSettings serverSettings = bimServer.getServerSettingsCache().getServerSettings();
 			if (serverSettings.isSendConfirmationEmailAfterRegistration()) {
 				getDatabaseSession().addPostCommitAction(new PostCommitAction() {
