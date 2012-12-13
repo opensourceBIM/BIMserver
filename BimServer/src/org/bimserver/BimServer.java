@@ -47,6 +47,7 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.database.berkeley.BerkeleyKeyValueStore;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.database.berkeley.DatabaseInitException;
@@ -270,7 +271,7 @@ public class BimServer {
 								.getClass().getName()));
 						DatabaseSession session = bimDatabase.createSession();
 						try {
-							Map<Long, PluginConfiguration> pluginsFound = session.query(pluginCondition, PluginConfiguration.class, false, null);
+							Map<Long, PluginConfiguration> pluginsFound = session.query(pluginCondition, PluginConfiguration.class, Query.getDefault());
 							if (pluginsFound.size() == 0) {
 								LOGGER.error("Error changing plugin-state in database, plugin " + pluginContext.getPlugin().getClass().getName() + " not found");
 							} else if (pluginsFound.size() == 1) {
@@ -415,7 +416,7 @@ public class BimServer {
 			}
 
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral("system"));
-			User systemUser = session.querySingle(condition, User.class, false, null);
+			User systemUser = session.querySingle(condition, User.class, Query.getDefault());
 
 			ServerStarted serverStarted = LogFactory.eINSTANCE.createServerStarted();
 			serverStarted.setDate(new Date());
@@ -451,7 +452,7 @@ public class BimServer {
 	 */
 	private void createDatabaseObjects() throws BimserverLockConflictException, BimserverDatabaseException, PluginException, BimserverConcurrentModificationDatabaseException {
 		DatabaseSession session = bimDatabase.createSession();
-		IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getUser(), false, null);
+		IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getUser(), Query.getDefault());
 		for (User user : allOfType.getAll(User.class)) {
 			updateUserSettings(session, user);
 		}
@@ -658,7 +659,7 @@ public class BimServer {
 		Collection<Plugin> allPlugins = pluginManager.getAllPlugins(false);
 		for (Plugin plugin : allPlugins) {
 			Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginConfiguration_Name(), new StringLiteral(plugin.getClass().getName()));
-			Map<Long, PluginConfiguration> results = session.query(pluginCondition, PluginConfiguration.class, false, null);
+			Map<Long, PluginConfiguration> results = session.query(pluginCondition, PluginConfiguration.class, Query.getDefault());
 			if (results.size() == 0) {
 				PluginConfiguration pluginObject = StoreFactory.eINSTANCE.createPluginConfiguration();
 				pluginObject.setName(plugin.getClass().getName());

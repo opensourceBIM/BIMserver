@@ -186,6 +186,7 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(concreteRevisionClass, "size", ecorePackage.getELongObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(concreteRevisionClass, "date", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEAttribute(concreteRevisionClass, "lastError", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(concreteRevisionClass, "clear", ecorePackage.getEBoolean(), Multiplicity.SINGLE);
 	}
 
 	private void createGeoTagClass() {

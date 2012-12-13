@@ -28,6 +28,7 @@ import org.bimserver.models.log.*;
 import org.bimserver.models.store.*;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.Query;
 
 public class SConverter {
 <%
@@ -198,7 +199,7 @@ public class SConverter {
 %>
 		List<<%=eReference.getEType().getName()%>> list<%=eReference.getName()%> = result.get<%=StringUtils.firstUpperCase(eReference.getName())%>();
 		for (long oid : input.get<%=StringUtils.firstUpperCase(eReference.getName())%>()) {
-			list<%=eReference.getName()%>.add((<%=eReference.getEType().getName()%>)session.get(<%=StringUtils.firstUpperCase(eReference.getEType().getEPackage().getName())%>Package.eINSTANCE.get<%=eReference.getEType().getName()%>(), oid, false, null));
+			list<%=eReference.getName()%>.add((<%=eReference.getEType().getName()%>)session.get(<%=StringUtils.firstUpperCase(eReference.getEType().getEPackage().getName())%>Package.eINSTANCE.get<%=eReference.getEType().getName()%>(), oid, Query.getDefault()));
 		}
 <%		
 			}
@@ -209,7 +210,7 @@ public class SConverter {
 <%
 			} else {
 %>
-		result.set<%=StringUtils.firstUpperCase(eReference.getName())%>((<%=eReference.getEType().getName()%>)session.get(<%=StringUtils.firstUpperCase(eReference.getEType().getEPackage().getName())%>Package.eINSTANCE.get<%=eReference.getEType().getName()%>(), input.get<%=StringUtils.firstUpperCase(eReference.getName())%>Id(), false, null));
+		result.set<%=StringUtils.firstUpperCase(eReference.getName())%>((<%=eReference.getEType().getName()%>)session.get(<%=StringUtils.firstUpperCase(eReference.getEType().getEPackage().getName())%>Package.eINSTANCE.get<%=eReference.getEType().getName()%>(), input.get<%=StringUtils.firstUpperCase(eReference.getName())%>Id(), Query.getDefault()));
 <%
 			}
 		}

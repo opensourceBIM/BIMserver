@@ -22,6 +22,7 @@ import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.store.ServerInfo;
@@ -60,7 +61,7 @@ public class ServerInfoManager {
 			try {
 				boolean adminFound = false;
 				ServerSettings settings = bimServer.getServerSettingsCache().getServerSettings();
-				IfcModelInterface users = session.getAllOfType(StorePackage.eINSTANCE.getUser(), false, null);
+				IfcModelInterface users = session.getAllOfType(StorePackage.eINSTANCE.getUser(), Query.getDefault());
 				for (IdEObject idEObject : users.getValues()) {
 					if (idEObject instanceof User) {
 						User user = (User)idEObject;

@@ -24,6 +24,7 @@ import java.util.Set;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.IntegerLiteral;
@@ -53,7 +54,7 @@ public abstract class BimDatabaseAction<T> {
 	}
 
 	public UserSettings getUserSettings() throws BimserverDatabaseException {
-		IfcModelInterface allOfType = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getUserSettings(), false, null);
+		IfcModelInterface allOfType = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getUserSettings(), Query.getDefault());
 		List<UserSettings> settingsList = allOfType.getAll(UserSettings.class);
 		if (settingsList.size() == 1) {
 			UserSettings settings = settingsList.get(0);
@@ -71,11 +72,11 @@ public abstract class BimDatabaseAction<T> {
 	}
 	
 	public Project getProjectByPoid(long poid) throws BimserverDatabaseException {
-		return (Project) databaseSession.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
+		return databaseSession.get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
 	}
 
 	public User getUserByUoid(long uoid) throws BimserverDatabaseException {
-		return (User) databaseSession.get(StorePackage.eINSTANCE.getUser(), uoid, false, null);
+		return databaseSession.get(StorePackage.eINSTANCE.getUser(), uoid, Query.getDefault());
 	}
 	
 	public User getAdminUser() throws BimserverDatabaseException, BimserverLockConflictException {
@@ -102,30 +103,30 @@ public abstract class BimDatabaseAction<T> {
 	
 	public Project getProjectById(int pid) throws BimserverDatabaseException, BimserverLockConflictException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getProject_Id(), new IntegerLiteral(pid));
-		return databaseSession.querySingle(condition, Project.class, false, null);
+		return databaseSession.querySingle(condition, Project.class, Query.getDefault());
 	}
 
 	public Set<Project> getProjectsByName(String projectName) throws BimserverDatabaseException, BimserverLockConflictException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(projectName));
-		return CollectionUtils.mapToSet(databaseSession.query(condition, Project.class, false, null));
+		return CollectionUtils.mapToSet(databaseSession.query(condition, Project.class, Query.getDefault()));
 	}
 
 	public User getUserByUserName(String username) throws BimserverDatabaseException, BimserverLockConflictException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral(username));
-		return databaseSession.querySingle(condition, User.class, false, null);
+		return databaseSession.querySingle(condition, User.class, Query.getDefault());
 	}
 
 	public Revision getVirtualRevision(long roid) throws BimserverLockConflictException, BimserverDatabaseException {
-		IdEObject idEObject = databaseSession.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
+		IdEObject idEObject = databaseSession.get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
 		return (Revision) idEObject;
 	}
 
 	public Revision getRevisionByRoid(long roid) throws BimserverDatabaseException {
-		return (Revision) databaseSession.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
+		return (Revision) databaseSession.get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
 	}
 
 	public ConcreteRevision getConcreteRevision(long croid) throws BimserverLockConflictException, BimserverDatabaseException {
-		return (ConcreteRevision) databaseSession.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, false, null);
+		return (ConcreteRevision) databaseSession.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, Query.getDefault());
 	}
 
 	public void setDatabaseSession(DatabaseSession session) {

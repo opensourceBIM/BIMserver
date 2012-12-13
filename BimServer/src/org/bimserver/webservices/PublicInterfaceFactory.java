@@ -42,7 +42,7 @@ public class PublicInterfaceFactory implements ServiceFactory {
 		if (publicInterface == ServiceInterface.class) {
 			return (T) new Service(bimServer, null, "", authorization);
 		} else {
-			return (T) new NotificationImpl(bimServer, authorization);
+			return (T) new NotificationImpl(bimServer);
 		}
 	}
 	

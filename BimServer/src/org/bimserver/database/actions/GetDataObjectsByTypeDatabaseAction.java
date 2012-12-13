@@ -24,6 +24,7 @@ import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
@@ -64,7 +65,7 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<D
 		}
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-			IfcModelInterface subModel = getDatabaseSession().getAllOfType(className, concreteRevision.getProject().getId(), concreteRevision.getId(), false, null);
+			IfcModelInterface subModel = getDatabaseSession().getAllOfType(className, new Query(concreteRevision.getProject().getId(), concreteRevision.getId()));
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}

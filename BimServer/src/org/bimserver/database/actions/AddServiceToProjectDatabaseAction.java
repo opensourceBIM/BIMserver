@@ -20,6 +20,7 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Service;
@@ -43,8 +44,8 @@ public class AddServiceToProjectDatabaseAction extends BimDatabaseAction<Void> {
 
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Project project = getDatabaseSession().get(StorePackage.eINSTANCE.getProject(), poid, false, null);
-		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), User.class, authorization.getUoid());
+		Project project = getDatabaseSession().get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
+		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), Query.getDefault());
 		service.setUser(user);
 		for (org.bimserver.models.store.Service existing : project.getServices()) {
 			if (existing.getName().equals(service.getName())) {

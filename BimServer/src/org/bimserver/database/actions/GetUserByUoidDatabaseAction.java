@@ -20,6 +20,7 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
@@ -36,6 +37,6 @@ public class GetUserByUoidDatabaseAction extends BimDatabaseAction<User> {
 
 	@Override
 	public User execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		return (User) getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), uoid, false, null);
+		return (User) getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), uoid, Query.getDefault());
 	}
 }

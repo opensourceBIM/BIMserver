@@ -28,6 +28,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
@@ -80,7 +81,7 @@ public class LongActionManager {
 			List<org.bimserver.models.store.LongAction> result = new ArrayList<org.bimserver.models.store.LongAction>();
 			for (LongAction<?> longAction : actions.values()) {
 				org.bimserver.models.store.LongAction storeLongAction = StoreFactory.eINSTANCE.createLongAction();
-				User user = session.get(StorePackage.eINSTANCE.getUser(), longAction.getAuthorization().getUoid(), false, null);
+				User user = session.get(StorePackage.eINSTANCE.getUser(), longAction.getAuthorization().getUoid(), Query.getDefault());
 				storeLongAction.setIdentification(longAction.getDescription());
 				storeLongAction.setUser(user);
 				storeLongAction.setStart(longAction.getStart().getTime());

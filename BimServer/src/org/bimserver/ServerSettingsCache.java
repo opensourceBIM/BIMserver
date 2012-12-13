@@ -23,6 +23,7 @@ import java.util.Set;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.StorePackage;
 import org.slf4j.Logger;
@@ -43,7 +44,7 @@ public class ServerSettingsCache {
 	public synchronized void updateCache() {
 		DatabaseSession session = database.createSession();
 		try {
-			serverSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), ServerSettings.class);
+			serverSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), Query.getDefault());
 			allowedHosts.clear();
 			for (String domain : serverSettings.getWhitelistedDomains()) {
 				allowedHosts.add(domain);

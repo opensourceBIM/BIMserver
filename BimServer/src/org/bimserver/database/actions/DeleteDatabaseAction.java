@@ -20,6 +20,7 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.log.AccessMethod;
@@ -47,7 +48,7 @@ public class DeleteDatabaseAction<T extends IdEObject> extends BimDatabaseAction
 	
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		T object = getDatabaseSession().get(eClass, oid, false, null);
+		T object = getDatabaseSession().get(eClass, oid, Query.getDefault());
 		if (object == null) {
 			throw new UserException("Object with oid " + oid + " not found");
 		}

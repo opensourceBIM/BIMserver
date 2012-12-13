@@ -20,6 +20,7 @@ package org.bimserver.longaction;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadByGuidsDatabaseAction;
 import org.bimserver.database.actions.DownloadByOidsDatabaseAction;
@@ -75,7 +76,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 		ObjectIDM objectIDM = null;
 		session = getBimServer().getDatabase().createSession();
 		try {
-			SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), false, null);
+			SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), Query.getDefault());
 			if (serializerPluginConfiguration != null) {
 				ObjectIDMPluginConfiguration objectIdm = serializerPluginConfiguration.getObjectIDM();
 				if (objectIdm != null) {

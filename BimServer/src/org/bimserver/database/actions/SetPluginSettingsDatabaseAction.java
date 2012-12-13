@@ -20,6 +20,7 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.PluginConfiguration;
@@ -39,7 +40,7 @@ public class SetPluginSettingsDatabaseAction extends BimDatabaseAction<Void> {
 
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		PluginConfiguration pluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, false, null);
+		PluginConfiguration pluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, Query.getDefault());
 		pluginConfiguration.setSettings(convertedSettings);
 		getDatabaseSession().store(convertedSettings, true);
 		getDatabaseSession().store(pluginConfiguration);

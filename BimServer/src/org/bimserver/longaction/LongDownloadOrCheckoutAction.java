@@ -22,6 +22,7 @@ import javax.activation.DataHandler;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.exceptions.NoSerializerFoundException;
@@ -88,7 +89,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				checkoutResult = new SCheckoutResult();
 				checkoutResult.setFile(new DataHandler(getBimServer().getDiskCacheManager().get(downloadParameters)));
 			} else {
-				Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), false, null);
+				Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), Query.getDefault());
 				revision.getProject().getGeoTag().load(); // Little hack to make
 															// sure this is
 															// lazily loaded,
@@ -102,7 +103,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				DatabaseSession newSession = getBimServer().getDatabase().createSession();
 				IfcEnginePlugin ifcEnginePlugin = null;
 				try {
-					SerializerPluginConfiguration serializerPluginConfiguration = newSession.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), false, null);
+					SerializerPluginConfiguration serializerPluginConfiguration = newSession.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), Query.getDefault());
 					if (serializerPluginConfiguration != null) {
 						IfcEnginePluginConfiguration ifcEngine = serializerPluginConfiguration.getIfcEngine();
 						if (ifcEngine != null) {

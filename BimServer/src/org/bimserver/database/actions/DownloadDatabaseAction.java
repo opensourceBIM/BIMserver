@@ -23,6 +23,8 @@ import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
+import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
@@ -64,7 +66,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 	@Override
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision revision = getVirtualRevision(roid);
-		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), SerializerPluginConfiguration.class, serializerOid);
+		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
 		authorization.canDownload(roid);
 		if (revision == null) {
 			throw new UserException("Revision with oid " + roid + " not found");
@@ -84,6 +86,9 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
 			if (subRevision.getUser().getOid() != ignoreUoid) {
 				IfcModel subModel = new IfcModel();
+				int highestStopId = findHighestStopRid(project, subRevision);
+				Query query = new Query(subRevision.getProject().getId(), subRevision.getId(), objectIDM, Deep.YES, highestStopId);
+				subModel.setQuery(query);
 				subModel.addChangeListener(new IfcModelChangeListener() {
 					@Override
 					public void objectAdded() {
@@ -95,7 +100,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 						}
 					}
 				});
-				getDatabaseSession().getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true, objectIDM);
+				getDatabaseSession().getMap(subModel, query);
 				checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, subRevision, revision);
 				subModel.setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);

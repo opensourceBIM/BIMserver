@@ -29,6 +29,8 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
+import org.bimserver.database.Query;
+import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
@@ -66,7 +68,6 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private final long poid;
 	private final boolean merge;
 	private final BimServer bimServer;
-	private final boolean clean;
 	private ConcreteRevision concreteRevision;
 	private Project project;
 	private Authorization authorization;
@@ -78,14 +79,13 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private final GeometryCache geometryCache = new GeometryCache();
 
 	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface model,
-			String comment, boolean merge, boolean clean) {
+			String comment, boolean merge) {
 		super(databaseSession, accessMethod, model);
 		this.bimServer = bimServer;
 		this.poid = poid;
 		this.authorization = authorization;
 		this.comment = comment;
 		this.merge = merge;
-		this.clean = clean;
 	}
 
 	@Override
@@ -138,11 +138,9 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				revision.setHasGeometry(true);
 			}
 
-			if (nrConcreteRevisionsBefore != 0 && !merge && clean) {
-				// There already was a revision, lets delete it (only when not
-				// merging)
-				setProgress("Cleaning up older revision...", -1);
-				getDatabaseSession().planClearProject(project.getId(), concreteRevision.getId() - 1, concreteRevision.getId());
+			if (nrConcreteRevisionsBefore != 0 && !merge) {
+				// There already was a revision, lets delete it (only when not merging)
+				concreteRevision.setClear(true);
 			}
 
 			if (ifcModel != null) {
@@ -224,7 +222,9 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		for (ConcreteRevision subRevision : lastRevision.getConcreteRevisions()) {
 			if (concreteRevision != subRevision) {
 				IfcModel subModel = new IfcModel();
-				getDatabaseSession().getMap(subModel, subRevision.getProject().getId(), subRevision.getId(), true, null);
+				Query query = new Query(subRevision.getProject().getId(), subRevision.getId(), Deep.YES);
+				subModel.setQuery(query);
+				getDatabaseSession().getMap(subModel, query);
 				subModel.setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);
 			}

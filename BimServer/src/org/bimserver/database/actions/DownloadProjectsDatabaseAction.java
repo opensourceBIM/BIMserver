@@ -24,6 +24,8 @@ import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
+import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
@@ -76,7 +78,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 		final long totalSize = incrSize;
 		final AtomicLong total = new AtomicLong();
 
-		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), SerializerPluginConfiguration.class, serializerOid);
+		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
 
 		for (long roid : roids) {
 			Revision revision = getVirtualRevision(roid);
@@ -84,6 +86,9 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 			if (authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
 					IfcModel subModel = new IfcModel();
+					int highestStopId = findHighestStopRid(project, concreteRevision);
+					Query query = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, Deep.YES, highestStopId);
+					subModel.setQuery(query);
 					subModel.addChangeListener(new IfcModelChangeListener() {
 						@Override
 						public void objectAdded() {
@@ -91,7 +96,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 							progress = Math.round(100L * total.get() / totalSize);
 						}
 					});
-					getDatabaseSession().getMap(subModel, concreteRevision.getProject().getId(), concreteRevision.getId(), true, objectIDM);
+					getDatabaseSession().getMap(subModel, query);
 					projectName += concreteRevision.getProject().getName() + "-";
 					subModel.setDate(concreteRevision.getDate());
 
