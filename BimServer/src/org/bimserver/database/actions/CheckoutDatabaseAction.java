@@ -25,6 +25,8 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
+import org.bimserver.database.Query.Deep;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
@@ -100,7 +102,7 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 				progress = Math.round(100L * total.get() / totalSize);
 			}
 		});
-		databaseSession.getMap(ifcModel, project.getId(), revision.getLastConcreteRevision().getId(), true, null);
+		databaseSession.getMap(ifcModel, new Query(project.getId(), revision.getLastConcreteRevision().getId(), Deep.YES));
 		ifcModel.setName(project.getName() + "." + revision.getId());
 		ifcModel.setRevisionNr(project.getRevisions().indexOf(revision) + 1);
 		ifcModel.setAuthorizedUser(user.getName());

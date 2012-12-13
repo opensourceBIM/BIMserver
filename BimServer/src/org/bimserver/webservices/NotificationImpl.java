@@ -23,6 +23,7 @@ import java.util.List;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
@@ -37,16 +38,13 @@ import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
-import org.bimserver.webservices.authorization.Authorization;
 
 public class NotificationImpl implements NotificationInterface {
 
 	private BimServer bimServer;
-	private Authorization authorization;
 
-	public NotificationImpl(BimServer bimServer, Authorization authorization) {
+	public NotificationImpl(BimServer bimServer) {
 		this.bimServer = bimServer;
-		this.authorization = authorization;
 	}
 
 	@Override
@@ -69,7 +67,7 @@ public class NotificationImpl implements NotificationInterface {
 		List<SProfileDescriptor> descriptors = new ArrayList<SProfileDescriptor>();
 		try {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Token(), new StringLiteral(token));
-			User user = session.querySingle(condition, User.class, false, null);
+			User user = session.querySingle(condition, User.class, Query.getDefault());
 			if (user != null) {
 				for (InternalServicePluginConfiguration internalServicePluginConfiguration : user.getUserSettings().getServices()) {
 					if (internalServicePluginConfiguration.getClassName().equals(serviceIdentifier)) {

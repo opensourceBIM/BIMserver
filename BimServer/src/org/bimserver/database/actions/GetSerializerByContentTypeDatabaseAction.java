@@ -20,6 +20,7 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
@@ -40,6 +41,6 @@ public class GetSerializerByContentTypeDatabaseAction extends BimDatabaseAction<
 	@Override
 	public SerializerPluginConfiguration execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializerPluginConfiguration_ContentType(), new StringLiteral(contentType));
-		return getDatabaseSession().querySingle(condition, SerializerPluginConfiguration.class, false, null);
+		return getDatabaseSession().querySingle(condition, SerializerPluginConfiguration.class, Query.getDefault());
 	}
 }

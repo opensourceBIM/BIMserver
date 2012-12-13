@@ -20,6 +20,7 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SServerSettings;
 import org.bimserver.models.log.AccessMethod;
@@ -38,7 +39,7 @@ public class SetServerSettingsDatabaseAction extends BimDatabaseAction<Void> {
 
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		ServerSettings existingServerSettings = getDatabaseSession().getSingle(StorePackage.eINSTANCE.getServerSettings(), ServerSettings.class);
+		ServerSettings existingServerSettings = getDatabaseSession().getSingle(StorePackage.eINSTANCE.getServerSettings(), Query.getDefault());
 		existingServerSettings.getWhitelistedDomains().clear();
 		new SConverter().convertFromSObject(serverSettings, existingServerSettings, getDatabaseSession());
 		getDatabaseSession().store(existingServerSettings);

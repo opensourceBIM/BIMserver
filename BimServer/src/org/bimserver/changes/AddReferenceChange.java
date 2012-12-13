@@ -23,6 +23,7 @@ import java.util.Map;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
@@ -43,7 +44,7 @@ public class AddReferenceChange implements Change {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		IdEObject idEObject = databaseSession.get(pid, rid, oid, false, null);
+		IdEObject idEObject = databaseSession.get(oid, new Query(pid, rid));
 		EClass eClass = databaseSession.getEClassForOid(oid);
 		EClass referenceEClass = databaseSession.getEClassForOid(referenceOid);
 		if (idEObject == null) {
@@ -59,7 +60,7 @@ public class AddReferenceChange implements Change {
 		if (!eReference.isMany()) {
 			throw new UserException("Reference is not of type 'many'");
 		}
-		IdEObject referencedObject = databaseSession.get(pid, rid, referenceOid, false, null);
+		IdEObject referencedObject = databaseSession.get(referenceOid, new Query(pid, rid));
 		if (referencedObject == null) {
 			throw new UserException("Referenced object of type " + referenceEClass.getName() + " with oid " + referenceOid + " not found");
 		}

@@ -26,6 +26,8 @@ import org.bimserver.HideAllInversesObjectIDM;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
+import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
@@ -80,7 +82,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 		User user = getUserByUoid(authorization.getUoid());
 		Project project = null;
 		Set<EClass> eClasses = new HashSet<EClass>();
-		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), SerializerPluginConfiguration.class, serializerOid);
+		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
 		for (String className : classNames) {
 			eClasses.add(getDatabaseSession().getEClassForName(className));
 			if (includeAllSubtypes) {
@@ -105,7 +107,8 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 				try {
 					HideAllInversesObjectIDM hideAllInversesObjectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), bimServer.getPluginManager().requireSchemaDefinition());
-					IfcModelInterface subModel = getDatabaseSession().getAllOfTypes(eClasses, concreteRevision.getProject().getId(), concreteRevision.getId(), true, useObjectIDM ? objectIDM : hideAllInversesObjectIDM);
+					int highestStopId = findHighestStopRid(project, concreteRevision);
+					IfcModelInterface subModel = getDatabaseSession().getAllOfTypes(eClasses, new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), useObjectIDM ? objectIDM : hideAllInversesObjectIDM, Deep.YES, highestStopId));
 					subModel.setDate(concreteRevision.getDate());
 					checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, virtualRevision);
 					ifcModelSet.add(subModel);

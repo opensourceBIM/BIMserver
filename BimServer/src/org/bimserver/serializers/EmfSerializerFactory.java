@@ -23,6 +23,7 @@ import java.util.List;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
@@ -86,7 +87,7 @@ public class EmfSerializerFactory {
 	public SerializerPlugin get(long serializerOid) {
 		DatabaseSession session = bimDatabase.createSession();
 		try {
-			SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, false, null);
+			SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
 			if (serializerPluginConfiguration != null) {
 				SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(serializerPluginConfiguration.getClassName(), true);
 				if (serializerPlugin != null) {
@@ -142,7 +143,7 @@ public class EmfSerializerFactory {
 	public String getExtension(Long serializerOid) {
 		DatabaseSession session = bimDatabase.createSession();
 		try {
-			SerializerPluginConfiguration found = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, false, null);
+			SerializerPluginConfiguration found = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
 			if (found != null) {
 				return found.getExtension();
 			}

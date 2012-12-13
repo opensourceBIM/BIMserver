@@ -20,6 +20,7 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.models.log.AccessMethod;
@@ -41,10 +42,10 @@ public class AddExtendedDataSchemaDatabaseAction extends AddDatabaseAction<Exten
 		if (getIdEObject().getNamespace() == null || getIdEObject().getNamespace().trim().equals("")) {
 			throw new UserException("Namespace cannot be empty");
 		}
-		if (getDatabaseSession().querySingle(new AttributeCondition(StorePackage.eINSTANCE.getExtendedDataSchema_Name(), new StringLiteral(getIdEObject().getName())), ExtendedDataSchema.class, false, null) != null) {
+		if (getDatabaseSession().querySingle(new AttributeCondition(StorePackage.eINSTANCE.getExtendedDataSchema_Name(), new StringLiteral(getIdEObject().getName())), ExtendedDataSchema.class, Query.getDefault()) != null) {
 			throw new UserException("ExtendedDataSchema name must be unique");
 		}
-		if (getDatabaseSession().querySingle(new AttributeCondition(StorePackage.eINSTANCE.getExtendedDataSchema_Namespace(), new StringLiteral(getIdEObject().getNamespace())), ExtendedDataSchema.class, false, null) != null) {
+		if (getDatabaseSession().querySingle(new AttributeCondition(StorePackage.eINSTANCE.getExtendedDataSchema_Namespace(), new StringLiteral(getIdEObject().getNamespace())), ExtendedDataSchema.class, Query.getDefault()) != null) {
 			throw new UserException("ExtendedDataSchema namespace must be unique");
 		}
 		return super.execute();

@@ -20,6 +20,7 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
@@ -34,7 +35,7 @@ public class DeleteDeserializerDatabaseAction extends DeleteDatabaseAction<Deser
 
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		DeserializerPluginConfiguration object = getDatabaseSession().get(geteClass(), getOid(), false, null);
+		DeserializerPluginConfiguration object = getDatabaseSession().get(geteClass(), getOid(), Query.getDefault());
 		UserSettings settings = object.getUserSettings();
 		settings.getDeserializers().remove(object);
 		getDatabaseSession().store(settings);

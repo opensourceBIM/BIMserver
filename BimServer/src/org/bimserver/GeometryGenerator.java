@@ -213,15 +213,6 @@ public class GeometryGenerator {
 		return vector3f;
 	}
 
-	private void processExtends(Bounds instanceBounds, Bounds modelBounds) {
-		modelBounds.getMin().setX(Math.min(instanceBounds.getMin().getX(), modelBounds.getMin().getX()));
-		modelBounds.getMin().setY(Math.min(instanceBounds.getMin().getY(), modelBounds.getMin().getY()));
-		modelBounds.getMin().setZ(Math.min(instanceBounds.getMin().getZ(), modelBounds.getMin().getZ()));
-		modelBounds.getMax().setX(Math.max(instanceBounds.getMax().getX(), modelBounds.getMax().getX()));
-		modelBounds.getMax().setY(Math.max(instanceBounds.getMax().getY(), modelBounds.getMax().getY()));
-		modelBounds.getMax().setZ(Math.max(instanceBounds.getMax().getZ(), modelBounds.getMax().getZ()));
-	}
-
 	private void processExtends(Bounds bounds, IfcEngineGeometry geometry, ByteBuffer verticesBuffer, ByteBuffer normalsBuffer, int index) {
 		float x = geometry.getVertex(index);
 		float y = geometry.getVertex(index + 1);

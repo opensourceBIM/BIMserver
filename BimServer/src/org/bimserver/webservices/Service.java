@@ -60,6 +60,7 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.database.actions.*;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.database.migrations.InconsistentModelsException;
@@ -227,7 +228,7 @@ public class Service implements ServiceInterface {
 		String username = "Unknown";
 		String userUsername = "Unknown";
 		try {
-			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
+			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), Query.getDefault());
 			username = user.getName();
 			userUsername = user.getUsername();
 			File homeDirIncoming = new File(bimServer.getHomeDir(), "incoming");
@@ -249,7 +250,7 @@ public class Service implements ServiceInterface {
 			File file = new File(userDirIncoming, fileName);
 			InputStream inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(file));
 			try {
-				DeserializerPluginConfiguration deserializerObject = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, false, null);
+				DeserializerPluginConfiguration deserializerObject = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
 				if (deserializerObject == null) {
 					throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 				}
@@ -263,7 +264,7 @@ public class Service implements ServiceInterface {
 				if (model.size() == 0) {
 					throw new DeserializeException("Cannot checkin empty model");
 				}
-				CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(bimServer, null, accessMethod, poid, authorization, model, comment, merge, true);
+				CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(bimServer, null, accessMethod, poid, authorization, model, comment, merge);
 				LongCheckinAction longAction = new LongCheckinAction(bimServer, username, userUsername, authorization, checkinDatabaseAction);
 				bimServer.getLongActionManager().start(longAction);
 				if (sync) {
@@ -292,7 +293,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
+			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
 			return checkout(project.getLastRevision().getOid(), serializerOid, sync);
 		} catch (Exception e) {
 			return handleException(e);
@@ -316,7 +317,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		User user = null;
 		try {
-			user = (User) session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
+			user = (User) session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), Query.getDefault());
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -335,7 +336,7 @@ public class Service implements ServiceInterface {
 	}
 
 	private UserSettings getUserSettings(DatabaseSession session) throws BimserverLockConflictException, BimserverDatabaseException {
-		User user = session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
+		User user = session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), Query.getDefault());
 		return user.getUserSettings();
 	}
 
@@ -637,7 +638,7 @@ public class Service implements ServiceInterface {
 		}
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			user = (User) session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
+			user = (User) session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), Query.getDefault());
 		} catch (BimserverDatabaseException e) {
 			throw new UserException(e);
 		} finally {
@@ -1038,7 +1039,7 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BranchToNewProjectDatabaseAction action = new BranchToNewProjectDatabaseAction(session, accessMethod, bimServer, authorization, roid, projectName, comment);
-			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
+			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), Query.getDefault());
 			String username = user.getName();
 			String userUsername = user.getUsername();
 			LongBranchAction longAction = new LongBranchAction(bimServer, username, userUsername, authorization, action);
@@ -1060,7 +1061,7 @@ public class Service implements ServiceInterface {
 		final DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BranchToExistingProjectDatabaseAction action = new BranchToExistingProjectDatabaseAction(session, accessMethod, bimServer, authorization, roid, destPoid, comment);
-			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
+			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), Query.getDefault());
 			String username = user.getName();
 			String userUsername = user.getUsername();
 			LongBranchAction longBranchAction = new LongBranchAction(bimServer, username, userUsername, authorization, action);
@@ -1266,7 +1267,7 @@ public class Service implements ServiceInterface {
 			return null;
 		}
 		try {
-			User user = databaseSession.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
+			User user = databaseSession.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), Query.getDefault());
 			return converter.convertToSObject(user);
 		} catch (Exception e) {
 			return handleException(e);
@@ -1280,7 +1281,7 @@ public class Service implements ServiceInterface {
 		}
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			User user = session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), false, null);
+			User user = session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), Query.getDefault());
 			return converter.convertToSObject(user);
 		} catch (Exception e) {
 			return handleException(e);
@@ -1628,8 +1629,8 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			SUser currentUser = getCurrentUser(session);
-			Revision revision1 = session.get(StorePackage.eINSTANCE.getRevision(), roid1, false, null);
-			Revision revision2 = session.get(StorePackage.eINSTANCE.getRevision(), roid2, false, null);
+			Revision revision1 = session.get(StorePackage.eINSTANCE.getRevision(), roid1, Query.getDefault());
+			Revision revision2 = session.get(StorePackage.eINSTANCE.getRevision(), roid2, Query.getDefault());
 			String senderName = currentUser.getName();
 			String senderAddress = currentUser.getUsername();
 			if (!senderAddress.contains("@") || !senderAddress.contains(".")) {
@@ -2265,7 +2266,7 @@ public class Service implements ServiceInterface {
 	private Object getAttribute(Long oid, String attributeName) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			IdEObject object = session.get(session.getEClassForOid(oid), oid, false, null);
+			IdEObject object = session.get(session.getEClassForOid(oid), oid, Query.getDefault());
 			return object.eGet(object.eClass().getEStructuralFeature(attributeName));
 		} catch (Exception e) {
 			return handleException(e);
@@ -3235,7 +3236,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			org.bimserver.models.store.Service externalProfile = session.get(StorePackage.eINSTANCE.getService(), soid, false, null);
+			org.bimserver.models.store.Service externalProfile = session.get(StorePackage.eINSTANCE.getService(), soid, Query.getDefault());
 			return converter.convertToSObject(externalProfile);
 		} catch (Exception e) {
 			return handleException(e);
@@ -3510,7 +3511,7 @@ public class Service implements ServiceInterface {
 		try {
 			SUser currentUser = getCurrentUser();
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Token(), new StringLiteral(currentUser.getToken()));
-			User user = session.querySingle(condition, User.class, false, null);
+			User user = session.querySingle(condition, User.class, Query.getDefault());
 			if (user != null) {
 				for (InternalServicePluginConfiguration internalServicePluginConfiguration : user.getUserSettings().getServices()) {
 					if (internalServicePluginConfiguration.getClassName().equals(serviceIdentifier) && internalServicePluginConfiguration.isRemoteAccessible()) {
@@ -3540,7 +3541,7 @@ public class Service implements ServiceInterface {
 	public SObjectType getPluginSettings(Long poid) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			PluginConfiguration pluginConfiguration = session.get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, false, null);
+			PluginConfiguration pluginConfiguration = session.get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, Query.getDefault());
 			ObjectType settings = pluginConfiguration.getSettings();
 			return converter.convertToSObject(settings);
 		} catch (Exception e) {
@@ -3569,7 +3570,7 @@ public class Service implements ServiceInterface {
 	public SServerSettings getServerSettings() throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getServerSettings(), false, null);
+			IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getServerSettings(), Query.getDefault());
 			return converter.convertToSObject(allOfType.getAll(ServerSettings.class).get(0));
 		} catch (Exception e) {
 			return handleException(e);
@@ -3599,7 +3600,7 @@ public class Service implements ServiceInterface {
 	public List<SExtendedData> getAllExtendedDataOfRevision(Long roid) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
+			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
 			return converter.convertToSListExtendedData(revision.getExtendedData());
 		} catch (Exception e) {
 			return handleException(e);
@@ -3612,7 +3613,7 @@ public class Service implements ServiceInterface {
 	public SFile getFile(Long fileId) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			org.bimserver.models.store.File file = (org.bimserver.models.store.File)session.get(StorePackage.eINSTANCE.getFile(), fileId, false, null);
+			org.bimserver.models.store.File file = (org.bimserver.models.store.File)session.get(StorePackage.eINSTANCE.getFile(), fileId, Query.getDefault());
 			return converter.convertToSObject(file);
 		} catch (Exception e) {
 			return handleException(e);
@@ -3639,8 +3640,8 @@ public class Service implements ServiceInterface {
 	public void triggerNewRevision(Long roid, Long soid) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			org.bimserver.models.store.Service service = (org.bimserver.models.store.Service)session.get(StorePackage.eINSTANCE.getService(), soid, false, null);
-			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, false, null);
+			org.bimserver.models.store.Service service = (org.bimserver.models.store.Service)session.get(StorePackage.eINSTANCE.getService(), soid, Query.getDefault());
+			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
 			SNewRevisionAdded newRevisionNotification = new SNewRevisionAdded();
 			newRevisionNotification.setRevisionId(revision.getOid());
 			newRevisionNotification.setProjectId(revision.getProject().getOid());

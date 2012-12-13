@@ -23,6 +23,7 @@ import java.util.List;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Revision;
 import org.bimserver.shared.exceptions.UserException;
@@ -39,6 +40,6 @@ public class GetAvailableClassesInRevisionDatabaseAction extends BimDatabaseActi
 	@Override
 	public List<String> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision revision = getRevisionByRoid(roid);
-		return new ArrayList<String>(getDatabaseSession().getAvailableClassesInRevision(revision.getProject().getId(), revision.getId()));
+		return new ArrayList<String>(getDatabaseSession().getAvailableClassesInRevision(new Query(revision.getProject().getId(), revision.getId())));
 	}
 }

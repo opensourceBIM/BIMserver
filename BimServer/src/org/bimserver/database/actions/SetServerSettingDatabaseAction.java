@@ -22,6 +22,7 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
+import org.bimserver.database.Query;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.StorePackage;
@@ -39,7 +40,7 @@ public class SetServerSettingDatabaseAction extends BimDatabaseAction<Void> {
 
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		ServerSettings serverSettings = getDatabaseSession().getSingle(StorePackage.eINSTANCE.getServerSettings(), ServerSettings.class);
+		ServerSettings serverSettings = getDatabaseSession().getSingle(StorePackage.eINSTANCE.getServerSettings(), Query.getDefault());
 		serverSettingsSetter.set(serverSettings);
 		getDatabaseSession().store(serverSettings);
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {

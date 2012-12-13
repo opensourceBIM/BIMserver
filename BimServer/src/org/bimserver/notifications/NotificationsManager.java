@@ -31,6 +31,7 @@ import org.bimserver.client.JsonChannel;
 import org.bimserver.client.JsonSocketReflectorFactory;
 import org.bimserver.client.channels.Channel;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SImmediateNotificationResult;
@@ -118,7 +119,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 						if (notification instanceof SNewProjectAdded) {
 						} else if (notification instanceof SNewRevisionAdded) {
 							SNewRevisionAdded newRevisionNotification = (SNewRevisionAdded) notification;
-							Project project = session.get(StorePackage.eINSTANCE.getProject(), newRevisionNotification.getProjectId(), false, null);
+							Project project = session.get(StorePackage.eINSTANCE.getProject(), newRevisionNotification.getProjectId(), Query.getDefault());
 							for (Service service : project.getServices()) {
 								trigger(bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), newRevisionNotification, service);
 							}

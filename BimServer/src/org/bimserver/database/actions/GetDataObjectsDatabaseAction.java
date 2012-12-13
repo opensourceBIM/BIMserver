@@ -24,6 +24,8 @@ import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
+import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
@@ -40,7 +42,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.ecore.EObject;
 
-public class GetDataObjectsDatabaseAction extends BimDatabaseAction<List<DataObject>> {
+public class GetDataObjectsDatabaseAction extends AbstractDownloadDatabaseAction<List<DataObject>> {
 
 	private final long roid;
 	private final BimServer bimServer;
@@ -58,8 +60,11 @@ public class GetDataObjectsDatabaseAction extends BimDatabaseAction<List<DataObj
 		Revision virtualRevision = getVirtualRevision(roid);
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
+			int highestStopId = findHighestStopRid(concreteRevision.getProject(), concreteRevision);
 			IfcModel subModel = new IfcModel();
-			getDatabaseSession().getMap(subModel, concreteRevision.getProject().getId(), concreteRevision.getId(), true, null);
+			Query query = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.YES, highestStopId);
+			subModel.setQuery(query);
+			getDatabaseSession().getMap(subModel, query);
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}

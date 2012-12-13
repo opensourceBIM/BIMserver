@@ -20,6 +20,7 @@ package org.bimserver.database.actions;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
@@ -38,6 +39,6 @@ public class GetByIdDatabaseAction<T> extends BimDatabaseAction<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public T execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		return (T) getDatabaseSession().get(eClass, oid, false, null);
+		return (T) getDatabaseSession().get(eClass, oid, Query.getDefault());
 	}
 }
