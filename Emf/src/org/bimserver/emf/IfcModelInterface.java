@@ -80,4 +80,5 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	void changeOid(IdEObject object);
 	void fixOids();
 	void generateMinimalExpressIds();
+	void setQuery(Object query);
 }

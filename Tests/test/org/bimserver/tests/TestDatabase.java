@@ -10,6 +10,7 @@ import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.KeyValueStore;
+import org.bimserver.database.Query;
 import org.bimserver.database.berkeley.BerkeleyKeyValueStore;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.database.migrations.InconsistentModelsException;
@@ -57,8 +58,8 @@ public class TestDatabase {
 	private void removeWithOid() {
 		DatabaseSession session = database.createSession();
 		try {
-			Project p = session.get(StorePackage.eINSTANCE.getProject(), poid, false, null);
-			User u = session.get(StorePackage.eINSTANCE.getUser(), uoid, false, null);
+			Project p = session.get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
+			User u = session.get(StorePackage.eINSTANCE.getUser(), uoid, Query.getDefault());
 			if (!u.getHasRightsOn().remove(p)) {
 				System.err.println("Not removed");
 			}
@@ -72,11 +73,12 @@ public class TestDatabase {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private void removeWithAllOfType() {
 		DatabaseSession session = database.createSession();
 		try {
-			List<User> users = session.getAllOfType(StorePackage.eINSTANCE.getUser(), User.class);
-			List<Project> projects = session.getAllOfType(StorePackage.eINSTANCE.getProject(), Project.class);
+			List<User> users = session.getAllOfType(StorePackage.eINSTANCE.getUser(), User.class, Query.getDefault());
+			List<Project> projects = session.getAllOfType(StorePackage.eINSTANCE.getProject(), Project.class, Query.getDefault());
 			Project p = null;
 			for (Project project : projects) {
 				if (project.getName().equals("testproject")) {
@@ -104,13 +106,13 @@ public class TestDatabase {
 	private void checkWithAllOfType() {
 		DatabaseSession session = database.createSession();
 		try {
-			List<User> users = session.getAllOfType(StorePackage.eINSTANCE.getUser(), User.class);
+			List<User> users = session.getAllOfType(StorePackage.eINSTANCE.getUser(), User.class, Query.getDefault());
 			for (User user : users) {
 				if (user.getName().equals("testuser")) {
 					System.out.println(user.getName() + ": " + user.getHasRightsOn());
 				}
 			}
-			List<Project> projects = session.getAllOfType(StorePackage.eINSTANCE.getProject(), Project.class);
+			List<Project> projects = session.getAllOfType(StorePackage.eINSTANCE.getProject(), Project.class, Query.getDefault());
 			for (Project project : projects) {
 				if (project.getName().equals("testproject")) {
 					System.out.println(project.getName() + ": " + project.getHasAuthorizedUsers());

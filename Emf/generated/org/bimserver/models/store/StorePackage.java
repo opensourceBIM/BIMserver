@@ -679,13 +679,22 @@ public interface StorePackage extends EPackage {
 	int CONCRETE_REVISION__LAST_ERROR = 6;
 
 	/**
+	 * The feature id for the '<em><b>Clear</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_REVISION__CLEAR = 7;
+
+	/**
 	 * The feature id for the '<em><b>Summary</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION__SUMMARY = 7;
+	int CONCRETE_REVISION__SUMMARY = 8;
 
 	/**
 	 * The feature id for the '<em><b>User</b></em>' reference.
@@ -694,7 +703,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION__USER = 8;
+	int CONCRETE_REVISION__USER = 9;
 
 	/**
 	 * The number of structural features of the '<em>Concrete Revision</em>' class.
@@ -703,7 +712,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION_FEATURE_COUNT = 9;
+	int CONCRETE_REVISION_FEATURE_COUNT = 10;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.GeoTagImpl <em>Geo Tag</em>}' class.
@@ -5912,6 +5921,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getConcreteRevision_LastError();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ConcreteRevision#isClear <em>Clear</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Clear</em>'.
+	 * @see org.bimserver.models.store.ConcreteRevision#isClear()
+	 * @see #getConcreteRevision()
+	 * @generated
+	 */
+	EAttribute getConcreteRevision_Clear();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ConcreteRevision#getSummary <em>Summary</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9952,6 +9972,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CONCRETE_REVISION__LAST_ERROR = eINSTANCE.getConcreteRevision_LastError();
+
+		/**
+		 * The meta object literal for the '<em><b>Clear</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONCRETE_REVISION__CLEAR = eINSTANCE.getConcreteRevision_Clear();
 
 		/**
 		 * The meta object literal for the '<em><b>Summary</b></em>' reference feature.

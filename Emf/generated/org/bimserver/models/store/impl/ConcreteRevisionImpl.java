@@ -42,6 +42,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getSize <em>Size</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getDate <em>Date</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getLastError <em>Last Error</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#isClear <em>Clear</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getSummary <em>Summary</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getUser <em>User</em>}</li>
  * </ul>
@@ -195,6 +196,24 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 */
 	public void setLastError(String newLastError) {
 		eSet(StorePackage.Literals.CONCRETE_REVISION__LAST_ERROR, newLastError);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isClear() {
+		return (Boolean) eGet(StorePackage.Literals.CONCRETE_REVISION__CLEAR, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setClear(boolean newClear) {
+		eSet(StorePackage.Literals.CONCRETE_REVISION__CLEAR, newClear);
 	}
 
 	/**

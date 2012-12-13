@@ -28,6 +28,7 @@ import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.actions.Action;
+import org.bimserver.test.framework.actions.ActionResults;
 import org.bimserver.test.framework.actions.CheckinAction;
 import org.bimserver.test.framework.actions.CheckinSettings;
 import org.bimserver.test.framework.actions.CreateProjectAction;
@@ -43,6 +44,7 @@ public class VirtualUser extends Thread {
 	private final Random random = new Random();
 	private volatile boolean running;
 	private final List<String> usernames = new ArrayList<String>();
+	private ActionResults actionResults;
 
 	public VirtualUser(TestFramework testFramework, BimServerClient bimServerClient, String name) {
 		setName(name);
@@ -57,6 +59,10 @@ public class VirtualUser extends Thread {
 		});
 	}
 
+	public ActionResults getActionResults() {
+		return actionResults;
+	}
+	
 	@Override
 	public void run() {
 		running = true;
@@ -71,25 +77,26 @@ public class VirtualUser extends Thread {
 						action.execute(this);
 					} else {
 						action = testFramework.getTestConfiguration().getActionFactory().createAction();
+						actionResults = new ActionResults();
 						action.execute(this);
-						action.getActionResults().setType("OKE");
-						String text = action.getActionResults().getText();
-						LOGGER.info("Success: " + (text == null || text.equals("") ? action.getClass().getSimpleName() : text));
-						testFramework.getResults().addRow(action.getActionResults(), this, action);
+						actionResults.setType("OKE");
+						String text = actionResults.getText();
+						LOGGER.info(getName() + " Success: " + (text == null || text.equals("") ? action.getClass().getSimpleName() : text));
+						testFramework.getResults().addRow(actionResults, this, action);
 					}
 				} catch (UserException e) {
-					LOGGER.info("UserException: " + e.getMessage());
-					action.getActionResults().setType("WARN");
-					action.getActionResults().setText(e.getMessage());
-					testFramework.getResults().addRow(action.getActionResults(), this, action);
+					LOGGER.info(getName() + " UserException: " + e.getMessage());
+					actionResults.setType("WARN");
+					actionResults.setText(e.getMessage());
+					testFramework.getResults().addRow(actionResults, this, action);
 					if (this.testFramework.getTestConfiguration().isStopOnUserException()) {
 						break;
 					}
 				} catch (ServerException e) {
 					e.printStackTrace();
-					action.getActionResults().setText(e.getMessage());
-					action.getActionResults().setType("ERROR");
-					testFramework.getResults().addRow(action.getActionResults(), this, action);
+					actionResults.setText(e.getMessage());
+					actionResults.setType("ERROR");
+					testFramework.getResults().addRow(actionResults, this, action);
 					LOGGER.info(e.getMessage());
 					if (this.testFramework.getTestConfiguration().isStopOnServerException()) {
 						break;

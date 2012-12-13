@@ -39,6 +39,7 @@ public class SConcreteRevision implements SDataBase
 	private java.lang.Long size;
 	private java.util.Date date;
 	private java.lang.String lastError;
+	private boolean clear;
 	private long summaryId = -1;
 	private long userId = -1;
 
@@ -89,6 +90,9 @@ public class SConcreteRevision implements SDataBase
 		if (sField.getName().equals("lastError")) {
 			return getLastError();
 		}
+		if (sField.getName().equals("clear")) {
+			return isClear();
+		}
 		if (sField.getName().equals("summaryId")) {
 			return getSummaryId();
 		}
@@ -132,6 +136,10 @@ public class SConcreteRevision implements SDataBase
 		}
 		if (sField.getName().equals("lastError")) {
 			setLastError((String)val);
+			return;
+		}
+		if (sField.getName().equals("clear")) {
+			setClear((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("summaryId")) {
@@ -207,6 +215,14 @@ public class SConcreteRevision implements SDataBase
 
 	public void setLastError(java.lang.String lastError) {
 		this.lastError = lastError;
+	}
+	
+	public boolean isClear() {
+		return clear;
+	}
+
+	public void setClear(boolean clear) {
+		this.clear = clear;
 	}
 	
 	public long getSummaryId() {

@@ -1352,8 +1352,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getConcreteRevision_Clear() {
+		return (EAttribute) getConcreteRevision().getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getConcreteRevision_Summary() {
-		return (EReference) getConcreteRevision().getEStructuralFeatures().get(7);
+		return (EReference) getConcreteRevision().getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -1362,7 +1371,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getConcreteRevision_User() {
-		return (EReference) getConcreteRevision().getEStructuralFeatures().get(8);
+		return (EReference) getConcreteRevision().getEStructuralFeatures().get(9);
 	}
 
 	/**

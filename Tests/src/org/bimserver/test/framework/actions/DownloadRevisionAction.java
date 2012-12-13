@@ -60,7 +60,7 @@ public class DownloadRevisionAction extends Action {
 					serializer = allSerializers.get(nextInt(allSerializers.size()));
 				}
 				boolean sync = nextBoolean();
-				getActionResults().setText("Downloading revision " + project.getLastRevisionId() + " of project " + project.getName() + " with serializer " + serializer.getName() + " sync: " + sync);
+				virtualUser.getActionResults().setText("Downloading revision " + project.getLastRevisionId() + " of project " + project.getName() + " with serializer " + serializer.getName() + " sync: " + sync);
 				SRevision revision = virtualUser.getBimServerClient().getServiceInterface().getRevision(project.getLastRevisionId());
 				long download = virtualUser.getBimServerClient().getServiceInterface().download(project.getLastRevisionId(), serializer.getOid(), true, sync);
 				SActionState state = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(download).getState();
