@@ -36,7 +36,7 @@ public class TestCheckinAll {
 		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.JSON_TOKEN_BASED));
 		testConfiguration.setTestFileProvider(new FolderWalker(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Logic Labs\\Clients\\TNO\\ifc selected"), testFramework));
 		testConfiguration.setOutputFolder(new File("G:\\Output"));
-		testConfiguration.setNrVirtualUsers(3);
+		testConfiguration.setNrVirtualUsers(8);
 		
 		testFramework.start();
 	}

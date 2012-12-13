@@ -34,7 +34,7 @@ public class AddUserToProjectAction extends Action {
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
 		SProject project = virtualUser.getRandomProject();
 		SUser user = virtualUser.getRandomUser();
-		getActionResults().setText("Adding user " + user.getName() + " to project " + project.getName());
+		virtualUser.getActionResults().setText("Adding user " + user.getName() + " to project " + project.getName());
 		virtualUser.getBimServerClient().getServiceInterface().addUserToProject(user.getOid(), project.getOid());
 	}
 }

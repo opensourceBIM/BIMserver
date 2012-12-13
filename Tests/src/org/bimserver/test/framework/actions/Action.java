@@ -26,7 +26,6 @@ import org.bimserver.test.framework.VirtualUser;
 
 public abstract class Action {
 	private final TestFramework testFramework;
-	private ActionResults actionResults = new ActionResults();
 	private Random random;
 
 	public Action(TestFramework testFramework) {
@@ -47,12 +46,9 @@ public abstract class Action {
 	}
 
 	public abstract void execute(VirtualUser virtualUser) throws ServerException, UserException;
+	
 	public int getWeight() {
 		return 1;
-	}
-	
-	public ActionResults getActionResults() {
-		return actionResults;
 	}
 	
 	public boolean nextBoolean() {

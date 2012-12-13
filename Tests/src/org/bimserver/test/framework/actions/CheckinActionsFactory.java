@@ -26,16 +26,16 @@ import org.bimserver.test.framework.TestFramework;
 public class CheckinActionsFactory implements ActionFactory {
 	private final List<Action> actions = new ArrayList<Action>();
 	private final Random random = new Random();
-	
+
 	public CheckinActionsFactory(TestFramework testFramework) {
 		add(1, new AddUserToProjectAction(testFramework));
 		add(20, new CheckinAction(testFramework, new CheckinSettings()));
 		add(1, new CreateProjectAction(testFramework));
 		add(1, new CreateSubProjectAction(testFramework));
-		add(1, new CreateUserAction(testFramework));
+		add(5, new CreateUserAction(testFramework));
 		add(1, new LoginAction(testFramework));
 		add(1, new LogoutAction(testFramework));
-		add(2, new RemoveUserFromProjectAction(testFramework));
+		add(1, new RemoveUserFromProjectAction(testFramework));
 	}
 	
 	public Action createAction() {

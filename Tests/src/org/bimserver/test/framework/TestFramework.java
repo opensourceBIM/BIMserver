@@ -73,6 +73,7 @@ public class TestFramework {
 				// Convenience, setup the server to make sure it is in RUNNING state
 				if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 					bimServer.getSystemService().setup("http://localhost", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
+					bimServer.getSystemService().setSettingGenerateGeometryOnCheckin(false);
 				}
 				
 				// Change a setting so normal users can create projects

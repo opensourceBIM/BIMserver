@@ -36,6 +36,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getSize <em>Size</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getDate <em>Date</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getLastError <em>Last Error</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ConcreteRevision#isClear <em>Clear</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getSummary <em>Summary</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getUser <em>User</em>}</li>
  * </ul>
@@ -222,6 +223,32 @@ public interface ConcreteRevision extends IdEObject {
 	 * @generated
 	 */
 	void setLastError(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Clear</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Clear</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Clear</em>' attribute.
+	 * @see #setClear(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getConcreteRevision_Clear()
+	 * @model
+	 * @generated
+	 */
+	boolean isClear();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ConcreteRevision#isClear <em>Clear</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Clear</em>' attribute.
+	 * @see #isClear()
+	 * @generated
+	 */
+	void setClear(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Summary</b></em>' reference.

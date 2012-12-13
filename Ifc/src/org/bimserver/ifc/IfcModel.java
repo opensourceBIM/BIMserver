@@ -77,6 +77,7 @@ public class IfcModel implements IfcModelInterface {
 	private Map<EClass, Map<String, IdEObject>> nameIndex;
 	private long oidCounter = 1;
 	private boolean useDoubleStrings = true;
+	private Object query;
 
 	public IfcModel(BiMap<Long, IdEObject> objects) {
 		this.objects = objects;
@@ -848,5 +849,14 @@ public class IfcModel implements IfcModelInterface {
 			IdEObject idEObject = iterateAllObjects.next();
 			((IdEObjectImpl)idEObject).setExpressId(expressId++);
 		}
+	}
+
+	public Object getQuery() {
+		return query;
+	}
+
+	@Override
+	public void setQuery(Object query) {
+		this.query = query;
 	}
 }

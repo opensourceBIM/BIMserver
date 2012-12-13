@@ -19,11 +19,16 @@ package org.bimserver.test.framework;
 
 import java.io.File;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class FolderWalker implements TestFileProvider {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(FolderWalker.class);
 	private volatile int current = 0;
 	private File[] listFiles;
 	private final TestFramework testFramework;
+	private int lastPerc;
 
 	public FolderWalker(File folder, TestFramework testFramework) {
 		this.testFramework = testFramework;
@@ -42,6 +47,15 @@ public class FolderWalker implements TestFileProvider {
 		}
 		if (!next.isFile()) {
 			return getNewFile();
+		}
+		int percentage = current / listFiles.length;
+		if (percentage > lastPerc) {
+			LOGGER.info("");
+			LOGGER.info("");
+			LOGGER.info(percentage + "%");
+			LOGGER.info("");
+			LOGGER.info("");
+			lastPerc = percentage;
 		}
 		return next;
 	}

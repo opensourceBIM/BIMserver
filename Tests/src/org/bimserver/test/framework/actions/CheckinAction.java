@@ -50,19 +50,19 @@ public class CheckinAction extends Action {
 		SDeserializerPluginConfiguration suggestedDeserializerForExtension = virtualUser.getBimServerClient().getServiceInterface().getSuggestedDeserializerForExtension(extension);
 		
 		if (suggestedDeserializerForExtension == null) {
-			getActionResults().setText("No deserializer found for extension " + extension + " in file " + fileName);
+			virtualUser.getActionResults().setText("No deserializer found for extension " + extension + " in file " + fileName);
 			return;
 		}
 		
 		boolean sync = !settings.shouldAsync();
 		boolean merge = settings.shouldMerge();
-		getActionResults().setText("Checking in new revision on project " + project.getName() + " (" + fileName + ") " + "sync: " + sync + ", merge: " + merge);
+		virtualUser.getActionResults().setText("Checking in new revision on project " + project.getName() + " (" + fileName + ") " + "sync: " + sync + ", merge: " + merge);
 		long checkinId = virtualUser.getBimServerClient().getServiceInterface()
 				.checkin(project.getOid(), randomString(), suggestedDeserializerForExtension.getOid(), randomFile.length(), fileName, new DataHandler(dataSource), merge, sync);
 		if (sync) {
 			SLongActionState longActionState = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(checkinId);
 			if (longActionState.getState() == SActionState.AS_ERROR) {
-				getActionResults().setText("" + longActionState.getErrors());
+				virtualUser.getActionResults().setText("" + longActionState.getErrors());
 			}
 		} else {
 			while (true) {
