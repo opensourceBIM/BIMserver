@@ -480,6 +480,7 @@
     <eClassifiers xsi:type="ecore:EEnum" name="Trigger">
       <eLiterals name="NEW_REVISION"/>
       <eLiterals name="NEW_PROJECT" value="1"/>
+      <eLiterals name="NEW_EXTENDED_DATA" value="2"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ProfileDescriptor">
       <eAnnotations source="nodatabase"/>
@@ -9014,6 +9015,14 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UserChanged" eSuperTypes="#/2/LogAction">
       <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/0/User"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NewExtendedDataAddedToRevision" eSuperTypes="#/2/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#/0/Revision"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" eType="#/0/ExtendedData"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NewExtendedDataAddedToProject" eSuperTypes="#/2/LogAction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/0/Project"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" eType="#/0/ExtendedData"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ExtendedDataAddedToRevision" eSuperTypes="#/2/LogAction">
       <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="#/0/Revision"/>
