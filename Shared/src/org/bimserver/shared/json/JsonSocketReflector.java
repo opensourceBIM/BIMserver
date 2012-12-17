@@ -49,12 +49,12 @@ import com.google.gson.JsonParser;
 public class JsonSocketReflector extends JsonReflector {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(JsonSocketReflector.class);
+	private final String remoteAddress;
+	private final boolean useHttpSession;
+	private final DefaultHttpClient httpclient;
+	private final AuthenticationInfo authenticationInfo;
+	private final HttpContext context;
 	private String token;
-	private String remoteAddress;
-	private boolean useHttpSession;
-	private DefaultHttpClient httpclient;
-	private AuthenticationInfo authenticationInfo;
-	private HttpContext context;
 
 	public JsonSocketReflector(DefaultHttpClient httpclient, ServicesMap servicesMap, String remoteAddress, boolean useHttpSession, AuthenticationInfo authenticationInfo) {
 		super(servicesMap);
