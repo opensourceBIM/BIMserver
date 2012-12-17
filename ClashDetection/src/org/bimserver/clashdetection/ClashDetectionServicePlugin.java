@@ -108,6 +108,10 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 					IfcEngineModel ifcEngineModel = ifcEngine.openModel(new ByteArrayInputStream(baos.toByteArray()), baos.size());
 					Set<IfcEngineClash> clashes = ifcEngineModel.findClashesWithEids(0.0);
 					IfcEngineGeometry geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
+
+					StillImageRenderer stillImageRenderer = pluginManager.getFirstStillImageRenderPlugin().create();
+					stillImageRenderer.init(model);
+
 					for (IfcEngineClash clash : clashes) {
 						IfcEngineInstanceVisualisationProperties vp = ifcEngineModel.getInstanceFromExpressId((int) clash.getEid1()).getVisualisationProperties();
 						float x = geometry.getVertex(geometry.getIndex(vp.getStartIndex()));
@@ -166,8 +170,6 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						visualizationInfo.setLines(new VisualizationInfo.Lines());
 						visualizationInfo.setClippingPlanes(new VisualizationInfo.ClippingPlanes());
 						
-						StillImageRenderer stillImageRenderer = pluginManager.getFirstStillImageRenderPlugin().create();
-						stillImageRenderer.init(model);
 						byte[] snapshot = stillImageRenderer.snapshot(new Vector3f(x- 100, y, z), new Vector3f(0, 0, 1), new Vector3f(x, y, z), 500, 500, null);
 						
 						issue.setMarkup(markup);
