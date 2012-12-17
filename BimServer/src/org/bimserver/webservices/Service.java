@@ -1124,7 +1124,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SUser getUserByUoid(Long uoid) throws ServerException, UserException {
-		requireRealUserAuthentication();
+		requireAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			GetUserByUoidDatabaseAction action = new GetUserByUoidDatabaseAction(session, accessMethod, uoid);
