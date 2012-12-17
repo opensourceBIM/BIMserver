@@ -50,7 +50,15 @@ public enum Trigger implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	NEW_PROJECT(1, "NEW_PROJECT", "NEW_PROJECT");
+	NEW_PROJECT(1, "NEW_PROJECT", "NEW_PROJECT"), /**
+													 * The '<em><b>NEW EXTENDED DATA</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #NEW_EXTENDED_DATA_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	NEW_EXTENDED_DATA(2, "NEW_EXTENDED_DATA", "NEW_EXTENDED_DATA");
 
 	/**
 	 * The '<em><b>NEW REVISION</b></em>' literal value.
@@ -83,12 +91,27 @@ public enum Trigger implements Enumerator {
 	public static final int NEW_PROJECT_VALUE = 1;
 
 	/**
+	 * The '<em><b>NEW EXTENDED DATA</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>NEW EXTENDED DATA</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #NEW_EXTENDED_DATA
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NEW_EXTENDED_DATA_VALUE = 2;
+
+	/**
 	 * An array of all the '<em><b>Trigger</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final Trigger[] VALUES_ARRAY = new Trigger[] { NEW_REVISION, NEW_PROJECT, };
+	private static final Trigger[] VALUES_ARRAY = new Trigger[] { NEW_REVISION, NEW_PROJECT, NEW_EXTENDED_DATA, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Trigger</b></em>' enumerators.
@@ -142,6 +165,8 @@ public enum Trigger implements Enumerator {
 			return NEW_REVISION;
 		case NEW_PROJECT_VALUE:
 			return NEW_PROJECT;
+		case NEW_EXTENDED_DATA_VALUE:
+			return NEW_EXTENDED_DATA;
 		}
 		return null;
 	}

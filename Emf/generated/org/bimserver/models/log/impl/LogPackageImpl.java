@@ -224,6 +224,20 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass newExtendedDataAddedToRevisionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass newExtendedDataAddedToProjectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass extendedDataAddedToRevisionEClass = null;
 
 	/**
@@ -862,9 +876,69 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getNewExtendedDataAddedToRevision() {
+		if (newExtendedDataAddedToRevisionEClass == null) {
+			newExtendedDataAddedToRevisionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(25);
+		}
+		return newExtendedDataAddedToRevisionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNewExtendedDataAddedToRevision_Revision() {
+		return (EReference) getNewExtendedDataAddedToRevision().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNewExtendedDataAddedToRevision_ExtendedData() {
+		return (EReference) getNewExtendedDataAddedToRevision().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNewExtendedDataAddedToProject() {
+		if (newExtendedDataAddedToProjectEClass == null) {
+			newExtendedDataAddedToProjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(26);
+		}
+		return newExtendedDataAddedToProjectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNewExtendedDataAddedToProject_Project() {
+		return (EReference) getNewExtendedDataAddedToProject().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNewExtendedDataAddedToProject_ExtendedData() {
+		return (EReference) getNewExtendedDataAddedToProject().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getExtendedDataAddedToRevision() {
 		if (extendedDataAddedToRevisionEClass == null) {
-			extendedDataAddedToRevisionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(25);
+			extendedDataAddedToRevisionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(27);
 		}
 		return extendedDataAddedToRevisionEClass;
 	}
@@ -894,7 +968,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 */
 	public EClass getExtendedDataAddedToProject() {
 		if (extendedDataAddedToProjectEClass == null) {
-			extendedDataAddedToProjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(26);
+			extendedDataAddedToProjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(28);
 		}
 		return extendedDataAddedToProjectEClass;
 	}
@@ -924,7 +998,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 */
 	public EClass getExternalServiceCalled() {
 		if (externalServiceCalledEClass == null) {
-			externalServiceCalledEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(27);
+			externalServiceCalledEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(29);
 		}
 		return externalServiceCalledEClass;
 	}

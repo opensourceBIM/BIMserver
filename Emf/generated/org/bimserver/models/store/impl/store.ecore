@@ -465,6 +465,7 @@
   <eClassifiers xsi:type="ecore:EEnum" name="Trigger">
     <eLiterals name="NEW_REVISION"/>
     <eLiterals name="NEW_PROJECT" value="1"/>
+    <eLiterals name="NEW_EXTENDED_DATA" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProfileDescriptor">
     <eAnnotations source="nodatabase"/>
