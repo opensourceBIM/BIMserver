@@ -103,7 +103,7 @@ public class JsonSocketReflector extends JsonReflector {
 					
 					JsonParser parser = new JsonParser();
 					boolean debug = false;
-					if (debug ) {
+					if (debug) {
 						InputStream inputStream = resultEntity.getContent();
 						ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 						IOUtils.copy(inputStream, byteArrayOutputStream);

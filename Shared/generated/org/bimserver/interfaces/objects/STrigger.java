@@ -19,7 +19,8 @@ package org.bimserver.interfaces.objects;
 
 public enum STrigger {
 	NEW_REVISION(0),
-	NEW_PROJECT(1);
+	NEW_PROJECT(1),
+	NEW_EXTENDED_DATA(2);
 	int ordinal;
 
 	STrigger(int ordinal) {

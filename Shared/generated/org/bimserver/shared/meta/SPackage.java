@@ -60,6 +60,8 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SGeoTagUpdated");
 		Class.forName("org.bimserver.interfaces.objects.SPasswordChanged");
 		Class.forName("org.bimserver.interfaces.objects.SUserChanged");
+		Class.forName("org.bimserver.interfaces.objects.SNewExtendedDataAddedToRevision");
+		Class.forName("org.bimserver.interfaces.objects.SNewExtendedDataAddedToProject");
 		Class.forName("org.bimserver.interfaces.objects.SExtendedDataAddedToRevision");
 		Class.forName("org.bimserver.interfaces.objects.SExtendedDataAddedToProject");
 		Class.forName("org.bimserver.interfaces.objects.SExternalServiceCalled");
