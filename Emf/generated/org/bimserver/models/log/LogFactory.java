@@ -252,24 +252,6 @@ public interface LogFactory extends EFactory {
 	UserChanged createUserChanged();
 
 	/**
-	 * Returns a new object of class '<em>New Extended Data Added To Revision</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>New Extended Data Added To Revision</em>'.
-	 * @generated
-	 */
-	NewExtendedDataAddedToRevision createNewExtendedDataAddedToRevision();
-
-	/**
-	 * Returns a new object of class '<em>New Extended Data Added To Project</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>New Extended Data Added To Project</em>'.
-	 * @generated
-	 */
-	NewExtendedDataAddedToProject createNewExtendedDataAddedToProject();
-
-	/**
 	 * Returns a new object of class '<em>Extended Data Added To Revision</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
