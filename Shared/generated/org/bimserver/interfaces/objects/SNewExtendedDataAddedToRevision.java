@@ -16,22 +16,22 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-import javax.xml.bind.annotation.XmlSeeAlso;
+import java.util.Date;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SReferenceDataValue.class, SListDataValue.class, SSimpleDataValue.class})
-public class SDataValue implements SDataBase
+public class SNewExtendedDataAddedToRevision extends SLogAction implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
 
 	@XmlTransient
 	private static SClass sClass;
-	private java.lang.String fieldName;
+	private long revisionId = -1;
+	private long extendedDataId = -1;
 
 	public long getOid() {
 		return this.oid;
@@ -55,12 +55,24 @@ public class SDataValue implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SDataValue.sClass = sClass;
+		SNewExtendedDataAddedToRevision.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("fieldName")) {
-			return getFieldName();
+		if (sField.getName().equals("date")) {
+			return getDate();
+		}
+		if (sField.getName().equals("executorId")) {
+			return getExecutorId();
+		}
+		if (sField.getName().equals("accessMethod")) {
+			return getAccessMethod();
+		}
+		if (sField.getName().equals("revisionId")) {
+			return getRevisionId();
+		}
+		if (sField.getName().equals("extendedDataId")) {
+			return getExtendedDataId();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -72,8 +84,24 @@ public class SDataValue implements SDataBase
 	}
 
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("fieldName")) {
-			setFieldName((String)val);
+		if (sField.getName().equals("date")) {
+			setDate((Date)val);
+			return;
+		}
+		if (sField.getName().equals("executorId")) {
+			setExecutorId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("accessMethod")) {
+			setAccessMethod((SAccessMethod)val);
+			return;
+		}
+		if (sField.getName().equals("revisionId")) {
+			setRevisionId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("extendedDataId")) {
+			setExtendedDataId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -87,12 +115,20 @@ public class SDataValue implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	public java.lang.String getFieldName() {
-		return fieldName;
+	public long getRevisionId() {
+		return revisionId;
 	}
 
-	public void setFieldName(java.lang.String fieldName) {
-		this.fieldName = fieldName;
+	public void setRevisionId(long revisionId) {
+		this.revisionId = revisionId;
+	}
+	
+	public long getExtendedDataId() {
+		return extendedDataId;
+	}
+
+	public void setExtendedDataId(long extendedDataId) {
+		this.extendedDataId = extendedDataId;
 	}
 	
 	@Override
@@ -111,7 +147,7 @@ public class SDataValue implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SDataValue other = (SDataValue) obj;
+		SNewExtendedDataAddedToRevision other = (SNewExtendedDataAddedToRevision) obj;
 		if (oid != other.oid)
 			return false;
 		return true;
