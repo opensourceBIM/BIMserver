@@ -226,16 +226,6 @@ public class LogAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseNewExtendedDataAddedToRevision(NewExtendedDataAddedToRevision object) {
-			return createNewExtendedDataAddedToRevisionAdapter();
-		}
-
-		@Override
-		public Adapter caseNewExtendedDataAddedToProject(NewExtendedDataAddedToProject object) {
-			return createNewExtendedDataAddedToProjectAdapter();
-		}
-
-		@Override
 		public Adapter caseExtendedDataAddedToRevision(ExtendedDataAddedToRevision object) {
 			return createExtendedDataAddedToRevisionAdapter();
 		}
@@ -602,34 +592,6 @@ public class LogAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUserChangedAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.log.NewExtendedDataAddedToRevision <em>New Extended Data Added To Revision</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.log.NewExtendedDataAddedToRevision
-	 * @generated
-	 */
-	public Adapter createNewExtendedDataAddedToRevisionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.log.NewExtendedDataAddedToProject <em>New Extended Data Added To Project</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.log.NewExtendedDataAddedToProject
-	 * @generated
-	 */
-	public Adapter createNewExtendedDataAddedToProjectAdapter() {
 		return null;
 	}
 
