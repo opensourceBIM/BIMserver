@@ -160,6 +160,7 @@ import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.Trigger;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.UserType;
@@ -3645,7 +3646,7 @@ public class Service implements ServiceInterface {
 			SNewRevisionAdded newRevisionNotification = new SNewRevisionAdded();
 			newRevisionNotification.setRevisionId(revision.getOid());
 			newRevisionNotification.setProjectId(revision.getProject().getOid());
-			bimServer.getNotificationsManager().trigger(bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), newRevisionNotification, service);
+			bimServer.getNotificationsManager().triggerNewRevision(bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), newRevisionNotification, revision.getProject(), roid, Trigger.NEW_REVISION, service);
 		} catch (Exception e) {
 			handleException(e);
 		} finally {

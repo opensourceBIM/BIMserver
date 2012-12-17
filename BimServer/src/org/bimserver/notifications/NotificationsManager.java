@@ -36,12 +36,14 @@ import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SImmediateNotificationResult;
 import org.bimserver.interfaces.objects.SLogAction;
+import org.bimserver.interfaces.objects.SNewExtendedDataAddedToRevision;
 import org.bimserver.interfaces.objects.SNewProjectAdded;
 import org.bimserver.interfaces.objects.SNewRevisionAdded;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SService;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.ServiceDescriptor;
@@ -120,9 +122,12 @@ public class NotificationsManager extends Thread implements NotificationsManager
 						} else if (notification instanceof SNewRevisionAdded) {
 							SNewRevisionAdded newRevisionNotification = (SNewRevisionAdded) notification;
 							Project project = session.get(StorePackage.eINSTANCE.getProject(), newRevisionNotification.getProjectId(), Query.getDefault());
-							for (Service service : project.getServices()) {
-								trigger(bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), newRevisionNotification, service);
-							}
+							triggerNewRevision(bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), newRevisionNotification, project, newRevisionNotification.getRevisionId(), Trigger.NEW_REVISION);
+						} else if (notification instanceof SNewExtendedDataAddedToRevision) {
+							SNewExtendedDataAddedToRevision action = (SNewExtendedDataAddedToRevision) notification;
+							Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), action.getRevisionId(), Query.getDefault());
+							Project project = revision.getProject();
+							triggerNewRevision(bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), action, project, action.getRevisionId(), Trigger.NEW_EXTENDED_DATA);
 						}
 					} finally {
 						session.close();
@@ -148,8 +153,14 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		}
 	}
 
-	public void trigger(String siteAddress, SNewRevisionAdded newRevisionNotification, Service service) throws UserException, ServerException {
-		if (service.getTrigger() == Trigger.NEW_REVISION) {
+	public void triggerNewRevision(String siteAddress, SLogAction action, Project project, long roid, Trigger trigger) throws UserException, ServerException {
+		for (Service service : project.getServices()) {
+			triggerNewRevision(siteAddress, action, project, roid, trigger, service);
+		}
+	}
+
+	public void triggerNewRevision(String siteAddress, SLogAction action, Project project, long roid, Trigger trigger, Service service) throws UserException, ServerException {
+		if (service.getTrigger() == trigger) {
 			Channel channel = getChannel(service);
 			try {
 				NotificationInterface notificationInterface = channel.getNotificationInterface();
@@ -158,23 +169,23 @@ public class NotificationsManager extends Thread implements NotificationsManager
 				if (service.isReadRevision() || service.getReadExtendedData() != null || service.getWriteExtendedData() != null || service.getWriteRevision() != null) {
 					// This service will be needing a token
 					long writeProjectPoid = service.getWriteRevision() == null ? -1 : service.getWriteRevision().getOid();
-					long writeExtendedDataRoid = service.getWriteExtendedData() != null ? newRevisionNotification.getRevisionId() : -1;
-					long readRevisionRoid = service.isReadRevision() ? newRevisionNotification.getRevisionId() : -1;
-					long readExtendedDataRoid = service.getReadExtendedData() != null ? newRevisionNotification.getRevisionId() : -1;
+					long writeExtendedDataRoid = service.getWriteExtendedData() != null ? roid : -1;
+					long readRevisionRoid = service.isReadRevision() ? roid : -1;
+					long readExtendedDataRoid = service.getReadExtendedData() != null ? roid : -1;
 					ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(readRevisionRoid, writeProjectPoid, readExtendedDataRoid, writeExtendedDataRoid);
 					authorization.setUoid(service.getUser().getOid());
 					ServiceInterface newService = bimServer.getServiceFactory().getService(ServiceInterface.class, authorization);
 					((org.bimserver.webservices.Service)newService).setAuthorization(authorization);
-					notificationInterface.newLogAction(uuid, newRevisionNotification, service.getServiceIdentifier(), service.getProfileIdentifier(), authorization.asHexToken(bimServer.getEncryptionKey()), siteAddress);
+					notificationInterface.newLogAction(uuid, action, service.getServiceIdentifier(), service.getProfileIdentifier(), authorization.asHexToken(bimServer.getEncryptionKey()), siteAddress);
 				} else {
-					notificationInterface.newLogAction(uuid, newRevisionNotification, service.getServiceIdentifier(), service.getProfileIdentifier(), null, null);
+					notificationInterface.newLogAction(uuid, action, service.getServiceIdentifier(), service.getProfileIdentifier(), null, null);
 				}
 			} finally {
 				channel.disconnect();
 			}
 		}
 	}
-
+	
 	public RunningExternalService getRunningExternalService(String uuid) {
 		return runningServices.get(uuid);
 	}

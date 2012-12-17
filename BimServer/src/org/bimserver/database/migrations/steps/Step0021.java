@@ -35,6 +35,7 @@ public class Step0021 extends Migration {
 		EEnum trigger = schema.createEEnum("store", "Trigger");
 		schema.createEEnumLiteral(trigger, "NEW_REVISION");
 		schema.createEEnumLiteral(trigger, "NEW_PROJECT");
+		schema.createEEnumLiteral(trigger, "NEW_EXTENDED_DATA");
 		
 		EClass profileDescriptor = schema.createEClass(schema.getEPackage("store"), "ProfileDescriptor");
 		profileDescriptor.getEAnnotations().add(createNoDatabaseAnnotation());

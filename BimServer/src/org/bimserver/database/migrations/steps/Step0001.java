@@ -72,10 +72,10 @@ public class Step0001 extends Migration {
 		EClass newRevisionAddedClass = schema.createEClass(logPackage, "NewRevisionAdded", logActionClass);
 		schema.createEReference(newRevisionAddedClass, "revision", revisionClass, Multiplicity.SINGLE);
 		schema.createEReference(newRevisionAddedClass, "project", projectClass, Multiplicity.SINGLE);
-		
+
 		EClass newCheckoutAddedClass = schema.createEClass(logPackage, "NewCheckoutAdded", logActionClass);
 		schema.createEReference(newCheckoutAddedClass, "checkout", checkoutClass, Multiplicity.SINGLE);
-		
+
 		schema.createEClass(logPackage, "SettingsSaved", logActionClass);
 		
 		EClass userAddedToProjectClass = schema.createEClass(logPackage, "UserAddedToProject", logActionClass);

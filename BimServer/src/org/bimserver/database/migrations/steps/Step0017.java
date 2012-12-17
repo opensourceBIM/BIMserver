@@ -87,6 +87,16 @@ public class Step0017 extends Migration {
 		
 		projectExtendedData.setEOpposite(extendedDataProject);
 		extendedDataProject.setEOpposite(projectExtendedData);
+
+		EClass logActionClass = schema.getEClass("log", "LogAction");
+
+		EClass newExtendedDataAddedToRevisionClass = schema.createEClass("log", "NewExtendedDataAddedToRevision", logActionClass);
+		schema.createEReference(newExtendedDataAddedToRevisionClass, "revision", revisionClass, Multiplicity.SINGLE);
+		schema.createEReference(newExtendedDataAddedToRevisionClass, "extendedData", extendedDataClass, Multiplicity.SINGLE);
+
+		EClass newExtendedDataAddedToProjectClass = schema.createEClass("log", "NewExtendedDataAddedToProject", logActionClass);
+		schema.createEReference(newExtendedDataAddedToProjectClass, "project", projectClass, Multiplicity.SINGLE);
+		schema.createEReference(newExtendedDataAddedToProjectClass, "extendedData", extendedDataClass, Multiplicity.SINGLE);
 	}
 
 	@Override
