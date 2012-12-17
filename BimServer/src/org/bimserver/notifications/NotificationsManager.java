@@ -34,9 +34,9 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.SConverter;
+import org.bimserver.interfaces.objects.SExtendedDataAddedToRevision;
 import org.bimserver.interfaces.objects.SImmediateNotificationResult;
 import org.bimserver.interfaces.objects.SLogAction;
-import org.bimserver.interfaces.objects.SNewExtendedDataAddedToRevision;
 import org.bimserver.interfaces.objects.SNewProjectAdded;
 import org.bimserver.interfaces.objects.SNewRevisionAdded;
 import org.bimserver.interfaces.objects.SObjectType;
@@ -123,8 +123,8 @@ public class NotificationsManager extends Thread implements NotificationsManager
 							SNewRevisionAdded newRevisionNotification = (SNewRevisionAdded) notification;
 							Project project = session.get(StorePackage.eINSTANCE.getProject(), newRevisionNotification.getProjectId(), Query.getDefault());
 							triggerNewRevision(bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), newRevisionNotification, project, newRevisionNotification.getRevisionId(), Trigger.NEW_REVISION);
-						} else if (notification instanceof SNewExtendedDataAddedToRevision) {
-							SNewExtendedDataAddedToRevision action = (SNewExtendedDataAddedToRevision) notification;
+						} else if (notification instanceof SExtendedDataAddedToRevision) {
+							SExtendedDataAddedToRevision action = (SExtendedDataAddedToRevision) notification;
 							Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), action.getRevisionId(), Query.getDefault());
 							Project project = revision.getProject();
 							triggerNewRevision(bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), action, project, action.getRevisionId(), Trigger.NEW_EXTENDED_DATA);
