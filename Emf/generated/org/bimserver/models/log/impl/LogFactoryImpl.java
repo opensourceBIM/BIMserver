@@ -16,6 +16,7 @@
  */
 package org.bimserver.models.log.impl;
 
+import org.bimserver.models.log.*;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.DatabaseCreated;
 import org.bimserver.models.log.Download;
@@ -144,6 +145,10 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 			return (EObject) createPasswordChanged();
 		case LogPackage.USER_CHANGED:
 			return (EObject) createUserChanged();
+		case LogPackage.NEW_EXTENDED_DATA_ADDED_TO_REVISION:
+			return (EObject) createNewExtendedDataAddedToRevision();
+		case LogPackage.NEW_EXTENDED_DATA_ADDED_TO_PROJECT:
+			return (EObject) createNewExtendedDataAddedToProject();
 		case LogPackage.EXTENDED_DATA_ADDED_TO_REVISION:
 			return (EObject) createExtendedDataAddedToRevision();
 		case LogPackage.EXTENDED_DATA_ADDED_TO_PROJECT:
@@ -423,6 +428,26 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	public UserChanged createUserChanged() {
 		UserChangedImpl userChanged = new UserChangedImpl();
 		return userChanged;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NewExtendedDataAddedToRevision createNewExtendedDataAddedToRevision() {
+		NewExtendedDataAddedToRevisionImpl newExtendedDataAddedToRevision = new NewExtendedDataAddedToRevisionImpl();
+		return newExtendedDataAddedToRevision;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NewExtendedDataAddedToProject createNewExtendedDataAddedToProject() {
+		NewExtendedDataAddedToProjectImpl newExtendedDataAddedToProject = new NewExtendedDataAddedToProjectImpl();
+		return newExtendedDataAddedToProject;
 	}
 
 	/**

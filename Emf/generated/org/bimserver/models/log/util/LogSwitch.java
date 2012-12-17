@@ -16,6 +16,7 @@
  */
 package org.bimserver.models.log.util;
 
+import org.bimserver.models.log.*;
 import org.bimserver.models.log.DatabaseCreated;
 import org.bimserver.models.log.Download;
 import org.bimserver.models.log.ExtendedDataAddedToProject;
@@ -313,6 +314,24 @@ public class LogSwitch<T> extends Switch<T> {
 			T result = caseUserChanged(userChanged);
 			if (result == null)
 				result = caseLogAction(userChanged);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.NEW_EXTENDED_DATA_ADDED_TO_REVISION: {
+			NewExtendedDataAddedToRevision newExtendedDataAddedToRevision = (NewExtendedDataAddedToRevision) theEObject;
+			T result = caseNewExtendedDataAddedToRevision(newExtendedDataAddedToRevision);
+			if (result == null)
+				result = caseLogAction(newExtendedDataAddedToRevision);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case LogPackage.NEW_EXTENDED_DATA_ADDED_TO_PROJECT: {
+			NewExtendedDataAddedToProject newExtendedDataAddedToProject = (NewExtendedDataAddedToProject) theEObject;
+			T result = caseNewExtendedDataAddedToProject(newExtendedDataAddedToProject);
+			if (result == null)
+				result = caseLogAction(newExtendedDataAddedToProject);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -706,6 +725,36 @@ public class LogSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseUserChanged(UserChanged object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>New Extended Data Added To Revision</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>New Extended Data Added To Revision</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNewExtendedDataAddedToRevision(NewExtendedDataAddedToRevision object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>New Extended Data Added To Project</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>New Extended Data Added To Project</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNewExtendedDataAddedToProject(NewExtendedDataAddedToProject object) {
 		return null;
 	}
 

@@ -83,6 +83,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="UserChanged" eSuperTypes="#//LogAction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="ecore:EClass store#//User"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NewExtendedDataAddedToRevision" eSuperTypes="#//LogAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="ecore:EClass store#//Revision"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" eType="ecore:EClass store#//ExtendedData"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NewExtendedDataAddedToProject" eSuperTypes="#//LogAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass store#//Project"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" eType="ecore:EClass store#//ExtendedData"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExtendedDataAddedToRevision" eSuperTypes="#//LogAction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="revision" eType="ecore:EClass store#//Revision"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" eType="ecore:EClass store#//ExtendedData"/>
