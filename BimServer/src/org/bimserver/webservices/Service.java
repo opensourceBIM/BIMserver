@@ -84,6 +84,7 @@ import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
+import org.bimserver.interfaces.objects.SExtendedDataAddedToRevision;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SExtendedDataSchemaType;
 import org.bimserver.interfaces.objects.SExternalServiceUpdate;
@@ -3632,6 +3633,23 @@ public class Service implements ServiceInterface {
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public void triggerNewExtendedData(Long edid,Long soid) throws ServerException, UserException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			org.bimserver.models.store.Service service = (org.bimserver.models.store.Service)session.get(StorePackage.eINSTANCE.getService(), soid, Query.getDefault());
+			ExtendedData extendedData = (ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), edid, Query.getDefault());
+			SExtendedDataAddedToRevision newExtendedData = new SExtendedDataAddedToRevision();
+			newExtendedData.setRevisionId(extendedData.getRevision().getOid());
+			newExtendedData.setExtendedDataId(edid);
+			bimServer.getNotificationsManager().triggerNewRevision(bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), newExtendedData, extendedData.getRevision().getProject(), extendedData.getRevision().getOid(), Trigger.NEW_EXTENDED_DATA, service);
+		} catch (Exception e) {
+			handleException(e);
 		} finally {
 			session.close();
 		}
