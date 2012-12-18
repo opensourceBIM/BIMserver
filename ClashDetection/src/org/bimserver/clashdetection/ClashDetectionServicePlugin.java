@@ -53,6 +53,7 @@ import org.bimserver.plugins.serializers.EmfSerializerDataSource;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.stillimagerenderer.StillImageRenderer;
+import org.bimserver.plugins.stillimagerenderer.StillImageRendererException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
@@ -110,7 +111,12 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 					IfcEngineGeometry geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
 
 					StillImageRenderer stillImageRenderer = pluginManager.getFirstStillImageRenderPlugin().create();
-					stillImageRenderer.init(model);
+					boolean renderImage = true;
+					try {
+						stillImageRenderer.init(model);
+					} catch (StillImageRendererException e) {
+						renderImage = false;
+					}
 
 					for (IfcEngineClash clash : clashes) {
 						IfcEngineInstanceVisualisationProperties vp = ifcEngineModel.getInstanceFromExpressId((int) clash.getEid1()).getVisualisationProperties();
@@ -170,11 +176,13 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						visualizationInfo.setLines(new VisualizationInfo.Lines());
 						visualizationInfo.setClippingPlanes(new VisualizationInfo.ClippingPlanes());
 						
-						byte[] snapshot = stillImageRenderer.snapshot(new Vector3f(x- 100, y, z), new Vector3f(0, 0, 1), new Vector3f(x, y, z), 500, 500, null);
+						if (renderImage) {
+							byte[] snapshot = stillImageRenderer.snapshot(new Vector3f(x- 100, y, z), new Vector3f(0, 0, 1), new Vector3f(x, y, z), 500, 500, null);
+							issue.setImageData(snapshot);
+						}
 						
 						issue.setMarkup(markup);
 						issue.setVisualizationInfo(visualizationInfo);
-						issue.setImageData(snapshot);
 						
 						bcf.addIssue(issue);
 					}
