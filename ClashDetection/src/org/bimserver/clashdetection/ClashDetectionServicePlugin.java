@@ -184,6 +184,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						} else {
 							ByteArrayOutputStream baos2 = new ByteArrayOutputStream();
 							ImageIO.write(new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB), "PNG", baos2);
+							issue.setImageData(baos2.toByteArray());
 						}
 						
 						issue.setMarkup(markup);
