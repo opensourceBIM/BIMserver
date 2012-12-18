@@ -81,6 +81,9 @@ public class JsonConverter {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			IOUtils.copy(inputStream, baos);
 			out.value(new String(Base64.encodeBase64(baos.toByteArray()), Charsets.UTF_8));
+		} else if (object instanceof byte[]) {
+			byte[] data = (byte[])object;
+			out.value(new String(Base64.encodeBase64(data), Charsets.UTF_8));
 		} else if (object instanceof String) {
 			out.value((String)object);
 		} else if (object instanceof Number) {
