@@ -1,5 +1,6 @@
 package org.bimserver.clashdetection;
 
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.GregorianCalendar;
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.imageio.ImageIO;
 import javax.xml.datatype.DatatypeFactory;
 
 import org.bimserver.bcf.markup.Header;
@@ -179,6 +181,9 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						if (renderImage) {
 							byte[] snapshot = stillImageRenderer.snapshot(new Vector3f(x- 100, y, z), new Vector3f(0, 0, 1), new Vector3f(x, y, z), 500, 500, null);
 							issue.setImageData(snapshot);
+						} else {
+							ByteArrayOutputStream baos2 = new ByteArrayOutputStream();
+							ImageIO.write(new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB), "PNG", baos2);
 						}
 						
 						issue.setMarkup(markup);
