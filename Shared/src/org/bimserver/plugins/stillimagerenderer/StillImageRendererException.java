@@ -2,7 +2,7 @@ package org.bimserver.plugins.stillimagerenderer;
 
 public class StillImageRendererException extends Exception {
 
-	public StillImageRendererException(Exception e) {
+	public StillImageRendererException(Throwable e) {
 		super(e);
 	}
 }
