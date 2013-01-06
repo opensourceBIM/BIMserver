@@ -19,7 +19,7 @@ package org.bimserver.client.factories;
 
 import org.bimserver.client.AbstractBimServerClientFactory;
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ConnectionException;
+import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -40,8 +40,8 @@ public class ProtocolBuffersBimServerClientFactory extends AbstractBimServerClie
 	}
 
 	@Override
-	public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServiceException, ConnectionException {
-		BimServerClient bimServerClient = new BimServerClient(remoteAddress, getServicesMap());
+	public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServiceException, ChannelConnectionException {
+		BimServerClient bimServerClient = new BimServerClient(remoteAddress, getServicesMap(), null);
 		bimServerClient.setAuthentication(authenticationInfo);
 		bimServerClient.connectProtocolBuffers(address, port);
 		return bimServerClient;

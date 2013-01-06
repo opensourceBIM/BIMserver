@@ -39,7 +39,7 @@ import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.webservices.SystemAuthorization;
+import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

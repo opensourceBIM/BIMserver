@@ -20,7 +20,7 @@ package org.bimserver.unittests;
 import java.util.List;
 
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ConnectionException;
+import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDataValue;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
@@ -32,7 +32,7 @@ public class TestUnknown {
 	@Test
 	public void test() {
 		try {
-			BimServerClient bimServerClient = new BimServerClient("", null);
+			BimServerClient bimServerClient = new BimServerClient("");
 			bimServerClient.setAuthentication(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			bimServerClient.connectProtocolBuffers("localhost", 8020);
 			Long roid = 47L;
@@ -43,7 +43,7 @@ public class TestUnknown {
 					System.out.println(sDataValue.getClass().getName());
 				}
 			}
-		} catch (ConnectionException e) {
+		} catch (ChannelConnectionException e) {
 			e.printStackTrace();
 		} catch (ServerException e) {
 			e.printStackTrace();

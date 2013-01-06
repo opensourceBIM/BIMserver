@@ -27,6 +27,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 import org.bimserver.BimServer;
+import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.JsonChannel;
 import org.bimserver.client.JsonSocketReflectorFactory;
 import org.bimserver.client.channels.Channel;
@@ -161,8 +162,9 @@ public class NotificationsManager extends Thread implements NotificationsManager
 
 	public void triggerNewRevision(String siteAddress, SLogAction action, Project project, long roid, Trigger trigger, Service service) throws UserException, ServerException {
 		if (service.getTrigger() == trigger) {
-			Channel channel = getChannel(service);
+			Channel channel = null;
 			try {
+				channel = getChannel(service);
 				NotificationInterface notificationInterface = channel.getNotificationInterface();
 				String uuid = UUID.randomUUID().toString();
 				runningServices.put(uuid, new RunningExternalService());
@@ -180,8 +182,12 @@ public class NotificationsManager extends Thread implements NotificationsManager
 				} else {
 					notificationInterface.newLogAction(uuid, action, service.getServiceIdentifier(), service.getProfileIdentifier(), null, null);
 				}
+			} catch (ChannelConnectionException e) {
+				LOGGER.error("", e);
 			} finally {
-				channel.disconnect();
+				if (channel != null) {
+					channel.disconnect();
+				}
 			}
 		}
 	}
@@ -190,7 +196,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		return runningServices.get(uuid);
 	}
 	
-	private Channel getChannel(Service service) {
+	private Channel getChannel(Service service) throws ChannelConnectionException {
 		if (service.getInternalService() != null) {
 			// Overrule definition
 			return new InternalChannel(x.get(service.getServiceIdentifier()));

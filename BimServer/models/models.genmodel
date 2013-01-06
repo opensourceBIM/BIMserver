@@ -4,9 +4,10 @@
     modelDirectory="/Emf/generated" modelPluginID="BimServer" dynamicTemplates="true"
     forceOverwrite="true" modelName="Models" modelPluginClass="" updateClasspath="false"
     rootExtendsInterface="org.bimserver.emf.IdEObject" rootExtendsClass="org.bimserver.emf.IdEObjectImpl"
-    reflectiveDelegation="true" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
-    featureDelegation="Reflective" minimalReflectiveMethods="false" suppressContainment="true"
-    complianceLevel="6.0" copyrightFields="false" language="">
+    featureMapWrapperClass="" reflectiveDelegation="true" codeFormatting="true" booleanFlagsField=""
+    importerID="org.eclipse.emf.importer.ecore" featureDelegation="Reflective" minimalReflectiveMethods="false"
+    suppressContainment="true" complianceLevel="6.0" copyrightFields="false" language=""
+    classNamePattern="">
   <foreignModel>models.ecore</foreignModel>
   <genPackages prefix="Store" basePackage="org.bimserver.models" disposableProviderFactory="true"
       loadInitialization="true" ecorePackage="models.ecore#/0">
@@ -67,6 +68,7 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/0/Trigger">
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/Trigger/NEW_REVISION"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/Trigger/NEW_PROJECT"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/Trigger/NEW_EXTENDED_DATA"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/0/PrimitiveEnum">
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/0/PrimitiveEnum/LONG"/>
@@ -138,8 +140,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Revision/laid"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Revision/extendedData"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Revision/logs"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Revision/geometry"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Revision/bounds"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Revision/hasGeometry"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/ConcreteRevision">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ConcreteRevision/id"/>
@@ -149,6 +150,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ConcreteRevision/size"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ConcreteRevision/date"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ConcreteRevision/lastError"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ConcreteRevision/clear"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ConcreteRevision/summary"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/ConcreteRevision/user"/>
     </genClasses>
@@ -527,20 +529,6 @@
     <genClasses ecoreClass="models.ecore#/0/ExternalServiceUpdate"/>
     <genClasses ecoreClass="models.ecore#/0/PercentageChange">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/PercentageChange/percentage"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/Bounds">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Bounds/min"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Bounds/max"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/Vector3f">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector3f/x"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector3f/y"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector3f/z"/>
-    </genClasses>
-    <genClasses ecoreClass="models.ecore#/0/Geometry">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Geometry/indices"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Geometry/vertices"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Geometry/normals"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Ifc2x3tc1" basePackage="org.bimserver.models" disposableProviderFactory="true"
@@ -5830,6 +5818,15 @@
     <genClasses image="false" ecoreClass="models.ecore#/1/IfcUnit"/>
     <genClasses image="false" ecoreClass="models.ecore#/1/IfcValue"/>
     <genClasses image="false" ecoreClass="models.ecore#/1/IfcVectorOrDirection"/>
+    <genClasses ecoreClass="models.ecore#/1/Bounds">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/1/Bounds/min"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/1/Bounds/max"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/1/Vector3f">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/Vector3f/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/Vector3f/y"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/Vector3f/z"/>
+    </genClasses>
     <genClasses ecoreClass="models.ecore#/1/GeometryInstance">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/GeometryInstance/startVertex"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/1/GeometryInstance/startIndex"/>

@@ -18,7 +18,7 @@ package org.bimserver.test.framework;
  *****************************************************************************/
 
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ConnectionException;
+import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.JsonSocketReflectorFactory;
 import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.interfaces.SServiceInterfaceService;
@@ -34,8 +34,7 @@ import org.slf4j.LoggerFactory;
 public class RandomBimServerClientFactory implements BimServerClientFactory {
 	public static enum Type {
 		PROTOCOL_BUFFERS,
-		SOAP_HEADER,
-		SOAP_NO_HEADERS,
+		SOAP_HEADERS,
 		JSON_SESSION_BASED,
 		JSON_TOKEN_BASED
 	}
@@ -59,7 +58,7 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 	
 	public synchronized BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
 		try {
-			BimServerClient bimServerClient = new BimServerClient(remoteAddress, servicesMap);
+			BimServerClient bimServerClient = new BimServerClient(remoteAddress, servicesMap, null);
 			bimServerClient.setAuthentication(authenticationInfo);
 			Type type = types[current];
 			switch (type) {
@@ -67,13 +66,9 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 				LOGGER.info("New BimServerClient: Protocol Buffers");
 				bimServerClient.connectProtocolBuffers("localhost", 8020);
 				break;
-			case SOAP_HEADER:
+			case SOAP_HEADERS:
 				LOGGER.info("New BimServerClient: SOAP/useSoapHeaderSessions");
-				bimServerClient.connectSoap(true);
-				break;
-			case SOAP_NO_HEADERS:
-				LOGGER.info("New BimServerClient: SOAP");
-				bimServerClient.connectSoap(false);
+				bimServerClient.connectSoap();
 				break;
 			case JSON_SESSION_BASED:
 				LOGGER.info("New BimServerClient: JSON");
@@ -88,7 +83,7 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 			}
 			current = (current + 1) % types.length;
 			return bimServerClient;
-		} catch (ConnectionException e) {
+		} catch (ChannelConnectionException e) {
 			LOGGER.error("", e);
 		}
 		return null;

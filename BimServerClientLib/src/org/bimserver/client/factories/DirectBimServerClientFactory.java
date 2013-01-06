@@ -41,7 +41,7 @@ public class DirectBimServerClientFactory<T extends PublicInterface> extends Abs
 
 	@Override
 	public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServiceException {
-		BimServerClient bimServerClient = new BimServerClient(remoteAddress, getServicesMap());
+		BimServerClient bimServerClient = new BimServerClient(remoteAddress, getServicesMap(), null);
 		bimServerClient.setAuthentication(authenticationInfo);
 		bimServerClient.connectDirect(interfaceClass, publicInterface);
 		return bimServerClient;

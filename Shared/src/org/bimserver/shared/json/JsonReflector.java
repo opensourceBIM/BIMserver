@@ -17,8 +17,6 @@ package org.bimserver.shared.json;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.IOException;
-
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.meta.SMethod;
@@ -26,15 +24,12 @@ import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.reflector.KeyValuePair;
 import org.bimserver.shared.reflector.Reflector;
 import org.codehaus.jettison.json.JSONException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
 public abstract class JsonReflector implements Reflector {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(JsonReflector.class);
 	private final JsonConverter converter;
 	private final ServicesMap servicesMap;
 
@@ -44,7 +39,7 @@ public abstract class JsonReflector implements Reflector {
 	}
 
 	@Override
-	public Object callMethod(String interfaceName, String methodName, Class<?> definedReturnType, KeyValuePair... args) throws ServerException, UserException {
+	public Object callMethod(String interfaceName, String methodName, Class<?> definedReturnType, KeyValuePair... args) throws ServerException, UserException, ReflectorException {
 		try {
 			JsonObject request = new JsonObject();
 			request.add("interface", new JsonPrimitive(interfaceName));
@@ -81,14 +76,10 @@ public abstract class JsonReflector implements Reflector {
 			} else {
 				return null;
 			}
-		} catch (JSONException e) {
-			LOGGER.error("", e);
-		} catch (ConvertException e) {
-			LOGGER.error("", e);
 		} catch (ReflectorException e) {
-			LOGGER.error("", e);
-		} catch (IOException e) {
-			LOGGER.error("", e);
+			throw e;
+		} catch (Exception e) {
+			throw new ReflectorException(e);
 		}
 		return null;
 	}

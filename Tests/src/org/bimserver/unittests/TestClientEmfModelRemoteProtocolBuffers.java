@@ -22,7 +22,7 @@ import static org.junit.Assert.fail;
 import java.util.Random;
 
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ConnectionException;
+import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.Session;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
@@ -37,12 +37,12 @@ public class TestClientEmfModelRemoteProtocolBuffers {
 
 	@BeforeClass
 	public static void setup() {
-		bimServerClient = new BimServerClient("", null);
+		bimServerClient = new BimServerClient("");
 		try {
 			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
 			bimServerClient.setAuthentication(usernamePasswordAuthenticationInfo);
 			bimServerClient.connectProtocolBuffers("localhost", 8020);
-		} catch (ConnectionException e1) {
+		} catch (ChannelConnectionException e1) {
 			e1.printStackTrace();
 		}
 	}

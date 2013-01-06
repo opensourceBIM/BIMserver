@@ -30,6 +30,7 @@ import javax.jws.WebParam;
 
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.PublicInterface;
+import org.bimserver.shared.json.ReflectorException;
 import org.bimserver.shared.reflector.KeyValuePair;
 import org.bimserver.shared.reflector.Reflector;
 import org.slf4j.Logger;
@@ -175,7 +176,7 @@ public class SMethod {
 		return returnDoc;
 	}
 
-	public <T extends PublicInterface, K extends PublicInterface> Object invoke(Class<K> clazz, T service, KeyValuePair[] keyValuePairs) throws ServiceException {
+	public <T extends PublicInterface, K extends PublicInterface> Object invoke(Class<K> clazz, T service, KeyValuePair[] keyValuePairs) throws ServiceException, ReflectorException {
 		Reflector reflector = this.service.getServicesMap().getReflectorFactory().createReflector(clazz, service);
 		return reflector.callMethod(clazz.getName(), getName(), getReturnType().getInstanceClass(), keyValuePairs);
 	}

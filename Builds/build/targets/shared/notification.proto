@@ -24,8 +24,6 @@ option java_outer_classname = "NotificationInterfaceImpl";
 option optimize_for = SPEED;
 
 service NotificationInterface {
-	rpc getCurrentToken (GetCurrentTokenRequest) returns (GetCurrentTokenResponse);
-
 	rpc getPrivateProfiles (GetPrivateProfilesRequest) returns (GetPrivateProfilesResponse);
 
 	rpc getPublicProfiles (GetPublicProfilesRequest) returns (GetPublicProfilesResponse);
@@ -35,8 +33,6 @@ service NotificationInterface {
 	rpc newLogAction (NewLogActionRequest) returns (NewLogActionResponse);
 
 	rpc progress (ProgressRequest) returns (VoidResponse);
-
-	rpc setToken (SetTokenRequest) returns (VoidResponse);
 
 }
 
@@ -71,8 +67,8 @@ message NewLogActionRequest {
 message SImmediateNotificationResult {
 	optional SNotifictionResultEnum result = 1;
 	optional int32 rid = 2;
-	optional string description = 3;
-	optional int64 oid = 4;
+	optional int64 oid = 3;
+	optional string description = 4;
 }
 
 message NewLogActionResponse {

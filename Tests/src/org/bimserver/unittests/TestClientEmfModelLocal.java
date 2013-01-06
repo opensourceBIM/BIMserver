@@ -29,7 +29,7 @@ import org.bimserver.BimServer;
 import org.bimserver.LocalDevBimServerStarter;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientException;
-import org.bimserver.client.ConnectionException;
+import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.Session;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
@@ -84,12 +84,12 @@ public class TestClientEmfModelLocal {
 
 	@Test
 	public void test() {
-		bimServerClient = new BimServerClient("", null);
+		bimServerClient = new BimServerClient("");
 		try {
 			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
 			bimServerClient.setAuthentication(usernamePasswordAuthenticationInfo);
 			bimServerClient.connectProtocolBuffers("localhost", 8020);
-		} catch (ConnectionException e1) {
+		} catch (ChannelConnectionException e1) {
 			e1.printStackTrace();
 		}
 		try {

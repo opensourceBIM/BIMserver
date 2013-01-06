@@ -71,8 +71,4 @@ public abstract class Channel {
 	}
 	
 	public abstract void disconnect();
-
-	public String getToken() {
-		return null;
-	}
 }

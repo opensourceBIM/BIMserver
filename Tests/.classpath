@@ -27,6 +27,7 @@
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/xalan-2.7.1.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/xml-resolver-1.2.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/cxf/xsdlib-2010.1.jar"/>
+	<classpathentry kind="lib" path="classmexer.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BimServer"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Ifc"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
