@@ -1,5 +1,6 @@
 package org.bimserver.shared.json;
 
+
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
  * 
@@ -21,5 +22,9 @@ public class ReflectorException extends Exception {
 
 	public ReflectorException(String message) {
 		super(message);
+	}
+
+	public ReflectorException(Exception e) {
+		super(e);
 	}
 }

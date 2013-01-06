@@ -16,7 +16,6 @@
  */
 package org.bimserver.models.log.impl;
 
-import org.bimserver.models.log.*;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.DatabaseCreated;
 import org.bimserver.models.log.Download;

@@ -828,13 +828,6 @@ public interface ServiceInterface extends PublicInterface {
 	Date getLastActive() throws ServerException, UserException;
 
 	/**
-	 * @return The Token used for this session
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getCurrentToken")
-	String getCurrentToken() throws ServerException, UserException;
-
-	/**
 	 * @return The method of access this ServiceInterface is using (SOAP, REST, PB etc...)
 	 * @throws ServerException, UserException
 	 */

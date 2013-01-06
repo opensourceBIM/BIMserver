@@ -93,13 +93,4 @@ public class NotificationImpl implements NotificationInterface {
 	public SServiceDescriptor getService(String name) throws UserException, ServerException {
 		return null;
 	}
-
-	@Override
-	public void setToken(String token) throws ServerException, UserException {
-	}
-
-	@Override
-	public String getCurrentToken() throws ServerException, UserException {
-		return null;
-	}
 }

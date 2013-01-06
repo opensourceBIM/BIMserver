@@ -53,7 +53,7 @@ public class WebServiceServlet extends CXFNonSpringServlet {
 		headerManager.registerHeaderProcessor(new HeaderProcessor() {
 			@Override
 			public String getNamespace() {
-				return "uri:org.bimserver.interfaces.objects";
+				return "uri:java.lang.String";
 			}
 			
 			@Override
@@ -64,7 +64,7 @@ public class WebServiceServlet extends CXFNonSpringServlet {
 			@Override
 			public DataBinding getDataBinding() {
 				try {
-					return new JAXBDataBinding(SToken.class);
+					return new JAXBDataBinding(String.class);
 				} catch (JAXBException e) {
 					LOGGER.error("", e);
 				}

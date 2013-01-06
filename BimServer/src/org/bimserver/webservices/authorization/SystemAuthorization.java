@@ -1,4 +1,4 @@
-package org.bimserver.webservices;
+package org.bimserver.webservices.authorization;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -20,7 +20,6 @@ package org.bimserver.webservices;
 import java.nio.ByteBuffer;
 import java.util.concurrent.TimeUnit;
 
-import org.bimserver.webservices.authorization.Authorization;
 
 public class SystemAuthorization extends Authorization {
 	public static final byte ID = 3;

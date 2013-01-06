@@ -32,20 +32,26 @@ import org.apache.cxf.headers.Header;
 import org.apache.cxf.jaxb.JAXBDataBinding;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
-import org.bimserver.interfaces.objects.SToken;
-import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.SoapTokenWrapper;
+import org.bimserver.shared.TokenChangeListener;
+import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class SoapChannel extends Channel {
+public class SoapChannel extends Channel implements TokenChangeListener {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SoapChannel.class);
 	private Client client;
+	private TokenHolder tokenHolder;
+	private boolean useSoapHeaderSessions;
+	private ServiceInterface serviceInterface;
 
-	public SoapChannel() {
+	public SoapChannel(TokenHolder tokenHolder) {
+		this.tokenHolder = tokenHolder;
 	}
 
 	public void connect(String address, boolean useSoapHeaderSessions) {
+		this.useSoapHeaderSessions = useSoapHeaderSessions;
 		JaxWsProxyFactoryBean cpfb = new JaxWsProxyFactoryBean();
 		cpfb.setServiceClass(ServiceInterface.class);
 		cpfb.setAddress(address);
@@ -53,7 +59,7 @@ public class SoapChannel extends Channel {
 		properties.put("mtom-enabled", Boolean.TRUE);
 		cpfb.setProperties(properties);
 
-		ServiceInterface serviceInterface = (ServiceInterface) cpfb.create();
+		serviceInterface = (ServiceInterface) cpfb.create();
 
 		client = ClientProxy.getClient(serviceInterface);
 		HTTPConduit http = (HTTPConduit) client.getConduit();
@@ -61,29 +67,29 @@ public class SoapChannel extends Channel {
 		http.getClient().setAllowChunking(false);
 		http.getClient().setReceiveTimeout(320000);
 
+		tokenHolder.registerTokenChangeListener(this);
+		
 		if (!useSoapHeaderSessions) {
 			((BindingProvider) serviceInterface).getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY, Boolean.TRUE);
-		}
-
-		if (useSoapHeaderSessions) {
-			try {
-				String token = serviceInterface.getCurrentToken();
-				List<Header> headers = new ArrayList<Header>();
-				try {
-					Header sessionHeader = new Header(new QName("uri:org.bimserver.interfaces.objects", "token"), token, new JAXBDataBinding(SToken.class));
-					headers.add(sessionHeader);
-				} catch (JAXBException e) {
-					LOGGER.error("", e);
-				}
-				((BindingProvider) serviceInterface).getRequestContext().put(Header.HEADER_LIST, headers);
-			} catch (ServiceException e) {
-				LOGGER.error("", e);
-			}
 		}
 		addServiceInterface(ServiceInterface.class, serviceInterface);
 		notifyOfConnect();
 	}
 
+	@Override
+	public void newToken(String token) {
+		if (useSoapHeaderSessions) {
+			List<Header> headers = new ArrayList<Header>();
+			try {
+				Header sessionHeader = new Header(new QName("uri:java.lang.String", "token"), token, new JAXBDataBinding(String.class));
+				headers.add(sessionHeader);
+			} catch (JAXBException e) {
+				LOGGER.error("", e);
+			}
+			((BindingProvider) serviceInterface).getRequestContext().put(Header.HEADER_LIST, headers);
+		}		
+	}
+	
 	@Override
 	public void disconnect() {
 		client.destroy();

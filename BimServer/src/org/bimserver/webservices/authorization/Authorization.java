@@ -35,7 +35,6 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.webservices.SystemAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -47,6 +47,6 @@ public class JsonSocketReflectorFactory {
 	}
 
 	public JsonSocketReflector create(String remoteAddress, boolean useHttpSession, AuthenticationInfo authenticationInfo) {
-		return new JsonSocketReflector(httpclient, servicesMap, remoteAddress, useHttpSession, authenticationInfo);
+		return new JsonSocketReflector(httpclient, servicesMap, remoteAddress, useHttpSession, authenticationInfo, new SimpleTokenHolder());
 	}
 }

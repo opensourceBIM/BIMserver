@@ -28,7 +28,7 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.webservices.SystemAuthorization;
+import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

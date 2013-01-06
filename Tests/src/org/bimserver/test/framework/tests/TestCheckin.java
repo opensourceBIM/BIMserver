@@ -82,7 +82,7 @@ public class TestCheckin {
 			} 
 		));
 //		testConfiguration.setActionFactory(new AllActionsFactory(testFramework));
-		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.SOAP_NO_HEADERS));
+		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.SOAP_HEADERS));
 		testConfiguration.setTestFileProvider(new FolderWalker(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Logic Labs\\Clients\\TNO\\ifc selected"), testFramework));
 //		testConfiguration.setTestFileProvider(new FolderWalker(new File("C:\\Users\\Ruben de Laat\\Documents\\My Dropbox\\Logic Labs\\Clients\\TNO\\ifc selected")));
 		testConfiguration.setOutputFolder(new File("output"));

@@ -122,7 +122,7 @@ import org.bimserver.templating.TemplateEngine;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.version.VersionChecker;
 import org.bimserver.webservices.PublicInterfaceFactory;
-import org.bimserver.webservices.SystemAuthorization;
+import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

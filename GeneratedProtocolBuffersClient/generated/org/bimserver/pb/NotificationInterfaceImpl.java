@@ -4597,11 +4597,6 @@ public final class NotificationInterfaceImpl {
     protected NotificationInterface() {}
     
     public interface Interface {
-      public abstract void getCurrentToken(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenRequest request,
-          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenResponse> done);
-      
       public abstract void getPrivateProfiles(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.NotificationInterfaceImpl.GetPrivateProfilesRequest request,
@@ -4627,24 +4622,11 @@ public final class NotificationInterfaceImpl {
           org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
       
-      public abstract void setToken(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.ServiceInterfaceImpl.SetTokenRequest request,
-          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
-      
     }
     
     public static com.google.protobuf.Service newReflectiveService(
         final Interface impl) {
       return new NotificationInterface() {
-        @java.lang.Override
-        public  void getCurrentToken(
-            com.google.protobuf.RpcController controller,
-            org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenRequest request,
-            com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenResponse> done) {
-          impl.getCurrentToken(controller, request, done);
-        }
-        
         @java.lang.Override
         public  void getPrivateProfiles(
             com.google.protobuf.RpcController controller,
@@ -4685,14 +4667,6 @@ public final class NotificationInterfaceImpl {
           impl.progress(controller, request, done);
         }
         
-        @java.lang.Override
-        public  void setToken(
-            com.google.protobuf.RpcController controller,
-            org.bimserver.pb.ServiceInterfaceImpl.SetTokenRequest request,
-            com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
-          impl.setToken(controller, request, done);
-        }
-        
       };
     }
     
@@ -4716,19 +4690,15 @@ public final class NotificationInterfaceImpl {
           }
           switch(method.getIndex()) {
             case 0:
-              return impl.getCurrentToken(controller, (org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenRequest)request);
-            case 1:
               return impl.getPrivateProfiles(controller, (org.bimserver.pb.NotificationInterfaceImpl.GetPrivateProfilesRequest)request);
-            case 2:
+            case 1:
               return impl.getPublicProfiles(controller, (org.bimserver.pb.NotificationInterfaceImpl.GetPublicProfilesRequest)request);
-            case 3:
+            case 2:
               return impl.getService(controller, (org.bimserver.pb.ServiceInterfaceImpl.GetServiceRequest)request);
-            case 4:
+            case 3:
               return impl.newLogAction(controller, (org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest)request);
-            case 5:
+            case 4:
               return impl.progress(controller, (org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest)request);
-            case 6:
-              return impl.setToken(controller, (org.bimserver.pb.ServiceInterfaceImpl.SetTokenRequest)request);
             default:
               throw new java.lang.AssertionError("Can't get here.");
           }
@@ -4744,19 +4714,15 @@ public final class NotificationInterfaceImpl {
           }
           switch(method.getIndex()) {
             case 0:
-              return org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenRequest.getDefaultInstance();
-            case 1:
               return org.bimserver.pb.NotificationInterfaceImpl.GetPrivateProfilesRequest.getDefaultInstance();
-            case 2:
+            case 1:
               return org.bimserver.pb.NotificationInterfaceImpl.GetPublicProfilesRequest.getDefaultInstance();
-            case 3:
+            case 2:
               return org.bimserver.pb.ServiceInterfaceImpl.GetServiceRequest.getDefaultInstance();
-            case 4:
+            case 3:
               return org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest.getDefaultInstance();
-            case 5:
+            case 4:
               return org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest.getDefaultInstance();
-            case 6:
-              return org.bimserver.pb.ServiceInterfaceImpl.SetTokenRequest.getDefaultInstance();
             default:
               throw new java.lang.AssertionError("Can't get here.");
           }
@@ -4772,18 +4738,14 @@ public final class NotificationInterfaceImpl {
           }
           switch(method.getIndex()) {
             case 0:
-              return org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenResponse.getDefaultInstance();
-            case 1:
               return org.bimserver.pb.NotificationInterfaceImpl.GetPrivateProfilesResponse.getDefaultInstance();
-            case 2:
+            case 1:
               return org.bimserver.pb.NotificationInterfaceImpl.GetPublicProfilesResponse.getDefaultInstance();
-            case 3:
+            case 2:
               return org.bimserver.pb.ServiceInterfaceImpl.GetServiceResponse.getDefaultInstance();
-            case 4:
+            case 3:
               return org.bimserver.pb.NotificationInterfaceImpl.NewLogActionResponse.getDefaultInstance();
-            case 5:
-              return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
-            case 6:
+            case 4:
               return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
             default:
               throw new java.lang.AssertionError("Can't get here.");
@@ -4792,11 +4754,6 @@ public final class NotificationInterfaceImpl {
         
       };
     }
-    
-    public abstract void getCurrentToken(
-        com.google.protobuf.RpcController controller,
-        org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenRequest request,
-        com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenResponse> done);
     
     public abstract void getPrivateProfiles(
         com.google.protobuf.RpcController controller,
@@ -4823,11 +4780,6 @@ public final class NotificationInterfaceImpl {
         org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest request,
         com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
     
-    public abstract void setToken(
-        com.google.protobuf.RpcController controller,
-        org.bimserver.pb.ServiceInterfaceImpl.SetTokenRequest request,
-        com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
-    
     public static final
         com.google.protobuf.Descriptors.ServiceDescriptor
         getDescriptor() {
@@ -4851,37 +4803,27 @@ public final class NotificationInterfaceImpl {
       }
       switch(method.getIndex()) {
         case 0:
-          this.getCurrentToken(controller, (org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenRequest)request,
-            com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenResponse>specializeCallback(
-              done));
-          return;
-        case 1:
           this.getPrivateProfiles(controller, (org.bimserver.pb.NotificationInterfaceImpl.GetPrivateProfilesRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.NotificationInterfaceImpl.GetPrivateProfilesResponse>specializeCallback(
               done));
           return;
-        case 2:
+        case 1:
           this.getPublicProfiles(controller, (org.bimserver.pb.NotificationInterfaceImpl.GetPublicProfilesRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.NotificationInterfaceImpl.GetPublicProfilesResponse>specializeCallback(
               done));
           return;
-        case 3:
+        case 2:
           this.getService(controller, (org.bimserver.pb.ServiceInterfaceImpl.GetServiceRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.GetServiceResponse>specializeCallback(
               done));
           return;
-        case 4:
+        case 3:
           this.newLogAction(controller, (org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.NotificationInterfaceImpl.NewLogActionResponse>specializeCallback(
               done));
           return;
-        case 5:
+        case 4:
           this.progress(controller, (org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest)request,
-            com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
-              done));
-          return;
-        case 6:
-          this.setToken(controller, (org.bimserver.pb.ServiceInterfaceImpl.SetTokenRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
@@ -4900,19 +4842,15 @@ public final class NotificationInterfaceImpl {
       }
       switch(method.getIndex()) {
         case 0:
-          return org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenRequest.getDefaultInstance();
-        case 1:
           return org.bimserver.pb.NotificationInterfaceImpl.GetPrivateProfilesRequest.getDefaultInstance();
-        case 2:
+        case 1:
           return org.bimserver.pb.NotificationInterfaceImpl.GetPublicProfilesRequest.getDefaultInstance();
-        case 3:
+        case 2:
           return org.bimserver.pb.ServiceInterfaceImpl.GetServiceRequest.getDefaultInstance();
-        case 4:
+        case 3:
           return org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest.getDefaultInstance();
-        case 5:
+        case 4:
           return org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest.getDefaultInstance();
-        case 6:
-          return org.bimserver.pb.ServiceInterfaceImpl.SetTokenRequest.getDefaultInstance();
         default:
           throw new java.lang.AssertionError("Can't get here.");
       }
@@ -4928,18 +4866,14 @@ public final class NotificationInterfaceImpl {
       }
       switch(method.getIndex()) {
         case 0:
-          return org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenResponse.getDefaultInstance();
-        case 1:
           return org.bimserver.pb.NotificationInterfaceImpl.GetPrivateProfilesResponse.getDefaultInstance();
-        case 2:
+        case 1:
           return org.bimserver.pb.NotificationInterfaceImpl.GetPublicProfilesResponse.getDefaultInstance();
-        case 3:
+        case 2:
           return org.bimserver.pb.ServiceInterfaceImpl.GetServiceResponse.getDefaultInstance();
-        case 4:
+        case 3:
           return org.bimserver.pb.NotificationInterfaceImpl.NewLogActionResponse.getDefaultInstance();
-        case 5:
-          return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
-        case 6:
+        case 4:
           return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
         default:
           throw new java.lang.AssertionError("Can't get here.");
@@ -4962,27 +4896,12 @@ public final class NotificationInterfaceImpl {
         return channel;
       }
       
-      public  void getCurrentToken(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenRequest request,
-          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenResponse> done) {
-        channel.callMethod(
-          getDescriptor().getMethods().get(0),
-          controller,
-          request,
-          org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenResponse.getDefaultInstance(),
-          com.google.protobuf.RpcUtil.generalizeCallback(
-            done,
-            org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenResponse.class,
-            org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenResponse.getDefaultInstance()));
-      }
-      
       public  void getPrivateProfiles(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.NotificationInterfaceImpl.GetPrivateProfilesRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.NotificationInterfaceImpl.GetPrivateProfilesResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(1),
+          getDescriptor().getMethods().get(0),
           controller,
           request,
           org.bimserver.pb.NotificationInterfaceImpl.GetPrivateProfilesResponse.getDefaultInstance(),
@@ -4997,7 +4916,7 @@ public final class NotificationInterfaceImpl {
           org.bimserver.pb.NotificationInterfaceImpl.GetPublicProfilesRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.NotificationInterfaceImpl.GetPublicProfilesResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(2),
+          getDescriptor().getMethods().get(1),
           controller,
           request,
           org.bimserver.pb.NotificationInterfaceImpl.GetPublicProfilesResponse.getDefaultInstance(),
@@ -5012,7 +4931,7 @@ public final class NotificationInterfaceImpl {
           org.bimserver.pb.ServiceInterfaceImpl.GetServiceRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.GetServiceResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(3),
+          getDescriptor().getMethods().get(2),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.GetServiceResponse.getDefaultInstance(),
@@ -5027,7 +4946,7 @@ public final class NotificationInterfaceImpl {
           org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.NotificationInterfaceImpl.NewLogActionResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(4),
+          getDescriptor().getMethods().get(3),
           controller,
           request,
           org.bimserver.pb.NotificationInterfaceImpl.NewLogActionResponse.getDefaultInstance(),
@@ -5042,22 +4961,7 @@ public final class NotificationInterfaceImpl {
           org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(5),
-          controller,
-          request,
-          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
-          com.google.protobuf.RpcUtil.generalizeCallback(
-            done,
-            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.class,
-            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance()));
-      }
-      
-      public  void setToken(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.ServiceInterfaceImpl.SetTokenRequest request,
-          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
-        channel.callMethod(
-          getDescriptor().getMethods().get(6),
+          getDescriptor().getMethods().get(4),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -5074,11 +4978,6 @@ public final class NotificationInterfaceImpl {
     }
     
     public interface BlockingInterface {
-      public org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenResponse getCurrentToken(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenRequest request)
-          throws com.google.protobuf.ServiceException;
-      
       public org.bimserver.pb.NotificationInterfaceImpl.GetPrivateProfilesResponse getPrivateProfiles(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.NotificationInterfaceImpl.GetPrivateProfilesRequest request)
@@ -5103,11 +5002,6 @@ public final class NotificationInterfaceImpl {
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest request)
           throws com.google.protobuf.ServiceException;
-      
-      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse setToken(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.ServiceInterfaceImpl.SetTokenRequest request)
-          throws com.google.protobuf.ServiceException;
     }
     
     private static final class BlockingStub implements BlockingInterface {
@@ -5117,24 +5011,12 @@ public final class NotificationInterfaceImpl {
       
       private final com.google.protobuf.BlockingRpcChannel channel;
       
-      public org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenResponse getCurrentToken(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenRequest request)
-          throws com.google.protobuf.ServiceException {
-        return (org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(0),
-          controller,
-          request,
-          org.bimserver.pb.ServiceInterfaceImpl.GetCurrentTokenResponse.getDefaultInstance());
-      }
-      
-      
       public org.bimserver.pb.NotificationInterfaceImpl.GetPrivateProfilesResponse getPrivateProfiles(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.NotificationInterfaceImpl.GetPrivateProfilesRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.NotificationInterfaceImpl.GetPrivateProfilesResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(1),
+          getDescriptor().getMethods().get(0),
           controller,
           request,
           org.bimserver.pb.NotificationInterfaceImpl.GetPrivateProfilesResponse.getDefaultInstance());
@@ -5146,7 +5028,7 @@ public final class NotificationInterfaceImpl {
           org.bimserver.pb.NotificationInterfaceImpl.GetPublicProfilesRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.NotificationInterfaceImpl.GetPublicProfilesResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(2),
+          getDescriptor().getMethods().get(1),
           controller,
           request,
           org.bimserver.pb.NotificationInterfaceImpl.GetPublicProfilesResponse.getDefaultInstance());
@@ -5158,7 +5040,7 @@ public final class NotificationInterfaceImpl {
           org.bimserver.pb.ServiceInterfaceImpl.GetServiceRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.GetServiceResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(3),
+          getDescriptor().getMethods().get(2),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.GetServiceResponse.getDefaultInstance());
@@ -5170,7 +5052,7 @@ public final class NotificationInterfaceImpl {
           org.bimserver.pb.NotificationInterfaceImpl.NewLogActionRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.NotificationInterfaceImpl.NewLogActionResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(4),
+          getDescriptor().getMethods().get(3),
           controller,
           request,
           org.bimserver.pb.NotificationInterfaceImpl.NewLogActionResponse.getDefaultInstance());
@@ -5182,19 +5064,7 @@ public final class NotificationInterfaceImpl {
           org.bimserver.pb.NotificationInterfaceImpl.ProgressRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(5),
-          controller,
-          request,
-          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
-      }
-      
-      
-      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse setToken(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.ServiceInterfaceImpl.SetTokenRequest request)
-          throws com.google.protobuf.ServiceException {
-        return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(6),
+          getDescriptor().getMethods().get(4),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -5274,25 +5144,20 @@ public final class NotificationInterfaceImpl {
       ".org.bimserver.pb.SImmediateNotification",
       "Result\"U\n\017ProgressRequest\022\017\n\007topicId\030\001 \001" +
       "(\003\0221\n\005state\030\002 \001(\0132\".org.bimserver.pb.SLo" +
-      "ngActionState2\264\005\n\025NotificationInterface\022" +
-      "f\n\017getCurrentToken\022(.org.bimserver.pb.Ge" +
-      "tCurrentTokenRequest\032).org.bimserver.pb." +
-      "GetCurrentTokenResponse\022o\n\022getPrivatePro" +
-      "files\022+.org.bimserver.pb.GetPrivateProfi" +
-      "lesRequest\032,.org.bimserver.pb.GetPrivate" +
-      "ProfilesResponse\022l\n\021getPublicProfiles\022*." +
-      "org.bimserver.pb.GetPublicProfilesReques",
-      "t\032+.org.bimserver.pb.GetPublicProfilesRe" +
-      "sponse\022W\n\ngetService\022#.org.bimserver.pb." +
-      "GetServiceRequest\032$.org.bimserver.pb.Get" +
-      "ServiceResponse\022]\n\014newLogAction\022%.org.bi" +
-      "mserver.pb.NewLogActionRequest\032&.org.bim" +
-      "server.pb.NewLogActionResponse\022M\n\010progre" +
-      "ss\022!.org.bimserver.pb.ProgressRequest\032\036." +
-      "org.bimserver.pb.VoidResponse\022M\n\010setToke" +
-      "n\022!.org.bimserver.pb.SetTokenRequest\032\036.o" +
-      "rg.bimserver.pb.VoidResponseB B\031Notifica",
-      "tionInterfaceImplH\001\210\001\001"
+      "ngActionState2\375\003\n\025NotificationInterface\022" +
+      "o\n\022getPrivateProfiles\022+.org.bimserver.pb" +
+      ".GetPrivateProfilesRequest\032,.org.bimserv" +
+      "er.pb.GetPrivateProfilesResponse\022l\n\021getP" +
+      "ublicProfiles\022*.org.bimserver.pb.GetPubl" +
+      "icProfilesRequest\032+.org.bimserver.pb.Get" +
+      "PublicProfilesResponse\022W\n\ngetService\022#.o" +
+      "rg.bimserver.pb.GetServiceRequest\032$.org.",
+      "bimserver.pb.GetServiceResponse\022]\n\014newLo" +
+      "gAction\022%.org.bimserver.pb.NewLogActionR" +
+      "equest\032&.org.bimserver.pb.NewLogActionRe" +
+      "sponse\022M\n\010progress\022!.org.bimserver.pb.Pr" +
+      "ogressRequest\032\036.org.bimserver.pb.VoidRes" +
+      "ponseB B\031NotificationInterfaceImplH\001\210\001\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

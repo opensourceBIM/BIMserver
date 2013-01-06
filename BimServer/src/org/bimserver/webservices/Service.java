@@ -187,8 +187,10 @@ import org.bimserver.shared.meta.SService;
 import org.bimserver.utils.MultiplexingInputStream;
 import org.bimserver.utils.NetUtils;
 import org.bimserver.webservices.authorization.AdminAuthorization;
+import org.bimserver.webservices.authorization.AnonymousAuthorization;
 import org.bimserver.webservices.authorization.Authorization;
 import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
+import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.codehaus.jettison.json.JSONTokener;
@@ -210,7 +212,6 @@ public class Service implements ServiceInterface {
 
 	private Date activeSince;
 	private Date lastActive;
-	private String token;
 	private long transactionPoid;
 
 	public Service(BimServer bimServer, AccessMethod accessMethod, String remoteAddress, Authorization authorization) {
@@ -456,6 +457,9 @@ public class Service implements ServiceInterface {
 		}
 		if (authorization instanceof ExplicitRightsAuthorization) {
 			throw new UserException("Real authentication required (this session has token authentication)");
+		}
+		if (authorization instanceof AnonymousAuthorization) {
+			throw new UserException("Anonymous has no rights for this call");
 		}
 	}
 
@@ -1609,15 +1613,6 @@ public class Service implements ServiceInterface {
 	@Override
 	public Date getLastActive() {
 		return lastActive;
-	}
-
-	@Override
-	public String getCurrentToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
 	}
 
 	@Override
@@ -3482,7 +3477,7 @@ public class Service implements ServiceInterface {
 	public List<SProfileDescriptor> getAllPublicProfiles(String notificationsUrl, String serviceIdentifier) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClient client = new BimServerClient(notificationsUrl, bimServer.getServicesMap());
+			BimServerClient client = new BimServerClient(notificationsUrl, bimServer.getServicesMap(), null);
 			client.setJsonSocketReflectorFactory(bimServer.getJsonSocketReflectorFactory());
 			client.connectJson(false);
 			NotificationInterface notificationInterface = client.getNotificationInterface();
@@ -3496,7 +3491,7 @@ public class Service implements ServiceInterface {
 	public List<SProfileDescriptor> getAllPrivateProfiles(String notificationsUrl, String serviceIdentifier, String token) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClient client = new BimServerClient(notificationsUrl, bimServer.getServicesMap());
+			BimServerClient client = new BimServerClient(notificationsUrl, bimServer.getServicesMap(), null);
 			client.connectJson(false);
 			NotificationInterface notificationInterface = client.getNotificationInterface();
 			return notificationInterface.getPrivateProfiles(serviceIdentifier, token);

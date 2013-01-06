@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 import org.bimserver.LocalDevBimServerStarter;
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ConnectionException;
+import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.notifications.SocketNotificationsClient;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.NotificationInterface;
@@ -88,10 +88,10 @@ public class TestNotifications {
 		}
 		socketNotificationsClient.start();
 		
-		BimServerClient bimServerClient = new BimServerClient("", null);
+		BimServerClient bimServerClient = new BimServerClient("");
 		try {
 			bimServerClient.connectProtocolBuffers("localhost", 8020);
-		} catch (ConnectionException e1) {
+		} catch (ChannelConnectionException e1) {
 			e1.printStackTrace();
 		}
 		try {

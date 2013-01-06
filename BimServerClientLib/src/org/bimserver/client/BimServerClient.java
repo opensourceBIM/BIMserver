@@ -58,6 +58,8 @@ import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.AutologinAuthenticationInfo;
 import org.bimserver.shared.ConnectDisconnectListener;
+import org.bimserver.shared.TokenChangeListener;
+import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -65,6 +67,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.reflector.ReflectorBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
@@ -78,26 +81,37 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
 
-public class BimServerClient implements ConnectDisconnectListener {
+public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BimServerClient.class);
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
 	private Channel channel;
 	private SocketNotificationsClient notificationsClient;
-//	private SchemaDefinition schema;
-	private boolean connected = false;
+	// private SchemaDefinition schema;
 	private AuthenticationInfo authenticationInfo;
 	private ServicesMap servicesMap = new ServicesMap();
 	private ReflectorFactory reflectorFactory;
 	private String baseAddress;
 	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
+	private String token;
+	private final Set<TokenChangeListener> tokenChangeListeners = new HashSet<TokenChangeListener>();
 
-	public BimServerClient(String baseAddress, ServicesMap servicesMap) {
+	public BimServerClient(String baseAddress, ServicesMap servicesMap, JsonSocketReflectorFactory jsonSocketReflectorFactory) {
 		this.baseAddress = baseAddress;
 		this.servicesMap = servicesMap;
 		notificationsClient = new SocketNotificationsClient();
 		reflectorFactory = new ReflectorBuilder(servicesMap).newReflectorFactory();
 	}
-	
+
+	public BimServerClient(String baseAddress) {
+		this.baseAddress = baseAddress;
+		this.servicesMap = new ServicesMap();
+		SService sService = new SService(null, ServiceInterface.class);
+		servicesMap.add(sService);
+		this.jsonSocketReflectorFactory = new JsonSocketReflectorFactory(servicesMap);
+		notificationsClient = new SocketNotificationsClient();
+		reflectorFactory = new ReflectorBuilder(servicesMap).newReflectorFactory();
+	}
+
 	public void setJsonSocketReflectorFactory(JsonSocketReflectorFactory jsonSocketReflectorFactory) {
 		this.jsonSocketReflectorFactory = jsonSocketReflectorFactory;
 	}
@@ -114,10 +128,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 		directChannel.connect(interfaceClass, serviceInterface);
 	}
 
-	public void connectProtocolBuffers(String address, int port) throws ConnectionException {
-//		if (authenticationInfo == null) {
-//			throw new ConnectionException("Authentication information required, use \"setAuthentication\" first");
-//		}
+	public void connectProtocolBuffers(String address, int port) throws ChannelConnectionException {
 		disconnect();
 		ProtocolBuffersChannel protocolBuffersChannel = new ProtocolBuffersChannel(servicesMap, reflectorFactory);
 		this.channel = protocolBuffersChannel;
@@ -125,26 +136,23 @@ public class BimServerClient implements ConnectDisconnectListener {
 		try {
 			protocolBuffersChannel.connect(address, port);
 		} catch (IOException e) {
-			throw new ConnectionException(e);
+			throw new ChannelConnectionException(e);
 		}
 	}
 
-	public void connectJson(boolean useHttpSession) throws ConnectionException {
+	public void connectJson(boolean useHttpSession) throws ChannelConnectionException {
 		disconnect();
-		JsonChannel jsonChannel = new JsonChannel(reflectorFactory, jsonSocketReflectorFactory );
+		JsonChannel jsonChannel = new JsonChannel(reflectorFactory, jsonSocketReflectorFactory);
 		this.channel = jsonChannel;
 		jsonChannel.connect(baseAddress + "/jsonapi", useHttpSession, authenticationInfo);
 	}
-	
-	public void connectSoap(boolean useSoapHeaderSessions) throws ConnectionException {
-//		if (authenticationInfo == null) {
-//			throw new ConnectionException("Authentication information required, use \"setAuthentication\" first");
-//		}
+
+	public void connectSoap() throws ChannelConnectionException {
 		disconnect();
-		SoapChannel soapChannel = new SoapChannel();
+		SoapChannel soapChannel = new SoapChannel(this);
 		this.channel = soapChannel;
 		soapChannel.registerConnectDisconnectListener(this);
-		soapChannel.connect(baseAddress + "/soap", useSoapHeaderSessions);
+		soapChannel.connect(baseAddress + "/soap", true);
 	}
 
 	public Channel getChannel() {
@@ -194,15 +202,15 @@ public class BimServerClient implements ConnectDisconnectListener {
 		try {
 			if (authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
 				UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo) authenticationInfo;
-				connected = channel.getServiceInterface().login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword()) != null;
+				setToken(channel.getServiceInterface().login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword()));
 			} else if (authenticationInfo instanceof AutologinAuthenticationInfo) {
 				AutologinAuthenticationInfo autologinAuthenticationInfo = (AutologinAuthenticationInfo) authenticationInfo;
-				connected = channel.getServiceInterface().autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode()) != null;
+				setToken(channel.getServiceInterface().autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode()));
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}
-		if (connected) {
+		if (token != null) {
 			notifyOfConnect();
 		}
 	}
@@ -220,13 +228,14 @@ public class BimServerClient implements ConnectDisconnectListener {
 		if (enabled && !notificationsClient.isRunning()) {
 			notificationsClient.connect(servicesMap, new InetSocketAddress("localhost", 8055));
 			notificationsClient.startAndWaitForInit();
-			if (connected) {
-//				try {
-					// TODO
-//					getServiceInterface().setHttpCallback(getServiceInterface().getCurrentUser().getOid(), "localhost:8055");
-//				} catch (ServiceException e) {
-//					LOGGER.error("", e);
-//				}
+			if (token != null) {
+				// try {
+				// TODO
+				// getServiceInterface().setHttpCallback(getServiceInterface().getCurrentUser().getOid(),
+				// "localhost:8055");
+				// } catch (ServiceException e) {
+				// LOGGER.error("", e);
+				// }
 			} else {
 				registerConnectDisconnectListener(new ConnectDisconnectListener() {
 					@Override
@@ -235,40 +244,46 @@ public class BimServerClient implements ConnectDisconnectListener {
 
 					@Override
 					public void connected() {
-//						try {
-							// TODO
-//							getServiceInterface().setHttpCallback(getServiceInterface().getCurrentUser().getOid(), "localhost:8055");
-//						} catch (ServiceException e) {
-//							LOGGER.error("", e);
-//						}
+						// try {
+						// TODO
+						// getServiceInterface().setHttpCallback(getServiceInterface().getCurrentUser().getOid(),
+						// "localhost:8055");
+						// } catch (ServiceException e) {
+						// LOGGER.error("", e);
+						// }
 					}
 				});
 			}
 		}
 	}
 
-//	public IfcModelInterface getModel(long roid) {
-//		try {
-//			SSerializer serializer = getServiceInterface().getSerializerByContentType("application/ifc");
-//			Integer downloadId = getServiceInterface().download(roid, serializer.getName(), true, true);
-//			SDownloadResult downloadData = getServiceInterface().getDownloadData(downloadId);
-//			DataHandler file = downloadData.getFile();
-//			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
-//			EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
-//			deserializer.init(schema);
-//			IfcModelInterface model = deserializer.read(file.getInputStream(), "", true, 0);
-//			return model;
-//		} catch (ServiceException e) {
-//			LOGGER.error("", e);
-//		} catch (DeserializeException e) {
-//			LOGGER.error("", e);
-//		} catch (IOException e) {
-//			LOGGER.error("", e);
-//		} catch (PluginException e) {
-//			LOGGER.error("", e);
-//		}
-//		return null;
-//	}
+	// public IfcModelInterface getModel(long roid) {
+	// try {
+	// SSerializer serializer =
+	// getServiceInterface().getSerializerByContentType("application/ifc");
+	// Integer downloadId = getServiceInterface().download(roid,
+	// serializer.getName(), true, true);
+	// SDownloadResult downloadData =
+	// getServiceInterface().getDownloadData(downloadId);
+	// DataHandler file = downloadData.getFile();
+	// DeserializerPlugin deserializerPlugin =
+	// pluginManager.getFirstDeserializer("ifc", true);
+	// EmfDeserializer deserializer = deserializerPlugin.createDeserializer();
+	// deserializer.init(schema);
+	// IfcModelInterface model = deserializer.read(file.getInputStream(), "",
+	// true, 0);
+	// return model;
+	// } catch (ServiceException e) {
+	// LOGGER.error("", e);
+	// } catch (DeserializeException e) {
+	// LOGGER.error("", e);
+	// } catch (IOException e) {
+	// LOGGER.error("", e);
+	// } catch (PluginException e) {
+	// LOGGER.error("", e);
+	// }
+	// return null;
+	// }
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public IfcModelInterface getModel(long roid) throws BimServerClientException, UserException, ServerException {
@@ -282,7 +297,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 					throw new BimServerClientException("No class found with name " + type);
 				}
 				IdEObject idEObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(eClass);
-				((IdEObjectImpl)idEObject).setOid(dataObject.getOid());
+				((IdEObjectImpl) idEObject).setOid(dataObject.getOid());
 				model.add(dataObject.getOid(), idEObject);
 				for (SDataValue dataValue : dataObject.getValues()) {
 					if (dataValue instanceof SSimpleDataValue) {
@@ -385,27 +400,33 @@ public class BimServerClient implements ConnectDisconnectListener {
 	}
 
 	public long uploadModel(long poid, String comment, IfcModelInterface model) {
-//		try {
-//			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
-//			Serializer serializer = serializerPlugin.createSerializer();
-//			serializer.init(model, null, pluginManager, null);
-//			SDeserializerPluginConfiguration deserializerPluginConfiguration = getServiceInterface().getSuggestedDeserializerForExtension("ifc");
-//			String fileName = "unknown";
-//			long checkinId = getServiceInterface().checkin(poid, comment, deserializerPluginConfiguration.getOid(), 0L, fileName, new DataHandler(new EmfSerializerDataSource(serializer)), false, true); // TODO
-//			SCheckinResult checkinResult = getServiceInterface().getCheckinState(checkinId);
-//			return checkinResult.getRevisionId();
-//		} catch (ServiceException e) {
-//			LOGGER.error("", e);
-//		} catch (SerializerException e) {
-//			LOGGER.error("", e);
-//		} catch (PluginException e) {
-//			LOGGER.error("", e);
-//		}
+		// try {
+		// SerializerPlugin serializerPlugin =
+		// pluginManager.getFirstSerializerPlugin("application/ifc", true);
+		// Serializer serializer = serializerPlugin.createSerializer();
+		// serializer.init(model, null, pluginManager, null);
+		// SDeserializerPluginConfiguration deserializerPluginConfiguration =
+		// getServiceInterface().getSuggestedDeserializerForExtension("ifc");
+		// String fileName = "unknown";
+		// long checkinId = getServiceInterface().checkin(poid, comment,
+		// deserializerPluginConfiguration.getOid(), 0L, fileName, new
+		// DataHandler(new EmfSerializerDataSource(serializer)), false, true);
+		// // TODO
+		// SCheckinResult checkinResult =
+		// getServiceInterface().getCheckinState(checkinId);
+		// return checkinResult.getRevisionId();
+		// } catch (ServiceException e) {
+		// LOGGER.error("", e);
+		// } catch (SerializerException e) {
+		// LOGGER.error("", e);
+		// } catch (PluginException e) {
+		// LOGGER.error("", e);
+		// }
 		return -1;
 	}
 
 	public boolean isConnected() {
-		return connected;
+		return token != null;
 	}
 
 	public void unregisterNotificationListener(NotificationInterface notificationInterface) {
@@ -418,7 +439,7 @@ public class BimServerClient implements ConnectDisconnectListener {
 		}
 		return null;
 	}
-	
+
 	public ServicesMap getServicesMap() {
 		return servicesMap;
 	}
@@ -428,38 +449,33 @@ public class BimServerClient implements ConnectDisconnectListener {
 		DefaultHttpClient httpclient = new DefaultHttpClient();
 		httpclient.addRequestInterceptor(new HttpRequestInterceptor() {
 
-            public void process(
-                    final HttpRequest request,
-                    final HttpContext context) throws HttpException, IOException {
-                if (!request.containsHeader("Accept-Encoding")) {
-                    request.addHeader("Accept-Encoding", "gzip");
-                }
-            }
+			public void process(final HttpRequest request, final HttpContext context) throws HttpException, IOException {
+				if (!request.containsHeader("Accept-Encoding")) {
+					request.addHeader("Accept-Encoding", "gzip");
+				}
+			}
 
-        });
+		});
 
-        httpclient.addResponseInterceptor(new HttpResponseInterceptor() {
+		httpclient.addResponseInterceptor(new HttpResponseInterceptor() {
 
-            public void process(
-                    final HttpResponse response,
-                    final HttpContext context) throws HttpException, IOException {
-                HttpEntity entity = response.getEntity();
-                if (entity != null) {
-                    Header ceheader = entity.getContentEncoding();
-                    if (ceheader != null) {
-                        HeaderElement[] codecs = ceheader.getElements();
-                        for (int i = 0; i < codecs.length; i++) {
-                            if (codecs[i].getName().equalsIgnoreCase("gzip")) {
-                                response.setEntity(
-                                        new GzipDecompressingEntity(response.getEntity()));
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
+			public void process(final HttpResponse response, final HttpContext context) throws HttpException, IOException {
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					Header ceheader = entity.getContentEncoding();
+					if (ceheader != null) {
+						HeaderElement[] codecs = ceheader.getElements();
+						for (int i = 0; i < codecs.length; i++) {
+							if (codecs[i].getName().equalsIgnoreCase("gzip")) {
+								response.setEntity(new GzipDecompressingEntity(response.getEntity()));
+								return;
+							}
+						}
+					}
+				}
+			}
 
-        });
+		});
 		HttpPost httppost = new HttpPost(address);
 		try {
 			HttpResponse httpResponse = httpclient.execute(httppost);
@@ -472,5 +488,23 @@ public class BimServerClient implements ConnectDisconnectListener {
 			LOGGER.error("", e);
 		}
 		return null;
+	}
+
+	@Override
+	public String getToken() {
+		return token;
+	}
+
+	@Override
+	public void setToken(String token) {
+		this.token = token;
+		for (TokenChangeListener tokenChangeListener : tokenChangeListeners) {
+			tokenChangeListener.newToken(token);
+		}
+	}
+
+	@Override
+	public void registerTokenChangeListener(TokenChangeListener tokenChangeListener) {
+		tokenChangeListeners.add(tokenChangeListener);
 	}
 }

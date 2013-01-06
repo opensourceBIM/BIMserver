@@ -45,8 +45,8 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.templating.TemplateIdentifier;
 import org.bimserver.utils.GeneratorUtils;
 import org.bimserver.utils.Hashers;
-import org.bimserver.webservices.SystemAuthorization;
 import org.bimserver.webservices.authorization.Authorization;
+import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -49,15 +49,6 @@ public class NotificationLogger implements NotificationInterface {
 	}
 
 	@Override
-	public void setToken(String token) {
-	}
-
-	@Override
-	public String getCurrentToken() throws ServerException, UserException {
-		return null;
-	}
-
-	@Override
 	public List<SProfileDescriptor> getPublicProfiles(String serviceIdentifier) {
 		return null;
 	}

@@ -13,6 +13,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/gson-2.2.2.jar" sourcepath="libsrc/gson-2.2.2-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/openmali.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/je-5.0.58.jar" sourcepath="libsrc/bdb-src.jar"/>
+	<classpathentry kind="lib" path="lib/classmexer.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="starter"/>

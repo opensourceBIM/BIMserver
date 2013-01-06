@@ -27,7 +27,6 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.entity.StringEntity;
@@ -36,6 +35,7 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.TokenAuthentication;
+import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.meta.ServicesMap;
 import org.codehaus.jettison.json.JSONException;
@@ -54,23 +54,16 @@ public class JsonSocketReflector extends JsonReflector {
 	private final DefaultHttpClient httpclient;
 	private final AuthenticationInfo authenticationInfo;
 	private final HttpContext context;
-	private String token;
+	private TokenHolder tokenHolder;
 
-	public JsonSocketReflector(DefaultHttpClient httpclient, ServicesMap servicesMap, String remoteAddress, boolean useHttpSession, AuthenticationInfo authenticationInfo) {
+	public JsonSocketReflector(DefaultHttpClient httpclient, ServicesMap servicesMap, String remoteAddress, boolean useHttpSession, AuthenticationInfo authenticationInfo, TokenHolder tokenHolder) {
 		super(servicesMap);
 		this.httpclient = httpclient;
 		this.remoteAddress = remoteAddress;
 		this.useHttpSession = useHttpSession;
 		this.authenticationInfo = authenticationInfo;
+		this.tokenHolder = tokenHolder;
 		context = new BasicHttpContext();
-	}
-	
-	public String getToken() {
-		return token;
-	}
-	
-	public void setToken(String token) {
-		this.token = token;
 	}
 	
 	public JsonObject call(JsonObject request) throws JSONException, ReflectorException {
@@ -86,11 +79,11 @@ public class JsonSocketReflector extends JsonReflector {
 				// We can disable the use of cookies
 				context.setAttribute(ClientContext.COOKIE_STORE, null);
 				if (authenticationInfo != null && authenticationInfo instanceof TokenAuthentication) {
-					token = ((TokenAuthentication)authenticationInfo).getToken();
+					tokenHolder.setToken(((TokenAuthentication)authenticationInfo).getToken());
 				}
-				if (token != null) {
+				if (tokenHolder.getToken() != null) {
 					// But we have to provide the token ourselves
-					request.addProperty("token", token);
+					request.addProperty("token", tokenHolder.getToken());
 				}
 			}
 			HttpPost httppost = new HttpPost(remoteAddress);
@@ -119,11 +112,8 @@ public class JsonSocketReflector extends JsonReflector {
 			} finally {
 				httppost.releaseConnection();
 			}
-		} catch (ClientProtocolException e) {
-			LOGGER.error("", e);
 		} catch (Exception e) {
-			LOGGER.error("", e);
+			throw new ReflectorException(e);
 		}
-		return null;
 	}
 }

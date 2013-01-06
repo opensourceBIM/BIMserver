@@ -24,7 +24,7 @@ import java.io.IOException;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ConnectionException;
+import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.Session;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
@@ -40,7 +40,7 @@ public class YetAnotherTest {
 
 	private void start() {
 		try {
-			BimServerClient bimServerClient = new BimServerClient("", null);
+			BimServerClient bimServerClient = new BimServerClient("");
 			bimServerClient.setAuthentication(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			bimServerClient.connectProtocolBuffers("localhost", 8020);
 			String pName = "p java client" + new java.util.Date();
@@ -58,7 +58,7 @@ public class YetAnotherTest {
 			e.printStackTrace();
 		} catch (UserException e) {
 			e.printStackTrace();
-		} catch (ConnectionException e) {
+		} catch (ChannelConnectionException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

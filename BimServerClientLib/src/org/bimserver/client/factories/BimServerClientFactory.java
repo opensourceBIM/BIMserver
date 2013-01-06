@@ -18,10 +18,10 @@ package org.bimserver.client.factories;
  *****************************************************************************/
 
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ConnectionException;
+import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 
 public interface BimServerClientFactory {
-	BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServiceException, ConnectionException;
+	BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServiceException, ChannelConnectionException;
 }

@@ -1,5 +1,5 @@
 
-Ö
+Ÿ
 notification.protoorg.bimserver.pbservice.proto"E
 GetPrivateProfilesRequest
 serviceIdentifier (	
@@ -21,21 +21,19 @@
 apiUrl (	"‡
 SImmediateNotificationResult8
 result (2(.org.bimserver.pb.SNotifictionResultEnum
-rid (
-description (	
-oid ("k
+rid (
+oid (
+description (	"k
 NewLogActionResponse
 errorMessage (	=
 value (2..org.bimserver.pb.SImmediateNotificationResult"U
 ProgressRequest
 topicId (1
-state (2".org.bimserver.pb.SLongActionState2´
-NotificationInterfacef
-getCurrentToken(.org.bimserver.pb.GetCurrentTokenRequest).org.bimserver.pb.GetCurrentTokenResponseo
+state (2".org.bimserver.pb.SLongActionState2ý
+NotificationInterfaceo
 getPrivateProfiles+.org.bimserver.pb.GetPrivateProfilesRequest,.org.bimserver.pb.GetPrivateProfilesResponsel
 getPublicProfiles*.org.bimserver.pb.GetPublicProfilesRequest+.org.bimserver.pb.GetPublicProfilesResponseW
 
 getService#.org.bimserver.pb.GetServiceRequest$.org.bimserver.pb.GetServiceResponse]
 newLogAction%.org.bimserver.pb.NewLogActionRequest&.org.bimserver.pb.NewLogActionResponseM
-progress!.org.bimserver.pb.ProgressRequest.org.bimserver.pb.VoidResponseM
-setToken!.org.bimserver.pb.SetTokenRequest.org.bimserver.pb.VoidResponseB BNotificationInterfaceImplHˆ
+progress!.org.bimserver.pb.ProgressRequest.org.bimserver.pb.VoidResponseB BNotificationInterfaceImplHˆ
