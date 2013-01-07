@@ -56,12 +56,6 @@
 			<fileset dir="../plugins" />
 		</copy>
 		<delete dir="builds/BuildJar/classes" />
-		<javac destdir="builds/BuildJar" debug="on" srcdir="../../BimWebServer/expander"  includeantruntime="false"/>
-		<copy todir="builds/BuildJar/org/bimserver">
-			<fileset dir="../../BimWebServer/expander/org/bimserver">
-				<include name="*.png" />
-			</fileset>
-		</copy>
 		<java classname="org.bimserver.test.framework.RemoteTest" fork="true" maxmemory="4g" dir="../">
 			<classpath>
 				<path>
