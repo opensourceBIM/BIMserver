@@ -78,6 +78,10 @@ public abstract class JsonReflector implements Reflector {
 			}
 		} catch (ReflectorException e) {
 			throw e;
+		} catch (UserException e) {
+			throw e;
+		} catch (ServerException e) {
+			throw e;
 		} catch (Exception e) {
 			throw new ReflectorException(e);
 		}

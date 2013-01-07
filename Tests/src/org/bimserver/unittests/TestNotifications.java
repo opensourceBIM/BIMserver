@@ -30,7 +30,9 @@ import org.bimserver.LocalDevBimServerStarter;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.notifications.SocketNotificationsClient;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.ServicesMap;
@@ -93,6 +95,10 @@ public class TestNotifications {
 			bimServerClient.connectProtocolBuffers("localhost", 8020);
 		} catch (ChannelConnectionException e1) {
 			e1.printStackTrace();
+		} catch (ServerException e) {
+			e.printStackTrace();
+		} catch (UserException e) {
+			e.printStackTrace();
 		}
 		try {
 			bimServerClient.getServiceInterface().login("admin@bimserver.org", "admin");

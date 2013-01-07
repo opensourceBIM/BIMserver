@@ -48,6 +48,7 @@ public class Session {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Session.class);
 	private ServiceInterface serviceInterface;
 	private Set<IdEObject> newObjects = new HashSet<IdEObject>();
+	private long tid;
 
 	public Session(ServiceInterface serviceInterface) {
 		this.serviceInterface = serviceInterface;
@@ -58,7 +59,7 @@ public class Session {
 		EClass eClass = (EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(cl.getSimpleName());
 		IdEObject eObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(eClass);
 		try {
-			Long oid = serviceInterface.createObject(cl.getSimpleName());
+			Long oid = serviceInterface.createObject(tid, cl.getSimpleName());
 			newObjects.add(eObject);
 			((IdEObjectImpl)eObject).setOid(oid);
 		} catch (ServiceException e) {
@@ -69,7 +70,7 @@ public class Session {
 
 	public void startTransaction(long poid) {
 		try {
-			serviceInterface.startTransaction(poid);
+			tid = serviceInterface.startTransaction(poid);
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}
@@ -88,24 +89,24 @@ public class Session {
 								List list = (List) val;
 								for (Object o : list) {
 									if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
-										serviceInterface.addStringAttribute(eObject.getOid(), eAttribute.getName(), (String) o);
+										serviceInterface.addStringAttribute(tid, eObject.getOid(), eAttribute.getName(), (String) o);
 									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEInt()) {
-										serviceInterface.addIntegerAttribute(eObject.getOid(), eAttribute.getName(), (Integer) o);
+										serviceInterface.addIntegerAttribute(tid, eObject.getOid(), eAttribute.getName(), (Integer) o);
 									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-										serviceInterface.addDoubleAttribute(eObject.getOid(), eAttribute.getName(), (Double) o);
+										serviceInterface.addDoubleAttribute(tid, eObject.getOid(), eAttribute.getName(), (Double) o);
 									} else {
 										throw new RuntimeException("Unimplemented: " + eAttribute.getEType());
 									}
 								}
 							} else {
 								if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
-									serviceInterface.setStringAttribute(eObject.getOid(), eAttribute.getName(), (String) val);
+									serviceInterface.setStringAttribute(tid, eObject.getOid(), eAttribute.getName(), (String) val);
 								} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEInt()) {
-									serviceInterface.setIntegerAttribute(eObject.getOid(), eAttribute.getName(), (Integer) val);
+									serviceInterface.setIntegerAttribute(tid, eObject.getOid(), eAttribute.getName(), (Integer) val);
 								} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-									serviceInterface.setDoubleAttribute(eObject.getOid(), eAttribute.getName(), (Double) val);
+									serviceInterface.setDoubleAttribute(tid, eObject.getOid(), eAttribute.getName(), (Double) val);
 								} else if (eAttribute.getEType() instanceof EEnum) {
-									serviceInterface.setEnumAttribute(eObject.getOid(), eAttribute.getName(), val.toString());
+									serviceInterface.setEnumAttribute(tid, eObject.getOid(), eAttribute.getName(), val.toString());
 								} else {
 									throw new RuntimeException("Unimplemented: " + eAttribute.getEType());
 								}
@@ -116,17 +117,17 @@ public class Session {
 								@SuppressWarnings("unchecked")
 								List<IdEObject> list = (List<IdEObject>) val;
 								for (IdEObject object : list) {
-									serviceInterface.addReference(eObject.getOid(), eReference.getName(), object.getOid());
+									serviceInterface.addReference(tid, eObject.getOid(), eReference.getName(), object.getOid());
 								}
 							} else {
 								IdEObject referredObject = (IdEObject) val;
-								serviceInterface.setReference(eObject.getOid(), eReference.getName(), referredObject.getOid());
+								serviceInterface.setReference(tid, eObject.getOid(), eReference.getName(), referredObject.getOid());
 							}
 						}
 					}
 				}
 			}
-			return serviceInterface.commitTransaction(comment);
+			return serviceInterface.commitTransaction(tid, comment);
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}

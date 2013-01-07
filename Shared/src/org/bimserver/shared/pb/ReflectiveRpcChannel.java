@@ -50,12 +50,14 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReflectiveRpcChannel.class);
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
+	private Class<? extends PublicInterface> publicInterface = null;
 	private final PublicInterface service;
 	private ServicesMap servicesMap;
 
-	public ReflectiveRpcChannel(PublicInterface service, ProtocolBuffersMetaData protocolBuffersMetaData, ServicesMap servicesMap) {
+	public ReflectiveRpcChannel(Class<? extends PublicInterface> publicInterface, PublicInterface service, ProtocolBuffersMetaData protocolBuffersMetaData, ServicesMap servicesMap) {
 		super(protocolBuffersMetaData);
 		this.service = service;
+		this.publicInterface = publicInterface;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
 		this.servicesMap = servicesMap;
 	}
@@ -100,7 +102,7 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 				}
 				i++;
 			}
-			Object result = sMethod.invoke(service.getClass(), service, arguments);
+			Object result = sMethod.invoke(publicInterface, service, arguments);
 			Builder builder = response.newBuilderForType();
 			if (methodDescriptor.getOutputDescriptor().getName().equals("VoidResponse")) {
 				builder.setField(errorMessageField, "OKE");

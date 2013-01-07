@@ -30,6 +30,7 @@ import org.bimserver.BimServer;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.JsonChannel;
 import org.bimserver.client.JsonSocketReflectorFactory;
+import org.bimserver.client.SimpleTokenHolder;
 import org.bimserver.client.channels.Channel;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
@@ -204,7 +205,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		switch (service.getNotificationProtocol()) {
 		case JSON:
 			JsonChannel jsonChannel = new JsonChannel(bimServer.getReflectorFactory(), jsonSocketReflectorFactory);
-			jsonChannel.connect(service.getUrl(), true, null);
+			jsonChannel.connect(service.getUrl(), new SimpleTokenHolder());
 			return jsonChannel;
 		case INTERNAL:
 			return new InternalChannel(x.get(service.getServiceIdentifier()));

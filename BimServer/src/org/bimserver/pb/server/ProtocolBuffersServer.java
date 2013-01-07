@@ -26,6 +26,7 @@ import java.util.Set;
 import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ReflectiveRpcChannel;
+import org.bimserver.webservices.PublicInterfaceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,17 +34,17 @@ public class ProtocolBuffersServer extends Thread {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersServer.class);
 	private volatile boolean running;
 	private final Set<ProtocolBuffersConnectionHandler> activeHandlers = new HashSet<ProtocolBuffersConnectionHandler>();
-	private final ServiceFactoryRegistry serviceFactoryRegistry;
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
 	private final int port;
 	private ServerSocket serverSocket;
-	private final ServicesMap services;
+	private final ServicesMap servicesMap;
+	private final PublicInterfaceFactory publicInterfaceFactory;
 
-	public ProtocolBuffersServer(ProtocolBuffersMetaData protocolBuffersMetaData, ServiceFactoryRegistry serviceFactoryRegistry, ServicesMap services, int port) {
+	public ProtocolBuffersServer(ProtocolBuffersMetaData protocolBuffersMetaData, PublicInterfaceFactory publicInterfaceFactory, ServicesMap servicesMap, int port) {
+		this.publicInterfaceFactory = publicInterfaceFactory;
 		setName("ProtocolBuffersServer");
-		this.services = services;
+		this.servicesMap = servicesMap;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
-		this.serviceFactoryRegistry = serviceFactoryRegistry;
 		this.port = port;
 	}
 
@@ -54,7 +55,7 @@ public class ProtocolBuffersServer extends Thread {
 			serverSocket = new ServerSocket(port);
 			while (running) {
 				Socket socket = serverSocket.accept();
-				ProtocolBuffersConnectionHandler protocolBuffersConnectionHandler = new ProtocolBuffersConnectionHandler(socket, this, services);
+				ProtocolBuffersConnectionHandler protocolBuffersConnectionHandler = new ProtocolBuffersConnectionHandler(socket, this, publicInterfaceFactory, servicesMap);
 				activeHandlers.add(protocolBuffersConnectionHandler);
 				protocolBuffersConnectionHandler.start();
 			}
@@ -65,10 +66,6 @@ public class ProtocolBuffersServer extends Thread {
 		}
 	}
 
-	public ServiceFactoryRegistry getServiceFactoryRegistry() {
-		return serviceFactoryRegistry;
-	}
-	
 	public ProtocolBuffersMetaData getProtocolBuffersMetaData() {
 		return protocolBuffersMetaData;
 	}

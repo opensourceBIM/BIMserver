@@ -21,11 +21,11 @@ import org.apache.http.HttpVersion;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
 import org.apache.http.params.CoreProtocolPNames;
-import org.bimserver.shared.AuthenticationInfo;
+import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.json.JsonSocketReflector;
 import org.bimserver.shared.meta.ServicesMap;
 
-public class JsonSocketReflectorFactory {
+public class JsonSocketReflectorFactory implements JsonReflectorFactory {
 	private ServicesMap servicesMap;
 	private DefaultHttpClient httpclient;
 	private PoolingClientConnectionManager connectionManager;
@@ -46,7 +46,7 @@ public class JsonSocketReflectorFactory {
 		connectionManager.shutdown();
 	}
 
-	public JsonSocketReflector create(String remoteAddress, boolean useHttpSession, AuthenticationInfo authenticationInfo) {
-		return new JsonSocketReflector(httpclient, servicesMap, remoteAddress, useHttpSession, authenticationInfo, new SimpleTokenHolder());
+	public JsonSocketReflector create(String remoteAddress, TokenHolder tokenHolder) {
+		return new JsonSocketReflector(httpclient, servicesMap, remoteAddress, tokenHolder);
 	}
 }

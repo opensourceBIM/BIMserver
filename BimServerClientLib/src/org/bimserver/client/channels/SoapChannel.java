@@ -32,7 +32,6 @@ import org.apache.cxf.headers.Header;
 import org.apache.cxf.jaxb.JAXBDataBinding;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
-import org.bimserver.shared.SoapTokenWrapper;
 import org.bimserver.shared.TokenChangeListener;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.interfaces.ServiceInterface;

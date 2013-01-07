@@ -814,20 +814,6 @@ public interface ServiceInterface extends PublicInterface {
 	Boolean isLoggedIn() throws ServerException, UserException;
 
 	/**
-	 * @return Since when this ServiceInterface session has been active
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getActiveSince")
-	Date getActiveSince() throws ServerException, UserException;
-
-	/**
-	 * @return When the session has been active for the last
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getLastActive")
-	Date getLastActive() throws ServerException, UserException;
-
-	/**
 	 * @return The method of access this ServiceInterface is using (SOAP, REST, PB etc...)
 	 * @throws ServerException, UserException
 	 */
@@ -1403,7 +1389,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "startTransaction")
-	void startTransaction(
+	Long startTransaction(
 		@WebParam(name = "poid", partName = "startTransaction.poid") Long poid) throws ServerException, UserException;
 
 	/**
@@ -1414,6 +1400,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "commitTransaction")
 	Long commitTransaction(
+		@WebParam(name = "tid", partName = "commitTransaction.tid") Long tid,
 		@WebParam(name = "comment", partName = "commitTransaction.comment") String comment) throws ServerException, UserException;
 	
 	/**
@@ -1421,7 +1408,8 @@ public interface ServiceInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "abortTransaction")
-	void abortTransaction() throws ServerException, UserException;
+	void abortTransaction(
+		@WebParam(name = "tid", partName = "abortTransaction.tid") Long tid) throws ServerException, UserException;
 	
 	/**
 	 * Create a new Object
@@ -1431,6 +1419,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "createObject")
 	Long createObject(
+		@WebParam(name = "tid", partName = "createObject.tid") Long tid,
 		@WebParam(name = "className", partName = "createObject.className") String className) throws ServerException, UserException;
 	
 	/**
@@ -1440,6 +1429,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "removeObject")
 	void removeObject(
+		@WebParam(name = "tid", partName = "removeObject.tid") Long tid,
 		@WebParam(name = "oid", partName = "removeObject.oid") Long oid) throws ServerException, UserException;
 	
 	/**
@@ -1450,6 +1440,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setStringAttribute")
 	void setStringAttribute(
+		@WebParam(name = "tid", partName = "setStringAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "setStringAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "setStringAttribute.attributeName") String attributeName, 
 		@WebParam(name = "value", partName = "setStringAttribute.value") String value) throws ServerException, UserException;
@@ -1462,6 +1453,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getStringAttribute")
 	String getStringAttribute(
+		@WebParam(name = "tid", partName = "getStringAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "getStringAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "getStringAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
@@ -1473,6 +1465,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setDoubleAttribute")
 	void setDoubleAttribute(
+		@WebParam(name = "tid", partName = "setDoubleAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "setDoubleAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "setDoubleAttribute.attributeName") String attributeName, 
 		@WebParam(name = "value", partName = "setDoubleAttribute.value") Double value) throws ServerException, UserException;
@@ -1485,6 +1478,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getDoubleAttribute")
 	Double getDoubleAttribute(
+		@WebParam(name = "tid", partName = "getDoubleAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "getDoubleAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "getDoubleAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
@@ -1496,6 +1490,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setEnumAttribute")
 	void setEnumAttribute(
+		@WebParam(name = "tid", partName = "setEnumAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "setEnumAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "setEnumAttribute.attributeName") String attributeName, 
 		@WebParam(name = "value", partName = "setEnumAttribute.value") String value) throws ServerException, UserException;
@@ -1508,6 +1503,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getEnumAttribute")
 	String getEnumAttribute(
+		@WebParam(name = "tid", partName = "getEnumAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "getEnumAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "getEnumAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
@@ -1519,6 +1515,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setIntegerAttribute")
 	void setIntegerAttribute(
+		@WebParam(name = "tid", partName = "setIntegerAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "setIntegerAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "setIntegerAttribute.attributeName") String attributeName, 
 		@WebParam(name = "value", partName = "setIntegerAttribute.value") Integer value) throws ServerException, UserException;
@@ -1531,6 +1528,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getIntegerAttribute")
 	Integer getIntegerAttribute(
+		@WebParam(name = "tid", partName = "getIntegerAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "getIntegerAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "getIntegerAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
@@ -1542,6 +1540,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setBooleanAttribute")
 	void setBooleanAttribute(
+		@WebParam(name = "tid", partName = "setBooleanAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "setBooleanAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "setBooleanAttribute.attributeName") String attributeName, 
 		@WebParam(name = "value", partName = "setBooleanAttribute.value") Boolean value) throws ServerException, UserException;
@@ -1554,6 +1553,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getBooleanAttribute")
 	Boolean getBooleanAttribute(
+		@WebParam(name = "tid", partName = "getBooleanAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "getBooleanAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "getBooleanAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
@@ -1565,6 +1565,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setReference")
 	void setReference(
+		@WebParam(name = "tid", partName = "setReference.tid") Long tid,
 		@WebParam(name = "oid", partName = "setReference.oid") Long oid, 
 		@WebParam(name = "referenceName", partName = "setReference.referenceName") String referenceName, 
 		@WebParam(name = "referenceOid", partName = "setReference.referenceOid") Long referenceOid) throws ServerException, UserException;
@@ -1577,6 +1578,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getReference")
 	Long getReference(
+		@WebParam(name = "tid", partName = "getReference.tid") Long tid,
 		@WebParam(name = "oid", partName = "getReference.oid") Long oid, 
 		@WebParam(name = "referenceName", partName = "getReference.referenceName") String referenceName) throws ServerException, UserException;
 	
@@ -1587,6 +1589,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "unsetAttribute")
 	void unsetAttribute(
+		@WebParam(name = "tid", partName = "unsetAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "unsetAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "unsetAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
@@ -1597,6 +1600,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "unsetReference")
 	void unsetReference(
+		@WebParam(name = "tid", partName = "unsetReference.tid") Long tid,
 		@WebParam(name = "oid", partName = "unsetReference.oid") Long oid,
 		@WebParam(name = "referenceName", partName = "unsetReference.referenceName") String referenceName) throws ServerException, UserException;
 	
@@ -1608,6 +1612,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addStringAttribute")
 	void addStringAttribute(
+		@WebParam(name = "tid", partName = "addStringAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "addStringAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "addStringAttribute.attributeName") String attributeName,
 		@WebParam(name = "value", partName = "addStringAttribute.value") String value) throws ServerException, UserException;
@@ -1620,6 +1625,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addDoubleAttribute")
 	void addDoubleAttribute(
+		@WebParam(name = "tid", partName = "addDoubleAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "addDoubleAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "addDoubleAttribute.attributeName") String attributeName,
 		@WebParam(name = "value", partName = "addDoubleAttribute.value") Double value) throws ServerException, UserException;
@@ -1632,6 +1638,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addIntegerAttribute")
 	void addIntegerAttribute(
+		@WebParam(name = "tid", partName = "addIntegerAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "addIntegerAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "addIntegerAttribute.attributeName") String attributeName,
 		@WebParam(name = "value", partName = "addIntegerAttribute.value") Integer value) throws ServerException, UserException;
@@ -1644,6 +1651,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addBooleanAttribute")
 	void addBooleanAttribute(
+		@WebParam(name = "tid", partName = "addBooleanAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "addBooleanAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "addBooleanAttribute.attributeName") String attributeName,
 		@WebParam(name = "value", partName = "addBooleanAttribute.value") Boolean value) throws ServerException, UserException;
@@ -1656,6 +1664,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "addReference")
 	void addReference(
+		@WebParam(name = "tid", partName = "addReference.tid") Long tid,
 		@WebParam(name = "oid", partName = "addReference.oid") Long oid, 
 		@WebParam(name = "referenceName", partName = "addReference.referenceName") String referenceName, 
 		@WebParam(name = "referenceOid", partName = "addReference.referenceOid") Long referenceOid) throws ServerException, UserException;
@@ -1668,6 +1677,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "removeAttribute")
 	void removeAttribute(
+		@WebParam(name = "tid", partName = "removeAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "removeAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "removeAttribute.attributeName") String attributeName, 
 		@WebParam(name = "index", partName = "removeAttribute.index") Integer index) throws ServerException, UserException;
@@ -1680,6 +1690,7 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "removeReference")
 	void removeReference(
+		@WebParam(name = "tid", partName = "removeReference.tid") Long tid,
 		@WebParam(name = "oid", partName = "removeReference.oid") Long oid, 
 		@WebParam(name = "referenceName", partName = "removeReference.referenceName") String referenceName, 
 		@WebParam(name = "index", partName = "removeReference.index") Integer index) throws ServerException, UserException;

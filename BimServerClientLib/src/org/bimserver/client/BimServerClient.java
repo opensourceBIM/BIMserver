@@ -84,32 +84,30 @@ import com.google.common.base.Charsets;
 public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BimServerClient.class);
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
+	private final Set<TokenChangeListener> tokenChangeListeners = new HashSet<TokenChangeListener>();
 	private Channel channel;
 	private SocketNotificationsClient notificationsClient;
-	// private SchemaDefinition schema;
-	private AuthenticationInfo authenticationInfo;
+	private AuthenticationInfo authenticationInfo = new AnonymousAuthentication();
 	private ServicesMap servicesMap = new ServicesMap();
 	private ReflectorFactory reflectorFactory;
 	private String baseAddress;
 	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private String token;
-	private final Set<TokenChangeListener> tokenChangeListeners = new HashSet<TokenChangeListener>();
 
 	public BimServerClient(String baseAddress, ServicesMap servicesMap, JsonSocketReflectorFactory jsonSocketReflectorFactory) {
 		this.baseAddress = baseAddress;
 		this.servicesMap = servicesMap;
-		notificationsClient = new SocketNotificationsClient();
-		reflectorFactory = new ReflectorBuilder(servicesMap).newReflectorFactory();
+		this.notificationsClient = new SocketNotificationsClient();
+		this.reflectorFactory = new ReflectorBuilder(servicesMap).newReflectorFactory();
 	}
 
 	public BimServerClient(String baseAddress) {
 		this.baseAddress = baseAddress;
 		this.servicesMap = new ServicesMap();
-		SService sService = new SService(null, ServiceInterface.class);
-		servicesMap.add(sService);
+		this.servicesMap.add(new SService(null, ServiceInterface.class));
 		this.jsonSocketReflectorFactory = new JsonSocketReflectorFactory(servicesMap);
-		notificationsClient = new SocketNotificationsClient();
-		reflectorFactory = new ReflectorBuilder(servicesMap).newReflectorFactory();
+		this.notificationsClient = new SocketNotificationsClient();
+		this.reflectorFactory = new ReflectorBuilder(servicesMap).newReflectorFactory();
 	}
 
 	public void setJsonSocketReflectorFactory(JsonSocketReflectorFactory jsonSocketReflectorFactory) {
@@ -128,31 +126,40 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 		directChannel.connect(interfaceClass, serviceInterface);
 	}
 
-	public void connectProtocolBuffers(String address, int port) throws ChannelConnectionException {
+	public void connectProtocolBuffers(String address, int port) throws ChannelConnectionException, ServerException, UserException {
 		disconnect();
-		ProtocolBuffersChannel protocolBuffersChannel = new ProtocolBuffersChannel(servicesMap, reflectorFactory);
+		ProtocolBuffersChannel protocolBuffersChannel = new ProtocolBuffersChannel(servicesMap, reflectorFactory, this);
 		this.channel = protocolBuffersChannel;
 		protocolBuffersChannel.registerConnectDisconnectListener(this);
-		try {
-			protocolBuffersChannel.connect(address, port);
-		} catch (IOException e) {
-			throw new ChannelConnectionException(e);
-		}
+		protocolBuffersChannel.connect(address, port);
+		authenticate();
 	}
 
-	public void connectJson(boolean useHttpSession) throws ChannelConnectionException {
+	public void connectJson() throws ChannelConnectionException, ServerException, UserException {
 		disconnect();
 		JsonChannel jsonChannel = new JsonChannel(reflectorFactory, jsonSocketReflectorFactory);
 		this.channel = jsonChannel;
-		jsonChannel.connect(baseAddress + "/jsonapi", useHttpSession, authenticationInfo);
+		jsonChannel.connect(baseAddress + "/jsonapi", this);
+		authenticate();
 	}
 
-	public void connectSoap() throws ChannelConnectionException {
+	private void authenticate() throws ServerException, UserException {
+		if (authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
+			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo)authenticationInfo;
+			setToken(channel.getServiceInterface().login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword()));
+		} else if (authenticationInfo instanceof AutologinAuthenticationInfo) {
+			AutologinAuthenticationInfo autologinAuthenticationInfo = (AutologinAuthenticationInfo)authenticationInfo;
+			setToken(channel.getServiceInterface().autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode()));
+		}
+	}
+
+	public void connectSoap() throws ChannelConnectionException, ServerException, UserException {
 		disconnect();
 		SoapChannel soapChannel = new SoapChannel(this);
 		this.channel = soapChannel;
 		soapChannel.registerConnectDisconnectListener(this);
-		soapChannel.connect(baseAddress + "/soap", true);
+		soapChannel.connect(baseAddress + "/soap", false);
+		authenticate();
 	}
 
 	public Channel getChannel() {
