@@ -47,6 +47,7 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDataValue;
 import org.bimserver.interfaces.objects.SListDataValue;
@@ -67,7 +68,6 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.reflector.ReflectorBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
@@ -104,7 +104,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 	public BimServerClient(String baseAddress) {
 		this.baseAddress = baseAddress;
 		this.servicesMap = new ServicesMap();
-		this.servicesMap.add(new SService(null, ServiceInterface.class));
+		this.servicesMap.add(new SServiceInterfaceService(null, ServiceInterface.class));
 		this.jsonSocketReflectorFactory = new JsonSocketReflectorFactory(servicesMap);
 		this.notificationsClient = new SocketNotificationsClient();
 		this.reflectorFactory = new ReflectorBuilder(servicesMap).newReflectorFactory();
