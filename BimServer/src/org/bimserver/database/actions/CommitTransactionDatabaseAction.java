@@ -20,7 +20,6 @@ package org.bimserver.database.actions;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import org.bimserver.BimServer;
 import org.bimserver.changes.Change;
@@ -41,33 +40,31 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.LongTransaction;
 import org.bimserver.webservices.authorization.Authorization;
 
 public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseAction {
 
-	private final Set<Change> changes;
 	private final String comment;
+	private final LongTransaction longTransaction;
 	private Revision revision;
-	private final long poid;
 	private Authorization authorization;
 	private BimServer bimServer;
 
-	public CommitTransactionDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Change> changes, Authorization authorization, long poid,
-			String comment) {
+	public CommitTransactionDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, LongTransaction longTransaction, String comment) {
 		super(databaseSession, accessMethod, null);
 		this.bimServer = bimServer;
-		this.changes = changes;
 		this.authorization = authorization;
-		this.poid = poid;
+		this.longTransaction = longTransaction;
 		this.comment = comment;
 	}
 
 	@Override
 	public ConcreteRevision execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Project project = getProjectByPoid(poid);
+		Project project = getProjectByPoid(longTransaction.getPoid());
 		User user = getUserByUoid(authorization.getUoid());
 		if (project == null) {
-			throw new UserException("Project with poid " + poid + " not found");
+			throw new UserException("Project with poid " + longTransaction.getPoid() + " not found");
 		}
 		if (!authorization.hasRightsOnProjectOrSuperProjects(user, project)) {
 			throw new UserException("User has no rights to checkin models to this project");
@@ -81,7 +78,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				size += concreteRevision.getSize();
 			}
 		}
-		for (Change change : changes) {
+		for (Change change : longTransaction.getChanges()) {
 			if (change instanceof CreateObjectChange) {
 				size++;
 			} else if (change instanceof RemoveObjectChange) {
@@ -108,13 +105,13 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		
 		// First create all new objects
 		Map<Long, IdEObject> created = new HashMap<Long, IdEObject>();
-		for (Change change : changes) {
+		for (Change change : longTransaction.getChanges()) {
 			if (change instanceof CreateObjectChange) {
 				change.execute(project.getId(), concreteRevision.getId(), getDatabaseSession(), created);
 			}
 		}
 		// Then do the rest
-		for (Change change : changes) {
+		for (Change change : longTransaction.getChanges()) {
 			if (!(change instanceof CreateObjectChange)) {
 				change.execute(project.getId(), concreteRevision.getId(), getDatabaseSession(), created);
 			}

@@ -13,7 +13,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/gson-2.2.2.jar" sourcepath="libsrc/gson-2.2.2-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/openmali.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/je-5.0.58.jar" sourcepath="libsrc/bdb-src.jar"/>
-	<classpathentry kind="lib" path="lib/classmexer.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/classmexer.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="starter"/>
@@ -35,21 +35,13 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/aopalliance-1.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/commons-collections-3.2.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-manifest.jar" sourcepath="C:/Software/JavaLibs/apache-cxf-2.3.0-src"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/geronimo-annotation_1.0_spec-1.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/geronimo-jms_1.1_spec-1.1.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/geronimo-stax-api_1.0_spec-1.0.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/serializer-2.7.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/wsdl4j-1.6.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/xalan-2.7.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xml-resolver-1.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/geronimo-activation_1.1_spec-1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/geronimo-javamail_1.4_spec-1.7.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/geronimo-ws-metadata_2.0_spec-1.1.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/jsr311-api-1.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/commons-logging-1.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/js-1.7R2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/commons-lang-2.6.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/FastInfoset-1.2.9.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/isorelax-20030108.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/joda-time-1.6.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/relaxngDatatype-20020414.jar"/>
@@ -65,7 +57,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/msv-core-2011.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/opensaml-2.5.1-1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/openws-1.4.2-1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/saaj-api-1.3.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/velocity-1.7.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xmltooling-1.3.2-1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/logging/log4j-1.2.16.jar" sourcepath="libsrc/log4j.jar"/>
@@ -101,26 +92,12 @@
 	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-websocket-8.1.7.v20120910.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-xml-8.1.7.v20120910.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/asm-3.3.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-2.6.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-sts-core-2.6.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-wsn-api-2.6.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-wsn-core-2.6.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-boolean-2.6.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-bug671-2.6.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-dv-2.6.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-runtime-2.6.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-ts-2.6.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/ehcache-core-2.5.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/jaxb-api-2.2.6.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/jaxb-impl-2.2.5.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/jaxb-xjc-2.2.5.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/jettison-1.3.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/mimepull-1.7.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/neethi-3.0.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/oauth-20100527.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/oauth-provider-20100527.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/saaj-impl-1.3.18.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/slf4j-api-1.6.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/spring-aop-3.0.7.RELEASE.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/spring-asm-3.0.7.RELEASE.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/spring-beans-3.0.7.RELEASE.jar"/>
@@ -131,16 +108,44 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/spring-tx-3.0.7.RELEASE.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/spring-web-3.0.7.RELEASE.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/woodstox-core-asl-4.1.4.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/wss4j-1.6.7.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlbeans-2.5.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlschema-core-2.0.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlsec-1.5.2.jar"/>
 	<classpathentry kind="src" path=".apt_generated">
 		<attributes>
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="lib/tomcat/catalina.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/commons-codec-1.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-2.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-sts-core-2.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-ws-discovery-api-2.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-ws-discovery-service-2.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-wsn-api-2.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-wsn-core-2.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-boolean-2.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-bug671-2.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-dv-2.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-runtime-2.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-ts-2.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/FastInfoset-1.2.12.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/geronimo-servlet_3.0_spec-1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/httpasyncclient-4.0-beta3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/httpclient-4.2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/httpcore-4.2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/httpcore-nio-4.2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/javax.ws.rs-api-2.0-m10.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/jaxb-impl-2.2.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/jaxb-xjc-2.2.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/jetty-continuation-8.1.7.v20120910.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/jetty-http-8.1.7.v20120910.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/jetty-io-8.1.7.v20120910.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/jetty-security-8.1.7.v20120910.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/jetty-server-8.1.7.v20120910.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/jetty-util-8.1.7.v20120910.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/mina-core-2.0.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/wss4j-1.6.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlbeans-2.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlsec-1.5.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 	<referencedentry exported="true" kind="lib" path="lib/cxf/cxf-2.4.4.jar" sourcepath="libsrc/apache-cxf-2.4.3-src.zip"/>
 </classpath>

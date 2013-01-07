@@ -26,7 +26,9 @@ import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.Session;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.UserException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -44,6 +46,10 @@ public class TestClientEmfModelRemoteProtocolBuffers {
 			bimServerClient.connectProtocolBuffers("localhost", 8020);
 		} catch (ChannelConnectionException e1) {
 			e1.printStackTrace();
+		} catch (ServerException e) {
+			e.printStackTrace();
+		} catch (UserException e) {
+			e.printStackTrace();
 		}
 	}
 

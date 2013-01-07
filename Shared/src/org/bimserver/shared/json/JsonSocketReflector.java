@@ -25,18 +25,12 @@ import java.io.InputStreamReader;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
-import org.bimserver.shared.AuthenticationInfo;
-import org.bimserver.shared.TokenAuthentication;
 import org.bimserver.shared.TokenHolder;
-import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.meta.ServicesMap;
 import org.codehaus.jettison.json.JSONException;
 import org.slf4j.Logger;
@@ -50,41 +44,22 @@ public class JsonSocketReflector extends JsonReflector {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(JsonSocketReflector.class);
 	private final String remoteAddress;
-	private final boolean useHttpSession;
 	private final DefaultHttpClient httpclient;
-	private final AuthenticationInfo authenticationInfo;
 	private final HttpContext context;
 	private TokenHolder tokenHolder;
 
-	public JsonSocketReflector(DefaultHttpClient httpclient, ServicesMap servicesMap, String remoteAddress, boolean useHttpSession, AuthenticationInfo authenticationInfo, TokenHolder tokenHolder) {
+	public JsonSocketReflector(DefaultHttpClient httpclient, ServicesMap servicesMap, String remoteAddress, TokenHolder tokenHolder) {
 		super(servicesMap);
 		this.httpclient = httpclient;
 		this.remoteAddress = remoteAddress;
-		this.useHttpSession = useHttpSession;
-		this.authenticationInfo = authenticationInfo;
 		this.tokenHolder = tokenHolder;
-		context = new BasicHttpContext();
+		this.context = new BasicHttpContext();
 	}
 	
 	public JsonObject call(JsonObject request) throws JSONException, ReflectorException {
 		try {
-			if (useHttpSession) {
-				if (authenticationInfo != null && authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
-					UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo) authenticationInfo;
-					UsernamePasswordCredentials credentials = new UsernamePasswordCredentials(usernamePasswordAuthenticationInfo.getUsername(),
-							usernamePasswordAuthenticationInfo.getPassword());
-					httpclient.getCredentialsProvider().setCredentials(new AuthScope("localhost", 443), credentials);
-				}
-			} else {
-				// We can disable the use of cookies
-				context.setAttribute(ClientContext.COOKIE_STORE, null);
-				if (authenticationInfo != null && authenticationInfo instanceof TokenAuthentication) {
-					tokenHolder.setToken(((TokenAuthentication)authenticationInfo).getToken());
-				}
-				if (tokenHolder.getToken() != null) {
-					// But we have to provide the token ourselves
-					request.addProperty("token", tokenHolder.getToken());
-				}
+			if (tokenHolder.getToken() != null) {
+				request.addProperty("token", tokenHolder.getToken());
 			}
 			HttpPost httppost = new HttpPost(remoteAddress);
 			httppost.setEntity(new StringEntity(request.toString(), Charsets.UTF_8));

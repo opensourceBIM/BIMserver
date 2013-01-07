@@ -153,9 +153,9 @@ public class TestLowLevelChanges {
 	public void testCreateObject() {
 		try {
 			long poid = createProject();
-			service.startTransaction(poid);
-			long wallOid = service.createObject("IfcWall");
-			long roid = service.commitTransaction("test");
+			long tid = service.startTransaction(poid);
+			long wallOid = service.createObject(tid, "IfcWall");
+			long roid = service.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 1) {
 				fail("1 object expected, found " + model.size());
@@ -175,11 +175,11 @@ public class TestLowLevelChanges {
 	public void testSetStringAttribute() {
 		try {
 			long poid = createProject();
-			service.startTransaction(poid);
-			long windowOid = service.createObject("IfcWindow");
+			long tid = service.startTransaction(poid);
+			long windowOid = service.createObject(tid, "IfcWindow");
 			String name = "TestX";
-			service.setStringAttribute(windowOid, "Name", name);
-			long roid = service.commitTransaction("test");
+			service.setStringAttribute(tid, windowOid, "Name", name);
+			long roid = service.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 1) {
 				fail("1 object expected, found " + model.size());
@@ -203,11 +203,11 @@ public class TestLowLevelChanges {
 	public void testSetFloatAttribute() {
 		try {
 			long poid = createProject();
-			service.startTransaction(poid);
-			long windowOid = service.createObject("IfcWindow");
+			long tid = service.startTransaction(poid);
+			long windowOid = service.createObject(tid, "IfcWindow");
 			double overallHeight = 200.5;
-			service.setDoubleAttribute(windowOid, "OverallHeight", overallHeight);
-			long roid = service.commitTransaction("test");
+			service.setDoubleAttribute(tid, windowOid, "OverallHeight", overallHeight);
+			long roid = service.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 1) {
 				fail("1 object expected, found " + model.size());
@@ -231,11 +231,11 @@ public class TestLowLevelChanges {
 	public void testSetReference() {
 		try {
 			long poid = createProject();
-			service.startTransaction(poid);
-			long siteId = service.createObject("IfcSite");
-			long ownerHistoryId = service.createObject("IfcOwnerHistory");
-			service.setReference(siteId, "OwnerHistory", ownerHistoryId); // TODO test
-			long roid = service.commitTransaction("test");
+			long tid = service.startTransaction(poid);
+			long siteId = service.createObject(tid, "IfcSite");
+			long ownerHistoryId = service.createObject(tid, "IfcOwnerHistory");
+			service.setReference(tid, siteId, "OwnerHistory", ownerHistoryId); // TODO test
+			long roid = service.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 2) {
 				fail("2 objects expected, found " + model.size());
@@ -261,15 +261,15 @@ public class TestLowLevelChanges {
 	public void testAddFloatAttribute() {
 		try {
 			long poid = createProject();
-			service.startTransaction(poid);
-			long cartesianPointId = service.createObject("IfcCartesianPoint");
+			Long tid = service.startTransaction(poid);
+			long cartesianPointId = service.createObject(tid, "IfcCartesianPoint");
 			double firstVal = 5.1;
-			service.addDoubleAttribute(cartesianPointId, "Coordinates", firstVal);
+			service.addDoubleAttribute(tid, cartesianPointId, "Coordinates", firstVal);
 			double secondVal = 6.2;
-			service.addDoubleAttribute(cartesianPointId, "Coordinates", secondVal);
+			service.addDoubleAttribute(tid, cartesianPointId, "Coordinates", secondVal);
 			double thirdVal = 7.3;
-			service.addDoubleAttribute(cartesianPointId, "Coordinates", thirdVal);
-			long roid = service.commitTransaction("test");
+			service.addDoubleAttribute(tid, cartesianPointId, "Coordinates", thirdVal);
+			long roid = service.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
 			List<IfcCartesianPoint> cartesianPoints = model.getAll(IfcCartesianPoint.class);
 			if (cartesianPoints.size() != 1) {
@@ -292,12 +292,12 @@ public class TestLowLevelChanges {
 	public void testRemoveObject() {
 		try {
 			long poid = createProject();
-			service.startTransaction(poid);
-			long windowId = service.createObject("IfcWindow");
-			service.commitTransaction("test");
-			service.startTransaction(poid);
-			service.removeObject(windowId);
-			long roid = service.commitTransaction("test");
+			long tid = service.startTransaction(poid);
+			long windowId = service.createObject(tid, "IfcWindow");
+			service.commitTransaction(tid, "test");
+			tid = service.startTransaction(poid);
+			service.removeObject(tid, windowId);
+			long roid = service.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 0) {
 				fail("Model should be empty");

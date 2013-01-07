@@ -58,7 +58,7 @@ public class Handler extends Thread {
 		try {
 			DataInputStream dis = new DataInputStream(socket.getInputStream());
 			String token = dis.readUTF();
-			ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(serviceFactory.getService(ServiceInterface.class, token), protocolBuffersMetaData, servicesMap);
+			ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(ServiceInterface.class, serviceFactory.getService(ServiceInterface.class, token), protocolBuffersMetaData, servicesMap);
 			while (running) {
 				String serviceName = dis.readUTF();
 				String methodName = dis.readUTF();

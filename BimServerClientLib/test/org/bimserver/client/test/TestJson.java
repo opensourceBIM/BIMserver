@@ -14,7 +14,7 @@ public class TestJson {
 		BimServerClient bimServerClient = new BimServerClient("http://localhost:8080");
 		bimServerClient.setAuthentication(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin")); 
 		try {
-			bimServerClient.connectJson(false);
+			bimServerClient.connectJson();
 			List<SProject> allProjects = bimServerClient.getServiceInterface().getAllProjects(true);
 			System.out.println(allProjects);
 		} catch (ChannelConnectionException e) {

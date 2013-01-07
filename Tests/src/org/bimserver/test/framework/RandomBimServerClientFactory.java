@@ -23,6 +23,8 @@ import org.bimserver.client.JsonSocketReflectorFactory;
 import org.bimserver.client.factories.BimServerClientFactory;
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.shared.AuthenticationInfo;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.ServicesMap;
 import org.slf4j.Logger;
@@ -34,9 +36,8 @@ import org.slf4j.LoggerFactory;
 public class RandomBimServerClientFactory implements BimServerClientFactory {
 	public static enum Type {
 		PROTOCOL_BUFFERS,
-		SOAP_HEADERS,
-		JSON_SESSION_BASED,
-		JSON_TOKEN_BASED
+		SOAP,
+		JSON;
 	}
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(RandomBimServerClientFactory.class);
@@ -56,7 +57,7 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 		jsonSocketReflectorFactory = new JsonSocketReflectorFactory(servicesMap);
 	}
 	
-	public synchronized BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) {
+	public synchronized BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServerException, UserException {
 		try {
 			BimServerClient bimServerClient = new BimServerClient(remoteAddress, servicesMap, null);
 			bimServerClient.setAuthentication(authenticationInfo);
@@ -66,19 +67,14 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 				LOGGER.info("New BimServerClient: Protocol Buffers");
 				bimServerClient.connectProtocolBuffers("localhost", 8020);
 				break;
-			case SOAP_HEADERS:
+			case SOAP:
 				LOGGER.info("New BimServerClient: SOAP/useSoapHeaderSessions");
 				bimServerClient.connectSoap();
 				break;
-			case JSON_SESSION_BASED:
+			case JSON:
 				LOGGER.info("New BimServerClient: JSON");
 				bimServerClient.setJsonSocketReflectorFactory(jsonSocketReflectorFactory);
-				bimServerClient.connectJson(true);
-				break;
-			case JSON_TOKEN_BASED:
-				LOGGER.info("New BimServerClient: JSON");
-				bimServerClient.setJsonSocketReflectorFactory(jsonSocketReflectorFactory);
-				bimServerClient.connectJson(false);
+				bimServerClient.connectJson();
 				break;
 			}
 			current = (current + 1) % types.length;

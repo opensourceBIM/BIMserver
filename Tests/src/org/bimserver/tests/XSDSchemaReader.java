@@ -17,7 +17,6 @@ package org.bimserver.tests;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.apache.xml.utils.DefaultErrorHandler;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -63,7 +62,7 @@ public class XSDSchemaReader {
 		ePackage.setNsURI("http:///buildingsmart.ifc.ecore");
 
 		XSOMParser parser = new XSOMParser();
-		parser.setErrorHandler(new DefaultErrorHandler());
+//		parser.setErrorHandler(new DefaultErrorHandler());
 
 		try {
 			parser.parse(getClass().getResource("IFC2X3.xsd"));

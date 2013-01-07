@@ -91,6 +91,10 @@ public class TestClientEmfModelLocal {
 			bimServerClient.connectProtocolBuffers("localhost", 8020);
 		} catch (ChannelConnectionException e1) {
 			e1.printStackTrace();
+		} catch (ServerException e) {
+			e.printStackTrace();
+		} catch (UserException e) {
+			e.printStackTrace();
 		}
 		try {
 			session = bimServerClient.createSession();

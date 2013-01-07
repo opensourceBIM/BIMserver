@@ -20,20 +20,23 @@ package org.bimserver.client.channels;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
+import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.shared.ConnectDisconnectListener;
+import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.meta.ServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersReflector;
-import org.bimserver.shared.pb.SocketChannel;
+import org.bimserver.shared.pb.SocketProtocolBuffersChannel;
 import org.bimserver.shared.reflector.ReflectorFactory;
 import org.slf4j.LoggerFactory;
 
 public class ProtocolBuffersChannel extends Channel implements ConnectDisconnectListener {
 
-	private SocketChannel channel;
+	private SocketProtocolBuffersChannel protocolBuffersChannel;
 	private final static ProtocolBuffersMetaData protocolBuffersMetaData;
 	private ServicesMap servicesMap;
 	private ReflectorFactory reflectorFactory;
+	private TokenHolder tokenHolder;
 
 	static {
 		protocolBuffersMetaData = new ProtocolBuffersMetaData();
@@ -45,16 +48,21 @@ public class ProtocolBuffersChannel extends Channel implements ConnectDisconnect
 		}
 	}
 	
-	public ProtocolBuffersChannel(ServicesMap servicesMap, ReflectorFactory reflectorFactory) {
+	public ProtocolBuffersChannel(ServicesMap servicesMap, ReflectorFactory reflectorFactory, TokenHolder tokenHolder) {
 		this.servicesMap = servicesMap;
 		this.reflectorFactory = reflectorFactory;
+		this.tokenHolder = tokenHolder;
 	}
 	
-	public void connect(String address, int port) throws IOException {
-		channel = new SocketChannel();
-		channel.registerConnectDisconnectListener(this);
-		finish(new ProtocolBuffersReflector(protocolBuffersMetaData, servicesMap, channel), reflectorFactory);
-		channel.connect(new InetSocketAddress(address, port));
+	public void connect(String address, int port) throws ChannelConnectionException {
+		protocolBuffersChannel = new SocketProtocolBuffersChannel(tokenHolder);
+		protocolBuffersChannel.registerConnectDisconnectListener(this);
+		finish(new ProtocolBuffersReflector(protocolBuffersMetaData, servicesMap, protocolBuffersChannel), reflectorFactory);
+		try {
+			protocolBuffersChannel.connect(new InetSocketAddress(address, port));
+		} catch (IOException e) {
+			throw new ChannelConnectionException(e);
+		}
 	}
 
 	@Override
@@ -69,6 +77,6 @@ public class ProtocolBuffersChannel extends Channel implements ConnectDisconnect
 
 	@Override
 	public void disconnect() {
-		channel.disconnect();
+		protocolBuffersChannel.disconnect();
 	}
 }

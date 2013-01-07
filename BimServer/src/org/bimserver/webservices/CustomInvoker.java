@@ -17,12 +17,16 @@ package org.bimserver.webservices;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.lang.reflect.Method;
+import java.util.List;
+
 import javax.xml.namespace.QName;
 
 import org.apache.cxf.binding.soap.SoapMessage;
 import org.apache.cxf.headers.Header;
 import org.apache.cxf.message.Exchange;
 import org.apache.cxf.message.Message;
+import org.apache.cxf.message.MessageContentsList;
 import org.apache.cxf.service.invoker.AbstractInvoker;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
@@ -59,9 +63,8 @@ public class CustomInvoker extends AbstractInvoker {
 					return null;
 				}
 			} else {
-				ServiceInterface newService;
 				try {
-					newService = serviceFactory.getService(ServiceInterface.class);
+					ServiceInterface newService = serviceFactory.getService(ServiceInterface.class);
 					context.getSession().put("token", token);
 					return newService;
 				} catch (UserException e) {
@@ -76,6 +79,18 @@ public class CustomInvoker extends AbstractInvoker {
 			}
 		}
 		return null;
+	}
+	
+	@Override
+	protected Object invoke(Exchange exchange, Object service, Method method, List<Object> arguments) {
+		if (method.getName().equals("login")) {
+			MessageContentsList mcl = (MessageContentsList) super.invoke(exchange, service, method, arguments);
+			String token = (String) mcl.get(0);
+			exchange.getSession().put("token", token);
+			return mcl;
+		} else {
+			return super.invoke(exchange, service, method, arguments);
+		}
 	}
 
 	@Override

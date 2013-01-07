@@ -33,7 +33,7 @@ public class TestCheckinAll {
 
 		testConfiguration.setHomeDir(new File("G:\\Test"));
 		testConfiguration.setActionFactory(new CheckinActionsFactory(testFramework));
-		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.JSON_TOKEN_BASED));
+		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.JSON));
 		testConfiguration.setTestFileProvider(new FolderWalker(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Logic Labs\\Clients\\TNO\\ifc selected"), testFramework));
 		testConfiguration.setOutputFolder(new File("G:\\Output"));
 		testConfiguration.setNrVirtualUsers(8);

@@ -18,27 +18,27 @@ package org.bimserver.client;
  *****************************************************************************/
 
 import org.bimserver.client.channels.Channel;
-import org.bimserver.shared.AuthenticationInfo;
-import org.bimserver.shared.json.JsonSocketReflector;
+import org.bimserver.shared.TokenHolder;
+import org.bimserver.shared.json.JsonReflector;
 import org.bimserver.shared.reflector.ReflectorFactory;
 
 public class JsonChannel extends Channel {
 
 	private final ReflectorFactory reflectorFactory;
-	private final JsonSocketReflectorFactory jsonSocketReflectorFactory;
-	private JsonSocketReflector reflector;
+	private final JsonReflectorFactory jsonReflectorFactory;
+	private JsonReflector reflector;
 
-	public JsonChannel(ReflectorFactory reflectorFactory, JsonSocketReflectorFactory jsonSocketReflectorFactory) {
+	public JsonChannel(ReflectorFactory reflectorFactory, JsonReflectorFactory jsonReflectorFactory) {
 		this.reflectorFactory = reflectorFactory;
-		this.jsonSocketReflectorFactory = jsonSocketReflectorFactory;
+		this.jsonReflectorFactory = jsonReflectorFactory;
 	}
 
 	@Override
 	public void disconnect() {
 	}
 
-	public void connect(String address, boolean useHttpSession, AuthenticationInfo authenticationInfo) throws ChannelConnectionException {
-		reflector = jsonSocketReflectorFactory.create(address, useHttpSession, authenticationInfo);
+	public void connect(String address, TokenHolder tokenHolder) throws ChannelConnectionException {
+		reflector = jsonReflectorFactory.create(address, tokenHolder);
 		finish(reflector, reflectorFactory);
 	}
 }

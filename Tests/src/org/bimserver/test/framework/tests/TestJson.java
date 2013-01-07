@@ -34,7 +34,7 @@ public class TestJson {
 		testConfiguration.setHomeDir(new File("G:\\Testing"));
 		testConfiguration.setCleanEnvironmentFirst(true);
 		testConfiguration.setActionFactory(new AllActionsFactory(testFramework));
-		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.JSON_SESSION_BASED));
+		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.JSON));
 		testConfiguration.setTestFileProvider(new FolderWalker(new File("G:\\Ifc Files"), testFramework));
 		testConfiguration.setOutputFolder(new File("G:\\Output"));
 		testConfiguration.setNrVirtualUsers(8);

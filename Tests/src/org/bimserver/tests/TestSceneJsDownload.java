@@ -47,7 +47,7 @@ public class TestSceneJsDownload {
 			servicesMap.add(new SService(null, ServiceInterface.class));
 			BimServerClient bimServerClient = new BimServerClient("http://localhost:8080", servicesMap, null);
 			bimServerClient.setAuthentication(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-			bimServerClient.connectJson(false);
+			bimServerClient.connectJson();
 			ServiceInterface serviceInterface = bimServerClient.getServiceInterface();
 			serviceInterface.login("admin@bimserver.org", "admin");
 			SSerializerPluginConfiguration serializerByContentType = serviceInterface.getSerializerByContentType("application/json");

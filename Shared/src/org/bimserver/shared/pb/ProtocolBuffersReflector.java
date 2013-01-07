@@ -54,10 +54,10 @@ import com.google.protobuf.ServiceException;
 public class ProtocolBuffersReflector extends ProtocolBuffersConverter implements Reflector {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersReflector.class);
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
-	private final Channel channel;
+	private final SocketProtocolBuffersChannel channel;
 	private ServicesMap servicesMap;
 
-	public ProtocolBuffersReflector(ProtocolBuffersMetaData protocolBuffersMetaData, ServicesMap servicesMap, Channel channel) {
+	public ProtocolBuffersReflector(ProtocolBuffersMetaData protocolBuffersMetaData, ServicesMap servicesMap, SocketProtocolBuffersChannel channel) {
 		super(protocolBuffersMetaData);
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
 		this.servicesMap = servicesMap;

@@ -58,6 +58,7 @@ import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.deserializers.DeserializerFactory;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.endpoints.EndPointManager;
+import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.logging.CustomFileAppender;
@@ -93,7 +94,6 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.notifications.NotificationsManager;
 import org.bimserver.pb.server.ProtocolBuffersServer;
-import org.bimserver.pb.server.ServiceFactoryRegistry;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginChangeListener;
 import org.bimserver.plugins.PluginContext;
@@ -121,6 +121,7 @@ import org.bimserver.shared.reflector.ReflectorFactory;
 import org.bimserver.templating.TemplateEngine;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.version.VersionChecker;
+import org.bimserver.webservices.LongTransactionManager;
 import org.bimserver.webservices.PublicInterfaceFactory;
 import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.slf4j.Logger;
@@ -160,6 +161,8 @@ public class BimServer {
 	private ServerSettingsCache serverSettingsCache;
 	private ReflectorFactory reflectorFactory;
 	private EndPointManager endPointManager = new EndPointManager();
+	private SConverter sConverter = new SConverter();
+	private LongTransactionManager longTransactionManager = new LongTransactionManager();
 
 	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
 
@@ -350,7 +353,7 @@ public class BimServer {
 			} catch (IOException e) {
 				LOGGER.error("", e);
 			}
-
+			
 			URL resource1 = config.getResourceFetcher().getResource("ServiceInterface.java");
 			String content1 = getContent(resource1);
 			SService serviceInterfaceMeta = new SServiceInterfaceService(content1, ServiceInterface.class);
@@ -407,9 +410,7 @@ public class BimServer {
 
 			DatabaseSession session = bimDatabase.createSession();
 			try {
-				ServiceFactoryRegistry serviceFactoryRegistry = new ServiceFactoryRegistry();
-				serviceFactoryRegistry.registerServiceFactory(serviceFactory);
-				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactoryRegistry, servicesMap, config.getInitialProtocolBuffersPort());
+				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactory, servicesMap, config.getInitialProtocolBuffersPort());
 				protocolBuffersServer.start();
 			} catch (Exception e) {
 				LOGGER.error("", e);
@@ -873,6 +874,10 @@ public class BimServer {
 	public JsonHandler getJsonHandler() {
 		return jsonHandler;
 	}
+	
+	public SConverter getSConverter() {
+		return sConverter;
+	}
 
 	public EndPointManager getEndPointManager() {
 		return endPointManager;
@@ -884,5 +889,9 @@ public class BimServer {
 
 	public ServiceInterface getSystemService() {
 		return getServiceFactory().getService(ServiceInterface.class, new SystemAuthorization(1, TimeUnit.HOURS));
+	}
+	
+	public LongTransactionManager getLongTransactionManager() {
+		return longTransactionManager;
 	}
 }
