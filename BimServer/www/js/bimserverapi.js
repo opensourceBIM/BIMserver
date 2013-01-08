@@ -48,7 +48,7 @@ function BimServerApi(baseUrl, notifier) {
 		console.log("translation for " + key + " not found");
 		return key;
 	};
-	
+
 	this.login = function(username, password, rememberme, callback, errorCallback) {
 		var request = {
 			username: username,
