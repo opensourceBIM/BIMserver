@@ -888,7 +888,7 @@ public class BimServer {
 	}
 
 	public ServiceInterface getSystemService() {
-		return getServiceFactory().getService(ServiceInterface.class, new SystemAuthorization(1, TimeUnit.HOURS));
+		return getServiceFactory().getService(ServiceInterface.class, new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL);
 	}
 	
 	public LongTransactionManager getLongTransactionManager() {

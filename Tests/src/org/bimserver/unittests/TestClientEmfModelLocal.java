@@ -29,7 +29,9 @@ import org.bimserver.BimServer;
 import org.bimserver.LocalDevBimServerStarter;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientException;
+import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
+import org.bimserver.client.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.client.Session;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
@@ -84,16 +86,17 @@ public class TestClientEmfModelLocal {
 
 	@Test
 	public void test() {
-		bimServerClient = new BimServerClient("");
+		BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020);
+		UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
 		try {
-			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
-			bimServerClient.setAuthentication(usernamePasswordAuthenticationInfo);
-			bimServerClient.connectProtocolBuffers("localhost", 8020);
+			bimServerClient = factory.create(usernamePasswordAuthenticationInfo);
 		} catch (ChannelConnectionException e1) {
 			e1.printStackTrace();
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {
+			e.printStackTrace();
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 		try {

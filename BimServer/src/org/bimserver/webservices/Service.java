@@ -54,6 +54,8 @@ import org.bimserver.changes.RemoveReferenceChange;
 import org.bimserver.changes.SetAttributeChange;
 import org.bimserver.changes.SetReferenceChange;
 import org.bimserver.client.BimServerClient;
+import org.bimserver.client.BimServerClientFactory;
+import org.bimserver.client.JsonBimServerClientFactory;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
@@ -3421,9 +3423,8 @@ public class Service implements ServiceInterface {
 	public List<SProfileDescriptor> getAllPublicProfiles(String notificationsUrl, String serviceIdentifier) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClient client = new BimServerClient(notificationsUrl, bimServer.getServicesMap(), null);
-			client.setJsonSocketReflectorFactory(bimServer.getJsonSocketReflectorFactory());
-			client.connectJson();
+			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, bimServer.getServicesMap(), bimServer.getJsonSocketReflectorFactory());
+			BimServerClient client = factory.create();
 			NotificationInterface notificationInterface = client.getNotificationInterface();
 			return notificationInterface.getPublicProfiles(serviceIdentifier);
 		} catch (Exception e) {
@@ -3435,8 +3436,8 @@ public class Service implements ServiceInterface {
 	public List<SProfileDescriptor> getAllPrivateProfiles(String notificationsUrl, String serviceIdentifier, String token) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClient client = new BimServerClient(notificationsUrl, bimServer.getServicesMap(), null);
-			client.connectJson();
+			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, bimServer.getServicesMap(), bimServer.getJsonSocketReflectorFactory());
+			BimServerClient client = factory.create();
 			NotificationInterface notificationInterface = client.getNotificationInterface();
 			return notificationInterface.getPrivateProfiles(serviceIdentifier, token);
 		} catch (Exception e) {

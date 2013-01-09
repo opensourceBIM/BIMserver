@@ -21,6 +21,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
@@ -58,7 +59,7 @@ public class Handler extends Thread {
 		try {
 			DataInputStream dis = new DataInputStream(socket.getInputStream());
 			String token = dis.readUTF();
-			ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(ServiceInterface.class, serviceFactory.getService(ServiceInterface.class, token), protocolBuffersMetaData, servicesMap);
+			ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(ServiceInterface.class, serviceFactory.getService(ServiceInterface.class, token, AccessMethod.INTERNAL), protocolBuffersMetaData, servicesMap);
 			while (running) {
 				String serviceName = dis.readUTF();
 				String methodName = dis.readUTF();

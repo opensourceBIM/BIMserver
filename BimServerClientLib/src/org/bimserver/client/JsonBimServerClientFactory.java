@@ -17,35 +17,32 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.interfaces.SServiceInterfaceService;
+import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.ServicesMap;
 
-public abstract class AbstractBimServerClientFactory implements BimServerClientFactory {
+public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
 
-	private ServicesMap servicesMap;
+	private String address;
+	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
 
-	public AbstractBimServerClientFactory(ServicesMap servicesMap) {
-		this.servicesMap = servicesMap;
+	public JsonBimServerClientFactory(String address, ServicesMap servicesMap, JsonSocketReflectorFactory jsonSocketReflectorFactory) {
+		super(servicesMap);
+		this.address = address;
+		this.jsonSocketReflectorFactory = jsonSocketReflectorFactory;
 	}
 
-	public AbstractBimServerClientFactory() {
-		this.servicesMap = new ServicesMap();
-		addService(new SServiceInterfaceService(null, ServiceInterface.class));
+	public JsonBimServerClientFactory(String address) {
+		super();
+		this.address = address;
 	}
-	
+
 	@Override
-	public BimServerClient create() throws ServiceException, ChannelConnectionException {
-		return create(null);
-	}
-
-	public void addService(SService sService) {
-		servicesMap.add(sService);
-	}
-	
-	public ServicesMap getServicesMap() {
-		return servicesMap;
+	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
+		BimServerClient bimServerClient = new BimServerClient(address, getServicesMap(), null);
+		bimServerClient.setAuthentication(authenticationInfo);
+		bimServerClient.setJsonSocketReflectorFactory(jsonSocketReflectorFactory);
+		bimServerClient.connectJson();
+		return bimServerClient;
 	}
 }

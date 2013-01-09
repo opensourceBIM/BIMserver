@@ -34,6 +34,7 @@ import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.comparators.SRevisionIdComparator;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
@@ -78,9 +79,9 @@ public class SyndicationServlet extends HttpServlet {
 			ServiceInterface service = null;
 			try {
 				if (token == null) {
-					service = bimServer.getServiceFactory().getService(ServiceInterface.class);
+					service = bimServer.getServiceFactory().getService(ServiceInterface.class, AccessMethod.SYNDICATION);
 				} else {
-					service = bimServer.getServiceFactory().getService(ServiceInterface.class, token);
+					service = bimServer.getServiceFactory().getService(ServiceInterface.class, token, AccessMethod.SYNDICATION);
 				}
 			} catch (UserException e) {
 				LOGGER.error("", e);

@@ -20,11 +20,11 @@ package org.bimserver.test.framework.actions;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.interfaces.objects.SActionState;
-import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
@@ -73,12 +73,12 @@ public class DownloadRevisionAction extends Action {
 					state = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(download).getState();
 				}
 				virtualUser.getLogger().info("Done preparing download, downloading");
-				SDownloadResult downloadData = virtualUser.getBimServerClient().getServiceInterface().getDownloadData(download);
+				InputStream downloadData = virtualUser.getBimServerClient().getDownloadData(download, serializer.getOid());
 				try {
 					if (downloadData != null) {
 						String filename = project.getName() + "." + revision.getId() + "." + serializer.getExtension();
 						FileOutputStream fos = new FileOutputStream(new File(getTestFramework().getTestConfiguration().getOutputFolder(), filename));
-						IOUtils.copy(downloadData.getFile().getInputStream(), fos);
+						IOUtils.copy(downloadData, fos);
 						virtualUser.getLogger().info(filename + " downloaded");
 						fos.close();
 					} else {

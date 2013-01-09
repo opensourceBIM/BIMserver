@@ -1,4 +1,4 @@
-package org.bimserver.client.factories;
+package org.bimserver.client;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -17,33 +17,31 @@ package org.bimserver.client.factories;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.client.AbstractBimServerClientFactory;
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.meta.ServicesMap;
 
-public class ProtocolBuffersBimServerClientFactory extends AbstractBimServerClientFactory {
+public class DirectBimServerClientFactory<T extends PublicInterface> extends AbstractBimServerClientFactory {
 
 	private final PluginManager pluginManager;
-	private final String address;
-	private final int port;
+	private final T publicInterface;
+	private Class<T> interfaceClass;
 
-	public ProtocolBuffersBimServerClientFactory(String address, int port, ServicesMap servicesMap) {
+	public DirectBimServerClientFactory(Class<T> interfaceClass, T publicInterface, ServicesMap servicesMap) {
 		super(servicesMap);
-		this.address = address;
-		this.port = port;
+		this.interfaceClass = interfaceClass;
+		this.publicInterface = publicInterface;
 		pluginManager = new PluginManager();
 		pluginManager.loadPluginsFromCurrentClassloader();
 	}
 
 	@Override
-	public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServiceException, ChannelConnectionException {
-		BimServerClient bimServerClient = new BimServerClient(remoteAddress, getServicesMap(), null);
+	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException {
+		BimServerClient bimServerClient = new BimServerClient(null, getServicesMap(), null);
 		bimServerClient.setAuthentication(authenticationInfo);
-		bimServerClient.connectProtocolBuffers(address, port);
+		bimServerClient.connectDirect(interfaceClass, publicInterface);
 		return bimServerClient;
 	}
 }

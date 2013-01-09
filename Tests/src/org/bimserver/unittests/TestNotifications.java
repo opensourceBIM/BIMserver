@@ -28,7 +28,9 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 import org.bimserver.LocalDevBimServerStarter;
 import org.bimserver.client.BimServerClient;
+import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
+import org.bimserver.client.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.client.notifications.SocketNotificationsClient;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -90,23 +92,18 @@ public class TestNotifications {
 		}
 		socketNotificationsClient.start();
 		
-		BimServerClient bimServerClient = new BimServerClient("");
+		BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020);
+		
 		try {
-			bimServerClient.connectProtocolBuffers("localhost", 8020);
-		} catch (ChannelConnectionException e1) {
-			e1.printStackTrace();
-		} catch (ServerException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
-			e.printStackTrace();
-		}
-		try {
+			BimServerClient bimServerClient = factory.create();
 			bimServerClient.getServiceInterface().login("admin@bimserver.org", "admin");
 			//TODO
 //			bimServerClient.getServiceInterface().setHttpCallback(bimServerClient.getServiceInterface().getCurrentUser().getOid(), "localhost:8055");
 			bimServerClient.getServiceInterface().addProject("test12345");
 		} catch (ServiceException e) {
 			fail(e.getMessage());
+		} catch (ChannelConnectionException e) {
+			e.printStackTrace();
 		}
 		try {
 			if (!countDownLatch.await(10, TimeUnit.SECONDS)) {

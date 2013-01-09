@@ -18,12 +18,16 @@ package org.bimserver.test.framework;
  *****************************************************************************/
 
 import org.bimserver.client.BimServerClient;
+import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
+import org.bimserver.client.JsonBimServerClientFactory;
 import org.bimserver.client.JsonSocketReflectorFactory;
-import org.bimserver.client.factories.BimServerClientFactory;
+import org.bimserver.client.ProtocolBuffersBimServerClientFactory;
+import org.bimserver.client.SoapBimServerClientFactory;
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.ServicesMap;
@@ -43,8 +47,9 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 	private static final Logger LOGGER = LoggerFactory.getLogger(RandomBimServerClientFactory.class);
 	private int current = 0;
 	private final Type[] types;
-	private ServicesMap servicesMap;
-	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
+	private JsonBimServerClientFactory jsonBimServerClientFactory;
+	private ProtocolBuffersBimServerClientFactory protocolBuffersBimServerClientFactory;
+	private SoapBimServerClientFactory soapBimServerClientFactory;
 	
 	public RandomBimServerClientFactory(TestFramework testFramework, Type... types) {
 		if (types.length == 0) {
@@ -52,36 +57,42 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 		} else {
 			this.types = types;
 		}
-		servicesMap = new ServicesMap();
+		ServicesMap servicesMap = new ServicesMap();
 		servicesMap.add(new SServiceInterfaceService(null, ServiceInterface.class));
-		jsonSocketReflectorFactory = new JsonSocketReflectorFactory(servicesMap);
+		
+		jsonBimServerClientFactory = new JsonBimServerClientFactory("http://localhost:8080", servicesMap, new JsonSocketReflectorFactory(servicesMap));
+		protocolBuffersBimServerClientFactory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, servicesMap);
+		soapBimServerClientFactory = new SoapBimServerClientFactory("http://localhost:8080", servicesMap);
 	}
 	
-	public synchronized BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServerException, UserException {
+	public synchronized BimServerClient create(AuthenticationInfo authenticationInfo) throws ServerException, UserException {
 		try {
-			BimServerClient bimServerClient = new BimServerClient(remoteAddress, servicesMap, null);
-			bimServerClient.setAuthentication(authenticationInfo);
 			Type type = types[current];
+			BimServerClient bimServerClient = null;
 			switch (type) {
 			case PROTOCOL_BUFFERS:
 				LOGGER.info("New BimServerClient: Protocol Buffers");
-				bimServerClient.connectProtocolBuffers("localhost", 8020);
+				bimServerClient = protocolBuffersBimServerClientFactory.create(authenticationInfo);
 				break;
 			case SOAP:
 				LOGGER.info("New BimServerClient: SOAP/useSoapHeaderSessions");
-				bimServerClient.connectSoap();
+				bimServerClient = soapBimServerClientFactory.create(authenticationInfo);
 				break;
 			case JSON:
 				LOGGER.info("New BimServerClient: JSON");
-				bimServerClient.setJsonSocketReflectorFactory(jsonSocketReflectorFactory);
-				bimServerClient.connectJson();
+				bimServerClient = jsonBimServerClientFactory.create(authenticationInfo);
 				break;
 			}
 			current = (current + 1) % types.length;
 			return bimServerClient;
-		} catch (ChannelConnectionException e) {
+		} catch (ChannelConnectionException | ServiceException e) {
 			LOGGER.error("", e);
 		}
+		return null;
+	}
+
+	@Override
+	public BimServerClient create() throws ServiceException, ChannelConnectionException {
 		return null;
 	}
 }
