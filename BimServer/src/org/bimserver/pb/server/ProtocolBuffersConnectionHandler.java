@@ -24,6 +24,7 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.SocketException;
 
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SMethod;
@@ -81,9 +82,9 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 				
 				ServiceInterface service = null;
 				if (token.equals("")) {
-					service = serviceFactory.getService(ServiceInterface.class);
+					service = serviceFactory.getService(ServiceInterface.class, AccessMethod.PROTOCOL_BUFFERS);
 				} else {
-					service = serviceFactory.getService(ServiceInterface.class, token);
+					service = serviceFactory.getService(ServiceInterface.class, token, AccessMethod.PROTOCOL_BUFFERS);
 				}
 
 				ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(ServiceInterface.class, service, protocolBuffersMetaData, servicesMap);

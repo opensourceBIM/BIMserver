@@ -1,4 +1,4 @@
-package org.bimserver.client.factories;
+package org.bimserver.client;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -17,24 +17,10 @@ package org.bimserver.client.factories;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.client.AbstractBimServerClientFactory;
-import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.shared.meta.ServicesMap;
 
-public class SoapBimServerClientFactory extends AbstractBimServerClientFactory {
-
-	public SoapBimServerClientFactory(String address, ServicesMap servicesMap) {
-		super(servicesMap);
-	}
-
-	@Override
-	public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServiceException, ChannelConnectionException {
-		BimServerClient bimServerClient = new BimServerClient(remoteAddress, getServicesMap(), null);
-		bimServerClient.setAuthentication(authenticationInfo);
-		bimServerClient.connectSoap();
-		return bimServerClient;
-	}
+public interface BimServerClientFactory {
+	BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException;
+	BimServerClient create() throws ServiceException, ChannelConnectionException;
 }

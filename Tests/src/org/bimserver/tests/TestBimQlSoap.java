@@ -27,7 +27,9 @@ import javax.activation.DataHandler;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.client.BimServerClient;
+import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
+import org.bimserver.client.SoapBimServerClientFactory;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
@@ -35,16 +37,16 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 
 public class TestBimQlSoap {
 	public static void main(String[] args) {
-		BimServerClient bimServerClient;
+		BimServerClientFactory factory = new SoapBimServerClientFactory("localhost");
 		try {
-			bimServerClient = new BimServerClient("localhost");
-			bimServerClient.setAuthentication(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-			bimServerClient.connectSoap();
+			BimServerClient bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			
 			ServiceInterface service = bimServerClient.getServiceInterface();
 			List<SProject> projects = service.getAllProjects(true);
 			if (projects.isEmpty()) {
@@ -74,6 +76,8 @@ public class TestBimQlSoap {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 	}

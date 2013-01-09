@@ -43,6 +43,7 @@ import org.bimserver.interfaces.objects.SNewProjectAdded;
 import org.bimserver.interfaces.objects.SNewRevisionAdded;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SService;
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
@@ -177,7 +178,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 					long readExtendedDataRoid = service.getReadExtendedData() != null ? roid : -1;
 					ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(readRevisionRoid, writeProjectPoid, readExtendedDataRoid, writeExtendedDataRoid);
 					authorization.setUoid(service.getUser().getOid());
-					ServiceInterface newService = bimServer.getServiceFactory().getService(ServiceInterface.class, authorization);
+					ServiceInterface newService = bimServer.getServiceFactory().getService(ServiceInterface.class, authorization, AccessMethod.INTERNAL);
 					((org.bimserver.webservices.Service)newService).setAuthorization(authorization);
 					notificationInterface.newLogAction(uuid, action, service.getServiceIdentifier(), service.getProfileIdentifier(), authorization.asHexToken(bimServer.getEncryptionKey()), siteAddress);
 				} else {
@@ -265,7 +266,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 				if (logAction instanceof SNewRevisionAdded) {
 					SNewRevisionAdded newRevisionAdded = (SNewRevisionAdded)logAction;
 					InternalChannel internalChannel = new InternalChannel(x.get(serviceIdentifier));
-					ServiceInterface object = bimServer.getServiceFactory().getService(ServiceInterface.class, token);
+					ServiceInterface object = bimServer.getServiceFactory().getService(ServiceInterface.class, token, AccessMethod.JSON);
 					internalChannel.addServiceInterface(ServiceInterface.class, object);
 					ServiceInterface serviceInterface = internalChannel.getServiceInterface();
 					SService service = serviceInterface.getService(Long.parseLong(profileIdentifier));

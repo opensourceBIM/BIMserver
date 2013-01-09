@@ -33,6 +33,8 @@ import javax.mail.util.ByteArrayDataSource;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
+import org.bimserver.plugins.serializers.CacheStoringEmfSerializerDataSource;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
@@ -55,7 +57,7 @@ public class JsonConverter {
 		this.servicesMap = servicesMap;
 	}
 	
-	public void toJson(Object object, JsonWriter out) throws IOException {
+	public void toJson(Object object, JsonWriter out) throws IOException, SerializerException {
 		if (object instanceof SBase) {
 			SBase base = (SBase)object;
 			out.beginObject();
@@ -77,10 +79,16 @@ public class JsonConverter {
 			out.value(((Date)object).getTime());
 		} else if (object instanceof DataHandler) {
 			DataHandler dataHandler = (DataHandler)object;
-			InputStream inputStream = dataHandler.getInputStream();
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			IOUtils.copy(inputStream, baos);
-			out.value(new String(Base64.encodeBase64(baos.toByteArray()), Charsets.UTF_8));
+			if (dataHandler.getDataSource() instanceof CacheStoringEmfSerializerDataSource) {
+				CacheStoringEmfSerializerDataSource cacheStoringEmfSerializerDataSource = (CacheStoringEmfSerializerDataSource)dataHandler.getDataSource();
+				cacheStoringEmfSerializerDataSource.writeToOutputStream(baos);
+				out.value(new String(Base64.encodeBase64(baos.toByteArray()), Charsets.UTF_8));
+			} else {
+				InputStream inputStream = dataHandler.getInputStream();
+				IOUtils.copy(inputStream, baos);
+				out.value(new String(Base64.encodeBase64(baos.toByteArray()), Charsets.UTF_8));
+			}
 		} else if (object instanceof byte[]) {
 			byte[] data = (byte[])object;
 			out.value(new String(Base64.encodeBase64(data), Charsets.UTF_8));

@@ -43,6 +43,7 @@ import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.exceptions.ServerException;
@@ -80,7 +81,7 @@ public class DownloadServlet extends HttpServlet {
 			if (token == null) {
 				token = request.getParameter("token");
 			}
-			ServiceInterface service = bimServer.getServiceFactory().getService(ServiceInterface.class, token);
+			ServiceInterface service = bimServer.getServiceFactory().getService(ServiceInterface.class, token, AccessMethod.INTERNAL);
 
 			if (request.getParameter("action") != null && request.getParameter("action").equals("extendeddata")) {
 				SExtendedData sExtendedData = service.getExtendedData(Long.parseLong(request.getParameter("edid")));

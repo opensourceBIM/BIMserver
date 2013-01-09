@@ -22,12 +22,13 @@
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jdt/org.eclipse.equinox.preferences_3.5.0.v20120522-1841.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jdt/org.eclipse.jdt.core_3.8.1.v20120531-0637.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/jdt/org.eclipse.osgi_3.8.0.v20120529-1548.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/httpclient/httpclient-4.2.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/httpclient/httpcore-4.2.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/gson-2.2.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/openmali.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/javassist.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/protocolbuffers.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/httpclient/httpclient-4.2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/httpclient/httpcore-4.2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/httpclient/httpmime-4.2.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 	<referencedentry exported="true" kind="lib" path="/BimServer/lib/cxf/cxf-2.4.3.jar" sourcepath="/BimServer/libsrc/apache-cxf-2.4.3-src.zip"/>
 </classpath>

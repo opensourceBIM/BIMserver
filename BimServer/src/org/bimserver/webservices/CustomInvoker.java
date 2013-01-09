@@ -28,6 +28,7 @@ import org.apache.cxf.message.Exchange;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.message.MessageContentsList;
 import org.apache.cxf.service.invoker.AbstractInvoker;
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.slf4j.Logger;
@@ -57,14 +58,14 @@ public class CustomInvoker extends AbstractInvoker {
 			}
 			if (token != null) {
 				try {
-					return serviceFactory.getService(ServiceInterface.class, token);
+					return serviceFactory.getService(ServiceInterface.class, token, AccessMethod.SOAP);
 				} catch (UserException e) {
 					LOGGER.error("", e);
 					return null;
 				}
 			} else {
 				try {
-					ServiceInterface newService = serviceFactory.getService(ServiceInterface.class);
+					ServiceInterface newService = serviceFactory.getService(ServiceInterface.class, AccessMethod.SOAP);
 					context.getSession().put("token", token);
 					return newService;
 				} catch (UserException e) {
@@ -73,7 +74,7 @@ public class CustomInvoker extends AbstractInvoker {
 			}
 		} else {
 			try {
-				return serviceFactory.getService(ServiceInterface.class);
+				return serviceFactory.getService(ServiceInterface.class, AccessMethod.SOAP);
 			} catch (UserException e) {
 				LOGGER.error("", e);
 			}

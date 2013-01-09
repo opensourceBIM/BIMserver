@@ -1,4 +1,4 @@
-package org.bimserver.client.factories;
+package org.bimserver.client;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -17,33 +17,28 @@ package org.bimserver.client.factories;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.client.AbstractBimServerClientFactory;
-import org.bimserver.client.BimServerClient;
-import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.meta.ServicesMap;
 
-public class DirectBimServerClientFactory<T extends PublicInterface> extends AbstractBimServerClientFactory {
+public class SoapBimServerClientFactory extends AbstractBimServerClientFactory {
 
-	private final PluginManager pluginManager;
-	private final T publicInterface;
-	private Class<T> interfaceClass;
+	private String address;
 
-	public DirectBimServerClientFactory(Class<T> interfaceClass, T publicInterface, ServicesMap servicesMap) {
+	public SoapBimServerClientFactory(String address, ServicesMap servicesMap) {
 		super(servicesMap);
-		this.interfaceClass = interfaceClass;
-		this.publicInterface = publicInterface;
-		pluginManager = new PluginManager();
-		pluginManager.loadPluginsFromCurrentClassloader();
+		this.address = address;
+	}
+	
+	public SoapBimServerClientFactory(String address) {
+		this.address = address;
 	}
 
 	@Override
-	public BimServerClient create(AuthenticationInfo authenticationInfo, String remoteAddress) throws ServiceException {
-		BimServerClient bimServerClient = new BimServerClient(remoteAddress, getServicesMap(), null);
+	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
+		BimServerClient bimServerClient = new BimServerClient(address, getServicesMap(), null);
 		bimServerClient.setAuthentication(authenticationInfo);
-		bimServerClient.connectDirect(interfaceClass, publicInterface);
+		bimServerClient.connectSoap();
 		return bimServerClient;
 	}
 }

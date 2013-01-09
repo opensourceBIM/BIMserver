@@ -17,6 +17,7 @@ package org.bimserver.plugins.services;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginException;
@@ -30,7 +31,7 @@ public abstract class ServicePlugin implements Plugin {
 	private PluginManager pluginManager;
 	
 	public ServiceInterface getServiceInterface(String token) throws UserException {
-		return pluginManager.getServiceFactory().getService(ServiceInterface.class, token);
+		return pluginManager.getServiceFactory().getService(ServiceInterface.class, token, AccessMethod.INTERNAL);
 	}
 
 	protected void registerNewRevisionHandler(ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {

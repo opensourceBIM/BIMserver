@@ -40,6 +40,7 @@ import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.serializers.CacheStoringEmfSerializerDataSource;
@@ -92,8 +93,8 @@ public class TestSimultaniousDownloadWithCaching {
 		}
 
 		try {
-			ServiceInterface serviceInterface = bimServer.getServiceFactory().getService(ServiceInterface.class);
-			serviceInterface = bimServer.getServiceFactory().getService(ServiceInterface.class, serviceInterface.login("admin@bimserver.org", "admin"));
+			ServiceInterface serviceInterface = bimServer.getServiceFactory().getService(ServiceInterface.class, AccessMethod.INTERNAL);
+			serviceInterface = bimServer.getServiceFactory().getService(ServiceInterface.class, serviceInterface.login("admin@bimserver.org", "admin"), AccessMethod.INTERNAL);
 			serviceInterface.setSettingCacheOutputFiles(true);
 			serviceInterface.setSettingGenerateGeometryOnCheckin(false);
 			final SProject project = serviceInterface.addProject("test");
@@ -107,8 +108,8 @@ public class TestSimultaniousDownloadWithCaching {
 					@Override
 					public void run() {
 						try {
-							ServiceInterface serviceInterface = bimServer.getServiceFactory().getService(ServiceInterface.class);
-							serviceInterface = bimServer.getServiceFactory().getService(ServiceInterface.class, serviceInterface.login("admin@bimserver.org", "admin"));
+							ServiceInterface serviceInterface = bimServer.getServiceFactory().getService(ServiceInterface.class, AccessMethod.INTERNAL);
+							serviceInterface = bimServer.getServiceFactory().getService(ServiceInterface.class, serviceInterface.login("admin@bimserver.org", "admin"), AccessMethod.INTERNAL);
 							SSerializerPluginConfiguration serializerPluginConfiguration = serviceInterface.getSerializerByName("Ifc2x3");
 							Long download = serviceInterface.download(projectUpdate.getLastRevisionId(), serializerPluginConfiguration.getOid(), true, true);
 							SDownloadResult downloadData = serviceInterface.getDownloadData(download);

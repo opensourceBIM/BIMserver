@@ -18,9 +18,7 @@ package org.bimserver.test.framework.actions;
  *****************************************************************************/
 
 import java.io.File;
-
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
+import java.io.IOException;
 
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
@@ -44,7 +42,6 @@ public class CheckinAction extends Action {
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
 		SProject project = virtualUser.getRandomProject();
 		File randomFile = getTestFramework().getTestFile();
-		FileDataSource dataSource = new FileDataSource(randomFile);
 		String fileName = randomFile.getName();
 		String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
 		SDeserializerPluginConfiguration suggestedDeserializerForExtension = virtualUser.getBimServerClient().getServiceInterface().getSuggestedDeserializerForExtension(extension);
@@ -57,25 +54,29 @@ public class CheckinAction extends Action {
 		boolean sync = !settings.shouldAsync();
 		boolean merge = settings.shouldMerge();
 		virtualUser.getActionResults().setText("Checking in new revision on project " + project.getName() + " (" + fileName + ") " + "sync: " + sync + ", merge: " + merge);
-		long checkinId = virtualUser.getBimServerClient().getServiceInterface()
-				.checkin(project.getOid(), randomString(), suggestedDeserializerForExtension.getOid(), randomFile.length(), fileName, new DataHandler(dataSource), merge, sync);
-		if (sync) {
-			SLongActionState longActionState = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(checkinId);
-			if (longActionState.getState() == SActionState.AS_ERROR) {
-				virtualUser.getActionResults().setText("" + longActionState.getErrors());
-			}
-		} else {
-			while (true) {
-				SLongActionState checkinState = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(checkinId);
-				if (checkinState.getState() == SActionState.FINISHED || checkinState.getState() == SActionState.UNKNOWN) {
-					break;
+		long checkinId;
+		try {
+			checkinId = virtualUser.getBimServerClient().checkin(project.getOid(), randomString(), suggestedDeserializerForExtension.getOid(), merge, sync, randomFile);
+			if (sync) {
+				SLongActionState longActionState = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(checkinId);
+				if (longActionState.getState() == SActionState.AS_ERROR) {
+					virtualUser.getActionResults().setText("" + longActionState.getErrors());
 				}
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+			} else {
+				while (true) {
+					SLongActionState checkinState = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(checkinId);
+					if (checkinState.getState() == SActionState.FINISHED || checkinState.getState() == SActionState.UNKNOWN) {
+						break;
+					}
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
 			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 	}
 	

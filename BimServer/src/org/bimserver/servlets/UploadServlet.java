@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
 import java.util.List;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.InflaterInputStream;
 
 import javax.activation.DataHandler;
 import javax.servlet.ServletException;
@@ -32,6 +34,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.bimserver.BimServer;
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.utils.InputStreamDataSource;
 import org.codehaus.jettison.json.JSONException;
@@ -78,6 +81,8 @@ public class UploadServlet extends HttpServlet {
 				String name = "";
 				long deserializerOid = -1;
 				boolean merge = false;
+				boolean sync = false;
+				String compression = null;
 				while (iter.hasNext()) {
 					FileItem item = iter.next();
 					if (item.isFormField()) {
@@ -90,8 +95,14 @@ public class UploadServlet extends HttpServlet {
 						if ("comment".equals(item.getFieldName())) {
 							comment = item.getString();
 						}
+						if ("sync".equals(item.getFieldName())) {
+							sync = item.getString().equals("true");
+						}
 						if ("merge".equals(item.getFieldName())) {
 							merge = item.getString().equals("true");
+						}
+						if ("compression".equals(item.getFieldName())) {
+							compression = item.getString();
 						}
 						if ("deserializerOid".equals(item.getFieldName())) {
 							deserializerOid = Long.parseLong(item.getString());
@@ -104,34 +115,55 @@ public class UploadServlet extends HttpServlet {
 				}
 				if (poid != -1) {
 					if (size == 0) {
-						result.put("error", "Uploaded file empty, or no file uploaded at all");
+						result.put("exception", "Uploaded file empty, or no file uploaded at all");
 					} else {
-						InputStream realStream = in;
+						InputStream realStream = null;
+						if ("gzip".equals(compression)) {
+							realStream = new GZIPInputStream(in);
+						} else if ("deflate".equals(compression)) {
+							realStream = new InflaterInputStream(in);
+						} else {
+							realStream = in;
+						}
 						InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(realStream);
 						inputStreamDataSource.setName(name);
 						DataHandler ifcFile = new DataHandler(inputStreamDataSource);
 						
 						if (token != null) {
-							ServiceInterface service = bimServer.getServiceFactory().getService(ServiceInterface.class, token);
-							long checkinId = service.checkin(poid, comment, deserializerOid, size, name, ifcFile, merge, false);
+							ServiceInterface service = bimServer.getServiceFactory().getService(ServiceInterface.class, token, AccessMethod.INTERNAL);
+							long checkinId = service.checkin(poid, comment, deserializerOid, size, name, ifcFile, merge, sync);
 							result.put("checkinid", checkinId);
 						}
 					}
 				} else {
-					result.put("error", "No poid");
+					result.put("exception", "No poid");
 				}
 			}
 		} catch (Exception e) {
-			LOGGER.error("", e);
-			try {
-				result.put("error", (e.getMessage() == null ? "Unknown error" : e.getMessage()));
-			} catch (JSONException e1) {
-			}
+			sendException(response, e);
+			return;
 		}
 		try {
 			result.write(response.getWriter());
 		} catch (JSONException e) {
 			LOGGER.error("", e);
+		}
+	}
+
+	private void sendException(HttpServletResponse response, Exception exception) {
+		try {
+			JSONObject responseObject = new JSONObject();
+			JSONObject exceptionJson = new JSONObject();
+			exceptionJson.put("__type", exception.getClass().getSimpleName());
+			if (exception.getMessage() == null) {
+				exceptionJson.put("message", "Unknown exception");
+			} else {
+				exceptionJson.put("message", exception.getMessage());
+			}
+			responseObject.put("exception", exceptionJson);
+			responseObject.write(response.getWriter());
+		} catch (JSONException e) {
+		} catch (IOException e) {
 		}
 	}
 }

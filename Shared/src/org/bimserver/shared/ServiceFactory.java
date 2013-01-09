@@ -17,6 +17,7 @@ package org.bimserver.shared;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.PublicInterface;
 
@@ -38,6 +39,6 @@ import org.bimserver.shared.interfaces.PublicInterface;
  *****************************************************************************/
 
 public interface ServiceFactory {
-	<T extends PublicInterface> T getService(Class<T> serviceInterface, String token) throws UserException;
+	<T extends PublicInterface> T getService(Class<T> serviceInterface, String token, AccessMethod accessMethod) throws UserException;
 	String getName();
 }

@@ -26,11 +26,14 @@ import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.client.BimServerClient;
+import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
+import org.bimserver.client.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
@@ -45,9 +48,10 @@ public class TestSceneJsDownload {
 		try {
 			ServicesMap servicesMap = new ServicesMap();
 			servicesMap.add(new SService(null, ServiceInterface.class));
-			BimServerClient bimServerClient = new BimServerClient("http://localhost:8080", servicesMap, null);
-			bimServerClient.setAuthentication(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-			bimServerClient.connectJson();
+			
+			BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
+			
+			BimServerClient bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			ServiceInterface serviceInterface = bimServerClient.getServiceInterface();
 			serviceInterface.login("admin@bimserver.org", "admin");
 			SSerializerPluginConfiguration serializerByContentType = serviceInterface.getSerializerByContentType("application/json");
@@ -59,7 +63,7 @@ public class TestSceneJsDownload {
 					Long download = serviceInterface.download(project.getLastRevisionId(), serializerByContentType.getOid(), true, true);
 					System.out.println(((System.nanoTime() - start) / 1000000) + " ms");
 					start = System.nanoTime();
-					InputStream inputStream = bimServerClient.getDownloadData(download, serializerByContentType.getOid(), bimServerClient.getToken());
+					InputStream inputStream = bimServerClient.getDownloadData(download, serializerByContentType.getOid());
 					FileOutputStream fileOutputStream = new FileOutputStream(new File("test.json"));
 					IOUtils.copy(inputStream, fileOutputStream);
 					fileOutputStream.close();
@@ -75,6 +79,8 @@ public class TestSceneJsDownload {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 	}

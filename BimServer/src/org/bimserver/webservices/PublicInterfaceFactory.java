@@ -20,6 +20,7 @@ package org.bimserver.webservices;
 import java.util.concurrent.TimeUnit;
 
 import org.bimserver.BimServer;
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.PublicInterface;
@@ -38,23 +39,23 @@ public class PublicInterfaceFactory implements ServiceFactory {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends PublicInterface> T getService(Class<T> publicInterface, Authorization authorization) {
+	public <T extends PublicInterface> T getService(Class<T> publicInterface, Authorization authorization, AccessMethod accessMethod) {
 		if (publicInterface == ServiceInterface.class) {
-			return (T) new Service(bimServer, null, "", authorization);
+			return (T) new Service(bimServer, accessMethod, "", authorization);
 		} else {
 			return (T) new NotificationImpl(bimServer);
 		}
 	}
 	
-	public synchronized <T extends PublicInterface> T getService(Class<T> publicInterface) throws UserException {
+	public synchronized <T extends PublicInterface> T getService(Class<T> publicInterface, AccessMethod accessMethod) throws UserException {
 		Authorization authorization = new AnonymousAuthorization(1, TimeUnit.HOURS);
-		return getService(publicInterface, authorization);
+		return getService(publicInterface, authorization, accessMethod);
 	}
 	
-	public synchronized <T extends PublicInterface> T getService(Class<T> publicInterface, String token) throws UserException {
+	public synchronized <T extends PublicInterface> T getService(Class<T> publicInterface, String token, AccessMethod accessMethod) throws UserException {
 		try {
 			Authorization authorization = Authorization.fromToken(bimServer.getEncryptionKey(), token);
-			return getService(publicInterface, authorization);
+			return getService(publicInterface, authorization, accessMethod);
 		} catch (Exception e) {
 			LOGGER.error("", e);
 			throw new UserException(e);
