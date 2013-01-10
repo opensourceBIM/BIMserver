@@ -118,8 +118,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/commons-codec-1.7.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-2.7.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-sts-core-2.7.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-ws-discovery-api-2.7.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-ws-discovery-service-2.7.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-wsn-api-2.7.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-wsn-core-2.7.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-boolean-2.6.1.jar"/>
