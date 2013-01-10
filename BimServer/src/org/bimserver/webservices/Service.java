@@ -901,7 +901,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SRevisionSummary getRevisionSummary(Long roid) throws ServerException, UserException {
-		requireRealUserAuthentication();
+		requireAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			BimDatabaseAction<RevisionSummary> action = new GetRevisionSummaryDatabaseAction(session, accessMethod, roid);
