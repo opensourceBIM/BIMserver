@@ -58,6 +58,6 @@ public class Step0025 extends Migration {
 
 	@Override
 	public String getDescription() {
-		return "";
+		return "Notifications";
 	}
 }

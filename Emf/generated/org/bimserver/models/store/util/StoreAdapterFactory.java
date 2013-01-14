@@ -18,6 +18,7 @@ package org.bimserver.models.store.util;
 
 import org.bimserver.models.store.ArrayDefinition;
 import org.bimserver.models.store.ArrayType;
+import org.bimserver.models.store.BimServerInfo;
 import org.bimserver.models.store.BooleanType;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CheckoutResult;
@@ -43,6 +44,7 @@ import org.bimserver.models.store.IfcEnginePluginConfiguration;
 import org.bimserver.models.store.IfcEnginePluginDescriptor;
 import org.bimserver.models.store.ImmediateNotificationResult;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
+import org.bimserver.models.store.JavaInfo;
 import org.bimserver.models.store.ListDataValue;
 import org.bimserver.models.store.LongAction;
 import org.bimserver.models.store.LongActionState;
@@ -90,6 +92,7 @@ import org.bimserver.models.store.ServiceType;
 import org.bimserver.models.store.SimpleDataValue;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.StringType;
+import org.bimserver.models.store.SystemInfo;
 import org.bimserver.models.store.Token;
 import org.bimserver.models.store.Type;
 import org.bimserver.models.store.TypeDefinition;
@@ -555,6 +558,21 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter casePercentageChange(PercentageChange object) {
 			return createPercentageChangeAdapter();
+		}
+
+		@Override
+		public Adapter caseSystemInfo(SystemInfo object) {
+			return createSystemInfoAdapter();
+		}
+
+		@Override
+		public Adapter caseJavaInfo(JavaInfo object) {
+			return createJavaInfoAdapter();
+		}
+
+		@Override
+		public Adapter caseBimServerInfo(BimServerInfo object) {
+			return createBimServerInfoAdapter();
 		}
 
 		@Override
@@ -1693,6 +1711,48 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPercentageChangeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.SystemInfo <em>System Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.SystemInfo
+	 * @generated
+	 */
+	public Adapter createSystemInfoAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.JavaInfo <em>Java Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.JavaInfo
+	 * @generated
+	 */
+	public Adapter createJavaInfoAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.BimServerInfo <em>Bim Server Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.BimServerInfo
+	 * @generated
+	 */
+	public Adapter createBimServerInfoAdapter() {
 		return null;
 	}
 

@@ -117,7 +117,7 @@ public class JsonHandler {
 				}
 			}
 		} catch (Exception exception) {
-//			LoggerFactory.getLogger(JsonHandler.class).error("", exception);
+			LoggerFactory.getLogger(JsonHandler.class).error("", exception);
 			try {
 				writer.beginObject();
 				writer.name("exception");

@@ -44,6 +44,6 @@ public class Step0023 extends Migration {
 
 	@Override
 	public String getDescription() {
-		return null;
+		return "Extended data";
 	}
 }

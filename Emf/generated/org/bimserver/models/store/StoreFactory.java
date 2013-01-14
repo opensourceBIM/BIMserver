@@ -756,6 +756,33 @@ public interface StoreFactory extends EFactory {
 	PercentageChange createPercentageChange();
 
 	/**
+	 * Returns a new object of class '<em>System Info</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>System Info</em>'.
+	 * @generated
+	 */
+	SystemInfo createSystemInfo();
+
+	/**
+	 * Returns a new object of class '<em>Java Info</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Java Info</em>'.
+	 * @generated
+	 */
+	JavaInfo createJavaInfo();
+
+	/**
+	 * Returns a new object of class '<em>Bim Server Info</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bim Server Info</em>'.
+	 * @generated
+	 */
+	BimServerInfo createBimServerInfo();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

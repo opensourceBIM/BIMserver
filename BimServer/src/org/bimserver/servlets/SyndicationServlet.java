@@ -210,7 +210,7 @@ public class SyndicationServlet extends HttpServlet {
 		try {
 			List<SCheckout> allCheckoutsOfProject = service.getAllCheckoutsOfProjectAndSubProjects(poid);
 			for (SCheckout sCheckout : allCheckoutsOfProject) {
-				SRevision revision = service.getRevision(sCheckout.getRevisionId());
+				SRevision revision = service.getRevision(sCheckout.getRevision().getOid());
 				SProject project = service.getProjectByPoid(sCheckout.getProjectId());
 				SUser user = service.getUserByUoid(sCheckout.getUserId());
 				SyndEntry entry = new SyndEntryImpl();
@@ -220,7 +220,7 @@ public class SyndicationServlet extends HttpServlet {
 				SyndContent description = new SyndContentImpl();
 				description.setType("text/plain");
 				description
-						.setValue("<table><tr><td>User</td><td>" + user.getUsername() + "</td></tr><tr><td>Revision</td><td>" + sCheckout.getRevisionId() + "</td></tr></table>");
+						.setValue("<table><tr><td>User</td><td>" + user.getUsername() + "</td></tr><tr><td>Revision</td><td>" + sCheckout.getRevision().getOid() + "</td></tr></table>");
 				entry.setDescription(description);
 				entries.add(entry);
 			}

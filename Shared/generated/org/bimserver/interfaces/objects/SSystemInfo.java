@@ -17,28 +17,26 @@ package org.bimserver.interfaces.objects;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import java.util.Date;
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SCheckout implements SDataBase
+public class SSystemInfo implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
 
 	@XmlTransient
 	private static SClass sClass;
-	private long userId = -1;
-	private SRevision revision;
-	private long projectId = -1;
-	private java.util.Date date;
-	private SRevision checkin;
-	private java.lang.Boolean active;
-	private List<Long> logs = new ArrayList<Long>();
+	private int cpucores;
+	private java.util.Date datetime;
+	private java.lang.String osname;
+	private java.lang.String osversion;
+	private java.lang.String userName;
+	private java.lang.String userHome;
+	private java.lang.String userDir;
 
 	public long getOid() {
 		return this.oid;
@@ -62,30 +60,30 @@ public class SCheckout implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SCheckout.sClass = sClass;
+		SSystemInfo.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("userId")) {
-			return getUserId();
+		if (sField.getName().equals("cpucores")) {
+			return getCpucores();
 		}
-		if (sField.getName().equals("revision")) {
-			return getRevision();
+		if (sField.getName().equals("datetime")) {
+			return getDatetime();
 		}
-		if (sField.getName().equals("projectId")) {
-			return getProjectId();
+		if (sField.getName().equals("osname")) {
+			return getOsname();
 		}
-		if (sField.getName().equals("date")) {
-			return getDate();
+		if (sField.getName().equals("osversion")) {
+			return getOsversion();
 		}
-		if (sField.getName().equals("checkin")) {
-			return getCheckin();
+		if (sField.getName().equals("userName")) {
+			return getUserName();
 		}
-		if (sField.getName().equals("active")) {
-			return getActive();
+		if (sField.getName().equals("userHome")) {
+			return getUserHome();
 		}
-		if (sField.getName().equals("logs")) {
-			return getLogs();
+		if (sField.getName().equals("userDir")) {
+			return getUserDir();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -95,35 +93,34 @@ public class SCheckout implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
-	@SuppressWarnings("unchecked")
 
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("userId")) {
-			setUserId((Long)val);
+		if (sField.getName().equals("cpucores")) {
+			setCpucores((Integer)val);
 			return;
 		}
-		if (sField.getName().equals("revision")) {
-			setRevision((SRevision)val);
+		if (sField.getName().equals("datetime")) {
+			setDatetime((Date)val);
 			return;
 		}
-		if (sField.getName().equals("projectId")) {
-			setProjectId((Long)val);
+		if (sField.getName().equals("osname")) {
+			setOsname((String)val);
 			return;
 		}
-		if (sField.getName().equals("date")) {
-			setDate((Date)val);
+		if (sField.getName().equals("osversion")) {
+			setOsversion((String)val);
 			return;
 		}
-		if (sField.getName().equals("checkin")) {
-			setCheckin((SRevision)val);
+		if (sField.getName().equals("userName")) {
+			setUserName((String)val);
 			return;
 		}
-		if (sField.getName().equals("active")) {
-			setActive((Boolean)val);
+		if (sField.getName().equals("userHome")) {
+			setUserHome((String)val);
 			return;
 		}
-		if (sField.getName().equals("logs")) {
-			setLogs((List<Long>)val);
+		if (sField.getName().equals("userDir")) {
+			setUserDir((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -137,62 +134,60 @@ public class SCheckout implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	public long getUserId() {
-		return userId;
+	public int getCpucores() {
+		return cpucores;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setCpucores(int cpucores) {
+		this.cpucores = cpucores;
 	}
 	
-	public SRevision getRevision() {
-		return revision;
+	public java.util.Date getDatetime() {
+		return datetime;
 	}
 
-	public void setRevision(SRevision revision) {
-		this.revision = revision;
+	public void setDatetime(java.util.Date datetime) {
+		this.datetime = datetime;
 	}
 	
-	
-	public long getProjectId() {
-		return projectId;
+	public java.lang.String getOsname() {
+		return osname;
 	}
 
-	public void setProjectId(long projectId) {
-		this.projectId = projectId;
+	public void setOsname(java.lang.String osname) {
+		this.osname = osname;
 	}
 	
-	public java.util.Date getDate() {
-		return date;
+	public java.lang.String getOsversion() {
+		return osversion;
 	}
 
-	public void setDate(java.util.Date date) {
-		this.date = date;
+	public void setOsversion(java.lang.String osversion) {
+		this.osversion = osversion;
 	}
 	
-	public SRevision getCheckin() {
-		return checkin;
+	public java.lang.String getUserName() {
+		return userName;
 	}
 
-	public void setCheckin(SRevision checkin) {
-		this.checkin = checkin;
+	public void setUserName(java.lang.String userName) {
+		this.userName = userName;
 	}
 	
-	
-	public java.lang.Boolean getActive() {
-		return active;
+	public java.lang.String getUserHome() {
+		return userHome;
 	}
 
-	public void setActive(java.lang.Boolean active) {
-		this.active = active;
+	public void setUserHome(java.lang.String userHome) {
+		this.userHome = userHome;
 	}
 	
-	public List<Long> getLogs() {
-		return logs;
+	public java.lang.String getUserDir() {
+		return userDir;
 	}
 
-	public void setLogs(List<Long> logs) {
-		this.logs = logs;
+	public void setUserDir(java.lang.String userDir) {
+		this.userDir = userDir;
 	}
 	
 	@Override
@@ -211,7 +206,7 @@ public class SCheckout implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SCheckout other = (SCheckout) obj;
+		SSystemInfo other = (SSystemInfo) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

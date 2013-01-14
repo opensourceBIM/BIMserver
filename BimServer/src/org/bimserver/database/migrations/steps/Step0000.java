@@ -202,9 +202,10 @@ public class Step0000 extends Migration {
 	private void createCheckoutClass() {
 		schema.createEReference(checkoutClass, "user", userClass, Multiplicity.SINGLE);
 		checkoutRevision = schema.createEReference(checkoutClass, "revision", revisionClass, Multiplicity.SINGLE);
+		checkoutRevision.getEAnnotations().add(createEmbedsReferenceAnnotation());
 		checkoutProject = schema.createEReference(checkoutClass, "project", projectClass, Multiplicity.SINGLE);
 		schema.createEAttribute(checkoutClass, "date", ecorePackage.getEDate(), Multiplicity.SINGLE);
-		schema.createEReference(checkoutClass, "checkin", revisionClass, Multiplicity.SINGLE);
+		schema.createEReference(checkoutClass, "checkin", revisionClass, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		schema.createEAttribute(checkoutClass, "active", ecorePackage.getEBooleanObject(), Multiplicity.SINGLE);
 	}
 

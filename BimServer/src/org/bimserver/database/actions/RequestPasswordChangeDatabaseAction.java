@@ -47,11 +47,13 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 	private static final Logger LOGGER = LoggerFactory.getLogger(RequestPasswordChangeDatabaseAction.class);
 	private final BimServer bimServer;
 	private final String username;
+	private String resetUrl;
 
-	public RequestPasswordChangeDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, String username) {
+	public RequestPasswordChangeDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, String username, String resetUrl) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.username = username;
+		this.resetUrl = resetUrl;
 	}
 
 	@Override
@@ -86,7 +88,7 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 						context.put("name", user.getName());
 						context.put("username", user.getUsername());
 						context.put("siteaddress", bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
-						context.put("validationlink", bimServer.getServerSettingsCache().getServerSettings().getSiteAddress() + "/validate.jsp?username=" + user.getUsername() + "&uoid=" + user.getOid() + "&token=" + token);
+						context.put("validationlink", resetUrl + "&username=" + user.getUsername() + "&uoid=" + user.getOid() + "&token=" + token + "&address=" + bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
 						body = bimServer.getTemplateEngine().process(context, TemplateIdentifier.PASSWORD_RESET_EMAIL_BODY);
 						subject = bimServer.getTemplateEngine().process(context, TemplateIdentifier.PASSWORD_RESET_EMAIL_SUBJECT);
 						msg.setContent(body, "text/html");

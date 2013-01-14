@@ -5111,6 +5111,450 @@ public interface StorePackage extends EPackage {
 	int PERCENTAGE_CHANGE_FEATURE_COUNT = EXTERNAL_SERVICE_UPDATE_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.SystemInfoImpl <em>System Info</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.SystemInfoImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSystemInfo()
+	 * @generated
+	 */
+	int SYSTEM_INFO = 80;
+
+	/**
+	 * The feature id for the '<em><b>Cpucores</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_INFO__CPUCORES = 0;
+
+	/**
+	 * The feature id for the '<em><b>Datetime</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_INFO__DATETIME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Osname</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_INFO__OSNAME = 2;
+
+	/**
+	 * The feature id for the '<em><b>Osversion</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_INFO__OSVERSION = 3;
+
+	/**
+	 * The feature id for the '<em><b>User Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_INFO__USER_NAME = 4;
+
+	/**
+	 * The feature id for the '<em><b>User Home</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_INFO__USER_HOME = 5;
+
+	/**
+	 * The feature id for the '<em><b>User Dir</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_INFO__USER_DIR = 6;
+
+	/**
+	 * The number of structural features of the '<em>System Info</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_INFO_FEATURE_COUNT = 7;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.JavaInfoImpl <em>Java Info</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.JavaInfoImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getJavaInfo()
+	 * @generated
+	 */
+	int JAVA_INFO = 81;
+
+	/**
+	 * The feature id for the '<em><b>Heap Total</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__HEAP_TOTAL = 0;
+
+	/**
+	 * The feature id for the '<em><b>Heap Used</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__HEAP_USED = 1;
+
+	/**
+	 * The feature id for the '<em><b>Heap Free</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__HEAP_FREE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Heap Max</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__HEAP_MAX = 3;
+
+	/**
+	 * The feature id for the '<em><b>Threads</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__THREADS = 4;
+
+	/**
+	 * The feature id for the '<em><b>Java Home</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__JAVA_HOME = 5;
+
+	/**
+	 * The feature id for the '<em><b>Java Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__JAVA_VERSION = 6;
+
+	/**
+	 * The feature id for the '<em><b>Java Vendor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__JAVA_VENDOR = 7;
+
+	/**
+	 * The feature id for the '<em><b>Java Vendorurl</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__JAVA_VENDORURL = 8;
+
+	/**
+	 * The feature id for the '<em><b>Javavm Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__JAVAVM_VERSION = 9;
+
+	/**
+	 * The feature id for the '<em><b>Javavm Vendor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__JAVAVM_VENDOR = 10;
+
+	/**
+	 * The feature id for the '<em><b>Javavm Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__JAVAVM_NAME = 11;
+
+	/**
+	 * The feature id for the '<em><b>Javaspec Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__JAVASPEC_VERSION = 12;
+
+	/**
+	 * The feature id for the '<em><b>Javaspec Vendor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__JAVASPEC_VENDOR = 13;
+
+	/**
+	 * The feature id for the '<em><b>Javaspec Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__JAVASPEC_NAME = 14;
+
+	/**
+	 * The feature id for the '<em><b>Java Class Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__JAVA_CLASS_VERSION = 15;
+
+	/**
+	 * The feature id for the '<em><b>Java Classpath</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__JAVA_CLASSPATH = 16;
+
+	/**
+	 * The feature id for the '<em><b>Java Librarypath</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__JAVA_LIBRARYPATH = 17;
+
+	/**
+	 * The feature id for the '<em><b>Java Io Tmp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__JAVA_IO_TMP = 18;
+
+	/**
+	 * The feature id for the '<em><b>Java Compiler</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__JAVA_COMPILER = 19;
+
+	/**
+	 * The feature id for the '<em><b>Java Extdir</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__JAVA_EXTDIR = 20;
+
+	/**
+	 * The feature id for the '<em><b>Java File Separator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__JAVA_FILE_SEPARATOR = 21;
+
+	/**
+	 * The feature id for the '<em><b>Java Path Separator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__JAVA_PATH_SEPARATOR = 22;
+
+	/**
+	 * The feature id for the '<em><b>Java Line Separator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO__JAVA_LINE_SEPARATOR = 23;
+
+	/**
+	 * The number of structural features of the '<em>Java Info</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_INFO_FEATURE_COUNT = 24;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.BimServerInfoImpl <em>Bim Server Info</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.BimServerInfoImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getBimServerInfo()
+	 * @generated
+	 */
+	int BIM_SERVER_INFO = 82;
+
+	/**
+	 * The feature id for the '<em><b>Current Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIM_SERVER_INFO__CURRENT_VERSION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Current Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIM_SERVER_INFO__CURRENT_DATE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Schema Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIM_SERVER_INFO__SCHEMA_VERSION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Latest Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIM_SERVER_INFO__LATEST_DATE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Latest Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIM_SERVER_INFO__LATEST_VERSION = 4;
+
+	/**
+	 * The feature id for the '<em><b>Projects</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIM_SERVER_INFO__PROJECTS = 5;
+
+	/**
+	 * The feature id for the '<em><b>Revisions</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIM_SERVER_INFO__REVISIONS = 6;
+
+	/**
+	 * The feature id for the '<em><b>Users</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIM_SERVER_INFO__USERS = 7;
+
+	/**
+	 * The feature id for the '<em><b>Checkouts</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIM_SERVER_INFO__CHECKOUTS = 8;
+
+	/**
+	 * The feature id for the '<em><b>Server Log Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIM_SERVER_INFO__SERVER_LOG_URL = 9;
+
+	/**
+	 * The feature id for the '<em><b>Started</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIM_SERVER_INFO__STARTED = 10;
+
+	/**
+	 * The feature id for the '<em><b>Uptime</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIM_SERVER_INFO__UPTIME = 11;
+
+	/**
+	 * The number of structural features of the '<em>Bim Server Info</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIM_SERVER_INFO_FEATURE_COUNT = 12;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5118,7 +5562,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 80;
+	int USER_TYPE = 83;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -5128,7 +5572,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 81;
+	int SI_PREFIX = 84;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -5138,7 +5582,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 82;
+	int OBJECT_STATE = 85;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -5148,7 +5592,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 83;
+	int COMPARE_TYPE = 86;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -5158,7 +5602,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 84;
+	int ACTION_STATE = 87;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -5168,7 +5612,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 85;
+	int SERVER_STATE = 88;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
@@ -5178,7 +5622,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA_TYPE = 86;
+	int EXTENDED_DATA_SCHEMA_TYPE = 89;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
@@ -5188,7 +5632,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 87;
+	int TRIGGER = 90;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.
@@ -5198,7 +5642,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_ENUM = 88;
+	int PRIMITIVE_ENUM = 91;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}' enum.
@@ -5208,7 +5652,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotifictionResultEnum()
 	 * @generated
 	 */
-	int NOTIFICTION_RESULT_ENUM = 89;
+	int NOTIFICTION_RESULT_ENUM = 92;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -5218,7 +5662,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 90;
+	int DATA_HANDLER = 93;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -9321,6 +9765,509 @@ public interface StorePackage extends EPackage {
 	EAttribute getPercentageChange_Percentage();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.SystemInfo <em>System Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>System Info</em>'.
+	 * @see org.bimserver.models.store.SystemInfo
+	 * @generated
+	 */
+	EClass getSystemInfo();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.SystemInfo#getCpucores <em>Cpucores</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Cpucores</em>'.
+	 * @see org.bimserver.models.store.SystemInfo#getCpucores()
+	 * @see #getSystemInfo()
+	 * @generated
+	 */
+	EAttribute getSystemInfo_Cpucores();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.SystemInfo#getDatetime <em>Datetime</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Datetime</em>'.
+	 * @see org.bimserver.models.store.SystemInfo#getDatetime()
+	 * @see #getSystemInfo()
+	 * @generated
+	 */
+	EAttribute getSystemInfo_Datetime();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.SystemInfo#getOsname <em>Osname</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Osname</em>'.
+	 * @see org.bimserver.models.store.SystemInfo#getOsname()
+	 * @see #getSystemInfo()
+	 * @generated
+	 */
+	EAttribute getSystemInfo_Osname();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.SystemInfo#getOsversion <em>Osversion</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Osversion</em>'.
+	 * @see org.bimserver.models.store.SystemInfo#getOsversion()
+	 * @see #getSystemInfo()
+	 * @generated
+	 */
+	EAttribute getSystemInfo_Osversion();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.SystemInfo#getUserName <em>User Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>User Name</em>'.
+	 * @see org.bimserver.models.store.SystemInfo#getUserName()
+	 * @see #getSystemInfo()
+	 * @generated
+	 */
+	EAttribute getSystemInfo_UserName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.SystemInfo#getUserHome <em>User Home</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>User Home</em>'.
+	 * @see org.bimserver.models.store.SystemInfo#getUserHome()
+	 * @see #getSystemInfo()
+	 * @generated
+	 */
+	EAttribute getSystemInfo_UserHome();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.SystemInfo#getUserDir <em>User Dir</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>User Dir</em>'.
+	 * @see org.bimserver.models.store.SystemInfo#getUserDir()
+	 * @see #getSystemInfo()
+	 * @generated
+	 */
+	EAttribute getSystemInfo_UserDir();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.JavaInfo <em>Java Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Java Info</em>'.
+	 * @see org.bimserver.models.store.JavaInfo
+	 * @generated
+	 */
+	EClass getJavaInfo();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getHeapTotal <em>Heap Total</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Heap Total</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getHeapTotal()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_HeapTotal();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getHeapUsed <em>Heap Used</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Heap Used</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getHeapUsed()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_HeapUsed();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getHeapFree <em>Heap Free</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Heap Free</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getHeapFree()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_HeapFree();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getHeapMax <em>Heap Max</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Heap Max</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getHeapMax()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_HeapMax();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getThreads <em>Threads</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Threads</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getThreads()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_Threads();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getJavaHome <em>Java Home</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Java Home</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getJavaHome()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_JavaHome();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getJavaVersion <em>Java Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Java Version</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getJavaVersion()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_JavaVersion();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getJavaVendor <em>Java Vendor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Java Vendor</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getJavaVendor()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_JavaVendor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getJavaVendorurl <em>Java Vendorurl</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Java Vendorurl</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getJavaVendorurl()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_JavaVendorurl();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getJavavmVersion <em>Javavm Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Javavm Version</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getJavavmVersion()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_JavavmVersion();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getJavavmVendor <em>Javavm Vendor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Javavm Vendor</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getJavavmVendor()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_JavavmVendor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getJavavmName <em>Javavm Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Javavm Name</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getJavavmName()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_JavavmName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getJavaspecVersion <em>Javaspec Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Javaspec Version</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getJavaspecVersion()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_JavaspecVersion();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getJavaspecVendor <em>Javaspec Vendor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Javaspec Vendor</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getJavaspecVendor()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_JavaspecVendor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getJavaspecName <em>Javaspec Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Javaspec Name</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getJavaspecName()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_JavaspecName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getJavaClassVersion <em>Java Class Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Java Class Version</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getJavaClassVersion()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_JavaClassVersion();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.JavaInfo#getJavaClasspath <em>Java Classpath</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Java Classpath</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getJavaClasspath()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_JavaClasspath();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.bimserver.models.store.JavaInfo#getJavaLibrarypath <em>Java Librarypath</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Java Librarypath</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getJavaLibrarypath()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_JavaLibrarypath();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getJavaIoTmp <em>Java Io Tmp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Java Io Tmp</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getJavaIoTmp()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_JavaIoTmp();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getJavaCompiler <em>Java Compiler</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Java Compiler</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getJavaCompiler()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_JavaCompiler();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getJavaExtdir <em>Java Extdir</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Java Extdir</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getJavaExtdir()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_JavaExtdir();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getJavaFileSeparator <em>Java File Separator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Java File Separator</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getJavaFileSeparator()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_JavaFileSeparator();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getJavaPathSeparator <em>Java Path Separator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Java Path Separator</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getJavaPathSeparator()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_JavaPathSeparator();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.JavaInfo#getJavaLineSeparator <em>Java Line Separator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Java Line Separator</em>'.
+	 * @see org.bimserver.models.store.JavaInfo#getJavaLineSeparator()
+	 * @see #getJavaInfo()
+	 * @generated
+	 */
+	EAttribute getJavaInfo_JavaLineSeparator();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.BimServerInfo <em>Bim Server Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bim Server Info</em>'.
+	 * @see org.bimserver.models.store.BimServerInfo
+	 * @generated
+	 */
+	EClass getBimServerInfo();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.BimServerInfo#getCurrentVersion <em>Current Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Current Version</em>'.
+	 * @see org.bimserver.models.store.BimServerInfo#getCurrentVersion()
+	 * @see #getBimServerInfo()
+	 * @generated
+	 */
+	EAttribute getBimServerInfo_CurrentVersion();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.BimServerInfo#getCurrentDate <em>Current Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Current Date</em>'.
+	 * @see org.bimserver.models.store.BimServerInfo#getCurrentDate()
+	 * @see #getBimServerInfo()
+	 * @generated
+	 */
+	EAttribute getBimServerInfo_CurrentDate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.BimServerInfo#getSchemaVersion <em>Schema Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Schema Version</em>'.
+	 * @see org.bimserver.models.store.BimServerInfo#getSchemaVersion()
+	 * @see #getBimServerInfo()
+	 * @generated
+	 */
+	EAttribute getBimServerInfo_SchemaVersion();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.BimServerInfo#getLatestDate <em>Latest Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Latest Date</em>'.
+	 * @see org.bimserver.models.store.BimServerInfo#getLatestDate()
+	 * @see #getBimServerInfo()
+	 * @generated
+	 */
+	EAttribute getBimServerInfo_LatestDate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.BimServerInfo#getLatestVersion <em>Latest Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Latest Version</em>'.
+	 * @see org.bimserver.models.store.BimServerInfo#getLatestVersion()
+	 * @see #getBimServerInfo()
+	 * @generated
+	 */
+	EAttribute getBimServerInfo_LatestVersion();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.BimServerInfo#getProjects <em>Projects</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Projects</em>'.
+	 * @see org.bimserver.models.store.BimServerInfo#getProjects()
+	 * @see #getBimServerInfo()
+	 * @generated
+	 */
+	EAttribute getBimServerInfo_Projects();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.BimServerInfo#getRevisions <em>Revisions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Revisions</em>'.
+	 * @see org.bimserver.models.store.BimServerInfo#getRevisions()
+	 * @see #getBimServerInfo()
+	 * @generated
+	 */
+	EAttribute getBimServerInfo_Revisions();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.BimServerInfo#getUsers <em>Users</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Users</em>'.
+	 * @see org.bimserver.models.store.BimServerInfo#getUsers()
+	 * @see #getBimServerInfo()
+	 * @generated
+	 */
+	EAttribute getBimServerInfo_Users();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.BimServerInfo#getCheckouts <em>Checkouts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Checkouts</em>'.
+	 * @see org.bimserver.models.store.BimServerInfo#getCheckouts()
+	 * @see #getBimServerInfo()
+	 * @generated
+	 */
+	EAttribute getBimServerInfo_Checkouts();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.BimServerInfo#getServerLogUrl <em>Server Log Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Server Log Url</em>'.
+	 * @see org.bimserver.models.store.BimServerInfo#getServerLogUrl()
+	 * @see #getBimServerInfo()
+	 * @generated
+	 */
+	EAttribute getBimServerInfo_ServerLogUrl();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.BimServerInfo#getStarted <em>Started</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Started</em>'.
+	 * @see org.bimserver.models.store.BimServerInfo#getStarted()
+	 * @see #getBimServerInfo()
+	 * @generated
+	 */
+	EAttribute getBimServerInfo_Started();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.BimServerInfo#getUptime <em>Uptime</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Uptime</em>'.
+	 * @see org.bimserver.models.store.BimServerInfo#getUptime()
+	 * @see #getBimServerInfo()
+	 * @generated
+	 */
+	EAttribute getBimServerInfo_Uptime();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12652,6 +13599,380 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PERCENTAGE_CHANGE__PERCENTAGE = eINSTANCE.getPercentageChange_Percentage();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.SystemInfoImpl <em>System Info</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.SystemInfoImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getSystemInfo()
+		 * @generated
+		 */
+		EClass SYSTEM_INFO = eINSTANCE.getSystemInfo();
+
+		/**
+		 * The meta object literal for the '<em><b>Cpucores</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SYSTEM_INFO__CPUCORES = eINSTANCE.getSystemInfo_Cpucores();
+
+		/**
+		 * The meta object literal for the '<em><b>Datetime</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SYSTEM_INFO__DATETIME = eINSTANCE.getSystemInfo_Datetime();
+
+		/**
+		 * The meta object literal for the '<em><b>Osname</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SYSTEM_INFO__OSNAME = eINSTANCE.getSystemInfo_Osname();
+
+		/**
+		 * The meta object literal for the '<em><b>Osversion</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SYSTEM_INFO__OSVERSION = eINSTANCE.getSystemInfo_Osversion();
+
+		/**
+		 * The meta object literal for the '<em><b>User Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SYSTEM_INFO__USER_NAME = eINSTANCE.getSystemInfo_UserName();
+
+		/**
+		 * The meta object literal for the '<em><b>User Home</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SYSTEM_INFO__USER_HOME = eINSTANCE.getSystemInfo_UserHome();
+
+		/**
+		 * The meta object literal for the '<em><b>User Dir</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SYSTEM_INFO__USER_DIR = eINSTANCE.getSystemInfo_UserDir();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.JavaInfoImpl <em>Java Info</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.JavaInfoImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getJavaInfo()
+		 * @generated
+		 */
+		EClass JAVA_INFO = eINSTANCE.getJavaInfo();
+
+		/**
+		 * The meta object literal for the '<em><b>Heap Total</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__HEAP_TOTAL = eINSTANCE.getJavaInfo_HeapTotal();
+
+		/**
+		 * The meta object literal for the '<em><b>Heap Used</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__HEAP_USED = eINSTANCE.getJavaInfo_HeapUsed();
+
+		/**
+		 * The meta object literal for the '<em><b>Heap Free</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__HEAP_FREE = eINSTANCE.getJavaInfo_HeapFree();
+
+		/**
+		 * The meta object literal for the '<em><b>Heap Max</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__HEAP_MAX = eINSTANCE.getJavaInfo_HeapMax();
+
+		/**
+		 * The meta object literal for the '<em><b>Threads</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__THREADS = eINSTANCE.getJavaInfo_Threads();
+
+		/**
+		 * The meta object literal for the '<em><b>Java Home</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__JAVA_HOME = eINSTANCE.getJavaInfo_JavaHome();
+
+		/**
+		 * The meta object literal for the '<em><b>Java Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__JAVA_VERSION = eINSTANCE.getJavaInfo_JavaVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>Java Vendor</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__JAVA_VENDOR = eINSTANCE.getJavaInfo_JavaVendor();
+
+		/**
+		 * The meta object literal for the '<em><b>Java Vendorurl</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__JAVA_VENDORURL = eINSTANCE.getJavaInfo_JavaVendorurl();
+
+		/**
+		 * The meta object literal for the '<em><b>Javavm Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__JAVAVM_VERSION = eINSTANCE.getJavaInfo_JavavmVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>Javavm Vendor</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__JAVAVM_VENDOR = eINSTANCE.getJavaInfo_JavavmVendor();
+
+		/**
+		 * The meta object literal for the '<em><b>Javavm Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__JAVAVM_NAME = eINSTANCE.getJavaInfo_JavavmName();
+
+		/**
+		 * The meta object literal for the '<em><b>Javaspec Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__JAVASPEC_VERSION = eINSTANCE.getJavaInfo_JavaspecVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>Javaspec Vendor</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__JAVASPEC_VENDOR = eINSTANCE.getJavaInfo_JavaspecVendor();
+
+		/**
+		 * The meta object literal for the '<em><b>Javaspec Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__JAVASPEC_NAME = eINSTANCE.getJavaInfo_JavaspecName();
+
+		/**
+		 * The meta object literal for the '<em><b>Java Class Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__JAVA_CLASS_VERSION = eINSTANCE.getJavaInfo_JavaClassVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>Java Classpath</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__JAVA_CLASSPATH = eINSTANCE.getJavaInfo_JavaClasspath();
+
+		/**
+		 * The meta object literal for the '<em><b>Java Librarypath</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__JAVA_LIBRARYPATH = eINSTANCE.getJavaInfo_JavaLibrarypath();
+
+		/**
+		 * The meta object literal for the '<em><b>Java Io Tmp</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__JAVA_IO_TMP = eINSTANCE.getJavaInfo_JavaIoTmp();
+
+		/**
+		 * The meta object literal for the '<em><b>Java Compiler</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__JAVA_COMPILER = eINSTANCE.getJavaInfo_JavaCompiler();
+
+		/**
+		 * The meta object literal for the '<em><b>Java Extdir</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__JAVA_EXTDIR = eINSTANCE.getJavaInfo_JavaExtdir();
+
+		/**
+		 * The meta object literal for the '<em><b>Java File Separator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__JAVA_FILE_SEPARATOR = eINSTANCE.getJavaInfo_JavaFileSeparator();
+
+		/**
+		 * The meta object literal for the '<em><b>Java Path Separator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__JAVA_PATH_SEPARATOR = eINSTANCE.getJavaInfo_JavaPathSeparator();
+
+		/**
+		 * The meta object literal for the '<em><b>Java Line Separator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_INFO__JAVA_LINE_SEPARATOR = eINSTANCE.getJavaInfo_JavaLineSeparator();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.BimServerInfoImpl <em>Bim Server Info</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.BimServerInfoImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getBimServerInfo()
+		 * @generated
+		 */
+		EClass BIM_SERVER_INFO = eINSTANCE.getBimServerInfo();
+
+		/**
+		 * The meta object literal for the '<em><b>Current Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BIM_SERVER_INFO__CURRENT_VERSION = eINSTANCE.getBimServerInfo_CurrentVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>Current Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BIM_SERVER_INFO__CURRENT_DATE = eINSTANCE.getBimServerInfo_CurrentDate();
+
+		/**
+		 * The meta object literal for the '<em><b>Schema Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BIM_SERVER_INFO__SCHEMA_VERSION = eINSTANCE.getBimServerInfo_SchemaVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>Latest Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BIM_SERVER_INFO__LATEST_DATE = eINSTANCE.getBimServerInfo_LatestDate();
+
+		/**
+		 * The meta object literal for the '<em><b>Latest Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BIM_SERVER_INFO__LATEST_VERSION = eINSTANCE.getBimServerInfo_LatestVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>Projects</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BIM_SERVER_INFO__PROJECTS = eINSTANCE.getBimServerInfo_Projects();
+
+		/**
+		 * The meta object literal for the '<em><b>Revisions</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BIM_SERVER_INFO__REVISIONS = eINSTANCE.getBimServerInfo_Revisions();
+
+		/**
+		 * The meta object literal for the '<em><b>Users</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BIM_SERVER_INFO__USERS = eINSTANCE.getBimServerInfo_Users();
+
+		/**
+		 * The meta object literal for the '<em><b>Checkouts</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BIM_SERVER_INFO__CHECKOUTS = eINSTANCE.getBimServerInfo_Checkouts();
+
+		/**
+		 * The meta object literal for the '<em><b>Server Log Url</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BIM_SERVER_INFO__SERVER_LOG_URL = eINSTANCE.getBimServerInfo_ServerLogUrl();
+
+		/**
+		 * The meta object literal for the '<em><b>Started</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BIM_SERVER_INFO__STARTED = eINSTANCE.getBimServerInfo_Started();
+
+		/**
+		 * The meta object literal for the '<em><b>Uptime</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BIM_SERVER_INFO__UPTIME = eINSTANCE.getBimServerInfo_Uptime();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.

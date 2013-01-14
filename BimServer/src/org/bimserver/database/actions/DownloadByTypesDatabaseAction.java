@@ -98,11 +98,15 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			Revision virtualRevision = getVirtualRevision(roid);
 			project = virtualRevision.getProject();
 			name += project.getName() + "-" + virtualRevision.getId() + "-";
-			if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
-				throw new UserException("User has insufficient rights to download revisions from this project");
-			}
-			if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
-				throw new UserException("User has insufficient rights to download revisions from this project");
+			try {
+				authorization.canDownload(roid);
+			} catch (UserException e) {
+				if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
+					throw new UserException("User has insufficient rights to download revisions from this project");
+				}
+				if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
+					throw new UserException("User has insufficient rights to download revisions from this project");
+				}
 			}
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 				try {
@@ -117,29 +121,41 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 				}
 			}
 			IfcModelInterface ifcModel;
+			if (ifcModelSet.size() > 1) {
+				try {
+					ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());
+				} catch (MergeException e) {
+					throw new UserException(e);
+				}
+			} else {
+				ifcModel = ifcModelSet.iterator().next();
+			}
+			ifcModel.setName("Unknown");
+			ifcModel.setRevisionNr(project.getRevisions().indexOf(virtualRevision) + 1);
+			if (authorization.getUoid() != -1) {
+				ifcModel.setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
+			}
+			ifcModel.setDate(virtualRevision.getDate());
+		}
+		// TODO check, double merging??
+		IfcModelInterface ifcModel;
+		if (ifcModelSet.size() > 1) {
 			try {
 				ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());
 			} catch (MergeException e) {
 				throw new UserException(e);
 			}
-			ifcModel.setName("Unknown");
-			ifcModel.setRevisionNr(project.getRevisions().indexOf(virtualRevision) + 1);
-			ifcModel.setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
-			ifcModel.setDate(virtualRevision.getDate());
-			
-		}
-		IfcModelInterface ifcModel;
-		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());
-		} catch (MergeException e) {
-			throw new UserException(e);
+		} else {
+			ifcModel = ifcModelSet.iterator().next();
 		}
 		if (name.endsWith("-")) {
 			name = name.substring(0, name.length()-1);
 		}
 		ifcModel.setName(name);
 		ifcModel.setRevisionNr(1);
-		ifcModel.setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
+		if (authorization.getUoid() != -1) {
+			ifcModel.setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
+		}
 		ifcModel.setDate(new Date());
 		return ifcModel;
 	}
