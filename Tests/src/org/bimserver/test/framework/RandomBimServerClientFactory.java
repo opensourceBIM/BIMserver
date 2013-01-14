@@ -85,7 +85,9 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 			}
 			current = (current + 1) % types.length;
 			return bimServerClient;
-		} catch (ChannelConnectionException | ServiceException e) {
+		} catch (ServiceException e) {
+			LOGGER.error("", e);
+		} catch (ChannelConnectionException e) {
 			LOGGER.error("", e);
 		}
 		return null;
