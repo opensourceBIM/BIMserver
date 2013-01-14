@@ -442,6 +442,21 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SPercentageChange();
 					}
 				}));
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SSystemInfo"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SSystemInfo();
+					}
+				}));
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SJavaInfo"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SJavaInfo();
+					}
+				}));
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SBimServerInfo"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SBimServerInfo();
+					}
+				}));
 			super.init();
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);

@@ -56,11 +56,15 @@ function BimServerApi(baseUrl, notifier) {
 		};
 		othis.call("ServiceInterface", "login", request, function(data){
 			othis.token = data;
+			var autologin = Sha256.hash(username + Sha256.hash(password));
 			if (rememberme) {
-				var autologin = Sha256.hash(username + Sha256.hash(password));
 				$.cookie("username", username, { expires: 31 });
 				$.cookie("autologin", autologin, { expires: 31 });
 				$.cookie("address", othis.baseUrl, { expires: 31 });
+			} else {
+				$.cookie("username", username, { });
+				$.cookie("autologin", autologin, { });
+				$.cookie("address", othis.baseUrl, { });
 			}
 			othis.notifier.info("Login successful");
 			othis.resolveUser();
@@ -294,6 +298,10 @@ function BimServerApi(baseUrl, notifier) {
 
 	this.callWithUserErrorAndDoneIndication = function(action, data, callback) {
 		othis.call(interfaceName, methodName, data, callback, false, true, true);
+	};
+	
+	this.setToken = function(token) {
+		othis.token = token;
 	};
 	
 	this.call = function(interfaceName, methodName, data, callback, showBusy, showDone, showError) {

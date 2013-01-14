@@ -84,6 +84,6 @@ public class Step0024 extends Migration {
 
 	@Override
 	public String getDescription() {
-		return "blabla";
+		return "PluginConfiguration settings";
 	}
 }

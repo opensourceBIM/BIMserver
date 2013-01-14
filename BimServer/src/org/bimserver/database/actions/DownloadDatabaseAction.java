@@ -73,8 +73,12 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 		}
 		Project project = revision.getProject();
 		User user = getUserByUoid(authorization.getUoid());
-		if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
-			throw new UserException("User has insufficient rights to download revisions from this project");
+		try {
+			authorization.canDownload(roid);
+		} catch (UserException e) {
+			if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
+				throw new UserException("User has insufficient rights to download revisions from this project");
+			}
 		}
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		long incrSize = 0;
@@ -107,15 +111,21 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 			}
 		}
 		IfcModelInterface ifcModel;
-		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid())
-					.merge(revision.getProject(), ifcModelSet, new ModelHelper());
-		} catch (MergeException e) {
-			throw new UserException(e);
+		if (ifcModelSet.size() > 1) {
+			try {
+				ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid())
+						.merge(revision.getProject(), ifcModelSet, new ModelHelper());
+			} catch (MergeException e) {
+				throw new UserException(e);
+			}
+		} else {
+			ifcModel = ifcModelSet.iterator().next();
 		}
 		ifcModel.setName(project.getName() + "." + revision.getId());
 		ifcModel.setRevisionNr(project.getRevisions().indexOf(revision) + 1);
-		ifcModel.setAuthorizedUser(user.getName());
+		if (user != null) {
+			ifcModel.setAuthorizedUser(user.getName());
+		}
 		ifcModel.setDate(revision.getDate());
 
 		if (revision.getProject().getGeoTag() != null) {

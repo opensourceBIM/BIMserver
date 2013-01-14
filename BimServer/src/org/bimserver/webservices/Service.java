@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Set;
 
@@ -73,6 +74,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.objects.SAccessMethod;
+import org.bimserver.interfaces.objects.SBimServerInfo;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.interfaces.objects.SCompareResult;
@@ -92,6 +94,7 @@ import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
+import org.bimserver.interfaces.objects.SJavaInfo;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongAction;
 import org.bimserver.interfaces.objects.SLongActionState;
@@ -124,6 +127,7 @@ import org.bimserver.interfaces.objects.SServiceMethod;
 import org.bimserver.interfaces.objects.SServiceParameter;
 import org.bimserver.interfaces.objects.SServicePluginDescriptor;
 import org.bimserver.interfaces.objects.SServiceType;
+import org.bimserver.interfaces.objects.SSystemInfo;
 import org.bimserver.interfaces.objects.STrigger;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
@@ -183,6 +187,7 @@ import org.bimserver.shared.meta.SField;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
+import org.bimserver.utils.Formatters;
 import org.bimserver.utils.MultiplexingInputStream;
 import org.bimserver.utils.NetUtils;
 import org.bimserver.webservices.authorization.AdminAuthorization;
@@ -632,7 +637,7 @@ public class Service implements ServiceInterface {
 		} finally {
 			session.close();
 		}
-		LongDownloadOrCheckoutAction longDownloadAction = new LongDownloadAction(bimServer, user.getName(), user.getUsername(), downloadParameters, authorization, accessMethod);
+		LongDownloadOrCheckoutAction longDownloadAction = new LongDownloadAction(bimServer, user == null ? "Unknown" : user.getName(), user == null ? "Unknown" : user.getUsername(), downloadParameters, authorization, accessMethod);
 		try {
 			bimServer.getLongActionManager().start(longDownloadAction);
 		} catch (Exception e) {
@@ -1639,11 +1644,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void requestPasswordChange(String username) throws ServerException, UserException {
+	public void requestPasswordChange(String username, String resetUrl) throws ServerException, UserException {
 		// No authentication required because you should be able to do this wihout logging in...
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			BimDatabaseAction<Void> action = new RequestPasswordChangeDatabaseAction(session, accessMethod, bimServer, username);
+			BimDatabaseAction<Void> action = new RequestPasswordChangeDatabaseAction(session, accessMethod, bimServer, username, resetUrl);
 			session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			handleException(e);
@@ -1885,7 +1890,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SSerializerPluginConfiguration getSerializerById(Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
+		requireAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			return bimServer.getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByIdDatabaseAction(session, accessMethod, oid)));
@@ -1975,7 +1980,7 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public SSerializerPluginConfiguration getSerializerByName(String serializerName) throws ServerException, UserException {
-		requireRealUserAuthentication();
+		requireAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			return bimServer.getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByNameDatabaseAction(session, accessMethod, serializerName)));
@@ -3414,9 +3419,13 @@ public class Service implements ServiceInterface {
 	}
 
 	public void registerAll(Long endPointId) throws ServerException, UserException {
-		requireRealUserAuthentication();
+		requireAuthentication();
 		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
-		bimServer.getNotificationsManager().register(getCurrentUser().getOid(), endPoint);
+		if (getCurrentUser() == null) {
+			bimServer.getNotificationsManager().register(-1, endPoint);
+		} else {
+			bimServer.getNotificationsManager().register(getCurrentUser().getOid(), endPoint);
+		}
 	}
 	
 	@Override
@@ -3663,5 +3672,87 @@ public class Service implements ServiceInterface {
 	@Override
 	public void cleanupDownload(Long download) {
 		bimServer.getLongActionManager().remove(download);
+	}
+
+	@Override
+	public SSystemInfo getSystemInfo() {
+		SSystemInfo systemInfo = new SSystemInfo();
+		systemInfo.setCpucores(Runtime.getRuntime().availableProcessors());
+		systemInfo.setDatetime(new GregorianCalendar().getTime());
+		systemInfo.setOsname(System.getProperty("os.name"));
+		systemInfo.setOsversion(System.getProperty("os.version"));
+		systemInfo.setUserName(System.getProperty("user.name"));
+		systemInfo.setUserHome(System.getProperty("user.home"));
+		systemInfo.setUserDir(System.getProperty("user.dir"));
+		return systemInfo;
+	}
+
+	@Override
+	public SJavaInfo getJavaInfo() {
+		SJavaInfo javaInfo = new SJavaInfo();
+		javaInfo.setHeapTotal(Runtime.getRuntime().totalMemory());
+		javaInfo.setHeapUsed(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
+		javaInfo.setHeapFree(Runtime.getRuntime().freeMemory());
+		javaInfo.setHeapMax(Runtime.getRuntime().maxMemory());
+		javaInfo.setThreads(Thread.activeCount());
+		javaInfo.setJavaHome(System.getProperty("java.home"));
+		javaInfo.setJavaVersion(System.getProperty("java.version"));
+		javaInfo.setJavaVendor(System.getProperty("java.vendor"));
+		javaInfo.setJavaVendorurl(System.getProperty("java.vendor.url"));
+		javaInfo.setJavavmVersion(System.getProperty("java.vm.version"));
+		javaInfo.setJavavmVendor(System.getProperty("java.vm.vendor"));
+		javaInfo.setJavavmName(System.getProperty("java.vm.name"));
+		javaInfo.setJavaspecVersion(System.getProperty("java.specification.version"));
+		javaInfo.setJavaspecVendor(System.getProperty("java.specification.vendor"));
+		javaInfo.setJavaspecName(System.getProperty("java.specification.name"));
+		javaInfo.setJavaClassVersion(System.getProperty("java.class.version"));
+		
+		for (String classp : System.getProperty("java.class.path").split(File.pathSeparator)) {
+			javaInfo.getJavaClasspath().add(classp);
+		}
+		for (String classp : System.getProperty("java.library.path").split(File.pathSeparator)) {
+			javaInfo.getJavaLibrarypath().add(classp);
+		}
+		javaInfo.setJavaIoTmp(System.getProperty("java.io.tmpdir"));
+		javaInfo.setJavaCompiler(System.getProperty("java.compiler"));
+		javaInfo.setJavaExtdir(System.getProperty("java.ext.dirs"));
+		javaInfo.setJavaFileSeparator(System.getProperty("file.separator"));
+		javaInfo.setJavaPathSeparator(System.getProperty("path.separator"));
+		javaInfo.setJavaLineSeparator(System.getProperty("line.separator"));
+		
+		return javaInfo;
+	}
+
+	@Override
+	public SBimServerInfo getBimServerInfo() throws ServerException, UserException {
+		SBimServerInfo bimServerInfo = new SBimServerInfo();
+		SVersion version = bimServer.getVersionChecker().getLocalVersion();
+		SVersion latestVersion = bimServer.getVersionChecker().getOnlineVersion();
+		
+		SDatabaseInformation databaseInformation = getDatabaseInformation();
+		
+		bimServerInfo.setCurrentVersion(version.getMajor() + "." + version.getMinor() + "." + version.getRevision());
+		bimServerInfo.setCurrentDate(version.getDate());
+		bimServerInfo.setLatestVersion(latestVersion.getMajor() + "." + latestVersion.getMinor() + "." + latestVersion.getRevision());
+		bimServerInfo.setLatestDate(latestVersion.getDate());
+		bimServerInfo.setCheckouts(databaseInformation.getNumberOfCheckouts());
+		bimServerInfo.setRevisions(databaseInformation.getNumberOfRevisions());
+		bimServerInfo.setUsers(databaseInformation.getNumberOfUsers());
+		bimServerInfo.setProjects(databaseInformation.getNumberOfProjects());
+		bimServerInfo.setSchemaVersion(databaseInformation.getSchemaVersion());
+		bimServerInfo.setServerLogUrl(bimServer.getServerSettingsCache().getServerSettings().getSiteAddress() + "/download?action=getfile&file=serverlog");
+		bimServerInfo.setStarted(getServerStartTime());
+		
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.setTime(getServerStartTime());
+		bimServerInfo.setUptime(Formatters.timeSpanToString(gc, new GregorianCalendar()));
+		
+		return bimServerInfo;
+	}
+
+	@Override
+	public String shareRevision(Long roid) {
+		ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(roid, -1, -1, -1);
+		return authorization.asHexToken(bimServer.getEncryptionKey());
 	}
 }

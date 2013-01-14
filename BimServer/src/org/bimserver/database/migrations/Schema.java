@@ -177,6 +177,10 @@ public class Schema {
 		return eAttribute;
 	}
 
+	public EAttribute createEAttribute(EClass eClass, String name, EDataType eDataType) {
+		return createEAttribute(eClass, name, eDataType, Multiplicity.SINGLE);
+	}
+	
 	private boolean isNew(EClass eClass) {
 		for (Change change : changes) {
 			if (change instanceof NewClassChange) {

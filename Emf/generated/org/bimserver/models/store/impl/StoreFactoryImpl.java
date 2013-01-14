@@ -21,6 +21,7 @@ import javax.activation.DataHandler;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.ArrayDefinition;
 import org.bimserver.models.store.ArrayType;
+import org.bimserver.models.store.BimServerInfo;
 import org.bimserver.models.store.BooleanType;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CheckoutResult;
@@ -48,6 +49,7 @@ import org.bimserver.models.store.IfcEnginePluginConfiguration;
 import org.bimserver.models.store.IfcEnginePluginDescriptor;
 import org.bimserver.models.store.ImmediateNotificationResult;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
+import org.bimserver.models.store.JavaInfo;
 import org.bimserver.models.store.ListDataValue;
 import org.bimserver.models.store.LongAction;
 import org.bimserver.models.store.LongActionState;
@@ -101,6 +103,7 @@ import org.bimserver.models.store.SimpleDataValue;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.StringType;
+import org.bimserver.models.store.SystemInfo;
 import org.bimserver.models.store.Token;
 import org.bimserver.models.store.Trigger;
 import org.bimserver.models.store.Type;
@@ -320,6 +323,12 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createExternalServiceUpdate();
 		case StorePackage.PERCENTAGE_CHANGE:
 			return (EObject) createPercentageChange();
+		case StorePackage.SYSTEM_INFO:
+			return (EObject) createSystemInfo();
+		case StorePackage.JAVA_INFO:
+			return (EObject) createJavaInfo();
+		case StorePackage.BIM_SERVER_INFO:
+			return (EObject) createBimServerInfo();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -1193,6 +1202,36 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public PercentageChange createPercentageChange() {
 		PercentageChangeImpl percentageChange = new PercentageChangeImpl();
 		return percentageChange;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SystemInfo createSystemInfo() {
+		SystemInfoImpl systemInfo = new SystemInfoImpl();
+		return systemInfo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public JavaInfo createJavaInfo() {
+		JavaInfoImpl javaInfo = new JavaInfoImpl();
+		return javaInfo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BimServerInfo createBimServerInfo() {
+		BimServerInfoImpl bimServerInfo = new BimServerInfoImpl();
+		return bimServerInfo;
 	}
 
 	/**

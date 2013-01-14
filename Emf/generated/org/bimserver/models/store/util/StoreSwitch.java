@@ -18,6 +18,7 @@ package org.bimserver.models.store.util;
 
 import org.bimserver.models.store.ArrayDefinition;
 import org.bimserver.models.store.ArrayType;
+import org.bimserver.models.store.BimServerInfo;
 import org.bimserver.models.store.BooleanType;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CheckoutResult;
@@ -43,6 +44,7 @@ import org.bimserver.models.store.IfcEnginePluginConfiguration;
 import org.bimserver.models.store.IfcEnginePluginDescriptor;
 import org.bimserver.models.store.ImmediateNotificationResult;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
+import org.bimserver.models.store.JavaInfo;
 import org.bimserver.models.store.ListDataValue;
 import org.bimserver.models.store.LongAction;
 import org.bimserver.models.store.LongActionState;
@@ -90,6 +92,7 @@ import org.bimserver.models.store.ServiceType;
 import org.bimserver.models.store.SimpleDataValue;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.StringType;
+import org.bimserver.models.store.SystemInfo;
 import org.bimserver.models.store.Token;
 import org.bimserver.models.store.Type;
 import org.bimserver.models.store.TypeDefinition;
@@ -788,6 +791,27 @@ public class StoreSwitch<T> extends Switch<T> {
 			T result = casePercentageChange(percentageChange);
 			if (result == null)
 				result = caseExternalServiceUpdate(percentageChange);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.SYSTEM_INFO: {
+			SystemInfo systemInfo = (SystemInfo) theEObject;
+			T result = caseSystemInfo(systemInfo);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.JAVA_INFO: {
+			JavaInfo javaInfo = (JavaInfo) theEObject;
+			T result = caseJavaInfo(javaInfo);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.BIM_SERVER_INFO: {
+			BimServerInfo bimServerInfo = (BimServerInfo) theEObject;
+			T result = caseBimServerInfo(bimServerInfo);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -1994,6 +2018,51 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePercentageChange(PercentageChange object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>System Info</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>System Info</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSystemInfo(SystemInfo object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Java Info</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Java Info</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJavaInfo(JavaInfo object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Bim Server Info</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Bim Server Info</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBimServerInfo(BimServerInfo object) {
 		return null;
 	}
 
