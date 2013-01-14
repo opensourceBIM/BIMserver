@@ -35,6 +35,7 @@ public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
 	public JsonBimServerClientFactory(String address) {
 		super();
 		this.address = address;
+		this.jsonSocketReflectorFactory = new JsonSocketReflectorFactory(getServicesMap());
 	}
 
 	@Override
