@@ -32,6 +32,7 @@ import javax.jws.soap.SOAPBinding.Use;
 import javax.xml.bind.annotation.XmlMimeType;
 
 import org.bimserver.interfaces.objects.SAccessMethod;
+import org.bimserver.interfaces.objects.SBimServerInfo;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SCompareResult;
 import org.bimserver.interfaces.objects.SCompareType;
@@ -48,6 +49,7 @@ import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
+import org.bimserver.interfaces.objects.SJavaInfo;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongAction;
 import org.bimserver.interfaces.objects.SLongActionState;
@@ -78,6 +80,7 @@ import org.bimserver.interfaces.objects.SServiceMethod;
 import org.bimserver.interfaces.objects.SServiceParameter;
 import org.bimserver.interfaces.objects.SServicePluginDescriptor;
 import org.bimserver.interfaces.objects.SServiceType;
+import org.bimserver.interfaces.objects.SSystemInfo;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.interfaces.objects.SVersion;
@@ -831,7 +834,8 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "requestPasswordChange")
 	void requestPasswordChange(
-		@WebParam(name = "username", partName = "requestPasswordChange.username") String username) throws ServerException, UserException;
+		@WebParam(name = "username", partName = "requestPasswordChange.username") String username,
+		@WebParam(name = "resetUrl", partName = "requestPasswordChange.resetUrl") String resetUrl) throws ServerException, UserException;
 
 	/**
 	 * @param uoid The ObejctID of the User
@@ -2254,4 +2258,14 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "cleanupDownload")
 	void cleanupDownload(
 		@WebParam(name = "download", partName = "cleanupDownload.download") Long download);
+
+	@WebMethod(action = "getSystemInfo")
+	SSystemInfo getSystemInfo();
+	
+	@WebMethod(action = "getJavaInfo")
+	SJavaInfo getJavaInfo();
+
+	@WebMethod(action = "getBimServerInfo")
+	SBimServerInfo getBimServerInfo() throws ServerException, UserException;
+	
 }
