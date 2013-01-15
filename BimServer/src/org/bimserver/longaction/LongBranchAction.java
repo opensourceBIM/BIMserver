@@ -21,16 +21,22 @@ import org.bimserver.BimServer;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.webservices.authorization.Authorization;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LongBranchAction extends LongAction<LongCheckinActionKey> {
+	private static final Logger LOGGER = LoggerFactory.getLogger(LongBranchAction.class);
+
+	private BimDatabaseAction<ConcreteRevision> action;
 
 	public LongBranchAction(BimServer bimServer, String username, String userUsername, Authorization authorization, BimDatabaseAction<ConcreteRevision> action) {
 		super(bimServer, username, userUsername, authorization);
+		this.action = action;
 	}
 
 	@Override
 	public String getDescription() {
-		return null;
+		return "Branch to new project";
 	}
 
 	@Override
@@ -39,5 +45,10 @@ public class LongBranchAction extends LongAction<LongCheckinActionKey> {
 
 	@Override
 	public void execute() {
+		try {
+			action.execute();
+		} catch (Exception e) {
+			LOGGER.error("", e);
+		}
 	}
 }

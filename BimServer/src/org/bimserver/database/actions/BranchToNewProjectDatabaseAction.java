@@ -43,7 +43,7 @@ public class BranchToNewProjectDatabaseAction extends BimDatabaseAction<Concrete
 	private final String projectName;
 	private final String comment;
 	private Authorization authorization;
-	
+
 	public BranchToNewProjectDatabaseAction(DatabaseSession session, AccessMethod accessMethod, BimServer bimServer, Authorization authorization, Long roid, String projectName,
 			String comment) {
 		super(session, accessMethod);
@@ -65,7 +65,7 @@ public class BranchToNewProjectDatabaseAction extends BimDatabaseAction<Concrete
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision subRevision : oldRevision.getConcreteRevisions()) {
 			IfcModel subModel = new IfcModel();
-			getDatabaseSession().getMap(subModel, new Query(subRevision.getProject().getId(), subRevision.getId(), Deep.YES));
+			getDatabaseSession().getMap(subModel, new Query(subRevision.getProject().getId(), subRevision.getId(), Deep.NO));
 			subModel.setDate(subRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
