@@ -2268,4 +2268,6 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getBimServerInfo")
 	SBimServerInfo getBimServerInfo() throws ServerException, UserException;
 	
+	@WebMethod(action = "shareRevision")
+	String shareRevision(@WebParam(name = "roid", partName = "shareRevision.roid") Long roid);
 }

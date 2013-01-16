@@ -82,6 +82,7 @@ import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.Parameter;
 import org.bimserver.models.store.ParameterDefinition;
 import org.bimserver.models.store.PluginConfiguration;
+import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.ServerInfo;
@@ -636,23 +637,6 @@ public class BimServer {
 				session.store(deserializerPluginConfiguration);
 			}
 		}
-		Collection<Plugin> allPlugins = pluginManager.getAllPlugins(false);
-		for (Plugin plugin : allPlugins) {
-			Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginConfiguration_Name(), new StringLiteral(plugin.getClass().getName()));
-			Map<Long, PluginConfiguration> results = session.query(pluginCondition, PluginConfiguration.class, Query.getDefault());
-			if (results.size() == 0) {
-				PluginConfiguration pluginObject = StoreFactory.eINSTANCE.createPluginConfiguration();
-				pluginObject.setName(plugin.getClass().getName());
-				pluginObject.setEnabled(true); // New plugins are enabled by
-												// default
-				session.store(pluginObject);
-			} else if (results.size() == 1) {
-				PluginConfiguration pluginConfiguration = results.values().iterator().next();
-				pluginManager.getPluginContext(plugin).setEnabled(pluginConfiguration.getEnabled(), false);
-			} else {
-				LOGGER.error("Multiple plugin objects found with the same name: " + plugin.getClass().getName());
-			}
-		}
 		session.store(userSettings);
 	}
 
@@ -688,6 +672,7 @@ public class BimServer {
 			DatabaseSession session = bimDatabase.createSession();
 
 			createDatabaseObjects(session);
+			updatePlugins(session);
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral("system"));
 			User systemUser = session.querySingle(condition, User.class, Query.getDefault());
 
@@ -707,6 +692,26 @@ public class BimServer {
 			throw new BimserverDatabaseException(e);
 		} catch (PluginException e) {
 			throw new BimserverDatabaseException(e);
+		}
+	}
+
+	private void updatePlugins(DatabaseSession session) throws BimserverDatabaseException {
+		Collection<Plugin> allPlugins = pluginManager.getAllPlugins(false);
+		for (Plugin plugin : allPlugins) {
+			Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_PluginClassName(), new StringLiteral(plugin.getClass().getName()));
+			Map<Long, PluginDescriptor> results = session.query(pluginCondition, PluginDescriptor.class, Query.getDefault());
+			if (results.size() == 0) {
+				PluginDescriptor pluginDescriptor = StoreFactory.eINSTANCE.createPluginDescriptor();
+				pluginDescriptor.setPluginClassName(plugin.getClass().getName());
+				pluginDescriptor.setEnabled(true); // New plugins are enabled by
+												// default
+				session.store(pluginDescriptor);
+			} else if (results.size() == 1) {
+				PluginDescriptor pluginDescriptor = results.values().iterator().next();
+				pluginManager.getPluginContext(plugin).setEnabled(pluginDescriptor.getEnabled(), false);
+			} else {
+				LOGGER.error("Multiple plugin descriptor objects found with the same name: " + plugin.getClass().getName());
+			}
 		}
 	}
 

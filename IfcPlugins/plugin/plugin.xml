@@ -2,6 +2,11 @@
 <PluginDescriptor>
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
+		<implementationClass>org.bimserver.serializers.JsonSerializerPlugin</implementationClass>
+	</PluginImplementation>
+
+	<PluginImplementation>
+		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin</implementationClass>
 	</PluginImplementation>
 	<PluginImplementation>
