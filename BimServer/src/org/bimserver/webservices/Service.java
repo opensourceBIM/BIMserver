@@ -2036,6 +2036,21 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
+	public SSerializerPluginConfiguration getSerializerByPluginClassName(String pluginClassName) throws ServerException, UserException {
+		// Not checking for real authentication here because a remote service should be able to use a serializer for download call
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			return bimServer.getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByPluginClassNameDatabaseAction(session, accessMethod, pluginClassName)));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
 	public Boolean hasActiveSerializer(String contentType) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {

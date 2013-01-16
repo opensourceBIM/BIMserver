@@ -288,6 +288,10 @@ function BimServerApi(baseUrl, notifier) {
 		});		
 	};
 	
+	this.getModel = function(roid, deep) {
+		return new Model(othis, roid, deep);
+	};
+	
 	this.callWithFullIndication = function(interfaceName, methodName, data, callback) {
 		othis.call(interfaceName, methodName, data, callback, true, true, true);
 	};
@@ -323,6 +327,46 @@ function BimServerApi(baseUrl, notifier) {
 	};
 	
 	othis.server.listener = othis.processNotification;
+}
+
+function Model(bimServerApi, roid, deep) {
+	var othis = this;
+	othis.objects = {};
+	console.log("lalalala");
+	if (deep) {
+		bimServerApi.call("ServiceInterface", "getSerializerByPluginClassName", {pluginClassName: "org.bimserver.serializers.JsonSerializerPlugin"}, function(serializer){
+			bimServerApi.call("ServiceInterface", "download", {
+				roid: roid,
+				serializerOid: serializer.oid,
+				showOwn: true,
+				sync: true
+			}, function(laid){
+				var url = bimServerApi.generateRevisionDownloadUrl({
+					laid: laid,
+					serializerOid: serializer.oid
+				});
+				$.getJSON(url, function(data, textStatus, jqXHR){
+					data.objects.forEach(function(object){
+						othis.objects[object.oid] = object;
+					});
+				});
+			});
+		});
+	}
+	
+	this.get = function(oid) {
+		return othis.objects[oid];
+	};
+
+	this.getAllOfType = function(type, includeAllSubTypes, callback) {
+		for (var oid in othis.objects) {
+			var object = othis.objects[oid];
+			console.log(object);
+			if (object.type == type) {
+				callback(object);
+			}
+		}
+	};
 }
 
 function BimServerWebSocket(baseUrl) {

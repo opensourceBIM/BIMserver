@@ -1387,6 +1387,15 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getSerializerByContentType")
 	SSerializerPluginConfiguration getSerializerByContentType(
 		@WebParam(name = "contentType", partName = "getSerializerByContentType.contentType") String contentType) throws ServerException, UserException;
+
+	/**
+	 * @param contentType The ContentType
+	 * @return Serializer supporting the given ContentType
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getSerializerByPluginClassName")
+	SSerializerPluginConfiguration getSerializerByPluginClassName(
+		@WebParam(name = "pluginClassName", partName = "getSerializerByPluginClassName.pluginClassName") String pluginClassName) throws ServerException, UserException;
 	
 	/**
 	 * @param pid ObjectID of the Project to start a transaction on
