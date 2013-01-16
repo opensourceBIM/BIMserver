@@ -156,16 +156,14 @@ public class BimServer {
 	private EmbeddedWebServer embeddedWebServer;
 	private final BimServerConfig config;
 	private ProtocolBuffersServer protocolBuffersServer;
-	private JsonHandler jsonHandler = new JsonHandler(this);
+	private final JsonHandler jsonHandler = new JsonHandler(this);
 	private CommandLine commandLine;
 	private ServerSettingsCache serverSettingsCache;
 	private ReflectorFactory reflectorFactory;
-	private EndPointManager endPointManager = new EndPointManager();
-	private SConverter sConverter = new SConverter();
-	private LongTransactionManager longTransactionManager = new LongTransactionManager();
-
+	private final EndPointManager endPointManager = new EndPointManager();
+	private final SConverter sConverter = new SConverter();
+	private final LongTransactionManager longTransactionManager = new LongTransactionManager();
 	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
-
 	private SecretKeySpec encryptionkey;
 
 	/**

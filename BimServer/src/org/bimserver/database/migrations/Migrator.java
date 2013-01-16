@@ -25,7 +25,10 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StorePackage;
 
 public class Migrator {
 	private final Database database;
@@ -109,17 +112,19 @@ public class Migrator {
 			}
 		}
 		
-//		Schema emfSchema = new Schema();
-//		emfSchema.addEPackage(StorePackage.eINSTANCE);
-//		emfSchema.addEPackage(LogPackage.eINSTANCE);
-//		emfSchema.addEPackage(Ifc2x3tc1Package.eINSTANCE);
-//		
+		Schema emfSchema = new Schema();
+		emfSchema.addEPackage(StorePackage.eINSTANCE);
+		emfSchema.addEPackage(LogPackage.eINSTANCE);
+		emfSchema.addEPackage(Ifc2x3tc1Package.eINSTANCE);
+		
+		// Check whether the migrated schema is the same as the programmatic schema		
 //		SchemaChecker checker = new SchemaChecker(schema, emfSchema);
-//		if (checker.compare()) {
-//			return schema;
-//		} else {
-//			throw new InconsistentModelsException();
+//		try {
+//			checker.compare();
+//		} catch (SchemaCompareException e) {
+//			throw new InconsistentModelsException(e);
 //		}
+		
 		return schema;
 	}
 
