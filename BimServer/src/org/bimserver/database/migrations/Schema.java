@@ -25,6 +25,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
@@ -50,7 +51,7 @@ import org.slf4j.LoggerFactory;
 
 public class Schema {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Schema.class);
-	private final Map<String, EPackage> packages = new HashMap<String, EPackage>();
+	private final Map<String, EPackage> packages = new TreeMap<String, EPackage>();
 	private final Map<EClass, Set<EClass>> directSubClasses = new HashMap<EClass, Set<EClass>>();
 	private final Map<EClass, Set<EClass>> indirectSubClasses = new HashMap<EClass, Set<EClass>>();
 	

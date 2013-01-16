@@ -48,6 +48,7 @@ public class CreateObjectChange implements Change {
 		eObject.setOid(oid);
 		eObject.setPid(pid);
 		eObject.setRid(rid);
+		((IdEObjectImpl)eObject).setLoaded();
 		databaseSession.store(eObject, pid, rid);
 		created.put(oid, eObject);
 	}

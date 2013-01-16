@@ -1372,18 +1372,22 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	public long store(IdEObject object, int pid, int rid) throws BimserverDatabaseException {
 		checkOpen();
 		if (!objectsToCommit.containsObject(object)) {
-			if (object.getOid() == -1) {
-				long newOid = newOid(object.eClass());
-				((IdEObjectImpl) object).setOid(newOid);
+			objectCache.put(new RecordIdentifier(pid, object.getOid(), rid), object);
+			boolean wrappedValue = Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(object.eClass());
+			if (!wrappedValue) {
+				if (object.getOid() == -1) {
+					long newOid = newOid(object.eClass());
+					((IdEObjectImpl) object).setOid(newOid);
+				}
+				object.load();
+				((IdEObjectImpl) object).setPid(pid);
+				if (rid == Integer.MAX_VALUE) {
+					((IdEObjectImpl) object).setRid(object.getRid() + 1);
+				} else {
+					((IdEObjectImpl) object).setRid(rid);
+				}
+				addToObjectsToCommit(object);
 			}
-			object.load();
-			((IdEObjectImpl) object).setPid(pid);
-			if (rid == Integer.MAX_VALUE) {
-				((IdEObjectImpl) object).setRid(object.getRid() + 1);
-			} else {
-				((IdEObjectImpl) object).setRid(rid);
-			}
-			addToObjectsToCommit(object);
 		}
 		return object.getOid();
 	}
