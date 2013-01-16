@@ -44,7 +44,6 @@ public class SRevision implements SDataBase
 	private java.lang.String tag;
 	private java.lang.String lastError;
 	private java.lang.Integer bmi;
-	private java.lang.Long laid;
 	private List<Long> extendedData = new ArrayList<Long>();
 	private List<Long> logs = new ArrayList<Long>();
 	private boolean hasGeometry;
@@ -110,9 +109,6 @@ public class SRevision implements SDataBase
 		}
 		if (sField.getName().equals("bmi")) {
 			return getBmi();
-		}
-		if (sField.getName().equals("laid")) {
-			return getLaid();
 		}
 		if (sField.getName().equals("extendedData")) {
 			return getExtendedData();
@@ -180,10 +176,6 @@ public class SRevision implements SDataBase
 		}
 		if (sField.getName().equals("bmi")) {
 			setBmi((Integer)val);
-			return;
-		}
-		if (sField.getName().equals("laid")) {
-			setLaid((Long)val);
 			return;
 		}
 		if (sField.getName().equals("extendedData")) {
@@ -303,14 +295,6 @@ public class SRevision implements SDataBase
 
 	public void setBmi(java.lang.Integer bmi) {
 		this.bmi = bmi;
-	}
-	
-	public java.lang.Long getLaid() {
-		return laid;
-	}
-
-	public void setLaid(java.lang.Long laid) {
-		this.laid = laid;
 	}
 	
 	public List<Long> getExtendedData() {

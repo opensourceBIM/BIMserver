@@ -90,6 +90,7 @@
           eType="#/0/Service" eOpposite="#/0/Service/user"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="logs" upperBound="-1"
           eType="#/2/LogAction"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="test" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Revision">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -109,7 +110,6 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="tag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastError" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="bmi" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="laid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
           eType="#/0/ExtendedData" eOpposite="#/0/ExtendedData/revision"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="logs" upperBound="-1"

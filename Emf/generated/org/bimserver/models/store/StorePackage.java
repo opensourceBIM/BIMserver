@@ -434,13 +434,22 @@ public interface StorePackage extends EPackage {
 	int USER__LOGS = 17;
 
 	/**
+	 * The feature id for the '<em><b>Test</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__TEST = 18;
+
+	/**
 	 * The number of structural features of the '<em>User</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_FEATURE_COUNT = 18;
+	int USER_FEATURE_COUNT = 19;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.RevisionImpl <em>Revision</em>}' class.
@@ -561,22 +570,13 @@ public interface StorePackage extends EPackage {
 	int REVISION__BMI = 11;
 
 	/**
-	 * The feature id for the '<em><b>Laid</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REVISION__LAID = 12;
-
-	/**
 	 * The feature id for the '<em><b>Extended Data</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION__EXTENDED_DATA = 13;
+	int REVISION__EXTENDED_DATA = 12;
 
 	/**
 	 * The feature id for the '<em><b>Logs</b></em>' reference list.
@@ -585,7 +585,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION__LOGS = 14;
+	int REVISION__LOGS = 13;
 
 	/**
 	 * The feature id for the '<em><b>Has Geometry</b></em>' attribute.
@@ -594,7 +594,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION__HAS_GEOMETRY = 15;
+	int REVISION__HAS_GEOMETRY = 14;
 
 	/**
 	 * The number of structural features of the '<em>Revision</em>' class.
@@ -603,7 +603,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_FEATURE_COUNT = 16;
+	int REVISION_FEATURE_COUNT = 15;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -6092,6 +6092,17 @@ public interface StorePackage extends EPackage {
 	EReference getUser_Logs();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.User#getTest <em>Test</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Test</em>'.
+	 * @see org.bimserver.models.store.User#getTest()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EAttribute getUser_Test();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Revision <em>Revision</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6232,17 +6243,6 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRevision_Bmi();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Revision#getLaid <em>Laid</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Laid</em>'.
-	 * @see org.bimserver.models.store.Revision#getLaid()
-	 * @see #getRevision()
-	 * @generated
-	 */
-	EAttribute getRevision_Laid();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Revision#getExtendedData <em>Extended Data</em>}'.
@@ -10717,6 +10717,14 @@ public interface StorePackage extends EPackage {
 		EReference USER__LOGS = eINSTANCE.getUser_Logs();
 
 		/**
+		 * The meta object literal for the '<em><b>Test</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER__TEST = eINSTANCE.getUser_Test();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.RevisionImpl <em>Revision</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10821,14 +10829,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute REVISION__BMI = eINSTANCE.getRevision_Bmi();
-
-		/**
-		 * The meta object literal for the '<em><b>Laid</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute REVISION__LAID = eINSTANCE.getRevision_Laid();
 
 		/**
 		 * The meta object literal for the '<em><b>Extended Data</b></em>' reference list feature.

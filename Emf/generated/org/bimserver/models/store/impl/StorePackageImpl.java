@@ -1142,6 +1142,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getUser_Test() {
+		return (EAttribute) getUser().getEStructuralFeatures().get(18);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRevision() {
 		if (revisionEClass == null) {
 			revisionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(5);
@@ -1262,17 +1271,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRevision_Laid() {
-		return (EAttribute) getRevision().getEStructuralFeatures().get(12);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getRevision_ExtendedData() {
-		return (EReference) getRevision().getEStructuralFeatures().get(13);
+		return (EReference) getRevision().getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -1281,7 +1281,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getRevision_Logs() {
-		return (EReference) getRevision().getEStructuralFeatures().get(14);
+		return (EReference) getRevision().getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -1290,7 +1290,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EAttribute getRevision_HasGeometry() {
-		return (EAttribute) getRevision().getEStructuralFeatures().get(15);
+		return (EAttribute) getRevision().getEStructuralFeatures().get(14);
 	}
 
 	/**

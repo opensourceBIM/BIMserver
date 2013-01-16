@@ -31,6 +31,8 @@ import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.KeyValueStore;
 import org.bimserver.database.actions.DownloadDatabaseAction;
+import org.bimserver.database.migrations.InconsistentModelsException;
+import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.models.ifc2x3tc1.IfcSlab;
@@ -131,6 +133,15 @@ public class CommandLine extends Thread {
 					try {
 						Thread.sleep(10000);
 					} catch (InterruptedException e) {
+						LOGGER.error("", e);
+					}
+				} else if (line.equals("migrate")) {
+					try {
+						bimServer.getDatabase().getMigrator().migrate();
+						bimServer.getServerInfoManager().update();
+					} catch (MigrationException e) {
+						LOGGER.error("", e);
+					} catch (InconsistentModelsException e) {
 						LOGGER.error("", e);
 					}
 				} else if (line.equals("clearendpoints")) {
