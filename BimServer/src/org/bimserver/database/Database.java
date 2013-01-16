@@ -72,22 +72,22 @@ public class Database implements BimDatabase {
 	private final DoubleHashMap<Short, EClass> classifiers = new DoubleHashMap<Short, EClass>();
 	private final List<String> realClasses = new ArrayList<String>();
 	private final Map<EClass, AtomicLong> oidCounters = new HashMap<EClass, AtomicLong>();
-	private AtomicInteger pidCounter = new AtomicInteger(1);
+	private final AtomicInteger pidCounter = new AtomicInteger(1);
 	private final Registry registry;
 	private Date created;
 	private final Set<DatabaseSession> sessions = Collections.newSetFromMap(new ConcurrentHashMap<DatabaseSession, Boolean>());
 	private int databaseSchemaVersion;
 	private short tableId;
 	private Migrator migrator;
-	private MetaDataManager metaDataManager = new MetaDataManager();
+	private final MetaDataManager metaDataManager = new MetaDataManager();
 	private final BimServer bimServer;
 
 	/*
 	 * This variable should be _incremented_ with every (released)
-	 * database-schema change Do not change this variable when nothing has
+	 * database-schema change. Do not change this variable when nothing has
 	 * changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 26;
+	public static final int APPLICATION_SCHEMA_VERSION = 3;
 
 	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, KeyValueStore keyValueStore) throws DatabaseInitException {
 		this.bimServer = bimServer;
@@ -257,7 +257,7 @@ public class Database implements BimDatabase {
 							oidCounters.put(eClass, new AtomicLong(oid));
 						}
 						if (pid > pidCounter.get()) {
-							pidCounter = new AtomicInteger(pid);
+							pidCounter.set(pid);
 						}
 					}
 				} finally {

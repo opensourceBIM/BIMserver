@@ -408,7 +408,6 @@ public class BimServer {
 			bimScheduler = new JobScheduler(this);
 			bimScheduler.start();
 
-			DatabaseSession session = bimDatabase.createSession();
 			try {
 				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactory, servicesMap, config.getInitialProtocolBuffersPort());
 				protocolBuffersServer.start();
@@ -416,26 +415,10 @@ public class BimServer {
 				LOGGER.error("", e);
 			}
 
-			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral("system"));
-			User systemUser = session.querySingle(condition, User.class, Query.getDefault());
-
-			ServerStarted serverStarted = LogFactory.eINSTANCE.createServerStarted();
-			serverStarted.setDate(new Date());
-			serverStarted.setAccessMethod(AccessMethod.INTERNAL);
-			serverStarted.setExecutor(systemUser);
-			try {
-				session.store(serverStarted);
-				session.commit();
-			} catch (BimserverLockConflictException e) {
-				throw new BimserverDatabaseException(e);
-			} finally {
-				session.close();
-			}
 			if (config.isStartCommandLine()) {
 				commandLine = new CommandLine(this);
 				commandLine.start();
 			}
-			LOGGER.info("Done starting BIMserver");
 		} catch (Throwable e) {
 			serverInfoManager.setErrorMessage(e.getMessage());
 			LOGGER.error("", e);
@@ -451,13 +434,11 @@ public class BimServer {
 	 * objects in the database for configuration purposes, this methods syncs
 	 * both versions
 	 */
-	private void createDatabaseObjects() throws BimserverLockConflictException, BimserverDatabaseException, PluginException, BimserverConcurrentModificationDatabaseException {
-		DatabaseSession session = bimDatabase.createSession();
+	private void createDatabaseObjects(DatabaseSession session) throws BimserverLockConflictException, BimserverDatabaseException, PluginException, BimserverConcurrentModificationDatabaseException {
 		IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getUser(), Query.getDefault());
 		for (User user : allOfType.getAll(User.class)) {
 			updateUserSettings(session, user);
 		}
-		session.commit();
 	}
 
 	private <T extends PluginConfiguration> T find(List<T> list, String name) {
@@ -706,7 +687,24 @@ public class BimServer {
 		getEmfSerializerFactory().init(pluginManager, bimDatabase);
 		getEmfDeserializerFactory().init(pluginManager);
 		try {
-			createDatabaseObjects();
+			DatabaseSession session = bimDatabase.createSession();
+
+			createDatabaseObjects(session);
+			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral("system"));
+			User systemUser = session.querySingle(condition, User.class, Query.getDefault());
+
+			ServerStarted serverStarted = LogFactory.eINSTANCE.createServerStarted();
+			serverStarted.setDate(new Date());
+			serverStarted.setAccessMethod(AccessMethod.INTERNAL);
+			serverStarted.setExecutor(systemUser);
+			try {
+				session.store(serverStarted);
+				session.commit();
+			} catch (BimserverLockConflictException e) {
+				throw new BimserverDatabaseException(e);
+			} finally {
+				session.close();
+			}
 		} catch (BimserverLockConflictException e) {
 			throw new BimserverDatabaseException(e);
 		} catch (PluginException e) {

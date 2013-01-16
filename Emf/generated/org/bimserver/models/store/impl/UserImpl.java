@@ -58,6 +58,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getExtendedData <em>Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getServices <em>Services</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getLogs <em>Logs</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.UserImpl#getTest <em>Test</em>}</li>
  * </ul>
  * </p>
  *
@@ -367,6 +368,24 @@ public class UserImpl extends IdEObjectImpl implements User {
 	@SuppressWarnings("unchecked")
 	public EList<LogAction> getLogs() {
 		return (EList<LogAction>) eGet(StorePackage.Literals.USER__LOGS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getTest() {
+		return (Integer) eGet(StorePackage.Literals.USER__TEST, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTest(int newTest) {
+		eSet(StorePackage.Literals.USER__TEST, newTest);
 	}
 
 } //UserImpl
