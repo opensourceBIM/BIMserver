@@ -714,15 +714,15 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Long downloadByOids(Set<Long> roids, Set<Long> oids, Long serializerOid, Boolean sync) throws ServerException, UserException {
+	public Long downloadByOids(Set<Long> roids, Set<Long> oids, Long serializerOid, Boolean sync, Boolean deep) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromOids(bimServer, serializerOid, roids, oids), sync);
+		return download(DownloadParameters.fromOids(bimServer, serializerOid, roids, oids, deep), sync);
 	}
 
 	@Override
-	public Long downloadByTypes(Set<Long> roids, Set<String> classNames, Long serializerOid, Boolean includeAllSubtypes, Boolean useObjectIDM, Boolean sync) throws ServerException, UserException {
+	public Long downloadByTypes(Set<Long> roids, Set<String> classNames, Long serializerOid, Boolean includeAllSubtypes, Boolean useObjectIDM, Boolean deep, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		DownloadParameters fromClassNames = DownloadParameters.fromClassNames(bimServer, roids, classNames, includeAllSubtypes, serializerOid);
+		DownloadParameters fromClassNames = DownloadParameters.fromClassNames(bimServer, roids, classNames, includeAllSubtypes, serializerOid, deep);
 		fromClassNames.setUseObjectIDM(useObjectIDM);
 		return download(fromClassNames, sync);
 	}
