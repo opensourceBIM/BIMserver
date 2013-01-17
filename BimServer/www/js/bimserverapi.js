@@ -1,3 +1,11 @@
+if (typeof console === "undefined") {
+	console = {
+		log: function(msg){
+			print(msg);
+		}
+	};
+}
+
 function BimServerApi(baseUrl, notifier) {
 	var othis = this;
 	
@@ -73,9 +81,10 @@ function BimServerApi(baseUrl, notifier) {
 	};
 
 	this.processNotification = function(message) {
-		if (othis.listeners[message.interface] != null) {
-			if (othis.listeners[message.interface][message.method] != null) {
-				othis.listeners[message.interface][message.method].forEach(function(listener) {
+		var intf = message["interface"];
+		if (othis.listeners[intf] != null) {
+			if (othis.listeners[intf[message.method]] != null) {
+				othis.listeners[intf[message.method]].forEach(function(listener) {
 					var ar = [];
 					var i=0;
 					for (var key in message.parameters) {
@@ -158,7 +167,7 @@ function BimServerApi(baseUrl, notifier) {
 	
 	this.createRequest = function(interfaceName, method, data) {
 		var object = {};
-		object.interface = interfaceName;
+		object["interface"] = interfaceName;
 		object.method = method;
 		object.parameters = data;
 		
@@ -199,10 +208,12 @@ function BimServerApi(baseUrl, notifier) {
 				clearTimeout(othis.lastBusyTimeOut);
 				othis.lastBusyTimeOut = null;
 			}
-			othis.lastBusyTimeOut = setTimeout(function(){
-				othis.notifier.setStatus(othis.translate(key + "_BUSY"), -1);
-				showedBusy = true;
-			}, 200);
+			if (typeof window !== 'undefined' && window.setTimeout != null) {
+				othis.lastBusyTimeOut = window.setTimeout(function(){
+					othis.notifier.setStatus(othis.translate(key + "_BUSY"), -1);
+					showedBusy = true;
+				}, 200);
+			}
 		}
 		
 		othis.notifier.resetStatusQuick();
