@@ -2161,7 +2161,7 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		EClass eClass = ((Database) bimServer.getDatabase()).getEClassForName(className);
 		Long oid = bimServer.getDatabase().newOid(eClass);
-		CreateObjectChange createObject = new CreateObjectChange(className, oid);
+		CreateObjectChange createObject = new CreateObjectChange(className, oid, eClass);
 		bimServer.getLongTransactionManager().get(tid).add(createObject);
 		return oid;
 	}
@@ -2175,7 +2175,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void removeObject(Long tid, Long oid) throws UserException {
 		requireAuthenticationAndRunningServer();
-		bimServer.getLongTransactionManager().get(tid).add(new RemoveObjectChange(oid));
+		bimServer.getLongTransactionManager().get(tid).add(new RemoveObjectChange(oid, bimServer.getDatabase().getEClassForOid(oid)));
 	}
 
 	@Override

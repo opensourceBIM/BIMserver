@@ -25,15 +25,22 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.shared.exceptions.UserException;
+import org.eclipse.emf.ecore.EClass;
 
 public class RemoveObjectChange implements Change {
 
 	private final long oid;
+	private EClass eClass;
 
-	public RemoveObjectChange(long oid) {
+	public RemoveObjectChange(long oid, EClass eClass) {
 		this.oid = oid;
+		this.eClass = eClass;
 	}
 
+	public EClass geteClass() {
+		return eClass;
+	}
+	
 	@Override
 	public void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		IdEObject idEObject = databaseSession.get(oid, new Query(pid, rid - 1));

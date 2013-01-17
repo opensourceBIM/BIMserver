@@ -37,4 +37,6 @@ public interface BimDatabase {
 	MetaDataManager getMetaDataManager();
 
 	Registry getRegistry();
+
+	EClass getEClassForOid(long oid);
 }

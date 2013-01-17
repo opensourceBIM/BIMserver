@@ -553,18 +553,6 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return (T) get(idEObject, oid, model, query, todoList);
 	}
 
-	public EClass getEClassForOid(long oid) throws BimserverDatabaseException {
-		checkOpen();
-		ByteBuffer buffer = ByteBuffer.wrap(new byte[8]);
-		buffer.putLong(oid);
-		short cid = buffer.getShort(6);
-		EClass eClass = getEClassForCid(cid);
-		if (eClass == null) {
-			throw new RuntimeException("No class for cid " + cid);
-		}
-		return eClass;
-	}
-	
 	public IdEObject get(long oid, Query query) throws BimserverDatabaseException {
 		checkOpen();
 		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
@@ -1591,5 +1579,9 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	public <T extends IdEObject> List<T> getAllOfType(EClass eClass, Class<T> clazz, Query query) throws BimserverDatabaseException {
 		IfcModelInterface allOfType = getAllOfType(eClass.getName(), query);
 		return allOfType.getAllWithSubTypes(clazz);
+	}
+
+	public EClass getEClassForOid(long oid) {
+		return database.getEClassForOid(oid);
 	}
 }
