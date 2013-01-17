@@ -63,8 +63,9 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 	private Authorization authorization;
 	private long serializerOid;
 	private boolean useObjectIDM;
+	private Deep deep;
 
-	public DownloadByTypesDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> classNames, long serializerOid, boolean includeAllSubtypes, boolean useObjectIDM, Authorization authorization, ObjectIDM objectIDM, Reporter reporter) {
+	public DownloadByTypesDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> classNames, long serializerOid, boolean includeAllSubtypes, boolean useObjectIDM, Authorization authorization, ObjectIDM objectIDM, Reporter reporter, Deep deep) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roids = roids;
@@ -74,6 +75,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 		this.authorization = authorization;
 		this.classNames = classNames;
 		this.objectIDM = objectIDM;
+		this.deep = deep;
 	}
 
 	@Override
@@ -112,7 +114,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 				try {
 					HideAllInversesObjectIDM hideAllInversesObjectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), bimServer.getPluginManager().requireSchemaDefinition());
 					int highestStopId = findHighestStopRid(project, concreteRevision);
-					IfcModelInterface subModel = getDatabaseSession().getAllOfTypes(eClasses, new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), useObjectIDM ? objectIDM : hideAllInversesObjectIDM, Deep.YES, highestStopId));
+					IfcModelInterface subModel = getDatabaseSession().getAllOfTypes(eClasses, new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), useObjectIDM ? objectIDM : hideAllInversesObjectIDM, deep, highestStopId));
 					subModel.setDate(concreteRevision.getDate());
 					checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, virtualRevision);
 					ifcModelSet.add(subModel);

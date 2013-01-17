@@ -231,7 +231,8 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "roids", partName = "downloadCompareResults.roids") Set<Long> roids,
 		@WebParam(name = "oids", partName = "downloadCompareResults.oids") Set<Long> oids,
 		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
-		@WebParam(name = "sync", partName = "downloadCompareResults.sync") Boolean sync) throws ServerException, UserException;
+		@WebParam(name = "sync", partName = "downloadCompareResults.sync") Boolean sync,
+		@WebParam(name = "deep", partName = "downloadCompareResults.deep") Boolean deep) throws ServerException, UserException;
 
 	/**
 	 * Download a model in serialized format by giving a set of revisions and a set of class names to filter on
@@ -250,6 +251,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
 		@WebParam(name = "includeAllSubtypes", partName = "downloadByTypes.includeAllSubtypes") Boolean includeAllSubtypes,
 		@WebParam(name = "useObjectIDM", partName = "downloadByTypes.useObjectIDM") Boolean useObjectIDM,
+		@WebParam(name = "deep", partName = "downloadByTypes.deep") Boolean deep,
 		@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
 
 	/**

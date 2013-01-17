@@ -193,8 +193,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			return model.get(oid);
 		}
 		RecordIdentifier recordIdentifier = new RecordIdentifier(query.getPid(), oid, rid);
-		if (objectCache.contains(recordIdentifier)) {
-			return objectCache.get(recordIdentifier);
+		if (objectCache.contains(recordIdentifier.getOid())) {
+			return objectCache.get(recordIdentifier.getOid());
 		}
 		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		object.setOid(oid);
@@ -460,6 +460,19 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return keyBuffer;
 	}
 
+	private ByteBuffer createKeyBuffer(int pid, long oid) {
+		ByteBuffer keyBuffer = ByteBuffer.allocate(12);
+		fillKeyBuffer(keyBuffer, pid, oid);
+		return keyBuffer;
+	}
+
+	private ByteBuffer fillKeyBuffer(ByteBuffer buffer, int pid, long oid) {
+		buffer.position(0);
+		buffer.putInt(pid);
+		buffer.putLong(oid);
+		return buffer;
+	}
+
 	public void delete(IdEObject object) throws BimserverDatabaseException {
 		checkOpen();
 		if (perRecordVersioning(object)) {
@@ -605,7 +618,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		}
 		EClass eClass = getEClassForOid(oid);
 		RecordIdentifier recordIdentifier = new RecordIdentifier(query.getPid(), oid, query.getRid());
-		IdEObjectImpl cachedObject = objectCache.get(recordIdentifier);
+		IdEObjectImpl cachedObject = (IdEObjectImpl) objectCache.get(recordIdentifier);
 		if (cachedObject != null) {
 			idEObject = cachedObject;
 			if (cachedObject.getLoadingState() == State.LOADED && cachedObject.getRid() != Integer.MAX_VALUE) {
@@ -952,15 +965,37 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		}
 		// TODO check why clearCache??
 		objectCache.clear();
-		ByteBuffer key = createKeyBuffer(query.getPid(), oid, query.getRid());
-		byte[] value = database.getKeyValueStore().get(eClass.getEPackage().getName() + "_" + eClass.getName(), key.array(), this);
-		if (value == null) {
-			return null;
+		
+		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
+		ByteBuffer mustStartWith = createKeyBuffer(query.getPid(), oid);
+		ByteBuffer key = createKeyBuffer(query.getPid(), oid, -query.getStopRid());
+		SearchingRecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(),
+				mustStartWith.array(), key.array(), this);
+		checkOpen();
+		try {
+			Record record = recordIterator.next();
+			ByteBuffer nextKeyStart = ByteBuffer.allocate(12);
+			while (record != null) {
+				reads++;
+				ByteBuffer keyBuffer = ByteBuffer.wrap(record.getKey());
+				int keyPid = keyBuffer.getInt();
+				long keyOid = keyBuffer.getLong();
+				int keyRid = -keyBuffer.getInt();
+				ByteBuffer valueBuffer = ByteBuffer.wrap(record.getValue());
+				int map = getMap(eClass, eClass, model, valueBuffer, keyPid, keyOid, keyRid, query, todoList);
+				if (map == 1) {
+					nextKeyStart.position(0);
+					nextKeyStart.putInt(query.getPid());
+					nextKeyStart.putLong(keyOid + 1);
+					record = recordIterator.next(nextKeyStart.array());
+				} else {
+					record = recordIterator.next();
+				}
+			}
+		} finally {
+			recordIterator.close();
 		}
 		reads++;
-		ByteBuffer valueBuffer = ByteBuffer.wrap(value);
-		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
-		getMap(eClass, eClass, model, valueBuffer, query.getPid(), oid, query.getRid(), query, todoList);
 		processTodoList(model, todoList, query);
 		return model;
 	}
@@ -1288,7 +1323,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		}
 		long oid = buffer.getLong();
 		RecordIdentifier recordIdentifier = new RecordIdentifier(query.getPid(), oid, query.getRid());
-		IdEObject foundInCache = objectCache.get(recordIdentifier);
+		IdEObject foundInCache = objectCache.get(oid);
 		if (foundInCache != null) {
 			return foundInCache;
 		}

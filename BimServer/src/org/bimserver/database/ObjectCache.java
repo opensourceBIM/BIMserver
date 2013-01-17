@@ -36,6 +36,7 @@ public class ObjectCache {
 		} else {
 			if (!cache.containsValue(object)) {
 				cache.put(recordIdentifier, (IdEObjectImpl) object);
+				oidCache.put(recordIdentifier.getOid(), (IdEObjectImpl) object);
 			}
 		}
 	}
@@ -44,7 +45,11 @@ public class ObjectCache {
 		return idEObject.eClass().getEPackage() != Ifc2x3tc1Package.eINSTANCE;
 	}
 	
-	public IdEObjectImpl get(RecordIdentifier recordIdentifier) {
+	public IdEObject get(long oid) {
+		return oidCache.get(oid);
+	}
+	
+	public IdEObject get(RecordIdentifier recordIdentifier) {
 		if (recordIdentifier.getPid() == Database.STORE_PROJECT_ID) {
 			return oidCache.get(recordIdentifier.getOid());
 		} else {
@@ -74,6 +79,10 @@ public class ObjectCache {
 		} else {
 			return cache.containsKey(recordIdentifier);
 		}
+	}
+	
+	public boolean contains(long oid) {
+		return oidCache.containsKey(oid);
 	}
 
 	public void clear() {

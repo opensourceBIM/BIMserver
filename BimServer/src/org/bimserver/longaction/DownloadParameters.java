@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.bimserver.BimServer;
+import org.bimserver.database.Query.Deep;
 import org.bimserver.models.store.CompareType;
 
 import com.google.common.collect.Sets;
@@ -45,6 +46,7 @@ public class DownloadParameters extends LongActionKey {
 	private long qeid;
 	private long serializerOid;
 	private Boolean useObjectIDM;
+	private Deep deep;
 
 	public DownloadParameters(BimServer bimServer, long roid, long serializerOid, long ignoreUoid) {
 		this.bimServer = bimServer;
@@ -97,17 +99,18 @@ public class DownloadParameters extends LongActionKey {
 		this.bimServer = bimServer;
 	}
 
-	public static DownloadParameters fromOids(BimServer bimServer, long serializerOid, Set<Long> roids, Set<Long> oids) {
+	public static DownloadParameters fromOids(BimServer bimServer, long serializerOid, Set<Long> roids, Set<Long> oids, Boolean deep) {
 		DownloadParameters downloadParameters = new DownloadParameters();
 		downloadParameters.bimServer = bimServer;
 		downloadParameters.setRoids(roids);
 		downloadParameters.setOids(oids);
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_BY_OIDS);
 		downloadParameters.setSerializerOid(serializerOid);
+		downloadParameters.setDeep(deep ? Deep.YES : Deep.NO);
 		return downloadParameters;
 	}
 
-	public static DownloadParameters fromClassNames(BimServer bimServer, Set<Long> roids, Set<String> classNames, Boolean includeAllSubtypes, long serializerOid) {
+	public static DownloadParameters fromClassNames(BimServer bimServer, Set<Long> roids, Set<String> classNames, Boolean includeAllSubtypes, long serializerOid, Boolean deep) {
 		DownloadParameters downloadParameters = new DownloadParameters();
 		downloadParameters.setIncludeAllSubtypes(includeAllSubtypes);
 		downloadParameters.setBimServer(bimServer);
@@ -115,6 +118,7 @@ public class DownloadParameters extends LongActionKey {
 		downloadParameters.setClassNames(classNames);
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_OF_TYPE);
 		downloadParameters.setSerializerOid(serializerOid);
+		downloadParameters.setDeep(deep ? Deep.YES : Deep.NO);
 		return downloadParameters;
 	}
 
@@ -385,5 +389,13 @@ public class DownloadParameters extends LongActionKey {
 	
 	public void setUseObjectIDM(Boolean useObjectIDM) {
 		this.useObjectIDM = useObjectIDM;
+	}
+
+	public Deep getDeep() {
+		return deep;
+	}
+
+	public void setDeep(Deep deep) {
+		this.deep = deep;
 	}
 }

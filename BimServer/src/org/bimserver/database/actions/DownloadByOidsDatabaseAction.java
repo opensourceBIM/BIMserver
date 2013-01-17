@@ -54,8 +54,9 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 	private final ObjectIDM objectIDM;
 	private Authorization authorization;
 	private long serializerOid;
+	private Deep deep;
 
-	public DownloadByOidsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<Long> oids, long serializerOid, Authorization authorization, ObjectIDM objectIDM, Reporter reporter) {
+	public DownloadByOidsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<Long> oids, long serializerOid, Authorization authorization, ObjectIDM objectIDM, Reporter reporter, Deep deep) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roids = roids;
@@ -63,6 +64,7 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 		this.serializerOid = serializerOid;
 		this.authorization = authorization;
 		this.objectIDM = objectIDM;
+		this.deep = deep;
 	}
 
 	@Override
@@ -84,7 +86,7 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 			for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 				IfcModel subModel = new IfcModel();
 				int highestStopId = findHighestStopRid(project, concreteRevision);
-				Query query = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, Deep.YES, highestStopId);
+				Query query = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), objectIDM, deep, highestStopId);
 				subModel.setQuery(query);
 				subModel.addChangeListener(new IfcModelChangeListener() {
 					@Override

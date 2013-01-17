@@ -288,8 +288,8 @@ function BimServerApi(baseUrl, notifier) {
 		});		
 	};
 	
-	this.getModel = function(roid, deep) {
-		return new Model(othis, roid, deep);
+	this.getModel = function(poid, roid, deep) {
+		return new Model(othis, poid, roid, deep);
 	};
 	
 	this.callWithFullIndication = function(interfaceName, methodName, data, callback) {
@@ -329,11 +329,18 @@ function BimServerApi(baseUrl, notifier) {
 	othis.server.listener = othis.processNotification;
 }
 
-function Model(bimServerApi, roid, deep) {
+function Model(bimServerApi, poid, roid, deep) {
 	var othis = this;
+	othis.poid = poid;
+	othis.roid = roid;
+	othis.waiters = [];
 	othis.objects = {};
-	console.log("lalalala");
+	othis.loadedTypes = [];
+	othis.loadedDeep = false;
+	othis.changedObjectOids = {};
+	othis.loading;
 	if (deep) {
+		othis.loading = true;
 		bimServerApi.call("ServiceInterface", "getSerializerByPluginClassName", {pluginClassName: "org.bimserver.serializers.JsonSerializerPlugin"}, function(serializer){
 			bimServerApi.call("ServiceInterface", "download", {
 				roid: roid,
@@ -349,23 +356,230 @@ function Model(bimServerApi, roid, deep) {
 					data.objects.forEach(function(object){
 						othis.objects[object.oid] = object;
 					});
+					for (var oid in othis.objects) {
+						othis.resolveReferences(othis.objects[oid]);
+					}
+					othis.loading = false;
+					othis.loadedDeep = true;
+					othis.waiters.forEach(function(waiter){
+						waiter();
+					});
+					othis.waiters = [];
 				});
 			});
 		});
+	} else {
+		othis.loaded = true;
 	}
 	
-	this.get = function(oid) {
-		return othis.objects[oid];
+	this.get = function(oids, callback) {
+		console.log(typeof oids);
+		if (typeof oids == "number") {
+			oids = [oids];
+		}
+		othis.waitForLoaded(function(){
+			oids.forEach(function(oid){
+				if (othis.objects[oid] != null) {
+					callback(othis.objects[oid]);
+					var index = oids.indexOf(oid);
+					oids.splice(index, 1);
+				}
+			});
+			if (oids.length > 0) {
+				bimServerApi.call("ServiceInterface", "getSerializerByPluginClassName", {pluginClassName: "org.bimserver.serializers.JsonSerializerPlugin"}, function(serializer){
+					bimServerApi.call("ServiceInterface", "downloadByOids", {
+						roids: [roid],
+						oids: oids,
+						serializerOid: serializer.oid,
+						deep: false,
+						sync: true
+					}, function(laid){
+						var url = bimServerApi.generateRevisionDownloadUrl({
+							laid: laid,
+							serializerOid: serializer.oid
+						});
+						$.getJSON(url, function(data, textStatus, jqXHR){
+							if (data.objects.length > 0) {
+								var object = data.objects[0];
+								othis.objects[object.oid] = object;
+								othis.resolveReferences(object);
+								callback(object);
+							} else {
+								console.log("Object with oid " + oids + " not found");
+							}
+						});
+					});
+				});
+			}
+		});
 	};
 
-	this.getAllOfType = function(type, includeAllSubTypes, callback) {
-		for (var oid in othis.objects) {
-			var object = othis.objects[oid];
-			console.log(object);
-			if (object.type == type) {
-				callback(object);
+	this.waitForLoaded = function(callback) {
+		if (othis.loaded) {
+			callback();
+		} else {
+			othis.waiters.push(callback);
+		}
+	};
+
+	this.startOrResumeTransaction = function(callback){
+		if (othis.tid == null) {
+			bimServerApi.call("ServiceInterface", "startTransaction", {poid: othis.poid}, function(tid){
+				othis.tid = tid;
+				callback(tid);
+			});
+		} else {
+			callback(othis.tid);
+		}
+	};
+	
+	this.commit = function(comment, callback){
+		if (othis.tid == null) {
+			callback("No transaction started!");
+		} else {
+			bimServerApi.call("ServiceInterface", "commitTransaction", {tid: othis.tid, comment: comment}, function(roid){
+				callback(roid);
+			});
+		}
+	};
+	
+	this.resolveReferences = function(object){
+		for (var prop in object) {
+			if (prop == "__type" || prop == "oid") {
+			} else {
+				if (prop.startsWith("__ref")) {
+					(function(object, prop){
+						var fieldName = prop.substring(5);
+						object["set" + fieldName] = function(value) {
+							othis.startOrResumeTransaction(function(){
+								object[fieldName] = value;
+								bimServerApi.call("ServiceInterface", "setReference", {
+									tid: othis.tid,
+									oid: object.oid,
+									referenceName: fieldName,
+									referenceOid: value.oid
+								}, function(){});
+								if (object.changedFields == null) {
+									object.changedFields = {};
+								}
+								object.changedFields[fieldName] = true;
+								othis.changedObjectOids[object.oid] = true;
+							});
+						};
+						object["get" + fieldName] = function(callback) {
+							if (object[fieldName] != null) {
+								return object[fieldName];
+							}
+							var value = object[prop];
+							if ($.isArray(value)) {
+								if (object[fieldName] == null) {
+									object[fieldName] = [];
+								}
+								value.forEach(function(val){
+									var ref = othis.objects[val];
+									if (ref == null) {
+										othis.get(value, function(v){
+											object[fieldName].push(v);
+											callback(v);
+										});
+									} else {
+										object[fieldName].push(ref);
+										callback(ref);
+									}
+								});
+							} else if (value != null) {
+								var ref = othis.objects[value];
+								if (ref == null) {
+									othis.get(value, function(v){
+										object[fieldName] = v;
+										callback(v);
+									});
+								} else {
+									object[fieldName] = ref;
+									callback(ref);
+								}
+							}
+						};
+					})(object, prop);
+				} else {
+					(function(object, prop){
+						var fieldName = prop;
+						object["get" + fieldName] = function(callback) {
+							if (object[fieldName] != null) {
+								return object[fieldName];
+							}
+						};
+						object["set" + fieldName] = function(value) {
+							othis.startOrResumeTransaction(function(){
+								if (typeof value == "string") {
+									bimServerApi.call("ServiceInterface", "setStringAttribute", {
+										tid: othis.tid,
+										oid: object.oid,
+										attributeName: fieldName,
+										value: value
+									}, function(){});
+								} else if (typeof value == "number") {
+									bimServerApi.call("ServiceInterface", "setDoubleAttribute", {
+										tid: othis.tid,
+										oid: object.oid,
+										attributeName: fieldName,
+										value: value
+									}, function(){});
+								} else {									
+									console.log("Unimplemented type " + typeof value);
+								}
+								object[fieldName] = value;
+								if (object.changedFields == null) {
+									object.changedFields = {};
+								}
+								object.changedFields[fieldName] = true;
+								othis.changedObjectOids[object.oid] = true;
+							});
+						};
+					})(object, prop);
+				}
 			}
 		}
+	};
+	
+	this.getAllOfType = function(type, includeAllSubTypes, callback) {
+		othis.waitForLoaded(function(){
+			if (othis.loadedDeep) {
+				for (var oid in othis.objects) {
+					var object = othis.objects[oid];
+					if (object.__type == type) {
+						callback(object);
+					}
+				}
+			} else {
+				bimServerApi.call("ServiceInterface", "getSerializerByPluginClassName", {pluginClassName: "org.bimserver.serializers.JsonSerializerPlugin"}, function(serializer){
+					bimServerApi.call("ServiceInterface", "downloadByTypes", {
+						roids: [roid],
+						classNames: [type],
+						includeAllSubtypes: includeAllSubTypes,
+						serializerOid: serializer.oid,
+						useObjectIDM: true,
+						deep: false,
+						sync: true
+					}, function(laid){
+						var url = bimServerApi.generateRevisionDownloadUrl({
+							laid: laid,
+							serializerOid: serializer.oid
+						});
+						$.getJSON(url, function(data, textStatus, jqXHR){
+							data.objects.forEach(function(object){
+								othis.objects[object.oid] = object;
+							});
+							for (var oid in othis.objects) {
+								var object = othis.objects[oid];
+								othis.resolveReferences(object);
+								callback(object);
+							}
+						});
+					});
+				});
+			}
+		});
 	};
 }
 
