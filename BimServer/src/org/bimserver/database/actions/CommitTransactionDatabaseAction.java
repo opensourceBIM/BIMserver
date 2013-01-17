@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bimserver.BimServer;
+import org.bimserver.SummaryMap;
 import org.bimserver.changes.Change;
 import org.bimserver.changes.CreateObjectChange;
 import org.bimserver.changes.RemoveObjectChange;
@@ -85,6 +86,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				size--;
 			}
 		}
+		Revision oldLastRevision = project.getLastRevision();
 		CreateRevisionResult result = createNewConcreteRevision(getDatabaseSession(), size, project, user, comment.trim());
 		ConcreteRevision concreteRevision = result.getConcreteRevision();
 		revision = concreteRevision.getRevisions().get(0);
@@ -95,27 +97,39 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		newRevisionAdded.setRevision(concreteRevision.getRevisions().get(0));
 		newRevisionAdded.setProject(project);
 		newRevisionAdded.setAccessMethod(getAccessMethod());
-		
+
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 			@Override
 			public void execute() throws UserException {
 				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(newRevisionAdded));
 			}
 		});
-		
+
+		SummaryMap summaryMap = new SummaryMap();
+		if (oldLastRevision != null && oldLastRevision.getConcreteRevisions().size() == 1 && oldLastRevision.getConcreteRevisions().get(0).getSummary() != null) {
+			summaryMap = new SummaryMap(oldLastRevision.getConcreteRevisions().get(0).getSummary());
+		}
+
 		// First create all new objects
 		Map<Long, IdEObject> created = new HashMap<Long, IdEObject>();
 		for (Change change : longTransaction.getChanges()) {
 			if (change instanceof CreateObjectChange) {
 				change.execute(project.getId(), concreteRevision.getId(), getDatabaseSession(), created);
+				summaryMap.add(((CreateObjectChange)change).geteClass(), 1);
 			}
 		}
 		// Then do the rest
 		for (Change change : longTransaction.getChanges()) {
 			if (!(change instanceof CreateObjectChange)) {
+				if (change instanceof RemoveObjectChange) {
+					summaryMap.remove(((RemoveObjectChange)change).geteClass(), 1);
+				}
 				change.execute(project.getId(), concreteRevision.getId(), getDatabaseSession(), created);
 			}
 		}
+		
+		concreteRevision.setSummary(summaryMap.toRevisionSummary(getDatabaseSession()));
+
 		getDatabaseSession().store(newRevisionAdded);
 		getDatabaseSession().store(concreteRevision);
 		getDatabaseSession().store(project);

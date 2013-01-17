@@ -61,7 +61,9 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 			return revision.getConcreteRevisions().get(0).getSummary();
 		}
 		for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
-			merge(concreteRevision.getSummary());
+			if (concreteRevision.getSummary() != null) {
+				merge(concreteRevision.getSummary());
+			}
 		}
 		return createSummary();
 	}

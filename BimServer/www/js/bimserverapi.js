@@ -338,6 +338,7 @@ function Model(bimServerApi, poid, roid, deep) {
 	othis.loadedTypes = [];
 	othis.loadedDeep = false;
 	othis.changedObjectOids = {};
+	othis.oidsFetching = {};
 	othis.loading;
 	if (deep) {
 		othis.loading = true;
@@ -373,19 +374,28 @@ function Model(bimServerApi, poid, roid, deep) {
 	}
 	
 	this.get = function(oids, callback) {
-		console.log(typeof oids);
 		if (typeof oids == "number") {
 			oids = [oids];
 		}
 		othis.waitForLoaded(function(){
 			oids.forEach(function(oid){
 				if (othis.objects[oid] != null) {
+					// Already loaded? Remove from list and call callback
 					callback(othis.objects[oid]);
+					var index = oids.indexOf(oid);
+					oids.splice(index, 1);
+				} else if (othis.oidsFetching[oid] != null) {
+					// Already loading? Add the callback to the list and remove from fetching list
+					othis.oidsFetching[oid].push(callback);
 					var index = oids.indexOf(oid);
 					oids.splice(index, 1);
 				}
 			});
+			// Any left?
 			if (oids.length > 0) {
+				oids.forEach(function(oid){
+					othis.oidsFetching[oid] = [];
+				});
 				bimServerApi.call("ServiceInterface", "getSerializerByPluginClassName", {pluginClassName: "org.bimserver.serializers.JsonSerializerPlugin"}, function(serializer){
 					bimServerApi.call("ServiceInterface", "downloadByOids", {
 						roids: [roid],
@@ -400,10 +410,18 @@ function Model(bimServerApi, poid, roid, deep) {
 						});
 						$.getJSON(url, function(data, textStatus, jqXHR){
 							if (data.objects.length > 0) {
-								var object = data.objects[0];
-								othis.objects[object.oid] = object;
-								othis.resolveReferences(object);
-								callback(object);
+								data.objects.forEach(function(object){
+									var oid = object.oid;
+									othis.objects[object.oid] = object;
+									othis.resolveReferences(object);
+									if (othis.oidsFetching[oid] != null) {
+										othis.oidsFetching[oid].forEach(function(cb){
+											cb(object);
+										});
+										delete othis.oidsFetching[oid];
+									}
+									callback(object);
+								});
 							} else {
 								console.log("Object with oid " + oids + " not found");
 							}

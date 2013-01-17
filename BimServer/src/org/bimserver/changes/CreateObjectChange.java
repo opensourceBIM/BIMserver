@@ -32,12 +32,18 @@ public class CreateObjectChange implements Change {
 	private final long oid;
 	private final String type;
 	private IdEObjectImpl eObject;
+	private EClass eClass;
 
-	public CreateObjectChange(String type, long oid) {
+	public CreateObjectChange(String type, long oid, EClass eClass) {
 		this.type = type;
 		this.oid = oid;
+		this.eClass = eClass;
 	}
 
+	public EClass geteClass() {
+		return eClass;
+	}
+	
 	@Override
 	public void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		EClass eClass = databaseSession.getEClassForName(type);

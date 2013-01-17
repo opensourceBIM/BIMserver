@@ -375,4 +375,15 @@ public class Database implements BimDatabase {
 	public void incrementReads(int reads) {
 		keyValueStore.incrementReads(reads);
 	}
+	
+	public EClass getEClassForOid(long oid) {
+		ByteBuffer buffer = ByteBuffer.wrap(new byte[8]);
+		buffer.putLong(oid);
+		short cid = buffer.getShort(6);
+		EClass eClass = getEClassForCid(cid);
+		if (eClass == null) {
+			throw new RuntimeException("No class for cid " + cid);
+		}
+		return eClass;
+	}
 }

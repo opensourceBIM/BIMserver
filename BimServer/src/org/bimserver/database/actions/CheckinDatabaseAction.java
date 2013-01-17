@@ -18,13 +18,11 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.util.Date;
-import java.util.Map;
-import java.util.TreeMap;
 
 import org.bimserver.BimServer;
-import org.bimserver.EClassNameComparator;
 import org.bimserver.GeometryGenerator;
 import org.bimserver.GeometryGenerator.GeometryCache;
+import org.bimserver.SummaryMap;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -39,17 +37,12 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.merging.RevisionMerger;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.RevisionSummary;
-import org.bimserver.models.store.RevisionSummaryContainer;
-import org.bimserver.models.store.RevisionSummaryType;
-import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
@@ -57,7 +50,6 @@ import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.shared.IncrementingOidProvider;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
-import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -71,11 +63,6 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private ConcreteRevision concreteRevision;
 	private Project project;
 	private Authorization authorization;
-	private RevisionSummaryContainer revisionSummaryContainerEntities;
-	private RevisionSummaryContainer revisionSummaryContainerRelations;
-	private RevisionSummaryContainer revisionSummaryContainerPrimitives;
-	private RevisionSummaryContainer revisionSummaryContainerOther;
-	private final Map<EClass, Integer> summaryMap = new TreeMap<EClass, Integer>(new EClassNameComparator());
 	private final GeometryCache geometryCache = new GeometryCache();
 
 	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface model,
@@ -118,7 +105,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			newRevisionAdded.setExecutor(user);
 			Revision revision = concreteRevision.getRevisions().get(0);
 
-			concreteRevision.setSummary(createSummary(getModel()));
+			concreteRevision.setSummary(new SummaryMap(getModel()).toRevisionSummary(getDatabaseSession()));
 
 			newRevisionAdded.setRevision(revision);
 			newRevisionAdded.setProject(project);
@@ -168,53 +155,6 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			throw new UserException(e);
 		}
 		return concreteRevision;
-	}
-
-	private RevisionSummary createSummary(IfcModelInterface model) throws BimserverDatabaseException {
-		RevisionSummary revisionSummary = getDatabaseSession().create(StorePackage.eINSTANCE.getRevisionSummary());
-		revisionSummaryContainerEntities = getDatabaseSession().create(StorePackage.eINSTANCE.getRevisionSummaryContainer());
-		revisionSummaryContainerEntities.setName("IFC Entities");
-		revisionSummary.getList().add(revisionSummaryContainerEntities);
-		revisionSummaryContainerRelations = getDatabaseSession().create(StorePackage.eINSTANCE.getRevisionSummaryContainer());
-		revisionSummaryContainerRelations.setName("IFC Relations");
-		revisionSummary.getList().add(revisionSummaryContainerRelations);
-		revisionSummaryContainerPrimitives = getDatabaseSession().create(StorePackage.eINSTANCE.getRevisionSummaryContainer());
-		revisionSummaryContainerPrimitives.setName("IFC Primitives");
-		revisionSummary.getList().add(revisionSummaryContainerPrimitives);
-		revisionSummaryContainerOther = getDatabaseSession().create(StorePackage.eINSTANCE.getRevisionSummaryContainer());
-		revisionSummaryContainerOther.setName("Rest");
-		revisionSummary.getList().add(revisionSummaryContainerOther);
-
-		for (EClass eClass : getDatabaseSession().getClasses()) {
-			add(revisionSummary, eClass, model.count(eClass));
-		}
-		for (EClass eClass : summaryMap.keySet()) {
-			RevisionSummaryContainer subMap = null;
-			if (Ifc2x3tc1Package.eINSTANCE.getIfcObject().isSuperTypeOf(eClass)) {
-				subMap = revisionSummaryContainerEntities;
-			} else if (Ifc2x3tc1Package.eINSTANCE.getIfcRelationship().isSuperTypeOf(eClass)) {
-				subMap = revisionSummaryContainerRelations;
-			} else if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eClass)) {
-				subMap = revisionSummaryContainerPrimitives;
-			} else {
-				subMap = revisionSummaryContainerOther;
-			}
-			RevisionSummaryType createRevisionSummaryType = getDatabaseSession().create(StorePackage.eINSTANCE.getRevisionSummaryType());
-			createRevisionSummaryType.setCount(summaryMap.get(eClass));
-			createRevisionSummaryType.setName(eClass.getName());
-			subMap.getTypes().add(createRevisionSummaryType);
-		}
-		return revisionSummary;
-	}
-
-	public void add(RevisionSummary revisionSummary, EClass eClass, int count) {
-		if (count == 0) {
-			return;
-		}
-		if (!summaryMap.containsKey(eClass)) {
-			summaryMap.put(eClass, count);
-		}
-		summaryMap.put(eClass, count);
 	}
 
 	private IfcModelInterface checkinMerge(Revision lastRevision) throws BimserverLockConflictException, BimserverDatabaseException, UserException {
