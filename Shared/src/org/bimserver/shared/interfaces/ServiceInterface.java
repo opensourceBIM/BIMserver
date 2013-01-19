@@ -2281,4 +2281,9 @@ public interface ServiceInterface extends PublicInterface {
 	
 	@WebMethod(action = "shareRevision")
 	String shareRevision(@WebParam(name = "roid", partName = "shareRevision.roid") Long roid);
+
+	@WebMethod(action = "getOidByGuid")
+	Long getOidByGuid(
+		@WebParam(name = "roid", partName = "getOidByGuid.roid") Long roid, 
+		@WebParam(name = "guid", partName = "getOidByGuid.guid") String guid) throws ServerException, UserException;
 }
