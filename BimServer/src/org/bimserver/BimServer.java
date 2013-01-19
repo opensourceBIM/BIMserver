@@ -40,6 +40,8 @@ import org.apache.commons.io.IOUtils;
 import org.apache.log4j.LogManager;
 import org.bimserver.cache.CompareCache;
 import org.bimserver.cache.DiskCacheManager;
+import org.bimserver.client.BimServerClientFactory;
+import org.bimserver.client.DirectBimServerClientFactory;
 import org.bimserver.client.JsonSocketReflectorFactory;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimserverDatabaseException;
@@ -166,6 +168,7 @@ public class BimServer {
 	private final LongTransactionManager longTransactionManager = new LongTransactionManager();
 	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private SecretKeySpec encryptionkey;
+	private BimServerClientFactory bimServerClientFactory;
 
 	/**
 	 * Create a new BIMserver
@@ -269,15 +272,15 @@ public class BimServer {
 					@Override
 					public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
 						// Reflect this change also in the database
-						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginConfiguration_Name(), new StringLiteral(pluginContext.getPlugin()
+						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_PluginClassName(), new StringLiteral(pluginContext.getPlugin()
 								.getClass().getName()));
 						DatabaseSession session = bimDatabase.createSession();
 						try {
-							Map<Long, PluginConfiguration> pluginsFound = session.query(pluginCondition, PluginConfiguration.class, Query.getDefault());
+							Map<Long, PluginDescriptor> pluginsFound = session.query(pluginCondition, PluginDescriptor.class, Query.getDefault());
 							if (pluginsFound.size() == 0) {
 								LOGGER.error("Error changing plugin-state in database, plugin " + pluginContext.getPlugin().getClass().getName() + " not found");
 							} else if (pluginsFound.size() == 1) {
-								PluginConfiguration pluginConfiguration = pluginsFound.values().iterator().next();
+								PluginDescriptor pluginConfiguration = pluginsFound.values().iterator().next();
 								pluginConfiguration.setEnabled(pluginContext.isEnabled());
 								session.store(pluginConfiguration);
 							} else {
@@ -407,6 +410,8 @@ public class BimServer {
 			bimScheduler = new JobScheduler(this);
 			bimScheduler.start();
 
+			bimServerClientFactory = new DirectBimServerClientFactory<ServiceInterface>(serverSettingsCache.getServerSettings().getSiteAddress(), ServiceInterface.class, serviceFactory, servicesMap);
+			
 			try {
 				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactory, servicesMap, config.getInitialProtocolBuffersPort());
 				protocolBuffersServer.start();
@@ -832,6 +837,10 @@ public class BimServer {
 		return serverInfoManager.getServerInfo();
 	}
 
+	public BimServerClientFactory getBimServerClientFactory() {
+		return bimServerClientFactory;
+	}
+	
 	public PublicInterfaceFactory getServiceFactory() {
 		return serviceFactory;
 	}

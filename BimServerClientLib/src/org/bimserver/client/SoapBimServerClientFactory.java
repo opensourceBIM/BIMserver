@@ -17,6 +17,7 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.client.channels.SoapChannel;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.meta.ServicesMap;
@@ -36,9 +37,11 @@ public class SoapBimServerClientFactory extends AbstractBimServerClientFactory {
 
 	@Override
 	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
-		BimServerClient bimServerClient = new BimServerClient(address, getServicesMap(), null);
+		SoapChannel soapChannel = new SoapChannel(address + "/soap", false);
+		BimServerClient bimServerClient = new BimServerClient(address, getServicesMap(), soapChannel);
+		soapChannel.connect(bimServerClient);
 		bimServerClient.setAuthentication(authenticationInfo);
-		bimServerClient.connectSoap();
+		bimServerClient.connect();
 		return bimServerClient;
 	}
 }

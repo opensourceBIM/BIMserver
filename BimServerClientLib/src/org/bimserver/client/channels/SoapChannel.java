@@ -41,16 +41,16 @@ import org.slf4j.LoggerFactory;
 public class SoapChannel extends Channel implements TokenChangeListener {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SoapChannel.class);
 	private Client client;
-	private TokenHolder tokenHolder;
 	private boolean useSoapHeaderSessions;
 	private ServiceInterface serviceInterface;
+	private String address;
 
-	public SoapChannel(TokenHolder tokenHolder) {
-		this.tokenHolder = tokenHolder;
+	public SoapChannel(String address, boolean useSoapHeaderSessions) {
+		this.address = address;
+		this.useSoapHeaderSessions = useSoapHeaderSessions;
 	}
 
-	public void connect(String address, boolean useSoapHeaderSessions) {
-		this.useSoapHeaderSessions = useSoapHeaderSessions;
+	public void connect(TokenHolder tokenHolder) {
 		JaxWsProxyFactoryBean cpfb = new JaxWsProxyFactoryBean();
 		cpfb.setServiceClass(ServiceInterface.class);
 		cpfb.setAddress(address);

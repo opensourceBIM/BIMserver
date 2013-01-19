@@ -36,7 +36,8 @@ public class ProtocolBuffersChannel extends Channel implements ConnectDisconnect
 	private final static ProtocolBuffersMetaData protocolBuffersMetaData;
 	private ServicesMap servicesMap;
 	private ReflectorFactory reflectorFactory;
-	private TokenHolder tokenHolder;
+	private String address;
+	private int port;
 
 	static {
 		protocolBuffersMetaData = new ProtocolBuffersMetaData();
@@ -48,13 +49,14 @@ public class ProtocolBuffersChannel extends Channel implements ConnectDisconnect
 		}
 	}
 	
-	public ProtocolBuffersChannel(ServicesMap servicesMap, ReflectorFactory reflectorFactory, TokenHolder tokenHolder) {
+	public ProtocolBuffersChannel(ServicesMap servicesMap, ReflectorFactory reflectorFactory, String address, int port) {
 		this.servicesMap = servicesMap;
 		this.reflectorFactory = reflectorFactory;
-		this.tokenHolder = tokenHolder;
+		this.address = address;
+		this.port = port;
 	}
 	
-	public void connect(String address, int port) throws ChannelConnectionException {
+	public void connect(TokenHolder tokenHolder) throws ChannelConnectionException {
 		protocolBuffersChannel = new SocketProtocolBuffersChannel(tokenHolder);
 		protocolBuffersChannel.registerConnectDisconnectListener(this);
 		finish(new ProtocolBuffersReflector(protocolBuffersMetaData, servicesMap, protocolBuffersChannel), reflectorFactory);
@@ -77,6 +79,8 @@ public class ProtocolBuffersChannel extends Channel implements ConnectDisconnect
 
 	@Override
 	public void disconnect() {
-		protocolBuffersChannel.disconnect();
+		if (protocolBuffersChannel != null) {
+			protocolBuffersChannel.disconnect();
+		}
 	}
 }

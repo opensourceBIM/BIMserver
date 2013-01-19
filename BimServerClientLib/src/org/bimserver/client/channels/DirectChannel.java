@@ -17,7 +17,18 @@ package org.bimserver.client.channels;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.activation.DataHandler;
+
+import org.bimserver.client.ChannelConnectionException;
+import org.bimserver.interfaces.objects.SDownloadResult;
+import org.bimserver.shared.TokenHolder;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.PublicInterface;
+import org.bimserver.utils.InputStreamDataSource;
 
 public class DirectChannel extends Channel {
 	public DirectChannel() {
@@ -31,5 +42,27 @@ public class DirectChannel extends Channel {
 	@Override
 	public void disconnect() {
 		notifyOfDisconnect();
+	}
+	
+	@Override
+	public long checkin(String baseAddress, String token, long poid, String comment, long deserializerOid, boolean merge, boolean sync, long fileSize, String filename, InputStream inputStream) throws ServerException, UserException {
+		return getServiceInterface().checkin(poid, comment, deserializerOid, fileSize, filename, new DataHandler(new InputStreamDataSource(inputStream)), merge, sync);
+	}
+	
+	@Override
+	public InputStream getDownloadData(String baseAddress, String token, long download, long serializerOid) throws IOException {
+		try {
+			SDownloadResult downloadData = getServiceInterface().getDownloadData(download);
+			return downloadData.getFile().getInputStream();
+		} catch (ServerException e) {
+			e.printStackTrace();
+		} catch (UserException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public void connect(TokenHolder tokenHolder) throws ChannelConnectionException {
 	}
 }

@@ -42,7 +42,7 @@ public class TestClientEmfModelRemoteProtocolBuffers {
 	@BeforeClass
 	public static void setup() {
 		try {
-			BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020);
+			BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080);
 			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
 			bimServerClient = factory.create(usernamePasswordAuthenticationInfo);
 		} catch (ChannelConnectionException e1) {

@@ -73,8 +73,8 @@ public class DownloadRevisionAction extends Action {
 					state = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(download).getState();
 				}
 				virtualUser.getLogger().info("Done preparing download, downloading");
-				InputStream downloadData = virtualUser.getBimServerClient().getDownloadData(download, serializer.getOid());
 				try {
+					InputStream downloadData = virtualUser.getBimServerClient().getDownloadData(download, serializer.getOid());
 					if (downloadData != null) {
 						String filename = project.getName() + "." + revision.getId() + "." + serializer.getExtension();
 						FileOutputStream fos = new FileOutputStream(new File(getTestFramework().getTestConfiguration().getOutputFolder(), filename));

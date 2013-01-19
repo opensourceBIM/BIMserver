@@ -17,8 +17,11 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.client.channels.DirectChannel;
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.AuthenticationInfo;
+import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.meta.ServicesMap;
@@ -26,22 +29,25 @@ import org.bimserver.shared.meta.ServicesMap;
 public class DirectBimServerClientFactory<T extends PublicInterface> extends AbstractBimServerClientFactory {
 
 	private final PluginManager pluginManager;
-	private final T publicInterface;
 	private Class<T> interfaceClass;
+	private ServiceFactory serviceFactory;
+	private String baseAddress;
 
-	public DirectBimServerClientFactory(Class<T> interfaceClass, T publicInterface, ServicesMap servicesMap) {
+	public DirectBimServerClientFactory(String baseAddress, Class<T> interfaceClass, ServiceFactory serviceFactory, ServicesMap servicesMap) {
 		super(servicesMap);
+		this.baseAddress = baseAddress;
 		this.interfaceClass = interfaceClass;
-		this.publicInterface = publicInterface;
+		this.serviceFactory = serviceFactory;
 		pluginManager = new PluginManager();
 		pluginManager.loadPluginsFromCurrentClassloader();
 	}
 
 	@Override
-	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException {
-		BimServerClient bimServerClient = new BimServerClient(null, getServicesMap(), null);
+	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
+		DirectChannel channel = new DirectChannel();
+		channel.connect(interfaceClass, serviceFactory.getService(interfaceClass, AccessMethod.INTERNAL));
+		BimServerClient bimServerClient = new BimServerClient(baseAddress, getServicesMap(), channel);
 		bimServerClient.setAuthentication(authenticationInfo);
-		bimServerClient.connectDirect(interfaceClass, publicInterface);
 		return bimServerClient;
 	}
 }

@@ -27,17 +27,19 @@ public class JsonChannel extends Channel {
 	private final ReflectorFactory reflectorFactory;
 	private final JsonReflectorFactory jsonReflectorFactory;
 	private JsonReflector reflector;
+	private String address;
 
-	public JsonChannel(ReflectorFactory reflectorFactory, JsonReflectorFactory jsonReflectorFactory) {
+	public JsonChannel(ReflectorFactory reflectorFactory, JsonReflectorFactory jsonReflectorFactory, String address) {
 		this.reflectorFactory = reflectorFactory;
 		this.jsonReflectorFactory = jsonReflectorFactory;
+		this.address = address;
 	}
 
 	@Override
 	public void disconnect() {
 	}
 
-	public void connect(String address, TokenHolder tokenHolder) throws ChannelConnectionException {
+	public void connect(TokenHolder tokenHolder) throws ChannelConnectionException {
 		reflector = jsonReflectorFactory.create(address, tokenHolder);
 		finish(reflector, reflectorFactory);
 	}

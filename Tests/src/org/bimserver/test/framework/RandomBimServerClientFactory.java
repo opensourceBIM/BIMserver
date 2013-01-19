@@ -31,6 +31,8 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.reflector.ReflectorBuilder;
+import org.bimserver.shared.reflector.ReflectorFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -60,8 +62,10 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 		ServicesMap servicesMap = new ServicesMap();
 		servicesMap.add(new SServiceInterfaceService(null, ServiceInterface.class));
 		
-		jsonBimServerClientFactory = new JsonBimServerClientFactory("http://localhost:8080", servicesMap, new JsonSocketReflectorFactory(servicesMap));
-		protocolBuffersBimServerClientFactory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, servicesMap);
+		ReflectorFactory reflectorFactory = new ReflectorBuilder(servicesMap).newReflectorFactory();
+		
+		jsonBimServerClientFactory = new JsonBimServerClientFactory("http://localhost:8080", servicesMap, new JsonSocketReflectorFactory(servicesMap), null); // TODO
+		protocolBuffersBimServerClientFactory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, servicesMap, reflectorFactory);
 		soapBimServerClientFactory = new SoapBimServerClientFactory("http://localhost:8080", servicesMap);
 	}
 	

@@ -41,4 +41,5 @@ import org.bimserver.shared.interfaces.PublicInterface;
 public interface ServiceFactory {
 	<T extends PublicInterface> T getService(Class<T> serviceInterface, String token, AccessMethod accessMethod) throws UserException;
 	String getName();
+	<T extends PublicInterface> T getService(Class<T> publicInterface, AccessMethod accessMethod) throws UserException;
 }

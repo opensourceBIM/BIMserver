@@ -19,42 +19,23 @@ package org.bimserver.client;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.zip.DeflaterInputStream;
 
-import org.apache.http.Header;
-import org.apache.http.HeaderElement;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpException;
-import org.apache.http.HttpRequest;
-import org.apache.http.HttpRequestInterceptor;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpResponseInterceptor;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.entity.GzipDecompressingEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.InputStreamBody;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.HttpContext;
+import org.apache.commons.io.IOUtils;
 import org.bimserver.client.channels.Channel;
-import org.bimserver.client.channels.DirectChannel;
-import org.bimserver.client.channels.ProtocolBuffersChannel;
-import org.bimserver.client.channels.SoapChannel;
 import org.bimserver.client.notifications.SocketNotificationsClient;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDataValue;
 import org.bimserver.interfaces.objects.SListDataValue;
@@ -73,11 +54,8 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
-import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.ServicesMap;
-import org.bimserver.shared.reflector.ReflectorBuilder;
-import org.bimserver.shared.reflector.ReflectorFactory;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
@@ -87,73 +65,37 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
 
 public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BimServerClient.class);
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
 	private final Set<TokenChangeListener> tokenChangeListeners = new HashSet<TokenChangeListener>();
-	private Channel channel;
+	private final Channel channel;
 	private SocketNotificationsClient notificationsClient;
 	private AuthenticationInfo authenticationInfo = new AnonymousAuthentication();
 	private ServicesMap servicesMap = new ServicesMap();
-	private ReflectorFactory reflectorFactory;
 	private String baseAddress;
-	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private String token;
 
-	protected BimServerClient(String baseAddress, ServicesMap servicesMap, JsonSocketReflectorFactory jsonSocketReflectorFactory) {
+	protected BimServerClient(String baseAddress, ServicesMap servicesMap, Channel channel) {
 		this.baseAddress = baseAddress;
 		this.servicesMap = servicesMap;
+		this.channel = channel;
 		this.notificationsClient = new SocketNotificationsClient();
-		this.reflectorFactory = new ReflectorBuilder(servicesMap).newReflectorFactory();
 	}
 
-	protected BimServerClient(String baseAddress) {
-		this.baseAddress = baseAddress;
-		this.servicesMap = new ServicesMap();
-		this.servicesMap.add(new SServiceInterfaceService(null, ServiceInterface.class));
-		this.jsonSocketReflectorFactory = new JsonSocketReflectorFactory(servicesMap);
-		this.notificationsClient = new SocketNotificationsClient();
-		this.reflectorFactory = new ReflectorBuilder(servicesMap).newReflectorFactory();
-	}
-
-	public void setJsonSocketReflectorFactory(JsonSocketReflectorFactory jsonSocketReflectorFactory) {
-		this.jsonSocketReflectorFactory = jsonSocketReflectorFactory;
-	}
-
-	public void setAuthentication(AuthenticationInfo authenticationInfo) {
+	public void setAuthentication(AuthenticationInfo authenticationInfo) throws ServerException, UserException, ChannelConnectionException {
 		this.authenticationInfo = authenticationInfo;
+		connect();
 	}
 
-	public <T extends PublicInterface> void connectDirect(Class<T> interfaceClass, T serviceInterface) {
-		DirectChannel directChannel = new DirectChannel();
+	protected void connect() throws ServerException, UserException, ChannelConnectionException {
 		disconnect();
-		this.channel = directChannel;
-		directChannel.registerConnectDisconnectListener(this);
-		directChannel.connect(interfaceClass, serviceInterface);
-	}
-
-	protected void connectProtocolBuffers(String address, int port) throws ChannelConnectionException, ServerException, UserException {
-		disconnect();
-		ProtocolBuffersChannel protocolBuffersChannel = new ProtocolBuffersChannel(servicesMap, reflectorFactory, this);
-		this.channel = protocolBuffersChannel;
-		protocolBuffersChannel.registerConnectDisconnectListener(this);
-		protocolBuffersChannel.connect(address, port);
+		this.channel.registerConnectDisconnectListener(this);
+		this.channel.connect(this);
 		authenticate();
 	}
-
-	protected void connectJson() throws ChannelConnectionException, ServerException, UserException {
-		disconnect();
-		JsonChannel jsonChannel = new JsonChannel(reflectorFactory, jsonSocketReflectorFactory);
-		this.channel = jsonChannel;
-		jsonChannel.connect(baseAddress + "/jsonapi", this);
-		authenticate();
-	}
-
+	
 	private void authenticate() throws ServerException, UserException {
 		if (authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
 			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo)authenticationInfo;
@@ -162,15 +104,6 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 			AutologinAuthenticationInfo autologinAuthenticationInfo = (AutologinAuthenticationInfo)authenticationInfo;
 			setToken(channel.getServiceInterface().autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode()));
 		}
-	}
-
-	protected void connectSoap() throws ChannelConnectionException, ServerException, UserException {
-		disconnect();
-		SoapChannel soapChannel = new SoapChannel(this);
-		this.channel = soapChannel;
-		soapChannel.registerConnectDisconnectListener(this);
-		soapChannel.connect(baseAddress + "/soap", false);
-		authenticate();
 	}
 
 	public Channel getChannel() {
@@ -194,10 +127,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 	}
 
 	public ServiceInterface getServiceInterface() {
-		if (channel != null) {
-			return channel.getServiceInterface();
-		}
-		return null;
+		return channel.getServiceInterface();
 	}
 
 	public Session createSession() {
@@ -210,9 +140,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 	}
 
 	public void disconnect() {
-		if (channel != null) {
-			channel.disconnect();
-		}
+		channel.disconnect();
 	}
 
 	@Override
@@ -408,52 +336,6 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 		return servicesMap;
 	}
 
-	public InputStream getDownloadData(long download, long serializerOid) {
-		String address = baseAddress + "/download?token=" + token + "&longActionId=" + download + "&serializerOid=" + serializerOid;
-		DefaultHttpClient httpclient = new DefaultHttpClient();
-		httpclient.addRequestInterceptor(new HttpRequestInterceptor() {
-
-			public void process(final HttpRequest request, final HttpContext context) throws HttpException, IOException {
-				if (!request.containsHeader("Accept-Encoding")) {
-					request.addHeader("Accept-Encoding", "gzip");
-				}
-			}
-
-		});
-
-		httpclient.addResponseInterceptor(new HttpResponseInterceptor() {
-
-			public void process(final HttpResponse response, final HttpContext context) throws HttpException, IOException {
-				HttpEntity entity = response.getEntity();
-				if (entity != null) {
-					Header ceheader = entity.getContentEncoding();
-					if (ceheader != null) {
-						HeaderElement[] codecs = ceheader.getElements();
-						for (int i = 0; i < codecs.length; i++) {
-							if (codecs[i].getName().equalsIgnoreCase("gzip")) {
-								response.setEntity(new GzipDecompressingEntity(response.getEntity()));
-								return;
-							}
-						}
-					}
-				}
-			}
-
-		});
-		HttpPost httppost = new HttpPost(address);
-		try {
-			HttpResponse httpResponse = httpclient.execute(httppost);
-			if (httpResponse.getStatusLine().getStatusCode() == 200) {
-				return httpResponse.getEntity().getContent();
-			}
-		} catch (ClientProtocolException e) {
-			LOGGER.error("", e);
-		} catch (IOException e) {
-			LOGGER.error("", e);
-		}
-		return null;
-	}
-
 	@Override
 	public String getToken() {
 		return token;
@@ -474,80 +356,36 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 
 	public long checkin(long poid, String comment, long deserializerOid, boolean merge, boolean sync, File file) throws IOException, UserException, ServerException {
 		FileInputStream fis = new FileInputStream(file);
-		long result = checkin(poid, comment, deserializerOid, merge, sync, file.getName(), fis);
+		long result = checkin(poid, comment, deserializerOid, merge, sync, file.length(), file.getName(), fis);
 		fis.close();
 		return result;
 	}	
 	
-	public long checkin(long poid, String comment, long deserializerOid, boolean merge, boolean sync, String filename, InputStream inputStream) throws UserException, ServerException {
-		String address = baseAddress + "/upload";
-		DefaultHttpClient httpclient = new DefaultHttpClient();
-		httpclient.addRequestInterceptor(new HttpRequestInterceptor() {
-			public void process(final HttpRequest request, final HttpContext context) throws HttpException, IOException {
-				if (!request.containsHeader("Accept-Encoding")) {
-					request.addHeader("Accept-Encoding", "gzip");
-				}
-			}
-		});
+	public long checkin(long poid, String comment, long deserializerOid, boolean merge, boolean sync, long fileSize, String filename, InputStream inputStream) throws UserException, ServerException {
+		return channel.checkin(baseAddress, token, poid, comment, deserializerOid, merge, sync, fileSize, filename, inputStream);
+	}
 
-		httpclient.addResponseInterceptor(new HttpResponseInterceptor() {
-			public void process(final HttpResponse response, final HttpContext context) throws HttpException, IOException {
-				HttpEntity entity = response.getEntity();
-				if (entity != null) {
-					Header ceheader = entity.getContentEncoding();
-					if (ceheader != null) {
-						HeaderElement[] codecs = ceheader.getElements();
-						for (int i = 0; i < codecs.length; i++) {
-							if (codecs[i].getName().equalsIgnoreCase("gzip")) {
-								response.setEntity(new GzipDecompressingEntity(response.getEntity()));
-								return;
-							}
-						}
-					}
-				}
-			}
-		});
-		HttpPost httppost = new HttpPost(address);
+	public void download(long roid, long serializerOid, OutputStream outputStream) {
 		try {
-			// TODO find some GzipInputStream variant that _compresses_ instead of _decompresses_ using deflate for now
-			InputStreamBody data = new InputStreamBody(new DeflaterInputStream(inputStream), filename);
-			
-			MultipartEntity reqEntity = new MultipartEntity();
-			reqEntity.addPart("data", data);
-			reqEntity.addPart("token", new StringBody(token));
-			reqEntity.addPart("deserializerOid", new StringBody("" + deserializerOid));
-			reqEntity.addPart("merge", new StringBody("" + merge));
-			reqEntity.addPart("poid", new StringBody("" + poid));
-			reqEntity.addPart("comment", new StringBody("" + comment));
-			reqEntity.addPart("sync", new StringBody("" + sync));
-			reqEntity.addPart("compression", new StringBody("deflate"));
-			httppost.setEntity(reqEntity);
-			
-			HttpResponse httpResponse = httpclient.execute(httppost);
-			if (httpResponse.getStatusLine().getStatusCode() == 200) {
-				JsonParser jsonParser = new JsonParser();
-				JsonElement result = jsonParser.parse(new JsonReader(new InputStreamReader(httpResponse.getEntity().getContent())));
-				if (result instanceof JsonObject) {
-					JsonObject jsonObject = (JsonObject)result;
-					if (jsonObject.has("exception")) {
-						JsonObject exceptionJson = jsonObject.get("exception").getAsJsonObject();
-						String exceptionType = exceptionJson.get("__type").getAsString();
-						String message = exceptionJson.has("message") ? exceptionJson.get("message").getAsString() : "unknown";
-						if (exceptionType.equals(UserException.class.getSimpleName())) {
-							throw new UserException(message);
-						} else if (exceptionType.equals(ServerException.class.getSimpleName())) {
-							throw new ServerException(message);
-						}
-					} else {
-						return jsonObject.get("checkinid").getAsLong();
-					}
-				}
-			}
-		} catch (ClientProtocolException e) {
-			LOGGER.error("", e);
+			Long download = getServiceInterface().download(roid, serializerOid, true, true);
+			InputStream inputStream = getDownloadData(download, serializerOid);
+			IOUtils.copy(inputStream, outputStream);
+		} catch (ServerException e) {
+			e.printStackTrace();
+		} catch (UserException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
-			LOGGER.error("", e);
+			e.printStackTrace();
 		}
-		return -1;
+	}
+
+	public void download(long roid, long serializerOid, File file) throws IOException {
+		FileOutputStream outputStream = new FileOutputStream(file);
+		download(roid, serializerOid, outputStream);
+		outputStream.close();
+	}
+	
+	public InputStream getDownloadData(long download, long oid) throws IOException {
+		return channel.getDownloadData(baseAddress, token, download, oid);
 	}
 }

@@ -90,7 +90,7 @@ public class TestNotifications {
 		}
 		socketNotificationsClient.start();
 		
-		BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020);
+		BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080);
 		
 		try {
 			BimServerClient bimServerClient = factory.create();

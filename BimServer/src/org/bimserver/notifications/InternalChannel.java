@@ -17,7 +17,9 @@ package org.bimserver.notifications;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.channels.Channel;
+import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.interfaces.NotificationInterface;
 
 public class InternalChannel extends Channel {
@@ -28,5 +30,9 @@ public class InternalChannel extends Channel {
 	
 	@Override
 	public void disconnect() {
+	}
+
+	@Override
+	public void connect(TokenHolder tokenHolder) throws ChannelConnectionException {
 	}
 }
