@@ -59,6 +59,7 @@ public class TestIfcEngineEmbedded {
 			// Get a deserializer
 			SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc");
 			
+			// Disabling this engine, so the other one will be used, this should be done nicer...
 			client.getServiceInterface().disablePlugin("org.bimserver.ifcengine.TNOJvmIfcEnginePlugin");
 			
 			// Create a project
