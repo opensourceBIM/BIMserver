@@ -86,7 +86,7 @@ public class TestClientEmfModelLocal {
 
 	@Test
 	public void test() {
-		BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020);
+		BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080);
 		UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
 		try {
 			bimServerClient = factory.create(usernamePasswordAuthenticationInfo);

@@ -205,8 +205,8 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		}
 		switch (service.getNotificationProtocol()) {
 		case JSON:
-			JsonChannel jsonChannel = new JsonChannel(bimServer.getReflectorFactory(), jsonSocketReflectorFactory);
-			jsonChannel.connect(service.getUrl(), new SimpleTokenHolder());
+			JsonChannel jsonChannel = new JsonChannel(bimServer.getReflectorFactory(), jsonSocketReflectorFactory, service.getUrl());
+			jsonChannel.connect(new SimpleTokenHolder());
 			return jsonChannel;
 		case INTERNAL:
 			return new InternalChannel(x.get(service.getServiceIdentifier()));

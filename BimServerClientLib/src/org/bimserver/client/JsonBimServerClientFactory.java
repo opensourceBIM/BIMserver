@@ -20,30 +20,37 @@ package org.bimserver.client;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.reflector.ReflectorBuilder;
+import org.bimserver.shared.reflector.ReflectorFactory;
 
 public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
 
 	private String address;
 	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
+	private ReflectorFactory reflectorFactory;
 
-	public JsonBimServerClientFactory(String address, ServicesMap servicesMap, JsonSocketReflectorFactory jsonSocketReflectorFactory) {
+	public JsonBimServerClientFactory(String address, ServicesMap servicesMap, JsonSocketReflectorFactory jsonSocketReflectorFactory, ReflectorFactory reflectorFactory) {
 		super(servicesMap);
 		this.address = address;
 		this.jsonSocketReflectorFactory = jsonSocketReflectorFactory;
+		this.reflectorFactory = reflectorFactory;
 	}
 
 	public JsonBimServerClientFactory(String address) {
 		super();
 		this.address = address;
 		this.jsonSocketReflectorFactory = new JsonSocketReflectorFactory(getServicesMap());
+		ReflectorBuilder reflectorBuilder = new ReflectorBuilder(getServicesMap());
+		reflectorFactory = reflectorBuilder.newReflectorFactory();
 	}
 
 	@Override
 	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
-		BimServerClient bimServerClient = new BimServerClient(address, getServicesMap(), null);
+		JsonChannel jsonChannel = new JsonChannel(reflectorFactory, jsonSocketReflectorFactory, address + "/jsonapi");
+		BimServerClient bimServerClient = new BimServerClient(address, getServicesMap(), jsonChannel);
+		jsonChannel.connect(bimServerClient);
 		bimServerClient.setAuthentication(authenticationInfo);
-		bimServerClient.setJsonSocketReflectorFactory(jsonSocketReflectorFactory);
-		bimServerClient.connectJson();
+		bimServerClient.connect();
 		return bimServerClient;
 	}
 }

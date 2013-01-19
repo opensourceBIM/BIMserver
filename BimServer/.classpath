@@ -116,7 +116,7 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="lib/tomcat/catalina.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/commons-codec-1.7.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-2.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-2.7.1.jar" sourcepath="libsrc/apache-cxf-2.4.3-src.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-sts-core-2.7.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-wsn-api-2.7.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-wsn-core-2.7.1.jar"/>

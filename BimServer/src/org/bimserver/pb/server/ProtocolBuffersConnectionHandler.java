@@ -48,8 +48,11 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 	private final ProtocolBuffersServer protocolBuffersServer;
 	private final ServicesMap servicesMap;
 	private PublicInterfaceFactory serviceFactory;
+	private volatile boolean running;
+	private Socket socket;
 
 	public ProtocolBuffersConnectionHandler(Socket socket, ProtocolBuffersServer protocolBuffersServer, PublicInterfaceFactory serviceFactory, ServicesMap servicesMap) {
+		this.socket = socket;
 		this.protocolBuffersServer = protocolBuffersServer;
 		this.serviceFactory = serviceFactory;
 		this.servicesMap = servicesMap;
@@ -65,7 +68,8 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 	@Override
 	public void run() {
 		try {
-			while (true) {
+			running = true;
+			while (running) {
 				String serviceName = dataInputStream.readUTF();
 				String methodName = dataInputStream.readUTF();
 				String token = dataInputStream.readUTF();
@@ -98,8 +102,20 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 		} catch (SocketException e) {
 		} catch (EOFException e) {
 		} catch (Exception e) {
-			LOGGER.error("", e);
+			if (running) {
+				LOGGER.error("", e);
+			}
 		}
 		protocolBuffersServer.unregister(this);
+	}
+
+	public void close() {
+		running = false;
+		try {
+			socket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		interrupt();
 	}
 }

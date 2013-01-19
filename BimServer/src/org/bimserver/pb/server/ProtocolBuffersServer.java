@@ -75,12 +75,15 @@ public class ProtocolBuffersServer extends Thread {
 	}
 
 	public void shutdown() {
+		running = false;
 		try {
 			serverSocket.close();
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		}
-		running = false;
+		for (ProtocolBuffersConnectionHandler protocolBuffersConnectionHandler : activeHandlers) {
+			protocolBuffersConnectionHandler.close();
+		}
 		this.interrupt();
 	}
 

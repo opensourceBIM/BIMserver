@@ -2763,23 +2763,27 @@ public class Service implements ServiceInterface {
 	@Override
 	public SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(String extension) throws ServerException, UserException {
 		// Token authenticated users should also be able to call this method
-		requireAuthenticationAndRunningServer();
-		for (DeserializerPlugin deserializerPlugin : bimServer.getPluginManager().getAllDeserializerPlugins(true)) {
-			if (deserializerPlugin.canHandleExtension(extension)) {
-				DatabaseSession session = bimServer.getDatabase().createSession();
-				try {
-					UserSettings userSettings = getUserSettings(session);
-					for (DeserializerPluginConfiguration deserializer : userSettings.getDeserializers()) {
-						if (deserializer.getClassName().equals(deserializerPlugin.getClass().getName())) {
-							return bimServer.getSConverter().convertToSObject(deserializer);
+		try {
+			requireAuthenticationAndRunningServer();
+			for (DeserializerPlugin deserializerPlugin : bimServer.getPluginManager().getAllDeserializerPlugins(true)) {
+				if (deserializerPlugin.canHandleExtension(extension)) {
+					DatabaseSession session = bimServer.getDatabase().createSession();
+					try {
+						UserSettings userSettings = getUserSettings(session);
+						for (DeserializerPluginConfiguration deserializer : userSettings.getDeserializers()) {
+							if (deserializer.getClassName().equals(deserializerPlugin.getClass().getName())) {
+								return bimServer.getSConverter().convertToSObject(deserializer);
+							}
 						}
+					} catch (BimserverDatabaseException e) {
+						LOGGER.error("", e);
+					} finally {
+						session.close();
 					}
-				} catch (BimserverDatabaseException e) {
-					LOGGER.error("", e);
-				} finally {
-					session.close();
 				}
 			}
+		} catch (Exception e) {
+			handleException(e);
 		}
 		return null;
 	}
@@ -3447,7 +3451,7 @@ public class Service implements ServiceInterface {
 	public List<SProfileDescriptor> getAllPublicProfiles(String notificationsUrl, String serviceIdentifier) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, bimServer.getServicesMap(), bimServer.getJsonSocketReflectorFactory());
+			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, bimServer.getServicesMap(), bimServer.getJsonSocketReflectorFactory(), bimServer.getReflectorFactory());
 			BimServerClient client = factory.create();
 			NotificationInterface notificationInterface = client.getNotificationInterface();
 			return notificationInterface.getPublicProfiles(serviceIdentifier);
@@ -3460,7 +3464,7 @@ public class Service implements ServiceInterface {
 	public List<SProfileDescriptor> getAllPrivateProfiles(String notificationsUrl, String serviceIdentifier, String token) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, bimServer.getServicesMap(), bimServer.getJsonSocketReflectorFactory());
+			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, bimServer.getServicesMap(), bimServer.getJsonSocketReflectorFactory(), bimServer.getReflectorFactory());
 			BimServerClient client = factory.create();
 			NotificationInterface notificationInterface = client.getNotificationInterface();
 			return notificationInterface.getPrivateProfiles(serviceIdentifier, token);
