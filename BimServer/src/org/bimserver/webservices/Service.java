@@ -996,6 +996,19 @@ public class Service implements ServiceInterface {
 		}
 	}
 
+	public Long getOidByGuid(Long roid, String guid) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			BimDatabaseAction<Long> action = new GetOidByGuidDatabaseAction(session, accessMethod, roid, guid);
+			return session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
 	@Override
 	public SDataObject getDataObjectByGuid(Long roid, String guid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
