@@ -38,7 +38,7 @@ import org.bimserver.interfaces.SConverter;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.merging.RevisionMerger;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.LogFactory;
+import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
@@ -100,7 +100,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			if (getModel() != null) {
 				concreteRevision.setChecksum(getModel().getChecksum());
 			}
-			final NewRevisionAdded newRevisionAdded = LogFactory.eINSTANCE.createNewRevisionAdded();
+			final NewRevisionAdded newRevisionAdded = getDatabaseSession().create(LogPackage.eINSTANCE.getNewRevisionAdded());
 			newRevisionAdded.setDate(new Date());
 			newRevisionAdded.setExecutor(user);
 			Revision revision = concreteRevision.getRevisions().get(0);
@@ -141,7 +141,6 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			});
 
 			getDatabaseSession().store(concreteRevision);
-			getDatabaseSession().store(newRevisionAdded);
 			getDatabaseSession().store(project);
 		} catch (Throwable e) {
 			if (e instanceof BimserverDatabaseException) {

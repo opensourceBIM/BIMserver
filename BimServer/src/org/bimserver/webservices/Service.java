@@ -613,6 +613,10 @@ public class Service implements ServiceInterface {
 		}
 	}
 
+	public void cleanupLongAction(Long actionId) throws UserException, ServerException {
+		bimServer.getLongActionManager().remove(actionId);
+	}
+	
 	public Long download(Long roid, Long serializerOid, Boolean showOwn, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return download(new DownloadParameters(bimServer, roid, serializerOid, showOwn ? -1 : authorization.getUoid()), sync);
@@ -2215,9 +2219,20 @@ public class Service implements ServiceInterface {
 		bimServer.getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
 	}
 	
+	@Override
+	public void setLongAttribute(Long tid, Long oid, String attributeName, Long value) throws UserException {
+		requireAuthenticationAndRunningServer();
+		bimServer.getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+	}
+	
 	public Integer getIntegerAttribute(Long tid, Long oid, String attributeName) throws ServerException ,UserException {
 		requireAuthenticationAndRunningServer();
 		return (Integer)getAttribute(tid, oid, attributeName);
+	}
+
+	public Long getLongAttribute(Long tid, Long oid, String attributeName) throws ServerException ,UserException {
+		requireAuthenticationAndRunningServer();
+		return (Long)getAttribute(tid, oid, attributeName);
 	}
 
 	@Override
@@ -3699,11 +3714,6 @@ public class Service implements ServiceInterface {
 	@Override
 	public Integer clearOutputFileCache() {
 		return bimServer.getDiskCacheManager().cleanup();
-	}
-
-	@Override
-	public void cleanupDownload(Long download) {
-		bimServer.getLongActionManager().remove(download);
 	}
 
 	@Override

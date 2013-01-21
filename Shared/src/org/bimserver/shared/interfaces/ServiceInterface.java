@@ -1541,11 +1541,36 @@ public interface ServiceInterface extends PublicInterface {
 	 * @param value new Integer value
 	 * @throws ServerException, UserException
 	 */
+	@WebMethod(action = "setLongAttribute")
+	void setLongAttribute(
+		@WebParam(name = "tid", partName = "setLongAttribute.tid") Long tid,
+		@WebParam(name = "oid", partName = "setLongAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "setLongAttribute.attributeName") String attributeName, 
+		@WebParam(name = "value", partName = "setLongAttribute.value") Long value) throws ServerException, UserException;
+	
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value new Integer value
+	 * @throws ServerException, UserException
+	 */
 	@WebMethod(action = "getIntegerAttribute")
 	Integer getIntegerAttribute(
 		@WebParam(name = "tid", partName = "getIntegerAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "getIntegerAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "getIntegerAttribute.attributeName") String attributeName) throws ServerException, UserException;
+
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value new Integer value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getLongAttribute")
+	Long getLongAttribute(
+			@WebParam(name = "tid", partName = "getLongAttribute.tid") Long tid,
+			@WebParam(name = "oid", partName = "getLongAttribute.oid") Long oid, 
+			@WebParam(name = "attributeName", partName = "getLongAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -2266,10 +2291,6 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "clearOutputFileCache")
 	Integer clearOutputFileCache();
 
-	@WebMethod(action = "cleanupDownload")
-	void cleanupDownload(
-		@WebParam(name = "download", partName = "cleanupDownload.download") Long download);
-
 	@WebMethod(action = "getSystemInfo")
 	SSystemInfo getSystemInfo();
 	
@@ -2286,4 +2307,8 @@ public interface ServiceInterface extends PublicInterface {
 	Long getOidByGuid(
 		@WebParam(name = "roid", partName = "getOidByGuid.roid") Long roid, 
 		@WebParam(name = "guid", partName = "getOidByGuid.guid") String guid) throws ServerException, UserException;
+
+	@WebMethod(action = "cleanupLongAction")
+	void cleanupLongAction(
+		@WebParam(name = "actionId", partName = "cleanupLongAction.actionId") Long actionId) throws UserException, ServerException;
 }

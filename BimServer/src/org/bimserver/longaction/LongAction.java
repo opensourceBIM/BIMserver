@@ -180,4 +180,9 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	public void info(String info) {
 		infos.add(info);
 	}
+
+	public void stop() {
+		// TODO Auto-generated method stub
+		
+	}
 }

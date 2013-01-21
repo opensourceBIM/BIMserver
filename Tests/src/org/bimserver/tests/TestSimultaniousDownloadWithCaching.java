@@ -127,7 +127,7 @@ public class TestSimultaniousDownloadWithCaching {
 								IOUtils.copy(downloadData.getFile().getInputStream(), baos);
 								System.out.println(baos.size());
 							}
-							serviceInterface.cleanupDownload(download);
+							serviceInterface.cleanupLongAction(download);
 						} catch (ServerException e) {
 							e.printStackTrace();
 						} catch (UserException e) {

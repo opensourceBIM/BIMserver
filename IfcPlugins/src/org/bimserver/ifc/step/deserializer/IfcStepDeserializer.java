@@ -30,10 +30,8 @@ import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -62,6 +60,9 @@ import org.bimserver.plugins.schema.RealType;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.StringType;
 import org.bimserver.plugins.schema.UnderlyingType;
+import org.bimserver.shared.ListWaitingObject;
+import org.bimserver.shared.SingleWaitingObject;
+import org.bimserver.shared.WaitingList;
 import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.StringUtils;
 import org.eclipse.emf.common.util.BasicEList;
@@ -93,7 +94,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 	 *   - WrappedValues for all for derived primitive types and enums that are used in a "select"
 	 */
 
-	private final Map<Integer, List<WaitingObject>> waitingObjects = new HashMap<Integer, List<WaitingObject>>();
+	private final WaitingList<Integer> waitingList = new WaitingList<Integer>();
 	private SchemaDefinition schema;
 	private Mode mode = Mode.HEADER;
 	private IfcModelInterface model;
@@ -325,8 +326,8 @@ public class IfcStepDeserializer extends EmfDeserializer {
 					}
 				}
 			}
-			if (waitingObjects.containsKey(recordNumber)) {
-				updateNode(recordNumber, classifier, object);
+			if (waitingList.containsKey(recordNumber)) {
+				waitingList.updateNode(recordNumber, classifier, object);
 			}
 		} else {
 			throw new DeserializeException(name + " is not a known entity");
@@ -371,14 +372,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 							}
 						}
 					} else {
-						List<WaitingObject> waitingList = null;
-						if (waitingObjects.containsKey(referenceId)) {
-							waitingList = waitingObjects.get(referenceId);
-						} else {
-							waitingList = new ArrayList<WaitingObject>();
-							waitingObjects.put(referenceId, waitingList);
-						}
-						waitingList.add(new WaitingObject(object, structuralFeature, index));
+						waitingList.add(referenceId, new ListWaitingObject(object, structuralFeature, index));
 					}
 				} else {
 					Object convert = convert(structuralFeature.getEType(), stringValue);
@@ -398,36 +392,6 @@ public class IfcStepDeserializer extends EmfDeserializer {
 			}
 			index++;
 		}
-	}
-
-	@SuppressWarnings("unchecked")
-	private void updateNode(int expressId, EClass ec, EObject eObject) throws DeserializeException {
-		for (WaitingObject waitingObject : waitingObjects.get(expressId)) {
-			if (waitingObject.getStructuralFeature().getUpperBound() != 1) {
-				BasicEList<EObject> list = (BasicEList<EObject>) waitingObject.getObject().eGet(waitingObject.getStructuralFeature());
-				if (waitingObject.getIndex() == -1) {
-					list.addUnique(eObject);
-				} else {
-					if (((EClass) waitingObject.getStructuralFeature().getEType()).isSuperTypeOf(eObject.eClass())) {
-						while (list.size() <= waitingObject.getIndex()) {
-							list.addUnique(ec.getEPackage().getEFactoryInstance().create(eObject.eClass()));
-						}
-						list.setUnique(waitingObject.getIndex(), eObject);
-					} else {
-						throw new DeserializeException("Field " + waitingObject.getStructuralFeature().getName() + " of "
-								+ waitingObject.getStructuralFeature().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName());
-					}
-				}
-			} else {
-				if (((EClass) waitingObject.getStructuralFeature().getEType()).isSuperTypeOf(eObject.eClass())) {
-					waitingObject.getObject().eSet(waitingObject.getStructuralFeature(), eObject);
-				} else {
-					throw new DeserializeException("Field " + waitingObject.getStructuralFeature().getName() + " of "
-							+ waitingObject.getStructuralFeature().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName());
-				}
-			}
-		}
-		waitingObjects.remove(expressId);
 	}
 
 	private Object convertSimpleValue(Class<?> instanceClass, String value) throws DeserializeException {
@@ -669,14 +633,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		if (model.contains(referenceId)) {
 			object.eSet(structuralFeature, model.get(referenceId));
 		} else {
-			List<WaitingObject> waitingList = null;
-			if (waitingObjects.containsKey(referenceId)) {
-				waitingList = waitingObjects.get(referenceId);
-			} else {
-				waitingList = new ArrayList<WaitingObject>();
-				waitingObjects.put(referenceId, waitingList);
-			}
-			waitingList.add(new WaitingObject(object, structuralFeature, -1));
+			waitingList.add(referenceId, new SingleWaitingObject(object, structuralFeature));
 		}
 	}
 }

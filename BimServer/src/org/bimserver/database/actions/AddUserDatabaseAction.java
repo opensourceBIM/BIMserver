@@ -35,10 +35,10 @@ import org.bimserver.database.PostCommitAction;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.LogFactory;
+import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.NewUserAdded;
 import org.bimserver.models.store.ServerSettings;
-import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
@@ -115,7 +115,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 				}
 			}
 		}
-		final User user = StoreFactory.eINSTANCE.createUser();
+		final User user = getDatabaseSession().create(StorePackage.eINSTANCE.getUser());
 		if (password != null) {
 			user.setPassword(Hashers.getSha256Hash(password));
 		}
@@ -131,7 +131,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		user.setValidationTokenCreated(new Date());
 		
 		if (!createSystemUser) {
-			final NewUserAdded newUserAdded = LogFactory.eINSTANCE.createNewUserAdded();
+			final NewUserAdded newUserAdded = getDatabaseSession().create(LogPackage.eINSTANCE.getNewUserAdded());
 			newUserAdded.setUser(user);
 			newUserAdded.setExecutor(actingUser);
 			newUserAdded.setDate(new Date());

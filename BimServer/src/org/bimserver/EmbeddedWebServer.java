@@ -41,7 +41,7 @@ public class EmbeddedWebServer {
 		socketConnector.setPort(bimServer.getConfig().getPort());
 		server.addConnector(socketConnector);
 		context = new WebAppContext(server, "", "/");
-//		context.setDefaultsDescriptor("www/WEB-INF/webdefault.xml");
+		context.setDefaultsDescriptor("www/WEB-INF/webdefault.xml");
 		context.addServlet(WebServiceServlet.class.getName(), "/soap/*");
 		context.addServlet(SyndicationServlet.class.getName(), "/syndication/*");
 		context.getServletContext().setAttribute("bimserver", bimServer);

@@ -33,6 +33,7 @@ import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -133,8 +134,14 @@ public class LongActionManager {
 		}
 	}
 
-	public synchronized void remove(long actionId) {
-		actions.remove(actionId);
+	public synchronized void remove(long actionId) throws UserException {
+		LongAction<?> longAction = actions.get(actionId);
+		if (longAction != null) {
+			longAction.stop();
+			actions.remove(actionId);
+		} else {
+			throw new UserException("No long action with id " + actionId + " found");
+		}
 	}
 
 	public synchronized void remove(LongAction<?> action) {

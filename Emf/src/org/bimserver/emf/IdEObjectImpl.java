@@ -17,138 +17,122 @@ package org.bimserver.emf;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.emf.Delegate.State;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 
-	public static enum State {
-		NONE,
-		LOADING,
-		LOADED
-	}
-
-	private IfcModelInterface model;
-	private long oid = -1;
-	private int expressId = -1;
-	private int rid;
-	private int pid;
-	private State state = State.NONE;
-	private LazyLoader lazyLoader;
+	private Delegate delegate;
 	
 	@Override
 	public long getOid() {
-		return oid;
+		return getDelegate().getOid();
 	}
 
 	public void setOid(long oid) {
-		this.oid = oid;
-	}
-	
-	public void setModel(IfcModelInterface model) throws IfcModelInterfaceException {
-		if (this.model != null) {
-			throw new IfcModelInterfaceException("This object already has a model");
-		}
-		this.model = model;
+		getDelegate().setOid(oid);
 	}
 
+	public void setModel(IfcModelInterface model) throws IfcModelInterfaceException {
+		getDelegate().setModel(model);
+	}
+
+	public Delegate getDelegate() {
+		if (delegate == null) {
+			delegate = new DefaultDelegate(this);
+		}
+		return delegate;
+	}
+	
 	@Override
 	public int getPid() {
-		return pid;
+		return getDelegate().getPid();
 	}
 
 	@Override
 	public int getRid() {
-		load();
-		return rid;
+		return getDelegate().getRid();
 	}
 
 	public void setPid(int pid) {
-		this.pid = pid;
+		getDelegate().setPid(pid);
 	}
 
 	public void setRid(int rid) {
-		this.rid = rid;
+		getDelegate().setRid(rid);
 	}
 
 	@Override
 	public void eUnset(EStructuralFeature eFeature) {
-		load();
+		getDelegate().eUnset(eFeature);
 		super.eUnset(eFeature);
 	}
 	
 	@Override
 	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		load();
+		getDelegate().eSet(eFeature, newValue);
 		super.eSet(eFeature, newValue);
 	}
 	
 	@Override
 	public Object eGet(EStructuralFeature eFeature) {
-		load();
+		getDelegate().eGet(eFeature);
 		return super.eGet(eFeature);
 	}
 	
 	@Override
 	public boolean eIsSet(EStructuralFeature eFeature) {
-		load();
+		getDelegate().eIsSet(eFeature);
 		return super.eIsSet(eFeature);
 	}
 	
 	@Override
 	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		load();
+		getDelegate().eGet(eFeature, resolve);
 		return super.eGet(eFeature, resolve);
 	}
 	
 	@Override
 	public Object eGet(EStructuralFeature eFeature, boolean resolve, boolean coreType) {
-		load();
+		getDelegate().eGet(eFeature, resolve, coreType);
 		return super.eGet(eFeature, resolve, coreType);
 	}
 	
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		load();
+		getDelegate().eGet(featureID, resolve, coreType);
 		return super.eGet(featureID, resolve, coreType);
 	}
 	
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		load();
+		getDelegate().eSet(featureID, newValue);
 		super.eSet(featureID, newValue);
 	}
 
 	public void load() {
-		if (!isLoadedOrLoading()) {
-			state = State.LOADING;
-			lazyLoader.load(this);
-			state = State.LOADED;
+		if (getDelegate() != null) {
+			getDelegate().load();
 		}
 	}
 
-	public void setLazyLoader(LazyLoader lazyLoader) {
-		this.lazyLoader = lazyLoader;
+	public void loadForEdit() {
+		if (getDelegate() != null) {
+			getDelegate().loadForEdit();
+		}
 	}
-
+	
 	public void setLoaded() {
-		this.state = State.LOADED;
-	}
-	
-	public boolean isLoadedOrLoading() {
-		return lazyLoader == null || state != State.NONE;
+		getDelegate().setState(State.LOADED);
 	}
 
-	public void setLoading() {
-		state = State.LOADING;
-	}
-	
 	public State getLoadingState() {
-		return state;
+		return getDelegate().getState();
 	}
 	
 	public IfcModelInterface getModel() {
-		return model;
+		return getDelegate().getModel();
 	}
 	
 	public boolean hasModel() {
@@ -156,10 +140,22 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 	}
 
 	public int getExpressId() {
-		return expressId;
+		return getDelegate().getExpressId();
 	}
 
 	public void setExpressId(int expressId) {
-		this.expressId = expressId;
+		this.getDelegate().setExpressId(expressId);
+	}
+
+	public boolean isLoadedOrLoading() {
+		return getDelegate().isLoadedOrLoading();
+	}
+
+	public void setLoading() {
+		getDelegate().setLoading();
+	}
+
+	public void setDelegate(Delegate delegate) {
+		this.delegate = delegate;
 	}
 }

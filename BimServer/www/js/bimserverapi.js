@@ -83,8 +83,8 @@ function BimServerApi(baseUrl, notifier) {
 	this.processNotification = function(message) {
 		var intf = message["interface"];
 		if (othis.listeners[intf] != null) {
-			if (othis.listeners[intf[message.method]] != null) {
-				othis.listeners[intf[message.method]].forEach(function(listener) {
+			if (othis.listeners[intf][message.method] != null) {
+				othis.listeners[intf][message.method].forEach(function(listener) {
 					var ar = [];
 					var i=0;
 					for (var key in message.parameters) {
@@ -377,6 +377,7 @@ function Model(bimServerApi, poid, roid, deep) {
 						waiter();
 					});
 					othis.waiters = [];
+					bimServerApi.call("ServiceInterface", "cleanupLongAction", {actionId: laid}, function(){});
 				});
 			});
 		});
@@ -436,6 +437,7 @@ function Model(bimServerApi, poid, roid, deep) {
 							} else {
 								console.log("Object with oid " + oids + " not found");
 							}
+							bimServerApi.call("ServiceInterface", "cleanupLongAction", {actionId: laid}, function(){});
 						});
 					});
 				});
@@ -604,6 +606,7 @@ function Model(bimServerApi, poid, roid, deep) {
 								othis.resolveReferences(object);
 								callback(object);
 							}
+							bimServerApi.call("ServiceInterface", "cleanupLongAction", {actionId: laid}, function(){});
 						});
 					});
 				});

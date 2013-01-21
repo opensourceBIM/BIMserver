@@ -4,6 +4,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.List;
 
+import org.bimserver.emf.Delegate;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.ifc.IfcSerializer;
@@ -24,7 +25,7 @@ public class JsonSerializer extends IfcSerializer {
 		out.write("\"objects\":[");
 		boolean first = true;
 		for (IdEObject idEObject : getModel().getValues()) {
-			if (((IdEObjectImpl) idEObject).getLoadingState() == IdEObjectImpl.State.LOADED) {
+			if (((IdEObjectImpl) idEObject).getLoadingState() == Delegate.State.LOADED) {
 				if (idEObject.eClass().getEAnnotation("hidden") == null) {
 					if (!first) {
 						out.write(",");
@@ -72,24 +73,22 @@ public class JsonSerializer extends IfcSerializer {
 									} else {
 										out.write(",");
 									}
-									if (eStructuralFeature instanceof EReference) {
-									} else {
-										if (eStructuralFeature.isMany()) {
-											List<?> list = (List<?>) value;
-											out.write("\"" + eStructuralFeature.getName() + "\":[");
-											boolean f = true;
-											for (Object o : list) {
-												if (!f) {
-													out.write(",");
-												} else {
-													f = false;
-												}
-												out.write("\"" + o + "\"");
+									if (eStructuralFeature.isMany()) {
+										List<?> list = (List<?>) value;
+										out.write("\"" + eStructuralFeature.getName() + "\":[");
+										boolean f = true;
+										for (Object o : list) {
+											if (!f) {
+												out.write(",");
+											} else {
+												f = false;
 											}
-											out.write("]");
-										} else {
-											out.write("\"" + eStructuralFeature.getName() + "\":\"" + value + "\"");
+											writePrimitive(out, o);
 										}
+										out.write("]");
+									} else {
+										out.write("\"" + eStructuralFeature.getName() + "\":");
+										writePrimitive(out, value);
 									}
 								}
 							}
@@ -103,5 +102,13 @@ public class JsonSerializer extends IfcSerializer {
 		out.write("}");
 		out.flush();
 		return false;
+	}
+
+	private void writePrimitive(PrintWriter out, Object value) {
+		if (value instanceof String || value instanceof Enum) {
+			out.write("\"" + value + "\"");
+		} else {
+			out.write("" + value);
+		}
 	}
 }

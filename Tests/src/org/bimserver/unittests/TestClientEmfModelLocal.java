@@ -31,9 +31,9 @@ import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientException;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
+import org.bimserver.client.ClientIfcModel;
 import org.bimserver.client.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.client.Session;
-import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevisionSummary;
@@ -101,30 +101,31 @@ public class TestClientEmfModelLocal {
 		}
 		try {
 			session = bimServerClient.createSession();
-			int pid = createProject();
-			session.startTransaction(pid);
+			int poid = createProject();
+			session.startTransaction(poid);
 			CreateFromScratch createFromScratch = new CreateFromScratch();
 			createFromScratch.createIfcProject(session);
 			long roid = session.commitTransaction("tralala");
 
-			dumpToFile(roid);
+			dumpToFile(poid, roid);
 			
-			session.startTransaction(pid);
+			session.startTransaction(poid);
 			createFromScratch.createWall(session);
 			roid = session.commitTransaction("test");
 			
-			dumpToFile(roid);
+			dumpToFile(poid, roid);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getMessage());
 		}
 	}
 
-	private void dumpToFile(long roid) throws SerializerException {
+	private void dumpToFile(long poid, long roid) throws SerializerException {
 		try {
-			IfcModelInterface model = bimServerClient.getModel(roid);
+			ClientIfcModel model = bimServerClient.getModel(poid, roid, false);
 			IfcStepSerializer serializer = new IfcStepSerializer();
-			serializer.init(model, null, bimServer.getPluginManager(), null, false);
+			// TODO fix
+//			serializer.init(model, null, bimServer.getPluginManager(), null, false);
 			File output = new File("output");
 			if (!output.exists()) {
 				output.mkdir();

@@ -26,12 +26,12 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.LogFactory;
+import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.NewProjectAdded;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.SIPrefix;
-import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
@@ -63,7 +63,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 		if (trimmedName.equals("")) {
 			throw new UserException("Invalid project name");
 		}
-		final Project project = StoreFactory.eINSTANCE.createProject();
+		final Project project = getDatabaseSession().create(StorePackage.eINSTANCE.getProject());
 		Project parentProject = null;
 		if (parentPoid != -1) {
 			parentProject = getProjectByPoid(parentPoid);
@@ -91,7 +91,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 			}
 			project.setGeoTag(parent.getGeoTag());
 		}
-		final NewProjectAdded newProjectAdded = LogFactory.eINSTANCE.createNewProjectAdded();
+		final NewProjectAdded newProjectAdded = getDatabaseSession().create(LogPackage.eINSTANCE.getNewProjectAdded());
 		newProjectAdded.setDate(new Date());
 		newProjectAdded.setExecutor(actingUser);
 		newProjectAdded.setParentProject(parentProject);
@@ -112,7 +112,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 		project.setDescription("");
 		project.setExportLengthMeasurePrefix(SIPrefix.METER);
 		if (project.getParent() == null) {
-			GeoTag geoTag = StoreFactory.eINSTANCE.createGeoTag();
+			GeoTag geoTag = getDatabaseSession().create(StorePackage.eINSTANCE.getGeoTag());
 			geoTag.setEnabled(false);
 			project.setGeoTag(geoTag);
 			getDatabaseSession().store(geoTag);
