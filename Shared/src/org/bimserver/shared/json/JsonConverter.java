@@ -139,6 +139,8 @@ public class JsonConverter {
 			return new JsonPrimitive((Long)object);
 		} else if (object instanceof Integer) {
 			return new JsonPrimitive((Integer)object);
+		} else if (object instanceof Double) {
+			return new JsonPrimitive((Double)object);
 		} else if (object instanceof Enum) {
 			return new JsonPrimitive(object.toString());
 		} else if (object == null) {
@@ -147,7 +149,7 @@ public class JsonConverter {
 			byte[] data = (byte[])object;
 			return new JsonPrimitive(new String(Base64.encodeBase64(data), Charsets.UTF_8));
 		}
-		throw new UnsupportedOperationException(object.toString());
+		throw new UnsupportedOperationException(object.getClass().getName());
 	}
 
 	public Object fromJson(SClass definedType, SClass genericType, Object object) throws JSONException, ConvertException, IOException {

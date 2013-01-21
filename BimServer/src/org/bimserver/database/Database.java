@@ -42,10 +42,8 @@ import org.bimserver.emf.MetaDataManager;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.DatabaseCreated;
-import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.ServerSettings;
-import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
@@ -145,7 +143,7 @@ public class Database implements BimDatabase {
 				initInternalStructure(databaseSession);
 				initCounters(databaseSession);
 
-				ServerSettings settings = createDefaultSettings();
+				ServerSettings settings = createDefaultSettings(databaseSession);
 				databaseSession.store(settings);
 				
 				new CreateBaseProjectDatabaseAction(databaseSession, AccessMethod.INTERNAL).execute();
@@ -155,7 +153,7 @@ public class Database implements BimDatabase {
 				systemUser.setCreatedBy(systemUser);
 				databaseSession.store(systemUser);
 
-				DatabaseCreated databaseCreated = LogFactory.eINSTANCE.createDatabaseCreated();
+				DatabaseCreated databaseCreated = databaseSession.create(LogPackage.eINSTANCE.getDatabaseCreated());
 				databaseCreated.setAccessMethod(AccessMethod.INTERNAL);
 				databaseCreated.setExecutor(systemUser);
 				databaseCreated.setDate(new Date());
@@ -191,8 +189,8 @@ public class Database implements BimDatabase {
 		}
 	}
 
-	public ServerSettings createDefaultSettings() {
-		ServerSettings settings = StoreFactory.eINSTANCE.createServerSettings();
+	public ServerSettings createDefaultSettings(DatabaseSession databaseSession) throws BimserverDatabaseException {
+		ServerSettings settings = databaseSession.create(StorePackage.eINSTANCE.getServerSettings());
 		settings.setEmailSenderAddress("no-reply@bimserver.org");
 		settings.setEmailSenderName("Administrator");
 		settings.setSiteAddress("");

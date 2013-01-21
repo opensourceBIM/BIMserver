@@ -25,7 +25,7 @@ import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
-import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.UserException;
 
 public class CreateBaseProjectDatabaseAction extends BimDatabaseAction<Project>{
@@ -36,7 +36,7 @@ public class CreateBaseProjectDatabaseAction extends BimDatabaseAction<Project>{
 
 	@Override
 	public Project execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
-		final Project project = StoreFactory.eINSTANCE.createProject();
+		final Project project = getDatabaseSession().create(StorePackage.eINSTANCE.getProject());
 		project.setName(Database.STORE_PROJECT_NAME);
 		project.setCreatedDate(new Date());
 		getDatabaseSession().store(project);

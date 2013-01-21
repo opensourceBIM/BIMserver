@@ -278,7 +278,8 @@ public class IfcModel implements IfcModelInterface {
 		}
 	}
 
-	public <T extends EObject> List<T> getAllWithSubTypes(Class<T> interfaceClass) {
+	@Override
+	public <T extends EObject> List<T> getAllWithSubTypes(Class<T> interfaceClass)  {
 		return getAllWithSubTypes(eClassClassMap.inverse().get(interfaceClass));
 	}
 

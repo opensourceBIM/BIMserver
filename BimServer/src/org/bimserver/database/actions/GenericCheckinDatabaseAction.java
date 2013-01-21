@@ -32,6 +32,7 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -85,7 +86,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 	
 	public CreateRevisionResult createNewConcreteRevision(DatabaseSession session, long size, Project project, User user, String comment) throws BimserverDatabaseException, BimserverLockConflictException {
 		CreateRevisionResult result = new CreateRevisionResult();
-		ConcreteRevision concreteRevision = StoreFactory.eINSTANCE.createConcreteRevision();
+		ConcreteRevision concreteRevision = getDatabaseSession().create(StorePackage.eINSTANCE.getConcreteRevision());
 		concreteRevision.setSize(size);
 		Date date = new Date();
 		concreteRevision.setDate(date);
@@ -105,7 +106,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		project.setLastRevision(newRevision);
 		Project parent = project.getParent();
 		while (parent != null) {
-			Revision revision = StoreFactory.eINSTANCE.createRevision();
+			Revision revision = getDatabaseSession().create(StorePackage.eINSTANCE.getRevision());
 			result.addRevision(revision);
 			revision.setComment("generated for subproject " + project.getName() + ", revision " + concreteRevision.getId() + ", by " + user.getName());
 			revision.setDate(date);

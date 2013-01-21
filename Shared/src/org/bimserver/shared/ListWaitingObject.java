@@ -1,4 +1,4 @@
-package org.bimserver.ifc.step.deserializer;
+package org.bimserver.shared;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -25,32 +25,17 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * parsed. In that case a WaitingObject is created and stored in a map. As soon as the referenced
  * object get's parsed, all that object's waiting objects are connected to the original object.
  */
-public class WaitingObject {
+public class ListWaitingObject extends WaitingObject {
 
-	// The object that has a missing reference
-	private final EObject object;
-
-	// The structural feature (usually a reference) on which to 'connect' the object on
-	private final EStructuralFeature structuralFeature;
-	
 	// To keep an eventual order intact, for EList's you can store the index at which it should be placed
 	private final int index;
 
-	public WaitingObject(EObject object, EStructuralFeature structuralFeature, int index) {
-		this.object = object;
-		this.structuralFeature = structuralFeature;
+	public ListWaitingObject(EObject object, EStructuralFeature structuralFeature, int index) {
+		super(object, structuralFeature);
 		this.index = index;
 	}
 	
 	public int getIndex() {
 		return index;
-	}
-
-	public EObject getObject() {
-		return object;
-	}
-
-	public EStructuralFeature getStructuralFeature() {
-		return structuralFeature;
 	}
 }

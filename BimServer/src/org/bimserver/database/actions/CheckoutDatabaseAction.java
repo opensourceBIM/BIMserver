@@ -33,7 +33,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
@@ -65,7 +65,7 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 			for (Checkout checkout : project.getCheckouts()) {
 				if (checkout.getUser() == user && checkout.getActive()) {
 					checkout.setActive(false);
-					Checkout newCheckout = StoreFactory.eINSTANCE.createCheckout();
+					Checkout newCheckout = getDatabaseSession().create(StorePackage.eINSTANCE.getCheckout());
 					newCheckout.setActive(true);
 					newCheckout.setDate(new Date());
 					newCheckout.setUser(user);
@@ -77,7 +77,7 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 					return realCheckout(project, revision, getDatabaseSession(), user);
 				}
 			}
-			Checkout checkout = StoreFactory.eINSTANCE.createCheckout();
+			Checkout checkout = getDatabaseSession().create(StorePackage.eINSTANCE.getCheckout());
 			checkout.setActive(true);
 			checkout.setDate(new Date());
 			checkout.setUser(user);
