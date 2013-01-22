@@ -3,6 +3,7 @@ package org.bimserver.client;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -16,6 +17,7 @@ import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
+import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.shared.ListWaitingObject;
 import org.bimserver.shared.SingleWaitingObject;
@@ -115,7 +117,7 @@ public class ClientIfcModel extends IfcModel {
 									throw new BimServerClientException("No class found with name " + type);
 								}
 								IdEObject object = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(eClass);
-								((IdEObjectImpl) object).setDelegate(new ClientDelegate(this, object));
+								((IdEObjectImpl) object).setDelegate(new ClientDelegate(this, object, null));
 								((IdEObjectImpl) object).setOid(oid);
 								add(object.getOid(), object);
 								while (jsonReader.hasNext()) {
@@ -248,13 +250,116 @@ public class ClientIfcModel extends IfcModel {
 	}
 	
 	@Override
-	public <T extends EObject> List<T> getAllWithSubTypes(Class<T> interfaceClass) {
-		if (!loadedClasses.contains(interfaceClass.getSimpleName()) && modelState != ModelState.FULLY_LOADED) {
+	public <T extends EObject> List<T> getAll(EClass eClass) {
+		if (modelState == ModelState.NONE) {
+			try {
+				loadDeep();
+			} catch (ServerException e) {
+				e.printStackTrace();
+			} catch (UserException e) {
+				e.printStackTrace();
+			} catch (BimServerClientException e) {
+				e.printStackTrace();
+			}
+		}
+		return super.getAll(eClass);
+	}
+	
+	@Override
+	public Set<String> getGuids(EClass eClass) {
+		getAllWithSubTypes(eClass);
+		return super.getGuids(eClass);
+	}
+	
+	@Override
+	public Set<String> getNames(EClass eClass) {
+		getAllWithSubTypes(eClass);
+		return super.getNames(eClass);
+	}
+	
+	@Override
+	public IdEObject getByName(EClass eClass, String name) {
+		// TODO
+		return super.getByName(eClass, name);
+	}
+	
+	@Override
+	public IdEObject getByGuid(EClass eClass, String guid) {
+		// TODO
+		return super.getByGuid(eClass, guid);
+	}
+	
+	@Override
+	public long size() {
+		try {
+			loadDeep();
+		} catch (ServerException e) {
+			e.printStackTrace();
+		} catch (UserException e) {
+			e.printStackTrace();
+		} catch (BimServerClientException e) {
+			e.printStackTrace();
+		}
+		return super.size();
+	}
+	
+	@Override
+	public Set<Long> keySet() {
+		try {
+			loadDeep();
+		} catch (ServerException e) {
+			e.printStackTrace();
+		} catch (UserException e) {
+			e.printStackTrace();
+		} catch (BimServerClientException e) {
+			e.printStackTrace();
+		}
+		return super.keySet();
+	}
+	
+	@Override
+	public IdEObject get(long oid) {
+		IdEObject idEObject = super.get(oid);
+		if (idEObject == null) {
 			try {
 				modelState = ModelState.LOADING;
-				Long downloadByTypes = bimServerClient.getServiceInterface().downloadByTypes(Collections.singleton(roid), Collections.singleton(interfaceClass.getSimpleName()), getIfcSerializerOid(), true, false, false, true);
+				Long downloadByOids = bimServerClient.getServiceInterface().downloadByOids(Collections.singleton(roid), Collections.singleton(oid), getIfcSerializerOid(), true, false);
+				processDownload(downloadByOids);
+				modelState = ModelState.NONE;
+				return super.get(oid);
+			} catch (ServerException e) {
+				e.printStackTrace();
+			} catch (UserException e) {
+				e.printStackTrace();
+			} catch (BimServerClientException e) {
+				e.printStackTrace();
+			}
+		}
+		return idEObject;
+	}
+	
+	@Override
+	public Collection<IdEObject> getValues() {
+		try {
+			loadDeep();
+		} catch (ServerException e) {
+			e.printStackTrace();
+		} catch (UserException e) {
+			e.printStackTrace();
+		} catch (BimServerClientException e) {
+			e.printStackTrace();
+		}
+		return super.getValues();
+	}
+	
+	@Override
+	public <T extends EObject> List<T> getAllWithSubTypes(EClass eClass) {
+		if (!loadedClasses.contains(eClass.getName()) && modelState != ModelState.FULLY_LOADED) {
+			try {
+				modelState = ModelState.LOADING;
+				Long downloadByTypes = bimServerClient.getServiceInterface().downloadByTypes(Collections.singleton(roid), Collections.singleton(eClass.getName()), getIfcSerializerOid(), true, false, false, true);
 				processDownload(downloadByTypes);
-				loadedClasses.add(interfaceClass.getSimpleName());
+				loadedClasses.add(eClass.getName());
 				modelState = ModelState.NONE;
 			} catch (ServerException e) {
 				e.printStackTrace();
@@ -264,7 +369,7 @@ public class ClientIfcModel extends IfcModel {
 				e.printStackTrace();
 			}
 		}
-		return super.getAllWithSubTypes(interfaceClass);
+		return super.getAllWithSubTypes(eClass);
 	}
 
 	public Long getTransactionId() {
@@ -273,5 +378,50 @@ public class ClientIfcModel extends IfcModel {
 
 	public ModelState getModelState() {
 		return modelState;
+	}
+	
+	@Override
+	public boolean contains(long oid) {
+		get(oid);
+		return super.contains(oid);
+	}
+	
+	@Override
+	public boolean contains(String guid) {
+		get(guid);
+		return super.contains(guid);
+	}
+	
+	@Override
+	public int count(EClass eClass) {
+		getAllWithSubTypes(eClass);
+		return super.count(eClass);
+	}
+	
+	@Override
+	public IfcRoot get(String guid) {
+		IfcRoot idEObject = super.get(guid);
+		if (idEObject == null) {
+			try {
+				modelState = ModelState.LOADING;
+				Long downloadByGuids = bimServerClient.getServiceInterface().downloadByGuids(Collections.singleton(roid), Collections.singleton(guid), getIfcSerializerOid(), false);
+				processDownload(downloadByGuids);
+				modelState = ModelState.NONE;
+				return super.get(guid);
+			} catch (ServerException e) {
+				e.printStackTrace();
+			} catch (UserException e) {
+				e.printStackTrace();
+			} catch (BimServerClientException e) {
+				e.printStackTrace();
+			}
+		}
+		return idEObject;
+	}
+	
+	@Override
+	public void remove(IdEObject idEObject) {
+		// TODO
+		super.remove(idEObject);
 	}
 }

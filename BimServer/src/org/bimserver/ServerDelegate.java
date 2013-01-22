@@ -3,15 +3,21 @@ package org.bimserver;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.Delegate;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.QueryInterface;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class ServerDelegate extends Delegate {
 
 	private DatabaseSession databaseSession;
 
-	public ServerDelegate(DatabaseSession databaseSession, IdEObject idEObject) {
-		super(idEObject);
+	public ServerDelegate(DatabaseSession databaseSession, IdEObject idEObject, QueryInterface queryInterface) {
+		super(idEObject, queryInterface);
 		this.databaseSession = databaseSession;
+		if (queryInterface == null || queryInterface.isDeep()) {
+			setState(State.NO_LAZY_LOADING);
+		} else {
+			setState(State.TO_BE_LOADED);
+		}
 	}
 
 	@Override

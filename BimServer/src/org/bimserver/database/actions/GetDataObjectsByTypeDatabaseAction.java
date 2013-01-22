@@ -96,7 +96,7 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<D
 					dataObject.setGuid("");
 					dataObject.setName("");
 				}
-				GetDataObjectByOidDatabaseAction.fillDataObject(ifcModel.getMap(), eObject, dataObject);
+				GetDataObjectByOidDatabaseAction.fillDataObject(ifcModel.getObjects(), eObject, dataObject);
 				dataObjects.add(dataObject);
 			}
 		}

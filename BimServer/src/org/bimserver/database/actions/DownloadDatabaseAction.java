@@ -92,7 +92,6 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 				IfcModel subModel = new IfcModel();
 				int highestStopId = findHighestStopRid(project, subRevision);
 				Query query = new Query(subRevision.getProject().getId(), subRevision.getId(), objectIDM, Deep.YES, highestStopId);
-				subModel.setQuery(query);
 				subModel.addChangeListener(new IfcModelChangeListener() {
 					@Override
 					public void objectAdded() {

@@ -1,10 +1,11 @@
 package org.bimserver.database;
 
+import org.bimserver.emf.QueryInterface;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public class Query {
+public class Query implements QueryInterface {
 
 	public static enum Deep {
 		NO,
@@ -75,11 +76,11 @@ public class Query {
 		return stopRid;
 	}
 
-	public Integer getPid() {
+	public int getPid() {
 		return pid;
 	}
 	
-	public Integer getRid() {
+	public int getRid() {
 		return rid;
 	}
 

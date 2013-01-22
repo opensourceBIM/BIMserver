@@ -80,7 +80,6 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 			IfcModel subModel = new IfcModel();
 			int highestStopId = findHighestStopRid(concreteRevision.getProject(), concreteRevision);
 			Query query = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
-			subModel.setQuery(query);
 			eObject = getDatabaseSession().get(null, oid, subModel, query);
 			subModel.setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
@@ -114,7 +113,7 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 			dataObject.setName("");
 			dataObject.setGuid("");
 		}
-		fillDataObject(ifcModel.getMap(), eObject, dataObject);
+		fillDataObject(ifcModel.getObjects(), eObject, dataObject);
 		return dataObject;
 	}
 

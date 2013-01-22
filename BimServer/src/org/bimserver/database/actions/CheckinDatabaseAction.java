@@ -162,7 +162,6 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			if (concreteRevision != subRevision) {
 				IfcModel subModel = new IfcModel();
 				Query query = new Query(subRevision.getProject().getId(), subRevision.getId(), Deep.YES);
-				subModel.setQuery(query);
 				getDatabaseSession().getMap(subModel, query);
 				subModel.setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);

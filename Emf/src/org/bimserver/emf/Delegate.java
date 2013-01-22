@@ -4,7 +4,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public abstract class Delegate {
 	public static enum State {
-		NONE,
+		NO_LAZY_LOADING,
+		TO_BE_LOADED,
 		LOADING,
 		LOADED
 	}
@@ -14,11 +15,13 @@ public abstract class Delegate {
 	private int expressId = -1;
 	private int rid;
 	private int pid;
-	private State state = State.NONE;
+	private State state = State.NO_LAZY_LOADING;
 	private IdEObject idEObject;
+	private QueryInterface queryInterface;
 
-	public Delegate(IdEObject idEObject) {
+	public Delegate(IdEObject idEObject, QueryInterface queryInterface) {
 		this.idEObject = idEObject;
+		this.queryInterface = queryInterface;
 	}
 	
 	public IdEObject getIdEObject() {
@@ -43,7 +46,7 @@ public abstract class Delegate {
 	}
 	
 	public boolean isLoadedOrLoading() {
-		return state != State.NONE;
+		return state != State.TO_BE_LOADED;
 	}
 
 	public void setLoading() {
@@ -112,4 +115,12 @@ public abstract class Delegate {
 	public abstract void eGet(int featureID, boolean resolve, boolean coreType);
 
 	public abstract void eSet(int featureID, Object newValue);
+
+	public void setQueryInterface(QueryInterface queryInterface) {
+		this.queryInterface = queryInterface;
+	}
+	
+	public QueryInterface getQueryInterface() {
+		return queryInterface;
+	}
 }
