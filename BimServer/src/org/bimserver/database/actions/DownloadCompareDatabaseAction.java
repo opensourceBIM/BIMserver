@@ -132,7 +132,7 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 
 			ModelMerger merger = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid());
 			IfcModelInterface mergedModel = merger.merge(project, new IfcModelSet(model1, model2), new ModelHelper());
-			mergedModel.setName(project.getName() + "." + revision1.getId() + "." + revision2.getId());
+			mergedModel.getModelMetaData().setName(project.getName() + "." + revision1.getId() + "." + revision2.getId());
 
 			Set<Long> added = new HashSet<Long>();
 			Set<Long> modified = new HashSet<Long>();

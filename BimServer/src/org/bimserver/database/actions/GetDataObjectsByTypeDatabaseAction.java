@@ -66,7 +66,7 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<D
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			IfcModelInterface subModel = getDatabaseSession().getAllOfType(className, new Query(concreteRevision.getProject().getId(), concreteRevision.getId()));
-			subModel.setDate(concreteRevision.getDate());
+			subModel.getModelMetaData().setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
 		IfcModelInterface ifcModel;

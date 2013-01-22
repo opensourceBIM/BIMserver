@@ -1,4 +1,6 @@
-package org.bimserver.client.test;
+package org.bimserver.tests;
+
+import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,9 +10,7 @@ import java.io.InputStream;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
-import org.bimserver.client.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
@@ -18,19 +18,15 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.junit.Test;
 
-public class TestCreateGuid {
-	public static void main(String[] args) {
-		test();
-	}
+public class TestCreateGuidLowLevelCalls extends TestWithEmbeddedServer {
 
-	private static void test() {
+	@Test
+	public void test() {
 		try {
-			// Create a BimServerClientFactory, change Json to ProtocolBuffers or Soap if you like
-			BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
-			
 			// Create a new BimServerClient with authentication
-			BimServerClient bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Get the service interface
 			ServiceInterface serviceInterface = bimServerClient.getServiceInterface();
@@ -51,26 +47,12 @@ public class TestCreateGuid {
 			
 			// Commit the transaction
 			Long roid = serviceInterface.commitTransaction(tid, "test");
-			
-			// Download the IFC file to test.ifc
-			SSerializerPluginConfiguration serializerPluginConfiguration = serviceInterface.getSerializerByContentType("application/ifc");
-			Long download = serviceInterface.download(roid, serializerPluginConfiguration.getOid(), true, true);
-			InputStream downloadData = bimServerClient.getDownloadData(download, serializerPluginConfiguration.getOid());
-			FileOutputStream fos = new FileOutputStream(new File("test.ifc"));
-			IOUtils.copy(downloadData, fos);
-			fos.close();
-		} catch (ChannelConnectionException e) {
-			e.printStackTrace();
-		} catch (ServerException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
-			e.printStackTrace();
-		} catch (ServiceException e) {
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+
+			tid = serviceInterface.startTransaction(newProject.getOid());
+			Long referenceOid = serviceInterface.getReference(tid, furnishingOid, "GlobalId");
+			assertTrue(serviceInterface.getStringAttribute(tid, referenceOid, "wrappedValue").equals("0uyjn9Jan3nRq36Uj6gwws"));
+		} catch (Exception e) {
+			fail(e.getMessage());
 		}
 	}
 }

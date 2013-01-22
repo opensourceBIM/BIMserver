@@ -51,6 +51,10 @@ public class ClientDelegate extends Delegate {
 					model.getBimServerClient().getServiceInterface().setIntegerAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Integer)newValue);
 				} else if (newValue instanceof Enum) {
 					model.getBimServerClient().getServiceInterface().setEnumAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (String)newValue);
+				} else if (newValue instanceof IdEObject) {
+					model.getBimServerClient().getServiceInterface().setReference(model.getTransactionId(), getOid(), eFeature.getName(), ((IdEObject)newValue).getOid());
+				} else {
+					throw new RuntimeException("Unimplemented " + eFeature.getEType().getName());
 				}
 			} catch (ServiceException e) {
 				e.printStackTrace();

@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -37,6 +36,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.ModelMetaData;
 import org.bimserver.emf.OidProvider;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
@@ -62,13 +62,9 @@ public class IfcModel implements IfcModelInterface {
 
 	private static final BiMap<EClass, Class<?>> eClassClassMap = initEClassClassMap();
 
+	private final ModelMetaData modelMetaData = new ModelMetaData();
 	private BiMap<Long, IdEObject> objects;
-	private byte[] checksum;
 	private IdEObject eObject;
-	private int revisionNr;
-	private String authorizedUser;
-	private Date date;
-	private String name;
 	private final Set<IfcModelChangeListener> changeListeners = new LinkedHashSet<IfcModelChangeListener>();
 
 	private Map<String, IfcRoot> guidIndexed;
@@ -308,17 +304,6 @@ public class IfcModel implements IfcModelInterface {
 		return nameIndex.get(eClass).get(name);
 	}
 
-	public IdEObject getByGuid(EClass eClass, String guid) {
-		if (guidIndex == null) {
-			indexGuids();
-		}
-		Map<String, IdEObject> map = guidIndex.get(eClass);
-		if (map == null) {
-			return null;
-		}
-		return map.get(guid);
-	}
-
 	public long size() {
 		return objects.size();
 	}
@@ -380,14 +365,6 @@ public class IfcModel implements IfcModelInterface {
 		return (BiMap<Long, IdEObject>) objects;
 	}
 
-	public byte[] getChecksum() {
-		return checksum;
-	}
-
-	public void setChecksum(byte[] checksum) {
-		this.checksum = checksum;
-	}
-
 	public boolean contains(long oid) {
 		return objects.containsKey(oid);
 	}
@@ -400,16 +377,8 @@ public class IfcModel implements IfcModelInterface {
 		this.eObject = eObject;
 	}
 
-	public int getSize() {
-		return objects.size();
-	}
-
 	public boolean contains(IdEObject eObject) {
 		return objects.containsValue(eObject);
-	}
-
-	public long get(IdEObject eObject) {
-		return objects.inverse().get(eObject);
 	}
 
 	public void indexGuids() {
@@ -428,32 +397,8 @@ public class IfcModel implements IfcModelInterface {
 		}
 	}
 
-	public String getAuthorizedUser() {
-		return authorizedUser;
-	}
-
-	public int getRevisionNr() {
-		return revisionNr;
-	}
-
 	public boolean isValid() {
 		return true;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setAuthorizedUser(String authorizedUser) {
-		this.authorizedUser = authorizedUser;
-	}
-
-	public void setRevisionNr(int revisionNr) {
-		this.revisionNr = revisionNr;
 	}
 
 	public void dumpObject(IdEObject idEObject) {
@@ -631,14 +576,14 @@ public class IfcModel implements IfcModelInterface {
 		objects.put(object.getOid(), object);
 	}
 	
-	public IfcRoot get(String guid) {
+	public IfcRoot getByGuid(String guid) {
 		if (guidIndexed == null) {
 			indexGuids();
 		}
 		return guidIndexed.get(guid);
 	}
 
-	public boolean contains(String guid) {
+	public boolean containsGuid(String guid) {
 		if (guidIndexed == null) {
 			indexGuids();
 		}
@@ -758,14 +703,6 @@ public class IfcModel implements IfcModelInterface {
 		changeListeners.add(listener);
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getName() {
-		return name;
-	}
-
 	@Override
 	public void setUseDoubleStrings(boolean useDoubleStrings) {
 		this.useDoubleStrings = useDoubleStrings;
@@ -837,5 +774,17 @@ public class IfcModel implements IfcModelInterface {
 			IdEObject idEObject = iterateAllObjects.next();
 			((IdEObjectImpl)idEObject).setExpressId(expressId++);
 		}
+	}
+
+	@Override
+	public ModelMetaData getModelMetaData() {
+		return modelMetaData ;
+	}
+
+	@Override
+	public <T extends IdEObject> T create(EClass eClass) throws IfcModelInterfaceException {
+		IdEObject object = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		add(object);
+		return (T) object;
 	}
 }

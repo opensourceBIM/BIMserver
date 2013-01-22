@@ -2262,7 +2262,11 @@ public class Service implements ServiceInterface {
 	private Object getAttribute(Long tid, Long oid, String attributeName) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			IdEObject object = session.get(session.getEClassForOid(oid), oid, Query.getDefault());
+			EClass eClass = session.getEClassForOid(oid);
+			IdEObject object = session.get(eClass, oid, Query.getDefault());
+			if (object == null) {
+				throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found");
+			}
 			return object.eGet(object.eClass().getEStructuralFeature(attributeName));
 		} catch (Exception e) {
 			return handleException(e);

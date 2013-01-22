@@ -115,7 +115,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 					HideAllInversesObjectIDM hideAllInversesObjectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), bimServer.getPluginManager().requireSchemaDefinition());
 					int highestStopId = findHighestStopRid(project, concreteRevision);
 					IfcModelInterface subModel = getDatabaseSession().getAllOfTypes(eClasses, new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), useObjectIDM ? objectIDM : hideAllInversesObjectIDM, deep, highestStopId));
-					subModel.setDate(concreteRevision.getDate());
+					subModel.getModelMetaData().setDate(concreteRevision.getDate());
 					checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, virtualRevision);
 					ifcModelSet.add(subModel);
 				} catch (PluginException e) {
@@ -132,12 +132,12 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			} else {
 				ifcModel = ifcModelSet.iterator().next();
 			}
-			ifcModel.setName("Unknown");
-			ifcModel.setRevisionNr(project.getRevisions().indexOf(virtualRevision) + 1);
+			ifcModel.getModelMetaData().setName("Unknown");
+			ifcModel.getModelMetaData().setRevisionId(project.getRevisions().indexOf(virtualRevision) + 1);
 			if (authorization.getUoid() != -1) {
-				ifcModel.setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
+				ifcModel.getModelMetaData().setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
 			}
-			ifcModel.setDate(virtualRevision.getDate());
+			ifcModel.getModelMetaData().setDate(virtualRevision.getDate());
 		}
 		// TODO check, double merging??
 		IfcModelInterface ifcModel;
@@ -153,12 +153,12 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 		if (name.endsWith("-")) {
 			name = name.substring(0, name.length()-1);
 		}
-		ifcModel.setName(name);
-		ifcModel.setRevisionNr(1);
+		ifcModel.getModelMetaData().setName(name);
+		ifcModel.getModelMetaData().setRevisionId(1);
 		if (authorization.getUoid() != -1) {
-			ifcModel.setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
+			ifcModel.getModelMetaData().setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
 		}
-		ifcModel.setDate(new Date());
+		ifcModel.getModelMetaData().setDate(new Date());
 		return ifcModel;
 	}
 	

@@ -121,7 +121,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 					IfcModelInterface model = null;
 					FakeClosingInputStream fakeClosingInputStream = new FakeClosingInputStream(zipInputStream);
 					model = read(fakeClosingInputStream, fileSize);
-					if (model.getSize() == 0) {
+					if (model.size() == 0) {
 						throw new DeserializeException("Uploaded file does not seem to be a correct IFC file");
 					}
 					if (zipInputStream.getNextEntry() != null) {
@@ -168,7 +168,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				line = reader.readLine();
 				lineNumber++;
 			}
-			model.setChecksum(md.digest());
+			model.getModelMetaData().setChecksum(md.digest());
 			if (mode == Mode.HEADER) {
 				throw new DeserializeException("No valid IFC header found");
 			}
@@ -190,8 +190,8 @@ public class IfcStepDeserializer extends EmfDeserializer {
 			FileInputStream in = new FileInputStream(sourceFile);
 			read(in, sourceFile.length());
 			in.close();
-			model.setDate(new Date());
-			model.setName(sourceFile.getName());
+			model.getModelMetaData().setDate(new Date());
+			model.getModelMetaData().setName(sourceFile.getName());
 			return model;
 		} catch (FileNotFoundException e) {
 			throw new DeserializeException(e);

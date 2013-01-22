@@ -27,5 +27,6 @@
 	<classpathentry kind="lib" path="/BimServer/lib/httpclient/httpclient-4.2.2.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/httpclient/httpcore-4.2.2.jar"/>
 	<classpathentry kind="lib" path="/BimServer/lib/httpclient/httpmime-4.2.2.jar"/>
+	<classpathentry kind="lib" path="/BimServer/lib/junit-4.8.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -44,8 +44,8 @@ public class GuidBasedModelCompare extends AbstractModelCompare{
 				if (eClassifier instanceof EClass && Ifc2x3tc1Package.eINSTANCE.getIfcRoot().isSuperTypeOf((EClass) eClassifier)) {
 					EClass eClass = (EClass) eClassifier;
 					for (String guid : model1.getGuids(eClass)) {
-						IdEObject eObject1 = model1.getByGuid(eClass, guid);
-						IdEObject eObject2 = model2.getByGuid(eClass, guid);
+						IdEObject eObject1 = model1.getByGuid(guid);
+						IdEObject eObject2 = model2.getByGuid(guid);
 						if  (eObject2 == null) {
 							if (compareType == CompareType.ALL || compareType == CompareType.DELETE) {
 								ObjectRemoved objectRemoved = StoreFactory.eINSTANCE.createObjectRemoved();
@@ -55,8 +55,8 @@ public class GuidBasedModelCompare extends AbstractModelCompare{
 						}
 					}
 					for (String guid : model2.getGuids(eClass)) {
-						IdEObject eObject1 = model1.getByGuid(eClass, guid);
-						IdEObject eObject2 = model2.getByGuid(eClass, guid);
+						IdEObject eObject1 = model1.getByGuid(guid);
+						IdEObject eObject2 = model2.getByGuid(guid);
 						if (eObject1 == null) {
 							if (compareType == CompareType.ALL || compareType == CompareType.ADD) {
 								ObjectAdded objectAdded = StoreFactory.eINSTANCE.createObjectAdded();

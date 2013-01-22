@@ -76,8 +76,8 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 				}
 			}
 			byte[] revisionChecksum = lastConcreteRevision.getChecksum();
-			if (revisionChecksum != null && getModel().getChecksum() != null) {
-				if (Arrays.equals(revisionChecksum, getModel().getChecksum())) {
+			if (revisionChecksum != null && getModel().getModelMetaData().getChecksum() != null) {
+				if (Arrays.equals(revisionChecksum, getModel().getModelMetaData().getChecksum())) {
 					throw new UserException("Uploaded model is the same as last revision (" + revisionId + "), duplicate model not stored");
 				}
 			}

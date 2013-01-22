@@ -1,31 +1,31 @@
-package org.bimserver.client.test;
+package org.bimserver.tests;
+
+import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientException;
-import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.ClientIfcModel;
-import org.bimserver.client.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.eclipse.emf.ecore.EObject;
+import org.junit.Test;
 
-public class TestLoadCompleteModel {
-	public static void main(String[] args) {
-		new TestLoadCompleteModel().start();
-	}
+public class TestLoadCompleteModel extends TestWithEmbeddedServer {
 
-	private void start() {
-		// Make a JSON factory
-		BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
+	@Test
+	public void start() {
 		try {
 			// New client
-			BimServerClient bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Create a project
 			SProject project = bimServerClient.getServiceInterface().addProject("test" + Math.random());
@@ -46,15 +46,15 @@ public class TestLoadCompleteModel {
 			for (IfcWindow window : model.getAllWithSubTypes(IfcWindow.class)) {
 				window.setName(window.getName() + " Changed");
 			}
-			model.commit("Changed window names");
-		} catch (ServiceException e) {
-			e.printStackTrace();
-		} catch (ChannelConnectionException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (BimServerClientException e) {
-			e.printStackTrace();
+			long newRoid = model.commit("Changed window names");
+			
+			ClientIfcModel newModel = bimServerClient.getModel(project.getOid(), newRoid, true);
+			List<IfcWindow> windows = newModel.getAllWithSubTypes(Ifc2x3tc1Package.eINSTANCE.getIfcWindow());
+			for (IfcWindow window : windows) {
+				assertTrue(window.getName().endsWith(" Changed"));
+			}
+		} catch (Exception e) {
+			fail(e.getMessage());
 		}
 	}
 }

@@ -94,11 +94,11 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			if (getModel() != null) {
 				checkCheckSum(project);
 			}
-			CreateRevisionResult result = createNewConcreteRevision(getDatabaseSession(), getModel() == null ? 0 : getModel().getSize(), project, user, comment.trim());
+			CreateRevisionResult result = createNewConcreteRevision(getDatabaseSession(), getModel() == null ? 0 : getModel().size(), project, user, comment.trim());
 			concreteRevision = result.getConcreteRevision();
 			project.getConcreteRevisions().add(concreteRevision);
 			if (getModel() != null) {
-				concreteRevision.setChecksum(getModel().getChecksum());
+				concreteRevision.setChecksum(getModel().getModelMetaData().getChecksum());
 			}
 			final NewRevisionAdded newRevisionAdded = getDatabaseSession().create(LogPackage.eINSTANCE.getNewRevisionAdded());
 			newRevisionAdded.setDate(new Date());
@@ -163,12 +163,12 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				IfcModel subModel = new IfcModel();
 				Query query = new Query(subRevision.getProject().getId(), subRevision.getId(), Deep.YES);
 				getDatabaseSession().getMap(subModel, query);
-				subModel.setDate(subRevision.getDate());
+				subModel.getModelMetaData().setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);
 			}
 		}
 		IfcModelInterface newModel = new IfcModel();
-		newModel.setDate(new Date());
+		newModel.getModelMetaData().setDate(new Date());
 		IfcModelInterface oldModel;
 		try {
 			oldModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());

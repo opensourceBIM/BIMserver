@@ -145,7 +145,7 @@ public class CityGmlSerializer extends AbstractGeometrySerializer {
 	public boolean write(OutputStream out) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			CityModel cityModel = citygml.createCityModel();
-			cityModel.setName(createNameList(getModel().getName()));
+			cityModel.setName(createNameList(getModel().getModelMetaData().getName()));
 			JAXBBuilder builder = null;
 			try {
 				builder = ctx.createJAXBBuilder(getClass().getClassLoader());

@@ -95,7 +95,7 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 					}
 				});
 				getDatabaseSession().getMapWithOids(subModel, oids, query);
-				subModel.setDate(concreteRevision.getDate());
+				subModel.getModelMetaData().setDate(concreteRevision.getDate());
 				
 				checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, virtualRevision);
 				
@@ -115,10 +115,10 @@ public class DownloadByOidsDatabaseAction extends AbstractDownloadDatabaseAction
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}
-		ifcModel.setName("query");
-		ifcModel.setRevisionNr(1);
-		ifcModel.setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
-		ifcModel.setDate(new Date());
+		ifcModel.getModelMetaData().setName("query");
+		ifcModel.getModelMetaData().setRevisionId(1);
+		ifcModel.getModelMetaData().setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
+		ifcModel.getModelMetaData().setDate(new Date());
 		return ifcModel;
 	}
 	

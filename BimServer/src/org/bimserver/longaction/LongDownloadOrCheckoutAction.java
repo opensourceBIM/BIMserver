@@ -64,7 +64,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 		SCheckoutResult checkoutResult = new SCheckoutResult();
 		if (model.isValid()) {
 			checkoutResult.setProjectName(project.getName());
-			checkoutResult.setRevisionNr(model.getRevisionNr());
+			checkoutResult.setRevisionNr(model.getModelMetaData().getRevisionId());
 			try {
 				org.bimserver.plugins.serializers.Serializer serializer = getBimServer().getEmfSerializerFactory().create(project, username, model, ifcEnginePlugin, downloadParameters);
 				if (serializer == null) {

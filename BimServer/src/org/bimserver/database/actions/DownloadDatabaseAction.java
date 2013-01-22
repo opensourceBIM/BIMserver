@@ -105,7 +105,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 				});
 				getDatabaseSession().getMap(subModel, query);
 				checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, subRevision, revision);
-				subModel.setDate(subRevision.getDate());
+				subModel.getModelMetaData().setDate(subRevision.getDate());
 				ifcModelSet.add(subModel);
 			}
 		}
@@ -120,12 +120,12 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 		} else {
 			ifcModel = ifcModelSet.iterator().next();
 		}
-		ifcModel.setName(project.getName() + "." + revision.getId());
-		ifcModel.setRevisionNr(project.getRevisions().indexOf(revision) + 1);
+		ifcModel.getModelMetaData().setName(project.getName() + "." + revision.getId());
+		ifcModel.getModelMetaData().setRevisionId(project.getRevisions().indexOf(revision) + 1);
 		if (user != null) {
-			ifcModel.setAuthorizedUser(user.getName());
+			ifcModel.getModelMetaData().setAuthorizedUser(user.getName());
 		}
-		ifcModel.setDate(revision.getDate());
+		ifcModel.getModelMetaData().setDate(revision.getDate());
 
 		if (revision.getProject().getGeoTag() != null) {
 			// ifcModel.setLon(revision.getProject().getGeoTag().getX());

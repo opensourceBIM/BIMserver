@@ -124,8 +124,7 @@ public class TestClientEmfModelLocal {
 		try {
 			ClientIfcModel model = bimServerClient.getModel(poid, roid, false);
 			IfcStepSerializer serializer = new IfcStepSerializer();
-			// TODO fix
-//			serializer.init(model, null, bimServer.getPluginManager(), null, false);
+			serializer.init(model, null, bimServer.getPluginManager(), null, false);
 			File output = new File("output");
 			if (!output.exists()) {
 				output.mkdir();
