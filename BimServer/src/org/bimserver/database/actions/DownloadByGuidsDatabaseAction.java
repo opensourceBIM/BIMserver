@@ -118,7 +118,7 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 				});
 				Set<Long> oids = map.get(concreteRevision);
 				getDatabaseSession().getMapWithOids(subModel, oids, query);
-				subModel.setDate(concreteRevision.getDate());
+				subModel.getModelMetaData().setDate(concreteRevision.getDate());
 				
 				checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, virtualRevision);
 				
@@ -128,15 +128,15 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 		IfcModelInterface ifcModel;
 		try {
 			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());
-			ifcModel.setName("query");
+			ifcModel.getModelMetaData().setName("query");
 			for (String guid : guids) {
 				if (!foundGuids.contains(guid)) {
 					throw new UserException("Guid " + guid + " not found");
 				}
 			}
-			ifcModel.setRevisionNr(1);
-			ifcModel.setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
-			ifcModel.setDate(new Date());
+			ifcModel.getModelMetaData().setRevisionId(1);
+			ifcModel.getModelMetaData().setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
+			ifcModel.getModelMetaData().setDate(new Date());
 			return ifcModel;
 		} catch (MergeException e) {
 			throw new UserException(e);

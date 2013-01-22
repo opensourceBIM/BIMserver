@@ -74,8 +74,8 @@ public class ClientIfcModel extends IfcModel {
 		return bimServerClient;
 	}
 	
-	public void commit(String comment) throws ServerException, UserException {
-		bimServerClient.getServiceInterface().commitTransaction(tid, comment);
+	public long commit(String comment) throws ServerException, UserException {
+		return bimServerClient.getServiceInterface().commitTransaction(tid, comment);
 	}
 	
 	public long getIfcSerializerOid() throws ServerException, UserException {
@@ -284,12 +284,6 @@ public class ClientIfcModel extends IfcModel {
 	}
 	
 	@Override
-	public IdEObject getByGuid(EClass eClass, String guid) {
-		// TODO
-		return super.getByGuid(eClass, guid);
-	}
-	
-	@Override
 	public long size() {
 		try {
 			loadDeep();
@@ -387,9 +381,9 @@ public class ClientIfcModel extends IfcModel {
 	}
 	
 	@Override
-	public boolean contains(String guid) {
-		get(guid);
-		return super.contains(guid);
+	public boolean containsGuid(String guid) {
+		getByGuid(guid);
+		return super.containsGuid(guid);
 	}
 	
 	@Override
@@ -399,15 +393,15 @@ public class ClientIfcModel extends IfcModel {
 	}
 	
 	@Override
-	public IfcRoot get(String guid) {
-		IfcRoot idEObject = super.get(guid);
+	public IfcRoot getByGuid(String guid) {
+		IfcRoot idEObject = super.getByGuid(guid);
 		if (idEObject == null) {
 			try {
 				modelState = ModelState.LOADING;
 				Long downloadByGuids = bimServerClient.getServiceInterface().downloadByGuids(Collections.singleton(roid), Collections.singleton(guid), getIfcSerializerOid(), false);
 				processDownload(downloadByGuids);
 				modelState = ModelState.NONE;
-				return super.get(guid);
+				return super.getByGuid(guid);
 			} catch (ServerException e) {
 				e.printStackTrace();
 			} catch (UserException e) {
@@ -423,5 +417,21 @@ public class ClientIfcModel extends IfcModel {
 	public void remove(IdEObject idEObject) {
 		// TODO
 		super.remove(idEObject);
+	}
+	
+	@Override
+	public <T extends IdEObject> T create(EClass eClass) throws IfcModelInterfaceException {
+		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		object.setDelegate(new ClientDelegate(this, object, null));
+		try {
+			Long oid = bimServerClient.getServiceInterface().createObject(tid, eClass.getName());
+			object.setOid(oid);
+			add(oid, object);
+		} catch (ServerException e) {
+			e.printStackTrace();
+		} catch (UserException e) {
+			e.printStackTrace();
+		}
+		return (T) object;
 	}
 }

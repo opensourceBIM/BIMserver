@@ -97,7 +97,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 					});
 					getDatabaseSession().getMap(subModel, query);
 					projectName += concreteRevision.getProject().getName() + "-";
-					subModel.setDate(concreteRevision.getDate());
+					subModel.getModelMetaData().setDate(concreteRevision.getDate());
 
 					checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, concreteRevision, revision);
 					
@@ -116,7 +116,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 		if (projectName.endsWith("-")) {
 			projectName = projectName.substring(0, projectName.length() - 1);
 		}
-		ifcModel.setName(projectName);
+		ifcModel.getModelMetaData().setName(projectName);
 		return ifcModel;
 	}
 

@@ -1,4 +1,6 @@
-package org.bimserver.client.test;
+package org.bimserver.tests;
+
+import static org.junit.Assert.fail;
 
 import java.io.File;
 
@@ -6,37 +8,27 @@ import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.BimServerClientFactory;
-import org.bimserver.client.ChannelConnectionException;
-import org.bimserver.client.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.junit.Test;
 
-public class TestMultiCheckinAndDownload {
-	public static void main(String[] args) {
-		test();
-	}
-
-	private static void test() {
+public class TestMultiCheckinAndDownload extends TestWithEmbeddedServer {
+	@Test
+	public void test() {
 		try {
-			BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
-			
-			// Create a new BimServerClient
-			BimServerClient bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			// Create a new BimServerClient with authentication
+			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 
 			// Get the service interface
 			ServiceInterface serviceInterface = bimServerClient.getServiceInterface();
 
 			long s = System.nanoTime();
-			for (int i=0; i<10; i++) {
+			for (int i=0; i<3; i++) {
 				// Create a new project
 				SProject newProject = serviceInterface.addProject("test" + Math.random());
 				
@@ -69,14 +61,8 @@ public class TestMultiCheckinAndDownload {
 			}
 			long e = System.nanoTime();
 			System.out.println(((e - s) / 1000000) + " ms");
-		} catch (ChannelConnectionException e) {
-			e.printStackTrace();
-		} catch (ServerException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
-			e.printStackTrace();
-		} catch (ServiceException e1) {
-			e1.printStackTrace();
+		} catch (Exception e) {
+			fail(e.getMessage());
 		}
 	}
 }

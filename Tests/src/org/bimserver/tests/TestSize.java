@@ -25,7 +25,7 @@ public class TestSize {
 			Deserializer deserializer = deserializerPlugin.createDeserializer();
 			deserializer.init(pluginManager.getFirstSchemaPlugin(true).getSchemaDefinition());
 			IfcModelInterface model = deserializer.read(TestFile.AC11.getFile());
-			System.out.println("Nr Objects: " + model.getSize());
+			System.out.println("Nr Objects: " + model.size());
 			System.out.println("Memory: " + MemoryUtil.deepMemoryUsageOf(model));
 			while (true) {
 				Thread.sleep(1000);

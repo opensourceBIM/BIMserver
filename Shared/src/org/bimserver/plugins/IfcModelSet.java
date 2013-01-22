@@ -38,7 +38,7 @@ public class IfcModelSet extends LinkedHashSet<IfcModelInterface> {
 		Collections.sort(tmpList, new Comparator<IfcModelInterface>() {
 			@Override
 			public int compare(IfcModelInterface o1, IfcModelInterface o2) {
-				return o1.getDate().compareTo(o2.getDate());
+				return o1.getModelMetaData().getDate().compareTo(o2.getModelMetaData().getDate());
 			}
 		});
 		this.clear();

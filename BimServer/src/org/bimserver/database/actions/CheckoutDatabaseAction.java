@@ -103,10 +103,10 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 			}
 		});
 		databaseSession.getMap(ifcModel, new Query(project.getId(), revision.getLastConcreteRevision().getId(), Deep.YES));
-		ifcModel.setName(project.getName() + "." + revision.getId());
-		ifcModel.setRevisionNr(project.getRevisions().indexOf(revision) + 1);
-		ifcModel.setAuthorizedUser(user.getName());
-		ifcModel.setDate(new Date());
+		ifcModel.getModelMetaData().setName(project.getName() + "." + revision.getId());
+		ifcModel.getModelMetaData().setRevisionId(project.getRevisions().indexOf(revision) + 1);
+		ifcModel.getModelMetaData().setAuthorizedUser(user.getName());
+		ifcModel.getModelMetaData().setDate(new Date());
 		return ifcModel;
 	}
 	

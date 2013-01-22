@@ -30,6 +30,7 @@ import java.util.Set;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.client.channels.Channel;
 import org.bimserver.client.notifications.SocketNotificationsClient;
+import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.AutologinAuthenticationInfo;
 import org.bimserver.shared.ConnectDisconnectListener;
@@ -257,5 +258,9 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 
 	public InputStream getDownloadData(long download, long serializerOid) throws IOException {
 		return channel.getDownloadData(baseAddress, token, download, serializerOid);
+	}
+
+	public ClientIfcModel newModel(SProject project) throws ServerException, UserException, BimServerClientException {
+		return new ClientIfcModel(this, project.getOid(), -1, false);
 	}
 }

@@ -63,7 +63,7 @@ public class IfcXmlDeserializer extends EmfDeserializer {
 					IfcModelInterface model = null;
 					FakeClosingInputStream fakeClosingInputStream = new FakeClosingInputStream(zipInputStream);
 					model = read(fakeClosingInputStream);
-					if (model.getSize() == 0) {
+					if (model.size() == 0) {
 						throw new DeserializeException("Uploaded file does not seem to be a correct IFC file");
 					}
 					if (zipInputStream.getNextEntry() != null) {

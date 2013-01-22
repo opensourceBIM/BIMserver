@@ -18,7 +18,6 @@ package org.bimserver.emf;
  *****************************************************************************/
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -28,52 +27,159 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.google.common.collect.BiMap;
 
+/**
+ * @author Ruben de Laat
+ *
+ * 
+ */
 public interface IfcModelInterface extends Iterable<IdEObject> {
 
-	void add(long oid, IdEObject newObject) throws IfcModelInterfaceException;
-	void addAllowMultiModel(long oid, IdEObject newObject) throws IfcModelInterfaceException;
-	EObject getMainObject();
-	<T extends EObject> List<T> getAll(Class<T> clazz);
-	Set<Long> keySet();
-	IdEObject get(long key);
-	boolean contains(IdEObject referencedObject);
-	long get(IdEObject referencedObject);
-	String getAuthorizedUser();
-	String getName();
+	/**
+	 * Retrieve an object by its GUID
+	 * @param guid
+	 * @return An object of a subclass of IfcRoot, or null if the object does not exist in this model
+	 */
+	IfcRoot getByGuid(String guid);
+
+	/**
+	 * Retrieve an object by its name
+	 * @param eClass The type of the object
+	 * @param name The name of the object
+	 * @return The object, or null if it is not in the model
+	 */
+	IdEObject getByName(EClass eClass, String name);
+
+	/**
+	 * Retrieve an object by its OID
+	 * @param oid
+	 * @return The object with the given OID, or null if the object does not exist in this model
+	 */
+	IdEObject get(long oid);
+	
+	/**
+	 * Retrieve a set of all the GUIDs of the objects of a certain type
+	 * @param eClass The type to look for
+	 * @return A Set<String> containing all the GUIDs
+	 */
+	Set<String> getGuids(EClass eClass);
+
+	/**
+	 * Retrieve a set of all the names of the objects of a certain type
+	 * @param eClass The type to look for
+	 * @return A Set<String> containing all the names
+	 */
+	Set<String> getNames(EClass eClass);
+	
+	
+	/**
+	 * Retrieve the size of the model
+	 * @return The amount of objects in the model
+	 */
 	long size();
-	int getSize();
-	byte[] getChecksum();
+	
+	/**
+	 * Tests if this model has a certain GUID
+	 * @param referredGuid
+	 * @return true if the model has an object with the given GUID, false if it has not
+	 */
+	boolean containsGuid(String referredGuid);
+
+	/**
+	 * Tests whether this model has a certain OID
+	 * @param oid
+	 * @return true if the model has an object with the given OID, false if it has not
+	 */
+	boolean contains(long oid);
+
+	/**
+	 * Count the amount of objects of the given type
+	 * @param eClass The type to query
+	 * @return The amount of objects of the given type
+	 */
+	int count(EClass eClass);
+	
+	/**
+	 * @return All objects in this model as a Collection<IdEObject>
+	 */
+	Collection<IdEObject> getValues();
+
+	/**
+	 * @return A BiMap<Long, IdEObject> with all objects in this model
+	 */
+	BiMap<Long, IdEObject> getObjects();
+
+	/**
+	 * @return All OID's in this model
+	 */
+	Set<Long> keySet();
+
+	/**
+	 * @param clazz The type to query for
+	 * @return A List with all the objects in this model of the given type, instances of subtypes are not included
+	 */
+	<T extends EObject> List<T> getAll(Class<T> clazz);
+
+	/**
+	 * @param clazz The type to query for 
+	 * @return A List with all the objects in this model of the given type, instances of subtypes are included
+	 */
+	<T extends EObject> List<T> getAllWithSubTypes(Class<T> clazz);
+
+	/** Tests whether the given object is part of this model
+	 * @param referencedObject
+	 * @return Whether the given object is part of this model
+	 */
+	boolean contains(IdEObject referencedObject);
+
+	/**
+	 * Add an object to this model
+	 * @param eObject The object to add to this model
+	 * @return The generated OID for the new object
+	 * @throws IfcModelInterfaceException
+	 */
+	long add(IdEObject eObject) throws IfcModelInterfaceException;
+	
+	/**
+	 * Add an object to this model with an explicit OID, only use this method in BIMserver internal code
+	 * @param oid The given OID
+	 * @param newObject The new object to add to this model
+	 * @throws IfcModelInterfaceException
+	 */
+	void add(long oid, IdEObject newObject) throws IfcModelInterfaceException;
+	
+	/**
+	 * Add an object to this model with an explicit OID, allow the object to exist in multiple models, only use this method in BIMserver internal code
+	 * @param oid The given OID
+	 * @param newObject The new object to add to this model
+	 * @throws IfcModelInterfaceException
+	 */
+	void addAllowMultiModel(long oid, IdEObject newObject) throws IfcModelInterfaceException;
+
+	/**
+	 * Remove an object
+	 * @param objectToRemove The object to remove from this model
+	 */
+	void remove(IdEObject objectToRemove);
+
+	/**
+	 * @return The ModelMetaData of this model
+	 */
+	ModelMetaData getModelMetaData();
+	
+	<T extends IdEObject> T create(EClass eClass) throws IfcModelInterfaceException;
+	
+	EObject getMainObject();
 	void fixOids(OidProvider<Long> oidProvider);
 	void setObjectOids();
 	void indexGuids();
-	void setDate(Date date);
-	Collection<IdEObject> getValues();
 	long getHighestOid();
-	boolean contains(String referredGuid);
-	Date getDate();
-	void remove(IdEObject objectToRemove);
 	void resetOids();
 	void resetOidsFlat();
-	void setName(String string);
-	void setRevisionNr(int i);
-	void setAuthorizedUser(String name);
-	BiMap<Long, IdEObject> getObjects();
-	Set<String> getGuids(EClass eClass);
-	IdEObject getByGuid(EClass eClass, String guid);
-	Set<String> getNames(EClass eClass);
-	IdEObject getByName(EClass eClass, String name);
-	int getRevisionNr();
 	boolean isValid();
 	void checkDoubleOidsPlusReferences();
-	<T extends EObject> List<T> getAllWithSubTypes(Class<T> interfaceClass);
-	void setChecksum(byte[] digest);
-	boolean contains(long oid);
-	long add(IdEObject eObject) throws IfcModelInterfaceException;
-	IfcRoot get(String guid);
 	void fixOidCounter();
 	void setUseDoubleStrings(boolean useDoubleStrings);
 	boolean isUseDoubleStrings();
-	int count(EClass eClass);
 	void changeOid(IdEObject object);
 	void fixOids();
 	void generateMinimalExpressIds();

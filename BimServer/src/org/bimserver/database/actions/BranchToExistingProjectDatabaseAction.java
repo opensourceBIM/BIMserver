@@ -65,7 +65,7 @@ public class BranchToExistingProjectDatabaseAction extends BimDatabaseAction<Con
 		for (ConcreteRevision subRevision : oldRevision.getConcreteRevisions()) {
 			IfcModel subModel = new IfcModel();
 			getDatabaseSession().getMap(subModel, new Query(subRevision.getProject().getId(), subRevision.getId(), Deep.YES));
-			subModel.setDate(subRevision.getDate());
+			subModel.getModelMetaData().setDate(subRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
 		IfcModelInterface model;

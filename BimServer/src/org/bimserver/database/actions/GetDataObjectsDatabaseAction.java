@@ -64,7 +64,7 @@ public class GetDataObjectsDatabaseAction extends AbstractDownloadDatabaseAction
 			IfcModel subModel = new IfcModel();
 			Query query = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.YES, highestStopId);
 			getDatabaseSession().getMap(subModel, query);
-			subModel.setDate(concreteRevision.getDate());
+			subModel.getModelMetaData().setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
 		IfcModelInterface ifcModel;
