@@ -20,7 +20,6 @@ package org.bimserver.emf;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
@@ -33,7 +32,6 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 
 	void add(long oid, IdEObject newObject) throws IfcModelInterfaceException;
 	void addAllowMultiModel(long oid, IdEObject newObject) throws IfcModelInterfaceException;
-	Map<Long, IdEObject> getObjects();
 	EObject getMainObject();
 	<T extends EObject> List<T> getAll(Class<T> clazz);
 	Set<Long> keySet();
@@ -52,7 +50,6 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	Collection<IdEObject> getValues();
 	long getHighestOid();
 	boolean contains(String referredGuid);
-	IdEObject get(Class<?> class1);
 	Date getDate();
 	void remove(IdEObject objectToRemove);
 	void resetOids();
@@ -60,7 +57,7 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	void setName(String string);
 	void setRevisionNr(int i);
 	void setAuthorizedUser(String name);
-	BiMap<? extends Long, ? extends EObject> getMap();
+	BiMap<Long, IdEObject> getObjects();
 	Set<String> getGuids(EClass eClass);
 	IdEObject getByGuid(EClass eClass, String guid);
 	Set<String> getNames(EClass eClass);
@@ -80,5 +77,4 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	void changeOid(IdEObject object);
 	void fixOids();
 	void generateMinimalExpressIds();
-	void setQuery(Object query);
 }

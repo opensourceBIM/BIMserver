@@ -208,7 +208,7 @@ public class Visualise extends JFrame {
 		setTitle("Visualiser - " + name);
 		getContentPane().setLayout(new BorderLayout());
 
-		ObjectNode root = new ObjectNode(model.get(IfcProject.class));
+		ObjectNode root = new ObjectNode(model.getAll(IfcProject.class).iterator().next());
 		Model newModel = new Model(root);
 		JTree tree = new JTree(newModel);
 		JScrollPane scrollPane = new JScrollPane(tree);

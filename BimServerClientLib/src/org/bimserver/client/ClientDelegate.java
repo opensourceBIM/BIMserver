@@ -3,6 +3,7 @@ package org.bimserver.client;
 import org.bimserver.client.ClientIfcModel.ModelState;
 import org.bimserver.emf.Delegate;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.QueryInterface;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -10,8 +11,8 @@ public class ClientDelegate extends Delegate {
 
 	private ClientIfcModel model;
 
-	public ClientDelegate(ClientIfcModel model, IdEObject idEObject) {
-		super(idEObject);
+	public ClientDelegate(ClientIfcModel model, IdEObject idEObject, QueryInterface queryInterface) {
+		super(idEObject, queryInterface);
 		this.model = model;
 	}
 

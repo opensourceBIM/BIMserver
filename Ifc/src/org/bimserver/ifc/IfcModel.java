@@ -60,6 +60,8 @@ import com.google.common.collect.HashBiMap;
 
 public class IfcModel implements IfcModelInterface {
 
+	private static final BiMap<EClass, Class<?>> eClassClassMap = initEClassClassMap();
+
 	private BiMap<Long, IdEObject> objects;
 	private byte[] checksum;
 	private IdEObject eObject;
@@ -69,7 +71,6 @@ public class IfcModel implements IfcModelInterface {
 	private String name;
 	private final Set<IfcModelChangeListener> changeListeners = new LinkedHashSet<IfcModelChangeListener>();
 
-	private static final BiMap<EClass, Class<?>> eClassClassMap = initEClassClassMap();
 	private Map<String, IfcRoot> guidIndexed;
 	private Map<EClass, List<? extends EObject>> index;
 	private Map<EClass, List<? extends EObject>> indexWithSubTypes;
@@ -77,7 +78,6 @@ public class IfcModel implements IfcModelInterface {
 	private Map<EClass, Map<String, IdEObject>> nameIndex;
 	private long oidCounter = 1;
 	private boolean useDoubleStrings = true;
-	private Object query;
 
 	public IfcModel(BiMap<Long, IdEObject> objects) {
 		this.objects = objects;
@@ -327,8 +327,8 @@ public class IfcModel implements IfcModelInterface {
 		return objects.keySet();
 	}
 
-	public IdEObject get(long key) {
-		return objects.get(key);
+	public IdEObject get(long oid) {
+		return objects.get(oid);
 	}
 
 	public Collection<IdEObject> getValues() {
@@ -376,12 +376,8 @@ public class IfcModel implements IfcModelInterface {
 		}
 	}
 
-	public Map<Long, IdEObject> getObjects() {
-		return objects;
-	}
-
-	public BiMap<Long, ? extends IdEObject> getMap() {
-		return (BiMap<Long, ? extends IdEObject>) objects;
+	public BiMap<Long, IdEObject> getObjects() {
+		return (BiMap<Long, IdEObject>) objects;
 	}
 
 	public byte[] getChecksum() {
@@ -392,8 +388,8 @@ public class IfcModel implements IfcModelInterface {
 		this.checksum = checksum;
 	}
 
-	public boolean contains(long key) {
-		return objects.containsKey(key);
+	public boolean contains(long oid) {
+		return objects.containsKey(oid);
 	}
 
 	public IdEObject getMainObject() {
@@ -649,15 +645,6 @@ public class IfcModel implements IfcModelInterface {
 		return guidIndexed.containsKey(guid);
 	}
 
-	public IdEObject get(Class<?> class1) {
-		for (IdEObject idEObject : objects.values()) {
-			if (class1.isInstance(idEObject)) {
-				return idEObject;
-			}
-		}
-		return null;
-	}
-
 	public void checkDoubleOids() {
 		Set<Long> oids = new HashSet<Long>();
 		for (IdEObject idEObject : objects.values()) {
@@ -850,14 +837,5 @@ public class IfcModel implements IfcModelInterface {
 			IdEObject idEObject = iterateAllObjects.next();
 			((IdEObjectImpl)idEObject).setExpressId(expressId++);
 		}
-	}
-
-	public Object getQuery() {
-		return query;
-	}
-
-	@Override
-	public void setQuery(Object query) {
-		this.query = query;
 	}
 }

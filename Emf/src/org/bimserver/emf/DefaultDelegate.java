@@ -4,8 +4,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class DefaultDelegate extends Delegate {
 
-	public DefaultDelegate(IdEObject idEObject) {
-		super(idEObject);
+	public DefaultDelegate(IdEObject idEObject, QueryInterface queryInterface) {
+		super(idEObject, queryInterface);
 	}
 
 	@Override

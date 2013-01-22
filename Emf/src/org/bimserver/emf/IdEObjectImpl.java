@@ -40,7 +40,7 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 
 	public Delegate getDelegate() {
 		if (delegate == null) {
-			delegate = new DefaultDelegate(this);
+			delegate = new DefaultDelegate(this, null);
 		}
 		return delegate;
 	}
@@ -157,5 +157,13 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 
 	public void setDelegate(Delegate delegate) {
 		this.delegate = delegate;
+	}
+
+	public void setQueryInterface(QueryInterface queryInterface) {
+		getDelegate().setQueryInterface(queryInterface);
+	}
+
+	public QueryInterface getQueryInterface() {
+		return getDelegate().getQueryInterface();
 	}
 }
