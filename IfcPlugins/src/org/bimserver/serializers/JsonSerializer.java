@@ -9,6 +9,7 @@ import org.bimserver.emf.Delegate;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.ifc.IfcSerializer;
+import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
 import org.eclipse.emf.ecore.EReference;
@@ -80,7 +81,12 @@ public class JsonSerializer extends IfcSerializer {
 											out.write("]");
 										} else {
 											IdEObject ref = (IdEObject) value;
-											out.write("\"__ref" + eStructuralFeature.getName() + "\":" + ref.getOid());
+											if (ref instanceof IfcGloballyUniqueId) {
+												out.write("\"" + eStructuralFeature.getName() + "\":");
+												writePrimitive(out, ((IfcGloballyUniqueId)ref).getWrappedValue());
+											} else {
+												out.write("\"__ref" + eStructuralFeature.getName() + "\":" + ref.getOid());
+											}
 										}
 									}
 								} else {

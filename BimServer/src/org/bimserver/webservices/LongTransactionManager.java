@@ -17,4 +17,8 @@ public class LongTransactionManager {
 	public LongTransaction get(Long tid) {
 		return runningTransactions.get(tid);
 	}
+
+	public void remove(long tid) {
+		runningTransactions.remove(tid);
+	}
 }

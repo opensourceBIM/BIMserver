@@ -25,12 +25,14 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
+import org.bimserver.database.Query.Deep;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DataObject;
+import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.plugins.IfcModelSet;
@@ -41,7 +43,7 @@ import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<DataObject>> {
+public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabaseAction<List<DataObject>> {
 
 	private final String className;
 	private final long roid;
@@ -64,14 +66,17 @@ public class GetDataObjectsByTypeDatabaseAction extends BimDatabaseAction<List<D
 			throw new UserException("No revision with roid " + roid + " found");
 		}
 		IfcModelSet ifcModelSet = new IfcModelSet();
+		Project project = virtualRevision.getProject();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
-			IfcModelInterface subModel = getDatabaseSession().getAllOfType(className, new Query(concreteRevision.getProject().getId(), concreteRevision.getId()));
+			int highestStopId = findHighestStopRid(project, concreteRevision);
+			Query query = new Query(concreteRevision.getProject().getId(), concreteRevision.getId(), null, Deep.NO, highestStopId);
+			IfcModelInterface subModel = getDatabaseSession().getAllOfType(className, query);
 			subModel.getModelMetaData().setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
 		IfcModelInterface ifcModel;
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper());
+			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

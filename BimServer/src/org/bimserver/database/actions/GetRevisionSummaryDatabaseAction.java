@@ -59,10 +59,11 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 		Revision revision = getVirtualRevision(roid);
 		if (revision.getConcreteRevisions().size() == 1 && revision.getConcreteRevisions().get(0).getSummary() != null) {
 			return revision.getConcreteRevisions().get(0).getSummary();
-		}
-		for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
-			if (concreteRevision.getSummary() != null) {
-				merge(concreteRevision.getSummary());
+		} else {
+			for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
+				if (concreteRevision.getSummary() != null) {
+					merge(concreteRevision.getSummary());
+				}
 			}
 		}
 		return createSummary();

@@ -102,12 +102,15 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 			@Override
 			public void execute() throws UserException {
 				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(newRevisionAdded));
+				bimServer.getLongTransactionManager().remove(longTransaction.getTid());
 			}
 		});
 
-		SummaryMap summaryMap = new SummaryMap();
+		SummaryMap summaryMap = null;
 		if (oldLastRevision != null && oldLastRevision.getConcreteRevisions().size() == 1 && oldLastRevision.getConcreteRevisions().get(0).getSummary() != null) {
 			summaryMap = new SummaryMap(oldLastRevision.getConcreteRevisions().get(0).getSummary());
+		} else {
+			summaryMap = new SummaryMap();
 		}
 
 		// First create all new objects

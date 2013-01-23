@@ -50,6 +50,6 @@ public class RemoveObjectChange implements Change {
 		if (idEObject == null) {
 			throw new UserException("Object with oid " + oid + " not found");
 		}
-		databaseSession.store(idEObject, pid, rid);
+		databaseSession.delete(idEObject);
 	}
 }
