@@ -2179,7 +2179,11 @@ public class Service implements ServiceInterface {
 		EClass eClass = ((Database) bimServer.getDatabase()).getEClassForName(className);
 		Long oid = bimServer.getDatabase().newOid(eClass);
 		CreateObjectChange createObject = new CreateObjectChange(className, oid, eClass);
-		bimServer.getLongTransactionManager().get(tid).add(createObject);
+		LongTransaction longTransaction = bimServer.getLongTransactionManager().get(tid);
+		if (longTransaction == null) {
+			throw new UserException("No transaction with tid " + tid + " was found");
+		}
+		longTransaction.add(createObject);
 		return oid;
 	}
 
@@ -2204,7 +2208,13 @@ public class Service implements ServiceInterface {
 	@Override
 	public void setStringAttribute(Long tid, Long oid, String attributeName, String value) throws UserException {
 		requireAuthenticationAndRunningServer();
-		bimServer.getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+		if (attributeName.equals("GlobalId")) {
+			Long guidOid = createObject(tid, "IfcGloballyUniqueId");
+			setStringAttribute(tid, guidOid, "wrappedValue", value);
+			setReference(tid, oid, "GlobalId", guidOid);
+		} else {
+			bimServer.getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+		}
 	}
 	
 	@Override
@@ -3800,5 +3810,18 @@ public class Service implements ServiceInterface {
 	public String shareRevision(Long roid) {
 		ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(roid, -1, -1, -1);
 		return authorization.asHexToken(bimServer.getEncryptionKey());
+	}
+	
+	public Integer count(Long roid, String className) throws UserException ,ServerException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			CountDatabaseAction action = new CountDatabaseAction(session, accessMethod, roid, className, authorization);
+			return session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 }

@@ -483,11 +483,13 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	public void delete(IdEObject object) throws BimserverDatabaseException {
 		checkOpen();
-		if (perRecordVersioning(object)) {
+//		if (perRecordVersioning(object)) {
 			objectsToDelete.put(object.eClass(), object.getPid(), object.getRid() + 1, object.getOid());
-		} else {
-			throw new BimserverDatabaseException("This is not supported");
-		}
+//		} else {
+			
+			// TODO implement
+//			throw new BimserverDatabaseException("This is not supported");
+//		}
 	}
 
 	public <T> T executeAndCommitAction(BimDatabaseAction<T> action, ProgressHandler progressHandler) throws BimserverDatabaseException, UserException {

@@ -43,9 +43,11 @@ public class SummaryMap {
 			return;
 		}
 		if (!summaryMap.containsKey(eClass)) {
-			summaryMap.put(eClass, count);
+			// Interesting...
+			summaryMap.put(eClass, 0);
+		} else {
+			summaryMap.put(eClass, summaryMap.get(eClass) - count);
 		}
-		summaryMap.put(eClass, summaryMap.get(eClass) - count);
 	}
 	
 	public void add(EClass eClass, int count) {
@@ -54,8 +56,9 @@ public class SummaryMap {
 		}
 		if (!summaryMap.containsKey(eClass)) {
 			summaryMap.put(eClass, count);
+		} else {
+			summaryMap.put(eClass, summaryMap.get(eClass) + count);
 		}
-		summaryMap.put(eClass, summaryMap.get(eClass) + count);
 	}
 	
 	public RevisionSummary toRevisionSummary(DatabaseSession databaseSession) throws BimserverDatabaseException {
@@ -74,9 +77,6 @@ public class SummaryMap {
 		revisionSummary.getList().add(revisionSummaryContainerOther);
 		
 		for (EClass eClass : summaryMap.keySet()) {
-			add(eClass, summaryMap.get(eClass));
-		}
-		for (EClass eClass : summaryMap.keySet()) {
 			RevisionSummaryContainer subMap = null;
 			if (Ifc2x3tc1Package.eINSTANCE.getIfcObject().isSuperTypeOf(eClass)) {
 				subMap = revisionSummaryContainerEntities;
@@ -93,5 +93,12 @@ public class SummaryMap {
 			subMap.getTypes().add(createRevisionSummaryType);
 		}
 		return revisionSummary;
+	}
+
+	public int count(EClass eClass) {
+		if (summaryMap.containsKey(eClass)) {
+			return summaryMap.get(eClass);
+		}
+		return 0;
 	}
 }

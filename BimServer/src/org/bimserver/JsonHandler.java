@@ -94,6 +94,8 @@ public class JsonHandler {
 					SParameter parameter = method.getParameter(i);
 					if (parametersJson.has(parameter.getName())) {
 						parameters[i] = new KeyValuePair(parameter.getName(), converter.fromJson(parameter.getType(), parameter.getGenericType(), parametersJson.get(parameter.getName())));
+					} else {
+						LOGGER.error("Missing parameters: " + method.getName() + " -> " + parameter.getName());
 					}
 				}
 			}

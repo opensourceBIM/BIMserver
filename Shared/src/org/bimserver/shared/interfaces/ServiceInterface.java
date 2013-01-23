@@ -2311,4 +2311,9 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "cleanupLongAction")
 	void cleanupLongAction(
 		@WebParam(name = "actionId", partName = "cleanupLongAction.actionId") Long actionId) throws UserException, ServerException;
+	
+	@WebMethod(action = "count")
+	Integer count(
+		@WebParam(name = "roid", partName = "count.roid") Long roid,
+		@WebParam(name = "className", partName = "count.className") String className) throws UserException, ServerException;
 }
