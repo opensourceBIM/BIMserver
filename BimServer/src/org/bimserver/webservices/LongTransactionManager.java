@@ -8,8 +8,8 @@ public class LongTransactionManager {
 	private final AtomicLong counter = new AtomicLong();
 	private final Map<Long, LongTransaction> runningTransactions = new HashMap<Long, LongTransaction>();
 	
-	public synchronized LongTransaction newLongTransaction(Long poid) {
-		LongTransaction longTransaction = new LongTransaction(poid, counter.incrementAndGet());
+	public synchronized LongTransaction newLongTransaction(long poid, int pid, int rid) {
+		LongTransaction longTransaction = new LongTransaction(poid, pid, rid, counter.incrementAndGet());
 		runningTransactions.put(longTransaction.getTid(), longTransaction);
 		return longTransaction;
 	}

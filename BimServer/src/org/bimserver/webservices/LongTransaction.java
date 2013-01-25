@@ -8,12 +8,24 @@ import org.bimserver.changes.Change;
 public class LongTransaction {
 
 	private long tid;
-	private long poid;
 	private Set<Change> changes = new HashSet<Change>();
+	private int pid;
+	private int rid;
+	private long poid;
 
-	public LongTransaction(long poid, long tid) {
+	public LongTransaction(long poid, int pid, int rid, long tid) {
 		this.poid = poid;
+		this.pid = pid;
+		this.rid = rid;
 		this.tid = tid;
+	}
+	
+	public int getPid() {
+		return pid;
+	}
+	
+	public int getRid() {
+		return rid;
 	}
 	
 	public long getTid() {
@@ -27,11 +39,11 @@ public class LongTransaction {
 	public void close() {
 	}
 
-	public long getPoid() {
-		return poid;
-	}
-
 	public Set<Change> getChanges() {
 		return changes;
+	}
+
+	public long getPoid() {
+		return poid;
 	}
 }
