@@ -26,6 +26,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -39,16 +40,13 @@ import com.google.gson.stream.JsonReader;
 public class ClientIfcModel extends IfcModel {
 
 	public static enum ModelState {
-		NONE,
-		LOADING,
-		FULLY_LOADED
+		NONE, LOADING, FULLY_LOADED
 	}
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClientIfcModel.class);
 	private BimServerClient bimServerClient;
 	private ModelState modelState = ModelState.NONE;
 	private long tid = -1;
-	private long poid;
 	private long roid;
 	private final Set<String> loadedClasses = new HashSet<String>();
 	private long ifcSerializerOid = -1;
@@ -56,7 +54,6 @@ public class ClientIfcModel extends IfcModel {
 	public ClientIfcModel(BimServerClient bimServerClient, long poid, long roid, boolean deep) throws ServerException, UserException, BimServerClientException {
 		super();
 		this.bimServerClient = bimServerClient;
-		this.poid = poid;
 		this.roid = roid;
 		try {
 			tid = bimServerClient.getServiceInterface().startTransaction(poid);
@@ -73,21 +70,22 @@ public class ClientIfcModel extends IfcModel {
 	public BimServerClient getBimServerClient() {
 		return bimServerClient;
 	}
-	
+
 	public long commit(String comment) throws ServerException, UserException {
 		return bimServerClient.getServiceInterface().commitTransaction(tid, comment);
 	}
-	
+
 	public long getIfcSerializerOid() throws ServerException, UserException {
 		if (ifcSerializerOid == -1) {
-			SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getServiceInterface().getSerializerByPluginClassName("org.bimserver.serializers.JsonSerializerPlugin");
+			SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getServiceInterface().getSerializerByPluginClassName(
+					"org.bimserver.serializers.JsonSerializerPlugin");
 			if (serializerPluginConfiguration != null) {
 				ifcSerializerOid = serializerPluginConfiguration.getOid();
 			}
 		}
 		return ifcSerializerOid;
 	}
-	
+
 	private void loadDeep() throws ServerException, UserException, BimServerClientException {
 		modelState = ModelState.LOADING;
 		Long download = bimServerClient.getServiceInterface().download(roid, getIfcSerializerOid(), true, true);
@@ -96,8 +94,7 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private void processDownload(Long download) throws BimServerClientException,
-			UserException, ServerException {
+	private void processDownload(Long download) throws BimServerClientException, UserException, ServerException {
 		WaitingList<Long> waitingList = new WaitingList<Long>();
 		try {
 			InputStream downloadData = bimServerClient.getDownloadData(download, getIfcSerializerOid());
@@ -122,7 +119,11 @@ public class ClientIfcModel extends IfcModel {
 								add(object.getOid(), object);
 								while (jsonReader.hasNext()) {
 									String featureName = jsonReader.nextName();
+									boolean embedded = false;
 									if (featureName.startsWith("__ref")) {
+										featureName = featureName.substring(5);
+									} else if (featureName.startsWith("__emb")) {
+										embedded = true;
 										featureName = featureName.substring(5);
 									}
 									EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(featureName);
@@ -142,84 +143,55 @@ public class ClientIfcModel extends IfcModel {
 											}
 
 											while (jsonReader.hasNext()) {
-												if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
-													list.add(jsonReader.nextString());
-												} else if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-													double val = jsonReader.nextDouble();
-													stringList.add("" + val); // TODO
-																				// this
-																				// is
-																				// losing
-																				// precision,
-																				// maybe
-																				// also
-																				// send
-																				// the
-																				// string
-																				// value?
-													list.add(val);
-												} else if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
-													list.add(jsonReader.nextBoolean());
-												} else if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEInt()) {
-													list.add(jsonReader.nextInt());
-												} else if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEEnum()) {
-													EEnum eEnum = (EEnum) eStructuralFeature.getEType();
-													list.add(eEnum.getEEnumLiteral(jsonReader.nextString()).getInstance());
-												} else {
-													throw new RuntimeException("Unimplemented type " + eStructuralFeature.getEType());
+												Object e = readPrimitive(jsonReader, eStructuralFeature);
+												list.add(e);
+												if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+													double val = (double) e;
+													stringList.add("" + val); // TODO this is losing precision, maybe also send the string value?
 												}
 											}
 										} else if (eStructuralFeature instanceof EReference) {
 											int index = 0;
 											while (jsonReader.hasNext()) {
-												long refOid = jsonReader.nextLong();
-												waitingList.add(refOid, new ListWaitingObject(object, eStructuralFeature, index));
-												index++;
+												if (embedded) {
+													List list = (List)object.eGet(eStructuralFeature);
+													jsonReader.beginObject();
+													if (jsonReader.nextName().equals("__type")) {
+														String t = jsonReader.nextString();
+														IdEObject wrappedObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create((EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(t));
+														if (jsonReader.nextName().equals("value")) {
+															EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
+															wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
+															list.add(wrappedObject);
+														} else {
+															// error
+														}
+													}
+													jsonReader.endObject();
+												} else {
+													long refOid = jsonReader.nextLong();
+													waitingList.add(refOid, new ListWaitingObject(object, eStructuralFeature, index));
+													index++;
+												}
 											}
 										}
 										jsonReader.endArray();
 									} else {
 										if (eStructuralFeature instanceof EAttribute) {
-											if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
-												object.eSet(eStructuralFeature, jsonReader.nextString());
-											} else if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-												EStructuralFeature asStringFeature = eClass.getEStructuralFeature(eStructuralFeature.getName() + "AsString");
-												double v = jsonReader.nextDouble();
-												object.eSet(asStringFeature, "" + v); // TODO
-																						// this
-																						// is
-																						// losing
-																						// precision,
-																						// maybe
-																						// also
-																						// send
-																						// the
-																						// string
-																						// value?
-												object.eSet(eStructuralFeature, v);
-											} else if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean()) {
-												object.eSet(eStructuralFeature, jsonReader.nextBoolean());
-											} else if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEInt()) {
-												object.eSet(eStructuralFeature, jsonReader.nextInt());
-											} else if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEEnum()) {
-												EEnum eEnum = (EEnum) eStructuralFeature.getEType();
-												object.eSet(eStructuralFeature, eEnum.getEEnumLiteral(jsonReader.nextString()).getInstance());
-											} else if (eStructuralFeature.getEType() instanceof EClass) {
-												if (eStructuralFeature.getEType().getName().equals("IfcGloballyUniqueId")) {
-													IfcGloballyUniqueId ifcGloballyUniqueId = Ifc2x3tc1Factory.eINSTANCE.createIfcGloballyUniqueId();
-													ifcGloballyUniqueId.setWrappedValue(jsonReader.nextString());
-													object.eSet(eStructuralFeature, ifcGloballyUniqueId);
-												} else {
-													throw new RuntimeException();
-												}
-											} else if (eStructuralFeature.getEType() instanceof EEnum) {
-												EEnum eEnum = (EEnum) eStructuralFeature.getEType();
-												object.eSet(eStructuralFeature, eEnum.getEEnumLiteral(jsonReader.nextString()).getInstance());
-											} else {
-												throw new RuntimeException("Unimplemented type " + eStructuralFeature.getEType().getName());
+											Object x = readPrimitive(jsonReader, eStructuralFeature);
+											if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+												EStructuralFeature asStringFeature = object.eClass().getEStructuralFeature(eStructuralFeature.getName() + "AsString");
+												object.eSet(asStringFeature, "" + x); // TODO this is losing precision, maybe also send the string value?
 											}
+											object.eSet(eStructuralFeature, x);
 										} else if (eStructuralFeature instanceof EReference) {
-											waitingList.add(jsonReader.nextLong(), new SingleWaitingObject(object, eStructuralFeature));
+											if (eStructuralFeature.getName().equals("GlobalId")) {
+												IfcGloballyUniqueId globallyUniqueId = Ifc2x3tc1Factory.eINSTANCE.createIfcGloballyUniqueId();
+												globallyUniqueId.setWrappedValue(jsonReader.nextString());
+												object.eSet(eStructuralFeature, globallyUniqueId);										;
+											} else {
+												waitingList.add(jsonReader.nextLong(), new SingleWaitingObject(object, eStructuralFeature));
+											}
 										}
 									}
 								}
@@ -248,7 +220,36 @@ public class ClientIfcModel extends IfcModel {
 			bimServerClient.getServiceInterface().cleanupLongAction(download);
 		}
 	}
-	
+
+	private Object readPrimitive(JsonReader jsonReader, EStructuralFeature eStructuralFeature) throws IOException {
+		EClassifier eClassifier = eStructuralFeature.getEType();
+		if (eClassifier == EcorePackage.eINSTANCE.getEString()) {
+			return jsonReader.nextString();
+		} else if (eClassifier == EcorePackage.eINSTANCE.getEDouble()) {
+			return jsonReader.nextDouble();
+		} else if (eClassifier == EcorePackage.eINSTANCE.getEBoolean()) {
+			return jsonReader.nextBoolean();
+		} else if (eClassifier == EcorePackage.eINSTANCE.getEInt()) {
+			return jsonReader.nextInt();
+		} else if (eClassifier == EcorePackage.eINSTANCE.getEEnum()) {
+			EEnum eEnum = (EEnum) eStructuralFeature.getEType();
+			return eEnum.getEEnumLiteral(jsonReader.nextString()).getInstance();
+		} else if (eClassifier instanceof EClass) {
+			if (eStructuralFeature.getEType().getName().equals("IfcGloballyUniqueId")) {
+				IfcGloballyUniqueId ifcGloballyUniqueId = Ifc2x3tc1Factory.eINSTANCE.createIfcGloballyUniqueId();
+				ifcGloballyUniqueId.setWrappedValue(jsonReader.nextString());
+				return ifcGloballyUniqueId;
+			} else {
+				throw new RuntimeException();
+			}
+		} else if (eClassifier instanceof EEnum) {
+			EEnum eEnum = (EEnum) eStructuralFeature.getEType();
+			return eEnum.getEEnumLiteral(jsonReader.nextString()).getInstance();
+		} else {
+			throw new RuntimeException("Unimplemented type " + eStructuralFeature.getEType().getName());
+		}
+	}
+
 	@Override
 	public <T extends EObject> List<T> getAll(EClass eClass) {
 		if (modelState == ModelState.NONE) {
@@ -264,25 +265,25 @@ public class ClientIfcModel extends IfcModel {
 		}
 		return super.getAll(eClass);
 	}
-	
+
 	@Override
 	public Set<String> getGuids(EClass eClass) {
 		getAllWithSubTypes(eClass);
 		return super.getGuids(eClass);
 	}
-	
+
 	@Override
 	public Set<String> getNames(EClass eClass) {
 		getAllWithSubTypes(eClass);
 		return super.getNames(eClass);
 	}
-	
+
 	@Override
 	public IdEObject getByName(EClass eClass, String name) {
 		// TODO
 		return super.getByName(eClass, name);
 	}
-	
+
 	@Override
 	public long size() {
 		try {
@@ -296,7 +297,7 @@ public class ClientIfcModel extends IfcModel {
 		}
 		return super.size();
 	}
-	
+
 	@Override
 	public Set<Long> keySet() {
 		try {
@@ -310,14 +311,15 @@ public class ClientIfcModel extends IfcModel {
 		}
 		return super.keySet();
 	}
-	
+
 	@Override
 	public IdEObject get(long oid) {
 		IdEObject idEObject = super.get(oid);
 		if (idEObject == null) {
 			try {
 				modelState = ModelState.LOADING;
-				Long downloadByOids = bimServerClient.getServiceInterface().downloadByOids(Collections.singleton(roid), Collections.singleton(oid), getIfcSerializerOid(), true, false);
+				Long downloadByOids = bimServerClient.getServiceInterface().downloadByOids(Collections.singleton(roid), Collections.singleton(oid), getIfcSerializerOid(), true,
+						false);
 				processDownload(downloadByOids);
 				modelState = ModelState.NONE;
 				return super.get(oid);
@@ -331,7 +333,7 @@ public class ClientIfcModel extends IfcModel {
 		}
 		return idEObject;
 	}
-	
+
 	@Override
 	public Collection<IdEObject> getValues() {
 		try {
@@ -345,13 +347,14 @@ public class ClientIfcModel extends IfcModel {
 		}
 		return super.getValues();
 	}
-	
+
 	@Override
 	public <T extends EObject> List<T> getAllWithSubTypes(EClass eClass) {
 		if (!loadedClasses.contains(eClass.getName()) && modelState != ModelState.FULLY_LOADED) {
 			try {
 				modelState = ModelState.LOADING;
-				Long downloadByTypes = bimServerClient.getServiceInterface().downloadByTypes(Collections.singleton(roid), Collections.singleton(eClass.getName()), getIfcSerializerOid(), true, false, false, true);
+				Long downloadByTypes = bimServerClient.getServiceInterface().downloadByTypes(Collections.singleton(roid), Collections.singleton(eClass.getName()),
+						getIfcSerializerOid(), true, false, false, true);
 				processDownload(downloadByTypes);
 				loadedClasses.add(eClass.getName());
 				modelState = ModelState.NONE;
@@ -373,32 +376,33 @@ public class ClientIfcModel extends IfcModel {
 	public ModelState getModelState() {
 		return modelState;
 	}
-	
+
 	@Override
 	public boolean contains(long oid) {
 		get(oid);
 		return super.contains(oid);
 	}
-	
+
 	@Override
 	public boolean containsGuid(String guid) {
 		getByGuid(guid);
 		return super.containsGuid(guid);
 	}
-	
+
 	@Override
 	public int count(EClass eClass) {
 		getAllWithSubTypes(eClass);
 		return super.count(eClass);
 	}
-	
+
 	@Override
 	public IfcRoot getByGuid(String guid) {
 		IfcRoot idEObject = super.getByGuid(guid);
 		if (idEObject == null) {
 			try {
 				modelState = ModelState.LOADING;
-				Long downloadByGuids = bimServerClient.getServiceInterface().downloadByGuids(Collections.singleton(roid), Collections.singleton(guid), getIfcSerializerOid(), false);
+				Long downloadByGuids = bimServerClient.getServiceInterface()
+						.downloadByGuids(Collections.singleton(roid), Collections.singleton(guid), getIfcSerializerOid(), false);
 				processDownload(downloadByGuids);
 				modelState = ModelState.NONE;
 				return super.getByGuid(guid);
@@ -412,13 +416,14 @@ public class ClientIfcModel extends IfcModel {
 		}
 		return idEObject;
 	}
-	
+
 	@Override
 	public void remove(IdEObject idEObject) {
 		// TODO
 		super.remove(idEObject);
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends IdEObject> T create(EClass eClass) throws IfcModelInterfaceException {
 		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);

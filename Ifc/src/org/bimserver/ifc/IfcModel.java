@@ -781,6 +781,7 @@ public class IfcModel implements IfcModelInterface {
 		return modelMetaData ;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends IdEObject> T create(EClass eClass) throws IfcModelInterfaceException {
 		IdEObject object = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);

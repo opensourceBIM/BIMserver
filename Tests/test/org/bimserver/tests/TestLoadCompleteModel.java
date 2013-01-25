@@ -1,22 +1,18 @@
 package org.bimserver.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.BimServerClientException;
-import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.ClientIfcModel;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.exceptions.ServiceException;
-import org.eclipse.emf.ecore.EObject;
 import org.junit.Test;
 
 public class TestLoadCompleteModel extends TestWithEmbeddedServer {

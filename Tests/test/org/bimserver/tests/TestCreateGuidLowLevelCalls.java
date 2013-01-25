@@ -1,22 +1,11 @@
 package org.bimserver.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
-import org.apache.commons.io.IOUtils;
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.junit.Test;
 
@@ -46,7 +35,7 @@ public class TestCreateGuidLowLevelCalls extends TestWithEmbeddedServer {
 			serviceInterface.setReference(tid, furnishingOid, "GlobalId", globalIdOid);
 			
 			// Commit the transaction
-			Long roid = serviceInterface.commitTransaction(tid, "test");
+			serviceInterface.commitTransaction(tid, "test");
 
 			tid = serviceInterface.startTransaction(newProject.getOid());
 			Long referenceOid = serviceInterface.getReference(tid, furnishingOid, "GlobalId");

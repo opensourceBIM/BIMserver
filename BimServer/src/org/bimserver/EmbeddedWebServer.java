@@ -43,7 +43,7 @@ public class EmbeddedWebServer {
 		context = new WebAppContext(server, "", "/");
 		
 		// Uncomment when editing js files
-		context.setDefaultsDescriptor("www/WEB-INF/webdefault.xml");
+//		context.setDefaultsDescriptor("www/WEB-INF/webdefault.xml");
 		context.addServlet(WebServiceServlet.class.getName(), "/soap/*");
 		context.addServlet(SyndicationServlet.class.getName(), "/syndication/*");
 		context.getServletContext().setAttribute("bimserver", bimServer);
