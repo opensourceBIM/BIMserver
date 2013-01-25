@@ -188,7 +188,21 @@ public class ClientIfcModel extends IfcModel {
 											if (eStructuralFeature.getName().equals("GlobalId")) {
 												IfcGloballyUniqueId globallyUniqueId = Ifc2x3tc1Factory.eINSTANCE.createIfcGloballyUniqueId();
 												globallyUniqueId.setWrappedValue(jsonReader.nextString());
-												object.eSet(eStructuralFeature, globallyUniqueId);										;
+												object.eSet(eStructuralFeature, globallyUniqueId);
+											} else if (embedded) {
+												jsonReader.beginObject();
+												if (jsonReader.nextName().equals("__type")) {
+													String t = jsonReader.nextString();
+													IdEObject wrappedObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create((EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(t));
+													if (jsonReader.nextName().equals("value")) {
+														EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
+														wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
+														object.eSet(eStructuralFeature, wrappedObject);
+													} else {
+														// error
+													}
+												}
+												jsonReader.endObject();
 											} else {
 												waitingList.add(jsonReader.nextLong(), new SingleWaitingObject(object, eStructuralFeature));
 											}

@@ -62,6 +62,7 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
+import org.bimserver.database.Query.Deep;
 import org.bimserver.database.actions.*;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.database.migrations.InconsistentModelsException;
@@ -144,6 +145,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogAction;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CompareResult;
+import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DataObject;
 import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
@@ -2116,9 +2118,24 @@ public class Service implements ServiceInterface {
 	@Override
 	public Long startTransaction(Long poid) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		getProjectByPoid(poid); // Throws exception if it does not exist
-		LongTransaction longTransaction = bimServer.getLongTransactionManager().newLongTransaction(poid);
-		return longTransaction.getTid();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		int pid = -1;
+		int rid = -1;
+		try {
+			Project project = (Project) session.get(poid, Query.getDefault());
+			pid = project.getId();
+			if (project.getLastRevision() != null) {
+				Revision revision = project.getLastRevision();
+				ConcreteRevision lastConcreteRevision = revision.getLastConcreteRevision();
+				rid = lastConcreteRevision.getId();
+			}
+			LongTransaction longTransaction = bimServer.getLongTransactionManager().newLongTransaction(poid, pid, rid);
+			return longTransaction.getTid();
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
@@ -2272,8 +2289,18 @@ public class Service implements ServiceInterface {
 	private Object getAttribute(Long tid, Long oid, String attributeName) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
+			LongTransaction transaction = bimServer.getLongTransactionManager().get(tid);
+			if (attributeName.equals("GlobalId")) {
+				EClass eClass = session.getEClassForOid(oid);
+				IdEObject object = session.get(eClass, oid, new Query(transaction.getPid(), transaction.getRid(), null, Deep.NO));
+				IdEObject ref = (IdEObject) object.eGet(object.eClass().getEStructuralFeature(attributeName));
+				if (ref == null) {
+					return null;
+				}
+				return ref.eGet(ref.eClass().getEStructuralFeature("wrappedValue"));
+			}
 			EClass eClass = session.getEClassForOid(oid);
-			IdEObject object = session.get(eClass, oid, Query.getDefault());
+			IdEObject object = session.get(eClass, oid, new Query(transaction.getPid(), transaction.getRid(), null, Deep.NO));
 			if (object == null) {
 				throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found");
 			}
@@ -2305,8 +2332,24 @@ public class Service implements ServiceInterface {
 	
 	@Override
 	public Long getReference(Long tid, Long oid, String referenceName) throws ServerException, UserException {
-		IdEObject idEObject = (IdEObject) getAttribute(tid, oid, referenceName);
-		return idEObject.getOid();
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			LongTransaction transaction = bimServer.getLongTransactionManager().get(tid);
+			EClass eClass = session.getEClassForOid(oid);
+			IdEObject object = session.get(eClass, oid, new Query(transaction.getPid(), transaction.getRid(), null, Deep.NO));
+			if (object == null) {
+				throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found");
+			}
+			IdEObject ref = (IdEObject) object.eGet(object.eClass().getEStructuralFeature(referenceName));
+			if (ref == null) {
+				return -1L;
+			}
+			return ref.getOid();
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override

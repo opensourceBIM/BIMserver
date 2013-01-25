@@ -26,21 +26,17 @@ public class TestCreateGuidLowLevelCalls extends TestWithEmbeddedServer {
 			// Start a transaction
 			Long tid = serviceInterface.startTransaction(newProject.getOid());
 			
-			// Create a GUID object
-			Long globalIdOid = serviceInterface.createObject(tid, "IfcGloballyUniqueId");
-			serviceInterface.setStringAttribute(tid, globalIdOid, "wrappedValue", "0uyjn9Jan3nRq36Uj6gwws");
-			
 			// Create furnishing
 			Long furnishingOid = serviceInterface.createObject(tid, "IfcFurnishingElement");
-			serviceInterface.setReference(tid, furnishingOid, "GlobalId", globalIdOid);
+			serviceInterface.setStringAttribute(tid, furnishingOid, "GlobalId", "0uyjn9Jan3nRq36Uj6gwws");
 			
 			// Commit the transaction
 			serviceInterface.commitTransaction(tid, "test");
 
 			tid = serviceInterface.startTransaction(newProject.getOid());
-			Long referenceOid = serviceInterface.getReference(tid, furnishingOid, "GlobalId");
-			assertTrue(serviceInterface.getStringAttribute(tid, referenceOid, "wrappedValue").equals("0uyjn9Jan3nRq36Uj6gwws"));
+			assertTrue(serviceInterface.getStringAttribute(tid, furnishingOid, "GlobalId").equals("0uyjn9Jan3nRq36Uj6gwws"));
 		} catch (Exception e) {
+			e.printStackTrace();
 			fail(e.getMessage());
 		}
 	}

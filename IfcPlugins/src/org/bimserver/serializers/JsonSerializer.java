@@ -101,6 +101,9 @@ public class JsonSerializer extends IfcSerializer {
 											if (ref instanceof IfcGloballyUniqueId) {
 												out.write("\"" + eStructuralFeature.getName() + "\":");
 												writePrimitive(out, eStructuralFeature, ((IfcGloballyUniqueId)ref).getWrappedValue());
+											} else if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(((IdEObject)ref).eClass())) {
+												out.write("\"__emb" + eStructuralFeature.getName() + "\":");
+												writeObject(out, ref);
 											} else {
 												out.write("\"__ref" + eStructuralFeature.getName() + "\":" + ref.getOid());
 											}
