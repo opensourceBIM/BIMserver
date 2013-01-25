@@ -9,6 +9,7 @@ import org.bimserver.emf.Delegate;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.ifc.IfcSerializer;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
@@ -67,7 +68,19 @@ public class JsonSerializer extends IfcSerializer {
 										}
 										if (eStructuralFeature.isMany()) {
 											List<?> list = (List<?>) value;
-											out.write("\"__ref" + eStructuralFeature.getName() + "\":[");
+											boolean isWrapped = false;
+											for (Object o : list) {
+												if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(((IdEObject)o).eClass())) {
+													// A little tricky, can we assume if one object in this list is embedded, they all are?
+													isWrapped = true;
+													break;
+												}
+											}
+											if (isWrapped) {
+												out.write("\"__emb" + eStructuralFeature.getName() + "\":[");
+											} else {
+												out.write("\"__ref" + eStructuralFeature.getName() + "\":[");
+											}
 											boolean f = true;
 											for (Object o : list) {
 												if (!f) {
@@ -76,14 +89,18 @@ public class JsonSerializer extends IfcSerializer {
 													f = false;
 												}
 												IdEObject ref = (IdEObject) o;
-												out.write("" + ref.getOid());
+												if (ref.getOid() == -1) {
+													writeObject(out, ref);
+												} else {
+													out.write("" + ref.getOid());
+												}
 											}
 											out.write("]");
 										} else {
 											IdEObject ref = (IdEObject) value;
 											if (ref instanceof IfcGloballyUniqueId) {
 												out.write("\"" + eStructuralFeature.getName() + "\":");
-												writePrimitive(out, ((IfcGloballyUniqueId)ref).getWrappedValue());
+												writePrimitive(out, eStructuralFeature, ((IfcGloballyUniqueId)ref).getWrappedValue());
 											} else {
 												out.write("\"__ref" + eStructuralFeature.getName() + "\":" + ref.getOid());
 											}
@@ -107,12 +124,12 @@ public class JsonSerializer extends IfcSerializer {
 												} else {
 													f = false;
 												}
-												writePrimitive(out, o);
+												writePrimitive(out, eStructuralFeature, o);
 											}
 											out.write("]");
 										} else {
 											out.write("\"" + eStructuralFeature.getName() + "\":");
-											writePrimitive(out, value);
+											writePrimitive(out, eStructuralFeature, value);
 										}
 									}
 								}
@@ -136,7 +153,20 @@ public class JsonSerializer extends IfcSerializer {
 		return false;
 	}
 
-	private void writePrimitive(PrintWriter out, Object value) {
+	private void writeObject(UTF8PrintWriter out, IdEObject object) {
+		if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(object.eClass())) {
+			EStructuralFeature wrappedFeature = object.eClass().getEStructuralFeature("wrappedValue");
+			out.write("{");
+			out.write("\"__type\":\"" + object.eClass().getName() + "\",");
+			out.write("\"value\":");
+			writePrimitive(out, wrappedFeature, object.eGet(wrappedFeature));
+			out.write("}");
+		} else {
+			out.write("" + object.getOid());
+		}
+	}
+
+	private void writePrimitive(PrintWriter out, EStructuralFeature feature, Object value) {
 		if (value instanceof String || value instanceof Enum) {
 			out.write("\"" + value + "\"");
 		} else {

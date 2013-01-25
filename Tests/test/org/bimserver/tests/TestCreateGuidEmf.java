@@ -13,7 +13,6 @@ import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.interfaces.ServiceInterface;
-import org.eclipse.jdt.internal.codeassist.ThrownExceptionFinder;
 import org.junit.Test;
 
 public class TestCreateGuidEmf extends TestWithEmbeddedServer {

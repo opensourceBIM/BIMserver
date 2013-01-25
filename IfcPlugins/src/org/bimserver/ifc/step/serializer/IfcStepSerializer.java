@@ -34,7 +34,6 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
-import org.bimserver.models.ifc2x3tc1.IfcPolyLoop;
 import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.models.ifc2x3tc1.WrappedValue;
 import org.bimserver.plugins.PluginException;
@@ -345,11 +344,6 @@ public class IfcStepSerializer extends IfcSerializer {
 				out.print(DASH);
 				out.print(String.valueOf(getExpressId((IdEObject) referencedObject)));
 			} else {
-				if (referencedObject instanceof IfcPolyLoop) {
-					if (model.contains(((IfcPolyLoop) referencedObject).getOid())) {
-						throw new SerializerException("Not good, duplicate object");
-					}
-				}
 				EntityDefinition entityBN = schema.getEntityBNNoCaseConvert(upperCases.get(object.eClass()));
 				if (entityBN != null && entityBN.isDerived(feature.getName())) {
 					out.print(ASTERISK);
