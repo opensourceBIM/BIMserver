@@ -74,7 +74,6 @@ public class Express2EMF {
 	private final EcorePackage ePackage;
 	private final EPackage schemaPack;
 	private final Map<String, EDataType> simpleTypeReplacementMap = new HashMap<String, EDataType>();
-	private EClass wrappedValueSuperClass;
 	private EEnum tristate;
 
 	public Express2EMF(File schemaFileName, String modelName) {
@@ -131,7 +130,7 @@ public class Express2EMF {
 				integerType.setDomain(new IntegerType());
 				EAttribute attribute = modifySimpleType(integerType, ifcCompoundPlaneAngleMeasure);
 				attribute.setUpperBound(4);
-				ifcCompoundPlaneAngleMeasure.getESuperTypes().add(wrappedValueSuperClass);
+				ifcCompoundPlaneAngleMeasure.getEAnnotations().add(createWrappedAnnotation());
 			} else if (type.getName().equals("IfcComplexNumber")) {
 				// IfcComplexNumber is a type of ARRAY [1..2] OF REAL (http://www.steptools.com/support/stdev_docs/express/ifc2x3/html/t_ifcco-07.html)
 				// We model this by using a wrapper class
@@ -143,7 +142,7 @@ public class Express2EMF {
 				EAttribute attribute = modifySimpleType(realType, ifcComplexNumber);
 				ifcComplexNumber.getEStructuralFeature("wrappedValueAsString").setUpperBound(2);
 				attribute.setUpperBound(2);
-				ifcComplexNumber.getESuperTypes().add(wrappedValueSuperClass);
+				ifcComplexNumber.getEAnnotations().add(createWrappedAnnotation());
 			} else if (type.getName().equals("IfcNullStyle")) {
 				// IfcNullStyle is a type of ENUMERATION OF NULL (http://www.steptools.com/support/stdev_docs/express/ifc2x3/html/t_ifcnu-02.html)
 				// We cannot simply make this an enum because it is defined as a subtype(select) of IfcPresentationStyleSelect, so we use a wrapper here, both the wrapper and
@@ -157,11 +156,16 @@ public class Express2EMF {
 				EAttribute wrappedValue = eFactory.createEAttribute();
 				wrappedValue.setName("wrappedValue");
 				wrappedValue.setEType(ifcNullStyleEnum);
+				ifcNullStyleWrapper.getEAnnotations().add(createWrappedAnnotation());
 				ifcNullStyleWrapper.getEStructuralFeatures().add(wrappedValue);
-				
-				ifcNullStyleWrapper.getESuperTypes().add(wrappedValueSuperClass);
 			}
 		}
+	}
+
+	private EAnnotation createWrappedAnnotation() {
+		EAnnotation wrappedAnnotation = eFactory.createEAnnotation();
+		wrappedAnnotation.setSource("wrapped");
+		return wrappedAnnotation;
 	}
 
 	private void clean() {
@@ -170,7 +174,7 @@ public class Express2EMF {
 			EClassifier eClassifier = iterator.next();
 			if (eClassifier instanceof EClass) {
 				EClass eClass = (EClass) eClassifier;
-				if (wrappedValueSuperClass.isSuperTypeOf(eClass) && !eClass.getName().equals("IfcGloballyUniqueId")) {
+				if (eClass.getEAnnotation("wrapped") != null && !eClass.getName().equals("IfcGloballyUniqueId")) {
 					if (eClass.getESuperTypes().size() == 1) {
 						iterator.remove();
 					}
@@ -207,7 +211,7 @@ public class Express2EMF {
 								break;
 							}
 						}
-						if (wrappedValueSuperClass.isSuperTypeOf((EClass) eType) && !eType.getName().equals("IfcGloballyUniqueId")) {
+						if (eType.getEAnnotation("wrapped") != null && !eType.getName().equals("IfcGloballyUniqueId")) {
 							if (!found) {
 								EAttribute eAttribute = eFactory.createEAttribute();
 								eAttribute.setDerived(true);
@@ -225,9 +229,8 @@ public class Express2EMF {
 								if (type == EcorePackage.eINSTANCE.getEDouble()) {
 									EAttribute doubleStringAttribute = eFactory.createEAttribute();
 									doubleStringAttribute.setName(attributeName.getName() + "AsString");
-									EAnnotation hiddenAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-									hiddenAnnotation.setSource("hidden");
-									doubleStringAttribute.getEAnnotations().add(hiddenAnnotation);
+									doubleStringAttribute.getEAnnotations().add(createAsStringAnnotation());
+									doubleStringAttribute.getEAnnotations().add(createHiddenAnnotation());
 									doubleStringAttribute.setUnsettable(true); // TODO
 																				// find
 																				// out
@@ -269,6 +272,18 @@ public class Express2EMF {
 				// }
 			}
 		}
+	}
+
+	private EAnnotation createHiddenAnnotation() {
+		EAnnotation hiddenAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		hiddenAnnotation.setSource("hidden");
+		return hiddenAnnotation;
+	}
+
+	private EAnnotation createAsStringAnnotation() {
+		EAnnotation asStringAnnotation = eFactory.createEAnnotation();
+		asStringAnnotation.setSource("asstring");
+		return asStringAnnotation;
 	}
 
 	private void createTristate() {
@@ -397,7 +412,7 @@ public class Express2EMF {
 			} else {
 				EClassifier eType = schemaPack.getEClassifier(nt.getName());
 				EClass cls = (EClass) schemaPack.getEClassifier(ent.getName());
-				if (wrappedValueSuperClass.isSuperTypeOf((EClass) eType) && !eType.getName().equals("IfcGloballyUniqueId")) {
+				if (eType.getEAnnotation("wrapped") != null && !eType.getName().equals("IfcGloballyUniqueId")) {
 					EAttribute eAttribute = eFactory.createEAttribute();
 					eAttribute.setUnsettable(expAttrib.isOptional());
 					eAttribute.setName(attrib.getName());
@@ -411,9 +426,8 @@ public class Express2EMF {
 					if (type == EcorePackage.eINSTANCE.getEDouble()) {
 						EAttribute doubleStringAttribute = eFactory.createEAttribute();
 						doubleStringAttribute.setName(attrib.getName() + "AsString");
-						EAnnotation hiddenAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-						hiddenAnnotation.setSource("hidden");
-						doubleStringAttribute.getEAnnotations().add(hiddenAnnotation);
+						doubleStringAttribute.getEAnnotations().add(createAsStringAnnotation());
+						doubleStringAttribute.getEAnnotations().add(createHiddenAnnotation());
 						doubleStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
 						doubleStringAttribute.setUnsettable(expAttrib.isOptional());
 						cls.getEStructuralFeatures().add(doubleStringAttribute);
@@ -435,7 +449,7 @@ public class Express2EMF {
 			if (bt instanceof NamedType) {
 				NamedType nt = (NamedType) bt;
 				EClassifier eType = schemaPack.getEClassifier(nt.getName());
-				if (wrappedValueSuperClass.isSuperTypeOf((EClass) eType) && !eType.getName().equals("IfcGloballyUniqueId")) {
+				if (eType.getEAnnotation("wrapped") != null && !eType.getName().equals("IfcGloballyUniqueId")) {
 					EAttribute eAttribute = eFactory.createEAttribute();
 					eAttribute.setName(attrib.getName());
 					if (eAttribute.getName().equals("RefLatitude") || eAttribute.getName().equals("RefLongitude")) {
@@ -451,9 +465,8 @@ public class Express2EMF {
 					if (type == EcorePackage.eINSTANCE.getEDouble()) {
 						EAttribute doubleStringAttribute = eFactory.createEAttribute();
 						doubleStringAttribute.setName(attrib.getName() + "AsString");
-						EAnnotation hiddenAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-						hiddenAnnotation.setSource("hidden");
-						doubleStringAttribute.getEAnnotations().add(hiddenAnnotation);
+						doubleStringAttribute.getEAnnotations().add(createAsStringAnnotation());
+						doubleStringAttribute.getEAnnotations().add(createHiddenAnnotation());
 						doubleStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
 						doubleStringAttribute.setUpperBound(-1);
 						doubleStringAttribute.setUnsettable(expAttrib.isOptional());
@@ -470,9 +483,8 @@ public class Express2EMF {
 					cls.getEStructuralFeatures().add(eAttribute);
 
 					EAttribute doubleStringAttribute = eFactory.createEAttribute();
-					EAnnotation hiddenAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-					hiddenAnnotation.setSource("hidden");
-					doubleStringAttribute.getEAnnotations().add(hiddenAnnotation);
+					doubleStringAttribute.getEAnnotations().add(createHiddenAnnotation());
+					doubleStringAttribute.getEAnnotations().add(createAsStringAnnotation());
 					doubleStringAttribute.setName(attrib.getName() + "AsString");
 					doubleStringAttribute.setUpperBound(-1);
 					doubleStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
@@ -508,9 +520,8 @@ public class Express2EMF {
 				cls.getEStructuralFeatures().add(eAttribute);
 
 				EAttribute doubleStringAttribute = eFactory.createEAttribute();
-				EAnnotation hiddenAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-				hiddenAnnotation.setSource("hidden");
-				doubleStringAttribute.getEAnnotations().add(hiddenAnnotation);
+				doubleStringAttribute.getEAnnotations().add(createHiddenAnnotation());
+				doubleStringAttribute.getEAnnotations().add(createAsStringAnnotation());
 				doubleStringAttribute.setName(attrib.getName() + "AsString");
 				doubleStringAttribute.setUpperBound(-1);
 				doubleStringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
@@ -569,9 +580,8 @@ public class Express2EMF {
 				eAttribute.setEType(EcorePackage.eINSTANCE.getEDouble());
 				cls.getEStructuralFeatures().add(eAttribute);
 				EAttribute eAttributeAsString = eFactory.createEAttribute();
-				EAnnotation hiddenAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-				hiddenAnnotation.setSource("hidden");
-				eAttributeAsString.getEAnnotations().add(hiddenAnnotation);
+				eAttributeAsString.getEAnnotations().add(createAsStringAnnotation());
+				eAttributeAsString.getEAnnotations().add(createHiddenAnnotation());
 				eAttributeAsString.setUnsettable(expAttrib.isOptional());
 				eAttributeAsString.setName(attrib.getName() + "AsString");
 				eAttributeAsString.setEType(EcorePackage.eINSTANCE.getEString());
@@ -696,9 +706,8 @@ public class Express2EMF {
 			EAttribute doubleStringAttribute = eFactory.createEAttribute();
 			doubleStringAttribute.setEType(ePackage.getEString());
 			doubleStringAttribute.setName("wrappedValueAsString");
-			EAnnotation hiddenAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-			hiddenAnnotation.setSource("hidden");
-			doubleStringAttribute.getEAnnotations().add(hiddenAnnotation);
+			doubleStringAttribute.getEAnnotations().add(createAsStringAnnotation());
+			doubleStringAttribute.getEAnnotations().add(createHiddenAnnotation());
 			doubleStringAttribute.setUnsettable(true);
 			testType.getEStructuralFeatures().add(doubleStringAttribute);
 		}
@@ -707,15 +716,11 @@ public class Express2EMF {
 
 	private void addSimpleTypes() {
 		Iterator<DefinedType> typeIter = schema.getTypes().iterator();
-		wrappedValueSuperClass = EcoreFactory.eINSTANCE.createEClass();
-		wrappedValueSuperClass.setName("WrappedValue");
-		wrappedValueSuperClass.setAbstract(true);
-		schemaPack.getEClassifiers().add(wrappedValueSuperClass);
 		while (typeIter.hasNext()) {
 			DefinedType type = typeIter.next();
 			if (type.getDomain() instanceof SimpleType) {
 				EClass testType = eFactory.createEClass();
-				testType.getESuperTypes().add(wrappedValueSuperClass);
+				testType.getEAnnotations().add(createWrappedAnnotation());
 				testType.setName(type.getName());
 				modifySimpleType(type, testType);
 				schemaPack.getEClassifiers().add(testType);
@@ -760,7 +765,7 @@ public class Express2EMF {
 				type2.setDomain(new IntegerType());
 				modifySimpleType(type2, testType);
 				schemaPack.getEClassifiers().add(testType);
-				testType.getESuperTypes().add(wrappedValueSuperClass);
+				testType.getEAnnotations().add(createWrappedAnnotation());
 			} else if (type.getDomain() instanceof DefinedType) {
 				if (schemaPack.getEClassifier(type.getName()) != null) {
 					EClass testType = (EClass) schemaPack.getEClassifier(type.getName());
