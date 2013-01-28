@@ -146,7 +146,7 @@ public class ClientIfcModel extends IfcModel {
 												Object e = readPrimitive(jsonReader, eStructuralFeature);
 												list.add(e);
 												if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-													double val = (double) e;
+													double val = (Double) e;
 													stringList.add("" + val); // TODO this is losing precision, maybe also send the string value?
 												}
 											}
