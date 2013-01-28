@@ -83,6 +83,7 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 		if (getMode() == Mode.BODY) {
 			OutputStreamWriter outputStreamWriter = new OutputStreamWriter(out, Charsets.UTF_8);
 			try {
+				calculateGeometryExtents();
 				PrintWriter writer = new PrintWriter(outputStreamWriter);
 
 				writer.print("{\"geometry\":[");

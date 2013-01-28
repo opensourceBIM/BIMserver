@@ -53,6 +53,12 @@ public abstract class Delegate {
 		state = State.LOADING;
 	}
 
+	public void loadExplicit() {
+		state = State.LOADING;
+		internalLoad(idEObject);
+		state = State.LOADED;
+	}
+	
 	public void load() {
 		if (!isLoadedOrLoading()) {
 			state = State.LOADING;

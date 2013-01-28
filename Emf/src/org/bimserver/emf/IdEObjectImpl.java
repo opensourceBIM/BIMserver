@@ -117,6 +117,12 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 		}
 	}
 
+	public void loadExplicit() {
+		if (getDelegate() != null) {
+			getDelegate().loadExplicit();
+		}
+	}
+	
 	public void loadForEdit() {
 		if (getDelegate() != null) {
 			getDelegate().loadForEdit();
