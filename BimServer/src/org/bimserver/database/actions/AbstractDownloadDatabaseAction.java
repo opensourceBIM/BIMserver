@@ -46,13 +46,13 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 				for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 					GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
 					if (geometryInstance != null) {
-						geometryInstance.load();
+						geometryInstance.loadExplicit();
 					}
 					Bounds bounds = ifcProduct.getBounds();
 					if (bounds != null) {
-						bounds.load();
-						bounds.getMin().load();
-						bounds.getMax().load();
+						bounds.loadExplicit();
+						bounds.getMin().loadExplicit();
+						bounds.getMax().loadExplicit();
 					}
 				}
 			}

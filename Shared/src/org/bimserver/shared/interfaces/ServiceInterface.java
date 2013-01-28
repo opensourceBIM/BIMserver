@@ -121,8 +121,6 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Checkin a new model by sending a serialized form
 	 * 
-	 * Available as REST call
-	 * 
 	 * @param poid The Project's ObjectID
 	 * @param comment A comment
 	 * @param deserializerName Name of the deserializer to use, use getAllDeserializers to get a list of available deserializers
@@ -147,8 +145,6 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Checkout an existing model, cehckout is the same as download, except a "checkout" will tell the server and other users you are working on it
 	 * 
-	 * Available as REST call
-	 * 
 	 * @param roid Revision ObjectID
 	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
@@ -164,8 +160,6 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Same as checkout, only this will automatically select the last revision to checkout
 	 * 
-	 * Available as REST call
-	 *
 	 * @param poid Project ObjectID
 	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
@@ -180,8 +174,6 @@ public interface ServiceInterface extends PublicInterface {
 
 	/**
 	 * Download a single revision of a model in a serialized format
-	 * 
-	 * Available as REST call
 	 * 
 	 * @param roid Revision ObjectID
 	 * @param serializerName  Name of the serializer to use, use getAllSerializers to find availble serializeres
@@ -287,8 +279,6 @@ public interface ServiceInterface extends PublicInterface {
 
 	/**
 	 * Get the data for a download/checkout
-	 * 
-	 * Available as REST call
 	 * 
 	 * @param actionId The actionId returned by one of the download or checkout methods
 	 * @return An SDownloadResult containing the serialized data
@@ -422,8 +412,6 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Get a list of all Projects the user is authorized for
 	 * 
-	 * Available as REST call
-	 * 
 	 * @return A list of Projects
 	 * @throws ServerException, UserException
 	 */
@@ -432,8 +420,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "onlyTopLevel", partName = "getAllProjects.onlyTopLevel") Boolean onlyTopLevel) throws ServerException, UserException;
 
 	/**
-	 * 
-	 * Available as REST call
 	 * 
 	 * Get a list of all Projects the user is authorized for to read from
 	 * @return A list of all projects that are readable for the current user
@@ -660,8 +646,6 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Get DataObjects based on a list of GUIDs
 	 * 
-	 * Available as REST call
-	 * 
 	 * @param roid ObjectID of the Revision
 	 * @param guid An IFC GUID
 	 * @return The object with the given GUID in the given Revision, of null if not found
@@ -819,7 +803,7 @@ public interface ServiceInterface extends PublicInterface {
 	Boolean isLoggedIn() throws ServerException, UserException;
 
 	/**
-	 * @return The method of access this ServiceInterface is using (SOAP, REST, PB etc...)
+	 * @return The method of access this ServiceInterface is using (SOAP, PB etc...)
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAccessMethod")
