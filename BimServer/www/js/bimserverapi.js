@@ -436,7 +436,7 @@ function Model(bimServerApi, poid, roid) {
 					});
 					$.getJSON(url, function(data, textStatus, jqXHR){
 						data.objects.forEach(function(object){
-							othis.objects[object.oid] = object;
+							othis.objects[object.__oid] = object;
 						});
 						for (var oid in othis.objects) {
 							othis.resolveReferences(othis.objects[oid]);
@@ -541,7 +541,7 @@ function Model(bimServerApi, poid, roid) {
 							if (data.objects.length > 0) {
 								var done = 0;
 								data.objects.forEach(function(object){
-									var oid = object.oid;
+									var oid = object.__oid;
 									othis.objects[object.oid] = object;
 									othis.resolveReferences(object, function(){
 										if (othis.oidsFetching[oid] != null) {
@@ -708,11 +708,11 @@ function Model(bimServerApi, poid, roid) {
 		object.remove = function(removeCallback){
 			othis.incrementRunningCalls("removeObject");
 			othis.transactionSynchronizer.fetch(function(tid){
-				bimServerApi.call("ServiceInterface", "removeObject", {tid: tid, oid: object.oid}, function(){
+				bimServerApi.call("ServiceInterface", "removeObject", {tid: tid, oid: object.__oid}, function(){
 					if (removeCallback != null) {
 						removeCallback();
 					}
-					delete othis.objects[object.oid];
+					delete othis.objects[object.__oid];
 					othis.decrementRunningCalls("removeObject");
 				});
 			});

@@ -53,7 +53,7 @@ public class JsonSerializer extends IfcSerializer {
 							firstObject = false;
 						}
 						out.write("{");
-						out.write("\"oid\":\"" + object.getOid() + "\",");
+						out.write("\"__oid\":\"" + object.getOid() + "\",");
 						out.write("\"__type\":\"" + object.eClass().getName() + "\",");
 						boolean firstF = true;
 						for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
