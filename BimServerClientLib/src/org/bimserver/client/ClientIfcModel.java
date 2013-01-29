@@ -105,7 +105,7 @@ public class ClientIfcModel extends IfcModel {
 					jsonReader.beginArray();
 					while (jsonReader.hasNext()) {
 						jsonReader.beginObject();
-						if (jsonReader.nextName().equals("oid")) {
+						if (jsonReader.nextName().equals("__oid")) {
 							long oid = jsonReader.nextLong();
 							if (jsonReader.nextName().equals("__type")) {
 								String type = jsonReader.nextString();
