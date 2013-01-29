@@ -254,7 +254,7 @@ public class Service implements ServiceInterface {
 				if (deserializerObject == null) {
 					throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 				}
-				Deserializer deserializer = bimServer.getEmfDeserializerFactory().createDeserializer(deserializerObject.getClassName());
+				Deserializer deserializer = bimServer.getDeserializerFactory().createDeserializer(deserializerOid);
 				try {
 					deserializer.init(bimServer.getPluginManager().requireSchemaDefinition());
 				} catch (PluginException e) {
@@ -306,33 +306,34 @@ public class Service implements ServiceInterface {
 	public Long checkout(Long roid, Long serializerOid, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		authorization.canDownload(roid);
-		org.bimserver.plugins.serializers.Serializer serializer = bimServer.getEmfSerializerFactory().get(serializerOid).createSerializer();
-		if (serializer == null) {
-			throw new UserException("No serializer with id " + serializerOid + " could be found");
-		}
-		if (!serializer.getClass().getSimpleName().equals("IfcStepSerializer") && !serializer.getClass().getSimpleName().equals("IfcXmlSerializer")) {
-			throw new UserException("Only IFC or IFCXML allowed when checking out");
-		}
-		DownloadParameters downloadParameters = new DownloadParameters(bimServer, roid, serializerOid, -1);
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		User user = null;
 		try {
+			SerializerPluginConfiguration serializerPluginConfiguration = (SerializerPluginConfiguration) session.get(serializerOid, Query.getDefault());
+//			org.bimserver.plugins.serializers.Serializer serializer = bimServer.getEmfSerializerFactory().get(serializerOid).createSerializer(new org.bimserver.plugins.serializers.PluginConfiguration());
+			if (serializerPluginConfiguration == null) {
+				throw new UserException("No serializer with id " + serializerOid + " could be found");
+			}
+			if (!serializerPluginConfiguration.getClassName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializer") && !serializerPluginConfiguration.getClassName().equals("org.bimserver.ifc.xml.serializer.IfcXmlSerializer")) {
+				throw new UserException("Only IFC or IFCXML allowed when checking out");
+			}
+			DownloadParameters downloadParameters = new DownloadParameters(bimServer, roid, serializerOid, -1);
 			user = (User) session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), Query.getDefault());
+			LongDownloadOrCheckoutAction longDownloadAction = new LongCheckoutAction(bimServer, user.getName(), user.getUsername(), downloadParameters, authorization, accessMethod);
+			try {
+				bimServer.getLongActionManager().start(longDownloadAction);
+			} catch (CannotBeScheduledException e) {
+				LOGGER.error("", e);
+			}
+			if (sync) {
+				longDownloadAction.waitForCompletion();
+			}
+			return longDownloadAction.getId();
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
 			session.close();
 		}
-		LongDownloadOrCheckoutAction longDownloadAction = new LongCheckoutAction(bimServer, user.getName(), user.getUsername(), downloadParameters, authorization, accessMethod);
-		try {
-			bimServer.getLongActionManager().start(longDownloadAction);
-		} catch (CannotBeScheduledException e) {
-			LOGGER.error("", e);
-		}
-		if (sync) {
-			longDownloadAction.waitForCompletion();
-		}
-		return longDownloadAction.getId();
 	}
 
 	private UserSettings getUserSettings(DatabaseSession session) throws BimserverLockConflictException, BimserverDatabaseException {
@@ -1952,7 +1953,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws UserException {
 		requireRealUserAuthentication();
-		return bimServer.getEmfSerializerFactory().getAllSerializerPluginDescriptors();
+		return bimServer.getSerializerFactory().getAllSerializerPluginDescriptors();
 	}
 
 	@Override
@@ -2372,7 +2373,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public SSerializerPluginDescriptor getSerializerPluginDescriptor(String type) throws UserException {
 		requireRealUserAuthentication();
-		return bimServer.getEmfSerializerFactory().getSerializerPluginDescriptor(type);
+		return bimServer.getSerializerFactory().getSerializerPluginDescriptor(type);
 	}
 
 	@Override
@@ -2486,31 +2487,31 @@ public class Service implements ServiceInterface {
 	@Override
 	public List<SIfcEnginePluginDescriptor> getAllIfcEnginePluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		return bimServer.getEmfSerializerFactory().getAllIfcEnginePluginDescriptors();
+		return bimServer.getSerializerFactory().getAllIfcEnginePluginDescriptors();
 	}
 
 	@Override
 	public List<SQueryEnginePluginDescriptor> getAllQueryEnginePluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		return bimServer.getEmfSerializerFactory().getAllQueryEnginePluginDescriptors();
+		return bimServer.getSerializerFactory().getAllQueryEnginePluginDescriptors();
 	}
 
 	@Override
 	public List<SServicePluginDescriptor> getAllServicePluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		return bimServer.getEmfSerializerFactory().getAllServicePluginDescriptors();
+		return bimServer.getSerializerFactory().getAllServicePluginDescriptors();
 	}
 
 	@Override
 	public List<SModelComparePluginDescriptor> getAllModelComparePluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		return bimServer.getEmfSerializerFactory().getAllModelComparePluginDescriptors();
+		return bimServer.getSerializerFactory().getAllModelComparePluginDescriptors();
 	}
 
 	@Override
 	public List<SModelMergerPluginDescriptor> getAllModelMergerPluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		return bimServer.getEmfSerializerFactory().getAllModelMergerPluginDescriptors();
+		return bimServer.getSerializerFactory().getAllModelMergerPluginDescriptors();
 	}
 
 	@Override

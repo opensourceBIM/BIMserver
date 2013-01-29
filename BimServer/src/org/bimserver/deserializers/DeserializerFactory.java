@@ -17,31 +17,46 @@ package org.bimserver.deserializers;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.database.BimDatabase;
+import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
+import org.bimserver.models.store.DeserializerPluginConfiguration;
+import org.bimserver.models.store.ObjectType;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DeserializerFactory {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DeserializerFactory.class);
 	private PluginManager pluginManager;
+	private BimDatabase bimDatabase;
 
-	public void init(PluginManager pluginManager) {
+	public void init(PluginManager pluginManager, BimDatabase bimDatabase) {
 		this.pluginManager = pluginManager;
+		this.bimDatabase = bimDatabase;
 	}
 
-	public Deserializer createDeserializer(String deserializerClassname) {
-		DeserializerPlugin deserializerPlugin = (DeserializerPlugin) pluginManager.getPlugin(deserializerClassname, true);
-		if (deserializerPlugin != null) {
-			Deserializer deserializer = deserializerPlugin.createDeserializer();
-			try {
-				deserializer.init(pluginManager.requireSchemaDefinition());
-			} catch (PluginException e) {
-				LOGGER.error("", e);
+	public Deserializer createDeserializer(long deserializerOid) throws PluginException {
+		DatabaseSession session = bimDatabase.createSession();
+		try {
+			DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
+			if (deserializerPluginConfiguration != null) {
+				DeserializerPlugin deserializerPlugin = (DeserializerPlugin) pluginManager.getPlugin(deserializerPluginConfiguration.getClassName(), true);
+				if (deserializerPlugin != null) {
+					ObjectType settings = deserializerPluginConfiguration.getSettings();
+					return deserializerPlugin.createDeserializer(new PluginConfiguration(settings));
+				}
 			}
-			return deserializer;
+		} catch (BimserverDatabaseException e) {
+			LOGGER.error("", e);
+		} finally {
+			session.close();
 		}
 		return null;
 	}

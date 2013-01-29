@@ -27,6 +27,7 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -40,14 +41,14 @@ public class IfcXmlReadTest {
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifcxml", true);
-			Deserializer deserializer = deserializerPlugin.createDeserializer();
+			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			try {
 				File file = TestFile.AC11_XML.getFile();
 				IfcModelInterface model = deserializer.read(new FileInputStream(file), "ac11.ifcxml", file.length());
 				
 				File outFile = new File("out.ifc");
 				SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
-				Serializer serializer = serializerPlugin.createSerializer();
+				Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 				serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine(), false);
 				try {
 					serializer.writeToFile(outFile);
@@ -56,7 +57,7 @@ public class IfcXmlReadTest {
 				}
 				
 				DeserializerPlugin deserializerPlugin2 = pluginManager.getFirstDeserializer("ifc", true);
-				Deserializer deserializer2 = deserializerPlugin2.createDeserializer();
+				Deserializer deserializer2 = deserializerPlugin2.createDeserializer(new PluginConfiguration());
 				deserializer2.init(pluginManager.requireSchemaDefinition());
 				deserializer2.read(outFile);
 			} catch (FileNotFoundException e) {

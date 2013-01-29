@@ -20,13 +20,14 @@ package org.bimserver.plugins.queryengine;
 import java.util.Collection;
 
 import org.bimserver.plugins.Plugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public interface QueryEnginePlugin extends Plugin {
 
 	/**
 	 * @return A usable QueryEngine implementation
 	 */
-	QueryEngine getQueryEngine();
+	QueryEngine getQueryEngine(PluginConfiguration pluginConfiguration);
 	
 	/**
 	 * @return Return a list of keys (usually file names) corresponding to code examples for this plugin

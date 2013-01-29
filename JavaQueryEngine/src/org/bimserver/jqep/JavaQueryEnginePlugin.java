@@ -11,6 +11,7 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.VirtualFile;
 import org.bimserver.plugins.queryengine.QueryEngine;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 
 import com.google.common.base.Charsets;
 
@@ -59,7 +60,7 @@ public class JavaQueryEnginePlugin implements QueryEnginePlugin {
 	}
 
 	@Override
-	public QueryEngine getQueryEngine() {
+	public QueryEngine getQueryEngine(PluginConfiguration pluginConfiguration) {
 		PluginContext pluginContext = pluginManager.getPluginContext(this);
 		return new JavaQueryEngine(pluginContext.getClassLoader(), pluginContext.getFileManager());
 	}

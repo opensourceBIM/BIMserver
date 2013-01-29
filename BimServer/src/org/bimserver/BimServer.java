@@ -111,7 +111,7 @@ import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
-import org.bimserver.serializers.EmfSerializerFactory;
+import org.bimserver.serializers.SerializerFactory;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
@@ -141,8 +141,8 @@ public class BimServer {
 	private BimDatabase bimDatabase;
 	private JobScheduler bimScheduler;
 	private LongActionManager longActionManager;
-	private EmfSerializerFactory emfSerializerFactory;
-	private DeserializerFactory emfDeserializerFactory;
+	private SerializerFactory serializerFactory;
+	private DeserializerFactory deserializerFactory;
 	private MergerFactory mergerFactory;
 	private PluginManager pluginManager;
 	private MailSystem mailSystem;
@@ -369,8 +369,8 @@ public class BimServer {
 			serverInfoManager.init(this);
 			serverInfoManager.update();
 
-			emfSerializerFactory = new EmfSerializerFactory();
-			emfDeserializerFactory = new DeserializerFactory();
+			serializerFactory = new SerializerFactory();
+			deserializerFactory = new DeserializerFactory();
 
 			if (serverInfoManager.getServerState() == ServerState.MIGRATION_REQUIRED) {
 				serverInfoManager.registerStateChangeListener(new StateChangeListener() {
@@ -470,6 +470,7 @@ public class BimServer {
 				objectIdmPluginConfiguration.setClassName(objectIDMPlugin.getClass().getName());
 				objectIdmPluginConfiguration.setDescription(objectIDMPlugin.getDescription());
 				objectIdmPluginConfiguration.setEnabled(true);
+				objectIdmPluginConfiguration.setSettings(convertSettings(session, objectIDMPlugin));
 				if (userSettings.getDefaultObjectIDM() == null && objectIDMPlugin.getClass() == SchemaFieldObjectIDMPlugin.class) {
 					userSettings.setDefaultObjectIDM(objectIdmPluginConfiguration);
 				}
@@ -492,6 +493,7 @@ public class BimServer {
 				ifcEnginePluginConfiguration.setName(name);
 				ifcEnginePluginConfiguration.setDescription(ifcEnginePlugin.getDescription());
 				ifcEnginePluginConfiguration.setEnabled(true);
+				ifcEnginePluginConfiguration.setSettings(convertSettings(session, ifcEnginePlugin));
 				if (userSettings.getDefaultIfcEngine() == null && ifcEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOIfcEnginePlugin")) {
 					userSettings.setDefaultIfcEngine(ifcEnginePluginConfiguration);
 				}
@@ -514,6 +516,7 @@ public class BimServer {
 				queryEnginePluginConfiguration.setName(name);
 				queryEnginePluginConfiguration.setDescription(queryEnginePlugin.getDescription());
 				queryEnginePluginConfiguration.setEnabled(true);
+				queryEnginePluginConfiguration.setSettings(convertSettings(session, queryEnginePlugin));
 				if (userSettings.getDefaultQueryEngine() == null && queryEnginePlugin.getClass().getName().equals("nl.wietmazairac.bimql.BimQLQueryEnginePlugin")) {
 					userSettings.setDefaultQueryEngine(queryEnginePluginConfiguration);
 				}
@@ -536,6 +539,7 @@ public class BimServer {
 				modelMergerPluginConfiguration.setName(name);
 				modelMergerPluginConfiguration.setDescription(modelMergerPlugin.getDescription());
 				modelMergerPluginConfiguration.setEnabled(true);
+				modelMergerPluginConfiguration.setSettings(convertSettings(session, modelMergerPlugin));
 				if (userSettings.getDefaultModelMerger() == null && modelMergerPlugin.getClass().getName().equals("org.bimserver.merging.BasicModelMergerPlugin")) {
 					userSettings.setDefaultModelMerger(modelMergerPluginConfiguration);
 				}
@@ -558,6 +562,7 @@ public class BimServer {
 				modelComparePluginConfiguration.setName(name);
 				modelComparePluginConfiguration.setDescription(modelComparePlugin.getDescription());
 				modelComparePluginConfiguration.setEnabled(true);
+				modelComparePluginConfiguration.setSettings(convertSettings(session, modelComparePlugin));
 				if (userSettings.getDefaultModelCompare() == null && modelComparePlugin.getClass().getName().equals("org.bimserver.ifc.compare.GuidBasedModelComparePlugin")) {
 					userSettings.setDefaultModelCompare(modelComparePluginConfiguration);
 				}
@@ -585,6 +590,7 @@ public class BimServer {
 				serializerPluginConfiguration.setObjectIDM(userSettings.getDefaultObjectIDM());
 				serializerPluginConfiguration.setIfcEngine(userSettings.getDefaultIfcEngine());
 				serializerPluginConfiguration.setNeedsGeometry(serializerPlugin.needsGeometry());
+				serializerPluginConfiguration.setSettings(convertSettings(session, serializerPlugin));
 				if (userSettings.getDefaultSerializer() == null && serializerPlugin.getClass().getName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin")) {
 					userSettings.setDefaultSerializer(serializerPluginConfiguration);
 				}
@@ -607,18 +613,7 @@ public class BimServer {
 				internalServicePluginConfiguration.setName(name);
 				internalServicePluginConfiguration.setEnabled(true);
 				internalServicePluginConfiguration.setDescription(servicePlugin.getDescription());
-				ObjectType settings = session.create(StorePackage.eINSTANCE.getObjectType());
-				ObjectDefinition settingsDefinition = servicePlugin.getSettingsDefinition();
-				for (ParameterDefinition parameterDefinition : settingsDefinition.getParameters()) {
-					Parameter parameter = session.create(StorePackage.eINSTANCE.getParameter());
-					parameter.setName(parameterDefinition.getName());
-					if (parameterDefinition.getDefaultValue() != null) {
-						Type value = cloneAndAdd(session, parameterDefinition.getDefaultValue());
-						parameter.setValue(value);
-					}
-					settings.getParameters().add(parameter);
-				}
-				internalServicePluginConfiguration.setSettings(settings);
+				internalServicePluginConfiguration.setSettings(convertSettings(session, servicePlugin));
 			}
 		}
 		for (DeserializerPlugin deserializerPlugin : pluginManager.getAllDeserializerPlugins(true)) {
@@ -631,9 +626,27 @@ public class BimServer {
 				deserializerPluginConfiguration.setName(name);
 				deserializerPluginConfiguration.setEnabled(true);
 				deserializerPluginConfiguration.setDescription(deserializerPlugin.getDescription());
+				deserializerPluginConfiguration.setSettings(convertSettings(session, deserializerPlugin));
 			}
 		}
 		session.store(userSettings);
+	}
+
+	private ObjectType convertSettings(DatabaseSession session, Plugin plugin) throws BimserverDatabaseException {
+		ObjectType settings = session.create(StorePackage.eINSTANCE.getObjectType());
+		ObjectDefinition settingsDefinition = plugin.getSettingsDefinition();
+		if (plugin.getSettingsDefinition() != null) {
+			for (ParameterDefinition parameterDefinition : settingsDefinition.getParameters()) {
+				Parameter parameter = session.create(StorePackage.eINSTANCE.getParameter());
+				parameter.setName(parameterDefinition.getName());
+				if (parameterDefinition.getDefaultValue() != null) {
+					Type value = cloneAndAdd(session, parameterDefinition.getDefaultValue());
+					parameter.setValue(value);
+				}
+				settings.getParameters().add(parameter);
+			}
+		}
+		return settings;
 	}
 
 	private Type cloneAndAdd(DatabaseSession session, Type input) throws BimserverDatabaseException {
@@ -662,8 +675,8 @@ public class BimServer {
 	}
 
 	private void initDatabaseDependantItems() throws BimserverDatabaseException {
-		getEmfSerializerFactory().init(pluginManager, bimDatabase);
-		getEmfDeserializerFactory().init(pluginManager);
+		getSerializerFactory().init(pluginManager, bimDatabase);
+		getDeserializerFactory().init(pluginManager, bimDatabase);
 		try {
 			DatabaseSession session = bimDatabase.createSession();
 
@@ -806,12 +819,12 @@ public class BimServer {
 		return mailSystem;
 	}
 
-	public EmfSerializerFactory getEmfSerializerFactory() {
-		return emfSerializerFactory;
+	public SerializerFactory getSerializerFactory() {
+		return serializerFactory;
 	}
 
-	public DeserializerFactory getEmfDeserializerFactory() {
-		return emfDeserializerFactory;
+	public DeserializerFactory getDeserializerFactory() {
+		return deserializerFactory;
 	}
 
 	public DiskCacheManager getDiskCacheManager() {

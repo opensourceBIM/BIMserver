@@ -18,8 +18,18 @@ package org.bimserver.plugins.deserializers;
  *****************************************************************************/
 
 import org.bimserver.plugins.Plugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public interface DeserializerPlugin extends Plugin {
-	Deserializer createDeserializer();
+	/**
+	 * @param pluginConfiguration User specific settings for this plugin
+	 * @return The deserializer
+	 */
+	Deserializer createDeserializer(PluginConfiguration pluginConfiguration);
+	
+	/**
+	 * @param extension
+	 * @return Whether this plugin can handle the given extension
+	 */
 	boolean canHandleExtension(String extension);
 }

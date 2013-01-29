@@ -27,6 +27,7 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public class TestDeserializer {
 	public static void main(String[] args) {
@@ -38,8 +39,8 @@ public class TestDeserializer {
 			final PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			final DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 
-			Deserializer deserializer = deserializerPlugin.createDeserializer();
-			deserializer.init(pluginManager.getFirstSchemaPlugin(true).getSchemaDefinition());
+			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
+			deserializer.init(pluginManager.getFirstSchemaPlugin(true).getSchemaDefinition(new PluginConfiguration()));
 			IfcModelInterface model = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Shared\\BIMserver\\Atrium%20Offices%20-%20PROJETO_EXECUTIVO%20-%202012.05.03.ifc"));
 			
 			for (IdEObject idEObject : model.getValues()) {

@@ -39,6 +39,7 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SRevisionSummaryContainer;
 import org.bimserver.interfaces.objects.SRevisionSummaryType;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
@@ -123,7 +124,7 @@ public class TestClientEmfModelLocal {
 	private void dumpToFile(long poid, long roid) throws SerializerException {
 		try {
 			ClientIfcModel model = bimServerClient.getModel(poid, roid, false);
-			IfcStepSerializer serializer = new IfcStepSerializer();
+			IfcStepSerializer serializer = new IfcStepSerializer(new PluginConfiguration());
 			serializer.init(model, null, bimServer.getPluginManager(), null, false);
 			File output = new File("output");
 			if (!output.exists()) {

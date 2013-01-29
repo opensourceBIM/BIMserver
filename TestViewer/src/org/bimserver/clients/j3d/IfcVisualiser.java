@@ -88,6 +88,7 @@ import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -196,7 +197,7 @@ public class IfcVisualiser extends JFrame {
 		}
 
 		DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
-		Deserializer deserializer = deserializerPlugin.createDeserializer();
+		Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 		deserializer.init(pluginManager.requireSchemaDefinition());
 		File file = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
 
@@ -208,7 +209,7 @@ public class IfcVisualiser extends JFrame {
 			LOGGER.error("", e);
 		}
 
-		ifcEngine = pluginManager.requireIfcEngine().createIfcEngine();
+		ifcEngine = pluginManager.requireIfcEngine().createIfcEngine(new PluginConfiguration());
 		ifcEngine.init();
 		try {
 			ifcEngineModel = ifcEngine.openModel(file);

@@ -5,6 +5,7 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.modelmerger.ModelMerger;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public class BasicModelMergerPlugin implements ModelMergerPlugin {
 
@@ -36,7 +37,7 @@ public class BasicModelMergerPlugin implements ModelMergerPlugin {
 	}
 
 	@Override
-	public ModelMerger createModelMerger() {
+	public ModelMerger createModelMerger(PluginConfiguration pluginConfiguration) {
 		return new BasicModelMerger();
 	}
 

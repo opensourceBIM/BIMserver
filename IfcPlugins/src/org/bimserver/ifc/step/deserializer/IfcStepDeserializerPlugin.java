@@ -23,13 +23,14 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.schema.SchemaException;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public class IfcStepDeserializerPlugin implements DeserializerPlugin {
 
 	boolean initialized = false;
 	
 	@Override
-	public Deserializer createDeserializer() {
+	public Deserializer createDeserializer(PluginConfiguration pluginConfiguration) {
 		return new IfcStepDeserializer();
 	}
 

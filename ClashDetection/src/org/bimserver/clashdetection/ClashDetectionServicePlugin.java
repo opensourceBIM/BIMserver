@@ -52,6 +52,7 @@ import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.stillimagerenderer.StillImageRenderer;
@@ -72,7 +73,9 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 	public void init(final PluginManager pluginManager) throws PluginException {
 		super.init(pluginManager);
 		initialized = true;
+	}
 
+	public void register(PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor clashDetection = StoreFactory.eINSTANCE.createServiceDescriptor();
 		clashDetection.setProviderName("BIMserver");
 		clashDetection.setIdentifier(getClass().getName());
@@ -82,7 +85,6 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		clashDetection.setReadRevision(true);
 		clashDetection.setWriteExtendedData("http://www.buildingsmart-tech.org/specifications/bcf-releases");
 		clashDetection.setTrigger(Trigger.NEW_REVISION);
-		
 		registerNewRevisionHandler(clashDetection, new NewRevisionHandler(){
 			public void newRevision(String uuid, ServiceInterface serviceInterface, SNewRevisionAdded notification, SObjectType settings) throws ServerException, UserException {
 				Bcf bcf = new Bcf();
@@ -96,8 +98,8 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 					ByteArrayOutputStream baos = new ByteArrayOutputStream();
 					((EmfSerializerDataSource)downloadData.getFile().getDataSource()).getSerializer().writeToOutputStream(baos);
 					
-					Deserializer deserializer = pluginManager.requireDeserializer("ifc").createDeserializer();
-					deserializer.init(pluginManager.requireSchemaDefinition());
+					Deserializer deserializer = getPluginManager().requireDeserializer("ifc").createDeserializer(new PluginConfiguration());
+					deserializer.init(getPluginManager().requireSchemaDefinition());
 					IfcModelInterface model = deserializer.read(new ByteArrayInputStream(baos.toByteArray()), "test.ifc", baos.size());
 					List<IfcProject> ifcProjects = model.getAll(IfcProject.class);
 					IfcProject mainIfcProject = null;
@@ -105,14 +107,14 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						mainIfcProject = ifcProjects.get(0);
 					}
 					
-					IfcEngine ifcEngine = pluginManager.requireIfcEngine().createIfcEngine();
+					IfcEngine ifcEngine = getPluginManager().requireIfcEngine().createIfcEngine(new PluginConfiguration());
 					ifcEngine.init();
 					
 					IfcEngineModel ifcEngineModel = ifcEngine.openModel(new ByteArrayInputStream(baos.toByteArray()), baos.size());
 					Set<IfcEngineClash> clashes = ifcEngineModel.findClashesWithEids(0.0);
 					IfcEngineGeometry geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
 
-					StillImageRenderer stillImageRenderer = pluginManager.getFirstStillImageRenderPlugin().create();
+					StillImageRenderer stillImageRenderer = getPluginManager().getFirstStillImageRenderPlugin().create(new PluginConfiguration());
 					boolean renderImage = true;
 					try {
 						stillImageRenderer.init(model);
@@ -227,7 +229,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 			}
 		});
 	}
-
+	
 	private Point newPoint(double x, double y, double z) {
 		Point point = new Point();
 		point.setX(x);

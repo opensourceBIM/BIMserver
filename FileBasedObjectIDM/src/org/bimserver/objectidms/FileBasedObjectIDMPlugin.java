@@ -23,6 +23,7 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMException;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public class FileBasedObjectIDMPlugin implements ObjectIDMPlugin {
 
@@ -55,7 +56,7 @@ public class FileBasedObjectIDMPlugin implements ObjectIDMPlugin {
 	}
 
 	@Override
-	public ObjectIDM getObjectIDM() {
+	public ObjectIDM getObjectIDM(PluginConfiguration pluginConfiguration) {
 		return fileBasedObjectIDM;
 	}
 

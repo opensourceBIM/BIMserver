@@ -39,6 +39,7 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 
@@ -82,7 +83,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 				if (objectIdm != null) {
 					ObjectIDMPlugin objectIDMPlugin = getBimServer().getPluginManager().getObjectIDMByName(objectIdm.getClassName(), true);
 					if (objectIDMPlugin != null) {
-						objectIDM = objectIDMPlugin.getObjectIDM();
+						objectIDM = objectIDMPlugin.getObjectIDM(new PluginConfiguration());
 					}
 				}
 			}

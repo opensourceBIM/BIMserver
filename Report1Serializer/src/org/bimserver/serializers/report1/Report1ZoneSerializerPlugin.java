@@ -25,6 +25,7 @@ import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
 public class Report1ZoneSerializerPlugin implements SerializerPlugin {
@@ -59,7 +60,7 @@ public class Report1ZoneSerializerPlugin implements SerializerPlugin {
 	}
 
 	@Override
-	public EmfSerializer createSerializer() {
+	public EmfSerializer createSerializer(PluginConfiguration pluginConfiguration) {
 		XsltSerializer xsltSerializer = new XsltSerializer();
 		xsltSerializer.setXsltUrl(url);
 		xsltSerializer.addParameter(new XsltParameter("topic", "zone"));

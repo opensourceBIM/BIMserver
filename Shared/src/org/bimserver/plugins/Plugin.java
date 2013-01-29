@@ -37,10 +37,33 @@ import org.bimserver.models.store.ObjectDefinition;
  *****************************************************************************/
 
 public interface Plugin {
+	/**
+	 * Initialize this plugin
+	 * @param pluginManager
+	 * @throws PluginException
+	 */
 	void init(PluginManager pluginManager) throws PluginException;
+	
+	/**
+	 * @return A description of this plugin
+	 */
 	String getDescription();
+	
+	/**
+	 * @return The default name of this plugin, a user can later change the name
+	 */
 	String getDefaultName();
+	
+	/**
+	 * @return The version of this plugin, for now it's not used for dependencies, only for (manual) identification
+	 */
 	String getVersion();
+	/**
+	 * @return An object with the definition of a set of properties that can be set by the user of a plugin, the plugin can later use the actual values a user has set
+	 */
 	ObjectDefinition getSettingsDefinition();
+	/**
+	 * @return Whether the plugin has successfully initialized
+	 */
 	boolean isInitialized();
 }

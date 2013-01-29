@@ -28,6 +28,7 @@ import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -43,13 +44,13 @@ public class TestKmz {
 			Collection<SerializerPlugin> plugins = pluginManager.getAllSerializerPlugins("application/vnd.google-earth.kmz", true);
 			if (!plugins.isEmpty()) {
 				SerializerPlugin plugin = plugins.iterator().next();
-				Serializer serializer = plugin.createSerializer();
+				Serializer serializer = plugin.createSerializer(new PluginConfiguration());
 				Collection<DeserializerPlugin> allDeserializerPlugins = pluginManager.getAllDeserializerPlugins("ifc", true);
 //				IfcEnginePlugin ifcEngine = pluginManager.getIfcEngine("org.ifcopenshell.IfcOpenShellEnginePlugin", true);
 				IfcEnginePlugin ifcEnginePlugin = pluginManager.getIfcEngine("org.bimserver.ifcengine.TNOIfcEnginePlugin", true);
 				if (!allDeserializerPlugins.isEmpty()) {
 					DeserializerPlugin deserializerPlugin = allDeserializerPlugins.iterator().next();
-					Deserializer deserializer = deserializerPlugin.createDeserializer();
+					Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 					deserializer.init(pluginManager.requireSchemaDefinition());
 					IfcModelInterface model = deserializer.read(TestFile.WALL_ONLY.getFile());
 //					IfcModelInterface model = deserializer.read(TestFile.ADTHAUS.getFile(), true);
