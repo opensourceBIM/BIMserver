@@ -28,6 +28,7 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class LargeFileTest {
@@ -41,7 +42,7 @@ public class LargeFileTest {
 		try {
 			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
-			Deserializer deserializer = deserializerPlugin.createDeserializer();
+			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			deserializer.init(pluginManager.requireSchemaDefinition());
 			IfcModelInterface model = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Documents\\My Dropbox\\Shared\\BIMserver\\arcadis\\KW02.ifc"));
 			for (IdEObject idEObject : model.getValues()) {

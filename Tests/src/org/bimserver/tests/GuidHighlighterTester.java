@@ -33,6 +33,7 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public class GuidHighlighterTester {
 	private SchemaDefinition schema;
@@ -74,7 +75,7 @@ public class GuidHighlighterTester {
 		try {
 			pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			DeserializerPlugin deserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
-			Deserializer deserializer = deserializerPlugin.createDeserializer();
+			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 			deserializer.init(schema);
 			try {
 				IfcModelInterface model = deserializer.read(file);

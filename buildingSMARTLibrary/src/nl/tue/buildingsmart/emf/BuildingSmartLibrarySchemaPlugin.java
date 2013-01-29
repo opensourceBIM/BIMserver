@@ -31,6 +31,7 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.SchemaPlugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,7 +43,7 @@ public class BuildingSmartLibrarySchemaPlugin implements SchemaPlugin {
 	private File schemaFile;
 
 	@Override
-	public SchemaDefinition getSchemaDefinition() {
+	public SchemaDefinition getSchemaDefinition(PluginConfiguration pluginConfiguration) {
 		return schemaDefinition;
 	}
 

@@ -22,6 +22,7 @@ import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 
@@ -42,4 +43,10 @@ public abstract class ServicePlugin implements Plugin {
 	public void init(PluginManager pluginManager) throws PluginException {
 		this.pluginManager = pluginManager;
 	}
+	
+	public PluginManager getPluginManager() {
+		return pluginManager;
+	}
+
+	public abstract void register(PluginConfiguration pluginConfiguration);
 }

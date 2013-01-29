@@ -325,7 +325,7 @@ public class DownloadParameters extends LongActionKey {
 	}
 
 	public String getFileName() {
-		String extension = bimServer.getEmfSerializerFactory().getExtension(serializerOid);
+		String extension = bimServer.getSerializerFactory().getExtension(serializerOid);
 		switch (downloadType) {
 		case DOWNLOAD_REVISION:
 			return getRoidsString() + "." + extension;

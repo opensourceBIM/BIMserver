@@ -41,6 +41,7 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
@@ -83,7 +84,6 @@ public class IfcStepSerializer extends IfcSerializer {
 	private String fileDescription = "";
 	private String name = "";
 	private String author = "";
-	private String organization = "";
 	private String originatingSystem = "";
 	private String authorization = "";
 	private String preProcessorVersion = "";
@@ -92,6 +92,11 @@ public class IfcStepSerializer extends IfcSerializer {
 	private Iterator<IdEObject> iterator;
 	private UTF8PrintWriter out;
 	private SchemaDefinition schema;
+	private PluginConfiguration pluginConfiguration;
+
+	public IfcStepSerializer(PluginConfiguration pluginConfiguration) {
+		this.pluginConfiguration = pluginConfiguration;
+	}
 
 	@Override
 	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException {
@@ -151,10 +156,6 @@ public class IfcStepSerializer extends IfcSerializer {
 		this.author = author;
 	}
 
-	public void setOrganization(String organization) {
-		this.organization = organization;
-	}
-
 	public void setOriginatingSystem(String originatingSystem) {
 		this.originatingSystem = originatingSystem;
 	}
@@ -183,8 +184,7 @@ public class IfcStepSerializer extends IfcSerializer {
 		out.println("ISO-10303-21;");
 		out.println("HEADER;");
 		out.println("FILE_DESCRIPTION (('" + fileDescription + "'), '2;1');");
-		out.println("FILE_NAME ('" + name + "', '" + dateString + "', ('" + author + "'), ('" + organization + "'), '" + preProcessorVersion + "', '" + originatingSystem + "', '"
-				+ authorization + "');");
+		out.println("FILE_NAME ('" + name + "', '" + dateString + "', ('" + author + "'), ('" + pluginConfiguration.getString("organization") + "'), '" + preProcessorVersion + "', '" + originatingSystem + "', '"	+ authorization + "');");
 		out.println("FILE_SCHEMA (('IFC2X3'));");
 		out.println("ENDSEC;");
 		out.println("DATA;");

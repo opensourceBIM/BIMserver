@@ -38,6 +38,7 @@ import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.schema.SchemaPlugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public class TNOJvmIfcEnginePlugin implements IfcEnginePlugin {
 
@@ -99,7 +100,7 @@ public class TNOJvmIfcEnginePlugin implements IfcEnginePlugin {
 	}
 
 	@Override
-	public IfcEngine createIfcEngine() throws IfcEngineException {
+	public IfcEngine createIfcEngine(PluginConfiguration pluginConfiguration) throws IfcEngineException {
 		return new JvmIfcEngine(schemaFile, nativeFolder, pluginManager.getTempDir(), pluginManager.getCompleteClassPath());
 	}
 

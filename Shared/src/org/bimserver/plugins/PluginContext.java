@@ -31,6 +31,8 @@ import javax.tools.JavaCompiler;
 import javax.tools.JavaFileManager;
 import javax.tools.ToolProvider;
 
+import org.bimserver.models.store.Parameter;
+
 public class PluginContext {
 
 	private Plugin plugin;
@@ -161,5 +163,9 @@ public class PluginContext {
 			break;
 		}
 		return urls;
+	}
+	
+	public Parameter getParameter(String name) {
+		return pluginManager.getParameter(this, name);
 	}
 }

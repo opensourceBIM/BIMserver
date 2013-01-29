@@ -42,6 +42,7 @@ import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -99,7 +100,7 @@ public class GeometryGenerator {
 		Collection<SerializerPlugin> allSerializerPlugins = pluginManager.getAllSerializerPlugins("application/ifc", true);
 		if (!allSerializerPlugins.isEmpty()) {
 			SerializerPlugin serializerPlugin = allSerializerPlugins.iterator().next();
-			Serializer serializer = serializerPlugin.createSerializer();
+			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			try {
 				// Make sure we have minimal express ids
 				model.generateMinimalExpressIds();
@@ -111,12 +112,11 @@ public class GeometryGenerator {
 				if (!allIfcEnginePlugins.isEmpty()) {
 					IfcEnginePlugin ifcEnginePlugin = allIfcEnginePlugins.iterator().next();
 					try {
-						IfcEngine ifcEngine = ifcEnginePlugin.createIfcEngine();
+						IfcEngine ifcEngine = ifcEnginePlugin.createIfcEngine(new PluginConfiguration());
 						ifcEngine.init();
 						try {
 							IfcEngineModel ifcEngineModel = ifcEngine.openModel(new ByteArrayInputStream(outputStream.toByteArray()), outputStream.size());
-							ifcEngineModel.setPostProcessing(true);
-							// ifcEngineModel.setFormat(48, 48);
+							ifcEngineModel.setFormat(48, 48);
 							try {
 								IfcEngineGeometry ifcEngineGeometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
 								for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {

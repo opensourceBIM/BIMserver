@@ -22,13 +22,14 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public class IfcXmlDeserializerPlugin implements DeserializerPlugin {
 
 	private boolean initialized = false;
 
 	@Override
-	public EmfDeserializer createDeserializer() {
+	public EmfDeserializer createDeserializer(PluginConfiguration pluginConfiguration) {
 		return new IfcXmlDeserializer();
 	}
 

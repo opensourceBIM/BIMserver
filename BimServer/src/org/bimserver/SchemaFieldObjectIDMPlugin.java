@@ -24,6 +24,7 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.utils.CollectionUtils;
 
 public class SchemaFieldObjectIDMPlugin implements ObjectIDMPlugin {
@@ -49,7 +50,7 @@ public class SchemaFieldObjectIDMPlugin implements ObjectIDMPlugin {
 	}
 
 	@Override
-	public ObjectIDM getObjectIDM() {
+	public ObjectIDM getObjectIDM(PluginConfiguration pluginConfiguration) {
 		return objectIDM;
 	}
 

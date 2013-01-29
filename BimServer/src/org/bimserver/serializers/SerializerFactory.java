@@ -33,6 +33,7 @@ import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServicePluginDescriptor;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.models.store.GeoTag;
+import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
@@ -41,6 +42,7 @@ import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -48,12 +50,12 @@ import org.bimserver.plugins.services.ServicePlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EmfSerializerFactory {
-	private static final Logger LOGGER = LoggerFactory.getLogger(EmfSerializerFactory.class);
+public class SerializerFactory {
+	private static final Logger LOGGER = LoggerFactory.getLogger(SerializerFactory.class);
 	private PluginManager pluginManager;
 	private BimDatabase bimDatabase;
 
-	public EmfSerializerFactory() {
+	public SerializerFactory() {
 	}
 
 	public void init(PluginManager pluginManager, BimDatabase bimDatabase) {
@@ -84,14 +86,34 @@ public class EmfSerializerFactory {
 		return descriptors;
 	}
 	
-	public SerializerPlugin get(long serializerOid) {
+	public org.bimserver.plugins.serializers.Serializer create(Project project, String username, IfcModelInterface model, IfcEnginePlugin ifcEnginePlugin, DownloadParameters downloadParameters) throws SerializerException {
 		DatabaseSession session = bimDatabase.createSession();
 		try {
-			SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
+			SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), Query.getDefault());
 			if (serializerPluginConfiguration != null) {
 				SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(serializerPluginConfiguration.getClassName(), true);
 				if (serializerPlugin != null) {
-					return serializerPlugin;
+					ObjectType settings = serializerPluginConfiguration.getSettings();
+					org.bimserver.plugins.serializers.Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration(settings));
+					if (serializer != null) {
+						try {
+							ProjectInfo projectInfo = new ProjectInfo();
+							projectInfo.setName(project.getName());
+							projectInfo.setDescription(project.getDescription());
+							GeoTag geoTag = project.getGeoTag();
+							if (geoTag != null && geoTag.getEnabled()) {
+								projectInfo.setX(geoTag.getX());
+								projectInfo.setY(geoTag.getY());
+								projectInfo.setZ(geoTag.getZ());
+								projectInfo.setDirectionAngle(geoTag.getDirectionAngle());
+							}
+							projectInfo.setAuthorName(username);
+							serializer.init(model, projectInfo, pluginManager, ifcEnginePlugin, true);
+							return serializer;
+						} catch (NullPointerException e) {
+							LOGGER.error("", e);
+						}
+					}
 				}
 			}
 		} catch (BimserverDatabaseException e) {
@@ -100,30 +122,6 @@ public class EmfSerializerFactory {
 			session.close();
 		}
 		return null;
-	}
-	
-	public org.bimserver.plugins.serializers.Serializer create(Project project, String username, IfcModelInterface model, IfcEnginePlugin ifcEnginePlugin, DownloadParameters downloadParameters) throws SerializerException {
-		SerializerPlugin serializerPlugin = get(downloadParameters.getSerializerOid());
-		org.bimserver.plugins.serializers.Serializer serializer = serializerPlugin.createSerializer();
-		if (serializer != null) {
-			try {
-				ProjectInfo projectInfo = new ProjectInfo();
-				projectInfo.setName(project.getName());
-				projectInfo.setDescription(project.getDescription());
-				GeoTag geoTag = project.getGeoTag();
-				if (geoTag != null && geoTag.getEnabled()) {
-					projectInfo.setX(geoTag.getX());
-					projectInfo.setY(geoTag.getY());
-					projectInfo.setZ(geoTag.getZ());
-					projectInfo.setDirectionAngle(geoTag.getDirectionAngle());
-				}
-				projectInfo.setAuthorName(username);
-				serializer.init(model, projectInfo, pluginManager, ifcEnginePlugin, true);
-			} catch (NullPointerException e) {
-				LOGGER.error("", e);
-			}
-		}
-		return serializer;
 	}
 
 	public SSerializerPluginDescriptor getSerializerPluginDescriptor(String type) {

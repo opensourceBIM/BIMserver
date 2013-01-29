@@ -62,6 +62,7 @@ import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.citygml4j.CityGMLContext;
@@ -117,6 +118,9 @@ public class CityGmlSerializer extends AbstractGeometrySerializer {
 
 	// private ObjectFactory xbuilding;
 	// private org.citygml4j.jaxb.gml._3_1_1.ObjectFactory gmlObjectFactory;
+
+	public CityGmlSerializer() {
+	}
 
 	@Override
 	public void init(IfcModelInterface ifcModel, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException {

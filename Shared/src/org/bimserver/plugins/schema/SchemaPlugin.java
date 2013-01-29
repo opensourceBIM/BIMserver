@@ -20,8 +20,9 @@ package org.bimserver.plugins.schema;
 import java.io.File;
 
 import org.bimserver.plugins.Plugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public interface SchemaPlugin extends Plugin {
-	SchemaDefinition getSchemaDefinition();
+	SchemaDefinition getSchemaDefinition(PluginConfiguration pluginConfiguration);
 	File getExpressSchemaFile();
 }

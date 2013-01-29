@@ -18,9 +18,15 @@ package org.bimserver.ifc.step.serializer;
  *****************************************************************************/
 
 import org.bimserver.models.store.ObjectDefinition;
+import org.bimserver.models.store.ParameterDefinition;
+import org.bimserver.models.store.PrimitiveDefinition;
+import org.bimserver.models.store.PrimitiveEnum;
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StringType;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.PluginConfiguration;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
 public class IfcStepSerializerPlugin implements SerializerPlugin {
@@ -28,8 +34,8 @@ public class IfcStepSerializerPlugin implements SerializerPlugin {
 	private boolean initialized = false;
 
 	@Override
-	public EmfSerializer createSerializer() {
-		return new IfcStepSerializer();
+	public Serializer createSerializer(PluginConfiguration pluginConfiguration) {
+		return new IfcStepSerializer(pluginConfiguration);
 	}
 
 	@Override
@@ -75,6 +81,16 @@ public class IfcStepSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public ObjectDefinition getSettingsDefinition() {
-		return null;
+		ObjectDefinition objectDefinition = StoreFactory.eINSTANCE.createObjectDefinition();
+		ParameterDefinition organizationParameter = StoreFactory.eINSTANCE.createParameterDefinition();
+		organizationParameter.setName("organization");
+		StringType defaultValue = StoreFactory.eINSTANCE.createStringType();
+		defaultValue.setValue("BIMserver.org");
+		organizationParameter.setDefaultValue(defaultValue);
+		PrimitiveDefinition stringDefinition = StoreFactory.eINSTANCE.createPrimitiveDefinition();
+		stringDefinition.setType(PrimitiveEnum.STRING);
+		organizationParameter.setType(stringDefinition);
+		objectDefinition.getParameters().add(organizationParameter);
+		return objectDefinition;
 	}
 }

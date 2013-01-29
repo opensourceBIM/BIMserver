@@ -32,6 +32,7 @@ import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.queryengine.QueryEngineException;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 
@@ -69,7 +70,7 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 			if (queryEngineObject != null) {
 				QueryEnginePlugin queryEnginePlugin = bimServer.getPluginManager().getQueryEngine(queryEngineObject.getClassName(), true);
 				if (queryEnginePlugin != null) {
-					org.bimserver.plugins.queryengine.QueryEngine queryEngine = queryEnginePlugin.getQueryEngine();
+					org.bimserver.plugins.queryengine.QueryEngine queryEngine = queryEnginePlugin.getQueryEngine(new PluginConfiguration());
 					return queryEngine.query(ifcModel, code, reporter, new ModelHelper(objectIDM));
 				} else {
 					throw new UserException("No Query Engine found " + queryEngineObject.getClassName());

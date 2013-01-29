@@ -21,6 +21,7 @@ import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
 public class JsonSerializerPlugin implements SerializerPlugin {
@@ -28,7 +29,7 @@ public class JsonSerializerPlugin implements SerializerPlugin {
 	private boolean initialized = false;
 
 	@Override
-	public EmfSerializer createSerializer() {
+	public EmfSerializer createSerializer(PluginConfiguration pluginConfiguration) {
 		return new JsonSerializer();
 	}
 

@@ -20,8 +20,23 @@ package org.bimserver.plugins.serializers;
 import org.bimserver.plugins.Plugin;
 
 public interface SerializerPlugin extends Plugin {
-	Serializer createSerializer();
+	/**
+	 * @return A serializer
+	 */
+	Serializer createSerializer(PluginConfiguration plugin);
+
+	/**
+	 * @return Whether this plugin will be needing geometry
+	 */
 	boolean needsGeometry();
+	
+	/**
+	 * @return The default extension, a user can change this when configuring the plugin
+	 */
 	String getDefaultExtension();
+	
+	/**
+	 * @return The default content-type, a user can change this then configuring the plugin
+	 */
 	String getDefaultContentType();
 }

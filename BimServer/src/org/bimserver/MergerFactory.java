@@ -26,6 +26,7 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public class MergerFactory {
 	private final BimServer bimServer;
@@ -44,7 +45,7 @@ public class MergerFactory {
 			if (modelMergerObject != null) {
 				ModelMergerPlugin modelMergerPlugin = bimServer.getPluginManager().getModelMergerPlugin(modelMergerObject.getClassName(), true);
 				if (modelMergerPlugin != null) {
-					org.bimserver.plugins.modelmerger.ModelMerger modelMerger = modelMergerPlugin.createModelMerger();
+					org.bimserver.plugins.modelmerger.ModelMerger modelMerger = modelMergerPlugin.createModelMerger(new PluginConfiguration());
 					return modelMerger;
 				} else {
 					throw new MergeException("No Model Merger found " + modelMergerObject.getClassName());

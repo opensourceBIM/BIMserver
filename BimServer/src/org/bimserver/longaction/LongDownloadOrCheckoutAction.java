@@ -66,7 +66,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 			checkoutResult.setProjectName(project.getName());
 			checkoutResult.setRevisionNr(model.getModelMetaData().getRevisionId());
 			try {
-				org.bimserver.plugins.serializers.Serializer serializer = getBimServer().getEmfSerializerFactory().create(project, username, model, ifcEnginePlugin, downloadParameters);
+				org.bimserver.plugins.serializers.Serializer serializer = getBimServer().getSerializerFactory().create(project, username, model, ifcEnginePlugin, downloadParameters);
 				if (serializer == null) {
 					throw new UserException("Error, no serializer found " + downloadParameters.getSerializerOid());
 				}

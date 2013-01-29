@@ -37,6 +37,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import org.bimserver.models.store.Parameter;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.classloaders.DelegatingClassLoader;
 import org.bimserver.plugins.classloaders.EclipsePluginClassloader;
@@ -54,6 +55,7 @@ import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.schema.SchemaPlugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -345,7 +347,7 @@ public class PluginManager {
 		if (!schemaPlugin.isInitialized()) {
 			schemaPlugin.init(this);
 		}
-		return schemaPlugin.getSchemaDefinition();
+		return schemaPlugin.getSchemaDefinition(new PluginConfiguration());
 	}
 	
 	public DeserializerPlugin requireDeserializer(String extension) throws DeserializeException {
@@ -379,7 +381,7 @@ public class PluginManager {
 			throw new SerializerException("A working serializer for the content type " + contentType + " is required");
 		}
 		SerializerPlugin serializerPlugin = serializerPlugins.iterator().next();
-		Serializer ifcSerializer = serializerPlugin.createSerializer();
+		Serializer ifcSerializer = serializerPlugin.createSerializer(new PluginConfiguration());
 		return ifcSerializer;
 	}
 
@@ -388,7 +390,7 @@ public class PluginManager {
 		if (plugins.size() == 0) {
 			throw new ObjectIDMException("An ObjectIDM is required");
 		}
-		return plugins.iterator().next().getObjectIDM();
+		return plugins.iterator().next().getObjectIDM(new PluginConfiguration());
 	}
 
 	public File getTempDir() {
@@ -549,5 +551,9 @@ public class PluginManager {
 		}
 		return plugin;
 		
+	}
+
+	public Parameter getParameter(PluginContext pluginContext, String name) {
+		return null;
 	}
 }
