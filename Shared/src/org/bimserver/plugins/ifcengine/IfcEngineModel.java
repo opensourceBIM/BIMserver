@@ -21,6 +21,12 @@ import java.util.List;
 import java.util.Set;
 
 public interface IfcEngineModel {
+	public static final int PRECISION = Precision.BIT;
+	public static final int INDEX_BITS = IndexFormat.BIT;
+	public static final int NORMALS = 32;
+	public static final int TRIANGLES = 256;
+	public static final int WIREFRAME = 4096;
+	
 	IfcEngineSurfaceProperties initializeModelling() throws IfcEngineException;
 	void setPostProcessing(boolean postProcessing) throws IfcEngineException;
 	void setFormat(int format, int mask) throws IfcEngineException;
@@ -30,4 +36,5 @@ public interface IfcEngineModel {
 	Set<IfcEngineClash> findClashesWithEids(double d) throws IfcEngineException;
 	Set<IfcEngineClash> findClashesWithGuids(double d) throws IfcEngineException;
 	IfcEngineInstance getInstanceFromExpressId(int oid) throws IfcEngineException;
+	void setSettings(IfcEngineSettings settings) throws IfcEngineException;
 }

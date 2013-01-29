@@ -214,7 +214,6 @@ public class IfcVisualiser extends JFrame {
 		try {
 			ifcEngineModel = ifcEngine.openModel(file);
 			try {
-				ifcEngineModel.setPostProcessing(true);
 				IfcEngineSurfaceProperties initializeModelling = ifcEngineModel.initializeModelling();
 				geometry = ifcEngineModel.finalizeModelling(initializeModelling);
 				createSceneGraph();
