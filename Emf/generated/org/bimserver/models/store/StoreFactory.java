@@ -684,6 +684,15 @@ public interface StoreFactory extends EFactory {
 	LongType createLongType();
 
 	/**
+	 * Returns a new object of class '<em>Byte Array Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Byte Array Type</em>'.
+	 * @generated
+	 */
+	ByteArrayType createByteArrayType();
+
+	/**
 	 * Returns a new object of class '<em>Double Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

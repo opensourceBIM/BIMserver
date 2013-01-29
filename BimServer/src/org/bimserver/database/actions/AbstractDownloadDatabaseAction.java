@@ -30,18 +30,22 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.webservices.authorization.Authorization;
 
 public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseAction<T> {
 
-	public AbstractDownloadDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod) {
+	private Authorization authorization;
+
+	public AbstractDownloadDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization) {
 		super(databaseSession, accessMethod);
+		this.authorization = authorization;
 	}
 	
 	protected void checkGeometry(SerializerPluginConfiguration serializerPluginConfiguration, PluginManager pluginManager, IfcModelInterface model, Project project, ConcreteRevision concreteRevision, Revision revision) throws BimserverDatabaseException {
 		if (serializerPluginConfiguration.isNeedsGeometry()) {
 			if (!revision.isHasGeometry()) {
 				setProgress("Generating geometry...", -1);
-				new GeometryGenerator().generateGeometry(pluginManager, getDatabaseSession(), model, project.getId(), concreteRevision.getId(), revision, false, null);
+				new GeometryGenerator().generateGeometry(authorization.getUoid(), pluginManager, getDatabaseSession(), model, project.getId(), concreteRevision.getId(), revision, false, null);
 			} else {
 				for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 					GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
@@ -70,5 +74,9 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 			}
 		}
 		return highestStopId;
+	}
+	
+	public Authorization getAuthorization() {
+		return authorization;
 	}
 }

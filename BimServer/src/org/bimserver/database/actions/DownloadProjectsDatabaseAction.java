@@ -50,21 +50,19 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 	private int progress;
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
-	private Authorization authorization;
 	private long serializerOid;
 
 	public DownloadProjectsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, long serializerOid, Authorization authorization, ObjectIDM objectIDM, Reporter reporter) {
-		super(databaseSession, accessMethod);
+		super(databaseSession, accessMethod, authorization);
 		this.bimServer = bimServer;
 		this.roids = roids;
 		this.serializerOid = serializerOid;
-		this.authorization = authorization;
 		this.objectIDM = objectIDM;
 	}
 
 	@Override
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		User user = getUserByUoid(authorization.getUoid());
+		User user = getUserByUoid(getAuthorization().getUoid());
 		Project project = null;
 		String projectName = "";
 		IfcModelSet ifcModelSet = new IfcModelSet();
@@ -83,7 +81,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 		for (long roid : roids) {
 			Revision revision = getVirtualRevision(roid);
 			project = revision.getProject();
-			if (authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
+			if (getAuthorization().hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
 					IfcModel subModel = new IfcModel();
 					int highestStopId = findHighestStopRid(project, concreteRevision);
@@ -109,7 +107,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 		}
 		IfcModelInterface ifcModel;
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());
+			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper());
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

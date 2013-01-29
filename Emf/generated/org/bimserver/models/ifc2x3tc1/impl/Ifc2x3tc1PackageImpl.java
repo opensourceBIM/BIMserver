@@ -6881,20 +6881,20 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		StorePackageImpl theStorePackage = (StorePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI) instanceof StorePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(StorePackage.eNS_URI) : StorePackage.eINSTANCE);
 		LogPackageImpl theLogPackage = (LogPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI) instanceof LogPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(LogPackage.eNS_URI) : LogPackage.eINSTANCE);
+		StorePackageImpl theStorePackage = (StorePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI) instanceof StorePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(StorePackage.eNS_URI) : StorePackage.eINSTANCE);
 
 		// Load packages
 		theIfc2x3tc1Package.loadPackage();
-		theStorePackage.loadPackage();
 		theLogPackage.loadPackage();
+		theStorePackage.loadPackage();
 
 		// Fix loaded packages
 		theIfc2x3tc1Package.fixPackageContents();
-		theStorePackage.fixPackageContents();
 		theLogPackage.fixPackageContents();
+		theStorePackage.fixPackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theIfc2x3tc1Package.freeze();

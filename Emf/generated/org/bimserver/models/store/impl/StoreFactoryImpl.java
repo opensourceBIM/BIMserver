@@ -23,6 +23,7 @@ import org.bimserver.models.store.ArrayDefinition;
 import org.bimserver.models.store.ArrayType;
 import org.bimserver.models.store.BimServerInfo;
 import org.bimserver.models.store.BooleanType;
+import org.bimserver.models.store.ByteArrayType;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CheckoutResult;
 import org.bimserver.models.store.CompareContainer;
@@ -307,6 +308,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createPrimitiveType();
 		case StorePackage.LONG_TYPE:
 			return (EObject) createLongType();
+		case StorePackage.BYTE_ARRAY_TYPE:
+			return (EObject) createByteArrayType();
 		case StorePackage.DOUBLE_TYPE:
 			return (EObject) createDoubleType();
 		case StorePackage.STRING_TYPE:
@@ -1122,6 +1125,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public LongType createLongType() {
 		LongTypeImpl longType = new LongTypeImpl();
 		return longType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ByteArrayType createByteArrayType() {
+		ByteArrayTypeImpl byteArrayType = new ByteArrayTypeImpl();
+		return byteArrayType;
 	}
 
 	/**

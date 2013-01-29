@@ -61,14 +61,12 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 	private final long oid;
 	private final long roid;
 	private final BimServer bimServer;
-	private Authorization authorization;
 
 	public GetDataObjectByOidDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long oid, Authorization authorization) {
-		super(databaseSession, accessMethod);
+		super(databaseSession, accessMethod, authorization);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.oid = oid;
-		this.authorization = authorization;
 	}
 
 	@Override
@@ -89,7 +87,7 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 		}
 		IfcModelInterface ifcModel;
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper());
+			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper());
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

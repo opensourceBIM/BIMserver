@@ -20,6 +20,7 @@ import org.bimserver.models.store.ArrayDefinition;
 import org.bimserver.models.store.ArrayType;
 import org.bimserver.models.store.BimServerInfo;
 import org.bimserver.models.store.BooleanType;
+import org.bimserver.models.store.ByteArrayType;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CheckoutResult;
 import org.bimserver.models.store.CompareContainer;
@@ -518,6 +519,11 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseLongType(LongType object) {
 			return createLongTypeAdapter();
+		}
+
+		@Override
+		public Adapter caseByteArrayType(ByteArrayType object) {
+			return createByteArrayTypeAdapter();
 		}
 
 		@Override
@@ -1599,6 +1605,20 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLongTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ByteArrayType <em>Byte Array Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.ByteArrayType
+	 * @generated
+	 */
+	public Adapter createByteArrayTypeAdapter() {
 		return null;
 	}
 

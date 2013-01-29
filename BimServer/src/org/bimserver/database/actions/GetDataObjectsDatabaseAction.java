@@ -46,13 +46,11 @@ public class GetDataObjectsDatabaseAction extends AbstractDownloadDatabaseAction
 
 	private final long roid;
 	private final BimServer bimServer;
-	private Authorization authorization;
 
 	public GetDataObjectsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, long roid, Authorization authorization) {
-		super(databaseSession, accessMethod);
+		super(databaseSession, accessMethod, authorization);
 		this.bimServer = bimServer;
 		this.roid = roid;
-		this.authorization = authorization;
 	}
 
 	@Override
@@ -69,7 +67,7 @@ public class GetDataObjectsDatabaseAction extends AbstractDownloadDatabaseAction
 		}
 		IfcModelInterface ifcModel;
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper());
+			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper());
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

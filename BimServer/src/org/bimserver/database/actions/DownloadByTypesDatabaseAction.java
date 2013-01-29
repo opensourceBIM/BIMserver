@@ -60,19 +60,17 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private final boolean includeAllSubtypes;
-	private Authorization authorization;
 	private long serializerOid;
 	private boolean useObjectIDM;
 	private Deep deep;
 
 	public DownloadByTypesDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> classNames, long serializerOid, boolean includeAllSubtypes, boolean useObjectIDM, Authorization authorization, ObjectIDM objectIDM, Reporter reporter, Deep deep) {
-		super(databaseSession, accessMethod);
+		super(databaseSession, accessMethod, authorization);
 		this.bimServer = bimServer;
 		this.roids = roids;
 		this.serializerOid = serializerOid;
 		this.includeAllSubtypes = includeAllSubtypes;
 		this.useObjectIDM = useObjectIDM;
-		this.authorization = authorization;
 		this.classNames = classNames;
 		this.objectIDM = objectIDM;
 		this.deep = deep;
@@ -81,7 +79,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 	@Override
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		IfcModelSet ifcModelSet = new IfcModelSet();
-		User user = getUserByUoid(authorization.getUoid());
+		User user = getUserByUoid(getAuthorization().getUoid());
 		Project project = null;
 		Set<EClass> eClasses = new HashSet<EClass>();
 		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
@@ -101,12 +99,12 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			project = virtualRevision.getProject();
 			name += project.getName() + "-" + virtualRevision.getId() + "-";
 			try {
-				authorization.canDownload(roid);
+				getAuthorization().canDownload(roid);
 			} catch (UserException e) {
-				if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
+				if (!getAuthorization().hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 					throw new UserException("User has insufficient rights to download revisions from this project");
 				}
-				if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
+				if (!getAuthorization().hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 					throw new UserException("User has insufficient rights to download revisions from this project");
 				}
 			}
@@ -125,7 +123,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			IfcModelInterface ifcModel;
 			if (ifcModelSet.size() > 1) {
 				try {
-					ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());
+					ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper());
 				} catch (MergeException e) {
 					throw new UserException(e);
 				}
@@ -134,8 +132,8 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 			}
 			ifcModel.getModelMetaData().setName("Unknown");
 			ifcModel.getModelMetaData().setRevisionId(project.getRevisions().indexOf(virtualRevision) + 1);
-			if (authorization.getUoid() != -1) {
-				ifcModel.getModelMetaData().setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
+			if (getAuthorization().getUoid() != -1) {
+				ifcModel.getModelMetaData().setAuthorizedUser(getUserByUoid(getAuthorization().getUoid()).getName());
 			}
 			ifcModel.getModelMetaData().setDate(virtualRevision.getDate());
 		}
@@ -143,7 +141,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 		IfcModelInterface ifcModel;
 		if (ifcModelSet.size() > 1) {
 			try {
-				ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());
+				ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper());
 			} catch (MergeException e) {
 				throw new UserException(e);
 			}
@@ -155,8 +153,8 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 		}
 		ifcModel.getModelMetaData().setName(name);
 		ifcModel.getModelMetaData().setRevisionId(1);
-		if (authorization.getUoid() != -1) {
-			ifcModel.getModelMetaData().setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
+		if (getAuthorization().getUoid() != -1) {
+			ifcModel.getModelMetaData().setAuthorizedUser(getUserByUoid(getAuthorization().getUoid()).getName());
 		}
 		ifcModel.getModelMetaData().setDate(new Date());
 		return ifcModel;

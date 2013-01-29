@@ -641,6 +641,7 @@ public class Step0000 extends Migration {
 		schema.createEEnumLiteral(primitiveEnum, "DOUBLE");
 		schema.createEEnumLiteral(primitiveEnum, "BOOLEAN");
 		schema.createEEnumLiteral(primitiveEnum, "STRING");
+		schema.createEEnumLiteral(primitiveEnum, "BYTE_ARRAY");
 
 		EClass typeDefinition = schema.createEClass("store", "TypeDefinition");
 		typeDefinition.getEAnnotations().add(createNoDatabaseAnnotation());
@@ -667,6 +668,7 @@ public class Step0000 extends Migration {
 		EClass objectType = schema.createEClass("store", "ObjectType", type);
 		EClass primitiveType = schema.createEClass("store", "PrimitiveType", type);
 		EClass longType = schema.createEClass("store", "LongType", primitiveType);
+		EClass byteArrayType = schema.createEClass("store", "ByteArrayType", primitiveType);
 		EClass doubleType = schema.createEClass("store", "DoubleType", primitiveType);
 		EClass stringType = schema.createEClass("store", "StringType", primitiveType);
 		EClass booleanType = schema.createEClass("store", "BooleanType", primitiveType);
@@ -684,6 +686,7 @@ public class Step0000 extends Migration {
 		
 		schema.createEAttribute(longType, "value", EcorePackage.eINSTANCE.getELong(), Multiplicity.SINGLE);
 		schema.createEAttribute(doubleType, "value", EcorePackage.eINSTANCE.getEDouble(), Multiplicity.SINGLE);
+		schema.createEAttribute(byteArrayType, "value", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
 		schema.createEAttribute(stringType, "value", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(booleanType, "value", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
 		

@@ -4878,6 +4878,34 @@ public interface StorePackage extends EPackage {
 	int LONG_TYPE_FEATURE_COUNT = PRIMITIVE_TYPE_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ByteArrayTypeImpl <em>Byte Array Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ByteArrayTypeImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getByteArrayType()
+	 * @generated
+	 */
+	int BYTE_ARRAY_TYPE = 72;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BYTE_ARRAY_TYPE__VALUE = PRIMITIVE_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Byte Array Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BYTE_ARRAY_TYPE_FEATURE_COUNT = PRIMITIVE_TYPE_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.DoubleTypeImpl <em>Double Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4885,7 +4913,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDoubleType()
 	 * @generated
 	 */
-	int DOUBLE_TYPE = 72;
+	int DOUBLE_TYPE = 73;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4913,7 +4941,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getStringType()
 	 * @generated
 	 */
-	int STRING_TYPE = 73;
+	int STRING_TYPE = 74;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4941,7 +4969,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getBooleanType()
 	 * @generated
 	 */
-	int BOOLEAN_TYPE = 74;
+	int BOOLEAN_TYPE = 75;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4969,7 +4997,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getArrayType()
 	 * @generated
 	 */
-	int ARRAY_TYPE = 75;
+	int ARRAY_TYPE = 76;
 
 	/**
 	 * The feature id for the '<em><b>Values</b></em>' reference list.
@@ -4997,7 +5025,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 76;
+	int PARAMETER = 77;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5034,7 +5062,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getImmediateNotificationResult()
 	 * @generated
 	 */
-	int IMMEDIATE_NOTIFICATION_RESULT = 77;
+	int IMMEDIATE_NOTIFICATION_RESULT = 78;
 
 	/**
 	 * The feature id for the '<em><b>Result</b></em>' attribute.
@@ -5071,7 +5099,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExternalServiceUpdate()
 	 * @generated
 	 */
-	int EXTERNAL_SERVICE_UPDATE = 78;
+	int EXTERNAL_SERVICE_UPDATE = 79;
 
 	/**
 	 * The number of structural features of the '<em>External Service Update</em>' class.
@@ -5090,7 +5118,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPercentageChange()
 	 * @generated
 	 */
-	int PERCENTAGE_CHANGE = 79;
+	int PERCENTAGE_CHANGE = 80;
 
 	/**
 	 * The feature id for the '<em><b>Percentage</b></em>' attribute.
@@ -5118,7 +5146,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSystemInfo()
 	 * @generated
 	 */
-	int SYSTEM_INFO = 80;
+	int SYSTEM_INFO = 81;
 
 	/**
 	 * The feature id for the '<em><b>Cpucores</b></em>' attribute.
@@ -5200,7 +5228,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getJavaInfo()
 	 * @generated
 	 */
-	int JAVA_INFO = 81;
+	int JAVA_INFO = 82;
 
 	/**
 	 * The feature id for the '<em><b>Heap Total</b></em>' attribute.
@@ -5435,7 +5463,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getBimServerInfo()
 	 * @generated
 	 */
-	int BIM_SERVER_INFO = 82;
+	int BIM_SERVER_INFO = 83;
 
 	/**
 	 * The feature id for the '<em><b>Current Version</b></em>' attribute.
@@ -5562,7 +5590,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 83;
+	int USER_TYPE = 84;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -5572,7 +5600,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 84;
+	int SI_PREFIX = 85;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -5582,7 +5610,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 85;
+	int OBJECT_STATE = 86;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -5592,7 +5620,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 86;
+	int COMPARE_TYPE = 87;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -5602,7 +5630,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 87;
+	int ACTION_STATE = 88;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -5612,7 +5640,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 88;
+	int SERVER_STATE = 89;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
@@ -5622,7 +5650,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA_TYPE = 89;
+	int EXTENDED_DATA_SCHEMA_TYPE = 90;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
@@ -5632,7 +5660,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 90;
+	int TRIGGER = 91;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.
@@ -5642,7 +5670,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_ENUM = 91;
+	int PRIMITIVE_ENUM = 92;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}' enum.
@@ -5652,7 +5680,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotifictionResultEnum()
 	 * @generated
 	 */
-	int NOTIFICTION_RESULT_ENUM = 92;
+	int NOTIFICTION_RESULT_ENUM = 93;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -5662,7 +5690,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 93;
+	int DATA_HANDLER = 94;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -9586,6 +9614,27 @@ public interface StorePackage extends EPackage {
 	EAttribute getLongType_Value();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ByteArrayType <em>Byte Array Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Byte Array Type</em>'.
+	 * @see org.bimserver.models.store.ByteArrayType
+	 * @generated
+	 */
+	EClass getByteArrayType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ByteArrayType#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see org.bimserver.models.store.ByteArrayType#getValue()
+	 * @see #getByteArrayType()
+	 * @generated
+	 */
+	EAttribute getByteArrayType_Value();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.DoubleType <em>Double Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13447,6 +13496,24 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LONG_TYPE__VALUE = eINSTANCE.getLongType_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ByteArrayTypeImpl <em>Byte Array Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ByteArrayTypeImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getByteArrayType()
+		 * @generated
+		 */
+		EClass BYTE_ARRAY_TYPE = eINSTANCE.getByteArrayType();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BYTE_ARRAY_TYPE__VALUE = eINSTANCE.getByteArrayType_Value();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DoubleTypeImpl <em>Double Type</em>}' class.

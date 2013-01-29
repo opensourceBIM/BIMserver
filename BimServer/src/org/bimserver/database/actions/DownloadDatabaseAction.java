@@ -49,17 +49,15 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
 	private final long ignoreUoid;
-	private Authorization authorization;
 	private long serializerOid;
 
 	public DownloadDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long ignoreUoid, long serializerOid, Authorization authorization,
 			ObjectIDM objectIDM, Reporter reporter) {
-		super(databaseSession, accessMethod);
+		super(databaseSession, accessMethod, authorization);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.ignoreUoid = ignoreUoid;
 		this.serializerOid = serializerOid;
-		this.authorization = authorization;
 		this.objectIDM = objectIDM;
 	}
 
@@ -67,16 +65,16 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision revision = getVirtualRevision(roid);
 		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
-		authorization.canDownload(roid);
+		getAuthorization().canDownload(roid);
 		if (revision == null) {
 			throw new UserException("Revision with oid " + roid + " not found");
 		}
 		Project project = revision.getProject();
-		User user = getUserByUoid(authorization.getUoid());
+		User user = getUserByUoid(getAuthorization().getUoid());
 		try {
-			authorization.canDownload(roid);
+			getAuthorization().canDownload(roid);
 		} catch (UserException e) {
-			if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
+			if (!getAuthorization().hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				throw new UserException("User has insufficient rights to download revisions from this project");
 			}
 		}
@@ -112,7 +110,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 		IfcModelInterface ifcModel;
 		if (ifcModelSet.size() > 1) {
 			try {
-				ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid())
+				ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid())
 						.merge(revision.getProject(), ifcModelSet, new ModelHelper());
 			} catch (MergeException e) {
 				throw new UserException(e);

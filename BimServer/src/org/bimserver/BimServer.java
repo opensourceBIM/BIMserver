@@ -411,6 +411,20 @@ public class BimServer {
 
 			bimServerClientFactory = new DirectBimServerClientFactory<ServiceInterface>(serverSettingsCache.getServerSettings().getSiteAddress(), ServiceInterface.class, serviceFactory, servicesMap);
 			
+			DatabaseSession session = bimDatabase.createSession();
+			try {
+				for (InternalServicePluginConfiguration internalService : session.getAllOfType(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), InternalServicePluginConfiguration.class, Query.getDefault())) {
+					if (internalService.getEnabled()) {
+						ServicePlugin servicePlugin = pluginManager.getServicePlugin(internalService.getClassName(), true);
+						if (servicePlugin != null) {
+							servicePlugin.register(new org.bimserver.plugins.serializers.PluginConfiguration(internalService.getSettings()));
+						}
+					}
+				}
+			} finally {
+				session.close();
+			}
+			
 			try {
 				protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactory, servicesMap, config.getInitialProtocolBuffersPort());
 				protocolBuffersServer.start();

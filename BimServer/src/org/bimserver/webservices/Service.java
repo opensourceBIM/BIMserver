@@ -131,6 +131,7 @@ import org.bimserver.interfaces.objects.SServiceType;
 import org.bimserver.interfaces.objects.SSystemInfo;
 import org.bimserver.interfaces.objects.STrigger;
 import org.bimserver.interfaces.objects.SUser;
+import org.bimserver.interfaces.objects.SUserSettings;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.longaction.CannotBeScheduledException;
@@ -3094,7 +3095,7 @@ public class Service implements ServiceInterface {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, accessMethod, new UserSettingsSetter() {
+			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, accessMethod, authorization, new UserSettingsSetter() {
 				@Override
 				public void set(UserSettings userSettings) {
 					userSettings.setDefaultIfcEngine(find(userSettings.getIfcEngines(), oid));
@@ -3111,7 +3112,7 @@ public class Service implements ServiceInterface {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, accessMethod, new UserSettingsSetter() {
+			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, accessMethod, authorization, new UserSettingsSetter() {
 				@Override
 				public void set(UserSettings userSettings) {
 					userSettings.setDefaultQueryEngine(find(userSettings.getQueryengines(), oid));
@@ -3128,7 +3129,7 @@ public class Service implements ServiceInterface {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, accessMethod, new UserSettingsSetter() {
+			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, accessMethod, authorization, new UserSettingsSetter() {
 				@Override
 				public void set(UserSettings userSettings) {
 					userSettings.setDefaultModelCompare(find(userSettings.getModelcompares(), oid));
@@ -3145,7 +3146,7 @@ public class Service implements ServiceInterface {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, accessMethod, new UserSettingsSetter() {
+			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, accessMethod, authorization, new UserSettingsSetter() {
 				@Override
 				public void set(UserSettings userSettings) {
 					userSettings.setDefaultModelMerger(find(userSettings.getModelmergers(), oid));
@@ -3162,7 +3163,7 @@ public class Service implements ServiceInterface {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, accessMethod, new UserSettingsSetter() {
+			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, accessMethod, authorization, new UserSettingsSetter() {
 				@Override
 				public void set(UserSettings userSettings) {
 					userSettings.setDefaultSerializer(find(userSettings.getSerializers(), oid));
@@ -3179,7 +3180,7 @@ public class Service implements ServiceInterface {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, accessMethod, new UserSettingsSetter() {
+			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, accessMethod, authorization, new UserSettingsSetter() {
 				@Override
 				public void set(UserSettings userSettings) {
 					userSettings.setDefaultObjectIDM(find(userSettings.getObjectIDMs(), oid));
@@ -3862,6 +3863,19 @@ public class Service implements ServiceInterface {
 		try {
 			CountDatabaseAction action = new CountDatabaseAction(session, accessMethod, roid, className, authorization);
 			return session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public SUserSettings getUserSettings() throws ServerException, UserException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			User user = session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), Query.getDefault());
+			return bimServer.getSConverter().convertToSObject(user.getUserSettings());
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {

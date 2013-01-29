@@ -45,7 +45,7 @@ public class MergerFactory {
 			if (modelMergerObject != null) {
 				ModelMergerPlugin modelMergerPlugin = bimServer.getPluginManager().getModelMergerPlugin(modelMergerObject.getClassName(), true);
 				if (modelMergerPlugin != null) {
-					org.bimserver.plugins.modelmerger.ModelMerger modelMerger = modelMergerPlugin.createModelMerger(new PluginConfiguration());
+					org.bimserver.plugins.modelmerger.ModelMerger modelMerger = modelMergerPlugin.createModelMerger(new PluginConfiguration(modelMergerObject.getSettings()));
 					return modelMerger;
 				} else {
 					throw new MergeException("No Model Merger found " + modelMergerObject.getClassName());

@@ -20,6 +20,7 @@ import org.bimserver.models.store.ArrayDefinition;
 import org.bimserver.models.store.ArrayType;
 import org.bimserver.models.store.BimServerInfo;
 import org.bimserver.models.store.BooleanType;
+import org.bimserver.models.store.ByteArrayType;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CheckoutResult;
 import org.bimserver.models.store.CompareContainer;
@@ -719,6 +720,17 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = casePrimitiveType(longType);
 			if (result == null)
 				result = caseType(longType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.BYTE_ARRAY_TYPE: {
+			ByteArrayType byteArrayType = (ByteArrayType) theEObject;
+			T result = caseByteArrayType(byteArrayType);
+			if (result == null)
+				result = casePrimitiveType(byteArrayType);
+			if (result == null)
+				result = caseType(byteArrayType);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -1898,6 +1910,21 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLongType(LongType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Byte Array Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Byte Array Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseByteArrayType(ByteArrayType object) {
 		return null;
 	}
 

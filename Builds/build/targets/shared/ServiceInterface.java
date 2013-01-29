@@ -121,8 +121,6 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Checkin a new model by sending a serialized form
 	 * 
-	 * Available as REST call
-	 * 
 	 * @param poid The Project's ObjectID
 	 * @param comment A comment
 	 * @param deserializerName Name of the deserializer to use, use getAllDeserializers to get a list of available deserializers
@@ -147,8 +145,6 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Checkout an existing model, cehckout is the same as download, except a "checkout" will tell the server and other users you are working on it
 	 * 
-	 * Available as REST call
-	 * 
 	 * @param roid Revision ObjectID
 	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
@@ -164,8 +160,6 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Same as checkout, only this will automatically select the last revision to checkout
 	 * 
-	 * Available as REST call
-	 *
 	 * @param poid Project ObjectID
 	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
@@ -180,8 +174,6 @@ public interface ServiceInterface extends PublicInterface {
 
 	/**
 	 * Download a single revision of a model in a serialized format
-	 * 
-	 * Available as REST call
 	 * 
 	 * @param roid Revision ObjectID
 	 * @param serializerName  Name of the serializer to use, use getAllSerializers to find availble serializeres
@@ -231,7 +223,8 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "roids", partName = "downloadCompareResults.roids") Set<Long> roids,
 		@WebParam(name = "oids", partName = "downloadCompareResults.oids") Set<Long> oids,
 		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
-		@WebParam(name = "sync", partName = "downloadCompareResults.sync") Boolean sync) throws ServerException, UserException;
+		@WebParam(name = "sync", partName = "downloadCompareResults.sync") Boolean sync,
+		@WebParam(name = "deep", partName = "downloadCompareResults.deep") Boolean deep) throws ServerException, UserException;
 
 	/**
 	 * Download a model in serialized format by giving a set of revisions and a set of class names to filter on
@@ -250,6 +243,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
 		@WebParam(name = "includeAllSubtypes", partName = "downloadByTypes.includeAllSubtypes") Boolean includeAllSubtypes,
 		@WebParam(name = "useObjectIDM", partName = "downloadByTypes.useObjectIDM") Boolean useObjectIDM,
+		@WebParam(name = "deep", partName = "downloadByTypes.deep") Boolean deep,
 		@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
@@ -285,8 +279,6 @@ public interface ServiceInterface extends PublicInterface {
 
 	/**
 	 * Get the data for a download/checkout
-	 * 
-	 * Available as REST call
 	 * 
 	 * @param actionId The actionId returned by one of the download or checkout methods
 	 * @return An SDownloadResult containing the serialized data
@@ -420,8 +412,6 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Get a list of all Projects the user is authorized for
 	 * 
-	 * Available as REST call
-	 * 
 	 * @return A list of Projects
 	 * @throws ServerException, UserException
 	 */
@@ -430,8 +420,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "onlyTopLevel", partName = "getAllProjects.onlyTopLevel") Boolean onlyTopLevel) throws ServerException, UserException;
 
 	/**
-	 * 
-	 * Available as REST call
 	 * 
 	 * Get a list of all Projects the user is authorized for to read from
 	 * @return A list of all projects that are readable for the current user
@@ -658,8 +646,6 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Get DataObjects based on a list of GUIDs
 	 * 
-	 * Available as REST call
-	 * 
 	 * @param roid ObjectID of the Revision
 	 * @param guid An IFC GUID
 	 * @return The object with the given GUID in the given Revision, of null if not found
@@ -817,7 +803,7 @@ public interface ServiceInterface extends PublicInterface {
 	Boolean isLoggedIn() throws ServerException, UserException;
 
 	/**
-	 * @return The method of access this ServiceInterface is using (SOAP, REST, PB etc...)
+	 * @return The method of access this ServiceInterface is using (SOAP, PB etc...)
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAccessMethod")
@@ -1387,6 +1373,15 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getSerializerByContentType")
 	SSerializerPluginConfiguration getSerializerByContentType(
 		@WebParam(name = "contentType", partName = "getSerializerByContentType.contentType") String contentType) throws ServerException, UserException;
+
+	/**
+	 * @param contentType The ContentType
+	 * @return Serializer supporting the given ContentType
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getSerializerByPluginClassName")
+	SSerializerPluginConfiguration getSerializerByPluginClassName(
+		@WebParam(name = "pluginClassName", partName = "getSerializerByPluginClassName.pluginClassName") String pluginClassName) throws ServerException, UserException;
 	
 	/**
 	 * @param pid ObjectID of the Project to start a transaction on
@@ -1530,11 +1525,36 @@ public interface ServiceInterface extends PublicInterface {
 	 * @param value new Integer value
 	 * @throws ServerException, UserException
 	 */
+	@WebMethod(action = "setLongAttribute")
+	void setLongAttribute(
+		@WebParam(name = "tid", partName = "setLongAttribute.tid") Long tid,
+		@WebParam(name = "oid", partName = "setLongAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "setLongAttribute.attributeName") String attributeName, 
+		@WebParam(name = "value", partName = "setLongAttribute.value") Long value) throws ServerException, UserException;
+	
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value new Integer value
+	 * @throws ServerException, UserException
+	 */
 	@WebMethod(action = "getIntegerAttribute")
 	Integer getIntegerAttribute(
 		@WebParam(name = "tid", partName = "getIntegerAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "getIntegerAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "getIntegerAttribute.attributeName") String attributeName) throws ServerException, UserException;
+
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value new Integer value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getLongAttribute")
+	Long getLongAttribute(
+			@WebParam(name = "tid", partName = "getLongAttribute.tid") Long tid,
+			@WebParam(name = "oid", partName = "getLongAttribute.oid") Long oid, 
+			@WebParam(name = "attributeName", partName = "getLongAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -2255,10 +2275,6 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "clearOutputFileCache")
 	Integer clearOutputFileCache();
 
-	@WebMethod(action = "cleanupDownload")
-	void cleanupDownload(
-		@WebParam(name = "download", partName = "cleanupDownload.download") Long download);
-
 	@WebMethod(action = "getSystemInfo")
 	SSystemInfo getSystemInfo();
 	
@@ -2270,4 +2286,18 @@ public interface ServiceInterface extends PublicInterface {
 	
 	@WebMethod(action = "shareRevision")
 	String shareRevision(@WebParam(name = "roid", partName = "shareRevision.roid") Long roid);
+
+	@WebMethod(action = "getOidByGuid")
+	Long getOidByGuid(
+		@WebParam(name = "roid", partName = "getOidByGuid.roid") Long roid, 
+		@WebParam(name = "guid", partName = "getOidByGuid.guid") String guid) throws ServerException, UserException;
+
+	@WebMethod(action = "cleanupLongAction")
+	void cleanupLongAction(
+		@WebParam(name = "actionId", partName = "cleanupLongAction.actionId") Long actionId) throws UserException, ServerException;
+	
+	@WebMethod(action = "count")
+	Integer count(
+		@WebParam(name = "roid", partName = "count.roid") Long roid,
+		@WebParam(name = "className", partName = "count.className") String className) throws UserException, ServerException;
 }

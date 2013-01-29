@@ -48,14 +48,12 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 	private final String className;
 	private final long roid;
 	private final BimServer bimServer;
-	private Authorization authorization;
 
 	public GetDataObjectsByTypeDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, String className, Authorization authorization) {
-		super(databaseSession, accessMethod);
+		super(databaseSession, accessMethod, authorization);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.className = className;
-		this.authorization = authorization;
 	}
 
 	@Override
@@ -76,7 +74,7 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 		}
 		IfcModelInterface ifcModel;
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());
+			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper());
 		} catch (MergeException e) {
 			throw new UserException(e);
 		}

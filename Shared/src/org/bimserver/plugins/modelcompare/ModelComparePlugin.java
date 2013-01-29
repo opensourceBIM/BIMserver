@@ -18,7 +18,8 @@ package org.bimserver.plugins.modelcompare;
  *****************************************************************************/
 
 import org.bimserver.plugins.Plugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public interface ModelComparePlugin extends Plugin {
-	ModelCompare createModelCompare() throws ModelCompareException;
+	ModelCompare createModelCompare(PluginConfiguration pluginConfiguration) throws ModelCompareException;
 }

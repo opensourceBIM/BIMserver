@@ -83,40 +83,43 @@ public class DownloadServlet extends HttpServlet {
 			}
 			ServiceInterface service = bimServer.getServiceFactory().getService(ServiceInterface.class, token, AccessMethod.INTERNAL);
 
-			if (request.getParameter("action") != null && request.getParameter("action").equals("extendeddata")) {
-				SExtendedData sExtendedData = service.getExtendedData(Long.parseLong(request.getParameter("edid")));
-				SFile file = service.getFile(sExtendedData.getFileId());
-				if (file.getMime() != null) {
-					response.setContentType(file.getMime());
-				}
-				if (file.getFilename() != null) {
-					response.setHeader("Content-Disposition", "inline; filename=\"" + file.getFilename() + "\"");
-				}
-				outputStream.write(file.getData());
-				if (outputStream instanceof GZIPOutputStream) {
-					((GZIPOutputStream) outputStream).finish();
-				}
-				outputStream.flush();
-				return;
-			} else if (request.getParameter("action") != null && request.getParameter("action").equals("getfile")) {
-				if (request.getParameter("file") != null) {
-					String file = request.getParameter("file");
-					if (file.equals("service.proto")) {
-						try {
-							String protocolBuffersFile = service.getProtocolBuffersFile();
-							outputStream.write(protocolBuffersFile.getBytes(Charsets.UTF_8));
-						} catch (ServiceException e) {
-							LOGGER.error("", e);
-						}
-					} else if (file.equals("serverlog")) {
-						try {
-							OutputStreamWriter writer = new OutputStreamWriter(outputStream);
-							writer.write(service.getServerLog());
-							writer.flush();
-						} catch (ServerException e) {
-							LOGGER.error("", e);
-						} catch (UserException e) {
-							LOGGER.error("", e);
+			String action = request.getParameter("action");
+			if (action != null) {
+				if (action.equals("extendeddata")) {
+					SExtendedData sExtendedData = service.getExtendedData(Long.parseLong(request.getParameter("edid")));
+					SFile file = service.getFile(sExtendedData.getFileId());
+					if (file.getMime() != null) {
+						response.setContentType(file.getMime());
+					}
+					if (file.getFilename() != null) {
+						response.setHeader("Content-Disposition", "inline; filename=\"" + file.getFilename() + "\"");
+					}
+					outputStream.write(file.getData());
+					if (outputStream instanceof GZIPOutputStream) {
+						((GZIPOutputStream) outputStream).finish();
+					}
+					outputStream.flush();
+					return;
+				} else if (action.equals("getfile")) {
+					if (request.getParameter("file") != null) {
+						String file = request.getParameter("file");
+						if (file.equals("service.proto")) {
+							try {
+								String protocolBuffersFile = service.getProtocolBuffersFile();
+								outputStream.write(protocolBuffersFile.getBytes(Charsets.UTF_8));
+							} catch (ServiceException e) {
+								LOGGER.error("", e);
+							}
+						} else if (file.equals("serverlog")) {
+							try {
+								OutputStreamWriter writer = new OutputStreamWriter(outputStream);
+								writer.write(service.getServerLog());
+								writer.flush();
+							} catch (ServerException e) {
+								LOGGER.error("", e);
+							} catch (UserException e) {
+								LOGGER.error("", e);
+							}
 						}
 					}
 				}
