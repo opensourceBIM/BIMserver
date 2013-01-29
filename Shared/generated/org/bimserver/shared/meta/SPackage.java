@@ -144,6 +144,7 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SObjectType");
 		Class.forName("org.bimserver.interfaces.objects.SPrimitiveType");
 		Class.forName("org.bimserver.interfaces.objects.SLongType");
+		Class.forName("org.bimserver.interfaces.objects.SByteArrayType");
 		Class.forName("org.bimserver.interfaces.objects.SDoubleType");
 		Class.forName("org.bimserver.interfaces.objects.SStringType");
 		Class.forName("org.bimserver.interfaces.objects.SBooleanType");

@@ -3055,13 +3055,13 @@ public final class NotificationInterfaceImpl {
     boolean hasRid();
     int getRid();
     
-    // optional int64 oid = 3;
-    boolean hasOid();
-    long getOid();
-    
-    // optional string description = 4;
+    // optional string description = 3;
     boolean hasDescription();
     String getDescription();
+    
+    // optional int64 oid = 4;
+    boolean hasOid();
+    long getOid();
   }
   public static final class SImmediateNotificationResult extends
       com.google.protobuf.GeneratedMessage
@@ -3112,21 +3112,11 @@ public final class NotificationInterfaceImpl {
       return rid_;
     }
     
-    // optional int64 oid = 3;
-    public static final int OID_FIELD_NUMBER = 3;
-    private long oid_;
-    public boolean hasOid() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    public long getOid() {
-      return oid_;
-    }
-    
-    // optional string description = 4;
-    public static final int DESCRIPTION_FIELD_NUMBER = 4;
+    // optional string description = 3;
+    public static final int DESCRIPTION_FIELD_NUMBER = 3;
     private Object description_;
     public boolean hasDescription() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public String getDescription() {
       Object ref = description_;
@@ -3154,11 +3144,21 @@ public final class NotificationInterfaceImpl {
       }
     }
     
+    // optional int64 oid = 4;
+    public static final int OID_FIELD_NUMBER = 4;
+    private long oid_;
+    public boolean hasOid() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public long getOid() {
+      return oid_;
+    }
+    
     private void initFields() {
       result_ = org.bimserver.pb.ServiceInterfaceImpl.SNotifictionResultEnum.NR_ERROR;
       rid_ = 0;
-      oid_ = 0L;
       description_ = "";
+      oid_ = 0L;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -3179,10 +3179,10 @@ public final class NotificationInterfaceImpl {
         output.writeInt32(2, rid_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt64(3, oid_);
+        output.writeBytes(3, getDescriptionBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(4, getDescriptionBytes());
+        output.writeInt64(4, oid_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -3203,11 +3203,11 @@ public final class NotificationInterfaceImpl {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(3, oid_);
+          .computeBytesSize(3, getDescriptionBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, getDescriptionBytes());
+          .computeInt64Size(4, oid_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -3335,9 +3335,9 @@ public final class NotificationInterfaceImpl {
         bitField0_ = (bitField0_ & ~0x00000001);
         rid_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
-        oid_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000004);
         description_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        oid_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
@@ -3388,11 +3388,11 @@ public final class NotificationInterfaceImpl {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.oid_ = oid_;
+        result.description_ = description_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.description_ = description_;
+        result.oid_ = oid_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -3415,11 +3415,11 @@ public final class NotificationInterfaceImpl {
         if (other.hasRid()) {
           setRid(other.getRid());
         }
-        if (other.hasOid()) {
-          setOid(other.getOid());
-        }
         if (other.hasDescription()) {
           setDescription(other.getDescription());
+        }
+        if (other.hasOid()) {
+          setOid(other.getOid());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -3468,14 +3468,14 @@ public final class NotificationInterfaceImpl {
               rid_ = input.readInt32();
               break;
             }
-            case 24: {
+            case 26: {
               bitField0_ |= 0x00000004;
-              oid_ = input.readInt64();
+              description_ = input.readBytes();
               break;
             }
-            case 34: {
+            case 32: {
               bitField0_ |= 0x00000008;
-              description_ = input.readBytes();
+              oid_ = input.readInt64();
               break;
             }
           }
@@ -3529,31 +3529,10 @@ public final class NotificationInterfaceImpl {
         return this;
       }
       
-      // optional int64 oid = 3;
-      private long oid_ ;
-      public boolean hasOid() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      public long getOid() {
-        return oid_;
-      }
-      public Builder setOid(long value) {
-        bitField0_ |= 0x00000004;
-        oid_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearOid() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        oid_ = 0L;
-        onChanged();
-        return this;
-      }
-      
-      // optional string description = 4;
+      // optional string description = 3;
       private Object description_ = "";
       public boolean hasDescription() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       public String getDescription() {
         Object ref = description_;
@@ -3569,21 +3548,42 @@ public final class NotificationInterfaceImpl {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000008;
+  bitField0_ |= 0x00000004;
         description_ = value;
         onChanged();
         return this;
       }
       public Builder clearDescription() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         description_ = getDefaultInstance().getDescription();
         onChanged();
         return this;
       }
       void setDescription(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
         description_ = value;
         onChanged();
+      }
+      
+      // optional int64 oid = 4;
+      private long oid_ ;
+      public boolean hasOid() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public long getOid() {
+        return oid_;
+      }
+      public Builder setOid(long value) {
+        bitField0_ |= 0x00000008;
+        oid_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearOid() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        oid_ = 0L;
+        onChanged();
+        return this;
       }
       
       // @@protoc_insertion_point(builder_scope:org.bimserver.pb.SImmediateNotificationResult)
@@ -5138,8 +5138,8 @@ public final class NotificationInterfaceImpl {
       "er\030\004 \001(\t\022\r\n\005token\030\005 \001(\t\022\016\n\006apiUrl\030\006 \001(\t\"" +
       "\207\001\n\034SImmediateNotificationResult\0228\n\006resu" +
       "lt\030\001 \001(\0162(.org.bimserver.pb.SNotifiction" +
-      "ResultEnum\022\013\n\003rid\030\002 \001(\005\022\013\n\003oid\030\003 \001(\003\022\023\n\013" +
-      "description\030\004 \001(\t\"k\n\024NewLogActionRespons" +
+      "ResultEnum\022\013\n\003rid\030\002 \001(\005\022\023\n\013description\030\003" +
+      " \001(\t\022\013\n\003oid\030\004 \001(\003\"k\n\024NewLogActionRespons" +
       "e\022\024\n\014errorMessage\030\001 \001(\t\022=\n\005value\030\002 \001(\0132." +
       ".org.bimserver.pb.SImmediateNotification",
       "Result\"U\n\017ProgressRequest\022\017\n\007topicId\030\001 \001" +
@@ -5209,7 +5209,7 @@ public final class NotificationInterfaceImpl {
           internal_static_org_bimserver_pb_SImmediateNotificationResult_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SImmediateNotificationResult_descriptor,
-              new java.lang.String[] { "Result", "Rid", "Oid", "Description", },
+              new java.lang.String[] { "Result", "Rid", "Description", "Oid", },
               org.bimserver.pb.NotificationInterfaceImpl.SImmediateNotificationResult.class,
               org.bimserver.pb.NotificationInterfaceImpl.SImmediateNotificationResult.Builder.class);
           internal_static_org_bimserver_pb_NewLogActionResponse_descriptor =

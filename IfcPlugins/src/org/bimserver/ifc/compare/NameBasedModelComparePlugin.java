@@ -24,6 +24,7 @@ import org.bimserver.plugins.modelcompare.ModelCompare;
 import org.bimserver.plugins.modelcompare.ModelCompareException;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMException;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public class NameBasedModelComparePlugin implements ModelComparePlugin {
 
@@ -57,7 +58,7 @@ public class NameBasedModelComparePlugin implements ModelComparePlugin {
 	}
 
 	@Override
-	public ModelCompare createModelCompare() throws ModelCompareException {
+	public ModelCompare createModelCompare(PluginConfiguration pluginConfiguration) throws ModelCompareException {
 		try {
 			return new NameBasedModelCompare(pluginManager.requireObjectIDM());
 		} catch (ObjectIDMException e) {

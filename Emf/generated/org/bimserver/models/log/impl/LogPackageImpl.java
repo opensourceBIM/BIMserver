@@ -294,20 +294,20 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		StorePackageImpl theStorePackage = (StorePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI) instanceof StorePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(StorePackage.eNS_URI) : StorePackage.eINSTANCE);
 		Ifc2x3tc1PackageImpl theIfc2x3tc1Package = (Ifc2x3tc1PackageImpl) (EPackage.Registry.INSTANCE.getEPackage(Ifc2x3tc1Package.eNS_URI) instanceof Ifc2x3tc1PackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(Ifc2x3tc1Package.eNS_URI) : Ifc2x3tc1Package.eINSTANCE);
+		StorePackageImpl theStorePackage = (StorePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI) instanceof StorePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(StorePackage.eNS_URI) : StorePackage.eINSTANCE);
 
 		// Load packages
 		theLogPackage.loadPackage();
-		theStorePackage.loadPackage();
 		theIfc2x3tc1Package.loadPackage();
+		theStorePackage.loadPackage();
 
 		// Fix loaded packages
 		theLogPackage.fixPackageContents();
-		theStorePackage.fixPackageContents();
 		theIfc2x3tc1Package.fixPackageContents();
+		theStorePackage.fixPackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theLogPackage.freeze();

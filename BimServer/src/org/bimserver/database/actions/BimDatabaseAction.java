@@ -18,7 +18,6 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.bimserver.database.BimserverDatabaseException;
@@ -30,14 +29,12 @@ import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.IntegerLiteral;
 import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-import org.bimserver.models.store.UserSettings;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 
@@ -53,16 +50,6 @@ public abstract class BimDatabaseAction<T> {
 		this.accessMethod = accessMethod;
 	}
 
-	public UserSettings getUserSettings() throws BimserverDatabaseException {
-		IfcModelInterface allOfType = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getUserSettings(), Query.getDefault());
-		List<UserSettings> settingsList = allOfType.getAll(UserSettings.class);
-		if (settingsList.size() == 1) {
-			UserSettings settings = settingsList.get(0);
-			return settings;
-		}
-		return null;
-	}
-	
 	public AccessMethod getAccessMethod() {
 		return accessMethod;
 	}

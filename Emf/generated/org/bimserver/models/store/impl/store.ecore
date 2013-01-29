@@ -572,6 +572,7 @@
     <eLiterals name="DOUBLE" value="1"/>
     <eLiterals name="BOOLEAN" value="2"/>
     <eLiterals name="STRING" value="3"/>
+    <eLiterals name="BYTE_ARRAY" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeDefinition">
     <eAnnotations source="nodatabase"/>
@@ -613,6 +614,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType" eSuperTypes="#//Type"/>
   <eClassifiers xsi:type="ecore:EClass" name="LongType" eSuperTypes="#//PrimitiveType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ByteArrayType" eSuperTypes="#//PrimitiveType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DoubleType" eSuperTypes="#//PrimitiveType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>

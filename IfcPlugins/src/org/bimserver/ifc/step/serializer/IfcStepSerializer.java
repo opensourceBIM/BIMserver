@@ -84,7 +84,7 @@ public class IfcStepSerializer extends IfcSerializer {
 	private String fileDescription = "";
 	private String name = "";
 	private String author = "";
-	private String originatingSystem = "";
+	private String originatingSystem = "BIMserver";
 	private String authorization = "";
 	private String preProcessorVersion = "";
 	private Date date = new Date();

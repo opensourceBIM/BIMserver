@@ -56,22 +56,20 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 	private int progress;
 	private final BimServer bimServer;
 	private final ObjectIDM objectIDM;
-	private Authorization authorization;
 	private long serializerOid;
 
 	public DownloadByGuidsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, Set<String> guids, long serializerOid, Authorization authorization, ObjectIDM objectIDM, Reporter reporter) {
-		super(databaseSession, accessMethod);
+		super(databaseSession, accessMethod, authorization);
 		this.bimServer = bimServer;
 		this.roids = roids;
 		this.guids = guids;
 		this.serializerOid = serializerOid;
-		this.authorization = authorization;
 		this.objectIDM = objectIDM;
 	}
 
 	@Override
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		User user = getUserByUoid(authorization.getUoid());
+		User user = getUserByUoid(getAuthorization().getUoid());
 		Set<String> foundGuids = new HashSet<String>();
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		Project project = null;
@@ -82,7 +80,7 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 		for (Long roid : roids) {
 			Revision virtualRevision = getVirtualRevision(roid);
 			project = virtualRevision.getProject();
-			if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
+			if (!getAuthorization().hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				throw new UserException("User has insufficient rights to download revisions from this project");
 			}
 			Map<ConcreteRevision, Set<Long>> map = new HashMap<ConcreteRevision, Set<Long>>();
@@ -127,7 +125,7 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 		}
 		IfcModelInterface ifcModel;
 		try {
-			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), authorization.getUoid()).merge(project, ifcModelSet, new ModelHelper());
+			ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(project, ifcModelSet, new ModelHelper());
 			ifcModel.getModelMetaData().setName("query");
 			for (String guid : guids) {
 				if (!foundGuids.contains(guid)) {
@@ -135,7 +133,7 @@ public class DownloadByGuidsDatabaseAction extends AbstractDownloadDatabaseActio
 				}
 			}
 			ifcModel.getModelMetaData().setRevisionId(1);
-			ifcModel.getModelMetaData().setAuthorizedUser(getUserByUoid(authorization.getUoid()).getName());
+			ifcModel.getModelMetaData().setAuthorizedUser(getUserByUoid(getAuthorization().getUoid()).getName());
 			ifcModel.getModelMetaData().setDate(new Date());
 			return ifcModel;
 		} catch (MergeException e) {

@@ -82,6 +82,7 @@ import org.bimserver.interfaces.objects.SServicePluginDescriptor;
 import org.bimserver.interfaces.objects.SServiceType;
 import org.bimserver.interfaces.objects.SSystemInfo;
 import org.bimserver.interfaces.objects.SUser;
+import org.bimserver.interfaces.objects.SUserSettings;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.shared.exceptions.ServerException;
@@ -2300,4 +2301,7 @@ public interface ServiceInterface extends PublicInterface {
 	Integer count(
 		@WebParam(name = "roid", partName = "count.roid") Long roid,
 		@WebParam(name = "className", partName = "count.className") String className) throws UserException, ServerException;
+	
+	@WebMethod(action = "getUserSettings")
+	SUserSettings getUserSettings() throws ServerException, UserException;
 }

@@ -75,7 +75,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		initialized = true;
 	}
 
-	public void register(PluginConfiguration pluginConfiguration) {
+	public void register(final PluginConfiguration pluginConfiguration) {
 		ServiceDescriptor clashDetection = StoreFactory.eINSTANCE.createServiceDescriptor();
 		clashDetection.setProviderName("BIMserver");
 		clashDetection.setIdentifier(getClass().getName());
@@ -111,7 +111,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 					ifcEngine.init();
 					
 					IfcEngineModel ifcEngineModel = ifcEngine.openModel(new ByteArrayInputStream(baos.toByteArray()), baos.size());
-					Set<IfcEngineClash> clashes = ifcEngineModel.findClashesWithEids(0.0);
+					Set<IfcEngineClash> clashes = ifcEngineModel.findClashesWithEids(pluginConfiguration.getDouble("margin"));
 					IfcEngineGeometry geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
 
 					StillImageRenderer stillImageRenderer = getPluginManager().getFirstStillImageRenderPlugin().create(new PluginConfiguration());

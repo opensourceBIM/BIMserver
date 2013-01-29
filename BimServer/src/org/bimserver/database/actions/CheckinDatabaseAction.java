@@ -121,7 +121,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 
 			if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin()) {
 				setProgress("Generating Geometry...", -1);
-				new GeometryGenerator().generateGeometry(bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), revision, true, geometryCache);
+				new GeometryGenerator().generateGeometry(authorization.getUoid(), bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), revision, true, geometryCache);
 				revision.setHasGeometry(true);
 			}
 

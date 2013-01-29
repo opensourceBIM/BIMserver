@@ -18,6 +18,10 @@ package org.bimserver.objectidms;
  *****************************************************************************/
 
 import org.bimserver.models.store.ObjectDefinition;
+import org.bimserver.models.store.ParameterDefinition;
+import org.bimserver.models.store.PrimitiveDefinition;
+import org.bimserver.models.store.PrimitiveEnum;
+import org.bimserver.models.store.StoreFactory;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.objectidms.ObjectIDM;
@@ -67,6 +71,13 @@ public class FileBasedObjectIDMPlugin implements ObjectIDMPlugin {
 
 	@Override
 	public ObjectDefinition getSettingsDefinition() {
-		return null;
+		ObjectDefinition objectDefinition = StoreFactory.eINSTANCE.createObjectDefinition();
+		ParameterDefinition dataParameterDefinition = StoreFactory.eINSTANCE.createParameterDefinition();
+		dataParameterDefinition.setName("data");
+		PrimitiveDefinition dataType = StoreFactory.eINSTANCE.createPrimitiveDefinition();
+		dataType.setType(PrimitiveEnum.BYTE_ARRAY);
+		dataParameterDefinition.setType(dataType);
+		objectDefinition.getParameters().add(dataParameterDefinition);
+		return objectDefinition;
 	}
 }

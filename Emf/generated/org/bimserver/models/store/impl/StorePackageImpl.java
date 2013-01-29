@@ -561,6 +561,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass byteArrayTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass doubleTypeEClass = null;
 
 	/**
@@ -4268,9 +4275,30 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getByteArrayType() {
+		if (byteArrayTypeEClass == null) {
+			byteArrayTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(82);
+		}
+		return byteArrayTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getByteArrayType_Value() {
+		return (EAttribute) getByteArrayType().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDoubleType() {
 		if (doubleTypeEClass == null) {
-			doubleTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(82);
+			doubleTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(83);
 		}
 		return doubleTypeEClass;
 	}
@@ -4291,7 +4319,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EClass getStringType() {
 		if (stringTypeEClass == null) {
-			stringTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(83);
+			stringTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(84);
 		}
 		return stringTypeEClass;
 	}
@@ -4312,7 +4340,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EClass getBooleanType() {
 		if (booleanTypeEClass == null) {
-			booleanTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(84);
+			booleanTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(85);
 		}
 		return booleanTypeEClass;
 	}
@@ -4333,7 +4361,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EClass getArrayType() {
 		if (arrayTypeEClass == null) {
-			arrayTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(85);
+			arrayTypeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(86);
 		}
 		return arrayTypeEClass;
 	}
@@ -4354,7 +4382,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EClass getParameter() {
 		if (parameterEClass == null) {
-			parameterEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(86);
+			parameterEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(87);
 		}
 		return parameterEClass;
 	}
@@ -4384,7 +4412,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EClass getImmediateNotificationResult() {
 		if (immediateNotificationResultEClass == null) {
-			immediateNotificationResultEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(88);
+			immediateNotificationResultEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(89);
 		}
 		return immediateNotificationResultEClass;
 	}
@@ -4414,7 +4442,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EClass getExternalServiceUpdate() {
 		if (externalServiceUpdateEClass == null) {
-			externalServiceUpdateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(89);
+			externalServiceUpdateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(90);
 		}
 		return externalServiceUpdateEClass;
 	}
@@ -4426,7 +4454,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EClass getPercentageChange() {
 		if (percentageChangeEClass == null) {
-			percentageChangeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(90);
+			percentageChangeEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(91);
 		}
 		return percentageChangeEClass;
 	}
@@ -4447,7 +4475,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EClass getSystemInfo() {
 		if (systemInfoEClass == null) {
-			systemInfoEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(91);
+			systemInfoEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(92);
 		}
 		return systemInfoEClass;
 	}
@@ -4522,7 +4550,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EClass getJavaInfo() {
 		if (javaInfoEClass == null) {
-			javaInfoEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(92);
+			javaInfoEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(93);
 		}
 		return javaInfoEClass;
 	}
@@ -4750,7 +4778,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EClass getBimServerInfo() {
 		if (bimServerInfoEClass == null) {
-			bimServerInfoEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(93);
+			bimServerInfoEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(94);
 		}
 		return bimServerInfoEClass;
 	}
@@ -4978,7 +5006,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EEnum getNotifictionResultEnum() {
 		if (notifictionResultEnumEEnum == null) {
-			notifictionResultEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(87);
+			notifictionResultEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(88);
 		}
 		return notifictionResultEnumEEnum;
 	}

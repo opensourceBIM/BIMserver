@@ -48,5 +48,10 @@ public abstract class ServicePlugin implements Plugin {
 		return pluginManager;
 	}
 
+	/**
+	 * This will start an instance of the ServicePlugin with the settings for a specific user
+	 * 
+	 * @param pluginConfiguration
+	 */
 	public abstract void register(PluginConfiguration pluginConfiguration);
 }

@@ -70,7 +70,15 @@ public enum PrimitiveEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	STRING(3, "STRING", "STRING");
+	STRING(3, "STRING", "STRING"), /**
+									 * The '<em><b>BYTE ARRAY</b></em>' literal object.
+									 * <!-- begin-user-doc -->
+									 * <!-- end-user-doc -->
+									 * @see #BYTE_ARRAY_VALUE
+									 * @generated
+									 * @ordered
+									 */
+	BYTE_ARRAY(4, "BYTE_ARRAY", "BYTE_ARRAY");
 
 	/**
 	 * The '<em><b>LONG</b></em>' literal value.
@@ -133,12 +141,27 @@ public enum PrimitiveEnum implements Enumerator {
 	public static final int STRING_VALUE = 3;
 
 	/**
+	 * The '<em><b>BYTE ARRAY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>BYTE ARRAY</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #BYTE_ARRAY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BYTE_ARRAY_VALUE = 4;
+
+	/**
 	 * An array of all the '<em><b>Primitive Enum</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final PrimitiveEnum[] VALUES_ARRAY = new PrimitiveEnum[] { LONG, DOUBLE, BOOLEAN, STRING, };
+	private static final PrimitiveEnum[] VALUES_ARRAY = new PrimitiveEnum[] { LONG, DOUBLE, BOOLEAN, STRING, BYTE_ARRAY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Primitive Enum</b></em>' enumerators.
@@ -196,6 +219,8 @@ public enum PrimitiveEnum implements Enumerator {
 			return BOOLEAN;
 		case STRING_VALUE:
 			return STRING;
+		case BYTE_ARRAY_VALUE:
+			return BYTE_ARRAY;
 		}
 		return null;
 	}

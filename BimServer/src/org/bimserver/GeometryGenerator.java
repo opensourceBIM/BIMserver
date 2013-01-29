@@ -26,6 +26,7 @@ import java.util.Map;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.Bounds;
 import org.bimserver.models.ifc2x3tc1.GeometryInstance;
@@ -33,7 +34,10 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.Vector3f;
+import org.bimserver.models.store.IfcEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserSettings;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngine;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
@@ -61,24 +65,24 @@ public class GeometryGenerator {
 			normals = normalsBuffer;
 			bounds = instanceBounds;
 		}
-		
+
 		private ByteBuffer vertices;
 		private ByteBuffer normals;
 		private Bounds bounds;
-		
+
 		public ByteBuffer getVertices() {
 			return vertices;
 		}
-		
+
 		public ByteBuffer getNormals() {
 			return normals;
 		}
-		
+
 		public Bounds getBounds() {
 			return bounds;
 		}
 	}
-	
+
 	public static class GeometryCache {
 		private final Map<Integer, GeometryCacheEntry> cache = new HashMap<Integer, GeometryCacheEntry>();
 
@@ -89,13 +93,14 @@ public class GeometryGenerator {
 		public boolean isEmpty() {
 			return cache.isEmpty();
 		}
-		
+
 		public GeometryCacheEntry get(int expressId) {
 			return cache.get(expressId);
 		}
 	}
-	
-	public void generateGeometry(PluginManager pluginManager, DatabaseSession databaseSession, IfcModelInterface model, int pid, int rid, Revision revision, boolean store, GeometryCache geometryCache) throws BimserverDatabaseException {
+
+	public void generateGeometry(long uoid, PluginManager pluginManager, DatabaseSession databaseSession, IfcModelInterface model, int pid, int rid, Revision revision,
+			boolean store, GeometryCache geometryCache) throws BimserverDatabaseException {
 		if (geometryCache != null && !geometryCache.isEmpty()) {
 			returnCachedData(model, geometryCache, databaseSession, pid, rid);
 			return;
@@ -111,17 +116,20 @@ public class GeometryGenerator {
 				serializer.init(model, null, pluginManager, null, false);
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 				serializer.writeToOutputStream(outputStream);
-				Collection<IfcEnginePlugin> allIfcEnginePlugins = pluginManager.getAllIfcEnginePlugins(true);
-				if (!allIfcEnginePlugins.isEmpty()) {
-					IfcEnginePlugin ifcEnginePlugin = allIfcEnginePlugins.iterator().next();
+
+				User user = (User) databaseSession.get(uoid, Query.getDefault());
+				UserSettings userSettings = user.getUserSettings();
+				IfcEnginePluginConfiguration defaultIfcEngine = userSettings.getDefaultIfcEngine();
+				if (defaultIfcEngine != null) {
+					IfcEnginePlugin ifcEnginePlugin = pluginManager.getIfcEngine(defaultIfcEngine.getClassName(), true);
 					try {
 						IfcEngine ifcEngine = ifcEnginePlugin.createIfcEngine(new PluginConfiguration());
 						ifcEngine.init();
 						try {
 							IfcEngineModel ifcEngineModel = ifcEngine.openModel(new ByteArrayInputStream(outputStream.toByteArray()), outputStream.size());
-							
+
 							IfcEngineSettings settings = new IfcEngineSettings();
-							
+
 							settings.setPrecision(Precision.SINGLE);
 							settings.setIndexFormat(IndexFormat.AUTO_DETECT);
 							settings.setGenerateNormals(true);

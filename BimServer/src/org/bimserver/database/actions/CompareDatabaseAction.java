@@ -31,6 +31,7 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.VoidReporter;
 import org.bimserver.plugins.modelcompare.ModelCompareException;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 
@@ -61,7 +62,7 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 		if (modelCompareObject != null) {
 			ModelComparePlugin modelComparePlugin = bimServer.getPluginManager().getModelComparePlugin(modelCompareObject.getClassName(), true);
 			if (modelComparePlugin != null) {
-				org.bimserver.plugins.modelcompare.ModelCompare modelCompare = modelComparePlugin.createModelCompare();
+				org.bimserver.plugins.modelcompare.ModelCompare modelCompare = modelComparePlugin.createModelCompare(new PluginConfiguration(modelCompareObject.getSettings()));
 				return modelCompare;
 			} else {
 				throw new ModelCompareException("No Model Compare found " + modelCompareObject.getClassName());

@@ -21,7 +21,8 @@ public enum SPrimitiveEnum {
 	LONG(0),
 	DOUBLE(1),
 	BOOLEAN(2),
-	STRING(3);
+	STRING(3),
+	BYTE_ARRAY(4);
 	int ordinal;
 
 	SPrimitiveEnum(int ordinal) {
