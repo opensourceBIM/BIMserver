@@ -34,6 +34,7 @@ import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
 import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
+import org.bimserver.plugins.ifcengine.IfcEngineSettings;
 import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
 
 /******************************************************************************
@@ -192,5 +193,29 @@ public class ExecutableIfcEngineModel implements IfcEngineModel {
 
 	@Override
 	public void setFormat(int format, int mask) throws IfcEngineException {
+		synchronized (ifcEngine) {
+			ifcEngine.writeCommand(Command.SET_FORMAT);
+			ifcEngine.writeInt(modelId);
+			ifcEngine.writeInt(format);
+			ifcEngine.writeInt(mask);
+			ifcEngine.flush();
+		}
+	}
+
+	@Override
+	public void setSettings(IfcEngineSettings settings) throws IfcEngineException {
+        int setting = 0;
+        int mask = 0;
+        mask += PRECISION;
+        setting += settings.getPrecision().getValue();
+        mask += INDEX_BITS;
+        setting += settings.getIndexFormat().getValue();
+        mask += NORMALS;
+        setting += settings.isGenerateNormals() ? NORMALS : 0;
+        mask += TRIANGLES;
+        setting += settings.isGenerateTriangles() ? TRIANGLES : 0;
+        mask += WIREFRAME;
+        setting += settings.isGenerateWireFrame() ? WIREFRAME : 0;
+        setFormat(setting, mask);
 	}
 }

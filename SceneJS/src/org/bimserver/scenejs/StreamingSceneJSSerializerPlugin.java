@@ -21,6 +21,7 @@ import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.EmfSerializer;
+import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
 public class StreamingSceneJSSerializerPlugin implements SerializerPlugin {
@@ -50,7 +51,7 @@ public class StreamingSceneJSSerializerPlugin implements SerializerPlugin {
 	}
 	
 	@Override
-	public EmfSerializer createSerializer() {
+	public EmfSerializer createSerializer(PluginConfiguration pluginConfiguration) {
 		return new StreamingSceneJSSerializer();
 	}
 

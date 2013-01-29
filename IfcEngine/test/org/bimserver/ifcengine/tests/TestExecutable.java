@@ -19,7 +19,6 @@ public class TestExecutable {
 		try {
 			IfcEngine ifcEngine = new ExecutableIfcEngine(new File("IFC2X3_TC1.exp"), new File(args), new File("tmp"), System.getProperty("java.class.path"));
 			IfcEngineModel model = ifcEngine.openModel(new File("AC11-Institute-Var-2-IFC.ifc"));
-			model.setPostProcessing(true);
 			IfcEngineGeometry geometry = model.finalizeModelling(model.initializeModelling());
 			List<? extends IfcEngineInstance> walls = model.getInstances("IfcWall");
 			for (IfcEngineInstance wall : walls) {

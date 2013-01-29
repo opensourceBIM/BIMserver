@@ -42,6 +42,9 @@ import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.ifcengine.IfcEngineSettings;
+import org.bimserver.plugins.ifcengine.IndexFormat;
+import org.bimserver.plugins.ifcengine.Precision;
 import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -116,7 +119,15 @@ public class GeometryGenerator {
 						ifcEngine.init();
 						try {
 							IfcEngineModel ifcEngineModel = ifcEngine.openModel(new ByteArrayInputStream(outputStream.toByteArray()), outputStream.size());
-							ifcEngineModel.setFormat(48, 48);
+							
+							IfcEngineSettings settings = new IfcEngineSettings();
+							
+							settings.setPrecision(Precision.SINGLE);
+							settings.setIndexFormat(IndexFormat.AUTO_DETECT);
+							settings.setGenerateNormals(true);
+							settings.setGenerateTriangles(true);
+							settings.setGenerateWireFrame(false);
+							ifcEngineModel.setSettings(settings);
 							try {
 								IfcEngineGeometry ifcEngineGeometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
 								for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {

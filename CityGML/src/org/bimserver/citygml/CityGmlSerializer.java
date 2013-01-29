@@ -62,7 +62,6 @@ import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
-import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.citygml4j.CityGMLContext;
