@@ -34,7 +34,6 @@ import org.bimserver.models.ifc2x3tc1.IfcFace;
 import org.bimserver.models.ifc2x3tc1.IfcFaceOuterBound;
 import org.bimserver.models.ifc2x3tc1.IfcFacetedBrep;
 import org.bimserver.models.ifc2x3tc1.IfcGeometricRepresentationContext;
-import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcLocalPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcMeasureWithUnit;
 import org.bimserver.models.ifc2x3tc1.IfcOrganization;
@@ -330,9 +329,7 @@ public class CreateFromScratch {
 		return siUnit;
 	}
 
-	private IfcGloballyUniqueId makeGuid(Session session, String guid) {
-		IfcGloballyUniqueId ifcGloballyUniqueId = session.create(IfcGloballyUniqueId.class);
-		ifcGloballyUniqueId.setWrappedValue(guid);
-		return ifcGloballyUniqueId;
+	private String makeGuid(Session session, String guid) {
+		return guid;
 	}
 }

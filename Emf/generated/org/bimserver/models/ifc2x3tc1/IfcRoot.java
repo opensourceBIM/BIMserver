@@ -40,32 +40,30 @@ import org.bimserver.emf.IdEObject;
  */
 public interface IfcRoot extends IdEObject {
 	/**
-	 * Returns the value of the '<em><b>Global Id</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId#getIfcRoot <em>Ifc Root</em>}'.
+	 * Returns the value of the '<em><b>Global Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Global Id</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Global Id</em>' reference.
-	 * @see #setGlobalId(IfcGloballyUniqueId)
+	 * @return the value of the '<em>Global Id</em>' attribute.
+	 * @see #setGlobalId(String)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcRoot_GlobalId()
-	 * @see org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId#getIfcRoot
-	 * @model opposite="ifcRoot"
+	 * @model
 	 * @generated
 	 */
-	IfcGloballyUniqueId getGlobalId();
+	String getGlobalId();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcRoot#getGlobalId <em>Global Id</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcRoot#getGlobalId <em>Global Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Global Id</em>' reference.
+	 * @param value the new value of the '<em>Global Id</em>' attribute.
 	 * @see #getGlobalId()
 	 * @generated
 	 */
-	void setGlobalId(IfcGloballyUniqueId value);
+	void setGlobalId(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Owner History</b></em>' reference.

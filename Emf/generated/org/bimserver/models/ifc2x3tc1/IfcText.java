@@ -32,7 +32,7 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcText extends WrappedValue, IfcMetricValueSelect, IfcSimpleValue {
+public interface IfcText extends IfcMetricValueSelect, IfcSimpleValue {
 	/**
 	 * Returns the value of the '<em><b>Wrapped Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

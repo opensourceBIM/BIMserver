@@ -33,7 +33,7 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcThermodynamicTemperatureMeasure extends WrappedValue, IfcMeasureValue {
+public interface IfcThermodynamicTemperatureMeasure extends IfcMeasureValue {
 	/**
 	 * Returns the value of the '<em><b>Wrapped Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

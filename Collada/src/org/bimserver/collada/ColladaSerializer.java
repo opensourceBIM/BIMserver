@@ -311,8 +311,8 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 			converted.get(material).add(id);
 
 			String name = "[NO_GUID]";
-			if (ifcProductObject.getGlobalId() != null && ifcProductObject.getGlobalId().getWrappedValue() != null) {
-				name = ifcProductObject.getGlobalId().getWrappedValue();
+			if (ifcProductObject.getGlobalId() != null && ifcProductObject.getGlobalId() != null) {
+				name = ifcProductObject.getGlobalId();
 			}
 
 			int t = geometryInstance.getPrimitiveCount() * 3 * 3;

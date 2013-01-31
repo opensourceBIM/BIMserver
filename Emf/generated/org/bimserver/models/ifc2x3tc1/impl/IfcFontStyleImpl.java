@@ -18,25 +18,29 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.WrappedValue;
+import org.bimserver.models.ifc2x3tc1.IfcFontStyle;
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Wrapped Value</b></em>'.
+ * An implementation of the model object '<em><b>Ifc Font Style</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcFontStyleImpl#getWrappedValue <em>Wrapped Value</em>}</li>
+ * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class WrappedValueImpl extends IdEObjectImpl implements WrappedValue {
+public class IfcFontStyleImpl extends IdEObjectImpl implements IfcFontStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected WrappedValueImpl() {
+	protected IfcFontStyleImpl() {
 		super();
 	}
 
@@ -47,7 +51,7 @@ public abstract class WrappedValueImpl extends IdEObjectImpl implements WrappedV
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return Ifc2x3tc1Package.Literals.WRAPPED_VALUE;
+		return Ifc2x3tc1Package.Literals.IFC_FONT_STYLE;
 	}
 
 	/**
@@ -60,4 +64,40 @@ public abstract class WrappedValueImpl extends IdEObjectImpl implements WrappedV
 		return 0;
 	}
 
-} //WrappedValueImpl
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getWrappedValue() {
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_FONT_STYLE__WRAPPED_VALUE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setWrappedValue(String newWrappedValue) {
+		eSet(Ifc2x3tc1Package.Literals.IFC_FONT_STYLE__WRAPPED_VALUE, newWrappedValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetWrappedValue() {
+		eUnset(Ifc2x3tc1Package.Literals.IFC_FONT_STYLE__WRAPPED_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetWrappedValue() {
+		return eIsSet(Ifc2x3tc1Package.Literals.IFC_FONT_STYLE__WRAPPED_VALUE);
+	}
+
+} //IfcFontStyleImpl

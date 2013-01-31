@@ -2227,13 +2227,7 @@ public class Service implements ServiceInterface {
 	@Override
 	public void setStringAttribute(Long tid, Long oid, String attributeName, String value) throws UserException {
 		requireAuthenticationAndRunningServer();
-		if (attributeName.equals("GlobalId")) {
-			Long guidOid = createObject(tid, "IfcGloballyUniqueId");
-			setStringAttribute(tid, guidOid, "wrappedValue", value);
-			setReference(tid, oid, "GlobalId", guidOid);
-		} else {
-			bimServer.getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
-		}
+		bimServer.getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
 	}
 	
 	@Override
@@ -2292,15 +2286,6 @@ public class Service implements ServiceInterface {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			LongTransaction transaction = bimServer.getLongTransactionManager().get(tid);
-			if (attributeName.equals("GlobalId")) {
-				EClass eClass = session.getEClassForOid(oid);
-				IdEObject object = session.get(eClass, oid, new Query(transaction.getPid(), transaction.getRid(), null, Deep.NO));
-				IdEObject ref = (IdEObject) object.eGet(object.eClass().getEStructuralFeature(attributeName));
-				if (ref == null) {
-					return null;
-				}
-				return ref.eGet(ref.eClass().getEStructuralFeature("wrappedValue"));
-			}
 			EClass eClass = session.getEClassForOid(oid);
 			IdEObject object = session.get(eClass, oid, new Query(transaction.getPid(), transaction.getRid(), null, Deep.NO));
 			if (object == null) {

@@ -78,7 +78,7 @@ public class GetDataObjectsDatabaseAction extends AbstractDownloadDatabaseAction
 				DataObject dataObject = null;
 				if (eObject instanceof IfcRoot) {
 					IfcRoot ifcRoot = (IfcRoot)eObject;
-					String guid = ifcRoot.getGlobalId() != null ? ifcRoot.getGlobalId().getWrappedValue() : "";
+					String guid = ifcRoot.getGlobalId() != null ? ifcRoot.getGlobalId() : "";
 					String name = ifcRoot.getName() != null ? ifcRoot.getName() : "";
 					dataObject = StoreFactory.eINSTANCE.createDataObject();
 					dataObject.setType(eObject.eClass().getName());

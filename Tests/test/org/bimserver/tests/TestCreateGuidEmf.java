@@ -10,7 +10,6 @@ import org.bimserver.client.ClientIfcModel;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
-import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.junit.Test;
@@ -31,9 +30,7 @@ public class TestCreateGuidEmf extends TestWithEmbeddedServer {
 			
 			ClientIfcModel model = bimServerClient.newModel(newProject);
 			IfcFurnishingElement furnishing = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement());
-			IfcGloballyUniqueId guid = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId());
-			guid.setWrappedValue("0uyjn9Jan3nRq36Uj6gwws");
-			furnishing.setGlobalId(guid);
+			furnishing.setGlobalId("0uyjn9Jan3nRq36Uj6gwws");
 			
 			long roid = model.commit("Initial model");
 
@@ -41,7 +38,7 @@ public class TestCreateGuidEmf extends TestWithEmbeddedServer {
 			List<IfcFurnishingElement> furnishingElements = newModel.getAllWithSubTypes(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement());
 			assertTrue(furnishingElements.size() == 1);
 			IfcFurnishingElement newF = furnishingElements.get(0);
-			assertTrue(newF.getGlobalId().getWrappedValue().equals("0uyjn9Jan3nRq36Uj6gwws"));
+			assertTrue(newF.getGlobalId().equals("0uyjn9Jan3nRq36Uj6gwws"));
 		} catch (Throwable e) {
 			if (e instanceof AssertionError) {
 				throw (AssertionError)e;

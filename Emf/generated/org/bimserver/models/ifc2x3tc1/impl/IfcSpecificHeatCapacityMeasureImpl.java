@@ -16,6 +16,7 @@
  */
 package org.bimserver.models.ifc2x3tc1.impl;
 
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcSpecificHeatCapacityMeasure;
 import org.eclipse.emf.ecore.EClass;
@@ -34,7 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSpecificHeatCapacityMeasureImpl extends WrappedValueImpl implements IfcSpecificHeatCapacityMeasure {
+public class IfcSpecificHeatCapacityMeasureImpl extends IdEObjectImpl implements IfcSpecificHeatCapacityMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -52,6 +53,16 @@ public class IfcSpecificHeatCapacityMeasureImpl extends WrappedValueImpl impleme
 	@Override
 	protected EClass eStaticClass() {
 		return Ifc2x3tc1Package.Literals.IFC_SPECIFIC_HEAT_CAPACITY_MEASURE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
 	}
 
 	/**

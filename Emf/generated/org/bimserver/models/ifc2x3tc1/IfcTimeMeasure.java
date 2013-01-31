@@ -33,7 +33,7 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcTimeMeasure extends WrappedValue, IfcMeasureValue {
+public interface IfcTimeMeasure extends IfcMeasureValue {
 	/**
 	 * Returns the value of the '<em><b>Wrapped Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

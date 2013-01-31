@@ -30,9 +30,7 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
-import org.bimserver.models.ifc2x3tc1.WrappedValue;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DataObject;
@@ -97,7 +95,7 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 		DataObject dataObject = null;
 		if (eObject instanceof IfcRoot) {
 			IfcRoot ifcRoot = (IfcRoot) eObject;
-			String guid = ifcRoot.getGlobalId() != null ? ifcRoot.getGlobalId().getWrappedValue() : "";
+			String guid = ifcRoot.getGlobalId() != null ? ifcRoot.getGlobalId() : "";
 			String name = ifcRoot.getName() != null ? ifcRoot.getName() : "";
 			dataObject = StoreFactory.eINSTANCE.createDataObject();
 			dataObject.setType(eObject.eClass().getName());
@@ -180,7 +178,7 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 							dataObject.getValues().add(dataValue);
 							dataValue.setFieldName(eStructuralFeature.getName());
 							for (EObject item : list) {
-								if (item instanceof WrappedValue || item instanceof IfcGloballyUniqueId) {
+								if (item.eClass().getEAnnotation("wrapped") != null) {
 									EObject referenceEObject = (EObject) item;
 									SimpleDataValue simpleDataValue = StoreFactory.eINSTANCE.createSimpleDataValue();
 									simpleDataValue.setStringValue(referenceEObject.eGet(referenceEObject.eClass().getEStructuralFeature("wrappedValue")).toString());
@@ -199,7 +197,7 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 					} else {
 						EObject eObject2 = (EObject) eGet;
 						if (eObject2 != null) {
-							if (eObject2 instanceof WrappedValue || eObject2 instanceof IfcGloballyUniqueId) {
+							if (eObject2.eClass().getEAnnotation("wrapped") != null) {
 								EObject referenceEObject = (EObject) eGet;
 								SimpleDataValue e = StoreFactory.eINSTANCE.createSimpleDataValue();
 								EStructuralFeature wrappedValueFeature = referenceEObject.eClass().getEStructuralFeature("wrappedValue");

@@ -26,9 +26,7 @@ import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
-import org.bimserver.models.ifc2x3tc1.WrappedValue;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -92,7 +90,7 @@ public class RandomIfcGenerator {
 					idEObject.eSet(eAttribute, createAttributeValue(eAttribute));
 				}
 			}
-			if (!(idEObject instanceof IfcGloballyUniqueId || idEObject instanceof WrappedValue)) {
+			if (idEObject.eClass().getEAnnotation("wrapped") == null) {
 				objects.add(idEObject);
 				return true;
 			}

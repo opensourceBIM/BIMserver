@@ -29,7 +29,7 @@ public abstract class AbstractGeometrySerializer extends EmfSerializer {
 	
 	protected void calculateGeometryExtents() throws IfcEngineException, SerializerException {
 		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
-			calculateExtents(ifcProduct.getGlobalId().getWrappedValue(), ifcProduct);
+			calculateExtents(ifcProduct.getGlobalId(), ifcProduct);
 		}
 	}
 	

@@ -17,6 +17,7 @@
 package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcPositiveLengthMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcShapeAspect;
 import org.bimserver.models.ifc2x3tc1.IfcStructuralSurfaceMemberVarying;
 import org.eclipse.emf.common.util.EList;

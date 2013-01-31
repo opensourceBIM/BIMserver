@@ -16,6 +16,7 @@
  */
 package org.bimserver.models.ifc2x3tc1.impl;
 
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcSectionalAreaIntegralMeasure;
 import org.eclipse.emf.ecore.EClass;
@@ -34,7 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSectionalAreaIntegralMeasureImpl extends WrappedValueImpl implements IfcSectionalAreaIntegralMeasure {
+public class IfcSectionalAreaIntegralMeasureImpl extends IdEObjectImpl implements IfcSectionalAreaIntegralMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -52,6 +53,16 @@ public class IfcSectionalAreaIntegralMeasureImpl extends WrappedValueImpl implem
 	@Override
 	protected EClass eStaticClass() {
 		return Ifc2x3tc1Package.Literals.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
 	}
 
 	/**

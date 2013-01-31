@@ -36,51 +36,6 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	Ifc2x3tc1Factory eINSTANCE = org.bimserver.models.ifc2x3tc1.impl.Ifc2x3tc1FactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Ifc Absorbed Dose Measure</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ifc Absorbed Dose Measure</em>'.
-	 * @generated
-	 */
-	IfcAbsorbedDoseMeasure createIfcAbsorbedDoseMeasure();
-
-	/**
-	 * Returns a new object of class '<em>Ifc Acceleration Measure</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ifc Acceleration Measure</em>'.
-	 * @generated
-	 */
-	IfcAccelerationMeasure createIfcAccelerationMeasure();
-
-	/**
-	 * Returns a new object of class '<em>Ifc Amount Of Substance Measure</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ifc Amount Of Substance Measure</em>'.
-	 * @generated
-	 */
-	IfcAmountOfSubstanceMeasure createIfcAmountOfSubstanceMeasure();
-
-	/**
-	 * Returns a new object of class '<em>Ifc Angular Velocity Measure</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ifc Angular Velocity Measure</em>'.
-	 * @generated
-	 */
-	IfcAngularVelocityMeasure createIfcAngularVelocityMeasure();
-
-	/**
-	 * Returns a new object of class '<em>Ifc Area Measure</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ifc Area Measure</em>'.
-	 * @generated
-	 */
-	IfcAreaMeasure createIfcAreaMeasure();
-
-	/**
 	 * Returns a new object of class '<em>Ifc Boolean</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -117,6 +72,24 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	IfcCurvatureMeasure createIfcCurvatureMeasure();
 
 	/**
+	 * Returns a new object of class '<em>Ifc Day In Month Number</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Day In Month Number</em>'.
+	 * @generated
+	 */
+	IfcDayInMonthNumber createIfcDayInMonthNumber();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Daylight Saving Hour</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Daylight Saving Hour</em>'.
+	 * @generated
+	 */
+	IfcDaylightSavingHour createIfcDaylightSavingHour();
+
+	/**
 	 * Returns a new object of class '<em>Ifc Descriptive Measure</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -124,6 +97,15 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	 * @generated
 	 */
 	IfcDescriptiveMeasure createIfcDescriptiveMeasure();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Dimension Count</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Dimension Count</em>'.
+	 * @generated
+	 */
+	IfcDimensionCount createIfcDimensionCount();
 
 	/**
 	 * Returns a new object of class '<em>Ifc Dose Equivalent Measure</em>'.
@@ -207,6 +189,33 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	IfcEnergyMeasure createIfcEnergyMeasure();
 
 	/**
+	 * Returns a new object of class '<em>Ifc Font Style</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Font Style</em>'.
+	 * @generated
+	 */
+	IfcFontStyle createIfcFontStyle();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Font Variant</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Font Variant</em>'.
+	 * @generated
+	 */
+	IfcFontVariant createIfcFontVariant();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Font Weight</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Font Weight</em>'.
+	 * @generated
+	 */
+	IfcFontWeight createIfcFontWeight();
+
+	/**
 	 * Returns a new object of class '<em>Ifc Force Measure</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -250,6 +259,15 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	 * @generated
 	 */
 	IfcHeatingValueMeasure createIfcHeatingValueMeasure();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Hour In Day</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Hour In Day</em>'.
+	 * @generated
+	 */
+	IfcHourInDay createIfcHourInDay();
 
 	/**
 	 * Returns a new object of class '<em>Ifc Identifier</em>'.
@@ -468,6 +486,15 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	IfcMassPerLengthMeasure createIfcMassPerLengthMeasure();
 
 	/**
+	 * Returns a new object of class '<em>Ifc Minute In Hour</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Minute In Hour</em>'.
+	 * @generated
+	 */
+	IfcMinuteInHour createIfcMinuteInHour();
+
+	/**
 	 * Returns a new object of class '<em>Ifc Modulus Of Elasticity Measure</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -540,6 +567,15 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	IfcMonetaryMeasure createIfcMonetaryMeasure();
 
 	/**
+	 * Returns a new object of class '<em>Ifc Month In Year Number</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Month In Year Number</em>'.
+	 * @generated
+	 */
+	IfcMonthInYearNumber createIfcMonthInYearNumber();
+
+	/**
 	 * Returns a new object of class '<em>Ifc Numeric Measure</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -592,6 +628,15 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	 * @generated
 	 */
 	IfcPowerMeasure createIfcPowerMeasure();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Presentable Text</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Presentable Text</em>'.
+	 * @generated
+	 */
+	IfcPresentableText createIfcPresentableText();
 
 	/**
 	 * Returns a new object of class '<em>Ifc Pressure Measure</em>'.
@@ -655,6 +700,15 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	 * @generated
 	 */
 	IfcRotationalStiffnessMeasure createIfcRotationalStiffnessMeasure();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Second In Minute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Second In Minute</em>'.
+	 * @generated
+	 */
+	IfcSecondInMinute createIfcSecondInMinute();
 
 	/**
 	 * Returns a new object of class '<em>Ifc Section Modulus Measure</em>'.
@@ -754,6 +808,42 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	 * @generated
 	 */
 	IfcText createIfcText();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Text Alignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Text Alignment</em>'.
+	 * @generated
+	 */
+	IfcTextAlignment createIfcTextAlignment();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Text Decoration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Text Decoration</em>'.
+	 * @generated
+	 */
+	IfcTextDecoration createIfcTextDecoration();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Text Font Name</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Text Font Name</em>'.
+	 * @generated
+	 */
+	IfcTextFontName createIfcTextFontName();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Text Transformation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Text Transformation</em>'.
+	 * @generated
+	 */
+	IfcTextTransformation createIfcTextTransformation();
 
 	/**
 	 * Returns a new object of class '<em>Ifc Thermal Admittance Measure</em>'.
@@ -882,6 +972,24 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	IfcWarpingMomentMeasure createIfcWarpingMomentMeasure();
 
 	/**
+	 * Returns a new object of class '<em>Ifc Year Number</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Year Number</em>'.
+	 * @generated
+	 */
+	IfcYearNumber createIfcYearNumber();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Box Alignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Box Alignment</em>'.
+	 * @generated
+	 */
+	IfcBoxAlignment createIfcBoxAlignment();
+
+	/**
 	 * Returns a new object of class '<em>Ifc Normalised Ratio Measure</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -916,6 +1024,24 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	 * @generated
 	 */
 	IfcPositiveRatioMeasure createIfcPositiveRatioMeasure();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Complex Number</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Complex Number</em>'.
+	 * @generated
+	 */
+	IfcComplexNumber createIfcComplexNumber();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Null Style</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Null Style</em>'.
+	 * @generated
+	 */
+	IfcNullStyle createIfcNullStyle();
 
 	/**
 	 * Returns a new object of class '<em>Ifc2 DComposite Curve</em>'.
@@ -6795,13 +6921,49 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	IfcZone createIfcZone();
 
 	/**
-	 * Returns a new object of class '<em>Ifc Complex Number</em>'.
+	 * Returns a new object of class '<em>Ifc Absorbed Dose Measure</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ifc Complex Number</em>'.
+	 * @return a new object of class '<em>Ifc Absorbed Dose Measure</em>'.
 	 * @generated
 	 */
-	IfcComplexNumber createIfcComplexNumber();
+	IfcAbsorbedDoseMeasure createIfcAbsorbedDoseMeasure();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Acceleration Measure</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Acceleration Measure</em>'.
+	 * @generated
+	 */
+	IfcAccelerationMeasure createIfcAccelerationMeasure();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Amount Of Substance Measure</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Amount Of Substance Measure</em>'.
+	 * @generated
+	 */
+	IfcAmountOfSubstanceMeasure createIfcAmountOfSubstanceMeasure();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Angular Velocity Measure</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Angular Velocity Measure</em>'.
+	 * @generated
+	 */
+	IfcAngularVelocityMeasure createIfcAngularVelocityMeasure();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Area Measure</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Area Measure</em>'.
+	 * @generated
+	 */
+	IfcAreaMeasure createIfcAreaMeasure();
 
 	/**
 	 * Returns a new object of class '<em>Ifc Compound Plane Angle Measure</em>'.
@@ -6811,15 +6973,6 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	 * @generated
 	 */
 	IfcCompoundPlaneAngleMeasure createIfcCompoundPlaneAngleMeasure();
-
-	/**
-	 * Returns a new object of class '<em>Ifc Null Style</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ifc Null Style</em>'.
-	 * @generated
-	 */
-	IfcNullStyle createIfcNullStyle();
 
 	/**
 	 * Returns a new object of class '<em>Bounds</em>'.

@@ -16,6 +16,7 @@
  */
 package org.bimserver.models.ifc2x3tc1.impl;
 
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcModulusOfSubgradeReactionMeasure;
 import org.eclipse.emf.ecore.EClass;
@@ -34,7 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcModulusOfSubgradeReactionMeasureImpl extends WrappedValueImpl implements IfcModulusOfSubgradeReactionMeasure {
+public class IfcModulusOfSubgradeReactionMeasureImpl extends IdEObjectImpl implements IfcModulusOfSubgradeReactionMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -52,6 +53,16 @@ public class IfcModulusOfSubgradeReactionMeasureImpl extends WrappedValueImpl im
 	@Override
 	protected EClass eStaticClass() {
 		return Ifc2x3tc1Package.Literals.IFC_MODULUS_OF_SUBGRADE_REACTION_MEASURE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
 	}
 
 	/**

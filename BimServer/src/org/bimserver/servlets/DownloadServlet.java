@@ -208,7 +208,7 @@ public class DownloadServlet extends HttpServlet {
 			SDownloadResult checkoutResult = service.getDownloadData(downloadId);
 			DataSource dataSource = checkoutResult.getFile().getDataSource();
 			if (zip) {
-				if (serializer.getClassName().equals("IfcStepSerializer")) {
+				if (serializer.getClassName().equals("IfcStepSerializer")) { // TODO should this not include the full classname?
 					response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName().replace(".ifc", ".ifczip") + "\"");
 				} else {
 					response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName() + ".zip" + "\"");

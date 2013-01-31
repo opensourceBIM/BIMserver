@@ -16,9 +16,9 @@
  */
 package org.bimserver.models.ifc2x3tc1.impl;
 
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
-import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,13 +29,12 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcGloballyUniqueIdImpl#getWrappedValue <em>Wrapped Value</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.impl.IfcGloballyUniqueIdImpl#getIfcRoot <em>Ifc Root</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class IfcGloballyUniqueIdImpl extends WrappedValueImpl implements IfcGloballyUniqueId {
+public class IfcGloballyUniqueIdImpl extends IdEObjectImpl implements IfcGloballyUniqueId {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -53,6 +52,16 @@ public class IfcGloballyUniqueIdImpl extends WrappedValueImpl implements IfcGlob
 	@Override
 	protected EClass eStaticClass() {
 		return Ifc2x3tc1Package.Literals.IFC_GLOBALLY_UNIQUE_ID;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
 	}
 
 	/**
@@ -89,24 +98,6 @@ public class IfcGloballyUniqueIdImpl extends WrappedValueImpl implements IfcGlob
 	 */
 	public boolean isSetWrappedValue() {
 		return eIsSet(Ifc2x3tc1Package.Literals.IFC_GLOBALLY_UNIQUE_ID__WRAPPED_VALUE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IfcRoot getIfcRoot() {
-		return (IfcRoot) eGet(Ifc2x3tc1Package.Literals.IFC_GLOBALLY_UNIQUE_ID__IFC_ROOT, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIfcRoot(IfcRoot newIfcRoot) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_GLOBALLY_UNIQUE_ID__IFC_ROOT, newIfcRoot);
 	}
 
 } //IfcGloballyUniqueIdImpl

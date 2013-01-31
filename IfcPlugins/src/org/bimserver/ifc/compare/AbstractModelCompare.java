@@ -23,7 +23,6 @@ import java.util.Map;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.store.CompareContainer;
 import org.bimserver.models.store.CompareResult;
@@ -60,7 +59,7 @@ public abstract class AbstractModelCompare implements ModelCompare {
 			IfcRoot ifcRoot = (IfcRoot)eObject;
 			dataObject.setName(ifcRoot.getName());
 			if (ifcRoot.getGlobalId() != null) {
-				dataObject.setGuid(ifcRoot.getGlobalId().getWrappedValue());
+				dataObject.setGuid(ifcRoot.getGlobalId());
 			}
 		}
 		for (EStructuralFeature eStructuralFeature : eObject.eClass().getEAllStructuralFeatures()) {
@@ -147,7 +146,7 @@ public abstract class AbstractModelCompare implements ModelCompare {
 							if (value1 == null && value2 == null) {
 							} else if (value1 == null && value2 != null) {
 								EClass value2Class = ((EObject) value2).eClass();
-								if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(value2Class)) {
+								if (value2Class.getEAnnotation("wrapped") != null) {
 									Object realVal2 = ((EObject) value2).eGet(value2Class.getEStructuralFeature("wrappedValue"));
 									ObjectModified objectModified = StoreFactory.eINSTANCE.createObjectModified();
 									objectModified.setDataObject(makeDataObject(eObject1));
@@ -158,7 +157,7 @@ public abstract class AbstractModelCompare implements ModelCompare {
 								}
 							} else if (value1 != null && value2 == null) {
 								EClass value1Class = ((EObject) value1).eClass();
-								if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(value1Class)) {
+								if (value1Class.getEAnnotation("wrapped") != null) {
 									Object realVal1 = ((EObject) value1).eGet(value1Class.getEStructuralFeature("wrappedValue"));
 									ObjectModified objectModified = StoreFactory.eINSTANCE.createObjectModified();
 									objectModified.setDataObject(makeDataObject(eObject1));
@@ -169,7 +168,7 @@ public abstract class AbstractModelCompare implements ModelCompare {
 								}
 							} else {
 								EClass value1Class = ((EObject) value1).eClass();
-								if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(((EObject) value1).eClass())) {
+								if (((EObject) value1).eClass().getEAnnotation("wrapped") != null) {
 									Object realVal1 = ((EObject) value1).eGet(value1Class.getEStructuralFeature("wrappedValue"));
 									Object realVal2 = ((EObject) value2).eGet(value1Class.getEStructuralFeature("wrappedValue"));
 									if (!realVal1.equals(realVal2)) {

@@ -78,501 +78,6 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected Ifc2x3tc1Switch<Adapter> modelSwitch = new Ifc2x3tc1Switch<Adapter>() {
 		@Override
-		public Adapter caseWrappedValue(WrappedValue object) {
-			return createWrappedValueAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcAbsorbedDoseMeasure(IfcAbsorbedDoseMeasure object) {
-			return createIfcAbsorbedDoseMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcAccelerationMeasure(IfcAccelerationMeasure object) {
-			return createIfcAccelerationMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcAmountOfSubstanceMeasure(IfcAmountOfSubstanceMeasure object) {
-			return createIfcAmountOfSubstanceMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcAngularVelocityMeasure(IfcAngularVelocityMeasure object) {
-			return createIfcAngularVelocityMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcAreaMeasure(IfcAreaMeasure object) {
-			return createIfcAreaMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcBoolean(IfcBoolean object) {
-			return createIfcBooleanAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcContextDependentMeasure(IfcContextDependentMeasure object) {
-			return createIfcContextDependentMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcCountMeasure(IfcCountMeasure object) {
-			return createIfcCountMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcCurvatureMeasure(IfcCurvatureMeasure object) {
-			return createIfcCurvatureMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcDescriptiveMeasure(IfcDescriptiveMeasure object) {
-			return createIfcDescriptiveMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcDoseEquivalentMeasure(IfcDoseEquivalentMeasure object) {
-			return createIfcDoseEquivalentMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcDynamicViscosityMeasure(IfcDynamicViscosityMeasure object) {
-			return createIfcDynamicViscosityMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcElectricCapacitanceMeasure(IfcElectricCapacitanceMeasure object) {
-			return createIfcElectricCapacitanceMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcElectricChargeMeasure(IfcElectricChargeMeasure object) {
-			return createIfcElectricChargeMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcElectricConductanceMeasure(IfcElectricConductanceMeasure object) {
-			return createIfcElectricConductanceMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcElectricCurrentMeasure(IfcElectricCurrentMeasure object) {
-			return createIfcElectricCurrentMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcElectricResistanceMeasure(IfcElectricResistanceMeasure object) {
-			return createIfcElectricResistanceMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcElectricVoltageMeasure(IfcElectricVoltageMeasure object) {
-			return createIfcElectricVoltageMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcEnergyMeasure(IfcEnergyMeasure object) {
-			return createIfcEnergyMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcForceMeasure(IfcForceMeasure object) {
-			return createIfcForceMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcFrequencyMeasure(IfcFrequencyMeasure object) {
-			return createIfcFrequencyMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcGloballyUniqueId(IfcGloballyUniqueId object) {
-			return createIfcGloballyUniqueIdAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcHeatFluxDensityMeasure(IfcHeatFluxDensityMeasure object) {
-			return createIfcHeatFluxDensityMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcHeatingValueMeasure(IfcHeatingValueMeasure object) {
-			return createIfcHeatingValueMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcIdentifier(IfcIdentifier object) {
-			return createIfcIdentifierAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcIlluminanceMeasure(IfcIlluminanceMeasure object) {
-			return createIfcIlluminanceMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcInductanceMeasure(IfcInductanceMeasure object) {
-			return createIfcInductanceMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcInteger(IfcInteger object) {
-			return createIfcIntegerAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcIntegerCountRateMeasure(IfcIntegerCountRateMeasure object) {
-			return createIfcIntegerCountRateMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcIonConcentrationMeasure(IfcIonConcentrationMeasure object) {
-			return createIfcIonConcentrationMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcIsothermalMoistureCapacityMeasure(IfcIsothermalMoistureCapacityMeasure object) {
-			return createIfcIsothermalMoistureCapacityMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcKinematicViscosityMeasure(IfcKinematicViscosityMeasure object) {
-			return createIfcKinematicViscosityMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcLabel(IfcLabel object) {
-			return createIfcLabelAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcLengthMeasure(IfcLengthMeasure object) {
-			return createIfcLengthMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcLinearForceMeasure(IfcLinearForceMeasure object) {
-			return createIfcLinearForceMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcLinearMomentMeasure(IfcLinearMomentMeasure object) {
-			return createIfcLinearMomentMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcLinearStiffnessMeasure(IfcLinearStiffnessMeasure object) {
-			return createIfcLinearStiffnessMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcLinearVelocityMeasure(IfcLinearVelocityMeasure object) {
-			return createIfcLinearVelocityMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcLogical(IfcLogical object) {
-			return createIfcLogicalAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcLuminousFluxMeasure(IfcLuminousFluxMeasure object) {
-			return createIfcLuminousFluxMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcLuminousIntensityDistributionMeasure(IfcLuminousIntensityDistributionMeasure object) {
-			return createIfcLuminousIntensityDistributionMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcLuminousIntensityMeasure(IfcLuminousIntensityMeasure object) {
-			return createIfcLuminousIntensityMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcMagneticFluxDensityMeasure(IfcMagneticFluxDensityMeasure object) {
-			return createIfcMagneticFluxDensityMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcMagneticFluxMeasure(IfcMagneticFluxMeasure object) {
-			return createIfcMagneticFluxMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcMassDensityMeasure(IfcMassDensityMeasure object) {
-			return createIfcMassDensityMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcMassFlowRateMeasure(IfcMassFlowRateMeasure object) {
-			return createIfcMassFlowRateMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcMassMeasure(IfcMassMeasure object) {
-			return createIfcMassMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcMassPerLengthMeasure(IfcMassPerLengthMeasure object) {
-			return createIfcMassPerLengthMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcModulusOfElasticityMeasure(IfcModulusOfElasticityMeasure object) {
-			return createIfcModulusOfElasticityMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcModulusOfLinearSubgradeReactionMeasure(IfcModulusOfLinearSubgradeReactionMeasure object) {
-			return createIfcModulusOfLinearSubgradeReactionMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcModulusOfRotationalSubgradeReactionMeasure(IfcModulusOfRotationalSubgradeReactionMeasure object) {
-			return createIfcModulusOfRotationalSubgradeReactionMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcModulusOfSubgradeReactionMeasure(IfcModulusOfSubgradeReactionMeasure object) {
-			return createIfcModulusOfSubgradeReactionMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcMoistureDiffusivityMeasure(IfcMoistureDiffusivityMeasure object) {
-			return createIfcMoistureDiffusivityMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcMolecularWeightMeasure(IfcMolecularWeightMeasure object) {
-			return createIfcMolecularWeightMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcMomentOfInertiaMeasure(IfcMomentOfInertiaMeasure object) {
-			return createIfcMomentOfInertiaMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcMonetaryMeasure(IfcMonetaryMeasure object) {
-			return createIfcMonetaryMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcNumericMeasure(IfcNumericMeasure object) {
-			return createIfcNumericMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcPHMeasure(IfcPHMeasure object) {
-			return createIfcPHMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcParameterValue(IfcParameterValue object) {
-			return createIfcParameterValueAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcPlanarForceMeasure(IfcPlanarForceMeasure object) {
-			return createIfcPlanarForceMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcPlaneAngleMeasure(IfcPlaneAngleMeasure object) {
-			return createIfcPlaneAngleMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcPowerMeasure(IfcPowerMeasure object) {
-			return createIfcPowerMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcPressureMeasure(IfcPressureMeasure object) {
-			return createIfcPressureMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcRadioActivityMeasure(IfcRadioActivityMeasure object) {
-			return createIfcRadioActivityMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcRatioMeasure(IfcRatioMeasure object) {
-			return createIfcRatioMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcReal(IfcReal object) {
-			return createIfcRealAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcRotationalFrequencyMeasure(IfcRotationalFrequencyMeasure object) {
-			return createIfcRotationalFrequencyMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcRotationalMassMeasure(IfcRotationalMassMeasure object) {
-			return createIfcRotationalMassMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcRotationalStiffnessMeasure(IfcRotationalStiffnessMeasure object) {
-			return createIfcRotationalStiffnessMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcSectionModulusMeasure(IfcSectionModulusMeasure object) {
-			return createIfcSectionModulusMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcSectionalAreaIntegralMeasure(IfcSectionalAreaIntegralMeasure object) {
-			return createIfcSectionalAreaIntegralMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcShearModulusMeasure(IfcShearModulusMeasure object) {
-			return createIfcShearModulusMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcSolidAngleMeasure(IfcSolidAngleMeasure object) {
-			return createIfcSolidAngleMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcSoundPowerMeasure(IfcSoundPowerMeasure object) {
-			return createIfcSoundPowerMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcSoundPressureMeasure(IfcSoundPressureMeasure object) {
-			return createIfcSoundPressureMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcSpecificHeatCapacityMeasure(IfcSpecificHeatCapacityMeasure object) {
-			return createIfcSpecificHeatCapacityMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcSpecularExponent(IfcSpecularExponent object) {
-			return createIfcSpecularExponentAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcSpecularRoughness(IfcSpecularRoughness object) {
-			return createIfcSpecularRoughnessAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcTemperatureGradientMeasure(IfcTemperatureGradientMeasure object) {
-			return createIfcTemperatureGradientMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcText(IfcText object) {
-			return createIfcTextAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcThermalAdmittanceMeasure(IfcThermalAdmittanceMeasure object) {
-			return createIfcThermalAdmittanceMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcThermalConductivityMeasure(IfcThermalConductivityMeasure object) {
-			return createIfcThermalConductivityMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcThermalExpansionCoefficientMeasure(IfcThermalExpansionCoefficientMeasure object) {
-			return createIfcThermalExpansionCoefficientMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcThermalResistanceMeasure(IfcThermalResistanceMeasure object) {
-			return createIfcThermalResistanceMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcThermalTransmittanceMeasure(IfcThermalTransmittanceMeasure object) {
-			return createIfcThermalTransmittanceMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcThermodynamicTemperatureMeasure(IfcThermodynamicTemperatureMeasure object) {
-			return createIfcThermodynamicTemperatureMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcTimeMeasure(IfcTimeMeasure object) {
-			return createIfcTimeMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcTimeStamp(IfcTimeStamp object) {
-			return createIfcTimeStampAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcTorqueMeasure(IfcTorqueMeasure object) {
-			return createIfcTorqueMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcVaporPermeabilityMeasure(IfcVaporPermeabilityMeasure object) {
-			return createIfcVaporPermeabilityMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcVolumeMeasure(IfcVolumeMeasure object) {
-			return createIfcVolumeMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcVolumetricFlowRateMeasure(IfcVolumetricFlowRateMeasure object) {
-			return createIfcVolumetricFlowRateMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcWarpingConstantMeasure(IfcWarpingConstantMeasure object) {
-			return createIfcWarpingConstantMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcWarpingMomentMeasure(IfcWarpingMomentMeasure object) {
-			return createIfcWarpingMomentMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcNormalisedRatioMeasure(IfcNormalisedRatioMeasure object) {
-			return createIfcNormalisedRatioMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcPositiveLengthMeasure(IfcPositiveLengthMeasure object) {
-			return createIfcPositiveLengthMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcPositivePlaneAngleMeasure(IfcPositivePlaneAngleMeasure object) {
-			return createIfcPositivePlaneAngleMeasureAdapter();
-		}
-
-		@Override
-		public Adapter caseIfcPositiveRatioMeasure(IfcPositiveRatioMeasure object) {
-			return createIfcPositiveRatioMeasureAdapter();
-		}
-
-		@Override
 		public Adapter caseIfc2DCompositeCurve(Ifc2DCompositeCurve object) {
 			return createIfc2DCompositeCurveAdapter();
 		}
@@ -3838,13 +3343,588 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcComplexNumber(IfcComplexNumber object) {
-			return createIfcComplexNumberAdapter();
+		public Adapter caseIfcAbsorbedDoseMeasure(IfcAbsorbedDoseMeasure object) {
+			return createIfcAbsorbedDoseMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcAccelerationMeasure(IfcAccelerationMeasure object) {
+			return createIfcAccelerationMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcAmountOfSubstanceMeasure(IfcAmountOfSubstanceMeasure object) {
+			return createIfcAmountOfSubstanceMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcAngularVelocityMeasure(IfcAngularVelocityMeasure object) {
+			return createIfcAngularVelocityMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcAreaMeasure(IfcAreaMeasure object) {
+			return createIfcAreaMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcBoolean(IfcBoolean object) {
+			return createIfcBooleanAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcContextDependentMeasure(IfcContextDependentMeasure object) {
+			return createIfcContextDependentMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcCountMeasure(IfcCountMeasure object) {
+			return createIfcCountMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcCurvatureMeasure(IfcCurvatureMeasure object) {
+			return createIfcCurvatureMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcDayInMonthNumber(IfcDayInMonthNumber object) {
+			return createIfcDayInMonthNumberAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcDaylightSavingHour(IfcDaylightSavingHour object) {
+			return createIfcDaylightSavingHourAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcDescriptiveMeasure(IfcDescriptiveMeasure object) {
+			return createIfcDescriptiveMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcDimensionCount(IfcDimensionCount object) {
+			return createIfcDimensionCountAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcDoseEquivalentMeasure(IfcDoseEquivalentMeasure object) {
+			return createIfcDoseEquivalentMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcDynamicViscosityMeasure(IfcDynamicViscosityMeasure object) {
+			return createIfcDynamicViscosityMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcElectricCapacitanceMeasure(IfcElectricCapacitanceMeasure object) {
+			return createIfcElectricCapacitanceMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcElectricChargeMeasure(IfcElectricChargeMeasure object) {
+			return createIfcElectricChargeMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcElectricConductanceMeasure(IfcElectricConductanceMeasure object) {
+			return createIfcElectricConductanceMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcElectricCurrentMeasure(IfcElectricCurrentMeasure object) {
+			return createIfcElectricCurrentMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcElectricResistanceMeasure(IfcElectricResistanceMeasure object) {
+			return createIfcElectricResistanceMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcElectricVoltageMeasure(IfcElectricVoltageMeasure object) {
+			return createIfcElectricVoltageMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcEnergyMeasure(IfcEnergyMeasure object) {
+			return createIfcEnergyMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcFontStyle(IfcFontStyle object) {
+			return createIfcFontStyleAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcFontVariant(IfcFontVariant object) {
+			return createIfcFontVariantAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcFontWeight(IfcFontWeight object) {
+			return createIfcFontWeightAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcForceMeasure(IfcForceMeasure object) {
+			return createIfcForceMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcFrequencyMeasure(IfcFrequencyMeasure object) {
+			return createIfcFrequencyMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcGloballyUniqueId(IfcGloballyUniqueId object) {
+			return createIfcGloballyUniqueIdAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcHeatFluxDensityMeasure(IfcHeatFluxDensityMeasure object) {
+			return createIfcHeatFluxDensityMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcHeatingValueMeasure(IfcHeatingValueMeasure object) {
+			return createIfcHeatingValueMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcHourInDay(IfcHourInDay object) {
+			return createIfcHourInDayAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcIdentifier(IfcIdentifier object) {
+			return createIfcIdentifierAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcIlluminanceMeasure(IfcIlluminanceMeasure object) {
+			return createIfcIlluminanceMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcInductanceMeasure(IfcInductanceMeasure object) {
+			return createIfcInductanceMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcInteger(IfcInteger object) {
+			return createIfcIntegerAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcIntegerCountRateMeasure(IfcIntegerCountRateMeasure object) {
+			return createIfcIntegerCountRateMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcIonConcentrationMeasure(IfcIonConcentrationMeasure object) {
+			return createIfcIonConcentrationMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcIsothermalMoistureCapacityMeasure(IfcIsothermalMoistureCapacityMeasure object) {
+			return createIfcIsothermalMoistureCapacityMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcKinematicViscosityMeasure(IfcKinematicViscosityMeasure object) {
+			return createIfcKinematicViscosityMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcLabel(IfcLabel object) {
+			return createIfcLabelAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcLengthMeasure(IfcLengthMeasure object) {
+			return createIfcLengthMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcLinearForceMeasure(IfcLinearForceMeasure object) {
+			return createIfcLinearForceMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcLinearMomentMeasure(IfcLinearMomentMeasure object) {
+			return createIfcLinearMomentMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcLinearStiffnessMeasure(IfcLinearStiffnessMeasure object) {
+			return createIfcLinearStiffnessMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcLinearVelocityMeasure(IfcLinearVelocityMeasure object) {
+			return createIfcLinearVelocityMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcLogical(IfcLogical object) {
+			return createIfcLogicalAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcLuminousFluxMeasure(IfcLuminousFluxMeasure object) {
+			return createIfcLuminousFluxMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcLuminousIntensityDistributionMeasure(IfcLuminousIntensityDistributionMeasure object) {
+			return createIfcLuminousIntensityDistributionMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcLuminousIntensityMeasure(IfcLuminousIntensityMeasure object) {
+			return createIfcLuminousIntensityMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcMagneticFluxDensityMeasure(IfcMagneticFluxDensityMeasure object) {
+			return createIfcMagneticFluxDensityMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcMagneticFluxMeasure(IfcMagneticFluxMeasure object) {
+			return createIfcMagneticFluxMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcMassDensityMeasure(IfcMassDensityMeasure object) {
+			return createIfcMassDensityMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcMassFlowRateMeasure(IfcMassFlowRateMeasure object) {
+			return createIfcMassFlowRateMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcMassMeasure(IfcMassMeasure object) {
+			return createIfcMassMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcMassPerLengthMeasure(IfcMassPerLengthMeasure object) {
+			return createIfcMassPerLengthMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcMinuteInHour(IfcMinuteInHour object) {
+			return createIfcMinuteInHourAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcModulusOfElasticityMeasure(IfcModulusOfElasticityMeasure object) {
+			return createIfcModulusOfElasticityMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcModulusOfLinearSubgradeReactionMeasure(IfcModulusOfLinearSubgradeReactionMeasure object) {
+			return createIfcModulusOfLinearSubgradeReactionMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcModulusOfRotationalSubgradeReactionMeasure(IfcModulusOfRotationalSubgradeReactionMeasure object) {
+			return createIfcModulusOfRotationalSubgradeReactionMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcModulusOfSubgradeReactionMeasure(IfcModulusOfSubgradeReactionMeasure object) {
+			return createIfcModulusOfSubgradeReactionMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcMoistureDiffusivityMeasure(IfcMoistureDiffusivityMeasure object) {
+			return createIfcMoistureDiffusivityMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcMolecularWeightMeasure(IfcMolecularWeightMeasure object) {
+			return createIfcMolecularWeightMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcMomentOfInertiaMeasure(IfcMomentOfInertiaMeasure object) {
+			return createIfcMomentOfInertiaMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcMonetaryMeasure(IfcMonetaryMeasure object) {
+			return createIfcMonetaryMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcMonthInYearNumber(IfcMonthInYearNumber object) {
+			return createIfcMonthInYearNumberAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcNumericMeasure(IfcNumericMeasure object) {
+			return createIfcNumericMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcPHMeasure(IfcPHMeasure object) {
+			return createIfcPHMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcParameterValue(IfcParameterValue object) {
+			return createIfcParameterValueAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcPlanarForceMeasure(IfcPlanarForceMeasure object) {
+			return createIfcPlanarForceMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcPlaneAngleMeasure(IfcPlaneAngleMeasure object) {
+			return createIfcPlaneAngleMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcPowerMeasure(IfcPowerMeasure object) {
+			return createIfcPowerMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcPresentableText(IfcPresentableText object) {
+			return createIfcPresentableTextAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcPressureMeasure(IfcPressureMeasure object) {
+			return createIfcPressureMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcRadioActivityMeasure(IfcRadioActivityMeasure object) {
+			return createIfcRadioActivityMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcRatioMeasure(IfcRatioMeasure object) {
+			return createIfcRatioMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcReal(IfcReal object) {
+			return createIfcRealAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcRotationalFrequencyMeasure(IfcRotationalFrequencyMeasure object) {
+			return createIfcRotationalFrequencyMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcRotationalMassMeasure(IfcRotationalMassMeasure object) {
+			return createIfcRotationalMassMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcRotationalStiffnessMeasure(IfcRotationalStiffnessMeasure object) {
+			return createIfcRotationalStiffnessMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcSecondInMinute(IfcSecondInMinute object) {
+			return createIfcSecondInMinuteAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcSectionModulusMeasure(IfcSectionModulusMeasure object) {
+			return createIfcSectionModulusMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcSectionalAreaIntegralMeasure(IfcSectionalAreaIntegralMeasure object) {
+			return createIfcSectionalAreaIntegralMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcShearModulusMeasure(IfcShearModulusMeasure object) {
+			return createIfcShearModulusMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcSolidAngleMeasure(IfcSolidAngleMeasure object) {
+			return createIfcSolidAngleMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcSoundPowerMeasure(IfcSoundPowerMeasure object) {
+			return createIfcSoundPowerMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcSoundPressureMeasure(IfcSoundPressureMeasure object) {
+			return createIfcSoundPressureMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcSpecificHeatCapacityMeasure(IfcSpecificHeatCapacityMeasure object) {
+			return createIfcSpecificHeatCapacityMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcSpecularExponent(IfcSpecularExponent object) {
+			return createIfcSpecularExponentAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcSpecularRoughness(IfcSpecularRoughness object) {
+			return createIfcSpecularRoughnessAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcTemperatureGradientMeasure(IfcTemperatureGradientMeasure object) {
+			return createIfcTemperatureGradientMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcText(IfcText object) {
+			return createIfcTextAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcTextAlignment(IfcTextAlignment object) {
+			return createIfcTextAlignmentAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcTextDecoration(IfcTextDecoration object) {
+			return createIfcTextDecorationAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcTextFontName(IfcTextFontName object) {
+			return createIfcTextFontNameAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcTextTransformation(IfcTextTransformation object) {
+			return createIfcTextTransformationAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcThermalAdmittanceMeasure(IfcThermalAdmittanceMeasure object) {
+			return createIfcThermalAdmittanceMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcThermalConductivityMeasure(IfcThermalConductivityMeasure object) {
+			return createIfcThermalConductivityMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcThermalExpansionCoefficientMeasure(IfcThermalExpansionCoefficientMeasure object) {
+			return createIfcThermalExpansionCoefficientMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcThermalResistanceMeasure(IfcThermalResistanceMeasure object) {
+			return createIfcThermalResistanceMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcThermalTransmittanceMeasure(IfcThermalTransmittanceMeasure object) {
+			return createIfcThermalTransmittanceMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcThermodynamicTemperatureMeasure(IfcThermodynamicTemperatureMeasure object) {
+			return createIfcThermodynamicTemperatureMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcTimeMeasure(IfcTimeMeasure object) {
+			return createIfcTimeMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcTimeStamp(IfcTimeStamp object) {
+			return createIfcTimeStampAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcTorqueMeasure(IfcTorqueMeasure object) {
+			return createIfcTorqueMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcVaporPermeabilityMeasure(IfcVaporPermeabilityMeasure object) {
+			return createIfcVaporPermeabilityMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcVolumeMeasure(IfcVolumeMeasure object) {
+			return createIfcVolumeMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcVolumetricFlowRateMeasure(IfcVolumetricFlowRateMeasure object) {
+			return createIfcVolumetricFlowRateMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcWarpingConstantMeasure(IfcWarpingConstantMeasure object) {
+			return createIfcWarpingConstantMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcWarpingMomentMeasure(IfcWarpingMomentMeasure object) {
+			return createIfcWarpingMomentMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcYearNumber(IfcYearNumber object) {
+			return createIfcYearNumberAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcBoxAlignment(IfcBoxAlignment object) {
+			return createIfcBoxAlignmentAdapter();
 		}
 
 		@Override
 		public Adapter caseIfcCompoundPlaneAngleMeasure(IfcCompoundPlaneAngleMeasure object) {
 			return createIfcCompoundPlaneAngleMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcNormalisedRatioMeasure(IfcNormalisedRatioMeasure object) {
+			return createIfcNormalisedRatioMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcPositiveLengthMeasure(IfcPositiveLengthMeasure object) {
+			return createIfcPositiveLengthMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcPositivePlaneAngleMeasure(IfcPositivePlaneAngleMeasure object) {
+			return createIfcPositivePlaneAngleMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcPositiveRatioMeasure(IfcPositiveRatioMeasure object) {
+			return createIfcPositiveRatioMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcComplexNumber(IfcComplexNumber object) {
+			return createIfcComplexNumberAdapter();
 		}
 
 		@Override
@@ -4117,90 +4197,6 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.WrappedValue <em>Wrapped Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.ifc2x3tc1.WrappedValue
-	 * @generated
-	 */
-	public Adapter createWrappedValueAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcAbsorbedDoseMeasure <em>Ifc Absorbed Dose Measure</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.ifc2x3tc1.IfcAbsorbedDoseMeasure
-	 * @generated
-	 */
-	public Adapter createIfcAbsorbedDoseMeasureAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcAccelerationMeasure <em>Ifc Acceleration Measure</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.ifc2x3tc1.IfcAccelerationMeasure
-	 * @generated
-	 */
-	public Adapter createIfcAccelerationMeasureAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcAmountOfSubstanceMeasure <em>Ifc Amount Of Substance Measure</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.ifc2x3tc1.IfcAmountOfSubstanceMeasure
-	 * @generated
-	 */
-	public Adapter createIfcAmountOfSubstanceMeasureAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcAngularVelocityMeasure <em>Ifc Angular Velocity Measure</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.ifc2x3tc1.IfcAngularVelocityMeasure
-	 * @generated
-	 */
-	public Adapter createIfcAngularVelocityMeasureAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcAreaMeasure <em>Ifc Area Measure</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.ifc2x3tc1.IfcAreaMeasure
-	 * @generated
-	 */
-	public Adapter createIfcAreaMeasureAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcBoolean <em>Ifc Boolean</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -4257,6 +4253,34 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcDayInMonthNumber <em>Ifc Day In Month Number</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcDayInMonthNumber
+	 * @generated
+	 */
+	public Adapter createIfcDayInMonthNumberAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcDaylightSavingHour <em>Ifc Daylight Saving Hour</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcDaylightSavingHour
+	 * @generated
+	 */
+	public Adapter createIfcDaylightSavingHourAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcDescriptiveMeasure <em>Ifc Descriptive Measure</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -4267,6 +4291,20 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcDescriptiveMeasureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcDimensionCount <em>Ifc Dimension Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcDimensionCount
+	 * @generated
+	 */
+	public Adapter createIfcDimensionCountAdapter() {
 		return null;
 	}
 
@@ -4397,6 +4435,48 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcFontStyle <em>Ifc Font Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcFontStyle
+	 * @generated
+	 */
+	public Adapter createIfcFontStyleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcFontVariant <em>Ifc Font Variant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcFontVariant
+	 * @generated
+	 */
+	public Adapter createIfcFontVariantAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcFontWeight <em>Ifc Font Weight</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcFontWeight
+	 * @generated
+	 */
+	public Adapter createIfcFontWeightAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcForceMeasure <em>Ifc Force Measure</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -4463,6 +4543,20 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcHeatingValueMeasureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcHourInDay <em>Ifc Hour In Day</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcHourInDay
+	 * @generated
+	 */
+	public Adapter createIfcHourInDayAdapter() {
 		return null;
 	}
 
@@ -4803,6 +4897,20 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcMinuteInHour <em>Ifc Minute In Hour</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcMinuteInHour
+	 * @generated
+	 */
+	public Adapter createIfcMinuteInHourAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcModulusOfElasticityMeasure <em>Ifc Modulus Of Elasticity Measure</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -4915,6 +5023,20 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcMonthInYearNumber <em>Ifc Month In Year Number</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcMonthInYearNumber
+	 * @generated
+	 */
+	public Adapter createIfcMonthInYearNumberAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcNumericMeasure <em>Ifc Numeric Measure</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -4995,6 +5117,20 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcPowerMeasureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcPresentableText <em>Ifc Presentable Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcPresentableText
+	 * @generated
+	 */
+	public Adapter createIfcPresentableTextAdapter() {
 		return null;
 	}
 
@@ -5093,6 +5229,20 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcRotationalStiffnessMeasureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcSecondInMinute <em>Ifc Second In Minute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcSecondInMinute
+	 * @generated
+	 */
+	public Adapter createIfcSecondInMinuteAdapter() {
 		return null;
 	}
 
@@ -5247,6 +5397,62 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcTextAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcTextAlignment <em>Ifc Text Alignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcTextAlignment
+	 * @generated
+	 */
+	public Adapter createIfcTextAlignmentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcTextDecoration <em>Ifc Text Decoration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcTextDecoration
+	 * @generated
+	 */
+	public Adapter createIfcTextDecorationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcTextFontName <em>Ifc Text Font Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcTextFontName
+	 * @generated
+	 */
+	public Adapter createIfcTextFontNameAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcTextTransformation <em>Ifc Text Transformation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcTextTransformation
+	 * @generated
+	 */
+	public Adapter createIfcTextTransformationAdapter() {
 		return null;
 	}
 
@@ -5447,6 +5653,34 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcYearNumber <em>Ifc Year Number</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcYearNumber
+	 * @generated
+	 */
+	public Adapter createIfcYearNumberAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcBoxAlignment <em>Ifc Box Alignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcBoxAlignment
+	 * @generated
+	 */
+	public Adapter createIfcBoxAlignmentAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcNormalisedRatioMeasure <em>Ifc Normalised Ratio Measure</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -5499,6 +5733,34 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcPositiveRatioMeasureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcComplexNumber <em>Ifc Complex Number</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcComplexNumber
+	 * @generated
+	 */
+	public Adapter createIfcComplexNumberAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcNullStyle <em>Ifc Null Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcNullStyle
+	 * @generated
+	 */
+	public Adapter createIfcNullStyleAdapter() {
 		return null;
 	}
 
@@ -14645,16 +14907,72 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcComplexNumber <em>Ifc Complex Number</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcAbsorbedDoseMeasure <em>Ifc Absorbed Dose Measure</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.ifc2x3tc1.IfcComplexNumber
+	 * @see org.bimserver.models.ifc2x3tc1.IfcAbsorbedDoseMeasure
 	 * @generated
 	 */
-	public Adapter createIfcComplexNumberAdapter() {
+	public Adapter createIfcAbsorbedDoseMeasureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcAccelerationMeasure <em>Ifc Acceleration Measure</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcAccelerationMeasure
+	 * @generated
+	 */
+	public Adapter createIfcAccelerationMeasureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcAmountOfSubstanceMeasure <em>Ifc Amount Of Substance Measure</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcAmountOfSubstanceMeasure
+	 * @generated
+	 */
+	public Adapter createIfcAmountOfSubstanceMeasureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcAngularVelocityMeasure <em>Ifc Angular Velocity Measure</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcAngularVelocityMeasure
+	 * @generated
+	 */
+	public Adapter createIfcAngularVelocityMeasureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcAreaMeasure <em>Ifc Area Measure</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc2x3tc1.IfcAreaMeasure
+	 * @generated
+	 */
+	public Adapter createIfcAreaMeasureAdapter() {
 		return null;
 	}
 
@@ -14669,20 +14987,6 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcCompoundPlaneAngleMeasureAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.IfcNullStyle <em>Ifc Null Style</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.bimserver.models.ifc2x3tc1.IfcNullStyle
-	 * @generated
-	 */
-	public Adapter createIfcNullStyleAdapter() {
 		return null;
 	}
 

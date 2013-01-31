@@ -23,8 +23,6 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
-import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
-import org.bimserver.models.ifc2x3tc1.WrappedValue;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -61,7 +59,7 @@ public class ModelHelper {
 		IdEObject newObject = (IdEObject) original.eClass().getEPackage().getEFactoryInstance().create(original.eClass());
 		((IdEObjectImpl)newObject).setOid(original.getOid());
 		converted.put(original, newObject);
-		if (!(newObject instanceof WrappedValue) && !(newObject instanceof IfcGloballyUniqueId)) {
+		if (newObject.eClass().getEAnnotation("wrapped") == null) {
 			newModel.add(newObject.getOid(), newObject);
 		}
 		for (EStructuralFeature eStructuralFeature : original.eClass().getEAllStructuralFeatures()) {

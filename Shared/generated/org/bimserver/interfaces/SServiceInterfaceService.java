@@ -401,6 +401,11 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SLongType();
 					}
 				}));
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SByteArrayType"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SByteArrayType();
+					}
+				}));
 				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SDoubleType"), new SConstructor(){
 					public Object newInstance() {
 						return new org.bimserver.interfaces.objects.SDoubleType();

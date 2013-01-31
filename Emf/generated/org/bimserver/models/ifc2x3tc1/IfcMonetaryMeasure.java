@@ -33,7 +33,7 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcMonetaryMeasure extends WrappedValue, IfcAppliedValueSelect, IfcDerivedMeasureValue {
+public interface IfcMonetaryMeasure extends IfcAppliedValueSelect, IfcDerivedMeasureValue {
 	/**
 	 * Returns the value of the '<em><b>Wrapped Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

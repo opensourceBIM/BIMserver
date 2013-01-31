@@ -16,8 +16,6 @@
  */
 package org.bimserver.models.ifc2x3tc1;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Ifc Compound Plane Angle Measure</b></em>'.
@@ -34,42 +32,56 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcCompoundPlaneAngleMeasure extends WrappedValue, IfcDerivedMeasureValue {
+public interface IfcCompoundPlaneAngleMeasure extends IfcDerivedMeasureValue {
 	/**
-	 * Returns the value of the '<em><b>Wrapped Value</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Integer}.
+	 * Returns the value of the '<em><b>Wrapped Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Wrapped Value</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Wrapped Value</em>' attribute list.
+	 * @return the value of the '<em>Wrapped Value</em>' attribute.
 	 * @see #isSetWrappedValue()
 	 * @see #unsetWrappedValue()
+	 * @see #setWrappedValue(int)
 	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcCompoundPlaneAngleMeasure_WrappedValue()
-	 * @model unsettable="true" upper="4"
+	 * @model unsettable="true"
 	 * @generated
 	 */
-	EList<Integer> getWrappedValue();
+	int getWrappedValue();
 
 	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcCompoundPlaneAngleMeasure#getWrappedValue <em>Wrapped Value</em>}' attribute list.
+	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcCompoundPlaneAngleMeasure#getWrappedValue <em>Wrapped Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Wrapped Value</em>' attribute.
+	 * @see #isSetWrappedValue()
+	 * @see #unsetWrappedValue()
+	 * @see #getWrappedValue()
+	 * @generated
+	 */
+	void setWrappedValue(int value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcCompoundPlaneAngleMeasure#getWrappedValue <em>Wrapped Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #isSetWrappedValue()
 	 * @see #getWrappedValue()
+	 * @see #setWrappedValue(int)
 	 * @generated
 	 */
 	void unsetWrappedValue();
 
 	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcCompoundPlaneAngleMeasure#getWrappedValue <em>Wrapped Value</em>}' attribute list is set.
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcCompoundPlaneAngleMeasure#getWrappedValue <em>Wrapped Value</em>}' attribute is set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Wrapped Value</em>' attribute list is set.
+	 * @return whether the value of the '<em>Wrapped Value</em>' attribute is set.
 	 * @see #unsetWrappedValue()
 	 * @see #getWrappedValue()
+	 * @see #setWrappedValue(int)
 	 * @generated
 	 */
 	boolean isSetWrappedValue();

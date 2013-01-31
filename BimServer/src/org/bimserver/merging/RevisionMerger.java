@@ -28,7 +28,6 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.TracingGarbageCollector;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
@@ -140,7 +139,7 @@ public class RevisionMerger {
 		Set<List> clearedLists = new HashSet<List>();
 		for (IdEObject idEObject : newModel.getValues()) {
 			if (idEObject instanceof IfcRoot) {
-				String guid = ((IfcRoot) idEObject).getGlobalId().getWrappedValue();
+				String guid = ((IfcRoot) idEObject).getGlobalId();
 				for (EReference eReference : idEObject.eClass().getEAllReferences()) {
 					Object referencedObject = idEObject.eGet(eReference);
 					if (eReference.isMany()) {
@@ -259,7 +258,7 @@ public class RevisionMerger {
 	private void fixExplicitNullReferences() {
 		for (IdEObject idEObject : newModel.getValues()) {
 			if (idEObject instanceof IfcRoot) {
-				String guid = ((IfcRoot) idEObject).getGlobalId().getWrappedValue();
+				String guid = ((IfcRoot) idEObject).getGlobalId();
 				for (EReference eReference : idEObject.eClass().getEAllReferences()) {
 					if (eReference.isMany()) {
 						List list = (List) idEObject.eGet(eReference);
@@ -267,12 +266,12 @@ public class RevisionMerger {
 						Set<Object> guidsToRemove = new HashSet<Object>();
 						for (Object o : oldList) {
 							if (o instanceof IfcRoot) {
-								String referredGuid = ((IfcRoot) o).getGlobalId().getWrappedValue();
+								String referredGuid = ((IfcRoot) o).getGlobalId();
 								if (newModel.containsGuid(referredGuid)) {
 									boolean found = false;
 									for (Object q : list) {
 										if (q instanceof IfcRoot) {
-											String qGuid = ((IfcRoot) q).getGlobalId().getWrappedValue();
+											String qGuid = ((IfcRoot) q).getGlobalId();
 											if (qGuid.equals(referredGuid)) {
 												found = true;
 												break;
@@ -294,7 +293,7 @@ public class RevisionMerger {
 							Object eGet = resultModel.getByGuid(guid).eGet(eReference);
 							if (eGet != null) {
 								if (eGet instanceof IfcRoot) {
-									String oldGuid = ((IfcRoot) eGet).getGlobalId().getWrappedValue();
+									String oldGuid = ((IfcRoot) eGet).getGlobalId();
 									if (newModel.containsGuid(oldGuid)) {
 //										LOGGER.info("Settings explicit null reference");
 										resultModel.getByGuid(guid).eSet(eReference, null);
@@ -312,12 +311,12 @@ public class RevisionMerger {
 	private void updateReferences() {
 		for (IdEObject idEObject : newModel.getValues()) {
 			if (idEObject instanceof IfcRoot) {
-				String guid = ((IfcRoot) idEObject).getGlobalId().getWrappedValue();
+				String guid = ((IfcRoot) idEObject).getGlobalId();
 				IfcRoot oldObject = resultModel.getByGuid(guid);
 				for (EReference eReference : idEObject.eClass().getEAllReferences()) {
 					Object referencedObject = idEObject.eGet(eReference);
 					if (referencedObject instanceof IfcRoot) {
-						String referencedGuid = ((IfcRoot) referencedObject).getGlobalId().getWrappedValue();
+						String referencedGuid = ((IfcRoot) referencedObject).getGlobalId();
 						IfcRoot newObject = resultModel.getByGuid(referencedGuid);
 						oldObject.eSet(eReference, newObject);
 //						LOGGER.info("Fixing reference from " + guid + " to " + referencedGuid);
@@ -327,7 +326,7 @@ public class RevisionMerger {
 						for (Object object : referencedList) {
 							if (object instanceof IfcRoot) {
 								IfcRoot referencedItem = (IfcRoot) object;
-								String itemGuid = referencedItem.getGlobalId().getWrappedValue();
+								String itemGuid = referencedItem.getGlobalId();
 								oldReferencedList.add(resultModel.getByGuid(itemGuid));
 //								LOGGER.info("Fixing list reference from " + guid + " to " + itemGuid);
 							}
@@ -342,7 +341,7 @@ public class RevisionMerger {
 		for (IdEObject idEObject : newModel.getValues()) {
 			if (idEObject instanceof IfcRoot) {
 				IfcRoot ifcRoot = (IfcRoot) idEObject;
-				String guid = ifcRoot.getGlobalId().getWrappedValue();
+				String guid = ifcRoot.getGlobalId();
 				if (resultModel.containsGuid(guid)) {
 //					LOGGER.info("Updating attributes for object " + idEObject.eClass().getName() + " " + guid);
 					IfcRoot oldObject = resultModel.getByGuid(guid);
@@ -364,9 +363,7 @@ public class RevisionMerger {
 		}
 	}
 
-	private IfcGloballyUniqueId newGuid(String guid) {
-		IfcGloballyUniqueId ifcGuid = Ifc2x3tc1Factory.eINSTANCE.createIfcGloballyUniqueId();
-		ifcGuid.setWrappedValue(guid);
-		return ifcGuid;
+	private String newGuid(String guid) {
+		return guid;
 	}
 }

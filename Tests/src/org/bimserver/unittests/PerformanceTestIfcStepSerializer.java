@@ -53,7 +53,7 @@ public class PerformanceTestIfcStepSerializer {
 			EList<EClassifier> classifiers = Ifc2x3tc1Package.eINSTANCE.getEClassifiers();
 			for (int i=0; i<100000; i++) {
 				EClassifier eClassifier = classifiers.get(new Random().nextInt(classifiers.size()));
-				if (eClassifier instanceof EClass && !((EClass) eClassifier).isInterface() && eClassifier != Ifc2x3tc1Package.eINSTANCE.getWrappedValue()) {
+				if (eClassifier instanceof EClass && !((EClass) eClassifier).isInterface()) {
 					IdEObject eObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create((EClass) eClassifier);
 					for (EStructuralFeature eStructuralFeature : eObject.eClass().getEAllStructuralFeatures()) {
 						if (!eStructuralFeature.isMany()) {

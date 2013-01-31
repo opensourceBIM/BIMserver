@@ -33,7 +33,7 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcMassDensityMeasure extends WrappedValue, IfcDerivedMeasureValue {
+public interface IfcMassDensityMeasure extends IfcDerivedMeasureValue {
 	/**
 	 * Returns the value of the '<em><b>Wrapped Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

@@ -33,9 +33,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.Tristate;
-import org.bimserver.models.ifc2x3tc1.WrappedValue;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
@@ -337,7 +335,7 @@ public class IfcStepSerializer extends IfcSerializer {
 
 	private void writeEClass(PrintWriter out, EObject object, EStructuralFeature feature) throws SerializerException {
 		Object referencedObject = object.eGet(feature);
-		if (referencedObject instanceof WrappedValue || referencedObject instanceof IfcGloballyUniqueId) {
+		if (referencedObject instanceof IdEObject && ((IdEObject)referencedObject).eClass().getEAnnotation("wrapped") != null) {
 			writeWrappedValue(out, object, feature, ((EObject)referencedObject).eClass());
 		} else {
 			if (referencedObject instanceof EObject && model.contains((IdEObject) referencedObject)) {
@@ -455,7 +453,7 @@ public class IfcStepSerializer extends IfcSerializer {
 					if (listObject == null) {
 						out.print(DOLLAR);
 					} else {
-						if (listObject instanceof WrappedValue && Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) feature.getEType())) {
+						if (listObject instanceof IdEObject && feature.getEType().getEAnnotation("wrapped") != null) {
 							IdEObject eObject = (IdEObject) listObject;
 							Object realVal = eObject.eGet(eObject.eClass().getEStructuralFeature("wrappedValue"));
 							if (realVal instanceof Double) {
@@ -515,10 +513,10 @@ public class IfcStepSerializer extends IfcSerializer {
 
 	private void writeWrappedValue(PrintWriter out, EObject object, EStructuralFeature feature, EClass ec) throws SerializerException {
 		Object get = object.eGet(feature);
-		boolean isWrapped = Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(ec) || ec == Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId();
+		boolean isWrapped = ec.getEAnnotation("wrapped") != null;
 		EStructuralFeature structuralFeature = ec.getEStructuralFeature(WRAPPED_VALUE);
 		if (get instanceof EObject) {
-			boolean isDefinedWrapped = Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) feature.getEType()) || feature.getEType() == Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId();
+			boolean isDefinedWrapped = feature.getEType().getEAnnotation("wrapped") != null;
 			EObject betweenObject = (EObject) get;
 			if (betweenObject != null) {
 				if (isWrapped && isDefinedWrapped) {

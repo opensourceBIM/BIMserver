@@ -28,7 +28,6 @@ import java.util.Map;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcSerializer;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
@@ -162,7 +161,7 @@ public class IfcXmlSerializer extends IfcSerializer {
 							EObject eObject = (EObject) value;
 							EClass type = eObject.eClass();
 							printTabbed("<" + structuralFeature.getName() + ">");
-							if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(type)) {
+							if (type.getEAnnotation("wrapped") != null) {
 								// Only references should print the type,
 								// GlobalId is an exception, because in EMF we
 								// chose to create a Class for GlobalId, because

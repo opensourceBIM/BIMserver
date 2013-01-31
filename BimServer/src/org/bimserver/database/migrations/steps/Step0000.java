@@ -866,7 +866,7 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(user, "createdOn", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEReference(user, "createdBy", user, Multiplicity.SINGLE);
 		schema.createEAttribute(user, "userType", userTypeEnum, Multiplicity.SINGLE);
-		schema.createEAttribute(user, "username", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(user, "username", ecorePackage.getEString(), Multiplicity.SINGLE).getEAnnotations().add(createIndexAnnotation());
 		schema.createEAttribute(user, "lastSeen", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEAttribute(user, "token", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(user, "validationToken", ecorePackage.getEString(), Multiplicity.SINGLE);
@@ -892,7 +892,7 @@ public class Step0000 extends Migration {
 	
 	private void createProjectClass() {
 		schema.createEAttribute(project, "id", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(project, "name", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(project, "name", ecorePackage.getEString(), Multiplicity.SINGLE).getEAnnotations().add(createIndexAnnotation());
 		projectHasAuthorizedUsers = schema.createEReference(project, "hasAuthorizedUsers", user, Multiplicity.MANY);
 		projectConcreteRevisions = schema.createEReference(project, "concreteRevisions", concreteRevisionClass, Multiplicity.MANY);
 		projectRevisions = schema.createEReference(project, "revisions", revisionClass, Multiplicity.MANY);
