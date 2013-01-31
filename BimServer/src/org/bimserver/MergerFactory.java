@@ -24,9 +24,9 @@ import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
-import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public class MergerFactory {
 	private final BimServer bimServer;

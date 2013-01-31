@@ -1,4 +1,4 @@
-package org.bimserver.plugins.serializers;
+package org.bimserver.plugins;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -22,10 +22,10 @@ import java.net.URL;
 import org.bimserver.ifc.xsltserializer.XsltParameter;
 import org.bimserver.ifc.xsltserializer.XsltSerializer;
 import org.bimserver.models.store.ObjectDefinition;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.EmfSerializer;
-import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
 public class Report1SystemSerializerPlugin implements SerializerPlugin {

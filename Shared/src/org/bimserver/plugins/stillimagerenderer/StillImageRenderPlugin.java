@@ -18,7 +18,7 @@ package org.bimserver.plugins.stillimagerenderer;
  *****************************************************************************/
 
 import org.bimserver.plugins.Plugin;
-import org.bimserver.plugins.serializers.PluginConfiguration;
+import org.bimserver.plugins.PluginConfiguration;
 
 public interface StillImageRenderPlugin extends Plugin {
 	StillImageRenderer create(PluginConfiguration pluginConfiguration);

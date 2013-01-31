@@ -18,7 +18,7 @@ package org.bimserver.plugins.modelmerger;
  *****************************************************************************/
 
 import org.bimserver.plugins.Plugin;
-import org.bimserver.plugins.serializers.PluginConfiguration;
+import org.bimserver.plugins.PluginConfiguration;
 
 public interface ModelMergerPlugin extends Plugin {
 	ModelMerger createModelMerger(PluginConfiguration pluginConfiguration);

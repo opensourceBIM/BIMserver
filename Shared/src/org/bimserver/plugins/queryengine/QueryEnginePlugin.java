@@ -20,7 +20,7 @@ package org.bimserver.plugins.queryengine;
 import java.util.Collection;
 
 import org.bimserver.plugins.Plugin;
-import org.bimserver.plugins.serializers.PluginConfiguration;
+import org.bimserver.plugins.PluginConfiguration;
 
 public interface QueryEnginePlugin extends Plugin {
 

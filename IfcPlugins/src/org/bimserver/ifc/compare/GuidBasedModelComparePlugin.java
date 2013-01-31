@@ -18,13 +18,13 @@ package org.bimserver.ifc.compare;
  *****************************************************************************/
 
 import org.bimserver.models.store.ObjectDefinition;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.modelcompare.ModelCompare;
 import org.bimserver.plugins.modelcompare.ModelCompareException;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMException;
-import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public class GuidBasedModelComparePlugin implements ModelComparePlugin {
 

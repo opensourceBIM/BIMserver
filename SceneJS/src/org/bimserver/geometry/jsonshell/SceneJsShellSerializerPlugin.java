@@ -18,10 +18,10 @@ package org.bimserver.geometry.jsonshell;
  *****************************************************************************/
 
 import org.bimserver.models.store.ObjectDefinition;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.serializers.EmfSerializer;
-import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 
 public class SceneJsShellSerializerPlugin implements SerializerPlugin {

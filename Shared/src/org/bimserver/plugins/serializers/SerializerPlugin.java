@@ -18,6 +18,7 @@ package org.bimserver.plugins.serializers;
  *****************************************************************************/
 
 import org.bimserver.plugins.Plugin;
+import org.bimserver.plugins.PluginConfiguration;
 
 public interface SerializerPlugin extends Plugin {
 	/**

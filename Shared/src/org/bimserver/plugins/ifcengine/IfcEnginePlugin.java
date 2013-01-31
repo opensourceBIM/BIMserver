@@ -18,7 +18,7 @@ package org.bimserver.plugins.ifcengine;
  *****************************************************************************/
 
 import org.bimserver.plugins.Plugin;
-import org.bimserver.plugins.serializers.PluginConfiguration;
+import org.bimserver.plugins.PluginConfiguration;
 
 public interface IfcEnginePlugin extends Plugin {
 	/**

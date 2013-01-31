@@ -28,10 +28,10 @@ import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.CompareType;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.VoidReporter;
 import org.bimserver.plugins.modelcompare.ModelCompareException;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
-import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 

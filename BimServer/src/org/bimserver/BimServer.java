@@ -417,7 +417,7 @@ public class BimServer {
 					if (internalService.getEnabled()) {
 						ServicePlugin servicePlugin = pluginManager.getServicePlugin(internalService.getClassName(), true);
 						if (servicePlugin != null) {
-							servicePlugin.register(new org.bimserver.plugins.serializers.PluginConfiguration(internalService.getSettings()));
+							servicePlugin.register(new org.bimserver.plugins.PluginConfiguration(internalService.getSettings()));
 						}
 					}
 				}
