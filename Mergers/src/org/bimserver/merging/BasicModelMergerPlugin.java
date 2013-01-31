@@ -1,11 +1,11 @@
 package org.bimserver.merging;
 
 import org.bimserver.models.store.ObjectDefinition;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.modelmerger.ModelMerger;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
-import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public class BasicModelMergerPlugin implements ModelMergerPlugin {
 

@@ -77,6 +77,7 @@ import org.bimserver.models.ifc2x3tc1.IfcStair;
 import org.bimserver.models.ifc2x3tc1.IfcWall;
 import org.bimserver.models.ifc2x3tc1.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
@@ -88,7 +89,6 @@ import org.bimserver.plugins.ifcengine.IfcEngineInstance;
 import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.ifcengine.IfcEngineModel;
 import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
-import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

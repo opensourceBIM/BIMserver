@@ -28,11 +28,11 @@ import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.ModelHelper;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.queryengine.QueryEngineException;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
-import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 

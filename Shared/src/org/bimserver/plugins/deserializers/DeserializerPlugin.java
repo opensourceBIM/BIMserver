@@ -18,7 +18,7 @@ package org.bimserver.plugins.deserializers;
  *****************************************************************************/
 
 import org.bimserver.plugins.Plugin;
-import org.bimserver.plugins.serializers.PluginConfiguration;
+import org.bimserver.plugins.PluginConfiguration;
 
 public interface DeserializerPlugin extends Plugin {
 	/**

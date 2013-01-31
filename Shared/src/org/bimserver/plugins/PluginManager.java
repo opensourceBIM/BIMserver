@@ -55,7 +55,6 @@ import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.schema.SchemaPlugin;
-import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;

@@ -22,12 +22,12 @@ import org.bimserver.models.store.ParameterDefinition;
 import org.bimserver.models.store.PrimitiveDefinition;
 import org.bimserver.models.store.PrimitiveEnum;
 import org.bimserver.models.store.StoreFactory;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMException;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
-import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public class FileBasedObjectIDMPlugin implements ObjectIDMPlugin {
 

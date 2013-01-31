@@ -26,12 +26,12 @@ import nl.tue.buildingsmart.express.parser.ExpressSchemaParser;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.models.store.ObjectDefinition;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.SchemaPlugin;
-import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

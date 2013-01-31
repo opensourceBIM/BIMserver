@@ -28,12 +28,12 @@ import java.util.Set;
 
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
-import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public class GuidHighlighterTester {
 	private SchemaDefinition schema;

@@ -1,11 +1,11 @@
 package org.bimserver.deserializers;
 
 import org.bimserver.models.store.ObjectDefinition;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public class JsonDeserializerPlugin implements DeserializerPlugin {
 

@@ -18,7 +18,7 @@ package org.bimserver.plugins.objectidms;
  *****************************************************************************/
 
 import org.bimserver.plugins.Plugin;
-import org.bimserver.plugins.serializers.PluginConfiguration;
+import org.bimserver.plugins.PluginConfiguration;
 
 public interface ObjectIDMPlugin extends Plugin {
 	ObjectIDM getObjectIDM(PluginConfiguration pluginConfiguration);

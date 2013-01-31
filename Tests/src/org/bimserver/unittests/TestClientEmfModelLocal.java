@@ -39,7 +39,7 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SRevisionSummaryContainer;
 import org.bimserver.interfaces.objects.SRevisionSummaryType;
-import org.bimserver.plugins.serializers.PluginConfiguration;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;

@@ -24,11 +24,11 @@ import org.bimserver.database.Query;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.serializers.PluginConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

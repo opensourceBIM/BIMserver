@@ -18,11 +18,11 @@ package org.bimserver.ifc.xml.deserializer;
  *****************************************************************************/
 
 import org.bimserver.models.store.ObjectDefinition;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.EmfDeserializer;
-import org.bimserver.plugins.serializers.PluginConfiguration;
 
 public class IfcXmlDeserializerPlugin implements DeserializerPlugin {
 
