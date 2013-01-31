@@ -426,7 +426,7 @@ public class StreamingSceneJSSerializer extends AbstractGeometrySerializer {
 			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryInstance.getNormals());
 
 			jsonWriter.name("type").value("geometry");
-			jsonWriter.name("coreId").value(ifcObject.getGlobalId().getWrappedValue());
+			jsonWriter.name("coreId").value(ifcObject.getGlobalId());
 			jsonWriter.name("primitive").value("triangles");
 			jsonWriter.name("positions").beginArray();
 			for (int i=0; i<geometryInstance.getPrimitiveCount() * 3 * 3; i++) {
@@ -617,7 +617,7 @@ jsonWriter						.endArray()
 		jsonWriter.beginObject();
 		jsonWriter.name("type").value(object.isSetObjectType() ? object.getObjectType() : stripClassName(object.getClass()));
 		jsonWriter.name("name").value(object.isSetName() ? object.getName() : "unknown");
-		jsonWriter.name("id").value(object.getGlobalId().getWrappedValue());
+		jsonWriter.name("id").value(object.getGlobalId());
 		jsonWriter.name("decomposedBy");
 		writeIfcTreeDecomposedBy(jsonWriter, visitedIds, object);
 		jsonWriter.name("definedBy");
@@ -652,8 +652,8 @@ jsonWriter						.endArray()
 				EList<IfcObjectDefinition> relatedObjects = rel.getRelatedObjects();
 				for (IfcObjectDefinition relatedObject : relatedObjects) {
 					if (relatedObject instanceof IfcObject) {
-						if (!visitedIds.contains(relatedObject.getGlobalId().getWrappedValue())) {
-							visitedIds.add(relatedObject.getGlobalId().getWrappedValue());
+						if (!visitedIds.contains(relatedObject.getGlobalId())) {
+							visitedIds.add(relatedObject.getGlobalId());
 							writeIfcTreeRelatedObject(jsonWriter, visitedIds, (IfcObject) relatedObject);
 						}
 					}
@@ -670,8 +670,8 @@ jsonWriter						.endArray()
 			for (IfcRelDefines rel : relList) {
 				EList<IfcObject> relatedObjects = rel.getRelatedObjects();
 				for (IfcObject relatedObject : relatedObjects) {
-					if (!visitedIds.contains(relatedObject.getGlobalId().getWrappedValue())) {
-						visitedIds.add(relatedObject.getGlobalId().getWrappedValue());
+					if (!visitedIds.contains(relatedObject.getGlobalId())) {
+						visitedIds.add(relatedObject.getGlobalId());
 						writeIfcTreeRelatedObject(jsonWriter, visitedIds, relatedObject);
 					}
 				}
@@ -684,7 +684,7 @@ jsonWriter						.endArray()
 		jsonWriter.beginObject();
 		jsonWriter.name("type").value(object.isSetObjectType() ? object.getObjectType() : stripClassName(object.getClass()));
 		jsonWriter.name("name").value(object.isSetName() ? object.getName() : "unknown");
-		jsonWriter.name("id").value(object.getGlobalId().getWrappedValue());
+		jsonWriter.name("id").value(object.getGlobalId());
 		jsonWriter.endObject();
 		// writeIfcTreeDecomposedBy(object);
 		// writeIfcTreeDefinedBy((IfcObject) object);
@@ -699,8 +699,8 @@ jsonWriter						.endArray()
 		if (relList != null && !relList.isEmpty()) {
 			for (IfcRelContainedInSpatialStructure rel : relList) {
 				for (IfcProduct relatedObject : rel.getRelatedElements()) {
-					if (!visitedIds.contains(relatedObject.getGlobalId().getWrappedValue())){
-						visitedIds.add(relatedObject.getGlobalId().getWrappedValue());
+					if (!visitedIds.contains(relatedObject.getGlobalId())){
+						visitedIds.add(relatedObject.getGlobalId());
 						writeIfcTreeProduct(jsonWriter, relatedObject);
 					}
 				}
@@ -715,7 +715,7 @@ jsonWriter						.endArray()
 		for (IdEObject object : objects.values()) {
 			if (object instanceof IfcObject) {
 				IfcObject ifcObject = (IfcObject) object;
-				jsonWriter.name(ifcObject.getGlobalId().getWrappedValue());
+				jsonWriter.name(ifcObject.getGlobalId());
 				jsonWriter.beginObject();
 
 				writeIfcPropertiesObject(jsonWriter, ifcObject);
@@ -1091,7 +1091,7 @@ jsonWriter						.endArray()
 	private void writeIfcPropertiesRoot(JsonWriter jsonWriter, IfcRoot object) throws IOException {
 		/* NOT NEEDED:
 		if (object.getGlobalId() != null) {			
-			jsonObj.put("Global Id", object.getGlobalId().getWrappedValue());
+			jsonObj.put("Global Id", object.getGlobalId());
 		}//*/
 		if (object.getOwnerHistory() != null) {
 			IfcOwnerHistory history = object.getOwnerHistory();
@@ -1203,7 +1203,7 @@ jsonWriter						.endArray()
 	private void writeLink(JsonWriter jsonWriter, IfcRoot root) throws IOException {
 		// TODO: Might return a JSONObject later (with link name & global id)
 		jsonWriter.beginObject();
-		jsonWriter.name("link").value(root.getGlobalId().getWrappedValue());
+		jsonWriter.name("link").value(root.getGlobalId());
 		jsonWriter.endObject();
 	}
 

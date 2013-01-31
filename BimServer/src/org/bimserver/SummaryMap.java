@@ -82,7 +82,7 @@ public class SummaryMap {
 				subMap = revisionSummaryContainerEntities;
 			} else if (Ifc2x3tc1Package.eINSTANCE.getIfcRelationship().isSuperTypeOf(eClass)) {
 				subMap = revisionSummaryContainerRelations;
-			} else if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eClass)) {
+			} else if (eClass.getEAnnotation("wrapped") != null) {
 				subMap = revisionSummaryContainerPrimitives;
 			} else {
 				subMap = revisionSummaryContainerOther;

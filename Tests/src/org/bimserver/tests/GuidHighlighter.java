@@ -27,7 +27,6 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
-import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationLayerAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleSelect;
@@ -93,15 +92,15 @@ public class GuidHighlighter {
 		for (IdEObject idEObject : model.getValues()) {
 			if (idEObject instanceof IfcProduct) {
 				IfcProduct product = (IfcProduct)idEObject;
-				IfcGloballyUniqueId globalId = product.getGlobalId();
+				String guid = product.getGlobalId();
 				boolean hide = true;
-				if (globalId != null) {
-					if (highlightedGuids.contains(globalId.getWrappedValue())) {
+				if (guid != null) {
+					if (highlightedGuids.contains(guid)) {
 						hide = false;
 					}
 				}
 				if (hide) {
-					System.out.println("Hiding " + globalId.getWrappedValue());
+					System.out.println("Hiding " + guid);
 					IfcProductRepresentation representation = product.getRepresentation();
 					if (representation != null) {
 						for (IfcRepresentation ifcRepresentation : representation.getRepresentations()) {
@@ -132,7 +131,7 @@ public class GuidHighlighter {
 						}
 					}
 				} else {
-					System.out.println("Not hiding " + globalId.getWrappedValue());
+					System.out.println("Not hiding " + guid);
 					IfcProductRepresentation representation = product.getRepresentation();
 					if (representation != null) {
 						for (IfcRepresentation ifcRepresentation : representation.getRepresentations()) {

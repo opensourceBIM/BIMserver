@@ -81,7 +81,7 @@ public class AbstractObjectIDM implements ObjectIDM {
 	}
 	
 	protected boolean isInverse(EStructuralFeature eStructuralFeature) throws ObjectIDMException {
-		if (eStructuralFeature instanceof EReference && !(Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eStructuralFeature.getEContainingClass()))) {
+		if (eStructuralFeature instanceof EReference && eStructuralFeature.getEContainingClass().getEAnnotation("wrapped") == null) {
 			if (eStructuralFeature.getEAnnotation("hidden") == null && eStructuralFeature.getEContainingClass().getEAnnotation("hidden") == null) {
 				EntityDefinition entityBN = schema.getEntityBN(eStructuralFeature.getEContainingClass().getName());
 				if (entityBN == null) {

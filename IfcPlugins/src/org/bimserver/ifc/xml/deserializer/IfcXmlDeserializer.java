@@ -276,7 +276,7 @@ public class IfcXmlDeserializer extends EmfDeserializer {
 							}
 							if (realType instanceof EClass) {
 								EClass eClass = (EClass) realType;
-								if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eClass)) {
+								if (eClass.getEAnnotation("wrapped") != null) {
 									IdEObject wrappedObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(eClass);
 									// model.add(wrappedObject);
 									EStructuralFeature wrappedValueFeature = eClass.getEStructuralFeature("wrappedValue");

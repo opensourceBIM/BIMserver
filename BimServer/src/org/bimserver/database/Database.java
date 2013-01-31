@@ -167,7 +167,7 @@ public class Database implements BimDatabase {
 				initCounters(databaseSession);
 			}
 			for (EClass eClass : classifiers.keyBSet()) {
-				if (eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE && eClass != Ifc2x3tc1Package.eINSTANCE.getWrappedValue()) {
+				if (eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE) {
 					realClasses.add(eClass.getName());
 				}
 			}

@@ -20,6 +20,7 @@ package org.bimserver.ifc.compare;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.models.store.CompareContainer;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.CompareType;
@@ -30,6 +31,7 @@ import org.bimserver.plugins.modelcompare.ModelCompareException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class GuidBasedModelCompare extends AbstractModelCompare{
 
@@ -43,6 +45,14 @@ public class GuidBasedModelCompare extends AbstractModelCompare{
 			for (EClassifier eClassifier : Ifc2x3tc1Package.eINSTANCE.getEClassifiers()) {
 				if (eClassifier instanceof EClass && Ifc2x3tc1Package.eINSTANCE.getIfcRoot().isSuperTypeOf((EClass) eClassifier)) {
 					EClass eClass = (EClass) eClassifier;
+					for (IdEObject i : model1.getValues()) {
+						if (i instanceof IfcWindow) {
+							IfcWindow window = (IfcWindow)i;
+							for (EStructuralFeature feature : window.eClass().getEStructuralFeatures()) {
+								window.eGet(feature);
+							}
+						}
+					}
 					for (String guid : model1.getGuids(eClass)) {
 						IdEObject eObject1 = model1.getByGuid(guid);
 						IdEObject eObject2 = model2.getByGuid(guid);

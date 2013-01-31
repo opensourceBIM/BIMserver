@@ -243,9 +243,9 @@ public class CityGmlSerializer extends AbstractGeometrySerializer {
 	}
 
 	private void setGlobalId(AbstractCityObject cityObject, IfcRoot ifcRoot) {
-		if (ifcRoot != null && ifcRoot.getGlobalId() != null && ifcRoot.getGlobalId().getWrappedValue() != null) {
+		if (ifcRoot != null && ifcRoot.getGlobalId() != null && ifcRoot.getGlobalId() != null) {
 			GlobalIdType globalId = new GlobalIdType();
-			globalId.setValue(ifcRoot.getGlobalId().getWrappedValue());
+			globalId.setValue(ifcRoot.getGlobalId());
 			for (Element element : globalId.get_ADEComponent()) {
 				ADEComponent adeComponent = new ADEComponent(element);
 				cityObject.addGenericApplicationPropertyOfCityObject(adeComponent);

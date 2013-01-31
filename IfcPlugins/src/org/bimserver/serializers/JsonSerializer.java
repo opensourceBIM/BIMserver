@@ -9,7 +9,6 @@ import org.bimserver.emf.Delegate;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.ifc.IfcSerializer;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
@@ -70,7 +69,7 @@ public class JsonSerializer extends IfcSerializer {
 											List<?> list = (List<?>) value;
 											boolean isWrapped = false;
 											for (Object o : list) {
-												if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(((IdEObject)o).eClass())) {
+												if (((IdEObject)o).eClass().getEAnnotation("wrapped") != null) {
 													// A little tricky, can we assume if one object in this list is embedded, they all are?
 													isWrapped = true;
 													break;
@@ -101,7 +100,7 @@ public class JsonSerializer extends IfcSerializer {
 											if (ref instanceof IfcGloballyUniqueId) {
 												out.write("\"" + eStructuralFeature.getName() + "\":");
 												writePrimitive(out, eStructuralFeature, ((IfcGloballyUniqueId)ref).getWrappedValue());
-											} else if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(((IdEObject)ref).eClass())) {
+											} else if (((IdEObject)ref).eClass().getEAnnotation("wrapped") != null) {
 												out.write("\"__emb" + eStructuralFeature.getName() + "\":");
 												writeObject(out, ref);
 											} else {
@@ -157,7 +156,7 @@ public class JsonSerializer extends IfcSerializer {
 	}
 
 	private void writeObject(UTF8PrintWriter out, IdEObject object) {
-		if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(object.eClass())) {
+		if (object.eClass().getEAnnotation("wrapped") != null) {
 			EStructuralFeature wrappedFeature = object.eClass().getEStructuralFeature("wrappedValue");
 			out.write("{");
 			out.write("\"__type\":\"" + object.eClass().getName() + "\",");

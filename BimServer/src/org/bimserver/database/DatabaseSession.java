@@ -51,7 +51,6 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.Tristate;
-import org.bimserver.models.ifc2x3tc1.WrappedValue;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DatabaseInformation;
@@ -212,7 +211,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		if (!query.isDeep()) {
 			object.setLoading();
 		}
-		if (!(object instanceof WrappedValue) && !(object instanceof IfcGloballyUniqueId)) {
+		if (object.eClass().getEAnnotation("wrapped") == null) {
 			try {
 				model.addAllowMultiModel(oid, object);
 			} catch (IfcModelInterfaceException e) {
@@ -395,8 +394,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 								buffer.putShort((short) -1);
 							} else {
 								IdEObject listObject = (IdEObject) o;
-								boolean wrappedValue = Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(listObject.eClass());
-								if (wrappedValue) {
+								if (listObject.eClass().getEAnnotation("wrapped") != null) {
 									writeWrappedValue(object.getPid(), object.getRid(), listObject, buffer);
 								} else {
 									writeReference(object, listObject, buffer, feature);
@@ -431,8 +429,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 						} else {
 							IdEObject referencedObject = (IdEObject) value;
 							EClass referencedClass = referencedObject.eClass();
-							boolean wrappedValue = Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(referencedClass);
-							if (wrappedValue) {
+							if (referencedClass.getEAnnotation("wrapped") != null) {
 								writeWrappedValue(object.getPid(), object.getRid(), value, buffer);
 							} else {
 								writeReference(object, value, buffer, feature);
@@ -869,7 +866,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				IdEObject cachedObject = objectCache.get(recordIdentifier);
 				if (cachedObject != null) {
 					cachedObject.load();
-					if (!model.contains(keyOid) && !(cachedObject instanceof WrappedValue) && !(cachedObject instanceof IfcGloballyUniqueId)) {
+					if (!model.contains(keyOid) && cachedObject.eClass().getEAnnotation("wrapped") == null) {
 						try {
 							model.addAllowMultiModel(keyOid, cachedObject);
 						} catch (IfcModelInterfaceException e) {
@@ -1114,10 +1111,9 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	private int getWrappedValueSize(Object val) {
 		if (val instanceof EObject) {
 			EObject eObject = (EObject) val;
-			boolean isWrappedValue = Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(eObject.eClass());
 			int refSize = 10;
-			if (isWrappedValue) {
-				WrappedValue wrappedValue = (WrappedValue) val;
+			if (eObject.eClass().getEAnnotation("wrapped") != null) {
+				IdEObject wrappedValue = (IdEObject) val;
 				EStructuralFeature wrappedValueFeature = wrappedValue.eClass().getEStructuralFeature("wrappedValue");
 				Object wrappedVal = eObject.eGet(wrappedValueFeature);
 				refSize = 2 + getPrimitiveSize((EDataType) wrappedValueFeature.getEType(), wrappedVal);
@@ -1244,7 +1240,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	private void fakeRead(ByteBuffer buffer, EStructuralFeature feature) {
-		boolean wrappedValue = Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) feature.getEType());
+		boolean wrappedValue = feature.getEType().getEAnnotation("wrapped") != null;
 		if (feature.getUpperBound() > 1 || feature.getUpperBound() == -1) {
 			if (feature.getEType() instanceof EEnum) {
 			} else if (feature.getEType() instanceof EClass) {
@@ -1334,10 +1330,13 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		}
 		newObject.setRid(query.getRid());
 		objectCache.put(recordIdentifier, newObject);
-		if (query.isDeep() && feature.getEAnnotation("hidden") == null) {
+		if (query.isDeep() && feature.getEAnnotation("hidden") == null && object.eClass().getEAnnotation("wrapped") == null) {
+			if (newObject.eClass().getName().equals("IfcNormalisedRatioMeasure")) {
+				System.out.println();
+			}
 			todoList.add(newObject);
 		} else {
-			if (!(object instanceof WrappedValue) && !(object instanceof IfcGloballyUniqueId)) {
+			if (object.eClass().getEAnnotation("wrapped") == null) {
 				try {
 					model.addAllowMultiModel(oid, newObject);
 				} catch (IfcModelInterfaceException e) {
@@ -1403,7 +1402,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		checkOpen();
 		if (!objectsToCommit.containsObject(object)) {
 			objectCache.put(new RecordIdentifier(pid, object.getOid(), rid), object);
-			boolean wrappedValue = Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf(object.eClass());
+			boolean wrappedValue = object.eClass().getEAnnotation("wrapped") != null;
 			if (!wrappedValue) {
 				if (object.getOid() == -1) {
 					long newOid = newOid(object.eClass());
@@ -1504,7 +1503,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	private void writeWrappedValue(int pid, int rid, Object value, ByteBuffer buffer) throws BimserverDatabaseException {
-		WrappedValue wrappedValue = (WrappedValue) value;
+		IdEObject wrappedValue = (IdEObject)value;
 		EStructuralFeature eStructuralFeature = wrappedValue.eClass().getEStructuralFeature("wrappedValue");
 		Short cid = database.getCidOfEClass(wrappedValue.eClass());
 		buffer.putShort((short) -cid);

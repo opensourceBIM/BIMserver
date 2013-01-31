@@ -39,9 +39,7 @@ import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.ModelMetaData;
 import org.bimserver.emf.OidProvider;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
-import org.bimserver.models.ifc2x3tc1.WrappedValue;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.eclipse.emf.common.util.ECollections;
@@ -150,7 +148,7 @@ public class IfcModel implements IfcModelInterface {
 			IdEObject value = objects.get((Long) key);
 			if (value instanceof IfcRoot) {
 				IfcRoot ifcRoot = (IfcRoot) value;
-				guidIndex.get(value.eClass()).put(ifcRoot.getGlobalId().getWrappedValue(), value);
+				guidIndex.get(value.eClass()).put(ifcRoot.getGlobalId(), value);
 			}
 		}
 	}
@@ -180,7 +178,7 @@ public class IfcModel implements IfcModelInterface {
 			if (objectIDM.shouldFollowReference(ifcRoot.eClass(), ifcRoot.eClass(), eStructuralFeature)) {
 				if (eStructuralFeature.getUpperBound() == -1 || eStructuralFeature.getUpperBound() > 1) {
 					if (eStructuralFeature.getEType() instanceof EClass) {
-						if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) eStructuralFeature.getEType())) {
+						if (eStructuralFeature.getEType().getEAnnotation("wrapped") != null) {
 							EList<EObject> list = (EList<EObject>) ifcRoot.eGet(eStructuralFeature);
 							sortPrimitiveList(list);
 						} else {
@@ -214,7 +212,7 @@ public class IfcModel implements IfcModelInterface {
 						Object val2 = o2.eGet(eStructuralFeature);
 						if (val1 != null && val2 != null) {
 							if (eStructuralFeature.getEType() instanceof EClass) {
-								if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) eStructuralFeature.getEType())) {
+								if (eStructuralFeature.getEType().getEAnnotation("wrapped") != null) {
 									int compare = comparePrimitives((EObject) val1, (EObject) val2);
 									if (compare != 0) {
 										return compare * i;
@@ -392,7 +390,7 @@ public class IfcModel implements IfcModelInterface {
 		if (idEObject instanceof IfcRoot) {
 			IfcRoot ifcRoot = (IfcRoot) idEObject;
 			if (ifcRoot.getGlobalId() != null) {
-				guidIndexed.put(ifcRoot.getGlobalId().getWrappedValue(), ifcRoot);
+				guidIndexed.put(ifcRoot.getGlobalId(), ifcRoot);
 			}
 		}
 	}
@@ -609,7 +607,7 @@ public class IfcModel implements IfcModelInterface {
 		if (idEObject == null) {
 			return;
 		}
-		if (idEObject instanceof WrappedValue || idEObject instanceof IfcGloballyUniqueId) {
+		if (idEObject.eClass().getEAnnotation("wrapped") != null) {
 			return;
 		}
 		if (done.containsKey(idEObject)) {

@@ -48,6 +48,12 @@ public abstract class Migration {
 		hidden.setSource("hidden");
 		return hidden;
 	}
+	
+	protected EAnnotation createIndexAnnotation() {
+		EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		eAnnotation.setSource("index");
+		return eAnnotation;
+	}
 
 	public abstract String getDescription();
 }

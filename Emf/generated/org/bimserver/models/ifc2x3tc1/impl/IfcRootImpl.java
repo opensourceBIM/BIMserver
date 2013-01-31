@@ -18,7 +18,6 @@ package org.bimserver.models.ifc2x3tc1.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcOwnerHistory;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.eclipse.emf.ecore.EClass;
@@ -74,8 +73,8 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcGloballyUniqueId getGlobalId() {
-		return (IfcGloballyUniqueId) eGet(Ifc2x3tc1Package.Literals.IFC_ROOT__GLOBAL_ID, true);
+	public String getGlobalId() {
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_ROOT__GLOBAL_ID, true);
 	}
 
 	/**
@@ -83,7 +82,7 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGlobalId(IfcGloballyUniqueId newGlobalId) {
+	public void setGlobalId(String newGlobalId) {
 		eSet(Ifc2x3tc1Package.Literals.IFC_ROOT__GLOBAL_ID, newGlobalId);
 	}
 

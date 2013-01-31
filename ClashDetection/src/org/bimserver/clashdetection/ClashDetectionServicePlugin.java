@@ -128,8 +128,8 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						float y = geometry.getVertex(geometry.getIndex(vp.getStartIndex()));
 						float z = geometry.getVertex(geometry.getIndex(vp.getStartIndex()));
 						
-						String guid1 = ((IfcRoot)model.get(clash.getEid1())).getGlobalId().getWrappedValue();
-						String guid2 = ((IfcRoot)model.get(clash.getEid2())).getGlobalId().getWrappedValue();
+						String guid1 = ((IfcRoot)model.get(clash.getEid1())).getGlobalId();
+						String guid2 = ((IfcRoot)model.get(clash.getEid2())).getGlobalId();
 						
 						UUID topicUuid = UUID.randomUUID();
 						Issue issue = new Issue(topicUuid);
@@ -137,7 +137,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						Markup markup = new Markup();
 						Header header = new Header();
 						File file = new File();
-						file.setIfcProject(mainIfcProject.getGlobalId().getWrappedValue());
+						file.setIfcProject(mainIfcProject.getGlobalId());
 						file.setDate(DatatypeFactory.newInstance().newXMLGregorianCalendar(new GregorianCalendar()));				
 						file.setFilename("C:\\Users\\Ruben de Laat\\Workspace\\BIMserver\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc");
 						

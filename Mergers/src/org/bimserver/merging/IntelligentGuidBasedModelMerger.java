@@ -10,7 +10,7 @@ public class IntelligentGuidBasedModelMerger extends AbstractIntelligentModelMer
 		if (idEObject instanceof IfcRoot) {
 			IfcRoot ifcRoot = (IfcRoot) idEObject;
 			if (ifcRoot.getGlobalId() != null) {
-				return ifcRoot.getGlobalId().getWrappedValue();
+				return ifcRoot.getGlobalId();
 			}
 		}
 		return null;

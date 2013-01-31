@@ -67,202 +67,6 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case Ifc2x3tc1Package.IFC_ABSORBED_DOSE_MEASURE:
-			return (EObject) createIfcAbsorbedDoseMeasure();
-		case Ifc2x3tc1Package.IFC_ACCELERATION_MEASURE:
-			return (EObject) createIfcAccelerationMeasure();
-		case Ifc2x3tc1Package.IFC_AMOUNT_OF_SUBSTANCE_MEASURE:
-			return (EObject) createIfcAmountOfSubstanceMeasure();
-		case Ifc2x3tc1Package.IFC_ANGULAR_VELOCITY_MEASURE:
-			return (EObject) createIfcAngularVelocityMeasure();
-		case Ifc2x3tc1Package.IFC_AREA_MEASURE:
-			return (EObject) createIfcAreaMeasure();
-		case Ifc2x3tc1Package.IFC_BOOLEAN:
-			return (EObject) createIfcBoolean();
-		case Ifc2x3tc1Package.IFC_CONTEXT_DEPENDENT_MEASURE:
-			return (EObject) createIfcContextDependentMeasure();
-		case Ifc2x3tc1Package.IFC_COUNT_MEASURE:
-			return (EObject) createIfcCountMeasure();
-		case Ifc2x3tc1Package.IFC_CURVATURE_MEASURE:
-			return (EObject) createIfcCurvatureMeasure();
-		case Ifc2x3tc1Package.IFC_DESCRIPTIVE_MEASURE:
-			return (EObject) createIfcDescriptiveMeasure();
-		case Ifc2x3tc1Package.IFC_DOSE_EQUIVALENT_MEASURE:
-			return (EObject) createIfcDoseEquivalentMeasure();
-		case Ifc2x3tc1Package.IFC_DYNAMIC_VISCOSITY_MEASURE:
-			return (EObject) createIfcDynamicViscosityMeasure();
-		case Ifc2x3tc1Package.IFC_ELECTRIC_CAPACITANCE_MEASURE:
-			return (EObject) createIfcElectricCapacitanceMeasure();
-		case Ifc2x3tc1Package.IFC_ELECTRIC_CHARGE_MEASURE:
-			return (EObject) createIfcElectricChargeMeasure();
-		case Ifc2x3tc1Package.IFC_ELECTRIC_CONDUCTANCE_MEASURE:
-			return (EObject) createIfcElectricConductanceMeasure();
-		case Ifc2x3tc1Package.IFC_ELECTRIC_CURRENT_MEASURE:
-			return (EObject) createIfcElectricCurrentMeasure();
-		case Ifc2x3tc1Package.IFC_ELECTRIC_RESISTANCE_MEASURE:
-			return (EObject) createIfcElectricResistanceMeasure();
-		case Ifc2x3tc1Package.IFC_ELECTRIC_VOLTAGE_MEASURE:
-			return (EObject) createIfcElectricVoltageMeasure();
-		case Ifc2x3tc1Package.IFC_ENERGY_MEASURE:
-			return (EObject) createIfcEnergyMeasure();
-		case Ifc2x3tc1Package.IFC_FORCE_MEASURE:
-			return (EObject) createIfcForceMeasure();
-		case Ifc2x3tc1Package.IFC_FREQUENCY_MEASURE:
-			return (EObject) createIfcFrequencyMeasure();
-		case Ifc2x3tc1Package.IFC_GLOBALLY_UNIQUE_ID:
-			return (EObject) createIfcGloballyUniqueId();
-		case Ifc2x3tc1Package.IFC_HEAT_FLUX_DENSITY_MEASURE:
-			return (EObject) createIfcHeatFluxDensityMeasure();
-		case Ifc2x3tc1Package.IFC_HEATING_VALUE_MEASURE:
-			return (EObject) createIfcHeatingValueMeasure();
-		case Ifc2x3tc1Package.IFC_IDENTIFIER:
-			return (EObject) createIfcIdentifier();
-		case Ifc2x3tc1Package.IFC_ILLUMINANCE_MEASURE:
-			return (EObject) createIfcIlluminanceMeasure();
-		case Ifc2x3tc1Package.IFC_INDUCTANCE_MEASURE:
-			return (EObject) createIfcInductanceMeasure();
-		case Ifc2x3tc1Package.IFC_INTEGER:
-			return (EObject) createIfcInteger();
-		case Ifc2x3tc1Package.IFC_INTEGER_COUNT_RATE_MEASURE:
-			return (EObject) createIfcIntegerCountRateMeasure();
-		case Ifc2x3tc1Package.IFC_ION_CONCENTRATION_MEASURE:
-			return (EObject) createIfcIonConcentrationMeasure();
-		case Ifc2x3tc1Package.IFC_ISOTHERMAL_MOISTURE_CAPACITY_MEASURE:
-			return (EObject) createIfcIsothermalMoistureCapacityMeasure();
-		case Ifc2x3tc1Package.IFC_KINEMATIC_VISCOSITY_MEASURE:
-			return (EObject) createIfcKinematicViscosityMeasure();
-		case Ifc2x3tc1Package.IFC_LABEL:
-			return (EObject) createIfcLabel();
-		case Ifc2x3tc1Package.IFC_LENGTH_MEASURE:
-			return (EObject) createIfcLengthMeasure();
-		case Ifc2x3tc1Package.IFC_LINEAR_FORCE_MEASURE:
-			return (EObject) createIfcLinearForceMeasure();
-		case Ifc2x3tc1Package.IFC_LINEAR_MOMENT_MEASURE:
-			return (EObject) createIfcLinearMomentMeasure();
-		case Ifc2x3tc1Package.IFC_LINEAR_STIFFNESS_MEASURE:
-			return (EObject) createIfcLinearStiffnessMeasure();
-		case Ifc2x3tc1Package.IFC_LINEAR_VELOCITY_MEASURE:
-			return (EObject) createIfcLinearVelocityMeasure();
-		case Ifc2x3tc1Package.IFC_LOGICAL:
-			return (EObject) createIfcLogical();
-		case Ifc2x3tc1Package.IFC_LUMINOUS_FLUX_MEASURE:
-			return (EObject) createIfcLuminousFluxMeasure();
-		case Ifc2x3tc1Package.IFC_LUMINOUS_INTENSITY_DISTRIBUTION_MEASURE:
-			return (EObject) createIfcLuminousIntensityDistributionMeasure();
-		case Ifc2x3tc1Package.IFC_LUMINOUS_INTENSITY_MEASURE:
-			return (EObject) createIfcLuminousIntensityMeasure();
-		case Ifc2x3tc1Package.IFC_MAGNETIC_FLUX_DENSITY_MEASURE:
-			return (EObject) createIfcMagneticFluxDensityMeasure();
-		case Ifc2x3tc1Package.IFC_MAGNETIC_FLUX_MEASURE:
-			return (EObject) createIfcMagneticFluxMeasure();
-		case Ifc2x3tc1Package.IFC_MASS_DENSITY_MEASURE:
-			return (EObject) createIfcMassDensityMeasure();
-		case Ifc2x3tc1Package.IFC_MASS_FLOW_RATE_MEASURE:
-			return (EObject) createIfcMassFlowRateMeasure();
-		case Ifc2x3tc1Package.IFC_MASS_MEASURE:
-			return (EObject) createIfcMassMeasure();
-		case Ifc2x3tc1Package.IFC_MASS_PER_LENGTH_MEASURE:
-			return (EObject) createIfcMassPerLengthMeasure();
-		case Ifc2x3tc1Package.IFC_MODULUS_OF_ELASTICITY_MEASURE:
-			return (EObject) createIfcModulusOfElasticityMeasure();
-		case Ifc2x3tc1Package.IFC_MODULUS_OF_LINEAR_SUBGRADE_REACTION_MEASURE:
-			return (EObject) createIfcModulusOfLinearSubgradeReactionMeasure();
-		case Ifc2x3tc1Package.IFC_MODULUS_OF_ROTATIONAL_SUBGRADE_REACTION_MEASURE:
-			return (EObject) createIfcModulusOfRotationalSubgradeReactionMeasure();
-		case Ifc2x3tc1Package.IFC_MODULUS_OF_SUBGRADE_REACTION_MEASURE:
-			return (EObject) createIfcModulusOfSubgradeReactionMeasure();
-		case Ifc2x3tc1Package.IFC_MOISTURE_DIFFUSIVITY_MEASURE:
-			return (EObject) createIfcMoistureDiffusivityMeasure();
-		case Ifc2x3tc1Package.IFC_MOLECULAR_WEIGHT_MEASURE:
-			return (EObject) createIfcMolecularWeightMeasure();
-		case Ifc2x3tc1Package.IFC_MOMENT_OF_INERTIA_MEASURE:
-			return (EObject) createIfcMomentOfInertiaMeasure();
-		case Ifc2x3tc1Package.IFC_MONETARY_MEASURE:
-			return (EObject) createIfcMonetaryMeasure();
-		case Ifc2x3tc1Package.IFC_NUMERIC_MEASURE:
-			return (EObject) createIfcNumericMeasure();
-		case Ifc2x3tc1Package.IFC_PH_MEASURE:
-			return (EObject) createIfcPHMeasure();
-		case Ifc2x3tc1Package.IFC_PARAMETER_VALUE:
-			return (EObject) createIfcParameterValue();
-		case Ifc2x3tc1Package.IFC_PLANAR_FORCE_MEASURE:
-			return (EObject) createIfcPlanarForceMeasure();
-		case Ifc2x3tc1Package.IFC_PLANE_ANGLE_MEASURE:
-			return (EObject) createIfcPlaneAngleMeasure();
-		case Ifc2x3tc1Package.IFC_POWER_MEASURE:
-			return (EObject) createIfcPowerMeasure();
-		case Ifc2x3tc1Package.IFC_PRESSURE_MEASURE:
-			return (EObject) createIfcPressureMeasure();
-		case Ifc2x3tc1Package.IFC_RADIO_ACTIVITY_MEASURE:
-			return (EObject) createIfcRadioActivityMeasure();
-		case Ifc2x3tc1Package.IFC_RATIO_MEASURE:
-			return (EObject) createIfcRatioMeasure();
-		case Ifc2x3tc1Package.IFC_REAL:
-			return (EObject) createIfcReal();
-		case Ifc2x3tc1Package.IFC_ROTATIONAL_FREQUENCY_MEASURE:
-			return (EObject) createIfcRotationalFrequencyMeasure();
-		case Ifc2x3tc1Package.IFC_ROTATIONAL_MASS_MEASURE:
-			return (EObject) createIfcRotationalMassMeasure();
-		case Ifc2x3tc1Package.IFC_ROTATIONAL_STIFFNESS_MEASURE:
-			return (EObject) createIfcRotationalStiffnessMeasure();
-		case Ifc2x3tc1Package.IFC_SECTION_MODULUS_MEASURE:
-			return (EObject) createIfcSectionModulusMeasure();
-		case Ifc2x3tc1Package.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE:
-			return (EObject) createIfcSectionalAreaIntegralMeasure();
-		case Ifc2x3tc1Package.IFC_SHEAR_MODULUS_MEASURE:
-			return (EObject) createIfcShearModulusMeasure();
-		case Ifc2x3tc1Package.IFC_SOLID_ANGLE_MEASURE:
-			return (EObject) createIfcSolidAngleMeasure();
-		case Ifc2x3tc1Package.IFC_SOUND_POWER_MEASURE:
-			return (EObject) createIfcSoundPowerMeasure();
-		case Ifc2x3tc1Package.IFC_SOUND_PRESSURE_MEASURE:
-			return (EObject) createIfcSoundPressureMeasure();
-		case Ifc2x3tc1Package.IFC_SPECIFIC_HEAT_CAPACITY_MEASURE:
-			return (EObject) createIfcSpecificHeatCapacityMeasure();
-		case Ifc2x3tc1Package.IFC_SPECULAR_EXPONENT:
-			return (EObject) createIfcSpecularExponent();
-		case Ifc2x3tc1Package.IFC_SPECULAR_ROUGHNESS:
-			return (EObject) createIfcSpecularRoughness();
-		case Ifc2x3tc1Package.IFC_TEMPERATURE_GRADIENT_MEASURE:
-			return (EObject) createIfcTemperatureGradientMeasure();
-		case Ifc2x3tc1Package.IFC_TEXT:
-			return (EObject) createIfcText();
-		case Ifc2x3tc1Package.IFC_THERMAL_ADMITTANCE_MEASURE:
-			return (EObject) createIfcThermalAdmittanceMeasure();
-		case Ifc2x3tc1Package.IFC_THERMAL_CONDUCTIVITY_MEASURE:
-			return (EObject) createIfcThermalConductivityMeasure();
-		case Ifc2x3tc1Package.IFC_THERMAL_EXPANSION_COEFFICIENT_MEASURE:
-			return (EObject) createIfcThermalExpansionCoefficientMeasure();
-		case Ifc2x3tc1Package.IFC_THERMAL_RESISTANCE_MEASURE:
-			return (EObject) createIfcThermalResistanceMeasure();
-		case Ifc2x3tc1Package.IFC_THERMAL_TRANSMITTANCE_MEASURE:
-			return (EObject) createIfcThermalTransmittanceMeasure();
-		case Ifc2x3tc1Package.IFC_THERMODYNAMIC_TEMPERATURE_MEASURE:
-			return (EObject) createIfcThermodynamicTemperatureMeasure();
-		case Ifc2x3tc1Package.IFC_TIME_MEASURE:
-			return (EObject) createIfcTimeMeasure();
-		case Ifc2x3tc1Package.IFC_TIME_STAMP:
-			return (EObject) createIfcTimeStamp();
-		case Ifc2x3tc1Package.IFC_TORQUE_MEASURE:
-			return (EObject) createIfcTorqueMeasure();
-		case Ifc2x3tc1Package.IFC_VAPOR_PERMEABILITY_MEASURE:
-			return (EObject) createIfcVaporPermeabilityMeasure();
-		case Ifc2x3tc1Package.IFC_VOLUME_MEASURE:
-			return (EObject) createIfcVolumeMeasure();
-		case Ifc2x3tc1Package.IFC_VOLUMETRIC_FLOW_RATE_MEASURE:
-			return (EObject) createIfcVolumetricFlowRateMeasure();
-		case Ifc2x3tc1Package.IFC_WARPING_CONSTANT_MEASURE:
-			return (EObject) createIfcWarpingConstantMeasure();
-		case Ifc2x3tc1Package.IFC_WARPING_MOMENT_MEASURE:
-			return (EObject) createIfcWarpingMomentMeasure();
-		case Ifc2x3tc1Package.IFC_NORMALISED_RATIO_MEASURE:
-			return (EObject) createIfcNormalisedRatioMeasure();
-		case Ifc2x3tc1Package.IFC_POSITIVE_LENGTH_MEASURE:
-			return (EObject) createIfcPositiveLengthMeasure();
-		case Ifc2x3tc1Package.IFC_POSITIVE_PLANE_ANGLE_MEASURE:
-			return (EObject) createIfcPositivePlaneAngleMeasure();
-		case Ifc2x3tc1Package.IFC_POSITIVE_RATIO_MEASURE:
-			return (EObject) createIfcPositiveRatioMeasure();
 		case Ifc2x3tc1Package.IFC2_DCOMPOSITE_CURVE:
 			return (EObject) createIfc2DCompositeCurve();
 		case Ifc2x3tc1Package.IFC_ACTION_REQUEST:
@@ -1569,10 +1373,240 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 			return (EObject) createIfcZShapeProfileDef();
 		case Ifc2x3tc1Package.IFC_ZONE:
 			return (EObject) createIfcZone();
-		case Ifc2x3tc1Package.IFC_COMPLEX_NUMBER:
-			return (EObject) createIfcComplexNumber();
+		case Ifc2x3tc1Package.IFC_ABSORBED_DOSE_MEASURE:
+			return (EObject) createIfcAbsorbedDoseMeasure();
+		case Ifc2x3tc1Package.IFC_ACCELERATION_MEASURE:
+			return (EObject) createIfcAccelerationMeasure();
+		case Ifc2x3tc1Package.IFC_AMOUNT_OF_SUBSTANCE_MEASURE:
+			return (EObject) createIfcAmountOfSubstanceMeasure();
+		case Ifc2x3tc1Package.IFC_ANGULAR_VELOCITY_MEASURE:
+			return (EObject) createIfcAngularVelocityMeasure();
+		case Ifc2x3tc1Package.IFC_AREA_MEASURE:
+			return (EObject) createIfcAreaMeasure();
+		case Ifc2x3tc1Package.IFC_BOOLEAN:
+			return (EObject) createIfcBoolean();
+		case Ifc2x3tc1Package.IFC_CONTEXT_DEPENDENT_MEASURE:
+			return (EObject) createIfcContextDependentMeasure();
+		case Ifc2x3tc1Package.IFC_COUNT_MEASURE:
+			return (EObject) createIfcCountMeasure();
+		case Ifc2x3tc1Package.IFC_CURVATURE_MEASURE:
+			return (EObject) createIfcCurvatureMeasure();
+		case Ifc2x3tc1Package.IFC_DAY_IN_MONTH_NUMBER:
+			return (EObject) createIfcDayInMonthNumber();
+		case Ifc2x3tc1Package.IFC_DAYLIGHT_SAVING_HOUR:
+			return (EObject) createIfcDaylightSavingHour();
+		case Ifc2x3tc1Package.IFC_DESCRIPTIVE_MEASURE:
+			return (EObject) createIfcDescriptiveMeasure();
+		case Ifc2x3tc1Package.IFC_DIMENSION_COUNT:
+			return (EObject) createIfcDimensionCount();
+		case Ifc2x3tc1Package.IFC_DOSE_EQUIVALENT_MEASURE:
+			return (EObject) createIfcDoseEquivalentMeasure();
+		case Ifc2x3tc1Package.IFC_DYNAMIC_VISCOSITY_MEASURE:
+			return (EObject) createIfcDynamicViscosityMeasure();
+		case Ifc2x3tc1Package.IFC_ELECTRIC_CAPACITANCE_MEASURE:
+			return (EObject) createIfcElectricCapacitanceMeasure();
+		case Ifc2x3tc1Package.IFC_ELECTRIC_CHARGE_MEASURE:
+			return (EObject) createIfcElectricChargeMeasure();
+		case Ifc2x3tc1Package.IFC_ELECTRIC_CONDUCTANCE_MEASURE:
+			return (EObject) createIfcElectricConductanceMeasure();
+		case Ifc2x3tc1Package.IFC_ELECTRIC_CURRENT_MEASURE:
+			return (EObject) createIfcElectricCurrentMeasure();
+		case Ifc2x3tc1Package.IFC_ELECTRIC_RESISTANCE_MEASURE:
+			return (EObject) createIfcElectricResistanceMeasure();
+		case Ifc2x3tc1Package.IFC_ELECTRIC_VOLTAGE_MEASURE:
+			return (EObject) createIfcElectricVoltageMeasure();
+		case Ifc2x3tc1Package.IFC_ENERGY_MEASURE:
+			return (EObject) createIfcEnergyMeasure();
+		case Ifc2x3tc1Package.IFC_FONT_STYLE:
+			return (EObject) createIfcFontStyle();
+		case Ifc2x3tc1Package.IFC_FONT_VARIANT:
+			return (EObject) createIfcFontVariant();
+		case Ifc2x3tc1Package.IFC_FONT_WEIGHT:
+			return (EObject) createIfcFontWeight();
+		case Ifc2x3tc1Package.IFC_FORCE_MEASURE:
+			return (EObject) createIfcForceMeasure();
+		case Ifc2x3tc1Package.IFC_FREQUENCY_MEASURE:
+			return (EObject) createIfcFrequencyMeasure();
+		case Ifc2x3tc1Package.IFC_GLOBALLY_UNIQUE_ID:
+			return (EObject) createIfcGloballyUniqueId();
+		case Ifc2x3tc1Package.IFC_HEAT_FLUX_DENSITY_MEASURE:
+			return (EObject) createIfcHeatFluxDensityMeasure();
+		case Ifc2x3tc1Package.IFC_HEATING_VALUE_MEASURE:
+			return (EObject) createIfcHeatingValueMeasure();
+		case Ifc2x3tc1Package.IFC_HOUR_IN_DAY:
+			return (EObject) createIfcHourInDay();
+		case Ifc2x3tc1Package.IFC_IDENTIFIER:
+			return (EObject) createIfcIdentifier();
+		case Ifc2x3tc1Package.IFC_ILLUMINANCE_MEASURE:
+			return (EObject) createIfcIlluminanceMeasure();
+		case Ifc2x3tc1Package.IFC_INDUCTANCE_MEASURE:
+			return (EObject) createIfcInductanceMeasure();
+		case Ifc2x3tc1Package.IFC_INTEGER:
+			return (EObject) createIfcInteger();
+		case Ifc2x3tc1Package.IFC_INTEGER_COUNT_RATE_MEASURE:
+			return (EObject) createIfcIntegerCountRateMeasure();
+		case Ifc2x3tc1Package.IFC_ION_CONCENTRATION_MEASURE:
+			return (EObject) createIfcIonConcentrationMeasure();
+		case Ifc2x3tc1Package.IFC_ISOTHERMAL_MOISTURE_CAPACITY_MEASURE:
+			return (EObject) createIfcIsothermalMoistureCapacityMeasure();
+		case Ifc2x3tc1Package.IFC_KINEMATIC_VISCOSITY_MEASURE:
+			return (EObject) createIfcKinematicViscosityMeasure();
+		case Ifc2x3tc1Package.IFC_LABEL:
+			return (EObject) createIfcLabel();
+		case Ifc2x3tc1Package.IFC_LENGTH_MEASURE:
+			return (EObject) createIfcLengthMeasure();
+		case Ifc2x3tc1Package.IFC_LINEAR_FORCE_MEASURE:
+			return (EObject) createIfcLinearForceMeasure();
+		case Ifc2x3tc1Package.IFC_LINEAR_MOMENT_MEASURE:
+			return (EObject) createIfcLinearMomentMeasure();
+		case Ifc2x3tc1Package.IFC_LINEAR_STIFFNESS_MEASURE:
+			return (EObject) createIfcLinearStiffnessMeasure();
+		case Ifc2x3tc1Package.IFC_LINEAR_VELOCITY_MEASURE:
+			return (EObject) createIfcLinearVelocityMeasure();
+		case Ifc2x3tc1Package.IFC_LOGICAL:
+			return (EObject) createIfcLogical();
+		case Ifc2x3tc1Package.IFC_LUMINOUS_FLUX_MEASURE:
+			return (EObject) createIfcLuminousFluxMeasure();
+		case Ifc2x3tc1Package.IFC_LUMINOUS_INTENSITY_DISTRIBUTION_MEASURE:
+			return (EObject) createIfcLuminousIntensityDistributionMeasure();
+		case Ifc2x3tc1Package.IFC_LUMINOUS_INTENSITY_MEASURE:
+			return (EObject) createIfcLuminousIntensityMeasure();
+		case Ifc2x3tc1Package.IFC_MAGNETIC_FLUX_DENSITY_MEASURE:
+			return (EObject) createIfcMagneticFluxDensityMeasure();
+		case Ifc2x3tc1Package.IFC_MAGNETIC_FLUX_MEASURE:
+			return (EObject) createIfcMagneticFluxMeasure();
+		case Ifc2x3tc1Package.IFC_MASS_DENSITY_MEASURE:
+			return (EObject) createIfcMassDensityMeasure();
+		case Ifc2x3tc1Package.IFC_MASS_FLOW_RATE_MEASURE:
+			return (EObject) createIfcMassFlowRateMeasure();
+		case Ifc2x3tc1Package.IFC_MASS_MEASURE:
+			return (EObject) createIfcMassMeasure();
+		case Ifc2x3tc1Package.IFC_MASS_PER_LENGTH_MEASURE:
+			return (EObject) createIfcMassPerLengthMeasure();
+		case Ifc2x3tc1Package.IFC_MINUTE_IN_HOUR:
+			return (EObject) createIfcMinuteInHour();
+		case Ifc2x3tc1Package.IFC_MODULUS_OF_ELASTICITY_MEASURE:
+			return (EObject) createIfcModulusOfElasticityMeasure();
+		case Ifc2x3tc1Package.IFC_MODULUS_OF_LINEAR_SUBGRADE_REACTION_MEASURE:
+			return (EObject) createIfcModulusOfLinearSubgradeReactionMeasure();
+		case Ifc2x3tc1Package.IFC_MODULUS_OF_ROTATIONAL_SUBGRADE_REACTION_MEASURE:
+			return (EObject) createIfcModulusOfRotationalSubgradeReactionMeasure();
+		case Ifc2x3tc1Package.IFC_MODULUS_OF_SUBGRADE_REACTION_MEASURE:
+			return (EObject) createIfcModulusOfSubgradeReactionMeasure();
+		case Ifc2x3tc1Package.IFC_MOISTURE_DIFFUSIVITY_MEASURE:
+			return (EObject) createIfcMoistureDiffusivityMeasure();
+		case Ifc2x3tc1Package.IFC_MOLECULAR_WEIGHT_MEASURE:
+			return (EObject) createIfcMolecularWeightMeasure();
+		case Ifc2x3tc1Package.IFC_MOMENT_OF_INERTIA_MEASURE:
+			return (EObject) createIfcMomentOfInertiaMeasure();
+		case Ifc2x3tc1Package.IFC_MONETARY_MEASURE:
+			return (EObject) createIfcMonetaryMeasure();
+		case Ifc2x3tc1Package.IFC_MONTH_IN_YEAR_NUMBER:
+			return (EObject) createIfcMonthInYearNumber();
+		case Ifc2x3tc1Package.IFC_NUMERIC_MEASURE:
+			return (EObject) createIfcNumericMeasure();
+		case Ifc2x3tc1Package.IFC_PH_MEASURE:
+			return (EObject) createIfcPHMeasure();
+		case Ifc2x3tc1Package.IFC_PARAMETER_VALUE:
+			return (EObject) createIfcParameterValue();
+		case Ifc2x3tc1Package.IFC_PLANAR_FORCE_MEASURE:
+			return (EObject) createIfcPlanarForceMeasure();
+		case Ifc2x3tc1Package.IFC_PLANE_ANGLE_MEASURE:
+			return (EObject) createIfcPlaneAngleMeasure();
+		case Ifc2x3tc1Package.IFC_POWER_MEASURE:
+			return (EObject) createIfcPowerMeasure();
+		case Ifc2x3tc1Package.IFC_PRESENTABLE_TEXT:
+			return (EObject) createIfcPresentableText();
+		case Ifc2x3tc1Package.IFC_PRESSURE_MEASURE:
+			return (EObject) createIfcPressureMeasure();
+		case Ifc2x3tc1Package.IFC_RADIO_ACTIVITY_MEASURE:
+			return (EObject) createIfcRadioActivityMeasure();
+		case Ifc2x3tc1Package.IFC_RATIO_MEASURE:
+			return (EObject) createIfcRatioMeasure();
+		case Ifc2x3tc1Package.IFC_REAL:
+			return (EObject) createIfcReal();
+		case Ifc2x3tc1Package.IFC_ROTATIONAL_FREQUENCY_MEASURE:
+			return (EObject) createIfcRotationalFrequencyMeasure();
+		case Ifc2x3tc1Package.IFC_ROTATIONAL_MASS_MEASURE:
+			return (EObject) createIfcRotationalMassMeasure();
+		case Ifc2x3tc1Package.IFC_ROTATIONAL_STIFFNESS_MEASURE:
+			return (EObject) createIfcRotationalStiffnessMeasure();
+		case Ifc2x3tc1Package.IFC_SECOND_IN_MINUTE:
+			return (EObject) createIfcSecondInMinute();
+		case Ifc2x3tc1Package.IFC_SECTION_MODULUS_MEASURE:
+			return (EObject) createIfcSectionModulusMeasure();
+		case Ifc2x3tc1Package.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE:
+			return (EObject) createIfcSectionalAreaIntegralMeasure();
+		case Ifc2x3tc1Package.IFC_SHEAR_MODULUS_MEASURE:
+			return (EObject) createIfcShearModulusMeasure();
+		case Ifc2x3tc1Package.IFC_SOLID_ANGLE_MEASURE:
+			return (EObject) createIfcSolidAngleMeasure();
+		case Ifc2x3tc1Package.IFC_SOUND_POWER_MEASURE:
+			return (EObject) createIfcSoundPowerMeasure();
+		case Ifc2x3tc1Package.IFC_SOUND_PRESSURE_MEASURE:
+			return (EObject) createIfcSoundPressureMeasure();
+		case Ifc2x3tc1Package.IFC_SPECIFIC_HEAT_CAPACITY_MEASURE:
+			return (EObject) createIfcSpecificHeatCapacityMeasure();
+		case Ifc2x3tc1Package.IFC_SPECULAR_EXPONENT:
+			return (EObject) createIfcSpecularExponent();
+		case Ifc2x3tc1Package.IFC_SPECULAR_ROUGHNESS:
+			return (EObject) createIfcSpecularRoughness();
+		case Ifc2x3tc1Package.IFC_TEMPERATURE_GRADIENT_MEASURE:
+			return (EObject) createIfcTemperatureGradientMeasure();
+		case Ifc2x3tc1Package.IFC_TEXT:
+			return (EObject) createIfcText();
+		case Ifc2x3tc1Package.IFC_TEXT_ALIGNMENT:
+			return (EObject) createIfcTextAlignment();
+		case Ifc2x3tc1Package.IFC_TEXT_DECORATION:
+			return (EObject) createIfcTextDecoration();
+		case Ifc2x3tc1Package.IFC_TEXT_FONT_NAME:
+			return (EObject) createIfcTextFontName();
+		case Ifc2x3tc1Package.IFC_TEXT_TRANSFORMATION:
+			return (EObject) createIfcTextTransformation();
+		case Ifc2x3tc1Package.IFC_THERMAL_ADMITTANCE_MEASURE:
+			return (EObject) createIfcThermalAdmittanceMeasure();
+		case Ifc2x3tc1Package.IFC_THERMAL_CONDUCTIVITY_MEASURE:
+			return (EObject) createIfcThermalConductivityMeasure();
+		case Ifc2x3tc1Package.IFC_THERMAL_EXPANSION_COEFFICIENT_MEASURE:
+			return (EObject) createIfcThermalExpansionCoefficientMeasure();
+		case Ifc2x3tc1Package.IFC_THERMAL_RESISTANCE_MEASURE:
+			return (EObject) createIfcThermalResistanceMeasure();
+		case Ifc2x3tc1Package.IFC_THERMAL_TRANSMITTANCE_MEASURE:
+			return (EObject) createIfcThermalTransmittanceMeasure();
+		case Ifc2x3tc1Package.IFC_THERMODYNAMIC_TEMPERATURE_MEASURE:
+			return (EObject) createIfcThermodynamicTemperatureMeasure();
+		case Ifc2x3tc1Package.IFC_TIME_MEASURE:
+			return (EObject) createIfcTimeMeasure();
+		case Ifc2x3tc1Package.IFC_TIME_STAMP:
+			return (EObject) createIfcTimeStamp();
+		case Ifc2x3tc1Package.IFC_TORQUE_MEASURE:
+			return (EObject) createIfcTorqueMeasure();
+		case Ifc2x3tc1Package.IFC_VAPOR_PERMEABILITY_MEASURE:
+			return (EObject) createIfcVaporPermeabilityMeasure();
+		case Ifc2x3tc1Package.IFC_VOLUME_MEASURE:
+			return (EObject) createIfcVolumeMeasure();
+		case Ifc2x3tc1Package.IFC_VOLUMETRIC_FLOW_RATE_MEASURE:
+			return (EObject) createIfcVolumetricFlowRateMeasure();
+		case Ifc2x3tc1Package.IFC_WARPING_CONSTANT_MEASURE:
+			return (EObject) createIfcWarpingConstantMeasure();
+		case Ifc2x3tc1Package.IFC_WARPING_MOMENT_MEASURE:
+			return (EObject) createIfcWarpingMomentMeasure();
+		case Ifc2x3tc1Package.IFC_YEAR_NUMBER:
+			return (EObject) createIfcYearNumber();
+		case Ifc2x3tc1Package.IFC_BOX_ALIGNMENT:
+			return (EObject) createIfcBoxAlignment();
 		case Ifc2x3tc1Package.IFC_COMPOUND_PLANE_ANGLE_MEASURE:
 			return (EObject) createIfcCompoundPlaneAngleMeasure();
+		case Ifc2x3tc1Package.IFC_NORMALISED_RATIO_MEASURE:
+			return (EObject) createIfcNormalisedRatioMeasure();
+		case Ifc2x3tc1Package.IFC_POSITIVE_LENGTH_MEASURE:
+			return (EObject) createIfcPositiveLengthMeasure();
+		case Ifc2x3tc1Package.IFC_POSITIVE_PLANE_ANGLE_MEASURE:
+			return (EObject) createIfcPositivePlaneAngleMeasure();
+		case Ifc2x3tc1Package.IFC_POSITIVE_RATIO_MEASURE:
+			return (EObject) createIfcPositiveRatioMeasure();
+		case Ifc2x3tc1Package.IFC_COMPLEX_NUMBER:
+			return (EObject) createIfcComplexNumber();
 		case Ifc2x3tc1Package.IFC_NULL_STYLE:
 			return (EObject) createIfcNullStyle();
 		case Ifc2x3tc1Package.BOUNDS:
@@ -2277,56 +2311,6 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcAbsorbedDoseMeasure createIfcAbsorbedDoseMeasure() {
-		IfcAbsorbedDoseMeasureImpl ifcAbsorbedDoseMeasure = new IfcAbsorbedDoseMeasureImpl();
-		return ifcAbsorbedDoseMeasure;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IfcAccelerationMeasure createIfcAccelerationMeasure() {
-		IfcAccelerationMeasureImpl ifcAccelerationMeasure = new IfcAccelerationMeasureImpl();
-		return ifcAccelerationMeasure;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IfcAmountOfSubstanceMeasure createIfcAmountOfSubstanceMeasure() {
-		IfcAmountOfSubstanceMeasureImpl ifcAmountOfSubstanceMeasure = new IfcAmountOfSubstanceMeasureImpl();
-		return ifcAmountOfSubstanceMeasure;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IfcAngularVelocityMeasure createIfcAngularVelocityMeasure() {
-		IfcAngularVelocityMeasureImpl ifcAngularVelocityMeasure = new IfcAngularVelocityMeasureImpl();
-		return ifcAngularVelocityMeasure;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IfcAreaMeasure createIfcAreaMeasure() {
-		IfcAreaMeasureImpl ifcAreaMeasure = new IfcAreaMeasureImpl();
-		return ifcAreaMeasure;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public IfcBoolean createIfcBoolean() {
 		IfcBooleanImpl ifcBoolean = new IfcBooleanImpl();
 		return ifcBoolean;
@@ -2367,9 +2351,39 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public IfcDayInMonthNumber createIfcDayInMonthNumber() {
+		IfcDayInMonthNumberImpl ifcDayInMonthNumber = new IfcDayInMonthNumberImpl();
+		return ifcDayInMonthNumber;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcDaylightSavingHour createIfcDaylightSavingHour() {
+		IfcDaylightSavingHourImpl ifcDaylightSavingHour = new IfcDaylightSavingHourImpl();
+		return ifcDaylightSavingHour;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcDescriptiveMeasure createIfcDescriptiveMeasure() {
 		IfcDescriptiveMeasureImpl ifcDescriptiveMeasure = new IfcDescriptiveMeasureImpl();
 		return ifcDescriptiveMeasure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcDimensionCount createIfcDimensionCount() {
+		IfcDimensionCountImpl ifcDimensionCount = new IfcDimensionCountImpl();
+		return ifcDimensionCount;
 	}
 
 	/**
@@ -2467,6 +2481,36 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public IfcFontStyle createIfcFontStyle() {
+		IfcFontStyleImpl ifcFontStyle = new IfcFontStyleImpl();
+		return ifcFontStyle;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcFontVariant createIfcFontVariant() {
+		IfcFontVariantImpl ifcFontVariant = new IfcFontVariantImpl();
+		return ifcFontVariant;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcFontWeight createIfcFontWeight() {
+		IfcFontWeightImpl ifcFontWeight = new IfcFontWeightImpl();
+		return ifcFontWeight;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcForceMeasure createIfcForceMeasure() {
 		IfcForceMeasureImpl ifcForceMeasure = new IfcForceMeasureImpl();
 		return ifcForceMeasure;
@@ -2510,6 +2554,16 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcHeatingValueMeasure createIfcHeatingValueMeasure() {
 		IfcHeatingValueMeasureImpl ifcHeatingValueMeasure = new IfcHeatingValueMeasureImpl();
 		return ifcHeatingValueMeasure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcHourInDay createIfcHourInDay() {
+		IfcHourInDayImpl ifcHourInDay = new IfcHourInDayImpl();
+		return ifcHourInDay;
 	}
 
 	/**
@@ -2757,6 +2811,16 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public IfcMinuteInHour createIfcMinuteInHour() {
+		IfcMinuteInHourImpl ifcMinuteInHour = new IfcMinuteInHourImpl();
+		return ifcMinuteInHour;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcModulusOfElasticityMeasure createIfcModulusOfElasticityMeasure() {
 		IfcModulusOfElasticityMeasureImpl ifcModulusOfElasticityMeasure = new IfcModulusOfElasticityMeasureImpl();
 		return ifcModulusOfElasticityMeasure;
@@ -2837,6 +2901,16 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public IfcMonthInYearNumber createIfcMonthInYearNumber() {
+		IfcMonthInYearNumberImpl ifcMonthInYearNumber = new IfcMonthInYearNumberImpl();
+		return ifcMonthInYearNumber;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcNumericMeasure createIfcNumericMeasure() {
 		IfcNumericMeasureImpl ifcNumericMeasure = new IfcNumericMeasureImpl();
 		return ifcNumericMeasure;
@@ -2890,6 +2964,16 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcPowerMeasure createIfcPowerMeasure() {
 		IfcPowerMeasureImpl ifcPowerMeasure = new IfcPowerMeasureImpl();
 		return ifcPowerMeasure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcPresentableText createIfcPresentableText() {
+		IfcPresentableTextImpl ifcPresentableText = new IfcPresentableTextImpl();
+		return ifcPresentableText;
 	}
 
 	/**
@@ -2960,6 +3044,16 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcRotationalStiffnessMeasure createIfcRotationalStiffnessMeasure() {
 		IfcRotationalStiffnessMeasureImpl ifcRotationalStiffnessMeasure = new IfcRotationalStiffnessMeasureImpl();
 		return ifcRotationalStiffnessMeasure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcSecondInMinute createIfcSecondInMinute() {
+		IfcSecondInMinuteImpl ifcSecondInMinute = new IfcSecondInMinuteImpl();
+		return ifcSecondInMinute;
 	}
 
 	/**
@@ -3070,6 +3164,46 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcText createIfcText() {
 		IfcTextImpl ifcText = new IfcTextImpl();
 		return ifcText;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcTextAlignment createIfcTextAlignment() {
+		IfcTextAlignmentImpl ifcTextAlignment = new IfcTextAlignmentImpl();
+		return ifcTextAlignment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcTextDecoration createIfcTextDecoration() {
+		IfcTextDecorationImpl ifcTextDecoration = new IfcTextDecorationImpl();
+		return ifcTextDecoration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcTextFontName createIfcTextFontName() {
+		IfcTextFontNameImpl ifcTextFontName = new IfcTextFontNameImpl();
+		return ifcTextFontName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcTextTransformation createIfcTextTransformation() {
+		IfcTextTransformationImpl ifcTextTransformation = new IfcTextTransformationImpl();
+		return ifcTextTransformation;
 	}
 
 	/**
@@ -3217,6 +3351,26 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public IfcYearNumber createIfcYearNumber() {
+		IfcYearNumberImpl ifcYearNumber = new IfcYearNumberImpl();
+		return ifcYearNumber;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcBoxAlignment createIfcBoxAlignment() {
+		IfcBoxAlignmentImpl ifcBoxAlignment = new IfcBoxAlignmentImpl();
+		return ifcBoxAlignment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcNormalisedRatioMeasure createIfcNormalisedRatioMeasure() {
 		IfcNormalisedRatioMeasureImpl ifcNormalisedRatioMeasure = new IfcNormalisedRatioMeasureImpl();
 		return ifcNormalisedRatioMeasure;
@@ -3250,6 +3404,26 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcPositiveRatioMeasure createIfcPositiveRatioMeasure() {
 		IfcPositiveRatioMeasureImpl ifcPositiveRatioMeasure = new IfcPositiveRatioMeasureImpl();
 		return ifcPositiveRatioMeasure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcComplexNumber createIfcComplexNumber() {
+		IfcComplexNumberImpl ifcComplexNumber = new IfcComplexNumberImpl();
+		return ifcComplexNumber;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcNullStyle createIfcNullStyle() {
+		IfcNullStyleImpl ifcNullStyle = new IfcNullStyleImpl();
+		return ifcNullStyle;
 	}
 
 	/**
@@ -9787,9 +9961,49 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcComplexNumber createIfcComplexNumber() {
-		IfcComplexNumberImpl ifcComplexNumber = new IfcComplexNumberImpl();
-		return ifcComplexNumber;
+	public IfcAbsorbedDoseMeasure createIfcAbsorbedDoseMeasure() {
+		IfcAbsorbedDoseMeasureImpl ifcAbsorbedDoseMeasure = new IfcAbsorbedDoseMeasureImpl();
+		return ifcAbsorbedDoseMeasure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcAccelerationMeasure createIfcAccelerationMeasure() {
+		IfcAccelerationMeasureImpl ifcAccelerationMeasure = new IfcAccelerationMeasureImpl();
+		return ifcAccelerationMeasure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcAmountOfSubstanceMeasure createIfcAmountOfSubstanceMeasure() {
+		IfcAmountOfSubstanceMeasureImpl ifcAmountOfSubstanceMeasure = new IfcAmountOfSubstanceMeasureImpl();
+		return ifcAmountOfSubstanceMeasure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcAngularVelocityMeasure createIfcAngularVelocityMeasure() {
+		IfcAngularVelocityMeasureImpl ifcAngularVelocityMeasure = new IfcAngularVelocityMeasureImpl();
+		return ifcAngularVelocityMeasure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcAreaMeasure createIfcAreaMeasure() {
+		IfcAreaMeasureImpl ifcAreaMeasure = new IfcAreaMeasureImpl();
+		return ifcAreaMeasure;
 	}
 
 	/**
@@ -9800,16 +10014,6 @@ public class Ifc2x3tc1FactoryImpl extends EFactoryImpl implements Ifc2x3tc1Facto
 	public IfcCompoundPlaneAngleMeasure createIfcCompoundPlaneAngleMeasure() {
 		IfcCompoundPlaneAngleMeasureImpl ifcCompoundPlaneAngleMeasure = new IfcCompoundPlaneAngleMeasureImpl();
 		return ifcCompoundPlaneAngleMeasure;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IfcNullStyle createIfcNullStyle() {
-		IfcNullStyleImpl ifcNullStyle = new IfcNullStyleImpl();
-		return ifcNullStyle;
 	}
 
 	/**

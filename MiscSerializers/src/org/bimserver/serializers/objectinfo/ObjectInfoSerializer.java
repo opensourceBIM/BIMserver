@@ -21,11 +21,9 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.List;
 
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -82,8 +80,7 @@ public class ObjectInfoSerializer extends EmfSerializer {
 					}
 				} else if (eStructuralFeature instanceof EReference) {
 					if (eStructuralFeature.getUpperBound() == 1) {
-						if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) eStructuralFeature.getEType())
-								|| eStructuralFeature.getEType() == Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId()) {
+						if (eStructuralFeature.getEType().getEAnnotation("wrapped") != null) {
 							EObject value = (EObject) eGet;
 							if (value != null) {
 								out.println("<td>" + value.eGet(value.eClass().getEStructuralFeature("wrappedValue")) + "</td>");
@@ -92,8 +89,7 @@ public class ObjectInfoSerializer extends EmfSerializer {
 							
 						}
 					} else {
-						if (Ifc2x3tc1Package.eINSTANCE.getWrappedValue().isSuperTypeOf((EClass) eStructuralFeature.getEType())
-								|| eStructuralFeature.getEType() == Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId()) {
+						if (eStructuralFeature.getEType().getEAnnotation("wrapped") != null) {
 							List<EObject> list = (List<EObject>) eGet;
 							out.println("<td>");
 							for (EObject object : list) {

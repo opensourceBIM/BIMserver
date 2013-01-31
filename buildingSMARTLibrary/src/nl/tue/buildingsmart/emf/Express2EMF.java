@@ -20,8 +20,10 @@ package nl.tue.buildingsmart.emf;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import nl.tue.buildingsmart.express.parser.SchemaLoader;
 
@@ -73,6 +75,7 @@ public class Express2EMF {
 	private final EcoreFactory eFactory;
 	private final EcorePackage ePackage;
 	private final EPackage schemaPack;
+	private final Map<EClass, Set<EClass>> directSubTypes = new HashMap<EClass, Set<EClass>>();
 	private final Map<String, EDataType> simpleTypeReplacementMap = new HashMap<String, EDataType>();
 	private EEnum tristate;
 
@@ -92,26 +95,17 @@ public class Express2EMF {
 
 		createTristate();
 
+		addClasses();
+		addSupertypes();
 		addSimpleTypes();
 		addDerivedTypes();
 		addEnumerations();
-		addClasses();
-		addSupertypes();
 		addHackedTypes();
 		addSelects();
 		addAttributes();
 		addInverses();
 		EClass ifcBooleanClass = (EClass) schemaPack.getEClassifier("IfcBoolean");
 		ifcBooleanClass.getESuperTypes().add((EClass) schemaPack.getEClassifier("IfcValue"));
-		EClass guid = (EClass) schemaPack.getEClassifier("IfcGloballyUniqueId");
-		EReference ifcGuidLink = (EReference) ((EClass) schemaPack.getEClassifier("IfcRoot")).getEStructuralFeature("GlobalId");
-		EReference ifcRootLink = eFactory.createEReference();
-		ifcRootLink.setName("ifcRoot");
-		ifcRootLink.setEType(schemaPack.getEClassifier("IfcRoot"));
-		ifcRootLink.setEOpposite(ifcGuidLink);
-		ifcGuidLink.setEOpposite(ifcRootLink);
-		guid.getEStructuralFeatures().add(ifcRootLink);
-
 		doRealDerivedAttributes();
 		clean();
 	}
@@ -123,20 +117,16 @@ public class Express2EMF {
 			if (type.getName().equals("IfcCompoundPlaneAngleMeasure")) {
 				// IfcCompoundPlaneAngleMeasure is a type of LIST [3..4] OF INTEGER (http://www.steptools.com/support/stdev_docs/express/ifc2x3/html/t_ifcco-03.html)
 				// We model this by using a wrapper class
-				EClass ifcCompoundPlaneAngleMeasure = eFactory.createEClass();
-				ifcCompoundPlaneAngleMeasure.setName(type.getName());
-				schemaPack.getEClassifiers().add(ifcCompoundPlaneAngleMeasure);
-				DefinedType integerType = new DefinedType("Integer");
-				integerType.setDomain(new IntegerType());
-				EAttribute attribute = modifySimpleType(integerType, ifcCompoundPlaneAngleMeasure);
-				attribute.setUpperBound(4);
-				ifcCompoundPlaneAngleMeasure.getEAnnotations().add(createWrappedAnnotation());
+//				EClass ifcCompoundPlaneAngleMeasure = getOrCreateEClass(type.getName());
+//				DefinedType integerType = new DefinedType("Integer");
+//				integerType.setDomain(new IntegerType());
+//				EAttribute attribute = modifySimpleType(integerType, ifcCompoundPlaneAngleMeasure);
+//				attribute.setUpperBound(4);
+//				ifcCompoundPlaneAngleMeasure.getEAnnotations().add(createWrappedAnnotation());
 			} else if (type.getName().equals("IfcComplexNumber")) {
 				// IfcComplexNumber is a type of ARRAY [1..2] OF REAL (http://www.steptools.com/support/stdev_docs/express/ifc2x3/html/t_ifcco-07.html)
 				// We model this by using a wrapper class
-				EClass ifcComplexNumber = eFactory.createEClass();
-				ifcComplexNumber.setName(type.getName());
-				schemaPack.getEClassifiers().add(ifcComplexNumber);
+				EClass ifcComplexNumber = getOrCreateEClass(type.getName());
 				DefinedType realType = new DefinedType("Real");
 				realType.setDomain(new RealType());
 				EAttribute attribute = modifySimpleType(realType, ifcComplexNumber);
@@ -149,9 +139,7 @@ public class Express2EMF {
 				EClassifier ifcNullStyleEnum = schemaPack.getEClassifier("IfcNullStyle");
 				ifcNullStyleEnum.setName("IfcNullStyleEnum");
 				
-				EClass ifcNullStyleWrapper = eFactory.createEClass();
-				ifcNullStyleWrapper.setName(type.getName());
-				schemaPack.getEClassifiers().add(ifcNullStyleWrapper);
+				EClass ifcNullStyleWrapper = getOrCreateEClass(type.getName());
 				
 				EAttribute wrappedValue = eFactory.createEAttribute();
 				wrappedValue.setName("wrappedValue");
@@ -174,9 +162,9 @@ public class Express2EMF {
 			EClassifier eClassifier = iterator.next();
 			if (eClassifier instanceof EClass) {
 				EClass eClass = (EClass) eClassifier;
-				if (eClass.getEAnnotation("wrapped") != null && !eClass.getName().equals("IfcGloballyUniqueId")) {
+				if (eClass.getEAnnotation("wrapped") != null) {
 					if (eClass.getESuperTypes().size() == 1) {
-						iterator.remove();
+//						iterator.remove();
 					}
 				}
 			}
@@ -211,7 +199,7 @@ public class Express2EMF {
 								break;
 							}
 						}
-						if (eType.getEAnnotation("wrapped") != null && !eType.getName().equals("IfcGloballyUniqueId")) {
+						if (eType.getEAnnotation("wrapped") != null) {
 							if (!found) {
 								EAttribute eAttribute = eFactory.createEAttribute();
 								eAttribute.setDerived(true);
@@ -410,9 +398,11 @@ public class Express2EMF {
 				EClass cls = (EClass) schemaPack.getEClassifier(ent.getName());
 				cls.getEStructuralFeatures().add(enumAttrib);
 			} else {
-				EClassifier eType = schemaPack.getEClassifier(nt.getName());
+				EClass eType = (EClass) schemaPack.getEClassifier(nt.getName());
 				EClass cls = (EClass) schemaPack.getEClassifier(ent.getName());
-				if (eType.getEAnnotation("wrapped") != null && !eType.getName().equals("IfcGloballyUniqueId")) {
+				// If the DEFINED type is already a wrapped value, we prefer not to use wrappedValue indirection
+				boolean wrapped = superTypeIsWrapped(eType);
+				if (wrapped) {
 					EAttribute eAttribute = eFactory.createEAttribute();
 					eAttribute.setUnsettable(expAttrib.isOptional());
 					eAttribute.setName(attrib.getName());
@@ -449,7 +439,7 @@ public class Express2EMF {
 			if (bt instanceof NamedType) {
 				NamedType nt = (NamedType) bt;
 				EClassifier eType = schemaPack.getEClassifier(nt.getName());
-				if (eType.getEAnnotation("wrapped") != null && !eType.getName().equals("IfcGloballyUniqueId")) {
+				if (superTypeIsWrapped((EClass) eType)) {
 					EAttribute eAttribute = eFactory.createEAttribute();
 					eAttribute.setName(attrib.getName());
 					if (eAttribute.getName().equals("RefLatitude") || eAttribute.getName().equals("RefLongitude")) {
@@ -604,13 +594,22 @@ public class Express2EMF {
 		}
 	}
 
+	private boolean superTypeIsWrapped(EClass eType) {
+		if (eType.getEAnnotation("wrapped") != null) {
+			return true;
+		}
+		for (EClass superClass : eType.getESuperTypes()) {
+			if (superTypeIsWrapped(superClass)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	private void addClasses() {
 		Iterator<EntityDefinition> entIter = schema.getEntities().iterator();
 		while (entIter.hasNext()) {
-			EntityDefinition ent = entIter.next();
-			EClass cls = eFactory.createEClass();
-			cls.setName(ent.getName());
-			schemaPack.getEClassifiers().add(cls);
+			getOrCreateEClass(entIter.next().getName());
 		}
 	}
 
@@ -619,9 +618,15 @@ public class Express2EMF {
 		while (entIter.hasNext()) {
 			EntityDefinition ent = entIter.next();
 			if (ent.getSupertypes().size() > 0) {
-				EClass cls = (EClass) schemaPack.getEClassifier(ent.getName());
-				EClass parent = (EClass) schemaPack.getEClassifier(ent.getSupertypes().get(0).getName());
-				cls.getESuperTypes().add(parent);
+				EClass cls = getOrCreateEClass(ent.getName());
+				if (ent.getSupertypes().size() > 0) {
+					EClass parent = getOrCreateEClass(ent.getSupertypes().get(0).getName());
+					if (!directSubTypes.containsKey(parent)) {
+						directSubTypes.put(parent, new HashSet<EClass>());
+					}
+					directSubTypes.get(parent).add(cls);
+					cls.getESuperTypes().add(parent);
+				}
 			}
 		}
 	}
@@ -631,33 +636,31 @@ public class Express2EMF {
 		while (typeIter.hasNext()) {
 			DefinedType type = typeIter.next();
 			if (type instanceof SelectType) {
-				EClass selectType = eFactory.createEClass();
-				selectType.setName(type.getName());
+				EClass selectType = getOrCreateEClass(type.getName());
 				selectType.setInterface(true);
 				selectType.setAbstract(true);
-				schemaPack.getEClassifiers().add(selectType);
 				Iterator<NamedType> entIter = ((SelectType) type).getSelections().iterator();
 				while (entIter.hasNext()) {
 					NamedType nt = entIter.next();
 					if (nt instanceof EntityDefinition) {
-						EClass choice = (EClass) schemaPack.getEClassifier(nt.getName());
+						EClass choice = getOrCreateEClass(nt.getName());
 						choice.getESuperTypes().add(selectType);
 					} else if (nt instanceof DefinedType) {
 						UnderlyingType domain = ((DefinedType) nt).getDomain();
 						if (domain instanceof RealType || domain instanceof StringType || domain instanceof IntegerType || domain instanceof NumberType
 								|| domain instanceof LogicalType) {
-							EClass choice = (EClass) schemaPack.getEClassifier(nt.getName());
+							EClass choice = getOrCreateEClass(nt.getName());
 							choice.getESuperTypes().add(selectType);
 						} else if (domain instanceof DefinedType) {
 							DefinedType dt2 = (DefinedType) (domain);
 							if (dt2.getDomain() instanceof RealType) {
-								EClass choice = (EClass) schemaPack.getEClassifier(nt.getName());
+								EClass choice = getOrCreateEClass(nt.getName());
 								choice.getESuperTypes().add(selectType);
 							}
 						} else if (nt instanceof SelectType) {
 						} else {
 							if (nt.getName().equals("IfcComplexNumber") || nt.getName().equals("IfcCompoundPlaneAngleMeasure") || nt.getName().equals("IfcBoolean") || nt.getName().equals("IfcNullStyle")) {
-								EClass choice = (EClass) schemaPack.getEClassifier(nt.getName());
+								EClass choice = getOrCreateEClass(nt.getName());
 								choice.getESuperTypes().add(selectType);
 							} else {
 								System.out.println("The domain is null for " + selectType.getName() + " " + nt.getName());
@@ -676,7 +679,7 @@ public class Express2EMF {
 				while (entIter.hasNext()) {
 					NamedType nt = entIter.next();
 					if (nt instanceof SelectType) {
-						EClass choice = (EClass) schemaPack.getEClassifier(nt.getName());
+						EClass choice = getOrCreateEClass(nt.getName());
 						choice.getESuperTypes().add(selectType);
 					}
 				}
@@ -685,6 +688,16 @@ public class Express2EMF {
 	}
 
 	private EAttribute modifySimpleType(DefinedType type, EClass testType) {
+		if (directSubTypes.containsKey(testType)) {
+			for (EClass subType : directSubTypes.get(testType)) {
+				x(type, subType);
+			}
+		}
+ 		EAttribute wrapperAttrib = x(type, testType);
+		return wrapperAttrib;
+	}
+
+	private EAttribute x(DefinedType type, EClass testType) {
 		EAttribute wrapperAttrib = eFactory.createEAttribute();
 		wrapperAttrib.setName("wrappedValue");
 		if (type.getDomain() instanceof IntegerType) {
@@ -719,15 +732,23 @@ public class Express2EMF {
 		while (typeIter.hasNext()) {
 			DefinedType type = typeIter.next();
 			if (type.getDomain() instanceof SimpleType) {
-				EClass testType = eFactory.createEClass();
+				EClass testType = getOrCreateEClass(type.getName());
 				testType.getEAnnotations().add(createWrappedAnnotation());
-				testType.setName(type.getName());
 				modifySimpleType(type, testType);
-				schemaPack.getEClassifiers().add(testType);
 			}
 		}
 	}
 
+	private EClass getOrCreateEClass(String name) {
+		EClassifier eClassifier = schemaPack.getEClassifier(name);
+		if (eClassifier == null) {
+			eClassifier = eFactory.createEClass();
+			eClassifier.setName(name);
+			schemaPack.getEClassifiers().add(eClassifier);
+		}
+		return (EClass) eClassifier;
+	}
+	
 	/**
 	 * constructs the EXPRESS TYPEs like IfcPositiveLength measure that are not
 	 * simple types but derived types: <code>
@@ -759,12 +780,10 @@ public class Express2EMF {
 			 * A fix for this has been implemented in addHackedTypes
 			 */
 			if (type.getName().equalsIgnoreCase("IfcCompoundPlaneAngleMeasure")) {
-				EClass testType = eFactory.createEClass();
-				testType.setName(type.getName());
+				EClass testType = getOrCreateEClass(type.getName());
 				DefinedType type2 = new DefinedType("Integer");
 				type2.setDomain(new IntegerType());
 				modifySimpleType(type2, testType);
-				schemaPack.getEClassifiers().add(testType);
 				testType.getEAnnotations().add(createWrappedAnnotation());
 			} else if (type.getDomain() instanceof DefinedType) {
 				if (schemaPack.getEClassifier(type.getName()) != null) {
@@ -774,19 +793,18 @@ public class Express2EMF {
 					testType.getESuperTypes().add((EClass) classifier);
 					testType.setInstanceClass(classifier.getInstanceClass());
 				} else {
-					EClass testType = eFactory.createEClass();
-					testType.setName(type.getName());
+					EClass testType = getOrCreateEClass(type.getName());
 					DefinedType domain = (DefinedType) type.getDomain();
 					if (simpleTypeReplacementMap.containsKey(domain.getName())) {
 						// We can't subclass because it's a 'primitive' type
 						simpleTypeReplacementMap.put(type.getName(), simpleTypeReplacementMap.get(domain.getName()));
 					} else {
-						EClassifier classifier = null;
-						classifier = schemaPack.getEClassifier(domain.getName());
-						schemaPack.getEClassifier(domain.getName());
+						EClass classifier = getOrCreateEClass(domain.getName());
 						testType.getESuperTypes().add((EClass) classifier);
+						if (classifier.getEAnnotation("wrapped") != null) {
+							testType.getEAnnotations().add(createWrappedAnnotation());
+						}
 						testType.setInstanceClass(classifier.getInstanceClass());
-						schemaPack.getEClassifiers().add(testType);
 					}
 				}
 			}

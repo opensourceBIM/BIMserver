@@ -250,56 +250,56 @@ public class SceneJSSerializer extends AbstractGeometrySerializer {
 
 	private JSONArray writeGeometries(JSONArray array) throws IfcEngineException, JSONException, SerializerException {
 		for (IfcRoof ifcRoof : model.getAll(IfcRoof.class)) {
-			writeGeometricObject(array, ifcRoof, ifcRoof.getGlobalId().getWrappedValue(), "Roof");
+			writeGeometricObject(array, ifcRoof, ifcRoof.getGlobalId(), "Roof");
 		}
 		for (IfcSlab ifcSlab : model.getAll(IfcSlab.class)) {
 			if (ifcSlab.getPredefinedType() == IfcSlabTypeEnum.ROOF) {
-				writeGeometricObject(array, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Roof");
+				writeGeometricObject(array, ifcSlab, ifcSlab.getGlobalId(), "Roof");
 			} else {
-				writeGeometricObject(array, ifcSlab, ifcSlab.getGlobalId().getWrappedValue(), "Slab");
+				writeGeometricObject(array, ifcSlab, ifcSlab.getGlobalId(), "Slab");
 			}
 		}
 		for (IfcWindow ifcWindow : model.getAll(IfcWindow.class)) {
-			writeGeometricObject(array, ifcWindow, ifcWindow.getGlobalId().getWrappedValue(), "Window");
+			writeGeometricObject(array, ifcWindow, ifcWindow.getGlobalId(), "Window");
 		}
 		for (IfcDoor ifcDoor : model.getAll(IfcDoor.class)) {
-			writeGeometricObject(array, ifcDoor, ifcDoor.getGlobalId().getWrappedValue(), "Door");
+			writeGeometricObject(array, ifcDoor, ifcDoor.getGlobalId(), "Door");
 		}
 		for (IfcWall ifcWall : model.getAll(IfcWall.class)) {
-			writeGeometricObject(array, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "Wall");
+			writeGeometricObject(array, ifcWall, ifcWall.getGlobalId(), "Wall");
 		}
 		for (IfcStair ifcStair : model.getAll(IfcStair.class)) {
-			writeGeometricObject(array, ifcStair, ifcStair.getGlobalId().getWrappedValue(), "Stair");
+			writeGeometricObject(array, ifcStair, ifcStair.getGlobalId(), "Stair");
 		}
 		for (IfcStairFlight ifcStairFlight : model.getAll(IfcStairFlight.class)) {
-			writeGeometricObject(array, ifcStairFlight, ifcStairFlight.getGlobalId().getWrappedValue(), "StairFlight");
+			writeGeometricObject(array, ifcStairFlight, ifcStairFlight.getGlobalId(), "StairFlight");
 		}
 		for (IfcFlowSegment ifcFlowSegment : model.getAll(IfcFlowSegment.class)) {
-			writeGeometricObject(array, ifcFlowSegment, ifcFlowSegment.getGlobalId().getWrappedValue(), "FlowSegment");
+			writeGeometricObject(array, ifcFlowSegment, ifcFlowSegment.getGlobalId(), "FlowSegment");
 		}
 		for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
-			writeGeometricObject(array, ifcFurnishingElement, ifcFurnishingElement.getGlobalId().getWrappedValue(), "FurnishingElement");
+			writeGeometricObject(array, ifcFurnishingElement, ifcFurnishingElement.getGlobalId(), "FurnishingElement");
 		}
 		for (IfcPlate ifcPlate : model.getAll(IfcPlate.class)) {
-			writeGeometricObject(array, ifcPlate, ifcPlate.getGlobalId().getWrappedValue(), "Plate");
+			writeGeometricObject(array, ifcPlate, ifcPlate.getGlobalId(), "Plate");
 		}
 		for (IfcMember ifcMember : model.getAll(IfcMember.class)) {
-			writeGeometricObject(array, ifcMember, ifcMember.getGlobalId().getWrappedValue(), "Member");
+			writeGeometricObject(array, ifcMember, ifcMember.getGlobalId(), "Member");
 		}
 		for (IfcWallStandardCase ifcWall : model.getAll(IfcWallStandardCase.class)) {
-			writeGeometricObject(array, ifcWall, ifcWall.getGlobalId().getWrappedValue(), "WallStandardCase");
+			writeGeometricObject(array, ifcWall, ifcWall.getGlobalId(), "WallStandardCase");
 		}
 		for (IfcCurtainWall ifcCurtainWall : model.getAll(IfcCurtainWall.class)) {
-			writeGeometricObject(array, ifcCurtainWall, ifcCurtainWall.getGlobalId().getWrappedValue(), "CurtainWall");
+			writeGeometricObject(array, ifcCurtainWall, ifcCurtainWall.getGlobalId(), "CurtainWall");
 		}
 		for (IfcRailing ifcRailing : model.getAll(IfcRailing.class)) {
-			writeGeometricObject(array, ifcRailing, ifcRailing.getGlobalId().getWrappedValue(), "Railing");
+			writeGeometricObject(array, ifcRailing, ifcRailing.getGlobalId(), "Railing");
 		}
 		for (IfcColumn ifcColumn : model.getAll(IfcColumn.class)) {
-			writeGeometricObject(array, ifcColumn, ifcColumn.getGlobalId().getWrappedValue(), "Column");
+			writeGeometricObject(array, ifcColumn, ifcColumn.getGlobalId(), "Column");
 		}
 		for (IfcBuildingElementProxy ifcBuildingElementProxy : model.getAll(IfcBuildingElementProxy.class)) {
-			writeGeometricObject(array, ifcBuildingElementProxy, ifcBuildingElementProxy.getGlobalId().getWrappedValue(), "BuildingElementProxy");
+			writeGeometricObject(array, ifcBuildingElementProxy, ifcBuildingElementProxy.getGlobalId(), "BuildingElementProxy");
 		}
 		return array;
 	}
@@ -319,7 +319,7 @@ public class SceneJSSerializer extends AbstractGeometrySerializer {
 				for (IfcRelDecomposes dcmp : isDecomposedBy) {
 					EList<IfcObjectDefinition> relatedObjects = dcmp.getRelatedObjects();
 					for (IfcObjectDefinition relatedObject : relatedObjects) {
-						writeGeometricObject(array, (IfcProduct) relatedObject, relatedObject.getGlobalId().getWrappedValue(), ifcObjectType);
+						writeGeometricObject(array, (IfcProduct) relatedObject, relatedObject.getGlobalId(), ifcObjectType);
 					}
 				}
 				return array;
@@ -442,7 +442,7 @@ public class SceneJSSerializer extends AbstractGeometrySerializer {
 			
 			JSONArray verticesArray = new JSONArray();
 			jsonObj.put("type", "geometry")
-			.put("coreId", ifcObject.getGlobalId().getWrappedValue())
+			.put("coreId", ifcObject.getGlobalId())
 			.put("primitive", "triangles")
 			.put("positions", verticesArray);
 			
@@ -604,7 +604,7 @@ public class SceneJSSerializer extends AbstractGeometrySerializer {
 		JSONObject jsonObj = new JSONObject()
 			.put("type", object.isSetObjectType() ? object.getObjectType() : stripClassName(object.getClass()))
 			.put("name", object.isSetName() ? object.getName() : "unknown")
-			.put("id", object.getGlobalId().getWrappedValue())
+			.put("id", object.getGlobalId())
 			.put("decomposedBy", writeIfcTreeDecomposedBy(visitedIds, object))
 			.put("definedBy", writeIfcTreeDefinedBy(visitedIds, (IfcObject) object));
 		
@@ -636,8 +636,8 @@ public class SceneJSSerializer extends AbstractGeometrySerializer {
 				EList<IfcObjectDefinition> relatedObjects = rel.getRelatedObjects();
 				for (IfcObjectDefinition relatedObject : relatedObjects) {
 					if (relatedObject instanceof IfcObject) {
-						if (!visitedIds.contains(relatedObject.getGlobalId().getWrappedValue())) {
-							visitedIds.add(relatedObject.getGlobalId().getWrappedValue());
+						if (!visitedIds.contains(relatedObject.getGlobalId())) {
+							visitedIds.add(relatedObject.getGlobalId());
 							jsonArray.put(writeIfcTreeRelatedObject(visitedIds, (IfcObject) relatedObject));
 						}
 					}
@@ -654,8 +654,8 @@ public class SceneJSSerializer extends AbstractGeometrySerializer {
 			for (IfcRelDefines rel : relList) {
 				EList<IfcObject> relatedObjects = rel.getRelatedObjects();
 				for (IfcObject relatedObject : relatedObjects) {
-					if (!visitedIds.contains(relatedObject.getGlobalId().getWrappedValue())) {
-						visitedIds.add(relatedObject.getGlobalId().getWrappedValue());
+					if (!visitedIds.contains(relatedObject.getGlobalId())) {
+						visitedIds.add(relatedObject.getGlobalId());
 						jsonArray.put(writeIfcTreeRelatedObject(visitedIds, relatedObject));
 					}
 				}
@@ -668,7 +668,7 @@ public class SceneJSSerializer extends AbstractGeometrySerializer {
 		return new JSONObject()
 			.put("type", object.isSetObjectType() ? object.getObjectType() : stripClassName(object.getClass()))
 			.put("name", object.isSetName() ? object.getName() : "unknown")
-			.put("id", object.getGlobalId().getWrappedValue());
+			.put("id", object.getGlobalId());
 		// writeIfcTreeDecomposedBy(object);
 		// writeIfcTreeDefinedBy((IfcObject) object);
 		// if (object instanceof IfcSpatialStructureElement) {
@@ -682,8 +682,8 @@ public class SceneJSSerializer extends AbstractGeometrySerializer {
 		if (relList != null && !relList.isEmpty()) {
 			for (IfcRelContainedInSpatialStructure rel : relList) {
 				for (IfcProduct relatedObject : rel.getRelatedElements()) {
-					if (!visitedIds.contains(relatedObject.getGlobalId().getWrappedValue())){
-						visitedIds.add(relatedObject.getGlobalId().getWrappedValue());
+					if (!visitedIds.contains(relatedObject.getGlobalId())){
+						visitedIds.add(relatedObject.getGlobalId());
 						jsonArray.put(writeIfcTreeProduct(relatedObject));
 					}
 				}
@@ -699,7 +699,7 @@ public class SceneJSSerializer extends AbstractGeometrySerializer {
 			if (object instanceof IfcObject) {
 				IfcObject ifcObject = (IfcObject) object;
 				JSONObject wrappedJsonObj = new JSONObject();
-				jsonObj.put(ifcObject.getGlobalId().getWrappedValue(), wrappedJsonObj);
+				jsonObj.put(ifcObject.getGlobalId(), wrappedJsonObj);
 
 				writeIfcPropertiesObject(wrappedJsonObj, ifcObject);
 				if (object instanceof IfcProject) {
@@ -1056,7 +1056,7 @@ public class SceneJSSerializer extends AbstractGeometrySerializer {
 	private static JSONObject writeIfcPropertiesRoot(JSONObject jsonObj, IfcRoot object) throws JSONException {
 		/* NOT NEEDED:
 		if (object.getGlobalId() != null) {			
-			jsonObj.put("Global Id", object.getGlobalId().getWrappedValue());
+			jsonObj.put("Global Id", object.getGlobalId());
 		}//*/
 		if (object.getOwnerHistory() != null) {
 			IfcOwnerHistory history = object.getOwnerHistory();
@@ -1164,7 +1164,7 @@ public class SceneJSSerializer extends AbstractGeometrySerializer {
 	private static JSONObject writeLink(IfcRoot root) throws JSONException {
 		// TODO: Might return a JSONObject later (with link name & global id)
 		JSONObject jsonObj = new JSONObject();
-		jsonObj.put("link", root.getGlobalId().getWrappedValue());
+		jsonObj.put("link", root.getGlobalId());
 		return jsonObj;
 	}
 

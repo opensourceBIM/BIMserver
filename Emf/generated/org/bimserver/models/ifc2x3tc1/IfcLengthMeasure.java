@@ -33,7 +33,7 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcLengthMeasure extends WrappedValue, IfcMeasureValue, IfcSizeSelect {
+public interface IfcLengthMeasure extends IfcMeasureValue, IfcSizeSelect {
 	/**
 	 * Returns the value of the '<em><b>Wrapped Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

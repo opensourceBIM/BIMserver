@@ -32,7 +32,7 @@ package org.bimserver.models.ifc2x3tc1;
  * @model
  * @generated
  */
-public interface IfcLogical extends WrappedValue, IfcSimpleValue {
+public interface IfcLogical extends IfcSimpleValue {
 	/**
 	 * Returns the value of the '<em><b>Wrapped Value</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.bimserver.models.ifc2x3tc1.Tristate}.

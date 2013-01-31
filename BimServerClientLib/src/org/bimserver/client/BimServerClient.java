@@ -241,6 +241,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 			Long download = getServiceInterface().download(roid, serializerOid, true, true);
 			InputStream inputStream = getDownloadData(download, serializerOid);
 			IOUtils.copy(inputStream, outputStream);
+			getServiceInterface().cleanupLongAction(download);
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {

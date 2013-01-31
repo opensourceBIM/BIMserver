@@ -78,1321 +78,6 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case Ifc2x3tc1Package.WRAPPED_VALUE: {
-			WrappedValue wrappedValue = (WrappedValue) theEObject;
-			T result = caseWrappedValue(wrappedValue);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_ABSORBED_DOSE_MEASURE: {
-			IfcAbsorbedDoseMeasure ifcAbsorbedDoseMeasure = (IfcAbsorbedDoseMeasure) theEObject;
-			T result = caseIfcAbsorbedDoseMeasure(ifcAbsorbedDoseMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcAbsorbedDoseMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcAbsorbedDoseMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcAbsorbedDoseMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_ACCELERATION_MEASURE: {
-			IfcAccelerationMeasure ifcAccelerationMeasure = (IfcAccelerationMeasure) theEObject;
-			T result = caseIfcAccelerationMeasure(ifcAccelerationMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcAccelerationMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcAccelerationMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcAccelerationMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_AMOUNT_OF_SUBSTANCE_MEASURE: {
-			IfcAmountOfSubstanceMeasure ifcAmountOfSubstanceMeasure = (IfcAmountOfSubstanceMeasure) theEObject;
-			T result = caseIfcAmountOfSubstanceMeasure(ifcAmountOfSubstanceMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcAmountOfSubstanceMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcAmountOfSubstanceMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcAmountOfSubstanceMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_ANGULAR_VELOCITY_MEASURE: {
-			IfcAngularVelocityMeasure ifcAngularVelocityMeasure = (IfcAngularVelocityMeasure) theEObject;
-			T result = caseIfcAngularVelocityMeasure(ifcAngularVelocityMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcAngularVelocityMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcAngularVelocityMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcAngularVelocityMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_AREA_MEASURE: {
-			IfcAreaMeasure ifcAreaMeasure = (IfcAreaMeasure) theEObject;
-			T result = caseIfcAreaMeasure(ifcAreaMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcAreaMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcAreaMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcAreaMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_BOOLEAN: {
-			IfcBoolean ifcBoolean = (IfcBoolean) theEObject;
-			T result = caseIfcBoolean(ifcBoolean);
-			if (result == null)
-				result = caseWrappedValue(ifcBoolean);
-			if (result == null)
-				result = caseIfcSimpleValue(ifcBoolean);
-			if (result == null)
-				result = caseIfcValue(ifcBoolean);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_CONTEXT_DEPENDENT_MEASURE: {
-			IfcContextDependentMeasure ifcContextDependentMeasure = (IfcContextDependentMeasure) theEObject;
-			T result = caseIfcContextDependentMeasure(ifcContextDependentMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcContextDependentMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcContextDependentMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcContextDependentMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_COUNT_MEASURE: {
-			IfcCountMeasure ifcCountMeasure = (IfcCountMeasure) theEObject;
-			T result = caseIfcCountMeasure(ifcCountMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcCountMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcCountMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcCountMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_CURVATURE_MEASURE: {
-			IfcCurvatureMeasure ifcCurvatureMeasure = (IfcCurvatureMeasure) theEObject;
-			T result = caseIfcCurvatureMeasure(ifcCurvatureMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcCurvatureMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcCurvatureMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcCurvatureMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_DESCRIPTIVE_MEASURE: {
-			IfcDescriptiveMeasure ifcDescriptiveMeasure = (IfcDescriptiveMeasure) theEObject;
-			T result = caseIfcDescriptiveMeasure(ifcDescriptiveMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcDescriptiveMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcDescriptiveMeasure);
-			if (result == null)
-				result = caseIfcSizeSelect(ifcDescriptiveMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcDescriptiveMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_DOSE_EQUIVALENT_MEASURE: {
-			IfcDoseEquivalentMeasure ifcDoseEquivalentMeasure = (IfcDoseEquivalentMeasure) theEObject;
-			T result = caseIfcDoseEquivalentMeasure(ifcDoseEquivalentMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcDoseEquivalentMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcDoseEquivalentMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcDoseEquivalentMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_DYNAMIC_VISCOSITY_MEASURE: {
-			IfcDynamicViscosityMeasure ifcDynamicViscosityMeasure = (IfcDynamicViscosityMeasure) theEObject;
-			T result = caseIfcDynamicViscosityMeasure(ifcDynamicViscosityMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcDynamicViscosityMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcDynamicViscosityMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcDynamicViscosityMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_ELECTRIC_CAPACITANCE_MEASURE: {
-			IfcElectricCapacitanceMeasure ifcElectricCapacitanceMeasure = (IfcElectricCapacitanceMeasure) theEObject;
-			T result = caseIfcElectricCapacitanceMeasure(ifcElectricCapacitanceMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcElectricCapacitanceMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcElectricCapacitanceMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcElectricCapacitanceMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_ELECTRIC_CHARGE_MEASURE: {
-			IfcElectricChargeMeasure ifcElectricChargeMeasure = (IfcElectricChargeMeasure) theEObject;
-			T result = caseIfcElectricChargeMeasure(ifcElectricChargeMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcElectricChargeMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcElectricChargeMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcElectricChargeMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_ELECTRIC_CONDUCTANCE_MEASURE: {
-			IfcElectricConductanceMeasure ifcElectricConductanceMeasure = (IfcElectricConductanceMeasure) theEObject;
-			T result = caseIfcElectricConductanceMeasure(ifcElectricConductanceMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcElectricConductanceMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcElectricConductanceMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcElectricConductanceMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_ELECTRIC_CURRENT_MEASURE: {
-			IfcElectricCurrentMeasure ifcElectricCurrentMeasure = (IfcElectricCurrentMeasure) theEObject;
-			T result = caseIfcElectricCurrentMeasure(ifcElectricCurrentMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcElectricCurrentMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcElectricCurrentMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcElectricCurrentMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_ELECTRIC_RESISTANCE_MEASURE: {
-			IfcElectricResistanceMeasure ifcElectricResistanceMeasure = (IfcElectricResistanceMeasure) theEObject;
-			T result = caseIfcElectricResistanceMeasure(ifcElectricResistanceMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcElectricResistanceMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcElectricResistanceMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcElectricResistanceMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_ELECTRIC_VOLTAGE_MEASURE: {
-			IfcElectricVoltageMeasure ifcElectricVoltageMeasure = (IfcElectricVoltageMeasure) theEObject;
-			T result = caseIfcElectricVoltageMeasure(ifcElectricVoltageMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcElectricVoltageMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcElectricVoltageMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcElectricVoltageMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_ENERGY_MEASURE: {
-			IfcEnergyMeasure ifcEnergyMeasure = (IfcEnergyMeasure) theEObject;
-			T result = caseIfcEnergyMeasure(ifcEnergyMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcEnergyMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcEnergyMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcEnergyMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_FORCE_MEASURE: {
-			IfcForceMeasure ifcForceMeasure = (IfcForceMeasure) theEObject;
-			T result = caseIfcForceMeasure(ifcForceMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcForceMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcForceMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcForceMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_FREQUENCY_MEASURE: {
-			IfcFrequencyMeasure ifcFrequencyMeasure = (IfcFrequencyMeasure) theEObject;
-			T result = caseIfcFrequencyMeasure(ifcFrequencyMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcFrequencyMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcFrequencyMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcFrequencyMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_GLOBALLY_UNIQUE_ID: {
-			IfcGloballyUniqueId ifcGloballyUniqueId = (IfcGloballyUniqueId) theEObject;
-			T result = caseIfcGloballyUniqueId(ifcGloballyUniqueId);
-			if (result == null)
-				result = caseWrappedValue(ifcGloballyUniqueId);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_HEAT_FLUX_DENSITY_MEASURE: {
-			IfcHeatFluxDensityMeasure ifcHeatFluxDensityMeasure = (IfcHeatFluxDensityMeasure) theEObject;
-			T result = caseIfcHeatFluxDensityMeasure(ifcHeatFluxDensityMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcHeatFluxDensityMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcHeatFluxDensityMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcHeatFluxDensityMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_HEATING_VALUE_MEASURE: {
-			IfcHeatingValueMeasure ifcHeatingValueMeasure = (IfcHeatingValueMeasure) theEObject;
-			T result = caseIfcHeatingValueMeasure(ifcHeatingValueMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcHeatingValueMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcHeatingValueMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcHeatingValueMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_IDENTIFIER: {
-			IfcIdentifier ifcIdentifier = (IfcIdentifier) theEObject;
-			T result = caseIfcIdentifier(ifcIdentifier);
-			if (result == null)
-				result = caseWrappedValue(ifcIdentifier);
-			if (result == null)
-				result = caseIfcSimpleValue(ifcIdentifier);
-			if (result == null)
-				result = caseIfcValue(ifcIdentifier);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_ILLUMINANCE_MEASURE: {
-			IfcIlluminanceMeasure ifcIlluminanceMeasure = (IfcIlluminanceMeasure) theEObject;
-			T result = caseIfcIlluminanceMeasure(ifcIlluminanceMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcIlluminanceMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcIlluminanceMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcIlluminanceMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_INDUCTANCE_MEASURE: {
-			IfcInductanceMeasure ifcInductanceMeasure = (IfcInductanceMeasure) theEObject;
-			T result = caseIfcInductanceMeasure(ifcInductanceMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcInductanceMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcInductanceMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcInductanceMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_INTEGER: {
-			IfcInteger ifcInteger = (IfcInteger) theEObject;
-			T result = caseIfcInteger(ifcInteger);
-			if (result == null)
-				result = caseWrappedValue(ifcInteger);
-			if (result == null)
-				result = caseIfcSimpleValue(ifcInteger);
-			if (result == null)
-				result = caseIfcValue(ifcInteger);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_INTEGER_COUNT_RATE_MEASURE: {
-			IfcIntegerCountRateMeasure ifcIntegerCountRateMeasure = (IfcIntegerCountRateMeasure) theEObject;
-			T result = caseIfcIntegerCountRateMeasure(ifcIntegerCountRateMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcIntegerCountRateMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcIntegerCountRateMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcIntegerCountRateMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_ION_CONCENTRATION_MEASURE: {
-			IfcIonConcentrationMeasure ifcIonConcentrationMeasure = (IfcIonConcentrationMeasure) theEObject;
-			T result = caseIfcIonConcentrationMeasure(ifcIonConcentrationMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcIonConcentrationMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcIonConcentrationMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcIonConcentrationMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_ISOTHERMAL_MOISTURE_CAPACITY_MEASURE: {
-			IfcIsothermalMoistureCapacityMeasure ifcIsothermalMoistureCapacityMeasure = (IfcIsothermalMoistureCapacityMeasure) theEObject;
-			T result = caseIfcIsothermalMoistureCapacityMeasure(ifcIsothermalMoistureCapacityMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcIsothermalMoistureCapacityMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcIsothermalMoistureCapacityMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcIsothermalMoistureCapacityMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_KINEMATIC_VISCOSITY_MEASURE: {
-			IfcKinematicViscosityMeasure ifcKinematicViscosityMeasure = (IfcKinematicViscosityMeasure) theEObject;
-			T result = caseIfcKinematicViscosityMeasure(ifcKinematicViscosityMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcKinematicViscosityMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcKinematicViscosityMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcKinematicViscosityMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_LABEL: {
-			IfcLabel ifcLabel = (IfcLabel) theEObject;
-			T result = caseIfcLabel(ifcLabel);
-			if (result == null)
-				result = caseWrappedValue(ifcLabel);
-			if (result == null)
-				result = caseIfcConditionCriterionSelect(ifcLabel);
-			if (result == null)
-				result = caseIfcSimpleValue(ifcLabel);
-			if (result == null)
-				result = caseIfcValue(ifcLabel);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_LENGTH_MEASURE: {
-			IfcLengthMeasure ifcLengthMeasure = (IfcLengthMeasure) theEObject;
-			T result = caseIfcLengthMeasure(ifcLengthMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcLengthMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcLengthMeasure);
-			if (result == null)
-				result = caseIfcSizeSelect(ifcLengthMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcLengthMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_LINEAR_FORCE_MEASURE: {
-			IfcLinearForceMeasure ifcLinearForceMeasure = (IfcLinearForceMeasure) theEObject;
-			T result = caseIfcLinearForceMeasure(ifcLinearForceMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcLinearForceMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcLinearForceMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcLinearForceMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_LINEAR_MOMENT_MEASURE: {
-			IfcLinearMomentMeasure ifcLinearMomentMeasure = (IfcLinearMomentMeasure) theEObject;
-			T result = caseIfcLinearMomentMeasure(ifcLinearMomentMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcLinearMomentMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcLinearMomentMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcLinearMomentMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_LINEAR_STIFFNESS_MEASURE: {
-			IfcLinearStiffnessMeasure ifcLinearStiffnessMeasure = (IfcLinearStiffnessMeasure) theEObject;
-			T result = caseIfcLinearStiffnessMeasure(ifcLinearStiffnessMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcLinearStiffnessMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcLinearStiffnessMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcLinearStiffnessMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_LINEAR_VELOCITY_MEASURE: {
-			IfcLinearVelocityMeasure ifcLinearVelocityMeasure = (IfcLinearVelocityMeasure) theEObject;
-			T result = caseIfcLinearVelocityMeasure(ifcLinearVelocityMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcLinearVelocityMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcLinearVelocityMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcLinearVelocityMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_LOGICAL: {
-			IfcLogical ifcLogical = (IfcLogical) theEObject;
-			T result = caseIfcLogical(ifcLogical);
-			if (result == null)
-				result = caseWrappedValue(ifcLogical);
-			if (result == null)
-				result = caseIfcSimpleValue(ifcLogical);
-			if (result == null)
-				result = caseIfcValue(ifcLogical);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_LUMINOUS_FLUX_MEASURE: {
-			IfcLuminousFluxMeasure ifcLuminousFluxMeasure = (IfcLuminousFluxMeasure) theEObject;
-			T result = caseIfcLuminousFluxMeasure(ifcLuminousFluxMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcLuminousFluxMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcLuminousFluxMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcLuminousFluxMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_LUMINOUS_INTENSITY_DISTRIBUTION_MEASURE: {
-			IfcLuminousIntensityDistributionMeasure ifcLuminousIntensityDistributionMeasure = (IfcLuminousIntensityDistributionMeasure) theEObject;
-			T result = caseIfcLuminousIntensityDistributionMeasure(ifcLuminousIntensityDistributionMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcLuminousIntensityDistributionMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcLuminousIntensityDistributionMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcLuminousIntensityDistributionMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_LUMINOUS_INTENSITY_MEASURE: {
-			IfcLuminousIntensityMeasure ifcLuminousIntensityMeasure = (IfcLuminousIntensityMeasure) theEObject;
-			T result = caseIfcLuminousIntensityMeasure(ifcLuminousIntensityMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcLuminousIntensityMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcLuminousIntensityMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcLuminousIntensityMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_MAGNETIC_FLUX_DENSITY_MEASURE: {
-			IfcMagneticFluxDensityMeasure ifcMagneticFluxDensityMeasure = (IfcMagneticFluxDensityMeasure) theEObject;
-			T result = caseIfcMagneticFluxDensityMeasure(ifcMagneticFluxDensityMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcMagneticFluxDensityMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcMagneticFluxDensityMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcMagneticFluxDensityMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_MAGNETIC_FLUX_MEASURE: {
-			IfcMagneticFluxMeasure ifcMagneticFluxMeasure = (IfcMagneticFluxMeasure) theEObject;
-			T result = caseIfcMagneticFluxMeasure(ifcMagneticFluxMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcMagneticFluxMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcMagneticFluxMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcMagneticFluxMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_MASS_DENSITY_MEASURE: {
-			IfcMassDensityMeasure ifcMassDensityMeasure = (IfcMassDensityMeasure) theEObject;
-			T result = caseIfcMassDensityMeasure(ifcMassDensityMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcMassDensityMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcMassDensityMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcMassDensityMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_MASS_FLOW_RATE_MEASURE: {
-			IfcMassFlowRateMeasure ifcMassFlowRateMeasure = (IfcMassFlowRateMeasure) theEObject;
-			T result = caseIfcMassFlowRateMeasure(ifcMassFlowRateMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcMassFlowRateMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcMassFlowRateMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcMassFlowRateMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_MASS_MEASURE: {
-			IfcMassMeasure ifcMassMeasure = (IfcMassMeasure) theEObject;
-			T result = caseIfcMassMeasure(ifcMassMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcMassMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcMassMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcMassMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_MASS_PER_LENGTH_MEASURE: {
-			IfcMassPerLengthMeasure ifcMassPerLengthMeasure = (IfcMassPerLengthMeasure) theEObject;
-			T result = caseIfcMassPerLengthMeasure(ifcMassPerLengthMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcMassPerLengthMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcMassPerLengthMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcMassPerLengthMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_MODULUS_OF_ELASTICITY_MEASURE: {
-			IfcModulusOfElasticityMeasure ifcModulusOfElasticityMeasure = (IfcModulusOfElasticityMeasure) theEObject;
-			T result = caseIfcModulusOfElasticityMeasure(ifcModulusOfElasticityMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcModulusOfElasticityMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcModulusOfElasticityMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcModulusOfElasticityMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_MODULUS_OF_LINEAR_SUBGRADE_REACTION_MEASURE: {
-			IfcModulusOfLinearSubgradeReactionMeasure ifcModulusOfLinearSubgradeReactionMeasure = (IfcModulusOfLinearSubgradeReactionMeasure) theEObject;
-			T result = caseIfcModulusOfLinearSubgradeReactionMeasure(ifcModulusOfLinearSubgradeReactionMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcModulusOfLinearSubgradeReactionMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcModulusOfLinearSubgradeReactionMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcModulusOfLinearSubgradeReactionMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_MODULUS_OF_ROTATIONAL_SUBGRADE_REACTION_MEASURE: {
-			IfcModulusOfRotationalSubgradeReactionMeasure ifcModulusOfRotationalSubgradeReactionMeasure = (IfcModulusOfRotationalSubgradeReactionMeasure) theEObject;
-			T result = caseIfcModulusOfRotationalSubgradeReactionMeasure(ifcModulusOfRotationalSubgradeReactionMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcModulusOfRotationalSubgradeReactionMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcModulusOfRotationalSubgradeReactionMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcModulusOfRotationalSubgradeReactionMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_MODULUS_OF_SUBGRADE_REACTION_MEASURE: {
-			IfcModulusOfSubgradeReactionMeasure ifcModulusOfSubgradeReactionMeasure = (IfcModulusOfSubgradeReactionMeasure) theEObject;
-			T result = caseIfcModulusOfSubgradeReactionMeasure(ifcModulusOfSubgradeReactionMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcModulusOfSubgradeReactionMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcModulusOfSubgradeReactionMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcModulusOfSubgradeReactionMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_MOISTURE_DIFFUSIVITY_MEASURE: {
-			IfcMoistureDiffusivityMeasure ifcMoistureDiffusivityMeasure = (IfcMoistureDiffusivityMeasure) theEObject;
-			T result = caseIfcMoistureDiffusivityMeasure(ifcMoistureDiffusivityMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcMoistureDiffusivityMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcMoistureDiffusivityMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcMoistureDiffusivityMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_MOLECULAR_WEIGHT_MEASURE: {
-			IfcMolecularWeightMeasure ifcMolecularWeightMeasure = (IfcMolecularWeightMeasure) theEObject;
-			T result = caseIfcMolecularWeightMeasure(ifcMolecularWeightMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcMolecularWeightMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcMolecularWeightMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcMolecularWeightMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_MOMENT_OF_INERTIA_MEASURE: {
-			IfcMomentOfInertiaMeasure ifcMomentOfInertiaMeasure = (IfcMomentOfInertiaMeasure) theEObject;
-			T result = caseIfcMomentOfInertiaMeasure(ifcMomentOfInertiaMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcMomentOfInertiaMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcMomentOfInertiaMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcMomentOfInertiaMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_MONETARY_MEASURE: {
-			IfcMonetaryMeasure ifcMonetaryMeasure = (IfcMonetaryMeasure) theEObject;
-			T result = caseIfcMonetaryMeasure(ifcMonetaryMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcMonetaryMeasure);
-			if (result == null)
-				result = caseIfcAppliedValueSelect(ifcMonetaryMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcMonetaryMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcMonetaryMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_NUMERIC_MEASURE: {
-			IfcNumericMeasure ifcNumericMeasure = (IfcNumericMeasure) theEObject;
-			T result = caseIfcNumericMeasure(ifcNumericMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcNumericMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcNumericMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcNumericMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_PH_MEASURE: {
-			IfcPHMeasure ifcPHMeasure = (IfcPHMeasure) theEObject;
-			T result = caseIfcPHMeasure(ifcPHMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcPHMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcPHMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcPHMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_PARAMETER_VALUE: {
-			IfcParameterValue ifcParameterValue = (IfcParameterValue) theEObject;
-			T result = caseIfcParameterValue(ifcParameterValue);
-			if (result == null)
-				result = caseWrappedValue(ifcParameterValue);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcParameterValue);
-			if (result == null)
-				result = caseIfcTrimmingSelect(ifcParameterValue);
-			if (result == null)
-				result = caseIfcValue(ifcParameterValue);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_PLANAR_FORCE_MEASURE: {
-			IfcPlanarForceMeasure ifcPlanarForceMeasure = (IfcPlanarForceMeasure) theEObject;
-			T result = caseIfcPlanarForceMeasure(ifcPlanarForceMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcPlanarForceMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcPlanarForceMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcPlanarForceMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_PLANE_ANGLE_MEASURE: {
-			IfcPlaneAngleMeasure ifcPlaneAngleMeasure = (IfcPlaneAngleMeasure) theEObject;
-			T result = caseIfcPlaneAngleMeasure(ifcPlaneAngleMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcPlaneAngleMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcPlaneAngleMeasure);
-			if (result == null)
-				result = caseIfcOrientationSelect(ifcPlaneAngleMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcPlaneAngleMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_POWER_MEASURE: {
-			IfcPowerMeasure ifcPowerMeasure = (IfcPowerMeasure) theEObject;
-			T result = caseIfcPowerMeasure(ifcPowerMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcPowerMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcPowerMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcPowerMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_PRESSURE_MEASURE: {
-			IfcPressureMeasure ifcPressureMeasure = (IfcPressureMeasure) theEObject;
-			T result = caseIfcPressureMeasure(ifcPressureMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcPressureMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcPressureMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcPressureMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_RADIO_ACTIVITY_MEASURE: {
-			IfcRadioActivityMeasure ifcRadioActivityMeasure = (IfcRadioActivityMeasure) theEObject;
-			T result = caseIfcRadioActivityMeasure(ifcRadioActivityMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcRadioActivityMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcRadioActivityMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcRadioActivityMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_RATIO_MEASURE: {
-			IfcRatioMeasure ifcRatioMeasure = (IfcRatioMeasure) theEObject;
-			T result = caseIfcRatioMeasure(ifcRatioMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcRatioMeasure);
-			if (result == null)
-				result = caseIfcAppliedValueSelect(ifcRatioMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcRatioMeasure);
-			if (result == null)
-				result = caseIfcSizeSelect(ifcRatioMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcRatioMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_REAL: {
-			IfcReal ifcReal = (IfcReal) theEObject;
-			T result = caseIfcReal(ifcReal);
-			if (result == null)
-				result = caseWrappedValue(ifcReal);
-			if (result == null)
-				result = caseIfcSimpleValue(ifcReal);
-			if (result == null)
-				result = caseIfcValue(ifcReal);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_ROTATIONAL_FREQUENCY_MEASURE: {
-			IfcRotationalFrequencyMeasure ifcRotationalFrequencyMeasure = (IfcRotationalFrequencyMeasure) theEObject;
-			T result = caseIfcRotationalFrequencyMeasure(ifcRotationalFrequencyMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcRotationalFrequencyMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcRotationalFrequencyMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcRotationalFrequencyMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_ROTATIONAL_MASS_MEASURE: {
-			IfcRotationalMassMeasure ifcRotationalMassMeasure = (IfcRotationalMassMeasure) theEObject;
-			T result = caseIfcRotationalMassMeasure(ifcRotationalMassMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcRotationalMassMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcRotationalMassMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcRotationalMassMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_ROTATIONAL_STIFFNESS_MEASURE: {
-			IfcRotationalStiffnessMeasure ifcRotationalStiffnessMeasure = (IfcRotationalStiffnessMeasure) theEObject;
-			T result = caseIfcRotationalStiffnessMeasure(ifcRotationalStiffnessMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcRotationalStiffnessMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcRotationalStiffnessMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcRotationalStiffnessMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_SECTION_MODULUS_MEASURE: {
-			IfcSectionModulusMeasure ifcSectionModulusMeasure = (IfcSectionModulusMeasure) theEObject;
-			T result = caseIfcSectionModulusMeasure(ifcSectionModulusMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcSectionModulusMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcSectionModulusMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcSectionModulusMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE: {
-			IfcSectionalAreaIntegralMeasure ifcSectionalAreaIntegralMeasure = (IfcSectionalAreaIntegralMeasure) theEObject;
-			T result = caseIfcSectionalAreaIntegralMeasure(ifcSectionalAreaIntegralMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcSectionalAreaIntegralMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcSectionalAreaIntegralMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcSectionalAreaIntegralMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_SHEAR_MODULUS_MEASURE: {
-			IfcShearModulusMeasure ifcShearModulusMeasure = (IfcShearModulusMeasure) theEObject;
-			T result = caseIfcShearModulusMeasure(ifcShearModulusMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcShearModulusMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcShearModulusMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcShearModulusMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_SOLID_ANGLE_MEASURE: {
-			IfcSolidAngleMeasure ifcSolidAngleMeasure = (IfcSolidAngleMeasure) theEObject;
-			T result = caseIfcSolidAngleMeasure(ifcSolidAngleMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcSolidAngleMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcSolidAngleMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcSolidAngleMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_SOUND_POWER_MEASURE: {
-			IfcSoundPowerMeasure ifcSoundPowerMeasure = (IfcSoundPowerMeasure) theEObject;
-			T result = caseIfcSoundPowerMeasure(ifcSoundPowerMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcSoundPowerMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcSoundPowerMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcSoundPowerMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_SOUND_PRESSURE_MEASURE: {
-			IfcSoundPressureMeasure ifcSoundPressureMeasure = (IfcSoundPressureMeasure) theEObject;
-			T result = caseIfcSoundPressureMeasure(ifcSoundPressureMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcSoundPressureMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcSoundPressureMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcSoundPressureMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_SPECIFIC_HEAT_CAPACITY_MEASURE: {
-			IfcSpecificHeatCapacityMeasure ifcSpecificHeatCapacityMeasure = (IfcSpecificHeatCapacityMeasure) theEObject;
-			T result = caseIfcSpecificHeatCapacityMeasure(ifcSpecificHeatCapacityMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcSpecificHeatCapacityMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcSpecificHeatCapacityMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcSpecificHeatCapacityMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_SPECULAR_EXPONENT: {
-			IfcSpecularExponent ifcSpecularExponent = (IfcSpecularExponent) theEObject;
-			T result = caseIfcSpecularExponent(ifcSpecularExponent);
-			if (result == null)
-				result = caseWrappedValue(ifcSpecularExponent);
-			if (result == null)
-				result = caseIfcSpecularHighlightSelect(ifcSpecularExponent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_SPECULAR_ROUGHNESS: {
-			IfcSpecularRoughness ifcSpecularRoughness = (IfcSpecularRoughness) theEObject;
-			T result = caseIfcSpecularRoughness(ifcSpecularRoughness);
-			if (result == null)
-				result = caseWrappedValue(ifcSpecularRoughness);
-			if (result == null)
-				result = caseIfcSpecularHighlightSelect(ifcSpecularRoughness);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_TEMPERATURE_GRADIENT_MEASURE: {
-			IfcTemperatureGradientMeasure ifcTemperatureGradientMeasure = (IfcTemperatureGradientMeasure) theEObject;
-			T result = caseIfcTemperatureGradientMeasure(ifcTemperatureGradientMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcTemperatureGradientMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcTemperatureGradientMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcTemperatureGradientMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_TEXT: {
-			IfcText ifcText = (IfcText) theEObject;
-			T result = caseIfcText(ifcText);
-			if (result == null)
-				result = caseWrappedValue(ifcText);
-			if (result == null)
-				result = caseIfcMetricValueSelect(ifcText);
-			if (result == null)
-				result = caseIfcSimpleValue(ifcText);
-			if (result == null)
-				result = caseIfcValue(ifcText);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_THERMAL_ADMITTANCE_MEASURE: {
-			IfcThermalAdmittanceMeasure ifcThermalAdmittanceMeasure = (IfcThermalAdmittanceMeasure) theEObject;
-			T result = caseIfcThermalAdmittanceMeasure(ifcThermalAdmittanceMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcThermalAdmittanceMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcThermalAdmittanceMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcThermalAdmittanceMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_THERMAL_CONDUCTIVITY_MEASURE: {
-			IfcThermalConductivityMeasure ifcThermalConductivityMeasure = (IfcThermalConductivityMeasure) theEObject;
-			T result = caseIfcThermalConductivityMeasure(ifcThermalConductivityMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcThermalConductivityMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcThermalConductivityMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcThermalConductivityMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_THERMAL_EXPANSION_COEFFICIENT_MEASURE: {
-			IfcThermalExpansionCoefficientMeasure ifcThermalExpansionCoefficientMeasure = (IfcThermalExpansionCoefficientMeasure) theEObject;
-			T result = caseIfcThermalExpansionCoefficientMeasure(ifcThermalExpansionCoefficientMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcThermalExpansionCoefficientMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcThermalExpansionCoefficientMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcThermalExpansionCoefficientMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_THERMAL_RESISTANCE_MEASURE: {
-			IfcThermalResistanceMeasure ifcThermalResistanceMeasure = (IfcThermalResistanceMeasure) theEObject;
-			T result = caseIfcThermalResistanceMeasure(ifcThermalResistanceMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcThermalResistanceMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcThermalResistanceMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcThermalResistanceMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_THERMAL_TRANSMITTANCE_MEASURE: {
-			IfcThermalTransmittanceMeasure ifcThermalTransmittanceMeasure = (IfcThermalTransmittanceMeasure) theEObject;
-			T result = caseIfcThermalTransmittanceMeasure(ifcThermalTransmittanceMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcThermalTransmittanceMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcThermalTransmittanceMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcThermalTransmittanceMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_THERMODYNAMIC_TEMPERATURE_MEASURE: {
-			IfcThermodynamicTemperatureMeasure ifcThermodynamicTemperatureMeasure = (IfcThermodynamicTemperatureMeasure) theEObject;
-			T result = caseIfcThermodynamicTemperatureMeasure(ifcThermodynamicTemperatureMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcThermodynamicTemperatureMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcThermodynamicTemperatureMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcThermodynamicTemperatureMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_TIME_MEASURE: {
-			IfcTimeMeasure ifcTimeMeasure = (IfcTimeMeasure) theEObject;
-			T result = caseIfcTimeMeasure(ifcTimeMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcTimeMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcTimeMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcTimeMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_TIME_STAMP: {
-			IfcTimeStamp ifcTimeStamp = (IfcTimeStamp) theEObject;
-			T result = caseIfcTimeStamp(ifcTimeStamp);
-			if (result == null)
-				result = caseWrappedValue(ifcTimeStamp);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcTimeStamp);
-			if (result == null)
-				result = caseIfcValue(ifcTimeStamp);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_TORQUE_MEASURE: {
-			IfcTorqueMeasure ifcTorqueMeasure = (IfcTorqueMeasure) theEObject;
-			T result = caseIfcTorqueMeasure(ifcTorqueMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcTorqueMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcTorqueMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcTorqueMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_VAPOR_PERMEABILITY_MEASURE: {
-			IfcVaporPermeabilityMeasure ifcVaporPermeabilityMeasure = (IfcVaporPermeabilityMeasure) theEObject;
-			T result = caseIfcVaporPermeabilityMeasure(ifcVaporPermeabilityMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcVaporPermeabilityMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcVaporPermeabilityMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcVaporPermeabilityMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_VOLUME_MEASURE: {
-			IfcVolumeMeasure ifcVolumeMeasure = (IfcVolumeMeasure) theEObject;
-			T result = caseIfcVolumeMeasure(ifcVolumeMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcVolumeMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcVolumeMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcVolumeMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_VOLUMETRIC_FLOW_RATE_MEASURE: {
-			IfcVolumetricFlowRateMeasure ifcVolumetricFlowRateMeasure = (IfcVolumetricFlowRateMeasure) theEObject;
-			T result = caseIfcVolumetricFlowRateMeasure(ifcVolumetricFlowRateMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcVolumetricFlowRateMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcVolumetricFlowRateMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcVolumetricFlowRateMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_WARPING_CONSTANT_MEASURE: {
-			IfcWarpingConstantMeasure ifcWarpingConstantMeasure = (IfcWarpingConstantMeasure) theEObject;
-			T result = caseIfcWarpingConstantMeasure(ifcWarpingConstantMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcWarpingConstantMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcWarpingConstantMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcWarpingConstantMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_WARPING_MOMENT_MEASURE: {
-			IfcWarpingMomentMeasure ifcWarpingMomentMeasure = (IfcWarpingMomentMeasure) theEObject;
-			T result = caseIfcWarpingMomentMeasure(ifcWarpingMomentMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcWarpingMomentMeasure);
-			if (result == null)
-				result = caseIfcDerivedMeasureValue(ifcWarpingMomentMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcWarpingMomentMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_NORMALISED_RATIO_MEASURE: {
-			IfcNormalisedRatioMeasure ifcNormalisedRatioMeasure = (IfcNormalisedRatioMeasure) theEObject;
-			T result = caseIfcNormalisedRatioMeasure(ifcNormalisedRatioMeasure);
-			if (result == null)
-				result = caseIfcRatioMeasure(ifcNormalisedRatioMeasure);
-			if (result == null)
-				result = caseIfcColourOrFactor(ifcNormalisedRatioMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcNormalisedRatioMeasure);
-			if (result == null)
-				result = caseIfcAppliedValueSelect(ifcNormalisedRatioMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcNormalisedRatioMeasure);
-			if (result == null)
-				result = caseIfcSizeSelect(ifcNormalisedRatioMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcNormalisedRatioMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_POSITIVE_LENGTH_MEASURE: {
-			IfcPositiveLengthMeasure ifcPositiveLengthMeasure = (IfcPositiveLengthMeasure) theEObject;
-			T result = caseIfcPositiveLengthMeasure(ifcPositiveLengthMeasure);
-			if (result == null)
-				result = caseIfcLengthMeasure(ifcPositiveLengthMeasure);
-			if (result == null)
-				result = caseIfcHatchLineDistanceSelect(ifcPositiveLengthMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcPositiveLengthMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcPositiveLengthMeasure);
-			if (result == null)
-				result = caseIfcSizeSelect(ifcPositiveLengthMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcPositiveLengthMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_POSITIVE_PLANE_ANGLE_MEASURE: {
-			IfcPositivePlaneAngleMeasure ifcPositivePlaneAngleMeasure = (IfcPositivePlaneAngleMeasure) theEObject;
-			T result = caseIfcPositivePlaneAngleMeasure(ifcPositivePlaneAngleMeasure);
-			if (result == null)
-				result = caseIfcPlaneAngleMeasure(ifcPositivePlaneAngleMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcPositivePlaneAngleMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcPositivePlaneAngleMeasure);
-			if (result == null)
-				result = caseIfcOrientationSelect(ifcPositivePlaneAngleMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcPositivePlaneAngleMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc2x3tc1Package.IFC_POSITIVE_RATIO_MEASURE: {
-			IfcPositiveRatioMeasure ifcPositiveRatioMeasure = (IfcPositiveRatioMeasure) theEObject;
-			T result = caseIfcPositiveRatioMeasure(ifcPositiveRatioMeasure);
-			if (result == null)
-				result = caseIfcRatioMeasure(ifcPositiveRatioMeasure);
-			if (result == null)
-				result = caseWrappedValue(ifcPositiveRatioMeasure);
-			if (result == null)
-				result = caseIfcAppliedValueSelect(ifcPositiveRatioMeasure);
-			if (result == null)
-				result = caseIfcMeasureValue(ifcPositiveRatioMeasure);
-			if (result == null)
-				result = caseIfcSizeSelect(ifcPositiveRatioMeasure);
-			if (result == null)
-				result = caseIfcValue(ifcPositiveRatioMeasure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case Ifc2x3tc1Package.IFC2_DCOMPOSITE_CURVE: {
 			Ifc2DCompositeCurve ifc2DCompositeCurve = (Ifc2DCompositeCurve) theEObject;
 			T result = caseIfc2DCompositeCurve(ifc2DCompositeCurve);
@@ -11104,15 +9789,1173 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Ifc2x3tc1Package.IFC_COMPLEX_NUMBER: {
-			IfcComplexNumber ifcComplexNumber = (IfcComplexNumber) theEObject;
-			T result = caseIfcComplexNumber(ifcComplexNumber);
+		case Ifc2x3tc1Package.IFC_ABSORBED_DOSE_MEASURE: {
+			IfcAbsorbedDoseMeasure ifcAbsorbedDoseMeasure = (IfcAbsorbedDoseMeasure) theEObject;
+			T result = caseIfcAbsorbedDoseMeasure(ifcAbsorbedDoseMeasure);
 			if (result == null)
-				result = caseWrappedValue(ifcComplexNumber);
+				result = caseIfcDerivedMeasureValue(ifcAbsorbedDoseMeasure);
 			if (result == null)
-				result = caseIfcMeasureValue(ifcComplexNumber);
+				result = caseIfcValue(ifcAbsorbedDoseMeasure);
 			if (result == null)
-				result = caseIfcValue(ifcComplexNumber);
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_ACCELERATION_MEASURE: {
+			IfcAccelerationMeasure ifcAccelerationMeasure = (IfcAccelerationMeasure) theEObject;
+			T result = caseIfcAccelerationMeasure(ifcAccelerationMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcAccelerationMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcAccelerationMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_AMOUNT_OF_SUBSTANCE_MEASURE: {
+			IfcAmountOfSubstanceMeasure ifcAmountOfSubstanceMeasure = (IfcAmountOfSubstanceMeasure) theEObject;
+			T result = caseIfcAmountOfSubstanceMeasure(ifcAmountOfSubstanceMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcAmountOfSubstanceMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcAmountOfSubstanceMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_ANGULAR_VELOCITY_MEASURE: {
+			IfcAngularVelocityMeasure ifcAngularVelocityMeasure = (IfcAngularVelocityMeasure) theEObject;
+			T result = caseIfcAngularVelocityMeasure(ifcAngularVelocityMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcAngularVelocityMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcAngularVelocityMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_AREA_MEASURE: {
+			IfcAreaMeasure ifcAreaMeasure = (IfcAreaMeasure) theEObject;
+			T result = caseIfcAreaMeasure(ifcAreaMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcAreaMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcAreaMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_BOOLEAN: {
+			IfcBoolean ifcBoolean = (IfcBoolean) theEObject;
+			T result = caseIfcBoolean(ifcBoolean);
+			if (result == null)
+				result = caseIfcSimpleValue(ifcBoolean);
+			if (result == null)
+				result = caseIfcValue(ifcBoolean);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_CONTEXT_DEPENDENT_MEASURE: {
+			IfcContextDependentMeasure ifcContextDependentMeasure = (IfcContextDependentMeasure) theEObject;
+			T result = caseIfcContextDependentMeasure(ifcContextDependentMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcContextDependentMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcContextDependentMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_COUNT_MEASURE: {
+			IfcCountMeasure ifcCountMeasure = (IfcCountMeasure) theEObject;
+			T result = caseIfcCountMeasure(ifcCountMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcCountMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcCountMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_CURVATURE_MEASURE: {
+			IfcCurvatureMeasure ifcCurvatureMeasure = (IfcCurvatureMeasure) theEObject;
+			T result = caseIfcCurvatureMeasure(ifcCurvatureMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcCurvatureMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcCurvatureMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_DAY_IN_MONTH_NUMBER: {
+			IfcDayInMonthNumber ifcDayInMonthNumber = (IfcDayInMonthNumber) theEObject;
+			T result = caseIfcDayInMonthNumber(ifcDayInMonthNumber);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_DAYLIGHT_SAVING_HOUR: {
+			IfcDaylightSavingHour ifcDaylightSavingHour = (IfcDaylightSavingHour) theEObject;
+			T result = caseIfcDaylightSavingHour(ifcDaylightSavingHour);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_DESCRIPTIVE_MEASURE: {
+			IfcDescriptiveMeasure ifcDescriptiveMeasure = (IfcDescriptiveMeasure) theEObject;
+			T result = caseIfcDescriptiveMeasure(ifcDescriptiveMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcDescriptiveMeasure);
+			if (result == null)
+				result = caseIfcSizeSelect(ifcDescriptiveMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcDescriptiveMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_DIMENSION_COUNT: {
+			IfcDimensionCount ifcDimensionCount = (IfcDimensionCount) theEObject;
+			T result = caseIfcDimensionCount(ifcDimensionCount);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_DOSE_EQUIVALENT_MEASURE: {
+			IfcDoseEquivalentMeasure ifcDoseEquivalentMeasure = (IfcDoseEquivalentMeasure) theEObject;
+			T result = caseIfcDoseEquivalentMeasure(ifcDoseEquivalentMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcDoseEquivalentMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcDoseEquivalentMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_DYNAMIC_VISCOSITY_MEASURE: {
+			IfcDynamicViscosityMeasure ifcDynamicViscosityMeasure = (IfcDynamicViscosityMeasure) theEObject;
+			T result = caseIfcDynamicViscosityMeasure(ifcDynamicViscosityMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcDynamicViscosityMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcDynamicViscosityMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_ELECTRIC_CAPACITANCE_MEASURE: {
+			IfcElectricCapacitanceMeasure ifcElectricCapacitanceMeasure = (IfcElectricCapacitanceMeasure) theEObject;
+			T result = caseIfcElectricCapacitanceMeasure(ifcElectricCapacitanceMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcElectricCapacitanceMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcElectricCapacitanceMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_ELECTRIC_CHARGE_MEASURE: {
+			IfcElectricChargeMeasure ifcElectricChargeMeasure = (IfcElectricChargeMeasure) theEObject;
+			T result = caseIfcElectricChargeMeasure(ifcElectricChargeMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcElectricChargeMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcElectricChargeMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_ELECTRIC_CONDUCTANCE_MEASURE: {
+			IfcElectricConductanceMeasure ifcElectricConductanceMeasure = (IfcElectricConductanceMeasure) theEObject;
+			T result = caseIfcElectricConductanceMeasure(ifcElectricConductanceMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcElectricConductanceMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcElectricConductanceMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_ELECTRIC_CURRENT_MEASURE: {
+			IfcElectricCurrentMeasure ifcElectricCurrentMeasure = (IfcElectricCurrentMeasure) theEObject;
+			T result = caseIfcElectricCurrentMeasure(ifcElectricCurrentMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcElectricCurrentMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcElectricCurrentMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_ELECTRIC_RESISTANCE_MEASURE: {
+			IfcElectricResistanceMeasure ifcElectricResistanceMeasure = (IfcElectricResistanceMeasure) theEObject;
+			T result = caseIfcElectricResistanceMeasure(ifcElectricResistanceMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcElectricResistanceMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcElectricResistanceMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_ELECTRIC_VOLTAGE_MEASURE: {
+			IfcElectricVoltageMeasure ifcElectricVoltageMeasure = (IfcElectricVoltageMeasure) theEObject;
+			T result = caseIfcElectricVoltageMeasure(ifcElectricVoltageMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcElectricVoltageMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcElectricVoltageMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_ENERGY_MEASURE: {
+			IfcEnergyMeasure ifcEnergyMeasure = (IfcEnergyMeasure) theEObject;
+			T result = caseIfcEnergyMeasure(ifcEnergyMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcEnergyMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcEnergyMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_FONT_STYLE: {
+			IfcFontStyle ifcFontStyle = (IfcFontStyle) theEObject;
+			T result = caseIfcFontStyle(ifcFontStyle);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_FONT_VARIANT: {
+			IfcFontVariant ifcFontVariant = (IfcFontVariant) theEObject;
+			T result = caseIfcFontVariant(ifcFontVariant);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_FONT_WEIGHT: {
+			IfcFontWeight ifcFontWeight = (IfcFontWeight) theEObject;
+			T result = caseIfcFontWeight(ifcFontWeight);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_FORCE_MEASURE: {
+			IfcForceMeasure ifcForceMeasure = (IfcForceMeasure) theEObject;
+			T result = caseIfcForceMeasure(ifcForceMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcForceMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcForceMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_FREQUENCY_MEASURE: {
+			IfcFrequencyMeasure ifcFrequencyMeasure = (IfcFrequencyMeasure) theEObject;
+			T result = caseIfcFrequencyMeasure(ifcFrequencyMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcFrequencyMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcFrequencyMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_GLOBALLY_UNIQUE_ID: {
+			IfcGloballyUniqueId ifcGloballyUniqueId = (IfcGloballyUniqueId) theEObject;
+			T result = caseIfcGloballyUniqueId(ifcGloballyUniqueId);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_HEAT_FLUX_DENSITY_MEASURE: {
+			IfcHeatFluxDensityMeasure ifcHeatFluxDensityMeasure = (IfcHeatFluxDensityMeasure) theEObject;
+			T result = caseIfcHeatFluxDensityMeasure(ifcHeatFluxDensityMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcHeatFluxDensityMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcHeatFluxDensityMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_HEATING_VALUE_MEASURE: {
+			IfcHeatingValueMeasure ifcHeatingValueMeasure = (IfcHeatingValueMeasure) theEObject;
+			T result = caseIfcHeatingValueMeasure(ifcHeatingValueMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcHeatingValueMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcHeatingValueMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_HOUR_IN_DAY: {
+			IfcHourInDay ifcHourInDay = (IfcHourInDay) theEObject;
+			T result = caseIfcHourInDay(ifcHourInDay);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_IDENTIFIER: {
+			IfcIdentifier ifcIdentifier = (IfcIdentifier) theEObject;
+			T result = caseIfcIdentifier(ifcIdentifier);
+			if (result == null)
+				result = caseIfcSimpleValue(ifcIdentifier);
+			if (result == null)
+				result = caseIfcValue(ifcIdentifier);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_ILLUMINANCE_MEASURE: {
+			IfcIlluminanceMeasure ifcIlluminanceMeasure = (IfcIlluminanceMeasure) theEObject;
+			T result = caseIfcIlluminanceMeasure(ifcIlluminanceMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcIlluminanceMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcIlluminanceMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_INDUCTANCE_MEASURE: {
+			IfcInductanceMeasure ifcInductanceMeasure = (IfcInductanceMeasure) theEObject;
+			T result = caseIfcInductanceMeasure(ifcInductanceMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcInductanceMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcInductanceMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_INTEGER: {
+			IfcInteger ifcInteger = (IfcInteger) theEObject;
+			T result = caseIfcInteger(ifcInteger);
+			if (result == null)
+				result = caseIfcSimpleValue(ifcInteger);
+			if (result == null)
+				result = caseIfcValue(ifcInteger);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_INTEGER_COUNT_RATE_MEASURE: {
+			IfcIntegerCountRateMeasure ifcIntegerCountRateMeasure = (IfcIntegerCountRateMeasure) theEObject;
+			T result = caseIfcIntegerCountRateMeasure(ifcIntegerCountRateMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcIntegerCountRateMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcIntegerCountRateMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_ION_CONCENTRATION_MEASURE: {
+			IfcIonConcentrationMeasure ifcIonConcentrationMeasure = (IfcIonConcentrationMeasure) theEObject;
+			T result = caseIfcIonConcentrationMeasure(ifcIonConcentrationMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcIonConcentrationMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcIonConcentrationMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_ISOTHERMAL_MOISTURE_CAPACITY_MEASURE: {
+			IfcIsothermalMoistureCapacityMeasure ifcIsothermalMoistureCapacityMeasure = (IfcIsothermalMoistureCapacityMeasure) theEObject;
+			T result = caseIfcIsothermalMoistureCapacityMeasure(ifcIsothermalMoistureCapacityMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcIsothermalMoistureCapacityMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcIsothermalMoistureCapacityMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_KINEMATIC_VISCOSITY_MEASURE: {
+			IfcKinematicViscosityMeasure ifcKinematicViscosityMeasure = (IfcKinematicViscosityMeasure) theEObject;
+			T result = caseIfcKinematicViscosityMeasure(ifcKinematicViscosityMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcKinematicViscosityMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcKinematicViscosityMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_LABEL: {
+			IfcLabel ifcLabel = (IfcLabel) theEObject;
+			T result = caseIfcLabel(ifcLabel);
+			if (result == null)
+				result = caseIfcConditionCriterionSelect(ifcLabel);
+			if (result == null)
+				result = caseIfcSimpleValue(ifcLabel);
+			if (result == null)
+				result = caseIfcValue(ifcLabel);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_LENGTH_MEASURE: {
+			IfcLengthMeasure ifcLengthMeasure = (IfcLengthMeasure) theEObject;
+			T result = caseIfcLengthMeasure(ifcLengthMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcLengthMeasure);
+			if (result == null)
+				result = caseIfcSizeSelect(ifcLengthMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcLengthMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_LINEAR_FORCE_MEASURE: {
+			IfcLinearForceMeasure ifcLinearForceMeasure = (IfcLinearForceMeasure) theEObject;
+			T result = caseIfcLinearForceMeasure(ifcLinearForceMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcLinearForceMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcLinearForceMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_LINEAR_MOMENT_MEASURE: {
+			IfcLinearMomentMeasure ifcLinearMomentMeasure = (IfcLinearMomentMeasure) theEObject;
+			T result = caseIfcLinearMomentMeasure(ifcLinearMomentMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcLinearMomentMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcLinearMomentMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_LINEAR_STIFFNESS_MEASURE: {
+			IfcLinearStiffnessMeasure ifcLinearStiffnessMeasure = (IfcLinearStiffnessMeasure) theEObject;
+			T result = caseIfcLinearStiffnessMeasure(ifcLinearStiffnessMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcLinearStiffnessMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcLinearStiffnessMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_LINEAR_VELOCITY_MEASURE: {
+			IfcLinearVelocityMeasure ifcLinearVelocityMeasure = (IfcLinearVelocityMeasure) theEObject;
+			T result = caseIfcLinearVelocityMeasure(ifcLinearVelocityMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcLinearVelocityMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcLinearVelocityMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_LOGICAL: {
+			IfcLogical ifcLogical = (IfcLogical) theEObject;
+			T result = caseIfcLogical(ifcLogical);
+			if (result == null)
+				result = caseIfcSimpleValue(ifcLogical);
+			if (result == null)
+				result = caseIfcValue(ifcLogical);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_LUMINOUS_FLUX_MEASURE: {
+			IfcLuminousFluxMeasure ifcLuminousFluxMeasure = (IfcLuminousFluxMeasure) theEObject;
+			T result = caseIfcLuminousFluxMeasure(ifcLuminousFluxMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcLuminousFluxMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcLuminousFluxMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_LUMINOUS_INTENSITY_DISTRIBUTION_MEASURE: {
+			IfcLuminousIntensityDistributionMeasure ifcLuminousIntensityDistributionMeasure = (IfcLuminousIntensityDistributionMeasure) theEObject;
+			T result = caseIfcLuminousIntensityDistributionMeasure(ifcLuminousIntensityDistributionMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcLuminousIntensityDistributionMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcLuminousIntensityDistributionMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_LUMINOUS_INTENSITY_MEASURE: {
+			IfcLuminousIntensityMeasure ifcLuminousIntensityMeasure = (IfcLuminousIntensityMeasure) theEObject;
+			T result = caseIfcLuminousIntensityMeasure(ifcLuminousIntensityMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcLuminousIntensityMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcLuminousIntensityMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_MAGNETIC_FLUX_DENSITY_MEASURE: {
+			IfcMagneticFluxDensityMeasure ifcMagneticFluxDensityMeasure = (IfcMagneticFluxDensityMeasure) theEObject;
+			T result = caseIfcMagneticFluxDensityMeasure(ifcMagneticFluxDensityMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcMagneticFluxDensityMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcMagneticFluxDensityMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_MAGNETIC_FLUX_MEASURE: {
+			IfcMagneticFluxMeasure ifcMagneticFluxMeasure = (IfcMagneticFluxMeasure) theEObject;
+			T result = caseIfcMagneticFluxMeasure(ifcMagneticFluxMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcMagneticFluxMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcMagneticFluxMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_MASS_DENSITY_MEASURE: {
+			IfcMassDensityMeasure ifcMassDensityMeasure = (IfcMassDensityMeasure) theEObject;
+			T result = caseIfcMassDensityMeasure(ifcMassDensityMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcMassDensityMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcMassDensityMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_MASS_FLOW_RATE_MEASURE: {
+			IfcMassFlowRateMeasure ifcMassFlowRateMeasure = (IfcMassFlowRateMeasure) theEObject;
+			T result = caseIfcMassFlowRateMeasure(ifcMassFlowRateMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcMassFlowRateMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcMassFlowRateMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_MASS_MEASURE: {
+			IfcMassMeasure ifcMassMeasure = (IfcMassMeasure) theEObject;
+			T result = caseIfcMassMeasure(ifcMassMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcMassMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcMassMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_MASS_PER_LENGTH_MEASURE: {
+			IfcMassPerLengthMeasure ifcMassPerLengthMeasure = (IfcMassPerLengthMeasure) theEObject;
+			T result = caseIfcMassPerLengthMeasure(ifcMassPerLengthMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcMassPerLengthMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcMassPerLengthMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_MINUTE_IN_HOUR: {
+			IfcMinuteInHour ifcMinuteInHour = (IfcMinuteInHour) theEObject;
+			T result = caseIfcMinuteInHour(ifcMinuteInHour);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_MODULUS_OF_ELASTICITY_MEASURE: {
+			IfcModulusOfElasticityMeasure ifcModulusOfElasticityMeasure = (IfcModulusOfElasticityMeasure) theEObject;
+			T result = caseIfcModulusOfElasticityMeasure(ifcModulusOfElasticityMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcModulusOfElasticityMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcModulusOfElasticityMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_MODULUS_OF_LINEAR_SUBGRADE_REACTION_MEASURE: {
+			IfcModulusOfLinearSubgradeReactionMeasure ifcModulusOfLinearSubgradeReactionMeasure = (IfcModulusOfLinearSubgradeReactionMeasure) theEObject;
+			T result = caseIfcModulusOfLinearSubgradeReactionMeasure(ifcModulusOfLinearSubgradeReactionMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcModulusOfLinearSubgradeReactionMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcModulusOfLinearSubgradeReactionMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_MODULUS_OF_ROTATIONAL_SUBGRADE_REACTION_MEASURE: {
+			IfcModulusOfRotationalSubgradeReactionMeasure ifcModulusOfRotationalSubgradeReactionMeasure = (IfcModulusOfRotationalSubgradeReactionMeasure) theEObject;
+			T result = caseIfcModulusOfRotationalSubgradeReactionMeasure(ifcModulusOfRotationalSubgradeReactionMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcModulusOfRotationalSubgradeReactionMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcModulusOfRotationalSubgradeReactionMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_MODULUS_OF_SUBGRADE_REACTION_MEASURE: {
+			IfcModulusOfSubgradeReactionMeasure ifcModulusOfSubgradeReactionMeasure = (IfcModulusOfSubgradeReactionMeasure) theEObject;
+			T result = caseIfcModulusOfSubgradeReactionMeasure(ifcModulusOfSubgradeReactionMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcModulusOfSubgradeReactionMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcModulusOfSubgradeReactionMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_MOISTURE_DIFFUSIVITY_MEASURE: {
+			IfcMoistureDiffusivityMeasure ifcMoistureDiffusivityMeasure = (IfcMoistureDiffusivityMeasure) theEObject;
+			T result = caseIfcMoistureDiffusivityMeasure(ifcMoistureDiffusivityMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcMoistureDiffusivityMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcMoistureDiffusivityMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_MOLECULAR_WEIGHT_MEASURE: {
+			IfcMolecularWeightMeasure ifcMolecularWeightMeasure = (IfcMolecularWeightMeasure) theEObject;
+			T result = caseIfcMolecularWeightMeasure(ifcMolecularWeightMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcMolecularWeightMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcMolecularWeightMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_MOMENT_OF_INERTIA_MEASURE: {
+			IfcMomentOfInertiaMeasure ifcMomentOfInertiaMeasure = (IfcMomentOfInertiaMeasure) theEObject;
+			T result = caseIfcMomentOfInertiaMeasure(ifcMomentOfInertiaMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcMomentOfInertiaMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcMomentOfInertiaMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_MONETARY_MEASURE: {
+			IfcMonetaryMeasure ifcMonetaryMeasure = (IfcMonetaryMeasure) theEObject;
+			T result = caseIfcMonetaryMeasure(ifcMonetaryMeasure);
+			if (result == null)
+				result = caseIfcAppliedValueSelect(ifcMonetaryMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcMonetaryMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcMonetaryMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_MONTH_IN_YEAR_NUMBER: {
+			IfcMonthInYearNumber ifcMonthInYearNumber = (IfcMonthInYearNumber) theEObject;
+			T result = caseIfcMonthInYearNumber(ifcMonthInYearNumber);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_NUMERIC_MEASURE: {
+			IfcNumericMeasure ifcNumericMeasure = (IfcNumericMeasure) theEObject;
+			T result = caseIfcNumericMeasure(ifcNumericMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcNumericMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcNumericMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_PH_MEASURE: {
+			IfcPHMeasure ifcPHMeasure = (IfcPHMeasure) theEObject;
+			T result = caseIfcPHMeasure(ifcPHMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcPHMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcPHMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_PARAMETER_VALUE: {
+			IfcParameterValue ifcParameterValue = (IfcParameterValue) theEObject;
+			T result = caseIfcParameterValue(ifcParameterValue);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcParameterValue);
+			if (result == null)
+				result = caseIfcTrimmingSelect(ifcParameterValue);
+			if (result == null)
+				result = caseIfcValue(ifcParameterValue);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_PLANAR_FORCE_MEASURE: {
+			IfcPlanarForceMeasure ifcPlanarForceMeasure = (IfcPlanarForceMeasure) theEObject;
+			T result = caseIfcPlanarForceMeasure(ifcPlanarForceMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcPlanarForceMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcPlanarForceMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_PLANE_ANGLE_MEASURE: {
+			IfcPlaneAngleMeasure ifcPlaneAngleMeasure = (IfcPlaneAngleMeasure) theEObject;
+			T result = caseIfcPlaneAngleMeasure(ifcPlaneAngleMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcPlaneAngleMeasure);
+			if (result == null)
+				result = caseIfcOrientationSelect(ifcPlaneAngleMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcPlaneAngleMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_POWER_MEASURE: {
+			IfcPowerMeasure ifcPowerMeasure = (IfcPowerMeasure) theEObject;
+			T result = caseIfcPowerMeasure(ifcPowerMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcPowerMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcPowerMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_PRESENTABLE_TEXT: {
+			IfcPresentableText ifcPresentableText = (IfcPresentableText) theEObject;
+			T result = caseIfcPresentableText(ifcPresentableText);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_PRESSURE_MEASURE: {
+			IfcPressureMeasure ifcPressureMeasure = (IfcPressureMeasure) theEObject;
+			T result = caseIfcPressureMeasure(ifcPressureMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcPressureMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcPressureMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_RADIO_ACTIVITY_MEASURE: {
+			IfcRadioActivityMeasure ifcRadioActivityMeasure = (IfcRadioActivityMeasure) theEObject;
+			T result = caseIfcRadioActivityMeasure(ifcRadioActivityMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcRadioActivityMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcRadioActivityMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_RATIO_MEASURE: {
+			IfcRatioMeasure ifcRatioMeasure = (IfcRatioMeasure) theEObject;
+			T result = caseIfcRatioMeasure(ifcRatioMeasure);
+			if (result == null)
+				result = caseIfcAppliedValueSelect(ifcRatioMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcRatioMeasure);
+			if (result == null)
+				result = caseIfcSizeSelect(ifcRatioMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcRatioMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_REAL: {
+			IfcReal ifcReal = (IfcReal) theEObject;
+			T result = caseIfcReal(ifcReal);
+			if (result == null)
+				result = caseIfcSimpleValue(ifcReal);
+			if (result == null)
+				result = caseIfcValue(ifcReal);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_ROTATIONAL_FREQUENCY_MEASURE: {
+			IfcRotationalFrequencyMeasure ifcRotationalFrequencyMeasure = (IfcRotationalFrequencyMeasure) theEObject;
+			T result = caseIfcRotationalFrequencyMeasure(ifcRotationalFrequencyMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcRotationalFrequencyMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcRotationalFrequencyMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_ROTATIONAL_MASS_MEASURE: {
+			IfcRotationalMassMeasure ifcRotationalMassMeasure = (IfcRotationalMassMeasure) theEObject;
+			T result = caseIfcRotationalMassMeasure(ifcRotationalMassMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcRotationalMassMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcRotationalMassMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_ROTATIONAL_STIFFNESS_MEASURE: {
+			IfcRotationalStiffnessMeasure ifcRotationalStiffnessMeasure = (IfcRotationalStiffnessMeasure) theEObject;
+			T result = caseIfcRotationalStiffnessMeasure(ifcRotationalStiffnessMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcRotationalStiffnessMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcRotationalStiffnessMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_SECOND_IN_MINUTE: {
+			IfcSecondInMinute ifcSecondInMinute = (IfcSecondInMinute) theEObject;
+			T result = caseIfcSecondInMinute(ifcSecondInMinute);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_SECTION_MODULUS_MEASURE: {
+			IfcSectionModulusMeasure ifcSectionModulusMeasure = (IfcSectionModulusMeasure) theEObject;
+			T result = caseIfcSectionModulusMeasure(ifcSectionModulusMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcSectionModulusMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcSectionModulusMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_SECTIONAL_AREA_INTEGRAL_MEASURE: {
+			IfcSectionalAreaIntegralMeasure ifcSectionalAreaIntegralMeasure = (IfcSectionalAreaIntegralMeasure) theEObject;
+			T result = caseIfcSectionalAreaIntegralMeasure(ifcSectionalAreaIntegralMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcSectionalAreaIntegralMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcSectionalAreaIntegralMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_SHEAR_MODULUS_MEASURE: {
+			IfcShearModulusMeasure ifcShearModulusMeasure = (IfcShearModulusMeasure) theEObject;
+			T result = caseIfcShearModulusMeasure(ifcShearModulusMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcShearModulusMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcShearModulusMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_SOLID_ANGLE_MEASURE: {
+			IfcSolidAngleMeasure ifcSolidAngleMeasure = (IfcSolidAngleMeasure) theEObject;
+			T result = caseIfcSolidAngleMeasure(ifcSolidAngleMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcSolidAngleMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcSolidAngleMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_SOUND_POWER_MEASURE: {
+			IfcSoundPowerMeasure ifcSoundPowerMeasure = (IfcSoundPowerMeasure) theEObject;
+			T result = caseIfcSoundPowerMeasure(ifcSoundPowerMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcSoundPowerMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcSoundPowerMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_SOUND_PRESSURE_MEASURE: {
+			IfcSoundPressureMeasure ifcSoundPressureMeasure = (IfcSoundPressureMeasure) theEObject;
+			T result = caseIfcSoundPressureMeasure(ifcSoundPressureMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcSoundPressureMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcSoundPressureMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_SPECIFIC_HEAT_CAPACITY_MEASURE: {
+			IfcSpecificHeatCapacityMeasure ifcSpecificHeatCapacityMeasure = (IfcSpecificHeatCapacityMeasure) theEObject;
+			T result = caseIfcSpecificHeatCapacityMeasure(ifcSpecificHeatCapacityMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcSpecificHeatCapacityMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcSpecificHeatCapacityMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_SPECULAR_EXPONENT: {
+			IfcSpecularExponent ifcSpecularExponent = (IfcSpecularExponent) theEObject;
+			T result = caseIfcSpecularExponent(ifcSpecularExponent);
+			if (result == null)
+				result = caseIfcSpecularHighlightSelect(ifcSpecularExponent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_SPECULAR_ROUGHNESS: {
+			IfcSpecularRoughness ifcSpecularRoughness = (IfcSpecularRoughness) theEObject;
+			T result = caseIfcSpecularRoughness(ifcSpecularRoughness);
+			if (result == null)
+				result = caseIfcSpecularHighlightSelect(ifcSpecularRoughness);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_TEMPERATURE_GRADIENT_MEASURE: {
+			IfcTemperatureGradientMeasure ifcTemperatureGradientMeasure = (IfcTemperatureGradientMeasure) theEObject;
+			T result = caseIfcTemperatureGradientMeasure(ifcTemperatureGradientMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcTemperatureGradientMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcTemperatureGradientMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_TEXT: {
+			IfcText ifcText = (IfcText) theEObject;
+			T result = caseIfcText(ifcText);
+			if (result == null)
+				result = caseIfcMetricValueSelect(ifcText);
+			if (result == null)
+				result = caseIfcSimpleValue(ifcText);
+			if (result == null)
+				result = caseIfcValue(ifcText);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_TEXT_ALIGNMENT: {
+			IfcTextAlignment ifcTextAlignment = (IfcTextAlignment) theEObject;
+			T result = caseIfcTextAlignment(ifcTextAlignment);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_TEXT_DECORATION: {
+			IfcTextDecoration ifcTextDecoration = (IfcTextDecoration) theEObject;
+			T result = caseIfcTextDecoration(ifcTextDecoration);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_TEXT_FONT_NAME: {
+			IfcTextFontName ifcTextFontName = (IfcTextFontName) theEObject;
+			T result = caseIfcTextFontName(ifcTextFontName);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_TEXT_TRANSFORMATION: {
+			IfcTextTransformation ifcTextTransformation = (IfcTextTransformation) theEObject;
+			T result = caseIfcTextTransformation(ifcTextTransformation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_THERMAL_ADMITTANCE_MEASURE: {
+			IfcThermalAdmittanceMeasure ifcThermalAdmittanceMeasure = (IfcThermalAdmittanceMeasure) theEObject;
+			T result = caseIfcThermalAdmittanceMeasure(ifcThermalAdmittanceMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcThermalAdmittanceMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcThermalAdmittanceMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_THERMAL_CONDUCTIVITY_MEASURE: {
+			IfcThermalConductivityMeasure ifcThermalConductivityMeasure = (IfcThermalConductivityMeasure) theEObject;
+			T result = caseIfcThermalConductivityMeasure(ifcThermalConductivityMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcThermalConductivityMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcThermalConductivityMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_THERMAL_EXPANSION_COEFFICIENT_MEASURE: {
+			IfcThermalExpansionCoefficientMeasure ifcThermalExpansionCoefficientMeasure = (IfcThermalExpansionCoefficientMeasure) theEObject;
+			T result = caseIfcThermalExpansionCoefficientMeasure(ifcThermalExpansionCoefficientMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcThermalExpansionCoefficientMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcThermalExpansionCoefficientMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_THERMAL_RESISTANCE_MEASURE: {
+			IfcThermalResistanceMeasure ifcThermalResistanceMeasure = (IfcThermalResistanceMeasure) theEObject;
+			T result = caseIfcThermalResistanceMeasure(ifcThermalResistanceMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcThermalResistanceMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcThermalResistanceMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_THERMAL_TRANSMITTANCE_MEASURE: {
+			IfcThermalTransmittanceMeasure ifcThermalTransmittanceMeasure = (IfcThermalTransmittanceMeasure) theEObject;
+			T result = caseIfcThermalTransmittanceMeasure(ifcThermalTransmittanceMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcThermalTransmittanceMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcThermalTransmittanceMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_THERMODYNAMIC_TEMPERATURE_MEASURE: {
+			IfcThermodynamicTemperatureMeasure ifcThermodynamicTemperatureMeasure = (IfcThermodynamicTemperatureMeasure) theEObject;
+			T result = caseIfcThermodynamicTemperatureMeasure(ifcThermodynamicTemperatureMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcThermodynamicTemperatureMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcThermodynamicTemperatureMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_TIME_MEASURE: {
+			IfcTimeMeasure ifcTimeMeasure = (IfcTimeMeasure) theEObject;
+			T result = caseIfcTimeMeasure(ifcTimeMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcTimeMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcTimeMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_TIME_STAMP: {
+			IfcTimeStamp ifcTimeStamp = (IfcTimeStamp) theEObject;
+			T result = caseIfcTimeStamp(ifcTimeStamp);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcTimeStamp);
+			if (result == null)
+				result = caseIfcValue(ifcTimeStamp);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_TORQUE_MEASURE: {
+			IfcTorqueMeasure ifcTorqueMeasure = (IfcTorqueMeasure) theEObject;
+			T result = caseIfcTorqueMeasure(ifcTorqueMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcTorqueMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcTorqueMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_VAPOR_PERMEABILITY_MEASURE: {
+			IfcVaporPermeabilityMeasure ifcVaporPermeabilityMeasure = (IfcVaporPermeabilityMeasure) theEObject;
+			T result = caseIfcVaporPermeabilityMeasure(ifcVaporPermeabilityMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcVaporPermeabilityMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcVaporPermeabilityMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_VOLUME_MEASURE: {
+			IfcVolumeMeasure ifcVolumeMeasure = (IfcVolumeMeasure) theEObject;
+			T result = caseIfcVolumeMeasure(ifcVolumeMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcVolumeMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcVolumeMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_VOLUMETRIC_FLOW_RATE_MEASURE: {
+			IfcVolumetricFlowRateMeasure ifcVolumetricFlowRateMeasure = (IfcVolumetricFlowRateMeasure) theEObject;
+			T result = caseIfcVolumetricFlowRateMeasure(ifcVolumetricFlowRateMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcVolumetricFlowRateMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcVolumetricFlowRateMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_WARPING_CONSTANT_MEASURE: {
+			IfcWarpingConstantMeasure ifcWarpingConstantMeasure = (IfcWarpingConstantMeasure) theEObject;
+			T result = caseIfcWarpingConstantMeasure(ifcWarpingConstantMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcWarpingConstantMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcWarpingConstantMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_WARPING_MOMENT_MEASURE: {
+			IfcWarpingMomentMeasure ifcWarpingMomentMeasure = (IfcWarpingMomentMeasure) theEObject;
+			T result = caseIfcWarpingMomentMeasure(ifcWarpingMomentMeasure);
+			if (result == null)
+				result = caseIfcDerivedMeasureValue(ifcWarpingMomentMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcWarpingMomentMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_YEAR_NUMBER: {
+			IfcYearNumber ifcYearNumber = (IfcYearNumber) theEObject;
+			T result = caseIfcYearNumber(ifcYearNumber);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_BOX_ALIGNMENT: {
+			IfcBoxAlignment ifcBoxAlignment = (IfcBoxAlignment) theEObject;
+			T result = caseIfcBoxAlignment(ifcBoxAlignment);
+			if (result == null)
+				result = caseIfcLabel(ifcBoxAlignment);
+			if (result == null)
+				result = caseIfcConditionCriterionSelect(ifcBoxAlignment);
+			if (result == null)
+				result = caseIfcSimpleValue(ifcBoxAlignment);
+			if (result == null)
+				result = caseIfcValue(ifcBoxAlignment);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -11121,8 +10964,6 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 			IfcCompoundPlaneAngleMeasure ifcCompoundPlaneAngleMeasure = (IfcCompoundPlaneAngleMeasure) theEObject;
 			T result = caseIfcCompoundPlaneAngleMeasure(ifcCompoundPlaneAngleMeasure);
 			if (result == null)
-				result = caseWrappedValue(ifcCompoundPlaneAngleMeasure);
-			if (result == null)
 				result = caseIfcDerivedMeasureValue(ifcCompoundPlaneAngleMeasure);
 			if (result == null)
 				result = caseIfcValue(ifcCompoundPlaneAngleMeasure);
@@ -11130,11 +10971,88 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Ifc2x3tc1Package.IFC_NORMALISED_RATIO_MEASURE: {
+			IfcNormalisedRatioMeasure ifcNormalisedRatioMeasure = (IfcNormalisedRatioMeasure) theEObject;
+			T result = caseIfcNormalisedRatioMeasure(ifcNormalisedRatioMeasure);
+			if (result == null)
+				result = caseIfcRatioMeasure(ifcNormalisedRatioMeasure);
+			if (result == null)
+				result = caseIfcColourOrFactor(ifcNormalisedRatioMeasure);
+			if (result == null)
+				result = caseIfcAppliedValueSelect(ifcNormalisedRatioMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcNormalisedRatioMeasure);
+			if (result == null)
+				result = caseIfcSizeSelect(ifcNormalisedRatioMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcNormalisedRatioMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_POSITIVE_LENGTH_MEASURE: {
+			IfcPositiveLengthMeasure ifcPositiveLengthMeasure = (IfcPositiveLengthMeasure) theEObject;
+			T result = caseIfcPositiveLengthMeasure(ifcPositiveLengthMeasure);
+			if (result == null)
+				result = caseIfcLengthMeasure(ifcPositiveLengthMeasure);
+			if (result == null)
+				result = caseIfcHatchLineDistanceSelect(ifcPositiveLengthMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcPositiveLengthMeasure);
+			if (result == null)
+				result = caseIfcSizeSelect(ifcPositiveLengthMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcPositiveLengthMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_POSITIVE_PLANE_ANGLE_MEASURE: {
+			IfcPositivePlaneAngleMeasure ifcPositivePlaneAngleMeasure = (IfcPositivePlaneAngleMeasure) theEObject;
+			T result = caseIfcPositivePlaneAngleMeasure(ifcPositivePlaneAngleMeasure);
+			if (result == null)
+				result = caseIfcPlaneAngleMeasure(ifcPositivePlaneAngleMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcPositivePlaneAngleMeasure);
+			if (result == null)
+				result = caseIfcOrientationSelect(ifcPositivePlaneAngleMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcPositivePlaneAngleMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_POSITIVE_RATIO_MEASURE: {
+			IfcPositiveRatioMeasure ifcPositiveRatioMeasure = (IfcPositiveRatioMeasure) theEObject;
+			T result = caseIfcPositiveRatioMeasure(ifcPositiveRatioMeasure);
+			if (result == null)
+				result = caseIfcRatioMeasure(ifcPositiveRatioMeasure);
+			if (result == null)
+				result = caseIfcAppliedValueSelect(ifcPositiveRatioMeasure);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcPositiveRatioMeasure);
+			if (result == null)
+				result = caseIfcSizeSelect(ifcPositiveRatioMeasure);
+			if (result == null)
+				result = caseIfcValue(ifcPositiveRatioMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc2x3tc1Package.IFC_COMPLEX_NUMBER: {
+			IfcComplexNumber ifcComplexNumber = (IfcComplexNumber) theEObject;
+			T result = caseIfcComplexNumber(ifcComplexNumber);
+			if (result == null)
+				result = caseIfcMeasureValue(ifcComplexNumber);
+			if (result == null)
+				result = caseIfcValue(ifcComplexNumber);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case Ifc2x3tc1Package.IFC_NULL_STYLE: {
 			IfcNullStyle ifcNullStyle = (IfcNullStyle) theEObject;
 			T result = caseIfcNullStyle(ifcNullStyle);
-			if (result == null)
-				result = caseWrappedValue(ifcNullStyle);
 			if (result == null)
 				result = caseIfcPresentationStyleSelect(ifcNullStyle);
 			if (result == null)
@@ -11504,96 +11422,6 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Wrapped Value</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Wrapped Value</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseWrappedValue(WrappedValue object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc Absorbed Dose Measure</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc Absorbed Dose Measure</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIfcAbsorbedDoseMeasure(IfcAbsorbedDoseMeasure object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc Acceleration Measure</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc Acceleration Measure</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIfcAccelerationMeasure(IfcAccelerationMeasure object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc Amount Of Substance Measure</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc Amount Of Substance Measure</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIfcAmountOfSubstanceMeasure(IfcAmountOfSubstanceMeasure object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc Angular Velocity Measure</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc Angular Velocity Measure</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIfcAngularVelocityMeasure(IfcAngularVelocityMeasure object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc Area Measure</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc Area Measure</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIfcAreaMeasure(IfcAreaMeasure object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Ifc Boolean</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -11654,6 +11482,36 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Day In Month Number</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Day In Month Number</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcDayInMonthNumber(IfcDayInMonthNumber object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Daylight Saving Hour</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Daylight Saving Hour</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcDaylightSavingHour(IfcDaylightSavingHour object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Ifc Descriptive Measure</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -11665,6 +11523,21 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIfcDescriptiveMeasure(IfcDescriptiveMeasure object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Dimension Count</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Dimension Count</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcDimensionCount(IfcDimensionCount object) {
 		return null;
 	}
 
@@ -11804,6 +11677,51 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Font Style</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Font Style</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcFontStyle(IfcFontStyle object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Font Variant</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Font Variant</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcFontVariant(IfcFontVariant object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Font Weight</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Font Weight</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcFontWeight(IfcFontWeight object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Ifc Force Measure</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -11875,6 +11793,21 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIfcHeatingValueMeasure(IfcHeatingValueMeasure object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Hour In Day</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Hour In Day</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcHourInDay(IfcHourInDay object) {
 		return null;
 	}
 
@@ -12239,6 +12172,21 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Minute In Hour</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Minute In Hour</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcMinuteInHour(IfcMinuteInHour object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Ifc Modulus Of Elasticity Measure</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -12359,6 +12307,21 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Month In Year Number</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Month In Year Number</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcMonthInYearNumber(IfcMonthInYearNumber object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Ifc Numeric Measure</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -12445,6 +12408,21 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIfcPowerMeasure(IfcPowerMeasure object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Presentable Text</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Presentable Text</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcPresentableText(IfcPresentableText object) {
 		return null;
 	}
 
@@ -12550,6 +12528,21 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIfcRotationalStiffnessMeasure(IfcRotationalStiffnessMeasure object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Second In Minute</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Second In Minute</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcSecondInMinute(IfcSecondInMinute object) {
 		return null;
 	}
 
@@ -12715,6 +12708,66 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIfcText(IfcText object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Text Alignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Text Alignment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcTextAlignment(IfcTextAlignment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Text Decoration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Text Decoration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcTextDecoration(IfcTextDecoration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Text Font Name</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Text Font Name</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcTextFontName(IfcTextFontName object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Text Transformation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Text Transformation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcTextTransformation(IfcTextTransformation object) {
 		return null;
 	}
 
@@ -12929,6 +12982,36 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Year Number</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Year Number</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcYearNumber(IfcYearNumber object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Box Alignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Box Alignment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcBoxAlignment(IfcBoxAlignment object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Ifc Normalised Ratio Measure</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -12985,6 +13068,36 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIfcPositiveRatioMeasure(IfcPositiveRatioMeasure object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Complex Number</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Complex Number</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcComplexNumber(IfcComplexNumber object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Null Style</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Null Style</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcNullStyle(IfcNullStyle object) {
 		return null;
 	}
 
@@ -22784,17 +22897,77 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc Complex Number</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Absorbed Dose Measure</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc Complex Number</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Absorbed Dose Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcComplexNumber(IfcComplexNumber object) {
+	public T caseIfcAbsorbedDoseMeasure(IfcAbsorbedDoseMeasure object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Acceleration Measure</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Acceleration Measure</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcAccelerationMeasure(IfcAccelerationMeasure object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Amount Of Substance Measure</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Amount Of Substance Measure</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcAmountOfSubstanceMeasure(IfcAmountOfSubstanceMeasure object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Angular Velocity Measure</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Angular Velocity Measure</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcAngularVelocityMeasure(IfcAngularVelocityMeasure object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Area Measure</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Area Measure</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcAreaMeasure(IfcAreaMeasure object) {
 		return null;
 	}
 
@@ -22810,21 +22983,6 @@ public class Ifc2x3tc1Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIfcCompoundPlaneAngleMeasure(IfcCompoundPlaneAngleMeasure object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc Null Style</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc Null Style</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIfcNullStyle(IfcNullStyle object) {
 		return null;
 	}
 
