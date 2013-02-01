@@ -129,4 +129,8 @@ public abstract class Delegate {
 	public QueryInterface getQueryInterface() {
 		return queryInterface;
 	}
+
+	public void remove() {
+		this.model.remove(getIdEObject());
+	}
 }

@@ -27,4 +27,5 @@ package org.bimserver.models.ifc2x3tc1;
  * @generated
  */
 public interface IfcWall extends IfcBuildingElement {
+
 } // IfcWall

@@ -2144,7 +2144,11 @@ public class Service implements ServiceInterface {
 	public Long commitTransaction(Long tid, String comment) throws UserException {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
-		CommitTransactionDatabaseAction action = new CommitTransactionDatabaseAction(bimServer, session, accessMethod, authorization, bimServer.getLongTransactionManager().get(tid), comment);
+		LongTransaction longTransaction = bimServer.getLongTransactionManager().get(tid);
+		if (longTransaction == null) {
+			throw new UserException("No transaction with tid " + tid + " was found");
+		}
+		CommitTransactionDatabaseAction action = new CommitTransactionDatabaseAction(bimServer, session, accessMethod, authorization, longTransaction, comment);
 		try {
 			session.executeAndCommitAction(action);
 			return action.getRevision().getOid();

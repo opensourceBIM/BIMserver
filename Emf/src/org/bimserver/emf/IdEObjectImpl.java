@@ -172,4 +172,8 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 	public QueryInterface getQueryInterface() {
 		return getDelegate().getQueryInterface();
 	}
+	
+	public void remove() {
+		delegate.remove();
+	}
 }

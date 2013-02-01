@@ -24,6 +24,8 @@ import org.junit.runners.Suite;
         TestCreateGuidLowLevelCalls.class,
         TestLoadCompleteModel.class,
         TestMultiCheckinAndDownload.class,
+        TestReadTrim.class,
+        TestDeleteObjectsEmf.class,
         TestSingleCheckinAndDownload.class})
 public class AllTests {
 	public static BimServer bimServer;
