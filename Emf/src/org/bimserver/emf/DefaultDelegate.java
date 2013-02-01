@@ -47,4 +47,9 @@ public class DefaultDelegate extends Delegate {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 	}
+
+	@Override
+	public void remove() {
+		super.remove();
+	}
 }

@@ -1035,46 +1035,41 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	public ObjectIdentifier getOidOfGuid(String guid, int pid, int rid) throws BimserverDatabaseException {
-		EClass ifcGloballyUniqueIdEClass = Ifc2x3tc1Package.eINSTANCE.getIfcGloballyUniqueId();
-		RecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(
-				ifcGloballyUniqueIdEClass.getEPackage().getName() + "_" + ifcGloballyUniqueIdEClass.getName(), BinUtils.intToByteArray(pid), BinUtils.intToByteArray(pid), this);
-		try {
-			Record record = recordIterator.next();
-			while (record != null) {
-				reads++;
-				ByteBuffer buffer = ByteBuffer.wrap(record.getKey());
-				int pidOfRecord = buffer.getInt();
-				buffer.getLong();
-				int ridOfRecord = -buffer.getInt();
-				if (ridOfRecord == rid && pid == pidOfRecord) {
-					ByteBuffer value = ByteBuffer.wrap(record.getValue());
-
-					// Skip the unsettable part
-					byte unsettablesSize = value.get();
-					value.position(value.position() + unsettablesSize);
-
-					if (value.capacity() > 1) {
-						int stringLength = value.getInt();
-						if (stringLength == -1) {
-							return null;
-						} else {
-							String s = BinUtils.readString(value, stringLength);
-							if (s.equals(guid)) {
-								short referenceCid = value.getShort();
-								// Read the next value, because this is the
-								// (manually added) IfcRoot field, pointing to
-								// the
-								// Object referring this Guid
-								long referencedOid = value.getLong();
-								return new ObjectIdentifier(referencedOid, referenceCid);
+		for (EClass eClass : getMetaDataManager().getAllSubClasses(Ifc2x3tc1Package.eINSTANCE.getIfcRoot())) {
+			RecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(
+					eClass.getEPackage().getName() + "_" + eClass.getName(), BinUtils.intToByteArray(pid), BinUtils.intToByteArray(pid), this);
+			try {
+				Record record = recordIterator.next();
+				while (record != null) {
+					reads++;
+					ByteBuffer buffer = ByteBuffer.wrap(record.getKey());
+					int pidOfRecord = buffer.getInt();
+					long oid = buffer.getLong();
+					int ridOfRecord = -buffer.getInt();
+					if (ridOfRecord == rid && pid == pidOfRecord) {
+						ByteBuffer value = ByteBuffer.wrap(record.getValue());
+						
+						// Skip the unsettable part
+						byte unsettablesSize = value.get();
+						value.position(value.position() + unsettablesSize);
+						
+						if (value.capacity() > 1) {
+							int stringLength = value.getInt();
+							if (stringLength == -1) {
+								return null;
+							} else {
+								String s = BinUtils.readString(value, stringLength);
+								if (s.equals(guid)) {
+									return new ObjectIdentifier(oid, getCid(eClass));
+								}
 							}
 						}
 					}
+					record = recordIterator.next();
 				}
-				record = recordIterator.next();
+			} finally {
+				recordIterator.close();
 			}
-		} finally {
-			recordIterator.close();
 		}
 		return null;
 	}

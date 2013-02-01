@@ -68,4 +68,9 @@ public class ServerDelegate extends Delegate {
 	public void eSet(int featureID, Object newValue) {
 		load();
 	}
+
+	@Override
+	public void remove() {
+		super.remove();
+	}
 }

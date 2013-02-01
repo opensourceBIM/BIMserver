@@ -20,6 +20,8 @@ public class JsonSerializer extends IfcSerializer {
 	enum Mode {
 		HEADER, BODY, FOOTER, DONE
 	}
+	
+	private boolean serializerEmptyLists = false;
 
 	private UTF8PrintWriter out;
 	private Mode mode = Mode.HEADER;
@@ -52,7 +54,7 @@ public class JsonSerializer extends IfcSerializer {
 							firstObject = false;
 						}
 						out.write("{");
-						out.write("\"__oid\":\"" + object.getOid() + "\",");
+						out.write("\"__oid\":" + object.getOid() + ",");
 						out.write("\"__type\":\"" + object.eClass().getName() + "\",");
 						boolean firstF = true;
 						for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
@@ -60,42 +62,49 @@ public class JsonSerializer extends IfcSerializer {
 								if (eStructuralFeature instanceof EReference) {
 									Object value = object.eGet(eStructuralFeature);
 									if (value != null) {
-										if (firstF) {
-											firstF = false;
-										} else {
-											out.write(",");
-										}
 										if (eStructuralFeature.isMany()) {
 											List<?> list = (List<?>) value;
-											boolean isWrapped = false;
-											for (Object o : list) {
-												if (((IdEObject)o).eClass().getEAnnotation("wrapped") != null) {
-													// A little tricky, can we assume if one object in this list is embedded, they all are?
-													isWrapped = true;
-													break;
-												}
-											}
-											if (isWrapped) {
-												out.write("\"__emb" + eStructuralFeature.getName() + "\":[");
-											} else {
-												out.write("\"__ref" + eStructuralFeature.getName() + "\":[");
-											}
-											boolean f = true;
-											for (Object o : list) {
-												if (!f) {
+											if (serializerEmptyLists || !list.isEmpty()) {
+												if (firstF) {
+													firstF = false;
+												} else {
 													out.write(",");
-												} else {
-													f = false;
 												}
-												IdEObject ref = (IdEObject) o;
-												if (ref.getOid() == -1) {
-													writeObject(out, ref);
-												} else {
-													out.write("" + ref.getOid());
+												boolean isWrapped = false;
+												for (Object o : list) {
+													if (((IdEObject)o).eClass().getEAnnotation("wrapped") != null) {
+														// A little tricky, can we assume if one object in this list is embedded, they all are?
+														isWrapped = true;
+														break;
+													}
 												}
+												if (isWrapped) {
+													out.write("\"__emb" + eStructuralFeature.getName() + "\":[");
+												} else {
+													out.write("\"__ref" + eStructuralFeature.getName() + "\":[");
+												}
+												boolean f = true;
+												for (Object o : list) {
+													if (!f) {
+														out.write(",");
+													} else {
+														f = false;
+													}
+													IdEObject ref = (IdEObject) o;
+													if (ref.getOid() == -1) {
+														writeObject(out, ref);
+													} else {
+														out.write("" + ref.getOid());
+													}
+												}
+												out.write("]");
 											}
-											out.write("]");
 										} else {
+											if (firstF) {
+												firstF = false;
+											} else {
+												out.write(",");
+											}
 											IdEObject ref = (IdEObject) value;
 											if (ref instanceof IfcGloballyUniqueId) {
 												out.write("\"" + eStructuralFeature.getName() + "\":");
@@ -111,25 +120,32 @@ public class JsonSerializer extends IfcSerializer {
 								} else {
 									Object value = object.eGet(eStructuralFeature);
 									if (value != null) {
-										if (firstF) {
-											firstF = false;
-										} else {
-											out.write(",");
-										}
 										if (eStructuralFeature.isMany()) {
 											List<?> list = (List<?>) value;
-											out.write("\"" + eStructuralFeature.getName() + "\":[");
-											boolean f = true;
-											for (Object o : list) {
-												if (!f) {
-													out.write(",");
+											if (serializerEmptyLists || !list.isEmpty()) {
+												if (firstF) {
+													firstF = false;
 												} else {
-													f = false;
+													out.write(",");
 												}
-												writePrimitive(out, eStructuralFeature, o);
+												out.write("\"" + eStructuralFeature.getName() + "\":[");
+												boolean f = true;
+												for (Object o : list) {
+													if (!f) {
+														out.write(",");
+													} else {
+														f = false;
+													}
+													writePrimitive(out, eStructuralFeature, o);
+												}
+												out.write("]");
 											}
-											out.write("]");
 										} else {
+											if (firstF) {
+												firstF = false;
+											} else {
+												out.write(",");
+											}
 											out.write("\"" + eStructuralFeature.getName() + "\":");
 											writePrimitive(out, eStructuralFeature, value);
 										}

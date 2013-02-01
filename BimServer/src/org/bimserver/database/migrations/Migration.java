@@ -49,6 +49,12 @@ public abstract class Migration {
 		return hidden;
 	}
 	
+	protected EAnnotation createUniqueAnnotation() {
+		EAnnotation unique = EcoreFactory.eINSTANCE.createEAnnotation();
+		unique.setSource("unique");
+		return unique;
+	}
+	
 	protected EAnnotation createIndexAnnotation() {
 		EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 		eAnnotation.setSource("index");

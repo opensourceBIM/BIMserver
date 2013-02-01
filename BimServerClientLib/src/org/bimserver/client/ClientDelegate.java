@@ -4,7 +4,9 @@ import org.bimserver.client.ClientIfcModel.ModelState;
 import org.bimserver.emf.Delegate;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.QueryInterface;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class ClientDelegate extends Delegate {
@@ -91,5 +93,17 @@ public class ClientDelegate extends Delegate {
 	public void eSet(int featureID, Object newValue) {
 		EStructuralFeature eStructuralFeature = getIdEObject().eClass().getEStructuralFeature(featureID);
 		eSet(eStructuralFeature, newValue);
+	}
+
+	@Override
+	public void remove() {
+		try {
+			model.getBimServerClient().getServiceInterface().removeObject(model.getTransactionId(), getOid());
+		} catch (ServerException e) {
+			e.printStackTrace();
+		} catch (UserException e) {
+			e.printStackTrace();
+		}
+		super.remove();
 	}
 }

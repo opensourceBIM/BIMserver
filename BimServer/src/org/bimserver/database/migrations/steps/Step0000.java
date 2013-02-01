@@ -866,7 +866,7 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(user, "createdOn", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEReference(user, "createdBy", user, Multiplicity.SINGLE);
 		schema.createEAttribute(user, "userType", userTypeEnum, Multiplicity.SINGLE);
-		schema.createEAttribute(user, "username", ecorePackage.getEString(), Multiplicity.SINGLE).getEAnnotations().add(createIndexAnnotation());
+		schema.createEAttribute(user, "username", ecorePackage.getEString(), Multiplicity.SINGLE).getEAnnotations().add(createUniqueAnnotation());
 		schema.createEAttribute(user, "lastSeen", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEAttribute(user, "token", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(user, "validationToken", ecorePackage.getEString(), Multiplicity.SINGLE);
