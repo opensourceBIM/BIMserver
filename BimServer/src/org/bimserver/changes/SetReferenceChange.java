@@ -44,7 +44,6 @@ public class SetReferenceChange implements Change {
 	public void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		IdEObject idEObject = databaseSession.get(oid, new Query(pid, rid));
 		EClass eClass = databaseSession.getEClassForOid(oid);
-		EClass referenceEClass = databaseSession.getEClassForOid(referenceOid);
 		if (idEObject == null) {
 			idEObject = created.get(oid);
 		}
@@ -58,11 +57,17 @@ public class SetReferenceChange implements Change {
 		if (eReference.isMany()) {
 			throw new UserException("Reference is not of type 'single'");
 		}
-		IdEObject referencedObject = databaseSession.get(referenceOid, new Query(pid, rid));
-		if (referencedObject == null) {
-			throw new UserException("Referenced object of type " + referenceEClass.getName() + " with oid " + referenceOid + " not found");
+		if (referenceOid == -1) {
+			idEObject.eSet(eReference, null);
+		} else {
+			EClass referenceEClass = databaseSession.getEClassForOid(referenceOid);
+			IdEObject referencedObject = databaseSession.get(referenceOid, new Query(pid, rid));
+			if (referencedObject == null) {
+				throw new UserException("Referenced object of type " + referenceEClass.getName() + " with oid " + referenceOid + " not found");
+			}
+			// TODO have a look at the opposites
+			idEObject.eSet(eReference, referencedObject);
 		}
-		idEObject.eSet(eReference, referencedObject);
 		databaseSession.store(idEObject, pid, rid);
 	}
 }

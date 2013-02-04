@@ -1074,6 +1074,54 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return null;
 	}
 
+	public Set<ObjectIdentifier> getOidsOfName(String name, int pid, int rid) throws BimserverDatabaseException {
+		Set<ObjectIdentifier> result = new HashSet<ObjectIdentifier>();
+		for (EClass eClass : getMetaDataManager().getAllSubClasses(Ifc2x3tc1Package.eINSTANCE.getIfcRoot())) {
+			RecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(
+					eClass.getEPackage().getName() + "_" + eClass.getName(), BinUtils.intToByteArray(pid), BinUtils.intToByteArray(pid), this);
+			try {
+				Record record = recordIterator.next();
+				while (record != null) {
+					reads++;
+					ByteBuffer buffer = ByteBuffer.wrap(record.getKey());
+					int pidOfRecord = buffer.getInt();
+					long oid = buffer.getLong();
+					int ridOfRecord = -buffer.getInt();
+					if (ridOfRecord == rid && pid == pidOfRecord) {
+						ByteBuffer value = ByteBuffer.wrap(record.getValue());
+						
+						// Skip the unsettable part
+						byte unsettablesSize = value.get();
+						value.position(value.position() + unsettablesSize);
+						
+						if (value.capacity() > 1) {
+							int stringLength = value.getInt();
+							if (stringLength == -1) {
+								return null;
+							} else {
+								BinUtils.readString(value, stringLength); // GUID
+								if (value.getShort() != -1) {; // CID of OwnerHistory
+									value.getLong(); // OID of OwnerHistory
+								}
+								stringLength = value.getInt();
+								if (stringLength != -1) {
+									String foundName = BinUtils.readString(value, stringLength);
+									if (name.equals(foundName)) {
+										result.add(new ObjectIdentifier(oid, getCid(eClass)));
+									}
+								}
+							}
+						}
+					}
+					record = recordIterator.next();
+				}
+			} finally {
+				recordIterator.close();
+			}
+		}
+		return result;
+	}
+	
 	private int getPrimitiveSize(EDataType eDataType, Object val) {
 		if (eDataType == ECORE_PACKAGE.getEInt() || eDataType == ECORE_PACKAGE.getEIntegerObject()) {
 			return 4;
@@ -1236,7 +1284,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	private void fakeRead(ByteBuffer buffer, EStructuralFeature feature) {
 		boolean wrappedValue = feature.getEType().getEAnnotation("wrapped") != null;
-		if (feature.getUpperBound() > 1 || feature.getUpperBound() == -1) {
+		if (feature.isMany()) {
 			if (feature.getEType() instanceof EEnum) {
 			} else if (feature.getEType() instanceof EClass) {
 				if (buffer.capacity() == 1 && buffer.get(0) == -1) {
@@ -1326,9 +1374,6 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		newObject.setRid(query.getRid());
 		objectCache.put(recordIdentifier, newObject);
 		if (query.isDeep() && feature.getEAnnotation("hidden") == null && object.eClass().getEAnnotation("wrapped") == null) {
-			if (newObject.eClass().getName().equals("IfcNormalisedRatioMeasure")) {
-				System.out.println();
-			}
 			todoList.add(newObject);
 		} else {
 			if (object.eClass().getEAnnotation("wrapped") == null) {

@@ -23,6 +23,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadByGuidsDatabaseAction;
+import org.bimserver.database.actions.DownloadByNamesDatabaseAction;
 import org.bimserver.database.actions.DownloadByOidsDatabaseAction;
 import org.bimserver.database.actions.DownloadByTypesDatabaseAction;
 import org.bimserver.database.actions.DownloadCompareDatabaseAction;
@@ -103,7 +104,10 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			action = new DownloadByOidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getOids(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM, reporter, downloadParameters.getDeep());
 			break;
 		case DOWNLOAD_BY_GUIDS:
-			action = new DownloadByGuidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getGuids(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM, reporter);
+			action = new DownloadByGuidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getGuids(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM, reporter, downloadParameters.getDeep());
+			break;
+		case DOWNLOAD_BY_NAMES:
+			action = new DownloadByNamesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getNames(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM, reporter, downloadParameters.getDeep());
 			break;
 		case DOWNLOAD_OF_TYPE:
 			action = new DownloadByTypesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getClassNames(), downloadParameters.getSerializerOid(), downloadParameters.isIncludeAllSubtypes(), downloadParameters.getUseObjectIDM(), getAuthorization(), objectIDM, reporter, downloadParameters.getDeep());

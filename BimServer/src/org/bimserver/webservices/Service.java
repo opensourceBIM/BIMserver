@@ -764,9 +764,15 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Long downloadByGuids(Set<Long> roids, Set<String> guids, Long serializerOid, Boolean sync) throws ServerException, UserException {
+	public Long downloadByGuids(Set<Long> roids, Set<String> guids, Long serializerOid, Boolean deep, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromGuids(bimServer, roids, guids, serializerOid), sync);
+		return download(DownloadParameters.fromGuids(bimServer, roids, guids, serializerOid, deep), sync);
+	}
+
+	@Override
+	public Long downloadByNames(Set<Long> roids, Set<String> names, Long serializerOid, Boolean deep, Boolean sync) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		return download(DownloadParameters.fromNames(bimServer, roids, names, serializerOid, deep), sync);
 	}
 
 	@Override
@@ -2182,6 +2188,30 @@ public class Service implements ServiceInterface {
 	public void addDoubleAttribute(Long tid, Long oid, String attributeName, Double value) throws UserException {
 		requireAuthenticationAndRunningServer();
 		bimServer.getLongTransactionManager().get(tid).add(new AddAttributeChange(oid, attributeName, value));
+	}
+	
+	@Override
+	public void setDoubleAttributes(Long tid, Long oid, String attributeName, List<Double> values) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		bimServer.getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, values));
+	}
+
+	@Override
+	public void setIntegerAttributes(Long tid, Long oid, String attributeName, List<Integer> values) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		bimServer.getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, values));
+	}
+
+	@Override
+	public void setLongAttributes(Long tid, Long oid, String attributeName, List<Long> values) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		bimServer.getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, values));
+	}
+
+	@Override
+	public void setBooleanAttributes(Long tid, Long oid, String attributeName, List<Boolean> values) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		bimServer.getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, values));
 	}
 
 	@Override

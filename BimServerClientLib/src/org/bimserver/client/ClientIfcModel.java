@@ -416,7 +416,7 @@ public class ClientIfcModel extends IfcModel {
 			try {
 				modelState = ModelState.LOADING;
 				Long downloadByGuids = bimServerClient.getServiceInterface()
-						.downloadByGuids(Collections.singleton(roid), Collections.singleton(guid), getIfcSerializerOid(), false);
+						.downloadByGuids(Collections.singleton(roid), Collections.singleton(guid), getIfcSerializerOid(), false, false);
 				processDownload(downloadByGuids);
 				modelState = ModelState.NONE;
 				return super.getByGuid(guid);
