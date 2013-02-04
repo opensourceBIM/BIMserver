@@ -195,7 +195,7 @@ public class DownloadServlet extends HttpServlet {
 						}
 						Set<Long> roids = new HashSet<Long>();
 						roids.add(roid);
-						downloadId = service.downloadByGuids(roids, guids, serializer.getOid(), true);
+						downloadId = service.downloadByGuids(roids, guids, serializer.getOid(), false, true);
 					} else {
 						downloadId = service.download(roid, serializer.getOid(), true, true);
 					}
@@ -206,48 +206,52 @@ public class DownloadServlet extends HttpServlet {
 				return;
 			}
 			SDownloadResult checkoutResult = service.getDownloadData(downloadId);
-			DataSource dataSource = checkoutResult.getFile().getDataSource();
-			if (zip) {
-				if (serializer.getClassName().equals("IfcStepSerializer")) { // TODO should this not include the full classname?
-					response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName().replace(".ifc", ".ifczip") + "\"");
-				} else {
-					response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName() + ".zip" + "\"");
-				}
-				response.setContentType("application/zip");
-				String name = checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "." + serializer.getExtension();
-				ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream);
-				zipOutputStream.putNextEntry(new ZipEntry(name));
-				if (dataSource instanceof FileInputStreamDataSource) {
-					InputStream inputStream = ((FileInputStreamDataSource)dataSource).getInputStream();
-					IOUtils.copy(inputStream, zipOutputStream);
-					inputStream.close();
-				} else {
-					((EmfSerializerDataSource)dataSource).writeToOutputStream(zipOutputStream);
-				}
-				zipOutputStream.finish();
+			if (checkoutResult == null) {
+				LOGGER.error("Invalid downloadId: " + downloadId);
 			} else {
-				if (request.getParameter("mime") == null) {
-					response.setContentType(serializer.getContentType());
-					response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + "." + serializer.getExtension() + "\"");
-				} else {
-					response.setContentType(request.getParameter("mime"));
-				}
-				try {
+				DataSource dataSource = checkoutResult.getFile().getDataSource();
+				if (zip) {
+					if (serializer.getClassName().equals("IfcStepSerializer")) { // TODO should this not include the full classname?
+						response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName().replace(".ifc", ".ifczip") + "\"");
+					} else {
+						response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName() + ".zip" + "\"");
+					}
+					response.setContentType("application/zip");
+					String name = checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "." + serializer.getExtension();
+					ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream);
+					zipOutputStream.putNextEntry(new ZipEntry(name));
 					if (dataSource instanceof FileInputStreamDataSource) {
 						InputStream inputStream = ((FileInputStreamDataSource)dataSource).getInputStream();
-						IOUtils.copy(inputStream, outputStream);
+						IOUtils.copy(inputStream, zipOutputStream);
 						inputStream.close();
 					} else {
-						((EmfSerializerDataSource)dataSource).writeToOutputStream(outputStream);
+						((EmfSerializerDataSource)dataSource).writeToOutputStream(zipOutputStream);
 					}
-				} catch (SerializerException e) {
-					LOGGER.error("", e);
+					zipOutputStream.finish();
+				} else {
+					if (request.getParameter("mime") == null) {
+						response.setContentType(serializer.getContentType());
+						response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + "." + serializer.getExtension() + "\"");
+					} else {
+						response.setContentType(request.getParameter("mime"));
+					}
+					try {
+						if (dataSource instanceof FileInputStreamDataSource) {
+							InputStream inputStream = ((FileInputStreamDataSource)dataSource).getInputStream();
+							IOUtils.copy(inputStream, outputStream);
+							inputStream.close();
+						} else {
+							((EmfSerializerDataSource)dataSource).writeToOutputStream(outputStream);
+						}
+					} catch (SerializerException e) {
+						LOGGER.error("", e);
+					}
 				}
+				if (outputStream instanceof GZIPOutputStream) {
+					((GZIPOutputStream) outputStream).finish();
+				}
+				outputStream.flush();
 			}
-			if (outputStream instanceof GZIPOutputStream) {
-				((GZIPOutputStream) outputStream).finish();
-			}
-			outputStream.flush();
 		} catch (NumberFormatException e) {
 			LOGGER.error("", e);
 			response.getWriter().println("Some number was incorrectly formatted");

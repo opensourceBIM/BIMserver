@@ -29,13 +29,14 @@ import com.google.common.collect.Sets;
 
 public class DownloadParameters extends LongActionKey {
 	public enum DownloadType {
-		DOWNLOAD_REVISION, DOWNLOAD_BY_OIDS, DOWNLOAD_BY_GUIDS, DOWNLOAD_OF_TYPE, DOWNLOAD_PROJECTS, DOWNLOAD_COMPARE, DOWNLOAD_QUERY
+		DOWNLOAD_REVISION, DOWNLOAD_BY_OIDS, DOWNLOAD_BY_GUIDS, DOWNLOAD_OF_TYPE, DOWNLOAD_PROJECTS, DOWNLOAD_COMPARE, DOWNLOAD_QUERY, DOWNLOAD_BY_NAMES
 	};
 
 	private Set<Long> roids;
 	private boolean includeAllSubtypes;
 	private Set<Long> oids;
 	private Set<String> guids;
+	private Set<String> names;
 	private Set<String> classNames;
 	private DownloadType downloadType;
 	private BimServer bimServer;
@@ -85,14 +86,30 @@ public class DownloadParameters extends LongActionKey {
 		this.compareType = compareType;
 	}
 
-	public static DownloadParameters fromGuids(BimServer bimServer, Set<Long> roids, Set<String> guids, long serializerOid) {
+	public static DownloadParameters fromGuids(BimServer bimServer, Set<Long> roids, Set<String> guids, long serializerOid, Boolean deep) {
 		DownloadParameters downloadParameters = new DownloadParameters();
 		downloadParameters.setBimServer(bimServer);
 		downloadParameters.setRoids(roids);
 		downloadParameters.setGuids(guids);
 		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_BY_GUIDS);
 		downloadParameters.setSerializerOid(serializerOid);
+		downloadParameters.setDeep(deep ? Deep.YES : Deep.NO);
 		return downloadParameters;
+	}
+
+	public static DownloadParameters fromNames(BimServer bimServer, Set<Long> roids, Set<String> names, Long serializerOid, Boolean deep) {
+		DownloadParameters downloadParameters = new DownloadParameters();
+		downloadParameters.setBimServer(bimServer);
+		downloadParameters.setRoids(roids);
+		downloadParameters.setNames(names);
+		downloadParameters.setDownloadType(DownloadType.DOWNLOAD_BY_NAMES);
+		downloadParameters.setSerializerOid(serializerOid);
+		downloadParameters.setDeep(deep ? Deep.YES : Deep.NO);
+		return downloadParameters;
+	}
+	
+	private void setNames(Set<String> names) {
+		this.names = names;
 	}
 
 	private void setBimServer(BimServer bimServer) {
@@ -228,10 +245,26 @@ public class DownloadParameters extends LongActionKey {
 		return sb.toString();
 	}
 
+	private String getGuidsString() {
+		StringBuilder sb = new StringBuilder();
+		int i = 0;
+		for (String guid : guids) {
+			sb.append(guid + "-");
+			i++;
+			if (i > 5) {
+				break;
+			}
+		}
+		if (sb.length() > 0) {
+			sb.delete(sb.length() - 1, sb.length());
+		}
+		return sb.toString();
+	}
+
 	/*
 	 * Changed the .hashCode methods on the enums to .name() (which is consistent between JVM restarts)
 	 */
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -239,11 +272,13 @@ public class DownloadParameters extends LongActionKey {
 		result = prime * result + ((classNames == null) ? 0 : classNames.hashCode());
 		result = prime * result + ((code == null) ? 0 : code.hashCode());
 		result = prime * result + ((compareType == null) ? 0 : compareType.name().hashCode());
+		result = prime * result + ((deep == null) ? 0 : deep.hashCode());
 		result = prime * result + ((downloadType == null) ? 0 : downloadType.name().hashCode());
 		result = prime * result + ((guids == null) ? 0 : guids.hashCode());
 		result = prime * result + (int) (ignoreUoid ^ (ignoreUoid >>> 32));
 		result = prime * result + (includeAllSubtypes ? 1231 : 1237);
 		result = prime * result + (int) (modelCompareIdentifier ^ (modelCompareIdentifier >>> 32));
+		result = prime * result + ((names == null) ? 0 : names.hashCode());
 		result = prime * result + ((oids == null) ? 0 : oids.hashCode());
 		result = prime * result + (int) (qeid ^ (qeid >>> 32));
 		result = prime * result + ((roids == null) ? 0 : roids.hashCode());
@@ -273,6 +308,8 @@ public class DownloadParameters extends LongActionKey {
 			return false;
 		if (compareType != other.compareType)
 			return false;
+		if (deep != other.deep)
+			return false;
 		if (downloadType != other.downloadType)
 			return false;
 		if (guids == null) {
@@ -285,6 +322,11 @@ public class DownloadParameters extends LongActionKey {
 		if (includeAllSubtypes != other.includeAllSubtypes)
 			return false;
 		if (modelCompareIdentifier != other.modelCompareIdentifier)
+			return false;
+		if (names == null) {
+			if (other.names != null)
+				return false;
+		} else if (!names.equals(other.names))
 			return false;
 		if (oids == null) {
 			if (other.oids != null)
@@ -308,11 +350,11 @@ public class DownloadParameters extends LongActionKey {
 		return true;
 	}
 
-	private String getGuidsString() {
+	private String getNamesString() {
 		StringBuilder sb = new StringBuilder();
 		int i = 0;
-		for (String guid : guids) {
-			sb.append(guid + "-");
+		for (String name : names) {
+			sb.append(name + "-");
 			i++;
 			if (i > 5) {
 				break;
@@ -323,7 +365,7 @@ public class DownloadParameters extends LongActionKey {
 		}
 		return sb.toString();
 	}
-
+	
 	public String getFileName() {
 		String extension = bimServer.getSerializerFactory().getExtension(serializerOid);
 		switch (downloadType) {
@@ -331,6 +373,8 @@ public class DownloadParameters extends LongActionKey {
 			return getRoidsString() + "." + extension;
 		case DOWNLOAD_BY_GUIDS:
 			return getRoidsString() + "-" + getGuidsString() + "." + extension;
+		case DOWNLOAD_BY_NAMES:
+			return getRoidsString() + "-" + getNamesString() + "." + extension;
 		case DOWNLOAD_BY_OIDS:
 			return getRoidsString() + "-" + getOidsString() + "." + extension;
 		case DOWNLOAD_OF_TYPE:
@@ -397,5 +441,9 @@ public class DownloadParameters extends LongActionKey {
 
 	public void setDeep(Deep deep) {
 		this.deep = deep;
+	}
+	
+	public Set<String> getNames() {
+		return names;
 	}
 }

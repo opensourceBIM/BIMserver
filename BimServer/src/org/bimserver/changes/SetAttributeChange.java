@@ -17,6 +17,7 @@ package org.bimserver.changes;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.List;
 import java.util.Map;
 
 import org.bimserver.database.BimserverDatabaseException;
@@ -28,6 +29,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EcorePackage;
 
 public class SetAttributeChange implements Change {
 
@@ -41,6 +43,7 @@ public class SetAttributeChange implements Change {
 		this.value = value;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		IdEObject idEObject = databaseSession.get(oid, new Query(pid, rid));
@@ -55,18 +58,34 @@ public class SetAttributeChange implements Change {
 		if (eAttribute == null) {
 			throw new UserException("No attribute with the name \"" + attributeName + "\" found in class \"" + eClass.getName() + "\"");
 		}
-		if (eAttribute.isMany()) {
-			throw new UserException("Attribute is not of type 'single'");
-		}
-		if (eAttribute.getEType() instanceof EEnum) {
-			EEnum eEnum = (EEnum) eAttribute.getEType();
-			idEObject.eSet(eAttribute, eEnum.getEEnumLiteral((String) value).getInstance());
+		if (value instanceof List && eAttribute.isMany()) {
+			List sourceList = (List)value;
+			if (!eAttribute.isMany()) {
+				throw new UserException("Attribute is not of type 'many'");
+			}
+			List list = (List)idEObject.eGet(eAttribute);
+			for (Object o : sourceList) {
+				if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+					List asStringList = (List)idEObject.eGet(idEObject.eClass().getEStructuralFeature(attributeName + "AsString"));
+					asStringList.add(String.valueOf(o));
+				}
+				list.add(o);
+			}
+			databaseSession.store(idEObject, pid, rid);
 		} else {
-			idEObject.eSet(eAttribute, value);
+			if (eAttribute.isMany()) {
+				throw new UserException("Attribute is not of type 'single'");
+			}
+			if (eAttribute.getEType() instanceof EEnum) {
+				EEnum eEnum = (EEnum) eAttribute.getEType();
+				idEObject.eSet(eAttribute, eEnum.getEEnumLiteral(((String) value).toUpperCase()).getInstance());
+			} else {
+				idEObject.eSet(eAttribute, value);
+			}
+			if (value instanceof Double) {
+				idEObject.eSet(idEObject.eClass().getEStructuralFeature(attributeName + "AsString"), String.valueOf((Double)value));
+			}
+			databaseSession.store(idEObject, pid, rid);
 		}
-		if (value instanceof Double) {
-			idEObject.eSet(idEObject.eClass().getEStructuralFeature(attributeName + "AsString"), String.valueOf((Double)value));
-		}
-		databaseSession.store(idEObject, pid, rid);
 	}
 }

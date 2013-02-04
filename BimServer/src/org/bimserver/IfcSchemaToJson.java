@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 
 import com.google.gson.stream.JsonWriter;
 
@@ -62,9 +63,11 @@ public class IfcSchemaToJson {
 						jsonWriter.name(eStructuralFeature.getName());
 						jsonWriter.beginObject();
 						jsonWriter.name("type");
-						jsonWriter.value(eStructuralFeature.getEType().getName());
+						jsonWriter.value(convertType(eStructuralFeature.getEType()));
 						jsonWriter.name("reference");
-						jsonWriter.value(eStructuralFeature instanceof EReference && !eStructuralFeature.getName().equals("GlobalId"));
+						jsonWriter.value(eStructuralFeature instanceof EReference);
+						jsonWriter.name("many");
+						jsonWriter.value(eStructuralFeature.isMany());
 						jsonWriter.endObject();
 					}
 					jsonWriter.endObject();
@@ -76,5 +79,24 @@ public class IfcSchemaToJson {
 		} finally {
 			jsonWriter.close();
 		}
+	}
+
+	private String convertType(EClassifier type) {
+		if (type == EcorePackage.eINSTANCE.getEDouble() || type == EcorePackage.eINSTANCE.getEDoubleObject()) {
+			return "double";
+		} else if (type == EcorePackage.eINSTANCE.getEInt() || type == EcorePackage.eINSTANCE.getEIntegerObject()) {
+			return "int";
+		} else if (type == EcorePackage.eINSTANCE.getEBoolean() || type == EcorePackage.eINSTANCE.getEBooleanObject()) {
+			return "boolean";
+		} else if (type == EcorePackage.eINSTANCE.getEByteArray()) {
+			return "bytearray";
+		} else if (type == EcorePackage.eINSTANCE.getELong() || type == EcorePackage.eINSTANCE.getELongObject()) {
+			return "long";
+		} else if (type == EcorePackage.eINSTANCE.getEString()) {
+			return "string";
+		} else if (type instanceof EEnum) {
+			return "enum";
+		}
+		return type.getName();
 	}
 }

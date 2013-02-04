@@ -82,6 +82,7 @@ import org.bimserver.interfaces.objects.SServicePluginDescriptor;
 import org.bimserver.interfaces.objects.SServiceType;
 import org.bimserver.interfaces.objects.SSystemInfo;
 import org.bimserver.interfaces.objects.SUser;
+import org.bimserver.interfaces.objects.SUserSettings;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.shared.exceptions.ServerException;
@@ -247,11 +248,10 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
-	 * Download a model in a serialized format by giving a set of revisins and a set of guids to filter on
-	 * NOTE: This is a potentially slow method because the classes of the objects are not given
+	 * Download a model in a serialized format by giving a set of revisions and a set of guids to filter on
 	 * @param roids A set of Revision ObjectIDs
 	 * @param guids A set of IFC guids
-	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
+	 * @param serializerOid OID of the serializer to use
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
 	 * @throws ServerException, UserException
@@ -260,9 +260,27 @@ public interface ServiceInterface extends PublicInterface {
 	Long downloadByGuids(
 		@WebParam(name = "roids", partName = "downloadByGuids.roids") Set<Long> roids,
 		@WebParam(name = "guids", partName = "downloadByGuids.guids") Set<String> guids,
-		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
-		@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
+		@WebParam(name = "serializerOid", partName = "downloadByGuids.serializerOid") Long serializerOid,
+		@WebParam(name = "deep", partName = "downloadByGuids.deep") Boolean deep,
+		@WebParam(name = "sync", partName = "downloadByGuids.sync") Boolean sync) throws ServerException, UserException;
 
+	/**
+	 * Download a model in a serialized format by giving a set of revisions and a set of names to filter on
+	 * @param roids A set of Revision ObjectIDs
+	 * @param names A set of names, the names should be exact matches for now
+	 * @param serializerOid OID of the serializer to use
+	 * @param sync Whether to return immediately (async) or wait for completion (sync)
+	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "downloadByNames")
+	Long downloadByNames(
+		@WebParam(name = "roids", partName = "downloadByNames.roids") Set<Long> roids,
+		@WebParam(name = "names", partName = "downloadByNames.names") Set<String> names,
+		@WebParam(name = "serializerOid", partName = "downloadByNames.serializerOid") Long serializerOid,
+		@WebParam(name = "deep", partName = "downloadByNames.deep") Boolean deep,
+		@WebParam(name = "sync", partName = "downloadByNames.sync") Boolean sync) throws ServerException, UserException;
+	
 	/**
 	 * Download a model in a serialized format by giving a set of revisions
 	 * @param roids A set of Revision ObjectIDs
@@ -1475,6 +1493,19 @@ public interface ServiceInterface extends PublicInterface {
 	 * @param value New Double value
 	 * @throws ServerException, UserException
 	 */
+	@WebMethod(action = "setDoubleAttributes")
+	void setDoubleAttributes(
+		@WebParam(name = "tid", partName = "setDoubleAttributes.tid") Long tid,
+		@WebParam(name = "oid", partName = "setDoubleAttributes.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "setDoubleAttributes.attributeName") String attributeName, 
+		@WebParam(name = "value", partName = "setDoubleAttributes.values") List<Double> values) throws ServerException, UserException;
+	
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value New Double value
+	 * @throws ServerException, UserException
+	 */
 	@WebMethod(action = "getDoubleAttribute")
 	Double getDoubleAttribute(
 		@WebParam(name = "tid", partName = "getDoubleAttribute.tid") Long tid,
@@ -2300,4 +2331,7 @@ public interface ServiceInterface extends PublicInterface {
 	Integer count(
 		@WebParam(name = "roid", partName = "count.roid") Long roid,
 		@WebParam(name = "className", partName = "count.className") String className) throws UserException, ServerException;
+	
+	@WebMethod(action = "getUserSettings")
+	SUserSettings getUserSettings() throws ServerException, UserException;
 }

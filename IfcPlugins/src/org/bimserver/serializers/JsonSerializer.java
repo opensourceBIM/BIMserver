@@ -185,8 +185,14 @@ public class JsonSerializer extends IfcSerializer {
 	}
 
 	private void writePrimitive(PrintWriter out, EStructuralFeature feature, Object value) {
-		if (value instanceof String || value instanceof Enum) {
+		if (value instanceof String) {
 			out.write("\"" + value + "\"");
+		} else if (value instanceof Enum) {
+			 if (value.toString().equalsIgnoreCase("true") || value.toString().equalsIgnoreCase("false")) {
+				 out.write(value.toString().toLowerCase());
+			 } else {
+				out.write("\"" + value + "\"");
+			 }
 		} else {
 			out.write("" + value);
 		}

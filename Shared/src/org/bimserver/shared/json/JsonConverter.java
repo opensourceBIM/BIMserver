@@ -243,6 +243,10 @@ public class JsonConverter {
 				if (object instanceof JsonPrimitive) {
 					return ((JsonPrimitive)object).getAsString();
 				}
+			} else if (genericType.isDouble()) {
+				if (object instanceof JsonPrimitive) {
+					return ((JsonPrimitive)object).getAsDouble();
+				}
 			}
 		} else if (definedType.isSet()) {
 			if (genericType.isLong()) {

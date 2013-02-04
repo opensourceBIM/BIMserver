@@ -44,9 +44,9 @@ public class TestDeleteObjectsEmf extends TestWithEmbeddedServer {
 			IfcWall wall6 = (IfcWall) model.getByGuid("Wall 6");
 			assertTrue(wall6 != null);
 			wall6.remove();
-			
+
 			roid = model.commit("Removed wall 6");
-			
+
 			model = bimServerClient.getModel(newProject.getOid(), roid, true);
 			walls = model.getAllWithSubTypes(Ifc2x3tc1Package.eINSTANCE.getIfcWall());
 			assertTrue(walls.size() == 9);

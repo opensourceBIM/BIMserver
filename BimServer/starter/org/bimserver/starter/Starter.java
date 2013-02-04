@@ -21,6 +21,7 @@ package org.bimserver.starter;
  *****************************************************************************/
 
 import java.awt.BorderLayout;
+import java.awt.Desktop;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -35,6 +36,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.Enumeration;
@@ -271,18 +273,18 @@ public class Starter extends JFrame {
 		
 		buttons.add(startStopButton);
 
-//		JButton launchWebBrowser = new JButton("Launch Webbrowser");
-//		launchWebBrowser.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				try {
-//					Desktop.getDesktop().browse(new URI("http://" + addressField.getText() + ":" + portField.getText()));
-//				} catch (Exception e) {
-//					LOGGER.error("", e);
-//				}
-//			}
-//		});
-//		buttons.add(launchWebBrowser);
+		JButton launchWebBrowser = new JButton("Launch Webbrowser");
+		launchWebBrowser.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URI("http://" + addressField.getText() + ":" + portField.getText()));
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		});
+		buttons.add(launchWebBrowser);
 
 		logField.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
 		logField.setEditable(true);
