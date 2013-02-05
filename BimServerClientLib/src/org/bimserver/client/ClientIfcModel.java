@@ -16,7 +16,6 @@ import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.shared.ListWaitingObject;
@@ -36,6 +35,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
 
 public class ClientIfcModel extends IfcModel {
 
@@ -185,11 +185,7 @@ public class ClientIfcModel extends IfcModel {
 											}
 											object.eSet(eStructuralFeature, x);
 										} else if (eStructuralFeature instanceof EReference) {
-											if (eStructuralFeature.getName().equals("GlobalId")) {
-												IfcGloballyUniqueId globallyUniqueId = Ifc2x3tc1Factory.eINSTANCE.createIfcGloballyUniqueId();
-												globallyUniqueId.setWrappedValue(jsonReader.nextString());
-												object.eSet(eStructuralFeature, globallyUniqueId);
-											} else if (embedded) {
+											if (embedded) {
 												jsonReader.beginObject();
 												if (jsonReader.nextName().equals("__type")) {
 													String t = jsonReader.nextString();
@@ -239,26 +235,31 @@ public class ClientIfcModel extends IfcModel {
 		EClassifier eClassifier = eStructuralFeature.getEType();
 		if (eClassifier == EcorePackage.eINSTANCE.getEString()) {
 			return jsonReader.nextString();
-		} else if (eClassifier == EcorePackage.eINSTANCE.getEDouble()) {
+		} else if (eClassifier == EcorePackage.eINSTANCE.getEDouble() || eClassifier == EcorePackage.eINSTANCE.getEDoubleObject()) {
 			return jsonReader.nextDouble();
-		} else if (eClassifier == EcorePackage.eINSTANCE.getEBoolean()) {
+		} else if (eClassifier == EcorePackage.eINSTANCE.getEBoolean() || eClassifier == EcorePackage.eINSTANCE.getEBooleanObject()) {
 			return jsonReader.nextBoolean();
-		} else if (eClassifier == EcorePackage.eINSTANCE.getEInt()) {
+		} else if (eClassifier == EcorePackage.eINSTANCE.getEInt() || eClassifier == EcorePackage.eINSTANCE.getEIntegerObject()) {
 			return jsonReader.nextInt();
 		} else if (eClassifier == EcorePackage.eINSTANCE.getEEnum()) {
-			EEnum eEnum = (EEnum) eStructuralFeature.getEType();
-			return eEnum.getEEnumLiteral(jsonReader.nextString()).getInstance();
-		} else if (eClassifier instanceof EClass) {
-			if (eStructuralFeature.getEType().getName().equals("IfcGloballyUniqueId")) {
-				IfcGloballyUniqueId ifcGloballyUniqueId = Ifc2x3tc1Factory.eINSTANCE.createIfcGloballyUniqueId();
-				ifcGloballyUniqueId.setWrappedValue(jsonReader.nextString());
-				return ifcGloballyUniqueId;
+			// TODO DOES THIS EVER HAPPEN??
+			if (jsonReader.peek() == JsonToken.BOOLEAN) {
+				EEnum eEnum = (EEnum) eStructuralFeature.getEType();
+				return eEnum.getEEnumLiteral(("" + jsonReader.nextBoolean()).toUpperCase()).getInstance();
 			} else {
-				throw new RuntimeException();
+				EEnum eEnum = (EEnum) eStructuralFeature.getEType();
+				return eEnum.getEEnumLiteral(jsonReader.nextString()).getInstance();
 			}
+		} else if (eClassifier instanceof EClass) {
+			throw new RuntimeException();
 		} else if (eClassifier instanceof EEnum) {
-			EEnum eEnum = (EEnum) eStructuralFeature.getEType();
-			return eEnum.getEEnumLiteral(jsonReader.nextString()).getInstance();
+			if (jsonReader.peek() == JsonToken.BOOLEAN) {
+				EEnum eEnum = (EEnum) eStructuralFeature.getEType();
+				return eEnum.getEEnumLiteral(("" + jsonReader.nextBoolean()).toUpperCase()).getInstance();
+			} else {
+				EEnum eEnum = (EEnum) eStructuralFeature.getEType();
+				return eEnum.getEEnumLiteral(jsonReader.nextString()).getInstance();
+			}
 		} else {
 			throw new RuntimeException("Unimplemented type " + eStructuralFeature.getEType().getName());
 		}

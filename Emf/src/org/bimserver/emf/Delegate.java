@@ -60,7 +60,7 @@ public abstract class Delegate {
 	}
 	
 	public void load() {
-		if (!isLoadedOrLoading()) {
+		if (!isLoadedOrLoading() && oid != -1) {
 			state = State.LOADING;
 			internalLoad(idEObject);
 			state = State.LOADED;
