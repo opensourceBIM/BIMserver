@@ -539,6 +539,11 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 						}
 					}
 				}
+			} catch (UncheckedBimserverLockConflictException e) {
+				bimTransaction.rollback();
+				objectCache.clear();
+				objectsToCommit.clear();
+				bimTransaction = database.getKeyValueStore().startTransaction();
 			} catch (BimserverDatabaseException e) {
 				LOGGER.error("", e);
 				throw e;
@@ -606,7 +611,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	public <T extends IdEObject> T get(IdEObject idEObject, long oid, IfcModelInterface model, QueryInterface query, Queue<IdEObject> todoList) throws BimserverDatabaseException {
 		checkOpen();
 		if (oid == -1) {
-			throw new RuntimeException("Cannot get object for oid " + oid);
+			throw new BimserverDatabaseException("Cannot get object for oid " + oid);
 		}
 		if (objectsToCommit.containsOid(oid)) {
 			return (T) objectsToCommit.getByOid(oid);
@@ -1197,8 +1202,9 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		try {
 			lazyLoad(idEObject);
 		} catch (BimserverLockConflictException e) {
-			LOGGER.error("", e);
+			throw new UncheckedBimserverLockConflictException(e);
 		} catch (BimserverDatabaseException e) {
+			// TODO probably make unchecked version for other exceptions as well...
 			LOGGER.error("", e);
 		}
 	}

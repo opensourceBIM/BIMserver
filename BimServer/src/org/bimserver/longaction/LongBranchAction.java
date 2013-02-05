@@ -18,8 +18,13 @@ package org.bimserver.longaction;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.ProgressHandler;
 import org.bimserver.database.actions.BimDatabaseAction;
+import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
+import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,10 +50,41 @@ public class LongBranchAction extends LongAction<LongCheckinActionKey> {
 
 	@Override
 	public void execute() {
+		changeActionState(ActionState.STARTED, "Storing data...", 0);
+		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			action.execute();
+			action.setDatabaseSession(session);
+			session.executeAndCommitAction(action, new ProgressHandler() {
+				private int count;
+
+				@Override
+				public void progress(int current, int max) {
+					if (count == 0) {
+						updateProgress("Storing data...", current * 100 / max);
+					} else {
+						updateProgress("Storing data (" + (count + 1) + ")...", current * 100 / max);
+					}
+				}
+
+				@Override
+				public void retry(int count) {
+					this.count = count;
+				}
+			});
 		} catch (Exception e) {
-			LOGGER.error("", e);
+			if (e instanceof UserException) {
+			} else if (e instanceof BimserverConcurrentModificationDatabaseException) {
+				// Ignore
+			} else {
+				LOGGER.error("", e);
+			}
+			error(e.getMessage());
+		} finally {
+			session.close();
+			done();
+			if (getActionState() != ActionState.AS_ERROR) {
+				changeActionState(ActionState.FINISHED, "Done", 100);
+			}
 		}
 	}
 }
