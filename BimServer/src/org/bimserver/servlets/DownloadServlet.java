@@ -44,6 +44,7 @@ import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.exceptions.ServerException;
@@ -210,6 +211,7 @@ public class DownloadServlet extends HttpServlet {
 				LOGGER.error("Invalid downloadId: " + downloadId);
 			} else {
 				DataSource dataSource = checkoutResult.getFile().getDataSource();
+				PluginConfiguration pluginConfiguration = new PluginConfiguration(service.getPluginSettings(serializer.getOid()));
 				if (zip) {
 					if (serializer.getClassName().equals("IfcStepSerializer")) { // TODO should this not include the full classname?
 						response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName().replace(".ifc", ".ifczip") + "\"");
@@ -217,7 +219,7 @@ public class DownloadServlet extends HttpServlet {
 						response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName() + ".zip" + "\"");
 					}
 					response.setContentType("application/zip");
-					String name = checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "." + serializer.getExtension();
+					String name = checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "." + pluginConfiguration.getString("Extension");
 					ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream);
 					zipOutputStream.putNextEntry(new ZipEntry(name));
 					if (dataSource instanceof FileInputStreamDataSource) {
@@ -230,8 +232,8 @@ public class DownloadServlet extends HttpServlet {
 					zipOutputStream.finish();
 				} else {
 					if (request.getParameter("mime") == null) {
-						response.setContentType(serializer.getContentType());
-						response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + "." + serializer.getExtension() + "\"");
+						response.setContentType(pluginConfiguration.getString("ContentType"));
+						response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + "." + pluginConfiguration.getString("Extension") + "\"");
 					} else {
 						response.setContentType(request.getParameter("mime"));
 					}

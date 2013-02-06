@@ -45,7 +45,7 @@ public class TestColladaSerializer {
 			
 			DeserializerPlugin ifcDeserializerPlugin = pluginManager.getFirstDeserializer("ifc", true);
 			
-			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/collada", true);
+			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.collada.ColladaSerializerPlugin", true);
 			for (File file : testFiles.listFiles()) {
 				if (file.isFile() && file.getName().endsWith(".ifc") && file.getName().equals("Vogel_Gesamt.ifc")) {
 					System.out.println(file.getName());

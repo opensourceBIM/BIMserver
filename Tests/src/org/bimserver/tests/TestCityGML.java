@@ -40,19 +40,16 @@ public class TestCityGML {
 	private void start() {
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
-			Collection<SerializerPlugin> plugins = pluginManager.getAllSerializerPlugins("application/gml", true);
-			if (!plugins.isEmpty()) {
-				SerializerPlugin plugin = plugins.iterator().next();
-				Serializer serializer = plugin.createSerializer(new PluginConfiguration());
-				Collection<DeserializerPlugin> allDeserializerPlugins = pluginManager.getAllDeserializerPlugins("ifc", true);
-				if (!allDeserializerPlugins.isEmpty()) {
-					DeserializerPlugin deserializerPlugin = allDeserializerPlugins.iterator().next();
-					Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-					deserializer.init(pluginManager.requireSchemaDefinition());
-					IfcModelInterface model = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Workspace\\BIMserver\\TestData\\data\\Eindhoven - TUe_model - RevitArch.ifc"));
-					serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine(), false);
-					serializer.writeToFile(new File("output/ac11.gml"));
-				}
+			SerializerPlugin plugin = pluginManager.getSerializerPlugin("org.bimserver.citygml.CityGmlSerializerPlugin", true);
+			Serializer serializer = plugin.createSerializer(new PluginConfiguration());
+			Collection<DeserializerPlugin> allDeserializerPlugins = pluginManager.getAllDeserializerPlugins("ifc", true);
+			if (!allDeserializerPlugins.isEmpty()) {
+				DeserializerPlugin deserializerPlugin = allDeserializerPlugins.iterator().next();
+				Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
+				deserializer.init(pluginManager.requireSchemaDefinition());
+				IfcModelInterface model = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Workspace\\BIMserver\\TestData\\data\\Eindhoven - TUe_model - RevitArch.ifc"));
+				serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine(), false);
+				serializer.writeToFile(new File("output/ac11.gml"));
 			}
 		} catch (PluginException e) {
 			e.printStackTrace();

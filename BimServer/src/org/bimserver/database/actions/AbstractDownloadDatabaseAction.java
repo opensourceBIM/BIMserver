@@ -30,6 +30,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.webservices.authorization.Authorization;
 
 public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseAction<T> {
@@ -42,7 +43,8 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 	}
 	
 	protected void checkGeometry(SerializerPluginConfiguration serializerPluginConfiguration, PluginManager pluginManager, IfcModelInterface model, Project project, ConcreteRevision concreteRevision, Revision revision) throws BimserverDatabaseException {
-		if (serializerPluginConfiguration.isNeedsGeometry()) {
+		SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(serializerPluginConfiguration.getClassName(), true);
+		if (serializerPlugin.needsGeometry()) {
 			if (!revision.isHasGeometry()) {
 				setProgress("Generating geometry...", -1);
 				new GeometryGenerator().generateGeometry(authorization.getUoid(), pluginManager, getDatabaseSession(), model, project.getId(), concreteRevision.getId(), revision, false, null);

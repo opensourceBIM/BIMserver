@@ -67,8 +67,8 @@ message NewLogActionRequest {
 message SImmediateNotificationResult {
 	optional SNotifictionResultEnum result = 1;
 	optional int32 rid = 2;
-	optional int64 oid = 3;
-	optional string description = 4;
+	optional string description = 3;
+	optional int64 oid = 4;
 }
 
 message NewLogActionResponse {

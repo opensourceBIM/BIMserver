@@ -217,9 +217,6 @@ public class Step0000 extends Migration {
 		EClass serializerPluginConfiguration = schema.createEClass(storePackage, "SerializerPluginConfiguration", pluginConfiguration);
 		EClass objectIDMPluginConfiguration = schema.createEClass(storePackage, "ObjectIDMPluginConfiguration", pluginConfiguration);
 
-		schema.createEAttribute(serializerPluginConfiguration, "needsGeometry", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
-		schema.createEAttribute(serializerPluginConfiguration, "extension", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(serializerPluginConfiguration, "contentType", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		EReference serializerObjectIDMReference = schema.createEReference(serializerPluginConfiguration, "objectIDM", objectIDMPluginConfiguration, Multiplicity.SINGLE);
 		EReference serializerSettingsReference = schema.createEReference(serializerPluginConfiguration, "userSettings", userSettings, Multiplicity.SINGLE);
 		

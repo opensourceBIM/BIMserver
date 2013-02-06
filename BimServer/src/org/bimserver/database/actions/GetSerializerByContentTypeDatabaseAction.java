@@ -21,12 +21,10 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
-import org.bimserver.database.query.conditions.AttributeCondition;
-import org.bimserver.database.query.conditions.Condition;
-import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.shared.exceptions.UserException;
 
 public class GetSerializerByContentTypeDatabaseAction extends BimDatabaseAction<SerializerPluginConfiguration> {
@@ -40,7 +38,12 @@ public class GetSerializerByContentTypeDatabaseAction extends BimDatabaseAction<
 
 	@Override
 	public SerializerPluginConfiguration execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getSerializerPluginConfiguration_ContentType(), new StringLiteral(contentType));
-		return getDatabaseSession().querySingle(condition, SerializerPluginConfiguration.class, Query.getDefault());
+		for (SerializerPluginConfiguration serializerPluginConfiguration : getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), SerializerPluginConfiguration.class, Query.getDefault())) {
+			PluginConfiguration pluginConfiguration = new PluginConfiguration(serializerPluginConfiguration.getSettings());
+			if (pluginConfiguration.getString("ContentType").equals(contentType)) {
+				return serializerPluginConfiguration;
+			}
+		}
+		return null;
 	}
 }

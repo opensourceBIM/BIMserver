@@ -41,22 +41,22 @@ public class TestKmz {
 	private void start() {
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
-			Collection<SerializerPlugin> plugins = pluginManager.getAllSerializerPlugins("application/vnd.google-earth.kmz", true);
-			if (!plugins.isEmpty()) {
-				SerializerPlugin plugin = plugins.iterator().next();
-				Serializer serializer = plugin.createSerializer(new PluginConfiguration());
-				Collection<DeserializerPlugin> allDeserializerPlugins = pluginManager.getAllDeserializerPlugins("ifc", true);
-//				IfcEnginePlugin ifcEngine = pluginManager.getIfcEngine("org.ifcopenshell.IfcOpenShellEnginePlugin", true);
-				IfcEnginePlugin ifcEnginePlugin = pluginManager.getIfcEngine("org.bimserver.ifcengine.TNOIfcEnginePlugin", true);
-				if (!allDeserializerPlugins.isEmpty()) {
-					DeserializerPlugin deserializerPlugin = allDeserializerPlugins.iterator().next();
-					Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-					deserializer.init(pluginManager.requireSchemaDefinition());
-					IfcModelInterface model = deserializer.read(TestFile.WALL_ONLY.getFile());
-//					IfcModelInterface model = deserializer.read(TestFile.ADTHAUS.getFile(), true);
-					serializer.init(model, null, pluginManager, ifcEnginePlugin, false);
-					serializer.writeToFile(new File("output/ac11.kmz"));
-				}
+			SerializerPlugin plugin = pluginManager.getSerializerPlugin("org.bimserver.collada.KmzSerializerPlugin", true);
+			Serializer serializer = plugin.createSerializer(new PluginConfiguration());
+			Collection<DeserializerPlugin> allDeserializerPlugins = pluginManager.getAllDeserializerPlugins("ifc", true);
+			// IfcEnginePlugin ifcEngine =
+			// pluginManager.getIfcEngine("org.ifcopenshell.IfcOpenShellEnginePlugin",
+			// true);
+			IfcEnginePlugin ifcEnginePlugin = pluginManager.getIfcEngine("org.bimserver.ifcengine.TNOIfcEnginePlugin", true);
+			if (!allDeserializerPlugins.isEmpty()) {
+				DeserializerPlugin deserializerPlugin = allDeserializerPlugins.iterator().next();
+				Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
+				deserializer.init(pluginManager.requireSchemaDefinition());
+				IfcModelInterface model = deserializer.read(TestFile.WALL_ONLY.getFile());
+				// IfcModelInterface model =
+				// deserializer.read(TestFile.ADTHAUS.getFile(), true);
+				serializer.init(model, null, pluginManager, ifcEnginePlugin, false);
+				serializer.writeToFile(new File("output/ac11.kmz"));
 			}
 		} catch (PluginException e) {
 			e.printStackTrace();

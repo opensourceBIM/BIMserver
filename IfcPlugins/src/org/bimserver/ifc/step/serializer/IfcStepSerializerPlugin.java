@@ -26,10 +26,10 @@ import org.bimserver.models.store.StringType;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.serializers.AbstractSerializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
-import org.bimserver.plugins.serializers.SerializerPlugin;
 
-public class IfcStepSerializerPlugin implements SerializerPlugin {
+public class IfcStepSerializerPlugin extends AbstractSerializerPlugin {
 
 	private boolean initialized = false;
 
@@ -81,7 +81,7 @@ public class IfcStepSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public ObjectDefinition getSettingsDefinition() {
-		ObjectDefinition objectDefinition = StoreFactory.eINSTANCE.createObjectDefinition();
+		ObjectDefinition objectDefinition = super.getSettingsDefinition();
 		ParameterDefinition organizationParameter = StoreFactory.eINSTANCE.createParameterDefinition();
 		organizationParameter.setName("organization");
 		StringType defaultValue = StoreFactory.eINSTANCE.createStringType();

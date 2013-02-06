@@ -3,6 +3,14 @@ package org.bimserver.plugins;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.bimserver.interfaces.objects.SArrayType;
+import org.bimserver.interfaces.objects.SBooleanType;
+import org.bimserver.interfaces.objects.SDoubleType;
+import org.bimserver.interfaces.objects.SLongType;
+import org.bimserver.interfaces.objects.SObjectType;
+import org.bimserver.interfaces.objects.SParameter;
+import org.bimserver.interfaces.objects.SStringType;
+import org.bimserver.interfaces.objects.SType;
 import org.bimserver.models.store.ArrayType;
 import org.bimserver.models.store.BooleanType;
 import org.bimserver.models.store.DoubleType;
@@ -18,6 +26,28 @@ import org.bimserver.models.store.Type;
  */
 public class PluginConfiguration {
 	private final Map<String, Object> values = new HashMap<String, Object>();
+	
+	public PluginConfiguration(SObjectType settings) {
+		for (SParameter parameter : settings.getParameters()) {
+			SType value = parameter.getValue();
+			if (value instanceof SBooleanType) {
+				values.put(parameter.getName(), ((SBooleanType)value).isValue());
+			} else if (value instanceof SStringType) {
+				values.put(parameter.getName(), ((SStringType)value).getValue());
+			} else if (value instanceof SLongType) {
+				values.put(parameter.getName(), ((SLongType)value).getValue());
+			} else if (value instanceof SDoubleType) {
+				values.put(parameter.getName(), ((SDoubleType)value).getValue());
+			} else if (value instanceof SArrayType) {
+				// TODO
+				values.put(parameter.getName(), ((SArrayType)value).getValues());
+			} else if (value instanceof SObjectType) {
+				// TODO
+			} else {
+				throw new RuntimeException("Unimplemented type: " + value.getClass().getName());
+			}
+		}
+	}
 	
 	public PluginConfiguration(ObjectType settings) {
 		for (Parameter parameter : settings.getParameters()) {

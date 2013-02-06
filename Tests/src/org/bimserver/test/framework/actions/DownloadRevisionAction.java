@@ -28,6 +28,7 @@ import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
@@ -76,7 +77,8 @@ public class DownloadRevisionAction extends Action {
 				try {
 					InputStream downloadData = virtualUser.getBimServerClient().getDownloadData(download, serializer.getOid());
 					if (downloadData != null) {
-						String filename = project.getName() + "." + revision.getId() + "." + serializer.getExtension();
+						PluginConfiguration pluginConfiguration = new PluginConfiguration(virtualUser.getBimServerClient().getServiceInterface().getPluginSettings(serializer.getOid()));
+						String filename = project.getName() + "." + revision.getId() + "." + pluginConfiguration.getString("Extension");
 						FileOutputStream fos = new FileOutputStream(new File(getTestFramework().getTestConfiguration().getOutputFolder(), filename));
 						IOUtils.copy(downloadData, fos);
 						virtualUser.getLogger().info(filename + " downloaded");

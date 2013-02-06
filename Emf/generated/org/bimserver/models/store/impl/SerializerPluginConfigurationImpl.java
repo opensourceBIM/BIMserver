@@ -30,9 +30,6 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#isNeedsGeometry <em>Needs Geometry</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getExtension <em>Extension</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getContentType <em>Content Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getObjectIDM <em>Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getUserSettings <em>User Settings</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getIfcEngine <em>Ifc Engine</em>}</li>
@@ -59,60 +56,6 @@ public class SerializerPluginConfigurationImpl extends PluginConfigurationImpl i
 	@Override
 	protected EClass eStaticClass() {
 		return StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isNeedsGeometry() {
-		return (Boolean) eGet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__NEEDS_GEOMETRY, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setNeedsGeometry(boolean newNeedsGeometry) {
-		eSet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__NEEDS_GEOMETRY, newNeedsGeometry);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getExtension() {
-		return (String) eGet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__EXTENSION, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setExtension(String newExtension) {
-		eSet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__EXTENSION, newExtension);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getContentType() {
-		return (String) eGet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__CONTENT_TYPE, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setContentType(String newContentType) {
-		eSet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__CONTENT_TYPE, newContentType);
 	}
 
 	/**

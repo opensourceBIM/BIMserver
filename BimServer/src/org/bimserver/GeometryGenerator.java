@@ -19,7 +19,6 @@ package org.bimserver;
 
 import java.io.ByteArrayInputStream;
 import java.nio.ByteBuffer;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -105,92 +104,89 @@ public class GeometryGenerator {
 			returnCachedData(model, geometryCache, databaseSession, pid, rid);
 			return;
 		}
-		Collection<SerializerPlugin> allSerializerPlugins = pluginManager.getAllSerializerPlugins("application/ifc", true);
-		if (!allSerializerPlugins.isEmpty()) {
-			SerializerPlugin serializerPlugin = allSerializerPlugins.iterator().next();
-			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
-			try {
-				// Make sure we have minimal express ids
-				model.generateMinimalExpressIds();
+		SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
+		Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
+		try {
+			// Make sure we have minimal express ids
+			model.generateMinimalExpressIds();
 
-				serializer.init(model, null, pluginManager, null, false);
-				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-				serializer.writeToOutputStream(outputStream);
+			serializer.init(model, null, pluginManager, null, false);
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			serializer.writeToOutputStream(outputStream);
 
-				User user = (User) databaseSession.get(uoid, Query.getDefault());
-				UserSettings userSettings = user.getUserSettings();
-				IfcEnginePluginConfiguration defaultIfcEngine = userSettings.getDefaultIfcEngine();
-				if (defaultIfcEngine != null) {
-					IfcEnginePlugin ifcEnginePlugin = pluginManager.getIfcEngine(defaultIfcEngine.getClassName(), true);
+			User user = (User) databaseSession.get(uoid, Query.getDefault());
+			UserSettings userSettings = user.getUserSettings();
+			IfcEnginePluginConfiguration defaultIfcEngine = userSettings.getDefaultIfcEngine();
+			if (defaultIfcEngine != null) {
+				IfcEnginePlugin ifcEnginePlugin = pluginManager.getIfcEngine(defaultIfcEngine.getClassName(), true);
+				try {
+					IfcEngine ifcEngine = ifcEnginePlugin.createIfcEngine(new PluginConfiguration());
+					ifcEngine.init();
 					try {
-						IfcEngine ifcEngine = ifcEnginePlugin.createIfcEngine(new PluginConfiguration());
-						ifcEngine.init();
+						IfcEngineModel ifcEngineModel = ifcEngine.openModel(new ByteArrayInputStream(outputStream.toByteArray()), outputStream.size());
+
+						IfcEngineSettings settings = new IfcEngineSettings();
+
+						settings.setPrecision(Precision.SINGLE);
+						settings.setIndexFormat(IndexFormat.AUTO_DETECT);
+						settings.setGenerateNormals(true);
+						settings.setGenerateTriangles(true);
+						settings.setGenerateWireFrame(false);
+						ifcEngineModel.setSettings(settings);
 						try {
-							IfcEngineModel ifcEngineModel = ifcEngine.openModel(new ByteArrayInputStream(outputStream.toByteArray()), outputStream.size());
-
-							IfcEngineSettings settings = new IfcEngineSettings();
-
-							settings.setPrecision(Precision.SINGLE);
-							settings.setIndexFormat(IndexFormat.AUTO_DETECT);
-							settings.setGenerateNormals(true);
-							settings.setGenerateTriangles(true);
-							settings.setGenerateWireFrame(false);
-							ifcEngineModel.setSettings(settings);
-							try {
-								IfcEngineGeometry ifcEngineGeometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
-								for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
-									IfcEngineInstance ifcEngineInstance = ifcEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
-									IfcEngineInstanceVisualisationProperties visualisationProperties = ifcEngineInstance.getVisualisationProperties();
-									if (visualisationProperties.getPrimitiveCount() > 0) {
-										GeometryInstance geometryInstance = null;
-										if (store) {
-											geometryInstance = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getGeometryInstance(), pid, rid);
-										} else {
-											geometryInstance = Ifc2x3tc1Factory.eINSTANCE.createGeometryInstance();
-										}
-										geometryInstance.setPrimitiveCount(visualisationProperties.getPrimitiveCount());
-										geometryInstance.setStartIndex(visualisationProperties.getStartIndex());
-										geometryInstance.setStartVertex(visualisationProperties.getStartVertex());
-										ByteBuffer verticesBuffer = ByteBuffer.allocate(visualisationProperties.getPrimitiveCount() * 3 * 3 * 4);
-										ByteBuffer normalsBuffer = ByteBuffer.allocate(visualisationProperties.getPrimitiveCount() * 3 * 3 * 4);
-										Bounds instanceBounds = null;
-										if (store) {
-											instanceBounds = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getBounds(), pid, rid);
-										} else {
-											instanceBounds = Ifc2x3tc1Factory.eINSTANCE.createBounds();
-										}
-										instanceBounds.setMin(createVector3f(Float.POSITIVE_INFINITY, databaseSession, store, pid, rid));
-										instanceBounds.setMax(createVector3f(Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
-										ifcProduct.setBounds(instanceBounds);
-										for (int i = geometryInstance.getStartIndex(); i < geometryInstance.getPrimitiveCount() * 3 + geometryInstance.getStartIndex(); i++) {
-											int index = ifcEngineGeometry.getIndex(i) * 3;
-											processExtends(instanceBounds, ifcEngineGeometry, verticesBuffer, normalsBuffer, index);
-										}
-										geometryInstance.setVertices(verticesBuffer.array());
-										geometryInstance.setNormals(normalsBuffer.array());
-										ifcProduct.setGeometryInstance(geometryInstance);
-										if (store) {
-											databaseSession.store(ifcProduct, pid, rid);
-											databaseSession.store(geometryInstance, pid, rid);
-										}
-										if (geometryCache != null) {
-											geometryCache.put(ifcProduct.getExpressId(), new GeometryCacheEntry(verticesBuffer, normalsBuffer, instanceBounds));
-										}
+							IfcEngineGeometry ifcEngineGeometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
+							for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
+								IfcEngineInstance ifcEngineInstance = ifcEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
+								IfcEngineInstanceVisualisationProperties visualisationProperties = ifcEngineInstance.getVisualisationProperties();
+								if (visualisationProperties.getPrimitiveCount() > 0) {
+									GeometryInstance geometryInstance = null;
+									if (store) {
+										geometryInstance = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getGeometryInstance(), pid, rid);
+									} else {
+										geometryInstance = Ifc2x3tc1Factory.eINSTANCE.createGeometryInstance();
+									}
+									geometryInstance.setPrimitiveCount(visualisationProperties.getPrimitiveCount());
+									geometryInstance.setStartIndex(visualisationProperties.getStartIndex());
+									geometryInstance.setStartVertex(visualisationProperties.getStartVertex());
+									ByteBuffer verticesBuffer = ByteBuffer.allocate(visualisationProperties.getPrimitiveCount() * 3 * 3 * 4);
+									ByteBuffer normalsBuffer = ByteBuffer.allocate(visualisationProperties.getPrimitiveCount() * 3 * 3 * 4);
+									Bounds instanceBounds = null;
+									if (store) {
+										instanceBounds = databaseSession.create(Ifc2x3tc1Package.eINSTANCE.getBounds(), pid, rid);
+									} else {
+										instanceBounds = Ifc2x3tc1Factory.eINSTANCE.createBounds();
+									}
+									instanceBounds.setMin(createVector3f(Float.POSITIVE_INFINITY, databaseSession, store, pid, rid));
+									instanceBounds.setMax(createVector3f(Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
+									ifcProduct.setBounds(instanceBounds);
+									for (int i = geometryInstance.getStartIndex(); i < geometryInstance.getPrimitiveCount() * 3 + geometryInstance.getStartIndex(); i++) {
+										int index = ifcEngineGeometry.getIndex(i) * 3;
+										processExtends(instanceBounds, ifcEngineGeometry, verticesBuffer, normalsBuffer, index);
+									}
+									geometryInstance.setVertices(verticesBuffer.array());
+									geometryInstance.setNormals(normalsBuffer.array());
+									ifcProduct.setGeometryInstance(geometryInstance);
+									if (store) {
+										databaseSession.store(ifcProduct, pid, rid);
+										databaseSession.store(geometryInstance, pid, rid);
+									}
+									if (geometryCache != null) {
+										geometryCache.put(ifcProduct.getExpressId(), new GeometryCacheEntry(verticesBuffer, normalsBuffer, instanceBounds));
 									}
 								}
-							} finally {
-								ifcEngineModel.close();
 							}
 						} finally {
-							ifcEngine.close();
+							ifcEngineModel.close();
 						}
-					} catch (IfcEngineException e) {
-						LOGGER.error("", e);
+					} finally {
+						ifcEngine.close();
 					}
+				} catch (IfcEngineException e) {
+					LOGGER.error("", e);
 				}
-			} catch (SerializerException e) {
-				LOGGER.error("", e);
 			}
+		} catch (SerializerException e) {
+			LOGGER.error("", e);
 		}
 	}
 

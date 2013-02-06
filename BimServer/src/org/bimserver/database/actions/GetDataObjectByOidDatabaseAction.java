@@ -185,11 +185,14 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 									dataValue.getValues().add(simpleDataValue);
 								} else {
 									Long oid = ((IdEObject)item).getOid();
-									String guid = getGuid(item);
 									ReferenceDataValue referenceDataValue = StoreFactory.eINSTANCE.createReferenceDataValue();
+									if (item instanceof IfcRoot) {
+										IfcRoot ifcRoot = (IfcRoot)item;
+										String guid = ifcRoot.getGlobalId();
+										referenceDataValue.setGuid(guid);
+									}
 									referenceDataValue.setTypeName(item.eClass().getName());
 									((IdEObjectImpl)referenceDataValue).setOid(oid);
-									referenceDataValue.setGuid(guid);
 									dataValue.getValues().add(referenceDataValue);
 								}
 							}

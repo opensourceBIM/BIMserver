@@ -23,7 +23,6 @@ import java.util.Set;
 
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 
 import com.google.common.collect.BiMap;
 

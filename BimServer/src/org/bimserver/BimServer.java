@@ -599,11 +599,8 @@ public class BimServer {
 				serializerPluginConfiguration.setName(name);
 				serializerPluginConfiguration.setEnabled(true);
 				serializerPluginConfiguration.setDescription(serializerPlugin.getDescription());
-				serializerPluginConfiguration.setContentType(serializerPlugin.getDefaultContentType());
-				serializerPluginConfiguration.setExtension(serializerPlugin.getDefaultExtension());
 				serializerPluginConfiguration.setObjectIDM(userSettings.getDefaultObjectIDM());
 				serializerPluginConfiguration.setIfcEngine(userSettings.getDefaultIfcEngine());
-				serializerPluginConfiguration.setNeedsGeometry(serializerPlugin.needsGeometry());
 				serializerPluginConfiguration.setSettings(convertSettings(session, serializerPlugin));
 				if (userSettings.getDefaultSerializer() == null && serializerPlugin.getClass().getName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin")) {
 					userSettings.setDefaultSerializer(serializerPluginConfiguration);

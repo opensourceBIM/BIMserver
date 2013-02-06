@@ -48,7 +48,7 @@ public class DownloadModelLowLevel extends Action {
 			try {
 				model = virtualUser.getBimServerClient().getModel(randomRevision.getProjectId(), randomRevision.getOid(), false);
 				PluginManager pluginManager = getTestFramework().getPluginManager();
-				SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
+				SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 				Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 				serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine(), false);
 				serializer.writeToFile(new File(getTestFramework().getTestConfiguration().getOutputFolder(), "test.ifc"));
