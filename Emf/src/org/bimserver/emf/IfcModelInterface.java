@@ -117,13 +117,19 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	 * @param clazz The type to query for
 	 * @return A List with all the objects in this model of the given type, instances of subtypes are not included
 	 */
-	<T extends EObject> List<T> getAll(Class<T> clazz);
+	<T extends IdEObject> List<T> getAll(Class<T> clazz);
 
+	/**
+	 * @param clazz The type to query for
+	 * @return A List with all the objects in this model of the given type, instances of subtypes are not included
+	 */
+	<T extends IdEObject> List<T> getAll(EClass clazz);
+	
 	/**
 	 * @param clazz The type to query for 
 	 * @return A List with all the objects in this model of the given type, instances of subtypes are included
 	 */
-	<T extends EObject> List<T> getAllWithSubTypes(Class<T> clazz);
+	<T extends IdEObject> List<T> getAllWithSubTypes(Class<T> clazz);
 
 	/** Tests whether the given object is part of this model
 	 * @param referencedObject
@@ -131,14 +137,6 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	 */
 	boolean contains(IdEObject referencedObject);
 
-	/**
-	 * Add an object to this model
-	 * @param eObject The object to add to this model
-	 * @return The generated OID for the new object
-	 * @throws IfcModelInterfaceException
-	 */
-	long add(IdEObject eObject) throws IfcModelInterfaceException;
-	
 	/**
 	 * Add an object to this model with an explicit OID, only use this method in BIMserver internal code
 	 * @param oid The given OID
@@ -168,7 +166,6 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	
 	<T extends IdEObject> T create(EClass eClass) throws IfcModelInterfaceException;
 	
-	EObject getMainObject();
 	void fixOids(OidProvider<Long> oidProvider);
 	void setObjectOids();
 	void indexGuids();
@@ -183,4 +180,6 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	void changeOid(IdEObject object);
 	void fixOids();
 	void generateMinimalExpressIds();
+
+	Collection<IdEObject> getUnidentifiedValues();
 }
