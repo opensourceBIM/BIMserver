@@ -47,7 +47,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -70,8 +69,8 @@ public class IfcModel implements IfcModelInterface {
 	private final Set<IdEObject> unidentifiedObjects = new HashSet<IdEObject>();
 
 	private Map<String, IfcRoot> guidIndexed;
-	private Map<EClass, List<? extends EObject>> indexPerClass;
-	private Map<EClass, List<? extends EObject>> indexPerClassWithSubTypes;
+	private Map<EClass, List<? extends IdEObject>> indexPerClass;
+	private Map<EClass, List<? extends IdEObject>> indexPerClassWithSubTypes;
 	private Map<EClass, Map<String, IdEObject>> guidIndex;
 	private Map<EClass, Map<String, IdEObject>> nameIndex;
 	private long oidCounter = 1;
@@ -100,22 +99,22 @@ public class IfcModel implements IfcModelInterface {
 
 	@SuppressWarnings("unchecked")
 	private void buildIndex() {
-		indexPerClass = new HashMap<EClass, List<? extends EObject>>();
+		indexPerClass = new HashMap<EClass, List<? extends IdEObject>>();
 		for (EClass eClass : eClassClassMap.keySet()) {
-			indexPerClass.put((EClass) eClass, new ArrayList<EObject>());
+			indexPerClass.put((EClass) eClass, new ArrayList<IdEObject>());
 		}
 		for (Long key : objects.keySet()) {
-			EObject value = objects.get((Long) key);
+			IdEObject value = objects.get((Long) key);
 			if (value != null) {
-				((List<EObject>) indexPerClass.get(value.eClass())).add(value);
+				((List<IdEObject>) indexPerClass.get(value.eClass())).add(value);
 			}
 		}
 	}
 
 	private void buildIndexWithSubTypes() {
-		indexPerClassWithSubTypes = new HashMap<EClass, List<? extends EObject>>();
+		indexPerClassWithSubTypes = new HashMap<EClass, List<? extends IdEObject>>();
 		for (EClass eClass : eClassClassMap.keySet()) {
-			indexPerClassWithSubTypes.put((EClass) eClass, new ArrayList<EObject>());
+			indexPerClassWithSubTypes.put((EClass) eClass, new ArrayList<IdEObject>());
 		}
 		for (Long key : objects.keySet()) {
 			IdEObject idEObject = objects.get(key);
@@ -127,7 +126,7 @@ public class IfcModel implements IfcModelInterface {
 
 	@SuppressWarnings("unchecked")
 	private void buildIndexWithSuperTypes(IdEObject eObject, EClass eClass) {
-		((List<EObject>) indexPerClassWithSubTypes.get(eClass)).add(eObject);
+		((List<IdEObject>) indexPerClassWithSubTypes.get(eClass)).add(eObject);
 		for (EClass superClass : eClass.getESuperTypes()) {
 			buildIndexWithSuperTypes(eObject, superClass);
 		}
@@ -179,10 +178,10 @@ public class IfcModel implements IfcModelInterface {
 				if (eStructuralFeature.getUpperBound() == -1 || eStructuralFeature.getUpperBound() > 1) {
 					if (eStructuralFeature.getEType() instanceof EClass) {
 						if (eStructuralFeature.getEType().getEAnnotation("wrapped") != null) {
-							EList<EObject> list = (EList<EObject>) ifcRoot.eGet(eStructuralFeature);
+							EList<IdEObject> list = (EList<IdEObject>) ifcRoot.eGet(eStructuralFeature);
 							sortPrimitiveList(list);
 						} else {
-							EList<EObject> list = (EList<EObject>) ifcRoot.eGet(eStructuralFeature);
+							EList<IdEObject> list = (EList<IdEObject>) ifcRoot.eGet(eStructuralFeature);
 							sortComplexList(objectIDM, ifcRoot.eClass(), list, eStructuralFeature);
 						}
 					}
@@ -191,20 +190,20 @@ public class IfcModel implements IfcModelInterface {
 		}
 	}
 
-	private void sortPrimitiveList(EList<EObject> list) {
-		ECollections.sort(list, new Comparator<EObject>() {
+	private void sortPrimitiveList(EList<IdEObject> list) {
+		ECollections.sort(list, new Comparator<IdEObject>() {
 			@Override
-			public int compare(EObject o1, EObject o2) {
+			public int compare(IdEObject o1, IdEObject o2) {
 				return comparePrimitives(o1, o2);
 			}
 		});
 	}
 
-	private void sortComplexList(final ObjectIDM objectIDM, final EClass originalQueryClass, EList<EObject> list, EStructuralFeature eStructuralFeature) {
+	private void sortComplexList(final ObjectIDM objectIDM, final EClass originalQueryClass, EList<IdEObject> list, EStructuralFeature eStructuralFeature) {
 		final EClass type = (EClass) eStructuralFeature.getEType();
-		ECollections.sort(list, new Comparator<EObject>() {
+		ECollections.sort(list, new Comparator<IdEObject>() {
 			@Override
-			public int compare(EObject o1, EObject o2) {
+			public int compare(IdEObject o1, IdEObject o2) {
 				int i = 1;
 				for (EStructuralFeature eStructuralFeature : type.getEAllStructuralFeatures()) {
 					if (objectIDM.shouldFollowReference(originalQueryClass, type, eStructuralFeature)) {
@@ -213,7 +212,7 @@ public class IfcModel implements IfcModelInterface {
 						if (val1 != null && val2 != null) {
 							if (eStructuralFeature.getEType() instanceof EClass) {
 								if (eStructuralFeature.getEType().getEAnnotation("wrapped") != null) {
-									int compare = comparePrimitives((EObject) val1, (EObject) val2);
+									int compare = comparePrimitives((IdEObject) val1, (IdEObject) val2);
 									if (compare != 0) {
 										return compare * i;
 									}
@@ -228,7 +227,7 @@ public class IfcModel implements IfcModelInterface {
 		});
 	}
 
-	private int comparePrimitives(EObject o1, EObject o2) {
+	private int comparePrimitives(IdEObject o1, IdEObject o2) {
 		EClass eClass = o1.eClass();
 		EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature("wrappedValue");
 		Object val1 = o1.eGet(eStructuralFeature);
@@ -247,7 +246,7 @@ public class IfcModel implements IfcModelInterface {
 		if (indexPerClass == null) {
 			buildIndex();
 		}
-		List<? extends EObject> list = indexPerClass.get(eClass);
+		List<? extends IdEObject> list = indexPerClass.get(eClass);
 		if (list == null) {
 			return Collections.EMPTY_LIST;
 		} else {
@@ -264,7 +263,7 @@ public class IfcModel implements IfcModelInterface {
 		if (indexPerClassWithSubTypes == null) {
 			buildIndexWithSubTypes();
 		}
-		List<? extends EObject> list = indexPerClassWithSubTypes.get(eClass);
+		List<? extends IdEObject> list = indexPerClassWithSubTypes.get(eClass);
 		if (list == null) {
 			return Collections.EMPTY_LIST;
 		} else {
