@@ -39,14 +39,9 @@ public class ObjectInfoSerializer extends EmfSerializer {
 	public boolean write(OutputStream outputStream) throws SerializerException {
 		if (getMode() == Mode.BODY) {
 			PrintWriter out = new PrintWriter(outputStream);
-			EObject mainObject = model.getMainObject();
-			if (mainObject != null) {
-				writeTable(out, mainObject);
-			} else {
-				for (EObject eObject : model.getObjects().values()) {
-					if (eObject.eClass().getEAnnotation("hidden") == null) {
-						writeTable(out, eObject);
-					}
+			for (EObject eObject : model.getObjects().values()) {
+				if (eObject.eClass().getEAnnotation("hidden") == null) {
+					writeTable(out, eObject);
 				}
 			}
 			out.flush();

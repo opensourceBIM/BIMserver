@@ -318,6 +318,8 @@ public class IfcStepDeserializer extends EmfDeserializer {
 									EStructuralFeature doubleStringFeature = classifier.getEStructuralFeature(attribute.getName() + "AsString");
 									object.eSet(doubleStringFeature, val);
 								}
+							} else {
+								// It's not a list in de file, but it is in the schema??
 							}
 						}
 					} else {
@@ -545,7 +547,13 @@ public class IfcStepDeserializer extends EmfDeserializer {
 					}
 					return convertSimpleValue(typeBN.getDomain(), v);
 				} else {
-					return convert(cl, v);
+					Object convert = convert(cl, v);
+					try {
+						model.add(-1, (IdEObject) convert);
+					} catch (IfcModelInterfaceException e) {
+						throw new DeserializeException(e);
+					}
+					return convert;
 				}
 			} else {
 				throw new DeserializeException(typeName + " is not an existing IFC entity");

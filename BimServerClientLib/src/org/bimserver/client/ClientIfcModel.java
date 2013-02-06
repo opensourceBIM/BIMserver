@@ -266,7 +266,7 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	@Override
-	public <T extends EObject> List<T> getAll(EClass eClass) {
+	public <T extends IdEObject> List<T> getAll(EClass eClass) {
 		if (modelState == ModelState.NONE) {
 			try {
 				loadDeep();
@@ -364,7 +364,7 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	@Override
-	public <T extends EObject> List<T> getAllWithSubTypes(EClass eClass) {
+	public <T extends IdEObject> List<T> getAllWithSubTypes(EClass eClass) {
 		if (!loadedClasses.contains(eClass.getName()) && modelState != ModelState.FULLY_LOADED) {
 			try {
 				modelState = ModelState.LOADING;

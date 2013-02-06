@@ -94,7 +94,17 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			if (getModel() != null) {
 				checkCheckSum(project);
 			}
-			CreateRevisionResult result = createNewConcreteRevision(getDatabaseSession(), getModel() == null ? 0 : getModel().size(), project, user, comment.trim());
+			
+			long size = 0;
+			if (getModel() != null) {
+				for (IdEObject idEObject : getModel().getValues()) {
+					if (idEObject.eClass().getEAnnotation("hidden") == null) {
+						size++;
+					}
+				}
+			}
+			
+			CreateRevisionResult result = createNewConcreteRevision(getDatabaseSession(), size, project, user, comment.trim());
 			concreteRevision = result.getConcreteRevision();
 			project.getConcreteRevisions().add(concreteRevision);
 			if (getModel() != null) {

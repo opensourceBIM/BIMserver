@@ -27,7 +27,6 @@ import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
@@ -44,7 +43,7 @@ import org.junit.Test;
 
 public class PerformanceTestIfcStepSerializer {
 	@Test
-	public void performanceTest() {
+	public void performanceTest() throws IfcModelInterfaceException {
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
 			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
@@ -54,18 +53,13 @@ public class PerformanceTestIfcStepSerializer {
 			for (int i=0; i<100000; i++) {
 				EClassifier eClassifier = classifiers.get(new Random().nextInt(classifiers.size()));
 				if (eClassifier instanceof EClass && !((EClass) eClassifier).isInterface()) {
-					IdEObject eObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create((EClass) eClassifier);
+					IdEObject eObject = model.create((EClass) eClassifier);
 					for (EStructuralFeature eStructuralFeature : eObject.eClass().getEAllStructuralFeatures()) {
 						if (!eStructuralFeature.isMany()) {
 							if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
 								eObject.eSet(eStructuralFeature, RandomStringUtils.random(new Random().nextInt(50)));
 							}
 						}
-					}
-					try {
-						model.add(eObject);
-					} catch (IfcModelInterfaceException e) {
-						e.printStackTrace();
 					}
 				}
 			}

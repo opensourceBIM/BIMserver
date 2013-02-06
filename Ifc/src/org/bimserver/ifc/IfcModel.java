@@ -61,21 +61,21 @@ public class IfcModel implements IfcModelInterface {
 	private static final BiMap<EClass, Class<?>> eClassClassMap = initEClassClassMap();
 
 	private final ModelMetaData modelMetaData = new ModelMetaData();
-	private BiMap<Long, IdEObject> objects;
-	private IdEObject eObject;
 	private final Set<IfcModelChangeListener> changeListeners = new LinkedHashSet<IfcModelChangeListener>();
 
+	// Object with oid
+	private BiMap<Long, IdEObject> objects;
+	
+	// Objects without oid, usually embedded when serialized
+	private final Set<IdEObject> unidentifiedObjects = new HashSet<IdEObject>();
+
 	private Map<String, IfcRoot> guidIndexed;
-	private Map<EClass, List<? extends EObject>> index;
-	private Map<EClass, List<? extends EObject>> indexWithSubTypes;
+	private Map<EClass, List<? extends EObject>> indexPerClass;
+	private Map<EClass, List<? extends EObject>> indexPerClassWithSubTypes;
 	private Map<EClass, Map<String, IdEObject>> guidIndex;
 	private Map<EClass, Map<String, IdEObject>> nameIndex;
 	private long oidCounter = 1;
 	private boolean useDoubleStrings = true;
-
-	public IfcModel(BiMap<Long, IdEObject> objects) {
-		this.objects = objects;
-	}
 
 	private static BiMap<EClass, Class<?>> initEClassClassMap() {
 		BiMap<EClass, Class<?>> eClassClassMap = HashBiMap.create();
@@ -100,22 +100,22 @@ public class IfcModel implements IfcModelInterface {
 
 	@SuppressWarnings("unchecked")
 	private void buildIndex() {
-		index = new HashMap<EClass, List<? extends EObject>>();
+		indexPerClass = new HashMap<EClass, List<? extends EObject>>();
 		for (EClass eClass : eClassClassMap.keySet()) {
-			index.put((EClass) eClass, new ArrayList<EObject>());
+			indexPerClass.put((EClass) eClass, new ArrayList<EObject>());
 		}
 		for (Long key : objects.keySet()) {
 			EObject value = objects.get((Long) key);
 			if (value != null) {
-				((List<EObject>) index.get(value.eClass())).add(value);
+				((List<EObject>) indexPerClass.get(value.eClass())).add(value);
 			}
 		}
 	}
 
 	private void buildIndexWithSubTypes() {
-		indexWithSubTypes = new HashMap<EClass, List<? extends EObject>>();
+		indexPerClassWithSubTypes = new HashMap<EClass, List<? extends EObject>>();
 		for (EClass eClass : eClassClassMap.keySet()) {
-			indexWithSubTypes.put((EClass) eClass, new ArrayList<EObject>());
+			indexPerClassWithSubTypes.put((EClass) eClass, new ArrayList<EObject>());
 		}
 		for (Long key : objects.keySet()) {
 			IdEObject idEObject = objects.get(key);
@@ -127,7 +127,7 @@ public class IfcModel implements IfcModelInterface {
 
 	@SuppressWarnings("unchecked")
 	private void buildIndexWithSuperTypes(IdEObject eObject, EClass eClass) {
-		((List<EObject>) indexWithSubTypes.get(eClass)).add(eObject);
+		((List<EObject>) indexPerClassWithSubTypes.get(eClass)).add(eObject);
 		for (EClass superClass : eClass.getESuperTypes()) {
 			buildIndexWithSuperTypes(eObject, superClass);
 		}
@@ -243,11 +243,11 @@ public class IfcModel implements IfcModelInterface {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends EObject> List<T> getAll(EClass eClass) {
-		if (index == null) {
+	public <T extends IdEObject> List<T> getAll(EClass eClass) {
+		if (indexPerClass == null) {
 			buildIndex();
 		}
-		List<? extends EObject> list = index.get(eClass);
+		List<? extends EObject> list = indexPerClass.get(eClass);
 		if (list == null) {
 			return Collections.EMPTY_LIST;
 		} else {
@@ -255,16 +255,16 @@ public class IfcModel implements IfcModelInterface {
 		}
 	}
 
-	public <T extends EObject> List<T> getAll(Class<T> interfaceClass) {
+	public <T extends IdEObject> List<T> getAll(Class<T> interfaceClass) {
 		return getAll(eClassClassMap.inverse().get(interfaceClass));
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends EObject> List<T> getAllWithSubTypes(EClass eClass) {
-		if (indexWithSubTypes == null) {
+	public <T extends IdEObject> List<T> getAllWithSubTypes(EClass eClass) {
+		if (indexPerClassWithSubTypes == null) {
 			buildIndexWithSubTypes();
 		}
-		List<? extends EObject> list = indexWithSubTypes.get(eClass);
+		List<? extends EObject> list = indexPerClassWithSubTypes.get(eClass);
 		if (list == null) {
 			return Collections.EMPTY_LIST;
 		} else {
@@ -273,7 +273,7 @@ public class IfcModel implements IfcModelInterface {
 	}
 
 	@Override
-	public <T extends EObject> List<T> getAllWithSubTypes(Class<T> interfaceClass)  {
+	public <T extends IdEObject> List<T> getAllWithSubTypes(Class<T> interfaceClass)  {
 		return getAllWithSubTypes(eClassClassMap.inverse().get(interfaceClass));
 	}
 
@@ -303,7 +303,7 @@ public class IfcModel implements IfcModelInterface {
 	}
 
 	public long size() {
-		return objects.size();
+		return objects.size() + unidentifiedObjects.size();
 	}
 
 	public Set<Long> keySet() {
@@ -318,16 +318,12 @@ public class IfcModel implements IfcModelInterface {
 		return objects.values();
 	}
 
-	public long add(IdEObject eObject) throws IfcModelInterfaceException {
-		long oid = oidCounter++;
-		((IdEObjectImpl) eObject).setOid(oid);
-		((IdEObjectImpl) eObject).setModel(this);
-		add(oid, eObject, false, false);
-		return oid;
+	public Collection<IdEObject> getUnidentifiedValues() {
+		return unidentifiedObjects;
 	}
 
-	public void add(long key, IdEObject eObject) throws IfcModelInterfaceException {
-		add(key, eObject, false, false);
+	public void add(long oid, IdEObject eObject) throws IfcModelInterfaceException {
+		add(oid, eObject, false, false);
 	}
 
 	@Override
@@ -335,26 +331,30 @@ public class IfcModel implements IfcModelInterface {
 		add(oid, eObject, false, true);
 	}
 
-	public void add(Long key, IdEObject eObject, boolean ignoreDuplicateOids, boolean allowMultiModel) throws IfcModelInterfaceException {
+	private void add(long oid, IdEObject eObject, boolean ignoreDuplicateOids, boolean allowMultiModel) throws IfcModelInterfaceException {
 		if (((IdEObjectImpl) eObject).hasModel() && !allowMultiModel) {
 			throw new IfcModelInterfaceException("This object (" + eObject + ") already belongs to a Model: " + ((IdEObjectImpl) eObject).getModel());
 		}
-		if (objects.containsKey(key)) {
-			if (!ignoreDuplicateOids) {
-				throw new IfcModelInterfaceException("Oid already stored: " + key + " " + eObject + " (old: " + objects.get(key));
-			}
+		if (oid == -1) {
+			unidentifiedObjects.add(eObject);
 		} else {
-			objects.put(key, eObject);
-			if (!((IdEObjectImpl) eObject).hasModel() || !allowMultiModel) {
-				((IdEObjectImpl) eObject).setModel(this);
+			if (objects.containsKey(oid)) {
+				if (!ignoreDuplicateOids) {
+					throw new IfcModelInterfaceException("Oid already stored: " + oid + " " + eObject + " (old: " + objects.get(oid));
+				}
+			} else {
+				objects.put(oid, eObject);
+				if (!((IdEObjectImpl) eObject).hasModel() || !allowMultiModel) {
+					((IdEObjectImpl) eObject).setModel(this);
+				}
+				if (guidIndexed != null) {
+					indexGuid(eObject);
+				}
 			}
-			if (guidIndexed != null) {
-				indexGuid(eObject);
-			}
-		}
-		if (!changeListeners.isEmpty()) {
-			for (IfcModelChangeListener ifcModelChangeListener : changeListeners) {
-				ifcModelChangeListener.objectAdded();
+			if (!changeListeners.isEmpty()) {
+				for (IfcModelChangeListener ifcModelChangeListener : changeListeners) {
+					ifcModelChangeListener.objectAdded();
+				}
 			}
 		}
 	}
@@ -365,14 +365,6 @@ public class IfcModel implements IfcModelInterface {
 
 	public boolean contains(long oid) {
 		return objects.containsKey(oid);
-	}
-
-	public IdEObject getMainObject() {
-		return eObject;
-	}
-
-	public void setMainObject(IdEObject eObject) {
-		this.eObject = eObject;
 	}
 
 	public boolean contains(IdEObject eObject) {
@@ -717,7 +709,7 @@ public class IfcModel implements IfcModelInterface {
 
 	@Override
 	public int count(EClass eClass) {
-		List<EObject> list = getAll(eClass);
+		List<IdEObject> list = getAll(eClass);
 		if (list == null) {
 			return 0;
 		}
@@ -783,7 +775,10 @@ public class IfcModel implements IfcModelInterface {
 	@Override
 	public <T extends IdEObject> T create(EClass eClass) throws IfcModelInterfaceException {
 		IdEObject object = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
-		add(object);
+		long oid = oidCounter++;
+		((IdEObjectImpl) object).setOid(oid);
+		((IdEObjectImpl) object).setModel(this);
+		add(oid, object, false, false);
 		return (T) object;
 	}
 }
