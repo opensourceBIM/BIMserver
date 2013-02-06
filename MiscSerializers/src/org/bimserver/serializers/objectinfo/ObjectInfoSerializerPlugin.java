@@ -21,10 +21,10 @@ import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.serializers.AbstractSerializerPlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
-import org.bimserver.plugins.serializers.SerializerPlugin;
 
-public class ObjectInfoSerializerPlugin implements SerializerPlugin {
+public class ObjectInfoSerializerPlugin extends AbstractSerializerPlugin {
 
 	private boolean initialized = false;
 
@@ -76,6 +76,6 @@ public class ObjectInfoSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public ObjectDefinition getSettingsDefinition() {
-		return null;
+		return super.getSettingsDefinition();
 	}
 }

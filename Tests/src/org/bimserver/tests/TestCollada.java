@@ -41,22 +41,23 @@ public class TestCollada {
 	private void start() {
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
-			Collection<SerializerPlugin> plugins = pluginManager.getAllSerializerPlugins("application/collada", true);
-			if (!plugins.isEmpty()) {
-				SerializerPlugin plugin = plugins.iterator().next();
-				Serializer serializer = plugin.createSerializer(new PluginConfiguration());
-				Collection<DeserializerPlugin> allDeserializerPlugins = pluginManager.getAllDeserializerPlugins("ifc", true);
-//				IfcEnginePlugin ifcEngine = pluginManager.getIfcEngine("org.ifcopenshell.IfcOpenShellEnginePlugin", true);
-				IfcEnginePlugin ifcEngine = pluginManager.getIfcEngine("org.bimserver.ifcengine.TNOIfcEnginePlugin", true);
-				if (!allDeserializerPlugins.isEmpty()) {
-					DeserializerPlugin deserializerPlugin = allDeserializerPlugins.iterator().next();
-					Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-					deserializer.init(pluginManager.requireSchemaDefinition());
-//					IfcModelInterface model = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Logic Labs\\Clients\\TNO\\m1-bevinding\\M1_project.ifc"), true);
-					IfcModelInterface model = deserializer.read(TestFile.WALL_ONLY.getFile());
-					serializer.init(model, null, pluginManager, ifcEngine, false);
-					serializer.writeToFile(new File("output/ac11.dae"));
-				}
+			SerializerPlugin plugin = pluginManager.getSerializerPlugin("org.bimserver.collada.ColladaSerializerPlugin", true);
+			Serializer serializer = plugin.createSerializer(new PluginConfiguration());
+			Collection<DeserializerPlugin> allDeserializerPlugins = pluginManager.getAllDeserializerPlugins("ifc", true);
+			// IfcEnginePlugin ifcEngine =
+			// pluginManager.getIfcEngine("org.ifcopenshell.IfcOpenShellEnginePlugin",
+			// true);
+			IfcEnginePlugin ifcEngine = pluginManager.getIfcEngine("org.bimserver.ifcengine.TNOIfcEnginePlugin", true);
+			if (!allDeserializerPlugins.isEmpty()) {
+				DeserializerPlugin deserializerPlugin = allDeserializerPlugins.iterator().next();
+				Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
+				deserializer.init(pluginManager.requireSchemaDefinition());
+				// IfcModelInterface model = deserializer.read(new
+				// File("C:\\Users\\Ruben de Laat\\Dropbox\\Logic Labs\\Clients\\TNO\\m1-bevinding\\M1_project.ifc"),
+				// true);
+				IfcModelInterface model = deserializer.read(TestFile.WALL_ONLY.getFile());
+				serializer.init(model, null, pluginManager, ifcEngine, false);
+				serializer.writeToFile(new File("output/ac11.dae"));
 			}
 		} catch (PluginException e) {
 			e.printStackTrace();

@@ -66,12 +66,7 @@ public class SerializerFactory {
 	public List<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() {
 		List<SSerializerPluginDescriptor> descriptors = new ArrayList<SSerializerPluginDescriptor>();
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
-			SSerializerPluginDescriptor descriptor = new SSerializerPluginDescriptor();
-			descriptor.setDefaultContentType(serializerPlugin.getDefaultContentType());
-			descriptor.setDefaultExtension(serializerPlugin.getDefaultExtension());
-			descriptor.setDefaultName(serializerPlugin.getDefaultName());
-			descriptor.setPluginClassName(serializerPlugin.getClass().getName());
-			descriptors.add(descriptor);
+			descriptors.add(makeSerializerDescriptor(serializerPlugin));
 		}
 		return descriptors;
 	}
@@ -127,15 +122,17 @@ public class SerializerFactory {
 	public SSerializerPluginDescriptor getSerializerPluginDescriptor(String type) {
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
 			if (serializerPlugin.getClass().getName().equals(type)) {
-				SSerializerPluginDescriptor descriptor = new SSerializerPluginDescriptor();
-				descriptor.setDefaultContentType(serializerPlugin.getDefaultContentType());
-				descriptor.setDefaultExtension(serializerPlugin.getDefaultExtension());
-				descriptor.setDefaultName(serializerPlugin.getDefaultName());
-				descriptor.setPluginClassName(serializerPlugin.getClass().getName());
-				return descriptor;
+				return makeSerializerDescriptor(serializerPlugin);
 			}
 		}
 		return null;
+	}
+
+	private SSerializerPluginDescriptor makeSerializerDescriptor(SerializerPlugin serializerPlugin) {
+		SSerializerPluginDescriptor descriptor = new SSerializerPluginDescriptor();
+		descriptor.setDefaultName(serializerPlugin.getDefaultName());
+		descriptor.setPluginClassName(serializerPlugin.getClass().getName());
+		return descriptor;
 	}
 
 	public String getExtension(Long serializerOid) {
@@ -143,7 +140,7 @@ public class SerializerFactory {
 		try {
 			SerializerPluginConfiguration found = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
 			if (found != null) {
-				return found.getExtension();
+				return new PluginConfiguration(found.getSettings()).getString("Extension");
 			}
 		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);

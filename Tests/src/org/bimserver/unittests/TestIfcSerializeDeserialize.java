@@ -44,7 +44,7 @@ public class TestIfcSerializeDeserialize {
 	public void testSerializeDeserializer() throws IfcModelInterfaceException {
 		try {
 			PluginManager pluginManager = LocalDevPluginLoader.createPluginManager(new File("home"));
-			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
+			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			IfcModel model = new IfcModel();
 			IfcWall wall = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcWall());

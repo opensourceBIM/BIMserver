@@ -23,10 +23,10 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.plugins.schema.SchemaException;
+import org.bimserver.plugins.serializers.AbstractSerializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
-import org.bimserver.plugins.serializers.SerializerPlugin;
 
-public class CityGmlSerializerPlugin implements SerializerPlugin {
+public class CityGmlSerializerPlugin extends AbstractSerializerPlugin {
 
 	private boolean initialized = false;
 
@@ -78,6 +78,6 @@ public class CityGmlSerializerPlugin implements SerializerPlugin {
 
 	@Override
 	public ObjectDefinition getSettingsDefinition() {
-		return null;
+		return super.getSettingsDefinition();
 	}
 }

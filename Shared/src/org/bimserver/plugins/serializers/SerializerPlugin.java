@@ -30,14 +30,4 @@ public interface SerializerPlugin extends Plugin {
 	 * @return Whether this plugin will be needing geometry
 	 */
 	boolean needsGeometry();
-	
-	/**
-	 * @return The default extension, a user can change this when configuring the plugin
-	 */
-	String getDefaultExtension();
-	
-	/**
-	 * @return The default content-type, a user can change this then configuring the plugin
-	 */
-	String getDefaultContentType();
 }

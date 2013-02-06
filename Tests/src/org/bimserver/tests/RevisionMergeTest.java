@@ -50,7 +50,7 @@ public class RevisionMergeTest {
 			model2.indexGuids();
 			model2.fixOids(new IncrementingOidProvider(model1.getHighestOid() + 1));
 			IfcModel merged = new RevisionMerger(model1, model2).merge();
-			SerializerPlugin serializerPlugin = pluginManager.getFirstSerializerPlugin("application/ifc", true);
+			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			serializer.init(merged, null, null, pluginManager.requireIfcEngine(), false);
 			serializer.writeToFile(new File("merged.ifc"));

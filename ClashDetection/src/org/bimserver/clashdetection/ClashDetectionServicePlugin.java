@@ -89,7 +89,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 			public void newRevision(String uuid, ServiceInterface serviceInterface, SNewRevisionAdded notification, SObjectType settings) throws ServerException, UserException {
 				Bcf bcf = new Bcf();
 				
-				SSerializerPluginConfiguration sSerializer = serviceInterface.getSerializerByContentType("application/ifc");
+				SSerializerPluginConfiguration sSerializer = serviceInterface.getSerializerByPluginClassName("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin");
 				
 				long download = serviceInterface.download(notification.getRevisionId(), sSerializer.getOid(), true, true);
 				SDownloadResult downloadData = serviceInterface.getDownloadData(download);

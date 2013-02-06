@@ -55,8 +55,6 @@ import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.schema.SchemaPlugin;
-import org.bimserver.plugins.serializers.Serializer;
-import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
@@ -217,26 +215,6 @@ public class PluginManager {
 		return getPlugins(SerializerPlugin.class, onlyEnabled);
 	}
 
-	public SerializerPlugin getFirstSerializerPlugin(String contentType, boolean onlyEnabled) throws PluginException {
-		Collection<SerializerPlugin> allSerializerPlugins = getAllSerializerPlugins(contentType, onlyEnabled);
-		if (allSerializerPlugins.size() == 0) {
-			throw new PluginException("No serializers for contentType " + contentType + " found");
-		}
-		return allSerializerPlugins.iterator().next();
-	}
-	
-	public Collection<SerializerPlugin> getAllSerializerPlugins(String contentType, boolean onlyEnabled) {
-		Collection<SerializerPlugin> plugins = getPlugins(SerializerPlugin.class, onlyEnabled);
-		Iterator<SerializerPlugin> iterator = plugins.iterator();
-		while (iterator.hasNext()) {
-			SerializerPlugin serializerPlugin = iterator.next();
-			if (!serializerPlugin.getDefaultContentType().equalsIgnoreCase(contentType)) {
-				iterator.remove();
-			}
-		}
-		return plugins;
-	}
-
 	public Collection<DeserializerPlugin> getAllDeserializerPlugins(boolean onlyEnabled) {
 		return getPlugins(DeserializerPlugin.class, onlyEnabled);
 	}
@@ -370,20 +348,6 @@ public class PluginManager {
 		return ifcEnginePlugin;
 	}
 	
-	/*
-	 * This will try to find at least one serializer for the content-type "application/ifc", if none are found an exception is throws, if more than 1 is found, the first one is returned
-	 */
-	public Serializer requireIfcStepSerializer() throws SerializerException {
-		String contentType = "application/ifc";
-		Collection<SerializerPlugin> serializerPlugins = getAllSerializerPlugins(contentType, true);
-		if (serializerPlugins.isEmpty()) {
-			throw new SerializerException("A working serializer for the content type " + contentType + " is required");
-		}
-		SerializerPlugin serializerPlugin = serializerPlugins.iterator().next();
-		Serializer ifcSerializer = serializerPlugin.createSerializer(new PluginConfiguration());
-		return ifcSerializer;
-	}
-
 	public ObjectIDM requireObjectIDM() throws ObjectIDMException {
 		Collection<ObjectIDMPlugin> plugins = getPlugins(ObjectIDMPlugin.class, true);
 		if (plugins.size() == 0) {
@@ -554,5 +518,9 @@ public class PluginManager {
 
 	public Parameter getParameter(PluginContext pluginContext, String name) {
 		return null;
+	}
+
+	public SerializerPlugin getSerializerPlugin(String className, boolean onlyEnabled) {
+		return (SerializerPlugin) getPlugin(className, onlyEnabled);
 	}
 }

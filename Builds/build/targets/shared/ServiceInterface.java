@@ -1498,7 +1498,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "tid", partName = "setDoubleAttributes.tid") Long tid,
 		@WebParam(name = "oid", partName = "setDoubleAttributes.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "setDoubleAttributes.attributeName") String attributeName, 
-		@WebParam(name = "value", partName = "setDoubleAttributes.values") List<Double> values) throws ServerException, UserException;
+		@WebParam(name = "values", partName = "setDoubleAttributes.values") List<Double> values) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1556,12 +1556,38 @@ public interface ServiceInterface extends PublicInterface {
 	 * @param value new Integer value
 	 * @throws ServerException, UserException
 	 */
+	@WebMethod(action = "setIntegerAttributes")
+	void setIntegerAttributes(
+		@WebParam(name = "tid", partName = "setIntegerAttributes.tid") Long tid,
+		@WebParam(name = "oid", partName = "setIntegerAttributes.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "setIntegerAttributes.attributeName") String attributeName, 
+		@WebParam(name = "values", partName = "setIntegerAttributes.value") List<Integer> values) throws ServerException, UserException;
+	
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value new Integer value
+	 * @throws ServerException, UserException
+	 */
 	@WebMethod(action = "setLongAttribute")
 	void setLongAttribute(
 		@WebParam(name = "tid", partName = "setLongAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "setLongAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "setLongAttribute.attributeName") String attributeName, 
 		@WebParam(name = "value", partName = "setLongAttribute.value") Long value) throws ServerException, UserException;
+	
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value new Integer value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setLongAttributes")
+	void setLongAttributes(
+			@WebParam(name = "tid", partName = "setLongAttributes.tid") Long tid,
+			@WebParam(name = "oid", partName = "setLongAttributes.oid") Long oid, 
+			@WebParam(name = "attributeName", partName = "setLongAttributes.attributeName") String attributeName, 
+			@WebParam(name = "values", partName = "setLongAttributes.value") List<Long> values) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1599,6 +1625,19 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "oid", partName = "setBooleanAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "setBooleanAttribute.attributeName") String attributeName, 
 		@WebParam(name = "value", partName = "setBooleanAttribute.value") Boolean value) throws ServerException, UserException;
+
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value New Boolean value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setBooleanAttributes")
+	void setBooleanAttributes(
+		@WebParam(name = "tid", partName = "setBooleanAttributes.tid") Long tid,
+		@WebParam(name = "oid", partName = "setBooleanAttributes.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "setBooleanAttributes.attributeName") String attributeName, 
+		@WebParam(name = "values", partName = "setBooleanAttributes.values") List<Boolean> values) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the object to change

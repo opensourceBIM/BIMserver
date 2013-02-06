@@ -29,9 +29,6 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 
 	@XmlTransient
 	private static SClass sClass;
-	private boolean needsGeometry;
-	private java.lang.String extension;
-	private java.lang.String contentType;
 	private long objectIDMId = -1;
 	private long userSettingsId = -1;
 	private long ifcEngineId = -1;
@@ -77,15 +74,6 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 		if (sField.getName().equals("settingsId")) {
 			return getSettingsId();
 		}
-		if (sField.getName().equals("needsGeometry")) {
-			return isNeedsGeometry();
-		}
-		if (sField.getName().equals("extension")) {
-			return getExtension();
-		}
-		if (sField.getName().equals("contentType")) {
-			return getContentType();
-		}
 		if (sField.getName().equals("objectIDMId")) {
 			return getObjectIDMId();
 		}
@@ -125,18 +113,6 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 			setSettingsId((Long)val);
 			return;
 		}
-		if (sField.getName().equals("needsGeometry")) {
-			setNeedsGeometry((Boolean)val);
-			return;
-		}
-		if (sField.getName().equals("extension")) {
-			setExtension((String)val);
-			return;
-		}
-		if (sField.getName().equals("contentType")) {
-			setContentType((String)val);
-			return;
-		}
 		if (sField.getName().equals("objectIDMId")) {
 			setObjectIDMId((Long)val);
 			return;
@@ -158,30 +134,6 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
-	}
-	
-	public boolean isNeedsGeometry() {
-		return needsGeometry;
-	}
-
-	public void setNeedsGeometry(boolean needsGeometry) {
-		this.needsGeometry = needsGeometry;
-	}
-	
-	public java.lang.String getExtension() {
-		return extension;
-	}
-
-	public void setExtension(java.lang.String extension) {
-		this.extension = extension;
-	}
-	
-	public java.lang.String getContentType() {
-		return contentType;
-	}
-
-	public void setContentType(java.lang.String contentType) {
-		this.contentType = contentType;
 	}
 	
 	public long getObjectIDMId() {

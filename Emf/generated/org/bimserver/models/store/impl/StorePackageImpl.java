@@ -1911,35 +1911,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSerializerPluginConfiguration_NeedsGeometry() {
-		return (EAttribute) getSerializerPluginConfiguration().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getSerializerPluginConfiguration_Extension() {
-		return (EAttribute) getSerializerPluginConfiguration().getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getSerializerPluginConfiguration_ContentType() {
-		return (EAttribute) getSerializerPluginConfiguration().getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getSerializerPluginConfiguration_ObjectIDM() {
-		return (EReference) getSerializerPluginConfiguration().getEStructuralFeatures().get(3);
+		return (EReference) getSerializerPluginConfiguration().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1948,7 +1921,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getSerializerPluginConfiguration_UserSettings() {
-		return (EReference) getSerializerPluginConfiguration().getEStructuralFeatures().get(4);
+		return (EReference) getSerializerPluginConfiguration().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1957,7 +1930,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getSerializerPluginConfiguration_IfcEngine() {
-		return (EReference) getSerializerPluginConfiguration().getEStructuralFeatures().get(5);
+		return (EReference) getSerializerPluginConfiguration().getEStructuralFeatures().get(2);
 	}
 
 	/**
