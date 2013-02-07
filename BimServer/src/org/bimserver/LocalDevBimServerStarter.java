@@ -47,6 +47,7 @@ public class LocalDevBimServerStarter {
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher());
 		config.setStartEmbeddedWebServer(true);
 		config.setClassPath(System.getProperty("java.class.path"));
+		config.setLocalDev(true);
 		config.setPort(port);
 		config.setStartCommandLine(true);
 		bimServer = new BimServer(config);

@@ -33,7 +33,7 @@ public class EmbeddedWebServer {
 	private WebAppContext context;
 	private Server server;
 
-	public EmbeddedWebServer(BimServer bimServer) {
+	public EmbeddedWebServer(BimServer bimServer, boolean localDev) {
 		server = new Server();
 		HashSessionIdManager hashSessionIdManager = new HashSessionIdManager(new Random());
 		server.setSessionIdManager(hashSessionIdManager);
@@ -41,9 +41,9 @@ public class EmbeddedWebServer {
 		socketConnector.setPort(bimServer.getConfig().getPort());
 		server.addConnector(socketConnector);
 		context = new WebAppContext(server, "", "/");
-		
-		// Uncomment when editing js files
-		context.setDefaultsDescriptor("www/WEB-INF/webdefault.xml");
+		if (localDev) {
+			context.setDefaultsDescriptor("www/WEB-INF/webdefault.xml");
+		}
 		context.addServlet(WebServiceServlet.class.getName(), "/soap/*");
 		context.addServlet(SyndicationServlet.class.getName(), "/syndication/*");
 		context.getServletContext().setAttribute("bimserver", bimServer);

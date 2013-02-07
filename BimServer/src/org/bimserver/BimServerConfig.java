@@ -29,6 +29,7 @@ public class BimServerConfig {
 	private int port;
 	private boolean startCommandLine = false;
 	private int initialProtocolBuffersPort = 8020;
+	private boolean localDev;
 	
 	public boolean isStartEmbeddedWebServer() {
 		return startEmbeddedWebServer;
@@ -84,5 +85,13 @@ public class BimServerConfig {
 	
 	public void setInitialProtocolBuffersPort(int initialProtocolBuffersPort) {
 		this.initialProtocolBuffersPort = initialProtocolBuffersPort;
+	}
+
+	public boolean isLocalDev() {
+		return localDev;
+	}
+
+	public void setLocalDev(boolean localDev) {
+		this.localDev = localDev;
 	}
 }

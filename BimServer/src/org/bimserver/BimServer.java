@@ -221,7 +221,7 @@ public class BimServer {
 
 			compareCache = new CompareCache();
 			if (config.isStartEmbeddedWebServer()) {
-				embeddedWebServer = new EmbeddedWebServer(this);
+				embeddedWebServer = new EmbeddedWebServer(this, config.isLocalDev());
 			}
 		} catch (Throwable e) {
 			if (LOGGER == null) {

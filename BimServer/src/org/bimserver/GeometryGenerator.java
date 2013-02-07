@@ -126,7 +126,6 @@ public class GeometryGenerator {
 						IfcEngineModel ifcEngineModel = ifcEngine.openModel(new ByteArrayInputStream(outputStream.toByteArray()), outputStream.size());
 
 						IfcEngineSettings settings = new IfcEngineSettings();
-
 						settings.setPrecision(Precision.SINGLE);
 						settings.setIndexFormat(IndexFormat.AUTO_DETECT);
 						settings.setGenerateNormals(true);
