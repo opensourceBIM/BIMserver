@@ -21,6 +21,10 @@ import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginConfiguration;
 
 public interface SerializerPlugin extends Plugin {
+	public static final String EXTENSION = "Extension";
+	public static final String ZIP_EXTENSION = "ZipExtension";
+	public static final String CONTENT_TYPE = "ContentType";
+
 	/**
 	 * @return A serializer
 	 */

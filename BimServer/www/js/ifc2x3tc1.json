@@ -2,12 +2,14 @@
   "classes": {
     "Tristate": {},
     "Ifc2DCompositeCurve": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcCompositeCurve"
       ],
       "fields": {}
     },
     "IfcActionRequest": {
+      "domain": "ifcfacilitiesmgmtdomain",
       "superclasses": [
         "IfcControl"
       ],
@@ -20,6 +22,7 @@
       }
     },
     "IfcActor": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcObject"
       ],
@@ -37,6 +40,7 @@
       }
     },
     "IfcActorRole": {
+      "domain": "ifcactorresource",
       "superclasses": [],
       "fields": {
         "Role": {
@@ -57,6 +61,7 @@
       }
     },
     "IfcActuatorType": {
+      "domain": "ifcbuildingcontrolsdomain",
       "superclasses": [
         "IfcDistributionControlElementType"
       ],
@@ -69,6 +74,7 @@
       }
     },
     "IfcAddress": {
+      "domain": "ifcactorresource",
       "superclasses": [
         "IfcObjectReferenceSelect"
       ],
@@ -101,6 +107,7 @@
       }
     },
     "IfcAirTerminalBoxType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcFlowControllerType"
       ],
@@ -113,6 +120,7 @@
       }
     },
     "IfcAirTerminalType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcFlowTerminalType"
       ],
@@ -125,6 +133,7 @@
       }
     },
     "IfcAirToAirHeatRecoveryType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcEnergyConversionDeviceType"
       ],
@@ -137,6 +146,7 @@
       }
     },
     "IfcAlarmType": {
+      "domain": "ifcbuildingcontrolsdomain",
       "superclasses": [
         "IfcDistributionControlElementType"
       ],
@@ -149,12 +159,14 @@
       }
     },
     "IfcAngularDimension": {
+      "domain": "ifcpresentationdimensioningresource",
       "superclasses": [
         "IfcDimensionCurveDirectedCallout"
       ],
       "fields": {}
     },
     "IfcAnnotation": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcProduct"
       ],
@@ -167,6 +179,7 @@
       }
     },
     "IfcAnnotationCurveOccurrence": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [
         "IfcAnnotationOccurrence",
         "IfcDraughtingCalloutElement"
@@ -174,6 +187,7 @@
       "fields": {}
     },
     "IfcAnnotationFillArea": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [
         "IfcGeometricRepresentationItem"
       ],
@@ -191,6 +205,7 @@
       }
     },
     "IfcAnnotationFillAreaOccurrence": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [
         "IfcAnnotationOccurrence"
       ],
@@ -208,12 +223,14 @@
       }
     },
     "IfcAnnotationOccurrence": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [
         "IfcStyledItem"
       ],
       "fields": {}
     },
     "IfcAnnotationSurface": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [
         "IfcGeometricRepresentationItem"
       ],
@@ -231,12 +248,14 @@
       }
     },
     "IfcAnnotationSurfaceOccurrence": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [
         "IfcAnnotationOccurrence"
       ],
       "fields": {}
     },
     "IfcAnnotationSymbolOccurrence": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [
         "IfcAnnotationOccurrence",
         "IfcDraughtingCalloutElement"
@@ -244,6 +263,7 @@
       "fields": {}
     },
     "IfcAnnotationTextOccurrence": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [
         "IfcAnnotationOccurrence",
         "IfcDraughtingCalloutElement"
@@ -251,6 +271,7 @@
       "fields": {}
     },
     "IfcApplication": {
+      "domain": "ifcutilityresource",
       "superclasses": [],
       "fields": {
         "ApplicationDeveloper": {
@@ -276,6 +297,7 @@
       }
     },
     "IfcAppliedValue": {
+      "domain": "ifccostresource",
       "superclasses": [
         "IfcObjectReferenceSelect"
       ],
@@ -328,6 +350,7 @@
       }
     },
     "IfcAppliedValueRelationship": {
+      "domain": "ifccostresource",
       "superclasses": [],
       "fields": {
         "ComponentOfTotal": {
@@ -358,6 +381,7 @@
       }
     },
     "IfcApproval": {
+      "domain": "ifcapprovalresource",
       "superclasses": [],
       "fields": {
         "Description": {
@@ -413,6 +437,7 @@
       }
     },
     "IfcApprovalActorRelationship": {
+      "domain": "ifcapprovalresource",
       "superclasses": [],
       "fields": {
         "Actor": {
@@ -433,6 +458,7 @@
       }
     },
     "IfcApprovalPropertyRelationship": {
+      "domain": "ifcapprovalresource",
       "superclasses": [],
       "fields": {
         "ApprovedProperties": {
@@ -448,6 +474,7 @@
       }
     },
     "IfcApprovalRelationship": {
+      "domain": "ifcapprovalresource",
       "superclasses": [],
       "fields": {
         "RelatedApproval": {
@@ -473,6 +500,7 @@
       }
     },
     "IfcArbitraryClosedProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcProfileDef"
       ],
@@ -485,6 +513,7 @@
       }
     },
     "IfcArbitraryOpenProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcProfileDef"
       ],
@@ -497,6 +526,7 @@
       }
     },
     "IfcArbitraryProfileDefWithVoids": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcArbitraryClosedProfileDef"
       ],
@@ -509,6 +539,7 @@
       }
     },
     "IfcAsset": {
+      "domain": "ifcsharedfacilitieselements",
       "superclasses": [
         "IfcGroup"
       ],
@@ -561,6 +592,7 @@
       }
     },
     "IfcAsymmetricIShapeProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcIShapeProfileDef"
       ],
@@ -608,6 +640,7 @@
       }
     },
     "IfcAxis1Placement": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcPlacement"
       ],
@@ -620,6 +653,7 @@
       }
     },
     "IfcAxis2Placement2D": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcPlacement",
         "IfcAxis2Placement"
@@ -633,6 +667,7 @@
       }
     },
     "IfcAxis2Placement3D": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcPlacement",
         "IfcAxis2Placement"
@@ -651,6 +686,7 @@
       }
     },
     "IfcBSplineCurve": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcBoundedCurve"
       ],
@@ -683,12 +719,14 @@
       }
     },
     "IfcBeam": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElement"
       ],
       "fields": {}
     },
     "IfcBeamType": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElementType"
       ],
@@ -701,12 +739,14 @@
       }
     },
     "IfcBezierCurve": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcBSplineCurve"
       ],
       "fields": {}
     },
     "IfcBlobTexture": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcSurfaceTexture"
       ],
@@ -724,6 +764,7 @@
       }
     },
     "IfcBlock": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcCsgPrimitive3D"
       ],
@@ -761,6 +802,7 @@
       }
     },
     "IfcBoilerType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcEnergyConversionDeviceType"
       ],
@@ -773,12 +815,14 @@
       }
     },
     "IfcBooleanClippingResult": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcBooleanResult"
       ],
       "fields": {}
     },
     "IfcBooleanResult": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcGeometricRepresentationItem",
         "IfcBooleanOperand",
@@ -808,6 +852,7 @@
       }
     },
     "IfcBoundaryCondition": {
+      "domain": "ifcstructuralloadresource",
       "superclasses": [],
       "fields": {
         "Name": {
@@ -818,6 +863,7 @@
       }
     },
     "IfcBoundaryEdgeCondition": {
+      "domain": "ifcstructuralloadresource",
       "superclasses": [
         "IfcBoundaryCondition"
       ],
@@ -885,6 +931,7 @@
       }
     },
     "IfcBoundaryFaceCondition": {
+      "domain": "ifcstructuralloadresource",
       "superclasses": [
         "IfcBoundaryCondition"
       ],
@@ -922,6 +969,7 @@
       }
     },
     "IfcBoundaryNodeCondition": {
+      "domain": "ifcstructuralloadresource",
       "superclasses": [
         "IfcBoundaryCondition"
       ],
@@ -989,6 +1037,7 @@
       }
     },
     "IfcBoundaryNodeConditionWarping": {
+      "domain": "ifcstructuralloadresource",
       "superclasses": [
         "IfcBoundaryNodeCondition"
       ],
@@ -1006,6 +1055,7 @@
       }
     },
     "IfcBoundedCurve": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcCurve",
         "IfcCurveOrEdgeCurve"
@@ -1013,12 +1063,14 @@
       "fields": {}
     },
     "IfcBoundedSurface": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcSurface"
       ],
       "fields": {}
     },
     "IfcBoundingBox": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcGeometricRepresentationItem"
       ],
@@ -1066,6 +1118,7 @@
       }
     },
     "IfcBoxedHalfSpace": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcHalfSpaceSolid"
       ],
@@ -1078,6 +1131,7 @@
       }
     },
     "IfcBuilding": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcSpatialStructureElement"
       ],
@@ -1110,24 +1164,28 @@
       }
     },
     "IfcBuildingElement": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcElement"
       ],
       "fields": {}
     },
     "IfcBuildingElementComponent": {
+      "domain": "ifcstructuralelementsdomain",
       "superclasses": [
         "IfcBuildingElement"
       ],
       "fields": {}
     },
     "IfcBuildingElementPart": {
+      "domain": "ifcstructuralelementsdomain",
       "superclasses": [
         "IfcBuildingElementComponent"
       ],
       "fields": {}
     },
     "IfcBuildingElementProxy": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcBuildingElement"
       ],
@@ -1140,6 +1198,7 @@
       }
     },
     "IfcBuildingElementProxyType": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcBuildingElementType"
       ],
@@ -1152,12 +1211,14 @@
       }
     },
     "IfcBuildingElementType": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcElementType"
       ],
       "fields": {}
     },
     "IfcBuildingStorey": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcSpatialStructureElement"
       ],
@@ -1175,6 +1236,7 @@
       }
     },
     "IfcCShapeProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcParameterizedProfileDef"
       ],
@@ -1242,6 +1304,7 @@
       }
     },
     "IfcCableCarrierFittingType": {
+      "domain": "ifcelectricaldomain",
       "superclasses": [
         "IfcFlowFittingType"
       ],
@@ -1254,6 +1317,7 @@
       }
     },
     "IfcCableCarrierSegmentType": {
+      "domain": "ifcelectricaldomain",
       "superclasses": [
         "IfcFlowSegmentType"
       ],
@@ -1266,6 +1330,7 @@
       }
     },
     "IfcCableSegmentType": {
+      "domain": "ifcelectricaldomain",
       "superclasses": [
         "IfcFlowSegmentType"
       ],
@@ -1278,6 +1343,7 @@
       }
     },
     "IfcCalendarDate": {
+      "domain": "ifcdatetimeresource",
       "superclasses": [
         "IfcDateTimeSelect",
         "IfcObjectReferenceSelect"
@@ -1301,6 +1367,7 @@
       }
     },
     "IfcCartesianPoint": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcPoint",
         "IfcTrimmingSelect"
@@ -1324,6 +1391,7 @@
       }
     },
     "IfcCartesianTransformationOperator": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcGeometricRepresentationItem"
       ],
@@ -1361,12 +1429,14 @@
       }
     },
     "IfcCartesianTransformationOperator2D": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcCartesianTransformationOperator"
       ],
       "fields": {}
     },
     "IfcCartesianTransformationOperator2DnonUniform": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcCartesianTransformationOperator2D"
       ],
@@ -1384,6 +1454,7 @@
       }
     },
     "IfcCartesianTransformationOperator3D": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcCartesianTransformationOperator"
       ],
@@ -1396,6 +1467,7 @@
       }
     },
     "IfcCartesianTransformationOperator3DnonUniform": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcCartesianTransformationOperator3D"
       ],
@@ -1423,6 +1495,7 @@
       }
     },
     "IfcCenterLineProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcArbitraryOpenProfileDef"
       ],
@@ -1440,6 +1513,7 @@
       }
     },
     "IfcChamferEdgeFeature": {
+      "domain": "ifcsharedcomponentelements",
       "superclasses": [
         "IfcEdgeFeature"
       ],
@@ -1467,6 +1541,7 @@
       }
     },
     "IfcChillerType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcEnergyConversionDeviceType"
       ],
@@ -1479,6 +1554,7 @@
       }
     },
     "IfcCircle": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcConic"
       ],
@@ -1496,6 +1572,7 @@
       }
     },
     "IfcCircleHollowProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcCircleProfileDef"
       ],
@@ -1513,6 +1590,7 @@
       }
     },
     "IfcCircleProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcParameterizedProfileDef"
       ],
@@ -1530,6 +1608,7 @@
       }
     },
     "IfcClassification": {
+      "domain": "ifcexternalreferenceresource",
       "superclasses": [],
       "fields": {
         "Source": {
@@ -1560,6 +1639,7 @@
       }
     },
     "IfcClassificationItem": {
+      "domain": "ifcexternalreferenceresource",
       "superclasses": [],
       "fields": {
         "Notation": {
@@ -1590,6 +1670,7 @@
       }
     },
     "IfcClassificationItemRelationship": {
+      "domain": "ifcexternalreferenceresource",
       "superclasses": [],
       "fields": {
         "RelatingItem": {
@@ -1605,6 +1686,7 @@
       }
     },
     "IfcClassificationNotation": {
+      "domain": "ifcexternalreferenceresource",
       "superclasses": [
         "IfcClassificationNotationSelect"
       ],
@@ -1617,6 +1699,7 @@
       }
     },
     "IfcClassificationNotationFacet": {
+      "domain": "ifcexternalreferenceresource",
       "superclasses": [],
       "fields": {
         "NotationValue": {
@@ -1627,6 +1710,7 @@
       }
     },
     "IfcClassificationReference": {
+      "domain": "ifcexternalreferenceresource",
       "superclasses": [
         "IfcExternalReference",
         "IfcClassificationNotationSelect"
@@ -1640,6 +1724,7 @@
       }
     },
     "IfcClosedShell": {
+      "domain": "ifctopologyresource",
       "superclasses": [
         "IfcConnectedFaceSet",
         "IfcShell"
@@ -1647,6 +1732,7 @@
       "fields": {}
     },
     "IfcCoilType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcEnergyConversionDeviceType"
       ],
@@ -1659,6 +1745,7 @@
       }
     },
     "IfcColourRgb": {
+      "domain": "ifcpresentationresource",
       "superclasses": [
         "IfcColourSpecification",
         "IfcColourOrFactor"
@@ -1697,6 +1784,7 @@
       }
     },
     "IfcColourSpecification": {
+      "domain": "ifcpresentationresource",
       "superclasses": [
         "IfcColour"
       ],
@@ -1709,12 +1797,14 @@
       }
     },
     "IfcColumn": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElement"
       ],
       "fields": {}
     },
     "IfcColumnType": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElementType"
       ],
@@ -1727,6 +1817,7 @@
       }
     },
     "IfcComplexProperty": {
+      "domain": "ifcpropertyresource",
       "superclasses": [
         "IfcProperty"
       ],
@@ -1744,6 +1835,7 @@
       }
     },
     "IfcCompositeCurve": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcBoundedCurve"
       ],
@@ -1761,6 +1853,7 @@
       }
     },
     "IfcCompositeCurveSegment": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcGeometricRepresentationItem"
       ],
@@ -1793,6 +1886,7 @@
       }
     },
     "IfcCompositeProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcProfileDef"
       ],
@@ -1810,6 +1904,7 @@
       }
     },
     "IfcCompressorType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcFlowMovingDeviceType"
       ],
@@ -1822,6 +1917,7 @@
       }
     },
     "IfcCondenserType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcEnergyConversionDeviceType"
       ],
@@ -1834,12 +1930,14 @@
       }
     },
     "IfcCondition": {
+      "domain": "ifcfacilitiesmgmtdomain",
       "superclasses": [
         "IfcGroup"
       ],
       "fields": {}
     },
     "IfcConditionCriterion": {
+      "domain": "ifcfacilitiesmgmtdomain",
       "superclasses": [
         "IfcControl"
       ],
@@ -1857,6 +1955,7 @@
       }
     },
     "IfcConic": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcCurve"
       ],
@@ -1869,6 +1968,7 @@
       }
     },
     "IfcConnectedFaceSet": {
+      "domain": "ifctopologyresource",
       "superclasses": [
         "IfcTopologicalRepresentationItem"
       ],
@@ -1881,6 +1981,7 @@
       }
     },
     "IfcConnectionCurveGeometry": {
+      "domain": "ifcgeometricconstraintresource",
       "superclasses": [
         "IfcConnectionGeometry"
       ],
@@ -1898,10 +1999,12 @@
       }
     },
     "IfcConnectionGeometry": {
+      "domain": "ifcgeometricconstraintresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcConnectionPointEccentricity": {
+      "domain": "ifcgeometricconstraintresource",
       "superclasses": [
         "IfcConnectionPointGeometry"
       ],
@@ -1939,6 +2042,7 @@
       }
     },
     "IfcConnectionPointGeometry": {
+      "domain": "ifcgeometricconstraintresource",
       "superclasses": [
         "IfcConnectionGeometry"
       ],
@@ -1956,6 +2060,7 @@
       }
     },
     "IfcConnectionPortGeometry": {
+      "domain": "ifcgeometricconstraintresource",
       "superclasses": [
         "IfcConnectionGeometry"
       ],
@@ -1978,6 +2083,7 @@
       }
     },
     "IfcConnectionSurfaceGeometry": {
+      "domain": "ifcgeometricconstraintresource",
       "superclasses": [
         "IfcConnectionGeometry"
       ],
@@ -1995,6 +2101,7 @@
       }
     },
     "IfcConstraint": {
+      "domain": "ifcconstraintresource",
       "superclasses": [],
       "fields": {
         "Name": {
@@ -2065,6 +2172,7 @@
       }
     },
     "IfcConstraintAggregationRelationship": {
+      "domain": "ifcconstraintresource",
       "superclasses": [],
       "fields": {
         "Name": {
@@ -2095,6 +2203,7 @@
       }
     },
     "IfcConstraintClassificationRelationship": {
+      "domain": "ifcconstraintresource",
       "superclasses": [],
       "fields": {
         "ClassifiedConstraint": {
@@ -2110,6 +2219,7 @@
       }
     },
     "IfcConstraintRelationship": {
+      "domain": "ifcconstraintresource",
       "superclasses": [],
       "fields": {
         "Name": {
@@ -2135,12 +2245,14 @@
       }
     },
     "IfcConstructionEquipmentResource": {
+      "domain": "ifcconstructionmgmtdomain",
       "superclasses": [
         "IfcConstructionResource"
       ],
       "fields": {}
     },
     "IfcConstructionMaterialResource": {
+      "domain": "ifcconstructionmgmtdomain",
       "superclasses": [
         "IfcConstructionResource"
       ],
@@ -2163,12 +2275,14 @@
       }
     },
     "IfcConstructionProductResource": {
+      "domain": "ifcconstructionmgmtdomain",
       "superclasses": [
         "IfcConstructionResource"
       ],
       "fields": {}
     },
     "IfcConstructionResource": {
+      "domain": "ifcconstructionmgmtdomain",
       "superclasses": [
         "IfcResource"
       ],
@@ -2196,6 +2310,7 @@
       }
     },
     "IfcContextDependentUnit": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcNamedUnit"
       ],
@@ -2208,6 +2323,7 @@
       }
     },
     "IfcControl": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcObject"
       ],
@@ -2220,6 +2336,7 @@
       }
     },
     "IfcControllerType": {
+      "domain": "ifcbuildingcontrolsdomain",
       "superclasses": [
         "IfcDistributionControlElementType"
       ],
@@ -2232,6 +2349,7 @@
       }
     },
     "IfcConversionBasedUnit": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcNamedUnit"
       ],
@@ -2249,6 +2367,7 @@
       }
     },
     "IfcCooledBeamType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcEnergyConversionDeviceType"
       ],
@@ -2261,6 +2380,7 @@
       }
     },
     "IfcCoolingTowerType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcEnergyConversionDeviceType"
       ],
@@ -2273,6 +2393,7 @@
       }
     },
     "IfcCoordinatedUniversalTimeOffset": {
+      "domain": "ifcdatetimeresource",
       "superclasses": [],
       "fields": {
         "HourOffset": {
@@ -2293,12 +2414,14 @@
       }
     },
     "IfcCostItem": {
+      "domain": "ifcsharedmgmtelements",
       "superclasses": [
         "IfcControl"
       ],
       "fields": {}
     },
     "IfcCostSchedule": {
+      "domain": "ifcsharedmgmtelements",
       "superclasses": [
         "IfcControl"
       ],
@@ -2346,6 +2469,7 @@
       }
     },
     "IfcCostValue": {
+      "domain": "ifccostresource",
       "superclasses": [
         "IfcAppliedValue",
         "IfcMetricValueSelect"
@@ -2364,6 +2488,7 @@
       }
     },
     "IfcCovering": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcBuildingElement"
       ],
@@ -2386,6 +2511,7 @@
       }
     },
     "IfcCoveringType": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcBuildingElementType"
       ],
@@ -2398,6 +2524,7 @@
       }
     },
     "IfcCraneRailAShapeProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcParameterizedProfileDef"
       ],
@@ -2525,6 +2652,7 @@
       }
     },
     "IfcCraneRailFShapeProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcParameterizedProfileDef"
       ],
@@ -2622,12 +2750,14 @@
       }
     },
     "IfcCrewResource": {
+      "domain": "ifcconstructionmgmtdomain",
       "superclasses": [
         "IfcConstructionResource"
       ],
       "fields": {}
     },
     "IfcCsgPrimitive3D": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcGeometricRepresentationItem",
         "IfcBooleanOperand",
@@ -2647,6 +2777,7 @@
       }
     },
     "IfcCsgSolid": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcSolidModel"
       ],
@@ -2659,6 +2790,7 @@
       }
     },
     "IfcCurrencyRelationship": {
+      "domain": "ifccostresource",
       "superclasses": [],
       "fields": {
         "RelatingMonetaryUnit": {
@@ -2694,12 +2826,14 @@
       }
     },
     "IfcCurtainWall": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElement"
       ],
       "fields": {}
     },
     "IfcCurtainWallType": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElementType"
       ],
@@ -2712,6 +2846,7 @@
       }
     },
     "IfcCurve": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcGeometricRepresentationItem",
         "IfcGeometricSetSelect"
@@ -2725,6 +2860,7 @@
       }
     },
     "IfcCurveBoundedPlane": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcBoundedSurface"
       ],
@@ -2752,6 +2888,7 @@
       }
     },
     "IfcCurveStyle": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcPresentationStyle",
         "IfcPresentationStyleSelect"
@@ -2775,6 +2912,7 @@
       }
     },
     "IfcCurveStyleFont": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcCurveStyleFontSelect"
       ],
@@ -2792,6 +2930,7 @@
       }
     },
     "IfcCurveStyleFontAndScaling": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcCurveFontOrScaledCurveFontSelect"
       ],
@@ -2819,6 +2958,7 @@
       }
     },
     "IfcCurveStyleFontPattern": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [],
       "fields": {
         "VisibleSegmentLength": {
@@ -2844,6 +2984,7 @@
       }
     },
     "IfcDamperType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcFlowControllerType"
       ],
@@ -2856,6 +2997,7 @@
       }
     },
     "IfcDateAndTime": {
+      "domain": "ifcdatetimeresource",
       "superclasses": [
         "IfcDateTimeSelect",
         "IfcObjectReferenceSelect"
@@ -2874,6 +3016,7 @@
       }
     },
     "IfcDefinedSymbol": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [
         "IfcGeometricRepresentationItem"
       ],
@@ -2891,6 +3034,7 @@
       }
     },
     "IfcDerivedProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcProfileDef"
       ],
@@ -2913,6 +3057,7 @@
       }
     },
     "IfcDerivedUnit": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcUnit"
       ],
@@ -2935,6 +3080,7 @@
       }
     },
     "IfcDerivedUnitElement": {
+      "domain": "ifcmeasureresource",
       "superclasses": [],
       "fields": {
         "Unit": {
@@ -2950,18 +3096,21 @@
       }
     },
     "IfcDiameterDimension": {
+      "domain": "ifcpresentationdimensioningresource",
       "superclasses": [
         "IfcDimensionCurveDirectedCallout"
       ],
       "fields": {}
     },
     "IfcDimensionCalloutRelationship": {
+      "domain": "ifcpresentationdimensioningresource",
       "superclasses": [
         "IfcDraughtingCalloutRelationship"
       ],
       "fields": {}
     },
     "IfcDimensionCurve": {
+      "domain": "ifcpresentationdimensioningresource",
       "superclasses": [
         "IfcAnnotationCurveOccurrence"
       ],
@@ -2974,12 +3123,14 @@
       }
     },
     "IfcDimensionCurveDirectedCallout": {
+      "domain": "ifcpresentationdimensioningresource",
       "superclasses": [
         "IfcDraughtingCallout"
       ],
       "fields": {}
     },
     "IfcDimensionCurveTerminator": {
+      "domain": "ifcpresentationdimensioningresource",
       "superclasses": [
         "IfcTerminatorSymbol"
       ],
@@ -2992,12 +3143,14 @@
       }
     },
     "IfcDimensionPair": {
+      "domain": "ifcpresentationdimensioningresource",
       "superclasses": [
         "IfcDraughtingCalloutRelationship"
       ],
       "fields": {}
     },
     "IfcDimensionalExponents": {
+      "domain": "ifcmeasureresource",
       "superclasses": [],
       "fields": {
         "LengthExponent": {
@@ -3038,6 +3191,7 @@
       }
     },
     "IfcDirection": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcGeometricRepresentationItem",
         "IfcOrientationSelect",
@@ -3062,24 +3216,28 @@
       }
     },
     "IfcDiscreteAccessory": {
+      "domain": "ifcsharedcomponentelements",
       "superclasses": [
         "IfcElementComponent"
       ],
       "fields": {}
     },
     "IfcDiscreteAccessoryType": {
+      "domain": "ifcsharedcomponentelements",
       "superclasses": [
         "IfcElementComponentType"
       ],
       "fields": {}
     },
     "IfcDistributionChamberElement": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionFlowElement"
       ],
       "fields": {}
     },
     "IfcDistributionChamberElementType": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionFlowElementType"
       ],
@@ -3092,6 +3250,7 @@
       }
     },
     "IfcDistributionControlElement": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionElement"
       ],
@@ -3109,24 +3268,28 @@
       }
     },
     "IfcDistributionControlElementType": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionElementType"
       ],
       "fields": {}
     },
     "IfcDistributionElement": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcElement"
       ],
       "fields": {}
     },
     "IfcDistributionElementType": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcElementType"
       ],
       "fields": {}
     },
     "IfcDistributionFlowElement": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionElement"
       ],
@@ -3139,12 +3302,14 @@
       }
     },
     "IfcDistributionFlowElementType": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionElementType"
       ],
       "fields": {}
     },
     "IfcDistributionPort": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcPort"
       ],
@@ -3157,6 +3322,7 @@
       }
     },
     "IfcDocumentElectronicFormat": {
+      "domain": "ifcexternalreferenceresource",
       "superclasses": [],
       "fields": {
         "FileExtension": {
@@ -3177,6 +3343,7 @@
       }
     },
     "IfcDocumentInformation": {
+      "domain": "ifcexternalreferenceresource",
       "superclasses": [
         "IfcDocumentSelect"
       ],
@@ -3279,6 +3446,7 @@
       }
     },
     "IfcDocumentInformationRelationship": {
+      "domain": "ifcexternalreferenceresource",
       "superclasses": [],
       "fields": {
         "RelatingDocument": {
@@ -3299,6 +3467,7 @@
       }
     },
     "IfcDocumentReference": {
+      "domain": "ifcexternalreferenceresource",
       "superclasses": [
         "IfcExternalReference",
         "IfcDocumentSelect"
@@ -3312,6 +3481,7 @@
       }
     },
     "IfcDoor": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElement"
       ],
@@ -3339,6 +3509,7 @@
       }
     },
     "IfcDoorLiningProperties": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcPropertySetDefinition"
       ],
@@ -3451,6 +3622,7 @@
       }
     },
     "IfcDoorPanelProperties": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcPropertySetDefinition"
       ],
@@ -3493,6 +3665,7 @@
       }
     },
     "IfcDoorStyle": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcTypeProduct"
       ],
@@ -3520,6 +3693,7 @@
       }
     },
     "IfcDraughtingCallout": {
+      "domain": "ifcpresentationdimensioningresource",
       "superclasses": [
         "IfcGeometricRepresentationItem"
       ],
@@ -3542,6 +3716,7 @@
       }
     },
     "IfcDraughtingCalloutRelationship": {
+      "domain": "ifcpresentationdimensioningresource",
       "superclasses": [],
       "fields": {
         "Name": {
@@ -3567,24 +3742,28 @@
       }
     },
     "IfcDraughtingPreDefinedColour": {
+      "domain": "ifcpresentationresource",
       "superclasses": [
         "IfcPreDefinedColour"
       ],
       "fields": {}
     },
     "IfcDraughtingPreDefinedCurveFont": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcPreDefinedCurveFont"
       ],
       "fields": {}
     },
     "IfcDraughtingPreDefinedTextFont": {
+      "domain": "ifcpresentationresource",
       "superclasses": [
         "IfcPreDefinedTextFont"
       ],
       "fields": {}
     },
     "IfcDuctFittingType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcFlowFittingType"
       ],
@@ -3597,6 +3776,7 @@
       }
     },
     "IfcDuctSegmentType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcFlowSegmentType"
       ],
@@ -3609,6 +3789,7 @@
       }
     },
     "IfcDuctSilencerType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcFlowTreatmentDeviceType"
       ],
@@ -3621,6 +3802,7 @@
       }
     },
     "IfcEdge": {
+      "domain": "ifctopologyresource",
       "superclasses": [
         "IfcTopologicalRepresentationItem"
       ],
@@ -3638,6 +3820,7 @@
       }
     },
     "IfcEdgeCurve": {
+      "domain": "ifctopologyresource",
       "superclasses": [
         "IfcEdge",
         "IfcCurveOrEdgeCurve"
@@ -3656,6 +3839,7 @@
       }
     },
     "IfcEdgeFeature": {
+      "domain": "ifcsharedcomponentelements",
       "superclasses": [
         "IfcFeatureElementSubtraction"
       ],
@@ -3673,6 +3857,7 @@
       }
     },
     "IfcEdgeLoop": {
+      "domain": "ifctopologyresource",
       "superclasses": [
         "IfcLoop"
       ],
@@ -3685,6 +3870,7 @@
       }
     },
     "IfcElectricApplianceType": {
+      "domain": "ifcelectricaldomain",
       "superclasses": [
         "IfcFlowTerminalType"
       ],
@@ -3697,6 +3883,7 @@
       }
     },
     "IfcElectricDistributionPoint": {
+      "domain": "ifcelectricaldomain",
       "superclasses": [
         "IfcFlowController"
       ],
@@ -3714,6 +3901,7 @@
       }
     },
     "IfcElectricFlowStorageDeviceType": {
+      "domain": "ifcelectricaldomain",
       "superclasses": [
         "IfcFlowStorageDeviceType"
       ],
@@ -3726,6 +3914,7 @@
       }
     },
     "IfcElectricGeneratorType": {
+      "domain": "ifcelectricaldomain",
       "superclasses": [
         "IfcEnergyConversionDeviceType"
       ],
@@ -3738,6 +3927,7 @@
       }
     },
     "IfcElectricHeaterType": {
+      "domain": "ifcelectricaldomain",
       "superclasses": [
         "IfcFlowTerminalType"
       ],
@@ -3750,6 +3940,7 @@
       }
     },
     "IfcElectricMotorType": {
+      "domain": "ifcelectricaldomain",
       "superclasses": [
         "IfcEnergyConversionDeviceType"
       ],
@@ -3762,6 +3953,7 @@
       }
     },
     "IfcElectricTimeControlType": {
+      "domain": "ifcelectricaldomain",
       "superclasses": [
         "IfcFlowControllerType"
       ],
@@ -3774,6 +3966,7 @@
       }
     },
     "IfcElectricalBaseProperties": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcEnergyProperties"
       ],
@@ -3851,18 +4044,21 @@
       }
     },
     "IfcElectricalCircuit": {
+      "domain": "ifcelectricaldomain",
       "superclasses": [
         "IfcSystem"
       ],
       "fields": {}
     },
     "IfcElectricalElement": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcElement"
       ],
       "fields": {}
     },
     "IfcElement": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcProduct",
         "IfcStructuralActivityAssignmentSelect"
@@ -3936,6 +4132,7 @@
       }
     },
     "IfcElementAssembly": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcElement"
       ],
@@ -3953,18 +4150,21 @@
       }
     },
     "IfcElementComponent": {
+      "domain": "ifcsharedcomponentelements",
       "superclasses": [
         "IfcElement"
       ],
       "fields": {}
     },
     "IfcElementComponentType": {
+      "domain": "ifcsharedcomponentelements",
       "superclasses": [
         "IfcElementType"
       ],
       "fields": {}
     },
     "IfcElementQuantity": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcPropertySetDefinition"
       ],
@@ -3982,6 +4182,7 @@
       }
     },
     "IfcElementType": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcTypeProduct"
       ],
@@ -3994,6 +4195,7 @@
       }
     },
     "IfcElementarySurface": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcSurface"
       ],
@@ -4011,6 +4213,7 @@
       }
     },
     "IfcEllipse": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcConic"
       ],
@@ -4038,6 +4241,7 @@
       }
     },
     "IfcEllipseProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcParameterizedProfileDef"
       ],
@@ -4065,18 +4269,21 @@
       }
     },
     "IfcEnergyConversionDevice": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionFlowElement"
       ],
       "fields": {}
     },
     "IfcEnergyConversionDeviceType": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionFlowElementType"
       ],
       "fields": {}
     },
     "IfcEnergyProperties": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcPropertySetDefinition"
       ],
@@ -4094,6 +4301,7 @@
       }
     },
     "IfcEnvironmentalImpactValue": {
+      "domain": "ifccostresource",
       "superclasses": [
         "IfcAppliedValue"
       ],
@@ -4116,18 +4324,21 @@
       }
     },
     "IfcEquipmentElement": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcElement"
       ],
       "fields": {}
     },
     "IfcEquipmentStandard": {
+      "domain": "ifcfacilitiesmgmtdomain",
       "superclasses": [
         "IfcControl"
       ],
       "fields": {}
     },
     "IfcEvaporativeCoolerType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcEnergyConversionDeviceType"
       ],
@@ -4140,6 +4351,7 @@
       }
     },
     "IfcEvaporatorType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcEnergyConversionDeviceType"
       ],
@@ -4152,6 +4364,7 @@
       }
     },
     "IfcExtendedMaterialProperties": {
+      "domain": "ifcmaterialpropertyresource",
       "superclasses": [
         "IfcMaterialProperties"
       ],
@@ -4174,6 +4387,7 @@
       }
     },
     "IfcExternalReference": {
+      "domain": "ifcexternalreferenceresource",
       "superclasses": [
         "IfcLightDistributionDataSourceSelect",
         "IfcObjectReferenceSelect"
@@ -4197,6 +4411,7 @@
       }
     },
     "IfcExternallyDefinedHatchStyle": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcExternalReference",
         "IfcFillStyleSelect"
@@ -4204,6 +4419,7 @@
       "fields": {}
     },
     "IfcExternallyDefinedSurfaceStyle": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcExternalReference",
         "IfcSurfaceStyleElementSelect"
@@ -4211,6 +4427,7 @@
       "fields": {}
     },
     "IfcExternallyDefinedSymbol": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [
         "IfcExternalReference",
         "IfcDefinedSymbolSelect"
@@ -4218,6 +4435,7 @@
       "fields": {}
     },
     "IfcExternallyDefinedTextFont": {
+      "domain": "ifcpresentationresource",
       "superclasses": [
         "IfcExternalReference",
         "IfcTextFontSelect"
@@ -4225,6 +4443,7 @@
       "fields": {}
     },
     "IfcExtrudedAreaSolid": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcSweptAreaSolid"
       ],
@@ -4247,6 +4466,7 @@
       }
     },
     "IfcFace": {
+      "domain": "ifctopologyresource",
       "superclasses": [
         "IfcTopologicalRepresentationItem"
       ],
@@ -4259,6 +4479,7 @@
       }
     },
     "IfcFaceBasedSurfaceModel": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcGeometricRepresentationItem",
         "IfcSurfaceOrFaceSurface"
@@ -4277,6 +4498,7 @@
       }
     },
     "IfcFaceBound": {
+      "domain": "ifctopologyresource",
       "superclasses": [
         "IfcTopologicalRepresentationItem"
       ],
@@ -4294,12 +4516,14 @@
       }
     },
     "IfcFaceOuterBound": {
+      "domain": "ifctopologyresource",
       "superclasses": [
         "IfcFaceBound"
       ],
       "fields": {}
     },
     "IfcFaceSurface": {
+      "domain": "ifctopologyresource",
       "superclasses": [
         "IfcFace",
         "IfcSurfaceOrFaceSurface"
@@ -4318,12 +4542,14 @@
       }
     },
     "IfcFacetedBrep": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcManifoldSolidBrep"
       ],
       "fields": {}
     },
     "IfcFacetedBrepWithVoids": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcManifoldSolidBrep"
       ],
@@ -4336,6 +4562,7 @@
       }
     },
     "IfcFailureConnectionCondition": {
+      "domain": "ifcstructuralloadresource",
       "superclasses": [
         "IfcStructuralConnectionCondition"
       ],
@@ -4403,6 +4630,7 @@
       }
     },
     "IfcFanType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcFlowMovingDeviceType"
       ],
@@ -4415,24 +4643,28 @@
       }
     },
     "IfcFastener": {
+      "domain": "ifcsharedcomponentelements",
       "superclasses": [
         "IfcElementComponent"
       ],
       "fields": {}
     },
     "IfcFastenerType": {
+      "domain": "ifcsharedcomponentelements",
       "superclasses": [
         "IfcElementComponentType"
       ],
       "fields": {}
     },
     "IfcFeatureElement": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcElement"
       ],
       "fields": {}
     },
     "IfcFeatureElementAddition": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcFeatureElement"
       ],
@@ -4445,6 +4677,7 @@
       }
     },
     "IfcFeatureElementSubtraction": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcFeatureElement"
       ],
@@ -4457,6 +4690,7 @@
       }
     },
     "IfcFillAreaStyle": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcPresentationStyle",
         "IfcPresentationStyleSelect"
@@ -4470,6 +4704,7 @@
       }
     },
     "IfcFillAreaStyleHatching": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcGeometricRepresentationItem",
         "IfcFillStyleSelect"
@@ -4508,6 +4743,7 @@
       }
     },
     "IfcFillAreaStyleTileSymbolWithStyle": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcGeometricRepresentationItem",
         "IfcFillAreaStyleTileShapeSelect"
@@ -4521,6 +4757,7 @@
       }
     },
     "IfcFillAreaStyleTiles": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcGeometricRepresentationItem",
         "IfcFillStyleSelect"
@@ -4549,6 +4786,7 @@
       }
     },
     "IfcFilterType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcFlowTreatmentDeviceType"
       ],
@@ -4561,6 +4799,7 @@
       }
     },
     "IfcFireSuppressionTerminalType": {
+      "domain": "ifcplumbingfireprotectiondomain",
       "superclasses": [
         "IfcFlowTerminalType"
       ],
@@ -4573,30 +4812,35 @@
       }
     },
     "IfcFlowController": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionFlowElement"
       ],
       "fields": {}
     },
     "IfcFlowControllerType": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionFlowElementType"
       ],
       "fields": {}
     },
     "IfcFlowFitting": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionFlowElement"
       ],
       "fields": {}
     },
     "IfcFlowFittingType": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionFlowElementType"
       ],
       "fields": {}
     },
     "IfcFlowInstrumentType": {
+      "domain": "ifcbuildingcontrolsdomain",
       "superclasses": [
         "IfcDistributionControlElementType"
       ],
@@ -4609,6 +4853,7 @@
       }
     },
     "IfcFlowMeterType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcFlowControllerType"
       ],
@@ -4621,66 +4866,77 @@
       }
     },
     "IfcFlowMovingDevice": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionFlowElement"
       ],
       "fields": {}
     },
     "IfcFlowMovingDeviceType": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionFlowElementType"
       ],
       "fields": {}
     },
     "IfcFlowSegment": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionFlowElement"
       ],
       "fields": {}
     },
     "IfcFlowSegmentType": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionFlowElementType"
       ],
       "fields": {}
     },
     "IfcFlowStorageDevice": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionFlowElement"
       ],
       "fields": {}
     },
     "IfcFlowStorageDeviceType": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionFlowElementType"
       ],
       "fields": {}
     },
     "IfcFlowTerminal": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionFlowElement"
       ],
       "fields": {}
     },
     "IfcFlowTerminalType": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionFlowElementType"
       ],
       "fields": {}
     },
     "IfcFlowTreatmentDevice": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionFlowElement"
       ],
       "fields": {}
     },
     "IfcFlowTreatmentDeviceType": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcDistributionFlowElementType"
       ],
       "fields": {}
     },
     "IfcFluidFlowProperties": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcPropertySetDefinition"
       ],
@@ -4788,6 +5044,7 @@
       }
     },
     "IfcFooting": {
+      "domain": "ifcstructuralelementsdomain",
       "superclasses": [
         "IfcBuildingElement"
       ],
@@ -4800,6 +5057,7 @@
       }
     },
     "IfcFuelProperties": {
+      "domain": "ifcmaterialpropertyresource",
       "superclasses": [
         "IfcMaterialProperties"
       ],
@@ -4847,24 +5105,28 @@
       }
     },
     "IfcFurnishingElement": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcElement"
       ],
       "fields": {}
     },
     "IfcFurnishingElementType": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcElementType"
       ],
       "fields": {}
     },
     "IfcFurnitureStandard": {
+      "domain": "ifcfacilitiesmgmtdomain",
       "superclasses": [
         "IfcControl"
       ],
       "fields": {}
     },
     "IfcFurnitureType": {
+      "domain": "ifcsharedfacilitieselements",
       "superclasses": [
         "IfcFurnishingElementType"
       ],
@@ -4877,6 +5139,7 @@
       }
     },
     "IfcGasTerminalType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcFlowTerminalType"
       ],
@@ -4889,6 +5152,7 @@
       }
     },
     "IfcGeneralMaterialProperties": {
+      "domain": "ifcmaterialpropertyresource",
       "superclasses": [
         "IfcMaterialProperties"
       ],
@@ -4926,6 +5190,7 @@
       }
     },
     "IfcGeneralProfileProperties": {
+      "domain": "ifcprofilepropertyresource",
       "superclasses": [
         "IfcProfileProperties"
       ],
@@ -4983,12 +5248,14 @@
       }
     },
     "IfcGeometricCurveSet": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcGeometricSet"
       ],
       "fields": {}
     },
     "IfcGeometricRepresentationContext": {
+      "domain": "ifcrepresentationresource",
       "superclasses": [
         "IfcRepresentationContext"
       ],
@@ -5026,12 +5293,14 @@
       }
     },
     "IfcGeometricRepresentationItem": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcRepresentationItem"
       ],
       "fields": {}
     },
     "IfcGeometricRepresentationSubContext": {
+      "domain": "ifcrepresentationresource",
       "superclasses": [
         "IfcGeometricRepresentationContext"
       ],
@@ -5064,6 +5333,7 @@
       }
     },
     "IfcGeometricSet": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcGeometricRepresentationItem"
       ],
@@ -5081,6 +5351,7 @@
       }
     },
     "IfcGrid": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcProduct"
       ],
@@ -5108,6 +5379,7 @@
       }
     },
     "IfcGridAxis": {
+      "domain": "ifcgeometricconstraintresource",
       "superclasses": [],
       "fields": {
         "AxisTag": {
@@ -5148,6 +5420,7 @@
       }
     },
     "IfcGridPlacement": {
+      "domain": "ifcgeometricconstraintresource",
       "superclasses": [
         "IfcObjectPlacement"
       ],
@@ -5165,6 +5438,7 @@
       }
     },
     "IfcGroup": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcObject"
       ],
@@ -5177,6 +5451,7 @@
       }
     },
     "IfcHalfSpaceSolid": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcGeometricRepresentationItem",
         "IfcBooleanOperand"
@@ -5200,6 +5475,7 @@
       }
     },
     "IfcHeatExchangerType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcEnergyConversionDeviceType"
       ],
@@ -5212,6 +5488,7 @@
       }
     },
     "IfcHumidifierType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcEnergyConversionDeviceType"
       ],
@@ -5224,6 +5501,7 @@
       }
     },
     "IfcHygroscopicMaterialProperties": {
+      "domain": "ifcmaterialpropertyresource",
       "superclasses": [
         "IfcMaterialProperties"
       ],
@@ -5281,6 +5559,7 @@
       }
     },
     "IfcIShapeProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcParameterizedProfileDef"
       ],
@@ -5338,6 +5617,7 @@
       }
     },
     "IfcImageTexture": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcSurfaceTexture"
       ],
@@ -5350,6 +5630,7 @@
       }
     },
     "IfcInventory": {
+      "domain": "ifcsharedfacilitieselements",
       "superclasses": [
         "IfcGroup"
       ],
@@ -5387,6 +5668,7 @@
       }
     },
     "IfcIrregularTimeSeries": {
+      "domain": "ifctimeseriesresource",
       "superclasses": [
         "IfcTimeSeries"
       ],
@@ -5399,6 +5681,7 @@
       }
     },
     "IfcIrregularTimeSeriesValue": {
+      "domain": "ifctimeseriesresource",
       "superclasses": [],
       "fields": {
         "TimeStamp": {
@@ -5414,6 +5697,7 @@
       }
     },
     "IfcJunctionBoxType": {
+      "domain": "ifcelectricaldomain",
       "superclasses": [
         "IfcFlowFittingType"
       ],
@@ -5426,6 +5710,7 @@
       }
     },
     "IfcLShapeProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcParameterizedProfileDef"
       ],
@@ -5513,6 +5798,7 @@
       }
     },
     "IfcLaborResource": {
+      "domain": "ifcconstructionmgmtdomain",
       "superclasses": [
         "IfcConstructionResource"
       ],
@@ -5525,6 +5811,7 @@
       }
     },
     "IfcLampType": {
+      "domain": "ifcelectricaldomain",
       "superclasses": [
         "IfcFlowTerminalType"
       ],
@@ -5537,6 +5824,7 @@
       }
     },
     "IfcLibraryInformation": {
+      "domain": "ifcexternalreferenceresource",
       "superclasses": [
         "IfcLibrarySelect"
       ],
@@ -5569,6 +5857,7 @@
       }
     },
     "IfcLibraryReference": {
+      "domain": "ifcexternalreferenceresource",
       "superclasses": [
         "IfcExternalReference",
         "IfcLibrarySelect"
@@ -5582,6 +5871,7 @@
       }
     },
     "IfcLightDistributionData": {
+      "domain": "ifcpresentationorganizationresource",
       "superclasses": [],
       "fields": {
         "MainPlaneAngle": {
@@ -5617,6 +5907,7 @@
       }
     },
     "IfcLightFixtureType": {
+      "domain": "ifcelectricaldomain",
       "superclasses": [
         "IfcFlowTerminalType"
       ],
@@ -5629,6 +5920,7 @@
       }
     },
     "IfcLightIntensityDistribution": {
+      "domain": "ifcpresentationorganizationresource",
       "superclasses": [
         "IfcLightDistributionDataSourceSelect"
       ],
@@ -5646,6 +5938,7 @@
       }
     },
     "IfcLightSource": {
+      "domain": "ifcpresentationorganizationresource",
       "superclasses": [
         "IfcGeometricRepresentationItem"
       ],
@@ -5683,12 +5976,14 @@
       }
     },
     "IfcLightSourceAmbient": {
+      "domain": "ifcpresentationorganizationresource",
       "superclasses": [
         "IfcLightSource"
       ],
       "fields": {}
     },
     "IfcLightSourceDirectional": {
+      "domain": "ifcpresentationorganizationresource",
       "superclasses": [
         "IfcLightSource"
       ],
@@ -5701,6 +5996,7 @@
       }
     },
     "IfcLightSourceGoniometric": {
+      "domain": "ifcpresentationorganizationresource",
       "superclasses": [
         "IfcLightSource"
       ],
@@ -5748,6 +6044,7 @@
       }
     },
     "IfcLightSourcePositional": {
+      "domain": "ifcpresentationorganizationresource",
       "superclasses": [
         "IfcLightSource"
       ],
@@ -5800,6 +6097,7 @@
       }
     },
     "IfcLightSourceSpot": {
+      "domain": "ifcpresentationorganizationresource",
       "superclasses": [
         "IfcLightSourcePositional"
       ],
@@ -5842,6 +6140,7 @@
       }
     },
     "IfcLine": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcCurve"
       ],
@@ -5859,12 +6158,14 @@
       }
     },
     "IfcLinearDimension": {
+      "domain": "ifcpresentationdimensioningresource",
       "superclasses": [
         "IfcDimensionCurveDirectedCallout"
       ],
       "fields": {}
     },
     "IfcLocalPlacement": {
+      "domain": "ifcgeometricconstraintresource",
       "superclasses": [
         "IfcObjectPlacement"
       ],
@@ -5882,6 +6183,7 @@
       }
     },
     "IfcLocalTime": {
+      "domain": "ifcdatetimeresource",
       "superclasses": [
         "IfcDateTimeSelect",
         "IfcObjectReferenceSelect"
@@ -5920,12 +6222,14 @@
       }
     },
     "IfcLoop": {
+      "domain": "ifctopologyresource",
       "superclasses": [
         "IfcTopologicalRepresentationItem"
       ],
       "fields": {}
     },
     "IfcManifoldSolidBrep": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcSolidModel"
       ],
@@ -5938,6 +6242,7 @@
       }
     },
     "IfcMappedItem": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcRepresentationItem"
       ],
@@ -5955,6 +6260,7 @@
       }
     },
     "IfcMaterial": {
+      "domain": "ifcmaterialresource",
       "superclasses": [
         "IfcMaterialSelect",
         "IfcObjectReferenceSelect"
@@ -5978,6 +6284,7 @@
       }
     },
     "IfcMaterialClassificationRelationship": {
+      "domain": "ifcmaterialresource",
       "superclasses": [],
       "fields": {
         "MaterialClassifications": {
@@ -5993,6 +6300,7 @@
       }
     },
     "IfcMaterialDefinitionRepresentation": {
+      "domain": "ifcrepresentationresource",
       "superclasses": [
         "IfcProductRepresentation"
       ],
@@ -6005,6 +6313,7 @@
       }
     },
     "IfcMaterialLayer": {
+      "domain": "ifcmaterialresource",
       "superclasses": [
         "IfcMaterialSelect",
         "IfcObjectReferenceSelect"
@@ -6038,6 +6347,7 @@
       }
     },
     "IfcMaterialLayerSet": {
+      "domain": "ifcmaterialresource",
       "superclasses": [
         "IfcMaterialSelect"
       ],
@@ -6065,6 +6375,7 @@
       }
     },
     "IfcMaterialLayerSetUsage": {
+      "domain": "ifcmaterialresource",
       "superclasses": [
         "IfcMaterialSelect"
       ],
@@ -6097,6 +6408,7 @@
       }
     },
     "IfcMaterialList": {
+      "domain": "ifcmaterialresource",
       "superclasses": [
         "IfcMaterialSelect",
         "IfcObjectReferenceSelect"
@@ -6110,6 +6422,7 @@
       }
     },
     "IfcMaterialProperties": {
+      "domain": "ifcmaterialpropertyresource",
       "superclasses": [],
       "fields": {
         "Material": {
@@ -6120,6 +6433,7 @@
       }
     },
     "IfcMeasureWithUnit": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcAppliedValueSelect",
         "IfcConditionCriterionSelect",
@@ -6139,6 +6453,7 @@
       }
     },
     "IfcMechanicalConcreteMaterialProperties": {
+      "domain": "ifcmaterialpropertyresource",
       "superclasses": [
         "IfcMechanicalMaterialProperties"
       ],
@@ -6191,6 +6506,7 @@
       }
     },
     "IfcMechanicalFastener": {
+      "domain": "ifcsharedcomponentelements",
       "superclasses": [
         "IfcFastener"
       ],
@@ -6218,12 +6534,14 @@
       }
     },
     "IfcMechanicalFastenerType": {
+      "domain": "ifcsharedcomponentelements",
       "superclasses": [
         "IfcFastenerType"
       ],
       "fields": {}
     },
     "IfcMechanicalMaterialProperties": {
+      "domain": "ifcmaterialpropertyresource",
       "superclasses": [
         "IfcMaterialProperties"
       ],
@@ -6281,6 +6599,7 @@
       }
     },
     "IfcMechanicalSteelMaterialProperties": {
+      "domain": "ifcmaterialpropertyresource",
       "superclasses": [
         "IfcMechanicalMaterialProperties"
       ],
@@ -6353,12 +6672,14 @@
       }
     },
     "IfcMember": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElement"
       ],
       "fields": {}
     },
     "IfcMemberType": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElementType"
       ],
@@ -6371,6 +6692,7 @@
       }
     },
     "IfcMetric": {
+      "domain": "ifcconstraintresource",
       "superclasses": [
         "IfcConstraint"
       ],
@@ -6393,6 +6715,7 @@
       }
     },
     "IfcMonetaryUnit": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcUnit"
       ],
@@ -6405,6 +6728,7 @@
       }
     },
     "IfcMotorConnectionType": {
+      "domain": "ifcelectricaldomain",
       "superclasses": [
         "IfcEnergyConversionDeviceType"
       ],
@@ -6417,6 +6741,7 @@
       }
     },
     "IfcMove": {
+      "domain": "ifcfacilitiesmgmtdomain",
       "superclasses": [
         "IfcTask"
       ],
@@ -6439,6 +6764,7 @@
       }
     },
     "IfcNamedUnit": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcUnit"
       ],
@@ -6456,6 +6782,7 @@
       }
     },
     "IfcObject": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcObjectDefinition"
       ],
@@ -6473,6 +6800,7 @@
       }
     },
     "IfcObjectDefinition": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRoot"
       ],
@@ -6500,6 +6828,7 @@
       }
     },
     "IfcObjectPlacement": {
+      "domain": "ifcgeometricconstraintresource",
       "superclasses": [],
       "fields": {
         "PlacesObject": {
@@ -6515,6 +6844,7 @@
       }
     },
     "IfcObjective": {
+      "domain": "ifcconstraintresource",
       "superclasses": [
         "IfcConstraint"
       ],
@@ -6542,6 +6872,7 @@
       }
     },
     "IfcOccupant": {
+      "domain": "ifcsharedfacilitieselements",
       "superclasses": [
         "IfcActor"
       ],
@@ -6554,6 +6885,7 @@
       }
     },
     "IfcOffsetCurve2D": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcCurve"
       ],
@@ -6581,6 +6913,7 @@
       }
     },
     "IfcOffsetCurve3D": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcCurve"
       ],
@@ -6613,6 +6946,7 @@
       }
     },
     "IfcOneDirectionRepeatFactor": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcGeometricRepresentationItem",
         "IfcHatchLineDistanceSelect"
@@ -6626,6 +6960,7 @@
       }
     },
     "IfcOpenShell": {
+      "domain": "ifctopologyresource",
       "superclasses": [
         "IfcConnectedFaceSet",
         "IfcShell"
@@ -6633,6 +6968,7 @@
       "fields": {}
     },
     "IfcOpeningElement": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcFeatureElementSubtraction"
       ],
@@ -6645,6 +6981,7 @@
       }
     },
     "IfcOpticalMaterialProperties": {
+      "domain": "ifcmaterialpropertyresource",
       "superclasses": [
         "IfcMaterialProperties"
       ],
@@ -6742,6 +7079,7 @@
       }
     },
     "IfcOrderAction": {
+      "domain": "ifcfacilitiesmgmtdomain",
       "superclasses": [
         "IfcTask"
       ],
@@ -6754,6 +7092,7 @@
       }
     },
     "IfcOrganization": {
+      "domain": "ifcactorresource",
       "superclasses": [
         "IfcActorSelect",
         "IfcObjectReferenceSelect"
@@ -6802,6 +7141,7 @@
       }
     },
     "IfcOrganizationRelationship": {
+      "domain": "ifcactorresource",
       "superclasses": [],
       "fields": {
         "Name": {
@@ -6827,6 +7167,7 @@
       }
     },
     "IfcOrientedEdge": {
+      "domain": "ifctopologyresource",
       "superclasses": [
         "IfcEdge"
       ],
@@ -6844,6 +7185,7 @@
       }
     },
     "IfcOutletType": {
+      "domain": "ifcelectricaldomain",
       "superclasses": [
         "IfcFlowTerminalType"
       ],
@@ -6856,6 +7198,7 @@
       }
     },
     "IfcOwnerHistory": {
+      "domain": "ifcutilityresource",
       "superclasses": [],
       "fields": {
         "OwningUser": {
@@ -6901,6 +7244,7 @@
       }
     },
     "IfcParameterizedProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcProfileDef"
       ],
@@ -6913,6 +7257,7 @@
       }
     },
     "IfcPath": {
+      "domain": "ifctopologyresource",
       "superclasses": [
         "IfcTopologicalRepresentationItem"
       ],
@@ -6925,6 +7270,7 @@
       }
     },
     "IfcPerformanceHistory": {
+      "domain": "ifccontrolextension",
       "superclasses": [
         "IfcControl"
       ],
@@ -6937,6 +7283,7 @@
       }
     },
     "IfcPermeableCoveringProperties": {
+      "domain": "ifcarchitecturedomain",
       "superclasses": [
         "IfcPropertySetDefinition"
       ],
@@ -6979,6 +7326,7 @@
       }
     },
     "IfcPermit": {
+      "domain": "ifcfacilitiesmgmtdomain",
       "superclasses": [
         "IfcControl"
       ],
@@ -6991,6 +7339,7 @@
       }
     },
     "IfcPerson": {
+      "domain": "ifcactorresource",
       "superclasses": [
         "IfcActorSelect",
         "IfcObjectReferenceSelect"
@@ -7044,6 +7393,7 @@
       }
     },
     "IfcPersonAndOrganization": {
+      "domain": "ifcactorresource",
       "superclasses": [
         "IfcActorSelect",
         "IfcObjectReferenceSelect"
@@ -7067,6 +7417,7 @@
       }
     },
     "IfcPhysicalComplexQuantity": {
+      "domain": "ifcquantityresource",
       "superclasses": [
         "IfcPhysicalQuantity"
       ],
@@ -7094,6 +7445,7 @@
       }
     },
     "IfcPhysicalQuantity": {
+      "domain": "ifcquantityresource",
       "superclasses": [],
       "fields": {
         "Name": {
@@ -7114,6 +7466,7 @@
       }
     },
     "IfcPhysicalSimpleQuantity": {
+      "domain": "ifcquantityresource",
       "superclasses": [
         "IfcPhysicalQuantity"
       ],
@@ -7126,6 +7479,7 @@
       }
     },
     "IfcPile": {
+      "domain": "ifcstructuralelementsdomain",
       "superclasses": [
         "IfcBuildingElement"
       ],
@@ -7143,6 +7497,7 @@
       }
     },
     "IfcPipeFittingType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcFlowFittingType"
       ],
@@ -7155,6 +7510,7 @@
       }
     },
     "IfcPipeSegmentType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcFlowSegmentType"
       ],
@@ -7167,6 +7523,7 @@
       }
     },
     "IfcPixelTexture": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcSurfaceTexture"
       ],
@@ -7189,6 +7546,7 @@
       }
     },
     "IfcPlacement": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcGeometricRepresentationItem"
       ],
@@ -7206,6 +7564,7 @@
       }
     },
     "IfcPlanarBox": {
+      "domain": "ifcpresentationresource",
       "superclasses": [
         "IfcPlanarExtent"
       ],
@@ -7218,6 +7577,7 @@
       }
     },
     "IfcPlanarExtent": {
+      "domain": "ifcpresentationresource",
       "superclasses": [
         "IfcGeometricRepresentationItem"
       ],
@@ -7245,18 +7605,21 @@
       }
     },
     "IfcPlane": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcElementarySurface"
       ],
       "fields": {}
     },
     "IfcPlate": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElement"
       ],
       "fields": {}
     },
     "IfcPlateType": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElementType"
       ],
@@ -7269,6 +7632,7 @@
       }
     },
     "IfcPoint": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcGeometricRepresentationItem",
         "IfcGeometricSetSelect",
@@ -7277,6 +7641,7 @@
       "fields": {}
     },
     "IfcPointOnCurve": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcPoint"
       ],
@@ -7304,6 +7669,7 @@
       }
     },
     "IfcPointOnSurface": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcPoint"
       ],
@@ -7341,6 +7707,7 @@
       }
     },
     "IfcPolyLoop": {
+      "domain": "ifctopologyresource",
       "superclasses": [
         "IfcLoop"
       ],
@@ -7353,6 +7720,7 @@
       }
     },
     "IfcPolygonalBoundedHalfSpace": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcHalfSpaceSolid"
       ],
@@ -7370,6 +7738,7 @@
       }
     },
     "IfcPolyline": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcBoundedCurve"
       ],
@@ -7382,6 +7751,7 @@
       }
     },
     "IfcPort": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcProduct"
       ],
@@ -7404,6 +7774,7 @@
       }
     },
     "IfcPostalAddress": {
+      "domain": "ifcactorresource",
       "superclasses": [
         "IfcAddress"
       ],
@@ -7446,6 +7817,7 @@
       }
     },
     "IfcPreDefinedColour": {
+      "domain": "ifcpresentationresource",
       "superclasses": [
         "IfcPreDefinedItem",
         "IfcColour"
@@ -7453,6 +7825,7 @@
       "fields": {}
     },
     "IfcPreDefinedCurveFont": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcPreDefinedItem",
         "IfcCurveStyleFontSelect"
@@ -7460,12 +7833,14 @@
       "fields": {}
     },
     "IfcPreDefinedDimensionSymbol": {
+      "domain": "ifcpresentationdimensioningresource",
       "superclasses": [
         "IfcPreDefinedSymbol"
       ],
       "fields": {}
     },
     "IfcPreDefinedItem": {
+      "domain": "ifcpresentationresource",
       "superclasses": [],
       "fields": {
         "Name": {
@@ -7476,12 +7851,14 @@
       }
     },
     "IfcPreDefinedPointMarkerSymbol": {
+      "domain": "ifcpresentationdimensioningresource",
       "superclasses": [
         "IfcPreDefinedSymbol"
       ],
       "fields": {}
     },
     "IfcPreDefinedSymbol": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [
         "IfcPreDefinedItem",
         "IfcDefinedSymbolSelect"
@@ -7489,12 +7866,14 @@
       "fields": {}
     },
     "IfcPreDefinedTerminatorSymbol": {
+      "domain": "ifcpresentationdimensioningresource",
       "superclasses": [
         "IfcPreDefinedSymbol"
       ],
       "fields": {}
     },
     "IfcPreDefinedTextFont": {
+      "domain": "ifcpresentationresource",
       "superclasses": [
         "IfcPreDefinedItem",
         "IfcTextFontSelect"
@@ -7502,6 +7881,7 @@
       "fields": {}
     },
     "IfcPresentationLayerAssignment": {
+      "domain": "ifcpresentationorganizationresource",
       "superclasses": [],
       "fields": {
         "Name": {
@@ -7527,6 +7907,7 @@
       }
     },
     "IfcPresentationLayerWithStyle": {
+      "domain": "ifcpresentationorganizationresource",
       "superclasses": [
         "IfcPresentationLayerAssignment"
       ],
@@ -7554,6 +7935,7 @@
       }
     },
     "IfcPresentationStyle": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [],
       "fields": {
         "Name": {
@@ -7564,6 +7946,7 @@
       }
     },
     "IfcPresentationStyleAssignment": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [],
       "fields": {
         "Styles": {
@@ -7574,6 +7957,7 @@
       }
     },
     "IfcProcedure": {
+      "domain": "ifcprocessextension",
       "superclasses": [
         "IfcProcess"
       ],
@@ -7596,6 +7980,7 @@
       }
     },
     "IfcProcess": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcObject"
       ],
@@ -7618,6 +8003,7 @@
       }
     },
     "IfcProduct": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcObject"
       ],
@@ -7650,6 +8036,7 @@
       }
     },
     "IfcProductDefinitionShape": {
+      "domain": "ifcrepresentationresource",
       "superclasses": [
         "IfcProductRepresentation"
       ],
@@ -7667,6 +8054,7 @@
       }
     },
     "IfcProductRepresentation": {
+      "domain": "ifcrepresentationresource",
       "superclasses": [],
       "fields": {
         "Name": {
@@ -7687,6 +8075,7 @@
       }
     },
     "IfcProductsOfCombustionProperties": {
+      "domain": "ifcmaterialpropertyresource",
       "superclasses": [
         "IfcMaterialProperties"
       ],
@@ -7734,6 +8123,7 @@
       }
     },
     "IfcProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [],
       "fields": {
         "ProfileType": {
@@ -7749,6 +8139,7 @@
       }
     },
     "IfcProfileProperties": {
+      "domain": "ifcprofilepropertyresource",
       "superclasses": [],
       "fields": {
         "ProfileName": {
@@ -7764,6 +8155,7 @@
       }
     },
     "IfcProject": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcObject"
       ],
@@ -7791,6 +8183,7 @@
       }
     },
     "IfcProjectOrder": {
+      "domain": "ifcsharedmgmtelements",
       "superclasses": [
         "IfcControl"
       ],
@@ -7813,6 +8206,7 @@
       }
     },
     "IfcProjectOrderRecord": {
+      "domain": "ifcsharedmgmtelements",
       "superclasses": [
         "IfcControl"
       ],
@@ -7830,18 +8224,21 @@
       }
     },
     "IfcProjectionCurve": {
+      "domain": "ifcpresentationdimensioningresource",
       "superclasses": [
         "IfcAnnotationCurveOccurrence"
       ],
       "fields": {}
     },
     "IfcProjectionElement": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcFeatureElementAddition"
       ],
       "fields": {}
     },
     "IfcProperty": {
+      "domain": "ifcpropertyresource",
       "superclasses": [],
       "fields": {
         "Name": {
@@ -7872,6 +8269,7 @@
       }
     },
     "IfcPropertyBoundedValue": {
+      "domain": "ifcpropertyresource",
       "superclasses": [
         "IfcSimpleProperty"
       ],
@@ -7894,6 +8292,7 @@
       }
     },
     "IfcPropertyConstraintRelationship": {
+      "domain": "ifcconstraintresource",
       "superclasses": [],
       "fields": {
         "RelatingConstraint": {
@@ -7919,6 +8318,7 @@
       }
     },
     "IfcPropertyDefinition": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRoot"
       ],
@@ -7931,6 +8331,7 @@
       }
     },
     "IfcPropertyDependencyRelationship": {
+      "domain": "ifcpropertyresource",
       "superclasses": [],
       "fields": {
         "DependingProperty": {
@@ -7961,6 +8362,7 @@
       }
     },
     "IfcPropertyEnumeratedValue": {
+      "domain": "ifcpropertyresource",
       "superclasses": [
         "IfcSimpleProperty"
       ],
@@ -7978,6 +8380,7 @@
       }
     },
     "IfcPropertyEnumeration": {
+      "domain": "ifcpropertyresource",
       "superclasses": [],
       "fields": {
         "Name": {
@@ -7998,6 +8401,7 @@
       }
     },
     "IfcPropertyListValue": {
+      "domain": "ifcpropertyresource",
       "superclasses": [
         "IfcSimpleProperty"
       ],
@@ -8015,6 +8419,7 @@
       }
     },
     "IfcPropertyReferenceValue": {
+      "domain": "ifcpropertyresource",
       "superclasses": [
         "IfcSimpleProperty"
       ],
@@ -8032,6 +8437,7 @@
       }
     },
     "IfcPropertySet": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcPropertySetDefinition"
       ],
@@ -8044,6 +8450,7 @@
       }
     },
     "IfcPropertySetDefinition": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcPropertyDefinition"
       ],
@@ -8061,6 +8468,7 @@
       }
     },
     "IfcPropertySingleValue": {
+      "domain": "ifcpropertyresource",
       "superclasses": [
         "IfcSimpleProperty"
       ],
@@ -8078,6 +8486,7 @@
       }
     },
     "IfcPropertyTableValue": {
+      "domain": "ifcpropertyresource",
       "superclasses": [
         "IfcSimpleProperty"
       ],
@@ -8110,6 +8519,7 @@
       }
     },
     "IfcProtectiveDeviceType": {
+      "domain": "ifcelectricaldomain",
       "superclasses": [
         "IfcFlowControllerType"
       ],
@@ -8122,6 +8532,7 @@
       }
     },
     "IfcProxy": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcProduct"
       ],
@@ -8139,6 +8550,7 @@
       }
     },
     "IfcPumpType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcFlowMovingDeviceType"
       ],
@@ -8151,6 +8563,7 @@
       }
     },
     "IfcQuantityArea": {
+      "domain": "ifcquantityresource",
       "superclasses": [
         "IfcPhysicalSimpleQuantity"
       ],
@@ -8168,6 +8581,7 @@
       }
     },
     "IfcQuantityCount": {
+      "domain": "ifcquantityresource",
       "superclasses": [
         "IfcPhysicalSimpleQuantity"
       ],
@@ -8185,6 +8599,7 @@
       }
     },
     "IfcQuantityLength": {
+      "domain": "ifcquantityresource",
       "superclasses": [
         "IfcPhysicalSimpleQuantity"
       ],
@@ -8202,6 +8617,7 @@
       }
     },
     "IfcQuantityTime": {
+      "domain": "ifcquantityresource",
       "superclasses": [
         "IfcPhysicalSimpleQuantity"
       ],
@@ -8219,6 +8635,7 @@
       }
     },
     "IfcQuantityVolume": {
+      "domain": "ifcquantityresource",
       "superclasses": [
         "IfcPhysicalSimpleQuantity"
       ],
@@ -8236,6 +8653,7 @@
       }
     },
     "IfcQuantityWeight": {
+      "domain": "ifcquantityresource",
       "superclasses": [
         "IfcPhysicalSimpleQuantity"
       ],
@@ -8253,12 +8671,14 @@
       }
     },
     "IfcRadiusDimension": {
+      "domain": "ifcpresentationdimensioningresource",
       "superclasses": [
         "IfcDimensionCurveDirectedCallout"
       ],
       "fields": {}
     },
     "IfcRailing": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElement"
       ],
@@ -8271,6 +8691,7 @@
       }
     },
     "IfcRailingType": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElementType"
       ],
@@ -8283,6 +8704,7 @@
       }
     },
     "IfcRamp": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElement"
       ],
@@ -8295,12 +8717,14 @@
       }
     },
     "IfcRampFlight": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElement"
       ],
       "fields": {}
     },
     "IfcRampFlightType": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElementType"
       ],
@@ -8313,6 +8737,7 @@
       }
     },
     "IfcRationalBezierCurve": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcBezierCurve"
       ],
@@ -8330,6 +8755,7 @@
       }
     },
     "IfcRectangleHollowProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcRectangleProfileDef"
       ],
@@ -8367,6 +8793,7 @@
       }
     },
     "IfcRectangleProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcParameterizedProfileDef"
       ],
@@ -8394,6 +8821,7 @@
       }
     },
     "IfcRectangularPyramid": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcCsgPrimitive3D"
       ],
@@ -8431,6 +8859,7 @@
       }
     },
     "IfcRectangularTrimmedSurface": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcBoundedSurface"
       ],
@@ -8498,6 +8927,7 @@
       }
     },
     "IfcReferencesValueDocument": {
+      "domain": "ifccostresource",
       "superclasses": [],
       "fields": {
         "ReferencedDocument": {
@@ -8523,6 +8953,7 @@
       }
     },
     "IfcRegularTimeSeries": {
+      "domain": "ifctimeseriesresource",
       "superclasses": [
         "IfcTimeSeries"
       ],
@@ -8545,6 +8976,7 @@
       }
     },
     "IfcReinforcementBarProperties": {
+      "domain": "ifcprofilepropertyresource",
       "superclasses": [],
       "fields": {
         "TotalCrossSectionArea": {
@@ -8600,6 +9032,7 @@
       }
     },
     "IfcReinforcementDefinitionProperties": {
+      "domain": "ifcstructuralelementsdomain",
       "superclasses": [
         "IfcPropertySetDefinition"
       ],
@@ -8617,6 +9050,7 @@
       }
     },
     "IfcReinforcingBar": {
+      "domain": "ifcstructuralelementsdomain",
       "superclasses": [
         "IfcReinforcingElement"
       ],
@@ -8664,6 +9098,7 @@
       }
     },
     "IfcReinforcingElement": {
+      "domain": "ifcstructuralelementsdomain",
       "superclasses": [
         "IfcBuildingElementComponent"
       ],
@@ -8676,6 +9111,7 @@
       }
     },
     "IfcReinforcingMesh": {
+      "domain": "ifcstructuralelementsdomain",
       "superclasses": [
         "IfcReinforcingElement"
       ],
@@ -8763,12 +9199,14 @@
       }
     },
     "IfcRelAggregates": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelDecomposes"
       ],
       "fields": {}
     },
     "IfcRelAssigns": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelationship"
       ],
@@ -8786,6 +9224,7 @@
       }
     },
     "IfcRelAssignsTasks": {
+      "domain": "ifcprocessextension",
       "superclasses": [
         "IfcRelAssignsToControl"
       ],
@@ -8798,6 +9237,7 @@
       }
     },
     "IfcRelAssignsToActor": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelAssigns"
       ],
@@ -8815,6 +9255,7 @@
       }
     },
     "IfcRelAssignsToControl": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelAssigns"
       ],
@@ -8827,6 +9268,7 @@
       }
     },
     "IfcRelAssignsToGroup": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelAssigns"
       ],
@@ -8839,6 +9281,7 @@
       }
     },
     "IfcRelAssignsToProcess": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelAssigns"
       ],
@@ -8856,6 +9299,7 @@
       }
     },
     "IfcRelAssignsToProduct": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelAssigns"
       ],
@@ -8868,12 +9312,14 @@
       }
     },
     "IfcRelAssignsToProjectOrder": {
+      "domain": "ifcsharedmgmtelements",
       "superclasses": [
         "IfcRelAssignsToControl"
       ],
       "fields": {}
     },
     "IfcRelAssignsToResource": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelAssigns"
       ],
@@ -8886,6 +9332,7 @@
       }
     },
     "IfcRelAssociates": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelationship"
       ],
@@ -8898,6 +9345,7 @@
       }
     },
     "IfcRelAssociatesAppliedValue": {
+      "domain": "ifcsharedmgmtelements",
       "superclasses": [
         "IfcRelAssociates"
       ],
@@ -8910,6 +9358,7 @@
       }
     },
     "IfcRelAssociatesApproval": {
+      "domain": "ifccontrolextension",
       "superclasses": [
         "IfcRelAssociates"
       ],
@@ -8922,6 +9371,7 @@
       }
     },
     "IfcRelAssociatesClassification": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelAssociates"
       ],
@@ -8934,6 +9384,7 @@
       }
     },
     "IfcRelAssociatesConstraint": {
+      "domain": "ifccontrolextension",
       "superclasses": [
         "IfcRelAssociates"
       ],
@@ -8951,6 +9402,7 @@
       }
     },
     "IfcRelAssociatesDocument": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelAssociates"
       ],
@@ -8963,6 +9415,7 @@
       }
     },
     "IfcRelAssociatesLibrary": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelAssociates"
       ],
@@ -8975,6 +9428,7 @@
       }
     },
     "IfcRelAssociatesMaterial": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcRelAssociates"
       ],
@@ -8987,6 +9441,7 @@
       }
     },
     "IfcRelAssociatesProfileProperties": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcRelAssociates"
       ],
@@ -9009,12 +9464,14 @@
       }
     },
     "IfcRelConnects": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelationship"
       ],
       "fields": {}
     },
     "IfcRelConnectsElements": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcRelConnects"
       ],
@@ -9037,6 +9494,7 @@
       }
     },
     "IfcRelConnectsPathElements": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcRelConnectsElements"
       ],
@@ -9064,6 +9522,7 @@
       }
     },
     "IfcRelConnectsPortToElement": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcRelConnects"
       ],
@@ -9081,6 +9540,7 @@
       }
     },
     "IfcRelConnectsPorts": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcRelConnects"
       ],
@@ -9103,6 +9563,7 @@
       }
     },
     "IfcRelConnectsStructuralActivity": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcRelConnects"
       ],
@@ -9120,6 +9581,7 @@
       }
     },
     "IfcRelConnectsStructuralElement": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcRelConnects"
       ],
@@ -9137,6 +9599,7 @@
       }
     },
     "IfcRelConnectsStructuralMember": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcRelConnects"
       ],
@@ -9179,6 +9642,7 @@
       }
     },
     "IfcRelConnectsWithEccentricity": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcRelConnectsStructuralMember"
       ],
@@ -9191,6 +9655,7 @@
       }
     },
     "IfcRelConnectsWithRealizingElements": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcRelConnectsElements"
       ],
@@ -9208,6 +9673,7 @@
       }
     },
     "IfcRelContainedInSpatialStructure": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcRelConnects"
       ],
@@ -9225,6 +9691,7 @@
       }
     },
     "IfcRelCoversBldgElements": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcRelConnects"
       ],
@@ -9242,6 +9709,7 @@
       }
     },
     "IfcRelCoversSpaces": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcRelConnects"
       ],
@@ -9259,6 +9727,7 @@
       }
     },
     "IfcRelDecomposes": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelationship"
       ],
@@ -9276,6 +9745,7 @@
       }
     },
     "IfcRelDefines": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelationship"
       ],
@@ -9288,6 +9758,7 @@
       }
     },
     "IfcRelDefinesByProperties": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelDefines"
       ],
@@ -9300,6 +9771,7 @@
       }
     },
     "IfcRelDefinesByType": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelDefines"
       ],
@@ -9312,6 +9784,7 @@
       }
     },
     "IfcRelFillsElement": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcRelConnects"
       ],
@@ -9329,6 +9802,7 @@
       }
     },
     "IfcRelFlowControlElements": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcRelConnects"
       ],
@@ -9346,6 +9820,7 @@
       }
     },
     "IfcRelInteractionRequirements": {
+      "domain": "ifcarchitecturedomain",
       "superclasses": [
         "IfcRelConnects"
       ],
@@ -9388,18 +9863,21 @@
       }
     },
     "IfcRelNests": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelDecomposes"
       ],
       "fields": {}
     },
     "IfcRelOccupiesSpaces": {
+      "domain": "ifcsharedfacilitieselements",
       "superclasses": [
         "IfcRelAssignsToActor"
       ],
       "fields": {}
     },
     "IfcRelOverridesProperties": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelDefinesByProperties"
       ],
@@ -9412,6 +9890,7 @@
       }
     },
     "IfcRelProjectsElement": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcRelConnects"
       ],
@@ -9429,6 +9908,7 @@
       }
     },
     "IfcRelReferencedInSpatialStructure": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcRelConnects"
       ],
@@ -9446,12 +9926,14 @@
       }
     },
     "IfcRelSchedulesCostItems": {
+      "domain": "ifcsharedmgmtelements",
       "superclasses": [
         "IfcRelAssignsToControl"
       ],
       "fields": {}
     },
     "IfcRelSequence": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRelConnects"
       ],
@@ -9484,6 +9966,7 @@
       }
     },
     "IfcRelServicesBuildings": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcRelConnects"
       ],
@@ -9501,6 +9984,7 @@
       }
     },
     "IfcRelSpaceBoundary": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcRelConnects"
       ],
@@ -9533,6 +10017,7 @@
       }
     },
     "IfcRelVoidsElement": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcRelConnects"
       ],
@@ -9550,12 +10035,14 @@
       }
     },
     "IfcRelationship": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcRoot"
       ],
       "fields": {}
     },
     "IfcRelaxation": {
+      "domain": "ifcmaterialpropertyresource",
       "superclasses": [],
       "fields": {
         "RelaxationValue": {
@@ -9581,6 +10068,7 @@
       }
     },
     "IfcRepresentation": {
+      "domain": "ifcrepresentationresource",
       "superclasses": [
         "IfcLayeredItem"
       ],
@@ -9623,6 +10111,7 @@
       }
     },
     "IfcRepresentationContext": {
+      "domain": "ifcrepresentationresource",
       "superclasses": [],
       "fields": {
         "ContextIdentifier": {
@@ -9643,6 +10132,7 @@
       }
     },
     "IfcRepresentationItem": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcLayeredItem"
       ],
@@ -9660,6 +10150,7 @@
       }
     },
     "IfcRepresentationMap": {
+      "domain": "ifcgeometryresource",
       "superclasses": [],
       "fields": {
         "MappingOrigin": {
@@ -9680,6 +10171,7 @@
       }
     },
     "IfcResource": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcObject"
       ],
@@ -9692,6 +10184,7 @@
       }
     },
     "IfcRevolvedAreaSolid": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcSweptAreaSolid"
       ],
@@ -9714,6 +10207,7 @@
       }
     },
     "IfcRibPlateProfileProperties": {
+      "domain": "ifcprofilepropertyresource",
       "superclasses": [
         "IfcProfileProperties"
       ],
@@ -9766,6 +10260,7 @@
       }
     },
     "IfcRightCircularCone": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcCsgPrimitive3D"
       ],
@@ -9793,6 +10288,7 @@
       }
     },
     "IfcRightCircularCylinder": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcCsgPrimitive3D"
       ],
@@ -9820,6 +10316,7 @@
       }
     },
     "IfcRoof": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElement"
       ],
@@ -9832,6 +10329,7 @@
       }
     },
     "IfcRoot": {
+      "domain": "ifckernel",
       "superclasses": [],
       "fields": {
         "GlobalId": {
@@ -9857,6 +10355,7 @@
       }
     },
     "IfcRoundedEdgeFeature": {
+      "domain": "ifcsharedcomponentelements",
       "superclasses": [
         "IfcEdgeFeature"
       ],
@@ -9874,6 +10373,7 @@
       }
     },
     "IfcRoundedRectangleProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcRectangleProfileDef"
       ],
@@ -9891,6 +10391,7 @@
       }
     },
     "IfcSIUnit": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcNamedUnit"
       ],
@@ -9908,6 +10409,7 @@
       }
     },
     "IfcSanitaryTerminalType": {
+      "domain": "ifcplumbingfireprotectiondomain",
       "superclasses": [
         "IfcFlowTerminalType"
       ],
@@ -9920,6 +10422,7 @@
       }
     },
     "IfcScheduleTimeControl": {
+      "domain": "ifcprocessextension",
       "superclasses": [
         "IfcControl"
       ],
@@ -10062,6 +10565,7 @@
       }
     },
     "IfcSectionProperties": {
+      "domain": "ifcprofilepropertyresource",
       "superclasses": [],
       "fields": {
         "SectionType": {
@@ -10082,6 +10586,7 @@
       }
     },
     "IfcSectionReinforcementProperties": {
+      "domain": "ifcprofilepropertyresource",
       "superclasses": [],
       "fields": {
         "LongitudinalStartPosition": {
@@ -10132,6 +10637,7 @@
       }
     },
     "IfcSectionedSpine": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcGeometricRepresentationItem"
       ],
@@ -10159,6 +10665,7 @@
       }
     },
     "IfcSensorType": {
+      "domain": "ifcbuildingcontrolsdomain",
       "superclasses": [
         "IfcDistributionControlElementType"
       ],
@@ -10171,6 +10678,7 @@
       }
     },
     "IfcServiceLife": {
+      "domain": "ifcsharedfacilitieselements",
       "superclasses": [
         "IfcControl"
       ],
@@ -10193,6 +10701,7 @@
       }
     },
     "IfcServiceLifeFactor": {
+      "domain": "ifcsharedfacilitieselements",
       "superclasses": [
         "IfcPropertySetDefinition"
       ],
@@ -10220,6 +10729,7 @@
       }
     },
     "IfcShapeAspect": {
+      "domain": "ifcrepresentationresource",
       "superclasses": [],
       "fields": {
         "ShapeRepresentations": {
@@ -10250,6 +10760,7 @@
       }
     },
     "IfcShapeModel": {
+      "domain": "ifcrepresentationresource",
       "superclasses": [
         "IfcRepresentation"
       ],
@@ -10262,12 +10773,14 @@
       }
     },
     "IfcShapeRepresentation": {
+      "domain": "ifcrepresentationresource",
       "superclasses": [
         "IfcShapeModel"
       ],
       "fields": {}
     },
     "IfcShellBasedSurfaceModel": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcGeometricRepresentationItem"
       ],
@@ -10285,12 +10798,14 @@
       }
     },
     "IfcSimpleProperty": {
+      "domain": "ifcpropertyresource",
       "superclasses": [
         "IfcProperty"
       ],
       "fields": {}
     },
     "IfcSite": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcSpatialStructureElement"
       ],
@@ -10328,6 +10843,7 @@
       }
     },
     "IfcSlab": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElement"
       ],
@@ -10340,6 +10856,7 @@
       }
     },
     "IfcSlabType": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElementType"
       ],
@@ -10352,6 +10869,7 @@
       }
     },
     "IfcSlippageConnectionCondition": {
+      "domain": "ifcstructuralloadresource",
       "superclasses": [
         "IfcStructuralConnectionCondition"
       ],
@@ -10389,6 +10907,7 @@
       }
     },
     "IfcSolidModel": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcGeometricRepresentationItem",
         "IfcBooleanOperand"
@@ -10402,6 +10921,7 @@
       }
     },
     "IfcSoundProperties": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcPropertySetDefinition"
       ],
@@ -10424,6 +10944,7 @@
       }
     },
     "IfcSoundValue": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcPropertySetDefinition"
       ],
@@ -10451,6 +10972,7 @@
       }
     },
     "IfcSpace": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcSpatialStructureElement"
       ],
@@ -10483,6 +11005,7 @@
       }
     },
     "IfcSpaceHeaterType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcEnergyConversionDeviceType"
       ],
@@ -10495,6 +11018,7 @@
       }
     },
     "IfcSpaceProgram": {
+      "domain": "ifcarchitecturedomain",
       "superclasses": [
         "IfcControl"
       ],
@@ -10552,6 +11076,7 @@
       }
     },
     "IfcSpaceThermalLoadProperties": {
+      "domain": "ifcsharedbldgserviceelements",
       "superclasses": [
         "IfcPropertySetDefinition"
       ],
@@ -10624,6 +11149,7 @@
       }
     },
     "IfcSpaceType": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcSpatialStructureElementType"
       ],
@@ -10636,6 +11162,7 @@
       }
     },
     "IfcSpatialStructureElement": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcProduct"
       ],
@@ -10668,12 +11195,14 @@
       }
     },
     "IfcSpatialStructureElementType": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcElementType"
       ],
       "fields": {}
     },
     "IfcSphere": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcCsgPrimitive3D"
       ],
@@ -10691,6 +11220,7 @@
       }
     },
     "IfcStackTerminalType": {
+      "domain": "ifcplumbingfireprotectiondomain",
       "superclasses": [
         "IfcFlowTerminalType"
       ],
@@ -10703,6 +11233,7 @@
       }
     },
     "IfcStair": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElement"
       ],
@@ -10715,6 +11246,7 @@
       }
     },
     "IfcStairFlight": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElement"
       ],
@@ -10752,6 +11284,7 @@
       }
     },
     "IfcStairFlightType": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElementType"
       ],
@@ -10764,6 +11297,7 @@
       }
     },
     "IfcStructuralAction": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcStructuralActivity"
       ],
@@ -10781,6 +11315,7 @@
       }
     },
     "IfcStructuralActivity": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcProduct"
       ],
@@ -10803,6 +11338,7 @@
       }
     },
     "IfcStructuralAnalysisModel": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcSystem"
       ],
@@ -10830,6 +11366,7 @@
       }
     },
     "IfcStructuralConnection": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcStructuralItem"
       ],
@@ -10847,6 +11384,7 @@
       }
     },
     "IfcStructuralConnectionCondition": {
+      "domain": "ifcstructuralloadresource",
       "superclasses": [],
       "fields": {
         "Name": {
@@ -10857,12 +11395,14 @@
       }
     },
     "IfcStructuralCurveConnection": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcStructuralConnection"
       ],
       "fields": {}
     },
     "IfcStructuralCurveMember": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcStructuralMember"
       ],
@@ -10875,12 +11415,14 @@
       }
     },
     "IfcStructuralCurveMemberVarying": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcStructuralCurveMember"
       ],
       "fields": {}
     },
     "IfcStructuralItem": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcProduct",
         "IfcStructuralActivityAssignmentSelect"
@@ -10894,6 +11436,7 @@
       }
     },
     "IfcStructuralLinearAction": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcStructuralAction"
       ],
@@ -10906,6 +11449,7 @@
       }
     },
     "IfcStructuralLinearActionVarying": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcStructuralLinearAction"
       ],
@@ -10923,6 +11467,7 @@
       }
     },
     "IfcStructuralLoad": {
+      "domain": "ifcstructuralloadresource",
       "superclasses": [],
       "fields": {
         "Name": {
@@ -10933,6 +11478,7 @@
       }
     },
     "IfcStructuralLoadGroup": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcGroup"
       ],
@@ -10980,6 +11526,7 @@
       }
     },
     "IfcStructuralLoadLinearForce": {
+      "domain": "ifcstructuralloadresource",
       "superclasses": [
         "IfcStructuralLoadStatic"
       ],
@@ -11047,6 +11594,7 @@
       }
     },
     "IfcStructuralLoadPlanarForce": {
+      "domain": "ifcstructuralloadresource",
       "superclasses": [
         "IfcStructuralLoadStatic"
       ],
@@ -11084,6 +11632,7 @@
       }
     },
     "IfcStructuralLoadSingleDisplacement": {
+      "domain": "ifcstructuralloadresource",
       "superclasses": [
         "IfcStructuralLoadStatic"
       ],
@@ -11151,6 +11700,7 @@
       }
     },
     "IfcStructuralLoadSingleDisplacementDistortion": {
+      "domain": "ifcstructuralloadresource",
       "superclasses": [
         "IfcStructuralLoadSingleDisplacement"
       ],
@@ -11168,6 +11718,7 @@
       }
     },
     "IfcStructuralLoadSingleForce": {
+      "domain": "ifcstructuralloadresource",
       "superclasses": [
         "IfcStructuralLoadStatic"
       ],
@@ -11235,6 +11786,7 @@
       }
     },
     "IfcStructuralLoadSingleForceWarping": {
+      "domain": "ifcstructuralloadresource",
       "superclasses": [
         "IfcStructuralLoadSingleForce"
       ],
@@ -11252,12 +11804,14 @@
       }
     },
     "IfcStructuralLoadStatic": {
+      "domain": "ifcstructuralloadresource",
       "superclasses": [
         "IfcStructuralLoad"
       ],
       "fields": {}
     },
     "IfcStructuralLoadTemperature": {
+      "domain": "ifcstructuralloadresource",
       "superclasses": [
         "IfcStructuralLoadStatic"
       ],
@@ -11295,6 +11849,7 @@
       }
     },
     "IfcStructuralMember": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcStructuralItem"
       ],
@@ -11312,6 +11867,7 @@
       }
     },
     "IfcStructuralPlanarAction": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcStructuralAction"
       ],
@@ -11324,6 +11880,7 @@
       }
     },
     "IfcStructuralPlanarActionVarying": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcStructuralPlanarAction"
       ],
@@ -11341,24 +11898,28 @@
       }
     },
     "IfcStructuralPointAction": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcStructuralAction"
       ],
       "fields": {}
     },
     "IfcStructuralPointConnection": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcStructuralConnection"
       ],
       "fields": {}
     },
     "IfcStructuralPointReaction": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcStructuralReaction"
       ],
       "fields": {}
     },
     "IfcStructuralProfileProperties": {
+      "domain": "ifcprofilepropertyresource",
       "superclasses": [
         "IfcGeneralProfileProperties"
       ],
@@ -11526,6 +12087,7 @@
       }
     },
     "IfcStructuralReaction": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcStructuralActivity"
       ],
@@ -11538,6 +12100,7 @@
       }
     },
     "IfcStructuralResultGroup": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcGroup"
       ],
@@ -11565,6 +12128,7 @@
       }
     },
     "IfcStructuralSteelProfileProperties": {
+      "domain": "ifcprofilepropertyresource",
       "superclasses": [
         "IfcStructuralProfileProperties"
       ],
@@ -11612,12 +12176,14 @@
       }
     },
     "IfcStructuralSurfaceConnection": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcStructuralConnection"
       ],
       "fields": {}
     },
     "IfcStructuralSurfaceMember": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcStructuralMember"
       ],
@@ -11640,6 +12206,7 @@
       }
     },
     "IfcStructuralSurfaceMemberVarying": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [
         "IfcStructuralSurfaceMember"
       ],
@@ -11672,18 +12239,21 @@
       }
     },
     "IfcStructuredDimensionCallout": {
+      "domain": "ifcpresentationdimensioningresource",
       "superclasses": [
         "IfcDraughtingCallout"
       ],
       "fields": {}
     },
     "IfcStyleModel": {
+      "domain": "ifcrepresentationresource",
       "superclasses": [
         "IfcRepresentation"
       ],
       "fields": {}
     },
     "IfcStyledItem": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcRepresentationItem"
       ],
@@ -11706,12 +12276,14 @@
       }
     },
     "IfcStyledRepresentation": {
+      "domain": "ifcrepresentationresource",
       "superclasses": [
         "IfcStyleModel"
       ],
       "fields": {}
     },
     "IfcSubContractResource": {
+      "domain": "ifcconstructionmgmtdomain",
       "superclasses": [
         "IfcConstructionResource"
       ],
@@ -11729,6 +12301,7 @@
       }
     },
     "IfcSubedge": {
+      "domain": "ifctopologyresource",
       "superclasses": [
         "IfcEdge"
       ],
@@ -11741,6 +12314,7 @@
       }
     },
     "IfcSurface": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcGeometricRepresentationItem",
         "IfcGeometricSetSelect",
@@ -11749,6 +12323,7 @@
       "fields": {}
     },
     "IfcSurfaceCurveSweptAreaSolid": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcSweptAreaSolid"
       ],
@@ -11786,6 +12361,7 @@
       }
     },
     "IfcSurfaceOfLinearExtrusion": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcSweptSurface"
       ],
@@ -11808,6 +12384,7 @@
       }
     },
     "IfcSurfaceOfRevolution": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcSweptSurface"
       ],
@@ -11820,6 +12397,7 @@
       }
     },
     "IfcSurfaceStyle": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcPresentationStyle",
         "IfcPresentationStyleSelect"
@@ -11838,6 +12416,7 @@
       }
     },
     "IfcSurfaceStyleLighting": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcSurfaceStyleElementSelect"
       ],
@@ -11865,6 +12444,7 @@
       }
     },
     "IfcSurfaceStyleRefraction": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcSurfaceStyleElementSelect"
       ],
@@ -11892,6 +12472,7 @@
       }
     },
     "IfcSurfaceStyleRendering": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcSurfaceStyleShading"
       ],
@@ -11944,6 +12525,7 @@
       }
     },
     "IfcSurfaceStyleShading": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcSurfaceStyleElementSelect"
       ],
@@ -11956,6 +12538,7 @@
       }
     },
     "IfcSurfaceStyleWithTextures": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcSurfaceStyleElementSelect"
       ],
@@ -11968,6 +12551,7 @@
       }
     },
     "IfcSurfaceTexture": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [],
       "fields": {
         "RepeatS": {
@@ -11993,6 +12577,7 @@
       }
     },
     "IfcSweptAreaSolid": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcSolidModel"
       ],
@@ -12010,6 +12595,7 @@
       }
     },
     "IfcSweptDiskSolid": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [
         "IfcSolidModel"
       ],
@@ -12062,6 +12648,7 @@
       }
     },
     "IfcSweptSurface": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcSurface"
       ],
@@ -12084,6 +12671,7 @@
       }
     },
     "IfcSwitchingDeviceType": {
+      "domain": "ifcelectricaldomain",
       "superclasses": [
         "IfcFlowControllerType"
       ],
@@ -12096,6 +12684,7 @@
       }
     },
     "IfcSymbolStyle": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcPresentationStyle",
         "IfcPresentationStyleSelect"
@@ -12109,6 +12698,7 @@
       }
     },
     "IfcSystem": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcGroup"
       ],
@@ -12121,12 +12711,14 @@
       }
     },
     "IfcSystemFurnitureElementType": {
+      "domain": "ifcsharedfacilitieselements",
       "superclasses": [
         "IfcFurnishingElementType"
       ],
       "fields": {}
     },
     "IfcTShapeProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcParameterizedProfileDef"
       ],
@@ -12234,6 +12826,7 @@
       }
     },
     "IfcTable": {
+      "domain": "ifcutilityresource",
       "superclasses": [
         "IfcMetricValueSelect"
       ],
@@ -12251,6 +12844,7 @@
       }
     },
     "IfcTableRow": {
+      "domain": "ifcutilityresource",
       "superclasses": [],
       "fields": {
         "RowCells": {
@@ -12271,6 +12865,7 @@
       }
     },
     "IfcTankType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcFlowStorageDeviceType"
       ],
@@ -12283,6 +12878,7 @@
       }
     },
     "IfcTask": {
+      "domain": "ifcprocessextension",
       "superclasses": [
         "IfcProcess"
       ],
@@ -12315,6 +12911,7 @@
       }
     },
     "IfcTelecomAddress": {
+      "domain": "ifcactorresource",
       "superclasses": [
         "IfcAddress"
       ],
@@ -12347,6 +12944,7 @@
       }
     },
     "IfcTendon": {
+      "domain": "ifcstructuralelementsdomain",
       "superclasses": [
         "IfcReinforcingElement"
       ],
@@ -12429,12 +13027,14 @@
       }
     },
     "IfcTendonAnchor": {
+      "domain": "ifcstructuralelementsdomain",
       "superclasses": [
         "IfcReinforcingElement"
       ],
       "fields": {}
     },
     "IfcTerminatorSymbol": {
+      "domain": "ifcpresentationdimensioningresource",
       "superclasses": [
         "IfcAnnotationSymbolOccurrence"
       ],
@@ -12447,6 +13047,7 @@
       }
     },
     "IfcTextLiteral": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [
         "IfcGeometricRepresentationItem"
       ],
@@ -12469,6 +13070,7 @@
       }
     },
     "IfcTextLiteralWithExtent": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [
         "IfcTextLiteral"
       ],
@@ -12486,6 +13088,7 @@
       }
     },
     "IfcTextStyle": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcPresentationStyle",
         "IfcPresentationStyleSelect"
@@ -12509,6 +13112,7 @@
       }
     },
     "IfcTextStyleFontModel": {
+      "domain": "ifcpresentationresource",
       "superclasses": [
         "IfcPreDefinedTextFont"
       ],
@@ -12541,6 +13145,7 @@
       }
     },
     "IfcTextStyleForDefinedFont": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcCharacterStyleSelect"
       ],
@@ -12558,6 +13163,7 @@
       }
     },
     "IfcTextStyleTextModel": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcTextStyleSelect"
       ],
@@ -12600,6 +13206,7 @@
       }
     },
     "IfcTextStyleWithBoxCharacteristics": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcTextStyleSelect"
       ],
@@ -12652,6 +13259,7 @@
       }
     },
     "IfcTextureCoordinate": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [],
       "fields": {
         "AnnotatedSurface": {
@@ -12662,6 +13270,7 @@
       }
     },
     "IfcTextureCoordinateGenerator": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [
         "IfcTextureCoordinate"
       ],
@@ -12679,6 +13288,7 @@
       }
     },
     "IfcTextureMap": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [
         "IfcTextureCoordinate"
       ],
@@ -12691,6 +13301,7 @@
       }
     },
     "IfcTextureVertex": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [],
       "fields": {
         "Coordinates": {
@@ -12706,6 +13317,7 @@
       }
     },
     "IfcThermalMaterialProperties": {
+      "domain": "ifcmaterialpropertyresource",
       "superclasses": [
         "IfcMaterialProperties"
       ],
@@ -12753,6 +13365,7 @@
       }
     },
     "IfcTimeSeries": {
+      "domain": "ifctimeseriesresource",
       "superclasses": [
         "IfcMetricValueSelect",
         "IfcObjectReferenceSelect"
@@ -12806,6 +13419,7 @@
       }
     },
     "IfcTimeSeriesReferenceRelationship": {
+      "domain": "ifctimeseriesresource",
       "superclasses": [],
       "fields": {
         "ReferencedTimeSeries": {
@@ -12821,6 +13435,7 @@
       }
     },
     "IfcTimeSeriesSchedule": {
+      "domain": "ifccontrolextension",
       "superclasses": [
         "IfcControl"
       ],
@@ -12843,6 +13458,7 @@
       }
     },
     "IfcTimeSeriesValue": {
+      "domain": "ifctimeseriesresource",
       "superclasses": [],
       "fields": {
         "ListValues": {
@@ -12853,18 +13469,21 @@
       }
     },
     "IfcTopologicalRepresentationItem": {
+      "domain": "ifctopologyresource",
       "superclasses": [
         "IfcRepresentationItem"
       ],
       "fields": {}
     },
     "IfcTopologyRepresentation": {
+      "domain": "ifcrepresentationresource",
       "superclasses": [
         "IfcShapeModel"
       ],
       "fields": {}
     },
     "IfcTransformerType": {
+      "domain": "ifcelectricaldomain",
       "superclasses": [
         "IfcEnergyConversionDeviceType"
       ],
@@ -12877,6 +13496,7 @@
       }
     },
     "IfcTransportElement": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcElement"
       ],
@@ -12909,6 +13529,7 @@
       }
     },
     "IfcTransportElementType": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcElementType"
       ],
@@ -12921,6 +13542,7 @@
       }
     },
     "IfcTrapeziumProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcParameterizedProfileDef"
       ],
@@ -12968,6 +13590,7 @@
       }
     },
     "IfcTrimmedCurve": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcBoundedCurve"
       ],
@@ -13000,6 +13623,7 @@
       }
     },
     "IfcTubeBundleType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcEnergyConversionDeviceType"
       ],
@@ -13012,6 +13636,7 @@
       }
     },
     "IfcTwoDirectionRepeatFactor": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcOneDirectionRepeatFactor"
       ],
@@ -13024,6 +13649,7 @@
       }
     },
     "IfcTypeObject": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcObjectDefinition"
       ],
@@ -13046,6 +13672,7 @@
       }
     },
     "IfcTypeProduct": {
+      "domain": "ifckernel",
       "superclasses": [
         "IfcTypeObject"
       ],
@@ -13063,6 +13690,7 @@
       }
     },
     "IfcUShapeProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcParameterizedProfileDef"
       ],
@@ -13150,6 +13778,7 @@
       }
     },
     "IfcUnitAssignment": {
+      "domain": "ifcmeasureresource",
       "superclasses": [],
       "fields": {
         "Units": {
@@ -13160,6 +13789,7 @@
       }
     },
     "IfcUnitaryEquipmentType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcEnergyConversionDeviceType"
       ],
@@ -13172,6 +13802,7 @@
       }
     },
     "IfcValveType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcFlowControllerType"
       ],
@@ -13184,6 +13815,7 @@
       }
     },
     "IfcVector": {
+      "domain": "ifcgeometryresource",
       "superclasses": [
         "IfcGeometricRepresentationItem",
         "IfcVectorOrDirection"
@@ -13212,12 +13844,14 @@
       }
     },
     "IfcVertex": {
+      "domain": "ifctopologyresource",
       "superclasses": [
         "IfcTopologicalRepresentationItem"
       ],
       "fields": {}
     },
     "IfcVertexBasedTextureMap": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [],
       "fields": {
         "TextureVertices": {
@@ -13233,6 +13867,7 @@
       }
     },
     "IfcVertexLoop": {
+      "domain": "ifctopologyresource",
       "superclasses": [
         "IfcLoop"
       ],
@@ -13245,6 +13880,7 @@
       }
     },
     "IfcVertexPoint": {
+      "domain": "ifctopologyresource",
       "superclasses": [
         "IfcVertex",
         "IfcPointOrVertexPoint"
@@ -13258,6 +13894,7 @@
       }
     },
     "IfcVibrationIsolatorType": {
+      "domain": "ifchvacdomain",
       "superclasses": [
         "IfcDiscreteAccessoryType"
       ],
@@ -13270,12 +13907,14 @@
       }
     },
     "IfcVirtualElement": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcElement"
       ],
       "fields": {}
     },
     "IfcVirtualGridIntersection": {
+      "domain": "ifcgeometricconstraintresource",
       "superclasses": [],
       "fields": {
         "IntersectingAxes": {
@@ -13296,18 +13935,21 @@
       }
     },
     "IfcWall": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElement"
       ],
       "fields": {}
     },
     "IfcWallStandardCase": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcWall"
       ],
       "fields": {}
     },
     "IfcWallType": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElementType"
       ],
@@ -13320,6 +13962,7 @@
       }
     },
     "IfcWasteTerminalType": {
+      "domain": "ifcplumbingfireprotectiondomain",
       "superclasses": [
         "IfcFlowTerminalType"
       ],
@@ -13332,6 +13975,7 @@
       }
     },
     "IfcWaterProperties": {
+      "domain": "ifcmaterialpropertyresource",
       "superclasses": [
         "IfcMaterialProperties"
       ],
@@ -13404,6 +14048,7 @@
       }
     },
     "IfcWindow": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcBuildingElement"
       ],
@@ -13431,6 +14076,7 @@
       }
     },
     "IfcWindowLiningProperties": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcPropertySetDefinition"
       ],
@@ -13523,6 +14169,7 @@
       }
     },
     "IfcWindowPanelProperties": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcPropertySetDefinition"
       ],
@@ -13565,6 +14212,7 @@
       }
     },
     "IfcWindowStyle": {
+      "domain": "ifcsharedbldgelements",
       "superclasses": [
         "IfcTypeProduct"
       ],
@@ -13592,6 +14240,7 @@
       }
     },
     "IfcWorkControl": {
+      "domain": "ifcprocessextension",
       "superclasses": [
         "IfcControl"
       ],
@@ -13659,18 +14308,21 @@
       }
     },
     "IfcWorkPlan": {
+      "domain": "ifcprocessextension",
       "superclasses": [
         "IfcWorkControl"
       ],
       "fields": {}
     },
     "IfcWorkSchedule": {
+      "domain": "ifcprocessextension",
       "superclasses": [
         "IfcWorkControl"
       ],
       "fields": {}
     },
     "IfcZShapeProfileDef": {
+      "domain": "ifcprofileresource",
       "superclasses": [
         "IfcParameterizedProfileDef"
       ],
@@ -13738,12 +14390,14 @@
       }
     },
     "IfcZone": {
+      "domain": "ifcproductextension",
       "superclasses": [
         "IfcGroup"
       ],
       "fields": {}
     },
     "IfcAbsorbedDoseMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -13761,6 +14415,7 @@
       }
     },
     "IfcAccelerationMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -13778,6 +14433,7 @@
       }
     },
     "IfcAmountOfSubstanceMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcMeasureValue"
       ],
@@ -13795,6 +14451,7 @@
       }
     },
     "IfcAngularVelocityMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -13812,6 +14469,7 @@
       }
     },
     "IfcAreaMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcMeasureValue"
       ],
@@ -13829,6 +14487,7 @@
       }
     },
     "IfcBoolean": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcSimpleValue",
         "IfcValue"
@@ -13842,6 +14501,7 @@
       }
     },
     "IfcContextDependentMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcMeasureValue"
       ],
@@ -13859,6 +14519,7 @@
       }
     },
     "IfcCountMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcMeasureValue"
       ],
@@ -13876,6 +14537,7 @@
       }
     },
     "IfcCurvatureMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -13893,6 +14555,7 @@
       }
     },
     "IfcDayInMonthNumber": {
+      "domain": "ifcdatetimeresource",
       "superclasses": [],
       "fields": {
         "wrappedValue": {
@@ -13903,6 +14566,7 @@
       }
     },
     "IfcDaylightSavingHour": {
+      "domain": "ifcdatetimeresource",
       "superclasses": [],
       "fields": {
         "wrappedValue": {
@@ -13913,6 +14577,7 @@
       }
     },
     "IfcDescriptiveMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcMeasureValue",
         "IfcSizeSelect"
@@ -13926,6 +14591,7 @@
       }
     },
     "IfcDimensionCount": {
+      "domain": "ifcgeometryresource",
       "superclasses": [],
       "fields": {
         "wrappedValue": {
@@ -13936,6 +14602,7 @@
       }
     },
     "IfcDoseEquivalentMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -13953,6 +14620,7 @@
       }
     },
     "IfcDynamicViscosityMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -13970,6 +14638,7 @@
       }
     },
     "IfcElectricCapacitanceMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -13987,6 +14656,7 @@
       }
     },
     "IfcElectricChargeMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14004,6 +14674,7 @@
       }
     },
     "IfcElectricConductanceMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14021,6 +14692,7 @@
       }
     },
     "IfcElectricCurrentMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcMeasureValue"
       ],
@@ -14038,6 +14710,7 @@
       }
     },
     "IfcElectricResistanceMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14055,6 +14728,7 @@
       }
     },
     "IfcElectricVoltageMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14072,6 +14746,7 @@
       }
     },
     "IfcEnergyMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14089,6 +14764,7 @@
       }
     },
     "IfcFontStyle": {
+      "domain": "ifcpresentationresource",
       "superclasses": [],
       "fields": {
         "wrappedValue": {
@@ -14099,6 +14775,7 @@
       }
     },
     "IfcFontVariant": {
+      "domain": "ifcpresentationresource",
       "superclasses": [],
       "fields": {
         "wrappedValue": {
@@ -14109,6 +14786,7 @@
       }
     },
     "IfcFontWeight": {
+      "domain": "ifcpresentationresource",
       "superclasses": [],
       "fields": {
         "wrappedValue": {
@@ -14119,6 +14797,7 @@
       }
     },
     "IfcForceMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14136,6 +14815,7 @@
       }
     },
     "IfcFrequencyMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14153,6 +14833,7 @@
       }
     },
     "IfcGloballyUniqueId": {
+      "domain": "ifcutilityresource",
       "superclasses": [],
       "fields": {
         "wrappedValue": {
@@ -14163,6 +14844,7 @@
       }
     },
     "IfcHeatFluxDensityMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14180,6 +14862,7 @@
       }
     },
     "IfcHeatingValueMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14197,6 +14880,7 @@
       }
     },
     "IfcHourInDay": {
+      "domain": "ifcdatetimeresource",
       "superclasses": [],
       "fields": {
         "wrappedValue": {
@@ -14207,6 +14891,7 @@
       }
     },
     "IfcIdentifier": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcSimpleValue"
       ],
@@ -14219,6 +14904,7 @@
       }
     },
     "IfcIlluminanceMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14236,6 +14922,7 @@
       }
     },
     "IfcInductanceMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14253,6 +14940,7 @@
       }
     },
     "IfcInteger": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcSimpleValue"
       ],
@@ -14265,6 +14953,7 @@
       }
     },
     "IfcIntegerCountRateMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14277,6 +14966,7 @@
       }
     },
     "IfcIonConcentrationMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14294,6 +14984,7 @@
       }
     },
     "IfcIsothermalMoistureCapacityMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14311,6 +15002,7 @@
       }
     },
     "IfcKinematicViscosityMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14328,6 +15020,7 @@
       }
     },
     "IfcLabel": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcConditionCriterionSelect",
         "IfcSimpleValue"
@@ -14341,6 +15034,7 @@
       }
     },
     "IfcLengthMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcMeasureValue",
         "IfcSizeSelect"
@@ -14359,6 +15053,7 @@
       }
     },
     "IfcLinearForceMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14376,6 +15071,7 @@
       }
     },
     "IfcLinearMomentMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14393,6 +15089,7 @@
       }
     },
     "IfcLinearStiffnessMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14410,6 +15107,7 @@
       }
     },
     "IfcLinearVelocityMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14427,6 +15125,7 @@
       }
     },
     "IfcLogical": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcSimpleValue"
       ],
@@ -14439,6 +15138,7 @@
       }
     },
     "IfcLuminousFluxMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14456,6 +15156,7 @@
       }
     },
     "IfcLuminousIntensityDistributionMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14473,6 +15174,7 @@
       }
     },
     "IfcLuminousIntensityMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcMeasureValue"
       ],
@@ -14490,6 +15192,7 @@
       }
     },
     "IfcMagneticFluxDensityMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14507,6 +15210,7 @@
       }
     },
     "IfcMagneticFluxMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14524,6 +15228,7 @@
       }
     },
     "IfcMassDensityMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14541,6 +15246,7 @@
       }
     },
     "IfcMassFlowRateMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14558,6 +15264,7 @@
       }
     },
     "IfcMassMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcMeasureValue"
       ],
@@ -14575,6 +15282,7 @@
       }
     },
     "IfcMassPerLengthMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14592,6 +15300,7 @@
       }
     },
     "IfcMinuteInHour": {
+      "domain": "ifcdatetimeresource",
       "superclasses": [],
       "fields": {
         "wrappedValue": {
@@ -14602,6 +15311,7 @@
       }
     },
     "IfcModulusOfElasticityMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14619,6 +15329,7 @@
       }
     },
     "IfcModulusOfLinearSubgradeReactionMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14636,6 +15347,7 @@
       }
     },
     "IfcModulusOfRotationalSubgradeReactionMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14653,6 +15365,7 @@
       }
     },
     "IfcModulusOfSubgradeReactionMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14670,6 +15383,7 @@
       }
     },
     "IfcMoistureDiffusivityMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14687,6 +15401,7 @@
       }
     },
     "IfcMolecularWeightMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14704,6 +15419,7 @@
       }
     },
     "IfcMomentOfInertiaMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14721,6 +15437,7 @@
       }
     },
     "IfcMonetaryMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcAppliedValueSelect",
         "IfcDerivedMeasureValue"
@@ -14739,6 +15456,7 @@
       }
     },
     "IfcMonthInYearNumber": {
+      "domain": "ifcdatetimeresource",
       "superclasses": [],
       "fields": {
         "wrappedValue": {
@@ -14749,6 +15467,7 @@
       }
     },
     "IfcNumericMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcMeasureValue"
       ],
@@ -14766,6 +15485,7 @@
       }
     },
     "IfcPHMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14783,6 +15503,7 @@
       }
     },
     "IfcParameterValue": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcMeasureValue",
         "IfcTrimmingSelect"
@@ -14801,6 +15522,7 @@
       }
     },
     "IfcPlanarForceMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14818,6 +15540,7 @@
       }
     },
     "IfcPlaneAngleMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcMeasureValue",
         "IfcOrientationSelect"
@@ -14836,6 +15559,7 @@
       }
     },
     "IfcPowerMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14853,6 +15577,7 @@
       }
     },
     "IfcPresentableText": {
+      "domain": "ifcpresentationresource",
       "superclasses": [],
       "fields": {
         "wrappedValue": {
@@ -14863,6 +15588,7 @@
       }
     },
     "IfcPressureMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14880,6 +15606,7 @@
       }
     },
     "IfcRadioActivityMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14897,6 +15624,7 @@
       }
     },
     "IfcRatioMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcAppliedValueSelect",
         "IfcMeasureValue",
@@ -14916,6 +15644,7 @@
       }
     },
     "IfcReal": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcSimpleValue"
       ],
@@ -14933,6 +15662,7 @@
       }
     },
     "IfcRotationalFrequencyMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14950,6 +15680,7 @@
       }
     },
     "IfcRotationalMassMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14967,6 +15698,7 @@
       }
     },
     "IfcRotationalStiffnessMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -14984,6 +15716,7 @@
       }
     },
     "IfcSecondInMinute": {
+      "domain": "ifcdatetimeresource",
       "superclasses": [],
       "fields": {
         "wrappedValue": {
@@ -14999,6 +15732,7 @@
       }
     },
     "IfcSectionModulusMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -15016,6 +15750,7 @@
       }
     },
     "IfcSectionalAreaIntegralMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -15033,6 +15768,7 @@
       }
     },
     "IfcShearModulusMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -15050,6 +15786,7 @@
       }
     },
     "IfcSolidAngleMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcMeasureValue"
       ],
@@ -15067,6 +15804,7 @@
       }
     },
     "IfcSoundPowerMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -15084,6 +15822,7 @@
       }
     },
     "IfcSoundPressureMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -15101,6 +15840,7 @@
       }
     },
     "IfcSpecificHeatCapacityMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -15118,6 +15858,7 @@
       }
     },
     "IfcSpecularExponent": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcSpecularHighlightSelect"
       ],
@@ -15135,6 +15876,7 @@
       }
     },
     "IfcSpecularRoughness": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcSpecularHighlightSelect"
       ],
@@ -15152,6 +15894,7 @@
       }
     },
     "IfcTemperatureGradientMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -15169,6 +15912,7 @@
       }
     },
     "IfcText": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcMetricValueSelect",
         "IfcSimpleValue"
@@ -15182,6 +15926,7 @@
       }
     },
     "IfcTextAlignment": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [],
       "fields": {
         "wrappedValue": {
@@ -15192,6 +15937,7 @@
       }
     },
     "IfcTextDecoration": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [],
       "fields": {
         "wrappedValue": {
@@ -15202,6 +15948,7 @@
       }
     },
     "IfcTextFontName": {
+      "domain": "ifcpresentationresource",
       "superclasses": [],
       "fields": {
         "wrappedValue": {
@@ -15212,6 +15959,7 @@
       }
     },
     "IfcTextTransformation": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [],
       "fields": {
         "wrappedValue": {
@@ -15222,6 +15970,7 @@
       }
     },
     "IfcThermalAdmittanceMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -15239,6 +15988,7 @@
       }
     },
     "IfcThermalConductivityMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -15256,6 +16006,7 @@
       }
     },
     "IfcThermalExpansionCoefficientMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -15273,6 +16024,7 @@
       }
     },
     "IfcThermalResistanceMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -15290,6 +16042,7 @@
       }
     },
     "IfcThermalTransmittanceMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -15307,6 +16060,7 @@
       }
     },
     "IfcThermodynamicTemperatureMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcMeasureValue"
       ],
@@ -15324,6 +16078,7 @@
       }
     },
     "IfcTimeMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcMeasureValue"
       ],
@@ -15341,6 +16096,7 @@
       }
     },
     "IfcTimeStamp": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -15353,6 +16109,7 @@
       }
     },
     "IfcTorqueMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -15370,6 +16127,7 @@
       }
     },
     "IfcVaporPermeabilityMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -15387,6 +16145,7 @@
       }
     },
     "IfcVolumeMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcMeasureValue"
       ],
@@ -15404,6 +16163,7 @@
       }
     },
     "IfcVolumetricFlowRateMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -15421,6 +16181,7 @@
       }
     },
     "IfcWarpingConstantMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -15438,6 +16199,7 @@
       }
     },
     "IfcWarpingMomentMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -15455,6 +16217,7 @@
       }
     },
     "IfcYearNumber": {
+      "domain": "ifcdatetimeresource",
       "superclasses": [],
       "fields": {
         "wrappedValue": {
@@ -15465,12 +16228,14 @@
       }
     },
     "IfcBoxAlignment": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [
         "IfcLabel"
       ],
       "fields": {}
     },
     "IfcCompoundPlaneAngleMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcDerivedMeasureValue"
       ],
@@ -15483,6 +16248,7 @@
       }
     },
     "IfcNormalisedRatioMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcRatioMeasure",
         "IfcColourOrFactor",
@@ -15492,6 +16258,7 @@
       "fields": {}
     },
     "IfcPositiveLengthMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcLengthMeasure",
         "IfcHatchLineDistanceSelect",
@@ -15501,6 +16268,7 @@
       "fields": {}
     },
     "IfcPositivePlaneAngleMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcPlaneAngleMeasure",
         "IfcMeasureValue"
@@ -15508,6 +16276,7 @@
       "fields": {}
     },
     "IfcPositiveRatioMeasure": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcRatioMeasure",
         "IfcMeasureValue",
@@ -15680,6 +16449,7 @@
     "IfcWindowStyleOperationEnum": {},
     "IfcWorkControlTypeEnum": {},
     "IfcComplexNumber": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcMeasureValue"
       ],
@@ -15697,6 +16467,7 @@
       }
     },
     "IfcNullStyle": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcPresentationStyleSelect"
       ],
@@ -15709,30 +16480,37 @@
       }
     },
     "IfcActorSelect": {
+      "domain": "ifcactorresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcAppliedValueSelect": {
+      "domain": "ifccostresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcAxis2Placement": {
+      "domain": "ifcgeometryresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcBooleanOperand": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcCharacterStyleSelect": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcClassificationNotationSelect": {
+      "domain": "ifcexternalreferenceresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcColour": {
+      "domain": "ifcpresentationresource",
       "superclasses": [
         "IfcFillStyleSelect",
         "IfcSymbolStyleSelect"
@@ -15740,172 +16518,212 @@
       "fields": {}
     },
     "IfcColourOrFactor": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcConditionCriterionSelect": {
+      "domain": "ifcfacilitiesmgmtdomain",
       "superclasses": [],
       "fields": {}
     },
     "IfcCsgSelect": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcCurveFontOrScaledCurveFontSelect": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcCurveOrEdgeCurve": {
+      "domain": "ifcgeometricconstraintresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcCurveStyleFontSelect": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [
         "IfcCurveFontOrScaledCurveFontSelect"
       ],
       "fields": {}
     },
     "IfcDateTimeSelect": {
+      "domain": "ifcdatetimeresource",
       "superclasses": [
         "IfcMetricValueSelect"
       ],
       "fields": {}
     },
     "IfcDefinedSymbolSelect": {
+      "domain": "ifcpresentationdefinitionresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcDerivedMeasureValue": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcValue"
       ],
       "fields": {}
     },
     "IfcDocumentSelect": {
+      "domain": "ifcexternalreferenceresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcDraughtingCalloutElement": {
+      "domain": "ifcpresentationdimensioningresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcFillAreaStyleTileShapeSelect": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcFillStyleSelect": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcGeometricSetSelect": {
+      "domain": "ifcgeometricmodelresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcHatchLineDistanceSelect": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcLayeredItem": {
+      "domain": "ifcpresentationorganizationresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcLibrarySelect": {
+      "domain": "ifcexternalreferenceresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcLightDistributionDataSourceSelect": {
+      "domain": "ifcpresentationorganizationresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcMaterialSelect": {
+      "domain": "ifcmaterialresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcMeasureValue": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcValue"
       ],
       "fields": {}
     },
     "IfcMetricValueSelect": {
+      "domain": "ifcconstraintresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcObjectReferenceSelect": {
+      "domain": "ifcpropertyresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcOrientationSelect": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [],
       "fields": {}
     },
     "IfcPointOrVertexPoint": {
+      "domain": "ifcgeometricconstraintresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcPresentationStyleSelect": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcShell": {
+      "domain": "ifctopologyresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcSimpleValue": {
+      "domain": "ifcmeasureresource",
       "superclasses": [
         "IfcValue"
       ],
       "fields": {}
     },
     "IfcSizeSelect": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcSpecularHighlightSelect": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcStructuralActivityAssignmentSelect": {
+      "domain": "ifcstructuralanalysisdomain",
       "superclasses": [],
       "fields": {}
     },
     "IfcSurfaceOrFaceSurface": {
+      "domain": "ifcgeometricconstraintresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcSurfaceStyleElementSelect": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcSymbolStyleSelect": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcTextFontSelect": {
+      "domain": "ifcpresentationresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcTextStyleSelect": {
+      "domain": "ifcpresentationappearanceresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcTrimmingSelect": {
+      "domain": "ifcgeometryresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcUnit": {
+      "domain": "ifcmeasureresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcValue": {
+      "domain": "ifcmeasureresource",
       "superclasses": [],
       "fields": {}
     },
     "IfcVectorOrDirection": {
+      "domain": "ifcgeometryresource",
       "superclasses": [],
       "fields": {}
     },
     "Bounds": {
+      "domain": "unknown",
       "superclasses": [],
       "fields": {
         "min": {
@@ -15921,6 +16739,7 @@
       }
     },
     "Vector3f": {
+      "domain": "unknown",
       "superclasses": [],
       "fields": {
         "x": {
@@ -15941,6 +16760,7 @@
       }
     },
     "GeometryInstance": {
+      "domain": "unknown",
       "superclasses": [],
       "fields": {
         "startVertex": {

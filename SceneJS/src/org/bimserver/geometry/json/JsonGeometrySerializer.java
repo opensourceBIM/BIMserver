@@ -222,6 +222,7 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 			writer.print("\"primitive\":\"triangles\",");
 			writer.print("\"positions\":[");
 			int t = geometryInstance.getPrimitiveCount() * 3 * 3;
+			reorder(verticesBuffer);
 			for (int i = 0; i < t; i++) {
 				if (i < t - 1) {
 					writer.print(verticesBuffer.getFloat() + ",");
@@ -229,6 +230,7 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 					writer.print(verticesBuffer.getFloat());
 				}
 			}
+			reorder(normalsBuffer);
 			writer.print("], \"normals\":[");
 			for (int i = 0; i < t; i++) {
 				if (i < t - 1) {
@@ -240,6 +242,18 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 			writer.print("]");
 			writer.print(",\"nrindices\":" + (geometryInstance.getPrimitiveCount() * 3));
 		}
+	}
+	
+	private void reorder(ByteBuffer buffer) {
+		for (int i=0; i<buffer.capacity(); i++) {
+			float f1 = buffer.getFloat();
+			float f2 = buffer.getFloat();
+			float f3 = buffer.getFloat();
+			buffer.putFloat(i, f1);
+			buffer.putFloat(i+2, f2);
+			buffer.putFloat(i+1, f3);
+		}
+		buffer.reset();
 	}
 
 	private String fitNameForQualifiedName(String name) {

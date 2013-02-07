@@ -18,6 +18,11 @@ package org.bimserver.ifc.xml.serializer;
  *****************************************************************************/
 
 import org.bimserver.models.store.ObjectDefinition;
+import org.bimserver.models.store.ParameterDefinition;
+import org.bimserver.models.store.PrimitiveDefinition;
+import org.bimserver.models.store.PrimitiveEnum;
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StringType;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
@@ -76,6 +81,20 @@ public class IfcXmlSerializerPlugin extends AbstractSerializerPlugin {
 
 	@Override
 	public ObjectDefinition getSettingsDefinition() {
-		return super.getSettingsDefinition();
+		ObjectDefinition settingsDefinition = super.getSettingsDefinition();
+
+		PrimitiveDefinition stringDefinition = StoreFactory.eINSTANCE.createPrimitiveDefinition();
+		stringDefinition.setType(PrimitiveEnum.STRING);
+
+		ParameterDefinition zipExtension = StoreFactory.eINSTANCE.createParameterDefinition();
+		zipExtension.setName(ZIP_EXTENSION);
+		zipExtension.setDescription("Extension of the downloaded file when using zip compression");
+		zipExtension.setType(stringDefinition);
+		StringType defaultZipExtensionValue = StoreFactory.eINSTANCE.createStringType();
+		defaultZipExtensionValue.setValue("ifczip");
+		zipExtension.setDefaultValue(defaultZipExtensionValue);
+		settingsDefinition.getParameters().add(zipExtension);
+
+		return settingsDefinition;
 	}
 }

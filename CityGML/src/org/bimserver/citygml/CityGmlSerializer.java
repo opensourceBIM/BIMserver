@@ -671,8 +671,8 @@ public class CityGmlSerializer extends AbstractGeometrySerializer {
 						gml,
 						Arrays.asList(new Double[] {
 								(double) x1, (double) y1, (double) z1,
-								(double) x2, (double) y2, (double) z2,
 								(double) x3, (double) y3, (double) z3,
+								(double) x2, (double) y2, (double) z2,
 								(double) x1, (double) y1, (double) z1})));
 			}
 		}

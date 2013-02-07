@@ -140,7 +140,7 @@ public class SerializerFactory {
 		try {
 			SerializerPluginConfiguration found = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
 			if (found != null) {
-				return new PluginConfiguration(found.getSettings()).getString("Extension");
+				return new PluginConfiguration(found.getSettings()).getString(SerializerPlugin.EXTENSION);
 			}
 		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);

@@ -25,6 +25,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.PluginConfiguration;
+import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.exceptions.UserException;
 
 public class GetSerializerByContentTypeDatabaseAction extends BimDatabaseAction<SerializerPluginConfiguration> {
@@ -40,7 +41,7 @@ public class GetSerializerByContentTypeDatabaseAction extends BimDatabaseAction<
 	public SerializerPluginConfiguration execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		for (SerializerPluginConfiguration serializerPluginConfiguration : getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), SerializerPluginConfiguration.class, Query.getDefault())) {
 			PluginConfiguration pluginConfiguration = new PluginConfiguration(serializerPluginConfiguration.getSettings());
-			if (pluginConfiguration.getString("ContentType").equals(contentType)) {
+			if (pluginConfiguration.getString(SerializerPlugin.CONTENT_TYPE).equals(contentType)) {
 				return serializerPluginConfiguration;
 			}
 		}

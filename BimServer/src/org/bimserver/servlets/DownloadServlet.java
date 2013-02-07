@@ -47,6 +47,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
@@ -213,15 +214,15 @@ public class DownloadServlet extends HttpServlet {
 				DataSource dataSource = checkoutResult.getFile().getDataSource();
 				PluginConfiguration pluginConfiguration = new PluginConfiguration(service.getPluginSettings(serializer.getOid()));
 				if (zip) {
-					if (serializer.getClassName().equals("IfcStepSerializer")) { // TODO should this not include the full classname?
-						response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName().replace(".ifc", ".ifczip") + "\"");
+					if (pluginConfiguration.getString("ZipExtension") != null) {
+						response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.ZIP_EXTENSION) + "\"");
 					} else {
-						response.setHeader("Content-Disposition", "inline; filename=\"" + checkoutResult.getFile().getName() + ".zip" + "\"");
+						response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + ".zip" + "\"");
 					}
 					response.setContentType("application/zip");
-					String name = checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "." + pluginConfiguration.getString("Extension");
+					String nameInZip = checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION);
 					ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream);
-					zipOutputStream.putNextEntry(new ZipEntry(name));
+					zipOutputStream.putNextEntry(new ZipEntry(nameInZip));
 					if (dataSource instanceof FileInputStreamDataSource) {
 						InputStream inputStream = ((FileInputStreamDataSource)dataSource).getInputStream();
 						IOUtils.copy(inputStream, zipOutputStream);
@@ -229,11 +230,15 @@ public class DownloadServlet extends HttpServlet {
 					} else {
 						((EmfSerializerDataSource)dataSource).writeToOutputStream(zipOutputStream);
 					}
-					zipOutputStream.finish();
+					try {
+						zipOutputStream.finish();
+					} catch (IOException e) {
+						// Sometimes it's already closed, that's no problem
+					}
 				} else {
 					if (request.getParameter("mime") == null) {
-						response.setContentType(pluginConfiguration.getString("ContentType"));
-						response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + "." + pluginConfiguration.getString("Extension") + "\"");
+						response.setContentType(pluginConfiguration.getString(SerializerPlugin.CONTENT_TYPE));
+						response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION) + "\"");
 					} else {
 						response.setContentType(request.getParameter("mime"));
 					}
