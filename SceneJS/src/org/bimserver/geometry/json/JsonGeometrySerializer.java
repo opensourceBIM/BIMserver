@@ -222,7 +222,7 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 			writer.print("\"primitive\":\"triangles\",");
 			writer.print("\"positions\":[");
 			int t = geometryInstance.getPrimitiveCount() * 3 * 3;
-			reorder(verticesBuffer);
+//			reorder(verticesBuffer, t);
 			for (int i = 0; i < t; i++) {
 				if (i < t - 1) {
 					writer.print(verticesBuffer.getFloat() + ",");
@@ -230,7 +230,7 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 					writer.print(verticesBuffer.getFloat());
 				}
 			}
-			reorder(normalsBuffer);
+//			reorder(normalsBuffer, t);
 			writer.print("], \"normals\":[");
 			for (int i = 0; i < t; i++) {
 				if (i < t - 1) {
@@ -244,16 +244,27 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 		}
 	}
 	
-	private void reorder(ByteBuffer buffer) {
-		for (int i=0; i<buffer.capacity(); i++) {
-			float f1 = buffer.getFloat();
-			float f2 = buffer.getFloat();
-			float f3 = buffer.getFloat();
-			buffer.putFloat(i, f1);
-			buffer.putFloat(i+2, f2);
-			buffer.putFloat(i+1, f3);
+	@SuppressWarnings("unused")
+	private void reorder(ByteBuffer buffer, int nrFloats) {
+		buffer.position(0);
+		for (int i=0; i<nrFloats; i+=9) {
+			float x1 = buffer.getFloat();
+			float y1 = buffer.getFloat();
+			float z1 = buffer.getFloat();
+			float x2 = buffer.getFloat();
+			float y2 = buffer.getFloat();
+			float z2 = buffer.getFloat();
+			float x3 = buffer.getFloat();
+			float y3 = buffer.getFloat();
+			float z3 = buffer.getFloat();
+			buffer.putFloat((i+3)*4, x3);
+			buffer.putFloat((i+4)*4, y3);
+			buffer.putFloat((i+5)*4, z3);
+			buffer.putFloat((i+6)*4, x2);
+			buffer.putFloat((i+7)*4, y2);
+			buffer.putFloat((i+8)*4, z2);
 		}
-		buffer.reset();
+		buffer.position(0);
 	}
 
 	private String fitNameForQualifiedName(String name) {

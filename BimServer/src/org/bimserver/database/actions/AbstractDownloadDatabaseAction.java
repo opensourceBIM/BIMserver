@@ -47,6 +47,7 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 		if (serializerPlugin.needsGeometry()) {
 			if (!revision.isHasGeometry()) {
 				setProgress("Generating geometry...", -1);
+				// TODO When generating geometry for a partial model download (by types for example), this will fail (for example walls have no openings)
 				new GeometryGenerator().generateGeometry(authorization.getUoid(), pluginManager, getDatabaseSession(), model, project.getId(), concreteRevision.getId(), revision, false, null);
 			} else {
 				for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
