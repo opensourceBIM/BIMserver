@@ -4721,13 +4721,22 @@ public interface StorePackage extends EPackage {
 	int PARAMETER_DEFINITION__REQUIRED = 1;
 
 	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_DEFINITION__DESCRIPTION = 2;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_DEFINITION__TYPE = 2;
+	int PARAMETER_DEFINITION__TYPE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Default Value</b></em>' reference.
@@ -4736,7 +4745,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_DEFINITION__DEFAULT_VALUE = 3;
+	int PARAMETER_DEFINITION__DEFAULT_VALUE = 4;
 
 	/**
 	 * The number of structural features of the '<em>Parameter Definition</em>' class.
@@ -4745,7 +4754,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_DEFINITION_FEATURE_COUNT = 4;
+	int PARAMETER_DEFINITION_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.TypeImpl <em>Type</em>}' class.
@@ -9459,6 +9468,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getParameterDefinition_Required();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ParameterDefinition#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.bimserver.models.store.ParameterDefinition#getDescription()
+	 * @see #getParameterDefinition()
+	 * @generated
+	 */
+	EAttribute getParameterDefinition_Description();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ParameterDefinition#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13332,6 +13352,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PARAMETER_DEFINITION__REQUIRED = eINSTANCE.getParameterDefinition_Required();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PARAMETER_DEFINITION__DESCRIPTION = eINSTANCE.getParameterDefinition_Description();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.

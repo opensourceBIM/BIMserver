@@ -4155,8 +4155,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getParameterDefinition_Description() {
+		return (EAttribute) getParameterDefinition().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getParameterDefinition_Type() {
-		return (EReference) getParameterDefinition().getEStructuralFeatures().get(2);
+		return (EReference) getParameterDefinition().getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -4165,7 +4174,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getParameterDefinition_DefaultValue() {
-		return (EReference) getParameterDefinition().getEStructuralFeatures().get(3);
+		return (EReference) getParameterDefinition().getEStructuralFeatures().get(4);
 	}
 
 	/**

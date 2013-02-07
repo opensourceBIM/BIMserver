@@ -29,6 +29,7 @@ public class SParameterDefinition implements SBase
 	private static SClass sClass;
 	private java.lang.String name;
 	private boolean required;
+	private java.lang.String description;
 	private STypeDefinition type;
 	private long defaultValueId = -1;
 	
@@ -48,6 +49,9 @@ public class SParameterDefinition implements SBase
 		if (sField.getName().equals("required")) {
 			return isRequired();
 		}
+		if (sField.getName().equals("description")) {
+			return getDescription();
+		}
 		if (sField.getName().equals("type")) {
 			return getType();
 		}
@@ -64,6 +68,10 @@ public class SParameterDefinition implements SBase
 		}
 		if (sField.getName().equals("required")) {
 			setRequired((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("description")) {
+			setDescription((String)val);
 			return;
 		}
 		if (sField.getName().equals("type")) {
@@ -91,6 +99,14 @@ public class SParameterDefinition implements SBase
 
 	public void setRequired(boolean required) {
 		this.required = required;
+	}
+	
+	public java.lang.String getDescription() {
+		return description;
+	}
+
+	public void setDescription(java.lang.String description) {
+		this.description = description;
 	}
 	
 	public STypeDefinition getType() {

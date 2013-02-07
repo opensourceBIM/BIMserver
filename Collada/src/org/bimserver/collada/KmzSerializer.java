@@ -29,6 +29,7 @@ import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.utils.UTF8PrintWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -77,10 +78,11 @@ public class KmzSerializer extends EmfSerializer {
 		return false;
 	}
 
+	@SuppressWarnings("resource")
 	private void writeKmlFile(OutputStream out) {
-		PrintWriter writer = new PrintWriter(out);
+		PrintWriter writer = new UTF8PrintWriter(out);
 		writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-		writer.println("<kml xmlns=\"http://www.opengis.net/kml/2.2\">");
+		writer.println("<kml xmlns=\"http://earth.google.com/kml/2.2\">");
 		writer.println("<Placemark>");
 		writer.println("	<name>" + (getProjectInfo() != null ? getProjectInfo().getName() : "") + "</name>");
 		writer.println("	<description>" + (getProjectInfo() != null ? getProjectInfo().getDescription() : "") + "</description>");
@@ -116,5 +118,6 @@ public class KmzSerializer extends EmfSerializer {
 		writer.println("</Placemark>");
 		writer.println("</kml>");
 		writer.flush();
+		// Don't close it, because we are writing to a zip stream
 	}
 }

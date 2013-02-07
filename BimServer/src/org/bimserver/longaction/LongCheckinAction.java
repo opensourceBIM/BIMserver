@@ -40,7 +40,6 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	}
 
 	public void execute() {
-		changeActionState(ActionState.STARTED, "Storing data...", 0);
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			checkinDatabaseAction.setDatabaseSession(session);

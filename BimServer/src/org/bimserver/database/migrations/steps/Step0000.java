@@ -653,6 +653,7 @@ public class Step0000 extends Migration {
 		
 		schema.createEAttribute(parameterDefinition, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(parameterDefinition, "required", EcorePackage.eINSTANCE.getEBoolean(), Multiplicity.SINGLE);
+		schema.createEAttribute(parameterDefinition, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEReference(parameterDefinition, "type", typeDefinition, Multiplicity.SINGLE).getEAnnotations().add(createEmbedsReferenceAnnotation());
 		
 		schema.createEReference(objectDefinition, "parameters", parameterDefinition, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());

@@ -28,6 +28,7 @@ import org.bimserver.emf.IdEObject;
  * <ul>
  *   <li>{@link org.bimserver.models.store.ParameterDefinition#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ParameterDefinition#isRequired <em>Required</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ParameterDefinition#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.ParameterDefinition#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.ParameterDefinition#getDefaultValue <em>Default Value</em>}</li>
  * </ul>
@@ -90,6 +91,32 @@ public interface ParameterDefinition extends IdEObject {
 	 * @generated
 	 */
 	void setRequired(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see org.bimserver.models.store.StorePackage#getParameterDefinition_Description()
+	 * @model
+	 * @generated
+	 */
+	String getDescription();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ParameterDefinition#getDescription <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
+	 * @generated
+	 */
+	void setDescription(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.

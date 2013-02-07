@@ -9,11 +9,6 @@ if (typeof console === "undefined") {
 function BimServerApi(baseUrl, notifier) {
 	var othis = this;
 
-	othis.schemaFetcher = new Synchronizer(function(callback){
-		$.getJSON(othis.baseUrl + "/js/ifc2x3tc1.json", function(result){
-			callback(result.classes);
-		});
-	});
 	othis.jsonSerializerFetcher = new Synchronizer(function(callback){
 		othis.call("ServiceInterface", "getSerializerByPluginClassName", {pluginClassName: "org.bimserver.serializers.JsonSerializerPlugin"}, function(serializer){
 			callback(serializer.oid);
@@ -45,6 +40,13 @@ function BimServerApi(baseUrl, notifier) {
 	othis.listeners = {};
 	othis.autoLoginTried = false;
 
+	this.init = function(callback) {
+		$.getJSON(othis.baseUrl + "/js/ifc2x3tc1.json", function(result){
+			othis.schema = result.classes;
+			callback();
+		});
+	};
+	
 	this.autologin = function(username, autologin, callback, errorCallback) {
 		var request = {
 			username: username,

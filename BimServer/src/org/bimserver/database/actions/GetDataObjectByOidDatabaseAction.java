@@ -29,7 +29,6 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
@@ -218,11 +217,14 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 								dataObject.getValues().add(e);
 							} else {
 								Long oid = ((IdEObject)eObject2).getOid();
-								String guid = getGuid(eObject2);
 								ReferenceDataValue reference = StoreFactory.eINSTANCE.createReferenceDataValue();
+								if (eObject2 instanceof IfcRoot) {
+									IfcRoot ifcRoot = (IfcRoot)eObject2;
+									String guid = ifcRoot.getGlobalId();
+									reference.setGuid(guid);
+								}
 								reference.setTypeName(eObject2.eClass().getName());
 								((IdEObjectImpl)reference).setOid(oid);
-								reference.setGuid(guid);
 								reference.setFieldName(eStructuralFeature.getName());
 								dataObject.getValues().add(reference);
 							}
@@ -231,16 +233,5 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 				}
 			}
 		}
-	}
-
-	private static String getGuid(EObject eObject2) {
-		String guid = null;
-		if (Ifc2x3tc1Package.eINSTANCE.getIfcRoot().isSuperTypeOf(eObject2.eClass())) {
-			EObject guidObject = (EObject) eObject2.eGet(eObject2.eClass().getEStructuralFeature("GlobalId"));
-			if (guidObject != null) {
-				guid = (String) guidObject.eGet(guidObject.eClass().getEStructuralFeature("wrappedValue"));
-			}
-		}
-		return guid;
 	}
 }

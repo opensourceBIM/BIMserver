@@ -82,15 +82,28 @@ public class IfcStepSerializerPlugin extends AbstractSerializerPlugin {
 	@Override
 	public ObjectDefinition getSettingsDefinition() {
 		ObjectDefinition objectDefinition = super.getSettingsDefinition();
+
+		PrimitiveDefinition stringDefinition = StoreFactory.eINSTANCE.createPrimitiveDefinition();
+		stringDefinition.setType(PrimitiveEnum.STRING);
+		
 		ParameterDefinition organizationParameter = StoreFactory.eINSTANCE.createParameterDefinition();
 		organizationParameter.setName("organization");
+		organizationParameter.setDescription("Organization name to put in the header");
 		StringType defaultValue = StoreFactory.eINSTANCE.createStringType();
 		defaultValue.setValue("BIMserver.org");
 		organizationParameter.setDefaultValue(defaultValue);
-		PrimitiveDefinition stringDefinition = StoreFactory.eINSTANCE.createPrimitiveDefinition();
-		stringDefinition.setType(PrimitiveEnum.STRING);
 		organizationParameter.setType(stringDefinition);
 		objectDefinition.getParameters().add(organizationParameter);
+		
+		ParameterDefinition zipExtension = StoreFactory.eINSTANCE.createParameterDefinition();
+		zipExtension.setName(ZIP_EXTENSION);
+		zipExtension.setDescription("Extension of the downloaded file when using zip compression");
+		zipExtension.setType(stringDefinition);
+		StringType defaultZipExtensionValue = StoreFactory.eINSTANCE.createStringType();
+		defaultZipExtensionValue.setValue("ifczip");
+		zipExtension.setDefaultValue(defaultZipExtensionValue);
+		objectDefinition.getParameters().add(zipExtension);
+		
 		return objectDefinition;
 	}
 }

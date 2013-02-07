@@ -37,6 +37,8 @@ public class IfcSchemaToJson {
 	}
 
 	private void convert(OutputStream outputStream) throws IOException {
+		File docFolder = new File("C:\\Users\\Ruben de Laat\\Downloads\\IFC2x3_TC1_HTML_distribution-pset_errata\\R2x3_TC1");
+		
 		JsonWriter jsonWriter = new JsonWriter(new OutputStreamWriter(outputStream));
 		jsonWriter.setIndent("  ");
 		try {
@@ -50,6 +52,19 @@ public class IfcSchemaToJson {
 					
 				} else if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
+					String domain = "unknown";
+					for (File file : docFolder.listFiles()) {
+						if (file.isDirectory()) {
+							File x = new File(file, "lexical/" + eClass.getName().toLowerCase() + ".htm");
+							if (x.exists()) {
+								domain = file.getName();
+								System.out.println(domain);
+								break;
+							}
+						}
+					}
+					jsonWriter.name("domain");
+					jsonWriter.value(domain);
 					jsonWriter.name("superclasses");
 					jsonWriter.beginArray();
 					for (EClass superClass : eClass.getESuperTypes()) {

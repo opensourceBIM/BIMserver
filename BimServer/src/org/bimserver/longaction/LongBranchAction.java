@@ -50,7 +50,6 @@ public class LongBranchAction extends LongAction<LongCheckinActionKey> {
 
 	@Override
 	public void execute() {
-		changeActionState(ActionState.STARTED, "Storing data...", 0);
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			action.setDatabaseSession(session);

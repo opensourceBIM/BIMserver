@@ -137,6 +137,7 @@ public class LongActionManager {
 	public synchronized void remove(long actionId) throws UserException {
 		LongAction<?> longAction = actions.get(actionId);
 		if (longAction != null) {
+			LOGGER.info("Cleaning up long running action: " + longAction.getDescription());
 			longAction.stop();
 			actions.remove(actionId);
 		} else {
@@ -145,6 +146,8 @@ public class LongActionManager {
 	}
 
 	public synchronized void remove(LongAction<?> action) {
+		LOGGER.info("Cleaning up long running action: " + action.getDescription());
+		action.stop();
 		actions.inverse().remove(action);
 	}
 }
