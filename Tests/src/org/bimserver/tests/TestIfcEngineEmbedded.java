@@ -10,13 +10,25 @@ import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.LocalVersionConstructor;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
+import org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
+import org.bimserver.plugins.ifcengine.IfcEngineException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestIfcEngineEmbedded {
+	private static final Logger LOGGER = LoggerFactory.getLogger(TestIfcEngineEmbedded.class);
+	
+	
 	public static void main(String[] args) {
+		// The name of the IfcEnginePlugin to use, if an IfcEnginePlugin with this
+		// name is not found in the list of all IfcEngines an exception is thrown.
+		final String ifcEngineToUse = "org.ifcopenshell.IfcOpenShellEnginePlugin";
+		// final String ifcEngineToUse = "org.bimserver.ifcengine.TNOJvmIfcEnginePlugin";
+		
 		// Create a config
 		BimServerConfig config = new BimServerConfig();
 		File home = new File("home");
@@ -43,7 +55,7 @@ public class TestIfcEngineEmbedded {
 		try {
 			// Load plugins
 			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
-
+			
 			// Start it
 			bimServer.start();
 			
@@ -52,16 +64,28 @@ public class TestIfcEngineEmbedded {
 
 			// Setup the server
 			client.getServiceInterface().setup("http://localhost:8080", "localhost", "noreply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
-
+			
 			// Authenticate
 			client.setAuthentication(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
+			// Iterate over the IfcEngines and see if there is one matching the classname specified above
+			boolean ifcEngineFound = false;
+			for (SIfcEnginePluginConfiguration conf : client.getServiceInterface().getAllIfcEngines(false)) {
+				if (ifcEngineToUse.equals(conf.getClassName())) {
+					client.getServiceInterface().setDefaultIfcEngine(conf.getOid());
+					ifcEngineFound = true;
+					LOGGER.info("Using " + conf.getName());
+					break;
+				}
+			}
+			
+			if (!ifcEngineFound) {
+				throw new IfcEngineException("No IfcEnginePlugin found with name " + ifcEngineToUse);
+			}
+			
 			// Get a deserializer
 			SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc");
-			
-			// Disabling this engine, so the other one will be used, this should be done nicer...
-			client.getServiceInterface().disablePlugin("org.bimserver.ifcengine.TNOJvmIfcEnginePlugin");
-			
+						
 			// Create a project
 			SProject project = client.getServiceInterface().addProject("test" + Math.random());
 
@@ -77,8 +101,8 @@ public class TestIfcEngineEmbedded {
 			// Find collada serializer
 			SSerializerPluginConfiguration serializer = client.getServiceInterface().getSerializerByContentType("application/collada");
 
-			// Download as collada
-			client.download(project.getLastRevisionId(), serializer.getOid(), new File("test.collada"));
+			// Download as collada			
+			client.download(project.getLastRevisionId(), serializer.getOid(), new File(testIfcFile.getName() + ".dae"));
 
 			client.disconnect();
 			bimServer.stop();
