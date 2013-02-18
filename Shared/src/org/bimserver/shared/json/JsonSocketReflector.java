@@ -64,14 +64,17 @@ public class JsonSocketReflector extends JsonReflector {
 			HttpPost httppost = new HttpPost(remoteAddress);
 			httppost.setEntity(new StringEntity(request.toString(), Charsets.UTF_8));
 
+			if (LOGGER.isDebugEnabled()) {
+				LOGGER.debug(request.toString());
+			}
+			
 			HttpResponse response = httpclient.execute(httppost, context);
 			try {
 				if (response.getStatusLine().getStatusCode() == 200) {
 					HttpEntity resultEntity = response.getEntity();
 					
 					JsonParser parser = new JsonParser();
-					boolean debug = false;
-					if (debug) {
+					if (LOGGER.isDebugEnabled()) {
 						InputStream inputStream = resultEntity.getContent();
 						ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 						IOUtils.copy(inputStream, byteArrayOutputStream);

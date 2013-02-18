@@ -36,6 +36,8 @@ public class MetaDataManager {
 	private final Map<String, EPackage> ePackages = new HashMap<String, EPackage>();
 	private final Map<EClass, Set<EClass>> directSubClasses = new HashMap<EClass, Set<EClass>>();
 	private final Map<EClass, Set<EClass>> allSubClasses = new HashMap<EClass, Set<EClass>>();
+	private final Map<String, EClassifier> caseInsensitive = new HashMap<String, EClassifier>();
+	private final Map<String, EClassifier> caseSensitive = new HashMap<String, EClassifier>();
 	
 	public MetaDataManager(Set<EPackage> ePackages) {
 		for (EPackage ePackage : ePackages) {
@@ -49,9 +51,11 @@ public class MetaDataManager {
 		addEPackage(LogPackage.eINSTANCE);
 	}
 
-	private void addEPackage(EPackage ePackage) {
+	public void addEPackage(EPackage ePackage) {
 		ePackages.put(ePackage.getName(), ePackage);
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+			caseInsensitive.put(eClassifier.getName().toLowerCase(), eClassifier);
+			caseSensitive.put(eClassifier.getName(), eClassifier);
 			if (eClassifier instanceof EClass) {
 				EClass eClass = (EClass)eClassifier;
 				if (!allSubClasses.containsKey(eClass)) {
@@ -84,16 +88,14 @@ public class MetaDataManager {
 		return allSubClasses.get(superClass);
 	}
 
-	public EClass getEClass(String type) {
-		for (EPackage ePackage : ePackages.values()) {
-			EClassifier eClassifier = ePackage.getEClassifier(type);
-			if (eClassifier instanceof EClass) {
-				return (EClass) eClassifier;
-			}
-		}
-		return null;
+	public EClassifier getEClassifier(String type) {
+		return caseSensitive.get(type);
 	}
 
+	public EClassifier getEClassifierCaseInsensitive(String type) {
+		return caseInsensitive.get(type.toLowerCase());
+	}
+	
 	public EAttribute getEAttribute(String className, String attributeName) {
 		for (EPackage ePackage : ePackages.values()) {
 			EClassifier eClassifier = ePackage.getEClassifier(className);

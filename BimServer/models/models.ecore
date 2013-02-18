@@ -14,7 +14,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcActor" eSuperTypes="#/0/IfcObject">
       <eStructuralFeatures xsi:type="ecore:EReference" name="TheActor" eType="#/0/IfcActorSelect"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="IsActingUpon" upperBound="-1"
-          eType="#/0/IfcRelAssignsToActor" unsettable="true" eOpposite="#/0/IfcRelAssignsToActor/RelatingActor"/>
+          eType="#/0/IfcRelAssignsToActor" unsettable="true" eOpposite="#/0/IfcRelAssignsToActor/RelatingActor">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcActorRole">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Role" eType="#/0/IfcRoleEnum"/>
@@ -34,9 +36,13 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="UserDefinedPurpose" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="OfPerson" upperBound="-1"
-          eType="#/0/IfcPerson" unsettable="true" eOpposite="#/0/IfcPerson/Addresses"/>
+          eType="#/0/IfcPerson" unsettable="true" eOpposite="#/0/IfcPerson/Addresses">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="OfOrganization" upperBound="-1"
-          eType="#/0/IfcOrganization" unsettable="true" eOpposite="#/0/IfcOrganization/Addresses"/>
+          eType="#/0/IfcOrganization" unsettable="true" eOpposite="#/0/IfcOrganization/Addresses">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcAirTerminalBoxType" eSuperTypes="#/0/IfcFlowControllerType">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="PredefinedType" eType="#/0/IfcAirTerminalBoxTypeEnum"/>
@@ -53,7 +59,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcAngularDimension" eSuperTypes="#/0/IfcDimensionCurveDirectedCallout"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcAnnotation" eSuperTypes="#/0/IfcProduct">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ContainedInStructure"
-          upperBound="2" eType="#/0/IfcRelContainedInSpatialStructure" unsettable="true"/>
+          upperBound="2" eType="#/0/IfcRelContainedInSpatialStructure" unsettable="true">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcAnnotationCurveOccurrence" eSuperTypes="#/0/IfcAnnotationOccurrence #/0/IfcDraughtingCalloutElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcAnnotationFillArea" eSuperTypes="#/0/IfcGeometricRepresentationItem">
@@ -71,7 +79,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcAnnotationSurface" eSuperTypes="#/0/IfcGeometricRepresentationItem">
       <eStructuralFeatures xsi:type="ecore:EReference" name="Item" eType="#/0/IfcGeometricRepresentationItem"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="TextureCoordinates" eType="#/0/IfcTextureCoordinate"
-          unsettable="true" eOpposite="#/0/IfcTextureCoordinate/AnnotatedSurface"/>
+          unsettable="true" eOpposite="#/0/IfcTextureCoordinate/AnnotatedSurface">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcAnnotationSurfaceOccurrence" eSuperTypes="#/0/IfcAnnotationOccurrence"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcAnnotationSymbolOccurrence" eSuperTypes="#/0/IfcAnnotationOccurrence #/0/IfcDraughtingCalloutElement"/>
@@ -99,17 +109,27 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="FixedUntilDate" eType="#/0/IfcDateTimeSelect"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ValuesReferenced" upperBound="-1"
-          eType="#/0/IfcReferencesValueDocument" unsettable="true" eOpposite="#/0/IfcReferencesValueDocument/ReferencingValues"/>
+          eType="#/0/IfcReferencesValueDocument" unsettable="true" eOpposite="#/0/IfcReferencesValueDocument/ReferencingValues">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ValueOfComponents" upperBound="-1"
-          eType="#/0/IfcAppliedValueRelationship" unsettable="true" eOpposite="#/0/IfcAppliedValueRelationship/ComponentOfTotal"/>
+          eType="#/0/IfcAppliedValueRelationship" unsettable="true" eOpposite="#/0/IfcAppliedValueRelationship/ComponentOfTotal">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="IsComponentIn" upperBound="-1"
-          eType="#/0/IfcAppliedValueRelationship" unsettable="true" eOpposite="#/0/IfcAppliedValueRelationship/Components"/>
+          eType="#/0/IfcAppliedValueRelationship" unsettable="true" eOpposite="#/0/IfcAppliedValueRelationship/Components">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcAppliedValueRelationship">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ComponentOfTotal" eType="#/0/IfcAppliedValue"
-          eOpposite="#/0/IfcAppliedValue/ValueOfComponents"/>
+          eOpposite="#/0/IfcAppliedValue/ValueOfComponents">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Components" upperBound="-1"
-          eType="#/0/IfcAppliedValue" eOpposite="#/0/IfcAppliedValue/IsComponentIn"/>
+          eType="#/0/IfcAppliedValue" eOpposite="#/0/IfcAppliedValue/IsComponentIn">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="ArithmeticOperator" eType="#/0/IfcArithmeticOperatorEnum"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
@@ -129,16 +149,24 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Actors" upperBound="-1"
-          eType="#/0/IfcApprovalActorRelationship" unsettable="true" eOpposite="#/0/IfcApprovalActorRelationship/Approval"/>
+          eType="#/0/IfcApprovalActorRelationship" unsettable="true" eOpposite="#/0/IfcApprovalActorRelationship/Approval">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="IsRelatedWith" upperBound="-1"
-          eType="#/0/IfcApprovalRelationship" unsettable="true" eOpposite="#/0/IfcApprovalRelationship/RelatedApproval"/>
+          eType="#/0/IfcApprovalRelationship" unsettable="true" eOpposite="#/0/IfcApprovalRelationship/RelatedApproval">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Relates" upperBound="-1"
-          eType="#/0/IfcApprovalRelationship" unsettable="true" eOpposite="#/0/IfcApprovalRelationship/RelatingApproval"/>
+          eType="#/0/IfcApprovalRelationship" unsettable="true" eOpposite="#/0/IfcApprovalRelationship/RelatingApproval">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcApprovalActorRelationship">
       <eStructuralFeatures xsi:type="ecore:EReference" name="Actor" eType="#/0/IfcActorSelect"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Approval" eType="#/0/IfcApproval"
-          eOpposite="#/0/IfcApproval/Actors"/>
+          eOpposite="#/0/IfcApproval/Actors">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Role" eType="#/0/IfcActorRole"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcApprovalPropertyRelationship">
@@ -148,9 +176,13 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcApprovalRelationship">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedApproval" eType="#/0/IfcApproval"
-          eOpposite="#/0/IfcApproval/IsRelatedWith"/>
+          eOpposite="#/0/IfcApproval/IsRelatedWith">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingApproval" eType="#/0/IfcApproval"
-          eOpposite="#/0/IfcApproval/Relates"/>
+          eOpposite="#/0/IfcApproval/Relates">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -658,24 +690,36 @@
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Contains" upperBound="-1"
-          eType="#/0/IfcClassificationItem" unsettable="true" eOpposite="#/0/IfcClassificationItem/ItemOf"/>
+          eType="#/0/IfcClassificationItem" unsettable="true" eOpposite="#/0/IfcClassificationItem/ItemOf">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcClassificationItem">
       <eStructuralFeatures xsi:type="ecore:EReference" name="Notation" eType="#/0/IfcClassificationNotationFacet"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ItemOf" eType="#/0/IfcClassification"
-          unsettable="true" eOpposite="#/0/IfcClassification/Contains"/>
+          unsettable="true" eOpposite="#/0/IfcClassification/Contains">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="IsClassifiedItemIn" upperBound="2"
-          eType="#/0/IfcClassificationItemRelationship" unsettable="true" eOpposite="#/0/IfcClassificationItemRelationship/RelatedItems"/>
+          eType="#/0/IfcClassificationItemRelationship" unsettable="true" eOpposite="#/0/IfcClassificationItemRelationship/RelatedItems">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="IsClassifyingItemIn"
           upperBound="2" eType="#/0/IfcClassificationItemRelationship" unsettable="true"
-          eOpposite="#/0/IfcClassificationItemRelationship/RelatingItem"/>
+          eOpposite="#/0/IfcClassificationItemRelationship/RelatingItem">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcClassificationItemRelationship">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingItem" eType="#/0/IfcClassificationItem"
-          eOpposite="#/0/IfcClassificationItem/IsClassifyingItemIn"/>
+          eOpposite="#/0/IfcClassificationItem/IsClassifyingItemIn">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedItems" upperBound="-1"
-          eType="#/0/IfcClassificationItem" eOpposite="#/0/IfcClassificationItem/IsClassifiedItemIn"/>
+          eType="#/0/IfcClassificationItem" eOpposite="#/0/IfcClassificationItem/IsClassifiedItemIn">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcClassificationNotation" eSuperTypes="#/0/IfcClassificationNotationSelect">
       <eStructuralFeatures xsi:type="ecore:EReference" name="NotationFacets" unique="false"
@@ -720,11 +764,15 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcComplexProperty" eSuperTypes="#/0/IfcProperty">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="UsageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasProperties" upperBound="-1"
-          eType="#/0/IfcProperty" eOpposite="#/0/IfcProperty/PartOfComplex"/>
+          eType="#/0/IfcProperty" eOpposite="#/0/IfcProperty/PartOfComplex">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcCompositeCurve" eSuperTypes="#/0/IfcBoundedCurve">
       <eStructuralFeatures xsi:type="ecore:EReference" name="Segments" upperBound="-1"
-          eType="#/0/IfcCompositeCurveSegment" eOpposite="#/0/IfcCompositeCurveSegment/UsingCurves"/>
+          eType="#/0/IfcCompositeCurveSegment" eOpposite="#/0/IfcCompositeCurveSegment/UsingCurves">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="SelfIntersect" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcCompositeCurveSegment" eSuperTypes="#/0/IfcGeometricRepresentationItem">
@@ -732,7 +780,9 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="SameSense" eType="#/0/Tristate"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ParentCurve" eType="#/0/IfcCurve"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="UsingCurves" upperBound="-1"
-          eType="#/0/IfcCompositeCurve" unsettable="true" eOpposite="#/0/IfcCompositeCurve/Segments"/>
+          eType="#/0/IfcCompositeCurve" unsettable="true" eOpposite="#/0/IfcCompositeCurve/Segments">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Dim" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           unsettable="true" derived="true"/>
     </eClassifiers>
@@ -826,18 +876,30 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="UserDefinedGrade" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ClassifiedAs" upperBound="-1"
-          eType="#/0/IfcConstraintClassificationRelationship" unsettable="true" eOpposite="#/0/IfcConstraintClassificationRelationship/ClassifiedConstraint"/>
+          eType="#/0/IfcConstraintClassificationRelationship" unsettable="true" eOpposite="#/0/IfcConstraintClassificationRelationship/ClassifiedConstraint">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatesConstraints" upperBound="-1"
-          eType="#/0/IfcConstraintRelationship" unsettable="true" eOpposite="#/0/IfcConstraintRelationship/RelatingConstraint"/>
+          eType="#/0/IfcConstraintRelationship" unsettable="true" eOpposite="#/0/IfcConstraintRelationship/RelatingConstraint">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="IsRelatedWith" upperBound="-1"
-          eType="#/0/IfcConstraintRelationship" unsettable="true" eOpposite="#/0/IfcConstraintRelationship/RelatedConstraints"/>
+          eType="#/0/IfcConstraintRelationship" unsettable="true" eOpposite="#/0/IfcConstraintRelationship/RelatedConstraints">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="PropertiesForConstraint"
           upperBound="-1" eType="#/0/IfcPropertyConstraintRelationship" unsettable="true"
-          eOpposite="#/0/IfcPropertyConstraintRelationship/RelatingConstraint"/>
+          eOpposite="#/0/IfcPropertyConstraintRelationship/RelatingConstraint">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Aggregates" upperBound="-1"
-          eType="#/0/IfcConstraintAggregationRelationship" unsettable="true" eOpposite="#/0/IfcConstraintAggregationRelationship/RelatingConstraint"/>
+          eType="#/0/IfcConstraintAggregationRelationship" unsettable="true" eOpposite="#/0/IfcConstraintAggregationRelationship/RelatingConstraint">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="IsAggregatedIn" upperBound="-1"
-          eType="#/0/IfcConstraintAggregationRelationship" unsettable="true" eOpposite="#/0/IfcConstraintAggregationRelationship/RelatedConstraints"/>
+          eType="#/0/IfcConstraintAggregationRelationship" unsettable="true" eOpposite="#/0/IfcConstraintAggregationRelationship/RelatedConstraints">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcConstraintAggregationRelationship">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -845,14 +907,20 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingConstraint" eType="#/0/IfcConstraint"
-          eOpposite="#/0/IfcConstraint/Aggregates"/>
+          eOpposite="#/0/IfcConstraint/Aggregates">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedConstraints" upperBound="-1"
-          eType="#/0/IfcConstraint" eOpposite="#/0/IfcConstraint/IsAggregatedIn"/>
+          eType="#/0/IfcConstraint" eOpposite="#/0/IfcConstraint/IsAggregatedIn">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="LogicalAggregator" eType="#/0/IfcLogicalOperatorEnum"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcConstraintClassificationRelationship">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ClassifiedConstraint"
-          eType="#/0/IfcConstraint" eOpposite="#/0/IfcConstraint/ClassifiedAs"/>
+          eType="#/0/IfcConstraint" eOpposite="#/0/IfcConstraint/ClassifiedAs">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedClassifications"
           unique="false" upperBound="-1" eType="#/0/IfcClassificationNotationSelect"/>
     </eClassifiers>
@@ -862,9 +930,13 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingConstraint" eType="#/0/IfcConstraint"
-          eOpposite="#/0/IfcConstraint/RelatesConstraints"/>
+          eOpposite="#/0/IfcConstraint/RelatesConstraints">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedConstraints" upperBound="-1"
-          eType="#/0/IfcConstraint" eOpposite="#/0/IfcConstraint/IsRelatedWith"/>
+          eType="#/0/IfcConstraint" eOpposite="#/0/IfcConstraint/IsRelatedWith">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcConstructionEquipmentResource"
         eSuperTypes="#/0/IfcConstructionResource"/>
@@ -895,7 +967,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcControl" eSuperTypes="#/0/IfcObject">
       <eStructuralFeatures xsi:type="ecore:EReference" name="Controls" upperBound="-1"
-          eType="#/0/IfcRelAssignsToControl" unsettable="true" eOpposite="#/0/IfcRelAssignsToControl/RelatingControl"/>
+          eType="#/0/IfcRelAssignsToControl" unsettable="true" eOpposite="#/0/IfcRelAssignsToControl/RelatingControl">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcControllerType" eSuperTypes="#/0/IfcDistributionControlElementType">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="PredefinedType" eType="#/0/IfcControllerTypeEnum"/>
@@ -942,9 +1016,13 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="PredefinedType" eType="#/0/IfcCoveringTypeEnum"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="CoversSpaces" upperBound="2"
-          eType="#/0/IfcRelCoversSpaces" unsettable="true" eOpposite="#/0/IfcRelCoversSpaces/RelatedCoverings"/>
+          eType="#/0/IfcRelCoversSpaces" unsettable="true" eOpposite="#/0/IfcRelCoversSpaces/RelatedCoverings">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Covers" upperBound="2"
-          eType="#/0/IfcRelCoversBldgElements" unsettable="true" eOpposite="#/0/IfcRelCoversBldgElements/RelatedCoverings"/>
+          eType="#/0/IfcRelCoversBldgElements" unsettable="true" eOpposite="#/0/IfcRelCoversBldgElements/RelatedCoverings">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcCoveringType" eSuperTypes="#/0/IfcBuildingElementType">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="PredefinedType" eType="#/0/IfcCoveringTypeEnum"/>
@@ -1185,7 +1263,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcDimensionCalloutRelationship" eSuperTypes="#/0/IfcDraughtingCalloutRelationship"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcDimensionCurve" eSuperTypes="#/0/IfcAnnotationCurveOccurrence">
       <eStructuralFeatures xsi:type="ecore:EReference" name="AnnotatedBySymbols" upperBound="3"
-          eType="#/0/IfcTerminatorSymbol" unsettable="true"/>
+          eType="#/0/IfcTerminatorSymbol" unsettable="true">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcDimensionCurveDirectedCallout"
         eSuperTypes="#/0/IfcDraughtingCallout"/>
@@ -1228,7 +1308,9 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="ControlElementId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="AssignedToFlowElement"
-          upperBound="2" eType="#/0/IfcRelFlowControlElements" unsettable="true" eOpposite="#/0/IfcRelFlowControlElements/RelatedControlElements"/>
+          upperBound="2" eType="#/0/IfcRelFlowControlElements" unsettable="true" eOpposite="#/0/IfcRelFlowControlElements/RelatedControlElements">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcDistributionControlElementType"
         eSuperTypes="#/0/IfcDistributionElementType"/>
@@ -1236,7 +1318,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcDistributionElementType" eSuperTypes="#/0/IfcElementType"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcDistributionFlowElement" eSuperTypes="#/0/IfcDistributionElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasControlElements" upperBound="2"
-          eType="#/0/IfcRelFlowControlElements" unsettable="true" eOpposite="#/0/IfcRelFlowControlElements/RelatingFlowElement"/>
+          eType="#/0/IfcRelFlowControlElements" unsettable="true" eOpposite="#/0/IfcRelFlowControlElements/RelatingFlowElement">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcDistributionFlowElementType" eSuperTypes="#/0/IfcDistributionElementType"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcDistributionPort" eSuperTypes="#/0/IfcPort">
@@ -1257,7 +1341,9 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="DocumentReferences" upperBound="-1"
-          eType="#/0/IfcDocumentReference" unsettable="true" eOpposite="#/0/IfcDocumentReference/ReferenceToDocument"/>
+          eType="#/0/IfcDocumentReference" unsettable="true" eOpposite="#/0/IfcDocumentReference/ReferenceToDocument">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Purpose" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="IntendedUse" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -1285,21 +1371,31 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Status" eType="#/0/IfcDocumentStatusEnum"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="IsPointedTo" upperBound="-1"
-          eType="#/0/IfcDocumentInformationRelationship" unsettable="true" eOpposite="#/0/IfcDocumentInformationRelationship/RelatedDocuments"/>
+          eType="#/0/IfcDocumentInformationRelationship" unsettable="true" eOpposite="#/0/IfcDocumentInformationRelationship/RelatedDocuments">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="IsPointer" upperBound="2"
-          eType="#/0/IfcDocumentInformationRelationship" unsettable="true" eOpposite="#/0/IfcDocumentInformationRelationship/RelatingDocument"/>
+          eType="#/0/IfcDocumentInformationRelationship" unsettable="true" eOpposite="#/0/IfcDocumentInformationRelationship/RelatingDocument">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcDocumentInformationRelationship">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingDocument" eType="#/0/IfcDocumentInformation"
-          eOpposite="#/0/IfcDocumentInformation/IsPointer"/>
+          eOpposite="#/0/IfcDocumentInformation/IsPointer">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedDocuments" upperBound="-1"
-          eType="#/0/IfcDocumentInformation" eOpposite="#/0/IfcDocumentInformation/IsPointedTo"/>
+          eType="#/0/IfcDocumentInformation" eOpposite="#/0/IfcDocumentInformation/IsPointedTo">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="RelationshipType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcDocumentReference" eSuperTypes="#/0/IfcExternalReference #/0/IfcDocumentSelect">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ReferenceToDocument"
-          upperBound="2" eType="#/0/IfcDocumentInformation" unsettable="true" eOpposite="#/0/IfcDocumentInformation/DocumentReferences"/>
+          upperBound="2" eType="#/0/IfcDocumentInformation" unsettable="true" eOpposite="#/0/IfcDocumentInformation/DocumentReferences">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcDoor" eSuperTypes="#/0/IfcBuildingElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="OverallHeight" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
@@ -1435,9 +1531,13 @@
           upperBound="-1" eType="#/0/IfcDraughtingCalloutElement"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="IsRelatedFromCallout"
           upperBound="-1" eType="#/0/IfcDraughtingCalloutRelationship" unsettable="true"
-          eOpposite="#/0/IfcDraughtingCalloutRelationship/RelatedDraughtingCallout"/>
+          eOpposite="#/0/IfcDraughtingCalloutRelationship/RelatedDraughtingCallout">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="IsRelatedToCallout" upperBound="-1"
-          eType="#/0/IfcDraughtingCalloutRelationship" unsettable="true" eOpposite="#/0/IfcDraughtingCalloutRelationship/RelatingDraughtingCallout"/>
+          eType="#/0/IfcDraughtingCalloutRelationship" unsettable="true" eOpposite="#/0/IfcDraughtingCalloutRelationship/RelatingDraughtingCallout">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcDraughtingCalloutRelationship">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -1445,9 +1545,13 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingDraughtingCallout"
-          eType="#/0/IfcDraughtingCallout" eOpposite="#/0/IfcDraughtingCallout/IsRelatedToCallout"/>
+          eType="#/0/IfcDraughtingCallout" eOpposite="#/0/IfcDraughtingCallout/IsRelatedToCallout">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedDraughtingCallout"
-          eType="#/0/IfcDraughtingCallout" eOpposite="#/0/IfcDraughtingCallout/IsRelatedFromCallout"/>
+          eType="#/0/IfcDraughtingCallout" eOpposite="#/0/IfcDraughtingCallout/IsRelatedFromCallout">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcDraughtingPreDefinedColour" eSuperTypes="#/0/IfcPreDefinedColour"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcDraughtingPreDefinedCurveFont"
@@ -1567,30 +1671,54 @@
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasStructuralMember"
           upperBound="-1" eType="#/0/IfcRelConnectsStructuralElement" unsettable="true"
-          eOpposite="#/0/IfcRelConnectsStructuralElement/RelatingElement"/>
+          eOpposite="#/0/IfcRelConnectsStructuralElement/RelatingElement">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="FillsVoids" upperBound="2"
-          eType="#/0/IfcRelFillsElement" unsettable="true" eOpposite="#/0/IfcRelFillsElement/RelatedBuildingElement"/>
+          eType="#/0/IfcRelFillsElement" unsettable="true" eOpposite="#/0/IfcRelFillsElement/RelatedBuildingElement">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ConnectedTo" upperBound="-1"
-          eType="#/0/IfcRelConnectsElements" unsettable="true" eOpposite="#/0/IfcRelConnectsElements/RelatingElement"/>
+          eType="#/0/IfcRelConnectsElements" unsettable="true" eOpposite="#/0/IfcRelConnectsElements/RelatingElement">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasCoverings" upperBound="-1"
-          eType="#/0/IfcRelCoversBldgElements" unsettable="true" eOpposite="#/0/IfcRelCoversBldgElements/RelatingBuildingElement"/>
+          eType="#/0/IfcRelCoversBldgElements" unsettable="true" eOpposite="#/0/IfcRelCoversBldgElements/RelatingBuildingElement">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasProjections" upperBound="-1"
-          eType="#/0/IfcRelProjectsElement" unsettable="true" eOpposite="#/0/IfcRelProjectsElement/RelatingElement"/>
+          eType="#/0/IfcRelProjectsElement" unsettable="true" eOpposite="#/0/IfcRelProjectsElement/RelatingElement">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ReferencedInStructures"
-          upperBound="-1" eType="#/0/IfcRelReferencedInSpatialStructure" unsettable="true"/>
+          upperBound="-1" eType="#/0/IfcRelReferencedInSpatialStructure" unsettable="true">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasPorts" upperBound="-1"
-          eType="#/0/IfcRelConnectsPortToElement" unsettable="true" eOpposite="#/0/IfcRelConnectsPortToElement/RelatedElement"/>
+          eType="#/0/IfcRelConnectsPortToElement" unsettable="true" eOpposite="#/0/IfcRelConnectsPortToElement/RelatedElement">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasOpenings" upperBound="-1"
-          eType="#/0/IfcRelVoidsElement" unsettable="true" eOpposite="#/0/IfcRelVoidsElement/RelatingBuildingElement"/>
+          eType="#/0/IfcRelVoidsElement" unsettable="true" eOpposite="#/0/IfcRelVoidsElement/RelatingBuildingElement">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="IsConnectionRealization"
           upperBound="-1" eType="#/0/IfcRelConnectsWithRealizingElements" unsettable="true"
-          eOpposite="#/0/IfcRelConnectsWithRealizingElements/RealizingElements"/>
+          eOpposite="#/0/IfcRelConnectsWithRealizingElements/RealizingElements">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ProvidesBoundaries" upperBound="-1"
-          eType="#/0/IfcRelSpaceBoundary" unsettable="true" eOpposite="#/0/IfcRelSpaceBoundary/RelatedBuildingElement"/>
+          eType="#/0/IfcRelSpaceBoundary" unsettable="true" eOpposite="#/0/IfcRelSpaceBoundary/RelatedBuildingElement">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ConnectedFrom" upperBound="-1"
-          eType="#/0/IfcRelConnectsElements" unsettable="true" eOpposite="#/0/IfcRelConnectsElements/RelatedElement"/>
+          eType="#/0/IfcRelConnectsElements" unsettable="true" eOpposite="#/0/IfcRelConnectsElements/RelatedElement">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ContainedInStructure"
-          upperBound="2" eType="#/0/IfcRelContainedInSpatialStructure" unsettable="true"/>
+          upperBound="2" eType="#/0/IfcRelContainedInSpatialStructure" unsettable="true">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcElementAssembly" eSuperTypes="#/0/IfcElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="AssemblyPlace" eType="#/0/IfcAssemblyPlaceEnum"
@@ -1776,11 +1904,15 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcFeatureElement" eSuperTypes="#/0/IfcElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcFeatureElementAddition" eSuperTypes="#/0/IfcFeatureElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ProjectsElements" eType="#/0/IfcRelProjectsElement"
-          unsettable="true" eOpposite="#/0/IfcRelProjectsElement/RelatedFeatureElement"/>
+          unsettable="true" eOpposite="#/0/IfcRelProjectsElement/RelatedFeatureElement">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcFeatureElementSubtraction" eSuperTypes="#/0/IfcFeatureElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="VoidsElements" eType="#/0/IfcRelVoidsElement"
-          unsettable="true" eOpposite="#/0/IfcRelVoidsElement/RelatedOpeningElement"/>
+          unsettable="true" eOpposite="#/0/IfcRelVoidsElement/RelatedOpeningElement">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcFillAreaStyle" eSuperTypes="#/0/IfcPresentationStyle #/0/IfcPresentationStyleSelect">
       <eStructuralFeatures xsi:type="ecore:EReference" name="FillStyles" unique="false"
@@ -2041,13 +2173,17 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="TrueNorth" eType="#/0/IfcDirection"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasSubContexts" upperBound="-1"
-          eType="#/0/IfcGeometricRepresentationSubContext" unsettable="true" eOpposite="#/0/IfcGeometricRepresentationSubContext/ParentContext"/>
+          eType="#/0/IfcGeometricRepresentationSubContext" unsettable="true" eOpposite="#/0/IfcGeometricRepresentationSubContext/ParentContext">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcGeometricRepresentationItem" eSuperTypes="#/0/IfcRepresentationItem"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcGeometricRepresentationSubContext"
         eSuperTypes="#/0/IfcGeometricRepresentationContext">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ParentContext" eType="#/0/IfcGeometricRepresentationContext"
-          eOpposite="#/0/IfcGeometricRepresentationContext/HasSubContexts"/>
+          eOpposite="#/0/IfcGeometricRepresentationContext/HasSubContexts">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="TargetScale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="TargetScaleAsString"
@@ -2069,13 +2205,21 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcGrid" eSuperTypes="#/0/IfcProduct">
       <eStructuralFeatures xsi:type="ecore:EReference" name="UAxes" upperBound="-1"
-          eType="#/0/IfcGridAxis" eOpposite="#/0/IfcGridAxis/PartOfU"/>
+          eType="#/0/IfcGridAxis" eOpposite="#/0/IfcGridAxis/PartOfU">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="VAxes" upperBound="-1"
-          eType="#/0/IfcGridAxis" eOpposite="#/0/IfcGridAxis/PartOfV"/>
+          eType="#/0/IfcGridAxis" eOpposite="#/0/IfcGridAxis/PartOfV">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="WAxes" upperBound="-1"
-          eType="#/0/IfcGridAxis" unsettable="true" eOpposite="#/0/IfcGridAxis/PartOfW"/>
+          eType="#/0/IfcGridAxis" unsettable="true" eOpposite="#/0/IfcGridAxis/PartOfW">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ContainedInStructure"
-          upperBound="2" eType="#/0/IfcRelContainedInSpatialStructure" unsettable="true"/>
+          upperBound="2" eType="#/0/IfcRelContainedInSpatialStructure" unsettable="true">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcGridAxis">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="AxisTag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -2083,13 +2227,21 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="AxisCurve" eType="#/0/IfcCurve"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="SameSense" eType="#/0/Tristate"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="PartOfW" upperBound="2"
-          eType="#/0/IfcGrid" unsettable="true" eOpposite="#/0/IfcGrid/WAxes"/>
+          eType="#/0/IfcGrid" unsettable="true" eOpposite="#/0/IfcGrid/WAxes">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="PartOfV" upperBound="2"
-          eType="#/0/IfcGrid" unsettable="true" eOpposite="#/0/IfcGrid/VAxes"/>
+          eType="#/0/IfcGrid" unsettable="true" eOpposite="#/0/IfcGrid/VAxes">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="PartOfU" upperBound="2"
-          eType="#/0/IfcGrid" unsettable="true" eOpposite="#/0/IfcGrid/UAxes"/>
+          eType="#/0/IfcGrid" unsettable="true" eOpposite="#/0/IfcGrid/UAxes">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasIntersections" upperBound="-1"
-          eType="#/0/IfcVirtualGridIntersection" unsettable="true" eOpposite="#/0/IfcVirtualGridIntersection/IntersectingAxes"/>
+          eType="#/0/IfcVirtualGridIntersection" unsettable="true" eOpposite="#/0/IfcVirtualGridIntersection/IntersectingAxes">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcGridPlacement" eSuperTypes="#/0/IfcObjectPlacement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="PlacementLocation" eType="#/0/IfcVirtualGridIntersection"/>
@@ -2098,7 +2250,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcGroup" eSuperTypes="#/0/IfcObject">
       <eStructuralFeatures xsi:type="ecore:EReference" name="IsGroupedBy" eType="#/0/IfcRelAssignsToGroup"
-          unsettable="true" eOpposite="#/0/IfcRelAssignsToGroup/RelatingGroup"/>
+          unsettable="true" eOpposite="#/0/IfcRelAssignsToGroup/RelatingGroup">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcHalfSpaceSolid" eSuperTypes="#/0/IfcGeometricRepresentationItem #/0/IfcBooleanOperand">
       <eStructuralFeatures xsi:type="ecore:EReference" name="BaseSurface" eType="#/0/IfcSurface"/>
@@ -2292,11 +2446,15 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="VersionDate" eType="#/0/IfcCalendarDate"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="LibraryReference" upperBound="-1"
-          eType="#/0/IfcLibraryReference" unsettable="true" eOpposite="#/0/IfcLibraryReference/ReferenceIntoLibrary"/>
+          eType="#/0/IfcLibraryReference" unsettable="true" eOpposite="#/0/IfcLibraryReference/ReferenceIntoLibrary">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcLibraryReference" eSuperTypes="#/0/IfcExternalReference #/0/IfcLibrarySelect">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ReferenceIntoLibrary"
-          upperBound="2" eType="#/0/IfcLibraryInformation" unsettable="true" eOpposite="#/0/IfcLibraryInformation/LibraryReference"/>
+          upperBound="2" eType="#/0/IfcLibraryInformation" unsettable="true" eOpposite="#/0/IfcLibraryInformation/LibraryReference">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcLightDistributionData">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="MainPlaneAngle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
@@ -2433,7 +2591,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcLinearDimension" eSuperTypes="#/0/IfcDimensionCurveDirectedCallout"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcLocalPlacement" eSuperTypes="#/0/IfcObjectPlacement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="PlacementRelTo" eType="#/0/IfcObjectPlacement"
-          unsettable="true" eOpposite="#/0/IfcObjectPlacement/ReferencedByPlacements"/>
+          unsettable="true" eOpposite="#/0/IfcObjectPlacement/ReferencedByPlacements">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelativePlacement" eType="#/0/IfcAxis2Placement"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcLocalTime" eSuperTypes="#/0/IfcDateTimeSelect #/0/IfcObjectReferenceSelect">
@@ -2459,26 +2619,36 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcMappedItem" eSuperTypes="#/0/IfcRepresentationItem">
       <eStructuralFeatures xsi:type="ecore:EReference" name="MappingSource" eType="#/0/IfcRepresentationMap"
-          eOpposite="#/0/IfcRepresentationMap/MapUsage"/>
+          eOpposite="#/0/IfcRepresentationMap/MapUsage">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="MappingTarget" eType="#/0/IfcCartesianTransformationOperator"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcMaterial" eSuperTypes="#/0/IfcMaterialSelect #/0/IfcObjectReferenceSelect">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasRepresentation" upperBound="2"
-          eType="#/0/IfcMaterialDefinitionRepresentation" unsettable="true" eOpposite="#/0/IfcMaterialDefinitionRepresentation/RepresentedMaterial"/>
+          eType="#/0/IfcMaterialDefinitionRepresentation" unsettable="true" eOpposite="#/0/IfcMaterialDefinitionRepresentation/RepresentedMaterial">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ClassifiedAs" upperBound="2"
-          eType="#/0/IfcMaterialClassificationRelationship" unsettable="true" eOpposite="#/0/IfcMaterialClassificationRelationship/ClassifiedMaterial"/>
+          eType="#/0/IfcMaterialClassificationRelationship" unsettable="true" eOpposite="#/0/IfcMaterialClassificationRelationship/ClassifiedMaterial">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcMaterialClassificationRelationship">
       <eStructuralFeatures xsi:type="ecore:EReference" name="MaterialClassifications"
           unique="false" upperBound="-1" eType="#/0/IfcClassificationNotationSelect"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ClassifiedMaterial" eType="#/0/IfcMaterial"
-          eOpposite="#/0/IfcMaterial/ClassifiedAs"/>
+          eOpposite="#/0/IfcMaterial/ClassifiedAs">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcMaterialDefinitionRepresentation"
         eSuperTypes="#/0/IfcProductRepresentation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RepresentedMaterial"
-          eType="#/0/IfcMaterial" eOpposite="#/0/IfcMaterial/HasRepresentation"/>
+          eType="#/0/IfcMaterial" eOpposite="#/0/IfcMaterial/HasRepresentation">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcMaterialLayer" eSuperTypes="#/0/IfcMaterialSelect #/0/IfcObjectReferenceSelect">
       <eStructuralFeatures xsi:type="ecore:EReference" name="Material" eType="#/0/IfcMaterial"
@@ -2492,11 +2662,15 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="IsVentilated" eType="#/0/Tristate"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ToMaterialLayerSet" eType="#/0/IfcMaterialLayerSet"
-          unsettable="true" eOpposite="#/0/IfcMaterialLayerSet/MaterialLayers"/>
+          unsettable="true" eOpposite="#/0/IfcMaterialLayerSet/MaterialLayers">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcMaterialLayerSet" eSuperTypes="#/0/IfcMaterialSelect">
       <eStructuralFeatures xsi:type="ecore:EReference" name="MaterialLayers" upperBound="-1"
-          eType="#/0/IfcMaterialLayer" eOpposite="#/0/IfcMaterialLayer/ToMaterialLayerSet"/>
+          eType="#/0/IfcMaterialLayer" eOpposite="#/0/IfcMaterialLayer/ToMaterialLayerSet">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="LayerSetName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="TotalThickness" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
@@ -2714,23 +2888,37 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="ObjectType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="IsDefinedBy" upperBound="-1"
-          eType="#/0/IfcRelDefines" unsettable="true" eOpposite="#/0/IfcRelDefines/RelatedObjects"/>
+          eType="#/0/IfcRelDefines" unsettable="true" eOpposite="#/0/IfcRelDefines/RelatedObjects">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcObjectDefinition" eSuperTypes="#/0/IfcRoot">
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasAssignments" upperBound="-1"
-          eType="#/0/IfcRelAssigns" unsettable="true" eOpposite="#/0/IfcRelAssigns/RelatedObjects"/>
+          eType="#/0/IfcRelAssigns" unsettable="true" eOpposite="#/0/IfcRelAssigns/RelatedObjects">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="IsDecomposedBy" upperBound="-1"
-          eType="#/0/IfcRelDecomposes" unsettable="true" eOpposite="#/0/IfcRelDecomposes/RelatingObject"/>
+          eType="#/0/IfcRelDecomposes" unsettable="true" eOpposite="#/0/IfcRelDecomposes/RelatingObject">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Decomposes" upperBound="2"
-          eType="#/0/IfcRelDecomposes" unsettable="true" eOpposite="#/0/IfcRelDecomposes/RelatedObjects"/>
+          eType="#/0/IfcRelDecomposes" unsettable="true" eOpposite="#/0/IfcRelDecomposes/RelatedObjects">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasAssociations" upperBound="-1"
-          eType="#/0/IfcRelAssociates" unsettable="true"/>
+          eType="#/0/IfcRelAssociates" unsettable="true">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcObjectPlacement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="PlacesObject" upperBound="2"
-          eType="#/0/IfcProduct" unsettable="true" eOpposite="#/0/IfcProduct/ObjectPlacement"/>
+          eType="#/0/IfcProduct" unsettable="true" eOpposite="#/0/IfcProduct/ObjectPlacement">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ReferencedByPlacements"
-          upperBound="-1" eType="#/0/IfcLocalPlacement" unsettable="true" eOpposite="#/0/IfcLocalPlacement/PlacementRelTo"/>
+          upperBound="-1" eType="#/0/IfcLocalPlacement" unsettable="true" eOpposite="#/0/IfcLocalPlacement/PlacementRelTo">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcObjective" eSuperTypes="#/0/IfcConstraint">
       <eStructuralFeatures xsi:type="ecore:EReference" name="BenchmarkValues" eType="#/0/IfcMetric"
@@ -2770,7 +2958,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcOpenShell" eSuperTypes="#/0/IfcConnectedFaceSet #/0/IfcShell"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcOpeningElement" eSuperTypes="#/0/IfcFeatureElementSubtraction">
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasFillings" upperBound="-1"
-          eType="#/0/IfcRelFillsElement" unsettable="true" eOpposite="#/0/IfcRelFillsElement/RelatingOpeningElement"/>
+          eType="#/0/IfcRelFillsElement" unsettable="true" eOpposite="#/0/IfcRelFillsElement/RelatingOpeningElement">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcOpticalMaterialProperties" eSuperTypes="#/0/IfcMaterialProperties">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="VisibleTransmittance"
@@ -2866,22 +3056,34 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="Roles" unique="false"
           upperBound="-1" eType="#/0/IfcActorRole" unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Addresses" upperBound="-1"
-          eType="#/0/IfcAddress" unsettable="true" eOpposite="#/0/IfcAddress/OfOrganization"/>
+          eType="#/0/IfcAddress" unsettable="true" eOpposite="#/0/IfcAddress/OfOrganization">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="IsRelatedBy" upperBound="-1"
-          eType="#/0/IfcOrganizationRelationship" unsettable="true" eOpposite="#/0/IfcOrganizationRelationship/RelatedOrganizations"/>
+          eType="#/0/IfcOrganizationRelationship" unsettable="true" eOpposite="#/0/IfcOrganizationRelationship/RelatedOrganizations">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Relates" upperBound="-1"
-          eType="#/0/IfcOrganizationRelationship" unsettable="true" eOpposite="#/0/IfcOrganizationRelationship/RelatingOrganization"/>
+          eType="#/0/IfcOrganizationRelationship" unsettable="true" eOpposite="#/0/IfcOrganizationRelationship/RelatingOrganization">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Engages" upperBound="-1"
-          eType="#/0/IfcPersonAndOrganization" unsettable="true" eOpposite="#/0/IfcPersonAndOrganization/TheOrganization"/>
+          eType="#/0/IfcPersonAndOrganization" unsettable="true" eOpposite="#/0/IfcPersonAndOrganization/TheOrganization">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcOrganizationRelationship">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingOrganization"
-          eType="#/0/IfcOrganization" eOpposite="#/0/IfcOrganization/Relates"/>
+          eType="#/0/IfcOrganization" eOpposite="#/0/IfcOrganization/Relates">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedOrganizations"
-          upperBound="-1" eType="#/0/IfcOrganization" eOpposite="#/0/IfcOrganization/IsRelatedBy"/>
+          upperBound="-1" eType="#/0/IfcOrganization" eOpposite="#/0/IfcOrganization/IsRelatedBy">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcOrientedEdge" eSuperTypes="#/0/IfcEdge">
       <eStructuralFeatures xsi:type="ecore:EReference" name="EdgeElement" eType="#/0/IfcEdge"/>
@@ -2957,21 +3159,31 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="Roles" unique="false"
           upperBound="-1" eType="#/0/IfcActorRole" unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Addresses" upperBound="-1"
-          eType="#/0/IfcAddress" unsettable="true" eOpposite="#/0/IfcAddress/OfPerson"/>
+          eType="#/0/IfcAddress" unsettable="true" eOpposite="#/0/IfcAddress/OfPerson">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="EngagedIn" upperBound="-1"
-          eType="#/0/IfcPersonAndOrganization" unsettable="true" eOpposite="#/0/IfcPersonAndOrganization/ThePerson"/>
+          eType="#/0/IfcPersonAndOrganization" unsettable="true" eOpposite="#/0/IfcPersonAndOrganization/ThePerson">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcPersonAndOrganization" eSuperTypes="#/0/IfcActorSelect #/0/IfcObjectReferenceSelect">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ThePerson" eType="#/0/IfcPerson"
-          eOpposite="#/0/IfcPerson/EngagedIn"/>
+          eOpposite="#/0/IfcPerson/EngagedIn">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="TheOrganization" eType="#/0/IfcOrganization"
-          eOpposite="#/0/IfcOrganization/Engages"/>
+          eOpposite="#/0/IfcOrganization/Engages">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Roles" unique="false"
           upperBound="-1" eType="#/0/IfcActorRole" unsettable="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcPhysicalComplexQuantity" eSuperTypes="#/0/IfcPhysicalQuantity">
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasQuantities" upperBound="-1"
-          eType="#/0/IfcPhysicalQuantity" eOpposite="#/0/IfcPhysicalQuantity/PartOfComplex"/>
+          eType="#/0/IfcPhysicalQuantity" eOpposite="#/0/IfcPhysicalQuantity/PartOfComplex">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Discrimination" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Quality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
@@ -2983,7 +3195,9 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="PartOfComplex" upperBound="2"
-          eType="#/0/IfcPhysicalComplexQuantity" unsettable="true" eOpposite="#/0/IfcPhysicalComplexQuantity/HasQuantities"/>
+          eType="#/0/IfcPhysicalComplexQuantity" unsettable="true" eOpposite="#/0/IfcPhysicalComplexQuantity/HasQuantities">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcPhysicalSimpleQuantity" eSuperTypes="#/0/IfcPhysicalQuantity">
       <eStructuralFeatures xsi:type="ecore:EReference" name="Unit" eType="#/0/IfcNamedUnit"
@@ -3073,11 +3287,17 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcPort" eSuperTypes="#/0/IfcProduct">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ContainedIn" eType="#/0/IfcRelConnectsPortToElement"
-          unsettable="true" eOpposite="#/0/IfcRelConnectsPortToElement/RelatingPort"/>
+          unsettable="true" eOpposite="#/0/IfcRelConnectsPortToElement/RelatingPort">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ConnectedFrom" upperBound="2"
-          eType="#/0/IfcRelConnectsPorts" unsettable="true" eOpposite="#/0/IfcRelConnectsPorts/RelatedPort"/>
+          eType="#/0/IfcRelConnectsPorts" unsettable="true" eOpposite="#/0/IfcRelConnectsPorts/RelatedPort">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ConnectedTo" upperBound="2"
-          eType="#/0/IfcRelConnectsPorts" unsettable="true" eOpposite="#/0/IfcRelConnectsPorts/RelatingPort"/>
+          eType="#/0/IfcRelConnectsPorts" unsettable="true" eOpposite="#/0/IfcRelConnectsPorts/RelatingPort">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcPostalAddress" eSuperTypes="#/0/IfcAddress">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="InternalLocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -3111,7 +3331,10 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="AssignedItems" unique="false"
-          upperBound="-1" eType="#/0/IfcLayeredItem"/>
+          upperBound="-1" eType="#/0/IfcLayeredItem">
+        <eAnnotations source="inverse"/>
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
     </eClassifiers>
@@ -3139,19 +3362,31 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcProcess" eSuperTypes="#/0/IfcObject">
       <eStructuralFeatures xsi:type="ecore:EReference" name="OperatesOn" upperBound="-1"
-          eType="#/0/IfcRelAssignsToProcess" unsettable="true" eOpposite="#/0/IfcRelAssignsToProcess/RelatingProcess"/>
+          eType="#/0/IfcRelAssignsToProcess" unsettable="true" eOpposite="#/0/IfcRelAssignsToProcess/RelatingProcess">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="IsSuccessorFrom" upperBound="-1"
-          eType="#/0/IfcRelSequence" unsettable="true" eOpposite="#/0/IfcRelSequence/RelatedProcess"/>
+          eType="#/0/IfcRelSequence" unsettable="true" eOpposite="#/0/IfcRelSequence/RelatedProcess">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="IsPredecessorTo" upperBound="-1"
-          eType="#/0/IfcRelSequence" unsettable="true" eOpposite="#/0/IfcRelSequence/RelatingProcess"/>
+          eType="#/0/IfcRelSequence" unsettable="true" eOpposite="#/0/IfcRelSequence/RelatingProcess">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcProduct" eSuperTypes="#/0/IfcObject">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ObjectPlacement" eType="#/0/IfcObjectPlacement"
-          unsettable="true" eOpposite="#/0/IfcObjectPlacement/PlacesObject"/>
+          unsettable="true" eOpposite="#/0/IfcObjectPlacement/PlacesObject">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Representation" eType="#/0/IfcProductRepresentation"
-          unsettable="true"/>
+          unsettable="true">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ReferencedBy" upperBound="-1"
-          eType="#/0/IfcRelAssignsToProduct" unsettable="true" eOpposite="#/0/IfcRelAssignsToProduct/RelatingProduct"/>
+          eType="#/0/IfcRelAssignsToProduct" unsettable="true" eOpposite="#/0/IfcRelAssignsToProduct/RelatingProduct">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="geometryInstance" eType="#/0/GeometryInstance">
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
@@ -3161,9 +3396,13 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcProductDefinitionShape" eSuperTypes="#/0/IfcProductRepresentation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ShapeOfProduct" upperBound="2"
-          eType="#/0/IfcProduct" unsettable="true"/>
+          eType="#/0/IfcProduct" unsettable="true">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasShapeAspects" upperBound="-1"
-          eType="#/0/IfcShapeAspect" unsettable="true" eOpposite="#/0/IfcShapeAspect/PartOfProductDefinitionShape"/>
+          eType="#/0/IfcShapeAspect" unsettable="true" eOpposite="#/0/IfcShapeAspect/PartOfProductDefinitionShape">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcProductRepresentation">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -3171,7 +3410,9 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Representations" upperBound="-1"
-          eType="#/0/IfcRepresentation" eOpposite="#/0/IfcRepresentation/OfProductRepresentation"/>
+          eType="#/0/IfcRepresentation" eOpposite="#/0/IfcRepresentation/OfProductRepresentation">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcProductsOfCombustionProperties"
         eSuperTypes="#/0/IfcMaterialProperties">
@@ -3245,11 +3486,17 @@
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="PropertyForDependance"
           upperBound="-1" eType="#/0/IfcPropertyDependencyRelationship" unsettable="true"
-          eOpposite="#/0/IfcPropertyDependencyRelationship/DependingProperty"/>
+          eOpposite="#/0/IfcPropertyDependencyRelationship/DependingProperty">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="PropertyDependsOn" upperBound="-1"
-          eType="#/0/IfcPropertyDependencyRelationship" unsettable="true" eOpposite="#/0/IfcPropertyDependencyRelationship/DependantProperty"/>
+          eType="#/0/IfcPropertyDependencyRelationship" unsettable="true" eOpposite="#/0/IfcPropertyDependencyRelationship/DependantProperty">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="PartOfComplex" upperBound="2"
-          eType="#/0/IfcComplexProperty" unsettable="true" eOpposite="#/0/IfcComplexProperty/HasProperties"/>
+          eType="#/0/IfcComplexProperty" unsettable="true" eOpposite="#/0/IfcComplexProperty/HasProperties">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcPropertyBoundedValue" eSuperTypes="#/0/IfcSimpleProperty">
       <eStructuralFeatures xsi:type="ecore:EReference" name="UpperBoundValue" eType="#/0/IfcValue"
@@ -3261,7 +3508,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcPropertyConstraintRelationship">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingConstraint" eType="#/0/IfcConstraint"
-          eOpposite="#/0/IfcConstraint/PropertiesForConstraint"/>
+          eOpposite="#/0/IfcConstraint/PropertiesForConstraint">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedProperties" unique="false"
           upperBound="-1" eType="#/0/IfcProperty"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -3271,13 +3520,19 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcPropertyDefinition" eSuperTypes="#/0/IfcRoot">
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasAssociations" upperBound="-1"
-          eType="#/0/IfcRelAssociates" unsettable="true"/>
+          eType="#/0/IfcRelAssociates" unsettable="true">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcPropertyDependencyRelationship">
       <eStructuralFeatures xsi:type="ecore:EReference" name="DependingProperty" eType="#/0/IfcProperty"
-          eOpposite="#/0/IfcProperty/PropertyForDependance"/>
+          eOpposite="#/0/IfcProperty/PropertyForDependance">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="DependantProperty" eType="#/0/IfcProperty"
-          eOpposite="#/0/IfcProperty/PropertyDependsOn"/>
+          eOpposite="#/0/IfcProperty/PropertyDependsOn">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -3315,9 +3570,13 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcPropertySetDefinition" eSuperTypes="#/0/IfcPropertyDefinition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="PropertyDefinitionOf"
-          upperBound="2" eType="#/0/IfcRelDefinesByProperties" unsettable="true" eOpposite="#/0/IfcRelDefinesByProperties/RelatingPropertyDefinition"/>
+          upperBound="2" eType="#/0/IfcRelDefinesByProperties" unsettable="true" eOpposite="#/0/IfcRelDefinesByProperties/RelatingPropertyDefinition">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="DefinesType" upperBound="2"
-          eType="#/0/IfcTypeObject" unsettable="true" eOpposite="#/0/IfcTypeObject/HasPropertySets"/>
+          eType="#/0/IfcTypeObject" unsettable="true" eOpposite="#/0/IfcTypeObject/HasPropertySets">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcPropertySingleValue" eSuperTypes="#/0/IfcSimpleProperty">
       <eStructuralFeatures xsi:type="ecore:EReference" name="NominalValue" eType="#/0/IfcValue"
@@ -3500,7 +3759,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcReferencesValueDocument">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ReferencedDocument" eType="#/0/IfcDocumentSelect"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ReferencingValues" upperBound="-1"
-          eType="#/0/IfcAppliedValue" eOpposite="#/0/IfcAppliedValue/ValuesReferenced"/>
+          eType="#/0/IfcAppliedValue" eOpposite="#/0/IfcAppliedValue/ValuesReferenced">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -3646,46 +3907,65 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelAggregates" eSuperTypes="#/0/IfcRelDecomposes"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelAssigns" eSuperTypes="#/0/IfcRelationship">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedObjects" upperBound="-1"
-          eType="#/0/IfcObjectDefinition" eOpposite="#/0/IfcObjectDefinition/HasAssignments"/>
+          eType="#/0/IfcObjectDefinition" eOpposite="#/0/IfcObjectDefinition/HasAssignments">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="RelatedObjectsType" eType="#/0/IfcObjectTypeEnum"
           unsettable="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelAssignsTasks" eSuperTypes="#/0/IfcRelAssignsToControl">
       <eStructuralFeatures xsi:type="ecore:EReference" name="TimeForTask" eType="#/0/IfcScheduleTimeControl"
-          unsettable="true" eOpposite="#/0/IfcScheduleTimeControl/ScheduleTimeControlAssigned"/>
+          unsettable="true" eOpposite="#/0/IfcScheduleTimeControl/ScheduleTimeControlAssigned">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelAssignsToActor" eSuperTypes="#/0/IfcRelAssigns">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingActor" eType="#/0/IfcActor"
-          eOpposite="#/0/IfcActor/IsActingUpon"/>
+          eOpposite="#/0/IfcActor/IsActingUpon">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ActingRole" eType="#/0/IfcActorRole"
           unsettable="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelAssignsToControl" eSuperTypes="#/0/IfcRelAssigns">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingControl" eType="#/0/IfcControl"
-          eOpposite="#/0/IfcControl/Controls"/>
+          eOpposite="#/0/IfcControl/Controls">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelAssignsToGroup" eSuperTypes="#/0/IfcRelAssigns">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingGroup" eType="#/0/IfcGroup"
-          eOpposite="#/0/IfcGroup/IsGroupedBy"/>
+          eOpposite="#/0/IfcGroup/IsGroupedBy">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelAssignsToProcess" eSuperTypes="#/0/IfcRelAssigns">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingProcess" eType="#/0/IfcProcess"
-          eOpposite="#/0/IfcProcess/OperatesOn"/>
+          eOpposite="#/0/IfcProcess/OperatesOn">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="QuantityInProcess" eType="#/0/IfcMeasureWithUnit"
           unsettable="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelAssignsToProduct" eSuperTypes="#/0/IfcRelAssigns">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingProduct" eType="#/0/IfcProduct"
-          eOpposite="#/0/IfcProduct/ReferencedBy"/>
+          eOpposite="#/0/IfcProduct/ReferencedBy">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelAssignsToProjectOrder" eSuperTypes="#/0/IfcRelAssignsToControl"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelAssignsToResource" eSuperTypes="#/0/IfcRelAssigns">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingResource" eType="#/0/IfcResource"
-          eOpposite="#/0/IfcResource/ResourceOf"/>
+          eOpposite="#/0/IfcResource/ResourceOf">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelAssociates" eSuperTypes="#/0/IfcRelationship">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedObjects" unique="false"
-          upperBound="-1" eType="#/0/IfcRoot"/>
+          upperBound="-1" eType="#/0/IfcRoot">
+        <eAnnotations source="inverse"/>
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelAssociatesAppliedValue" eSuperTypes="#/0/IfcRelAssociates">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingAppliedValue"
@@ -3725,9 +4005,13 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="ConnectionGeometry" eType="#/0/IfcConnectionGeometry"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingElement" eType="#/0/IfcElement"
-          eOpposite="#/0/IfcElement/ConnectedTo"/>
+          eOpposite="#/0/IfcElement/ConnectedTo">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedElement" eType="#/0/IfcElement"
-          eOpposite="#/0/IfcElement/ConnectedFrom"/>
+          eOpposite="#/0/IfcElement/ConnectedFrom">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelConnectsPathElements" eSuperTypes="#/0/IfcRelConnectsElements">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="RelatingPriorities" unique="false"
@@ -3741,35 +4025,55 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelConnectsPortToElement" eSuperTypes="#/0/IfcRelConnects">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingPort" eType="#/0/IfcPort"
-          eOpposite="#/0/IfcPort/ContainedIn"/>
+          eOpposite="#/0/IfcPort/ContainedIn">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedElement" eType="#/0/IfcElement"
-          eOpposite="#/0/IfcElement/HasPorts"/>
+          eOpposite="#/0/IfcElement/HasPorts">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelConnectsPorts" eSuperTypes="#/0/IfcRelConnects">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingPort" eType="#/0/IfcPort"
-          eOpposite="#/0/IfcPort/ConnectedTo"/>
+          eOpposite="#/0/IfcPort/ConnectedTo">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedPort" eType="#/0/IfcPort"
-          eOpposite="#/0/IfcPort/ConnectedFrom"/>
+          eOpposite="#/0/IfcPort/ConnectedFrom">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RealizingElement" eType="#/0/IfcElement"
           unsettable="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelConnectsStructuralActivity"
         eSuperTypes="#/0/IfcRelConnects">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingElement" eType="#/0/IfcStructuralActivityAssignmentSelect"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingElement" eType="#/0/IfcStructuralActivityAssignmentSelect">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedStructuralActivity"
-          eType="#/0/IfcStructuralActivity" eOpposite="#/0/IfcStructuralActivity/AssignedToStructuralItem"/>
+          eType="#/0/IfcStructuralActivity" eOpposite="#/0/IfcStructuralActivity/AssignedToStructuralItem">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelConnectsStructuralElement" eSuperTypes="#/0/IfcRelConnects">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingElement" eType="#/0/IfcElement"
-          eOpposite="#/0/IfcElement/HasStructuralMember"/>
+          eOpposite="#/0/IfcElement/HasStructuralMember">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedStructuralMember"
-          eType="#/0/IfcStructuralMember" eOpposite="#/0/IfcStructuralMember/ReferencesElement"/>
+          eType="#/0/IfcStructuralMember" eOpposite="#/0/IfcStructuralMember/ReferencesElement">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelConnectsStructuralMember" eSuperTypes="#/0/IfcRelConnects">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingStructuralMember"
-          eType="#/0/IfcStructuralMember" eOpposite="#/0/IfcStructuralMember/ConnectedBy"/>
+          eType="#/0/IfcStructuralMember" eOpposite="#/0/IfcStructuralMember/ConnectedBy">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedStructuralConnection"
-          eType="#/0/IfcStructuralConnection" eOpposite="#/0/IfcStructuralConnection/ConnectsStructuralMembers"/>
+          eType="#/0/IfcStructuralConnection" eOpposite="#/0/IfcStructuralConnection/ConnectsStructuralMembers">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="AppliedCondition" eType="#/0/IfcBoundaryCondition"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="AdditionalConditions"
@@ -3792,58 +4096,92 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelConnectsWithRealizingElements"
         eSuperTypes="#/0/IfcRelConnectsElements">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RealizingElements" upperBound="-1"
-          eType="#/0/IfcElement" eOpposite="#/0/IfcElement/IsConnectionRealization"/>
+          eType="#/0/IfcElement" eOpposite="#/0/IfcElement/IsConnectionRealization">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="ConnectionType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelContainedInSpatialStructure"
         eSuperTypes="#/0/IfcRelConnects">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedElements" unique="false"
-          upperBound="-1" eType="#/0/IfcProduct"/>
+          upperBound="-1" eType="#/0/IfcProduct">
+        <eAnnotations source="inverse"/>
+        <eAnnotations source="inverse"/>
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingStructure" eType="#/0/IfcSpatialStructureElement"
-          eOpposite="#/0/IfcSpatialStructureElement/ContainsElements"/>
+          eOpposite="#/0/IfcSpatialStructureElement/ContainsElements">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelCoversBldgElements" eSuperTypes="#/0/IfcRelConnects">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingBuildingElement"
-          eType="#/0/IfcElement" eOpposite="#/0/IfcElement/HasCoverings"/>
+          eType="#/0/IfcElement" eOpposite="#/0/IfcElement/HasCoverings">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedCoverings" upperBound="-1"
-          eType="#/0/IfcCovering" eOpposite="#/0/IfcCovering/Covers"/>
+          eType="#/0/IfcCovering" eOpposite="#/0/IfcCovering/Covers">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelCoversSpaces" eSuperTypes="#/0/IfcRelConnects">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedSpace" eType="#/0/IfcSpace"
-          eOpposite="#/0/IfcSpace/HasCoverings"/>
+          eOpposite="#/0/IfcSpace/HasCoverings">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedCoverings" upperBound="-1"
-          eType="#/0/IfcCovering" eOpposite="#/0/IfcCovering/CoversSpaces"/>
+          eType="#/0/IfcCovering" eOpposite="#/0/IfcCovering/CoversSpaces">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelDecomposes" eSuperTypes="#/0/IfcRelationship">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingObject" eType="#/0/IfcObjectDefinition"
-          eOpposite="#/0/IfcObjectDefinition/IsDecomposedBy"/>
+          eOpposite="#/0/IfcObjectDefinition/IsDecomposedBy">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedObjects" upperBound="-1"
-          eType="#/0/IfcObjectDefinition" eOpposite="#/0/IfcObjectDefinition/Decomposes"/>
+          eType="#/0/IfcObjectDefinition" eOpposite="#/0/IfcObjectDefinition/Decomposes">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelDefines" eSuperTypes="#/0/IfcRelationship">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedObjects" upperBound="-1"
-          eType="#/0/IfcObject" eOpposite="#/0/IfcObject/IsDefinedBy"/>
+          eType="#/0/IfcObject" eOpposite="#/0/IfcObject/IsDefinedBy">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelDefinesByProperties" eSuperTypes="#/0/IfcRelDefines">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingPropertyDefinition"
-          eType="#/0/IfcPropertySetDefinition" eOpposite="#/0/IfcPropertySetDefinition/PropertyDefinitionOf"/>
+          eType="#/0/IfcPropertySetDefinition" eOpposite="#/0/IfcPropertySetDefinition/PropertyDefinitionOf">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelDefinesByType" eSuperTypes="#/0/IfcRelDefines">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingType" eType="#/0/IfcTypeObject"
-          eOpposite="#/0/IfcTypeObject/ObjectTypeOf"/>
+          eOpposite="#/0/IfcTypeObject/ObjectTypeOf">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelFillsElement" eSuperTypes="#/0/IfcRelConnects">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingOpeningElement"
-          eType="#/0/IfcOpeningElement" eOpposite="#/0/IfcOpeningElement/HasFillings"/>
+          eType="#/0/IfcOpeningElement" eOpposite="#/0/IfcOpeningElement/HasFillings">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedBuildingElement"
-          eType="#/0/IfcElement" eOpposite="#/0/IfcElement/FillsVoids"/>
+          eType="#/0/IfcElement" eOpposite="#/0/IfcElement/FillsVoids">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelFlowControlElements" eSuperTypes="#/0/IfcRelConnects">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedControlElements"
-          upperBound="-1" eType="#/0/IfcDistributionControlElement" eOpposite="#/0/IfcDistributionControlElement/AssignedToFlowElement"/>
+          upperBound="-1" eType="#/0/IfcDistributionControlElement" eOpposite="#/0/IfcDistributionControlElement/AssignedToFlowElement">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingFlowElement"
-          eType="#/0/IfcDistributionFlowElement" eOpposite="#/0/IfcDistributionFlowElement/HasControlElements"/>
+          eType="#/0/IfcDistributionFlowElement" eOpposite="#/0/IfcDistributionFlowElement/HasControlElements">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelInteractionRequirements" eSuperTypes="#/0/IfcRelConnects">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="DailyInteraction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
@@ -3865,9 +4203,13 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="LocationOfInteraction"
           eType="#/0/IfcSpatialStructureElement" unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedSpaceProgram"
-          eType="#/0/IfcSpaceProgram" eOpposite="#/0/IfcSpaceProgram/HasInteractionReqsFrom"/>
+          eType="#/0/IfcSpaceProgram" eOpposite="#/0/IfcSpaceProgram/HasInteractionReqsFrom">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingSpaceProgram"
-          eType="#/0/IfcSpaceProgram" eOpposite="#/0/IfcSpaceProgram/HasInteractionReqsTo"/>
+          eType="#/0/IfcSpaceProgram" eOpposite="#/0/IfcSpaceProgram/HasInteractionReqsTo">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelNests" eSuperTypes="#/0/IfcRelDecomposes"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelOccupiesSpaces" eSuperTypes="#/0/IfcRelAssignsToActor"/>
@@ -3877,23 +4219,35 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelProjectsElement" eSuperTypes="#/0/IfcRelConnects">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingElement" eType="#/0/IfcElement"
-          eOpposite="#/0/IfcElement/HasProjections"/>
+          eOpposite="#/0/IfcElement/HasProjections">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedFeatureElement"
-          eType="#/0/IfcFeatureElementAddition" eOpposite="#/0/IfcFeatureElementAddition/ProjectsElements"/>
+          eType="#/0/IfcFeatureElementAddition" eOpposite="#/0/IfcFeatureElementAddition/ProjectsElements">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelReferencedInSpatialStructure"
         eSuperTypes="#/0/IfcRelConnects">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedElements" unique="false"
-          upperBound="-1" eType="#/0/IfcProduct"/>
+          upperBound="-1" eType="#/0/IfcProduct">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingStructure" eType="#/0/IfcSpatialStructureElement"
-          eOpposite="#/0/IfcSpatialStructureElement/ReferencesElements"/>
+          eOpposite="#/0/IfcSpatialStructureElement/ReferencesElements">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelSchedulesCostItems" eSuperTypes="#/0/IfcRelAssignsToControl"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelSequence" eSuperTypes="#/0/IfcRelConnects">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingProcess" eType="#/0/IfcProcess"
-          eOpposite="#/0/IfcProcess/IsPredecessorTo"/>
+          eOpposite="#/0/IfcProcess/IsPredecessorTo">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedProcess" eType="#/0/IfcProcess"
-          eOpposite="#/0/IfcProcess/IsSuccessorFrom"/>
+          eOpposite="#/0/IfcProcess/IsSuccessorFrom">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="TimeLag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="TimeLagAsString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="asstring"/>
@@ -3903,15 +4257,23 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelServicesBuildings" eSuperTypes="#/0/IfcRelConnects">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingSystem" eType="#/0/IfcSystem"
-          eOpposite="#/0/IfcSystem/ServicesBuildings"/>
+          eOpposite="#/0/IfcSystem/ServicesBuildings">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedBuildings" upperBound="-1"
-          eType="#/0/IfcSpatialStructureElement" eOpposite="#/0/IfcSpatialStructureElement/ServicedBySystems"/>
+          eType="#/0/IfcSpatialStructureElement" eOpposite="#/0/IfcSpatialStructureElement/ServicedBySystems">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelSpaceBoundary" eSuperTypes="#/0/IfcRelConnects">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingSpace" eType="#/0/IfcSpace"
-          eOpposite="#/0/IfcSpace/BoundedBy"/>
+          eOpposite="#/0/IfcSpace/BoundedBy">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedBuildingElement"
-          eType="#/0/IfcElement" unsettable="true" eOpposite="#/0/IfcElement/ProvidesBoundaries"/>
+          eType="#/0/IfcElement" unsettable="true" eOpposite="#/0/IfcElement/ProvidesBoundaries">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ConnectionGeometry" eType="#/0/IfcConnectionGeometry"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="PhysicalOrVirtualBoundary"
@@ -3921,9 +4283,13 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelVoidsElement" eSuperTypes="#/0/IfcRelConnects">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingBuildingElement"
-          eType="#/0/IfcElement" eOpposite="#/0/IfcElement/HasOpenings"/>
+          eType="#/0/IfcElement" eOpposite="#/0/IfcElement/HasOpenings">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedOpeningElement"
-          eType="#/0/IfcFeatureElementSubtraction" eOpposite="#/0/IfcFeatureElementSubtraction/VoidsElements"/>
+          eType="#/0/IfcFeatureElementSubtraction" eOpposite="#/0/IfcFeatureElementSubtraction/VoidsElements">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelationship" eSuperTypes="#/0/IfcRoot"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRelaxation">
@@ -3942,7 +4308,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRepresentation" eSuperTypes="#/0/IfcLayeredItem">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ContextOfItems" eType="#/0/IfcRepresentationContext"
-          eOpposite="#/0/IfcRepresentationContext/RepresentationsInContext"/>
+          eOpposite="#/0/IfcRepresentationContext/RepresentationsInContext">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="RepresentationIdentifier"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
@@ -3951,11 +4319,17 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="Items" unique="false"
           upperBound="-1" eType="#/0/IfcRepresentationItem"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RepresentationMap" upperBound="2"
-          eType="#/0/IfcRepresentationMap" unsettable="true" eOpposite="#/0/IfcRepresentationMap/MappedRepresentation"/>
+          eType="#/0/IfcRepresentationMap" unsettable="true" eOpposite="#/0/IfcRepresentationMap/MappedRepresentation">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="LayerAssignments" upperBound="-1"
-          eType="#/0/IfcPresentationLayerAssignment" unsettable="true"/>
+          eType="#/0/IfcPresentationLayerAssignment" unsettable="true">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="OfProductRepresentation"
-          upperBound="2" eType="#/0/IfcProductRepresentation" unsettable="true" eOpposite="#/0/IfcProductRepresentation/Representations"/>
+          upperBound="2" eType="#/0/IfcProductRepresentation" unsettable="true" eOpposite="#/0/IfcProductRepresentation/Representations">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRepresentationContext">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="ContextIdentifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -3963,24 +4337,36 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="ContextType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="RepresentationsInContext"
-          upperBound="-1" eType="#/0/IfcRepresentation" unsettable="true" eOpposite="#/0/IfcRepresentation/ContextOfItems"/>
+          upperBound="-1" eType="#/0/IfcRepresentation" unsettable="true" eOpposite="#/0/IfcRepresentation/ContextOfItems">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRepresentationItem" eSuperTypes="#/0/IfcLayeredItem">
       <eStructuralFeatures xsi:type="ecore:EReference" name="LayerAssignments" upperBound="-1"
-          eType="#/0/IfcPresentationLayerAssignment" unsettable="true"/>
+          eType="#/0/IfcPresentationLayerAssignment" unsettable="true">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="StyledByItem" upperBound="2"
-          eType="#/0/IfcStyledItem" unsettable="true" eOpposite="#/0/IfcStyledItem/Item"/>
+          eType="#/0/IfcStyledItem" unsettable="true" eOpposite="#/0/IfcStyledItem/Item">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRepresentationMap">
       <eStructuralFeatures xsi:type="ecore:EReference" name="MappingOrigin" eType="#/0/IfcAxis2Placement"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="MappedRepresentation"
-          eType="#/0/IfcRepresentation" eOpposite="#/0/IfcRepresentation/RepresentationMap"/>
+          eType="#/0/IfcRepresentation" eOpposite="#/0/IfcRepresentation/RepresentationMap">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="MapUsage" upperBound="-1"
-          eType="#/0/IfcMappedItem" unsettable="true" eOpposite="#/0/IfcMappedItem/MappingSource"/>
+          eType="#/0/IfcMappedItem" unsettable="true" eOpposite="#/0/IfcMappedItem/MappingSource">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcResource" eSuperTypes="#/0/IfcObject">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ResourceOf" upperBound="-1"
-          eType="#/0/IfcRelAssignsToResource" unsettable="true" eOpposite="#/0/IfcRelAssignsToResource/RelatingResource"/>
+          eType="#/0/IfcRelAssignsToResource" unsettable="true" eOpposite="#/0/IfcRelAssignsToResource/RelatingResource">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcRevolvedAreaSolid" eSuperTypes="#/0/IfcSweptAreaSolid">
       <eStructuralFeatures xsi:type="ecore:EReference" name="Axis" eType="#/0/IfcAxis1Placement"/>
@@ -4168,7 +4554,9 @@
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ScheduleTimeControlAssigned"
-          eType="#/0/IfcRelAssignsTasks" unsettable="true" eOpposite="#/0/IfcRelAssignsTasks/TimeForTask"/>
+          eType="#/0/IfcRelAssignsTasks" unsettable="true" eOpposite="#/0/IfcRelAssignsTasks/TimeForTask">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcSectionProperties">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="SectionType" eType="#/0/IfcSectionTypeEnum"/>
@@ -4236,7 +4624,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcShapeAspect">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ShapeRepresentations"
-          upperBound="-1" eType="#/0/IfcShapeModel" eOpposite="#/0/IfcShapeModel/OfShapeAspect"/>
+          upperBound="-1" eType="#/0/IfcShapeModel" eOpposite="#/0/IfcShapeModel/OfShapeAspect">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -4244,11 +4634,15 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="ProductDefinitional"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="PartOfProductDefinitionShape"
-          eType="#/0/IfcProductDefinitionShape" eOpposite="#/0/IfcProductDefinitionShape/HasShapeAspects"/>
+          eType="#/0/IfcProductDefinitionShape" eOpposite="#/0/IfcProductDefinitionShape/HasShapeAspects">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcShapeModel" eSuperTypes="#/0/IfcRepresentation">
       <eStructuralFeatures xsi:type="ecore:EReference" name="OfShapeAspect" upperBound="2"
-          eType="#/0/IfcShapeAspect" unsettable="true" eOpposite="#/0/IfcShapeAspect/ShapeRepresentations"/>
+          eType="#/0/IfcShapeAspect" unsettable="true" eOpposite="#/0/IfcShapeAspect/ShapeRepresentations">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcShapeRepresentation" eSuperTypes="#/0/IfcShapeModel"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcShellBasedSurfaceModel" eSuperTypes="#/0/IfcGeometricRepresentationItem">
@@ -4343,9 +4737,13 @@
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasCoverings" upperBound="-1"
-          eType="#/0/IfcRelCoversSpaces" unsettable="true" eOpposite="#/0/IfcRelCoversSpaces/RelatedSpace"/>
+          eType="#/0/IfcRelCoversSpaces" unsettable="true" eOpposite="#/0/IfcRelCoversSpaces/RelatedSpace">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="BoundedBy" upperBound="-1"
-          eType="#/0/IfcRelSpaceBoundary" unsettable="true" eOpposite="#/0/IfcRelSpaceBoundary/RelatingSpace"/>
+          eType="#/0/IfcRelSpaceBoundary" unsettable="true" eOpposite="#/0/IfcRelSpaceBoundary/RelatingSpace">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcSpaceHeaterType" eSuperTypes="#/0/IfcEnergyConversionDeviceType">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="PredefinedType" eType="#/0/IfcSpaceHeaterTypeEnum"/>
@@ -4380,10 +4778,14 @@
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasInteractionReqsFrom"
           upperBound="-1" eType="#/0/IfcRelInteractionRequirements" unsettable="true"
-          eOpposite="#/0/IfcRelInteractionRequirements/RelatedSpaceProgram"/>
+          eOpposite="#/0/IfcRelInteractionRequirements/RelatedSpaceProgram">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasInteractionReqsTo"
           upperBound="-1" eType="#/0/IfcRelInteractionRequirements" unsettable="true"
-          eOpposite="#/0/IfcRelInteractionRequirements/RelatingSpaceProgram"/>
+          eOpposite="#/0/IfcRelInteractionRequirements/RelatingSpaceProgram">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcSpaceThermalLoadProperties" eSuperTypes="#/0/IfcPropertySetDefinition">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="ApplicableValueRatio"
@@ -4431,11 +4833,17 @@
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="CompositionType" eType="#/0/IfcElementCompositionEnum"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ReferencesElements" upperBound="-1"
-          eType="#/0/IfcRelReferencedInSpatialStructure" unsettable="true" eOpposite="#/0/IfcRelReferencedInSpatialStructure/RelatingStructure"/>
+          eType="#/0/IfcRelReferencedInSpatialStructure" unsettable="true" eOpposite="#/0/IfcRelReferencedInSpatialStructure/RelatingStructure">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ServicedBySystems" upperBound="-1"
-          eType="#/0/IfcRelServicesBuildings" unsettable="true" eOpposite="#/0/IfcRelServicesBuildings/RelatedBuildings"/>
+          eType="#/0/IfcRelServicesBuildings" unsettable="true" eOpposite="#/0/IfcRelServicesBuildings/RelatedBuildings">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ContainsElements" upperBound="-1"
-          eType="#/0/IfcRelContainedInSpatialStructure" unsettable="true" eOpposite="#/0/IfcRelContainedInSpatialStructure/RelatingStructure"/>
+          eType="#/0/IfcRelContainedInSpatialStructure" unsettable="true" eOpposite="#/0/IfcRelContainedInSpatialStructure/RelatingStructure">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcSpatialStructureElementType" eSuperTypes="#/0/IfcElementType"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcSphere" eSuperTypes="#/0/IfcCsgPrimitive3D">
@@ -4479,29 +4887,39 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcStructuralAction" eSuperTypes="#/0/IfcStructuralActivity">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="DestabilizingLoad" eType="#/0/Tristate"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="CausedBy" eType="#/0/IfcStructuralReaction"
-          unsettable="true" eOpposite="#/0/IfcStructuralReaction/Causes"/>
+          unsettable="true" eOpposite="#/0/IfcStructuralReaction/Causes">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcStructuralActivity" eSuperTypes="#/0/IfcProduct">
       <eStructuralFeatures xsi:type="ecore:EReference" name="AppliedLoad" eType="#/0/IfcStructuralLoad"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="GlobalOrLocal" eType="#/0/IfcGlobalOrLocalEnum"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="AssignedToStructuralItem"
-          eType="#/0/IfcRelConnectsStructuralActivity" unsettable="true" eOpposite="#/0/IfcRelConnectsStructuralActivity/RelatedStructuralActivity"/>
+          eType="#/0/IfcRelConnectsStructuralActivity" unsettable="true" eOpposite="#/0/IfcRelConnectsStructuralActivity/RelatedStructuralActivity">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcStructuralAnalysisModel" eSuperTypes="#/0/IfcSystem">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="PredefinedType" eType="#/0/IfcAnalysisModelTypeEnum"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="OrientationOf2DPlane"
           eType="#/0/IfcAxis2Placement3D" unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="LoadedBy" upperBound="-1"
-          eType="#/0/IfcStructuralLoadGroup" unsettable="true" eOpposite="#/0/IfcStructuralLoadGroup/LoadGroupFor"/>
+          eType="#/0/IfcStructuralLoadGroup" unsettable="true" eOpposite="#/0/IfcStructuralLoadGroup/LoadGroupFor">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasResults" upperBound="-1"
-          eType="#/0/IfcStructuralResultGroup" unsettable="true" eOpposite="#/0/IfcStructuralResultGroup/ResultGroupFor"/>
+          eType="#/0/IfcStructuralResultGroup" unsettable="true" eOpposite="#/0/IfcStructuralResultGroup/ResultGroupFor">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcStructuralConnection" eSuperTypes="#/0/IfcStructuralItem">
       <eStructuralFeatures xsi:type="ecore:EReference" name="AppliedCondition" eType="#/0/IfcBoundaryCondition"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ConnectsStructuralMembers"
           upperBound="-1" eType="#/0/IfcRelConnectsStructuralMember" unsettable="true"
-          eOpposite="#/0/IfcRelConnectsStructuralMember/RelatedStructuralConnection"/>
+          eOpposite="#/0/IfcRelConnectsStructuralMember/RelatedStructuralConnection">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcStructuralConnectionCondition">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -4514,7 +4932,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcStructuralCurveMemberVarying" eSuperTypes="#/0/IfcStructuralCurveMember"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcStructuralItem" eSuperTypes="#/0/IfcProduct #/0/IfcStructuralActivityAssignmentSelect">
       <eStructuralFeatures xsi:type="ecore:EReference" name="AssignedStructuralActivity"
-          upperBound="-1" eType="#/0/IfcRelConnectsStructuralActivity" unsettable="true"/>
+          upperBound="-1" eType="#/0/IfcRelConnectsStructuralActivity" unsettable="true">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcStructuralLinearAction" eSuperTypes="#/0/IfcStructuralAction">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="ProjectedOrTrue" eType="#/0/IfcProjectedOrTrueLengthEnum"/>
@@ -4545,9 +4965,13 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Purpose" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="SourceOfResultGroup"
-          upperBound="2" eType="#/0/IfcStructuralResultGroup" unsettable="true" eOpposite="#/0/IfcStructuralResultGroup/ResultForLoadGroup"/>
+          upperBound="2" eType="#/0/IfcStructuralResultGroup" unsettable="true" eOpposite="#/0/IfcStructuralResultGroup/ResultForLoadGroup">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="LoadGroupFor" upperBound="-1"
-          eType="#/0/IfcStructuralAnalysisModel" unsettable="true" eOpposite="#/0/IfcStructuralAnalysisModel/LoadedBy"/>
+          eType="#/0/IfcStructuralAnalysisModel" unsettable="true" eOpposite="#/0/IfcStructuralAnalysisModel/LoadedBy">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcStructuralLoadLinearForce" eSuperTypes="#/0/IfcStructuralLoadStatic">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="LinearForceX" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
@@ -4771,9 +5195,13 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcStructuralMember" eSuperTypes="#/0/IfcStructuralItem">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ReferencesElement" upperBound="-1"
-          eType="#/0/IfcRelConnectsStructuralElement" unsettable="true" eOpposite="#/0/IfcRelConnectsStructuralElement/RelatedStructuralMember"/>
+          eType="#/0/IfcRelConnectsStructuralElement" unsettable="true" eOpposite="#/0/IfcRelConnectsStructuralElement/RelatedStructuralMember">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ConnectedBy" upperBound="-1"
-          eType="#/0/IfcRelConnectsStructuralMember" unsettable="true" eOpposite="#/0/IfcRelConnectsStructuralMember/RelatingStructuralMember"/>
+          eType="#/0/IfcRelConnectsStructuralMember" unsettable="true" eOpposite="#/0/IfcRelConnectsStructuralMember/RelatingStructuralMember">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcStructuralPlanarAction" eSuperTypes="#/0/IfcStructuralAction">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="ProjectedOrTrue" eType="#/0/IfcProjectedOrTrueLengthEnum"/>
@@ -4927,15 +5355,21 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcStructuralReaction" eSuperTypes="#/0/IfcStructuralActivity">
       <eStructuralFeatures xsi:type="ecore:EReference" name="Causes" upperBound="-1"
-          eType="#/0/IfcStructuralAction" unsettable="true" eOpposite="#/0/IfcStructuralAction/CausedBy"/>
+          eType="#/0/IfcStructuralAction" unsettable="true" eOpposite="#/0/IfcStructuralAction/CausedBy">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcStructuralResultGroup" eSuperTypes="#/0/IfcGroup">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="TheoryType" eType="#/0/IfcAnalysisTheoryTypeEnum"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ResultForLoadGroup" eType="#/0/IfcStructuralLoadGroup"
-          unsettable="true" eOpposite="#/0/IfcStructuralLoadGroup/SourceOfResultGroup"/>
+          unsettable="true" eOpposite="#/0/IfcStructuralLoadGroup/SourceOfResultGroup">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="IsLinear" eType="#/0/Tristate"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ResultGroupFor" upperBound="2"
-          eType="#/0/IfcStructuralAnalysisModel" unsettable="true" eOpposite="#/0/IfcStructuralAnalysisModel/HasResults"/>
+          eType="#/0/IfcStructuralAnalysisModel" unsettable="true" eOpposite="#/0/IfcStructuralAnalysisModel/HasResults">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcStructuralSteelProfileProperties"
         eSuperTypes="#/0/IfcStructuralProfileProperties">
@@ -5007,7 +5441,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcStyleModel" eSuperTypes="#/0/IfcRepresentation"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcStyledItem" eSuperTypes="#/0/IfcRepresentationItem">
       <eStructuralFeatures xsi:type="ecore:EReference" name="Item" eType="#/0/IfcRepresentationItem"
-          unsettable="true" eOpposite="#/0/IfcRepresentationItem/StyledByItem"/>
+          unsettable="true" eOpposite="#/0/IfcRepresentationItem/StyledByItem">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Styles" unique="false"
           upperBound="-1" eType="#/0/IfcPresentationStyleAssignment"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -5161,7 +5597,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcSystem" eSuperTypes="#/0/IfcGroup">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ServicesBuildings" upperBound="2"
-          eType="#/0/IfcRelServicesBuildings" unsettable="true" eOpposite="#/0/IfcRelServicesBuildings/RelatingSystem"/>
+          eType="#/0/IfcRelServicesBuildings" unsettable="true" eOpposite="#/0/IfcRelServicesBuildings/RelatingSystem">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcSystemFurnitureElementType" eSuperTypes="#/0/IfcFurnishingElementType"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcTShapeProfileDef" eSuperTypes="#/0/IfcParameterizedProfileDef">
@@ -5239,14 +5677,18 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcTable" eSuperTypes="#/0/IfcMetricValueSelect">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="Rows" upperBound="-1"
-          eType="#/0/IfcTableRow" eOpposite="#/0/IfcTableRow/OfTable"/>
+          eType="#/0/IfcTableRow" eOpposite="#/0/IfcTableRow/OfTable">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcTableRow">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RowCells" unique="false"
           upperBound="-1" eType="#/0/IfcValue"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="IsHeading" eType="#/0/Tristate"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="OfTable" eType="#/0/IfcTable"
-          unsettable="true" eOpposite="#/0/IfcTable/Rows"/>
+          unsettable="true" eOpposite="#/0/IfcTable/Rows">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcTankType" eSuperTypes="#/0/IfcFlowStorageDeviceType">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="PredefinedType" eType="#/0/IfcTankTypeEnum"/>
@@ -5333,7 +5775,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcTendonAnchor" eSuperTypes="#/0/IfcReinforcingElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcTerminatorSymbol" eSuperTypes="#/0/IfcAnnotationSymbolOccurrence">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="AnnotatedCurve" eType="#/0/IfcAnnotationCurveOccurrence"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="AnnotatedCurve" eType="#/0/IfcAnnotationCurveOccurrence">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcTextLiteral" eSuperTypes="#/0/IfcGeometricRepresentationItem">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Literal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -5421,7 +5865,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcTextureCoordinate">
       <eStructuralFeatures xsi:type="ecore:EReference" name="AnnotatedSurface" upperBound="2"
-          eType="#/0/IfcAnnotationSurface" unsettable="true" eOpposite="#/0/IfcAnnotationSurface/TextureCoordinates"/>
+          eType="#/0/IfcAnnotationSurface" unsettable="true" eOpposite="#/0/IfcAnnotationSurface/TextureCoordinates">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcTextureCoordinateGenerator" eSuperTypes="#/0/IfcTextureCoordinate">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Mode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -5491,11 +5937,15 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="Unit" eType="#/0/IfcUnit"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="DocumentedBy" upperBound="2"
-          eType="#/0/IfcTimeSeriesReferenceRelationship" unsettable="true" eOpposite="#/0/IfcTimeSeriesReferenceRelationship/ReferencedTimeSeries"/>
+          eType="#/0/IfcTimeSeriesReferenceRelationship" unsettable="true" eOpposite="#/0/IfcTimeSeriesReferenceRelationship/ReferencedTimeSeries">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcTimeSeriesReferenceRelationship">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ReferencedTimeSeries"
-          eType="#/0/IfcTimeSeries" eOpposite="#/0/IfcTimeSeries/DocumentedBy"/>
+          eType="#/0/IfcTimeSeries" eOpposite="#/0/IfcTimeSeries/DocumentedBy">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="TimeSeriesReferences"
           unique="false" upperBound="-1" eType="#/0/IfcDocumentSelect"/>
     </eClassifiers>
@@ -5582,9 +6032,13 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="HasPropertySets" upperBound="-1"
-          eType="#/0/IfcPropertySetDefinition" unsettable="true" eOpposite="#/0/IfcPropertySetDefinition/DefinesType"/>
+          eType="#/0/IfcPropertySetDefinition" unsettable="true" eOpposite="#/0/IfcPropertySetDefinition/DefinesType">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ObjectTypeOf" upperBound="2"
-          eType="#/0/IfcRelDefinesByType" unsettable="true" eOpposite="#/0/IfcRelDefinesByType/RelatingType"/>
+          eType="#/0/IfcRelDefinesByType" unsettable="true" eOpposite="#/0/IfcRelDefinesByType/RelatingType">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcTypeProduct" eSuperTypes="#/0/IfcTypeObject">
       <eStructuralFeatures xsi:type="ecore:EReference" name="RepresentationMaps" unique="false"
@@ -5687,7 +6141,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="IfcVirtualElement" eSuperTypes="#/0/IfcElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="IfcVirtualGridIntersection">
       <eStructuralFeatures xsi:type="ecore:EReference" name="IntersectingAxes" upperBound="-1"
-          eType="#/0/IfcGridAxis" eOpposite="#/0/IfcGridAxis/HasIntersections"/>
+          eType="#/0/IfcGridAxis" eOpposite="#/0/IfcGridAxis/HasIntersections">
+        <eAnnotations source="inverse"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="OffsetDistances" unique="false"
           upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="OffsetDistancesAsString"

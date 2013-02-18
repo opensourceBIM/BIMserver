@@ -30,17 +30,13 @@ import java.util.List;
 
 import org.apache.geronimo.mail.util.Hex;
 import org.bimserver.emf.IdEObject;
-import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.SchemaDefinition;
-import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
 import org.eclipse.emf.common.util.EList;
@@ -89,21 +85,10 @@ public class IfcStepSerializer extends IfcSerializer {
 
 	private Iterator<IdEObject> iterator;
 	private UTF8PrintWriter out;
-	private SchemaDefinition schema;
 	private PluginConfiguration pluginConfiguration;
 
 	public IfcStepSerializer(PluginConfiguration pluginConfiguration) {
 		this.pluginConfiguration = pluginConfiguration;
-	}
-
-	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEnginePlugin, normalizeOids);
-		try {
-			schema = getPluginManager().requireSchemaDefinition();
-		} catch (PluginException e) {
-			throw new SerializerException(e);
-		}
 	}
 
 	@Override
@@ -323,8 +308,7 @@ public class IfcStepSerializer extends IfcSerializer {
 	}
 
 	private void writeEDataType(PrintWriter out, EObject object, EStructuralFeature feature) throws SerializerException {
-		EntityDefinition entityBN = schema.getEntityBNNoCaseConvert(upperCases.get(object.eClass()));
-		if (entityBN != null && entityBN.isDerived(feature.getName())) {
+		if (feature.getEAnnotation("derived") != null) {
 			out.print(ASTERISK);
 		} else if (feature.isMany()) {
 			writeList(out, object, feature);
@@ -342,8 +326,7 @@ public class IfcStepSerializer extends IfcSerializer {
 				out.print(DASH);
 				out.print(String.valueOf(getExpressId((IdEObject) referencedObject)));
 			} else {
-				EntityDefinition entityBN = schema.getEntityBNNoCaseConvert(upperCases.get(object.eClass()));
-				if (entityBN != null && entityBN.isDerived(feature.getName())) {
+				if (feature.getEAnnotation("derived") != null) {
 					out.print(ASTERISK);
 				} else if (feature.isMany()) {
 					writeList(out, object, feature);
