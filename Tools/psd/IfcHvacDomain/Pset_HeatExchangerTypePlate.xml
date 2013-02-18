@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcHvacDomain"/><Name>Pset_HeatExchangerTypePlate</Name><Definition>Definition from IAI: Plate heat exchanger type common attributes.
+</Definition><Applicability>Entity specific property set</Applicability><ApplicableClasses><ClassName>IfcHeatExchangerType</ClassName></ApplicableClasses><ApplicableTypeValue>IfcHeatExchangerType.PredefinedType="PLATE"</ApplicableTypeValue><PropertyDefs><PropertyDef><Name>NumberOfPlates</Name><PropertyType><TypePropertySingleValue><DataType type="IfcInteger"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>Number of plates used by the plate heat exchanger.</Definition></PropertyDef></PropertyDefs></PropertySetDef>

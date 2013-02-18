@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcSharedBldgServiceElements"/><Name>Pset_FlowMovingDeviceFanCentrifugal</Name><Definition>Definition from IAI: Centrifugal fan occurrence attributes attached to an instance of IfcFlowMovingDevice.
+</Definition><Applicability>Entity specific property set</Applicability><ApplicableClasses><ClassName>IfcFlowMovingDevice</ClassName></ApplicableClasses><ApplicableTypeValue>RelatedEntityIs:IfcFanType.PredefinedType="CENTRIFUGALFORWARDCURVED", "CENTRIFUGALRADIAL", "CENTRIFUGALBACKWARDINCLINEDCURVED", "CENTRIFUGALAIRFOIL."</ApplicableTypeValue><PropertyDefs><PropertyDef><Name>DischargePosition</Name><PropertyType><TypePropertyEnumeratedValue><EnumList name="PEnum_CentrifugalFanDischargePosition"><EnumItem>TOPHORIZONTAL</EnumItem><EnumItem>TOPANGULARDOWN</EnumItem><EnumItem>TOPANGULARUP</EnumItem><EnumItem>DOWNBLAST</EnumItem><EnumItem>BOTTOMANGULARDOWN</EnumItem><EnumItem>BOTTOMHORIZONTAL</EnumItem><EnumItem>BOTTOMANGULARUP</EnumItem><EnumItem>UPBLAST</EnumItem><EnumItem>OTHER</EnumItem><EnumItem>NOTKNOWN</EnumItem><EnumItem>UNSET</EnumItem></EnumList></TypePropertyEnumeratedValue></PropertyType><ValueDef><MinValue value=""/><MaxValue value=""/></ValueDef><Definition>Centrifugal fan discharge position:
+TOPHORIZONTAL: Top horizontal discharge. 
+TOPANGULARDOWN: Top angular down discharge. 
+DOWNBLAST: Downblast discharge. 
+BOTTOMANGULARDOWN: Bottom angular down discharge. 
+BOTTOMHORIZONTAL: Bottom horizontal discharge. 
+BOTTOMANGULARUP: Bottom angular up discharge. 
+UPBLAST: Upblast discharge. 
+TOPANGULARUP: Top angular up discharge. 
+OTHER: Other type of fan arrangement.</Definition></PropertyDef><PropertyDef><Name>DirectionOfRotation</Name><PropertyType><TypePropertyEnumeratedValue><EnumList name="PEnum_CentrifugalFanRotation"><EnumItem>CLOCKWISE</EnumItem><EnumItem>COUNTERCLOCKWISE</EnumItem><EnumItem>OTHER</EnumItem><EnumItem>NOTKNOWN</EnumItem><EnumItem>UNSET</EnumItem></EnumList></TypePropertyEnumeratedValue></PropertyType><ValueDef><MinValue value=""/><MaxValue value=""/></ValueDef><Definition>The direction of the centrifugal fan wheel rotation when viewed from the drive side of the fan:
+CLOCKWISE: Clockwise. 
+COUNTERCLOCKWISE: Counter-clockwise. 
+OTHER: Other type of fan rotation.</Definition></PropertyDef><PropertyDef><Name>Arrangement</Name><PropertyType><TypePropertyEnumeratedValue><EnumList name="PEnum_CentrifugalFanArrangement"><EnumItem>ARRANGEMENT1</EnumItem><EnumItem>ARRANGEMENT2</EnumItem><EnumItem>ARRANGEMENT3</EnumItem><EnumItem>ARRANGEMENT4</EnumItem><EnumItem>ARRANGEMENT7</EnumItem><EnumItem>ARRANGEMENT8</EnumItem><EnumItem>ARRANGEMENT9</EnumItem><EnumItem>ARRANGEMENT10</EnumItem><EnumItem>OTHER</EnumItem><EnumItem>NOTKNOWN</EnumItem><EnumItem>UNSET</EnumItem></EnumList></TypePropertyEnumeratedValue></PropertyType><ValueDef><MinValue value=""/><MaxValue value=""/></ValueDef><Definition>Defines the fan and motor drive arrangement as defined by AMCA:
+ARRANGEMENT1: Arrangement 1. 
+ARRANGEMENT2: Arrangement 2. 
+ARRANGEMENT3: Arrangement 3. 
+ARRANGEMENT4: Arrangement 4. 
+ARRANGEMENT7: Arrangement 7. 
+ARRANGEMENT8: Arrangement 8. 
+ARRANGEMENT9: Arrangement 9. 
+ARRANGEMENT10: Arrangement 10. 
+OTHER: Other type of fan drive arrangement.</Definition></PropertyDef></PropertyDefs></PropertySetDef>

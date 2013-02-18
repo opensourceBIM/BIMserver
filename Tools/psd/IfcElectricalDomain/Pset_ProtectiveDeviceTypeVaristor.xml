@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcElectricalDomain"/><Name>Pset_ProtectiveDeviceTypeVaristor</Name><Definition>Definition from IAI: A high voltage surge protection device.</Definition><Applicability>IfcProtectiveDeviceType entity.</Applicability><ApplicableClasses><ClassName>IfcProtectiveDeviceType</ClassName></ApplicableClasses><ApplicableTypeValue>IfcProtectiveDeviceType.PredefinedType="VARISTOR"</ApplicableTypeValue><PropertyDefs><PropertyDef><Name>VaristorType</Name><PropertyType><TypePropertyEnumeratedValue><EnumList name="PEnum_VaristorType"><EnumItem>MetalOxide</EnumItem><EnumItem>ZincOxide</EnumItem><EnumItem>Other</EnumItem><EnumItem>NotKnown</EnumItem><EnumItem>Unset</EnumItem></EnumList></TypePropertyEnumeratedValue></PropertyType><ValueDef><MinValue value=""/><MaxValue value=""/></ValueDef><Definition>A list of the available types of varistor  from which that required may be selected.
+
+
+
+</Definition></PropertyDef></PropertyDefs></PropertySetDef>

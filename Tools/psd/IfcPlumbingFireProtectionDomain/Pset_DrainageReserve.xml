@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcProductExtension"/><Name>Pset_DrainageReserve</Name><Definition>Definition from IAI: Area exclusively reserved for the routing of drainage services. Used as a non type driven property set in conjunction with an appropriate instance of IfcSpatialStructureElement that is identified as a drainage reserve using the inherited IfcRoot.Name attribute.
+</Definition><Applicability>IfcSpatialStructureElement entity.</Applicability><ApplicableClasses><ClassName>IfcSite</ClassName></ApplicableClasses><ApplicableTypeValue></ApplicableTypeValue><PropertyDefs><PropertyDef><Name>Width</Name><PropertyType><TypePropertySingleValue><DataType type="IfcLengthMeasure"/><UnitType type="LENGTHUNIT"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>The width of the drainage reserve</Definition></PropertyDef></PropertyDefs></PropertySetDef>

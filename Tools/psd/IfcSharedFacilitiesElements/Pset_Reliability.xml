@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IFCKERNEL"/><Name>Pset_Reliability</Name><Definition>Definition from IAI: Indication of the expected reliability of a product
+</Definition><Applicability>IfcProduct entity.</Applicability><ApplicableClasses><ClassName>IfcProduct</ClassName></ApplicableClasses><ApplicableTypeValue></ApplicableTypeValue><PropertyDefs><PropertyDef><Name>MeanTimeBetweenFailure</Name><PropertyType><TypePropertySingleValue><DataType type="IfcTimeMeasure"/><UnitType type="TIMEUNIT"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>The average time duration between instances of failure of a product.</Definition></PropertyDef></PropertyDefs></PropertySetDef>

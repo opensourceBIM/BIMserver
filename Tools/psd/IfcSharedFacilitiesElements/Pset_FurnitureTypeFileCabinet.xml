@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcSharedFacilitiesElements"/><Name>Pset_FurnitureTypeFileCabinet</Name><Definition>Definition from IAI: A set of specific properties for furniture type file cabinet HISTORY: First issued in IFC Release R1.5. Renamed from Pset_FileCabinet
+</Definition><Applicability>IfcFurnitureType entity</Applicability><ApplicableClasses><ClassName>IfcFurnitureType</ClassName></ApplicableClasses><ApplicableTypeValue></ApplicableTypeValue><PropertyDefs><PropertyDef><Name>WithLock</Name><PropertyType><TypePropertySingleValue><DataType type="IfcBoolean"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>Indicates whether the file cabinet is lockable (= TRUE) or not (= FALSE).</Definition></PropertyDef></PropertyDefs></PropertySetDef>

@@ -1,0 +1,769 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Yoshinobu Adachi (SECOM Co., Ltd.) -->
+<!-- Created with Liquid XML Studio 0.9.15.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="PropertySetDef">
+		<xs:annotation>
+			<xs:documentation>Top node element of PSD.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="IfcVersion">
+					<xs:annotation>
+						<xs:documentation>Version information of IFC release and sub schema.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="version" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Version of IFC, i.e., "2x3  TC1".</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="schema" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Sub schema name,  i.e., "IfcSharedBldgElements".</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Name" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Name of proerty set.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Definition" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Definition of property set  from International Alliance for Interoperability.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Applicability" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Description of applicability and usecases, i.e., "IfcDoor entity", "Common Pset of Ifc...".</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ApplicableClasses" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Container element of applicable entity types.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ClassName" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Applicable entity type, i.e., "IfcWallStandardCase".</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ApplicableTypeValue" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The format of applicable type value is ENTITY_TYPE.ATTRIBUTE="TYPE". Multiple value is accepted like "ITEM_1 | ITEM_2 ...".</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="PropertyDefs">
+					<xs:annotation>
+						<xs:documentation>Container element of property definition.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="PropertyDef" type="PropertyDef" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Element of property definition.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="PsetDefinitionAliases" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Container element of property set definition alias.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="PsetDefinitionAlias" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Property set definition in local language.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="lang" type="xs:string">
+												<xs:annotation>
+													<xs:documentation>Language code based on ISO 639-1 and ISO 3166-1 alpha-2 codes, i.e., "de-DE", "ja-JP", "fr-FR", "no-NO".</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="ifdguid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation> IFD reference GUID.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="PropertyDef">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="Name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Name of property.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ValueDef">
+				<xs:annotation>
+					<xs:documentation>Not in use. This element is deprecated.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element name="MinValue">
+							<xs:complexType>
+								<xs:attribute name="value" type="xs:string"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="MaxValue">
+							<xs:complexType>
+								<xs:attribute name="value" type="xs:string"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="DefaultValue">
+							<xs:complexType>
+								<xs:attribute name="value" type="xs:string"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Definition" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Definition of property.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NameAliases">
+				<xs:annotation>
+					<xs:documentation>Container element of name alias.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="NameAlias" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Name alias in local language.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:string">
+										<xs:attribute name="lang" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Language code based on ISO 639-1 and ISO 3166-1 alpha-2 codes, i.e., "de-DE", "ja-JP", "fr-FR", "no-NO".</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DefinitionAliases">
+				<xs:annotation>
+					<xs:documentation>Container element of definition alias.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="DefinitionAlias" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Definition in local language.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:string">
+										<xs:attribute name="lang" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>Language code based on ISO 639-1 and ISO 3166-1 alpha-2 codes, i.e., "de-DE", "ja-JP", "fr-FR", "no-NO".</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PropertyType" type="PropertyType">
+				<xs:annotation>
+					<xs:documentation>Container of property type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="ifdguid" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>GUID of IFD.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="PropertyType">
+		<xs:choice>
+			<xs:element name="TypePropertySingleValue">
+				<xs:annotation>
+					<xs:documentation>Type of IfcPropertySingleValue. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="DataType" type="DataType">
+							<xs:annotation>
+								<xs:documentation>Property data type.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="UnitType" type="UnitType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Property data unit.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TypePropertyEnumeratedValue">
+				<xs:annotation>
+					<xs:documentation>Type of IfcPropertyEnumeratedValue.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="EnumList">
+							<xs:annotation>
+								<xs:documentation>Container of enumeration list.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence minOccurs="0" maxOccurs="unbounded">
+									<xs:element name="EnumItem" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>Enumeration item in uppercase.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="name" type="xs:string" use="required">
+									<xs:annotation>
+										<xs:documentation>Name of enumeration, i.e., PEnum_*.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TypePropertyBoundedValue">
+				<xs:annotation>
+					<xs:documentation>Type of IfcPropertyBoundedValue.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ValueRangeDef">
+							<xs:annotation>
+								<xs:documentation>Container of bound value.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="LowerBoundValue">
+										<xs:annotation>
+											<xs:documentation>Lower bound value.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:attribute name="value" type="xs:string">
+												<xs:annotation>
+													<xs:documentation>Lower value.</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="UpperBoundValue">
+										<xs:annotation>
+											<xs:documentation>Upper bound value.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:attribute name="value" type="xs:string">
+												<xs:annotation>
+													<xs:documentation>Upper value.</xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="DataType" type="DataType">
+							<xs:annotation>
+								<xs:documentation>Property data type.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="UnitType" type="UnitType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Property data unit.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TypePropertyTableValue">
+				<xs:annotation>
+					<xs:documentation>Type of IfcPropertyTableValue.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Expression" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Information about the expression for the derivation of defined values from the defining values.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="DefiningValue">
+							<xs:annotation>
+								<xs:documentation>List of defining values, which determine the defined values. This list shall have unique values only.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="DataType" type="DataType">
+										<xs:annotation>
+											<xs:documentation>Defining value data type.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="UnitType" type="UnitType" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Defining value unit.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="Values" type="Values">
+										<xs:annotation>
+											<xs:documentation>Container of values.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="DefinedValue">
+							<xs:annotation>
+								<xs:documentation>Defined values which are applicable for the scope as defined by the defining values.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="DataType" type="DataType">
+										<xs:annotation>
+											<xs:documentation>Defined value data type.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="UnitType" type="UnitType" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Defined value unit.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="Values" type="Values">
+										<xs:annotation>
+											<xs:documentation>Container of values.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TypePropertyReferenceValue" type="ReferenceSelect">
+				<xs:annotation>
+					<xs:documentation>Type of IfcPropertyReferenceValue. </xs:documentation>
+				</xs:annotation>
+				<!-- <xs:complexType>
+					<xs:attribute name="reftype" type="xs:string" use="required"/>		
+					<xs:attribute name="guid" type="xs:string"/>
+					<xs:attribute name="URL" type="xs:string"/>
+					<xs:attribute name="libraryname" type="xs:string"/>
+					<xs:attribute name="sectionref" type="xs:string"/>
+				</xs:complexType> -->
+			</xs:element>
+			<xs:element name="TypePropertyListValue">
+				<xs:annotation>
+					<xs:documentation>Type of IfcPropertyListValue.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ListValue">
+							<xs:annotation>
+								<xs:documentation>Container element of list value.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="DataType" type="DataType">
+										<xs:annotation>
+											<xs:documentation>List value data type.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="UnitType" type="UnitType" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>List value unit.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="Values" type="Values">
+										<xs:annotation>
+											<xs:documentation>Container of values.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TypeComplexProperty">
+				<xs:annotation>
+					<xs:documentation>Type of IfcComplexProperty.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="PropertyDef" type="PropertyDef" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="name" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Name of complex property, i.e., "CP_*".</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="DataType">
+		<xs:attribute name="type" default="IfcText">
+			<xs:annotation>
+				<xs:documentation>Property data type based on IfcValue.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="IfcAmountOfSubstanceMeasure"/>
+					<xs:enumeration value="IfcAreaMeasure"/>
+					<xs:enumeration value="IfcContextDependentMeasure"/>
+					<xs:enumeration value="IfcCountMeasure"/>
+					<xs:enumeration value="IfcDescriptiveMeasure"/>
+					<xs:enumeration value="IfcElectricCurrentMeasure"/>
+					<xs:enumeration value="IfcLengthMeasure"/>
+					<xs:enumeration value="IfcLuminousIntensityMeasure"/>
+					<xs:enumeration value="IfcMassMeasure"/>
+					<xs:enumeration value="IfcNormalisedRatioMeasure"/>
+					<xs:enumeration value="IfcNumericMeasure"/>
+					<xs:enumeration value="IfcParameterValue"/>
+					<xs:enumeration value="IfcPlaneAngleMeasure"/>
+					<xs:enumeration value="IfcPositiveLengthMeasure"/>
+					<xs:enumeration value="IfcPositivePlaneAngleMeasure"/>
+					<xs:enumeration value="IfcPositiveRatioMeasure"/>
+					<xs:enumeration value="IfcRatioMeasure"/>
+					<xs:enumeration value="IfcSolidAngleMeasure"/>
+					<xs:enumeration value="IfcThermodynamicTemperatureMeasure"/>
+					<xs:enumeration value="IfcTimeMeasure"/>
+					<xs:enumeration value="IfcVolumeMeasure"/>
+					<xs:enumeration value="IfcComplexNumber"/>
+					<xs:enumeration value="IfcInteger"/>
+					<xs:enumeration value="IfcReal"/>
+					<xs:enumeration value="IfcBoolean"/>
+					<xs:enumeration value="IfcIdentifier"/>
+					<xs:enumeration value="IfcText"/>
+					<xs:enumeration value="IfcLabel"/>
+					<xs:enumeration value="IfcLogical"/>
+					<xs:enumeration value="IfcAbsorbedDoseMeasure"/>
+					<xs:enumeration value="IfcAccelerationMeasure"/>
+					<xs:enumeration value="IfcAngularVelocityMeasure"/>
+					<xs:enumeration value="IfcCompoundPlaneAngleMeasure"/>
+					<xs:enumeration value="IfcDoseEquivalentMeasure"/>
+					<xs:enumeration value="IfcDynamicViscosityMeasure"/>
+					<xs:enumeration value="IfcElectricCapacitanceMeasure"/>
+					<xs:enumeration value="IfcElectricChargeMeasure"/>
+					<xs:enumeration value="IfcElectricConductanceMeasure"/>
+					<xs:enumeration value="IfcElectricResistanceMeasure"/>
+					<xs:enumeration value="IfcElectricVoltageMeasure"/>
+					<xs:enumeration value="IfcEnergyMeasure"/>
+					<xs:enumeration value="IfcForceMeasure"/>
+					<xs:enumeration value="IfcFrequencyMeasure"/>
+					<xs:enumeration value="IfcHeatFluxDensityMeasure"/>
+					<xs:enumeration value="IfcIlluminanceMeasure"/>
+					<xs:enumeration value="IfcInductanceMeasure"/>
+					<xs:enumeration value="IfcIntegerCountRateMeasure"/>
+					<xs:enumeration value="IfcIsothermalMoisturecapacityMeasure"/>
+					<xs:enumeration value="IfcKinematicViscosityMeasure"/>
+					<xs:enumeration value="IfcLinearForceMeasure"/>
+					<xs:enumeration value="IfcLinearMomentMeasure"/>
+					<xs:enumeration value="IfcLinearStiffnessMeasure"/>
+					<xs:enumeration value="IfcLinearVelocityMeasure"/>
+					<xs:enumeration value="IfcLuminousFluxMeasure"/>
+					<xs:enumeration value="IfcMagneticFluxDensityMeasure"/>
+					<xs:enumeration value="IfcMagneticFluxMeasure"/>
+					<xs:enumeration value="IfcMassDensityMeasure"/>
+					<xs:enumeration value="IfcMassFlowRateMeasure"/>
+					<xs:enumeration value="IfcModulusOfElasticityMeasure"/>
+					<xs:enumeration value="IfcModulusOfSubgradeReactionMeasure"/>
+					<xs:enumeration value="IfcMoistureDiffusivityMeasure"/>
+					<xs:enumeration value="IfcMolecularWeightMeasure"/>
+					<xs:enumeration value="IfcMomentOfInertiaMeasure"/>
+					<xs:enumeration value="IfcMonetaryMeasure"/>
+					<xs:enumeration value="IfcPlanarForceMeasure"/>
+					<xs:enumeration value="IfcPowerMeasure"/>
+					<xs:enumeration value="IfcPressureMeasure"/>
+					<xs:enumeration value="IfcRadioActivityMeasure"/>
+					<xs:enumeration value="IfcRotationalFrequencyMeasure"/>
+					<xs:enumeration value="IfcRotationalStiffnessMeasure"/>
+					<xs:enumeration value="IfcShearModulusMeasure"/>
+					<xs:enumeration value="IfcSpecificHeatCapacityMeasure"/>
+					<xs:enumeration value="IfcThermalAdmittanceMeasure"/>
+					<xs:enumeration value="IfcThermalConductivityMeasure"/>
+					<xs:enumeration value="IfcThermalResistanceMeasure"/>
+					<xs:enumeration value="IfcThermalTransmittanceMeasure"/>
+					<xs:enumeration value="IfcTimeStamp"/>
+					<xs:enumeration value="IfcTorqueMeasure"/>
+					<xs:enumeration value="IfcVaporPermeabilityMeasure"/>
+					<xs:enumeration value="IfcVolumetricFlowRateMeasure"/>
+					<xs:enumeration value="IfcCurvatureMeasure"/>
+					<xs:enumeration value="IfcMassPerLengthMeasure"/>
+					<xs:enumeration value="IfcRotationalMassMeasure"/>
+					<xs:enumeration value="IfcSectionalAreaIntegralMeasure"/>
+					<xs:enumeration value="IfcSectionModulusMeasure"/>
+					<xs:enumeration value="IfcTemperatureGradientMeasure"/>
+					<xs:enumeration value="IfcWarpingConstantMeasure"/>
+					<xs:enumeration value="IfcWarpingMomentMeasure"/>
+					<xs:enumeration value="IfcThermalExpansionCoefficientMeasure"/>
+					<xs:enumeration value="IfcModulusOfLinearSubgradeReactionMeasure"/>
+					<xs:enumeration value="IfcModulusOfRotationalSubgradeReactionMeasure"/>
+					<xs:enumeration value="IfcLuminousIntensityDistributionMeasure"/>
+					<xs:enumeration value="IfcSoundPowerMeasure"/>
+					<xs:enumeration value="IfcSoundPressureMeasure"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="UnitType">
+		<xs:attribute name="type" default="USERDEFINED">
+			<xs:annotation>
+				<xs:documentation>Unit type based on IfcDerivedUnit and IfcNamedUnit.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="ACCELERATIONUNIT"/>
+					<xs:enumeration value="ANGULARVELOCITYUNIT"/>
+					<xs:enumeration value="COMPOUNDPLANEANGLEUNIT"/>
+					<xs:enumeration value="DYNAMICVISCOSITYUNIT"/>
+					<xs:enumeration value="HEATFLUXDENSITYUNIT"/>
+					<xs:enumeration value="INTEGERCOUNTRATEUNIT"/>
+					<xs:enumeration value="ISOTHERMALMOISTURECAPACITYUNIT"/>
+					<xs:enumeration value="KINEMATICVISCOSITYUNIT"/>
+					<xs:enumeration value="LINEARFORCEUNIT"/>
+					<xs:enumeration value="LINEARMOMENTUNIT"/>
+					<xs:enumeration value="LINEARSTIFFNESSUNIT"/>
+					<xs:enumeration value="LINEARVELOCITYUNIT"/>
+					<xs:enumeration value="MASSDENSITYUNIT"/>
+					<xs:enumeration value="MASSFLOWRATEUNIT"/>
+					<xs:enumeration value="MODULUSOFELASTICITYUNIT"/>
+					<xs:enumeration value="MODULUSOFSUBGRADEREACTIONUNIT"/>
+					<xs:enumeration value="MOISTUREDIFFUSIVITYUNIT"/>
+					<xs:enumeration value="MOLECULARWEIGHTUNIT"/>
+					<xs:enumeration value="MOMENTORINERTIAUNIT"/>
+					<xs:enumeration value="PLANARFORCEUNIT"/>
+					<xs:enumeration value="ROTATIONALFREQUENCYUNIT"/>
+					<xs:enumeration value="ROTATIONALSTIFFNESSUNIT"/>
+					<xs:enumeration value="SHEARMODULUSUNIT"/>
+					<xs:enumeration value="SPECIFICHEATCAPACITYUNIT"/>
+					<xs:enumeration value="THERMALADMITTANCEUNIT"/>
+					<xs:enumeration value="THERMALCONDUCTANCEUNIT"/>
+					<xs:enumeration value="THERMALRESISTANCEUNIT"/>
+					<xs:enumeration value="THERMALTRANSMITTANCEUNIT"/>
+					<xs:enumeration value="TORQUEUNIT"/>
+					<xs:enumeration value="VAPORPERMEABILITYUNIT"/>
+					<xs:enumeration value="VOLUMETRICFLOWRATEUNIT"/>
+					<xs:enumeration value="CURVATUREUNIT"/>
+					<xs:enumeration value="HEATINGVALUEUNIT"/>
+					<xs:enumeration value="IONCONCENTRATIONUNIT"/>
+					<xs:enumeration value="LUMINOUSINTENSITYDISTRIBUTIONUNIT"/>
+					<xs:enumeration value="MASSPERLENGTHUNIT"/>
+					<xs:enumeration value="MODULUSOFLINEARSUBGRADEREACTIONUNIT"/>
+					<xs:enumeration value="MODULUSOFROTATIONALSUBGRADEREACTIONUNIT"/>
+					<xs:enumeration value="PHUNIT"/>
+					<xs:enumeration value="ROTATIONALMASSUNIT"/>
+					<xs:enumeration value="SECTIONAREAINTEGRALUNIT"/>
+					<xs:enumeration value="SECTIONMODULUSUNIT"/>
+					<xs:enumeration value="SOUNDPOWERUNIT"/>
+					<xs:enumeration value="SOUNDPRESSUREUNIT"/>
+					<xs:enumeration value="TEMPERATUREGRADIENTUNIT"/>
+					<xs:enumeration value="THERMALEXPANSIONCOEFFICIENTUNIT"/>
+					<xs:enumeration value="WARPINGCONSTANTUNIT"/>
+					<xs:enumeration value="WARPINGMOMENTUNIT"/>
+					<xs:enumeration value="ABSORBEDDOSEUNIT"/>
+					<xs:enumeration value="AMOUNTOFSUBSTANCEUNIT"/>
+					<xs:enumeration value="AREAUNIT"/>
+					<xs:enumeration value="DOSEEQUIVALENTUNIT"/>
+					<xs:enumeration value="ELECTRICCAPACITANCEUNIT"/>
+					<xs:enumeration value="ELECTRICCHARGEUNIT"/>
+					<xs:enumeration value="ELECTRICCONDUCTANCEUNIT"/>
+					<xs:enumeration value="ELECTRICCURRENTUNIT"/>
+					<xs:enumeration value="ELECTRICRESISTANCEUNIT"/>
+					<xs:enumeration value="ELECTRICVOLTAGEUNIT"/>
+					<xs:enumeration value="ENERGYUNIT"/>
+					<xs:enumeration value="FORCEUNIT"/>
+					<xs:enumeration value="FREQUENCYUNIT"/>
+					<xs:enumeration value="ILLUMINANCEUNIT"/>
+					<xs:enumeration value="INDUCTANCEUNIT"/>
+					<xs:enumeration value="LENGTHUNIT"/>
+					<xs:enumeration value="LUMINOUSFLUXUNIT"/>
+					<xs:enumeration value="LUMINOUSINTENSITYUNIT"/>
+					<xs:enumeration value="MAGNETICFLUXDENSITYUNIT"/>
+					<xs:enumeration value="MAGNETICFLUXUNIT"/>
+					<xs:enumeration value="MASSUNIT"/>
+					<xs:enumeration value="PLANEANGLEUNIT"/>
+					<xs:enumeration value="POWERUNIT"/>
+					<xs:enumeration value="PRESSUREUNIT"/>
+					<xs:enumeration value="RADIOACTIVITYUNIT"/>
+					<xs:enumeration value="SOLIDANGLEUNIT"/>
+					<xs:enumeration value="THERMODYNAMICTEMPERATUREUNIT"/>
+					<xs:enumeration value="TIMEUNIT"/>
+					<xs:enumeration value="VOLUMEUNIT"/>
+					<xs:enumeration value="USERDEFINED"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="currencytype" default="USERDEFINED">
+			<xs:annotation>
+				<xs:documentation>Currency type based on IfcMonetaryUnit.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="AED"/>
+					<xs:enumeration value="AES"/>
+					<xs:enumeration value="ATS"/>
+					<xs:enumeration value="AUD"/>
+					<xs:enumeration value="BBD"/>
+					<xs:enumeration value="BEG"/>
+					<xs:enumeration value="BGL"/>
+					<xs:enumeration value="BHD"/>
+					<xs:enumeration value="BMD"/>
+					<xs:enumeration value="BND"/>
+					<xs:enumeration value="BRL"/>
+					<xs:enumeration value="BSD"/>
+					<xs:enumeration value="BWP"/>
+					<xs:enumeration value="BZD"/>
+					<xs:enumeration value="CAD"/>
+					<xs:enumeration value="CBD"/>
+					<xs:enumeration value="CHF"/>
+					<xs:enumeration value="CLP"/>
+					<xs:enumeration value="CNY"/>
+					<xs:enumeration value="CYS"/>
+					<xs:enumeration value="CZK"/>
+					<xs:enumeration value="DDP"/>
+					<xs:enumeration value="DEM"/>
+					<xs:enumeration value="DKK"/>
+					<xs:enumeration value="EGL"/>
+					<xs:enumeration value="EST"/>
+					<xs:enumeration value="EUR"/>
+					<xs:enumeration value="FIM"/>
+					<xs:enumeration value="FJD"/>
+					<xs:enumeration value="FKP"/>
+					<xs:enumeration value="FRF"/>
+					<xs:enumeration value="GBP"/>
+					<xs:enumeration value="GIP"/>
+					<xs:enumeration value="GMD"/>
+					<xs:enumeration value="GRX"/>
+					<xs:enumeration value="HKD"/>
+					<xs:enumeration value="HUF"/>
+					<xs:enumeration value="ICK"/>
+					<xs:enumeration value="IDR"/>
+					<xs:enumeration value="ILS"/>
+					<xs:enumeration value="INR"/>
+					<xs:enumeration value="IRP"/>
+					<xs:enumeration value="ITL"/>
+					<xs:enumeration value="JMD"/>
+					<xs:enumeration value="JOD"/>
+					<xs:enumeration value="JPY"/>
+					<xs:enumeration value="KES"/>
+					<xs:enumeration value="KRW"/>
+					<xs:enumeration value="KWD"/>
+					<xs:enumeration value="KYD"/>
+					<xs:enumeration value="LKR"/>
+					<xs:enumeration value="LUF"/>
+					<xs:enumeration value="MTL"/>
+					<xs:enumeration value="MUR"/>
+					<xs:enumeration value="MXN"/>
+					<xs:enumeration value="MYR"/>
+					<xs:enumeration value="NLG"/>
+					<xs:enumeration value="NOK"/>
+					<xs:enumeration value="NZD"/>
+					<xs:enumeration value="OMR"/>
+					<xs:enumeration value="PGK"/>
+					<xs:enumeration value="PHP"/>
+					<xs:enumeration value="PKR"/>
+					<xs:enumeration value="PLN"/>
+					<xs:enumeration value="PTN"/>
+					<xs:enumeration value="QAR"/>
+					<xs:enumeration value="RUR"/>
+					<xs:enumeration value="SAR"/>
+					<xs:enumeration value="SCR"/>
+					<xs:enumeration value="SEK"/>
+					<xs:enumeration value="SGD"/>
+					<xs:enumeration value="SKP"/>
+					<xs:enumeration value="THB"/>
+					<xs:enumeration value="TRL"/>
+					<xs:enumeration value="TTD"/>
+					<xs:enumeration value="TWD"/>
+					<xs:enumeration value="USD"/>
+					<xs:enumeration value="VEB"/>
+					<xs:enumeration value="VND"/>
+					<xs:enumeration value="XEU"/>
+					<xs:enumeration value="ZAR"/>
+					<xs:enumeration value="ZWD"/>
+					<xs:enumeration value="USERDEFINED"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ReferenceSelect">
+		<xs:attribute name="reftype">
+			<xs:annotation>
+				<xs:documentation>Reference type based on IfcObjectReferenceSelect.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="IfcMaterial"/>
+					<xs:enumeration value="IfcPerson"/>
+					<xs:enumeration value="IfcDateAndTime"/>
+					<xs:enumeration value="IfcMaterialList"/>
+					<xs:enumeration value="IfcOrganization"/>
+					<xs:enumeration value="IfcCalendarDate"/>
+					<xs:enumeration value="IfcDateAndTime"/>
+					<xs:enumeration value="IfcLocalTime"/>
+					<xs:enumeration value="IfcPersonAndOrganization"/>
+					<xs:enumeration value="IfcMaterialLayer"/>
+					<xs:enumeration value="IfcExternalReference"/>
+					<xs:enumeration value="IfcMaterialList"/>
+					<xs:enumeration value="IfcTimeSeries"/>
+					<xs:enumeration value="IfcAddress"/>
+					<xs:enumeration value="IfcAppliedValue"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="guid" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>GUID of reference.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="URL" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>URL of reference.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="libraryname" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Library name of reference.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="sectionref" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Secton information of reference.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Values">
+		<xs:sequence>
+			<xs:element name="Value" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

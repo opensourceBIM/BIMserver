@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcHvacDomain"/><Name>Pset_ValveTypeFaucet</Name><Definition>Definition from BS6100: A small diameter valve, with a free outlet, from which water is drawn.</Definition><Applicability>Entity specific property set</Applicability><ApplicableClasses><ClassName>IfcValveType</ClassName></ApplicableClasses><ApplicableTypeValue>IfcValveType.PredefinedType="FAUCET"</ApplicableTypeValue><PropertyDefs><PropertyDef><Name>FaucetType</Name><PropertyType><TypePropertyEnumeratedValue><EnumList name="PEnum_FaucetType"><EnumItem>BIB</EnumItem><EnumItem>GLOBE</EnumItem><EnumItem>DIVERTER</EnumItem><EnumItem>DIVIDEDFLOWCOMBINATION</EnumItem><EnumItem>PILLAR</EnumItem><EnumItem>SINGLEOUTLETCOMBINATION</EnumItem><EnumItem>SPRAY</EnumItem><EnumItem>SPRAYMIXING</EnumItem><EnumItem>OTHER</EnumItem><EnumItem>NOTKNOWN</EnumItem><EnumItem>UNSET</EnumItem></EnumList></TypePropertyEnumeratedValue></PropertyType><ValueDef><MinValue value=""/><MaxValue value=""/></ValueDef><Definition>Defines the range of faucet types that may be specified where:
+
+Bib =	 Faucet with a horizontal inlet and a nozzle that discharges downwards.
+Globe =	 Faucet fitted through the end of a bath, with a horizontal inlet, a partially spherical body and a vertical nozzle.
+Diverter =	Combination faucet assembly with a valve to enable the flow of mixed water to be transferred to a showerhead.
+DividedFlowCombination =	 Combination faucet assembly in which hot and cold water are kept separate until emerging from a common nozzle
+Pillar =	 Faucet that has a vertical inlet and a nozzle that discharges downwards
+SingleOutletCombination =	 Combination faucet assembly in which hot and cold water mix before emerging from a common nozzle
+Spray =	 Faucet with a spray outlet
+SprayMixing =	 Spray faucet connected to hot and cold water supplies that delivers water at a temperature determined during use.
+</Definition></PropertyDef><PropertyDef><Name>FaucetOperation</Name><PropertyType><TypePropertyEnumeratedValue><EnumList name="PEnum_FaucetOperation"><EnumItem>CERAMICDISC</EnumItem><EnumItem>LEVERHANDLE</EnumItem><EnumItem>NONCONCUSSIVESELFCLOSING</EnumItem><EnumItem>QUATERTURN</EnumItem><EnumItem>QUICKACTION</EnumItem><EnumItem>SCREWDOWN</EnumItem><EnumItem>SELFCLOSING</EnumItem><EnumItem>TIMEDSELFCLOSING</EnumItem><EnumItem>OTHER</EnumItem><EnumItem>NOTKNOWN</EnumItem><EnumItem>UNSET</EnumItem></EnumList></TypePropertyEnumeratedValue></PropertyType><ValueDef><MinValue value=""/><MaxValue value=""/></ValueDef><Definition>Defines the range of ways in which a faucet can be operated that may be specified where:
+
+CeramicDisc =	 Quick action faucet with a ceramic seal to open or close the orifice
+LeverHandle =	 Quick action faucet that is operated by a lever handle
+NonConcussiveSelfClosing =	 Self closing faucet that does not induce surge pressure
+QuarterTurn =	 Quick action faucet that can be fully opened or shut by turning the operating mechanism through 90 degrees.
+QuickAction =	 Faucet that can be opened or closed fully with a single small movement of the operating mechanism
+ScrewDown =	 Faucet in which a plate or disc is moved, by the rotation of a screwed spindle, to close or open the orifice.
+SelfClosing =	 Faucet that is opened by pressure of the top of an operating spindle and is closed under the action of a spring or weight when the pressure is released
+TimedSelfClosing = 	Self closing faucet that discharges for a predetermined period of time
+</Definition></PropertyDef><PropertyDef><Name>FaucetFunction</Name><PropertyType><TypePropertyEnumeratedValue><EnumList name="PEnum_FaucetFunction"><EnumItem>COLD</EnumItem><EnumItem>HOT</EnumItem><EnumItem>MIXED</EnumItem><EnumItem>OTHER</EnumItem><EnumItem>NOTKNOWN</EnumItem><EnumItem>UNSET</EnumItem></EnumList></TypePropertyEnumeratedValue></PropertyType><ValueDef><MinValue value=""/><MaxValue value=""/></ValueDef><Definition>Defines the operating temperature of a faucet that may be specified.</Definition></PropertyDef><PropertyDef><Name>Finish</Name><PropertyType><TypePropertySingleValue><DataType type="IfcText"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>Description of the finish applied to the faucet</Definition></PropertyDef><PropertyDef><Name>FaucetTopDescription</Name><PropertyType><TypePropertySingleValue><DataType type="IfcText"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>Description of the operating mechanism/top of the faucet</Definition></PropertyDef></PropertyDefs></PropertySetDef>

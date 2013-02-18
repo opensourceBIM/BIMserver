@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcSharedBldgServiceElements"/><Name>Pset_FlowMovingDeviceCompressor</Name><Definition>Definition from IAI: Compressor occurrence attributes attached to an instance of IfcFlowMovingDevice.
+</Definition><Applicability>Entity common property set</Applicability><ApplicableClasses><ClassName>IfcFlowMovingDevice</ClassName></ApplicableClasses><ApplicableTypeValue></ApplicableTypeValue><PropertyDefs><PropertyDef><Name>ImpellerDiameter</Name><PropertyType><TypePropertySingleValue><DataType type="IfcPositiveLengthMeasure"/><UnitType type="LENGTHUNIT"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>Diameter of compressor impeller - used to scale performance of geometrically similar compressors.</Definition></PropertyDef></PropertyDefs></PropertySetDef>

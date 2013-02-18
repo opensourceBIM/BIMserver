@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcKernel"/><Name>Pset_DrainageOutfall</Name><Definition>Definition from IAI: Structure through which water is discharged into a watercourse or body of water (BS6100). Used as a non type driven property set in conjunction with an instance of IfcProxy that is identified as an outfall using the inherited IfcRoot.Name attribute.
+</Definition><Applicability>IfcProxy entity.</Applicability><ApplicableClasses><ClassName>IfcProxy</ClassName></ApplicableClasses><ApplicableTypeValue></ApplicableTypeValue><PropertyDefs><PropertyDef><Name>InvertLevel</Name><PropertyType><TypePropertySingleValue><DataType type="IfcLengthMeasure"/><UnitType type="LENGTHUNIT"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>The lowest point of the outfall</Definition></PropertyDef></PropertyDefs></PropertySetDef>

@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcSharedBldgServiceElements"/><Name>Pset_EnergyConversionDeviceSpaceHeaterPanel</Name><Definition>Definition from IAI: Panel space heater type occurrence attributes.
+</Definition><Applicability>Entity specific property set</Applicability><ApplicableClasses><ClassName>IfcEnergyConversionDevice</ClassName></ApplicableClasses><ApplicableTypeValue>RelatedEntityIs:IfcSpaceHeaterType.PredefinedType="PANELRADIATOR"</ApplicableTypeValue><PropertyDefs><PropertyDef><Name>NumberOfPanels</Name><PropertyType><TypePropertySingleValue><DataType type="IfcInteger"/><UnitType type="INTEGERCOUNTRATEUNIT"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>Number of panels.</Definition></PropertyDef></PropertyDefs></PropertySetDef>

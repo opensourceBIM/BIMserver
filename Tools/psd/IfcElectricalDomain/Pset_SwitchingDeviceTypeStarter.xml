@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcElectricalDomain"/><Name>Pset_SwitchingDeviceTypeStarter</Name><Definition>Definition from IAI: A starter is a switch which in the closed position controls the application of power to an electrical device.</Definition><Applicability>IfcSwitchingDeviceType entity.</Applicability><ApplicableClasses><ClassName>IfcSwitchingDeviceType</ClassName></ApplicableClasses><ApplicableTypeValue>IfcSwitchingDeviceType.PredefinedType="STARTER"</ApplicableTypeValue><PropertyDefs><PropertyDef><Name>StarterType</Name><PropertyType><TypePropertyEnumeratedValue><EnumList name="PEnum_StarterType"><EnumItem>AutoTransformer</EnumItem><EnumItem>Manual</EnumItem><EnumItem>DirectOnLine</EnumItem><EnumItem>Frequency</EnumItem><EnumItem>nStep</EnumItem><EnumItem>Rheostatic</EnumItem><EnumItem>StarDelta</EnumItem><EnumItem>Other</EnumItem><EnumItem>NotKnown</EnumItem><EnumItem>Unset
+</EnumItem></EnumList></TypePropertyEnumeratedValue></PropertyType><ValueDef><MinValue value=""/><MaxValue value=""/></ValueDef><Definition>A list of the available types of starter from which that required may be selected where:
+
+AutoTransformer - A starter for an induction motor which uses for starting one or more reduced voltages derived from an auto transformer. (IEC 441-14-45)
+Manual - A starter in which the force for closing the main contacts is provided exclusively by manual energy. (IEC 441-14-39)
+DirectOnLine - A starter which connects the line voltage across the motor terminals in one step. (IEC 441-14-40)
+Frequency - A starter in which the frequency of the power supply is progressively increased until the normal operation frequency is attained.
+nStep - A starter in which there are (n-1) intermediate accelerating positions between the off and full on positions. (IEC 441-14-41)
+Rheostatic - A starter using one or several resistors for obtaining, during starting, stated motor torque characteristics and for limiting the current. (IEC 441-14-425)
+StarDelta - A starter for a 3 phase induction motor such that in the starting position the stator windings are connected in star and in the final running position they are connected in delta. (IEC 441-14-44)
+</Definition></PropertyDef></PropertyDefs></PropertySetDef>

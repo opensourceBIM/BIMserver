@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef>
+	<IfcVersion version="2x3 TC1" schema="IfcControlExtension" />
+	<Name>Pset_BoilerPHistory</Name>
+	<Definition>Definition from IAI: Boiler performance history common
+		attributes.
+		WaterQuality attribute deleted in IFC2x2 Pset Addendum: Use IfcWaterProperties
+		instead. CombustionProductsMaximulLoad and
+		CombustionProductsPartialLoad attributes deleted in IFC2x2 Pset
+		Addendum: Use IfcProductsOfCombustionProperties instead.
+	</Definition>
+	<Applicability>Entity common property set</Applicability>
+	<ApplicableClasses>
+		<ClassName>IfcPerformanceHistory</ClassName>
+	</ApplicableClasses>
+	<ApplicableTypeValue></ApplicableTypeValue>
+	<PropertyDefs>
+		<PropertyDef>
+			<Name>EnergySourceConsumption</Name>
+			<PropertyType>
+				<TypeSimpleProperty>
+					<DataType type="IfcTimeSeries" />
+				</TypeSimpleProperty>
+			</PropertyType>
+			<ValueDef>
+				<DefaultValue />
+			</ValueDef>
+			<Definition>Energy consumption.</Definition>
+		</PropertyDef>
+		<PropertyDef>
+			<Name>OperationalEfficiency</Name>
+			<PropertyType>
+				<TypeSimpleProperty>
+					<DataType type="IfcTimeSeries" />
+					<UnitType type="IFCREAL" />
+				</TypeSimpleProperty>
+			</PropertyType>
+			<ValueDef>
+				<DefaultValue />
+			</ValueDef>
+			<Definition>Operational efficiency: boiler output divided by total
+				energy input (electrical and fuel)</Definition>
+		</PropertyDef>
+		<PropertyDef>
+			<Name>CombustionEfficiency</Name>
+			<PropertyType>
+				<TypeSimpleProperty>
+					<DataType type="IfcTimeSeries" />
+					<UnitType type="IFCREAL" />
+				</TypeSimpleProperty>
+			</PropertyType>
+			<ValueDef>
+				<DefaultValue />
+			</ValueDef>
+			<Definition>Combustion efficiency under nominal condition
+			</Definition>
+		</PropertyDef>
+		<PropertyDef>
+			<Name>WorkingPressure</Name>
+			<PropertyType>
+				<TypeSimpleProperty>
+					<DataType type="IfcTimeSeries" />
+					<UnitType type="IFCPRESSUREMEASURE" />
+				</TypeSimpleProperty>
+			</PropertyType>
+			<ValueDef>
+				<DefaultValue />
+			</ValueDef>
+			<Definition>Boiler working pressure</Definition>
+		</PropertyDef>
+		<PropertyDef>
+			<Name>CombustionTemperature</Name>
+			<PropertyType>
+				<TypeSimpleProperty>
+					<DataType type="IfcTimeSeries" />
+					<UnitType type="IFCTHERMODYNAMICTEMPERATUREMEASURE" />
+				</TypeSimpleProperty>
+			</PropertyType>
+			<ValueDef>
+				<DefaultValue />
+			</ValueDef>
+			<Definition>Average combustion chamber temperature.</Definition>
+		</PropertyDef>
+		<PropertyDef>
+			<Name>PartLoadRatio</Name>
+			<PropertyType>
+				<TypeSimpleProperty>
+					<DataType type="IfcTimeSeries" />
+					<UnitType type="IFCREAL" />
+				</TypeSimpleProperty>
+			</PropertyType>
+			<ValueDef>
+				<DefaultValue />
+			</ValueDef>
+			<Definition>Ratio of the real to the nominal capacity.</Definition>
+		</PropertyDef>
+		<PropertyDef>
+			<Name>Load</Name>
+			<PropertyType>
+				<TypeSimpleProperty>
+					<DataType type="IfcTimeSeries" />
+					<UnitType type="IFCPOWERMEASURE" />
+				</TypeSimpleProperty>
+			</PropertyType>
+			<ValueDef>
+				<DefaultValue />
+			</ValueDef>
+			<Definition>Boiler real load</Definition>
+		</PropertyDef>
+		<PropertyDef>
+			<Name>PrimaryEnergyConsumption</Name>
+			<PropertyType>
+				<TypeSimpleProperty>
+					<DataType type="IfcTimeSeries" />
+					<UnitType type="IFCPOWERMEASURE" />
+				</TypeSimpleProperty>
+			</PropertyType>
+			<ValueDef>
+				<DefaultValue />
+			</ValueDef>
+			<Definition>Boiler primary energy source consumption (i.e., the fuel
+				consumed for changing the thermodynamic state of the fluid).
+			</Definition>
+		</PropertyDef>
+		<PropertyDef>
+			<Name>AuxiliaryEnergyConsumption</Name>
+			<PropertyType>
+				<TypeSimpleProperty>
+					<DataType type="IfcTimeSeries" />
+					<UnitType type="IFCPOWERMEASURE" />
+				</TypeSimpleProperty>
+			</PropertyType>
+			<ValueDef>
+				<DefaultValue />
+			</ValueDef>
+			<Definition>Boiler secondary energy source consumption (i.e., the
+				electricity consumed by electrical devices such as fans and pumps).
+			</Definition>
+		</PropertyDef>
+	</PropertyDefs>
+</PropertySetDef>

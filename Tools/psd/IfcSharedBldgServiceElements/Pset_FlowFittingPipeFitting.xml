@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcSharedBldgServiceElements"/><Name>Pset_FlowFittingPipeFitting</Name><Definition>Definition from IAI: Pipe fitting occurrence attributes attached to an instance of IfcFlowFitting.
+</Definition><Applicability>Entity common property set</Applicability><ApplicableClasses><ClassName>IfcFlowFitting</ClassName></ApplicableClasses><ApplicableTypeValue></ApplicableTypeValue><PropertyDefs><PropertyDef><Name>InteriorRoughnessCoefficient</Name><PropertyType><TypePropertySingleValue><DataType type="IfcPositiveLengthMeasure"/><UnitType type="LENGTHUNIT"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>The interior roughness of the pipe fitting material.</Definition></PropertyDef><PropertyDef><Name>Color</Name><PropertyType><TypePropertySingleValue><DataType type="IfcLabel"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>The color of the pipe fitting.
+
+Note: This is typically used only for plastic pipe fittings. However, it may be used for any pipe fittings with a painted surface which is not otherwise specified as a covering.</Definition></PropertyDef></PropertyDefs></PropertySetDef>
