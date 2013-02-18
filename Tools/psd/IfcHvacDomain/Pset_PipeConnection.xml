@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcProductExtension"/><Name>Pset_PipeConnection</Name><Definition>Definition from IAI: This property set is used to define the various types of pipe connections. It is applied to occurrences of pipe segments and fittings.
+</Definition><Applicability>General property set</Applicability><ApplicableClasses><ClassName>IfcDistributionElement</ClassName></ApplicableClasses><ApplicableTypeValue></ApplicableTypeValue><PropertyDefs><PropertyDef><Name>ConnectionType</Name><PropertyType><TypePropertyListValue><ListValue><DataType type="IfcLabel"/><UnitType type=""/><Values><ValueItem>BRAZED</ValueItem><ValueItem>COMPRESSION</ValueItem><ValueItem>FLANGED</ValueItem><ValueItem>GLANDJOINT</ValueItem><ValueItem>FLEXIBLEBOLTEDGLANDJOINT</ValueItem><ValueItem>FLEXIBLEBOLTEDGLANDJOINTWITHANODEENDCAP</ValueItem><ValueItem>GROOVED</ValueItem><ValueItem>SOLDERED</ValueItem><ValueItem>SOLDERED_FEMALE</ValueItem><ValueItem>SOLDERED_MALE</ValueItem><ValueItem>SWEDGE</ValueItem><ValueItem>THREADED</ValueItem><ValueItem>THREADED_FEMALE</ValueItem><ValueItem>THREADED_MALE</ValueItem><ValueItem>WELDED</ValueItem><ValueItem>WELDED_BUTT</ValueItem><ValueItem>WELDED_BRANCH</ValueItem><ValueItem>WELDED_FLANGE</ValueItem><ValueItem>NONE</ValueItem><ValueItem>NOTDEFINED</ValueItem></Values></ListValue></TypePropertyListValue></PropertyType><ValueDef/><Definition>The connection type between pipe segments or fittings and other segments or fittings. If the list contains only one value, then this connection type value applies to all ports. For more than one value in the list, the connection type value applies to the port that corresponds to the list index.The following suggested items should be utilized whenever possible for correlation with port enumerations:
+BRAZED: Brazed connection type. 
+COMPRESSION: Compression connection type. 
+FLANGED: Flanged connection type including bolts and gasket. 
+GLANDJOINT: Gland-joint  connection type. 
+FLEXIBLEBOLTEDGLANDJOINT: Flexible bolted gland-joint  connection type. 
+FLEXIBLEBOLTEDGLANDJOINTWITHANODEENDCAP: Flexible bolted gland-joint with anode end-cap connection type.  
+GROOVED: Grooved connection type. 
+SOLDERED: Soldered connection type. 
+SOLDERED_FEMALE: Female-soldered connection type. 
+SOLDERED_MALE: Male-soldered connection type. 
+SWEDGE: Swedge connection type.  
+THREADED: Threaded connection type. 
+THREADED_FEMALE: Female-threaded connection type. 
+THREADED_MALE: Male-threaded connection type. 
+WELDED: Welded connection type. 
+WELDED_BUTT: Butt-welded connection type. 
+WELDED_BRANCH: Branch-welded connection type. 
+WELDED_FLANGE: Flange-welded connection type. 
+NONE: There is no connection.
+NOTDEFINED: Undefined connection type. </Definition></PropertyDef></PropertyDefs></PropertySetDef>

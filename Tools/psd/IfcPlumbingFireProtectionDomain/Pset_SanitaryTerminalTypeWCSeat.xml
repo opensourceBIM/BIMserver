@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcPlumbingFireProtectionDomain"/><Name>Pset_SanitaryTerminalTypeWCSeat</Name><Definition>Definition from IAI: Hinged seat that fits on the top of a water closet (WC) pan. (BS6100 330 1401)</Definition><Applicability>IfcSanitaryTerminalType entity.</Applicability><ApplicableClasses><ClassName>IfcSanitaryTerminalType</ClassName></ApplicableClasses><ApplicableTypeValue>IfcSanitaryTerminalType.PredefinedType="WCSEAT"</ApplicableTypeValue><PropertyDefs><PropertyDef><Name>SeatType</Name><PropertyType><TypePropertyEnumeratedValue><EnumList name="PEnum_ToiletSeatType"><EnumItem>Extension</EnumItem><EnumItem>Inset</EnumItem><EnumItem>OpenFrontSeat</EnumItem><EnumItem>RingSeat</EnumItem><EnumItem>SelfRaising</EnumItem><EnumItem>None</EnumItem><EnumItem>Other</EnumItem><EnumItem>NotKnown</EnumItem><EnumItem>Unset
+</EnumItem></EnumList></TypePropertyEnumeratedValue></PropertyType><ValueDef><MinValue value=""/><MaxValue value=""/></ValueDef><Definition>The property enumeration Pset_ToiletSeatTypeEnum defines the types of seat that may be attached to the toilet pan and specified within the property set Pset_Toilet where:-
+
+Extension =	WC seat that is attached at the back, by means of side or top hinges, to a flat piece of material secured to the water closet pan
+Inset =	Seat that consists of pads of impervious material fixed to the top of a water closet pan
+OpenFrontSeat =	Hinged WC seat shaped like a horseshoe with the gap at the front
+RingSeat =	WC seat in the shape of a ring
+SelfRaising =	WC seat with balanced weights or springs to raise it when not in use
+None =	There is no seat attached to the water closet pan
+</Definition></PropertyDef><PropertyDef><Name>SeatHasCover</Name><PropertyType><TypePropertySingleValue><DataType type="IfcBoolean"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>Indicates whether there is a cover associated with the toilet seat</Definition></PropertyDef><PropertyDef><Name>SeatMaterial</Name><PropertyType><TypePropertyReferenceValue reftype="IfcMaterial"/></PropertyType><ValueDef/><Definition>Material from which the object is constructed</Definition></PropertyDef><PropertyDef><Name>SeatColor</Name><PropertyType><TypePropertySingleValue><DataType type="IfcText"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>Color of the object</Definition></PropertyDef></PropertyDefs></PropertySetDef>

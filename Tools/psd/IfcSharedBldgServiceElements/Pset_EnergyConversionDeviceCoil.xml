@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcSharedBldgServiceElements"/><Name>Pset_EnergyConversionDeviceCoil</Name><Definition>Definition from IAI: Coil occurrence attributes attached to an instance of IfcEnergyConversionDevice.
+</Definition><Applicability>Entity common property set</Applicability><ApplicableClasses><ClassName>IfcEnergyConversionDevice</ClassName></ApplicableClasses><ApplicableTypeValue></ApplicableTypeValue><PropertyDefs><PropertyDef><Name>HasSoundAttentuation</Name><PropertyType><TypePropertySingleValue><DataType type="IfcBoolean"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>TRUE if the coil has sound attenuation, FALSE if it does not.</Definition></PropertyDef></PropertyDefs></PropertySetDef>

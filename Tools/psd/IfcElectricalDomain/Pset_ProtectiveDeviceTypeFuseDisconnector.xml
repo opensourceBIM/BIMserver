@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcElectricalDomain"/><Name>Pset_ProtectiveDeviceTypeFuseDisconnector</Name><Definition>Definition from IAI: A device that will electrically open the circuit after a period of prolonged, abnormal current flow.</Definition><Applicability>IfcProtectiveDeviceType entity.</Applicability><ApplicableClasses><ClassName>IfcProtectiveDeviceType</ClassName></ApplicableClasses><ApplicableTypeValue> IfcProtectiveDeviceType.PredefinedType="FUSEDISCONNECTOR"</ApplicableTypeValue><PropertyDefs><PropertyDef><Name>FuseDisconnectorType</Name><PropertyType><TypePropertyEnumeratedValue><EnumList name="PEnum_FuseDisconnectorType"><EnumItem>EngineProtectionDevice</EnumItem><EnumItem>FusedSwitch</EnumItem><EnumItem>HRC</EnumItem><EnumItem>OverloadProtectionDevice</EnumItem><EnumItem>SwitchDisconnectorFuse</EnumItem><EnumItem>Other</EnumItem><EnumItem>NotKnown</EnumItem><EnumItem>Unset</EnumItem></EnumList></TypePropertyEnumeratedValue></PropertyType><ValueDef><MinValue value=""/><MaxValue value=""/></ValueDef><Definition>A list of the available types of fuse disconnector from which that required may be selected where:
+
+EngineProtectionDevice - A fuse whose characteristic is specifically designed for the protection of a motor or generator.
+FuseSwitchDisconnector - A switch disconnector in which a fuse link or a fuse carrier with fuse link forms the moving contact,
+HRC - A standard fuse (High Rupturing Capacity)
+OverloadProtectionDevice - A device that disconnects the supply when the operating conditions in an electrically undamaged circuit causes an overcurrent,
+SemiconductorFuse - A fuse whose characteristic is specifically designed for the protection of sem-conductor devices.
+SwitchDisconnectorFuse - A switch disconnector in which one or more poles have a fuse in series in a composite unit.</Definition></PropertyDef></PropertyDefs></PropertySetDef>

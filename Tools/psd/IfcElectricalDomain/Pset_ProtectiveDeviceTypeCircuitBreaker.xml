@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcElectricalDomain"/><Name>Pset_ProtectiveDeviceTypeCircuitBreaker</Name><Definition>Definition from IEC 441-14-20: A circuit breaker is a mechanical switching device capable of making, carrying, and breaking currents under normal circuit conditions and also making, carrying for a specified time and breaking, current under specified abnormal circuit conditions such as those of short circuit.</Definition><Applicability>IfcProtectiveDeviceType entity.</Applicability><ApplicableClasses><ClassName>IfcProtectiveDeviceType</ClassName></ApplicableClasses><ApplicableTypeValue>IfcProtectiveDeviceType.PredefinedType="CIRCUITBREAKER"</ApplicableTypeValue><PropertyDefs><PropertyDef><Name>CircuitBreakerType</Name><PropertyType><TypePropertyEnumeratedValue><EnumList name="PEnum_CircuitBreakerType"><EnumItem>ACB</EnumItem><EnumItem>MCB</EnumItem><EnumItem>MCCB</EnumItem><EnumItem>Vacuum</EnumItem><EnumItem>Other</EnumItem><EnumItem>NotKnown</EnumItem><EnumItem>Unset
+</EnumItem></EnumList></TypePropertyEnumeratedValue></PropertyType><ValueDef><MinValue value=""/><MaxValue value=""/></ValueDef><Definition>A list of the available types of circuit breaker from which that required may be selected where:
+
+ACB - Air Circuit Breaker;
+MCB - Miniature Circuit Breaker (up to 125A);
+MCCB - Moulded Case Circuit Breaker (40A - 1600A);
+Vacuum - Generally used for high voltage (&gt; 1000V) but may be used for installations close to/up to 1000V.</Definition></PropertyDef></PropertyDefs></PropertySetDef>

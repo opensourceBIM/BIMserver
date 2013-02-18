@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcControlExtension"/><Name>Pset_GasTerminalPHistory</Name><Definition>Definition from IAI: Gas terminal performance history common attributes.
+</Definition><Applicability>Entity common property set</Applicability><ApplicableClasses><ClassName>IfcPerformanceHistory</ClassName></ApplicableClasses><ApplicableTypeValue></ApplicableTypeValue><PropertyDefs><PropertyDef><Name>GasFlowRate</Name><PropertyType><TypeSimpleProperty><DataType type="IfcTimeSeries"/><UnitType type="IFCVOLUMETRICFLOWRATEMEASURE"/></TypeSimpleProperty></PropertyType><ValueDef><DefaultValue/></ValueDef><Definition>The volumetric flowrate of gas to the gas terminal.</Definition></PropertyDef></PropertyDefs></PropertySetDef>

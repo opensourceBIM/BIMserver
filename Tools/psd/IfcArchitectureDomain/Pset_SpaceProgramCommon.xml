@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef>
+	<IfcVersion version="2x3 TC1" schema="IfcArchitectureDomain" />
+	<Name>Pset_SpaceProgramCommon</Name>
+	<Definition>Definition from IAI: Properties common to the definition of
+		all instances of IfcSpaceProgram</Definition>
+	<Applicability>IfcSpaceProgram entity.</Applicability>
+	<ApplicableClasses>
+		<ClassName>IfcSpaceProgram</ClassName>
+	</ApplicableClasses>
+	<ApplicableTypeValue></ApplicableTypeValue>
+	<PropertyDefs>
+		<PropertyDef>
+			<Name>Location</Name>
+			<PropertyType>
+				<TypePropertySingleValue>
+					<DataType type="IfcLabel" />
+				</TypePropertySingleValue>
+			</PropertyType>
+			<ValueDef />
+			<Definition>General description of the required location for the
+				space (e.g. "third floor south") </Definition>
+		</PropertyDef>
+		<PropertyDef>
+			<Name>FunctionRequirement</Name>
+			<PropertyType>
+				<TypePropertySingleValue>
+					<DataType type="IfcLabel" />
+				</TypePropertySingleValue>
+			</PropertyType>
+			<ValueDef />
+			<Definition>General description of the functional requirement for the
+				space (in addition to the space name)</Definition>
+		</PropertyDef>
+		<PropertyDef>
+			<Name>SecurityRequirement</Name>
+			<PropertyType>
+				<TypePropertySingleValue>
+					<DataType type="IfcLabel" />
+				</TypePropertySingleValue>
+			</PropertyType>
+			<ValueDef />
+			<Definition>General description of the security requirement for the
+				space (in addition to the function requirement)</Definition>
+		</PropertyDef>
+		<PropertyDef>
+			<Name>PrivacyRequirement</Name>
+			<PropertyType>
+				<TypePropertySingleValue>
+					<DataType type="IfcLabel" />
+				</TypePropertySingleValue>
+			</PropertyType>
+			<ValueDef />
+			<Definition>General description of the privacy requirement for the
+				space (in addition to the security requirement)</Definition>
+		</PropertyDef>
+		<PropertyDef>
+			<Name>LightingRequirement</Name>
+			<PropertyType>
+				<TypePropertySingleValue>
+					<DataType type="IfcLabel" />
+				</TypePropertySingleValue>
+			</PropertyType>
+			<ValueDef />
+			<Definition>General description of the lighting requirement for the
+				space (e.g. "natural lighting required")</Definition>
+		</PropertyDef>
+		<PropertyDef>
+			<Name>FFETypeRequirement</Name>
+			<PropertyType>
+				<TypePropertySingleValue>
+					<DataType type="IfcLabel" />
+				</TypePropertySingleValue>
+			</PropertyType>
+			<ValueDef />
+			<Definition>General description of the Furniture, Fixtures and
+				Equipment requirement for this space. </Definition>
+		</PropertyDef>
+		<PropertyDef>
+			<Name>EmployeeType</Name>
+			<PropertyType>
+				<TypePropertySingleValue>
+					<DataType type="IfcLabel" />
+				</TypePropertySingleValue>
+			</PropertyType>
+			<ValueDef />
+			<Definition>General description of the employee type that will occupy
+				the space (e.g. manager, programmer, secretary, etc.). The type
+				classification depends on the company based terms for employee
+				types. </Definition>
+		</PropertyDef>
+		<PropertyDef>
+			<Name>OccupancyType</Name>
+			<PropertyType>
+				<TypePropertySingleValue>
+					<DataType type="IfcLabel" />
+				</TypePropertySingleValue>
+			</PropertyType>
+			<ValueDef />
+			<Definition>Occupancy type for this object.
+				It is defined according to the presiding national building code.
+			</Definition>
+		</PropertyDef>
+		<PropertyDef>
+			<Name>OccupancyNumber</Name>
+			<PropertyType>
+				<TypePropertySingleValue>
+					<DataType type="IfcCountMeasure" />
+				</TypePropertySingleValue>
+			</PropertyType>
+			<ValueDef />
+			<Definition>Maximum number of occupants for the designed usage of the
+				space.</Definition>
+		</PropertyDef>
+	</PropertyDefs>
+</PropertySetDef>

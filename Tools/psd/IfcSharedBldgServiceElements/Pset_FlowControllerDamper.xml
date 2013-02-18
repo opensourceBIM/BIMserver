@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcSharedBldgServiceElements"/><Name>Pset_FlowControllerDamper</Name><Definition>Definition from IAI: Damper occurrence attributes attached to an instance of IfcFlowController.
+</Definition><Applicability>Entity common property set</Applicability><ApplicableClasses><ClassName>IfcFlowController</ClassName></ApplicableClasses><ApplicableTypeValue></ApplicableTypeValue><PropertyDefs><PropertyDef><Name>SizingMethod</Name><PropertyType><TypePropertyEnumeratedValue><EnumList name="PEnum_DamperSizingMethod"><EnumItem>NOMINAL</EnumItem><EnumItem>EXACT</EnumItem><EnumItem>NOTKNOWN</EnumItem><EnumItem>UNSET</EnumItem></EnumList></TypePropertyEnumeratedValue></PropertyType><ValueDef><MinValue value=""/><MaxValue value=""/></ValueDef><Definition>Identifies whether the damper is sized nominally or with exact measurements:
+NOMINAL: Nominal sizing method. 
+EXACT: Exact sizing method. </Definition></PropertyDef></PropertyDefs></PropertySetDef>

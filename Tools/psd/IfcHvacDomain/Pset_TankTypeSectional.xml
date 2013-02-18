@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcHvacDomain"/><Name>Pset_TankTypeSectional</Name><Definition>Definition from IAI: Fixed vessel constructed from sectional parts with one or more compartments for storing a liquid.
+
+Note (1): All sectional construction tanks are considered to be rectangular by default.
+Note (2): Generally, it is not expected that sectional construction tanks will be used for the purposes of gas storage.
+
+Pset renamed from Pset_TankTypeSectionalTank to Pset_TankTypeSectional in IFC2x2 Pset Addendum.</Definition><Applicability>Entity specific property set</Applicability><ApplicableClasses><ClassName>IfcTankType</ClassName></ApplicableClasses><ApplicableTypeValue>IfcTankType.PredefinedType="SECTIONAL"</ApplicableTypeValue><PropertyDefs><PropertyDef><Name>NumberOfSections</Name><PropertyType><TypePropertySingleValue><DataType type="IfcInteger"/><UnitType type="INTEGERCOUNTRATEUNIT"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>Number of sections used in the construction of the tank
+
+Note: All sections assumed to be the same size.</Definition></PropertyDef><PropertyDef><Name>SectionLength</Name><PropertyType><TypePropertySingleValue><DataType type="IfcPositiveLengthMeasure"/><UnitType type="LENGTHUNIT"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>The length of a section used in the construction of the tank</Definition></PropertyDef><PropertyDef><Name>SectionWidth</Name><PropertyType><TypePropertySingleValue><DataType type="IfcPositiveLengthMeasure"/><UnitType type="LENGTHUNIT"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>The width of a section used in the construction of the tank.</Definition></PropertyDef></PropertyDefs></PropertySetDef>

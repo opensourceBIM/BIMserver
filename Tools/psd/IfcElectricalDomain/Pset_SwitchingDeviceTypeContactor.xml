@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcElectricalDomain"/><Name>Pset_SwitchingDeviceTypeContactor</Name><Definition>Definition from IAI: An electrical device used to control the flow of power in a circuit on or off.</Definition><Applicability>IfcSwitchingDeviceType entity.</Applicability><ApplicableClasses><ClassName>IfcSwitchingDeviceType</ClassName></ApplicableClasses><ApplicableTypeValue>IfcSwitchingDeviceType.PredefinedType="CONTACTOR"</ApplicableTypeValue><PropertyDefs><PropertyDef><Name>ContactorType</Name><PropertyType><TypePropertyEnumeratedValue><EnumList name="PEnum_ContactorType"><EnumItem>CapacitorSwitching</EnumItem><EnumItem>LowCurrent</EnumItem><EnumItem>MagneticLatching</EnumItem><EnumItem>MechanicalLatching</EnumItem><EnumItem>Modular</EnumItem><EnumItem>Reversing</EnumItem><EnumItem>Standard</EnumItem><EnumItem>Other</EnumItem><EnumItem>NotKnown</EnumItem><EnumItem>Unset</EnumItem></EnumList></TypePropertyEnumeratedValue></PropertyType><ValueDef><MinValue value=""/><MaxValue value=""/></ValueDef><Definition>A list of the available types of contactor from which that required may be selected where:
+
+CapacitorSwitching - for switching 3 phase single or multi-step capacitor banks
+LowCurrent - requires the use of low resistance contacts
+MagneticLatching - enables the contactor to remain in the on position when the coil is no longer energized
+MechanicalLatching - requires that the contactor is mechanically retained in the on position
+Modular - are totally enclosed and self contained
+Reversing - has a double set of contactors that are prewired
+Standard - is a generic device that controls the flow of power in a circuit on or off
+
+</Definition></PropertyDef></PropertyDefs></PropertySetDef>

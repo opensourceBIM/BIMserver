@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcHvacDomain"/><Name>Pset_DamperTypeSmokeDamper</Name><Definition>Definition from IAI: Smoke damper type attributes.
+Pset renamed from Pset_DamperTypeSmoke to Pset_DamperTypeSmokeDamper in IFC2x2 Pset Addendum.</Definition><Applicability>Entity specific property set</Applicability><ApplicableClasses><ClassName>IfcDamperType</ClassName></ApplicableClasses><ApplicableTypeValue>IfcDamperType.PredefinedType="SMOKEDAMPER"</ApplicableTypeValue><PropertyDefs><PropertyDef><Name>ControlType</Name><PropertyType><TypePropertySingleValue><DataType type="IfcLabel"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>The type of control used to operate the damper (e.g., Open/Closed Indicator, Resetable Temperature Sensor, Temperature Override, etc.) </Definition></PropertyDef></PropertyDefs></PropertySetDef>

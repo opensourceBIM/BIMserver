@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcHvacDomain"/><Name>Pset_BoilerTypeSteam</Name><Definition>Definition from IAI: Steam boiler type common attributes.
+</Definition><Applicability>Entity specific property set</Applicability><ApplicableClasses><ClassName>IfcBoilerType</ClassName></ApplicableClasses><ApplicableTypeValue>IfcBoilerType.PredefinedType="STEAM"</ApplicableTypeValue><PropertyDefs><PropertyDef><Name>MaximumOutletPressure</Name><PropertyType><TypePropertySingleValue><DataType type="IfcPressureMeasure"/><UnitType type="PRESSUREUNIT"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>Maximum steam outlet pressure.</Definition></PropertyDef></PropertyDefs></PropertySetDef>

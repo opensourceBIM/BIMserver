@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef>
+	<IfcVersion version="2x3 TC1" schema="IfcBuildingControlsDomain" />
+	<Name>Pset_ActuatorTypeCommon</Name>
+	<Definition>Definition from IAI: Actuator type common attributes.
+	</Definition>
+	<Applicability>IfcActuatorType entity.</Applicability>
+	<ApplicableClasses>
+		<ClassName>IfcActuatorType</ClassName>
+	</ApplicableClasses>
+	<ApplicableTypeValue></ApplicableTypeValue>
+	<PropertyDefs>
+		<PropertyDef>
+			<Name>FailPosition</Name>
+			<PropertyType>
+				<TypePropertyEnumeratedValue>
+					<EnumList name="PEnum_FailPosition">
+						<EnumItem>FailOpen</EnumItem>
+						<EnumItem>FailClosed</EnumItem>
+						<EnumItem>NotKnown</EnumItem>
+						<EnumItem>Unset</EnumItem>
+					</EnumList>
+				</TypePropertyEnumeratedValue>
+			</PropertyType>
+			<ValueDef>
+				<MinValue value="" />
+				<MaxValue value="" />
+			</ValueDef>
+			<Definition>Specifies the required fail-safe position of the
+				actuator.</Definition>
+		</PropertyDef>
+		<PropertyDef>
+			<Name>ManualOverride</Name>
+			<PropertyType>
+				<TypePropertySingleValue>
+					<DataType type="IfcBoolean" />
+				</TypePropertySingleValue>
+			</PropertyType>
+			<ValueDef />
+			<Definition>Identifies whether hand-operated operation is provided as
+				an override (= TRUE) or not (= FALSE). Note that this value should
+				be set to FALSE by default in the case of a Hand Operated Actuator.
+			</Definition>
+		</PropertyDef>
+	</PropertyDefs>
+</PropertySetDef>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../PSD_R2x3.xsl"?>
+<PropertySetDef><IfcVersion version="2x3 TC1" schema="IfcSharedBldgServiceElements"/><Name>Pset_DistributionPortPipe</Name><Definition>Definition from IAI: Pipe port occurrence attributes attached to an instance of IfcDistributionPort.
+</Definition><Applicability>Entity common property set</Applicability><ApplicableClasses><ClassName>IfcDistributionPort</ClassName></ApplicableClasses><ApplicableTypeValue></ApplicableTypeValue><PropertyDefs><PropertyDef><Name>PortNumber</Name><PropertyType><TypePropertySingleValue><DataType type="IfcInteger"/></TypePropertySingleValue></PropertyType><ValueDef/><Definition>The index of the port as it relates to the related object. Each index must be unique for any given related object.</Definition></PropertyDef><PropertyDef><Name>ConnectionType</Name><PropertyType><TypePropertyEnumeratedValue><EnumList name="PEnum_PipeEndStyleTreatment"><EnumItem>BRAZED</EnumItem><EnumItem>COMPRESSION</EnumItem><EnumItem>FLANGED</EnumItem><EnumItem>GROOVED</EnumItem><EnumItem>OUTSIDESLEEVE</EnumItem><EnumItem>SOLDERED</EnumItem><EnumItem>SWEDGE</EnumItem><EnumItem>THREADED</EnumItem><EnumItem>WELDED</EnumItem><EnumItem>OTHER</EnumItem><EnumItem>NONE</EnumItem><EnumItem>UNSET</EnumItem></EnumList></TypePropertyEnumeratedValue></PropertyType><ValueDef><MinValue value=""/><MaxValue value=""/></ValueDef><Definition>The end-style treatment of the pipe port:
+BRAZED: Brazed. 
+COMPRESSION: Compression. 
+FLANGED: Flanged. 
+GROOVED: Grooved. 
+OUTSIDESLEEVE: Outside Sleeve. 
+SOLDERED: Soldered. 
+SWEDGE: Swedge. 
+THREADED: Threaded. 
+WELDED: Welded. 
+OTHER: Another type of end-style has been applied.
+NONE: No end-style has been applied.
+USERDEFINED: User-defined port connection type. 
+NOTDEFINED: Undefined port connection type. </Definition></PropertyDef></PropertyDefs></PropertySetDef>
