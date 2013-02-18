@@ -60,6 +60,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -107,7 +108,30 @@ public class Express2EMF {
 		EClass ifcBooleanClass = (EClass) schemaPack.getEClassifier("IfcBoolean");
 		ifcBooleanClass.getESuperTypes().add((EClass) schemaPack.getEClassifier("IfcValue"));
 		doRealDerivedAttributes();
+		updateDerivedAttributes();
 		clean();
+	}
+
+	private void updateDerivedAttributes() {
+		for (EClassifier eClassifier : schemaPack.getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				EClass eClass = (EClass)eClassifier;
+				EntityDefinition entityDefinition = schema.getEntityBN(eClass.getName());
+				if (entityDefinition != null) {
+					for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
+						if (entityDefinition.isDerived(eStructuralFeature.getName())) {
+							eStructuralFeature.getEAnnotations().add(createDerivedAnnotation());
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private EAnnotation createDerivedAnnotation() {
+		EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		eAnnotation.setSource("derived");
+		return eAnnotation;
 	}
 
 	private void addHackedTypes() {
@@ -340,6 +364,7 @@ public class Express2EMF {
 		InverseAttribute inverseAttribute = (InverseAttribute) attrib;
 		EReference eRef = eFactory.createEReference();
 		eRef.setUnsettable(true); // Inverses are always optional?
+		eRef.getEAnnotations().add(createInverseAnnotation());
 		eRef.setName(attrib.getName());
 		if (inverseAttribute.getMax_cardinality() != null) {
 			IntegerBound max_cardinality = (IntegerBound) inverseAttribute.getMax_cardinality();
@@ -354,6 +379,7 @@ public class Express2EMF {
 		eRef.setEType(classifier);
 		String reverseName = inverseAttribute.getInverted_attr().getName();
 		EReference reference = (EReference) classifier.getEStructuralFeature(reverseName);
+		reference.getEAnnotations().add(createInverseAnnotation());
 		if (eRef.getEType() == classifier && reference.getEType() == cls) {
 			if (eRef.isMany()) {
 				eRef.setUnique(true);
@@ -368,6 +394,12 @@ public class Express2EMF {
 			LOGGER.info(classifier.getName() + "." + reference.getName() + " => " + cls.getName() + "." + eRef.getName());
 		}
 		cls.getEStructuralFeatures().add(eRef);
+	}
+
+	private EAnnotation createInverseAnnotation() {
+		EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		eAnnotation.setSource("inverse");
+		return eAnnotation;
 	}
 
 	private void addAttributes() {

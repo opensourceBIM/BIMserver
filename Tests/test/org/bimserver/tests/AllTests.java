@@ -12,7 +12,7 @@ import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.LocalVersionConstructor;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
-import org.bimserver.client.ProtocolBuffersBimServerClientFactory;
+import org.bimserver.client.JsonBimServerClientFactory;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -88,8 +88,8 @@ public class AllTests {
 
 	public static BimServerClientFactory getFactory() {
 		if (factory == null) {
-//			factory = new JsonBimServerClientFactory("http://localhost:8080");
-			factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080);
+			factory = new JsonBimServerClientFactory("http://localhost:8080");
+//			factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080);
 		}
 		return factory;
 	}
