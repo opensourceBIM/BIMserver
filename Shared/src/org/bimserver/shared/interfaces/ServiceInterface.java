@@ -366,7 +366,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "parentPoid", partName = "addProjectAsSubProject.parentPoid") Long parentPoid) throws ServerException, UserException;
 
 	/**
-	 * Update project properties
+	 * Update project properties, the only three properties that can be updated with this call are "name", "description" and "exportLengthMeasurePrefix"
 	 * @param sProject A Project object containing the new properties
 	 * @throws ServerException, UserException
 	 */
