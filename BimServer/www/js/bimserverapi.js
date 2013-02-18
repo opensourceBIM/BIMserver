@@ -734,14 +734,12 @@ function Model(bimServerApi, poid, roid) {
 				});
 			});
 		};
-		othis.bimServerApi.schemaFetcher.fetch(function(schema){
-			var realType = schema[object.__type];
-			if (realType == null) {
-				throw "Type " + object.__type + " not found";
-			}
-			othis.resolveType(schema, object, realType);
-			callback();
-		});
+		var realType = othis.bimServerApi.schema[object.__type];
+		if (realType == null) {
+			throw "Type " + object.__type + " not found";
+		}
+		othis.resolveType(othis.bimServerApi.schema, object, realType);
+		callback();
 	};
 	
 	this.count = function(type, includeAllSubTypes, callback) {
