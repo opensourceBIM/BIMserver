@@ -124,7 +124,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * 
 	 * @param poid The Project's ObjectID
 	 * @param comment A comment
-	 * @param deserializerName Name of the deserializer to use, use getAllDeserializers to get a list of available deserializers
+	 * @param deserializerOid ObjectId of the deserializer to use, use getAllDeserializers to get a list of available deserializers
 	 * @param fileSize The size of the file in bytes
 	 * @param ifcFile The actual file
 	 * @param merge Whether to use checkin merging (this will alter your model!)
@@ -147,7 +147,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * Checkout an existing model, cehckout is the same as download, except a "checkout" will tell the server and other users you are working on it
 	 * 
 	 * @param roid Revision ObjectID
-	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
+	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getDownloadState method
 	 * @throws ServerException, UserException
@@ -162,7 +162,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * Same as checkout, only this will automatically select the last revision to checkout
 	 * 
 	 * @param poid Project ObjectID
-	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
+	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
 	 * @throws ServerException, UserException
@@ -177,7 +177,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * Download a single revision of a model in a serialized format
 	 * 
 	 * @param roid Revision ObjectID
-	 * @param serializerName  Name of the serializer to use, use getAllSerializers to find availble serializeres
+	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param showOwn Whether to return revisions created by the current user
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
@@ -214,7 +214,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * NOTE: This is a potentially slow method because the classes of the objects are not given
 	 * @param roids A set of Revision ObjectIDs
 	 * @param oids A set of ObjectIDs
-	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
+	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
 	 * @throws ServerException, UserException
@@ -231,7 +231,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * Download a model in serialized format by giving a set of revisions and a set of class names to filter on
 	 * @param roids A set of Revision ObjectIDs
 	 * @param classNames A set of class names to filter on (e.g. "IfcWindow")
-	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
+	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param includeAllSubtypes Whether to query all (recursive) subtypes of each gives class
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
@@ -284,7 +284,7 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Download a model in a serialized format by giving a set of revisions
 	 * @param roids A set of Revision ObjectIDs
-	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
+	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
 	 * @throws ServerException, UserException
@@ -965,7 +965,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "oid", partName = "getExtendedData.oid") Long oid) throws ServerException, UserException;
 
 	/**
-	 * @param oid ObjectID of the ExtendedData
+	 * @param roid ObjectID of the Revision
 	 * @return ExtendedData
 	 * @throws ServerException, UserException
 	 */
