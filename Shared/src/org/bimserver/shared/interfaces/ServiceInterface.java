@@ -144,6 +144,28 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "sync", partName = "checkin.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
+	 * Checkin a new model by sending a serialized form
+	 * 
+	 * @param poid The Project's ObjectID
+	 * @param comment A comment
+	 * @param deserializerOid ObjectId of the deserializer to use, use getAllDeserializers to get a list of available deserializers
+	 * @param url A URL to the file
+	 * @param merge Whether to use checkin merging (this will alter your model!)
+	 * @param sync Whether the call should return immediately (async) or wait for completion (sync)
+	 * @return An id, which you can use for the getCheckinState method
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "checkinFromUrl")
+	Long checkinFromUrl(
+		@WebParam(name = "poid", partName = "checkinFromUrl.poid") Long poid,
+		@WebParam(name = "comment", partName = "checkinFromUrl.comment") String comment,
+		@WebParam(name = "deserializerOid", partName = "checkinFromUrl.deserializerOid") Long deserializerOid,
+		@WebParam(name = "fileName", partName = "checkinFromUrl.fileName") String fileName,
+		@WebParam(name = "url", partName = "checkinFromUrl.url") String url,
+		@WebParam(name = "merge", partName = "checkinFromUrl.merge") Boolean merge,
+		@WebParam(name = "sync", partName = "checkinFromUrl.sync") Boolean sync) throws ServerException, UserException;
+	
+	/**
 	 * Checkout an existing model, cehckout is the same as download, except a "checkout" will tell the server and other users you are working on it
 	 * 
 	 * @param roid Revision ObjectID

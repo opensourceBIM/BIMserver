@@ -742,6 +742,12 @@ function Model(bimServerApi, poid, roid) {
 		callback();
 	};
 	
+	this.size = function(callback){
+		bimServerApi.call("ServiceInterface", "getRevision", {roid: roid}, function(revision){
+			callback(revision.size);
+		});
+	};
+	
 	this.count = function(type, includeAllSubTypes, callback) {
 		// TODO use includeAllSubTypes
 		othis.incrementRunningCalls("count (" + type + ")");
