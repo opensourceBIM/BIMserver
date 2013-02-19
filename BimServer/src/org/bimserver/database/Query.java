@@ -45,7 +45,7 @@ public class Query implements QueryInterface {
 		this.rid = Integer.MAX_VALUE;
 		this.stopRid = Integer.MIN_VALUE;
 		this.objectIDM = null;
-		this.deep = Deep.NO;
+		this.deep = deep ? Deep.YES : Deep.NO;
 	}
 
 	public Query(Integer pid, Integer rid, Deep deep) {

@@ -44,7 +44,7 @@ public class ServerSettingsCache {
 	public synchronized void updateCache() {
 		DatabaseSession session = database.createSession();
 		try {
-			serverSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), Query.getDefault());
+			serverSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), new Query(true));
 			allowedHosts.clear();
 			for (String domain : serverSettings.getWhitelistedDomains()) {
 				allowedHosts.add(domain);
