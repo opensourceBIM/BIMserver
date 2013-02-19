@@ -468,6 +468,24 @@ public interface StoreFactory extends EFactory {
 	QueryEnginePluginConfiguration createQueryEnginePluginConfiguration();
 
 	/**
+	 * Returns a new object of class '<em>Web Module Plugin Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Web Module Plugin Descriptor</em>'.
+	 * @generated
+	 */
+	WebModulePluginDescriptor createWebModulePluginDescriptor();
+
+	/**
+	 * Returns a new object of class '<em>Web Module Plugin Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Web Module Plugin Configuration</em>'.
+	 * @generated
+	 */
+	WebModulePluginConfiguration createWebModulePluginConfiguration();
+
+	/**
 	 * Returns a new object of class '<em>Model Merger Plugin Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

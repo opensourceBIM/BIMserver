@@ -59,6 +59,7 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.stillimagerenderer.StillImageRenderPlugin;
+import org.bimserver.plugins.web.WebModulePlugin;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.meta.ServicesMap;
 import org.slf4j.Logger;
@@ -87,6 +88,13 @@ public class PluginManager {
 		this.baseClassPath = null;
 	}
 
+	public void loadPluginsFromEclipseProjectNoExceptions(File projectRoot) {
+		try {
+			loadPluginsFromEclipseProject(projectRoot);
+		} catch (PluginException e) {
+		}
+	}
+	
 	public void loadPluginsFromEclipseProject(File projectRoot) throws PluginException {
 		if (!projectRoot.isDirectory()) {
 			throw new PluginException("No directory: " + projectRoot.getAbsolutePath());
@@ -522,5 +530,9 @@ public class PluginManager {
 
 	public SerializerPlugin getSerializerPlugin(String className, boolean onlyEnabled) {
 		return (SerializerPlugin) getPlugin(className, onlyEnabled);
+	}
+
+	public Collection<WebModulePlugin> getAllWebPlugins(boolean onlyEnabled) {
+		return getPlugins(WebModulePlugin.class, onlyEnabled);
 	}
 }

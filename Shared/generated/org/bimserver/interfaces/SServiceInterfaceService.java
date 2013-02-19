@@ -279,6 +279,16 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration();
 					}
 				}));
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SWebModulePluginDescriptor"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SWebModulePluginDescriptor();
+					}
+				}));
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SWebModulePluginConfiguration"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SWebModulePluginConfiguration();
+					}
+				}));
 				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SModelMergerPluginDescriptor"), new SConstructor(){
 					public Object newInstance() {
 						return new org.bimserver.interfaces.objects.SModelMergerPluginDescriptor();

@@ -45,6 +45,8 @@ public class SServerSettings implements SDataBase
 	private java.lang.Boolean hideUserListForNonAdmin;
 	private java.lang.Integer protocolBuffersPort;
 	private java.lang.Boolean cacheOutputFiles;
+	private List<Long> webModules = new ArrayList<Long>();
+	private long webModuleId = -1;
 	private java.lang.String serviceRepositoryUrl;
 
 	public long getOid() {
@@ -115,6 +117,12 @@ public class SServerSettings implements SDataBase
 		if (sField.getName().equals("cacheOutputFiles")) {
 			return getCacheOutputFiles();
 		}
+		if (sField.getName().equals("webModules")) {
+			return getWebModules();
+		}
+		if (sField.getName().equals("webModuleId")) {
+			return getWebModuleId();
+		}
 		if (sField.getName().equals("serviceRepositoryUrl")) {
 			return getServiceRepositoryUrl();
 		}
@@ -183,6 +191,14 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("cacheOutputFiles")) {
 			setCacheOutputFiles((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("webModules")) {
+			setWebModules((List<Long>)val);
+			return;
+		}
+		if (sField.getName().equals("webModuleId")) {
+			setWebModuleId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("serviceRepositoryUrl")) {
@@ -311,6 +327,22 @@ public class SServerSettings implements SDataBase
 
 	public void setCacheOutputFiles(java.lang.Boolean cacheOutputFiles) {
 		this.cacheOutputFiles = cacheOutputFiles;
+	}
+	
+	public List<Long> getWebModules() {
+		return webModules;
+	}
+
+	public void setWebModules(List<Long> webModules) {
+		this.webModules = webModules;
+	}
+	
+	public long getWebModuleId() {
+		return webModuleId;
+	}
+
+	public void setWebModuleId(long webModuleId) {
+		this.webModuleId = webModuleId;
 	}
 	
 	public java.lang.String getServiceRepositoryUrl() {

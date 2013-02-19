@@ -88,12 +88,14 @@ import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.ServerInfo;
+import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.StringType;
 import org.bimserver.models.store.Type;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
+import org.bimserver.models.store.WebModulePluginConfiguration;
 import org.bimserver.notifications.NotificationsManager;
 import org.bimserver.pb.server.ProtocolBuffersServer;
 import org.bimserver.plugins.Plugin;
@@ -111,6 +113,7 @@ import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
+import org.bimserver.plugins.web.WebModulePlugin;
 import org.bimserver.serializers.SerializerFactory;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.interfaces.NotificationInterface;
@@ -391,8 +394,19 @@ public class BimServer {
 
 			mailSystem = new MailSystem(this);
 
+			WebModulePlugin webModule = null;
+			DatabaseSession ses = bimDatabase.createSession();
+			try {
+				WebModulePluginConfiguration webModuleConfiguration = serverSettingsCache.getServerSettings().getWebModule();
+				if (webModuleConfiguration != null) {
+					webModule = (WebModulePlugin) pluginManager.getPlugin(webModuleConfiguration.getClassName(), true);
+				}
+			} finally {
+				ses.close();
+			}
+
 			if (config.isStartEmbeddedWebServer()) {
-				embeddedWebServer.start();
+				embeddedWebServer.start(webModule);
 			}
 
 			diskCacheManager = new DiskCacheManager(this, new File(config.getHomeDir(), "cache"));
@@ -467,6 +481,14 @@ public class BimServer {
 		return null;
 	}
 
+	private void genericPluginConversion(DatabaseSession session, Plugin plugin, PluginConfiguration pluginConfiguration) throws BimserverDatabaseException {
+		pluginConfiguration.setName(plugin.getDefaultName());
+		pluginConfiguration.setClassName(plugin.getClass().getName());
+		pluginConfiguration.setDescription(plugin.getDescription());
+		pluginConfiguration.setEnabled(true);
+		pluginConfiguration.setSettings(convertSettings(session, plugin));
+	}
+	
 	public void updateUserSettings(DatabaseSession session, User user) throws BimserverLockConflictException, BimserverDatabaseException {
 		UserSettings userSettings = user.getUserSettings();
 		if (userSettings == null) {
@@ -480,41 +502,25 @@ public class BimServer {
 			if (objectIdmPluginConfiguration == null) {
 				objectIdmPluginConfiguration = session.create(StorePackage.eINSTANCE.getObjectIDMPluginConfiguration());
 				userSettings.getObjectIDMs().add(objectIdmPluginConfiguration);
-				objectIdmPluginConfiguration.setName(name);
-				objectIdmPluginConfiguration.setClassName(objectIDMPlugin.getClass().getName());
-				objectIdmPluginConfiguration.setDescription(objectIDMPlugin.getDescription());
-				objectIdmPluginConfiguration.setEnabled(true);
-				objectIdmPluginConfiguration.setSettings(convertSettings(session, objectIDMPlugin));
-				if (userSettings.getDefaultObjectIDM() == null && objectIDMPlugin.getClass() == SchemaFieldObjectIDMPlugin.class) {
-					userSettings.setDefaultObjectIDM(objectIdmPluginConfiguration);
-				}
-			} else {
-				if (userSettings.getDefaultObjectIDM() == null && objectIDMPlugin.getClass() == SchemaFieldObjectIDMPlugin.class) {
-					userSettings.setDefaultObjectIDM(objectIdmPluginConfiguration);
-				}
+				genericPluginConversion(session, objectIDMPlugin, objectIdmPluginConfiguration);
+			}
+			if (userSettings.getDefaultObjectIDM() == null && objectIDMPlugin.getClass() == SchemaFieldObjectIDMPlugin.class) {
+				userSettings.setDefaultObjectIDM(objectIdmPluginConfiguration);
 			}
 		}
 		if (userSettings.getDefaultObjectIDM() == null && !userSettings.getObjectIDMs().isEmpty()) {
 			userSettings.setDefaultObjectIDM(userSettings.getObjectIDMs().get(0));
 		}
-		for (RenderEnginePlugin renderEnginePlugin : pluginManager.getAllRenderEnginePlugins(true)) {
-			String name = renderEnginePlugin.getDefaultName();
-			RenderEnginePluginConfiguration renderEnginePluginConfiguration = find(userSettings.getRenderEngines(), name);
-			if (renderEnginePluginConfiguration == null) {
-				renderEnginePluginConfiguration = session.create(StorePackage.eINSTANCE.getRenderEnginePluginConfiguration());
-				userSettings.getRenderEngines().add(renderEnginePluginConfiguration);
-				renderEnginePluginConfiguration.setClassName(renderEnginePlugin.getClass().getName());
-				renderEnginePluginConfiguration.setName(name);
-				renderEnginePluginConfiguration.setDescription(renderEnginePlugin.getDescription());
-				renderEnginePluginConfiguration.setEnabled(true);
-				renderEnginePluginConfiguration.setSettings(convertSettings(session, renderEnginePlugin));
-				if (userSettings.getDefaultRenderEngine() == null && renderEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOIfcEnginePlugin")) {
-					userSettings.setDefaultRenderEngine(renderEnginePluginConfiguration);
-				}
-			} else {
-				if (userSettings.getDefaultRenderEngine() == null && renderEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOIfcEnginePlugin")) {
-					userSettings.setDefaultRenderEngine(renderEnginePluginConfiguration);
-				}
+		for (RenderEnginePlugin ifcEnginePlugin : pluginManager.getAllRenderEnginePlugins(true)) {
+			String name = ifcEnginePlugin.getDefaultName();
+			RenderEnginePluginConfiguration ifcEnginePluginConfiguration = find(userSettings.getRenderEngines(), name);
+			if (ifcEnginePluginConfiguration == null) {
+				ifcEnginePluginConfiguration = session.create(StorePackage.eINSTANCE.getRenderEnginePluginConfiguration());
+				userSettings.getRenderEngines().add(ifcEnginePluginConfiguration);
+				genericPluginConversion(session, ifcEnginePlugin, ifcEnginePluginConfiguration);
+			}
+			if (userSettings.getDefaultRenderEngine() == null && ifcEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOIfcEnginePlugin")) {
+				userSettings.setDefaultRenderEngine(ifcEnginePluginConfiguration);
 			}
 		}
 		if (userSettings.getDefaultRenderEngine() == null && !userSettings.getRenderEngines().isEmpty()) {
@@ -526,18 +532,10 @@ public class BimServer {
 			if (queryEnginePluginConfiguration == null) {
 				queryEnginePluginConfiguration = session.create(StorePackage.eINSTANCE.getQueryEnginePluginConfiguration());
 				userSettings.getQueryengines().add(queryEnginePluginConfiguration);
-				queryEnginePluginConfiguration.setClassName(queryEnginePlugin.getClass().getName());
-				queryEnginePluginConfiguration.setName(name);
-				queryEnginePluginConfiguration.setDescription(queryEnginePlugin.getDescription());
-				queryEnginePluginConfiguration.setEnabled(true);
-				queryEnginePluginConfiguration.setSettings(convertSettings(session, queryEnginePlugin));
-				if (userSettings.getDefaultQueryEngine() == null && queryEnginePlugin.getClass().getName().equals("nl.wietmazairac.bimql.BimQLQueryEnginePlugin")) {
-					userSettings.setDefaultQueryEngine(queryEnginePluginConfiguration);
-				}
-			} else {
-				if (userSettings.getDefaultQueryEngine() == null && queryEnginePlugin.getClass().getName().equals("nl.wietmazairac.bimql.BimQLQueryEnginePlugin")) {
-					userSettings.setDefaultQueryEngine(queryEnginePluginConfiguration);
-				}
+				genericPluginConversion(session, queryEnginePlugin, queryEnginePluginConfiguration);
+			}
+			if (userSettings.getDefaultQueryEngine() == null && queryEnginePlugin.getClass().getName().equals("nl.wietmazairac.bimql.BimQLQueryEnginePlugin")) {
+				userSettings.setDefaultQueryEngine(queryEnginePluginConfiguration);
 			}
 		}
 		if (userSettings.getDefaultQueryEngine() == null && !userSettings.getQueryengines().isEmpty()) {
@@ -549,18 +547,10 @@ public class BimServer {
 			if (modelMergerPluginConfiguration == null) {
 				modelMergerPluginConfiguration = session.create(StorePackage.eINSTANCE.getModelMergerPluginConfiguration());
 				userSettings.getModelmergers().add(modelMergerPluginConfiguration);
-				modelMergerPluginConfiguration.setClassName(modelMergerPlugin.getClass().getName());
-				modelMergerPluginConfiguration.setName(name);
-				modelMergerPluginConfiguration.setDescription(modelMergerPlugin.getDescription());
-				modelMergerPluginConfiguration.setEnabled(true);
-				modelMergerPluginConfiguration.setSettings(convertSettings(session, modelMergerPlugin));
-				if (userSettings.getDefaultModelMerger() == null && modelMergerPlugin.getClass().getName().equals("org.bimserver.merging.BasicModelMergerPlugin")) {
-					userSettings.setDefaultModelMerger(modelMergerPluginConfiguration);
-				}
-			} else {
-				if (userSettings.getDefaultModelMerger() == null && modelMergerPlugin.getClass().getName().equals("org.bimserver.merging.BasicModelMergerPlugin")) {
-					userSettings.setDefaultModelMerger(modelMergerPluginConfiguration);
-				}
+				genericPluginConversion(session, modelMergerPlugin, modelMergerPluginConfiguration);
+			}
+			if (userSettings.getDefaultModelMerger() == null && modelMergerPlugin.getClass().getName().equals("org.bimserver.merging.BasicModelMergerPlugin")) {
+				userSettings.setDefaultModelMerger(modelMergerPluginConfiguration);
 			}
 		}
 		if (userSettings.getDefaultModelMerger() == null && !userSettings.getModelmergers().isEmpty()) {
@@ -572,18 +562,10 @@ public class BimServer {
 			if (modelComparePluginConfiguration == null) {
 				modelComparePluginConfiguration = session.create(StorePackage.eINSTANCE.getModelComparePluginConfiguration());
 				userSettings.getModelcompares().add(modelComparePluginConfiguration);
-				modelComparePluginConfiguration.setClassName(modelComparePlugin.getClass().getName());
-				modelComparePluginConfiguration.setName(name);
-				modelComparePluginConfiguration.setDescription(modelComparePlugin.getDescription());
-				modelComparePluginConfiguration.setEnabled(true);
-				modelComparePluginConfiguration.setSettings(convertSettings(session, modelComparePlugin));
-				if (userSettings.getDefaultModelCompare() == null && modelComparePlugin.getClass().getName().equals("org.bimserver.ifc.compare.GuidBasedModelComparePlugin")) {
-					userSettings.setDefaultModelCompare(modelComparePluginConfiguration);
-				}
-			} else {
-				if (userSettings.getDefaultModelCompare() == null && modelComparePlugin.getClass().getName().equals("org.bimserver.ifc.compare.GuidBasedModelComparePlugin")) {
-					userSettings.setDefaultModelCompare(modelComparePluginConfiguration);
-				}
+				genericPluginConversion(session, modelComparePlugin, modelComparePluginConfiguration);
+			}
+			if (userSettings.getDefaultModelCompare() == null && modelComparePlugin.getClass().getName().equals("org.bimserver.ifc.compare.GuidBasedModelComparePlugin")) {
+				userSettings.setDefaultModelCompare(modelComparePluginConfiguration);
 			}
 		}
 		if (userSettings.getDefaultModelCompare() == null && !userSettings.getModelcompares().isEmpty()) {
@@ -595,20 +577,12 @@ public class BimServer {
 			if (serializerPluginConfiguration == null) {
 				serializerPluginConfiguration = session.create(StorePackage.eINSTANCE.getSerializerPluginConfiguration());
 				userSettings.getSerializers().add(serializerPluginConfiguration);
-				serializerPluginConfiguration.setClassName(serializerPlugin.getClass().getName());
-				serializerPluginConfiguration.setName(name);
-				serializerPluginConfiguration.setEnabled(true);
-				serializerPluginConfiguration.setDescription(serializerPlugin.getDescription());
+				genericPluginConversion(session, serializerPlugin, serializerPluginConfiguration);
 				serializerPluginConfiguration.setObjectIDM(userSettings.getDefaultObjectIDM());
 				serializerPluginConfiguration.setRenderEngine(userSettings.getDefaultRenderEngine());
-				serializerPluginConfiguration.setSettings(convertSettings(session, serializerPlugin));
-				if (userSettings.getDefaultSerializer() == null && serializerPlugin.getClass().getName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin")) {
-					userSettings.setDefaultSerializer(serializerPluginConfiguration);
-				}
-			} else {
-				if (userSettings.getDefaultSerializer() == null && serializerPlugin.getClass().getName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin")) {
-					userSettings.setDefaultSerializer(serializerPluginConfiguration);
-				}
+			}
+			if (userSettings.getDefaultSerializer() == null && serializerPlugin.getClass().getName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin")) {
+				userSettings.setDefaultSerializer(serializerPluginConfiguration);
 			}
 		}
 		if (userSettings.getDefaultSerializer() == null && !userSettings.getSerializers().isEmpty()) {
@@ -620,11 +594,7 @@ public class BimServer {
 			if (internalServicePluginConfiguration == null) {
 				internalServicePluginConfiguration = session.create(StorePackage.eINSTANCE.getInternalServicePluginConfiguration());
 				userSettings.getServices().add(internalServicePluginConfiguration);
-				internalServicePluginConfiguration.setClassName(servicePlugin.getClass().getName());
-				internalServicePluginConfiguration.setName(name);
-				internalServicePluginConfiguration.setEnabled(true);
-				internalServicePluginConfiguration.setDescription(servicePlugin.getDescription());
-				internalServicePluginConfiguration.setSettings(convertSettings(session, servicePlugin));
+				genericPluginConversion(session, servicePlugin, internalServicePluginConfiguration);
 			}
 		}
 		for (DeserializerPlugin deserializerPlugin : pluginManager.getAllDeserializerPlugins(true)) {
@@ -633,11 +603,7 @@ public class BimServer {
 			if (deserializerPluginConfiguration == null) {
 				deserializerPluginConfiguration = session.create(StorePackage.eINSTANCE.getDeserializerPluginConfiguration());
 				userSettings.getDeserializers().add(deserializerPluginConfiguration);
-				deserializerPluginConfiguration.setClassName(deserializerPlugin.getClass().getName());
-				deserializerPluginConfiguration.setName(name);
-				deserializerPluginConfiguration.setEnabled(true);
-				deserializerPluginConfiguration.setDescription(deserializerPlugin.getDescription());
-				deserializerPluginConfiguration.setSettings(convertSettings(session, deserializerPlugin));
+				genericPluginConversion(session, deserializerPlugin, deserializerPluginConfiguration);
 			}
 		}
 		session.store(userSettings);
@@ -693,6 +659,22 @@ public class BimServer {
 
 			createDatabaseObjects(session);
 			updatePlugins(session);
+			
+			ServerSettings serverSettings = serverSettingsCache.getServerSettings();
+			for (WebModulePlugin webModulePlugin : pluginManager.getAllWebPlugins(true)) {
+				String name = webModulePlugin.getDefaultName();
+				WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), name);
+				if (webPluginConfiguration == null) {
+					webPluginConfiguration = session.create(StorePackage.eINSTANCE.getWebModulePluginConfiguration());
+					serverSettings.getWebModules().add(webPluginConfiguration);
+					genericPluginConversion(session, webModulePlugin, webPluginConfiguration);
+				}
+				if (serverSettings.getWebModule() == null && webModulePlugin.getClass().getName().equals("org.bimserver.bootstrap.BootstrapWebModulePlugin")) {
+					serverSettings.setWebModule(webPluginConfiguration);
+				}
+			}
+			session.store(serverSettings);
+			
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral("system"));
 			User systemUser = session.querySingle(condition, User.class, Query.getDefault());
 

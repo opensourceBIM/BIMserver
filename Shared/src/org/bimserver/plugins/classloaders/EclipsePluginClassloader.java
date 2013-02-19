@@ -47,6 +47,11 @@ public class EclipsePluginClassloader extends ClassLoader {
 	}
 
 	@Override
+	public URL getResource(String name) {
+		return findResource(name);
+	}
+	
+	@Override
 	protected URL findResource(String name) {
 		File file = new File(projectFolder, name);
 		if (file.exists()) {

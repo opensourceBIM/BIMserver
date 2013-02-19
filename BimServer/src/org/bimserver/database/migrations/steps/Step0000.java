@@ -491,6 +491,16 @@ public class Step0000 extends Migration {
 		queryEngineSettingsReference.setEOpposite(settingsQueryEnginesReference);
 		settingsQueryEnginesReference.setEOpposite(queryEngineSettingsReference);
 
+		schema.createEClass(storePackage, "WebModulePluginDescriptor", pluginDescriptor);
+		
+		EClass webModulePluginConfiguration = schema.createEClass(storePackage, "WebModulePluginConfiguration", pluginConfiguration);
+		
+		EReference webModulePluginSettingsReference = schema.createEReference(webModulePluginConfiguration, "serverSettings", serverSettings, Multiplicity.SINGLE);
+		EReference settingsWebReference = schema.createEReference(serverSettings, "webModules", webModulePluginConfiguration, Multiplicity.MANY);
+		
+		webModulePluginSettingsReference.setEOpposite(settingsWebReference);
+		settingsWebReference.setEOpposite(webModulePluginSettingsReference);
+
 		schema.createEClass(storePackage, "ModelMergerPluginDescriptor", pluginDescriptor);
 		
 		EClass modelMergerPluginConfiguration = schema.createEClass(storePackage, "ModelMergerPluginConfiguration", pluginConfiguration);
@@ -517,6 +527,7 @@ public class Step0000 extends Migration {
 		schema.createEReference(userSettings, "defaultRenderEngine", renderEnginePluginConfiguration, Multiplicity.SINGLE);
 		schema.createEReference(userSettings, "defaultSerializer", serializerPluginConfiguration, Multiplicity.SINGLE);
 		schema.createEReference(userSettings, "defaultObjectIDM", objectIDMPluginConfiguration, Multiplicity.SINGLE);
+		schema.createEReference(serverSettings, "webModule", webModulePluginConfiguration, Multiplicity.SINGLE);
 
 		EEnum trigger = schema.createEEnum("store", "Trigger");
 		schema.createEEnumLiteral(trigger, "NEW_REVISION");

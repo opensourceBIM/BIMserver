@@ -19,6 +19,7 @@ package org.bimserver.models.store.impl;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.WebModulePluginConfiguration;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
@@ -43,6 +44,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getProtocolBuffersPort <em>Protocol Buffers Port</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getCacheOutputFiles <em>Cache Output Files</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getWebModules <em>Web Modules</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getWebModule <em>Web Module</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getServiceRepositoryUrl <em>Service Repository Url</em>}</li>
  * </ul>
  * </p>
@@ -321,6 +324,34 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 */
 	public void setCacheOutputFiles(Boolean newCacheOutputFiles) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__CACHE_OUTPUT_FILES, newCacheOutputFiles);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<WebModulePluginConfiguration> getWebModules() {
+		return (EList<WebModulePluginConfiguration>) eGet(StorePackage.Literals.SERVER_SETTINGS__WEB_MODULES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WebModulePluginConfiguration getWebModule() {
+		return (WebModulePluginConfiguration) eGet(StorePackage.Literals.SERVER_SETTINGS__WEB_MODULE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setWebModule(WebModulePluginConfiguration newWebModule) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__WEB_MODULE, newWebModule);
 	}
 
 	/**

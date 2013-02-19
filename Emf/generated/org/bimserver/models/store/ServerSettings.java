@@ -41,6 +41,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ServerSettings#getHideUserListForNonAdmin <em>Hide User List For Non Admin</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getProtocolBuffersPort <em>Protocol Buffers Port</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getCacheOutputFiles <em>Cache Output Files</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getWebModules <em>Web Modules</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getWebModule <em>Web Module</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#getServiceRepositoryUrl <em>Service Repository Url</em>}</li>
  * </ul>
  * </p>
@@ -404,6 +406,50 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	void setCacheOutputFiles(Boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Web Modules</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.WebModulePluginConfiguration}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.WebModulePluginConfiguration#getServerSettings <em>Server Settings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Web Modules</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Web Modules</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_WebModules()
+	 * @see org.bimserver.models.store.WebModulePluginConfiguration#getServerSettings
+	 * @model opposite="serverSettings"
+	 * @generated
+	 */
+	EList<WebModulePluginConfiguration> getWebModules();
+
+	/**
+	 * Returns the value of the '<em><b>Web Module</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Web Module</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Web Module</em>' reference.
+	 * @see #setWebModule(WebModulePluginConfiguration)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_WebModule()
+	 * @model
+	 * @generated
+	 */
+	WebModulePluginConfiguration getWebModule();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getWebModule <em>Web Module</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Web Module</em>' reference.
+	 * @see #getWebModule()
+	 * @generated
+	 */
+	void setWebModule(WebModulePluginConfiguration value);
 
 	/**
 	 * Returns the value of the '<em><b>Service Repository Url</b></em>' attribute.
