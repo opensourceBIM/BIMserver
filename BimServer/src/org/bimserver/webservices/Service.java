@@ -36,6 +36,7 @@ import java.util.Set;
 
 import javax.activation.DataHandler;
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -262,6 +263,70 @@ public class Service implements ServiceInterface {
 					throw new UserException(e);
 				}
 				IfcModelInterface model = deserializer.read(inputStream, fileName, fileSize);
+				if (model.size() == 0) {
+					throw new DeserializeException("Cannot checkin empty model");
+				}
+				CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(bimServer, null, accessMethod, poid, authorization, model, comment, merge);
+				LongCheckinAction longAction = new LongCheckinAction(bimServer, username, userUsername, authorization, checkinDatabaseAction);
+				bimServer.getLongActionManager().start(longAction);
+				if (sync) {
+					longAction.waitForCompletion();
+				}
+				return longAction.getId();
+			} catch (UserException e) {
+				throw e;
+			} catch (DeserializeException e) {
+				throw new UserException(e);
+			} finally {
+				inputStream.close();
+			}
+		} catch (UserException e) {
+			throw e;
+		} catch (Throwable e) {
+			LOGGER.error("", e);
+			throw new ServerException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public Long checkinFromUrl(Long poid, String comment, Long deserializerOid, String fileName, String urlString, Boolean merge, Boolean sync) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		final DatabaseSession session = bimServer.getDatabase().createSession();
+		String username = "Unknown";
+		String userUsername = "Unknown";
+		try {
+			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), Query.getDefault());
+			username = user.getName();
+			userUsername = user.getUsername();
+			File homeDirIncoming = new File(bimServer.getHomeDir(), "incoming");
+			if (!homeDirIncoming.isDirectory()) {
+				homeDirIncoming.mkdir();
+			}
+			File userDirIncoming = new File(homeDirIncoming, userUsername);
+			if (!userDirIncoming.exists()) {
+				userDirIncoming.mkdir();
+			}
+			
+			URL url = new URL(urlString);
+			InputStream input = url.openStream();
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+			fileName = dateFormat.format(new Date()) + "-" + fileName;
+			File file = new File(userDirIncoming, fileName);
+			InputStream inputStream = new MultiplexingInputStream(input, new FileOutputStream(file));
+			try {
+				DeserializerPluginConfiguration deserializerObject = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
+				if (deserializerObject == null) {
+					throw new UserException("Deserializer with oid " + deserializerOid + " not found");
+				}
+				Deserializer deserializer = bimServer.getDeserializerFactory().createDeserializer(deserializerOid);
+				try {
+					deserializer.init(bimServer.getPluginManager().requireSchemaDefinition());
+				} catch (PluginException e) {
+					throw new UserException(e);
+				}
+				IfcModelInterface model = deserializer.read(inputStream, fileName, 0);
 				if (model.size() == 0) {
 					throw new DeserializeException("Cannot checkin empty model");
 				}

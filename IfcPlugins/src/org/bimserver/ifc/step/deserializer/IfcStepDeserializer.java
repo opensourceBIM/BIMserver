@@ -319,7 +319,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 									object.eSet(doubleStringFeature, val);
 								}
 							} else {
-								// It's not a list in de file, but it is in the schema??
+								// It's not a list in the file, but it is in the schema??
 							}
 						}
 					} else {
