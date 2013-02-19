@@ -18,6 +18,7 @@ package org.bimserver.models.store.impl;
 
 import javax.activation.DataHandler;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.ArrayDefinition;
 import org.bimserver.models.store.ArrayType;
@@ -260,6 +261,10 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createQueryEnginePluginDescriptor();
 		case StorePackage.QUERY_ENGINE_PLUGIN_CONFIGURATION:
 			return (EObject) createQueryEnginePluginConfiguration();
+		case StorePackage.WEB_MODULE_PLUGIN_DESCRIPTOR:
+			return (EObject) createWebModulePluginDescriptor();
+		case StorePackage.WEB_MODULE_PLUGIN_CONFIGURATION:
+			return (EObject) createWebModulePluginConfiguration();
 		case StorePackage.MODEL_MERGER_PLUGIN_DESCRIPTOR:
 			return (EObject) createModelMergerPluginDescriptor();
 		case StorePackage.MODEL_MERGER_PLUGIN_CONFIGURATION:
@@ -885,6 +890,26 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public QueryEnginePluginConfiguration createQueryEnginePluginConfiguration() {
 		QueryEnginePluginConfigurationImpl queryEnginePluginConfiguration = new QueryEnginePluginConfigurationImpl();
 		return queryEnginePluginConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WebModulePluginDescriptor createWebModulePluginDescriptor() {
+		WebModulePluginDescriptorImpl webModulePluginDescriptor = new WebModulePluginDescriptorImpl();
+		return webModulePluginDescriptor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WebModulePluginConfiguration createWebModulePluginConfiguration() {
+		WebModulePluginConfigurationImpl webModulePluginConfiguration = new WebModulePluginConfigurationImpl();
+		return webModulePluginConfiguration;
 	}
 
 	/**

@@ -16,6 +16,7 @@
  */
 package org.bimserver.models.store.util;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.ArrayDefinition;
 import org.bimserver.models.store.ArrayType;
 import org.bimserver.models.store.BimServerInfo;
@@ -399,6 +400,16 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseQueryEnginePluginConfiguration(QueryEnginePluginConfiguration object) {
 			return createQueryEnginePluginConfigurationAdapter();
+		}
+
+		@Override
+		public Adapter caseWebModulePluginDescriptor(WebModulePluginDescriptor object) {
+			return createWebModulePluginDescriptorAdapter();
+		}
+
+		@Override
+		public Adapter caseWebModulePluginConfiguration(WebModulePluginConfiguration object) {
+			return createWebModulePluginConfigurationAdapter();
 		}
 
 		@Override
@@ -1269,6 +1280,34 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createQueryEnginePluginConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.WebModulePluginDescriptor <em>Web Module Plugin Descriptor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.WebModulePluginDescriptor
+	 * @generated
+	 */
+	public Adapter createWebModulePluginDescriptorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.WebModulePluginConfiguration <em>Web Module Plugin Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.WebModulePluginConfiguration
+	 * @generated
+	 */
+	public Adapter createWebModulePluginConfigurationAdapter() {
 		return null;
 	}
 

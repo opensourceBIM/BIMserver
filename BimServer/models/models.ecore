@@ -9765,6 +9765,9 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="protocolBuffersPort"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="cacheOutputFiles" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="webModules" upperBound="-1"
+          eType="#/2/WebModulePluginConfiguration" eOpposite="#/2/WebModulePluginConfiguration/serverSettings"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="webModule" eType="#/2/WebModulePluginConfiguration"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="serviceRepositoryUrl"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
@@ -10053,6 +10056,11 @@
     <eClassifiers xsi:type="ecore:EClass" name="QueryEnginePluginConfiguration" eSuperTypes="#/2/PluginConfiguration">
       <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#/2/UserSettings"
           eOpposite="#/2/UserSettings/queryengines"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WebModulePluginDescriptor" eSuperTypes="#/2/PluginDescriptor"/>
+    <eClassifiers xsi:type="ecore:EClass" name="WebModulePluginConfiguration" eSuperTypes="#/2/PluginConfiguration">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="serverSettings" eType="#/2/ServerSettings"
+          eOpposite="#/2/ServerSettings/webModules"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModelMergerPluginDescriptor" eSuperTypes="#/2/PluginDescriptor"/>
     <eClassifiers xsi:type="ecore:EClass" name="ModelMergerPluginConfiguration" eSuperTypes="#/2/PluginConfiguration">

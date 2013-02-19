@@ -19,6 +19,7 @@ package org.bimserver;
 
 import java.util.Random;
 
+import org.bimserver.plugins.web.WebModulePlugin;
 import org.bimserver.servlets.SyndicationServlet;
 import org.bimserver.servlets.WebServiceServlet;
 import org.eclipse.jetty.server.Server;
@@ -49,8 +50,14 @@ public class EmbeddedWebServer {
 		context.getServletContext().setAttribute("bimserver", bimServer);
 	}
 	
-	public void start() {
-		if (context.getResourceBase() == null) {
+	public void start(final WebModulePlugin webModule) {
+		if (webModule != null) {
+			ClassLoader classLoader = webModule.getClass().getClassLoader();
+			System.out.println(classLoader);
+			String url = classLoader.getResource(".").toExternalForm();
+			System.out.println(url);
+			context.setResourceBase(url);
+		} else if (context.getResourceBase() == null) {
 			context.setResourceBase("../BimServer/www");
 		}
 		try {

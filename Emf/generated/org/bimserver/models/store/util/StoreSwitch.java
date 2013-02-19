@@ -16,6 +16,7 @@
  */
 package org.bimserver.models.store.util;
 
+import org.bimserver.models.store.*;
 import org.bimserver.models.store.ArrayDefinition;
 import org.bimserver.models.store.ArrayType;
 import org.bimserver.models.store.BimServerInfo;
@@ -526,6 +527,24 @@ public class StoreSwitch<T> extends Switch<T> {
 			T result = caseQueryEnginePluginConfiguration(queryEnginePluginConfiguration);
 			if (result == null)
 				result = casePluginConfiguration(queryEnginePluginConfiguration);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.WEB_MODULE_PLUGIN_DESCRIPTOR: {
+			WebModulePluginDescriptor webModulePluginDescriptor = (WebModulePluginDescriptor) theEObject;
+			T result = caseWebModulePluginDescriptor(webModulePluginDescriptor);
+			if (result == null)
+				result = casePluginDescriptor(webModulePluginDescriptor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StorePackage.WEB_MODULE_PLUGIN_CONFIGURATION: {
+			WebModulePluginConfiguration webModulePluginConfiguration = (WebModulePluginConfiguration) theEObject;
+			T result = caseWebModulePluginConfiguration(webModulePluginConfiguration);
+			if (result == null)
+				result = casePluginConfiguration(webModulePluginConfiguration);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -1550,6 +1569,36 @@ public class StoreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseQueryEnginePluginConfiguration(QueryEnginePluginConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Web Module Plugin Descriptor</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Web Module Plugin Descriptor</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWebModulePluginDescriptor(WebModulePluginDescriptor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Web Module Plugin Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Web Module Plugin Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWebModulePluginConfiguration(WebModulePluginConfiguration object) {
 		return null;
 	}
 
