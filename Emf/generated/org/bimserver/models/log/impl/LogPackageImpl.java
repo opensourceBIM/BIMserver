@@ -238,7 +238,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass externalServiceCalledEClass = null;
+	private EClass remoteServiceCalledEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -922,11 +922,11 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExternalServiceCalled() {
-		if (externalServiceCalledEClass == null) {
-			externalServiceCalledEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(27);
+	public EClass getRemoteServiceCalled() {
+		if (remoteServiceCalledEClass == null) {
+			remoteServiceCalledEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers().get(27);
 		}
-		return externalServiceCalledEClass;
+		return remoteServiceCalledEClass;
 	}
 
 	/**
@@ -934,8 +934,8 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExternalServiceCalled_Service() {
-		return (EReference) getExternalServiceCalled().getEStructuralFeatures().get(0);
+	public EReference getRemoteServiceCalled_Service() {
+		return (EReference) getRemoteServiceCalled().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -943,8 +943,8 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExternalServiceCalled_State() {
-		return (EAttribute) getExternalServiceCalled().getEStructuralFeatures().get(1);
+	public EAttribute getRemoteServiceCalled_State() {
+		return (EAttribute) getRemoteServiceCalled().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -952,8 +952,8 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExternalServiceCalled_Percentage() {
-		return (EAttribute) getExternalServiceCalled().getEStructuralFeatures().get(2);
+	public EAttribute getRemoteServiceCalled_Percentage() {
+		return (EAttribute) getRemoteServiceCalled().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -961,8 +961,8 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExternalServiceCalled_Infos() {
-		return (EAttribute) getExternalServiceCalled().getEStructuralFeatures().get(3);
+	public EAttribute getRemoteServiceCalled_Infos() {
+		return (EAttribute) getRemoteServiceCalled().getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -970,8 +970,8 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExternalServiceCalled_Warnings() {
-		return (EAttribute) getExternalServiceCalled().getEStructuralFeatures().get(4);
+	public EAttribute getRemoteServiceCalled_Warnings() {
+		return (EAttribute) getRemoteServiceCalled().getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -979,8 +979,8 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExternalServiceCalled_Errors() {
-		return (EAttribute) getExternalServiceCalled().getEStructuralFeatures().get(5);
+	public EAttribute getRemoteServiceCalled_Errors() {
+		return (EAttribute) getRemoteServiceCalled().getEStructuralFeatures().get(5);
 	}
 
 	/**

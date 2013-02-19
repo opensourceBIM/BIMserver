@@ -1501,14 +1501,14 @@ public interface LogPackage extends EPackage {
 	int EXTENDED_DATA_ADDED_TO_PROJECT_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.log.impl.ExternalServiceCalledImpl <em>External Service Called</em>}' class.
+	 * The meta object id for the '{@link org.bimserver.models.log.impl.RemoteServiceCalledImpl <em>Remote Service Called</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.log.impl.ExternalServiceCalledImpl
-	 * @see org.bimserver.models.log.impl.LogPackageImpl#getExternalServiceCalled()
+	 * @see org.bimserver.models.log.impl.RemoteServiceCalledImpl
+	 * @see org.bimserver.models.log.impl.LogPackageImpl#getRemoteServiceCalled()
 	 * @generated
 	 */
-	int EXTERNAL_SERVICE_CALLED = 26;
+	int REMOTE_SERVICE_CALLED = 26;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -1517,7 +1517,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_SERVICE_CALLED__DATE = LOG_ACTION__DATE;
+	int REMOTE_SERVICE_CALLED__DATE = LOG_ACTION__DATE;
 
 	/**
 	 * The feature id for the '<em><b>Executor</b></em>' reference.
@@ -1526,7 +1526,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_SERVICE_CALLED__EXECUTOR = LOG_ACTION__EXECUTOR;
+	int REMOTE_SERVICE_CALLED__EXECUTOR = LOG_ACTION__EXECUTOR;
 
 	/**
 	 * The feature id for the '<em><b>Access Method</b></em>' attribute.
@@ -1535,7 +1535,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_SERVICE_CALLED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
+	int REMOTE_SERVICE_CALLED__ACCESS_METHOD = LOG_ACTION__ACCESS_METHOD;
 
 	/**
 	 * The feature id for the '<em><b>Service</b></em>' reference.
@@ -1544,7 +1544,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_SERVICE_CALLED__SERVICE = LOG_ACTION_FEATURE_COUNT + 0;
+	int REMOTE_SERVICE_CALLED__SERVICE = LOG_ACTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -1553,7 +1553,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_SERVICE_CALLED__STATE = LOG_ACTION_FEATURE_COUNT + 1;
+	int REMOTE_SERVICE_CALLED__STATE = LOG_ACTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Percentage</b></em>' attribute.
@@ -1562,7 +1562,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_SERVICE_CALLED__PERCENTAGE = LOG_ACTION_FEATURE_COUNT + 2;
+	int REMOTE_SERVICE_CALLED__PERCENTAGE = LOG_ACTION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Infos</b></em>' attribute list.
@@ -1571,7 +1571,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_SERVICE_CALLED__INFOS = LOG_ACTION_FEATURE_COUNT + 3;
+	int REMOTE_SERVICE_CALLED__INFOS = LOG_ACTION_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Warnings</b></em>' attribute list.
@@ -1580,7 +1580,7 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_SERVICE_CALLED__WARNINGS = LOG_ACTION_FEATURE_COUNT + 4;
+	int REMOTE_SERVICE_CALLED__WARNINGS = LOG_ACTION_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Errors</b></em>' attribute list.
@@ -1589,16 +1589,16 @@ public interface LogPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_SERVICE_CALLED__ERRORS = LOG_ACTION_FEATURE_COUNT + 5;
+	int REMOTE_SERVICE_CALLED__ERRORS = LOG_ACTION_FEATURE_COUNT + 5;
 
 	/**
-	 * The number of structural features of the '<em>External Service Called</em>' class.
+	 * The number of structural features of the '<em>Remote Service Called</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_SERVICE_CALLED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 6;
+	int REMOTE_SERVICE_CALLED_FEATURE_COUNT = LOG_ACTION_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.log.AccessMethod <em>Access Method</em>}' enum.
@@ -2223,80 +2223,80 @@ public interface LogPackage extends EPackage {
 	EReference getExtendedDataAddedToProject_ExtendedData();
 
 	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.log.ExternalServiceCalled <em>External Service Called</em>}'.
+	 * Returns the meta object for class '{@link org.bimserver.models.log.RemoteServiceCalled <em>Remote Service Called</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>External Service Called</em>'.
-	 * @see org.bimserver.models.log.ExternalServiceCalled
+	 * @return the meta object for class '<em>Remote Service Called</em>'.
+	 * @see org.bimserver.models.log.RemoteServiceCalled
 	 * @generated
 	 */
-	EClass getExternalServiceCalled();
+	EClass getRemoteServiceCalled();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.log.ExternalServiceCalled#getService <em>Service</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.log.RemoteServiceCalled#getService <em>Service</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Service</em>'.
-	 * @see org.bimserver.models.log.ExternalServiceCalled#getService()
-	 * @see #getExternalServiceCalled()
+	 * @see org.bimserver.models.log.RemoteServiceCalled#getService()
+	 * @see #getRemoteServiceCalled()
 	 * @generated
 	 */
-	EReference getExternalServiceCalled_Service();
+	EReference getRemoteServiceCalled_Service();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.log.ExternalServiceCalled#getState <em>State</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.log.RemoteServiceCalled#getState <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>State</em>'.
-	 * @see org.bimserver.models.log.ExternalServiceCalled#getState()
-	 * @see #getExternalServiceCalled()
+	 * @see org.bimserver.models.log.RemoteServiceCalled#getState()
+	 * @see #getRemoteServiceCalled()
 	 * @generated
 	 */
-	EAttribute getExternalServiceCalled_State();
+	EAttribute getRemoteServiceCalled_State();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.log.ExternalServiceCalled#getPercentage <em>Percentage</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.log.RemoteServiceCalled#getPercentage <em>Percentage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Percentage</em>'.
-	 * @see org.bimserver.models.log.ExternalServiceCalled#getPercentage()
-	 * @see #getExternalServiceCalled()
+	 * @see org.bimserver.models.log.RemoteServiceCalled#getPercentage()
+	 * @see #getRemoteServiceCalled()
 	 * @generated
 	 */
-	EAttribute getExternalServiceCalled_Percentage();
+	EAttribute getRemoteServiceCalled_Percentage();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.bimserver.models.log.ExternalServiceCalled#getInfos <em>Infos</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.bimserver.models.log.RemoteServiceCalled#getInfos <em>Infos</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Infos</em>'.
-	 * @see org.bimserver.models.log.ExternalServiceCalled#getInfos()
-	 * @see #getExternalServiceCalled()
+	 * @see org.bimserver.models.log.RemoteServiceCalled#getInfos()
+	 * @see #getRemoteServiceCalled()
 	 * @generated
 	 */
-	EAttribute getExternalServiceCalled_Infos();
+	EAttribute getRemoteServiceCalled_Infos();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.bimserver.models.log.ExternalServiceCalled#getWarnings <em>Warnings</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.bimserver.models.log.RemoteServiceCalled#getWarnings <em>Warnings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Warnings</em>'.
-	 * @see org.bimserver.models.log.ExternalServiceCalled#getWarnings()
-	 * @see #getExternalServiceCalled()
+	 * @see org.bimserver.models.log.RemoteServiceCalled#getWarnings()
+	 * @see #getRemoteServiceCalled()
 	 * @generated
 	 */
-	EAttribute getExternalServiceCalled_Warnings();
+	EAttribute getRemoteServiceCalled_Warnings();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.bimserver.models.log.ExternalServiceCalled#getErrors <em>Errors</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.bimserver.models.log.RemoteServiceCalled#getErrors <em>Errors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Errors</em>'.
-	 * @see org.bimserver.models.log.ExternalServiceCalled#getErrors()
-	 * @see #getExternalServiceCalled()
+	 * @see org.bimserver.models.log.RemoteServiceCalled#getErrors()
+	 * @see #getRemoteServiceCalled()
 	 * @generated
 	 */
-	EAttribute getExternalServiceCalled_Errors();
+	EAttribute getRemoteServiceCalled_Errors();
 
 	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.log.AccessMethod <em>Access Method</em>}'.
@@ -2847,14 +2847,14 @@ public interface LogPackage extends EPackage {
 		EReference EXTENDED_DATA_ADDED_TO_PROJECT__EXTENDED_DATA = eINSTANCE.getExtendedDataAddedToProject_ExtendedData();
 
 		/**
-		 * The meta object literal for the '{@link org.bimserver.models.log.impl.ExternalServiceCalledImpl <em>External Service Called</em>}' class.
+		 * The meta object literal for the '{@link org.bimserver.models.log.impl.RemoteServiceCalledImpl <em>Remote Service Called</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.log.impl.ExternalServiceCalledImpl
-		 * @see org.bimserver.models.log.impl.LogPackageImpl#getExternalServiceCalled()
+		 * @see org.bimserver.models.log.impl.RemoteServiceCalledImpl
+		 * @see org.bimserver.models.log.impl.LogPackageImpl#getRemoteServiceCalled()
 		 * @generated
 		 */
-		EClass EXTERNAL_SERVICE_CALLED = eINSTANCE.getExternalServiceCalled();
+		EClass REMOTE_SERVICE_CALLED = eINSTANCE.getRemoteServiceCalled();
 
 		/**
 		 * The meta object literal for the '<em><b>Service</b></em>' reference feature.
@@ -2862,7 +2862,7 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXTERNAL_SERVICE_CALLED__SERVICE = eINSTANCE.getExternalServiceCalled_Service();
+		EReference REMOTE_SERVICE_CALLED__SERVICE = eINSTANCE.getRemoteServiceCalled_Service();
 
 		/**
 		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
@@ -2870,7 +2870,7 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTERNAL_SERVICE_CALLED__STATE = eINSTANCE.getExternalServiceCalled_State();
+		EAttribute REMOTE_SERVICE_CALLED__STATE = eINSTANCE.getRemoteServiceCalled_State();
 
 		/**
 		 * The meta object literal for the '<em><b>Percentage</b></em>' attribute feature.
@@ -2878,7 +2878,7 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTERNAL_SERVICE_CALLED__PERCENTAGE = eINSTANCE.getExternalServiceCalled_Percentage();
+		EAttribute REMOTE_SERVICE_CALLED__PERCENTAGE = eINSTANCE.getRemoteServiceCalled_Percentage();
 
 		/**
 		 * The meta object literal for the '<em><b>Infos</b></em>' attribute list feature.
@@ -2886,7 +2886,7 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTERNAL_SERVICE_CALLED__INFOS = eINSTANCE.getExternalServiceCalled_Infos();
+		EAttribute REMOTE_SERVICE_CALLED__INFOS = eINSTANCE.getRemoteServiceCalled_Infos();
 
 		/**
 		 * The meta object literal for the '<em><b>Warnings</b></em>' attribute list feature.
@@ -2894,7 +2894,7 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTERNAL_SERVICE_CALLED__WARNINGS = eINSTANCE.getExternalServiceCalled_Warnings();
+		EAttribute REMOTE_SERVICE_CALLED__WARNINGS = eINSTANCE.getRemoteServiceCalled_Warnings();
 
 		/**
 		 * The meta object literal for the '<em><b>Errors</b></em>' attribute list feature.
@@ -2902,7 +2902,7 @@ public interface LogPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXTERNAL_SERVICE_CALLED__ERRORS = eINSTANCE.getExternalServiceCalled_Errors();
+		EAttribute REMOTE_SERVICE_CALLED__ERRORS = eINSTANCE.getRemoteServiceCalled_Errors();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.log.AccessMethod <em>Access Method</em>}' enum.

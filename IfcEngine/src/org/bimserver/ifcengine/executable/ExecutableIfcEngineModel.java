@@ -29,13 +29,13 @@ import java.util.List;
 import java.util.Set;
 
 import org.bimserver.ifcengine.Command;
-import org.bimserver.plugins.ifcengine.IfcEngineClash;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
-import org.bimserver.plugins.ifcengine.IfcEngineInstance;
-import org.bimserver.plugins.ifcengine.IfcEngineModel;
-import org.bimserver.plugins.ifcengine.IfcEngineSettings;
-import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
+import org.bimserver.plugins.renderengine.RenderEngineClash;
+import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.RenderEngineGeometry;
+import org.bimserver.plugins.renderengine.RenderEngineInstance;
+import org.bimserver.plugins.renderengine.RenderEngineModel;
+import org.bimserver.plugins.renderengine.RenderEngineSettings;
+import org.bimserver.plugins.renderengine.RenderEngineSurfaceProperties;
 
 /******************************************************************************
  * Copyright (C) 2009-2012 BIMserver.org
@@ -66,7 +66,7 @@ import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
  * is not commercially available. For more information, please contact the owner
  * at info@ifcengine.com
  *****************************************************************************/
-public class ExecutableIfcEngineModel implements IfcEngineModel {
+public class ExecutableIfcEngineModel implements RenderEngineModel {
 	private final int modelId;
 	private final ExecutableIfcEngine ifcEngine;
 
@@ -75,18 +75,18 @@ public class ExecutableIfcEngineModel implements IfcEngineModel {
 		this.modelId = modelId;
 	}
 
-	public IfcEngineSurfaceProperties initializeModelling() throws IfcEngineException {
+	public RenderEngineSurfaceProperties initializeModelling() throws RenderEngineException {
 		synchronized (ifcEngine) {
 			ifcEngine.writeCommand(Command.INITIALIZE_MODELLING);
 			ifcEngine.writeInt(modelId);
 			ifcEngine.flush();
 			int noIndices = ifcEngine.readInt();
 			int noVertices = ifcEngine.readInt();
-			return new IfcEngineSurfaceProperties(modelId, noVertices, noIndices, 0.0);
+			return new RenderEngineSurfaceProperties(modelId, noVertices, noIndices, 0.0);
 		}
 	}
 
-	public void setPostProcessing(boolean postProcessing) throws IfcEngineException {
+	public void setPostProcessing(boolean postProcessing) throws RenderEngineException {
 		synchronized (ifcEngine) {
 			ifcEngine.writeCommand(Command.SET_POSTPROCESSING);
 			ifcEngine.writeInt(modelId);
@@ -95,7 +95,7 @@ public class ExecutableIfcEngineModel implements IfcEngineModel {
 		}
 	}
 
-	public IfcEngineGeometry finalizeModelling(IfcEngineSurfaceProperties surfaceProperties) throws IfcEngineException {
+	public RenderEngineGeometry finalizeModelling(RenderEngineSurfaceProperties surfaceProperties) throws RenderEngineException {
 		synchronized (ifcEngine) {
 			if (surfaceProperties.getIndicesCount() == 0 || surfaceProperties.getVerticesCount() == 0) {
 				return null;
@@ -117,11 +117,11 @@ public class ExecutableIfcEngineModel implements IfcEngineModel {
 			for (int i = 0; i < normals.length; i++) {
 				normals[i] = ifcEngine.readFloat();
 			}
-			return new IfcEngineGeometry(indices, vertices, normals);
+			return new RenderEngineGeometry(indices, vertices, normals);
 		}
 	}
 
-	public List<? extends IfcEngineInstance> getInstances(String name) throws IfcEngineException {
+	public List<? extends RenderEngineInstance> getInstances(String name) throws RenderEngineException {
 		synchronized (ifcEngine) {
 			ifcEngine.writeCommand(Command.GET_INSTANCES);
 			ifcEngine.writeInt(modelId);
@@ -136,7 +136,7 @@ public class ExecutableIfcEngineModel implements IfcEngineModel {
 		}
 	}
 
-	public void close() throws IfcEngineException {
+	public void close() throws RenderEngineException {
 		synchronized (ifcEngine) {
 			ifcEngine.writeCommand(Command.CLOSE_MODEL);
 			ifcEngine.writeInt(modelId);
@@ -144,16 +144,16 @@ public class ExecutableIfcEngineModel implements IfcEngineModel {
 		}
 	}
 
-	public Set<IfcEngineClash> findClashesWithEids(double d) throws IfcEngineException {
+	public Set<RenderEngineClash> findClashesWithEids(double d) throws RenderEngineException {
 		synchronized (ifcEngine) {
 			ifcEngine.writeCommand(Command.FIND_CLASHES_BY_EID);
 			ifcEngine.writeInt(modelId);
 			ifcEngine.writeDouble(d);
 			ifcEngine.flush();
 			int nrClashes = ifcEngine.readInt();
-			Set<IfcEngineClash> clashes = new HashSet<IfcEngineClash>();
+			Set<RenderEngineClash> clashes = new HashSet<RenderEngineClash>();
 			for (int i = 0; i < nrClashes; i++) {
-				IfcEngineClash clash = new IfcEngineClash();
+				RenderEngineClash clash = new RenderEngineClash();
 				clashes.add(clash);
 				clash.setEid1(ifcEngine.readLong());
 				clash.setEid2(ifcEngine.readLong());
@@ -162,16 +162,16 @@ public class ExecutableIfcEngineModel implements IfcEngineModel {
 		}
 	}
 
-	public Set<IfcEngineClash> findClashesWithGuids(double d) throws IfcEngineException {
+	public Set<RenderEngineClash> findClashesWithGuids(double d) throws RenderEngineException {
 		synchronized (ifcEngine) {
 			ifcEngine.writeCommand(Command.FIND_CLASHES_BY_GUID);
 			ifcEngine.writeInt(modelId);
 			ifcEngine.writeDouble(d);
 			ifcEngine.flush();
 			int nrClashes = ifcEngine.readInt();
-			Set<IfcEngineClash> clashes = new HashSet<IfcEngineClash>();
+			Set<RenderEngineClash> clashes = new HashSet<RenderEngineClash>();
 			for (int i = 0; i < nrClashes; i++) {
-				IfcEngineClash clash = new IfcEngineClash();
+				RenderEngineClash clash = new RenderEngineClash();
 				clashes.add(clash);
 				clash.setGuid1(ifcEngine.readString());
 				clash.setGuid2(ifcEngine.readString());
@@ -181,7 +181,7 @@ public class ExecutableIfcEngineModel implements IfcEngineModel {
 	}
 
 	@Override
-	public IfcEngineInstance getInstanceFromExpressId(int oid) throws IfcEngineException {
+	public RenderEngineInstance getInstanceFromExpressId(int oid) throws RenderEngineException {
 		synchronized (ifcEngine) {
 			ifcEngine.writeCommand(Command.GET_INSTANCE_FROM_EXPRESSID);
 			ifcEngine.writeInt(modelId);
@@ -192,7 +192,7 @@ public class ExecutableIfcEngineModel implements IfcEngineModel {
 	}
 
 	@Override
-	public void setFormat(int format, int mask) throws IfcEngineException {
+	public void setFormat(int format, int mask) throws RenderEngineException {
 		synchronized (ifcEngine) {
 			ifcEngine.writeCommand(Command.SET_FORMAT);
 			ifcEngine.writeInt(modelId);
@@ -203,7 +203,7 @@ public class ExecutableIfcEngineModel implements IfcEngineModel {
 	}
 
 	@Override
-	public void setSettings(IfcEngineSettings settings) throws IfcEngineException {
+	public void setSettings(RenderEngineSettings settings) throws RenderEngineException {
         int setting = 0;
         int mask = 0;
         mask += PRECISION;

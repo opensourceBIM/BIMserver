@@ -35,12 +35,12 @@ import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 
 import org.bimserver.ifcengine.jvm.IfcEngineServer;
-import org.bimserver.plugins.ifcengine.IfcEngine;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
+import org.bimserver.plugins.renderengine.RenderEngine;
+import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class JvmIfcEngine implements IfcEngine {
+public class JvmIfcEngine implements RenderEngine {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JvmIfcEngine.class);
 	private Process process;
 	private DataInputStream in;
@@ -51,16 +51,16 @@ public class JvmIfcEngine implements IfcEngine {
 	private boolean useSecondJvm = true;
 	private final String classPath;
 	private final File tempDir;
-	private volatile IfcEngineException lastException;
+	private volatile RenderEngineException lastException;
 
-	public JvmIfcEngine(File schemaFile, File nativeBaseDir, File tempDir, String classPath) throws IfcEngineException {
+	public JvmIfcEngine(File schemaFile, File nativeBaseDir, File tempDir, String classPath) throws RenderEngineException {
 		this.schemaFile = schemaFile;
 		this.nativeBaseDir = nativeBaseDir;
 		this.tempDir = tempDir;
 		this.classPath = classPath;
 	}
 
-	public void init() throws IfcEngineException {
+	public void init() throws RenderEngineException {
 		if (useSecondJvm) {
 			startJvm();
 		} else {
@@ -81,7 +81,7 @@ public class JvmIfcEngine implements IfcEngine {
 		}
 	}
 
-	public void startJvm() throws IfcEngineException {
+	public void startJvm() throws RenderEngineException {
 		try {
 			if (!tempDir.exists()) {
 				tempDir.mkdir();
@@ -142,7 +142,7 @@ public class JvmIfcEngine implements IfcEngine {
 					try {
 						result = process.waitFor();
 						if (result != 0) {
-							lastException = new IfcEngineException("Process ended with errorcode: " + result);
+							lastException = new RenderEngineException("Process ended with errorcode: " + result);
 						}
 					} catch (InterruptedException e) {
 						e.printStackTrace();
@@ -151,7 +151,7 @@ public class JvmIfcEngine implements IfcEngine {
 			};
 			thread.start();
 		} catch (Exception e) {
-			throw new IfcEngineException(e);
+			throw new RenderEngineException(e);
 		}
 	}
 	
@@ -175,7 +175,7 @@ public class JvmIfcEngine implements IfcEngine {
 		thread.start();
 	}
 
-	public synchronized JvmIfcEngineModel openModel(File ifcFile) throws IfcEngineException {
+	public synchronized JvmIfcEngineModel openModel(File ifcFile) throws RenderEngineException {
 		checkRunning();
 		writeCommand(Command.OPEN_MODEL);
 		writeUTF(ifcFile.getAbsolutePath());
@@ -184,7 +184,7 @@ public class JvmIfcEngine implements IfcEngine {
 		return new JvmIfcEngineModel(this, modelId);
 	}
 
-	public synchronized JvmIfcEngineModel openModel(InputStream inputStream, int size) throws IfcEngineException {
+	public synchronized JvmIfcEngineModel openModel(InputStream inputStream, int size) throws RenderEngineException {
 		checkRunning();
 		writeCommand(Command.OPEN_MODEL_STREAMING);
 		try {
@@ -200,29 +200,29 @@ public class JvmIfcEngine implements IfcEngine {
 				total += red;
 			}
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new RenderEngineException(e);
 		}
 		flush();
 		int modelId = readInt();
 		return new JvmIfcEngineModel(this, modelId);
 	}
 
-	private void checkRunning() throws IfcEngineException {
+	private void checkRunning() throws RenderEngineException {
 		if (lastException != null) {
 			throw lastException;
 		}
 	}
 	
-	public int readInt() throws IfcEngineException {
+	public int readInt() throws RenderEngineException {
 		checkRunning();
 		try {
 			return in.readInt();
 		} catch (IOException e) {
-			throw new IfcEngineException("Unknown IFC Engine error");
+			throw new RenderEngineException("Unknown IFC Engine error");
 		}
 	}
 
-	public void flush() throws IfcEngineException {
+	public void flush() throws RenderEngineException {
 		checkRunning();
 		try {
 			out.flush();
@@ -231,21 +231,21 @@ public class JvmIfcEngine implements IfcEngine {
 		}
 	}
 
-	void writeUTF(String value) throws IfcEngineException {
+	void writeUTF(String value) throws RenderEngineException {
 		checkRunning();
 		try {
 			out.writeUTF(value);
 		} catch (IOException e) {
-			throw new IfcEngineException("Unknown IFC Engine error");
+			throw new RenderEngineException("Unknown IFC Engine error");
 		}
 	}
 
-	public void writeCommand(Command command) throws IfcEngineException {
+	public void writeCommand(Command command) throws RenderEngineException {
 		checkRunning();
 		try {
 			out.writeByte(command.getId());
 		} catch (IOException e) {
-			throw new IfcEngineException("Unknown IFC Engine error");
+			throw new RenderEngineException("Unknown IFC Engine error");
 		}
 	}
 
@@ -254,78 +254,78 @@ public class JvmIfcEngine implements IfcEngine {
 			try {
 				writeCommand(Command.CLOSE);
 				flush();
-			} catch (IfcEngineException e) {
+			} catch (RenderEngineException e) {
 				LOGGER.error("", e);
 			}
 			process.destroy();
 		}
 	}
 
-	public void writeInt(int value) throws IfcEngineException {
+	public void writeInt(int value) throws RenderEngineException {
 		checkRunning();
 		try {
 			out.writeInt(value);
 		} catch (IOException e) {
-			throw new IfcEngineException("Unknown IFC Engine error");
+			throw new RenderEngineException("Unknown IFC Engine error");
 		}
 	}
 
-	public void writeBoolean(boolean value) throws IfcEngineException {
+	public void writeBoolean(boolean value) throws RenderEngineException {
 		checkRunning();
 		try {
 			out.writeBoolean(value);
 		} catch (IOException e) {
-			throw new IfcEngineException("Unknown IFC Engine error");
+			throw new RenderEngineException("Unknown IFC Engine error");
 		}
 	}
 
-	public float readFloat() throws IfcEngineException {
+	public float readFloat() throws RenderEngineException {
 		checkRunning();
 		try {
 			return in.readFloat();
 		} catch (IOException e) {
-			throw new IfcEngineException("Unknown IFC Engine error");
+			throw new RenderEngineException("Unknown IFC Engine error");
 		}
 	}
 
-	public String readString() throws IfcEngineException {
+	public String readString() throws RenderEngineException {
 		checkRunning();
 		try {
 			return in.readUTF();
 		} catch (IOException e) {
-			throw new IfcEngineException("Unknown IFC Engine error");
+			throw new RenderEngineException("Unknown IFC Engine error");
 		}
 	}
 
-	public void writeDouble(double d) throws IfcEngineException {
+	public void writeDouble(double d) throws RenderEngineException {
 		checkRunning();
 		try {
 			out.writeDouble(d);
 		} catch (IOException e) {
-			throw new IfcEngineException("Unknown IFC Engine error");
+			throw new RenderEngineException("Unknown IFC Engine error");
 		}
 	}
 
-	public long readLong() throws IfcEngineException {
+	public long readLong() throws RenderEngineException {
 		checkRunning();
 		try {
 			return in.readLong();
 		} catch (IOException e) {
-			throw new IfcEngineException("Unknown IFC Engine error");
+			throw new RenderEngineException("Unknown IFC Engine error");
 		}
 	}
 
-	public JvmIfcEngineModel openModel(byte[] bytes) throws IfcEngineException {
+	public JvmIfcEngineModel openModel(byte[] bytes) throws RenderEngineException {
 		checkRunning();
 		return openModel(new ByteArrayInputStream(bytes), bytes.length);
 	}
 
-	public void writeLong(long value) throws IfcEngineException {
+	public void writeLong(long value) throws RenderEngineException {
 		checkRunning();
 		try {
 			out.writeLong(value);
 		} catch (IOException e) {
-			throw new IfcEngineException("Unknown IFC Engine error");
+			throw new RenderEngineException("Unknown IFC Engine error");
 		}
 	}
 }

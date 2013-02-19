@@ -24,11 +24,11 @@ package org.bimserver.ifcengine.executable;
  *****************************************************************************/
 
 import org.bimserver.ifcengine.Command;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEngineInstance;
-import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
+import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.RenderEngineInstance;
+import org.bimserver.plugins.renderengine.RenderEngineInstanceVisualisationProperties;
 
-public class ExecutableIfcEngineInstance implements IfcEngineInstance {
+public class ExecutableIfcEngineInstance implements RenderEngineInstance {
 
 	private ExecutableIfcEngine ifcEngine;
 	private int modelId;
@@ -41,13 +41,13 @@ public class ExecutableIfcEngineInstance implements IfcEngineInstance {
 	}
 
 	@Override
-	public IfcEngineInstanceVisualisationProperties getVisualisationProperties() throws IfcEngineException {
+	public RenderEngineInstanceVisualisationProperties getVisualisationProperties() throws RenderEngineException {
 		synchronized (ifcEngine) {
 			ifcEngine.writeCommand(Command.GET_VISUALISATION_PROPERTIES);
 			ifcEngine.writeInt(modelId);
 			ifcEngine.writeInt(instanceId);
 			ifcEngine.flush();
-			return new IfcEngineInstanceVisualisationProperties(ifcEngine.readInt(), ifcEngine.readInt(), ifcEngine.readInt());
+			return new RenderEngineInstanceVisualisationProperties(ifcEngine.readInt(), ifcEngine.readInt(), ifcEngine.readInt());
 		}
 	}
 }

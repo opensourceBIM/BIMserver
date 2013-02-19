@@ -58,7 +58,7 @@ public class TestColladaSerializer {
 					IfcModelInterface model = ifcDeserializer.read(file);
 
 					Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
-					serializer.init(model, projectInfo, pluginManager, pluginManager.requireIfcEngine(), false);
+					serializer.init(model, projectInfo, pluginManager, pluginManager.requireRenderEngine(), false);
 					serializer.writeToFile(new File(output, file.getName() + ".dae"));
 				}
 			}

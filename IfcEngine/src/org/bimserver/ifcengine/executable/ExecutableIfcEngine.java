@@ -29,11 +29,11 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.bimserver.ifcengine.Command;
-import org.bimserver.plugins.ifcengine.IfcEngine;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEngineModel;
+import org.bimserver.plugins.renderengine.RenderEngine;
+import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.RenderEngineModel;
 
-public class ExecutableIfcEngine implements IfcEngine {
+public class ExecutableIfcEngine implements RenderEngine {
 
 	private LoggingDataOutputStream outputStream;
 	private LoggingDataInputStream inputStream;
@@ -50,7 +50,7 @@ public class ExecutableIfcEngine implements IfcEngine {
 	}
 
 	@Override
-	public IfcEngineModel openModel(File ifcFile) throws IfcEngineException {
+	public RenderEngineModel openModel(File ifcFile) throws RenderEngineException {
 		writeCommand(Command.OPEN_MODEL);
 		writeUTF(ifcFile.getAbsolutePath());
 		flush();
@@ -58,19 +58,19 @@ public class ExecutableIfcEngine implements IfcEngine {
 		return new ExecutableIfcEngineModel(this, modelId);
 	}
 
-	public int readInt() throws IfcEngineException {
+	public int readInt() throws RenderEngineException {
 		try {
 			return inputStream.readInt();
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new RenderEngineException(e);
 		}
 	}
 
-	public void writeUTF(String string) throws IfcEngineException {
+	public void writeUTF(String string) throws RenderEngineException {
 		try {
 			outputStream.writeUTF(string);
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new RenderEngineException(e);
 		}
 	}
 
@@ -91,7 +91,7 @@ public class ExecutableIfcEngine implements IfcEngine {
 	}
 
 	@Override
-	public IfcEngineModel openModel(InputStream inputStream, int size) throws IfcEngineException {
+	public RenderEngineModel openModel(InputStream inputStream, int size) throws RenderEngineException {
 		writeCommand(Command.OPEN_MODEL_STREAMING);
 		try {
 			writeInt(size);
@@ -106,23 +106,23 @@ public class ExecutableIfcEngine implements IfcEngine {
 				total += red;
 			}
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new RenderEngineException(e);
 		}
 		flush();
 		int modelId = readInt();
 		return new ExecutableIfcEngineModel(this, modelId);
 	}
 
-	private void write(byte[] buffer, int i, int red) throws IfcEngineException {
+	private void write(byte[] buffer, int i, int red) throws RenderEngineException {
 		try {
 			outputStream.write(buffer, i, red);
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new RenderEngineException(e);
 		}
 	}
 
 	@Override
-	public IfcEngineModel openModel(byte[] bytes) throws IfcEngineException {
+	public RenderEngineModel openModel(byte[] bytes) throws RenderEngineException {
 		return openModel(new ByteArrayInputStream(bytes), bytes.length);
 	}
 
@@ -131,54 +131,54 @@ public class ExecutableIfcEngine implements IfcEngine {
 	}
 
 	@Override
-	public void init() throws IfcEngineException {
+	public void init() throws RenderEngineException {
 	}
 
-	public void writeInt(int modelId) throws IfcEngineException {
+	public void writeInt(int modelId) throws RenderEngineException {
 		try {
 			outputStream.writeInt(modelId);
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new RenderEngineException(e);
 		}
 	}
 
-	public String readString() throws IfcEngineException {
+	public String readString() throws RenderEngineException {
 		try {
 			return inputStream.readUTF();
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new RenderEngineException(e);
 		}
 	}
 
-	public void writeDouble(double d) throws IfcEngineException {
+	public void writeDouble(double d) throws RenderEngineException {
 		try {
 			outputStream.writeDouble(d);
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new RenderEngineException(e);
 		}
 	}
 
-	public float readFloat() throws IfcEngineException {
+	public float readFloat() throws RenderEngineException {
 		try {
 			return inputStream.readFloat();
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new RenderEngineException(e);
 		}
 	}
 
-	public long readLong() throws IfcEngineException {
+	public long readLong() throws RenderEngineException {
 		try {
 			return inputStream.readLong();
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new RenderEngineException(e);
 		}
 	}
 
-	public void writeBoolean(boolean postProcessing) throws IfcEngineException {
+	public void writeBoolean(boolean postProcessing) throws RenderEngineException {
 		try {
 			outputStream.writeBoolean(postProcessing);
 		} catch (IOException e) {
-			throw new IfcEngineException(e);
+			throw new RenderEngineException(e);
 		}
 	}
 }

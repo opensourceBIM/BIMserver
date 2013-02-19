@@ -38,11 +38,8 @@ import org.bimserver.models.store.DoubleType;
 import org.bimserver.models.store.DownloadResult;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
-import org.bimserver.models.store.ExternalServiceUpdate;
 import org.bimserver.models.store.File;
 import org.bimserver.models.store.GeoTag;
-import org.bimserver.models.store.IfcEnginePluginConfiguration;
-import org.bimserver.models.store.IfcEnginePluginDescriptor;
 import org.bimserver.models.store.ImmediateNotificationResult;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.JavaInfo;
@@ -74,6 +71,9 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.QueryEnginePluginDescriptor;
 import org.bimserver.models.store.ReferenceDataValue;
+import org.bimserver.models.store.RemoteServiceUpdate;
+import org.bimserver.models.store.RenderEnginePluginConfiguration;
+import org.bimserver.models.store.RenderEnginePluginDescriptor;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.RevisionSummaryContainer;
@@ -243,11 +243,11 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.IFC_ENGINE_PLUGIN_CONFIGURATION: {
-			IfcEnginePluginConfiguration ifcEnginePluginConfiguration = (IfcEnginePluginConfiguration) theEObject;
-			T result = caseIfcEnginePluginConfiguration(ifcEnginePluginConfiguration);
+		case StorePackage.RENDER_ENGINE_PLUGIN_CONFIGURATION: {
+			RenderEnginePluginConfiguration renderEnginePluginConfiguration = (RenderEnginePluginConfiguration) theEObject;
+			T result = caseRenderEnginePluginConfiguration(renderEnginePluginConfiguration);
 			if (result == null)
-				result = casePluginConfiguration(ifcEnginePluginConfiguration);
+				result = casePluginConfiguration(renderEnginePluginConfiguration);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -482,11 +482,11 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.IFC_ENGINE_PLUGIN_DESCRIPTOR: {
-			IfcEnginePluginDescriptor ifcEnginePluginDescriptor = (IfcEnginePluginDescriptor) theEObject;
-			T result = caseIfcEnginePluginDescriptor(ifcEnginePluginDescriptor);
+		case StorePackage.RENDER_ENGINE_PLUGIN_DESCRIPTOR: {
+			RenderEnginePluginDescriptor renderEnginePluginDescriptor = (RenderEnginePluginDescriptor) theEObject;
+			T result = caseRenderEnginePluginDescriptor(renderEnginePluginDescriptor);
 			if (result == null)
-				result = casePluginDescriptor(ifcEnginePluginDescriptor);
+				result = casePluginDescriptor(renderEnginePluginDescriptor);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -791,9 +791,9 @@ public class StoreSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case StorePackage.EXTERNAL_SERVICE_UPDATE: {
-			ExternalServiceUpdate externalServiceUpdate = (ExternalServiceUpdate) theEObject;
-			T result = caseExternalServiceUpdate(externalServiceUpdate);
+		case StorePackage.REMOTE_SERVICE_UPDATE: {
+			RemoteServiceUpdate remoteServiceUpdate = (RemoteServiceUpdate) theEObject;
+			T result = caseRemoteServiceUpdate(remoteServiceUpdate);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -802,7 +802,7 @@ public class StoreSwitch<T> extends Switch<T> {
 			PercentageChange percentageChange = (PercentageChange) theEObject;
 			T result = casePercentageChange(percentageChange);
 			if (result == null)
-				result = caseExternalServiceUpdate(percentageChange);
+				result = caseRemoteServiceUpdate(percentageChange);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -999,17 +999,17 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc Engine Plugin Configuration</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Render Engine Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc Engine Plugin Configuration</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Render Engine Plugin Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcEnginePluginConfiguration(IfcEnginePluginConfiguration object) {
+	public T caseRenderEnginePluginConfiguration(RenderEnginePluginConfiguration object) {
 		return null;
 	}
 
@@ -1464,17 +1464,17 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc Engine Plugin Descriptor</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Render Engine Plugin Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc Engine Plugin Descriptor</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Render Engine Plugin Descriptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcEnginePluginDescriptor(IfcEnginePluginDescriptor object) {
+	public T caseRenderEnginePluginDescriptor(RenderEnginePluginDescriptor object) {
 		return null;
 	}
 
@@ -2019,17 +2019,17 @@ public class StoreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>External Service Update</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Remote Service Update</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>External Service Update</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Remote Service Update</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExternalServiceUpdate(ExternalServiceUpdate object) {
+	public T caseRemoteServiceUpdate(RemoteServiceUpdate object) {
 		return null;
 	}
 

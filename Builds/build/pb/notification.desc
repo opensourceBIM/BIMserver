@@ -21,9 +21,9 @@
 apiUrl (	"‡
 SImmediateNotificationResult8
 result (2(.org.bimserver.pb.SNotifictionResultEnum
-rid (
-oid (
-description (	"k
+rid (
+description (	
+oid ("k
 NewLogActionResponse
 errorMessage (	=
 value (2..org.bimserver.pb.SImmediateNotificationResult"U

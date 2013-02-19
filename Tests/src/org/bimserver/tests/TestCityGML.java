@@ -48,7 +48,7 @@ public class TestCityGML {
 				Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
 				deserializer.init(pluginManager.requireSchemaDefinition());
 				IfcModelInterface model = deserializer.read(new File("C:\\Users\\Ruben de Laat\\Workspace\\BIMserver\\TestData\\data\\Eindhoven - TUe_model - RevitArch.ifc"));
-				serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine(), false);
+				serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), false);
 				serializer.writeToFile(new File("output/ac11.gml"));
 			}
 		} catch (PluginException e) {

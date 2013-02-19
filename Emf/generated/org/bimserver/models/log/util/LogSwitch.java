@@ -20,7 +20,6 @@ import org.bimserver.models.log.DatabaseCreated;
 import org.bimserver.models.log.Download;
 import org.bimserver.models.log.ExtendedDataAddedToProject;
 import org.bimserver.models.log.ExtendedDataAddedToRevision;
-import org.bimserver.models.log.ExternalServiceCalled;
 import org.bimserver.models.log.GeoTagUpdated;
 import org.bimserver.models.log.LogAction;
 import org.bimserver.models.log.LogPackage;
@@ -34,6 +33,7 @@ import org.bimserver.models.log.PasswordReset;
 import org.bimserver.models.log.ProjectDeleted;
 import org.bimserver.models.log.ProjectUndeleted;
 import org.bimserver.models.log.ProjectUpdated;
+import org.bimserver.models.log.RemoteServiceCalled;
 import org.bimserver.models.log.RevisionBranched;
 import org.bimserver.models.log.RevisionUpdated;
 import org.bimserver.models.log.ServerLog;
@@ -335,11 +335,11 @@ public class LogSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case LogPackage.EXTERNAL_SERVICE_CALLED: {
-			ExternalServiceCalled externalServiceCalled = (ExternalServiceCalled) theEObject;
-			T result = caseExternalServiceCalled(externalServiceCalled);
+		case LogPackage.REMOTE_SERVICE_CALLED: {
+			RemoteServiceCalled remoteServiceCalled = (RemoteServiceCalled) theEObject;
+			T result = caseRemoteServiceCalled(remoteServiceCalled);
 			if (result == null)
-				result = caseLogAction(externalServiceCalled);
+				result = caseLogAction(remoteServiceCalled);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -740,17 +740,17 @@ public class LogSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>External Service Called</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Remote Service Called</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>External Service Called</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Remote Service Called</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExternalServiceCalled(ExternalServiceCalled object) {
+	public T caseRemoteServiceCalled(RemoteServiceCalled object) {
 		return null;
 	}
 

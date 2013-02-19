@@ -10,10 +10,10 @@ import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.LocalVersionConstructor;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
+import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.slf4j.Logger;
@@ -70,9 +70,9 @@ public class TestIfcEngineEmbedded {
 			
 			// Iterate over the IfcEngines and see if there is one matching the classname specified above
 			boolean ifcEngineFound = false;
-			for (SIfcEnginePluginConfiguration conf : client.getServiceInterface().getAllIfcEngines(false)) {
+			for (SRenderEnginePluginConfiguration conf : client.getServiceInterface().getAllRenderEngines(false)) {
 				if (ifcEngineToUse.equals(conf.getClassName())) {
-					client.getServiceInterface().setDefaultIfcEngine(conf.getOid());
+					client.getServiceInterface().setDefaultRenderEngine(conf.getOid());
 					ifcEngineFound = true;
 					LOGGER.info("Using " + conf.getName());
 					break;
@@ -80,7 +80,7 @@ public class TestIfcEngineEmbedded {
 			}
 			
 			if (!ifcEngineFound) {
-				throw new IfcEngineException("No IfcEnginePlugin found with name " + ifcEngineToUse);
+				throw new RenderEngineException("No IfcEnginePlugin found with name " + ifcEngineToUse);
 			}
 			
 			// Get a deserializer

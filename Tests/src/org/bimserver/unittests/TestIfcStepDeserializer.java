@@ -47,7 +47,7 @@ public class TestIfcStepDeserializer {
 			
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
-			serializer.init(modelInterface, null, pluginManager, pluginManager.requireIfcEngine(), false);
+			serializer.init(modelInterface, null, pluginManager, pluginManager.requireRenderEngine(), false);
 			serializer.writeToFile(new File("output/test.ifc"));
 		} catch (PluginException e) {
 			e.printStackTrace();

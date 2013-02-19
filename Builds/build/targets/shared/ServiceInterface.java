@@ -43,11 +43,8 @@ import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
-import org.bimserver.interfaces.objects.SExternalServiceUpdate;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
-import org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration;
-import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SJavaInfo;
 import org.bimserver.interfaces.objects.SLogAction;
@@ -67,6 +64,9 @@ import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
+import org.bimserver.interfaces.objects.SRemoteServiceUpdate;
+import org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration;
+import org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
@@ -124,7 +124,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * 
 	 * @param poid The Project's ObjectID
 	 * @param comment A comment
-	 * @param deserializerName Name of the deserializer to use, use getAllDeserializers to get a list of available deserializers
+	 * @param deserializerOid ObjectId of the deserializer to use, use getAllDeserializers to get a list of available deserializers
 	 * @param fileSize The size of the file in bytes
 	 * @param ifcFile The actual file
 	 * @param merge Whether to use checkin merging (this will alter your model!)
@@ -144,10 +144,32 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "sync", partName = "checkin.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
+	 * Checkin a new model by sending a serialized form
+	 * 
+	 * @param poid The Project's ObjectID
+	 * @param comment A comment
+	 * @param deserializerOid ObjectId of the deserializer to use, use getAllDeserializers to get a list of available deserializers
+	 * @param url A URL to the file
+	 * @param merge Whether to use checkin merging (this will alter your model!)
+	 * @param sync Whether the call should return immediately (async) or wait for completion (sync)
+	 * @return An id, which you can use for the getCheckinState method
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "checkinFromUrl")
+	Long checkinFromUrl(
+		@WebParam(name = "poid", partName = "checkinFromUrl.poid") Long poid,
+		@WebParam(name = "comment", partName = "checkinFromUrl.comment") String comment,
+		@WebParam(name = "deserializerOid", partName = "checkinFromUrl.deserializerOid") Long deserializerOid,
+		@WebParam(name = "fileName", partName = "checkinFromUrl.fileName") String fileName,
+		@WebParam(name = "url", partName = "checkinFromUrl.url") String url,
+		@WebParam(name = "merge", partName = "checkinFromUrl.merge") Boolean merge,
+		@WebParam(name = "sync", partName = "checkinFromUrl.sync") Boolean sync) throws ServerException, UserException;
+	
+	/**
 	 * Checkout an existing model, cehckout is the same as download, except a "checkout" will tell the server and other users you are working on it
 	 * 
 	 * @param roid Revision ObjectID
-	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
+	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getDownloadState method
 	 * @throws ServerException, UserException
@@ -162,7 +184,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * Same as checkout, only this will automatically select the last revision to checkout
 	 * 
 	 * @param poid Project ObjectID
-	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
+	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
 	 * @throws ServerException, UserException
@@ -177,7 +199,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * Download a single revision of a model in a serialized format
 	 * 
 	 * @param roid Revision ObjectID
-	 * @param serializerName  Name of the serializer to use, use getAllSerializers to find availble serializeres
+	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param showOwn Whether to return revisions created by the current user
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
@@ -214,7 +236,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * NOTE: This is a potentially slow method because the classes of the objects are not given
 	 * @param roids A set of Revision ObjectIDs
 	 * @param oids A set of ObjectIDs
-	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
+	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
 	 * @throws ServerException, UserException
@@ -231,7 +253,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * Download a model in serialized format by giving a set of revisions and a set of class names to filter on
 	 * @param roids A set of Revision ObjectIDs
 	 * @param classNames A set of class names to filter on (e.g. "IfcWindow")
-	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
+	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param includeAllSubtypes Whether to query all (recursive) subtypes of each gives class
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
@@ -284,7 +306,7 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Download a model in a serialized format by giving a set of revisions
 	 * @param roids A set of Revision ObjectIDs
-	 * @param serializerName Name of the serializer to use, use getAllSerializers to find availble serializeres
+	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
 	 * @param sync Whether to return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
 	 * @throws ServerException, UserException
@@ -366,7 +388,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "parentPoid", partName = "addProjectAsSubProject.parentPoid") Long parentPoid) throws ServerException, UserException;
 
 	/**
-	 * Update project properties
+	 * Update project properties, the only three properties that can be updated with this call are "name", "description" and "exportLengthMeasurePrefix"
 	 * @param sProject A Project object containing the new properties
 	 * @throws ServerException, UserException
 	 */
@@ -884,12 +906,12 @@ public interface ServiceInterface extends PublicInterface {
 
 	/**
 	 * @param onlyEnabled Whether to only include enabled IFC engines
-	 * @return A list of IfcEngines
+	 * @return A list of RenderEngines
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "getAllIfcEngines")
-	List<SIfcEnginePluginConfiguration> getAllIfcEngines(
-		@WebParam(name = "onlyEnabled", partName = "getAllIfcEngines.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
+	@WebMethod(action = "getAllRenderEngines")
+	List<SRenderEnginePluginConfiguration> getAllRenderEngines(
+		@WebParam(name = "onlyEnabled", partName = "getAllRenderEngines.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 
 	/**
 	 * @param onlyEnabled Whether to only include enabled query engines
@@ -965,7 +987,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "oid", partName = "getExtendedData.oid") Long oid) throws ServerException, UserException;
 
 	/**
-	 * @param oid ObjectID of the ExtendedData
+	 * @param roid ObjectID of the Revision
 	 * @return ExtendedData
 	 * @throws ServerException, UserException
 	 */
@@ -974,13 +996,13 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "roid", partName = "getAllExtendedDataOfRevision.roid") Long roid) throws ServerException, UserException;
 
 	/**
-	 * @param oid ObjectID of the IfcEngine
-	 * @return IfcEngine
+	 * @param oid ObjectID of the RenderEngine
+	 * @return RenderEngine
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "getIfcEngineById")
-	SIfcEnginePluginConfiguration getIfcEngineById(
-		@WebParam(name = "oid", partName = "getIfcEngineById.oid") Long oid) throws ServerException, UserException;
+	@WebMethod(action = "getRenderEngineById")
+	SRenderEnginePluginConfiguration getRenderEngineById(
+		@WebParam(name = "oid", partName = "getRenderEngineById.oid") Long oid) throws ServerException, UserException;
 
 	/**
 	 * @param oid ObjectID of the QueryEngine
@@ -1085,12 +1107,12 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "extendedData", partName = "addExtendedDataToProject.extendedData") SExtendedData extendedData) throws ServerException, UserException;
 	
 	/**
-	 * @param ifcEngine IfcEngine to add
+	 * @param renderEngine RenderEngine to add
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "addIfcEngine")
-	void addIfcEngine(
-		@WebParam(name = "ifcEngine", partName = "addIfcEngine.ifcEngine") SIfcEnginePluginConfiguration ifcEngine) throws ServerException, UserException;
+	@WebMethod(action = "addRenderEngine")
+	void addRenderEngine(
+		@WebParam(name = "renderEngine", partName = "addRenderEngine.renderEngine") SRenderEnginePluginConfiguration renderEngine) throws ServerException, UserException;
 
 	/**
 	 * @param queryEngine QueryEngine to add
@@ -1133,12 +1155,12 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "serializer", partName = "updateSerializer.serializer") SSerializerPluginConfiguration serializer) throws ServerException, UserException;
 
 	/**
-	 * @param ifcEngine IfcEngine to update
+	 * @param renderEngine RenderEngine to update
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "updateIfcEngine")
-	void updateIfcEngine(
-		@WebParam(name = "ifcEngine", partName = "updateIfcEngine.ifcEngine") SIfcEnginePluginConfiguration ifcEngine) throws ServerException, UserException;
+	@WebMethod(action = "updateRenderEngine")
+	void updateRenderEngine(
+		@WebParam(name = "renderEngine", partName = "updateRenderEngine.renderEngine") SRenderEnginePluginConfiguration renderEngine) throws ServerException, UserException;
 
 	/**
 	 * @param queryEngine QueryEngine to update
@@ -1223,12 +1245,12 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "sid", partName = "deleteSerializer.sid") Long sid) throws ServerException, UserException;
 
 	/**
-	 * @param iid ObjectID of the IfcEngine to delete
+	 * @param iid ObjectID of the RenderEngine to delete
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "deleteIfcEngine")
-	void deleteIfcEngine(
-		@WebParam(name = "iid", partName = "deleteIfcEngine.iid") Long iid) throws ServerException, UserException;
+	@WebMethod(action = "deleteRenderEngine")
+	void deleteRenderEngine(
+		@WebParam(name = "iid", partName = "deleteRenderEngine.iid") Long iid) throws ServerException, UserException;
 
 	/**
 	 * @param iid ObjectID of the ModelMerger to delete
@@ -1273,8 +1295,8 @@ public interface ServiceInterface extends PublicInterface {
 	 * @return List of all SerializerPluginDescriptors
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "getAllIfcEnginePluginDescriptors")
-	List<SIfcEnginePluginDescriptor> getAllIfcEnginePluginDescriptors() throws ServerException, UserException;
+	@WebMethod(action = "getAllRenderEnginePluginDescriptors")
+	List<SRenderEnginePluginDescriptor> getAllRenderEnginePluginDescriptors() throws ServerException, UserException;
 
 	/**
 	 * @return List of all DeserializerPluginDescriptors
@@ -1321,13 +1343,13 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "serializerName", partName = "getSerializerByName.serializerName") String serializerName) throws ServerException, UserException;
 
 	/**
-	 * @param name Name of the IfcEngine
-	 * @return IfcEngine
+	 * @param name Name of the RenderEngine
+	 * @return RenderEngine
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "getIfcEngineByName")
-	SIfcEnginePluginConfiguration getIfcEngineByName(
-		@WebParam(name = "name", partName = "getIfcEngineByName.name") String name) throws ServerException, UserException;
+	@WebMethod(action = "getRenderEngineByName")
+	SRenderEnginePluginConfiguration getRenderEngineByName(
+		@WebParam(name = "name", partName = "getRenderEngineByName.name") String name) throws ServerException, UserException;
 
 	/**
 	 * @param name Name of the QueryEngine
@@ -1907,8 +1929,8 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getAllExtendedDataSchemas")
 	List<SExtendedDataSchema> getAllExtendedDataSchemas () throws ServerException, UserException;
 	
-	@WebMethod(action="getDefaultIfcEngine")
-	SIfcEnginePluginConfiguration getDefaultIfcEngine() throws ServerException, UserException;
+	@WebMethod(action="getDefaultRenderEngine")
+	SRenderEnginePluginConfiguration getDefaultRenderEngine() throws ServerException, UserException;
 
 	@WebMethod(action="getDefaultQueryEngine")
 	SQueryEnginePluginConfiguration getDefaultQueryEngine() throws ServerException, UserException;
@@ -1925,9 +1947,9 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action="getDefaultObjectIDM")
 	SObjectIDMPluginConfiguration getDefaultObjectIDM() throws ServerException, UserException;
 
-	@WebMethod(action="setDefaultIfcEngine")
-	void setDefaultIfcEngine(
-		@WebParam(name = "oid", partName = "setDefaultIfcEngine.oid") Long oid) throws UserException, ServerException;
+	@WebMethod(action="setDefaultRenderEngine")
+	void setDefaultRenderEngine(
+		@WebParam(name = "oid", partName = "setDefaultRenderEngine.oid") Long oid) throws UserException, ServerException;
 
 	@WebMethod(action="setDefaultQueryEngine")
 	void setDefaultQueryEngine(
@@ -2336,7 +2358,7 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "externalServiceUpdate")
 	void externalServiceUpdate(
 		@WebParam(name = "uuid", partName = "externalServiceUpdate.uuid") String uuid,
-		@WebParam(name = "sExternalServiceUpdate", partName = "externalServiceUpdate.sExternalServiceUpdate") SExternalServiceUpdate sExternalServiceUpdate) throws ServerException, UserException;
+		@WebParam(name = "sExternalServiceUpdate", partName = "externalServiceUpdate.sExternalServiceUpdate") SRemoteServiceUpdate sExternalServiceUpdate) throws ServerException, UserException;
 	
 	@WebMethod(action = "setWhiteListedDomains")
 	void setWhiteListedDomains(

@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class PercentageChangeImpl extends ExternalServiceUpdateImpl implements PercentageChange {
+public class PercentageChangeImpl extends RemoteServiceUpdateImpl implements PercentageChange {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

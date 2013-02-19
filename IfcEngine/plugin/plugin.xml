@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PluginDescriptor>
 	<PluginImplementation>
-		<interfaceClass>org.bimserver.plugins.ifcengine.IfcEnginePlugin</interfaceClass>
-		<implementationClass>org.bimserver.ifcengine.TNOJvmIfcEnginePlugin</implementationClass>
+		<interfaceClass>org.bimserver.plugins.renderengine.RenderEnginePlugin</interfaceClass>
+		<implementationClass>org.bimserver.ifcengine.TNOJvmRenderEnginePlugin</implementationClass>
 	</PluginImplementation>
 </PluginDescriptor>

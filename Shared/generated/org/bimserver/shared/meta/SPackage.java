@@ -35,34 +35,6 @@ public class SPackage {
 	private void init() {
 			try {
 	
-		Class.forName("org.bimserver.interfaces.objects.SAccessMethod");
-		Class.forName("org.bimserver.interfaces.objects.SLogAction");
-		Class.forName("org.bimserver.interfaces.objects.SServerLog");
-		Class.forName("org.bimserver.interfaces.objects.SNewUserAdded");
-		Class.forName("org.bimserver.interfaces.objects.SNewProjectAdded");
-		Class.forName("org.bimserver.interfaces.objects.SRevisionBranched");
-		Class.forName("org.bimserver.interfaces.objects.SNewRevisionAdded");
-		Class.forName("org.bimserver.interfaces.objects.SNewCheckoutAdded");
-		Class.forName("org.bimserver.interfaces.objects.SSettingsSaved");
-		Class.forName("org.bimserver.interfaces.objects.SUserAddedToProject");
-		Class.forName("org.bimserver.interfaces.objects.SNewObjectIDMUploaded");
-		Class.forName("org.bimserver.interfaces.objects.SDownload");
-		Class.forName("org.bimserver.interfaces.objects.SUserRemovedFromProject");
-		Class.forName("org.bimserver.interfaces.objects.SProjectDeleted");
-		Class.forName("org.bimserver.interfaces.objects.SUserDeleted");
-		Class.forName("org.bimserver.interfaces.objects.SPasswordReset");
-		Class.forName("org.bimserver.interfaces.objects.SDatabaseCreated");
-		Class.forName("org.bimserver.interfaces.objects.SServerStarted");
-		Class.forName("org.bimserver.interfaces.objects.SProjectUpdated");
-		Class.forName("org.bimserver.interfaces.objects.SUserUndeleted");
-		Class.forName("org.bimserver.interfaces.objects.SProjectUndeleted");
-		Class.forName("org.bimserver.interfaces.objects.SRevisionUpdated");
-		Class.forName("org.bimserver.interfaces.objects.SGeoTagUpdated");
-		Class.forName("org.bimserver.interfaces.objects.SPasswordChanged");
-		Class.forName("org.bimserver.interfaces.objects.SUserChanged");
-		Class.forName("org.bimserver.interfaces.objects.SExtendedDataAddedToRevision");
-		Class.forName("org.bimserver.interfaces.objects.SExtendedDataAddedToProject");
-		Class.forName("org.bimserver.interfaces.objects.SExternalServiceCalled");
 		Class.forName("org.bimserver.interfaces.objects.SUserType");
 		Class.forName("org.bimserver.interfaces.objects.SSIPrefix");
 		Class.forName("org.bimserver.interfaces.objects.SObjectState");
@@ -77,7 +49,7 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SPluginConfiguration");
 		Class.forName("org.bimserver.interfaces.objects.SSerializerPluginConfiguration");
 		Class.forName("org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration");
-		Class.forName("org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration");
+		Class.forName("org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration");
 		Class.forName("org.bimserver.interfaces.objects.SDeserializerPluginConfiguration");
 		Class.forName("org.bimserver.interfaces.objects.SDownloadResult");
 		Class.forName("org.bimserver.interfaces.objects.SCheckoutResult");
@@ -111,7 +83,7 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SServerState");
 		Class.forName("org.bimserver.interfaces.objects.SServerInfo");
 		Class.forName("org.bimserver.interfaces.objects.SVersion");
-		Class.forName("org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor");
+		Class.forName("org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor");
 		Class.forName("org.bimserver.interfaces.objects.SExtendedDataSchemaType");
 		Class.forName("org.bimserver.interfaces.objects.SFile");
 		Class.forName("org.bimserver.interfaces.objects.SExtendedDataSchema");
@@ -152,11 +124,39 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SParameter");
 		Class.forName("org.bimserver.interfaces.objects.SNotifictionResultEnum");
 		Class.forName("org.bimserver.interfaces.objects.SImmediateNotificationResult");
-		Class.forName("org.bimserver.interfaces.objects.SExternalServiceUpdate");
+		Class.forName("org.bimserver.interfaces.objects.SRemoteServiceUpdate");
 		Class.forName("org.bimserver.interfaces.objects.SPercentageChange");
 		Class.forName("org.bimserver.interfaces.objects.SSystemInfo");
 		Class.forName("org.bimserver.interfaces.objects.SJavaInfo");
 		Class.forName("org.bimserver.interfaces.objects.SBimServerInfo");
+		Class.forName("org.bimserver.interfaces.objects.SAccessMethod");
+		Class.forName("org.bimserver.interfaces.objects.SLogAction");
+		Class.forName("org.bimserver.interfaces.objects.SServerLog");
+		Class.forName("org.bimserver.interfaces.objects.SNewUserAdded");
+		Class.forName("org.bimserver.interfaces.objects.SNewProjectAdded");
+		Class.forName("org.bimserver.interfaces.objects.SRevisionBranched");
+		Class.forName("org.bimserver.interfaces.objects.SNewRevisionAdded");
+		Class.forName("org.bimserver.interfaces.objects.SNewCheckoutAdded");
+		Class.forName("org.bimserver.interfaces.objects.SSettingsSaved");
+		Class.forName("org.bimserver.interfaces.objects.SUserAddedToProject");
+		Class.forName("org.bimserver.interfaces.objects.SNewObjectIDMUploaded");
+		Class.forName("org.bimserver.interfaces.objects.SDownload");
+		Class.forName("org.bimserver.interfaces.objects.SUserRemovedFromProject");
+		Class.forName("org.bimserver.interfaces.objects.SProjectDeleted");
+		Class.forName("org.bimserver.interfaces.objects.SUserDeleted");
+		Class.forName("org.bimserver.interfaces.objects.SPasswordReset");
+		Class.forName("org.bimserver.interfaces.objects.SDatabaseCreated");
+		Class.forName("org.bimserver.interfaces.objects.SServerStarted");
+		Class.forName("org.bimserver.interfaces.objects.SProjectUpdated");
+		Class.forName("org.bimserver.interfaces.objects.SUserUndeleted");
+		Class.forName("org.bimserver.interfaces.objects.SProjectUndeleted");
+		Class.forName("org.bimserver.interfaces.objects.SRevisionUpdated");
+		Class.forName("org.bimserver.interfaces.objects.SGeoTagUpdated");
+		Class.forName("org.bimserver.interfaces.objects.SPasswordChanged");
+		Class.forName("org.bimserver.interfaces.objects.SUserChanged");
+		Class.forName("org.bimserver.interfaces.objects.SExtendedDataAddedToRevision");
+		Class.forName("org.bimserver.interfaces.objects.SExtendedDataAddedToProject");
+		Class.forName("org.bimserver.interfaces.objects.SRemoteServiceCalled");
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);
 		}

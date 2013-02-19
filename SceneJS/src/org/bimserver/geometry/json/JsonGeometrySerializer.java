@@ -48,7 +48,7 @@ import org.bimserver.models.ifc2x3tc1.IfcSlab;
 import org.bimserver.models.ifc2x3tc1.IfcSlabTypeEnum;
 import org.bimserver.models.ifc2x3tc1.IfcStyledItem;
 import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyle;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
+import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.eclipse.emf.common.util.EList;
@@ -102,13 +102,13 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 		return false;
 	}
 
-	private void writeGeometries(PrintWriter writer) throws IfcEngineException, SerializerException, IOException {
+	private void writeGeometries(PrintWriter writer) throws RenderEngineException, SerializerException, IOException {
 		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 			writeGeometricObject(writer, ifcProduct);
 		}
 	}
 
-	private void writeGeometricObject(PrintWriter writer, IfcProduct ifcProduct) throws IfcEngineException, SerializerException, IOException {
+	private void writeGeometricObject(PrintWriter writer, IfcProduct ifcProduct) throws RenderEngineException, SerializerException, IOException {
 		boolean materialFound = false;
 		String material = ifcProduct.eClass().getName();
 		if (ifcProduct instanceof IfcSlab && ((IfcSlab)ifcProduct).getPredefinedType() == IfcSlabTypeEnum.ROOF) {

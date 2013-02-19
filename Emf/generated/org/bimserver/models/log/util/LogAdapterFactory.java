@@ -20,7 +20,6 @@ import org.bimserver.models.log.DatabaseCreated;
 import org.bimserver.models.log.Download;
 import org.bimserver.models.log.ExtendedDataAddedToProject;
 import org.bimserver.models.log.ExtendedDataAddedToRevision;
-import org.bimserver.models.log.ExternalServiceCalled;
 import org.bimserver.models.log.GeoTagUpdated;
 import org.bimserver.models.log.LogAction;
 import org.bimserver.models.log.LogPackage;
@@ -34,6 +33,7 @@ import org.bimserver.models.log.PasswordReset;
 import org.bimserver.models.log.ProjectDeleted;
 import org.bimserver.models.log.ProjectUndeleted;
 import org.bimserver.models.log.ProjectUpdated;
+import org.bimserver.models.log.RemoteServiceCalled;
 import org.bimserver.models.log.RevisionBranched;
 import org.bimserver.models.log.RevisionUpdated;
 import org.bimserver.models.log.ServerLog;
@@ -235,8 +235,8 @@ public class LogAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseExternalServiceCalled(ExternalServiceCalled object) {
-			return createExternalServiceCalledAdapter();
+		public Adapter caseRemoteServiceCalled(RemoteServiceCalled object) {
+			return createRemoteServiceCalledAdapter();
 		}
 
 		@Override
@@ -623,16 +623,16 @@ public class LogAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.log.ExternalServiceCalled <em>External Service Called</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.log.RemoteServiceCalled <em>Remote Service Called</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.log.ExternalServiceCalled
+	 * @see org.bimserver.models.log.RemoteServiceCalled
 	 * @generated
 	 */
-	public Adapter createExternalServiceCalledAdapter() {
+	public Adapter createRemoteServiceCalledAdapter() {
 		return null;
 	}
 

@@ -28,7 +28,7 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -47,7 +47,7 @@ public class TestKmz {
 			// IfcEnginePlugin ifcEngine =
 			// pluginManager.getIfcEngine("org.ifcopenshell.IfcOpenShellEnginePlugin",
 			// true);
-			IfcEnginePlugin ifcEnginePlugin = pluginManager.getIfcEngine("org.bimserver.ifcengine.TNOIfcEnginePlugin", true);
+			RenderEnginePlugin ifcEnginePlugin = pluginManager.getRenderEngine("org.bimserver.ifcengine.TNOIfcEnginePlugin", true);
 			if (!allDeserializerPlugins.isEmpty()) {
 				DeserializerPlugin deserializerPlugin = allDeserializerPlugins.iterator().next();
 				Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());

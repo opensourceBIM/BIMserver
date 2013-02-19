@@ -18,12 +18,12 @@ package org.bimserver.models.store.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
-import org.bimserver.models.store.IfcEnginePluginConfiguration;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.ObjectIDMPluginConfiguration;
 import org.bimserver.models.store.QueryEnginePluginConfiguration;
+import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserSettings;
@@ -39,7 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getObjectIDMs <em>Object ID Ms</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getIfcEngines <em>Ifc Engines</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getRenderEngines <em>Render Engines</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDeserializers <em>Deserializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getQueryengines <em>Queryengines</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getModelmergers <em>Modelmergers</em>}</li>
@@ -47,7 +47,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDefaultModelMerger <em>Default Model Merger</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDefaultModelCompare <em>Default Model Compare</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDefaultQueryEngine <em>Default Query Engine</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDefaultIfcEngine <em>Default Ifc Engine</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDefaultRenderEngine <em>Default Render Engine</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDefaultSerializer <em>Default Serializer</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getDefaultObjectIDM <em>Default Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserSettingsImpl#getServices <em>Services</em>}</li>
@@ -112,8 +112,8 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<IfcEnginePluginConfiguration> getIfcEngines() {
-		return (EList<IfcEnginePluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__IFC_ENGINES, true);
+	public EList<RenderEnginePluginConfiguration> getRenderEngines() {
+		return (EList<RenderEnginePluginConfiguration>) eGet(StorePackage.Literals.USER_SETTINGS__RENDER_ENGINES, true);
 	}
 
 	/**
@@ -215,8 +215,8 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEnginePluginConfiguration getDefaultIfcEngine() {
-		return (IfcEnginePluginConfiguration) eGet(StorePackage.Literals.USER_SETTINGS__DEFAULT_IFC_ENGINE, true);
+	public RenderEnginePluginConfiguration getDefaultRenderEngine() {
+		return (RenderEnginePluginConfiguration) eGet(StorePackage.Literals.USER_SETTINGS__DEFAULT_RENDER_ENGINE, true);
 	}
 
 	/**
@@ -224,8 +224,8 @@ public class UserSettingsImpl extends IdEObjectImpl implements UserSettings {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefaultIfcEngine(IfcEnginePluginConfiguration newDefaultIfcEngine) {
-		eSet(StorePackage.Literals.USER_SETTINGS__DEFAULT_IFC_ENGINE, newDefaultIfcEngine);
+	public void setDefaultRenderEngine(RenderEnginePluginConfiguration newDefaultRenderEngine) {
+		eSet(StorePackage.Literals.USER_SETTINGS__DEFAULT_RENDER_ENGINE, newDefaultRenderEngine);
 	}
 
 	/**

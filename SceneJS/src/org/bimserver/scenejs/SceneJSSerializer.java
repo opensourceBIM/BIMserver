@@ -107,8 +107,8 @@ import org.bimserver.models.ifc2x3tc1.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.models.store.SIPrefix;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -136,8 +136,8 @@ public class SceneJSSerializer extends AbstractGeometrySerializer {
 	private List<String> surfaceStyleIds;
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEnginePlugin, false);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, renderEnginePlugin, false);
 		this.surfaceStyleIds = new ArrayList<String>();
 	}
 
@@ -248,7 +248,7 @@ public class SceneJSSerializer extends AbstractGeometrySerializer {
 			.put("emit", 0.0);
 	}
 
-	private JSONArray writeGeometries(JSONArray array) throws IfcEngineException, JSONException, SerializerException {
+	private JSONArray writeGeometries(JSONArray array) throws RenderEngineException, JSONException, SerializerException {
 		for (IfcRoof ifcRoof : model.getAll(IfcRoof.class)) {
 			writeGeometricObject(array, ifcRoof, ifcRoof.getGlobalId(), "Roof");
 		}
@@ -304,7 +304,7 @@ public class SceneJSSerializer extends AbstractGeometrySerializer {
 		return array;
 	}
 
-	private JSONArray writeGeometricObject(JSONArray array, IfcProduct ifcRootObject, String id, String ifcObjectType) throws IfcEngineException, JSONException, SerializerException {
+	private JSONArray writeGeometricObject(JSONArray array, IfcProduct ifcRootObject, String id, String ifcObjectType) throws RenderEngineException, JSONException, SerializerException {
 		//id = id.replace('$', '-'); // Remove the $ character from geometry id's.
 		//id = "_" + id; // Ensure that the id does not start with a digit
 
@@ -420,7 +420,7 @@ public class SceneJSSerializer extends AbstractGeometrySerializer {
 		return array;
 	}
 
-	private JSONObject writeGeometry(IfcProduct ifcObject, String id) throws IfcEngineException, JSONException, SerializerException {
+	private JSONObject writeGeometry(IfcProduct ifcObject, String id) throws RenderEngineException, JSONException, SerializerException {
 		// Calculate an offset for the model to find its relative coordinates inside the bounding box (in order to center the scene) 
 		// TODO: In future use the geometry's bounding box to calculate a transformation matrix for the node along with relative coordinates
 		

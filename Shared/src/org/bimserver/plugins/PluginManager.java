@@ -44,14 +44,14 @@ import org.bimserver.plugins.classloaders.EclipsePluginClassloader;
 import org.bimserver.plugins.classloaders.JarClassLoader;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMException;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
+import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.bimserver.plugins.schema.SchemaException;
 import org.bimserver.plugins.schema.SchemaPlugin;
@@ -199,8 +199,8 @@ public class PluginManager {
 		return getPlugins(ObjectIDMPlugin.class, onlyEnabled);
 	}
 
-	public Collection<IfcEnginePlugin> getAllIfcEnginePlugins(boolean onlyEnabled) {
-		return getPlugins(IfcEnginePlugin.class, onlyEnabled);
+	public Collection<RenderEnginePlugin> getAllRenderEnginePlugins(boolean onlyEnabled) {
+		return getPlugins(RenderEnginePlugin.class, onlyEnabled);
 	}
 
 	public Collection<StillImageRenderPlugin> getAllStillImageRenderPlugins(boolean onlyEnabled) {
@@ -336,16 +336,16 @@ public class PluginManager {
 		}
 	}
 
-	public IfcEnginePlugin requireIfcEngine() throws PluginException {
-		Collection<IfcEnginePlugin> allIfcEnginePlugins = getAllIfcEnginePlugins(true);
-		if (allIfcEnginePlugins.size() == 0) {
-			throw new IfcEngineException("A working IfcEngine is required");
+	public RenderEnginePlugin requireRenderEngine() throws PluginException {
+		Collection<RenderEnginePlugin> allRenderEnginePlugins = getAllRenderEnginePlugins(true);
+		if (allRenderEnginePlugins.size() == 0) {
+			throw new RenderEngineException("A working RenderEngine is required");
 		}
-		IfcEnginePlugin ifcEnginePlugin = allIfcEnginePlugins.iterator().next();
-		if (!ifcEnginePlugin.isInitialized()) {
-			ifcEnginePlugin.init(this);
+		RenderEnginePlugin renderEnginePlugin = allRenderEnginePlugins.iterator().next();
+		if (!renderEnginePlugin.isInitialized()) {
+			renderEnginePlugin.init(this);
 		}
-		return ifcEnginePlugin;
+		return renderEnginePlugin;
 	}
 	
 	public ObjectIDM requireObjectIDM() throws ObjectIDMException {
@@ -435,8 +435,8 @@ public class PluginManager {
 		return getPluginByClassName(ObjectIDMPlugin.class, className, onlyEnabled);
 	}
 
-	public IfcEnginePlugin getIfcEngine(String className, boolean onlyEnabled) {
-		return getPluginByClassName(IfcEnginePlugin.class, className, onlyEnabled);
+	public RenderEnginePlugin getRenderEngine(String className, boolean onlyEnabled) {
+		return getPluginByClassName(RenderEnginePlugin.class, className, onlyEnabled);
 	}
 
 	private <T extends Plugin> T getPluginByClassName(Class<T> clazz, String className, boolean onlyEnabled) {

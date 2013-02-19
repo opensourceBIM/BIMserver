@@ -43,11 +43,8 @@ import org.bimserver.models.store.DownloadResult;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.ExtendedDataSchemaType;
-import org.bimserver.models.store.ExternalServiceUpdate;
 import org.bimserver.models.store.File;
 import org.bimserver.models.store.GeoTag;
-import org.bimserver.models.store.IfcEnginePluginConfiguration;
-import org.bimserver.models.store.IfcEnginePluginDescriptor;
 import org.bimserver.models.store.ImmediateNotificationResult;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.JavaInfo;
@@ -82,6 +79,9 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.QueryEnginePluginDescriptor;
 import org.bimserver.models.store.ReferenceDataValue;
+import org.bimserver.models.store.RemoteServiceUpdate;
+import org.bimserver.models.store.RenderEnginePluginConfiguration;
+import org.bimserver.models.store.RenderEnginePluginDescriptor;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.RevisionSummaryContainer;
@@ -186,8 +186,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createSerializerPluginConfiguration();
 		case StorePackage.OBJECT_IDM_PLUGIN_CONFIGURATION:
 			return (EObject) createObjectIDMPluginConfiguration();
-		case StorePackage.IFC_ENGINE_PLUGIN_CONFIGURATION:
-			return (EObject) createIfcEnginePluginConfiguration();
+		case StorePackage.RENDER_ENGINE_PLUGIN_CONFIGURATION:
+			return (EObject) createRenderEnginePluginConfiguration();
 		case StorePackage.DESERIALIZER_PLUGIN_CONFIGURATION:
 			return (EObject) createDeserializerPluginConfiguration();
 		case StorePackage.DOWNLOAD_RESULT:
@@ -248,8 +248,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createServerInfo();
 		case StorePackage.VERSION:
 			return (EObject) createVersion();
-		case StorePackage.IFC_ENGINE_PLUGIN_DESCRIPTOR:
-			return (EObject) createIfcEnginePluginDescriptor();
+		case StorePackage.RENDER_ENGINE_PLUGIN_DESCRIPTOR:
+			return (EObject) createRenderEnginePluginDescriptor();
 		case StorePackage.FILE:
 			return (EObject) createFile();
 		case StorePackage.EXTENDED_DATA_SCHEMA:
@@ -322,8 +322,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createParameter();
 		case StorePackage.IMMEDIATE_NOTIFICATION_RESULT:
 			return (EObject) createImmediateNotificationResult();
-		case StorePackage.EXTERNAL_SERVICE_UPDATE:
-			return (EObject) createExternalServiceUpdate();
+		case StorePackage.REMOTE_SERVICE_UPDATE:
+			return (EObject) createRemoteServiceUpdate();
 		case StorePackage.PERCENTAGE_CHANGE:
 			return (EObject) createPercentageChange();
 		case StorePackage.SYSTEM_INFO:
@@ -522,9 +522,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEnginePluginConfiguration createIfcEnginePluginConfiguration() {
-		IfcEnginePluginConfigurationImpl ifcEnginePluginConfiguration = new IfcEnginePluginConfigurationImpl();
-		return ifcEnginePluginConfiguration;
+	public RenderEnginePluginConfiguration createRenderEnginePluginConfiguration() {
+		RenderEnginePluginConfigurationImpl renderEnginePluginConfiguration = new RenderEnginePluginConfigurationImpl();
+		return renderEnginePluginConfiguration;
 	}
 
 	/**
@@ -832,9 +832,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEnginePluginDescriptor createIfcEnginePluginDescriptor() {
-		IfcEnginePluginDescriptorImpl ifcEnginePluginDescriptor = new IfcEnginePluginDescriptorImpl();
-		return ifcEnginePluginDescriptor;
+	public RenderEnginePluginDescriptor createRenderEnginePluginDescriptor() {
+		RenderEnginePluginDescriptorImpl renderEnginePluginDescriptor = new RenderEnginePluginDescriptorImpl();
+		return renderEnginePluginDescriptor;
 	}
 
 	/**
@@ -1202,9 +1202,9 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExternalServiceUpdate createExternalServiceUpdate() {
-		ExternalServiceUpdateImpl externalServiceUpdate = new ExternalServiceUpdateImpl();
-		return externalServiceUpdate;
+	public RemoteServiceUpdate createRemoteServiceUpdate() {
+		RemoteServiceUpdateImpl remoteServiceUpdate = new RemoteServiceUpdateImpl();
+		return remoteServiceUpdate;
 	}
 
 	/**

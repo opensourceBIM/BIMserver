@@ -21,7 +21,6 @@ import org.bimserver.models.log.DatabaseCreated;
 import org.bimserver.models.log.Download;
 import org.bimserver.models.log.ExtendedDataAddedToProject;
 import org.bimserver.models.log.ExtendedDataAddedToRevision;
-import org.bimserver.models.log.ExternalServiceCalled;
 import org.bimserver.models.log.GeoTagUpdated;
 import org.bimserver.models.log.LogAction;
 import org.bimserver.models.log.LogFactory;
@@ -36,6 +35,7 @@ import org.bimserver.models.log.PasswordReset;
 import org.bimserver.models.log.ProjectDeleted;
 import org.bimserver.models.log.ProjectUndeleted;
 import org.bimserver.models.log.ProjectUpdated;
+import org.bimserver.models.log.RemoteServiceCalled;
 import org.bimserver.models.log.RevisionBranched;
 import org.bimserver.models.log.RevisionUpdated;
 import org.bimserver.models.log.ServerLog;
@@ -148,8 +148,8 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 			return (EObject) createExtendedDataAddedToRevision();
 		case LogPackage.EXTENDED_DATA_ADDED_TO_PROJECT:
 			return (EObject) createExtendedDataAddedToProject();
-		case LogPackage.EXTERNAL_SERVICE_CALLED:
-			return (EObject) createExternalServiceCalled();
+		case LogPackage.REMOTE_SERVICE_CALLED:
+			return (EObject) createRemoteServiceCalled();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -450,9 +450,9 @@ public class LogFactoryImpl extends EFactoryImpl implements LogFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExternalServiceCalled createExternalServiceCalled() {
-		ExternalServiceCalledImpl externalServiceCalled = new ExternalServiceCalledImpl();
-		return externalServiceCalled;
+	public RemoteServiceCalled createRemoteServiceCalled() {
+		RemoteServiceCalledImpl remoteServiceCalled = new RemoteServiceCalledImpl();
+		return remoteServiceCalled;
 	}
 
 	/**

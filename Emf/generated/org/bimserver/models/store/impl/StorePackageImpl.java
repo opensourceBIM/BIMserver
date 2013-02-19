@@ -134,7 +134,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass ifcEnginePluginConfigurationEClass = null;
+	private EClass renderEnginePluginConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -351,7 +351,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass ifcEnginePluginDescriptorEClass = null;
+	private EClass renderEnginePluginDescriptorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -610,7 +610,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass externalServiceUpdateEClass = null;
+	private EClass remoteServiceUpdateEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1142,15 +1142,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EReference getUser_Logs() {
 		return (EReference) getUser().getEStructuralFeatures().get(17);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getUser_Test() {
-		return (EAttribute) getUser().getEStructuralFeatures().get(18);
 	}
 
 	/**
@@ -1734,7 +1725,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUserSettings_IfcEngines() {
+	public EReference getUserSettings_RenderEngines() {
 		return (EReference) getUserSettings().getEStructuralFeatures().get(2);
 	}
 
@@ -1806,7 +1797,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUserSettings_DefaultIfcEngine() {
+	public EReference getUserSettings_DefaultRenderEngine() {
 		return (EReference) getUserSettings().getEStructuralFeatures().get(10);
 	}
 
@@ -1929,7 +1920,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSerializerPluginConfiguration_IfcEngine() {
+	public EReference getSerializerPluginConfiguration_RenderEngine() {
 		return (EReference) getSerializerPluginConfiguration().getEStructuralFeatures().get(2);
 	}
 
@@ -1968,11 +1959,11 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getIfcEnginePluginConfiguration() {
-		if (ifcEnginePluginConfigurationEClass == null) {
-			ifcEnginePluginConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(14);
+	public EClass getRenderEnginePluginConfiguration() {
+		if (renderEnginePluginConfigurationEClass == null) {
+			renderEnginePluginConfigurationEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(14);
 		}
-		return ifcEnginePluginConfigurationEClass;
+		return renderEnginePluginConfigurationEClass;
 	}
 
 	/**
@@ -1980,8 +1971,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIfcEnginePluginConfiguration_Serializers() {
-		return (EReference) getIfcEnginePluginConfiguration().getEStructuralFeatures().get(0);
+	public EReference getRenderEnginePluginConfiguration_Serializers() {
+		return (EReference) getRenderEnginePluginConfiguration().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1989,8 +1980,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIfcEnginePluginConfiguration_UserSettings() {
-		return (EReference) getIfcEnginePluginConfiguration().getEStructuralFeatures().get(1);
+	public EReference getRenderEnginePluginConfiguration_UserSettings() {
+		return (EReference) getRenderEnginePluginConfiguration().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -3078,11 +3069,11 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getIfcEnginePluginDescriptor() {
-		if (ifcEnginePluginDescriptorEClass == null) {
-			ifcEnginePluginDescriptorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(49);
+	public EClass getRenderEnginePluginDescriptor() {
+		if (renderEnginePluginDescriptorEClass == null) {
+			renderEnginePluginDescriptorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(49);
 		}
-		return ifcEnginePluginDescriptorEClass;
+		return renderEnginePluginDescriptorEClass;
 	}
 
 	/**
@@ -4422,11 +4413,11 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExternalServiceUpdate() {
-		if (externalServiceUpdateEClass == null) {
-			externalServiceUpdateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(90);
+	public EClass getRemoteServiceUpdate() {
+		if (remoteServiceUpdateEClass == null) {
+			remoteServiceUpdateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(90);
 		}
-		return externalServiceUpdateEClass;
+		return remoteServiceUpdateEClass;
 	}
 
 	/**

@@ -4,11 +4,11 @@ import java.io.File;
 import java.util.List;
 
 import org.bimserver.ifcengine.executable.ExecutableIfcEngine;
-import org.bimserver.plugins.ifcengine.IfcEngine;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
-import org.bimserver.plugins.ifcengine.IfcEngineInstance;
-import org.bimserver.plugins.ifcengine.IfcEngineModel;
+import org.bimserver.plugins.renderengine.RenderEngine;
+import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.RenderEngineGeometry;
+import org.bimserver.plugins.renderengine.RenderEngineInstance;
+import org.bimserver.plugins.renderengine.RenderEngineModel;
 
 public class TestExecutable {
 	public static void main(String[] args) {
@@ -17,17 +17,17 @@ public class TestExecutable {
 
 	private void start(String args) {
 		try {
-			IfcEngine ifcEngine = new ExecutableIfcEngine(new File("IFC2X3_TC1.exp"), new File(args), new File("tmp"), System.getProperty("java.class.path"));
-			IfcEngineModel model = ifcEngine.openModel(new File("AC11-Institute-Var-2-IFC.ifc"));
-			IfcEngineGeometry geometry = model.finalizeModelling(model.initializeModelling());
-			List<? extends IfcEngineInstance> walls = model.getInstances("IfcWall");
-			for (IfcEngineInstance wall : walls) {
+			RenderEngine ifcEngine = new ExecutableIfcEngine(new File("IFC2X3_TC1.exp"), new File(args), new File("tmp"), System.getProperty("java.class.path"));
+			RenderEngineModel model = ifcEngine.openModel(new File("AC11-Institute-Var-2-IFC.ifc"));
+			RenderEngineGeometry geometry = model.finalizeModelling(model.initializeModelling());
+			List<? extends RenderEngineInstance> walls = model.getInstances("IfcWall");
+			for (RenderEngineInstance wall : walls) {
 				int index = geometry.getIndex(wall.getVisualisationProperties().getStartIndex());
 				System.out.println(geometry.getVertex(index * 3));
 			}
 			model.close();
 			ifcEngine.close();
-		} catch (IfcEngineException e) {
+		} catch (RenderEngineException e) {
 			e.printStackTrace();
 		}
 	}

@@ -32,7 +32,7 @@ package org.bimserver.models.store;
  * @model
  * @generated
  */
-public interface PercentageChange extends ExternalServiceUpdate {
+public interface PercentageChange extends RemoteServiceUpdate {
 	/**
 	 * Returns the value of the '<em><b>Percentage</b></em>' attribute.
 	 * <!-- begin-user-doc -->

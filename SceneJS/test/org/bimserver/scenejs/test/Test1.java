@@ -24,17 +24,9 @@ public class Test1 {
 			File file = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
 			IfcModelInterface model = deserializer.read(file);
 
-//			SerializerPlugin defaultSerializerPlugin = (SerializerPlugin) pluginManager.getPlugin("org.bimserver.scenejs.SceneJSSerializerPlugin", true);
-//			Serializer defaultSerializer = defaultSerializerPlugin.createSerializer();
-//			defaultSerializer.init(model, null, pluginManager, pluginManager.requireIfcEngine().createIfcEngine());
-//			long start = System.nanoTime();
-//			defaultSerializer.writeToFile(new File(file.getName() + ".json"));
-//			long end = System.nanoTime();
-//			System.out.println(((end - start) / 1000000) + " ms");
-			
 			SerializerPlugin streamingSerializerPlugin = (SerializerPlugin) pluginManager.getPlugin("org.bimserver.scenejs.StreamingSceneJSSerializerPlugin", true);
 			Serializer streamingSerializer = streamingSerializerPlugin.createSerializer(new PluginConfiguration());
-			streamingSerializer.init(model, null, pluginManager, pluginManager.requireIfcEngine(), false);
+			streamingSerializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), false);
 			long start = System.nanoTime();
 			streamingSerializer.writeToFile(new File("str-" + file.getName() + ".json"));
 			long end = System.nanoTime();
