@@ -24,6 +24,7 @@ import java.io.StringWriter;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.net.URL;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Enumeration;
@@ -394,19 +395,23 @@ public class BimServer {
 
 			mailSystem = new MailSystem(this);
 
-			WebModulePlugin webModule = null;
+			List<WebModulePlugin> webModules = new ArrayList<WebModulePlugin>();
+			WebModulePlugin defaultWebModule = null;
 			DatabaseSession ses = bimDatabase.createSession();
 			try {
-				WebModulePluginConfiguration webModuleConfiguration = serverSettingsCache.getServerSettings().getWebModule();
-				if (webModuleConfiguration != null) {
-					webModule = (WebModulePlugin) pluginManager.getPlugin(webModuleConfiguration.getClassName(), true);
+				List<WebModulePluginConfiguration> webModuleConfigurations = serverSettingsCache.getServerSettings().getWebModules();
+				for (WebModulePluginConfiguration webModulePluginConfiguration : webModuleConfigurations) {
+					webModules.add((WebModulePlugin) pluginManager.getPlugin(webModulePluginConfiguration.getClassName(), true));
+				}
+				if (serverSettingsCache.getServerSettings().getWebModule() != null) {
+					defaultWebModule = (WebModulePlugin) pluginManager.getPlugin(serverSettingsCache.getServerSettings().getWebModule().getClassName(), true);
 				}
 			} finally {
 				ses.close();
 			}
 
 			if (config.isStartEmbeddedWebServer()) {
-				embeddedWebServer.start(webModule);
+				embeddedWebServer.start(defaultWebModule, webModules);
 			}
 
 			diskCacheManager = new DiskCacheManager(this, new File(config.getHomeDir(), "cache"));

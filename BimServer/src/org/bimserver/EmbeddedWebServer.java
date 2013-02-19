@@ -17,14 +17,15 @@ package org.bimserver;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.List;
 import java.util.Random;
 
 import org.bimserver.plugins.web.WebModulePlugin;
-import org.bimserver.servlets.SyndicationServlet;
-import org.bimserver.servlets.WebServiceServlet;
+import org.bimserver.servlets.WebModuleServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.nio.SelectChannelConnector;
 import org.eclipse.jetty.server.session.HashSessionIdManager;
+import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,21 +46,21 @@ public class EmbeddedWebServer {
 		if (localDev) {
 			context.setDefaultsDescriptor("www/WEB-INF/webdefault.xml");
 		}
-		context.addServlet(WebServiceServlet.class.getName(), "/soap/*");
-		context.addServlet(SyndicationServlet.class.getName(), "/syndication/*");
+//		context.addServlet(WebServiceServlet.class.getName(), "/soap/*");
+//		context.addServlet(SyndicationServlet.class.getName(), "/syndication/*");
 		context.getServletContext().setAttribute("bimserver", bimServer);
 	}
 	
-	public void start(final WebModulePlugin webModule) {
-		if (webModule != null) {
-			ClassLoader classLoader = webModule.getClass().getClassLoader();
-			System.out.println(classLoader);
-			String url = classLoader.getResource(".").toExternalForm();
-			System.out.println(url);
-			context.setResourceBase(url);
-		} else if (context.getResourceBase() == null) {
-			context.setResourceBase("../BimServer/www");
+	public void start(WebModulePlugin defaultWebModule, List<WebModulePlugin> webModules) {
+		context.setResourceBase("../BimServer/www");
+		if (webModules != null) {
+			for (WebModulePlugin webModulePlugin : webModules) {
+				context.addServlet(new ServletHolder(new WebModuleServlet(webModulePlugin)), webModulePlugin.getContextPath());
+			}
 		}
+//		if (defaultWebModule != null) {
+//			context.addServlet(new ServletHolder(new WebModuleServlet(defaultWebModule)), "/*");
+//		}
 		try {
 			server.start();
 		} catch (Exception e) {
