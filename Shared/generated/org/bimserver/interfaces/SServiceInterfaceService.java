@@ -90,9 +90,9 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration();
 					}
 				}));
-				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration"), new SConstructor(){
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration"), new SConstructor(){
 					public Object newInstance() {
-						return new org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration();
+						return new org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration();
 					}
 				}));
 				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SDeserializerPluginConfiguration"), new SConstructor(){
@@ -248,9 +248,9 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SVersion();
 					}
 				}));
-				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor"), new SConstructor(){
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor"), new SConstructor(){
 					public Object newInstance() {
-						return new org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor();
+						return new org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor();
 					}
 				}));
 				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SExtendedDataSchemaType"), null));
@@ -437,9 +437,9 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SImmediateNotificationResult();
 					}
 				}));
-				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SExternalServiceUpdate"), new SConstructor(){
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SRemoteServiceUpdate"), new SConstructor(){
 					public Object newInstance() {
-						return new org.bimserver.interfaces.objects.SExternalServiceUpdate();
+						return new org.bimserver.interfaces.objects.SRemoteServiceUpdate();
 					}
 				}));
 				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SPercentageChange"), new SConstructor(){

@@ -90,7 +90,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="services" upperBound="-1"
         eType="#//Service" eOpposite="#//Service/user"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="logs" upperBound="-1" eType="ecore:EClass log#//LogAction"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="test" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Revision">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -181,8 +180,8 @@
         eType="#//SerializerPluginConfiguration" eOpposite="#//SerializerPluginConfiguration/userSettings"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="objectIDMs" upperBound="-1"
         eType="#//ObjectIDMPluginConfiguration" eOpposite="#//ObjectIDMPluginConfiguration/userSettings"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ifcEngines" upperBound="-1"
-        eType="#//IfcEnginePluginConfiguration" eOpposite="#//IfcEnginePluginConfiguration/userSettings"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="renderEngines" upperBound="-1"
+        eType="#//RenderEnginePluginConfiguration" eOpposite="#//RenderEnginePluginConfiguration/userSettings"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="deserializers" upperBound="-1"
         eType="#//DeserializerPluginConfiguration" eOpposite="#//DeserializerPluginConfiguration/userSettings"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="queryengines" upperBound="-1"
@@ -194,7 +193,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultModelMerger" eType="#//ModelMergerPluginConfiguration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultModelCompare" eType="#//ModelComparePluginConfiguration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultQueryEngine" eType="#//QueryEnginePluginConfiguration"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultIfcEngine" eType="#//IfcEnginePluginConfiguration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultRenderEngine" eType="#//RenderEnginePluginConfiguration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultSerializer" eType="#//SerializerPluginConfiguration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultObjectIDM" eType="#//ObjectIDMPluginConfiguration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="services" upperBound="-1"
@@ -212,8 +211,8 @@
         eOpposite="#//ObjectIDMPluginConfiguration/serializers"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#//UserSettings"
         eOpposite="#//UserSettings/serializers"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ifcEngine" eType="#//IfcEnginePluginConfiguration"
-        eOpposite="#//IfcEnginePluginConfiguration/serializers"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="renderEngine" eType="#//RenderEnginePluginConfiguration"
+        eOpposite="#//RenderEnginePluginConfiguration/serializers"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ObjectIDMPluginConfiguration" eSuperTypes="#//PluginConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
@@ -221,11 +220,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#//UserSettings"
         eOpposite="#//UserSettings/objectIDMs"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IfcEnginePluginConfiguration" eSuperTypes="#//PluginConfiguration">
+  <eClassifiers xsi:type="ecore:EClass" name="RenderEnginePluginConfiguration" eSuperTypes="#//PluginConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="serializers" upperBound="-1"
-        eType="#//SerializerPluginConfiguration" eOpposite="#//SerializerPluginConfiguration/ifcEngine"/>
+        eType="#//SerializerPluginConfiguration" eOpposite="#//SerializerPluginConfiguration/renderEngine"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#//UserSettings"
-        eOpposite="#//UserSettings/ifcEngines"/>
+        eOpposite="#//UserSettings/renderEngines"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeserializerPluginConfiguration" eSuperTypes="#//PluginConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#//UserSettings"
@@ -413,7 +412,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="supportUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="supportEmail" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IfcEnginePluginDescriptor" eSuperTypes="#//PluginDescriptor"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RenderEnginePluginDescriptor" eSuperTypes="#//PluginDescriptor"/>
   <eClassifiers xsi:type="ecore:EEnum" name="ExtendedDataSchemaType">
     <eLiterals name="XSD"/>
     <eLiterals name="PDF" value="1"/>
@@ -651,8 +650,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="result" eType="#//NotifictionResultEnum"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExternalServiceUpdate"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PercentageChange" eSuperTypes="#//ExternalServiceUpdate">
+  <eClassifiers xsi:type="ecore:EClass" name="RemoteServiceUpdate"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PercentageChange" eSuperTypes="#//RemoteServiceUpdate">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="percentage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SystemInfo">

@@ -38,11 +38,8 @@ import org.bimserver.models.store.DoubleType;
 import org.bimserver.models.store.DownloadResult;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
-import org.bimserver.models.store.ExternalServiceUpdate;
 import org.bimserver.models.store.File;
 import org.bimserver.models.store.GeoTag;
-import org.bimserver.models.store.IfcEnginePluginConfiguration;
-import org.bimserver.models.store.IfcEnginePluginDescriptor;
 import org.bimserver.models.store.ImmediateNotificationResult;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.JavaInfo;
@@ -74,6 +71,9 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.QueryEnginePluginDescriptor;
 import org.bimserver.models.store.ReferenceDataValue;
+import org.bimserver.models.store.RemoteServiceUpdate;
+import org.bimserver.models.store.RenderEnginePluginConfiguration;
+import org.bimserver.models.store.RenderEnginePluginDescriptor;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.RevisionSummaryContainer;
@@ -217,8 +217,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcEnginePluginConfiguration(IfcEnginePluginConfiguration object) {
-			return createIfcEnginePluginConfigurationAdapter();
+		public Adapter caseRenderEnginePluginConfiguration(RenderEnginePluginConfiguration object) {
+			return createRenderEnginePluginConfigurationAdapter();
 		}
 
 		@Override
@@ -372,8 +372,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcEnginePluginDescriptor(IfcEnginePluginDescriptor object) {
-			return createIfcEnginePluginDescriptorAdapter();
+		public Adapter caseRenderEnginePluginDescriptor(RenderEnginePluginDescriptor object) {
+			return createRenderEnginePluginDescriptorAdapter();
 		}
 
 		@Override
@@ -557,8 +557,8 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseExternalServiceUpdate(ExternalServiceUpdate object) {
-			return createExternalServiceUpdateAdapter();
+		public Adapter caseRemoteServiceUpdate(RemoteServiceUpdate object) {
+			return createRemoteServiceUpdateAdapter();
 		}
 
 		@Override
@@ -755,16 +755,16 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.IfcEnginePluginConfiguration <em>Ifc Engine Plugin Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.RenderEnginePluginConfiguration <em>Render Engine Plugin Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.store.IfcEnginePluginConfiguration
+	 * @see org.bimserver.models.store.RenderEnginePluginConfiguration
 	 * @generated
 	 */
-	public Adapter createIfcEnginePluginConfigurationAdapter() {
+	public Adapter createRenderEnginePluginConfigurationAdapter() {
 		return null;
 	}
 
@@ -1189,16 +1189,16 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.IfcEnginePluginDescriptor <em>Ifc Engine Plugin Descriptor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.RenderEnginePluginDescriptor <em>Render Engine Plugin Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.store.IfcEnginePluginDescriptor
+	 * @see org.bimserver.models.store.RenderEnginePluginDescriptor
 	 * @generated
 	 */
-	public Adapter createIfcEnginePluginDescriptorAdapter() {
+	public Adapter createRenderEnginePluginDescriptorAdapter() {
 		return null;
 	}
 
@@ -1707,16 +1707,16 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.ExternalServiceUpdate <em>External Service Update</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.RemoteServiceUpdate <em>Remote Service Update</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.store.ExternalServiceUpdate
+	 * @see org.bimserver.models.store.RemoteServiceUpdate
 	 * @generated
 	 */
-	public Adapter createExternalServiceUpdateAdapter() {
+	public Adapter createRemoteServiceUpdateAdapter() {
 		return null;
 	}
 

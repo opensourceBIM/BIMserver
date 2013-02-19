@@ -29,7 +29,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,7 +40,7 @@ public abstract class EmfSerializer implements Serializer {
 	private Mode mode;
 	private ProjectInfo projectInfo;
 	private PluginManager pluginManager;
-	private IfcEnginePlugin ifcEnginePlugin;
+	private RenderEnginePlugin renderEnginePlugin;
 	private boolean normalizeOids;
 	private int expressIdCounter = 1;
 
@@ -48,17 +48,17 @@ public abstract class EmfSerializer implements Serializer {
 		HEADER, BODY, FOOTER, FINISHED
 	}
 
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException {
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids) throws SerializerException {
 		this.model = model;
 		this.projectInfo = projectInfo;
-		this.ifcEnginePlugin = ifcEnginePlugin;
+		this.renderEnginePlugin = renderEnginePlugin;
 		this.normalizeOids = normalizeOids;
 		this.setPluginManager(pluginManager);
 		reset();
 	}
 
-	public IfcEnginePlugin getIfcEnginePlugin() {
-		return ifcEnginePlugin;
+	public RenderEnginePlugin getRenderEnginePlugin() {
+		return renderEnginePlugin;
 	}
 	
 	public ProjectInfo getProjectInfo() {

@@ -21,13 +21,13 @@ import java.util.HashMap;
 
 import org.bimserver.models.ifc2x3tc1.Bounds;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
+import org.bimserver.plugins.renderengine.RenderEngineException;
 
 public abstract class AbstractGeometrySerializer extends EmfSerializer {
 	private Extends sceneExtends = new Extends();
 	private HashMap<String, Extends> geometryExtents = new HashMap<String, Extends>();
 	
-	protected void calculateGeometryExtents() throws IfcEngineException, SerializerException {
+	protected void calculateGeometryExtents() throws RenderEngineException, SerializerException {
 		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 			calculateExtents(ifcProduct.getGlobalId(), ifcProduct);
 		}
@@ -37,7 +37,7 @@ public abstract class AbstractGeometrySerializer extends EmfSerializer {
 		return sceneExtends;
 	}
 	
-	private void calculateExtents(String id, IfcProduct ifcObject) throws IfcEngineException, SerializerException {
+	private void calculateExtents(String id, IfcProduct ifcObject) throws RenderEngineException, SerializerException {
 		if (!geometryExtents.containsKey(id)) {
 			geometryExtents.put(id, new Extends());
 		}

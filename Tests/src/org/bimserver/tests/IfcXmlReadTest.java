@@ -49,7 +49,7 @@ public class IfcXmlReadTest {
 				File outFile = new File("out.ifc");
 				SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 				Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
-				serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine(), false);
+				serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), false);
 				try {
 					serializer.writeToFile(outFile);
 				} catch (SerializerException e) {

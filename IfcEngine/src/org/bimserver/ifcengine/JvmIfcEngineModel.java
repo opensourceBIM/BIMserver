@@ -28,15 +28,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.bimserver.plugins.ifcengine.IfcEngineClash;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
-import org.bimserver.plugins.ifcengine.IfcEngineInstance;
-import org.bimserver.plugins.ifcengine.IfcEngineModel;
-import org.bimserver.plugins.ifcengine.IfcEngineSettings;
-import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
+import org.bimserver.plugins.renderengine.RenderEngineClash;
+import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.RenderEngineGeometry;
+import org.bimserver.plugins.renderengine.RenderEngineInstance;
+import org.bimserver.plugins.renderengine.RenderEngineModel;
+import org.bimserver.plugins.renderengine.RenderEngineSettings;
+import org.bimserver.plugins.renderengine.RenderEngineSurfaceProperties;
 
-public class JvmIfcEngineModel implements IfcEngineModel {
+public class JvmIfcEngineModel implements RenderEngineModel {
 	private final int modelId;
 	private final JvmIfcEngine failSafeIfcEngine;
 
@@ -45,18 +45,18 @@ public class JvmIfcEngineModel implements IfcEngineModel {
 		this.modelId = modelId;
 	}
 
-	public IfcEngineSurfaceProperties initializeModelling() throws IfcEngineException {
+	public RenderEngineSurfaceProperties initializeModelling() throws RenderEngineException {
 		synchronized (failSafeIfcEngine) {
 			failSafeIfcEngine.writeCommand(Command.INITIALIZE_MODELLING);
 			failSafeIfcEngine.writeInt(modelId);
 			failSafeIfcEngine.flush();
 			int noIndices = failSafeIfcEngine.readInt();
 			int noVertices = failSafeIfcEngine.readInt();
-			return new IfcEngineSurfaceProperties(modelId, noVertices, noIndices, 0.0);
+			return new RenderEngineSurfaceProperties(modelId, noVertices, noIndices, 0.0);
 		}
 	}
 
-	public void setPostProcessing(boolean postProcessing) throws IfcEngineException {
+	public void setPostProcessing(boolean postProcessing) throws RenderEngineException {
 		synchronized (failSafeIfcEngine) {
 			failSafeIfcEngine.writeCommand(Command.SET_POSTPROCESSING);
 			failSafeIfcEngine.writeInt(modelId);
@@ -65,7 +65,7 @@ public class JvmIfcEngineModel implements IfcEngineModel {
 		}
 	}
 
-	public void setFormat(int format, int mask) throws IfcEngineException {
+	public void setFormat(int format, int mask) throws RenderEngineException {
 		synchronized (failSafeIfcEngine) {
 			failSafeIfcEngine.writeCommand(Command.SET_FORMAT);
 			failSafeIfcEngine.writeInt(modelId);
@@ -75,7 +75,7 @@ public class JvmIfcEngineModel implements IfcEngineModel {
 		}
 	}
 
-	public IfcEngineGeometry finalizeModelling(IfcEngineSurfaceProperties surfaceProperties) throws IfcEngineException {
+	public RenderEngineGeometry finalizeModelling(RenderEngineSurfaceProperties surfaceProperties) throws RenderEngineException {
 		synchronized (failSafeIfcEngine) {
 			if (surfaceProperties.getIndicesCount() == 0 || surfaceProperties.getVerticesCount() == 0) {
 				return null;
@@ -97,11 +97,11 @@ public class JvmIfcEngineModel implements IfcEngineModel {
 			for (int i = 0; i < normals.length; i++) {
 				normals[i] = failSafeIfcEngine.readFloat();
 			}
-			return new IfcEngineGeometry(indices, vertices, normals);
+			return new RenderEngineGeometry(indices, vertices, normals);
 		}
 	}
 
-	public List<? extends IfcEngineInstance> getInstances(String name) throws IfcEngineException {
+	public List<? extends RenderEngineInstance> getInstances(String name) throws RenderEngineException {
 		synchronized (failSafeIfcEngine) {
 			failSafeIfcEngine.writeCommand(Command.GET_INSTANCES);
 			failSafeIfcEngine.writeInt(modelId);
@@ -116,7 +116,7 @@ public class JvmIfcEngineModel implements IfcEngineModel {
 		}
 	}
 
-	public void close() throws IfcEngineException {
+	public void close() throws RenderEngineException {
 		synchronized (failSafeIfcEngine) {
 			failSafeIfcEngine.writeCommand(Command.CLOSE_MODEL);
 			failSafeIfcEngine.writeInt(modelId);
@@ -124,16 +124,16 @@ public class JvmIfcEngineModel implements IfcEngineModel {
 		}
 	}
 
-	public Set<IfcEngineClash> findClashesWithEids(double d) throws IfcEngineException {
+	public Set<RenderEngineClash> findClashesWithEids(double d) throws RenderEngineException {
 		synchronized (failSafeIfcEngine) {
 			failSafeIfcEngine.writeCommand(Command.FIND_CLASHES_BY_EID);
 			failSafeIfcEngine.writeInt(modelId);
 			failSafeIfcEngine.writeDouble(d);
 			failSafeIfcEngine.flush();
 			int nrClashes = failSafeIfcEngine.readInt();
-			Set<IfcEngineClash> clashes = new HashSet<IfcEngineClash>();
+			Set<RenderEngineClash> clashes = new HashSet<RenderEngineClash>();
 			for (int i = 0; i < nrClashes; i++) {
-				IfcEngineClash clash = new IfcEngineClash();
+				RenderEngineClash clash = new RenderEngineClash();
 				clashes.add(clash);
 				clash.setEid1(failSafeIfcEngine.readLong());
 				clash.setEid2(failSafeIfcEngine.readLong());
@@ -142,16 +142,16 @@ public class JvmIfcEngineModel implements IfcEngineModel {
 		}
 	}
 	
-	public Set<IfcEngineClash> findClashesWithGuids(double d) throws IfcEngineException {
+	public Set<RenderEngineClash> findClashesWithGuids(double d) throws RenderEngineException {
 		synchronized (failSafeIfcEngine) {
 			failSafeIfcEngine.writeCommand(Command.FIND_CLASHES_BY_GUID);
 			failSafeIfcEngine.writeInt(modelId);
 			failSafeIfcEngine.writeDouble(d);
 			failSafeIfcEngine.flush();
 			int nrClashes = failSafeIfcEngine.readInt();
-			Set<IfcEngineClash> clashes = new HashSet<IfcEngineClash>();
+			Set<RenderEngineClash> clashes = new HashSet<RenderEngineClash>();
 			for (int i = 0; i < nrClashes; i++) {
-				IfcEngineClash clash = new IfcEngineClash();
+				RenderEngineClash clash = new RenderEngineClash();
 				clashes.add(clash);
 				clash.setGuid1(failSafeIfcEngine.readString());
 				clash.setGuid2(failSafeIfcEngine.readString());
@@ -161,7 +161,7 @@ public class JvmIfcEngineModel implements IfcEngineModel {
 	}
 
 	@Override
-	public IfcEngineInstance getInstanceFromExpressId(int oid) throws IfcEngineException {
+	public RenderEngineInstance getInstanceFromExpressId(int oid) throws RenderEngineException {
 		synchronized (failSafeIfcEngine) {
 			failSafeIfcEngine.writeCommand(Command.GET_INSTANCE_FROM_EXPRESSID);
 			failSafeIfcEngine.writeInt(modelId);
@@ -169,14 +169,14 @@ public class JvmIfcEngineModel implements IfcEngineModel {
 			failSafeIfcEngine.flush();
 			int instanceId = failSafeIfcEngine.readInt();
 			if (instanceId == -1) {
-				throw new IfcEngineException("Instance with express id " + oid + " not found");
+				throw new RenderEngineException("Instance with express id " + oid + " not found");
 			}
 			return new JvmIfcEngineInstance(failSafeIfcEngine, modelId, instanceId);
 		}
 	}
 
 	@Override
-	public void setSettings(IfcEngineSettings settings) throws IfcEngineException {
+	public void setSettings(RenderEngineSettings settings) throws RenderEngineException {
         int setting = 0;
         int mask = 0;
         mask += PRECISION;

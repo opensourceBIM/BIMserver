@@ -43,7 +43,7 @@ public class CityGmlTest {
 			IfcModelInterface model = deserializer.read(TestFile.AC11.getFile());
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.citygml.CityGmlSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
-			serializer.init(model, null, pluginManager, pluginManager.requireIfcEngine(), false);
+			serializer.init(model, null, pluginManager, pluginManager.requireRenderEngine(), false);
 			FileOutputStream fos = new FileOutputStream(new File("out.gml"));
 			serializer.writeToOutputStream(fos);
 			fos.close();

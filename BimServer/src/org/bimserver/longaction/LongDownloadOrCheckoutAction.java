@@ -28,13 +28,13 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.exceptions.NoSerializerFoundException;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.IfcEnginePluginConfiguration;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.Reporter;
-import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.CacheStoringEmfSerializerDataSource;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -59,14 +59,14 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 		return checkoutResult;
 	}
 
-	protected SCheckoutResult convertModelToCheckoutResult(Project project, String username, IfcModelInterface model, IfcEnginePlugin ifcEnginePlugin, DownloadParameters downloadParameters)
+	protected SCheckoutResult convertModelToCheckoutResult(Project project, String username, IfcModelInterface model, RenderEnginePlugin renderEnginePlugin, DownloadParameters downloadParameters)
 			throws UserException, NoSerializerFoundException {
 		SCheckoutResult checkoutResult = new SCheckoutResult();
 		if (model.isValid()) {
 			checkoutResult.setProjectName(project.getName());
 			checkoutResult.setRevisionNr(model.getModelMetaData().getRevisionId());
 			try {
-				org.bimserver.plugins.serializers.Serializer serializer = getBimServer().getSerializerFactory().create(project, username, model, ifcEnginePlugin, downloadParameters);
+				org.bimserver.plugins.serializers.Serializer serializer = getBimServer().getSerializerFactory().create(project, username, model, renderEnginePlugin, downloadParameters);
 				if (serializer == null) {
 					throw new UserException("Error, no serializer found " + downloadParameters.getSerializerOid());
 				}
@@ -101,13 +101,13 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				// Session is closed after this
 
 				DatabaseSession newSession = getBimServer().getDatabase().createSession();
-				IfcEnginePlugin ifcEnginePlugin = null;
+				RenderEnginePlugin renderEnginePlugin = null;
 				try {
 					SerializerPluginConfiguration serializerPluginConfiguration = newSession.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), Query.getDefault());
 					if (serializerPluginConfiguration != null) {
-						IfcEnginePluginConfiguration ifcEngine = serializerPluginConfiguration.getIfcEngine();
-						if (ifcEngine != null) {
-							ifcEnginePlugin = (IfcEnginePlugin) getBimServer().getPluginManager().getIfcEngine(ifcEngine.getClassName(), true);
+						RenderEnginePluginConfiguration renderEngine = serializerPluginConfiguration.getRenderEngine();
+						if (renderEngine != null) {
+							renderEnginePlugin = (RenderEnginePlugin) getBimServer().getPluginManager().getRenderEngine(renderEngine.getClassName(), true);
 						}
 					}
 				} catch (BimserverDatabaseException e) {
@@ -116,7 +116,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 					newSession.close();
 				}
 
-				checkoutResult = convertModelToCheckoutResult(revision.getProject(), getUserName(), ifcModel, ifcEnginePlugin, downloadParameters);
+				checkoutResult = convertModelToCheckoutResult(revision.getProject(), getUserName(), ifcModel, renderEnginePlugin, downloadParameters);
 			}
 		} finally {
 			done();

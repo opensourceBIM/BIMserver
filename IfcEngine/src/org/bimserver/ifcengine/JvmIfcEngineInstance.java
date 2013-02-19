@@ -23,11 +23,11 @@ package org.bimserver.ifcengine;
  * Within the Open Source BIMserver software there is one exception to the normal conditions: A special version of the IFC Engine DLL is used that includes Clashdetection functionality, this version is not commercially available. For more information, please contact the owner at info@ifcengine.com
  *****************************************************************************/
 
-import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEngineInstance;
-import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
+import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.RenderEngineInstance;
+import org.bimserver.plugins.renderengine.RenderEngineInstanceVisualisationProperties;
 
-public class JvmIfcEngineInstance implements IfcEngineInstance {
+public class JvmIfcEngineInstance implements RenderEngineInstance {
 	private final JvmIfcEngine failSafeIfcEngine;
 	private final int instanceId;
 	private final int modelId;
@@ -38,13 +38,13 @@ public class JvmIfcEngineInstance implements IfcEngineInstance {
 		this.instanceId = instanceId;
 	}
 
-	public IfcEngineInstanceVisualisationProperties getVisualisationProperties() throws IfcEngineException {
+	public RenderEngineInstanceVisualisationProperties getVisualisationProperties() throws RenderEngineException {
 		synchronized (failSafeIfcEngine) {
 			failSafeIfcEngine.writeCommand(Command.GET_VISUALISATION_PROPERTIES);
 			failSafeIfcEngine.writeInt(modelId);
 			failSafeIfcEngine.writeInt(instanceId);
 			failSafeIfcEngine.flush();
-			return new IfcEngineInstanceVisualisationProperties(failSafeIfcEngine.readInt(), failSafeIfcEngine.readInt(), failSafeIfcEngine.readInt());
+			return new RenderEngineInstanceVisualisationProperties(failSafeIfcEngine.readInt(), failSafeIfcEngine.readInt(), failSafeIfcEngine.readInt());
 		}
 	}
 }

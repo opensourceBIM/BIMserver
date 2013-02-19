@@ -82,13 +82,13 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.ifcengine.IfcEngine;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
-import org.bimserver.plugins.ifcengine.IfcEngineInstance;
-import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
-import org.bimserver.plugins.ifcengine.IfcEngineModel;
-import org.bimserver.plugins.ifcengine.IfcEngineSurfaceProperties;
+import org.bimserver.plugins.renderengine.RenderEngine;
+import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.RenderEngineGeometry;
+import org.bimserver.plugins.renderengine.RenderEngineInstance;
+import org.bimserver.plugins.renderengine.RenderEngineInstanceVisualisationProperties;
+import org.bimserver.plugins.renderengine.RenderEngineModel;
+import org.bimserver.plugins.renderengine.RenderEngineSurfaceProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -111,11 +111,11 @@ public class IfcVisualiser extends JFrame {
 	private View view;
 	private SharedGroup sharedGroup;
 	private Appearances appearances = new Appearances();
-	private IfcEngine ifcEngine;
+	private RenderEngine ifcEngine;
 	private PluginManager pluginManager;
-	private IfcEngineGeometry geometry;
+	private RenderEngineGeometry geometry;
 	private IfcModelInterface model;
-	private IfcEngineModel ifcEngineModel;
+	private RenderEngineModel ifcEngineModel;
 
 	public static void main(String[] args) {
 		try {
@@ -209,12 +209,12 @@ public class IfcVisualiser extends JFrame {
 			LOGGER.error("", e);
 		}
 
-		ifcEngine = pluginManager.requireIfcEngine().createIfcEngine(new PluginConfiguration());
+		ifcEngine = pluginManager.requireRenderEngine().createRenderEngine(new PluginConfiguration());
 		ifcEngine.init();
 		try {
 			ifcEngineModel = ifcEngine.openModel(file);
 			try {
-				IfcEngineSurfaceProperties initializeModelling = ifcEngineModel.initializeModelling();
+				RenderEngineSurfaceProperties initializeModelling = ifcEngineModel.initializeModelling();
 				geometry = ifcEngineModel.finalizeModelling(initializeModelling);
 				createSceneGraph();
 			} finally {
@@ -366,9 +366,9 @@ public class IfcVisualiser extends JFrame {
 		transformGroup.addChild(light2);
 	}
 
-	public void createTriangles(IfcRoot ifcRootObject, IfcModelInterface ifcModel, TransformGroup buildingTransformGroup) throws IfcEngineException {
-		IfcEngineInstance instance = ifcEngineModel.getInstanceFromExpressId(ifcRootObject.getExpressId());
-		IfcEngineInstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
+	public void createTriangles(IfcRoot ifcRootObject, IfcModelInterface ifcModel, TransformGroup buildingTransformGroup) throws RenderEngineException {
+		RenderEngineInstance instance = ifcEngineModel.getInstanceFromExpressId(ifcRootObject.getExpressId());
+		RenderEngineInstanceVisualisationProperties instanceInModelling = instance.getVisualisationProperties();
 		if (instanceInModelling.getPrimitiveCount() != 0) {
 			Appearance appearance = appearances.getAppearance(ifcRootObject);
 			if (appearance != null) {
@@ -423,7 +423,7 @@ public class IfcVisualiser extends JFrame {
 		return sceneSphere;
 	}
 
-	private void setGeometry(IfcRoot ifcRootObject) throws IfcModelInterfaceException, IfcEngineException {
+	private void setGeometry(IfcRoot ifcRootObject) throws IfcModelInterfaceException, RenderEngineException {
 		createTriangles(ifcRootObject, model, buildingTransformGroup);
 	}
 }

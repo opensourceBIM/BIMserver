@@ -25,10 +25,10 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
+import org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServicePluginDescriptor;
 import org.bimserver.longaction.DownloadParameters;
@@ -39,10 +39,10 @@ import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
+import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -81,7 +81,7 @@ public class SerializerFactory {
 		return descriptors;
 	}
 	
-	public org.bimserver.plugins.serializers.Serializer create(Project project, String username, IfcModelInterface model, IfcEnginePlugin ifcEnginePlugin, DownloadParameters downloadParameters) throws SerializerException {
+	public org.bimserver.plugins.serializers.Serializer create(Project project, String username, IfcModelInterface model, RenderEnginePlugin renderEnginePlugin, DownloadParameters downloadParameters) throws SerializerException {
 		DatabaseSession session = bimDatabase.createSession();
 		try {
 			SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), Query.getDefault());
@@ -103,7 +103,7 @@ public class SerializerFactory {
 								projectInfo.setDirectionAngle(geoTag.getDirectionAngle());
 							}
 							projectInfo.setAuthorName(username);
-							serializer.init(model, projectInfo, pluginManager, ifcEnginePlugin, true);
+							serializer.init(model, projectInfo, pluginManager, renderEnginePlugin, true);
 							return serializer;
 						} catch (NullPointerException e) {
 							LOGGER.error("", e);
@@ -150,12 +150,12 @@ public class SerializerFactory {
 		return null;
 	}
 
-	public List<SIfcEnginePluginDescriptor> getAllIfcEnginePluginDescriptors() {
-		List<SIfcEnginePluginDescriptor> descriptors = new ArrayList<SIfcEnginePluginDescriptor>();
-		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins(true)) {
-			SIfcEnginePluginDescriptor descriptor = new SIfcEnginePluginDescriptor();
-			descriptor.setDefaultName(ifcEnginePlugin.getDefaultName());
-			descriptor.setPluginClassName(ifcEnginePlugin.getClass().getName());
+	public List<SRenderEnginePluginDescriptor> getAllRenderEnginePluginDescriptors() {
+		List<SRenderEnginePluginDescriptor> descriptors = new ArrayList<SRenderEnginePluginDescriptor>();
+		for (RenderEnginePlugin renderEnginePlugin : pluginManager.getAllRenderEnginePlugins(true)) {
+			SRenderEnginePluginDescriptor descriptor = new SRenderEnginePluginDescriptor();
+			descriptor.setDefaultName(renderEnginePlugin.getDefaultName());
+			descriptor.setPluginClassName(renderEnginePlugin.getClass().getName());
 			descriptors.add(descriptor);
 		}
 		return descriptors;

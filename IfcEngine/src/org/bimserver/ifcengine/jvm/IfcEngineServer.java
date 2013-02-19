@@ -37,9 +37,9 @@ import java.util.Set;
 
 import org.bimserver.ifcengine.Command;
 import org.bimserver.ifcengine.jvm.IfcEngine.SurfaceProperties;
-import org.bimserver.plugins.ifcengine.IfcEngineClash;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
+import org.bimserver.plugins.renderengine.RenderEngineClash;
+import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.RenderEngineInstanceVisualisationProperties;
 
 import com.sun.jna.Pointer;
 
@@ -147,7 +147,7 @@ public class IfcEngineServer extends Thread {
 						if (instanceId instanceof Pointer) {
 							out.writeInt(savePointer((Pointer) instanceId));
 						} else {
-							throw new IfcEngineException("Unimplemented");
+							throw new RenderEngineException("Unimplemented");
 						}
 					}
 				}
@@ -157,9 +157,9 @@ public class IfcEngineServer extends Thread {
 					double dist = in.readDouble();
 					int nrClashes = ifcEngine.initializeClashes(pointers.get(modelId), dist);
 					if (nrClashes > 0) {
-						Set<IfcEngineClash> clashes = ifcEngine.finalizeClashesByGuid(pointers.get(modelId), nrClashes);
+						Set<RenderEngineClash> clashes = ifcEngine.finalizeClashesByGuid(pointers.get(modelId), nrClashes);
 						out.writeInt(nrClashes);
-						for (IfcEngineClash clash : clashes) {
+						for (RenderEngineClash clash : clashes) {
 							out.writeUTF(clash.getGuid1());
 							out.writeUTF(clash.getGuid2());
 						}
@@ -173,9 +173,9 @@ public class IfcEngineServer extends Thread {
 					double dist = in.readDouble();
 					int nrClashes = ifcEngine.initializeClashes(pointers.get(modelId), dist);
 					if (nrClashes > 0) {
-						Set<IfcEngineClash> clashes = ifcEngine.finalizeClashesByEI(pointers.get(modelId), nrClashes);
+						Set<RenderEngineClash> clashes = ifcEngine.finalizeClashesByEI(pointers.get(modelId), nrClashes);
 						out.writeInt(nrClashes);
-						for (IfcEngineClash clash : clashes) {
+						for (RenderEngineClash clash : clashes) {
 							out.writeLong(clash.getEid1());
 							out.writeLong(clash.getEid2());
 						}
@@ -187,7 +187,7 @@ public class IfcEngineServer extends Thread {
 				case GET_VISUALISATION_PROPERTIES: {
 					int modelId = in.readInt();
 					int instanceId = in.readInt();
-					IfcEngineInstanceVisualisationProperties instanceInModelling = ifcEngine.getInstanceInModelling(pointers.get(modelId), pointers.get(instanceId), 1);
+					RenderEngineInstanceVisualisationProperties instanceInModelling = ifcEngine.getInstanceInModelling(pointers.get(modelId), pointers.get(instanceId), 1);
 					out.writeInt(instanceInModelling.getStartVertex());
 					out.writeInt(instanceInModelling.getStartIndex());
 					out.writeInt(instanceInModelling.getPrimitiveCount());

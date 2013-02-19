@@ -33,22 +33,22 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.Vector3f;
-import org.bimserver.models.store.IfcEnginePluginConfiguration;
+import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngine;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
-import org.bimserver.plugins.ifcengine.IfcEngineInstance;
-import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
-import org.bimserver.plugins.ifcengine.IfcEngineModel;
-import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
-import org.bimserver.plugins.ifcengine.IfcEngineSettings;
-import org.bimserver.plugins.ifcengine.IndexFormat;
-import org.bimserver.plugins.ifcengine.Precision;
+import org.bimserver.plugins.renderengine.IndexFormat;
+import org.bimserver.plugins.renderengine.Precision;
+import org.bimserver.plugins.renderengine.RenderEngine;
+import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.RenderEngineGeometry;
+import org.bimserver.plugins.renderengine.RenderEngineInstance;
+import org.bimserver.plugins.renderengine.RenderEngineInstanceVisualisationProperties;
+import org.bimserver.plugins.renderengine.RenderEngineModel;
+import org.bimserver.plugins.renderengine.RenderEnginePlugin;
+import org.bimserver.plugins.renderengine.RenderEngineSettings;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -116,27 +116,27 @@ public class GeometryGenerator {
 
 			User user = (User) databaseSession.get(uoid, Query.getDefault());
 			UserSettings userSettings = user.getUserSettings();
-			IfcEnginePluginConfiguration defaultIfcEngine = userSettings.getDefaultIfcEngine();
-			if (defaultIfcEngine != null) {
-				IfcEnginePlugin ifcEnginePlugin = pluginManager.getIfcEngine(defaultIfcEngine.getClassName(), true);
+			RenderEnginePluginConfiguration defaultRenderEngine = userSettings.getDefaultRenderEngine();
+			if (defaultRenderEngine != null) {
+				RenderEnginePlugin renderEnginePlugin = pluginManager.getRenderEngine(defaultRenderEngine.getClassName(), true);
 				try {
-					IfcEngine ifcEngine = ifcEnginePlugin.createIfcEngine(new PluginConfiguration());
-					ifcEngine.init();
+					RenderEngine renderEngine = renderEnginePlugin.createRenderEngine(new PluginConfiguration());
+					renderEngine.init();
 					try {
-						IfcEngineModel ifcEngineModel = ifcEngine.openModel(new ByteArrayInputStream(outputStream.toByteArray()), outputStream.size());
+						RenderEngineModel renderEngineModel = renderEngine.openModel(new ByteArrayInputStream(outputStream.toByteArray()), outputStream.size());
 
-						IfcEngineSettings settings = new IfcEngineSettings();
+						RenderEngineSettings settings = new RenderEngineSettings();
 						settings.setPrecision(Precision.SINGLE);
 						settings.setIndexFormat(IndexFormat.AUTO_DETECT);
 						settings.setGenerateNormals(true);
 						settings.setGenerateTriangles(true);
 						settings.setGenerateWireFrame(false);
-						ifcEngineModel.setSettings(settings);
+						renderEngineModel.setSettings(settings);
 						try {
-							IfcEngineGeometry ifcEngineGeometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
+							RenderEngineGeometry renderEngineGeometry = renderEngineModel.finalizeModelling(renderEngineModel.initializeModelling());
 							for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
-								IfcEngineInstance ifcEngineInstance = ifcEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
-								IfcEngineInstanceVisualisationProperties visualisationProperties = ifcEngineInstance.getVisualisationProperties();
+								RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(ifcProduct.getExpressId());
+								RenderEngineInstanceVisualisationProperties visualisationProperties = renderEngineInstance.getVisualisationProperties();
 								if (visualisationProperties.getPrimitiveCount() > 0) {
 									GeometryInstance geometryInstance = null;
 									if (store) {
@@ -159,8 +159,8 @@ public class GeometryGenerator {
 									instanceBounds.setMax(createVector3f(Float.NEGATIVE_INFINITY, databaseSession, store, pid, rid));
 									ifcProduct.setBounds(instanceBounds);
 									for (int i = geometryInstance.getStartIndex(); i < geometryInstance.getPrimitiveCount() * 3 + geometryInstance.getStartIndex(); i++) {
-										int index = ifcEngineGeometry.getIndex(i) * 3;
-										processExtends(instanceBounds, ifcEngineGeometry, verticesBuffer, normalsBuffer, index);
+										int index = renderEngineGeometry.getIndex(i) * 3;
+										processExtends(instanceBounds, renderEngineGeometry, verticesBuffer, normalsBuffer, index);
 									}
 									geometryInstance.setVertices(verticesBuffer.array());
 									geometryInstance.setNormals(normalsBuffer.array());
@@ -175,12 +175,12 @@ public class GeometryGenerator {
 								}
 							}
 						} finally {
-							ifcEngineModel.close();
+							renderEngineModel.close();
 						}
 					} finally {
-						ifcEngine.close();
+						renderEngine.close();
 					}
-				} catch (IfcEngineException e) {
+				} catch (RenderEngineException e) {
 					LOGGER.error("", e);
 				}
 			}
@@ -227,7 +227,7 @@ public class GeometryGenerator {
 		return vector3f;
 	}
 
-	private void processExtends(Bounds bounds, IfcEngineGeometry geometry, ByteBuffer verticesBuffer, ByteBuffer normalsBuffer, int index) {
+	private void processExtends(Bounds bounds, RenderEngineGeometry geometry, ByteBuffer verticesBuffer, ByteBuffer normalsBuffer, int index) {
 		float x = geometry.getVertex(index);
 		float y = geometry.getVertex(index + 1);
 		float z = geometry.getVertex(index + 2);

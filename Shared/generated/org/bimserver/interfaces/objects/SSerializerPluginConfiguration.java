@@ -31,7 +31,7 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 	private static SClass sClass;
 	private long objectIDMId = -1;
 	private long userSettingsId = -1;
-	private long ifcEngineId = -1;
+	private long renderEngineId = -1;
 
 	public long getOid() {
 		return this.oid;
@@ -80,8 +80,8 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 		if (sField.getName().equals("userSettingsId")) {
 			return getUserSettingsId();
 		}
-		if (sField.getName().equals("ifcEngineId")) {
-			return getIfcEngineId();
+		if (sField.getName().equals("renderEngineId")) {
+			return getRenderEngineId();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -121,8 +121,8 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 			setUserSettingsId((Long)val);
 			return;
 		}
-		if (sField.getName().equals("ifcEngineId")) {
-			setIfcEngineId((Long)val);
+		if (sField.getName().equals("renderEngineId")) {
+			setRenderEngineId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -152,12 +152,12 @@ public class SSerializerPluginConfiguration extends SPluginConfiguration impleme
 		this.userSettingsId = userSettingsId;
 	}
 	
-	public long getIfcEngineId() {
-		return ifcEngineId;
+	public long getRenderEngineId() {
+		return renderEngineId;
 	}
 
-	public void setIfcEngineId(long ifcEngineId) {
-		this.ifcEngineId = ifcEngineId;
+	public void setRenderEngineId(long renderEngineId) {
+		this.renderEngineId = renderEngineId;
 	}
 	
 	@Override

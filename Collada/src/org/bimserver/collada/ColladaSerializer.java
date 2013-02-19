@@ -59,8 +59,8 @@ import org.bimserver.models.ifc2x3tc1.IfcWallStandardCase;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.models.store.SIPrefix;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -110,8 +110,8 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		addConvertor(new Convertor<IfcProduct>(IfcProduct.class, new double[] { 0.5f, 0.5f, 0.5f }, 1.0f));
 	}
 
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEnginePlugin, normalizeOids);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, renderEnginePlugin, normalizeOids);
 		this.lengthUnitPrefix = getLengthUnitPrefix(model);
 	}
 
@@ -173,7 +173,7 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		out.println("    </asset>");
 	}
 
-	private void writeGeometries(PrintWriter out) throws IfcEngineException, SerializerException {
+	private void writeGeometries(PrintWriter out) throws RenderEngineException, SerializerException {
 		out.println("      <library_geometries>");
 
 		Set<IfcProduct> convertedObjects = new HashSet<IfcProduct>();
@@ -194,7 +194,7 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 		return "" + (idCounter++);
 	}
 
-	private void setGeometry(PrintWriter out, IfcProduct ifcProductObject, String material) throws IfcEngineException, SerializerException {
+	private void setGeometry(PrintWriter out, IfcProduct ifcProductObject, String material) throws RenderEngineException, SerializerException {
 		// boolean materialFound = false;
 		// boolean added = false;
 		// if (ifcRootObject instanceof IfcProduct) {

@@ -237,20 +237,20 @@ public class Step0000 extends Migration {
 
 		schema.createEAttribute(serverSettings, "cacheOutputFiles", EcorePackage.eINSTANCE.getEBooleanObject(), Multiplicity.SINGLE);
 		
-		EClass ifcEnginePluginConfiguration = schema.createEClass(storePackage, "IfcEnginePluginConfiguration", pluginConfiguration);
+		EClass renderEnginePluginConfiguration = schema.createEClass(storePackage, "RenderEnginePluginConfiguration", pluginConfiguration);
 
-		EReference ifcEngineSerializersReference = schema.createEReference(ifcEnginePluginConfiguration, "serializers", serializerPluginConfiguration, Multiplicity.MANY);
-		EReference serializerIfcEngineReference = schema.createEReference(serializerPluginConfiguration, "ifcEngine", ifcEnginePluginConfiguration, Multiplicity.SINGLE);
+		EReference renderEngineSerializersReference = schema.createEReference(renderEnginePluginConfiguration, "serializers", serializerPluginConfiguration, Multiplicity.MANY);
+		EReference serializerRenderEngineReference = schema.createEReference(serializerPluginConfiguration, "renderEngine", renderEnginePluginConfiguration, Multiplicity.SINGLE);
 		
-		serializerIfcEngineReference.setEOpposite(ifcEngineSerializersReference);
-		ifcEngineSerializersReference.setEOpposite(serializerIfcEngineReference);
+		serializerRenderEngineReference.setEOpposite(renderEngineSerializersReference);
+		renderEngineSerializersReference.setEOpposite(serializerRenderEngineReference);
 		
-		EReference ifcEngineSettings = schema.createEReference(ifcEnginePluginConfiguration, "userSettings", userSettings, Multiplicity.SINGLE);
+		EReference renderEngineSettings = schema.createEReference(renderEnginePluginConfiguration, "userSettings", userSettings, Multiplicity.SINGLE);
 
-		EReference settingsIfcEngines = schema.createEReference(userSettings, "ifcEngines", ifcEnginePluginConfiguration, Multiplicity.MANY);
+		EReference settingsRenderEngines = schema.createEReference(userSettings, "renderEngines", renderEnginePluginConfiguration, Multiplicity.MANY);
 
-		settingsIfcEngines.setEOpposite(ifcEngineSettings);
-		ifcEngineSettings.setEOpposite(settingsIfcEngines);
+		settingsRenderEngines.setEOpposite(renderEngineSettings);
+		renderEngineSettings.setEOpposite(settingsRenderEngines);
 		
 		EClass deserializerPluginClass = schema.createEClass(storePackage, "DeserializerPluginConfiguration", pluginConfiguration);
 
@@ -425,7 +425,7 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(versionInfoClass, "supportEmail", ecorePackage.getEString(), Multiplicity.SINGLE);
 
 		schema.createEReference(concreteRevisionClass, "user", user, Multiplicity.SINGLE);
-		schema.createEClass(storePackage, "IfcEnginePluginDescriptor", pluginDescriptor);
+		schema.createEClass(storePackage, "RenderEnginePluginDescriptor", pluginDescriptor);
 
 		EEnum extendedDataSchemaType = schema.createEEnum(storePackage, "ExtendedDataSchemaType");
 		schema.createEEnumLiteral(extendedDataSchemaType, "XSD");
@@ -514,7 +514,7 @@ public class Step0000 extends Migration {
 		schema.createEReference(userSettings, "defaultModelMerger", modelMergerPluginConfiguration, Multiplicity.SINGLE);
 		schema.createEReference(userSettings, "defaultModelCompare", modelComparePluginConfiguration, Multiplicity.SINGLE);
 		schema.createEReference(userSettings, "defaultQueryEngine", queryEnginePluginConfiguration, Multiplicity.SINGLE);
-		schema.createEReference(userSettings, "defaultIfcEngine", ifcEnginePluginConfiguration, Multiplicity.SINGLE);
+		schema.createEReference(userSettings, "defaultRenderEngine", renderEnginePluginConfiguration, Multiplicity.SINGLE);
 		schema.createEReference(userSettings, "defaultSerializer", serializerPluginConfiguration, Multiplicity.SINGLE);
 		schema.createEReference(userSettings, "defaultObjectIDM", objectIDMPluginConfiguration, Multiplicity.SINGLE);
 
@@ -700,21 +700,21 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(immediateNotificationResult, "result", notificationResultEnum, Multiplicity.SINGLE);
 		schema.createEAttribute(immediateNotificationResult, "description", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		
-		EClass externalServiceCalled = schema.createEClass("log", "ExternalServiceCalled", logAction);
-		schema.createEReference(externalServiceCalled, "service", service, Multiplicity.SINGLE);
-		schema.createEAttribute(externalServiceCalled, "state", notificationResultEnum, Multiplicity.SINGLE);
-		schema.createEAttribute(externalServiceCalled, "percentage", EcorePackage.eINSTANCE.getEInt(), Multiplicity.SINGLE);
-		schema.createEAttribute(externalServiceCalled, "infos", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
-		schema.createEAttribute(externalServiceCalled, "warnings", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
-		schema.createEAttribute(externalServiceCalled, "errors", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
+		EClass remoteServiceCalled = schema.createEClass("log", "RemoteServiceCalled", logAction);
+		schema.createEReference(remoteServiceCalled, "service", service, Multiplicity.SINGLE);
+		schema.createEAttribute(remoteServiceCalled, "state", notificationResultEnum, Multiplicity.SINGLE);
+		schema.createEAttribute(remoteServiceCalled, "percentage", EcorePackage.eINSTANCE.getEInt(), Multiplicity.SINGLE);
+		schema.createEAttribute(remoteServiceCalled, "infos", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
+		schema.createEAttribute(remoteServiceCalled, "warnings", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
+		schema.createEAttribute(remoteServiceCalled, "errors", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
 		
 		schema.createEReference(project, "logs", logAction, Multiplicity.MANY);
 		schema.createEReference(revisionClass, "logs", logAction, Multiplicity.MANY);
 		schema.createEReference(user, "logs", logAction, Multiplicity.MANY);
 		schema.createEReference(checkoutClass, "logs", logAction, Multiplicity.MANY);
 		
-		EClass externalServiceUpdate = schema.createEClass("store", "ExternalServiceUpdate");
-		EClass percentageChange = schema.createEClass("store", "PercentageChange", externalServiceUpdate);
+		EClass remoteServiceUpdate = schema.createEClass("store", "RemoteServiceUpdate");
+		EClass percentageChange = schema.createEClass("store", "PercentageChange", remoteServiceUpdate);
 		schema.createEAttribute(percentageChange, "percentage", EcorePackage.eINSTANCE.getEInt(), Multiplicity.SINGLE);
 		
 		EClass systemInfo = schema.createEClass("store", "SystemInfo");

@@ -33,7 +33,7 @@ public class SUserSettings implements SDataBase
 	private static SClass sClass;
 	private List<Long> serializers = new ArrayList<Long>();
 	private List<Long> objectIDMs = new ArrayList<Long>();
-	private List<Long> ifcEngines = new ArrayList<Long>();
+	private List<Long> renderEngines = new ArrayList<Long>();
 	private List<Long> deserializers = new ArrayList<Long>();
 	private List<Long> queryengines = new ArrayList<Long>();
 	private List<Long> modelmergers = new ArrayList<Long>();
@@ -41,7 +41,7 @@ public class SUserSettings implements SDataBase
 	private long defaultModelMergerId = -1;
 	private long defaultModelCompareId = -1;
 	private long defaultQueryEngineId = -1;
-	private long defaultIfcEngineId = -1;
+	private long defaultRenderEngineId = -1;
 	private long defaultSerializerId = -1;
 	private long defaultObjectIDMId = -1;
 	private List<Long> services = new ArrayList<Long>();
@@ -78,8 +78,8 @@ public class SUserSettings implements SDataBase
 		if (sField.getName().equals("objectIDMs")) {
 			return getObjectIDMs();
 		}
-		if (sField.getName().equals("ifcEngines")) {
-			return getIfcEngines();
+		if (sField.getName().equals("renderEngines")) {
+			return getRenderEngines();
 		}
 		if (sField.getName().equals("deserializers")) {
 			return getDeserializers();
@@ -102,8 +102,8 @@ public class SUserSettings implements SDataBase
 		if (sField.getName().equals("defaultQueryEngineId")) {
 			return getDefaultQueryEngineId();
 		}
-		if (sField.getName().equals("defaultIfcEngineId")) {
-			return getDefaultIfcEngineId();
+		if (sField.getName().equals("defaultRenderEngineId")) {
+			return getDefaultRenderEngineId();
 		}
 		if (sField.getName().equals("defaultSerializerId")) {
 			return getDefaultSerializerId();
@@ -133,8 +133,8 @@ public class SUserSettings implements SDataBase
 			setObjectIDMs((List<Long>)val);
 			return;
 		}
-		if (sField.getName().equals("ifcEngines")) {
-			setIfcEngines((List<Long>)val);
+		if (sField.getName().equals("renderEngines")) {
+			setRenderEngines((List<Long>)val);
 			return;
 		}
 		if (sField.getName().equals("deserializers")) {
@@ -165,8 +165,8 @@ public class SUserSettings implements SDataBase
 			setDefaultQueryEngineId((Long)val);
 			return;
 		}
-		if (sField.getName().equals("defaultIfcEngineId")) {
-			setDefaultIfcEngineId((Long)val);
+		if (sField.getName().equals("defaultRenderEngineId")) {
+			setDefaultRenderEngineId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("defaultSerializerId")) {
@@ -208,12 +208,12 @@ public class SUserSettings implements SDataBase
 		this.objectIDMs = objectIDMs;
 	}
 	
-	public List<Long> getIfcEngines() {
-		return ifcEngines;
+	public List<Long> getRenderEngines() {
+		return renderEngines;
 	}
 
-	public void setIfcEngines(List<Long> ifcEngines) {
-		this.ifcEngines = ifcEngines;
+	public void setRenderEngines(List<Long> renderEngines) {
+		this.renderEngines = renderEngines;
 	}
 	
 	public List<Long> getDeserializers() {
@@ -272,12 +272,12 @@ public class SUserSettings implements SDataBase
 		this.defaultQueryEngineId = defaultQueryEngineId;
 	}
 	
-	public long getDefaultIfcEngineId() {
-		return defaultIfcEngineId;
+	public long getDefaultRenderEngineId() {
+		return defaultRenderEngineId;
 	}
 
-	public void setDefaultIfcEngineId(long defaultIfcEngineId) {
-		this.defaultIfcEngineId = defaultIfcEngineId;
+	public void setDefaultRenderEngineId(long defaultRenderEngineId) {
+		this.defaultRenderEngineId = defaultRenderEngineId;
 	}
 	
 	public long getDefaultSerializerId() {

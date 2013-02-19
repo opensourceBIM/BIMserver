@@ -26,7 +26,7 @@ package org.bimserver.models.store;
  * <ul>
  *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#getObjectIDM <em>Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#getUserSettings <em>User Settings</em>}</li>
- *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#getIfcEngine <em>Ifc Engine</em>}</li>
+ *   <li>{@link org.bimserver.models.store.SerializerPluginConfiguration#getRenderEngine <em>Render Engine</em>}</li>
  * </ul>
  * </p>
  *
@@ -92,31 +92,31 @@ public interface SerializerPluginConfiguration extends PluginConfiguration {
 	void setUserSettings(UserSettings value);
 
 	/**
-	 * Returns the value of the '<em><b>Ifc Engine</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.IfcEnginePluginConfiguration#getSerializers <em>Serializers</em>}'.
+	 * Returns the value of the '<em><b>Render Engine</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.RenderEnginePluginConfiguration#getSerializers <em>Serializers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Ifc Engine</em>' reference isn't clear,
+	 * If the meaning of the '<em>Render Engine</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Ifc Engine</em>' reference.
-	 * @see #setIfcEngine(IfcEnginePluginConfiguration)
-	 * @see org.bimserver.models.store.StorePackage#getSerializerPluginConfiguration_IfcEngine()
-	 * @see org.bimserver.models.store.IfcEnginePluginConfiguration#getSerializers
+	 * @return the value of the '<em>Render Engine</em>' reference.
+	 * @see #setRenderEngine(RenderEnginePluginConfiguration)
+	 * @see org.bimserver.models.store.StorePackage#getSerializerPluginConfiguration_RenderEngine()
+	 * @see org.bimserver.models.store.RenderEnginePluginConfiguration#getSerializers
 	 * @model opposite="serializers"
 	 * @generated
 	 */
-	IfcEnginePluginConfiguration getIfcEngine();
+	RenderEnginePluginConfiguration getRenderEngine();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.SerializerPluginConfiguration#getIfcEngine <em>Ifc Engine</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.store.SerializerPluginConfiguration#getRenderEngine <em>Render Engine</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Ifc Engine</em>' reference.
-	 * @see #getIfcEngine()
+	 * @param value the new value of the '<em>Render Engine</em>' reference.
+	 * @see #getRenderEngine()
 	 * @generated
 	 */
-	void setIfcEngine(IfcEnginePluginConfiguration value);
+	void setRenderEngine(RenderEnginePluginConfiguration value);
 
 } // SerializerPluginConfiguration

@@ -48,7 +48,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.User#getExtendedData <em>Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getServices <em>Services</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getLogs <em>Logs</em>}</li>
- *   <li>{@link org.bimserver.models.store.User#getTest <em>Test</em>}</li>
  * </ul>
  * </p>
  *
@@ -481,31 +480,5 @@ public interface User extends IdEObject {
 	 * @generated
 	 */
 	EList<LogAction> getLogs();
-
-	/**
-	 * Returns the value of the '<em><b>Test</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Test</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Test</em>' attribute.
-	 * @see #setTest(int)
-	 * @see org.bimserver.models.store.StorePackage#getUser_Test()
-	 * @model
-	 * @generated
-	 */
-	int getTest();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.User#getTest <em>Test</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Test</em>' attribute.
-	 * @see #getTest()
-	 * @generated
-	 */
-	void setTest(int value);
 
 } // User

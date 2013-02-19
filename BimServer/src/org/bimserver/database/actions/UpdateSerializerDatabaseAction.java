@@ -34,8 +34,8 @@ public class UpdateSerializerDatabaseAction extends UpdateDatabaseAction<Seriali
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Void execute = super.execute();
 		// Make sure the backreferences are stored as well, someday this should be automatic
-		if (getIdEObject().getIfcEngine() != null) {
-			getDatabaseSession().store(getIdEObject().getIfcEngine());
+		if (getIdEObject().getRenderEngine() != null) {
+			getDatabaseSession().store(getIdEObject().getRenderEngine());
 		}
 		if (getIdEObject().getObjectIDM() != null) {
 			getDatabaseSession().store(getIdEObject().getObjectIDM());

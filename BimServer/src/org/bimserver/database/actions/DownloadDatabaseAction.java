@@ -95,9 +95,9 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 					public void objectAdded() {
 						total.incrementAndGet();
 						if (totalSize == 0) {
-							setProgress("Downloading", 0);
+							setProgress("Downloading...", 0);
 						} else {
-							setProgress("Downloading", Math.round(100L * total.get() / totalSize));
+							setProgress("Downloading...", Math.round(100L * total.get() / totalSize));
 						}
 					}
 				});

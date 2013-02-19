@@ -54,7 +54,7 @@ public class GuidHighlighter {
 			SerializerPlugin serializerPlugin = pluginManager.getSerializerPlugin("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin", true);
 			Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration());
 			try {
-				serializer.init(model, null, null, pluginManager.requireIfcEngine(), false);
+				serializer.init(model, null, null, pluginManager.requireRenderEngine(), false);
 				serializer.writeToFile(outputFile);
 			} catch (SerializerException e) {
 				e.printStackTrace();

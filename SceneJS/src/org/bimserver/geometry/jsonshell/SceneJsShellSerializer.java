@@ -89,8 +89,8 @@ import org.bimserver.models.ifc2x3tc1.IfcUnitAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcUnitEnum;
 import org.bimserver.models.store.SIPrefix;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEngineException;
-import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.AbstractGeometrySerializer;
 import org.bimserver.plugins.serializers.Extends;
 import org.bimserver.plugins.serializers.ProjectInfo;
@@ -108,8 +108,8 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 	private final List<String> surfaceStyleIds = new ArrayList<String>();
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEnginePlugin, normalizeOids);
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids) throws SerializerException {
+		super.init(model, projectInfo, pluginManager, renderEnginePlugin, normalizeOids);
 	}
 
 	@Override
@@ -317,7 +317,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			.endObject();
 	}
 	
-	private void writeGeometricObject(JsonWriter jsonWriter, IfcProduct ifcProduct) throws IfcEngineException, SerializerException, IOException {
+	private void writeGeometricObject(JsonWriter jsonWriter, IfcProduct ifcProduct) throws RenderEngineException, SerializerException, IOException {
 		boolean materialFound = false;
 		String material = ifcProduct.eClass().getName();
 		
@@ -418,7 +418,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 		hashSet.add(ifcProduct.getOid());
 	}
 	
-	private void writeGeometries(JsonWriter jsonWriter) throws IfcEngineException, SerializerException, IOException {
+	private void writeGeometries(JsonWriter jsonWriter) throws RenderEngineException, SerializerException, IOException {
 		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 			writeGeometricObject(jsonWriter, ifcProduct);
 		}

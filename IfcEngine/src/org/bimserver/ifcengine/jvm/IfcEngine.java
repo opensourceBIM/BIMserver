@@ -33,8 +33,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.ifcengine.jvm.IfcEngineInterface.StreamCallback;
-import org.bimserver.plugins.ifcengine.IfcEngineClash;
-import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
+import org.bimserver.plugins.renderengine.RenderEngineClash;
+import org.bimserver.plugins.renderengine.RenderEngineInstanceVisualisationProperties;
 
 import com.sun.jna.Memory;
 import com.sun.jna.Pointer;
@@ -458,8 +458,8 @@ public class IfcEngine {
 	 * @param size
 	 * @return
 	 */
-	public Set<IfcEngineClash> finalizeClashesByEI(Pointer modelId, int size) {
-		Set<IfcEngineClash> clashes = new HashSet<IfcEngineClash>();
+	public Set<RenderEngineClash> finalizeClashesByEI(Pointer modelId, int size) {
+		Set<RenderEngineClash> clashes = new HashSet<RenderEngineClash>();
 		
 		Memory pG1 = new Memory(size * 4 * getPlatformMultiplier());
 		Memory pG2 = new Memory(size * 4 * getPlatformMultiplier());
@@ -475,7 +475,7 @@ public class IfcEngine {
 				eid2 = pG2.getLong(i * 4 * getPlatformMultiplier());
 			}
 
-			IfcEngineClash clash = new IfcEngineClash();
+			RenderEngineClash clash = new RenderEngineClash();
 			clash.setEid1(eid1);
 			clash.setEid2(eid2);
 			clashes.add(clash);
@@ -488,8 +488,8 @@ public class IfcEngine {
 	 * @param size
 	 * @return
 	 */
-	public Set<IfcEngineClash> finalizeClashesByGuid(Pointer modelId, int size) {
-		Set<IfcEngineClash> clashes = new HashSet<IfcEngineClash>();
+	public Set<RenderEngineClash> finalizeClashesByGuid(Pointer modelId, int size) {
+		Set<RenderEngineClash> clashes = new HashSet<RenderEngineClash>();
 		Memory pG1 = new Memory(size * 4 * getPlatformMultiplier());
 		Memory pG2 = new Memory(size * 4 * getPlatformMultiplier());
 		engine.finalizeClashesByGuid(modelId, pG1, pG2);
@@ -499,7 +499,7 @@ public class IfcEngine {
 			Pointer memory2 = pG2.getPointer(i * 4 * getPlatformMultiplier());
 			String pG2Str = memory2.getString(0);
 
-			IfcEngineClash clash = new IfcEngineClash();
+			RenderEngineClash clash = new RenderEngineClash();
 			clash.setGuid1(pG1Str);
 			clash.setGuid2(pG2Str);
 			clashes.add(clash);
@@ -634,7 +634,7 @@ public class IfcEngine {
 	 *            bounding box representation.
 	 * @return
 	 */
-	public IfcEngineInstanceVisualisationProperties getInstanceInModelling(Pointer model, Pointer instance, int mode) {
+	public RenderEngineInstanceVisualisationProperties getInstanceInModelling(Pointer model, Pointer instance, int mode) {
 		IntByReference pV = new IntByReference();
 		IntByReference pI = new IntByReference();
 		IntByReference pC = new IntByReference();
@@ -642,7 +642,7 @@ public class IfcEngine {
 		int startVertex = pV.getValue();
 		int startIndex = pI.getValue();
 		int primitiveCount = pC.getValue();
-		return new IfcEngineInstanceVisualisationProperties(startVertex, startIndex, primitiveCount);
+		return new RenderEngineInstanceVisualisationProperties(startVertex, startIndex, primitiveCount);
 	}
 
 	/**

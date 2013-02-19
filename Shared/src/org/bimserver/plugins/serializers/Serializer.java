@@ -24,10 +24,10 @@ import java.io.OutputStream;
 
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 
 public interface Serializer {
-	void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids) throws SerializerException;
+	void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids) throws SerializerException;
 	void writeToFile(File file) throws SerializerException;
 	byte[] getBytes();
 	IfcModelInterface getModel();

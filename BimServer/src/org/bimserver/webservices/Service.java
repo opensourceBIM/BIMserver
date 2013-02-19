@@ -36,7 +36,6 @@ import java.util.Set;
 
 import javax.activation.DataHandler;
 import javax.jws.WebMethod;
-import javax.jws.WebParam;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -90,11 +89,8 @@ import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataAddedToRevision;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SExtendedDataSchemaType;
-import org.bimserver.interfaces.objects.SExternalServiceUpdate;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
-import org.bimserver.interfaces.objects.SIfcEnginePluginConfiguration;
-import org.bimserver.interfaces.objects.SIfcEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SJavaInfo;
 import org.bimserver.interfaces.objects.SLogAction;
@@ -116,6 +112,9 @@ import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
+import org.bimserver.interfaces.objects.SRemoteServiceUpdate;
+import org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration;
+import org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
@@ -154,7 +153,6 @@ import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.GeoTag;
-import org.bimserver.models.store.IfcEnginePluginConfiguration;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.ModelMergerPluginConfiguration;
@@ -162,6 +160,7 @@ import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.QueryEnginePluginConfiguration;
+import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.SerializerPluginConfiguration;
@@ -2570,9 +2569,9 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SIfcEnginePluginDescriptor> getAllIfcEnginePluginDescriptors() throws ServerException, UserException {
+	public List<SRenderEnginePluginDescriptor> getAllRenderEnginePluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		return bimServer.getSerializerFactory().getAllIfcEnginePluginDescriptors();
+		return bimServer.getSerializerFactory().getAllRenderEnginePluginDescriptors();
 	}
 
 	@Override
@@ -2600,13 +2599,13 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public List<SIfcEnginePluginConfiguration> getAllIfcEngines(Boolean onlyEnabled) throws ServerException, UserException {
+	public List<SRenderEnginePluginConfiguration> getAllRenderEngines(Boolean onlyEnabled) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			List<SIfcEnginePluginConfiguration> ifcEngines = bimServer.getSConverter().convertToSListIfcEnginePluginConfiguration(getUserSettings(session).getIfcEngines());
-			Collections.sort(ifcEngines, new SPluginConfigurationComparator());
-			return ifcEngines;
+			List<SRenderEnginePluginConfiguration> renderEngines = bimServer.getSConverter().convertToSListRenderEnginePluginConfiguration(getUserSettings(session).getRenderEngines());
+			Collections.sort(renderEngines, new SPluginConfigurationComparator());
+			return renderEngines;
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -2660,12 +2659,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void updateIfcEngine(SIfcEnginePluginConfiguration ifcEngine) throws ServerException, UserException {
+	public void updateRenderEngine(SRenderEnginePluginConfiguration renderEngine) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			IfcEnginePluginConfiguration convert = bimServer.getSConverter().convertFromSObject(ifcEngine, session);
-			session.executeAndCommitAction(new UpdateIfcEngineDatabaseAction(session, accessMethod, convert));
+			RenderEnginePluginConfiguration convert = bimServer.getSConverter().convertFromSObject(renderEngine, session);
+			session.executeAndCommitAction(new UpdateRenderEngineDatabaseAction(session, accessMethod, convert));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -2716,11 +2715,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void deleteIfcEngine(Long iid) throws ServerException, UserException {
+	public void deleteRenderEngine(Long iid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			BimDatabaseAction<Void> action = new DeleteIfcEngineDatabaseAction(session, accessMethod, iid);
+			BimDatabaseAction<Void> action = new DeleteRenderEngineDatabaseAction(session, accessMethod, iid);
 			session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			handleException(e);
@@ -2772,11 +2771,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SIfcEnginePluginConfiguration getIfcEngineByName(String name) throws ServerException, UserException {
+	public SRenderEnginePluginConfiguration getRenderEngineByName(String name) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			return bimServer.getSConverter().convertToSObject(session.executeAndCommitAction(new GetIfcEngineByNameDatabaseAction(session, accessMethod, name)));
+			return bimServer.getSConverter().convertToSObject(session.executeAndCommitAction(new GetRenderEngineByNameDatabaseAction(session, accessMethod, name)));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -2850,11 +2849,11 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public SIfcEnginePluginConfiguration getIfcEngineById(Long oid) throws ServerException, UserException {
+	public SRenderEnginePluginConfiguration getRenderEngineById(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			return bimServer.getSConverter().convertToSObject(session.executeAndCommitAction(new GetIfcEngineByIdDatabaseAction(session, accessMethod, oid)));
+			return bimServer.getSConverter().convertToSObject(session.executeAndCommitAction(new GetRenderEngineByIdDatabaseAction(session, accessMethod, oid)));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -2876,12 +2875,12 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void addIfcEngine(SIfcEnginePluginConfiguration ifcEngine) throws ServerException, UserException {
+	public void addRenderEngine(SRenderEnginePluginConfiguration renderEngine) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			IfcEnginePluginConfiguration convert = bimServer.getSConverter().convertFromSObject(ifcEngine, session);
-			session.executeAndCommitAction(new AddIfcEngineDatabaseAction(session, accessMethod, authorization, convert));
+			RenderEnginePluginConfiguration convert = bimServer.getSConverter().convertFromSObject(renderEngine, session);
+			session.executeAndCommitAction(new AddRenderEngineDatabaseAction(session, accessMethod, authorization, convert));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -3097,12 +3096,12 @@ public class Service implements ServiceInterface {
 		return null;
 	}
 
-	public SIfcEnginePluginConfiguration getDefaultIfcEngine() throws ServerException, UserException {
+	public SRenderEnginePluginConfiguration getDefaultRenderEngine() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			UserSettings settings = getUserSettings(session);
-			return bimServer.getSConverter().convertToSObject(settings.getDefaultIfcEngine());
+			return bimServer.getSConverter().convertToSObject(settings.getDefaultRenderEngine());
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -3175,14 +3174,14 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public void setDefaultIfcEngine(final Long oid) throws ServerException, UserException {
+	public void setDefaultRenderEngine(final Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, accessMethod, authorization, new UserSettingsSetter() {
 				@Override
 				public void set(UserSettings userSettings) {
-					userSettings.setDefaultIfcEngine(find(userSettings.getIfcEngines(), oid));
+					userSettings.setDefaultRenderEngine(find(userSettings.getRenderEngines(), oid));
 				}});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
@@ -3812,7 +3811,7 @@ public class Service implements ServiceInterface {
 	}
 	
 	@Override
-	public void externalServiceUpdate(String uuid, SExternalServiceUpdate sExternalServiceUpdate) throws ServerException, UserException {
+	public void externalServiceUpdate(String uuid, SRemoteServiceUpdate sExternalServiceUpdate) throws ServerException, UserException {
 		RunningExternalService runningExternalService = bimServer.getNotificationsManager().getRunningExternalService(uuid);
 		if (sExternalServiceUpdate instanceof SPercentageChange) {
 			SPercentageChange sPercentageChange = (SPercentageChange)sExternalServiceUpdate;

@@ -50,7 +50,6 @@ public class SUser implements SDataBase
 	private List<Long> extendedData = new ArrayList<Long>();
 	private List<Long> services = new ArrayList<Long>();
 	private List<Long> logs = new ArrayList<Long>();
-	private int test;
 
 	public long getOid() {
 		return this.oid;
@@ -131,9 +130,6 @@ public class SUser implements SDataBase
 		}
 		if (sField.getName().equals("logs")) {
 			return getLogs();
-		}
-		if (sField.getName().equals("test")) {
-			return getTest();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -216,10 +212,6 @@ public class SUser implements SDataBase
 		}
 		if (sField.getName().equals("logs")) {
 			setLogs((List<Long>)val);
-			return;
-		}
-		if (sField.getName().equals("test")) {
-			setTest((Integer)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -375,14 +367,6 @@ public class SUser implements SDataBase
 
 	public void setLogs(List<Long> logs) {
 		this.logs = logs;
-	}
-	
-	public int getTest() {
-		return test;
-	}
-
-	public void setTest(int test) {
-		this.test = test;
 	}
 	
 	@Override

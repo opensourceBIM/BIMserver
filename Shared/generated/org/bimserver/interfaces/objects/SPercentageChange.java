@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class SPercentageChange extends SExternalServiceUpdate implements SDataBase
+public class SPercentageChange extends SRemoteServiceUpdate implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;

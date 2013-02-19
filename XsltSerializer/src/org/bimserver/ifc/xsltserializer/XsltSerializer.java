@@ -33,7 +33,7 @@ import javax.xml.transform.stream.StreamSource;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
+import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.EmfSerializer;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.Serializer;
@@ -46,9 +46,9 @@ public class XsltSerializer extends EmfSerializer {
 	private Set<XsltParameter> parameters = new HashSet<XsltParameter>();
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, IfcEnginePlugin ifcEnginePlugin, boolean normalizeOids)
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids)
 			throws SerializerException {
-		super.init(model, projectInfo, pluginManager, ifcEnginePlugin, normalizeOids);
+		super.init(model, projectInfo, pluginManager, renderEnginePlugin, normalizeOids);
 	}
 
 	public void setXsltUrl(URL url) {

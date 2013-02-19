@@ -73,7 +73,6 @@ import org.bimserver.models.log.ServerStarted;
 import org.bimserver.models.store.BooleanType;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.DoubleType;
-import org.bimserver.models.store.IfcEnginePluginConfiguration;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.LongType;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
@@ -86,6 +85,7 @@ import org.bimserver.models.store.ParameterDefinition;
 import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.QueryEnginePluginConfiguration;
+import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.ServerInfo;
 import org.bimserver.models.store.ServerState;
@@ -104,11 +104,11 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.PluginType;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.ifcengine.IfcEnginePlugin;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
+import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.serializers.SerializerFactory;
@@ -447,7 +447,7 @@ public class BimServer {
 	}
 
 	/*
-	 * Serializers, deserializers, ifcengines etc... all have counterparts as
+	 * Serializers, deserializers, renderengines etc... all have counterparts as
 	 * objects in the database for configuration purposes, this methods syncs
 	 * both versions
 	 */
@@ -497,28 +497,28 @@ public class BimServer {
 		if (userSettings.getDefaultObjectIDM() == null && !userSettings.getObjectIDMs().isEmpty()) {
 			userSettings.setDefaultObjectIDM(userSettings.getObjectIDMs().get(0));
 		}
-		for (IfcEnginePlugin ifcEnginePlugin : pluginManager.getAllIfcEnginePlugins(true)) {
-			String name = ifcEnginePlugin.getDefaultName();
-			IfcEnginePluginConfiguration ifcEnginePluginConfiguration = find(userSettings.getIfcEngines(), name);
-			if (ifcEnginePluginConfiguration == null) {
-				ifcEnginePluginConfiguration = session.create(StorePackage.eINSTANCE.getIfcEnginePluginConfiguration());
-				userSettings.getIfcEngines().add(ifcEnginePluginConfiguration);
-				ifcEnginePluginConfiguration.setClassName(ifcEnginePlugin.getClass().getName());
-				ifcEnginePluginConfiguration.setName(name);
-				ifcEnginePluginConfiguration.setDescription(ifcEnginePlugin.getDescription());
-				ifcEnginePluginConfiguration.setEnabled(true);
-				ifcEnginePluginConfiguration.setSettings(convertSettings(session, ifcEnginePlugin));
-				if (userSettings.getDefaultIfcEngine() == null && ifcEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOIfcEnginePlugin")) {
-					userSettings.setDefaultIfcEngine(ifcEnginePluginConfiguration);
+		for (RenderEnginePlugin renderEnginePlugin : pluginManager.getAllRenderEnginePlugins(true)) {
+			String name = renderEnginePlugin.getDefaultName();
+			RenderEnginePluginConfiguration renderEnginePluginConfiguration = find(userSettings.getRenderEngines(), name);
+			if (renderEnginePluginConfiguration == null) {
+				renderEnginePluginConfiguration = session.create(StorePackage.eINSTANCE.getRenderEnginePluginConfiguration());
+				userSettings.getRenderEngines().add(renderEnginePluginConfiguration);
+				renderEnginePluginConfiguration.setClassName(renderEnginePlugin.getClass().getName());
+				renderEnginePluginConfiguration.setName(name);
+				renderEnginePluginConfiguration.setDescription(renderEnginePlugin.getDescription());
+				renderEnginePluginConfiguration.setEnabled(true);
+				renderEnginePluginConfiguration.setSettings(convertSettings(session, renderEnginePlugin));
+				if (userSettings.getDefaultRenderEngine() == null && renderEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOIfcEnginePlugin")) {
+					userSettings.setDefaultRenderEngine(renderEnginePluginConfiguration);
 				}
 			} else {
-				if (userSettings.getDefaultIfcEngine() == null && ifcEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOIfcEnginePlugin")) {
-					userSettings.setDefaultIfcEngine(ifcEnginePluginConfiguration);
+				if (userSettings.getDefaultRenderEngine() == null && renderEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOIfcEnginePlugin")) {
+					userSettings.setDefaultRenderEngine(renderEnginePluginConfiguration);
 				}
 			}
 		}
-		if (userSettings.getDefaultIfcEngine() == null && !userSettings.getIfcEngines().isEmpty()) {
-			userSettings.setDefaultIfcEngine(userSettings.getIfcEngines().get(0));
+		if (userSettings.getDefaultRenderEngine() == null && !userSettings.getRenderEngines().isEmpty()) {
+			userSettings.setDefaultRenderEngine(userSettings.getRenderEngines().get(0));
 		}
 		for (QueryEnginePlugin queryEnginePlugin : pluginManager.getAllQueryEnginePlugins(true)) {
 			String name = queryEnginePlugin.getDefaultName();
@@ -600,7 +600,7 @@ public class BimServer {
 				serializerPluginConfiguration.setEnabled(true);
 				serializerPluginConfiguration.setDescription(serializerPlugin.getDescription());
 				serializerPluginConfiguration.setObjectIDM(userSettings.getDefaultObjectIDM());
-				serializerPluginConfiguration.setIfcEngine(userSettings.getDefaultIfcEngine());
+				serializerPluginConfiguration.setRenderEngine(userSettings.getDefaultRenderEngine());
 				serializerPluginConfiguration.setSettings(convertSettings(session, serializerPlugin));
 				if (userSettings.getDefaultSerializer() == null && serializerPlugin.getClass().getName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin")) {
 					userSettings.setDefaultSerializer(serializerPluginConfiguration);

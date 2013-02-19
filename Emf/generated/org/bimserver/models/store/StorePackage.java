@@ -434,22 +434,13 @@ public interface StorePackage extends EPackage {
 	int USER__LOGS = 17;
 
 	/**
-	 * The feature id for the '<em><b>Test</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER__TEST = 18;
-
-	/**
 	 * The number of structural features of the '<em>User</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_FEATURE_COUNT = 19;
+	int USER_FEATURE_COUNT = 18;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.RevisionImpl <em>Revision</em>}' class.
@@ -1061,13 +1052,13 @@ public interface StorePackage extends EPackage {
 	int USER_SETTINGS__OBJECT_ID_MS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Ifc Engines</b></em>' reference list.
+	 * The feature id for the '<em><b>Render Engines</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_SETTINGS__IFC_ENGINES = 2;
+	int USER_SETTINGS__RENDER_ENGINES = 2;
 
 	/**
 	 * The feature id for the '<em><b>Deserializers</b></em>' reference list.
@@ -1133,13 +1124,13 @@ public interface StorePackage extends EPackage {
 	int USER_SETTINGS__DEFAULT_QUERY_ENGINE = 9;
 
 	/**
-	 * The feature id for the '<em><b>Default Ifc Engine</b></em>' reference.
+	 * The feature id for the '<em><b>Default Render Engine</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_SETTINGS__DEFAULT_IFC_ENGINE = 10;
+	int USER_SETTINGS__DEFAULT_RENDER_ENGINE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Default Serializer</b></em>' reference.
@@ -1315,13 +1306,13 @@ public interface StorePackage extends EPackage {
 	int SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = PLUGIN_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Ifc Engine</b></em>' reference.
+	 * The feature id for the '<em><b>Render Engine</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER_PLUGIN_CONFIGURATION__IFC_ENGINE = PLUGIN_CONFIGURATION_FEATURE_COUNT + 2;
+	int SERIALIZER_PLUGIN_CONFIGURATION__RENDER_ENGINE = PLUGIN_CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Serializer Plugin Configuration</em>' class.
@@ -1415,14 +1406,14 @@ public interface StorePackage extends EPackage {
 	int OBJECT_IDM_PLUGIN_CONFIGURATION_FEATURE_COUNT = PLUGIN_CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.IfcEnginePluginConfigurationImpl <em>Ifc Engine Plugin Configuration</em>}' class.
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.RenderEnginePluginConfigurationImpl <em>Render Engine Plugin Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.IfcEnginePluginConfigurationImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getIfcEnginePluginConfiguration()
+	 * @see org.bimserver.models.store.impl.RenderEnginePluginConfigurationImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getRenderEnginePluginConfiguration()
 	 * @generated
 	 */
-	int IFC_ENGINE_PLUGIN_CONFIGURATION = 11;
+	int RENDER_ENGINE_PLUGIN_CONFIGURATION = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1431,7 +1422,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IFC_ENGINE_PLUGIN_CONFIGURATION__NAME = PLUGIN_CONFIGURATION__NAME;
+	int RENDER_ENGINE_PLUGIN_CONFIGURATION__NAME = PLUGIN_CONFIGURATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -1440,7 +1431,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IFC_ENGINE_PLUGIN_CONFIGURATION__ENABLED = PLUGIN_CONFIGURATION__ENABLED;
+	int RENDER_ENGINE_PLUGIN_CONFIGURATION__ENABLED = PLUGIN_CONFIGURATION__ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1449,7 +1440,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IFC_ENGINE_PLUGIN_CONFIGURATION__DESCRIPTION = PLUGIN_CONFIGURATION__DESCRIPTION;
+	int RENDER_ENGINE_PLUGIN_CONFIGURATION__DESCRIPTION = PLUGIN_CONFIGURATION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
@@ -1458,7 +1449,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IFC_ENGINE_PLUGIN_CONFIGURATION__CLASS_NAME = PLUGIN_CONFIGURATION__CLASS_NAME;
+	int RENDER_ENGINE_PLUGIN_CONFIGURATION__CLASS_NAME = PLUGIN_CONFIGURATION__CLASS_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Settings</b></em>' reference.
@@ -1467,7 +1458,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IFC_ENGINE_PLUGIN_CONFIGURATION__SETTINGS = PLUGIN_CONFIGURATION__SETTINGS;
+	int RENDER_ENGINE_PLUGIN_CONFIGURATION__SETTINGS = PLUGIN_CONFIGURATION__SETTINGS;
 
 	/**
 	 * The feature id for the '<em><b>Serializers</b></em>' reference list.
@@ -1476,7 +1467,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IFC_ENGINE_PLUGIN_CONFIGURATION__SERIALIZERS = PLUGIN_CONFIGURATION_FEATURE_COUNT + 0;
+	int RENDER_ENGINE_PLUGIN_CONFIGURATION__SERIALIZERS = PLUGIN_CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>User Settings</b></em>' reference.
@@ -1485,16 +1476,16 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IFC_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS = PLUGIN_CONFIGURATION_FEATURE_COUNT + 1;
+	int RENDER_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS = PLUGIN_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Ifc Engine Plugin Configuration</em>' class.
+	 * The number of structural features of the '<em>Render Engine Plugin Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IFC_ENGINE_PLUGIN_CONFIGURATION_FEATURE_COUNT = PLUGIN_CONFIGURATION_FEATURE_COUNT + 2;
+	int RENDER_ENGINE_PLUGIN_CONFIGURATION_FEATURE_COUNT = PLUGIN_CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.DeserializerPluginConfigurationImpl <em>Deserializer Plugin Configuration</em>}' class.
@@ -3021,14 +3012,14 @@ public interface StorePackage extends EPackage {
 	int VERSION_FEATURE_COUNT = 7;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.IfcEnginePluginDescriptorImpl <em>Ifc Engine Plugin Descriptor</em>}' class.
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.RenderEnginePluginDescriptorImpl <em>Render Engine Plugin Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.IfcEnginePluginDescriptorImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getIfcEnginePluginDescriptor()
+	 * @see org.bimserver.models.store.impl.RenderEnginePluginDescriptorImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getRenderEnginePluginDescriptor()
 	 * @generated
 	 */
-	int IFC_ENGINE_PLUGIN_DESCRIPTOR = 42;
+	int RENDER_ENGINE_PLUGIN_DESCRIPTOR = 42;
 
 	/**
 	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
@@ -3037,7 +3028,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IFC_ENGINE_PLUGIN_DESCRIPTOR__SIMPLE_NAME = PLUGIN_DESCRIPTOR__SIMPLE_NAME;
+	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__SIMPLE_NAME = PLUGIN_DESCRIPTOR__SIMPLE_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Default Name</b></em>' attribute.
@@ -3046,7 +3037,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IFC_ENGINE_PLUGIN_DESCRIPTOR__DEFAULT_NAME = PLUGIN_DESCRIPTOR__DEFAULT_NAME;
+	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__DEFAULT_NAME = PLUGIN_DESCRIPTOR__DEFAULT_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Plugin Class Name</b></em>' attribute.
@@ -3055,7 +3046,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IFC_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME;
+	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -3064,7 +3055,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IFC_ENGINE_PLUGIN_DESCRIPTOR__DESCRIPTION = PLUGIN_DESCRIPTOR__DESCRIPTION;
+	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__DESCRIPTION = PLUGIN_DESCRIPTOR__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -3073,7 +3064,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IFC_ENGINE_PLUGIN_DESCRIPTOR__LOCATION = PLUGIN_DESCRIPTOR__LOCATION;
+	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__LOCATION = PLUGIN_DESCRIPTOR__LOCATION;
 
 	/**
 	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -3082,16 +3073,16 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IFC_ENGINE_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
+	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
 
 	/**
-	 * The number of structural features of the '<em>Ifc Engine Plugin Descriptor</em>' class.
+	 * The number of structural features of the '<em>Render Engine Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IFC_ENGINE_PLUGIN_DESCRIPTOR_FEATURE_COUNT = PLUGIN_DESCRIPTOR_FEATURE_COUNT + 0;
+	int RENDER_ENGINE_PLUGIN_DESCRIPTOR_FEATURE_COUNT = PLUGIN_DESCRIPTOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.FileImpl <em>File</em>}' class.
@@ -5074,23 +5065,23 @@ public interface StorePackage extends EPackage {
 	int IMMEDIATE_NOTIFICATION_RESULT_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.bimserver.models.store.impl.ExternalServiceUpdateImpl <em>External Service Update</em>}' class.
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.RemoteServiceUpdateImpl <em>Remote Service Update</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.bimserver.models.store.impl.ExternalServiceUpdateImpl
-	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExternalServiceUpdate()
+	 * @see org.bimserver.models.store.impl.RemoteServiceUpdateImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getRemoteServiceUpdate()
 	 * @generated
 	 */
-	int EXTERNAL_SERVICE_UPDATE = 79;
+	int REMOTE_SERVICE_UPDATE = 79;
 
 	/**
-	 * The number of structural features of the '<em>External Service Update</em>' class.
+	 * The number of structural features of the '<em>Remote Service Update</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_SERVICE_UPDATE_FEATURE_COUNT = 0;
+	int REMOTE_SERVICE_UPDATE_FEATURE_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.PercentageChangeImpl <em>Percentage Change</em>}' class.
@@ -5109,7 +5100,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PERCENTAGE_CHANGE__PERCENTAGE = EXTERNAL_SERVICE_UPDATE_FEATURE_COUNT + 0;
+	int PERCENTAGE_CHANGE__PERCENTAGE = REMOTE_SERVICE_UPDATE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Percentage Change</em>' class.
@@ -5118,7 +5109,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PERCENTAGE_CHANGE_FEATURE_COUNT = EXTERNAL_SERVICE_UPDATE_FEATURE_COUNT + 1;
+	int PERCENTAGE_CHANGE_FEATURE_COUNT = REMOTE_SERVICE_UPDATE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.SystemInfoImpl <em>System Info</em>}' class.
@@ -6102,17 +6093,6 @@ public interface StorePackage extends EPackage {
 	EReference getUser_Logs();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.User#getTest <em>Test</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Test</em>'.
-	 * @see org.bimserver.models.store.User#getTest()
-	 * @see #getUser()
-	 * @generated
-	 */
-	EAttribute getUser_Test();
-
-	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Revision <em>Revision</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6789,15 +6769,15 @@ public interface StorePackage extends EPackage {
 	EReference getUserSettings_ObjectIDMs();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.UserSettings#getIfcEngines <em>Ifc Engines</em>}'.
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.UserSettings#getRenderEngines <em>Render Engines</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Ifc Engines</em>'.
-	 * @see org.bimserver.models.store.UserSettings#getIfcEngines()
+	 * @return the meta object for the reference list '<em>Render Engines</em>'.
+	 * @see org.bimserver.models.store.UserSettings#getRenderEngines()
 	 * @see #getUserSettings()
 	 * @generated
 	 */
-	EReference getUserSettings_IfcEngines();
+	EReference getUserSettings_RenderEngines();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.UserSettings#getDeserializers <em>Deserializers</em>}'.
@@ -6877,15 +6857,15 @@ public interface StorePackage extends EPackage {
 	EReference getUserSettings_DefaultQueryEngine();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.UserSettings#getDefaultIfcEngine <em>Default Ifc Engine</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.UserSettings#getDefaultRenderEngine <em>Default Render Engine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Default Ifc Engine</em>'.
-	 * @see org.bimserver.models.store.UserSettings#getDefaultIfcEngine()
+	 * @return the meta object for the reference '<em>Default Render Engine</em>'.
+	 * @see org.bimserver.models.store.UserSettings#getDefaultRenderEngine()
 	 * @see #getUserSettings()
 	 * @generated
 	 */
-	EReference getUserSettings_DefaultIfcEngine();
+	EReference getUserSettings_DefaultRenderEngine();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.bimserver.models.store.UserSettings#getDefaultSerializer <em>Default Serializer</em>}'.
@@ -7018,15 +6998,15 @@ public interface StorePackage extends EPackage {
 	EReference getSerializerPluginConfiguration_UserSettings();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.SerializerPluginConfiguration#getIfcEngine <em>Ifc Engine</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.SerializerPluginConfiguration#getRenderEngine <em>Render Engine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Ifc Engine</em>'.
-	 * @see org.bimserver.models.store.SerializerPluginConfiguration#getIfcEngine()
+	 * @return the meta object for the reference '<em>Render Engine</em>'.
+	 * @see org.bimserver.models.store.SerializerPluginConfiguration#getRenderEngine()
 	 * @see #getSerializerPluginConfiguration()
 	 * @generated
 	 */
-	EReference getSerializerPluginConfiguration_IfcEngine();
+	EReference getSerializerPluginConfiguration_RenderEngine();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ObjectIDMPluginConfiguration <em>Object IDM Plugin Configuration</em>}'.
@@ -7061,36 +7041,36 @@ public interface StorePackage extends EPackage {
 	EReference getObjectIDMPluginConfiguration_UserSettings();
 
 	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.IfcEnginePluginConfiguration <em>Ifc Engine Plugin Configuration</em>}'.
+	 * Returns the meta object for class '{@link org.bimserver.models.store.RenderEnginePluginConfiguration <em>Render Engine Plugin Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Ifc Engine Plugin Configuration</em>'.
-	 * @see org.bimserver.models.store.IfcEnginePluginConfiguration
+	 * @return the meta object for class '<em>Render Engine Plugin Configuration</em>'.
+	 * @see org.bimserver.models.store.RenderEnginePluginConfiguration
 	 * @generated
 	 */
-	EClass getIfcEnginePluginConfiguration();
+	EClass getRenderEnginePluginConfiguration();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.IfcEnginePluginConfiguration#getSerializers <em>Serializers</em>}'.
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.RenderEnginePluginConfiguration#getSerializers <em>Serializers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Serializers</em>'.
-	 * @see org.bimserver.models.store.IfcEnginePluginConfiguration#getSerializers()
-	 * @see #getIfcEnginePluginConfiguration()
+	 * @see org.bimserver.models.store.RenderEnginePluginConfiguration#getSerializers()
+	 * @see #getRenderEnginePluginConfiguration()
 	 * @generated
 	 */
-	EReference getIfcEnginePluginConfiguration_Serializers();
+	EReference getRenderEnginePluginConfiguration_Serializers();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.IfcEnginePluginConfiguration#getUserSettings <em>User Settings</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.RenderEnginePluginConfiguration#getUserSettings <em>User Settings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>User Settings</em>'.
-	 * @see org.bimserver.models.store.IfcEnginePluginConfiguration#getUserSettings()
-	 * @see #getIfcEnginePluginConfiguration()
+	 * @see org.bimserver.models.store.RenderEnginePluginConfiguration#getUserSettings()
+	 * @see #getRenderEnginePluginConfiguration()
 	 * @generated
 	 */
-	EReference getIfcEnginePluginConfiguration_UserSettings();
+	EReference getRenderEnginePluginConfiguration_UserSettings();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.DeserializerPluginConfiguration <em>Deserializer Plugin Configuration</em>}'.
@@ -8273,14 +8253,14 @@ public interface StorePackage extends EPackage {
 	EAttribute getVersion_SupportEmail();
 
 	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.IfcEnginePluginDescriptor <em>Ifc Engine Plugin Descriptor</em>}'.
+	 * Returns the meta object for class '{@link org.bimserver.models.store.RenderEnginePluginDescriptor <em>Render Engine Plugin Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Ifc Engine Plugin Descriptor</em>'.
-	 * @see org.bimserver.models.store.IfcEnginePluginDescriptor
+	 * @return the meta object for class '<em>Render Engine Plugin Descriptor</em>'.
+	 * @see org.bimserver.models.store.RenderEnginePluginDescriptor
 	 * @generated
 	 */
-	EClass getIfcEnginePluginDescriptor();
+	EClass getRenderEnginePluginDescriptor();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.File <em>File</em>}'.
@@ -9743,14 +9723,14 @@ public interface StorePackage extends EPackage {
 	EAttribute getImmediateNotificationResult_Description();
 
 	/**
-	 * Returns the meta object for class '{@link org.bimserver.models.store.ExternalServiceUpdate <em>External Service Update</em>}'.
+	 * Returns the meta object for class '{@link org.bimserver.models.store.RemoteServiceUpdate <em>Remote Service Update</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>External Service Update</em>'.
-	 * @see org.bimserver.models.store.ExternalServiceUpdate
+	 * @return the meta object for class '<em>Remote Service Update</em>'.
+	 * @see org.bimserver.models.store.RemoteServiceUpdate
 	 * @generated
 	 */
-	EClass getExternalServiceUpdate();
+	EClass getRemoteServiceUpdate();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.PercentageChange <em>Percentage Change</em>}'.
@@ -10726,14 +10706,6 @@ public interface StorePackage extends EPackage {
 		EReference USER__LOGS = eINSTANCE.getUser_Logs();
 
 		/**
-		 * The meta object literal for the '<em><b>Test</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute USER__TEST = eINSTANCE.getUser_Test();
-
-		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.RevisionImpl <em>Revision</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -11242,12 +11214,12 @@ public interface StorePackage extends EPackage {
 		EReference USER_SETTINGS__OBJECT_ID_MS = eINSTANCE.getUserSettings_ObjectIDMs();
 
 		/**
-		 * The meta object literal for the '<em><b>Ifc Engines</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Render Engines</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference USER_SETTINGS__IFC_ENGINES = eINSTANCE.getUserSettings_IfcEngines();
+		EReference USER_SETTINGS__RENDER_ENGINES = eINSTANCE.getUserSettings_RenderEngines();
 
 		/**
 		 * The meta object literal for the '<em><b>Deserializers</b></em>' reference list feature.
@@ -11306,12 +11278,12 @@ public interface StorePackage extends EPackage {
 		EReference USER_SETTINGS__DEFAULT_QUERY_ENGINE = eINSTANCE.getUserSettings_DefaultQueryEngine();
 
 		/**
-		 * The meta object literal for the '<em><b>Default Ifc Engine</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Default Render Engine</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference USER_SETTINGS__DEFAULT_IFC_ENGINE = eINSTANCE.getUserSettings_DefaultIfcEngine();
+		EReference USER_SETTINGS__DEFAULT_RENDER_ENGINE = eINSTANCE.getUserSettings_DefaultRenderEngine();
 
 		/**
 		 * The meta object literal for the '<em><b>Default Serializer</b></em>' reference feature.
@@ -11414,12 +11386,12 @@ public interface StorePackage extends EPackage {
 		EReference SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getSerializerPluginConfiguration_UserSettings();
 
 		/**
-		 * The meta object literal for the '<em><b>Ifc Engine</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Render Engine</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SERIALIZER_PLUGIN_CONFIGURATION__IFC_ENGINE = eINSTANCE.getSerializerPluginConfiguration_IfcEngine();
+		EReference SERIALIZER_PLUGIN_CONFIGURATION__RENDER_ENGINE = eINSTANCE.getSerializerPluginConfiguration_RenderEngine();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ObjectIDMPluginConfigurationImpl <em>Object IDM Plugin Configuration</em>}' class.
@@ -11448,14 +11420,14 @@ public interface StorePackage extends EPackage {
 		EReference OBJECT_IDM_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getObjectIDMPluginConfiguration_UserSettings();
 
 		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.IfcEnginePluginConfigurationImpl <em>Ifc Engine Plugin Configuration</em>}' class.
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.RenderEnginePluginConfigurationImpl <em>Render Engine Plugin Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.IfcEnginePluginConfigurationImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getIfcEnginePluginConfiguration()
+		 * @see org.bimserver.models.store.impl.RenderEnginePluginConfigurationImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getRenderEnginePluginConfiguration()
 		 * @generated
 		 */
-		EClass IFC_ENGINE_PLUGIN_CONFIGURATION = eINSTANCE.getIfcEnginePluginConfiguration();
+		EClass RENDER_ENGINE_PLUGIN_CONFIGURATION = eINSTANCE.getRenderEnginePluginConfiguration();
 
 		/**
 		 * The meta object literal for the '<em><b>Serializers</b></em>' reference list feature.
@@ -11463,7 +11435,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference IFC_ENGINE_PLUGIN_CONFIGURATION__SERIALIZERS = eINSTANCE.getIfcEnginePluginConfiguration_Serializers();
+		EReference RENDER_ENGINE_PLUGIN_CONFIGURATION__SERIALIZERS = eINSTANCE.getRenderEnginePluginConfiguration_Serializers();
 
 		/**
 		 * The meta object literal for the '<em><b>User Settings</b></em>' reference feature.
@@ -11471,7 +11443,7 @@ public interface StorePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference IFC_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getIfcEnginePluginConfiguration_UserSettings();
+		EReference RENDER_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS = eINSTANCE.getRenderEnginePluginConfiguration_UserSettings();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DeserializerPluginConfigurationImpl <em>Deserializer Plugin Configuration</em>}' class.
@@ -12414,14 +12386,14 @@ public interface StorePackage extends EPackage {
 		EAttribute VERSION__SUPPORT_EMAIL = eINSTANCE.getVersion_SupportEmail();
 
 		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.IfcEnginePluginDescriptorImpl <em>Ifc Engine Plugin Descriptor</em>}' class.
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.RenderEnginePluginDescriptorImpl <em>Render Engine Plugin Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.IfcEnginePluginDescriptorImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getIfcEnginePluginDescriptor()
+		 * @see org.bimserver.models.store.impl.RenderEnginePluginDescriptorImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getRenderEnginePluginDescriptor()
 		 * @generated
 		 */
-		EClass IFC_ENGINE_PLUGIN_DESCRIPTOR = eINSTANCE.getIfcEnginePluginDescriptor();
+		EClass RENDER_ENGINE_PLUGIN_DESCRIPTOR = eINSTANCE.getRenderEnginePluginDescriptor();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.FileImpl <em>File</em>}' class.
@@ -13584,14 +13556,14 @@ public interface StorePackage extends EPackage {
 		EAttribute IMMEDIATE_NOTIFICATION_RESULT__DESCRIPTION = eINSTANCE.getImmediateNotificationResult_Description();
 
 		/**
-		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ExternalServiceUpdateImpl <em>External Service Update</em>}' class.
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.RemoteServiceUpdateImpl <em>Remote Service Update</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.bimserver.models.store.impl.ExternalServiceUpdateImpl
-		 * @see org.bimserver.models.store.impl.StorePackageImpl#getExternalServiceUpdate()
+		 * @see org.bimserver.models.store.impl.RemoteServiceUpdateImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getRemoteServiceUpdate()
 		 * @generated
 		 */
-		EClass EXTERNAL_SERVICE_UPDATE = eINSTANCE.getExternalServiceUpdate();
+		EClass REMOTE_SERVICE_UPDATE = eINSTANCE.getRemoteServiceUpdate();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.PercentageChangeImpl <em>Percentage Change</em>}' class.

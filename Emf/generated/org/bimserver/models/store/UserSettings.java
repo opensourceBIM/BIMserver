@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.bimserver.models.store.UserSettings#getSerializers <em>Serializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getObjectIDMs <em>Object ID Ms</em>}</li>
- *   <li>{@link org.bimserver.models.store.UserSettings#getIfcEngines <em>Ifc Engines</em>}</li>
+ *   <li>{@link org.bimserver.models.store.UserSettings#getRenderEngines <em>Render Engines</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getDeserializers <em>Deserializers</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getQueryengines <em>Queryengines</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getModelmergers <em>Modelmergers</em>}</li>
@@ -37,7 +37,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.UserSettings#getDefaultModelMerger <em>Default Model Merger</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getDefaultModelCompare <em>Default Model Compare</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getDefaultQueryEngine <em>Default Query Engine</em>}</li>
- *   <li>{@link org.bimserver.models.store.UserSettings#getDefaultIfcEngine <em>Default Ifc Engine</em>}</li>
+ *   <li>{@link org.bimserver.models.store.UserSettings#getDefaultRenderEngine <em>Default Render Engine</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getDefaultSerializer <em>Default Serializer</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getDefaultObjectIDM <em>Default Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.UserSettings#getServices <em>Services</em>}</li>
@@ -87,22 +87,22 @@ public interface UserSettings extends IdEObject {
 	EList<ObjectIDMPluginConfiguration> getObjectIDMs();
 
 	/**
-	 * Returns the value of the '<em><b>Ifc Engines</b></em>' reference list.
-	 * The list contents are of type {@link org.bimserver.models.store.IfcEnginePluginConfiguration}.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.IfcEnginePluginConfiguration#getUserSettings <em>User Settings</em>}'.
+	 * Returns the value of the '<em><b>Render Engines</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.store.RenderEnginePluginConfiguration}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.RenderEnginePluginConfiguration#getUserSettings <em>User Settings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Ifc Engines</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Render Engines</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Ifc Engines</em>' reference list.
-	 * @see org.bimserver.models.store.StorePackage#getUserSettings_IfcEngines()
-	 * @see org.bimserver.models.store.IfcEnginePluginConfiguration#getUserSettings
+	 * @return the value of the '<em>Render Engines</em>' reference list.
+	 * @see org.bimserver.models.store.StorePackage#getUserSettings_RenderEngines()
+	 * @see org.bimserver.models.store.RenderEnginePluginConfiguration#getUserSettings
 	 * @model opposite="userSettings"
 	 * @generated
 	 */
-	EList<IfcEnginePluginConfiguration> getIfcEngines();
+	EList<RenderEnginePluginConfiguration> getRenderEngines();
 
 	/**
 	 * Returns the value of the '<em><b>Deserializers</b></em>' reference list.
@@ -255,30 +255,30 @@ public interface UserSettings extends IdEObject {
 	void setDefaultQueryEngine(QueryEnginePluginConfiguration value);
 
 	/**
-	 * Returns the value of the '<em><b>Default Ifc Engine</b></em>' reference.
+	 * Returns the value of the '<em><b>Default Render Engine</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Default Ifc Engine</em>' reference isn't clear,
+	 * If the meaning of the '<em>Default Render Engine</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Default Ifc Engine</em>' reference.
-	 * @see #setDefaultIfcEngine(IfcEnginePluginConfiguration)
-	 * @see org.bimserver.models.store.StorePackage#getUserSettings_DefaultIfcEngine()
+	 * @return the value of the '<em>Default Render Engine</em>' reference.
+	 * @see #setDefaultRenderEngine(RenderEnginePluginConfiguration)
+	 * @see org.bimserver.models.store.StorePackage#getUserSettings_DefaultRenderEngine()
 	 * @model
 	 * @generated
 	 */
-	IfcEnginePluginConfiguration getDefaultIfcEngine();
+	RenderEnginePluginConfiguration getDefaultRenderEngine();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.UserSettings#getDefaultIfcEngine <em>Default Ifc Engine</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.store.UserSettings#getDefaultRenderEngine <em>Default Render Engine</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Default Ifc Engine</em>' reference.
-	 * @see #getDefaultIfcEngine()
+	 * @param value the new value of the '<em>Default Render Engine</em>' reference.
+	 * @see #getDefaultRenderEngine()
 	 * @generated
 	 */
-	void setDefaultIfcEngine(IfcEnginePluginConfiguration value);
+	void setDefaultRenderEngine(RenderEnginePluginConfiguration value);
 
 	/**
 	 * Returns the value of the '<em><b>Default Serializer</b></em>' reference.

@@ -16,8 +16,8 @@
  */
 package org.bimserver.models.store.impl;
 
-import org.bimserver.models.store.IfcEnginePluginConfiguration;
 import org.bimserver.models.store.ObjectIDMPluginConfiguration;
+import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserSettings;
@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getObjectIDM <em>Object IDM</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getUserSettings <em>User Settings</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getIfcEngine <em>Ifc Engine</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.SerializerPluginConfigurationImpl#getRenderEngine <em>Render Engine</em>}</li>
  * </ul>
  * </p>
  *
@@ -99,8 +99,8 @@ public class SerializerPluginConfigurationImpl extends PluginConfigurationImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcEnginePluginConfiguration getIfcEngine() {
-		return (IfcEnginePluginConfiguration) eGet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__IFC_ENGINE, true);
+	public RenderEnginePluginConfiguration getRenderEngine() {
+		return (RenderEnginePluginConfiguration) eGet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__RENDER_ENGINE, true);
 	}
 
 	/**
@@ -108,8 +108,8 @@ public class SerializerPluginConfigurationImpl extends PluginConfigurationImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIfcEngine(IfcEnginePluginConfiguration newIfcEngine) {
-		eSet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__IFC_ENGINE, newIfcEngine);
+	public void setRenderEngine(RenderEnginePluginConfiguration newRenderEngine) {
+		eSet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__RENDER_ENGINE, newRenderEngine);
 	}
 
 } //SerializerPluginConfigurationImpl

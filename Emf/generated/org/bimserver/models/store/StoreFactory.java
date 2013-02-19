@@ -135,13 +135,13 @@ public interface StoreFactory extends EFactory {
 	ObjectIDMPluginConfiguration createObjectIDMPluginConfiguration();
 
 	/**
-	 * Returns a new object of class '<em>Ifc Engine Plugin Configuration</em>'.
+	 * Returns a new object of class '<em>Render Engine Plugin Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ifc Engine Plugin Configuration</em>'.
+	 * @return a new object of class '<em>Render Engine Plugin Configuration</em>'.
 	 * @generated
 	 */
-	IfcEnginePluginConfiguration createIfcEnginePluginConfiguration();
+	RenderEnginePluginConfiguration createRenderEnginePluginConfiguration();
 
 	/**
 	 * Returns a new object of class '<em>Deserializer Plugin Configuration</em>'.
@@ -414,13 +414,13 @@ public interface StoreFactory extends EFactory {
 	Version createVersion();
 
 	/**
-	 * Returns a new object of class '<em>Ifc Engine Plugin Descriptor</em>'.
+	 * Returns a new object of class '<em>Render Engine Plugin Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ifc Engine Plugin Descriptor</em>'.
+	 * @return a new object of class '<em>Render Engine Plugin Descriptor</em>'.
 	 * @generated
 	 */
-	IfcEnginePluginDescriptor createIfcEnginePluginDescriptor();
+	RenderEnginePluginDescriptor createRenderEnginePluginDescriptor();
 
 	/**
 	 * Returns a new object of class '<em>File</em>'.
@@ -747,13 +747,13 @@ public interface StoreFactory extends EFactory {
 	ImmediateNotificationResult createImmediateNotificationResult();
 
 	/**
-	 * Returns a new object of class '<em>External Service Update</em>'.
+	 * Returns a new object of class '<em>Remote Service Update</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>External Service Update</em>'.
+	 * @return a new object of class '<em>Remote Service Update</em>'.
 	 * @generated
 	 */
-	ExternalServiceUpdate createExternalServiceUpdate();
+	RemoteServiceUpdate createRemoteServiceUpdate();
 
 	/**
 	 * Returns a new object of class '<em>Percentage Change</em>'.

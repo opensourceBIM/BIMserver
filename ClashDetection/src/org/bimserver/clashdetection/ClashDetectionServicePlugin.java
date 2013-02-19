@@ -47,11 +47,11 @@ import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.Deserializer;
-import org.bimserver.plugins.ifcengine.IfcEngine;
-import org.bimserver.plugins.ifcengine.IfcEngineClash;
-import org.bimserver.plugins.ifcengine.IfcEngineGeometry;
-import org.bimserver.plugins.ifcengine.IfcEngineInstanceVisualisationProperties;
-import org.bimserver.plugins.ifcengine.IfcEngineModel;
+import org.bimserver.plugins.renderengine.RenderEngine;
+import org.bimserver.plugins.renderengine.RenderEngineClash;
+import org.bimserver.plugins.renderengine.RenderEngineGeometry;
+import org.bimserver.plugins.renderengine.RenderEngineInstanceVisualisationProperties;
+import org.bimserver.plugins.renderengine.RenderEngineModel;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
@@ -107,12 +107,12 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						mainIfcProject = ifcProjects.get(0);
 					}
 					
-					IfcEngine ifcEngine = getPluginManager().requireIfcEngine().createIfcEngine(new PluginConfiguration());
-					ifcEngine.init();
+					RenderEngine renderEngine = getPluginManager().requireRenderEngine().createRenderEngine(new PluginConfiguration());
+					renderEngine.init();
 					
-					IfcEngineModel ifcEngineModel = ifcEngine.openModel(new ByteArrayInputStream(baos.toByteArray()), baos.size());
-					Set<IfcEngineClash> clashes = ifcEngineModel.findClashesWithEids(pluginConfiguration.getDouble("margin"));
-					IfcEngineGeometry geometry = ifcEngineModel.finalizeModelling(ifcEngineModel.initializeModelling());
+					RenderEngineModel renderEngineModel = renderEngine.openModel(new ByteArrayInputStream(baos.toByteArray()), baos.size());
+					Set<RenderEngineClash> clashes = renderEngineModel.findClashesWithEids(pluginConfiguration.getDouble("margin"));
+					RenderEngineGeometry geometry = renderEngineModel.finalizeModelling(renderEngineModel.initializeModelling());
 
 					StillImageRenderer stillImageRenderer = getPluginManager().getFirstStillImageRenderPlugin().create(new PluginConfiguration());
 					boolean renderImage = true;
@@ -122,8 +122,8 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						renderImage = false;
 					}
 
-					for (IfcEngineClash clash : clashes) {
-						IfcEngineInstanceVisualisationProperties vp = ifcEngineModel.getInstanceFromExpressId((int) clash.getEid1()).getVisualisationProperties();
+					for (RenderEngineClash clash : clashes) {
+						RenderEngineInstanceVisualisationProperties vp = renderEngineModel.getInstanceFromExpressId((int) clash.getEid1()).getVisualisationProperties();
 						float x = geometry.getVertex(geometry.getIndex(vp.getStartIndex()));
 						float y = geometry.getVertex(geometry.getIndex(vp.getStartIndex()));
 						float z = geometry.getVertex(geometry.getIndex(vp.getStartIndex()));

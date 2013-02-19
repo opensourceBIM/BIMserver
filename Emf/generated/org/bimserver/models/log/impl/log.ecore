@@ -91,7 +91,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass store#//Project"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" eType="ecore:EClass store#//ExtendedData"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExternalServiceCalled" eSuperTypes="#//LogAction">
+  <eClassifiers xsi:type="ecore:EClass" name="RemoteServiceCalled" eSuperTypes="#//LogAction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="service" eType="ecore:EClass store#//Service"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="ecore:EEnum store#//NotifictionResultEnum"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="percentage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
