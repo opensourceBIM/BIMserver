@@ -36,6 +36,7 @@ import java.util.Set;
 
 import javax.activation.DataHandler;
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -171,7 +172,10 @@ import org.bimserver.models.store.Trigger;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.UserType;
+import org.bimserver.notifications.ProgressTopic;
+import org.bimserver.notifications.ProgressTopicKey;
 import org.bimserver.notifications.RunningExternalService;
+import org.bimserver.notifications.TopicRegisterException;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginException;
@@ -271,7 +275,7 @@ public class Service implements ServiceInterface {
 				if (sync) {
 					longAction.waitForCompletion();
 				}
-				return longAction.getId();
+				return longAction.getProgressTopicKey().getId();
 			} catch (UserException e) {
 				throw e;
 			} catch (DeserializeException e) {
@@ -335,7 +339,7 @@ public class Service implements ServiceInterface {
 				if (sync) {
 					longAction.waitForCompletion();
 				}
-				return longAction.getId();
+				return longAction.getProgressTopicKey().getId();
 			} catch (UserException e) {
 				throw e;
 			} catch (DeserializeException e) {
@@ -393,7 +397,7 @@ public class Service implements ServiceInterface {
 			if (sync) {
 				longDownloadAction.waitForCompletion();
 			}
-			return longDownloadAction.getId();
+			return longDownloadAction.getProgressTopicKey().getId();
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -718,7 +722,7 @@ public class Service implements ServiceInterface {
 		if (sync) {
 			longDownloadAction.waitForCompletion();
 		}
-		return longDownloadAction.getId();
+		return longDownloadAction.getProgressTopicKey().getId();
 	}
 
 	@Override
@@ -1131,7 +1135,7 @@ public class Service implements ServiceInterface {
 			if (sync) {
 				longAction.waitForCompletion();
 			}
-			return longAction.getId();
+			return longAction.getProgressTopicKey().getId();
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -1153,7 +1157,7 @@ public class Service implements ServiceInterface {
 			if (sync) {
 				longBranchAction.waitForCompletion();
 			}
-			return longBranchAction.getId();
+			return longBranchAction.getProgressTopicKey().getId();
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -3607,15 +3611,15 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	public void registerAll(Long endPointId) throws ServerException, UserException {
-		requireAuthentication();
-		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
-		if (getCurrentUser() == null) {
-			bimServer.getNotificationsManager().register(-1, endPoint);
-		} else {
-			bimServer.getNotificationsManager().register(getCurrentUser().getOid(), endPoint);
-		}
-	}
+//	public void registerAll(Long endPointId) throws ServerException, UserException {
+//		requireAuthentication();
+//		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
+//		if (getCurrentUser() == null) {
+//			bimServer.getNotificationsManager().register(-1, endPoint);
+//		} else {
+//			bimServer.getNotificationsManager().register(getCurrentUser().getOid(), endPoint);
+//		}
+//	}
 	
 	@Override
 	public List<SProfileDescriptor> getAllPublicProfiles(String notificationsUrl, String serviceIdentifier) throws ServerException, UserException {
@@ -3785,7 +3789,8 @@ public class Service implements ServiceInterface {
 			SExtendedDataAddedToRevision newExtendedData = new SExtendedDataAddedToRevision();
 			newExtendedData.setRevisionId(extendedData.getRevision().getOid());
 			newExtendedData.setExtendedDataId(edid);
-			bimServer.getNotificationsManager().triggerNewRevision(bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), newExtendedData, extendedData.getRevision().getProject(), extendedData.getRevision().getOid(), Trigger.NEW_EXTENDED_DATA, service);
+			bimServer.getNotificationsManager().notify(newExtendedData);
+//			bimServer.getNotificationsManager().triggerNewRevision(bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), newExtendedData, extendedData.getRevision().getProject(), extendedData.getRevision().getOid(), Trigger.NEW_EXTENDED_DATA, service);
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -3802,7 +3807,9 @@ public class Service implements ServiceInterface {
 			SNewRevisionAdded newRevisionNotification = new SNewRevisionAdded();
 			newRevisionNotification.setRevisionId(revision.getOid());
 			newRevisionNotification.setProjectId(revision.getProject().getOid());
-			bimServer.getNotificationsManager().triggerNewRevision(bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), newRevisionNotification, revision.getProject(), roid, Trigger.NEW_REVISION, service);
+			
+			bimServer.getNotificationsManager().notify(newRevisionNotification);
+//			bimServer.getNotificationsManager().triggerNewRevision(bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), newRevisionNotification, revision.getProject(), roid, Trigger.NEW_REVISION, service);
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -3812,11 +3819,11 @@ public class Service implements ServiceInterface {
 	
 	@Override
 	public void externalServiceUpdate(String uuid, SRemoteServiceUpdate sExternalServiceUpdate) throws ServerException, UserException {
-		RunningExternalService runningExternalService = bimServer.getNotificationsManager().getRunningExternalService(uuid);
-		if (sExternalServiceUpdate instanceof SPercentageChange) {
-			SPercentageChange sPercentageChange = (SPercentageChange)sExternalServiceUpdate;
-			runningExternalService.updatePercentage(sPercentageChange.getPercentage());
-		}
+//		RunningExternalService runningExternalService = bimServer.getRunningServicesManager().getRunningExternalService(uuid);
+//		if (sExternalServiceUpdate instanceof SPercentageChange) {
+//			SPercentageChange sPercentageChange = (SPercentageChange)sExternalServiceUpdate;
+//			runningExternalService.updatePercentage(sPercentageChange.getPercentage());
+//		}
 	}
 	
 	@Override
@@ -3964,5 +3971,35 @@ public class Service implements ServiceInterface {
 		} finally {
 			session.close();
 		}
+	}
+	
+	@Override
+	public void registerProgressHandler(Long topicId, Long endPointId) throws UserException {
+		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
+		if (endPoint == null) {
+			throw new UserException("Endpoint with id " + endPointId + " not found");
+		}
+		ProgressTopic progressTopic = bimServer.getNotificationsManager().getProgressTopic(new ProgressTopicKey(topicId));
+		if (progressTopic == null) {
+			throw new UserException("Topic with id " + topicId + " not found");
+		}
+		try {
+			progressTopic.register(endPoint);
+		} catch (TopicRegisterException e) {
+			throw new UserException(e);
+		}
+	}
+	
+	@Override
+	public void unregisterProgressHandler(Long topicId, Long endPointId) throws UserException {
+		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
+		if (endPoint == null) {
+			throw new UserException("Endpoint with id " + endPointId + " not found");
+		}
+		ProgressTopic progressTopic = bimServer.getNotificationsManager().getProgressTopic(new ProgressTopicKey(topicId));
+		if (progressTopic == null) {
+			throw new UserException("Topic with id " + topicId + " not found");
+		}
+		progressTopic.unregister(endPoint);
 	}
 }

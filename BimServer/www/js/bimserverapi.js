@@ -35,7 +35,7 @@ function BimServerApi(baseUrl, notifier) {
 			clear: function(){}
 		};
 	}
-	othis.server = new BimServerWebSocket(baseUrl);
+	othis.server = new BimServerWebSocket(baseUrl, othis);
 	othis.user = null;
 	othis.listeners = {};
 	othis.autoLoginTried = false;
@@ -150,7 +150,26 @@ function BimServerApi(baseUrl, notifier) {
 		}
 		othis.listeners[interfaceName][methodName].push(callback);
 		othis.openWebSocket(function(){
-			othis.call("ServiceInterface", "registerAll", {endPointId: othis.server.endPointId}, registerCallback);
+			if (registerCallback != null) {
+				registerCallback();
+			}
+			//othis.call("ServiceInterface", "registerAll", {endPointId: othis.server.endPointId}, registerCallback);
+		});
+	};
+	
+	this.registerProgressHandler = function(topicId, handler, callback){
+		othis.register("NotificationInterface", "progress", handler, function(){
+			othis.call("ServiceInterface", "registerProgressHandler", {topicId: topicId, endPointId: othis.server.endPointId}, function(){
+				if (callback != null) {
+					callback();
+				}
+			});
+		});
+	};
+
+	this.unregisterProgressHandler = function(topicId, handler){
+		othis.unregister(handler);
+		othis.call("ServiceInterface", "unregisterProgressHandler", {topicId: topicId, endPointId: othis.server.endPointId}, function(){
 		});
 	};
 	
@@ -887,7 +906,7 @@ function Model(bimServerApi, poid, roid) {
 	};
 }
 
-function BimServerWebSocket(baseUrl) {
+function BimServerWebSocket(baseUrl, bimServerApi) {
 	var othis = this;
 	this.connected = false;
 	this.openCallbacks = [];
@@ -910,6 +929,7 @@ function BimServerWebSocket(baseUrl) {
 	};
 
 	this._onopen = function() {
+//		this.send({"token": bimServerApi.token});
 	};
 
 	this._send = function(message) {

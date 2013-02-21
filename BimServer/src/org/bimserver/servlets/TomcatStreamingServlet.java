@@ -28,6 +28,7 @@ public class TomcatStreamingServlet extends WebSocketServlet {
 	@Override
 	protected StreamInbound createWebSocketInbound(String arg0, HttpServletRequest arg1) {
 		final BimServer bimServer = (BimServer)getServletContext().getAttribute("bimserver");
+		// TODO send uoid just as in StreamingServlet
 		return new TomcatStreamInbound(bimServer);
 	}
 }

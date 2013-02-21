@@ -23,7 +23,6 @@ import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
@@ -46,7 +45,6 @@ public class LongActionManager {
 	private static final int FIVE_MINUTES_IN_MS = 5 * 60 * 1000;
 	private final BiMap<Long, LongAction<?>> actions = HashBiMap.create();
 	private volatile boolean running = true;
-	private final AtomicLong actionNumberCounter = new AtomicLong();
 	private final BimServer bimServer;
 
 	public LongActionManager(BimServer bimServer) {
@@ -61,11 +59,10 @@ public class LongActionManager {
 					longAction.execute();
 				}
 			});
-			longAction.setId(actionNumberCounter.incrementAndGet());
 			longAction.init();
 			thread.setDaemon(true);
 			thread.setName(longAction.getDescription());
-			actions.put(longAction.getId(), longAction);
+			actions.put(longAction.getProgressTopicKey().getId(), longAction);
 			thread.start();
 		} else {
 			throw new CannotBeScheduledException();

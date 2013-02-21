@@ -28,6 +28,9 @@ import org.bimserver.database.actions.ProgressListener;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.StoreFactory;
+import org.bimserver.notifications.ProgressNotification;
+import org.bimserver.notifications.ProgressTopic;
+import org.bimserver.notifications.ProgressTopicKey;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.webservices.authorization.Authorization;
 import org.slf4j.Logger;
@@ -37,7 +40,6 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongAction.class);
 	private final GregorianCalendar start;
-	private long id;
 	private AtomicInteger progress = new AtomicInteger(-1);
 	private final CountDownLatch latch = new CountDownLatch(1);
 	private final BimServer bimServer;
@@ -51,6 +53,8 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	private final Authorization authorization;
 	private String title = "Unknown";
 	private int stage = 0;
+	private ProgressTopic progressTopic;
+	private ProgressTopicKey progressTopicKey;
 
 	public LongAction(BimServer bimServer, String username, String userUsername, Authorization authorization) {
 		start = new GregorianCalendar();
@@ -60,6 +64,15 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 		this.bimServer = bimServer;
 	}
 
+	public void setProgressTopicAndKey(ProgressTopicKey progressTopicKey, ProgressTopic progressTopic) {
+		this.progressTopicKey = progressTopicKey;
+		this.progressTopic = progressTopic;
+	}
+	
+	public ProgressTopicKey getProgressTopicKey() {
+		return progressTopicKey;
+	}
+	
 	protected void changeActionState(ActionState actiontState, String title, int progress) {
 		ActionState oldState = this.actionState;
 		if (actiontState == ActionState.FINISHED) {
@@ -74,7 +87,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 			if (!title.equals(oldTitle)) {
 				stage++;
 			}
-			bimServer.getNotificationsManager().updateProgress(id, getState());
+			bimServer.getNotificationsManager().notify(new ProgressNotification(progressTopicKey, progressTopic, getState()));
 		}
 	}
 
@@ -104,17 +117,13 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 
 	public abstract void execute();
 
-	public long getId() {
-		return id;
-	}
-
 	public String getUserName() {
 		return username;
 	}
 
 	protected void done() {
 		latch.countDown();
-		bimServer.getNotificationsManager().updateProgress(id, getState());
+		bimServer.getNotificationsManager().notify(new ProgressNotification(progressTopicKey, progressTopic, getState()));
 	}
 
 	public void waitForCompletion() {
@@ -129,10 +138,6 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 		return start;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public void updateProgress(String title, int progress) {
 		int oldProgress = this.progress.get();
 		String oldTitle = this.title;
@@ -142,7 +147,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 			if (!title.equals(oldTitle)) {
 				stage ++;
 			}
-			bimServer.getNotificationsManager().updateProgress(id, getState());
+			bimServer.getNotificationsManager().notify(new ProgressNotification(progressTopicKey, progressTopic, getState()));
 		}
 	}
 
@@ -182,7 +187,5 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	}
 
 	public void stop() {
-		// TODO Auto-generated method stub
-		
 	}
 }

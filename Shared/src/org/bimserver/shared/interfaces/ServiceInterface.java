@@ -2294,10 +2294,6 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getServerInfo")
 	SServerInfo getServerInfo() throws ServerException, UserException;
 	
-	@WebMethod(action = "registerAll")
-	void registerAll(
-		@WebParam(name = "endPointId", partName = "registerAll.endPointId") Long endPointId) throws ServerException, UserException;
-
 	@WebMethod(action = "getAllPrivateProfiles")
 	List<SProfileDescriptor> getAllPrivateProfiles(
 		@WebParam(name = "notificationsUrl", partName = "getAllPrivateProfiles.notificationsUrl") String notificationsUrl, 
@@ -2377,7 +2373,8 @@ public interface ServiceInterface extends PublicInterface {
 	SBimServerInfo getBimServerInfo() throws ServerException, UserException;
 	
 	@WebMethod(action = "shareRevision")
-	String shareRevision(@WebParam(name = "roid", partName = "shareRevision.roid") Long roid);
+	String shareRevision(
+		@WebParam(name = "roid", partName = "shareRevision.roid") Long roid);
 
 	@WebMethod(action = "getOidByGuid")
 	Long getOidByGuid(
@@ -2395,4 +2392,14 @@ public interface ServiceInterface extends PublicInterface {
 	
 	@WebMethod(action = "getUserSettings")
 	SUserSettings getUserSettings() throws ServerException, UserException;
+	
+	@WebMethod(action = "registerProgressHandler")
+	void registerProgressHandler(
+		@WebParam(name = "topicId", partName = "registerProgressHandler.topicId") Long topicId, 
+		@WebParam(name = "endPointId", partName = "registerProgressHandler.endPointId") Long endPointId) throws UserException;
+
+	@WebMethod(action = "unregisterProgressHandler")
+	void unregisterProgressHandler(
+		@WebParam(name = "topicId", partName = "unregisterProgressHandler.topicId") Long topicId, 
+		@WebParam(name = "endPointId", partName = "unregisterProgressHandler.endPointId") Long endPointId) throws UserException;
 }

@@ -63,34 +63,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/logging/slf4j-api-1.6.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/logging/slf4j-log4j12-1.6.2.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/BimServerClientLib"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jsp/com.sun.el-2.2.0.v201108011116.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jsp/javax.el-2.2.0.v201108011116.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jsp/javax.servlet.jsp-2.2.0.v201112011158.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jsp/javax.servlet.jsp.jstl-1.2.0.v201105211821.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jsp/org.apache.jasper.glassfish-2.2.2.v201112011158.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jsp/org.apache.taglibs.standard.glassfish-1.2.0.v201112081803.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jsp/org.eclipse.jdt.core-3.7.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-ajp-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-annotations-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-client-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-continuation-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-deploy-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-http-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-io-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-jmx-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-jndi-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-overlay-deployer-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-plus-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-policy-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-rewrite-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-security-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-server-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-servlet-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-servlets-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-util-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-webapp-8.1.7.v20120910.jar" sourcepath="libsrc/jetty-all-8.1.7.v20120910-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-websocket-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-xml-8.1.7.v20120910.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/asm-3.3.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/ehcache-core-2.5.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/jaxb-api-2.2.6.jar"/>
@@ -134,16 +106,31 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/javax.ws.rs-api-2.0-m10.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/jaxb-impl-2.2.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/jaxb-xjc-2.2.6.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/jetty-continuation-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/jetty-http-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/jetty-io-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/jetty-security-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/jetty-server-8.1.7.v20120910.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/jetty-util-8.1.7.v20120910.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/mina-core-2.0.5.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/wss4j-1.6.8.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlbeans-2.6.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlsec-1.5.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-ajp-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-annotations-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-client-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-continuation-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-deploy-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-http-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-io-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-jmx-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-jndi-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-overlay-deployer-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-plus-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-policy-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-rewrite-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-security-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-server-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-servlet-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-servlets-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-util-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-webapp-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-websocket-8.1.9.v20130131.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-xml-8.1.9.v20130131.jar"/>
 	<classpathentry kind="output" path="bin"/>
 	<referencedentry exported="true" kind="lib" path="lib/cxf/cxf-2.4.4.jar" sourcepath="libsrc/apache-cxf-2.4.3-src.zip"/>
 </classpath>

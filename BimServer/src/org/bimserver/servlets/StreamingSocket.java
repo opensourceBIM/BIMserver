@@ -23,6 +23,9 @@ import java.io.StringReader;
 import org.apache.commons.io.output.NullWriter;
 import org.bimserver.BimServer;
 import org.bimserver.endpoints.EndPoint;
+import org.bimserver.models.log.AccessMethod;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.codehaus.jettison.json.JSONException;
 import org.eclipse.jetty.websocket.WebSocket;
@@ -46,7 +49,7 @@ public class StreamingSocket implements WebSocket.OnTextMessage, EndPoint, Strea
 	public StreamingSocket(BimServer bimServer) {
 		this.bimServer = bimServer;
 		this.endpointid = bimServer.getEndPointManager().register(this);
-		reflectorImpl = bimServer.getReflectorFactory().createReflector(NotificationInterface.class, new JsonWebsocketReflector(bimServer.getServicesMap(), this));
+		this.reflectorImpl = bimServer.getReflectorFactory().createReflector(NotificationInterface.class, new JsonWebsocketReflector(bimServer.getServicesMap(), this));
 	}
 
 	@Override
@@ -68,7 +71,19 @@ public class StreamingSocket implements WebSocket.OnTextMessage, EndPoint, Strea
 			JsonReader reader = new JsonReader(new StringReader(message));
 			JsonParser parser = new JsonParser();
 			JsonObject request = (JsonObject) parser.parse(reader);
-			bimServer.getJsonHandler().execute(request, null, new NullWriter());
+			if (request.has("token")) {
+				String token = request.get("token").getAsString();
+				try {
+					org.bimserver.shared.interfaces.ServiceInterface service = bimServer.getServiceFactory().getService(org.bimserver.shared.interfaces.ServiceInterface.class, token, AccessMethod.JSON);
+					uoid = service.getCurrentUser().getOid();
+				} catch (UserException e) {
+					e.printStackTrace();
+				} catch (ServerException e) {
+					e.printStackTrace();
+				}
+			} else {
+				bimServer.getJsonHandler().execute(request, null, new NullWriter());
+			}
 		} catch (JSONException e) {
 			LOGGER.error("", e);
 		} catch (IOException e) {
@@ -96,6 +111,11 @@ public class StreamingSocket implements WebSocket.OnTextMessage, EndPoint, Strea
 
 	@Override
 	public void cleanup() {
-		bimServer.getNotificationsManager().unregisterEndpoint(uoid, this);
+		bimServer.getEndPointManager().unregister(endpointid);
+	}
+	
+	@Override
+	public long getUoid() {
+		return uoid;
 	}
 }
