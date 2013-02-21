@@ -24,4 +24,5 @@ public interface EndPoint {
 	long getEndPointId();
 	NotificationInterface getNotificationInterface();
 	void cleanup();
+	long getUoid();
 }

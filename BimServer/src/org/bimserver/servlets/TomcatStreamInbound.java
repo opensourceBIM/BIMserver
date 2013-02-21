@@ -73,7 +73,7 @@ public class TomcatStreamInbound extends StreamInbound implements EndPoint, Stre
 
 	@Override
 	public void cleanup() {
-		bimServer.getNotificationsManager().unregisterEndpoint(uoid, this);
+		bimServer.getEndPointManager().unregister(endpointid);
 	}
 
 	@Override
@@ -107,5 +107,10 @@ public class TomcatStreamInbound extends StreamInbound implements EndPoint, Stre
 	
 	@Override
 	protected void onBinaryData(InputStream arg0) throws IOException {
+	}
+	
+	@Override
+	public long getUoid() {
+		return uoid;
 	}
 }
