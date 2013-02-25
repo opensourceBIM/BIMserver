@@ -22,8 +22,10 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -53,11 +55,15 @@ public class SService {
 
 	// Disabled for now, makes the deployed JAR stop at this point
 	private boolean processJavaDoc = true;
-	private SService[] others;
+	private List<SService> others;
 	private ServicesMap servicesMap;
 	private String simpleName;
 
-	public SService(String sourceCode, Class<?> clazz, SService...others) {
+	public SService(String sourceCode, Class<?> clazz) {
+		this(sourceCode, clazz, new ArrayList<SService>());
+	}
+	
+	public SService(String sourceCode, Class<?> clazz, List<SService> others) {
 		this.sourceCode = sourceCode;
 		this.clazz = clazz;
 		this.others = others;

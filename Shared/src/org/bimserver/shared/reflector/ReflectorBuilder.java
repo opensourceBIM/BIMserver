@@ -17,6 +17,8 @@ package org.bimserver.shared.reflector;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Collections;
+
 import javassist.CannotCompileException;
 import javassist.ClassClassPath;
 import javassist.ClassPool;
@@ -53,7 +55,7 @@ public class ReflectorBuilder {
 		ServicesMap servicesMap = new ServicesMap();
 		SService sService = new SService("", org.bimserver.shared.interfaces.ServiceInterface.class);
 		servicesMap.add(sService);
-		servicesMap.add(new SService("", NotificationInterface.class, sService));
+		servicesMap.add(new SService("", NotificationInterface.class, Collections.singletonList(sService)));
 		
 		ReflectorBuilder reflectorBuilder = new ReflectorBuilder(servicesMap);
 		ReflectorFactory reflectorFactory = reflectorBuilder.newReflectorFactory();
