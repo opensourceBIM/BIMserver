@@ -19,13 +19,16 @@ package org.bimserver.database.migrations;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.tools.generators.DataObjectGeneratorWrapper;
@@ -57,6 +60,9 @@ import org.slf4j.LoggerFactory;
 public class CodeMigrator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CodeMigrator.class);
 	private SService service;
+	private ProtocolBuffersGenerator protocolBuffersGenerator;
+	private List<SService> knownServices = new ArrayList<SService>();
+	private List<String> knownShortNames = new ArrayList<String>();
 
 	public static void main(String[] args) {
 		new CodeMigrator().start();
@@ -87,14 +93,15 @@ public class CodeMigrator {
 		SConverterGeneratorWrapper sConverterGenerator = new SConverterGeneratorWrapper(metaDataManager);
 		sConverterGenerator.generate(ePackages);
 
-		SServiceGeneratorWrapper x = new SServiceGeneratorWrapper();
-		x.generate(ServiceInterface.class, StorePackage.eINSTANCE);
+		SServiceGeneratorWrapper serviceGeneratorWrapper = new SServiceGeneratorWrapper();
+		serviceGeneratorWrapper.generate(ServiceInterface.class, StorePackage.eINSTANCE);
 
 		LOGGER.info("Generating protocol buffers file and classes...");
-		ProtocolBuffersGenerator protocolBuffersGenerator = new ProtocolBuffersGenerator();
+		protocolBuffersGenerator = new ProtocolBuffersGenerator();
 
-		generateProtocolBuffersServiceInterface(protocolBuffersGenerator);
-		generateNotificationInterfaceImplementation(protocolBuffersGenerator);
+		generateFiles(ServiceInterface.class, "service");
+		generateFiles(NotificationInterface.class, "notification");
+		generateFiles(RemoteServiceInterface.class, "remoteservice");
 
 		SPackageGeneratorWrapper sPackageGeneratorWrapper = new SPackageGeneratorWrapper();
 		sPackageGeneratorWrapper.generate(ePackages);
@@ -104,33 +111,19 @@ public class CodeMigrator {
 		LOGGER.info("Migration successfull");
 	}
 
-	private void generateNotificationInterfaceImplementation(ProtocolBuffersGenerator protocolBuffersGenerator) {
+	private void generateFiles(Class<?> interfaceClass, String shortName) {
 		try {
-			File javaFile = new File("../Shared/src/org/bimserver/shared/interfaces/NotificationInterface.java");
-			SService service = new SService(FileUtils.readFileToString(javaFile), NotificationInterface.class, this.service);
-			File protoFile = new File("../Builds/build/pb/notification.proto");
-			File descFile = new File("../Builds/build/pb/notification.desc");
-			protocolBuffersGenerator.generate(NotificationInterface.class, protoFile, descFile, false, service, "service");
-			FileUtils.copyFile(javaFile, new File("../Builds/build/targets/shared/NotificationInterface.java"));
-			FileUtils.copyFile(protoFile, new File("../Builds/build/targets/shared/notification.proto"));
-			FileUtils.copyFile(descFile, new File("../Builds/build/targets/shared/notification.desc"));
-			FileUtils.copyFile(descFile, new File("../BimServerClientLib/src/notification.desc"));
-		} catch (IOException e) {
-			LOGGER.error("", e);
-		}
-	}
-
-	private void generateProtocolBuffersServiceInterface(ProtocolBuffersGenerator protocolBuffersGenerator) {
-		try {
-			File javaFile = new File("../Shared/src/org/bimserver/shared/interfaces/ServiceInterface.java");
-			service = new SService(FileUtils.readFileToString(javaFile), ServiceInterface.class);
-			File protoFile = new File("../Builds/build/pb/service.proto");
-			File descFile = new File("../Builds/build/pb/service.desc");
-			protocolBuffersGenerator.generate(ServiceInterface.class, protoFile, descFile, true, service);
-			FileUtils.copyFile(javaFile, new File("../Builds/build/targets/shared/ServiceInterface.java"));
-			FileUtils.copyFile(protoFile, new File("../Builds/build/targets/shared/service.proto"));
-			FileUtils.copyFile(descFile, new File("../Builds/build/targets/shared/service.desc"));
-			FileUtils.copyFile(descFile, new File("../BimServerClientLib/src/service.desc"));
+			File javaFile = new File("../Shared/src/org/bimserver/shared/interfaces/" + interfaceClass.getSimpleName() + ".java");
+			service = new SService(FileUtils.readFileToString(javaFile), interfaceClass, knownServices);
+			File protoFile = new File("../Builds/build/pb/" + shortName + ".proto");
+			File descFile = new File("../Builds/build/pb/" + shortName + ".desc");
+			protocolBuffersGenerator.generate(interfaceClass, protoFile, descFile, this.knownServices.isEmpty(), service, knownShortNames);
+			FileUtils.copyFile(javaFile, new File("../Builds/build/targets/shared/" + interfaceClass.getSimpleName() + ".java"));
+			FileUtils.copyFile(protoFile, new File("../Builds/build/targets/shared/" + shortName + ".proto"));
+			FileUtils.copyFile(descFile, new File("../Builds/build/targets/shared/" + shortName + ".desc"));
+			FileUtils.copyFile(descFile, new File("../BimServerClientLib/src/" + shortName + ".desc"));
+			this.knownServices .add(service);
+			this.knownShortNames.add(shortName);
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		}

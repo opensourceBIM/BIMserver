@@ -36,7 +36,6 @@ import java.util.Set;
 
 import javax.activation.DataHandler;
 import javax.jws.WebMethod;
-import javax.jws.WebParam;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -107,9 +106,9 @@ import org.bimserver.interfaces.objects.SObjectDefinition;
 import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectType;
-import org.bimserver.interfaces.objects.SPercentageChange;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
+import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
@@ -168,13 +167,13 @@ import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.Trigger;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.UserType;
+import org.bimserver.notifications.NewRevisionOnSpecificProjectTopic;
+import org.bimserver.notifications.NewRevisionOnSpecificProjectTopicKey;
 import org.bimserver.notifications.ProgressTopic;
 import org.bimserver.notifications.ProgressTopicKey;
-import org.bimserver.notifications.RunningExternalService;
 import org.bimserver.notifications.TopicRegisterException;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginContext;
@@ -188,6 +187,7 @@ import org.bimserver.shared.compare.CompareWriter;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
@@ -3627,8 +3627,7 @@ public class Service implements ServiceInterface {
 		try {
 			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, bimServer.getServicesMap(), bimServer.getJsonSocketReflectorFactory(), bimServer.getReflectorFactory());
 			BimServerClient client = factory.create();
-			NotificationInterface notificationInterface = client.getNotificationInterface();
-			return notificationInterface.getPublicProfiles(serviceIdentifier);
+			return client.getRemoteServiceInterface().getPublicProfiles(serviceIdentifier);
 		} catch (Exception e) {
 			return handleException(e);
 		}
@@ -3640,8 +3639,7 @@ public class Service implements ServiceInterface {
 		try {
 			BimServerClientFactory factory = new JsonBimServerClientFactory(notificationsUrl, bimServer.getServicesMap(), bimServer.getJsonSocketReflectorFactory(), bimServer.getReflectorFactory());
 			BimServerClient client = factory.create();
-			NotificationInterface notificationInterface = client.getNotificationInterface();
-			return notificationInterface.getPrivateProfiles(serviceIdentifier, token);
+			return client.getRemoteServiceInterface().getPrivateProfiles(serviceIdentifier, token);
 		} catch (Exception e) {
 			return handleException(e);
 		}
@@ -4001,5 +3999,77 @@ public class Service implements ServiceInterface {
 			throw new UserException("Topic with id " + topicId + " not found");
 		}
 		progressTopic.unregister(endPoint);
+	}
+
+	@Override
+	public void updateProgressTopic(Long topicId, SLongActionState state) throws UserException, ServerException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			ProgressTopicKey key = new ProgressTopicKey(topicId);
+			bimServer.getNotificationsManager().getProgressTopic(key).updateProgress(key, bimServer.getSConverter().convertFromSObject(state, session));
+		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void registerNewRevisionOnSpecificProjectHandler(Long endPointId, Long poid) {
+		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
+		NewRevisionOnSpecificProjectTopic newRevisionOnSpecificProjectTopic = bimServer.getNotificationsManager().getOrCreateNewRevisionOnSpecificProjectTopic(new NewRevisionOnSpecificProjectTopicKey(poid));
+		try {
+			newRevisionOnSpecificProjectTopic.register(endPoint);
+		} catch (TopicRegisterException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void unregisterNewRevisionOnSpecificProjectHandler(Long endPointId, Long poid) {
+		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
+		bimServer.getNotificationsManager().getNewRevisionOnSpecificProjectTopic(new NewRevisionOnSpecificProjectTopicKey(poid)).unregister(endPoint);
+	}
+
+	@Override
+	public Long registerProgressTopic(SProgressTopicType type, String description) throws UserException, ServerException {
+		return bimServer.getNotificationsManager().register(new ProgressTopic(getCurrentUser().getOid(), type, description)).getId();
+	}
+	
+	@Override
+	public void unregisterProgressTopic(Long topicId) {
+		bimServer.getNotificationsManager().unregister(new ProgressTopicKey(topicId));
+	}
+
+	@Override
+	public void registerNewProjectHandler(Long endPointId) {
+		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
+		try {
+			bimServer.getNotificationsManager().getNewProjectTopic().register(endPoint);
+		} catch (TopicRegisterException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void unregisterNewProjectHandler(Long endPointId) {
+		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
+		bimServer.getNotificationsManager().getNewProjectTopic().unregister(endPoint);
+	}
+
+	@Override
+	public void registerNewUserHandler(Long endPointId) {
+		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
+		try {
+			bimServer.getNotificationsManager().getNewUserTopic().register(endPoint);
+		} catch (TopicRegisterException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void unregisterNewUserHandler(Long endPointId) {
+		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
+		bimServer.getNotificationsManager().getNewUserTopic().unregister(endPoint);
 	}
 }

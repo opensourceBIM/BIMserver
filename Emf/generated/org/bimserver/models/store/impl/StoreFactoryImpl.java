@@ -370,6 +370,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return createPrimitiveEnumFromString(eDataType, initialValue);
 		case StorePackage.NOTIFICTION_RESULT_ENUM:
 			return createNotifictionResultEnumFromString(eDataType, initialValue);
+		case StorePackage.PROGRESS_TOPIC_TYPE:
+			return createProgressTopicTypeFromString(eDataType, initialValue);
 		case StorePackage.DATA_HANDLER:
 			return createDataHandlerFromString(eDataType, initialValue);
 		default:
@@ -405,6 +407,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return convertPrimitiveEnumToString(eDataType, instanceValue);
 		case StorePackage.NOTIFICTION_RESULT_ENUM:
 			return convertNotifictionResultEnumToString(eDataType, instanceValue);
+		case StorePackage.PROGRESS_TOPIC_TYPE:
+			return convertProgressTopicTypeToString(eDataType, instanceValue);
 		case StorePackage.DATA_HANDLER:
 			return convertDataHandlerToString(eDataType, instanceValue);
 		default:
@@ -1479,6 +1483,27 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertNotifictionResultEnumToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProgressTopicType createProgressTopicTypeFromString(EDataType eDataType, String initialValue) {
+		ProgressTopicType result = ProgressTopicType.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertProgressTopicTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

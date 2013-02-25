@@ -86,12 +86,12 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		clashDetection.setWriteExtendedData("http://www.buildingsmart-tech.org/specifications/bcf-releases");
 		clashDetection.setTrigger(Trigger.NEW_REVISION);
 		registerNewRevisionHandler(clashDetection, new NewRevisionHandler(){
-			public void newRevision(String uuid, ServiceInterface serviceInterface, SNewRevisionAdded notification, SObjectType settings) throws ServerException, UserException {
+			public void newRevision(ServiceInterface serviceInterface, long roid, SObjectType settings) throws ServerException, UserException {
 				Bcf bcf = new Bcf();
 				
 				SSerializerPluginConfiguration sSerializer = serviceInterface.getSerializerByPluginClassName("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin");
 				
-				long download = serviceInterface.download(notification.getRevisionId(), sSerializer.getOid(), true, true);
+				long download = serviceInterface.download(roid, sSerializer.getOid(), true, true);
 				SDownloadResult downloadData = serviceInterface.getDownloadData(download);
 				
 				try {
@@ -214,7 +214,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 					long fileId = serviceInterface.uploadFile(file);
 					extendedData.setFileId(fileId);
 					
-					serviceInterface.addExtendedDataToRevision(notification.getRevisionId(), extendedData);
+					serviceInterface.addExtendedDataToRevision(roid, extendedData);
 				} catch (Exception e) {
 					LOGGER.error("", e);
 				}

@@ -157,6 +157,63 @@ function BimServerApi(baseUrl, notifier) {
 		});
 	};
 	
+	this.registerNewRevisionOnSpecificProjectHandler = function(poid, handler, callback){
+		othis.register("NotificationInterface", "newRevision", handler, function(){
+			othis.call("ServiceInterface", "registerNewRevisionOnSpecificProjectHandler", {endPointId: othis.server.endPointId, poid: poid}, function(){
+				if (callback != null) {
+					callback();
+				}
+			});
+		});
+	};
+
+	this.registerNewUserHandler = function(handler, callback) {
+		othis.register("NotificationInterface", "newUser", handler, function(){
+			othis.call("ServiceInterface", "registerNewUserHandler", {endPointId: othis.server.endPointId}, function(){
+				if (callback != null) {
+					callback();
+				}
+			});
+		});
+	};
+
+	this.unregisterNewUserHandler = function(handler, callback) {
+		othis.unregister(handler);
+		othis.call("ServiceInterface", "unregisterNewUserHandler", {endPointId: othis.server.endPointId}, function(){
+			if (callback != null) {
+				callback();
+			}
+		});
+	};
+	
+	this.registerNewProjectHandler = function(handler, callback) {
+		othis.register("NotificationInterface", "newProject", handler, function(){
+			othis.call("ServiceInterface", "registerNewProjectHandler", {endPointId: othis.server.endPointId}, function(){
+				if (callback != null) {
+					callback();
+				}
+			});
+		});
+	}
+	
+	this.unregisterNewProjectHandler = function(handler, callback){
+		othis.unregister(handler);
+		othis.call("ServiceInterface", "unregisterNewProjectHandler", {endPointId: othis.server.endPointId}, function(){
+			if (callback != null) {
+				callback();
+			}
+		});
+	};
+
+	this.unregisterNewRevisionOnSpecificProjectHandler = function(poid, handler, callback){
+		othis.unregister(handler);
+		othis.call("ServiceInterface", "unregisterNewRevisionOnSpecificProjectHandler", {endPointId: othis.server.endPointId, poid: poid}, function(){
+			if (callback != null) {
+				callback();
+			}
+		});
+	};
+
 	this.registerProgressHandler = function(topicId, handler, callback){
 		othis.register("NotificationInterface", "progress", handler, function(){
 			othis.call("ServiceInterface", "registerProgressHandler", {topicId: topicId, endPointId: othis.server.endPointId}, function(){
@@ -167,9 +224,12 @@ function BimServerApi(baseUrl, notifier) {
 		});
 	};
 
-	this.unregisterProgressHandler = function(topicId, handler){
+	this.unregisterProgressHandler = function(topicId, handler, callback){
 		othis.unregister(handler);
 		othis.call("ServiceInterface", "unregisterProgressHandler", {topicId: topicId, endPointId: othis.server.endPointId}, function(){
+			if (callback != null) {
+				callback();
+			}
 		});
 	};
 	
@@ -929,7 +989,6 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	};
 
 	this._onopen = function() {
-//		this.send({"token": bimServerApi.token});
 	};
 
 	this._send = function(message) {
@@ -939,13 +998,17 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	};
 
 	this.send = function(object) {
-		othis._send(JSON.stringify(object));
+		var str = JSON.stringify(object);
+		console.log("Sending", str);
+		othis._send(str);
 	};
 
 	this._onmessage = function(message) {
 		var incomingMessage = JSON.parse(message.data);
 		console.log("incoming", incomingMessage);
-		if (incomingMessage.endpointid != null) {
+		if (incomingMessage.welcome != null) {
+			othis.send({"token": bimServerApi.token});
+		} else if (incomingMessage.endpointid != null) {
 			othis.endPointId = incomingMessage.endpointid;
 			othis.connected = true;
 			othis.openCallbacks.forEach(function(callback){

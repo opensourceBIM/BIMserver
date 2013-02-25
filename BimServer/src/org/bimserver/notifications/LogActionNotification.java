@@ -1,7 +1,5 @@
 package org.bimserver.notifications;
 
-import java.util.UUID;
-
 import org.bimserver.BimServer;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.channels.Channel;
@@ -43,6 +41,13 @@ public class LogActionNotification extends Notification {
 		if (logAction instanceof SNewProjectAdded) {
 		} else if (logAction instanceof SNewRevisionAdded) {
 			SNewRevisionAdded newRevisionNotification = (SNewRevisionAdded) logAction;
+			NewRevisionOnSpecificProjectTopic newRevisionOnSpecificProjectTopic = notificationsManager.getNewRevisionOnSpecificProjectTopic(new NewRevisionOnSpecificProjectTopicKey(newRevisionNotification.getProjectId()));
+			if (newRevisionOnSpecificProjectTopic != null) {
+				newRevisionOnSpecificProjectTopic.process(newRevisionNotification);
+			}
+			
+			// TODO also process the generic new revision topic
+			
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), newRevisionNotification.getProjectId(), Query.getDefault());
 			triggerNewRevision(notificationsManager, bimServer, bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), newRevisionNotification, project, newRevisionNotification.getRevisionId(), Trigger.NEW_REVISION);
 		} else if (logAction instanceof SExtendedDataAddedToRevision) {
@@ -65,8 +70,6 @@ public class LogActionNotification extends Notification {
 			try {
 				channel = notificationsManager.getChannel(service);
 				NotificationInterface notificationInterface = channel.getNotificationInterface();
-				String uuid = UUID.randomUUID().toString();
-//				runningServices.put(uuid, new RunningExternalService());
 				if (service.isReadRevision() || service.getReadExtendedData() != null || service.getWriteExtendedData() != null || service.getWriteRevision() != null) {
 					// This service will be needing a token
 					long writeProjectPoid = service.getWriteRevision() == null ? -1 : service.getWriteRevision().getOid();
@@ -77,9 +80,10 @@ public class LogActionNotification extends Notification {
 					authorization.setUoid(service.getUser().getOid());
 					ServiceInterface newService = bimServer.getServiceFactory().getService(ServiceInterface.class, authorization, AccessMethod.INTERNAL);
 					((org.bimserver.webservices.Service)newService).setAuthorization(authorization);
-					notificationInterface.newLogAction(uuid, action, service.getServiceIdentifier(), service.getProfileIdentifier(), authorization.asHexToken(bimServer.getEncryptionKey()), siteAddress);
+					
+					notificationInterface.newRevision(roid);
 				} else {
-					notificationInterface.newLogAction(uuid, action, service.getServiceIdentifier(), service.getProfileIdentifier(), null, null);
+					notificationInterface.newRevision(roid);
 				}
 			} catch (ChannelConnectionException e) {
 				LOGGER.error("", e);

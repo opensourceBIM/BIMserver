@@ -93,7 +93,6 @@ public class Step0000 extends Migration {
 		createConcreteRevisionClass();
 		createRevisionClass();
 		createServerSettingsClass();
-		createUserSettingsClass();
 		
 		userHasRightsOn.setEOpposite(projectHasAuthorizedUsers);
 		projectHasAuthorizedUsers.setEOpposite(userHasRightsOn);
@@ -780,11 +779,14 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(bimserverInfo, "serverLogUrl", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(bimserverInfo, "started", EcorePackage.eINSTANCE.getEDate());
 		schema.createEAttribute(bimserverInfo, "uptime", EcorePackage.eINSTANCE.getEString());
+		
+		EEnum progressTopicType = schema.createEEnum("store", "ProgressTopicType");
+		schema.createEEnumLiteral(progressTopicType, "DOWNLOAD");
+		schema.createEEnumLiteral(progressTopicType, "UPLOAD");
+		schema.createEEnumLiteral(progressTopicType, "RUNNING_SERVICE");
+		schema.createEEnumLiteral(progressTopicType, "BRANCH");
 	}
 	
-	private void createUserSettingsClass() {
-	}
-
 	private void createSIPrefixEnum() {
 		siPrefixEnum = schema.createEEnum(storePackage, "SIPrefix");
 		schema.createEEnumLiteral(siPrefixEnum, "meter", 0);

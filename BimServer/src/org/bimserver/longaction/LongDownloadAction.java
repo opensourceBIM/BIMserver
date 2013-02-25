@@ -32,6 +32,7 @@ import org.bimserver.database.actions.DownloadProjectsDatabaseAction;
 import org.bimserver.database.actions.DownloadQueryDatabaseAction;
 import org.bimserver.database.actions.ProgressListener;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.ObjectIDMPluginConfiguration;
@@ -52,7 +53,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 
 	public LongDownloadAction(BimServer bimServer, String username, String userUsername, DownloadParameters downloadParameters, Authorization authorization, AccessMethod accessMethod) {
 		super(bimServer, username, userUsername, downloadParameters, accessMethod, authorization);
-		ProgressTopic topic = new ProgressTopic(authorization.getUoid());
+		ProgressTopic topic = new ProgressTopic(authorization.getUoid(), SProgressTopicType.DOWNLOAD, "Download");
 		setProgressTopicAndKey(bimServer.getNotificationsManager().register(topic), topic);
 	}
 

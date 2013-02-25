@@ -19,6 +19,7 @@ package org.bimserver.servlets;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.GregorianCalendar;
 
 import org.apache.commons.io.output.NullWriter;
 import org.bimserver.BimServer;
@@ -48,7 +49,6 @@ public class StreamingSocket implements WebSocket.OnTextMessage, EndPoint, Strea
 
 	public StreamingSocket(BimServer bimServer) {
 		this.bimServer = bimServer;
-		this.endpointid = bimServer.getEndPointManager().register(this);
 		this.reflectorImpl = bimServer.getReflectorFactory().createReflector(NotificationInterface.class, new JsonWebsocketReflector(bimServer.getServicesMap(), this));
 	}
 
@@ -61,7 +61,7 @@ public class StreamingSocket implements WebSocket.OnTextMessage, EndPoint, Strea
 	public void onOpen(Connection connection) {
 		this.connection = connection;
 		JsonObject welcome = new JsonObject();
-		welcome.add("endpointid", new JsonPrimitive(endpointid));
+		welcome.add("welcome", new JsonPrimitive(new GregorianCalendar().getTimeInMillis()));
 		send(welcome);
 	}
 
@@ -76,6 +76,12 @@ public class StreamingSocket implements WebSocket.OnTextMessage, EndPoint, Strea
 				try {
 					org.bimserver.shared.interfaces.ServiceInterface service = bimServer.getServiceFactory().getService(org.bimserver.shared.interfaces.ServiceInterface.class, token, AccessMethod.JSON);
 					uoid = service.getCurrentUser().getOid();
+
+					this.endpointid = bimServer.getEndPointManager().register(this);
+					
+					JsonObject enpointMessage = new JsonObject();
+					enpointMessage.add("endpointid", new JsonPrimitive(endpointid));
+					send(enpointMessage);
 				} catch (UserException e) {
 					e.printStackTrace();
 				} catch (ServerException e) {

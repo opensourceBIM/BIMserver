@@ -26,6 +26,7 @@ import java.net.URL;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
@@ -366,7 +367,7 @@ public class BimServer {
 
 			URL resource2 = config.getResourceFetcher().getResource("NotificationInterface.java");
 			String content2 = getContent(resource2);
-			servicesMap.add(new SService(content2, NotificationInterface.class, serviceInterfaceMeta));
+			servicesMap.add(new SService(content2, NotificationInterface.class, Collections.singletonList(serviceInterfaceMeta)));
 
 			notificationsManager.start();
 

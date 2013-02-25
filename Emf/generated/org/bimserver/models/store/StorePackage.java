@@ -5820,6 +5820,16 @@ public interface StorePackage extends EPackage {
 	int NOTIFICTION_RESULT_ENUM = 95;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.ProgressTopicType <em>Progress Topic Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.ProgressTopicType
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getProgressTopicType()
+	 * @generated
+	 */
+	int PROGRESS_TOPIC_TYPE = 96;
+
+	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5827,7 +5837,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 96;
+	int DATA_HANDLER = 97;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -10574,6 +10584,16 @@ public interface StorePackage extends EPackage {
 	EEnum getNotifictionResultEnum();
 
 	/**
+	 * Returns the meta object for enum '{@link org.bimserver.models.store.ProgressTopicType <em>Progress Topic Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Progress Topic Type</em>'.
+	 * @see org.bimserver.models.store.ProgressTopicType
+	 * @generated
+	 */
+	EEnum getProgressTopicType();
+
+	/**
 	 * Returns the meta object for data type '{@link javax.activation.DataHandler <em>Data Handler</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14317,6 +14337,16 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum NOTIFICTION_RESULT_ENUM = eINSTANCE.getNotifictionResultEnum();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.ProgressTopicType <em>Progress Topic Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.ProgressTopicType
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getProgressTopicType()
+		 * @generated
+		 */
+		EEnum PROGRESS_TOPIC_TYPE = eINSTANCE.getProgressTopicType();
 
 		/**
 		 * The meta object literal for the '<em>Data Handler</em>' data type.

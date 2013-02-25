@@ -18,13 +18,8 @@ package org.bimserver.client.notifications;
  *****************************************************************************/
 
 import java.io.PrintWriter;
-import java.util.List;
 
-import org.bimserver.interfaces.objects.SImmediateNotificationResult;
-import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongActionState;
-import org.bimserver.interfaces.objects.SProfileDescriptor;
-import org.bimserver.interfaces.objects.SServiceDescriptor;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
@@ -38,28 +33,18 @@ public class NotificationLogger implements NotificationInterface {
 	}
 
 	@Override
-	public SImmediateNotificationResult newLogAction(String uuid, SLogAction logAction, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) {
-		out.println(logAction);
-		out.flush();
-		return null;
-	}
-	
-	@Override
 	public void progress(Long topicId, SLongActionState state) throws UserException, ServerException {
 	}
 
 	@Override
-	public List<SProfileDescriptor> getPublicProfiles(String serviceIdentifier) {
-		return null;
+	public void newRevision(Long roid) throws UserException, ServerException {
 	}
 
 	@Override
-	public List<SProfileDescriptor> getPrivateProfiles(String serviceIdentifier, String token) {
-		return null;
+	public void newProject(Long poid) throws UserException, ServerException {
 	}
 
 	@Override
-	public SServiceDescriptor getService(String serviceIdentifier) {
-		return null;
+	public void newUser(Long uoid) throws UserException, ServerException {
 	}
 }
