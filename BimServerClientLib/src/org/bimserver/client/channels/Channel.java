@@ -49,6 +49,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
+import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.reflector.Reflector;
 import org.bimserver.shared.reflector.ReflectorFactory;
@@ -222,5 +223,9 @@ public abstract class Channel {
 			LOGGER.error("", e);
 		}
 		return null;
+	}
+
+	public RemoteServiceInterface getRemoteServiceInterface() {
+		return (RemoteServiceInterface) getServiceInterface(RemoteServiceInterface.class);
 	}
 }

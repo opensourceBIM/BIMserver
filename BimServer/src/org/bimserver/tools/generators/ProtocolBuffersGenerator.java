@@ -45,7 +45,7 @@ public class ProtocolBuffersGenerator {
 	private final Map<Class<?>, String> generatedClasses = new HashMap<Class<?>, String>();
 	private final Map<String, String> generatedMessages = new HashMap<String, String>();
 
-	public void generate(Class<?> serviceInterfaceClass, File protoFile, File descFile, boolean createBaseMessages, SService service, String... imports) {
+	public void generate(Class<?> serviceInterfaceClass, File protoFile, File descFile, boolean createBaseMessages, SService service, List<String> imports) {
 		generateProtoFile(serviceInterfaceClass, protoFile, createBaseMessages, service, imports);
 		generateProtocolBuffersObjects(protoFile, descFile, true);
 	}
@@ -340,7 +340,7 @@ public class ProtocolBuffersGenerator {
 		}
 	}
 
-	private void generateProtoFile(Class<?> serviceInterfaceClass, File protoFile, boolean createBaseMessages, SService service, String... imports) {
+	private void generateProtoFile(Class<?> serviceInterfaceClass, File protoFile, boolean createBaseMessages, SService service, List<String> imports) {
 		PrintWriter out = null;
 		try {
 			out = new PrintWriter(protoFile);

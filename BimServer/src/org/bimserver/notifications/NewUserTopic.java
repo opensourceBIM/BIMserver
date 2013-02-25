@@ -4,14 +4,13 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.endpoints.EndPoint;
-import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
-public class NewProjectTopic extends Topic {
+public class NewUserTopic extends Topic {
 
 	@Override
 	public void register(EndPoint endPoint) throws TopicRegisterException {
@@ -19,12 +18,11 @@ public class NewProjectTopic extends Topic {
 		super.register(endPoint);
 	}
 	
-	public void process(DatabaseSession session, long poid, NewProjectNotification newProjectNotification) throws BimserverDatabaseException, UserException, ServerException {
+	public void process(DatabaseSession session, long uoid, NewUserNotification newUserNotification) throws BimserverDatabaseException, UserException, ServerException {
 		for (EndPoint endPoint : getEndPoints()) {
-			User user = session.get(StorePackage.eINSTANCE.getUser(), endPoint.getUoid(), Query.getDefault());
-			Project project = session.get(StorePackage.eINSTANCE.getUser(), poid, Query.getDefault());
-			if (user.getUserType() == UserType.ADMIN || user.getHasRightsOn().contains(project)) {
-				endPoint.getNotificationInterface().newProject(poid);
+			User actingUser = session.get(StorePackage.eINSTANCE.getUser(), endPoint.getUoid(), Query.getDefault());
+			if (actingUser.getUserType() == UserType.ADMIN) {
+				endPoint.getNotificationInterface().newUser(uoid);
 			}
 		}
 	}

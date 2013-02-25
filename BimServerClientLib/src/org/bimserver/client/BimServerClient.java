@@ -41,6 +41,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.ServicesMap;
 import org.slf4j.Logger;
@@ -202,6 +203,13 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 		return null;
 	}
 
+	public RemoteServiceInterface getRemoteServiceInterface() {
+		if (channel != null) {
+			return channel.getRemoteServiceInterface();
+		}
+		return null;
+	}
+	
 	public ServicesMap getServicesMap() {
 		return servicesMap;
 	}

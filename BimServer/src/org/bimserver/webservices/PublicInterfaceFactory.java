@@ -26,6 +26,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.webservices.authorization.AnonymousAuthorization;
+import org.bimserver.webservices.authorization.AuthenticationException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,7 +58,6 @@ public class PublicInterfaceFactory implements ServiceFactory {
 			Authorization authorization = Authorization.fromToken(bimServer.getEncryptionKey(), token);
 			return getService(publicInterface, authorization, accessMethod);
 		} catch (Exception e) {
-			LOGGER.error("", e);
 			throw new UserException(e);
 		}
 	}

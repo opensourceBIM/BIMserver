@@ -22,6 +22,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.ProgressHandler;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
+import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.notifications.ProgressTopic;
@@ -37,7 +38,7 @@ public class LongBranchAction extends LongAction<LongCheckinActionKey> {
 
 	public LongBranchAction(BimServer bimServer, String username, String userUsername, Authorization authorization, BimDatabaseAction<ConcreteRevision> action) {
 		super(bimServer, username, userUsername, authorization);
-		ProgressTopic topic = new ProgressTopic(authorization.getUoid());
+		ProgressTopic topic = new ProgressTopic(authorization.getUoid(), SProgressTopicType.BRANCH, "Branching");
 		setProgressTopicAndKey(bimServer.getNotificationsManager().register(topic), topic);
 		this.action = action;
 	}

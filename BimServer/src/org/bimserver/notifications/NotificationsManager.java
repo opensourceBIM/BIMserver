@@ -18,10 +18,7 @@ package org.bimserver.notifications;
  *****************************************************************************/
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -32,10 +29,7 @@ import org.bimserver.client.JsonSocketReflectorFactory;
 import org.bimserver.client.SimpleTokenHolder;
 import org.bimserver.client.channels.Channel;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.endpoints.EndPoint;
-import org.bimserver.interfaces.objects.SImmediateNotificationResult;
 import org.bimserver.interfaces.objects.SLogAction;
-import org.bimserver.interfaces.objects.SNewRevisionAdded;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SService;
 import org.bimserver.models.log.AccessMethod;
@@ -44,27 +38,24 @@ import org.bimserver.models.store.Service;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.NotificationsManagerInterface;
 import org.bimserver.plugins.services.NewRevisionHandler;
-import org.bimserver.shared.NotificationInterfaceAdapter;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class NotificationsManager extends Thread implements NotificationsManagerInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(NotificationsManager.class);
-	
+
 	private final NewRevisionTopic newRevisionTopic = new NewRevisionTopic();
 	private final NewProjectTopic newProjectTopic = new NewProjectTopic();
+	private final NewUserTopic newUserTopic = new NewUserTopic();
 	private final Map<NewRevisionOnSpecificProjectTopicKey, NewRevisionOnSpecificProjectTopic> newRevisionOnSpecificProjectTopics = new HashMap<NewRevisionOnSpecificProjectTopicKey, NewRevisionOnSpecificProjectTopic>();
-	private final Map<RunningServiceTopicKey, RunningServiceTopic> runningServices = new HashMap<RunningServiceTopicKey, RunningServiceTopic>();
 	private final Map<ProgressTopicKey, ProgressTopic> progressTopics = new HashMap<ProgressTopicKey, ProgressTopic>();
-	
 	private final BlockingQueue<Notification> queue = new ArrayBlockingQueue<Notification>(10000);
-
 	private final Map<String, ServiceDescriptor> internalServices = new HashMap<String, ServiceDescriptor>();
-	private final Map<String, NotificationInterface> x = new HashMap<String, NotificationInterface>();
+	private final Map<String, RemoteServiceInterface> internalRemoteServiceInterfaces = new HashMap<String, RemoteServiceInterface>();
 	private final JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private final BimServer bimServer;
 	private volatile boolean running;
@@ -121,7 +112,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	public Channel getChannel(Service service) throws ChannelConnectionException {
 		if (service.getInternalService() != null) {
 			// Overrule definition
-			return new InternalChannel(x.get(service.getServiceIdentifier()));
+			return new InternalChannel(internalRemoteServiceInterfaces.get(service.getServiceIdentifier()));
 		}
 		switch (service.getNotificationProtocol()) {
 		case JSON:
@@ -129,7 +120,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 			jsonChannel.connect(new SimpleTokenHolder());
 			return jsonChannel;
 		case INTERNAL:
-			return new InternalChannel(x.get(service.getServiceIdentifier()));
+			return new InternalChannel(internalRemoteServiceInterfaces.get(service.getServiceIdentifier()));
 		default: 
 			LOGGER.error("Unimplemented AccessMethod: " + service.getNotificationProtocol());
 			return null;
@@ -142,45 +133,28 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	}
 
 	@Override
-	public void register(ServiceDescriptor serviceDescriptor, NotificationInterface notificationInterface) {
+	public void register(ServiceDescriptor serviceDescriptor, RemoteServiceInterface remoteServiceInterface) {
 		serviceDescriptor.setUrl(url);
 		internalServices.put(serviceDescriptor.getName(), serviceDescriptor);
-		x.put(serviceDescriptor.getIdentifier(), notificationInterface);
+		internalRemoteServiceInterfaces.put(serviceDescriptor.getIdentifier(), remoteServiceInterface);
 	}
 	
 	public Map<String, ServiceDescriptor> getInternalServices() {
 		return internalServices;
 	}
 
-	public SImmediateNotificationResult notify(SLogAction logAction, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) {
-		try {
-			NotificationInterface notificationInterface = x.get(serviceIdentifier);
-			return notificationInterface.newLogAction(UUID.randomUUID().toString(), logAction, serviceIdentifier, profileIdentifier, token, apiUrl);
-		} catch (UserException e) {
-			LOGGER.error("", e);
-		} catch (ServerException e) {
-			LOGGER.error("", e);
-		}
-		return null;
-	}
-
 	@Override
 	public void registerNewRevisionHandler(ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
-		register(serviceDescriptor, new NotificationInterfaceAdapter(){
+		register(serviceDescriptor, new RemoteServiceInterfaceAdapter(){
 			@Override
-			public SImmediateNotificationResult newLogAction(String uuid, SLogAction logAction, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) throws UserException, ServerException {
-				if (logAction instanceof SNewRevisionAdded) {
-					SNewRevisionAdded newRevisionAdded = (SNewRevisionAdded)logAction;
-					InternalChannel internalChannel = new InternalChannel(x.get(serviceIdentifier));
-					ServiceInterface object = bimServer.getServiceFactory().getService(ServiceInterface.class, token, AccessMethod.JSON);
-					internalChannel.addServiceInterface(ServiceInterface.class, object);
-					ServiceInterface serviceInterface = internalChannel.getServiceInterface();
-					SService service = serviceInterface.getService(Long.parseLong(profileIdentifier));
-					SObjectType settings = serviceInterface.getPluginSettings(service.getInternalServiceId());
-//					runningServices.put(uuid, new RunningExternalService());
-					newRevisionHandler.newRevision(uuid, serviceInterface, newRevisionAdded, settings);
-				}
-				return null;
+			public void newRevision(Long roid, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) throws UserException, ServerException {
+				InternalChannel internalChannel = new InternalChannel(internalRemoteServiceInterfaces.get(serviceIdentifier));
+				ServiceInterface object = bimServer.getServiceFactory().getService(ServiceInterface.class, token, AccessMethod.JSON);
+				internalChannel.addServiceInterface(ServiceInterface.class, object);
+				ServiceInterface serviceInterface = internalChannel.getServiceInterface();
+				SService service = serviceInterface.getService(Long.parseLong(profileIdentifier));
+				SObjectType settings = serviceInterface.getPluginSettings(service.getInternalServiceId());
+				newRevisionHandler.newRevision(serviceInterface, roid, settings);
 			}
 		});
 	}
@@ -189,10 +163,21 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		return newRevisionTopic;
 	}
 	
+	public NewProjectTopic getNewProjectTopic() {
+		return newProjectTopic;
+	}
+	
 	public NewRevisionOnSpecificProjectTopic getNewRevisionOnSpecificProjectTopic(NewRevisionOnSpecificProjectTopicKey key) {
 		return newRevisionOnSpecificProjectTopics.get(key);
 	}
 	
+	public NewRevisionOnSpecificProjectTopic getOrCreateNewRevisionOnSpecificProjectTopic(NewRevisionOnSpecificProjectTopicKey key) {
+		if (!newRevisionOnSpecificProjectTopics.containsKey(key)) {
+			newRevisionOnSpecificProjectTopics.put(key, new NewRevisionOnSpecificProjectTopic(key.getPoid()));
+		}
+		return newRevisionOnSpecificProjectTopics.get(key);
+	}
+
 	public ProgressTopic getProgressTopic(ProgressTopicKey key) {
 		return progressTopics.get(key);
 	}
@@ -201,5 +186,17 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		ProgressTopicKey key = new ProgressTopicKey();
 		progressTopics.put(key, topic);
 		return key;
+	}
+
+	public void unregister(ProgressTopicKey progressTopicKey) {
+		ProgressTopic progressTopic = progressTopics.get(progressTopicKey);
+		if (progressTopic != null) {
+			progressTopic.close();
+			progressTopics.remove(progressTopicKey);
+		}
+	}
+
+	public NewUserTopic getNewUserTopic() {
+		return newUserTopic;
 	}
 }

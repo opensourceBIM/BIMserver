@@ -713,4 +713,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="started" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uptime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ProgressTopicType">
+    <eLiterals name="DOWNLOAD"/>
+    <eLiterals name="UPLOAD" value="1"/>
+    <eLiterals name="RUNNING_SERVICE" value="2"/>
+    <eLiterals name="BRANCH" value="3"/>
+  </eClassifiers>
 </ecore:EPackage>

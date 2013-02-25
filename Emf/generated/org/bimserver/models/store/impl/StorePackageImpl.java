@@ -729,6 +729,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EEnum progressTopicTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EDataType dataHandlerEDataType = null;
 
 	/**
@@ -5047,6 +5054,18 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 			notifictionResultEnumEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(90);
 		}
 		return notifictionResultEnumEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getProgressTopicType() {
+		if (progressTopicTypeEEnum == null) {
+			progressTopicTypeEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(97);
+		}
+		return progressTopicTypeEEnum;
 	}
 
 	/**

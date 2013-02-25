@@ -32,7 +32,6 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
-import org.bimserver.interfaces.SConverter;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.LogPackage;
@@ -41,6 +40,7 @@ import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
+import org.bimserver.notifications.NewUserNotification;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.templating.TemplateIdentifier;
 import org.bimserver.utils.GeneratorUtils;
@@ -140,7 +140,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
 				public void execute() throws UserException {
-					bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(newUserAdded));
+					bimServer.getNotificationsManager().notify(new NewUserNotification(user.getOid()));
 				}
 			});
 			bimServer.updateUserSettings(getDatabaseSession(), user);
