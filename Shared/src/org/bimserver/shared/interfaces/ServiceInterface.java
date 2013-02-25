@@ -61,6 +61,7 @@ import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
+import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
@@ -2393,10 +2394,50 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getUserSettings")
 	SUserSettings getUserSettings() throws ServerException, UserException;
 	
+	@WebMethod(action = "registerProgressTopic")
+	Long registerProgressTopic(
+		@WebParam(name = "type", partName = "registerProgressTopic.type") SProgressTopicType type, 
+		@WebParam(name = "description", partName = "registerProgressTopic.description") String description) throws UserException, ServerException;
+
+	@WebMethod(action = "updateProgressTopic")
+	void updateProgressTopic(
+		@WebParam(name = "topicId", partName = "registerProgressTopic.topicId") Long topicId, 
+		@WebParam(name = "state", partName = "registerProgressTopic.state") SLongActionState state) throws UserException, ServerException;
+	
+	@WebMethod(action = "unregisterProgressTopic")
+	void unregisterProgressTopic(
+		@WebParam(name = "topicId", partName = "unregisterProgressTopic.topicId") Long topicId);
+	
 	@WebMethod(action = "registerProgressHandler")
 	void registerProgressHandler(
 		@WebParam(name = "topicId", partName = "registerProgressHandler.topicId") Long topicId, 
 		@WebParam(name = "endPointId", partName = "registerProgressHandler.endPointId") Long endPointId) throws UserException;
+
+	@WebMethod(action = "registerNewRevisionOnSpecificProjectHandler")
+	void registerNewRevisionOnSpecificProjectHandler(
+		@WebParam(name = "endPointId", partName = "registerNewRevisionOnSpecificProjectHandler.endPointId") Long endPointId,
+		@WebParam(name = "poid", partName = "registerNewRevisionOnSpecificProjectHandler.poid") Long poid);
+
+	@WebMethod(action = "registerNewProjectHandler")
+	void registerNewProjectHandler(
+		@WebParam(name = "endPointId", partName = "registerNewProjectHandler.endPointId") Long endPointId);
+
+	@WebMethod(action = "unregisterNewProjectHandler")
+	void unregisterNewProjectHandler(
+		@WebParam(name = "endPointId", partName = "unregisterNewProjectHandler.endPointId") Long endPointId);
+
+	@WebMethod(action = "registerNewUserHandler")
+	void registerNewUserHandler(
+			@WebParam(name = "endPointId", partName = "registerNewUserHandler.endPointId") Long endPointId);
+	
+	@WebMethod(action = "unregisterNewUserHandler")
+	void unregisterNewUserHandler(
+			@WebParam(name = "endPointId", partName = "unregisterNewUserHandler.endPointId") Long endPointId);
+	
+	@WebMethod(action = "unregisterNewRevisionOnSpecificProjectHandler")
+	void unregisterNewRevisionOnSpecificProjectHandler(
+		@WebParam(name = "endPointId", partName = "unregisterNewRevisionOnSpecificProjectHandler.endPointId") Long endPointId,
+		@WebParam(name = "poid", partName = "unregisterNewRevisionOnSpecificProjectHandler.poid") Long poid);
 
 	@WebMethod(action = "unregisterProgressHandler")
 	void unregisterProgressHandler(
