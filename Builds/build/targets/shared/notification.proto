@@ -24,56 +24,34 @@ option java_outer_classname = "NotificationInterfaceImpl";
 option optimize_for = SPEED;
 
 service NotificationInterface {
-	rpc getPrivateProfiles (GetPrivateProfilesRequest) returns (GetPrivateProfilesResponse);
+	rpc newExtendedData (NewExtendedDataRequest) returns (VoidResponse);
 
-	rpc getPublicProfiles (GetPublicProfilesRequest) returns (GetPublicProfilesResponse);
+	rpc newProject (NewProjectRequest) returns (VoidResponse);
 
-	rpc getService (GetServiceRequest) returns (GetServiceResponse);
+	rpc newRevision (NewRevisionRequest) returns (VoidResponse);
 
-	rpc newLogAction (NewLogActionRequest) returns (NewLogActionResponse);
+	rpc newUser (NewUserRequest) returns (VoidResponse);
 
 	rpc progress (ProgressRequest) returns (VoidResponse);
 
 }
 
-message GetPrivateProfilesRequest {
-	optional string serviceIdentifier = 1;
-	optional string token = 2;
+message NewExtendedDataRequest {
+	optional int64 roid = 1;
+	optional int64 edid = 2;
 }
 
-message GetPrivateProfilesResponse {
-	optional string errorMessage = 1;
-	repeated SProfileDescriptor value = 2;
+message NewProjectRequest {
+	optional int64 poid = 1;
 }
 
-message GetPublicProfilesRequest {
-	optional string serviceIdentifier = 1;
+message NewRevisionRequest {
+	optional int64 poid = 1;
+	optional int64 roid = 2;
 }
 
-message GetPublicProfilesResponse {
-	optional string errorMessage = 1;
-	repeated SProfileDescriptor value = 2;
-}
-
-message NewLogActionRequest {
-	optional string uuid = 1;
-	optional SLogAction logAction = 2;
-	optional string serviceIdentifier = 3;
-	optional string profileIdentifer = 4;
-	optional string token = 5;
-	optional string apiUrl = 6;
-}
-
-message SImmediateNotificationResult {
-	optional SNotifictionResultEnum result = 1;
-	optional int32 rid = 2;
-	optional string description = 3;
-	optional int64 oid = 4;
-}
-
-message NewLogActionResponse {
-	optional string errorMessage = 1;
-	optional SImmediateNotificationResult value = 2;
+message NewUserRequest {
+	optional int64 uoid = 1;
 }
 
 message ProgressRequest {

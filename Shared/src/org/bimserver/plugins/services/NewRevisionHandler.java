@@ -26,5 +26,5 @@ import org.bimserver.shared.interfaces.ServiceInterface;
 public interface NewRevisionHandler {
 
 	SImmediateNotificationResult getImmediateNotificationResult();
-	void newRevision(ServiceInterface serviceInterface, long roid, SObjectType settings) throws ServerException, UserException;
+	void newRevision(ServiceInterface serviceInterface, long poid, long roid, SObjectType settings) throws ServerException, UserException;
 }

@@ -46,7 +46,7 @@ public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
 
 	@Override
 	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
-		JsonChannel jsonChannel = new JsonChannel(reflectorFactory, jsonSocketReflectorFactory, address + "/jsonapi");
+		JsonChannel jsonChannel = new JsonChannel(reflectorFactory, jsonSocketReflectorFactory, address + "/json");
 		BimServerClient bimServerClient = new BimServerClient(address, getServicesMap(), jsonChannel);
 		jsonChannel.connect(bimServerClient);
 		bimServerClient.setAuthentication(authenticationInfo);

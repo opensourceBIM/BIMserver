@@ -17,45 +17,35 @@ package org.bimserver.shared.interfaces;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.List;
-
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 
-import org.bimserver.interfaces.objects.SImmediateNotificationResult;
-import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SLongActionState;
-import org.bimserver.interfaces.objects.SProfileDescriptor;
-import org.bimserver.interfaces.objects.SServiceDescriptor;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
 public interface NotificationInterface extends PublicInterface {
-	
-	@WebMethod(action = "newLogAction")
-	SImmediateNotificationResult newLogAction(
-		@WebParam(name = "uuid", partName = "newLogAction.uuid") String uuid,
-		@WebParam(name = "logAction", partName = "newLogAction.logAction") SLogAction logAction,
-		@WebParam(name = "serviceIdentifier", partName = "newLogAction.serviceIdentifier") String serviceIdentifier,
-		@WebParam(name = "profileIdentifer", partName = "newLogAction.profileIdentifer") String profileIdentifer,
-		@WebParam(name = "token", partName = "newRevision.token") String token,
-		@WebParam(name = "apiUrl", partName = "newRevision.apiUrl") String apiUrl) throws UserException, ServerException;
 
+	@WebMethod(action = "newRevision")
+	void newRevision(
+		@WebParam(name = "poid", partName = "progress.poid") Long poid,
+		@WebParam(name = "roid", partName = "progress.roid") Long roid) throws UserException, ServerException;
+
+	@WebMethod(action = "newExtendedData")
+	void newExtendedData(
+		@WebParam(name = "roid", partName = "progress.roid") Long roid,
+		@WebParam(name = "edid", partName = "newExtendedData.edid") Long edid) throws UserException, ServerException;
+	
+	@WebMethod(action = "newProject")
+	void newProject(
+		@WebParam(name = "poid", partName = "newProject.poid") Long poid) throws UserException, ServerException;
+
+	@WebMethod(action = "newUser")
+	void newUser(
+		@WebParam(name = "uoid", partName = "newUser.uoid") Long uoid) throws UserException, ServerException;
+	
 	@WebMethod(action = "progress")
 	void progress(
 		@WebParam(name = "topicId", partName = "progress.topicId") Long topicId, 
 		@WebParam(name = "state", partName = "progress.state") SLongActionState state) throws UserException, ServerException;
-	
-	@WebMethod(action = "getPublicProfiles")
-	List<SProfileDescriptor> getPublicProfiles(
-		@WebParam(name = "serviceIdentifier", partName = "getPrivateProfiles.serviceIdentifier") String serviceIdentifier) throws UserException, ServerException;
-	
-	@WebMethod(action = "getPrivateProfiles")
-	List<SProfileDescriptor> getPrivateProfiles(
-		@WebParam(name = "serviceIdentifier", partName = "getPrivateProfiles.serviceIdentifier") String serviceIdentifier,
-		@WebParam(name = "token", partName = "getPrivateProfiles.token") String token) throws UserException, ServerException;
-
-	@WebMethod(action = "getService")
-	SServiceDescriptor getService(
-		@WebParam(name = "serviceIdentifier", partName = "getService.serviceIdentifier") String serviceIdentifier) throws UserException, ServerException;
 }

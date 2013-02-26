@@ -1,39 +1,23 @@
 
-Ÿ
-notification.protoorg.bimserver.pbservice.proto"E
-GetPrivateProfilesRequest
-serviceIdentifier (	
-token (	"g
-GetPrivateProfilesResponse
-errorMessage (	3
-value (2$.org.bimserver.pb.SProfileDescriptor"5
-GetPublicProfilesRequest
-serviceIdentifier (	"f
-GetPublicProfilesResponse
-errorMessage (	3
-value (2$.org.bimserver.pb.SProfileDescriptor"¨
-NewLogActionRequest
-uuid (	/
-	logAction (2.org.bimserver.pb.SLogAction
-serviceIdentifier (	
-profileIdentifer (	
-token (	
-apiUrl (	"‡
-SImmediateNotificationResult8
-result (2(.org.bimserver.pb.SNotifictionResultEnum
-rid (
-description (	
-oid ("k
-NewLogActionResponse
-errorMessage (	=
-value (2..org.bimserver.pb.SImmediateNotificationResult"U
+”
+notification.protoorg.bimserver.pbservice.proto"4
+NewExtendedDataRequest
+roid (
+edid ("!
+NewProjectRequest
+poid ("0
+NewRevisionRequest
+poid (
+roid ("
+NewUserRequest
+uoid ("U
 ProgressRequest
 topicId (1
-state (2".org.bimserver.pb.SLongActionState2ý
-NotificationInterfaceo
-getPrivateProfiles+.org.bimserver.pb.GetPrivateProfilesRequest,.org.bimserver.pb.GetPrivateProfilesResponsel
-getPublicProfiles*.org.bimserver.pb.GetPublicProfilesRequest+.org.bimserver.pb.GetPublicProfilesResponseW
+state (2".org.bimserver.pb.SLongActionState2¸
+NotificationInterface[
+newExtendedData(.org.bimserver.pb.NewExtendedDataRequest.org.bimserver.pb.VoidResponseQ
 
-getService#.org.bimserver.pb.GetServiceRequest$.org.bimserver.pb.GetServiceResponse]
-newLogAction%.org.bimserver.pb.NewLogActionRequest&.org.bimserver.pb.NewLogActionResponseM
+newProject#.org.bimserver.pb.NewProjectRequest.org.bimserver.pb.VoidResponseS
+newRevision$.org.bimserver.pb.NewRevisionRequest.org.bimserver.pb.VoidResponseK
+newUser .org.bimserver.pb.NewUserRequest.org.bimserver.pb.VoidResponseM
 progress!.org.bimserver.pb.ProgressRequest.org.bimserver.pb.VoidResponseB BNotificationInterfaceImplHˆ

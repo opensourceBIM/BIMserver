@@ -1,16 +1,21 @@
 
-ó
-notification.protoorg.bimserver.pbservice.proto"!
+”
+notification.protoorg.bimserver.pbservice.proto"4
+NewExtendedDataRequest
+roid (
+edid ("!
 NewProjectRequest
-poid (""
+poid ("0
 NewRevisionRequest
-roid ("
+poid (
+roid ("
 NewUserRequest
 uoid ("U
 ProgressRequest
 topicId (1
-state (2".org.bimserver.pb.SLongActionState2Û
-NotificationInterfaceQ
+state (2".org.bimserver.pb.SLongActionState2¸
+NotificationInterface[
+newExtendedData(.org.bimserver.pb.NewExtendedDataRequest.org.bimserver.pb.VoidResponseQ
 
 newProject#.org.bimserver.pb.NewProjectRequest.org.bimserver.pb.VoidResponseS
 newRevision$.org.bimserver.pb.NewRevisionRequest.org.bimserver.pb.VoidResponseK

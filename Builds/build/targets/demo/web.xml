@@ -58,7 +58,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>JsonApiServlet</servlet-name>
-		<url-pattern>/jsonapi/*</url-pattern>
+		<url-pattern>/json/*</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>

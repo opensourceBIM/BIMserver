@@ -2362,20 +2362,20 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "domains", partName = "setWhiteListedDomains.domains") List<String> domains) throws ServerException, UserException;
 
 	@WebMethod(action = "clearOutputFileCache")
-	Integer clearOutputFileCache();
+	Integer clearOutputFileCache() throws UserException, ServerException;
 
 	@WebMethod(action = "getSystemInfo")
-	SSystemInfo getSystemInfo();
+	SSystemInfo getSystemInfo() throws UserException, ServerException;
 	
 	@WebMethod(action = "getJavaInfo")
-	SJavaInfo getJavaInfo();
+	SJavaInfo getJavaInfo() throws UserException, ServerException;
 
 	@WebMethod(action = "getBimServerInfo")
 	SBimServerInfo getBimServerInfo() throws ServerException, UserException;
 	
 	@WebMethod(action = "shareRevision")
 	String shareRevision(
-		@WebParam(name = "roid", partName = "shareRevision.roid") Long roid);
+		@WebParam(name = "roid", partName = "shareRevision.roid") Long roid) throws UserException, ServerException;
 
 	@WebMethod(action = "getOidByGuid")
 	Long getOidByGuid(
@@ -2396,7 +2396,9 @@ public interface ServiceInterface extends PublicInterface {
 	
 	@WebMethod(action = "registerProgressTopic")
 	Long registerProgressTopic(
-		@WebParam(name = "type", partName = "registerProgressTopic.type") SProgressTopicType type, 
+		@WebParam(name = "type", partName = "registerProgressTopic.type") SProgressTopicType type,
+		@WebParam(name = "poid", partName = "registerProgressTopic.poid") Long poid,
+		@WebParam(name = "roid", partName = "registerProgressTopic.roid") Long roid,
 		@WebParam(name = "description", partName = "registerProgressTopic.description") String description) throws UserException, ServerException;
 
 	@WebMethod(action = "updateProgressTopic")
@@ -2406,41 +2408,41 @@ public interface ServiceInterface extends PublicInterface {
 	
 	@WebMethod(action = "unregisterProgressTopic")
 	void unregisterProgressTopic(
-		@WebParam(name = "topicId", partName = "unregisterProgressTopic.topicId") Long topicId);
+		@WebParam(name = "topicId", partName = "unregisterProgressTopic.topicId") Long topicId) throws UserException, ServerException;
 	
 	@WebMethod(action = "registerProgressHandler")
 	void registerProgressHandler(
 		@WebParam(name = "topicId", partName = "registerProgressHandler.topicId") Long topicId, 
-		@WebParam(name = "endPointId", partName = "registerProgressHandler.endPointId") Long endPointId) throws UserException;
+		@WebParam(name = "endPointId", partName = "registerProgressHandler.endPointId") Long endPointId) throws UserException, ServerException;
 
 	@WebMethod(action = "registerNewRevisionOnSpecificProjectHandler")
 	void registerNewRevisionOnSpecificProjectHandler(
 		@WebParam(name = "endPointId", partName = "registerNewRevisionOnSpecificProjectHandler.endPointId") Long endPointId,
-		@WebParam(name = "poid", partName = "registerNewRevisionOnSpecificProjectHandler.poid") Long poid);
+		@WebParam(name = "poid", partName = "registerNewRevisionOnSpecificProjectHandler.poid") Long poid) throws UserException, ServerException;
 
 	@WebMethod(action = "registerNewProjectHandler")
 	void registerNewProjectHandler(
-		@WebParam(name = "endPointId", partName = "registerNewProjectHandler.endPointId") Long endPointId);
+		@WebParam(name = "endPointId", partName = "registerNewProjectHandler.endPointId") Long endPointId) throws UserException, ServerException;
 
 	@WebMethod(action = "unregisterNewProjectHandler")
 	void unregisterNewProjectHandler(
-		@WebParam(name = "endPointId", partName = "unregisterNewProjectHandler.endPointId") Long endPointId);
+		@WebParam(name = "endPointId", partName = "unregisterNewProjectHandler.endPointId") Long endPointId) throws UserException, ServerException;
 
 	@WebMethod(action = "registerNewUserHandler")
 	void registerNewUserHandler(
-			@WebParam(name = "endPointId", partName = "registerNewUserHandler.endPointId") Long endPointId);
+			@WebParam(name = "endPointId", partName = "registerNewUserHandler.endPointId") Long endPointId) throws UserException, ServerException;
 	
 	@WebMethod(action = "unregisterNewUserHandler")
 	void unregisterNewUserHandler(
-			@WebParam(name = "endPointId", partName = "unregisterNewUserHandler.endPointId") Long endPointId);
+			@WebParam(name = "endPointId", partName = "unregisterNewUserHandler.endPointId") Long endPointId) throws UserException, ServerException;
 	
 	@WebMethod(action = "unregisterNewRevisionOnSpecificProjectHandler")
 	void unregisterNewRevisionOnSpecificProjectHandler(
 		@WebParam(name = "endPointId", partName = "unregisterNewRevisionOnSpecificProjectHandler.endPointId") Long endPointId,
-		@WebParam(name = "poid", partName = "unregisterNewRevisionOnSpecificProjectHandler.poid") Long poid);
+		@WebParam(name = "poid", partName = "unregisterNewRevisionOnSpecificProjectHandler.poid") Long poid) throws UserException, ServerException;
 
 	@WebMethod(action = "unregisterProgressHandler")
 	void unregisterProgressHandler(
 		@WebParam(name = "topicId", partName = "unregisterProgressHandler.topicId") Long topicId, 
-		@WebParam(name = "endPointId", partName = "unregisterProgressHandler.endPointId") Long endPointId) throws UserException;
+		@WebParam(name = "endPointId", partName = "unregisterProgressHandler.endPointId") Long endPointId) throws UserException, ServerException;
 }

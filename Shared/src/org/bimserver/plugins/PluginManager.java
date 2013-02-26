@@ -503,7 +503,7 @@ public class PluginManager {
 
 	public void registerNewRevisionHandler(ServiceDescriptor serviceDescriptor, NewRevisionHandler newRevisionHandler) {
 		if (notificationsManagerInterface != null) {
-			notificationsManagerInterface.registerNewRevisionHandler(serviceDescriptor, newRevisionHandler);
+			notificationsManagerInterface.registerInternalNewRevisionHandler(serviceDescriptor, newRevisionHandler);
 		}
 	}
 	

@@ -24,5 +24,5 @@ import org.bimserver.shared.interfaces.RemoteServiceInterface;
 public interface NotificationsManagerInterface {
 
 	void register(ServiceDescriptor serviceDescriptor, RemoteServiceInterface remoteServiceInterface);
-	void registerNewRevisionHandler(ServiceDescriptor serviceDescriptor, NewRevisionHandler newRevisionHandler);
+	void registerInternalNewRevisionHandler(ServiceDescriptor serviceDescriptor, NewRevisionHandler newRevisionHandler);
 }
