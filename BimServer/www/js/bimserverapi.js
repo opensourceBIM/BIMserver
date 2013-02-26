@@ -21,7 +21,7 @@ function BimServerApi(baseUrl, notifier) {
 	
 	othis.token = null;
 	othis.baseUrl = baseUrl;
-	othis.address = baseUrl + "/jsonapi";
+	othis.address = baseUrl + "/json";
 	othis.notifier = notifier;
 	if (othis.notifier == null) {
 		othis.notifier = {

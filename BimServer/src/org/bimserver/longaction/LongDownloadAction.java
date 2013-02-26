@@ -53,7 +53,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 
 	public LongDownloadAction(BimServer bimServer, String username, String userUsername, DownloadParameters downloadParameters, Authorization authorization, AccessMethod accessMethod) {
 		super(bimServer, username, userUsername, downloadParameters, accessMethod, authorization);
-		ProgressTopic topic = new ProgressTopic(authorization.getUoid(), SProgressTopicType.DOWNLOAD, "Download");
+		ProgressTopic topic = new ProgressTopic(authorization.getUoid(), -1L, -1L, SProgressTopicType.DOWNLOAD, "Download");
 		setProgressTopicAndKey(bimServer.getNotificationsManager().register(topic), topic);
 	}
 

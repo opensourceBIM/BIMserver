@@ -68,7 +68,7 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 
 	@Override
 	public DataObject execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Revision virtualRevision = getVirtualRevision(roid);
+		Revision virtualRevision = getRevisionByRoid(roid);
 		EObject eObject = null;
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {

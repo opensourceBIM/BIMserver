@@ -28,6 +28,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.codehaus.jettison.json.JSONException;
 import org.eclipse.jetty.websocket.WebSocket;
 import org.slf4j.Logger;
@@ -45,11 +46,13 @@ public class StreamingSocket implements WebSocket.OnTextMessage, EndPoint, Strea
 	private BimServer bimServer;
 	private long uoid;
 	private long endpointid;
-	private NotificationInterface reflectorImpl;
+	private NotificationInterface notificationInterface;
+	private RemoteServiceInterface remoteServiceInterface;
 
 	public StreamingSocket(BimServer bimServer) {
 		this.bimServer = bimServer;
-		this.reflectorImpl = bimServer.getReflectorFactory().createReflector(NotificationInterface.class, new JsonWebsocketReflector(bimServer.getServicesMap(), this));
+		this.notificationInterface = bimServer.getReflectorFactory().createReflector(NotificationInterface.class, new JsonWebsocketReflector(bimServer.getServicesMap(), this));
+		this.remoteServiceInterface = bimServer.getReflectorFactory().createReflector(RemoteServiceInterface.class, new JsonWebsocketReflector(bimServer.getServicesMap(), this));
 	}
 
 	@Override
@@ -112,9 +115,13 @@ public class StreamingSocket implements WebSocket.OnTextMessage, EndPoint, Strea
 
 	@Override
 	public NotificationInterface getNotificationInterface() {
-		return reflectorImpl;
+		return notificationInterface;
 	}
 
+	public RemoteServiceInterface getRemoteServiceInterface() {
+		return remoteServiceInterface;
+	}
+	
 	@Override
 	public void cleanup() {
 		bimServer.getEndPointManager().unregister(endpointid);

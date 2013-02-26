@@ -80,7 +80,7 @@ public class DownloadByNamesDatabaseAction extends AbstractDownloadDatabaseActio
 		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
 		
 		for (Long roid : roids) {
-			Revision virtualRevision = getVirtualRevision(roid);
+			Revision virtualRevision = getRevisionByRoid(roid);
 			project = virtualRevision.getProject();
 			if (!getAuthorization().hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				throw new UserException("User has insufficient rights to download revisions from this project");

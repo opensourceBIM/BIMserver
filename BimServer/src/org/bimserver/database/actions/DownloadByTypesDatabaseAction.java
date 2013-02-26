@@ -95,7 +95,7 @@ public class DownloadByTypesDatabaseAction extends AbstractDownloadDatabaseActio
 		}
 		String name = "";
 		for (Long roid : roids) {
-			Revision virtualRevision = getVirtualRevision(roid);
+			Revision virtualRevision = getRevisionByRoid(roid);
 			project = virtualRevision.getProject();
 			name += project.getName() + "-" + virtualRevision.getId() + "-";
 			try {

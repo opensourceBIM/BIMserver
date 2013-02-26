@@ -37,7 +37,7 @@ import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 
-public class BranchToNewProjectDatabaseAction extends BimDatabaseAction<ConcreteRevision> {
+public class BranchToNewProjectDatabaseAction extends AbstractBranchDatabaseAction {
 	private final BimServer bimServer;
 	private final Long roid;
 	private final String projectName;
@@ -53,7 +53,17 @@ public class BranchToNewProjectDatabaseAction extends BimDatabaseAction<Concrete
 		this.projectName = projectName;
 		this.comment = comment;
 	}
+	
+	@Override
+	public Long getPoid() {
+		return -1L;
+	}
 
+	@Override
+	public Long getRoid() {
+		return roid;
+	}
+	
 	@Override
 	public ConcreteRevision execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision oldRevision = getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());

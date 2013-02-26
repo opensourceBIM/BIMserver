@@ -14,11 +14,11 @@ import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-import org.bimserver.notifications.RemoteServiceInterfaceAdapter;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.RemoteServiceInterfaceAdaptor;
 
-public class RemoteServiceImpl extends RemoteServiceInterfaceAdapter {
+public class RemoteServiceImpl extends RemoteServiceInterfaceAdaptor {
 	private BimServer bimServer;
 
 	public RemoteServiceImpl(BimServer bimServer) {

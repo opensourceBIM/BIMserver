@@ -24,7 +24,7 @@ public class CountDatabaseAction extends BimDatabaseAction<Integer> {
 
 	@Override
 	public Integer execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Revision revision = getVirtualRevision(roid);
+		Revision revision = getRevisionByRoid(roid);
 		if (revision == null) {
 			throw new UserException("Revision with roid " + roid + " not found");
 		}

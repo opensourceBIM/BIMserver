@@ -63,7 +63,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 
 	@Override
 	public IfcModelInterface execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Revision revision = getVirtualRevision(roid);
+		Revision revision = getRevisionByRoid(roid);
 		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
 		getAuthorization().canDownload(roid);
 		if (revision == null) {

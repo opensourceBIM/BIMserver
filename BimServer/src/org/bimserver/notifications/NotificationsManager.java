@@ -41,6 +41,7 @@ import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
+import org.bimserver.shared.interfaces.RemoteServiceInterfaceAdaptor;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -144,17 +145,17 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	}
 
 	@Override
-	public void registerNewRevisionHandler(ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
-		register(serviceDescriptor, new RemoteServiceInterfaceAdapter(){
+	public void registerInternalNewRevisionHandler(ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
+		register(serviceDescriptor, new RemoteServiceInterfaceAdaptor(){
 			@Override
-			public void newRevision(Long roid, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) throws UserException, ServerException {
+			public void newRevision(Long poid, Long roid, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) throws UserException, ServerException {
 				InternalChannel internalChannel = new InternalChannel(internalRemoteServiceInterfaces.get(serviceIdentifier));
-				ServiceInterface object = bimServer.getServiceFactory().getService(ServiceInterface.class, token, AccessMethod.JSON);
-				internalChannel.addServiceInterface(ServiceInterface.class, object);
+				ServiceInterface serviceInterfaceImpl = bimServer.getServiceFactory().getService(ServiceInterface.class, token, AccessMethod.JSON);
+				internalChannel.addServiceInterface(ServiceInterface.class, serviceInterfaceImpl);
 				ServiceInterface serviceInterface = internalChannel.getServiceInterface();
 				SService service = serviceInterface.getService(Long.parseLong(profileIdentifier));
 				SObjectType settings = serviceInterface.getPluginSettings(service.getInternalServiceId());
-				newRevisionHandler.newRevision(serviceInterface, roid, settings);
+				newRevisionHandler.newRevision(serviceInterface, poid, roid, settings);
 			}
 		});
 	}
@@ -198,5 +199,9 @@ public class NotificationsManager extends Thread implements NotificationsManager
 
 	public NewUserTopic getNewUserTopic() {
 		return newUserTopic;
+	}
+
+	public String getSiteAddress() {
+		return url;
 	}
 }

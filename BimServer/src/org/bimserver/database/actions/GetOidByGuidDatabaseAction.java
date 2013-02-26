@@ -39,7 +39,7 @@ public class GetOidByGuidDatabaseAction extends BimDatabaseAction<Long>{
 	
 	@Override
 	public Long execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Revision virtualRevision = getVirtualRevision(roid);
+		Revision virtualRevision = getRevisionByRoid(roid);
 		ObjectIdentifier objectIdentifier = null;
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			objectIdentifier = getDatabaseSession().getOidOfGuid(guid, concreteRevision.getProject().getId(), concreteRevision.getId());

@@ -28,6 +28,7 @@ import org.apache.commons.io.output.NullWriter;
 import org.bimserver.BimServer;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.json.JsonReflector;
 import org.codehaus.jettison.json.JSONException;
 import org.slf4j.Logger;
@@ -43,14 +44,16 @@ public class TomcatStreamInbound extends StreamInbound implements EndPoint, Stre
 	private BimServer bimServer;
 	private long uoid;
 	private long endpointid;
-	private NotificationInterface reflectorImpl;
+	private NotificationInterface notificationInterface;
 	private WsOutbound outbound;
+	private RemoteServiceInterface remoteServiceInterface;
 
 	public TomcatStreamInbound(BimServer bimServer) {
 		this.bimServer = bimServer;
 		this.endpointid = bimServer.getEndPointManager().register(this);
 		JsonReflector jsonReflector = new JsonWebsocketReflector(bimServer.getServicesMap(), this);
-		reflectorImpl = bimServer.getReflectorFactory().createReflector(NotificationInterface.class, jsonReflector);
+		notificationInterface = bimServer.getReflectorFactory().createReflector(NotificationInterface.class, jsonReflector);
+		remoteServiceInterface = bimServer.getReflectorFactory().createReflector(RemoteServiceInterface.class, jsonReflector);
 	}
 
 	@Override
@@ -68,7 +71,7 @@ public class TomcatStreamInbound extends StreamInbound implements EndPoint, Stre
 
 	@Override
 	public NotificationInterface getNotificationInterface() {
-		return reflectorImpl;
+		return notificationInterface;
 	}
 
 	@Override
@@ -112,5 +115,10 @@ public class TomcatStreamInbound extends StreamInbound implements EndPoint, Stre
 	@Override
 	public long getUoid() {
 		return uoid;
+	}
+
+	@Override
+	public RemoteServiceInterface getRemoteServiceInterface() {
+		return remoteServiceInterface;
 	}
 }
