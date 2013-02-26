@@ -119,6 +119,7 @@ import org.bimserver.plugins.web.WebModulePlugin;
 import org.bimserver.serializers.SerializerFactory;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.ServicesMap;
@@ -369,6 +370,10 @@ public class BimServer {
 			String content2 = getContent(resource2);
 			servicesMap.add(new SService(content2, NotificationInterface.class, Collections.singletonList(serviceInterfaceMeta)));
 
+			URL resource3 = config.getResourceFetcher().getResource("RemoteServiceInterface.java");
+			String content3 = getContent(resource3);
+			servicesMap.add(new SService(content3, RemoteServiceInterface.class, Collections.singletonList(serviceInterfaceMeta)));
+			
 			notificationsManager.start();
 
 			serverInfoManager.init(this);

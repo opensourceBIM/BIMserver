@@ -12,9 +12,13 @@ public class ProgressTopic extends Topic {
 	private long uoid;
 	private SProgressTopicType type;
 	private String description;
+	private Long roid;
+	private Long poid;
 
-	public ProgressTopic(long uoid, SProgressTopicType type, String description) {
+	public ProgressTopic(long uoid, Long poid, Long roid, SProgressTopicType type, String description) {
 		this.uoid = uoid;
+		this.poid = poid;
+		this.roid = roid;
 		this.type = type;
 		this.description = description;
 	}

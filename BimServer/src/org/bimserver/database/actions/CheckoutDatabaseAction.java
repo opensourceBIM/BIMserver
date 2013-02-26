@@ -54,7 +54,7 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 	public IfcModel execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		User user = getUserByUoid(authorization.getUoid());
-		Revision revision = getVirtualRevision(roid);
+		Revision revision = getRevisionByRoid(roid);
 		Project project = revision.getProject();
 		if (user.getHasRightsOn().contains(project)) {
 			for (Checkout checkout : revision.getCheckouts()) {

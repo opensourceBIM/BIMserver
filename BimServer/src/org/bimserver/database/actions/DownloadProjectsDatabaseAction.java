@@ -68,7 +68,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		long incrSize = 0;
 		for (long roid : roids) {
-			Revision revision = getVirtualRevision(roid);
+			Revision revision = getRevisionByRoid(roid);
 			for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
 				incrSize += subRevision.getSize();
 			}
@@ -79,7 +79,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
 
 		for (long roid : roids) {
-			Revision revision = getVirtualRevision(roid);
+			Revision revision = getRevisionByRoid(roid);
 			project = revision.getProject();
 			if (getAuthorization().hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
 				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {

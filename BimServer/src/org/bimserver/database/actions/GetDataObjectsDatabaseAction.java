@@ -55,7 +55,7 @@ public class GetDataObjectsDatabaseAction extends AbstractDownloadDatabaseAction
 
 	@Override
 	public List<DataObject> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Revision virtualRevision = getVirtualRevision(roid);
+		Revision virtualRevision = getRevisionByRoid(roid);
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			int highestStopId = findHighestStopRid(concreteRevision.getProject(), concreteRevision);

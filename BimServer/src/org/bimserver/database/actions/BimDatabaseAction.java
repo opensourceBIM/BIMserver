@@ -103,11 +103,6 @@ public abstract class BimDatabaseAction<T> {
 		return databaseSession.querySingle(condition, User.class, Query.getDefault());
 	}
 
-	public Revision getVirtualRevision(long roid) throws BimserverLockConflictException, BimserverDatabaseException {
-		IdEObject idEObject = databaseSession.get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
-		return (Revision) idEObject;
-	}
-
 	public Revision getRevisionByRoid(long roid) throws BimserverDatabaseException {
 		return (Revision) databaseSession.get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
 	}

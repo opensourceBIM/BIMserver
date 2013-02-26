@@ -21,9 +21,9 @@ import org.bimserver.BimServer;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.NotificationInterfaceAdaptor;
 
-public class NotificationImpl implements NotificationInterface {
+public class NotificationImpl extends NotificationInterfaceAdaptor {
 
 	private BimServer bimServer;
 
@@ -36,7 +36,7 @@ public class NotificationImpl implements NotificationInterface {
 	}
 
 	@Override
-	public void newRevision(Long roid) throws UserException, ServerException {
+	public void newRevision(Long poid, Long roid) throws UserException, ServerException {
 	}
 
 	@Override

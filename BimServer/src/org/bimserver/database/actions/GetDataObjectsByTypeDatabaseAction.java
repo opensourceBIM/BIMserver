@@ -59,7 +59,7 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 	@Override
 	public List<DataObject> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		EClass eClass = getDatabaseSession().getEClassForName(className);
-		Revision virtualRevision = getVirtualRevision(roid);
+		Revision virtualRevision = getRevisionByRoid(roid);
 		if (virtualRevision == null) {
 			throw new UserException("No revision with roid " + roid + " found");
 		}

@@ -38,7 +38,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	public LongCheckinAction(BimServer bimServer, String username, String userUsername, Authorization authorization, CheckinDatabaseAction checkinDatabaseAction) {
 		super(bimServer, username, userUsername, authorization);
 		this.checkinDatabaseAction = checkinDatabaseAction;
-		ProgressTopic topic = new ProgressTopic(authorization.getUoid(), SProgressTopicType.UPLOAD, "Checkin");
+		ProgressTopic topic = new ProgressTopic(authorization.getUoid(), checkinDatabaseAction.getProject().getOid(), -1L, SProgressTopicType.UPLOAD, "Checkin");
 		setProgressTopicAndKey(bimServer.getNotificationsManager().register(topic), topic);
 		checkinDatabaseAction.addProgressListener(this);
 	}

@@ -44,6 +44,7 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
+import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
@@ -113,7 +114,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			final NewRevisionAdded newRevisionAdded = getDatabaseSession().create(LogPackage.eINSTANCE.getNewRevisionAdded());
 			newRevisionAdded.setDate(new Date());
 			newRevisionAdded.setExecutor(user);
-			Revision revision = concreteRevision.getRevisions().get(0);
+			final Revision revision = concreteRevision.getRevisions().get(0);
 
 			concreteRevision.setSummary(new SummaryMap(getModel()).toRevisionSummary(getDatabaseSession()));
 
@@ -146,7 +147,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
 				public void execute() throws UserException {
-					bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(newRevisionAdded));
+					bimServer.getNotificationsManager().notify(new NewRevisionNotification(project.getOid(), revision.getOid()));
 				}
 			});
 

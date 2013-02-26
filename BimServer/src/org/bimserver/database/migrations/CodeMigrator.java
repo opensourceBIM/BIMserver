@@ -31,6 +31,8 @@ import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
+import org.bimserver.tools.generators.AdaptorGenerator;
+import org.bimserver.tools.generators.AdaptorGeneratorWrapper;
 import org.bimserver.tools.generators.DataObjectGeneratorWrapper;
 import org.bimserver.tools.generators.ProtocolBuffersGenerator;
 import org.bimserver.tools.generators.SConverterGeneratorWrapper;
@@ -43,23 +45,16 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Ruben de Laat
  * 
- *         Steps: 1. Add a new migration (for example create the class Step0005
- *         in org.bimserver.database.migrations.steps) 2. Change the
- *         TARGET_VERSION to the same number 3. Run this class it's main method,
- *         this will generate an ecore file (models/models.ecore) reflecting all
- *         available migration steps combined. 4. Open the
- *         models/models.genmodel file, right-click on the root node and select
- *         "Generate Model Code" 5. Verify there are no compile errors, and fix
- *         those first by changing your migration code 6. Generate the
- *         S-classes: Run org.bimserver.tools.generators.ServiceGenerator 7.
- *         Generate the Protocol Buffers file and classes: Run
- *         org.bimserver.tools.generators.ProtocolBuffersGenerator
- * 
+ *         Steps: 
+ *         1. Add a new migration (for example create the class Step0005 in org.bimserver.database.migrations.steps) 
+ *         2. Change the TARGET_VERSION to the same number 
+ *         3. Run this class it's main method, this will generate an ecore file (models/models.ecore) reflecting all available migration steps combined. 
+ *         4. Open the models/models.genmodel file, right-click on the root node and select "Generate Model Code" 
+ *         5. Verify there are no compile errors, and fix those first by changing your migration code
  */
 
 public class CodeMigrator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CodeMigrator.class);
-	private SService service;
 	private ProtocolBuffersGenerator protocolBuffersGenerator;
 	private List<SService> knownServices = new ArrayList<SService>();
 	private List<String> knownShortNames = new ArrayList<String>();
@@ -114,7 +109,9 @@ public class CodeMigrator {
 	private void generateFiles(Class<?> interfaceClass, String shortName) {
 		try {
 			File javaFile = new File("../Shared/src/org/bimserver/shared/interfaces/" + interfaceClass.getSimpleName() + ".java");
-			service = new SService(FileUtils.readFileToString(javaFile), interfaceClass, knownServices);
+			SService service = new SService(FileUtils.readFileToString(javaFile), interfaceClass, knownServices);
+			AdaptorGeneratorWrapper adaptorGeneratorWrapper = new AdaptorGeneratorWrapper();
+			adaptorGeneratorWrapper.generate(interfaceClass, service);
 			File protoFile = new File("../Builds/build/pb/" + shortName + ".proto");
 			File descFile = new File("../Builds/build/pb/" + shortName + ".desc");
 			protocolBuffersGenerator.generate(interfaceClass, protoFile, descFile, this.knownServices.isEmpty(), service, knownShortNames);

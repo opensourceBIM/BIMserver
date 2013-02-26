@@ -170,6 +170,8 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.UserType;
+import org.bimserver.notifications.NewExtendedDataNotification;
+import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.notifications.NewRevisionOnSpecificProjectTopic;
 import org.bimserver.notifications.NewRevisionOnSpecificProjectTopicKey;
 import org.bimserver.notifications.ProgressTopic;
@@ -186,8 +188,6 @@ import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.shared.compare.CompareWriter;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.NotificationInterface;
-import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
@@ -3779,15 +3779,15 @@ public class Service implements ServiceInterface {
 	}
 	
 	@Override
-	public void triggerNewExtendedData(Long edid,Long soid) throws ServerException, UserException {
+	public void triggerNewExtendedData(Long edid, Long soid) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			org.bimserver.models.store.Service service = (org.bimserver.models.store.Service)session.get(StorePackage.eINSTANCE.getService(), soid, Query.getDefault());
+//			org.bimserver.models.store.Service service = (org.bimserver.models.store.Service)session.get(StorePackage.eINSTANCE.getService(), soid, Query.getDefault());
 			ExtendedData extendedData = (ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), edid, Query.getDefault());
 			SExtendedDataAddedToRevision newExtendedData = new SExtendedDataAddedToRevision();
 			newExtendedData.setRevisionId(extendedData.getRevision().getOid());
 			newExtendedData.setExtendedDataId(edid);
-			bimServer.getNotificationsManager().notify(newExtendedData);
+			bimServer.getNotificationsManager().notify(new NewExtendedDataNotification(edid, soid));
 //			bimServer.getNotificationsManager().triggerNewRevision(bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), newExtendedData, extendedData.getRevision().getProject(), extendedData.getRevision().getOid(), Trigger.NEW_EXTENDED_DATA, service);
 		} catch (Exception e) {
 			handleException(e);
@@ -3800,13 +3800,13 @@ public class Service implements ServiceInterface {
 	public void triggerNewRevision(Long roid, Long soid) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			org.bimserver.models.store.Service service = (org.bimserver.models.store.Service)session.get(StorePackage.eINSTANCE.getService(), soid, Query.getDefault());
+//			org.bimserver.models.store.Service service = (org.bimserver.models.store.Service)session.get(StorePackage.eINSTANCE.getService(), soid, Query.getDefault());
 			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
 			SNewRevisionAdded newRevisionNotification = new SNewRevisionAdded();
 			newRevisionNotification.setRevisionId(revision.getOid());
 			newRevisionNotification.setProjectId(revision.getProject().getOid());
 			
-			bimServer.getNotificationsManager().notify(newRevisionNotification);
+			bimServer.getNotificationsManager().notify(new NewRevisionNotification(revision.getProject().getOid(), revision.getOid()));
 //			bimServer.getNotificationsManager().triggerNewRevision(bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), newRevisionNotification, revision.getProject(), roid, Trigger.NEW_REVISION, service);
 		} catch (Exception e) {
 			handleException(e);
@@ -4032,8 +4032,8 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Long registerProgressTopic(SProgressTopicType type, String description) throws UserException, ServerException {
-		return bimServer.getNotificationsManager().register(new ProgressTopic(getCurrentUser().getOid(), type, description)).getId();
+	public Long registerProgressTopic(SProgressTopicType type, Long poid, Long roid, String description) throws UserException, ServerException {
+		return bimServer.getNotificationsManager().register(new ProgressTopic(getCurrentUser().getOid(), poid, roid, type, description)).getId();
 	}
 	
 	@Override

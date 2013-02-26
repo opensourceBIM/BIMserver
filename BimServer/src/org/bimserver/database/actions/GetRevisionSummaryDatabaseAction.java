@@ -56,7 +56,7 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 
 	@Override
 	public RevisionSummary execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		Revision revision = getVirtualRevision(roid);
+		Revision revision = getRevisionByRoid(roid);
 		if (revision.getConcreteRevisions().size() == 1 && revision.getConcreteRevisions().get(0).getSummary() != null) {
 			return revision.getConcreteRevisions().get(0).getSummary();
 		} else {
