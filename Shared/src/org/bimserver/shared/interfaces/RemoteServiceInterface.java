@@ -14,9 +14,10 @@ public interface RemoteServiceInterface extends PublicInterface {
 	
 	@WebMethod(action = "newRevision")
 	void newRevision(
-		@WebParam(name = "roid", partName = "progress.roid") Long roid,
-		@WebParam(name = "serviceIdentifier", partName = "newLogAction.serviceIdentifier") String serviceIdentifier,
-		@WebParam(name = "profileIdentifier", partName = "newLogAction.profileIdentifier") String profileIdentifier,
+		@WebParam(name = "poid", partName = "newRevision.poid") Long poid,
+		@WebParam(name = "roid", partName = "newRevision.roid") Long roid,
+		@WebParam(name = "serviceIdentifier", partName = "newRevision.serviceIdentifier") String serviceIdentifier,
+		@WebParam(name = "profileIdentifier", partName = "newRevision.profileIdentifier") String profileIdentifier,
 		@WebParam(name = "token", partName = "newRevision.token") String token,
 		@WebParam(name = "apiUrl", partName = "newRevision.apiUrl") String apiUrl) throws UserException, ServerException;
 	

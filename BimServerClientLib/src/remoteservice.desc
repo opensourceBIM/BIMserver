@@ -1,6 +1,5 @@
 
-ê
-
+‰
 remoteservice.protoorg.bimserver.pbservice.protonotification.proto"E
 GetPrivateProfilesRequest
 serviceIdentifier (	
@@ -12,25 +11,10 @@
 serviceIdentifier (	"f
 GetPublicProfilesResponse
 errorMessage (	3
-value (2$.org.bimserver.pb.SProfileDescriptor"®
-NewLogActionRequest
-uuid (	/
-	logAction (2.org.bimserver.pb.SLogAction
-serviceIdentifier (	
-profileIdentifer (	
-token (	
-apiUrl (	"á
-SImmediateNotificationResult8
-result (2(.org.bimserver.pb.SNotifictionResultEnum
-rid (
-description (	
-oid ("k
-NewLogActionResponse
-errorMessage (	=
-value (2..org.bimserver.pb.SImmediateNotificationResult2Ø
+value (2$.org.bimserver.pb.SProfileDescriptor2•
 RemoteServiceInterfaceo
 getPrivateProfiles+.org.bimserver.pb.GetPrivateProfilesRequest,.org.bimserver.pb.GetPrivateProfilesResponsel
 getPublicProfiles*.org.bimserver.pb.GetPublicProfilesRequest+.org.bimserver.pb.GetPublicProfilesResponseW
 
-getService#.org.bimserver.pb.GetServiceRequest$.org.bimserver.pb.GetServiceResponse]
-newLogAction%.org.bimserver.pb.NewLogActionRequest&.org.bimserver.pb.NewLogActionResponseB!BRemoteServiceInterfaceImplHà
+getService#.org.bimserver.pb.GetServiceRequest$.org.bimserver.pb.GetServiceResponseS
+newRevision$.org.bimserver.pb.NewRevisionRequest.org.bimserver.pb.VoidResponseB!BRemoteServiceInterfaceImplHà

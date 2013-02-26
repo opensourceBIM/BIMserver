@@ -101,6 +101,7 @@ public abstract class Channel {
 	protected void finish(Reflector reflector, ReflectorFactory reflectorFactory) {
 		serviceInterfaces.put(ServiceInterface.class, reflectorFactory.createReflector(ServiceInterface.class, reflector));
 		serviceInterfaces.put(NotificationInterface.class, reflectorFactory.createReflector(NotificationInterface.class, reflector));
+		serviceInterfaces.put(RemoteServiceInterface.class, reflectorFactory.createReflector(RemoteServiceInterface.class, reflector));
 	}
 	
 	public abstract void disconnect();

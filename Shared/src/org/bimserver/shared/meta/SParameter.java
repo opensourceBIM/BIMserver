@@ -45,7 +45,7 @@ public class SParameter {
 	public String getName() {
 		return name;
 	}
-
+	
 	public SClass getGenericType() {
 		return genericType;
 	}

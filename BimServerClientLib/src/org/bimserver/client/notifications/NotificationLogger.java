@@ -22,9 +22,9 @@ import java.io.PrintWriter;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.NotificationInterfaceAdaptor;
 
-public class NotificationLogger implements NotificationInterface {
+public class NotificationLogger extends NotificationInterfaceAdaptor {
 
 	private final PrintWriter out;
 
@@ -37,7 +37,7 @@ public class NotificationLogger implements NotificationInterface {
 	}
 
 	@Override
-	public void newRevision(Long roid) throws UserException, ServerException {
+	public void newRevision(Long poid, Long roid) throws UserException, ServerException {
 	}
 
 	@Override

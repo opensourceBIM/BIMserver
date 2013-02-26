@@ -28,7 +28,6 @@ import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SImmediateNotificationResult;
-import org.bimserver.interfaces.objects.SNewRevisionAdded;
 import org.bimserver.interfaces.objects.SNotifictionResultEnum;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
@@ -86,7 +85,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		clashDetection.setWriteExtendedData("http://www.buildingsmart-tech.org/specifications/bcf-releases");
 		clashDetection.setTrigger(Trigger.NEW_REVISION);
 		registerNewRevisionHandler(clashDetection, new NewRevisionHandler(){
-			public void newRevision(ServiceInterface serviceInterface, long roid, SObjectType settings) throws ServerException, UserException {
+			public void newRevision(ServiceInterface serviceInterface, long poid, long roid, SObjectType settings) throws ServerException, UserException {
 				Bcf bcf = new Bcf();
 				
 				SSerializerPluginConfiguration sSerializer = serviceInterface.getSerializerByPluginClassName("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin");

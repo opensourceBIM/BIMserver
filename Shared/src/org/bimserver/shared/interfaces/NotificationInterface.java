@@ -28,7 +28,13 @@ public interface NotificationInterface extends PublicInterface {
 
 	@WebMethod(action = "newRevision")
 	void newRevision(
+		@WebParam(name = "poid", partName = "progress.poid") Long poid,
 		@WebParam(name = "roid", partName = "progress.roid") Long roid) throws UserException, ServerException;
+
+	@WebMethod(action = "newExtendedData")
+	void newExtendedData(
+		@WebParam(name = "roid", partName = "progress.roid") Long roid,
+		@WebParam(name = "edid", partName = "newExtendedData.edid") Long edid) throws UserException, ServerException;
 	
 	@WebMethod(action = "newProject")
 	void newProject(
