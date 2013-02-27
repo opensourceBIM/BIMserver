@@ -27,8 +27,6 @@ import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
-import org.bimserver.interfaces.objects.SImmediateNotificationResult;
-import org.bimserver.interfaces.objects.SNotifictionResultEnum;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
@@ -217,14 +215,6 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 				} catch (Exception e) {
 					LOGGER.error("", e);
 				}
-			}
-
-			@Override
-			public SImmediateNotificationResult getImmediateNotificationResult() {
-				SImmediateNotificationResult sImmediateNotificationResult = new SImmediateNotificationResult();
-				sImmediateNotificationResult.setResult(SNotifictionResultEnum.PROGRESS_UNKNOWN);
-				sImmediateNotificationResult.setDescription("Running ClashDetection");
-				return sImmediateNotificationResult;
 			}
 		});
 	}

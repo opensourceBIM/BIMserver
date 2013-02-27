@@ -174,8 +174,8 @@ import org.bimserver.notifications.NewExtendedDataNotification;
 import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.notifications.NewRevisionOnSpecificProjectTopic;
 import org.bimserver.notifications.NewRevisionOnSpecificProjectTopicKey;
+import org.bimserver.notifications.ProgressOnRevisionTopic;
 import org.bimserver.notifications.ProgressTopic;
-import org.bimserver.notifications.ProgressTopicKey;
 import org.bimserver.notifications.TopicRegisterException;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginContext;
@@ -275,7 +275,7 @@ public class Service implements ServiceInterface {
 				if (sync) {
 					longAction.waitForCompletion();
 				}
-				return longAction.getProgressTopicKey().getId();
+				return longAction.getProgressTopic().getKey().getId();
 			} catch (UserException e) {
 				throw e;
 			} catch (DeserializeException e) {
@@ -339,7 +339,7 @@ public class Service implements ServiceInterface {
 				if (sync) {
 					longAction.waitForCompletion();
 				}
-				return longAction.getProgressTopicKey().getId();
+				return longAction.getProgressTopic().getKey().getId();
 			} catch (UserException e) {
 				throw e;
 			} catch (DeserializeException e) {
@@ -397,7 +397,7 @@ public class Service implements ServiceInterface {
 			if (sync) {
 				longDownloadAction.waitForCompletion();
 			}
-			return longDownloadAction.getProgressTopicKey().getId();
+			return longDownloadAction.getProgressTopic().getKey().getId();
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -562,6 +562,7 @@ public class Service implements ServiceInterface {
 		try {
 			BimDatabaseAction<Set<org.bimserver.models.store.Service>> action = new GetAllServicesOfProjectDatabaseAction(session, accessMethod, poid);
 			List<org.bimserver.interfaces.objects.SService> convertToSListRevision = bimServer.getSConverter().convertToSListService(session.executeAndCommitAction(action));
+			Collections.sort(convertToSListRevision, new SServiceComparator());
 			return convertToSListRevision;
 		} catch (Exception e) {
 			return handleException(e);
@@ -722,7 +723,7 @@ public class Service implements ServiceInterface {
 		if (sync) {
 			longDownloadAction.waitForCompletion();
 		}
-		return longDownloadAction.getProgressTopicKey().getId();
+		return longDownloadAction.getProgressTopic().getKey().getId();
 	}
 
 	@Override
@@ -1135,7 +1136,7 @@ public class Service implements ServiceInterface {
 			if (sync) {
 				longAction.waitForCompletion();
 			}
-			return longAction.getProgressTopicKey().getId();
+			return longAction.getProgressTopic().getKey().getId();
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -1157,7 +1158,7 @@ public class Service implements ServiceInterface {
 			if (sync) {
 				longBranchAction.waitForCompletion();
 			}
-			return longBranchAction.getProgressTopicKey().getId();
+			return longBranchAction.getProgressTopic().getKey().getId();
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -3977,7 +3978,7 @@ public class Service implements ServiceInterface {
 		if (endPoint == null) {
 			throw new UserException("Endpoint with id " + endPointId + " not found");
 		}
-		ProgressTopic progressTopic = bimServer.getNotificationsManager().getProgressTopic(new ProgressTopicKey(topicId));
+		ProgressTopic progressTopic = bimServer.getNotificationsManager().getProgressTopic(topicId);
 		if (progressTopic == null) {
 			throw new UserException("Topic with id " + topicId + " not found");
 		}
@@ -3994,7 +3995,7 @@ public class Service implements ServiceInterface {
 		if (endPoint == null) {
 			throw new UserException("Endpoint with id " + endPointId + " not found");
 		}
-		ProgressTopic progressTopic = bimServer.getNotificationsManager().getProgressTopic(new ProgressTopicKey(topicId));
+		ProgressTopic progressTopic = bimServer.getNotificationsManager().getProgressTopic(topicId);
 		if (progressTopic == null) {
 			throw new UserException("Topic with id " + topicId + " not found");
 		}
@@ -4005,8 +4006,7 @@ public class Service implements ServiceInterface {
 	public void updateProgressTopic(Long topicId, SLongActionState state) throws UserException, ServerException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-			ProgressTopicKey key = new ProgressTopicKey(topicId);
-			bimServer.getNotificationsManager().getProgressTopic(key).updateProgress(key, bimServer.getSConverter().convertFromSObject(state, session));
+			bimServer.getNotificationsManager().getProgressTopic(topicId).updateProgress(bimServer.getSConverter().convertFromSObject(state, session));
 		} catch (BimserverDatabaseException e) {
 			e.printStackTrace();
 		} finally {
@@ -4032,13 +4032,23 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public Long registerProgressTopic(SProgressTopicType type, Long poid, Long roid, String description) throws UserException, ServerException {
-		return bimServer.getNotificationsManager().register(new ProgressTopic(getCurrentUser().getOid(), poid, roid, type, description)).getId();
+	public Long registerProgressTopic(SProgressTopicType type, String description) throws UserException, ServerException {
+		return bimServer.getNotificationsManager().createProgressTopic(getCurrentUser().getOid(), type, description).getKey().getId();
 	}
-	
+
+	@Override
+	public Long registerProgressOnRevisionTopic(SProgressTopicType type, Long poid, Long roid, String description) throws UserException, ServerException {
+		return bimServer.getNotificationsManager().createProgressOnRevisionTopic(getCurrentUser().getOid(), poid, roid, type, description).getKey().getId();
+	}
+
+	@Override
+	public Long registerProgressOnProjectTopic(SProgressTopicType type, Long poid, String description) throws UserException, ServerException {
+		return bimServer.getNotificationsManager().createProgressOnProjectTopic(getCurrentUser().getOid(), poid, type, description).getKey().getId();
+	}
+
 	@Override
 	public void unregisterProgressTopic(Long topicId) {
-		bimServer.getNotificationsManager().unregister(new ProgressTopicKey(topicId));
+		bimServer.getNotificationsManager().unregister(topicId);
 	}
 
 	@Override
@@ -4071,5 +4081,56 @@ public class Service implements ServiceInterface {
 	public void unregisterNewUserHandler(Long endPointId) {
 		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
 		bimServer.getNotificationsManager().getNewUserTopic().unregister(endPoint);
+	}
+	
+	@Override
+	public List<Long> getProgressTopicsOnProject(Long poid) throws ServerException, UserException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			List<Long> list = new ArrayList<Long>();
+			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
+			List<Long> revisionOids = new ArrayList<Long>();
+			for (Revision revision : project.getRevisions()) {
+				revisionOids.add(revision.getOid());
+			}
+			Set<ProgressTopic> progressOnProjectTopics = bimServer.getNotificationsManager().getProgressOnProjectTopics(poid, revisionOids);
+			if (progressOnProjectTopics != null) {
+				for (ProgressTopic topic : progressOnProjectTopics) {
+					list.add(topic.getKey().getId());
+				}
+			}
+			return list;
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public List<Long> getProgressTopicsOnRevision(Long poid, Long roid) {
+		List<Long> list = new ArrayList<Long>();
+		for (ProgressOnRevisionTopic topic : bimServer.getNotificationsManager().getProgressOnRevisionTopics(poid, roid)) {
+			list.add(topic.getKey().getId());
+		}
+		return list;
+	}
+	
+	@Override
+	public List<Long> getProgressTopicsOnServer() {
+		List<Long> list = new ArrayList<Long>();
+		for (ProgressTopic topic : bimServer.getNotificationsManager().getProgressOnServerTopics()) {
+			list.add(topic.getKey().getId());
+		}
+		return list;
+	}
+	
+	@Override
+	public SLongActionState getProgress(Long topicId) throws UserException, ServerException {
+		ProgressTopic progressTopic = bimServer.getNotificationsManager().getProgressTopic(topicId);
+		if (progressTopic != null) {
+			return bimServer.getSConverter().convertToSObject(progressTopic.getLastProgress());
+		}
+		return null;
 	}
 }

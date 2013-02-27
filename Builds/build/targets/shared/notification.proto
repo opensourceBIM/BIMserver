@@ -26,6 +26,12 @@ option optimize_for = SPEED;
 service NotificationInterface {
 	rpc newExtendedData (NewExtendedDataRequest) returns (VoidResponse);
 
+	rpc newProgressOnProjectTopic (NewProgressOnProjectTopicRequest) returns (VoidResponse);
+
+	rpc newProgressOnRevisionTopic (NewProgressOnRevisionTopicRequest) returns (VoidResponse);
+
+	rpc newProgressTopic (NewProgressTopicRequest) returns (VoidResponse);
+
 	rpc newProject (NewProjectRequest) returns (VoidResponse);
 
 	rpc newRevision (NewRevisionRequest) returns (VoidResponse);
@@ -39,6 +45,21 @@ service NotificationInterface {
 message NewExtendedDataRequest {
 	optional int64 roid = 1;
 	optional int64 edid = 2;
+}
+
+message NewProgressOnProjectTopicRequest {
+	optional int64 poid = 1;
+	optional int64 topicId = 2;
+}
+
+message NewProgressOnRevisionTopicRequest {
+	optional int64 poid = 1;
+	optional int64 roid = 2;
+	optional int64 topicId = 3;
+}
+
+message NewProgressTopicRequest {
+	optional int64 topicId = 1;
 }
 
 message NewProjectRequest {

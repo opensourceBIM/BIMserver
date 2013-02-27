@@ -26,14 +26,10 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.webservices.authorization.AnonymousAuthorization;
-import org.bimserver.webservices.authorization.AuthenticationException;
 import org.bimserver.webservices.authorization.Authorization;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class PublicInterfaceFactory implements ServiceFactory {
 	private final BimServer bimServer;
-	private static final Logger LOGGER = LoggerFactory.getLogger(PublicInterfaceFactory.class);
 
 	public PublicInterfaceFactory(BimServer bimServer) {
 		this.bimServer = bimServer;

@@ -38,7 +38,6 @@ import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.ObjectIDMPluginConfiguration;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.notifications.ProgressTopic;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.objectidms.ObjectIDM;
@@ -53,8 +52,9 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 
 	public LongDownloadAction(BimServer bimServer, String username, String userUsername, DownloadParameters downloadParameters, Authorization authorization, AccessMethod accessMethod) {
 		super(bimServer, username, userUsername, downloadParameters, accessMethod, authorization);
-		ProgressTopic topic = new ProgressTopic(authorization.getUoid(), -1L, -1L, SProgressTopicType.DOWNLOAD, "Download");
-		setProgressTopicAndKey(bimServer.getNotificationsManager().register(topic), topic);
+
+		// TODO it is hard to determine on which project/revision this download is occurring, could be a list of...
+		setProgressTopic(bimServer.getNotificationsManager().createProgressTopic(authorization.getUoid(), SProgressTopicType.DOWNLOAD, "Download"));
 	}
 
 	public void execute() {

@@ -225,7 +225,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		return authorization.getUoid();
 	}
 
-	public Project getProject() {
-		return project;
+	public long getPoid() {
+		return poid;
 	}
 }

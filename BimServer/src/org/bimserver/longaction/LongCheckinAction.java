@@ -24,7 +24,6 @@ import org.bimserver.database.actions.CheckinDatabaseAction;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.models.store.ActionState;
-import org.bimserver.notifications.ProgressTopic;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.slf4j.Logger;
@@ -38,8 +37,8 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	public LongCheckinAction(BimServer bimServer, String username, String userUsername, Authorization authorization, CheckinDatabaseAction checkinDatabaseAction) {
 		super(bimServer, username, userUsername, authorization);
 		this.checkinDatabaseAction = checkinDatabaseAction;
-		ProgressTopic topic = new ProgressTopic(authorization.getUoid(), checkinDatabaseAction.getProject().getOid(), -1L, SProgressTopicType.UPLOAD, "Checkin");
-		setProgressTopicAndKey(bimServer.getNotificationsManager().register(topic), topic);
+		
+		setProgressTopic(bimServer.getNotificationsManager().createProgressOnProjectTopic(authorization.getUoid(), checkinDatabaseAction.getPoid(), SProgressTopicType.UPLOAD, "Checkin"));
 		checkinDatabaseAction.addProgressListener(this);
 	}
 

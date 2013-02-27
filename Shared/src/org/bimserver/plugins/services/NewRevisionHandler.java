@@ -17,7 +17,6 @@ package org.bimserver.plugins.services;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.interfaces.objects.SImmediateNotificationResult;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -25,6 +24,5 @@ import org.bimserver.shared.interfaces.ServiceInterface;
 
 public interface NewRevisionHandler {
 
-	SImmediateNotificationResult getImmediateNotificationResult();
 	void newRevision(ServiceInterface serviceInterface, long poid, long roid, SObjectType settings) throws ServerException, UserException;
 }

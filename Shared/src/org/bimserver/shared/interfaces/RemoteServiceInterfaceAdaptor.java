@@ -19,30 +19,21 @@ package org.bimserver.shared.interfaces;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
 
-public class NotificationInterfaceAdaptor implements NotificationInterface {
+public class RemoteServiceInterfaceAdaptor implements RemoteServiceInterface {
 
-	public void newExtendedData(java.lang.Long roid, java.lang.Long edid) throws UserException, ServerException {
+	public java.util.List getPrivateProfiles(java.lang.String serviceIdentifier, java.lang.String token) throws UserException, ServerException {
+		return null;
 	}
 	
-	public void newProgressOnProjectTopic(java.lang.Long poid, java.lang.Long topicId) throws UserException, ServerException {
+	public java.util.List getPublicProfiles(java.lang.String serviceIdentifier) throws UserException, ServerException {
+		return null;
 	}
 	
-	public void newProgressOnRevisionTopic(java.lang.Long poid, java.lang.Long roid, java.lang.Long topicId) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SServiceDescriptor getService(java.lang.String serviceIdentifier) throws UserException, ServerException {
+		return null;
 	}
 	
-	public void newProgressTopic(java.lang.Long topicId) throws UserException, ServerException {
-	}
-	
-	public void newProject(java.lang.Long poid) throws UserException, ServerException {
-	}
-	
-	public void newRevision(java.lang.Long poid, java.lang.Long roid) throws UserException, ServerException {
-	}
-	
-	public void newUser(java.lang.Long uoid) throws UserException, ServerException {
-	}
-	
-	public void progress(java.lang.Long topicId, org.bimserver.interfaces.objects.SLongActionState state) throws UserException, ServerException {
+	public void newRevision(java.lang.Long poid, java.lang.Long roid, java.lang.String serviceIdentifier, java.lang.String profileIdentifier, java.lang.String token, java.lang.String apiUrl) throws UserException, ServerException {
 	}
 	
 }

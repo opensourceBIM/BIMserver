@@ -1,0 +1,52 @@
+<%@ jet package="org.bimserver.tools.generators" imports="org.bimserver.shared.meta.* org.eclipse.emf.ecore.* org.bimserver.utils.* java.io.File" class="AdaptorGenerator" %>
+package org.bimserver.shared.interfaces;
+
+<%
+/******************************************************************************
+ * Copyright (C) 2009-2012  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+%>
+<%=Licenser.getCommentedLicenseText(new File("license.txt"))%>
+import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.exceptions.ServerException;
+<%
+SService sService = (SService)argument;
+%>
+
+public class <%=sService.getSimpleName()%>Adaptor implements <%=sService.getSimpleName()%> {
+
+<%
+for (SMethod method : sService.getMethods()) {
+%>
+	public <%=method.getReturnType()%> <%=method.getName()%>(
+<%
+	for (SParameter parameter : method.getParameters()) {
+%><%=parameter.getType()%> <%=parameter.getName()%><%=parameter.isLast() ? "" : ", "%><%
+	}
+%>) throws UserException, ServerException {
+<%
+if (!method.getReturnType().isVoid()) {
+%>
+		return null;
+<%
+}
+%>
+	}
+	
+<%
+}
+%>
+}

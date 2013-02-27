@@ -11,17 +11,15 @@ public class ProgressNotification extends Notification {
 
 	private long id;
 	private LongActionState state;
-	private ProgressTopicKey key;
 	private ProgressTopic topic;
 
-	public ProgressNotification(ProgressTopicKey key, ProgressTopic topic, LongActionState state) {
-		this.key = key;
+	public ProgressNotification(ProgressTopic topic, LongActionState state) {
 		this.topic = topic;
 		this.state = state;
 	}
 
 	@Override
 	public void process(BimServer bimServer, DatabaseSession session, NotificationsManager notificationsManager) throws BimserverDatabaseException, UserException, ServerException {
-		topic.updateProgress(key, state);
+		topic.updateProgress(state);
 	}
 }
