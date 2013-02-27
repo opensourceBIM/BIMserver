@@ -17,8 +17,12 @@ package org.bimserver.notifications;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -31,6 +35,7 @@ import org.bimserver.client.channels.Channel;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SObjectType;
+import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.interfaces.objects.SService;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServerSettings;
@@ -53,7 +58,9 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	private final NewProjectTopic newProjectTopic = new NewProjectTopic();
 	private final NewUserTopic newUserTopic = new NewUserTopic();
 	private final Map<NewRevisionOnSpecificProjectTopicKey, NewRevisionOnSpecificProjectTopic> newRevisionOnSpecificProjectTopics = new HashMap<NewRevisionOnSpecificProjectTopicKey, NewRevisionOnSpecificProjectTopic>();
-	private final Map<ProgressTopicKey, ProgressTopic> progressTopics = new HashMap<ProgressTopicKey, ProgressTopic>();
+	private final Map<Long, ProgressTopic> progressTopicsById = new HashMap<Long, ProgressTopic>();
+	private final Map<ProgressOnRevisionTopicKey, Set<ProgressOnRevisionTopic>> progressOnRevisionTopics = new HashMap<ProgressOnRevisionTopicKey, Set<ProgressOnRevisionTopic>>();
+	private final Map<ProgressOnProjectTopicKey, Set<ProgressOnProjectTopic>> progressOnProjectTopics = new HashMap<ProgressOnProjectTopicKey, Set<ProgressOnProjectTopic>>();
 	private final BlockingQueue<Notification> queue = new ArrayBlockingQueue<Notification>(10000);
 	private final Map<String, ServiceDescriptor> internalServices = new HashMap<String, ServiceDescriptor>();
 	private final Map<String, RemoteServiceInterface> internalRemoteServiceInterfaces = new HashMap<String, RemoteServiceInterface>();
@@ -179,29 +186,98 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		return newRevisionOnSpecificProjectTopics.get(key);
 	}
 
-	public ProgressTopic getProgressTopic(ProgressTopicKey key) {
-		return progressTopics.get(key);
+	public ProgressTopic getProgressTopic(long topicId) {
+		return progressTopicsById.get(topicId);
 	}
 	
-	public ProgressTopicKey register(ProgressTopic topic) {
-		ProgressTopicKey key = new ProgressTopicKey();
-		progressTopics.put(key, topic);
-		return key;
+//	public ProgressTopicKey register(ProgressTopic topic) {
+//		ProgressTopicKey key = new ProgressTopicKey();
+//		progressTopicsById.put(key.getId(), topic);
+//		return key;
+//	}
+//
+//	public ProgressOnRevisionTopicKey register(ProgressOnRevisionTopic topic) {
+//		ProgressOnRevisionTopicKey key = new ProgressOnRevisionTopicKey(topic.getPoid(), topic.getRoid());
+//		progressOnRevisionTopics.put(key, topic);
+//		return key;
+//	}
+	
+	public void unregister(long topicId) {
+//		ProgressTopic topic = progressTopicsById.get(topicId);
+//		if (topic != null) {
+//			topic.close();
+//			progressTopicsById.remove(topicId);
+//		}
 	}
-
-	public void unregister(ProgressTopicKey progressTopicKey) {
-		ProgressTopic progressTopic = progressTopics.get(progressTopicKey);
-		if (progressTopic != null) {
-			progressTopic.close();
-			progressTopics.remove(progressTopicKey);
-		}
-	}
-
+	
 	public NewUserTopic getNewUserTopic() {
 		return newUserTopic;
 	}
 
 	public String getSiteAddress() {
 		return url;
+	}
+
+	public ProgressTopic createProgressTopic(long uoid, SProgressTopicType type, String description) {
+		ProgressTopicKey key = new ProgressTopicKey();
+		ProgressTopic topic = new ProgressTopic(key, uoid, type, description);
+		progressTopicsById.put(key.getId(), topic);
+		return topic;
+	}
+
+	public ProgressOnProjectTopic createProgressOnProjectTopic(long uoid, long poid, SProgressTopicType type, String description) {
+		ProgressOnProjectTopicKey key = new ProgressOnProjectTopicKey(poid);
+		Set<ProgressOnProjectTopic> topics = null;
+		if (progressOnProjectTopics.containsKey(key)) {
+			topics = progressOnProjectTopics.get(key);
+		} else {
+			topics = new HashSet<ProgressOnProjectTopic>();
+			progressOnProjectTopics.put(key, topics);
+		}
+		ProgressOnProjectTopic topic = new ProgressOnProjectTopic(key, uoid, poid, type, description);
+		progressTopicsById.put(key.getId(), topic);
+		topics.add(topic);
+		return topic;
+	}
+
+	public ProgressOnRevisionTopic createProgressOnRevisionTopic(long uoid, long poid, long roid, SProgressTopicType type, String description) {
+		ProgressOnRevisionTopicKey key = new ProgressOnRevisionTopicKey(poid, roid);
+		Set<ProgressOnRevisionTopic> topics = null;
+		if (progressOnRevisionTopics.containsKey(key)) {
+			topics = progressOnRevisionTopics.get(key);
+		} else {
+			topics = new HashSet<ProgressOnRevisionTopic>();
+			progressOnRevisionTopics.put(key, topics);
+		}
+		ProgressOnRevisionTopic topic = new ProgressOnRevisionTopic(key, uoid, poid, roid, type, description);
+		progressTopicsById.put(key.getId(), topic);
+		topics.add(topic);
+		return topic;
+	}
+	
+	public Set<ProgressTopic> getProgressOnProjectTopics(long poid, List<Long> roids) {
+		Set<ProgressTopic> topics = new HashSet<ProgressTopic>();
+		Set<ProgressOnProjectTopic> set = progressOnProjectTopics.get(new ProgressOnProjectTopicKey(poid));
+		if (set != null) {
+			for (ProgressOnProjectTopic progressOnProjectTopic : set) {
+				topics.add(progressOnProjectTopic);
+			}
+		}
+		for (Long roid : roids) {
+			Set<ProgressOnRevisionTopic> progressOnRevisionTopics2 = getProgressOnRevisionTopics(poid, roid);
+			if (progressOnRevisionTopics2 != null) {
+				topics.addAll(progressOnRevisionTopics2);
+			}
+		}
+		return topics;
+	}
+
+	public Set<ProgressOnRevisionTopic> getProgressOnRevisionTopics(long poid, long roid) {
+		return progressOnRevisionTopics.get(new ProgressOnRevisionTopicKey(poid, roid));
+	}
+
+	public Collection<ProgressTopic> getProgressOnServerTopics() {
+		// TODO filter by rights
+		return progressTopicsById.values();
 	}
 }

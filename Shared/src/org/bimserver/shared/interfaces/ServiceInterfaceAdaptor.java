@@ -583,6 +583,22 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SLongActionState getProgress(java.lang.Long topicId) throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.util.List getProgressTopicsOnProject(java.lang.Long poid) throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.util.List getProgressTopicsOnRevision(java.lang.Long poid, java.lang.Long roid) throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.util.List getProgressTopicsOnServer() throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SProject getProjectByPoid(java.lang.Long poid) throws UserException, ServerException {
 		return null;
 	}
@@ -809,7 +825,15 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	public void registerProgressHandler(java.lang.Long topicId, java.lang.Long endPointId) throws UserException, ServerException {
 	}
 	
-	public java.lang.Long registerProgressTopic(org.bimserver.interfaces.objects.SProgressTopicType type, java.lang.Long poid, java.lang.Long roid, java.lang.String description) throws UserException, ServerException {
+	public java.lang.Long registerProgressOnProjectTopic(org.bimserver.interfaces.objects.SProgressTopicType type, java.lang.Long poid, java.lang.String description) throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.lang.Long registerProgressOnRevisionTopic(org.bimserver.interfaces.objects.SProgressTopicType type, java.lang.Long poid, java.lang.Long roid, java.lang.String description) throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.lang.Long registerProgressTopic(org.bimserver.interfaces.objects.SProgressTopicType type, java.lang.String description) throws UserException, ServerException {
 		return null;
 	}
 	

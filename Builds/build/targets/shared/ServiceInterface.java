@@ -2397,8 +2397,6 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "registerProgressTopic")
 	Long registerProgressTopic(
 		@WebParam(name = "type", partName = "registerProgressTopic.type") SProgressTopicType type,
-		@WebParam(name = "poid", partName = "registerProgressTopic.poid") Long poid,
-		@WebParam(name = "roid", partName = "registerProgressTopic.roid") Long roid,
 		@WebParam(name = "description", partName = "registerProgressTopic.description") String description) throws UserException, ServerException;
 
 	@WebMethod(action = "updateProgressTopic")
@@ -2445,4 +2443,33 @@ public interface ServiceInterface extends PublicInterface {
 	void unregisterProgressHandler(
 		@WebParam(name = "topicId", partName = "unregisterProgressHandler.topicId") Long topicId, 
 		@WebParam(name = "endPointId", partName = "unregisterProgressHandler.endPointId") Long endPointId) throws UserException, ServerException;
+
+	@WebMethod(action = "getProgress")
+	SLongActionState getProgress(
+		@WebParam(name = "topicId", partName = "getProgress.topicId") Long topicId);
+	
+	@WebMethod(action = "getProgressTopicsOnRevision")
+	List<Long> getProgressTopicsOnRevision(
+		@WebParam(name = "poid", partName = "getProgressTopicsOnRevision.poid") Long poid,
+		@WebParam(name = "roid", partName = "getProgressTopicsOnRevision.roid") Long roid) throws UserException, ServerException;
+
+	@WebMethod(action = "getProgressTopicsOnProject")
+	List<Long> getProgressTopicsOnProject(
+		@WebParam(name = "poid", partName = "getProgressTopicsOnProject.poid") Long poid) throws UserException, ServerException;
+
+	@WebMethod(action = "getProgressTopicsOnServer")
+	List<Long> getProgressTopicsOnServer() throws UserException, ServerException;
+	
+	@WebMethod(action = "registerProgressOnRevisionTopic")
+	Long registerProgressOnRevisionTopic(
+		@WebParam(name = "type", partName = "registerProgressOnRevisionTopic.type") SProgressTopicType type, 
+		@WebParam(name = "poid", partName = "registerProgressOnRevisionTopic.poid") Long poid, 
+		@WebParam(name = "roid", partName = "registerProgressOnRevisionTopic.roid") Long roid, 
+		@WebParam(name = "description", partName = "registerProgressOnRevisionTopic.description") String description) throws UserException, ServerException;
+
+	@WebMethod(action = "registerProgressOnProjectTopic")
+	Long registerProgressOnProjectTopic(
+		@WebParam(name = "type", partName = "registerProgressOnProjectTopic.type") SProgressTopicType type, 
+		@WebParam(name = "poid", partName = "registerProgressOnProjectTopic.poid") Long poid, 
+		@WebParam(name = "description", partName = "registerProgressOnProjectTopic.description") String description) throws UserException, ServerException;
 }

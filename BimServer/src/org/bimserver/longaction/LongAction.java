@@ -30,7 +30,6 @@ import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.notifications.ProgressNotification;
 import org.bimserver.notifications.ProgressTopic;
-import org.bimserver.notifications.ProgressTopicKey;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.webservices.authorization.Authorization;
 import org.slf4j.Logger;
@@ -54,7 +53,6 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 	private String title = "Unknown";
 	private int stage = 0;
 	private ProgressTopic progressTopic;
-	private ProgressTopicKey progressTopicKey;
 
 	public LongAction(BimServer bimServer, String username, String userUsername, Authorization authorization) {
 		start = new GregorianCalendar();
@@ -64,13 +62,12 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 		this.bimServer = bimServer;
 	}
 
-	public void setProgressTopicAndKey(ProgressTopicKey progressTopicKey, ProgressTopic progressTopic) {
-		this.progressTopicKey = progressTopicKey;
+	public void setProgressTopic(ProgressTopic progressTopic) {
 		this.progressTopic = progressTopic;
 	}
 	
-	public ProgressTopicKey getProgressTopicKey() {
-		return progressTopicKey;
+	public ProgressTopic getProgressTopic() {
+		return progressTopic;
 	}
 	
 	protected void changeActionState(ActionState actiontState, String title, int progress) {
@@ -87,7 +84,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 			if (!title.equals(oldTitle)) {
 				stage++;
 			}
-			bimServer.getNotificationsManager().notify(new ProgressNotification(progressTopicKey, progressTopic, getState()));
+			bimServer.getNotificationsManager().notify(new ProgressNotification(progressTopic, getState()));
 		}
 	}
 
@@ -123,7 +120,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 
 	protected void done() {
 		latch.countDown();
-		bimServer.getNotificationsManager().notify(new ProgressNotification(progressTopicKey, progressTopic, getState()));
+		bimServer.getNotificationsManager().notify(new ProgressNotification(progressTopic, getState()));
 	}
 
 	public void waitForCompletion() {
@@ -147,7 +144,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 			if (!title.equals(oldTitle)) {
 				stage ++;
 			}
-			bimServer.getNotificationsManager().notify(new ProgressNotification(progressTopicKey, progressTopic, getState()));
+			bimServer.getNotificationsManager().notify(new ProgressNotification(progressTopic, getState()));
 		}
 	}
 

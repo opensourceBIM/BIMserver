@@ -1,9 +1,19 @@
 
-”
+˜
+
 notification.protoorg.bimserver.pbservice.proto"4
 NewExtendedDataRequest
 roid (
-edid ("!
+edid ("A
+ NewProgressOnProjectTopicRequest
+poid (
+topicId ("P
+!NewProgressOnRevisionTopicRequest
+poid (
+roid (
+topicId ("*
+NewProgressTopicRequest
+topicId ("!
 NewProjectRequest
 poid ("0
 NewRevisionRequest
@@ -13,9 +23,12 @@
 uoid ("U
 ProgressRequest
 topicId (1
-state (2".org.bimserver.pb.SLongActionState2¸
+state (2".org.bimserver.pb.SLongActionState2û
 NotificationInterface[
-newExtendedData(.org.bimserver.pb.NewExtendedDataRequest.org.bimserver.pb.VoidResponseQ
+newExtendedData(.org.bimserver.pb.NewExtendedDataRequest.org.bimserver.pb.VoidResponseo
+newProgressOnProjectTopic2.org.bimserver.pb.NewProgressOnProjectTopicRequest.org.bimserver.pb.VoidResponseq
+newProgressOnRevisionTopic3.org.bimserver.pb.NewProgressOnRevisionTopicRequest.org.bimserver.pb.VoidResponse]
+newProgressTopic).org.bimserver.pb.NewProgressTopicRequest.org.bimserver.pb.VoidResponseQ
 
 newProject#.org.bimserver.pb.NewProjectRequest.org.bimserver.pb.VoidResponseS
 newRevision$.org.bimserver.pb.NewRevisionRequest.org.bimserver.pb.VoidResponseK

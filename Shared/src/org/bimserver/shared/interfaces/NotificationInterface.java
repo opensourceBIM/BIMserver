@@ -31,6 +31,21 @@ public interface NotificationInterface extends PublicInterface {
 		@WebParam(name = "poid", partName = "progress.poid") Long poid,
 		@WebParam(name = "roid", partName = "progress.roid") Long roid) throws UserException, ServerException;
 
+	@WebMethod(action = "newProgressOnProjectTopic")
+	void newProgressOnProjectTopic(
+		@WebParam(name = "poid", partName = "newProgressOnProjectTopic.poid") Long poid,
+		@WebParam(name = "topicId", partName = "newProgressOnProjectTopic.topicId") Long topicId) throws UserException, ServerException;
+
+	@WebMethod(action = "newProgressOnRevisionTopic")
+	void newProgressOnRevisionTopic(
+		@WebParam(name = "poid", partName = "newProgressOnRevisionTopic.poid") Long poid,
+		@WebParam(name = "roid", partName = "newProgressOnRevisionTopic.roid") Long roid,
+		@WebParam(name = "topicId", partName = "newProgressOnRevisionTopic.topicId") Long topicId) throws UserException, ServerException;
+
+	@WebMethod(action = "newProgressTopic")
+	void newProgressTopic(
+		@WebParam(name = "topicId", partName = "newProgressTopic.topicId") Long topicId) throws UserException, ServerException;
+	
 	@WebMethod(action = "newExtendedData")
 	void newExtendedData(
 		@WebParam(name = "roid", partName = "progress.roid") Long roid,

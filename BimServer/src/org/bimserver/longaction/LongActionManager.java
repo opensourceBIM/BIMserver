@@ -62,7 +62,7 @@ public class LongActionManager {
 			longAction.init();
 			thread.setDaemon(true);
 			thread.setName(longAction.getDescription());
-			actions.put(longAction.getProgressTopicKey().getId(), longAction);
+			actions.put(longAction.getProgressTopic().getKey().getId(), longAction);
 			thread.start();
 		} else {
 			throw new CannotBeScheduledException();

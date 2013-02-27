@@ -321,6 +321,14 @@ service ServiceInterface {
 
 	rpc getPluginSettings (GetPluginSettingsRequest) returns (GetPluginSettingsResponse);
 
+	rpc getProgress (GetProgressRequest) returns (GetProgressResponse);
+
+	rpc getProgressTopicsOnProject (GetProgressTopicsOnProjectRequest) returns (GetProgressTopicsOnProjectResponse);
+
+	rpc getProgressTopicsOnRevision (GetProgressTopicsOnRevisionRequest) returns (GetProgressTopicsOnRevisionResponse);
+
+	rpc getProgressTopicsOnServer (GetProgressTopicsOnServerRequest) returns (GetProgressTopicsOnServerResponse);
+
 	rpc getProjectByPoid (GetProjectByPoidRequest) returns (GetProjectByPoidResponse);
 
 	rpc getProjectsByName (GetProjectsByNameRequest) returns (GetProjectsByNameResponse);
@@ -436,6 +444,10 @@ service ServiceInterface {
 	rpc registerNewUserHandler (RegisterNewUserHandlerRequest) returns (VoidResponse);
 
 	rpc registerProgressHandler (RegisterProgressHandlerRequest) returns (VoidResponse);
+
+	rpc registerProgressOnProjectTopic (RegisterProgressOnProjectTopicRequest) returns (RegisterProgressOnProjectTopicResponse);
+
+	rpc registerProgressOnRevisionTopic (RegisterProgressOnRevisionTopicRequest) returns (RegisterProgressOnRevisionTopicResponse);
 
 	rpc registerProgressTopic (RegisterProgressTopicRequest) returns (RegisterProgressTopicResponse);
 
@@ -627,14 +639,14 @@ message SExtendedDataSchema {
 	repeated int64 extendedData = 2;
 	repeated int64 users = 3;
 	optional int32 rid = 4;
-	optional int64 oid = 5;
-	optional string description = 6;
+	optional string description = 5;
+	optional int64 oid = 6;
 	optional string name = 7;
 	optional SExtendedDataSchemaType type = 8;
 	optional bool validate = 9;
 	optional string url = 10;
-	optional string namespace = 11;
-	optional int64 size = 12;
+	optional int64 size = 11;
+	optional string namespace = 12;
 }
 
 message AddExtendedDataSchemaRequest {
@@ -714,10 +726,10 @@ message SService {
 	optional string providerName = 12;
 	optional string description = 13;
 	optional int64 oid = 14;
-	optional int64 userId = 15;
+	optional string name = 15;
 	optional int64 writeRevisionId = 16;
 	optional int64 readExtendedDataId = 17;
-	optional string name = 18;
+	optional int64 userId = 18;
 	optional string serviceIdentifier = 19;
 	optional int64 writeExtendedDataId = 20;
 	optional bool profilePublic = 21;
@@ -793,8 +805,8 @@ enum SSIPrefix{
 message SProject {
 	optional int64 lastConcreteRevisionId = 1;
 	repeated int64 services = 2;
-	optional int64 createdById = 3;
-	repeated int64 logs = 4;
+	repeated int64 logs = 3;
+	optional int64 createdById = 4;
 	optional SObjectState state = 5;
 	repeated int64 concreteRevisions = 6;
 	optional int32 id = 7;
@@ -802,15 +814,15 @@ message SProject {
 	repeated int64 extendedData = 9;
 	repeated int64 hasAuthorizedUsers = 10;
 	optional int32 rid = 11;
-	optional int64 geoTagId = 12;
-	optional SSIPrefix exportLengthMeasurePrefix = 13;
-	optional string description = 14;
-	optional int64 oid = 15;
+	optional string description = 12;
+	optional int64 geoTagId = 13;
+	optional int64 oid = 14;
+	optional SSIPrefix exportLengthMeasurePrefix = 15;
 	optional string name = 16;
 	repeated int64 subProjects = 17;
 	optional int64 lastRevisionId = 18;
-	optional int64 createdDate = 19;
-	repeated int64 revisions = 20;
+	repeated int64 revisions = 19;
+	optional int64 createdDate = 20;
 	repeated int64 checkouts = 21;
 }
 
@@ -898,8 +910,8 @@ message AddUserRequest {
 message SUser {
 	optional int64 userSettingsId = 1;
 	optional int64 lastSeen = 2;
-	repeated int64 schemas = 3;
-	repeated int64 services = 4;
+	repeated int64 services = 3;
+	repeated int64 schemas = 4;
 	optional int64 createdById = 5;
 	repeated int64 logs = 6;
 	optional string validationToken = 7;
@@ -914,8 +926,8 @@ message SUser {
 	optional int32 rid = 16;
 	optional int64 oid = 17;
 	optional string name = 18;
-	optional int64 validationTokenCreated = 19;
-	repeated int64 revisions = 20;
+	repeated int64 revisions = 19;
+	optional int64 validationTokenCreated = 20;
 }
 
 message AddUserResponse {
@@ -1102,8 +1114,8 @@ message SSimpleDataValue {
 }
 
 message SReferenceDataValue {
-	optional string guid = 1;
-	optional string typeName = 2;
+	optional string typeName = 1;
+	optional string guid = 2;
 	optional int32 rid = 3;
 	optional int64 oid = 4;
 }
@@ -1382,8 +1394,8 @@ message SLongAction {
 	optional int32 rid = 3;
 	optional int64 oid = 4;
 	optional string identification = 5;
-	optional int64 userId = 6;
-	optional string name = 7;
+	optional string name = 6;
+	optional int64 userId = 7;
 }
 
 message GetActiveLongActionsResponse {
@@ -1536,9 +1548,9 @@ message GetAllLocalServiceDescriptorsRequest {
 }
 
 message SServiceDescriptor {
-	optional string writeExtendedData = 1;
-	optional SAccessMethod notificationProtocol = 2;
-	optional STrigger trigger = 3;
+	optional STrigger trigger = 1;
+	optional string writeExtendedData = 2;
+	optional SAccessMethod notificationProtocol = 3;
 	optional bool writeRevision = 4;
 	optional string readExtendedData = 5;
 	optional string providerName = 6;
@@ -1643,7 +1655,7 @@ message GetAllObjectIDMsResponse {
 message GetAllPluginsRequest {
 }
 
-message SWebModulePluginDescriptor {
+message SQueryEnginePluginDescriptor {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 }
@@ -1653,7 +1665,7 @@ message SRenderEnginePluginDescriptor {
 	optional int64 oid = 2;
 }
 
-message SQueryEnginePluginDescriptor {
+message SWebModulePluginDescriptor {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 }
@@ -1672,21 +1684,21 @@ message SServicePluginDescriptor {
 
 message SPluginDescriptor {
 	required string __actual_type = 1;
-	optional SWebModulePluginDescriptor __SWebModulePluginDescriptor = 2;
-	optional SModelComparePluginDescriptor __SModelComparePluginDescriptor = 3;
-	optional SDeserializerPluginDescriptor __SDeserializerPluginDescriptor = 4;
-	optional SRenderEnginePluginDescriptor __SRenderEnginePluginDescriptor = 5;
-	optional SQueryEnginePluginDescriptor __SQueryEnginePluginDescriptor = 6;
-	optional SModelMergerPluginDescriptor __SModelMergerPluginDescriptor = 7;
-	optional SSerializerPluginDescriptor __SSerializerPluginDescriptor = 8;
-	optional SServicePluginDescriptor __SServicePluginDescriptor = 9;
+	optional SQueryEnginePluginDescriptor __SQueryEnginePluginDescriptor = 2;
+	optional SRenderEnginePluginDescriptor __SRenderEnginePluginDescriptor = 3;
+	optional SModelMergerPluginDescriptor __SModelMergerPluginDescriptor = 4;
+	optional SModelComparePluginDescriptor __SModelComparePluginDescriptor = 5;
+	optional SWebModulePluginDescriptor __SWebModulePluginDescriptor = 6;
+	optional SSerializerPluginDescriptor __SSerializerPluginDescriptor = 7;
+	optional SServicePluginDescriptor __SServicePluginDescriptor = 8;
+	optional SDeserializerPluginDescriptor __SDeserializerPluginDescriptor = 9;
 	optional string defaultName = 10;
-	optional bool enabled = 11;
-	optional string simpleName = 12;
-	optional int32 rid = 13;
-	optional string location = 14;
-	optional int64 oid = 15;
-	optional string description = 16;
+	optional string simpleName = 11;
+	optional bool enabled = 12;
+	optional string location = 13;
+	optional int32 rid = 14;
+	optional string description = 15;
+	optional int64 oid = 16;
 	optional string pluginClassName = 17;
 }
 
@@ -1979,15 +1991,15 @@ message SDatabaseInformationCategory {
 }
 
 message SDatabaseInformation {
-	optional int64 created = 1;
-	optional int32 numberOfProjects = 2;
-	optional int32 rid = 3;
-	optional string location = 4;
+	optional string location = 1;
+	optional int64 created = 2;
+	optional int32 numberOfProjects = 3;
+	optional int32 rid = 4;
 	optional int64 oid = 5;
 	repeated SDatabaseInformationCategory categories = 6;
 	optional int32 numberOfUsers = 7;
-	optional int64 databaseSizeInBytes = 8;
-	optional string type = 9;
+	optional string type = 8;
+	optional int64 databaseSizeInBytes = 9;
 	optional int32 schemaVersion = 10;
 	optional int32 numberOfCheckouts = 11;
 	optional int32 numberOfRevisions = 12;
@@ -2088,8 +2100,8 @@ message SDownloadResult {
 	required string __actual_type = 1;
 	optional SCheckoutResult __SCheckoutResult = 2;
 	optional int32 rid = 3;
-	optional int64 oid = 4;
-	optional bytes file = 5;
+	optional bytes file = 4;
+	optional int64 oid = 5;
 	optional int32 revisionNr = 6;
 	optional string projectName = 7;
 }
@@ -2280,11 +2292,55 @@ message GetLoggedInUserResponse {
 message GetLogsRequest {
 }
 
-message SDatabaseCreated {
+message SProjectDeleted {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
-	optional string path = 3;
-	optional int32 version = 4;
+	optional int64 projectId = 3;
+}
+
+message SRevisionBranched {
+	optional int64 newrevisionId = 1;
+	optional int32 rid = 2;
+	optional int64 oid = 3;
+	optional int64 oldrevisionId = 4;
+}
+
+message SUserRemovedFromProject {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 userId = 3;
+	optional int64 projectId = 4;
+}
+
+message SNewRevisionAdded {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 projectId = 3;
+	optional int64 revisionId = 4;
+}
+
+message SNewUserAdded {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 userId = 3;
+}
+
+message SUserUndeleted {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 userId = 3;
+}
+
+message SNewCheckoutAdded {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 checkoutId = 3;
+}
+
+message SRevisionUpdated {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 revisionId = 3;
 }
 
 enum SNotifictionResultEnum{
@@ -2305,22 +2361,15 @@ message SRemoteServiceCalled {
 	repeated string warnings = 8;
 }
 
-message SPasswordChanged {
+message SSettingsSaved {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SUserChanged {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 	optional int64 userId = 3;
-}
-
-message SNewCheckoutAdded {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional int64 checkoutId = 3;
-}
-
-message SGeoTagUpdated {
-	optional int32 rid = 1;
-	optional int64 geoTagId = 2;
-	optional int64 oid = 3;
 }
 
 message SExtendedDataAddedToProject {
@@ -2330,14 +2379,22 @@ message SExtendedDataAddedToProject {
 	optional int64 extendedDataId = 4;
 }
 
-message SServerStarted {
+message SExtendedDataAddedToRevision {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 extendedDataId = 3;
+	optional int64 revisionId = 4;
+}
+
+message SNewObjectIDMUploaded {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 }
 
-message SSettingsSaved {
+message SGeoTagUpdated {
 	optional int32 rid = 1;
-	optional int64 oid = 2;
+	optional int64 geoTagId = 2;
+	optional int64 oid = 3;
 }
 
 message SPasswordReset {
@@ -2346,34 +2403,11 @@ message SPasswordReset {
 	optional int64 userId = 3;
 }
 
-message SNewUserAdded {
+message SDatabaseCreated {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
-	optional int64 userId = 3;
-}
-
-message SUserDeleted {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional int64 userId = 3;
-}
-
-message SNewObjectIDMUploaded {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SRevisionUpdated {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional int64 revisionId = 3;
-}
-
-message SUserRemovedFromProject {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional int64 userId = 3;
-	optional int64 projectId = 4;
+	optional string path = 3;
+	optional int32 version = 4;
 }
 
 message SNewProjectAdded {
@@ -2383,24 +2417,9 @@ message SNewProjectAdded {
 	optional int64 parentProjectId = 4;
 }
 
-message SExtendedDataAddedToRevision {
+message SDownload {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
-	optional int64 extendedDataId = 3;
-	optional int64 revisionId = 4;
-}
-
-message SRevisionBranched {
-	optional int64 newrevisionId = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
-	optional int64 oldrevisionId = 4;
-}
-
-message SProjectUndeleted {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional int64 projectId = 3;
 }
 
 message SUserAddedToProject {
@@ -2410,69 +2429,62 @@ message SUserAddedToProject {
 	optional int64 projectId = 4;
 }
 
+message SPasswordChanged {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 userId = 3;
+}
+
+message SProjectUndeleted {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 projectId = 3;
+}
+
+message SUserDeleted {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 userId = 3;
+}
+
 message SProjectUpdated {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 	optional int64 projectId = 3;
 }
 
-message SNewRevisionAdded {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional int64 projectId = 3;
-	optional int64 revisionId = 4;
-}
-
-message SUserUndeleted {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional int64 userId = 3;
-}
-
-message SProjectDeleted {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional int64 projectId = 3;
-}
-
-message SUserChanged {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional int64 userId = 3;
-}
-
-message SDownload {
+message SServerStarted {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 }
 
 message SLogAction {
 	required string __actual_type = 1;
-	optional SDatabaseCreated __SDatabaseCreated = 2;
-	optional SRemoteServiceCalled __SRemoteServiceCalled = 3;
-	optional SPasswordChanged __SPasswordChanged = 4;
-	optional SNewCheckoutAdded __SNewCheckoutAdded = 5;
-	optional SGeoTagUpdated __SGeoTagUpdated = 6;
-	optional SExtendedDataAddedToProject __SExtendedDataAddedToProject = 7;
-	optional SServerStarted __SServerStarted = 8;
-	optional SSettingsSaved __SSettingsSaved = 9;
-	optional SPasswordReset __SPasswordReset = 10;
-	optional SNewUserAdded __SNewUserAdded = 11;
-	optional SUserDeleted __SUserDeleted = 12;
-	optional SNewObjectIDMUploaded __SNewObjectIDMUploaded = 13;
-	optional SRevisionUpdated __SRevisionUpdated = 14;
-	optional SUserRemovedFromProject __SUserRemovedFromProject = 15;
-	optional SNewProjectAdded __SNewProjectAdded = 16;
-	optional SExtendedDataAddedToRevision __SExtendedDataAddedToRevision = 17;
-	optional SRevisionBranched __SRevisionBranched = 18;
-	optional SProjectUndeleted __SProjectUndeleted = 19;
-	optional SUserAddedToProject __SUserAddedToProject = 20;
-	optional SProjectUpdated __SProjectUpdated = 21;
-	optional SNewRevisionAdded __SNewRevisionAdded = 22;
-	optional SUserUndeleted __SUserUndeleted = 23;
-	optional SProjectDeleted __SProjectDeleted = 24;
-	optional SUserChanged __SUserChanged = 25;
-	optional SDownload __SDownload = 26;
+	optional SProjectDeleted __SProjectDeleted = 2;
+	optional SRevisionBranched __SRevisionBranched = 3;
+	optional SUserRemovedFromProject __SUserRemovedFromProject = 4;
+	optional SNewRevisionAdded __SNewRevisionAdded = 5;
+	optional SNewUserAdded __SNewUserAdded = 6;
+	optional SUserUndeleted __SUserUndeleted = 7;
+	optional SNewCheckoutAdded __SNewCheckoutAdded = 8;
+	optional SRevisionUpdated __SRevisionUpdated = 9;
+	optional SRemoteServiceCalled __SRemoteServiceCalled = 10;
+	optional SSettingsSaved __SSettingsSaved = 11;
+	optional SUserChanged __SUserChanged = 12;
+	optional SExtendedDataAddedToProject __SExtendedDataAddedToProject = 13;
+	optional SExtendedDataAddedToRevision __SExtendedDataAddedToRevision = 14;
+	optional SNewObjectIDMUploaded __SNewObjectIDMUploaded = 15;
+	optional SGeoTagUpdated __SGeoTagUpdated = 16;
+	optional SPasswordReset __SPasswordReset = 17;
+	optional SDatabaseCreated __SDatabaseCreated = 18;
+	optional SNewProjectAdded __SNewProjectAdded = 19;
+	optional SDownload __SDownload = 20;
+	optional SUserAddedToProject __SUserAddedToProject = 21;
+	optional SPasswordChanged __SPasswordChanged = 22;
+	optional SProjectUndeleted __SProjectUndeleted = 23;
+	optional SUserDeleted __SUserDeleted = 24;
+	optional SProjectUpdated __SProjectUpdated = 25;
+	optional SServerStarted __SServerStarted = 26;
 	optional int64 executorId = 27;
 	optional int32 rid = 28;
 	optional int64 oid = 29;
@@ -2530,8 +2542,8 @@ message GetMigrationsRequest {
 message SMigration {
 	optional bool executed = 1;
 	optional int32 rid = 2;
-	optional int64 oid = 3;
-	optional string description = 4;
+	optional string description = 3;
+	optional int64 oid = 4;
 	optional int32 number = 5;
 }
 
@@ -2626,17 +2638,17 @@ message SPrimitiveDefinition {
 
 message STypeDefinition {
 	required string __actual_type = 1;
-	optional SArrayDefinition __SArrayDefinition = 2;
-	optional SPrimitiveDefinition __SPrimitiveDefinition = 3;
-	optional SObjectDefinition __SObjectDefinition = 4;
+	optional SObjectDefinition __SObjectDefinition = 2;
+	optional SArrayDefinition __SArrayDefinition = 3;
+	optional SPrimitiveDefinition __SPrimitiveDefinition = 4;
 }
 
 message SParameterDefinition {
 	optional string description = 1;
 	optional string name = 2;
 	optional int64 defaultValueId = 3;
-	optional bool required = 4;
-	optional STypeDefinition type = 5;
+	optional STypeDefinition type = 4;
+	optional bool required = 5;
 }
 
 message SObjectDefinition {
@@ -2652,16 +2664,10 @@ message GetPluginSettingsRequest {
 	optional int64 poid = 1;
 }
 
-message SByteArrayType {
+message SBooleanType {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
-	optional bytes value = 3;
-}
-
-message SDoubleType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional double value = 3;
+	optional bool value = 3;
 }
 
 message SLongType {
@@ -2670,10 +2676,16 @@ message SLongType {
 	optional int64 value = 3;
 }
 
-message SBooleanType {
+message SDoubleType {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
-	optional bool value = 3;
+	optional double value = 3;
+}
+
+message SByteArrayType {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional bytes value = 3;
 }
 
 message SStringType {
@@ -2684,10 +2696,10 @@ message SStringType {
 
 message SPrimitiveType {
 	required string __actual_type = 1;
-	optional SByteArrayType __SByteArrayType = 2;
-	optional SDoubleType __SDoubleType = 3;
-	optional SLongType __SLongType = 4;
-	optional SBooleanType __SBooleanType = 5;
+	optional SBooleanType __SBooleanType = 2;
+	optional SLongType __SLongType = 3;
+	optional SDoubleType __SDoubleType = 4;
+	optional SByteArrayType __SByteArrayType = 5;
 	optional SStringType __SStringType = 6;
 	optional int32 rid = 7;
 	optional int64 oid = 8;
@@ -2725,6 +2737,42 @@ message SObjectType {
 message GetPluginSettingsResponse {
 	optional string errorMessage = 1;
 	optional SObjectType value = 2;
+}
+
+message GetProgressRequest {
+	optional int64 topicId = 1;
+}
+
+message GetProgressResponse {
+	optional string errorMessage = 1;
+	optional SLongActionState value = 2;
+}
+
+message GetProgressTopicsOnProjectRequest {
+	optional int64 poid = 1;
+}
+
+message GetProgressTopicsOnProjectResponse {
+	optional string errorMessage = 1;
+	repeated int64 value = 2;
+}
+
+message GetProgressTopicsOnRevisionRequest {
+	optional int64 poid = 1;
+	optional int64 roid = 2;
+}
+
+message GetProgressTopicsOnRevisionResponse {
+	optional string errorMessage = 1;
+	repeated int64 value = 2;
+}
+
+message GetProgressTopicsOnServerRequest {
+}
+
+message GetProgressTopicsOnServerResponse {
+	optional string errorMessage = 1;
+	repeated int64 value = 2;
 }
 
 message GetProjectByPoidRequest {
@@ -3331,11 +3379,32 @@ enum SProgressTopicType{
 	BRANCH = 3;
 }
 
-message RegisterProgressTopicRequest {
+message RegisterProgressOnProjectTopicRequest {
+	optional SProgressTopicType type = 1;
+	optional int64 poid = 2;
+	optional string description = 3;
+}
+
+message RegisterProgressOnProjectTopicResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
+message RegisterProgressOnRevisionTopicRequest {
 	optional SProgressTopicType type = 1;
 	optional int64 poid = 2;
 	optional int64 roid = 3;
 	optional string description = 4;
+}
+
+message RegisterProgressOnRevisionTopicResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
+message RegisterProgressTopicRequest {
+	optional SProgressTopicType type = 1;
+	optional string description = 2;
 }
 
 message RegisterProgressTopicResponse {

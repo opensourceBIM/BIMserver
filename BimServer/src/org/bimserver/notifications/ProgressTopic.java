@@ -12,27 +12,35 @@ public class ProgressTopic extends Topic {
 	private long uoid;
 	private SProgressTopicType type;
 	private String description;
-	private Long roid;
-	private Long poid;
+	private ProgressTopicKey key;
+	private LongActionState lastProgress;
 
-	public ProgressTopic(long uoid, Long poid, Long roid, SProgressTopicType type, String description) {
+	public ProgressTopic(ProgressTopicKey key, long uoid, SProgressTopicType type, String description) {
+		this.key = key;
 		this.uoid = uoid;
-		this.poid = poid;
-		this.roid = roid;
 		this.type = type;
 		this.description = description;
 	}
 	
-	public void updateProgress(ProgressTopicKey progressKey, LongActionState state) {
+	public ProgressTopicKey getKey() {
+		return key;
+	}
+	
+	public void updateProgress(LongActionState state) {
+		lastProgress = state;
 		for (EndPoint endPoint : getEndPoints()) {
 			try {
-				endPoint.getNotificationInterface().progress(progressKey.getId(), new SConverter().convertToSObject(state));
+				endPoint.getNotificationInterface().progress(key.getId(), new SConverter().convertToSObject(state));
 			} catch (UserException e) {
 				e.printStackTrace();
 			} catch (ServerException e) {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public LongActionState getLastProgress() {
+		return lastProgress;
 	}
 	
 	public SProgressTopicType getType() {
