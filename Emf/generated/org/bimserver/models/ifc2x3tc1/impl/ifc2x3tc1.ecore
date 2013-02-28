@@ -3242,10 +3242,7 @@
         eType="#//IfcRelAssignsToProduct" unsettable="true" eOpposite="#//IfcRelAssignsToProduct/RelatingProduct">
       <eAnnotations source="inverse"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="geometryInstance" eType="#//GeometryInstance">
-      <eAnnotations source="hidden"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bounds" eType="#//Bounds">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="geometry" eType="#//GeometryInfo">
       <eAnnotations source="hidden"/>
     </eStructuralFeatures>
   </eClassifiers>
@@ -9011,16 +9008,20 @@
   <eClassifiers xsi:type="ecore:EClass" name="IfcValue" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcVectorOrDirection" abstract="true"
       interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Bounds">
+  <eClassifiers xsi:type="ecore:EClass" name="GeometryInfo">
     <eAnnotations source="hidden"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="min" eType="#//Vector3f">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="minBounds" eType="#//Vector3f">
       <eAnnotations source="embedsreference"/>
       <eAnnotations source="hidden"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="max" eType="#//Vector3f">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="maxBounds" eType="#//Vector3f">
       <eAnnotations source="embedsreference"/>
       <eAnnotations source="hidden"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startVertex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="primitiveCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="#//GeometryData"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Vector3f">
     <eAnnotations source="hidden"/>
@@ -9028,11 +9029,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="z" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GeometryInstance">
+  <eClassifiers xsi:type="ecore:EClass" name="GeometryData">
     <eAnnotations source="hidden"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startVertex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="primitiveCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="indices" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vertices" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="normals" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>

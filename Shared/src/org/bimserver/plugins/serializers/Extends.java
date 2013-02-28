@@ -19,7 +19,7 @@ package org.bimserver.plugins.serializers;
 
 import java.util.Arrays;
 
-import org.bimserver.models.ifc2x3tc1.Bounds;
+import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.Vector3f;
 
 public class Extends {
@@ -43,9 +43,9 @@ public class Extends {
 		return "min: " + Arrays.toString(min) + ", max: " + Arrays.toString(max);
 	}
 
-	public void integrate(Bounds bounds) {
-		Vector3f min = bounds.getMin();
-		Vector3f max = bounds.getMax();
+	public void integrate(GeometryInfo geometryInfo) {
+		Vector3f min = geometryInfo.getMinBounds();
+		Vector3f max = geometryInfo.getMaxBounds();
 		addToMinExtents(new float[]{min.getX(), min.getY(), min.getZ()});
 		addToMaxExtents(new float[]{max.getX(), max.getY(), max.getZ()});
 	}

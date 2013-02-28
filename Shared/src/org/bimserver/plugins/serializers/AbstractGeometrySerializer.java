@@ -19,7 +19,7 @@ package org.bimserver.plugins.serializers;
 
 import java.util.HashMap;
 
-import org.bimserver.models.ifc2x3tc1.Bounds;
+import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.plugins.renderengine.RenderEngineException;
 
@@ -43,9 +43,9 @@ public abstract class AbstractGeometrySerializer extends EmfSerializer {
 		}
 		Extends extents = geometryExtents.get(id);
 
-		Bounds bounds = ifcObject.getBounds();
-		if (bounds != null) {
-			extents.integrate(bounds);
+		GeometryInfo geometryInfo = ifcObject.getGeometry();
+		if (geometryInfo != null) {
+			extents.integrate(geometryInfo);
 		}
 		sceneExtends.addToMinExtents(extents.min);
 		sceneExtends.addToMaxExtents(extents.max);

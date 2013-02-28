@@ -29,8 +29,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProduct#getObjectPlacement <em>Object Placement</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProduct#getRepresentation <em>Representation</em>}</li>
  *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProduct#getReferencedBy <em>Referenced By</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProduct#getGeometryInstance <em>Geometry Instance</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProduct#getBounds <em>Bounds</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcProduct#getGeometry <em>Geometry</em>}</li>
  * </ul>
  * </p>
  *
@@ -189,55 +188,29 @@ public interface IfcProduct extends IfcObject {
 	boolean isSetReferencedBy();
 
 	/**
-	 * Returns the value of the '<em><b>Geometry Instance</b></em>' reference.
+	 * Returns the value of the '<em><b>Geometry</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Geometry Instance</em>' reference isn't clear,
+	 * If the meaning of the '<em>Geometry</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Geometry Instance</em>' reference.
-	 * @see #setGeometryInstance(GeometryInstance)
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcProduct_GeometryInstance()
+	 * @return the value of the '<em>Geometry</em>' reference.
+	 * @see #setGeometry(GeometryInfo)
+	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcProduct_Geometry()
 	 * @model
 	 * @generated
 	 */
-	GeometryInstance getGeometryInstance();
+	GeometryInfo getGeometry();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcProduct#getGeometryInstance <em>Geometry Instance</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcProduct#getGeometry <em>Geometry</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Geometry Instance</em>' reference.
-	 * @see #getGeometryInstance()
+	 * @param value the new value of the '<em>Geometry</em>' reference.
+	 * @see #getGeometry()
 	 * @generated
 	 */
-	void setGeometryInstance(GeometryInstance value);
-
-	/**
-	 * Returns the value of the '<em><b>Bounds</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Bounds</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Bounds</em>' reference.
-	 * @see #setBounds(Bounds)
-	 * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcProduct_Bounds()
-	 * @model
-	 * @generated
-	 */
-	Bounds getBounds();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc2x3tc1.IfcProduct#getBounds <em>Bounds</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Bounds</em>' reference.
-	 * @see #getBounds()
-	 * @generated
-	 */
-	void setBounds(Bounds value);
+	void setGeometry(GeometryInfo value);
 
 } // IfcProduct

@@ -31,7 +31,8 @@ import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.models.ifc2x3tc1.GeometryInstance;
+import org.bimserver.models.ifc2x3tc1.GeometryData;
+import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingElementProxy;
 import org.bimserver.models.ifc2x3tc1.IfcColumn;
 import org.bimserver.models.ifc2x3tc1.IfcCurtainWall;
@@ -299,10 +300,11 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 			return;
 		}
 
-		GeometryInstance geometryInstance = ifcProductObject.getGeometryInstance();
-		if (geometryInstance != null) {
-			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryInstance.getVertices());
-			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryInstance.getNormals());
+		GeometryInfo geometryInfo = ifcProductObject.getGeometry();
+		if (geometryInfo != null) {
+			GeometryData geometryData = geometryInfo.getData();
+			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryData.getVertices());
+			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
 
 			String id = generateId();
 			if (!converted.containsKey(material)) {
@@ -315,7 +317,7 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 				name = ifcProductObject.getGlobalId();
 			}
 
-			int t = geometryInstance.getPrimitiveCount() * 3 * 3;
+			int t = geometryInfo.getPrimitiveCount() * 3 * 3;
 
 			out.println("      <geometry id=\"geom-" + id + "\" name=\"" + name + "\">");
 			out.println("                      <mesh>");
@@ -333,7 +335,7 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 
 			out.println("</float_array>");
 			out.println("                                                     <technique_common>");
-			out.println("                                                                     <accessor count=\"" + (geometryInstance.getPrimitiveCount() * 3)
+			out.println("                                                                     <accessor count=\"" + (geometryInfo.getPrimitiveCount() * 3)
 					+ "\" offset=\"0\" source=\"#positions-array-" + id + "\" stride=\"3\">");
 			out.println("                                                                                    <param name=\"X\" type=\"float\"></param>");
 			out.println("                                                                                    <param name=\"Y\" type=\"float\"></param>");
@@ -356,7 +358,7 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 
 			out.println("</float_array>");
 			out.println("                                                     <technique_common>");
-			out.println("                                                                     <accessor count=\"" + (geometryInstance.getPrimitiveCount() * 3)
+			out.println("                                                                     <accessor count=\"" + (geometryInfo.getPrimitiveCount() * 3)
 					+ "\" offset=\"0\" source=\"#normals-array-" + id + "\" stride=\"3\">");
 			out.println("                                                                                    <param name=\"X\" type=\"float\"></param>");
 			out.println("                                                                                    <param name=\"Y\" type=\"float\"></param>");
@@ -370,11 +372,11 @@ public class ColladaSerializer extends AbstractGeometrySerializer {
 			out.println("                                                     <input semantic=\"NORMAL\" source=\"#normals-" + id + "\"/>");
 			out.println("                                     </vertices>");
 
-			out.println("                                     <triangles count=\"" + (geometryInstance.getPrimitiveCount()) * 3 + "\" material=\"Material-" + id + "\">");
+			out.println("                                     <triangles count=\"" + (geometryInfo.getPrimitiveCount()) * 3 + "\" material=\"Material-" + id + "\">");
 			out.println("                                                     <input offset=\"0\" semantic=\"VERTEX\" source=\"#vertices-" + id + "\"/>");
 			out.print("                                                         <p>");
 
-			int count = geometryInstance.getPrimitiveCount() * 3;
+			int count = geometryInfo.getPrimitiveCount() * 3;
 			for (int i = 0; i < count; i += 3) {
 				out.print(i + " ");
 				out.print((i + 2)  + " ");

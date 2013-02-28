@@ -30,7 +30,8 @@ import javax.xml.bind.JAXBException;
 
 import org.bimserver.citygml.xbuilding.GlobalIdType;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.models.ifc2x3tc1.GeometryInstance;
+import org.bimserver.models.ifc2x3tc1.GeometryData;
+import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcBuilding;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3tc1.IfcColumn;
@@ -653,9 +654,10 @@ public class CityGmlSerializer extends AbstractGeometrySerializer {
 	}
 
 	private void setGeometry(MultiSurface ms, IfcProduct ifcProduct) {
-		GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
-		if (geometryInstance != null) {
-			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryInstance.getVertices());
+		GeometryInfo geometryInfo = ifcProduct.getGeometry();
+		if (geometryInfo != null) {
+			GeometryData geometryData = geometryInfo.getData();
+			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryData.getVertices());
 
 			while (verticesBuffer.hasRemaining()) {
 				float x1 = verticesBuffer.getFloat();

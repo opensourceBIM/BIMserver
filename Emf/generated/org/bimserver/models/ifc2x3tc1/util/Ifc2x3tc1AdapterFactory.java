@@ -4163,8 +4163,8 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseBounds(Bounds object) {
-			return createBoundsAdapter();
+		public Adapter caseGeometryInfo(GeometryInfo object) {
+			return createGeometryInfoAdapter();
 		}
 
 		@Override
@@ -4173,8 +4173,8 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseGeometryInstance(GeometryInstance object) {
-			return createGeometryInstanceAdapter();
+		public Adapter caseGeometryData(GeometryData object) {
+			return createGeometryDataAdapter();
 		}
 
 		@Override
@@ -15635,16 +15635,16 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.Bounds <em>Bounds</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.GeometryInfo <em>Geometry Info</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.ifc2x3tc1.Bounds
+	 * @see org.bimserver.models.ifc2x3tc1.GeometryInfo
 	 * @generated
 	 */
-	public Adapter createBoundsAdapter() {
+	public Adapter createGeometryInfoAdapter() {
 		return null;
 	}
 
@@ -15663,16 +15663,16 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.GeometryInstance <em>Geometry Instance</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc2x3tc1.GeometryData <em>Geometry Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bimserver.models.ifc2x3tc1.GeometryInstance
+	 * @see org.bimserver.models.ifc2x3tc1.GeometryData
 	 * @generated
 	 */
-	public Adapter createGeometryInstanceAdapter() {
+	public Adapter createGeometryDataAdapter() {
 		return null;
 	}
 

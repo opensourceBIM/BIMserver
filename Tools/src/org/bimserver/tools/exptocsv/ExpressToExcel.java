@@ -76,8 +76,7 @@ public class ExpressToExcel {
 
 				if (x > 0) {
 					row = 0;
-					workbook.createSheet(domain, i);
-					WritableSheet excelSheet = workbook.getSheet(i);
+					WritableSheet excelSheet = workbook.createSheet(domain, i);
 					for (String className : ifcDoc.getClassNames(domain)) {
 						EClassifier eClassifier = metaDataManager.getEClassifierCaseInsensitive(className);
 						if (eClassifier instanceof EClass) {

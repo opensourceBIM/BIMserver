@@ -76,7 +76,7 @@ for (SMethod method : sService.getMethods()) {
     
 	for (SParameter parameter : method.getParameters()) {
 
-    stringBuffer.append(parameter.getType());
+    stringBuffer.append(parameter.getType().toJavaCode());
     stringBuffer.append(TEXT_10);
     stringBuffer.append(parameter.getName());
     stringBuffer.append(parameter.isLast() ? "" : ", ");

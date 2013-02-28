@@ -30,7 +30,9 @@ import java.util.Set;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.client.channels.Channel;
 import org.bimserver.client.notifications.SocketNotificationsClient;
+import org.bimserver.emf.MetaDataManager;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.AutologinAuthenticationInfo;
 import org.bimserver.shared.ConnectDisconnectListener;
@@ -55,6 +57,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 	private final ServicesMap servicesMap;
 	private final SocketNotificationsClient notificationsClient;
 	private final String baseAddress;
+	private MetaDataManager metaDataManager = new MetaDataManager();
 	private AuthenticationInfo authenticationInfo = new AnonymousAuthentication();
 	private String token;
 
@@ -63,8 +66,13 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 		this.servicesMap = servicesMap;
 		this.channel = channel;
 		this.notificationsClient = new SocketNotificationsClient();
+		metaDataManager.addEPackage(Ifc2x3tc1Package.eINSTANCE);
 	}
 
+	public MetaDataManager getMetaDataManager() {
+		return metaDataManager;
+	}
+	
 	public void setAuthentication(AuthenticationInfo authenticationInfo) throws ServerException, UserException, ChannelConnectionException {
 		this.authenticationInfo = authenticationInfo;
 		connect();

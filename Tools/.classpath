@@ -8,5 +8,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/buildingSMARTLibrary"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
 	<classpathentry kind="lib" path="lib/jxl.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/BimServerClientLib"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

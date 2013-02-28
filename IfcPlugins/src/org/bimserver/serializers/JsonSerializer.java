@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.codec.binary.Base64;
 import org.bimserver.emf.Delegate;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
@@ -14,6 +15,8 @@ import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
+import com.google.common.base.Charsets;
 
 public class JsonSerializer extends IfcSerializer {
 
@@ -34,31 +37,38 @@ public class JsonSerializer extends IfcSerializer {
 
 	@Override
 	protected boolean write(OutputStream outputStream) throws SerializerException {
-		if (out == null) {
-			out = new UTF8PrintWriter(outputStream);
-		}
-		if (mode == Mode.HEADER) {
-			out.write("{");
-			out.write("\"objects\":[");
-			mode = Mode.BODY;
-			iterator = getModel().iterator();
-			return true;
-		} else if (mode == Mode.BODY) {
-			if (iterator.hasNext()) {
-				IdEObject object = iterator.next();
-				if (((IdEObjectImpl) object).getLoadingState() == Delegate.State.LOADED) {
-					if (object.eClass().getEAnnotation("hidden") == null) {
-						if (!firstObject) {
-							out.write(",");
-						} else {
-							firstObject = false;
-						}
+		try {
+			if (out == null) {
+				out = new UTF8PrintWriter(outputStream);
+			}
+			if (mode == Mode.HEADER) {
+				out.write("{");
+				out.write("\"objects\":[");
+				mode = Mode.BODY;
+				iterator = getModel().iterator();
+				return true;
+			} else if (mode == Mode.BODY) {
+				if (iterator.hasNext()) {
+					IdEObject object = iterator.next();
+					if (!firstObject) {
+						out.write(",");
+					} else {
+						firstObject = false;
+					}
+					if (((IdEObjectImpl) object).getLoadingState() != Delegate.State.LOADED) {
 						out.write("{");
 						out.write("\"__oid\":" + object.getOid() + ",");
 						out.write("\"__type\":\"" + object.eClass().getName() + "\",");
+						out.write("\"__state\":\"NOT_LOADED\"");
+						out.write("}");
+					} else {
+						out.write("{");
+						out.write("\"__oid\":" + object.getOid() + ",");
+						out.write("\"__type\":\"" + object.eClass().getName() + "\",");
+						out.write("\"__state\":\"LOADED\",");
 						boolean firstF = true;
 						for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
-							if (eStructuralFeature.getEAnnotation("hidden") == null) {
+		//						if (eStructuralFeature.getEAnnotation("hidden") == null) {
 								if (eStructuralFeature instanceof EReference) {
 									Object value = object.eGet(eStructuralFeature);
 									if (value != null) {
@@ -151,22 +161,24 @@ public class JsonSerializer extends IfcSerializer {
 										}
 									}
 								}
-							}
+		//						}
 						}
 						out.write("}");
 					}
+					return true;
+				} else {
+					mode = Mode.FOOTER;
+					return true;
 				}
-				return true;
-			} else {
-				mode = Mode.FOOTER;
-				return true;
+			} else if (mode == Mode.FOOTER) {
+				out.write("]");
+				out.write("}");
+				out.flush();
+				mode = Mode.DONE;
+				return false;
 			}
-		} else if (mode == Mode.FOOTER) {
-			out.write("]");
-			out.write("}");
-			out.flush();
-			mode = Mode.DONE;
-			return false;
+		} catch (Throwable e) {
+			throw new SerializerException(e);
 		}
 		return false;
 	}
@@ -187,6 +199,8 @@ public class JsonSerializer extends IfcSerializer {
 	private void writePrimitive(PrintWriter out, EStructuralFeature feature, Object value) {
 		if (value instanceof String) {
 			out.write("\"" + value + "\"");
+		} else if (value instanceof byte[]) {
+			out.write("\"" + new String(Base64.encodeBase64((byte[])value), Charsets.UTF_8) + "\"");
 		} else if (value instanceof Enum) {
 			 if (value.toString().equalsIgnoreCase("true") || value.toString().equalsIgnoreCase("false")) {
 				 out.write(value.toString().toLowerCase());

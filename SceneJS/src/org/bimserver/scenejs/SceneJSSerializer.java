@@ -31,7 +31,8 @@ import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.models.ifc2x3tc1.GeometryInstance;
+import org.bimserver.models.ifc2x3tc1.GeometryData;
+import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcActorRole;
 import org.bimserver.models.ifc2x3tc1.IfcApplication;
 import org.bimserver.models.ifc2x3tc1.IfcBuilding;
@@ -424,10 +425,11 @@ public class SceneJSSerializer extends AbstractGeometrySerializer {
 		// Calculate an offset for the model to find its relative coordinates inside the bounding box (in order to center the scene) 
 		// TODO: In future use the geometry's bounding box to calculate a transformation matrix for the node along with relative coordinates
 		
-		GeometryInstance geometryInstance = ifcObject.getGeometryInstance();
-		if (geometryInstance != null) {
-			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryInstance.getVertices());
-			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryInstance.getNormals());
+		GeometryInfo geometryInfo = ifcObject.getGeometry();
+		if (geometryInfo != null) {
+			GeometryData geometryData = geometryInfo.getData();
+			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryData.getVertices());
+			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
 			
 			float[] modelOffset = new float[] {
 					-(sceneExtents.min[0] + sceneExtents.max[0]) * 0.5f,
@@ -446,7 +448,7 @@ public class SceneJSSerializer extends AbstractGeometrySerializer {
 			.put("primitive", "triangles")
 			.put("positions", verticesArray);
 			
-			int t = geometryInstance.getPrimitiveCount() * 3 * 3;
+			int t = geometryInfo.getPrimitiveCount() * 3 * 3;
 			
 			for (int i = 0; i < t; i++) {
 				verticesArray.put(verticesBuffer.getFloat());
@@ -460,7 +462,7 @@ public class SceneJSSerializer extends AbstractGeometrySerializer {
 			
 			JSONArray indicesArray = new JSONArray(); 
 			jsonObj.put("indices", indicesArray);
-			for (int i = 0; i < geometryInstance.getPrimitiveCount() * 3; i++) {
+			for (int i = 0; i < geometryInfo.getPrimitiveCount() * 3; i++) {
 				indicesArray.put(i);
 			}
 			return jsonObj;

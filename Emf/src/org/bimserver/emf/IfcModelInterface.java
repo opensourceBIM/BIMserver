@@ -181,4 +181,5 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	void generateMinimalExpressIds();
 
 	Collection<IdEObject> getUnidentifiedValues();
+	int countWithSubtypes(EClass eClass);
 }
