@@ -20,6 +20,7 @@ public class ClientDelegate extends Delegate {
 
 	@Override
 	protected void internalLoad(IdEObject idEObject) {
+		model.loadExplicit(idEObject.getOid());
 	}
 
 	@Override
@@ -49,10 +50,12 @@ public class ClientDelegate extends Delegate {
 					model.getBimServerClient().getServiceInterface().setDoubleAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Double)newValue);
 				} else if (newValue instanceof Boolean) {
 					model.getBimServerClient().getServiceInterface().setBooleanAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Boolean)newValue);
-				} else if (newValue instanceof Boolean) {
+				} else if (newValue instanceof Integer) {
 					model.getBimServerClient().getServiceInterface().setIntegerAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Integer)newValue);
+				} else if (newValue instanceof byte[]) {
+					model.getBimServerClient().getServiceInterface().setByteArrayAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Byte[])newValue);
 				} else if (newValue instanceof Enum) {
-					model.getBimServerClient().getServiceInterface().setEnumAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (String)newValue);
+					model.getBimServerClient().getServiceInterface().setEnumAttribute(model.getTransactionId(), getOid(), eFeature.getName(), ((Enum<?>)newValue).toString());
 				} else if (newValue instanceof IdEObject) {
 					model.getBimServerClient().getServiceInterface().setReference(model.getTransactionId(), getOid(), eFeature.getName(), ((IdEObject)newValue).getOid());
 				} else {

@@ -34,7 +34,7 @@ for (SMethod method : sService.getMethods()) {
 	public <%=method.getReturnType()%> <%=method.getName()%>(
 <%
 	for (SParameter parameter : method.getParameters()) {
-%><%=parameter.getType()%> <%=parameter.getName()%><%=parameter.isLast() ? "" : ", "%><%
+%><%=parameter.getType().toJavaCode()%> <%=parameter.getName()%><%=parameter.isLast() ? "" : ", "%><%
 	}
 %>) throws UserException, ServerException {
 <%

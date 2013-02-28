@@ -217,6 +217,8 @@ public abstract class Channel {
 			HttpResponse httpResponse = httpclient.execute(httppost);
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
 				return httpResponse.getEntity().getContent();
+			} else {
+				LOGGER.error(httpResponse.getStatusLine().getStatusCode() + " - " + httpResponse.getStatusLine().getReasonPhrase());
 			}
 		} catch (ClientProtocolException e) {
 			LOGGER.error("", e);

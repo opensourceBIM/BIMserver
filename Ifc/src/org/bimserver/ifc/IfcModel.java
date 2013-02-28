@@ -110,6 +110,20 @@ public class IfcModel implements IfcModelInterface {
 			}
 		}
 	}
+	
+	public void rebuildIndexPerClass(EClass eClass) {
+		if (indexPerClass == null) {
+			indexPerClass = new HashMap<EClass, List<? extends IdEObject>>();
+		}
+		ArrayList<IdEObject> list = new ArrayList<IdEObject>();
+		indexPerClass.put((EClass) eClass, list);
+		for (Long key : objects.keySet()) {
+			IdEObject value = objects.get((Long) key);
+			if (eClass.isInstance(value)) {
+				list.add(value);
+			}
+		}
+	}
 
 	private void buildIndexWithSubTypes() {
 		indexPerClassWithSubTypes = new HashMap<EClass, List<? extends IdEObject>>();
@@ -704,6 +718,15 @@ public class IfcModel implements IfcModelInterface {
 	@Override
 	public Iterator<IdEObject> iterator() {
 		return objects.values().iterator();
+	}
+
+	@Override
+	public int countWithSubtypes(EClass eClass) {
+		List<IdEObject> list = getAllWithSubTypes(eClass);
+		if (list == null) {
+			return 0;
+		}
+		return list.size();
 	}
 
 	@Override

@@ -1573,6 +1573,13 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "setIntegerAttribute.attributeName") String attributeName, 
 		@WebParam(name = "value", partName = "setIntegerAttribute.value") Integer value) throws ServerException, UserException;
 
+	@WebMethod(action = "setByteArrayAttribute")
+	void setByteArrayAttribute(
+		@WebParam(name = "tid", partName = "setByteArrayAttribute.tid") Long tid, 
+		@WebParam(name = "oid", partName = "setByteArrayAttribute.oid") Long oid,
+		@WebParam(name = "attributeName", partName = "setByteArrayAttribute.attributeName") String attributeName, 
+		@WebParam(name = "value", partName = "setByteArrayAttribute.value") Byte[] value) throws UserException, ServerException;
+
 	/**
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
@@ -2446,7 +2453,7 @@ public interface ServiceInterface extends PublicInterface {
 
 	@WebMethod(action = "getProgress")
 	SLongActionState getProgress(
-		@WebParam(name = "topicId", partName = "getProgress.topicId") Long topicId);
+		@WebParam(name = "topicId", partName = "getProgress.topicId") Long topicId) throws UserException, ServerException;
 	
 	@WebMethod(action = "getProgressTopicsOnRevision")
 	List<Long> getProgressTopicsOnRevision(

@@ -21,8 +21,7 @@ import org.bimserver.GeometryGenerator;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.models.ifc2x3tc1.Bounds;
-import org.bimserver.models.ifc2x3tc1.GeometryInstance;
+import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
@@ -51,15 +50,11 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 				new GeometryGenerator().generateGeometry(authorization.getUoid(), pluginManager, getDatabaseSession(), model, project.getId(), concreteRevision.getId(), revision, false, null);
 			} else {
 				for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
-					GeometryInstance geometryInstance = ifcProduct.getGeometryInstance();
-					if (geometryInstance != null) {
-						geometryInstance.loadExplicit();
-					}
-					Bounds bounds = ifcProduct.getBounds();
-					if (bounds != null) {
-						bounds.loadExplicit();
-						bounds.getMin().loadExplicit();
-						bounds.getMax().loadExplicit();
+					GeometryInfo geometryInfo = ifcProduct.getGeometry();
+					if (geometryInfo != null) {
+						geometryInfo.loadExplicit();
+						geometryInfo.getMinBounds().loadExplicit();
+						geometryInfo.getMaxBounds().loadExplicit();
 					}
 				}
 			}

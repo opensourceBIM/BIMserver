@@ -5775,7 +5775,7 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass boundsEClass = null;
+	private EClass geometryInfoEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -5789,7 +5789,7 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass geometryInstanceEClass = null;
+	private EClass geometryDataEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -23779,17 +23779,8 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIfcProduct_GeometryInstance() {
+	public EReference getIfcProduct_Geometry() {
 		return (EReference) getIfcProduct().getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getIfcProduct_Bounds() {
-		return (EReference) getIfcProduct().getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -35473,11 +35464,11 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBounds() {
-		if (boundsEClass == null) {
-			boundsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc2x3tc1Package.eNS_URI).getEClassifiers().get(982);
+	public EClass getGeometryInfo() {
+		if (geometryInfoEClass == null) {
+			geometryInfoEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc2x3tc1Package.eNS_URI).getEClassifiers().get(982);
 		}
-		return boundsEClass;
+		return geometryInfoEClass;
 	}
 
 	/**
@@ -35485,8 +35476,8 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBounds_Min() {
-		return (EReference) getBounds().getEStructuralFeatures().get(0);
+	public EReference getGeometryInfo_MinBounds() {
+		return (EReference) getGeometryInfo().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -35494,8 +35485,44 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBounds_Max() {
-		return (EReference) getBounds().getEStructuralFeatures().get(1);
+	public EReference getGeometryInfo_MaxBounds() {
+		return (EReference) getGeometryInfo().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGeometryInfo_StartVertex() {
+		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGeometryInfo_StartIndex() {
+		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGeometryInfo_PrimitiveCount() {
+		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGeometryInfo_Data() {
+		return (EReference) getGeometryInfo().getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -35542,11 +35569,11 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGeometryInstance() {
-		if (geometryInstanceEClass == null) {
-			geometryInstanceEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc2x3tc1Package.eNS_URI).getEClassifiers().get(984);
+	public EClass getGeometryData() {
+		if (geometryDataEClass == null) {
+			geometryDataEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(Ifc2x3tc1Package.eNS_URI).getEClassifiers().get(984);
 		}
-		return geometryInstanceEClass;
+		return geometryDataEClass;
 	}
 
 	/**
@@ -35554,8 +35581,8 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGeometryInstance_StartVertex() {
-		return (EAttribute) getGeometryInstance().getEStructuralFeatures().get(0);
+	public EAttribute getGeometryData_Indices() {
+		return (EAttribute) getGeometryData().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -35563,8 +35590,8 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGeometryInstance_StartIndex() {
-		return (EAttribute) getGeometryInstance().getEStructuralFeatures().get(1);
+	public EAttribute getGeometryData_Vertices() {
+		return (EAttribute) getGeometryData().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -35572,35 +35599,8 @@ public class Ifc2x3tc1PackageImpl extends EPackageImpl implements Ifc2x3tc1Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGeometryInstance_PrimitiveCount() {
-		return (EAttribute) getGeometryInstance().getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getGeometryInstance_Indices() {
-		return (EAttribute) getGeometryInstance().getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getGeometryInstance_Vertices() {
-		return (EAttribute) getGeometryInstance().getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getGeometryInstance_Normals() {
-		return (EAttribute) getGeometryInstance().getEStructuralFeatures().get(5);
+	public EAttribute getGeometryData_Normals() {
+		return (EAttribute) getGeometryData().getEStructuralFeatures().get(2);
 	}
 
 	/**

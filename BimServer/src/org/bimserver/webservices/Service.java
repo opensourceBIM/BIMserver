@@ -2344,6 +2344,12 @@ public class Service implements ServiceInterface {
 		requireAuthenticationAndRunningServer();
 		bimServer.getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
 	}
+
+	@Override
+	public void setByteArrayAttribute(Long tid, Long oid, String attributeName, Byte[] value) throws UserException {
+		requireAuthenticationAndRunningServer();
+		bimServer.getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+	}
 	
 	@Override
 	public void setLongAttribute(Long tid, Long oid, String attributeName, Long value) throws UserException {

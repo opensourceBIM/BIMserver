@@ -865,6 +865,9 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	public void setBooleanAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.util.List values) throws UserException, ServerException {
 	}
 	
+	public void setByteArrayAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Byte[] value) throws UserException, ServerException {
+	}
+	
 	public void setDefaultModelCompare(java.lang.Long oid) throws UserException, ServerException {
 	}
 	

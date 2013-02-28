@@ -27,7 +27,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-import org.bimserver.models.ifc2x3tc1.GeometryInstance;
+import org.bimserver.models.ifc2x3tc1.GeometryData;
+import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcMaterial;
 import org.bimserver.models.ifc2x3tc1.IfcMaterialLayer;
@@ -211,17 +212,18 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 	}
 
 	private void writeGeometryFromInstancesGeometryObject(PrintWriter writer, IfcProduct ifcObject, String material) throws IOException {
-		GeometryInstance geometryInstance = ifcObject.getGeometryInstance();
-		if (geometryInstance != null) {
-			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryInstance.getVertices());
-			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryInstance.getNormals());
+		GeometryInfo geometryInfo = ifcObject.getGeometry();
+		if (geometryInfo != null) {
+			GeometryData geometryData = geometryInfo.getData();
+			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryData.getVertices());
+			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
 
 			writer.print("\"material\":\"" + material + "\",");
 			writer.print("\"type\":\"geometry\",");
 			writer.print("\"coreId\":\"" + ifcObject.getOid() + "\",");
 			writer.print("\"primitive\":\"triangles\",");
 			writer.print("\"positions\":[");
-			int t = geometryInstance.getPrimitiveCount() * 3 * 3;
+			int t = geometryInfo.getPrimitiveCount() * 3 * 3;
 //			reorder(verticesBuffer, t);
 			for (int i = 0; i < t; i++) {
 				if (i < t - 1) {
@@ -240,7 +242,7 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 				}
 			}
 			writer.print("]");
-			writer.print(",\"nrindices\":" + (geometryInstance.getPrimitiveCount() * 3));
+			writer.print(",\"nrindices\":" + (geometryInfo.getPrimitiveCount() * 3));
 		}
 	}
 	

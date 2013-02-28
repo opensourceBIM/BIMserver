@@ -33,7 +33,8 @@ import java.util.Set;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.models.ifc2x3tc1.GeometryInstance;
+import org.bimserver.models.ifc2x3tc1.GeometryData;
+import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcActorRole;
 import org.bimserver.models.ifc2x3tc1.IfcApplication;
 import org.bimserver.models.ifc2x3tc1.IfcBuilding;
@@ -418,29 +419,30 @@ public class StreamingSceneJSSerializer extends AbstractGeometrySerializer {
 	}
 
 	private void writeGeometryFromInstancesGeometryObject(JsonWriter jsonWriter, IfcProduct ifcObject) throws IOException {
-		GeometryInstance geometryInstance = ifcObject.getGeometryInstance();
+		GeometryInfo geometryInfo = ifcObject.getGeometry();
 		
-		if (geometryInstance != null) {
+		if (geometryInfo != null) {
+			GeometryData geometryData = geometryInfo.getData();
 			jsonWriter.beginObject();
-			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryInstance.getVertices());
-			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryInstance.getNormals());
+			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryData.getVertices());
+			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
 
 			jsonWriter.name("type").value("geometry");
 			jsonWriter.name("coreId").value(ifcObject.getGlobalId());
 			jsonWriter.name("primitive").value("triangles");
 			jsonWriter.name("positions").beginArray();
-			for (int i=0; i<geometryInstance.getPrimitiveCount() * 3 * 3; i++) {
+			for (int i=0; i<geometryInfo.getPrimitiveCount() * 3 * 3; i++) {
 				jsonWriter.value(verticesBuffer.getFloat());
 			}
 			jsonWriter.endArray();
 			jsonWriter.name("normals").beginArray();
-			for (int i=0; i<geometryInstance.getPrimitiveCount() * 3 * 3; i++) {
+			for (int i=0; i<geometryInfo.getPrimitiveCount() * 3 * 3; i++) {
 				jsonWriter.value(normalsBuffer.getFloat());
 			}
 			jsonWriter.endArray();
 			
 			jsonWriter.name("indices").beginArray();
-			for (int i = 0; i < geometryInstance.getPrimitiveCount() * 3; i++) {
+			for (int i = 0; i < geometryInfo.getPrimitiveCount() * 3; i++) {
 				jsonWriter.value(i);
 			}
 			jsonWriter.endArray();

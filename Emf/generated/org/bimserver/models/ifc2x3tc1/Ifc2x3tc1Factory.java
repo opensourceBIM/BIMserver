@@ -1044,6 +1044,15 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	IfcNullStyle createIfcNullStyle();
 
 	/**
+	 * Returns a new object of class '<em>Geometry Info</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Geometry Info</em>'.
+	 * @generated
+	 */
+	GeometryInfo createGeometryInfo();
+
+	/**
 	 * Returns a new object of class '<em>Ifc2 DComposite Curve</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6975,15 +6984,6 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	IfcCompoundPlaneAngleMeasure createIfcCompoundPlaneAngleMeasure();
 
 	/**
-	 * Returns a new object of class '<em>Bounds</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Bounds</em>'.
-	 * @generated
-	 */
-	Bounds createBounds();
-
-	/**
 	 * Returns a new object of class '<em>Vector3f</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6993,13 +6993,13 @@ public interface Ifc2x3tc1Factory extends EFactory {
 	Vector3f createVector3f();
 
 	/**
-	 * Returns a new object of class '<em>Geometry Instance</em>'.
+	 * Returns a new object of class '<em>Geometry Data</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Geometry Instance</em>'.
+	 * @return a new object of class '<em>Geometry Data</em>'.
 	 * @generated
 	 */
-	GeometryInstance createGeometryInstance();
+	GeometryData createGeometryData();
 
 	/**
 	 * Returns the package supported by this factory.

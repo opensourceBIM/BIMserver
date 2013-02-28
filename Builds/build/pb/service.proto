@@ -469,6 +469,8 @@ service ServiceInterface {
 
 	rpc setBooleanAttributes (SetBooleanAttributesRequest) returns (VoidResponse);
 
+	rpc setByteArrayAttribute (SetByteArrayAttributeRequest) returns (VoidResponse);
+
 	rpc setDefaultModelCompare (SetDefaultModelCompareRequest) returns (VoidResponse);
 
 	rpc setDefaultModelMerger (SetDefaultModelMergerRequest) returns (VoidResponse);
@@ -3472,6 +3474,16 @@ message SetBooleanAttributesRequest {
 	optional int64 oid = 2;
 	optional string attributeName = 3;
 	repeated bool values = 4;
+}
+
+message Byte[] {
+}
+
+message SetByteArrayAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional Byte[] value = 4;
 }
 
 message SetDefaultModelCompareRequest {

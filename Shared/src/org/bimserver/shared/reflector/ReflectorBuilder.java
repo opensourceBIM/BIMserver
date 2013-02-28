@@ -156,7 +156,7 @@ public class ReflectorBuilder {
 				CtClass[] parameters = new CtClass[sMethod.getParameters().size()];
 				int i=0;
 				for (org.bimserver.shared.meta.SParameter sParameter : sMethod.getParameters()) {
-					parameters[i] = pool.get(sParameter.getType().getName());
+					parameters[i] = pool.get(sParameter.getType().toJavaCode());
 					i++;
 				}
 				CtMethod method = new CtMethod(pool.get(sMethod.getReturnType().getName()), sMethod.getName(), parameters, reflectorImplClass);
@@ -226,7 +226,7 @@ public class ReflectorBuilder {
 				methodBuilder.append("publicInterface." + sMethod.getName() + "(");
 				int i=0;
 				for (SParameter sParameter : sMethod.getParameters()) {
-					methodBuilder.append("(" + sParameter.getType().getName() + ")$4[" + i + "].getValue()");
+					methodBuilder.append("(" + sParameter.getType().toJavaCode() + ")$4[" + i + "].getValue()");
 					if (i < sMethod.getParameters().size() - 1) {
 						methodBuilder.append(", ");
 					}

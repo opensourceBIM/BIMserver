@@ -176,4 +176,8 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 	public void remove() {
 		delegate.remove();
 	}
+
+	public void setState(State state) {
+		this.getDelegate().setState(state);
+	}
 }
