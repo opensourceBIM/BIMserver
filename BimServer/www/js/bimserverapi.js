@@ -975,13 +975,7 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	
 	this.connect = function(callback) {
 		othis.openCallbacks.push(callback);
-		var location = baseUrl.toString().replace('http://', 'ws://').replace('https://', 'wss://');
-		var index = location.indexOf("/", 5);
-		if (index == -1) {
-			location = location + "/stream";
-		} else {
-			location = location.substring(0, index) + "/stream";
-		}
+		var location = baseUrl.toString().replace('http://', 'ws://').replace('https://', 'wss://') + "/stream";
 		this._ws = new WebSocket(location);
 		this._ws.onopen = this._onopen;
 		this._ws.onmessage = this._onmessage;
