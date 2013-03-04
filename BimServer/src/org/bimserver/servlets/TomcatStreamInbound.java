@@ -33,7 +33,6 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
-import org.bimserver.shared.json.JsonReflector;
 import org.codehaus.jettison.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,10 +53,8 @@ public class TomcatStreamInbound extends StreamInbound implements EndPoint, Stre
 
 	public TomcatStreamInbound(BimServer bimServer) {
 		this.bimServer = bimServer;
-		this.endpointid = bimServer.getEndPointManager().register(this);
-		JsonReflector jsonReflector = new JsonWebsocketReflector(bimServer.getServicesMap(), this);
-		notificationInterface = bimServer.getReflectorFactory().createReflector(NotificationInterface.class, jsonReflector);
-		remoteServiceInterface = bimServer.getReflectorFactory().createReflector(RemoteServiceInterface.class, jsonReflector);
+		notificationInterface = bimServer.getReflectorFactory().createReflector(NotificationInterface.class, new JsonWebsocketReflector(bimServer.getServicesMap(), this));
+		remoteServiceInterface = bimServer.getReflectorFactory().createReflector(RemoteServiceInterface.class, new JsonWebsocketReflector(bimServer.getServicesMap(), this));
 	}
 
 	@Override
