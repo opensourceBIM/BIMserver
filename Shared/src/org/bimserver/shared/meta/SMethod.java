@@ -68,7 +68,7 @@ public class SMethod {
 			} else {
 				LOGGER.warn("Method " + method.getName() + " parameter " + parameterCounter + " has no @WebParam annotation");
 			}
-			Class<?> genericType = getGenericType(parameterCounter);
+			Class<?> genericType = getGenericReturnType(parameterCounter);
 			parameters.add(new SParameter(this, service.getSType(parameterType.getName()), genericType == null ? null : service.getSType(genericType.getName()), paramName));
 			parameterCounter++;			
 		}
@@ -92,7 +92,7 @@ public class SMethod {
 		return null;
 	}
 	
-	private Class<?> getGenericType(int parameterCounter) {
+	private Class<?> getGenericReturnType(int parameterCounter) {
 		Class<?> parameterType = null;
 		Type genericReturnType = method.getGenericParameterTypes()[parameterCounter];
 		if (genericReturnType instanceof ParameterizedType) {

@@ -31,7 +31,6 @@ import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
-import org.bimserver.tools.generators.AdaptorGenerator;
 import org.bimserver.tools.generators.AdaptorGeneratorWrapper;
 import org.bimserver.tools.generators.DataObjectGeneratorWrapper;
 import org.bimserver.tools.generators.ProtocolBuffersGenerator;

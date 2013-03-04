@@ -24,7 +24,6 @@ import org.bimserver.models.ifc2x3tc1.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
-import org.bimserver.models.ifc2x3tc1.IfcProperty;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySet;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySetDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcProxy;
@@ -195,7 +194,7 @@ public class LodToExcel {
 						for (EAttribute eAttribute : ifcProduct.eClass().getEAllAttributes()) {
 							Object val = ifcProduct.eGet(eAttribute);
 							if (eAttribute.isMany()) {
-								List list = (List)val;
+								List<?> list = (List<?>)val;
 								if (list.size() > 0) {
 									usedAttributes++;
 								}
@@ -212,9 +211,7 @@ public class LodToExcel {
 								IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 								if (propertySetDefinition instanceof IfcPropertySet) {
 									IfcPropertySet ifcPropertySet = (IfcPropertySet)propertySetDefinition;
-									for (IfcProperty ifcProperty : ifcPropertySet.getHasProperties()) {
-										usedAttributes++;
-									}
+									usedAttributes += ifcPropertySet.getHasProperties().size();
 								}
 							}
 						}

@@ -525,6 +525,7 @@ public class ClientIfcModel extends IfcModel {
 		return (T) object;
 	}
 
+	@SuppressWarnings({ "unused", "resource" })
 	public void getGeometry(IfcProduct ifcProduct) {
 		try {
 			Long downloadByOids = bimServerClient.getServiceInterface().downloadByOids(Collections.singleton(roid), Collections.singleton(ifcProduct.getOid()), getJsonGeometrySerializerOid(), true, false);

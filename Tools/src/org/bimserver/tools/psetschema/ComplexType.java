@@ -27,7 +27,7 @@ public class ComplexType extends PropertyTypeDefinition {
 	public String toString() {
 		for (PropertyDef propertyDef : typeComplexProperty.getPropertyDef()) {
 			PropertyDefinition propertyDefinition = new PropertyDefinition();
-			for (JAXBElement el : propertyDef.getNameOrValueDefOrDefinition()) {
+			for (JAXBElement<?> el : propertyDef.getNameOrValueDefOrDefinition()) {
 				Object val = el.getValue();
 				if (val instanceof PropertyType) {
 					PropertyType propertyType = (PropertyType) val;
@@ -56,7 +56,7 @@ public class ComplexType extends PropertyTypeDefinition {
 						System.out.println(el.getName().toString());
 					}
 				} else if (val instanceof ValueDef) {
-					ValueDef valueDef = (ValueDef) val;
+//					ValueDef valueDef = (ValueDef) val;
 					if (el.getName().toString().equals("ValueDef")) {
 
 					} else {

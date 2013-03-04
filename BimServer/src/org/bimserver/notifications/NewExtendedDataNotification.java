@@ -3,22 +3,12 @@ package org.bimserver.notifications;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.Service;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.Trigger;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
 public class NewExtendedDataNotification extends Notification {
 
-	private Long edid;
-	private Long soid;
-
 	public NewExtendedDataNotification(Long edid, Long soid) {
-		this.edid = edid;
-		this.soid = soid;
 	}
 
 	@Override

@@ -31,10 +31,10 @@ public class <%=sService.getSimpleName()%>Adaptor implements <%=sService.getSimp
 <%
 for (SMethod method : sService.getMethods()) {
 %>
-	public <%=method.getReturnType()%> <%=method.getName()%>(
+	public <%=method.getGenericReturnType() != null ? (method.getReturnType() + "<" + method.getGenericReturnType() + ">") : method.getReturnType()%> <%=method.getName()%>(
 <%
 	for (SParameter parameter : method.getParameters()) {
-%><%=parameter.getType().toJavaCode()%> <%=parameter.getName()%><%=parameter.isLast() ? "" : ", "%><%
+%><%=parameter.getGenericType() != null ? (parameter.getType().toJavaCode() + "<" + parameter.getGenericType() + ">") : parameter.getType().toJavaCode()%> <%=parameter.getName()%><%=parameter.isLast() ? "" : ", "%><%
 	}
 %>) throws UserException, ServerException {
 <%
