@@ -1,7 +1,6 @@
 package org.bimserver.tools.generators;
 
 import org.bimserver.shared.meta.*;
-import org.eclipse.emf.ecore.*;
 import org.bimserver.utils.*;
 import java.io.File;
 

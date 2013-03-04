@@ -1,4 +1,4 @@
-<%@ jet package="org.bimserver.tools.generators" imports="org.bimserver.shared.meta.* org.eclipse.emf.ecore.* org.bimserver.utils.* java.io.File" class="AdaptorGenerator" %>
+<%@ jet package="org.bimserver.tools.generators" imports="org.bimserver.shared.meta.* org.bimserver.utils.* java.io.File" class="AdaptorGenerator" %>
 package org.bimserver.shared.interfaces;
 
 <%

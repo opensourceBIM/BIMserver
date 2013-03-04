@@ -41,7 +41,7 @@ function BimServerApi(baseUrl, notifier) {
 	othis.autoLoginTried = false;
 
 	this.init = function(callback) {
-		$.getJSON(othis.baseUrl + "/js/ifc2x3tc1.json", function(result){
+		$.getJSON(othis.baseUrl + "/js/ifc2x3tc1.js", function(result){
 			othis.schema = result.classes;
 			callback();
 		});
