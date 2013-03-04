@@ -51,9 +51,9 @@ public class LodToExcel {
 
 	private void export(File file) {
 		try {
-			BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
-			BimServerClient bimServerClient = factory.create();
-			bimServerClient.setAuthentication(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+			BimServerClientFactory factory = new JsonBimServerClientFactory("http://sandbox.bimserver.org");
+//			BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
+			BimServerClient bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 		    WorkbookSettings wbSettings = new WorkbookSettings();
 			
@@ -83,6 +83,7 @@ public class LodToExcel {
 				long roid = project.getLastRevisionId();
 				if (roid != -1) {
 					SRevision revision = bimServerClient.getServiceInterface().getRevision(roid);
+					System.out.println(revision.getComment());
 					ClientIfcModel model = bimServerClient.getModel(project.getOid(), roid, false);
 					
 					float scaleFactorToMeter = 1;

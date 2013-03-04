@@ -325,11 +325,7 @@ public class ClientIfcModel extends IfcModel {
 				loadedClasses.add(eClass.getName());
 				rebuildIndexPerClass(eClass);
 				modelState = ModelState.NONE;
-			} catch (ServerException e) {
-				e.printStackTrace();
-			} catch (UserException e) {
-				e.printStackTrace();
-			} catch (BimServerClientException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
