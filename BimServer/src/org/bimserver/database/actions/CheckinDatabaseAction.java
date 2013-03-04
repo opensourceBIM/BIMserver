@@ -34,7 +34,6 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.interfaces.SConverter;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.merging.RevisionMerger;
 import org.bimserver.models.log.AccessMethod;

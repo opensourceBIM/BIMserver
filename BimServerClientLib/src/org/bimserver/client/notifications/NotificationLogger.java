@@ -17,8 +17,6 @@ package org.bimserver.client.notifications;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.PrintWriter;
-
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -26,10 +24,7 @@ import org.bimserver.shared.interfaces.NotificationInterfaceAdaptor;
 
 public class NotificationLogger extends NotificationInterfaceAdaptor {
 
-	private final PrintWriter out;
-
-	public NotificationLogger(PrintWriter out) {
-		this.out = out;
+	public NotificationLogger() {
 	}
 
 	@Override

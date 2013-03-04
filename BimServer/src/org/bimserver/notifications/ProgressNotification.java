@@ -9,7 +9,6 @@ import org.bimserver.shared.exceptions.UserException;
 
 public class ProgressNotification extends Notification {
 
-	private long id;
 	private LongActionState state;
 	private ProgressTopic topic;
 

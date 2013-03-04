@@ -21,11 +21,11 @@ import org.bimserver.shared.exceptions.ServerException;
 
 public class RemoteServiceInterfaceAdaptor implements RemoteServiceInterface {
 
-	public java.util.List getPrivateProfiles(java.lang.String serviceIdentifier, java.lang.String token) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor> getPrivateProfiles(java.lang.String serviceIdentifier, java.lang.String token) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getPublicProfiles(java.lang.String serviceIdentifier) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor> getPublicProfiles(java.lang.String serviceIdentifier) throws UserException, ServerException {
 		return null;
 	}
 	

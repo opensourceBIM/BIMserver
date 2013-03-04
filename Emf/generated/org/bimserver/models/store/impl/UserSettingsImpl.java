@@ -27,7 +27,6 @@ import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserSettings;
-import org.bimserver.models.store.WebModulePluginConfiguration;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 

@@ -25,10 +25,7 @@ import org.bimserver.shared.interfaces.NotificationInterfaceAdaptor;
 
 public class NotificationImpl extends NotificationInterfaceAdaptor {
 
-	private BimServer bimServer;
-
 	public NotificationImpl(BimServer bimServer) {
-		this.bimServer = bimServer;
 	}
 
 	@Override

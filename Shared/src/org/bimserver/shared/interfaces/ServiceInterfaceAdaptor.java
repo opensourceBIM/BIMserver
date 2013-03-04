@@ -197,19 +197,19 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.lang.Long downloadByGuids(java.util.Set roids, java.util.Set guids, java.lang.Long serializerOid, java.lang.Boolean deep, java.lang.Boolean sync) throws UserException, ServerException {
+	public java.lang.Long downloadByGuids(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> guids, java.lang.Long serializerOid, java.lang.Boolean deep, java.lang.Boolean sync) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.lang.Long downloadByNames(java.util.Set roids, java.util.Set names, java.lang.Long serializerOid, java.lang.Boolean deep, java.lang.Boolean sync) throws UserException, ServerException {
+	public java.lang.Long downloadByNames(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> names, java.lang.Long serializerOid, java.lang.Boolean deep, java.lang.Boolean sync) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.lang.Long downloadByOids(java.util.Set roids, java.util.Set oids, java.lang.Long serializerOid, java.lang.Boolean sync, java.lang.Boolean deep) throws UserException, ServerException {
+	public java.lang.Long downloadByOids(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.Long> oids, java.lang.Long serializerOid, java.lang.Boolean sync, java.lang.Boolean deep) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.lang.Long downloadByTypes(java.util.Set roids, java.util.Set classNames, java.lang.Long serializerOid, java.lang.Boolean includeAllSubtypes, java.lang.Boolean useObjectIDM, java.lang.Boolean deep, java.lang.Boolean sync) throws UserException, ServerException {
+	public java.lang.Long downloadByTypes(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> classNames, java.lang.Long serializerOid, java.lang.Boolean includeAllSubtypes, java.lang.Boolean useObjectIDM, java.lang.Boolean deep, java.lang.Boolean sync) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -221,7 +221,7 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.lang.Long downloadRevisions(java.util.Set roids, java.lang.Long serializerOid, java.lang.Boolean sync) throws UserException, ServerException {
+	public java.lang.Long downloadRevisions(java.util.Set<java.lang.Long> roids, java.lang.Long serializerOid, java.lang.Boolean sync) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -235,167 +235,167 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.util.List getActiveLongActions() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SLongAction> getActiveLongActions() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllAuthorizedUsersOfProject(java.lang.Long poid) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SUser> getAllAuthorizedUsersOfProject(java.lang.Long poid) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllCheckoutsByUser(java.lang.Long uoid) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SCheckout> getAllCheckoutsByUser(java.lang.Long uoid) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllCheckoutsOfProject(java.lang.Long poid) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SCheckout> getAllCheckoutsOfProject(java.lang.Long poid) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllCheckoutsOfProjectAndSubProjects(java.lang.Long poid) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SCheckout> getAllCheckoutsOfProjectAndSubProjects(java.lang.Long poid) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllCheckoutsOfRevision(java.lang.Long roid) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SCheckout> getAllCheckoutsOfRevision(java.lang.Long roid) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllDeserializerPluginDescriptors() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SDeserializerPluginDescriptor> getAllDeserializerPluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllDeserializers(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SDeserializerPluginConfiguration> getAllDeserializers(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllExtendedDataOfRevision(java.lang.Long roid) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SExtendedData> getAllExtendedDataOfRevision(java.lang.Long roid) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllExtendedDataSchemas() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SExtendedDataSchema> getAllExtendedDataSchemas() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllInternalServices(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SInternalServicePluginConfiguration> getAllInternalServices(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllLocalProfiles(java.lang.String serviceIdentifier) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor> getAllLocalProfiles(java.lang.String serviceIdentifier) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllLocalServiceDescriptors() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SServiceDescriptor> getAllLocalServiceDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllModelComparePluginDescriptors() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SModelComparePluginDescriptor> getAllModelComparePluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllModelCompares(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SModelComparePluginConfiguration> getAllModelCompares(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllModelMergerPluginDescriptors() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SModelMergerPluginDescriptor> getAllModelMergerPluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllModelMergers(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SModelMergerPluginConfiguration> getAllModelMergers(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllNonAuthorizedProjectsOfUser(java.lang.Long uoid) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllNonAuthorizedProjectsOfUser(java.lang.Long uoid) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllNonAuthorizedUsersOfProject(java.lang.Long poid) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SUser> getAllNonAuthorizedUsersOfProject(java.lang.Long poid) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllObjectIDMPluginDescriptors() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor> getAllObjectIDMPluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllObjectIDMs(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration> getAllObjectIDMs(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllPlugins() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> getAllPlugins() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllPrivateProfiles(java.lang.String notificationsUrl, java.lang.String serviceIdentifier, java.lang.String token) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor> getAllPrivateProfiles(java.lang.String notificationsUrl, java.lang.String serviceIdentifier, java.lang.String token) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllProjects(java.lang.Boolean onlyTopLevel) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllProjects(java.lang.Boolean onlyTopLevel) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllPublicProfiles(java.lang.String notificationsUrl, java.lang.String serviceIdentifier) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor> getAllPublicProfiles(java.lang.String notificationsUrl, java.lang.String serviceIdentifier) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllQueryEnginePluginDescriptors() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor> getAllQueryEnginePluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllQueryEngines(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration> getAllQueryEngines(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllReadableProjects() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllReadableProjects() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllRenderEnginePluginDescriptors() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor> getAllRenderEnginePluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllRenderEngines(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration> getAllRenderEngines(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllRepositoryExtendedDataSchemas() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SExtendedDataSchema> getAllRepositoryExtendedDataSchemas() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllRevisionsByUser(java.lang.Long uoid) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SRevision> getAllRevisionsByUser(java.lang.Long uoid) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllRevisionsOfProject(java.lang.Long poid) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SRevision> getAllRevisionsOfProject(java.lang.Long poid) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllSerializerPluginDescriptors() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllSerializers(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SSerializerPluginConfiguration> getAllSerializers(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllServiceDescriptors() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SServiceDescriptor> getAllServiceDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllServicePluginDescriptors() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SServicePluginDescriptor> getAllServicePluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllServicesOfProject(java.lang.Long poid) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SService> getAllServicesOfProject(java.lang.Long poid) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAllUsers() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SUser> getAllUsers() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAvailableClasses() throws UserException, ServerException {
+	public java.util.List<java.lang.String> getAvailableClasses() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getAvailableClassesInRevision(java.lang.Long roid) throws UserException, ServerException {
+	public java.util.List<java.lang.String> getAvailableClassesInRevision(java.lang.Long roid) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -407,11 +407,11 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.util.Set getCheckinWarnings(java.lang.Long poid) throws UserException, ServerException {
+	public java.util.Set<java.lang.String> getCheckinWarnings(java.lang.Long poid) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.Set getCheckoutWarnings(java.lang.Long poid) throws UserException, ServerException {
+	public java.util.Set<java.lang.String> getCheckoutWarnings(java.lang.Long poid) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -427,11 +427,11 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.util.List getDataObjects(java.lang.Long roid) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SDataObject> getDataObjects(java.lang.Long roid) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getDataObjectsByType(java.lang.Long roid, java.lang.String className) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SDataObject> getDataObjectsByType(java.lang.Long roid, java.lang.String className) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -531,7 +531,7 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.util.List getLogs() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SLogAction> getLogs() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -543,7 +543,7 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.util.List getMigrations() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SMigration> getMigrations() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -587,15 +587,15 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.util.List getProgressTopicsOnProject(java.lang.Long poid) throws UserException, ServerException {
+	public java.util.List<java.lang.Long> getProgressTopicsOnProject(java.lang.Long poid) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getProgressTopicsOnRevision(java.lang.Long poid, java.lang.Long roid) throws UserException, ServerException {
+	public java.util.List<java.lang.Long> getProgressTopicsOnRevision(java.lang.Long poid, java.lang.Long roid) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getProgressTopicsOnServer() throws UserException, ServerException {
+	public java.util.List<java.lang.Long> getProgressTopicsOnServer() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -603,7 +603,7 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.util.List getProjectsByName(java.lang.String name) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SProject> getProjectsByName(java.lang.String name) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -623,7 +623,7 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.util.List getQueryEngineExampleKeys(java.lang.Long qeid) throws UserException, ServerException {
+	public java.util.List<java.lang.String> getQueryEngineExampleKeys(java.lang.Long qeid) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -695,15 +695,15 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.util.List getServiceInterfaces() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SServiceInterface> getServiceInterfaces() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getServiceMethodParameters(java.lang.String serviceInterfaceName, java.lang.String serviceMethodName) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SServiceParameter> getServiceMethodParameters(java.lang.String serviceInterfaceName, java.lang.String serviceMethodName) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.util.List getServiceMethods(java.lang.String serviceInterfaceName) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SServiceMethod> getServiceMethods(java.lang.String serviceInterfaceName) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -711,7 +711,7 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.util.List getServiceTypes(java.lang.String serviceInterfaceName) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SServiceType> getServiceTypes(java.lang.String serviceInterfaceName) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -735,7 +735,7 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.util.List getSubProjects(java.lang.Long poid) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SProject> getSubProjects(java.lang.Long poid) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -759,7 +759,7 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.util.List getUsersProjects(java.lang.Long uoid) throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SProject> getUsersProjects(java.lang.Long uoid) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -862,7 +862,7 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	public void setBooleanAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Boolean value) throws UserException, ServerException {
 	}
 	
-	public void setBooleanAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.util.List values) throws UserException, ServerException {
+	public void setBooleanAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.util.List<java.lang.Boolean> values) throws UserException, ServerException {
 	}
 	
 	public void setByteArrayAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Byte[] value) throws UserException, ServerException {
@@ -889,7 +889,7 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	public void setDoubleAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Double value) throws UserException, ServerException {
 	}
 	
-	public void setDoubleAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.util.List values) throws UserException, ServerException {
+	public void setDoubleAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.util.List<java.lang.Double> values) throws UserException, ServerException {
 	}
 	
 	public void setEnumAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.String value) throws UserException, ServerException {
@@ -898,13 +898,13 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	public void setIntegerAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Integer value) throws UserException, ServerException {
 	}
 	
-	public void setIntegerAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.util.List values) throws UserException, ServerException {
+	public void setIntegerAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.util.List<java.lang.Integer> values) throws UserException, ServerException {
 	}
 	
 	public void setLongAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Long value) throws UserException, ServerException {
 	}
 	
-	public void setLongAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.util.List values) throws UserException, ServerException {
+	public void setLongAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.util.List<java.lang.Long> values) throws UserException, ServerException {
 	}
 	
 	public void setPluginSettings(java.lang.Long poid, org.bimserver.interfaces.objects.SObjectType settings) throws UserException, ServerException {
@@ -958,7 +958,7 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	public void setStringAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.String value) throws UserException, ServerException {
 	}
 	
-	public void setWhiteListedDomains(java.util.List domains) throws UserException, ServerException {
+	public void setWhiteListedDomains(java.util.List<java.lang.String> domains) throws UserException, ServerException {
 	}
 	
 	public void setup(java.lang.String siteAddress, java.lang.String smtpServer, java.lang.String smtpSender, java.lang.String adminName, java.lang.String adminUsername, java.lang.String adminPassword) throws UserException, ServerException {

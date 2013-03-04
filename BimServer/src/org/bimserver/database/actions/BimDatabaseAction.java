@@ -28,7 +28,6 @@ import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.IntegerLiteral;
 import org.bimserver.database.query.literals.StringLiteral;
-import org.bimserver.emf.IdEObject;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
