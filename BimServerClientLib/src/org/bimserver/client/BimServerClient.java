@@ -243,7 +243,9 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 	public long checkin(long poid, String comment, long deserializerOid, boolean merge, boolean sync, File file) throws IOException, UserException, ServerException {
 		FileInputStream fis = new FileInputStream(file);
 		long result = checkin(poid, comment, deserializerOid, merge, sync, file.length(), file.getName(), fis);
-		fis.close();
+		if (sync) {
+			fis.close();
+		}
 		return result;
 	}
 
