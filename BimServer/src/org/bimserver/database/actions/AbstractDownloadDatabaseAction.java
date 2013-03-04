@@ -53,6 +53,7 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 					GeometryInfo geometryInfo = ifcProduct.getGeometry();
 					if (geometryInfo != null) {
 						geometryInfo.loadExplicit();
+						geometryInfo.getData().loadExplicit();
 						geometryInfo.getMinBounds().loadExplicit();
 						geometryInfo.getMaxBounds().loadExplicit();
 					}

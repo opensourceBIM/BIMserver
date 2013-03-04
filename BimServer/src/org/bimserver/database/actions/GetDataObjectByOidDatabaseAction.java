@@ -116,9 +116,6 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 	public static void fillDataObject(BiMap<? extends Long, ? extends EObject> mapResult, EObject eObject, DataObject dataObject) {
 		for (EStructuralFeature eStructuralFeature : eObject.eClass().getEAllStructuralFeatures()) {
 			Object eGet = eObject.eGet(eStructuralFeature);
-			if (eStructuralFeature.getEAnnotation("hidden") != null) {
-				continue;
-			}
 			if (eStructuralFeature.getEAnnotation("hidden") == null) {
 				if (eStructuralFeature instanceof EAttribute) {
 					if (eStructuralFeature.isMany()) {

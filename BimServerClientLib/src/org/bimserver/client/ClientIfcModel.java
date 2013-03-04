@@ -1,7 +1,5 @@
 package org.bimserver.client;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -28,7 +26,6 @@ import org.bimserver.shared.SingleWaitingObject;
 import org.bimserver.shared.WaitingList;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.utils.MultiplexingInputStream;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -248,12 +245,12 @@ public class ClientIfcModel extends IfcModel {
 												}
 											}
 										}
-										if (waitingList.containsKey(oid)) {
-											try {
-												waitingList.updateNode(oid, eClass, object);
-											} catch (DeserializeException e) {
-												LOGGER.error("", e);
-											}
+									}
+									if (waitingList.containsKey(oid)) {
+										try {
+											waitingList.updateNode(oid, eClass, object);
+										} catch (DeserializeException e) {
+											LOGGER.error("", e);
 										}
 									}
 								}
@@ -272,6 +269,9 @@ public class ClientIfcModel extends IfcModel {
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		} finally {
+			if (waitingList.size() > 0) {
+				LOGGER.error("Waitinglist not empty!");
+			}
 			bimServerClient.getServiceInterface().cleanupLongAction(download);
 		}
 	}

@@ -205,6 +205,7 @@ public class LodToExcel {
 								}
 							}
 						}
+
 						for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
 							if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
 								IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
