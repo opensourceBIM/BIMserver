@@ -21,12 +21,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.nio.CharBuffer;
+import java.util.GregorianCalendar;
 
 import org.apache.catalina.websocket.StreamInbound;
 import org.apache.catalina.websocket.WsOutbound;
 import org.apache.commons.io.output.NullWriter;
 import org.bimserver.BimServer;
 import org.bimserver.endpoints.EndPoint;
+import org.bimserver.models.log.AccessMethod;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.json.JsonReflector;
@@ -60,7 +64,7 @@ public class TomcatStreamInbound extends StreamInbound implements EndPoint, Stre
 	protected void onOpen(WsOutbound outbound) {
 		this.outbound = outbound;
 		JsonObject welcome = new JsonObject();
-		welcome.add("endpointid", new JsonPrimitive(endpointid));
+		welcome.add("welcome", new JsonPrimitive(new GregorianCalendar().getTimeInMillis()));
 		send(welcome);
 	}
 	
@@ -96,7 +100,25 @@ public class TomcatStreamInbound extends StreamInbound implements EndPoint, Stre
 			JsonReader jsonreader = new JsonReader(reader);
 			JsonParser parser = new JsonParser();
 			JsonObject request = (JsonObject) parser.parse(jsonreader);
-			bimServer.getJsonHandler().execute(request, null, new NullWriter());
+			if (request.has("token")) {
+				String token = request.get("token").getAsString();
+				try {
+					org.bimserver.shared.interfaces.ServiceInterface service = bimServer.getServiceFactory().getService(org.bimserver.shared.interfaces.ServiceInterface.class, token, AccessMethod.JSON);
+					uoid = service.getCurrentUser().getOid();
+
+					this.endpointid = bimServer.getEndPointManager().register(this);
+					
+					JsonObject enpointMessage = new JsonObject();
+					enpointMessage.add("endpointid", new JsonPrimitive(endpointid));
+					send(enpointMessage);
+				} catch (UserException e) {
+					e.printStackTrace();
+				} catch (ServerException e) {
+					e.printStackTrace();
+				}
+			} else {
+				bimServer.getJsonHandler().execute(request, null, new NullWriter());
+			}
 		} catch (JSONException e) {
 			LOGGER.error("", e);
 		}
