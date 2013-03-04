@@ -121,53 +121,57 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 
 	@Override
 	public boolean write(OutputStream out) throws SerializerException {
-		if (getMode() == Mode.BODY) {
-			OutputStreamWriter outputStreamWriter = new OutputStreamWriter(out, Charsets.UTF_8);
-			try {
-				calculateGeometryExtents();
-				JsonWriter jsonWriter = new JsonWriter(new BufferedWriter(outputStreamWriter));
-								
-				jsonWriter.beginObject();
-				jsonWriter.name("type").value("scene");
-				jsonWriter.name("id").value("Scene");
-				jsonWriter.name("canvasId").value("scenejsCanvas");
-				jsonWriter.name("loggingElementId").value("scenejsLog");
-				jsonWriter.name("flags").beginObject().name("backfaces").value(false).endObject();
-				jsonWriter.name("nodes");
-				jsonWriter.beginArray();
-				jsonWriter.beginObject().name("id").value("library").name("type").value("library").name("nodes").beginArray();
-				writeMaterials(jsonWriter);
-				writeGeometries(jsonWriter);
-				jsonWriter.endArray();
-				jsonWriter.endObject();
-				writeVisualScenes(jsonWriter);
-				jsonWriter.endArray();
-				
-				// Append additional custom data to the scene node
-				jsonWriter.name("data").beginObject();
-				jsonWriter.name("bounds");
-				writeBounds(jsonWriter);
-				jsonWriter.name("bounds2");
-				writeBounds2(jsonWriter);
-				jsonWriter.name("unit");
-				writeUnit(jsonWriter);
-				jsonWriter.name("ifcTypes");
-				writeIfcTypes(jsonWriter);
-				jsonWriter.name("relationships");
-				writeIfcTree(jsonWriter);
-				jsonWriter.name("properties");
-				writeIfcProperties(jsonWriter);
-				jsonWriter.endObject();
-				jsonWriter.endObject();
-				
-				jsonWriter.flush();
-			} catch (Exception e) {
-				LOGGER.error("", e);
+		try {
+			if (getMode() == Mode.BODY) {
+				OutputStreamWriter outputStreamWriter = new OutputStreamWriter(out, Charsets.UTF_8);
+				try {
+					calculateGeometryExtents();
+					JsonWriter jsonWriter = new JsonWriter(new BufferedWriter(outputStreamWriter));
+									
+					jsonWriter.beginObject();
+					jsonWriter.name("type").value("scene");
+					jsonWriter.name("id").value("Scene");
+					jsonWriter.name("canvasId").value("scenejsCanvas");
+					jsonWriter.name("loggingElementId").value("scenejsLog");
+					jsonWriter.name("flags").beginObject().name("backfaces").value(false).endObject();
+					jsonWriter.name("nodes");
+					jsonWriter.beginArray();
+					jsonWriter.beginObject().name("id").value("library").name("type").value("library").name("nodes").beginArray();
+					writeMaterials(jsonWriter);
+					writeGeometries(jsonWriter);
+					jsonWriter.endArray();
+					jsonWriter.endObject();
+					writeVisualScenes(jsonWriter);
+					jsonWriter.endArray();
+					
+					// Append additional custom data to the scene node
+					jsonWriter.name("data").beginObject();
+					jsonWriter.name("bounds");
+					writeBounds(jsonWriter);
+					jsonWriter.name("bounds2");
+					writeBounds2(jsonWriter);
+					jsonWriter.name("unit");
+					writeUnit(jsonWriter);
+					jsonWriter.name("ifcTypes");
+					writeIfcTypes(jsonWriter);
+					jsonWriter.name("relationships");
+					writeIfcTree(jsonWriter);
+					jsonWriter.name("properties");
+					writeIfcProperties(jsonWriter);
+					jsonWriter.endObject();
+					jsonWriter.endObject();
+					
+					jsonWriter.flush();
+				} catch (Exception e) {
+					LOGGER.error("", e);
+				}
+				setMode(Mode.FINISHED);
+				return true;
+			} else if (getMode() == Mode.FINISHED) {
+				return false;
 			}
-			setMode(Mode.FINISHED);
-			return true;
-		} else if (getMode() == Mode.FINISHED) {
-			return false;
+		} catch (Throwable e) {
+			throw new SerializerException(e);
 		}
 		return false;
 	}
@@ -550,11 +554,8 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 		Map<Long, IdEObject> objects = model.getObjects();
 		for (IdEObject object : objects.values()) {
 			if (object instanceof IfcObject) {
-				IfcObject ifcObject = (IfcObject) object;
-				jsonWriter.name("" + ifcObject.getOid());
+				jsonWriter.name("" + object.getOid());
 				jsonWriter.beginObject();
-
-				writeIfcPropertiesObject(jsonWriter, ifcObject);
 				if (object instanceof IfcProject) {
 					writeIfcPropertiesProject(jsonWriter, (IfcProject) object);
 				} else if (object instanceof IfcSite) {

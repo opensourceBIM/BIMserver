@@ -160,8 +160,7 @@ public class GeometryGenerator {
 									}
 									
 									for (int i = geometryInfo.getStartIndex(); i < geometryInfo.getPrimitiveCount() * 3 + geometryInfo.getStartIndex(); i++) {
-										int index = renderEngineGeometry.getIndex(i) * 3;
-										processExtends(geometryInfo, renderEngineGeometry, verticesBuffer, normalsBuffer, index);
+										processExtends(geometryInfo, renderEngineGeometry, verticesBuffer, normalsBuffer, renderEngineGeometry.getIndex(i) * 3);
 									}
 									
 									geometryInfo.setData(geometryData);

@@ -241,6 +241,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			LOGGER.info("Read: " + idEObject.eClass().getName() + " pid=" + query.getPid() + " oid=" + oid + " rid=" + rid);
 		}
 
+		((IdEObjectImpl)idEObject).setState(State.LOADING);
+		
 		byte unsettedLength = buffer.get();
 		byte[] unsetted = new byte[unsettedLength];
 		buffer.get(unsetted);

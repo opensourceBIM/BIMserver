@@ -58,4 +58,8 @@ public class WaitingList<T> {
 		}
 		waitingObjects.remove(expressId);
 	}
+
+	public int size() {
+		return waitingObjects.size();
+	}
 }
