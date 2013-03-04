@@ -530,7 +530,7 @@ public class BimServer {
 				userSettings.getRenderEngines().add(ifcEnginePluginConfiguration);
 				genericPluginConversion(session, ifcEnginePlugin, ifcEnginePluginConfiguration);
 			}
-			if (userSettings.getDefaultRenderEngine() == null && ifcEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOIfcEnginePlugin")) {
+			if (userSettings.getDefaultRenderEngine() == null && ifcEnginePlugin.getClass().getName().equals("org.bimserver.ifcengine.TNOJvmRenderEnginePlugin")) {
 				userSettings.setDefaultRenderEngine(ifcEnginePluginConfiguration);
 			}
 		}
