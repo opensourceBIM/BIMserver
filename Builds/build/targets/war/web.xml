@@ -9,7 +9,7 @@
 
 	<filter>
 		<filter-name>cross-origin</filter-name>
-		<filter-class>org.eclipse.jetty.servlets.CrossOriginFilter</filter-class>
+		<filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
 		<init-param>
 			<param-name>allowedOrigins</param-name>
 			<param-value>*</param-value>
