@@ -58,9 +58,18 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	private final NewProjectTopic newProjectTopic = new NewProjectTopic();
 	private final NewUserTopic newUserTopic = new NewUserTopic();
 	private final Map<NewRevisionOnSpecificProjectTopicKey, NewRevisionOnSpecificProjectTopic> newRevisionOnSpecificProjectTopics = new HashMap<NewRevisionOnSpecificProjectTopicKey, NewRevisionOnSpecificProjectTopic>();
+
+	// These are for keeping track of new/removed progress topics
+	private final Map<ChangeProgressTopicOnProjectTopicKey, ChangeProgressTopicOnProjectTopic> changeProgressTopicOnProjectTopics = new HashMap<ChangeProgressTopicOnProjectTopicKey, ChangeProgressTopicOnProjectTopic>();
+	private final Map<ChangeProgressTopicOnRevisionTopicKey, ChangeProgressTopicOnRevisionTopic> changeProgressTopicOnRevisionTopics = new HashMap<ChangeProgressTopicOnRevisionTopicKey, ChangeProgressTopicOnRevisionTopic>();
+
+	// All progress topics have an id for easy referencing
 	private final Map<Long, ProgressTopic> progressTopicsById = new HashMap<Long, ProgressTopic>();
+	
+	// These are for keeping track of actual progress on projects/revisions
 	private final Map<ProgressOnRevisionTopicKey, Set<ProgressOnRevisionTopic>> progressOnRevisionTopics = new HashMap<ProgressOnRevisionTopicKey, Set<ProgressOnRevisionTopic>>();
 	private final Map<ProgressOnProjectTopicKey, Set<ProgressOnProjectTopic>> progressOnProjectTopics = new HashMap<ProgressOnProjectTopicKey, Set<ProgressOnProjectTopic>>();
+
 	private final BlockingQueue<Notification> queue = new ArrayBlockingQueue<Notification>(10000);
 	private final Map<String, ServiceDescriptor> internalServices = new HashMap<String, ServiceDescriptor>();
 	private final Map<String, RemoteServiceInterface> internalRemoteServiceInterfaces = new HashMap<String, RemoteServiceInterface>();
@@ -76,13 +85,17 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	}
 
 	public void notify(Notification notification) {
-		queue.add(notification);
+		addToQueue(notification);
 	}
 	
 	public void notify(SLogAction logAction) {
-		queue.add(new LogActionNotification(logAction));
+		addToQueue(new LogActionNotification(logAction));
 	}
 
+	public void addToQueue(Notification notification) {
+		queue.add(notification);
+	}
+	
 	@Override
 	public void run() {
 		running = true;
@@ -155,14 +168,28 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	public void registerInternalNewRevisionHandler(ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
 		register(serviceDescriptor, new RemoteServiceInterfaceAdaptor(){
 			@Override
-			public void newRevision(Long poid, Long roid, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) throws UserException, ServerException {
+			public void newRevision(final Long poid, final Long roid, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) throws UserException, ServerException {
 				InternalChannel internalChannel = new InternalChannel(internalRemoteServiceInterfaces.get(serviceIdentifier));
 				ServiceInterface serviceInterfaceImpl = bimServer.getServiceFactory().getService(ServiceInterface.class, token, AccessMethod.JSON);
 				internalChannel.addServiceInterface(ServiceInterface.class, serviceInterfaceImpl);
-				ServiceInterface serviceInterface = internalChannel.getServiceInterface();
+				final ServiceInterface serviceInterface = internalChannel.getServiceInterface();
 				SService service = serviceInterface.getService(Long.parseLong(profileIdentifier));
-				SObjectType settings = serviceInterface.getPluginSettings(service.getInternalServiceId());
-				newRevisionHandler.newRevision(serviceInterface, poid, roid, settings);
+				final SObjectType settings = serviceInterface.getPluginSettings(service.getInternalServiceId());
+				
+				// TODO this should somehow be managed...
+				// This must be asynchronous because we don't want the BIMserver's notifications processor to wait for this to finish...
+				new Thread(){
+					@Override
+					public void run() {
+						try {
+							newRevisionHandler.newRevision(serviceInterface, poid, roid, settings);
+						} catch (ServerException e) {
+							LOGGER.error("", e);
+						} catch (UserException e) {
+							LOGGER.error("", e);
+						}
+					}
+				}.start();
 			}
 		});
 	}
@@ -237,6 +264,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		ProgressOnProjectTopic topic = new ProgressOnProjectTopic(key, uoid, poid, type, description);
 		progressTopicsById.put(key.getId(), topic);
 		topics.add(topic);
+		addToQueue(new NewProgressTopicOnProjectNotification(poid, key.getId()));
 		return topic;
 	}
 
@@ -252,6 +280,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		ProgressOnRevisionTopic topic = new ProgressOnRevisionTopic(key, uoid, poid, roid, type, description);
 		progressTopicsById.put(key.getId(), topic);
 		topics.add(topic);
+		addToQueue(new NewProgressTopicOnRevisionNotification(poid, roid, key.getId()));
 		return topic;
 	}
 	
@@ -279,5 +308,25 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	public Collection<ProgressTopic> getProgressOnServerTopics() {
 		// TODO filter by rights
 		return progressTopicsById.values();
+	}
+
+	public ChangeProgressTopicOnProjectTopic getChangeProgressOnProjectTopic(Long poid) {
+		ChangeProgressTopicOnProjectTopicKey key = new ChangeProgressTopicOnProjectTopicKey(poid);
+		ChangeProgressTopicOnProjectTopic topic = changeProgressTopicOnProjectTopics.get(key);
+		if (topic == null) {
+			topic = new ChangeProgressTopicOnProjectTopic(key);
+			changeProgressTopicOnProjectTopics.put(key, topic);
+		}
+		return topic;
+	}
+
+	public ChangeProgressTopicOnRevisionTopic getChangeProgressOnRevisionTopic(Long poid, Long roid) {
+		ChangeProgressTopicOnRevisionTopicKey key = new ChangeProgressTopicOnRevisionTopicKey(poid, roid);
+		ChangeProgressTopicOnRevisionTopic topic = changeProgressTopicOnRevisionTopics.get(key);
+		if (topic == null) {
+			topic = new ChangeProgressTopicOnRevisionTopic(key);
+			changeProgressTopicOnRevisionTopics.put(key, topic);
+		}
+		return topic;
 	}
 }

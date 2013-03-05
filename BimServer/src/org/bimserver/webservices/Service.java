@@ -170,6 +170,8 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.UserType;
+import org.bimserver.notifications.ChangeProgressTopicOnProjectTopic;
+import org.bimserver.notifications.ChangeProgressTopicOnRevisionTopic;
 import org.bimserver.notifications.NewExtendedDataNotification;
 import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.notifications.NewRevisionOnSpecificProjectTopic;
@@ -3996,7 +3998,7 @@ public class Service implements ServiceInterface {
 	}
 	
 	@Override
-	public void unregisterProgressHandler(Long topicId, Long endPointId) throws UserException {
+	public void unregisterProgressHandler(Long topicId, Long endPointId) throws UserException, ServerException {
 		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
 		if (endPoint == null) {
 			throw new UserException("Endpoint with id " + endPointId + " not found");
@@ -4005,7 +4007,11 @@ public class Service implements ServiceInterface {
 		if (progressTopic == null) {
 			throw new UserException("Topic with id " + topicId + " not found");
 		}
-		progressTopic.unregister(endPoint);
+		try {
+			progressTopic.unregister(endPoint);
+		} catch (TopicRegisterException e) {
+			handleException(e);
+		}
 	}
 
 	@Override
@@ -4032,9 +4038,13 @@ public class Service implements ServiceInterface {
 	}
 	
 	@Override
-	public void unregisterNewRevisionOnSpecificProjectHandler(Long endPointId, Long poid) {
+	public void unregisterNewRevisionOnSpecificProjectHandler(Long endPointId, Long poid) throws ServerException, UserException {
 		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
-		bimServer.getNotificationsManager().getNewRevisionOnSpecificProjectTopic(new NewRevisionOnSpecificProjectTopicKey(poid)).unregister(endPoint);
+		try {
+			bimServer.getNotificationsManager().getNewRevisionOnSpecificProjectTopic(new NewRevisionOnSpecificProjectTopicKey(poid)).unregister(endPoint);
+		} catch (TopicRegisterException e) {
+			handleException(e);
+		}
 	}
 
 	@Override
@@ -4068,9 +4078,13 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void unregisterNewProjectHandler(Long endPointId) {
+	public void unregisterNewProjectHandler(Long endPointId) throws ServerException, UserException {
 		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
-		bimServer.getNotificationsManager().getNewProjectTopic().unregister(endPoint);
+		try {
+			bimServer.getNotificationsManager().getNewProjectTopic().unregister(endPoint);
+		} catch (TopicRegisterException e) {
+			handleException(e);
+		}
 	}
 
 	@Override
@@ -4084,9 +4098,13 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public void unregisterNewUserHandler(Long endPointId) {
+	public void unregisterNewUserHandler(Long endPointId) throws ServerException, UserException {
 		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
-		bimServer.getNotificationsManager().getNewUserTopic().unregister(endPoint);
+		try {
+			bimServer.getNotificationsManager().getNewUserTopic().unregister(endPoint);
+		} catch (TopicRegisterException e) {
+			handleException(e);
+		}
 	}
 	
 	@Override
@@ -4138,5 +4156,49 @@ public class Service implements ServiceInterface {
 			return bimServer.getSConverter().convertToSObject(progressTopic.getLastProgress());
 		}
 		return null;
+	}
+	
+	@Override
+	public void registerChangeProgressOnProject(Long endPointId, Long poid) throws ServerException, UserException {
+		ChangeProgressTopicOnProjectTopic changeProgressOnProjectTopic = bimServer.getNotificationsManager().getChangeProgressOnProjectTopic(poid);
+		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
+		try {
+			changeProgressOnProjectTopic.register(endPoint);
+		} catch (TopicRegisterException e) {
+			handleException(e);
+		}
+	}
+	
+	@Override
+	public void registerChangeProgressOnRevision(Long endPointId, Long poid, Long roid) throws ServerException, UserException {
+		ChangeProgressTopicOnRevisionTopic changeProgressOnProjectTopic = bimServer.getNotificationsManager().getChangeProgressOnRevisionTopic(poid, roid);
+		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
+		try {
+			changeProgressOnProjectTopic.register(endPoint);
+		} catch (TopicRegisterException e) {
+			handleException(e);
+		}
+	}
+	
+	@Override
+	public void unregisterChangeProgressOnProject(Long endPointId, Long poid) throws ServerException, UserException {
+		ChangeProgressTopicOnProjectTopic changeProgressOnProjectTopic = bimServer.getNotificationsManager().getChangeProgressOnProjectTopic(poid);
+		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
+		try {
+			changeProgressOnProjectTopic.unregister(endPoint);
+		} catch (TopicRegisterException e) {
+			handleException(e);
+		}
+	}
+	
+	@Override
+	public void unregisterChangeProgressOnRevision(Long endPointId, Long poid, Long roid) throws ServerException, UserException {
+		ChangeProgressTopicOnRevisionTopic changeProgressOnProjectTopic = bimServer.getNotificationsManager().getChangeProgressOnRevisionTopic(poid, roid);
+		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
+		try {
+			changeProgressOnProjectTopic.unregister(endPoint);
+		} catch (TopicRegisterException e) {
+			handleException(e);
+		}
 	}
 }

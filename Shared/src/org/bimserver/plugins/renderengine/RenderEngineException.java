@@ -17,6 +17,8 @@ package org.bimserver.plugins.renderengine;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.IOException;
+
 import org.bimserver.plugins.PluginException;
 
 public class RenderEngineException extends PluginException {
@@ -28,5 +30,9 @@ public class RenderEngineException extends PluginException {
 	
 	public RenderEngineException(Exception e) {
 		super(e);
+	}
+
+	public RenderEngineException(String message, IOException e) {
+		super(message, e);
 	}
 }

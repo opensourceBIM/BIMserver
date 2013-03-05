@@ -185,6 +185,28 @@ function BimServerApi(baseUrl, notifier) {
 			}
 		});
 	};
+
+	this.registerChangeProgressProjectHandler = function(poid, newHandler, closedHandler, callback) {
+		othis.register("NotificationInterface", "newProgressOnProjectTopic", newHandler, function(){
+			othis.register("NotificationInterface", "closedProgressOnProjectTopic", closedHandler, function(){
+				othis.call("ServiceInterface", "registerChangeProgressOnProject", {poid: poid, endPointId: othis.server.endPointId}, function(){
+					if (callback != null) {
+						callback();
+					}
+				});
+			});
+		});
+	}
+
+	this.registerChangeProgressRevisionHandler = function(roid, handler, callback) {
+		othis.register("NotificationInterface", "newProgressOnRevisionTopic", handler, function(){
+			othis.call("ServiceInterface", "registerChangeProgressOnRevision", {roid: roid, endPointId: othis.server.endPointId}, function(){
+				if (callback != null) {
+					callback();
+				}
+			});
+		});
+	}
 	
 	this.registerNewProjectHandler = function(handler, callback) {
 		othis.register("NotificationInterface", "newProject", handler, function(){
@@ -195,7 +217,7 @@ function BimServerApi(baseUrl, notifier) {
 			});
 		});
 	}
-	
+
 	this.unregisterNewProjectHandler = function(handler, callback){
 		othis.unregister(handler);
 		othis.call("ServiceInterface", "unregisterNewProjectHandler", {endPointId: othis.server.endPointId}, function(){

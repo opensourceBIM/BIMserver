@@ -36,12 +36,23 @@ public interface NotificationInterface extends PublicInterface {
 		@WebParam(name = "poid", partName = "newProgressOnProjectTopic.poid") Long poid,
 		@WebParam(name = "topicId", partName = "newProgressOnProjectTopic.topicId") Long topicId) throws UserException, ServerException;
 
+	@WebMethod(action = "closedProgressOnProjectTopic")
+	void closedProgressOnProjectTopic(
+		@WebParam(name = "poid", partName = "closedProgressOnProjectTopic.poid") Long poid,
+		@WebParam(name = "topicId", partName = "closedProgressOnProjectTopic.topicId") Long topicId) throws UserException, ServerException;
+	
 	@WebMethod(action = "newProgressOnRevisionTopic")
 	void newProgressOnRevisionTopic(
 		@WebParam(name = "poid", partName = "newProgressOnRevisionTopic.poid") Long poid,
 		@WebParam(name = "roid", partName = "newProgressOnRevisionTopic.roid") Long roid,
 		@WebParam(name = "topicId", partName = "newProgressOnRevisionTopic.topicId") Long topicId) throws UserException, ServerException;
 
+	@WebMethod(action = "closedProgressOnRevisionTopic")
+	void closedProgressOnRevisionTopic(
+			@WebParam(name = "poid", partName = "closedProgressOnRevisionTopic.poid") Long poid,
+			@WebParam(name = "roid", partName = "closedProgressOnRevisionTopic.roid") Long roid,
+			@WebParam(name = "topicId", partName = "closedProgressOnRevisionTopic.topicId") Long topicId) throws UserException, ServerException;
+	
 	@WebMethod(action = "newProgressTopic")
 	void newProgressTopic(
 		@WebParam(name = "topicId", partName = "newProgressTopic.topicId") Long topicId) throws UserException, ServerException;

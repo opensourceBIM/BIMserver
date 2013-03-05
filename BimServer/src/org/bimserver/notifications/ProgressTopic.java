@@ -59,7 +59,7 @@ public class ProgressTopic extends Topic {
 		super.register(endPoint);
 	}
 
-	public void unregister(EndPoint endPoint) {
+	public void unregister(EndPoint endPoint) throws TopicRegisterException {
 		super.unregister(endPoint);
 	}
 

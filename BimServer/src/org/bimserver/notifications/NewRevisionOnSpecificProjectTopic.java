@@ -26,6 +26,7 @@ public class NewRevisionOnSpecificProjectTopic extends Topic {
 	}
 
 	public void process(SNewRevisionAdded newRevisionNotification) {
+		// TODO this should also trigger the generic new revisions topic
 		if (newRevisionNotification.getProjectId() == poid) {
 			for (EndPoint endPoint : getEndPoints()) {
 				try {
