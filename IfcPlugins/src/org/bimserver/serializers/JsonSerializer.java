@@ -13,6 +13,7 @@ import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.utils.UTF8PrintWriter;
+import org.codehaus.jettison.json.JSONObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -198,7 +199,7 @@ public class JsonSerializer extends IfcSerializer {
 
 	private void writePrimitive(PrintWriter out, EStructuralFeature feature, Object value) {
 		if (value instanceof String) {
-			out.write("\"" + value + "\"");
+			out.write("\"" + JSONObject.quote((String)value) + "\"");
 		} else if (value instanceof byte[]) {
 			out.write("\"" + new String(Base64.encodeBase64((byte[])value), Charsets.UTF_8) + "\"");
 		} else if (value instanceof Enum) {

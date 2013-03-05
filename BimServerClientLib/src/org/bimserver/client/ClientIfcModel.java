@@ -1,5 +1,9 @@
 package org.bimserver.client;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -10,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.IOUtils;
 import org.bimserver.emf.Delegate.State;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
@@ -113,6 +118,15 @@ public class ClientIfcModel extends IfcModel {
 		WaitingList<Long> waitingList = new WaitingList<Long>();
 		try {
 			InputStream downloadData = bimServerClient.getDownloadData(download, getIfcSerializerOid());
+			boolean log = false;
+			if (log) {
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				IOUtils.copy(downloadData, baos);
+				FileOutputStream fos = new FileOutputStream(new File(download + ".json"));
+				IOUtils.write(baos.toByteArray(), fos);
+				fos.close();
+				downloadData = new ByteArrayInputStream(baos.toByteArray());
+			}
 			JsonReader jsonReader = new JsonReader(new InputStreamReader(downloadData));
 			try {
 				jsonReader.beginObject();
