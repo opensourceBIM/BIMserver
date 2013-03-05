@@ -199,7 +199,7 @@ public class JsonSerializer extends IfcSerializer {
 
 	private void writePrimitive(PrintWriter out, EStructuralFeature feature, Object value) {
 		if (value instanceof String) {
-			out.write("\"" + JSONObject.quote((String)value) + "\"");
+			out.write(JSONObject.quote((String)value));
 		} else if (value instanceof byte[]) {
 			out.write("\"" + new String(Base64.encodeBase64((byte[])value), Charsets.UTF_8) + "\"");
 		} else if (value instanceof Enum) {
