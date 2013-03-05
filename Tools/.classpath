@@ -9,5 +9,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Shared"/>
 	<classpathentry kind="lib" path="lib/jxl.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BimServerClientLib"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/IfcPlugins"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/IfcEngine"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
