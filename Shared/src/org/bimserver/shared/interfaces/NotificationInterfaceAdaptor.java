@@ -21,6 +21,12 @@ import org.bimserver.shared.exceptions.ServerException;
 
 public class NotificationInterfaceAdaptor implements NotificationInterface {
 
+	public void closedProgressOnProjectTopic(java.lang.Long poid, java.lang.Long topicId) throws UserException, ServerException {
+	}
+	
+	public void closedProgressOnRevisionTopic(java.lang.Long poid, java.lang.Long roid, java.lang.Long topicId) throws UserException, ServerException {
+	}
+	
 	public void newExtendedData(java.lang.Long roid, java.lang.Long edid) throws UserException, ServerException {
 	}
 	

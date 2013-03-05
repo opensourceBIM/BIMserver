@@ -51,8 +51,8 @@ public class LodToExcel {
 
 	private void export(File file) {
 		try {
-			BimServerClientFactory factory = new JsonBimServerClientFactory("http://sandbox.bimserver.org");
-//			BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
+//			BimServerClientFactory factory = new JsonBimServerClientFactory("http://sandbox.bimserver.org");
+			BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
 			BimServerClient bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 		    WorkbookSettings wbSettings = new WorkbookSettings();
@@ -84,7 +84,7 @@ public class LodToExcel {
 				if (roid != -1) {
 					SRevision revision = bimServerClient.getServiceInterface().getRevision(roid);
 					System.out.println(revision.getComment());
-					ClientIfcModel model = bimServerClient.getModel(project.getOid(), roid, false);
+					ClientIfcModel model = bimServerClient.getModel(project.getOid(), roid, true);
 					
 					float scaleFactorToMeter = 1;
 					
@@ -137,6 +137,9 @@ public class LodToExcel {
 					int totalUsedAttributesNoProxies = 0;
 					
 					double totalSpaceM3 = 0;
+					
+					model.getAll(GeometryInfo.class);
+					model.getAll(Vector3f.class);
 					
 					for (IfcSpace ifcSpace : model.getAll(IfcSpace.class)) {
 						GeometryInfo geometryInfo = ifcSpace.getGeometry();

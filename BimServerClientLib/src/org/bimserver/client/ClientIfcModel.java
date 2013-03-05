@@ -330,6 +330,7 @@ public class ClientIfcModel extends IfcModel {
 
 	@Override
 	public <T extends IdEObject> List<T> getAll(EClass eClass) {
+		LOGGER.info("Loading all " + eClass.getName());
 		if (!loadedClasses.contains(eClass.getName()) && modelState != ModelState.FULLY_LOADED) {
 			try {
 				modelState = ModelState.LOADING;
@@ -404,11 +405,15 @@ public class ClientIfcModel extends IfcModel {
 
 	public void loadExplicit(long oid) {
 		try {
-			modelState = ModelState.LOADING;
-			Long downloadByOids = bimServerClient.getServiceInterface().downloadByOids(Collections.singleton(roid), Collections.singleton(oid), getIfcSerializerOid(), true,
-					false);
-			processDownload(downloadByOids);
-			modelState = ModelState.NONE;
+			IdEObjectImpl idEObjectImpl = (IdEObjectImpl) super.get(oid);
+			if (!idEObjectImpl.isLoadedOrLoading()) {
+				LOGGER.info("Loading " + oid);
+				modelState = ModelState.LOADING;
+				Long downloadByOids = bimServerClient.getServiceInterface().downloadByOids(Collections.singleton(roid), Collections.singleton(oid), getIfcSerializerOid(), true,
+						false);
+				processDownload(downloadByOids);
+				modelState = ModelState.NONE;
+			}
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {

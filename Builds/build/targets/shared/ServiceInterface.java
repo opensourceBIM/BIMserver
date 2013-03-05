@@ -2479,4 +2479,26 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "type", partName = "registerProgressOnProjectTopic.type") SProgressTopicType type, 
 		@WebParam(name = "poid", partName = "registerProgressOnProjectTopic.poid") Long poid, 
 		@WebParam(name = "description", partName = "registerProgressOnProjectTopic.description") String description) throws UserException, ServerException;
+	
+	@WebMethod(action = "registerChangeProgressOnProject")
+	void registerChangeProgressOnProject(
+		@WebParam(name = "endPointId", partName = "registerChangeProgressOnProject.endPointId") Long endPointId, 
+		@WebParam(name = "poid", partName = "registerChangeProgressOnProject.poid") Long poid) throws ServerException, UserException;
+	
+	@WebMethod(action = "registerChangeProgressOnRevision")
+	void registerChangeProgressOnRevision(
+		@WebParam(name = "endPointId", partName = "registerChangeProgressOnRevision.endPointId") Long endPointId,
+		@WebParam(name = "roid", partName = "registerChangeProgressOnRevision.roid") Long roid,
+		@WebParam(name = "poid", partName = "registerChangeProgressOnRevision.poid") Long poid) throws ServerException, UserException;
+	
+	@WebMethod(action = "unregisterChangeProgressOnProject")
+	void unregisterChangeProgressOnProject(
+		@WebParam(name = "endPointId", partName = "unregisterChangeProgressOnProject.endPointId") Long endPointId, 
+		@WebParam(name = "poid", partName = "unregisterChangeProgressOnProject.poid") Long poid) throws ServerException, UserException;
+
+	@WebMethod(action = "unregisterChangeProgressOnRevision")
+	void unregisterChangeProgressOnRevision(
+		@WebParam(name = "endPointId", partName = "unregisterChangeProgressOnRevision.endPointId") Long endPointId, 
+		@WebParam(name = "roid", partName = "unregisterChangeProgressOnRevision.roid") Long roid,
+		@WebParam(name = "poid", partName = "unregisterChangeProgressOnRevision.poid") Long poid) throws ServerException, UserException;
 }

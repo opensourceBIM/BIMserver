@@ -245,7 +245,7 @@ public class JvmIfcEngine implements RenderEngine {
 		try {
 			out.writeByte(command.getId());
 		} catch (IOException e) {
-			throw new RenderEngineException("Unknown IFC Engine error");
+			throw new RenderEngineException("Unknown IFC Engine error", e);
 		}
 	}
 

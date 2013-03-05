@@ -16,7 +16,7 @@ public class Topic {
 		endPoints.add(endPoint);
 	}
 
-	public void unregister(EndPoint endPoint) {
+	public void unregister(EndPoint endPoint) throws TopicRegisterException {
 		endPoints.remove(endPoint);
 	}
 }

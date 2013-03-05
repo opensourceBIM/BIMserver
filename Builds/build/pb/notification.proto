@@ -24,6 +24,10 @@ option java_outer_classname = "NotificationInterfaceImpl";
 option optimize_for = SPEED;
 
 service NotificationInterface {
+	rpc closedProgressOnProjectTopic (ClosedProgressOnProjectTopicRequest) returns (VoidResponse);
+
+	rpc closedProgressOnRevisionTopic (ClosedProgressOnRevisionTopicRequest) returns (VoidResponse);
+
 	rpc newExtendedData (NewExtendedDataRequest) returns (VoidResponse);
 
 	rpc newProgressOnProjectTopic (NewProgressOnProjectTopicRequest) returns (VoidResponse);
@@ -40,6 +44,17 @@ service NotificationInterface {
 
 	rpc progress (ProgressRequest) returns (VoidResponse);
 
+}
+
+message ClosedProgressOnProjectTopicRequest {
+	optional int64 poid = 1;
+	optional int64 topicId = 2;
+}
+
+message ClosedProgressOnRevisionTopicRequest {
+	optional int64 poid = 1;
+	optional int64 roid = 2;
+	optional int64 topicId = 3;
 }
 
 message NewExtendedDataRequest {
