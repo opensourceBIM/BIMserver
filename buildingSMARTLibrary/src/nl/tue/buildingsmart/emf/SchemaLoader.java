@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 
 public class SchemaLoader {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SchemaLoader.class);
-	public static final File DEFAULT_SCHEMA_FILE = new File("schema" + File.separator + "IFC2X3_TC1.exp");
+	public static final File DEFAULT_SCHEMA_FILE = new File("../buildingSMARTLibrary/schema" + File.separator + "IFC2X3_TC1.exp");
 
 	public static void main(String[] args) {
 		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {

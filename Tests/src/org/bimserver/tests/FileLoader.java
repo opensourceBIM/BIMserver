@@ -23,11 +23,11 @@ public class FileLoader {
 	}
 
 	private void load(File dir) {
-		JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://sandbox.bimserver.org");
-//		JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
+//		JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://sandbox.bimserver.org");
+		JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
 		try {
 			final BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-			ExecutorService executorService = new ThreadPoolExecutor(4, 4, 1, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(2000));
+			ExecutorService executorService = new ThreadPoolExecutor(1, 1, 1, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(200));
 			for (final File file : dir.listFiles()) {
 				executorService.submit(new Runnable(){
 					@Override
