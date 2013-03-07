@@ -9,26 +9,26 @@
 	<property name="minorversion" value="2"/>
 	<property name="revisionversion" value="0"/>
 	<property name="revisiondate" value="${builddate}"/>
-	<property name="version" value="${majorversion}.${minorversion}.RC4-${builddate}"/>
+	<property name="version" value="${majorversion}.${minorversion}.RC5-${builddate}"/>
 
 	<target name="1.2">
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" action="mkdir" remotedir="/httpdocs/tools/BIMserver/1.2/${version}" />
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" action="mkdir" remotedir="/httpdocs/tools/BIMserver/1.2/${version}/javadoc" />
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.2/${version}">
+		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" action="mkdir" remotedir="/httpdocs/tools/BIMserver/${majorversion}.${minorversion}/${version}" />
+		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" action="mkdir" remotedir="/httpdocs/tools/BIMserver/${majorversion}.${minorversion}/${version}/javadoc" />
+		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/${majorversion}.${minorversion}/${version}">
 			<fileset file="README.txt" />
 		</ftp>
 		
 		<ant antfile="javadoc.build.xml" target="Build JavaDoc"/>
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.2/${version}">
+		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/${majorversion}.${minorversion}/${version}">
 			<fileset file="builds/bimserver-javadoc-${version}.zip" />
 		</ftp>
 
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.2/${version}/javadoc">
+		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/${majorversion}.${minorversion}/${version}/javadoc">
 			<fileset dir="builds/bimserver-javadoc-${version}" />
 		</ftp>
 		
 		<ant antfile="bimserver.build.xml" target="Build War"/>
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.2/${version}">
+		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/${majorversion}.${minorversion}/${version}">
 			<fileset file="builds/bimserver-${version}.war" />
 		</ftp>
 
@@ -39,7 +39,7 @@
 			View know issues on http://code.google.com/p/bimserver/wiki/Known_issues" labels="${version}, Type-Package, OpSys-All" />
 
 		<ant antfile="bimserver.build.xml" target="Build Jar"/>
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.2/${version}">
+		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/${majorversion}.${minorversion}/${version}">
 			<fileset file="builds/bimserver-${version}.jar" />
 		</ftp>
 		
@@ -51,7 +51,7 @@
 			View known issues on http://code.google.com/p/bimserver/wiki/Known_issues" labels="${version}, Type-Executable, OpSys-All" />
 		
 		<ant antfile="clientlib.build.xml" target="Build ClientLib"/>
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.2/${version}">
+		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/${majorversion}.${minorversion}/${version}">
 			<fileset file="builds/bimserver-client-lib-${version}.zip" />
 		</ftp>
 		
@@ -59,7 +59,7 @@
 			Please note the open source license issues." labels="${version}, library, OpSys-All" />
 
 		<ant antfile="bimserverlib.build.xml" target="Build ServerLib"/>
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.2/${version}">
+		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/${majorversion}.${minorversion}/${version}">
 			<fileset file="builds/bimserver-lib-${version}.zip" />
 		</ftp>
 		
@@ -68,7 +68,7 @@
 
 		<ant antfile="source.build.xml" target="Build Source">
 		</ant>
-		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/1.2/${version}">
+		<ftp server="tools.bimtoolset.org" userid="${ftp_user}" password="${ftp_pass}" remotedir="/httpdocs/tools/BIMserver/${majorversion}.${minorversion}/${version}">
 			<fileset file="builds/bimserver-source-${version}.zip" />
 		</ftp>
 	</target>
