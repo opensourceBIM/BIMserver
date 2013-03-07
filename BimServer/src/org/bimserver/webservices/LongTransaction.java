@@ -1,6 +1,6 @@
 package org.bimserver.webservices;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.bimserver.changes.Change;
@@ -8,7 +8,7 @@ import org.bimserver.changes.Change;
 public class LongTransaction {
 
 	private long tid;
-	private Set<Change> changes = new HashSet<Change>();
+	private Set<Change> changes = new LinkedHashSet<Change>();
 	private int pid;
 	private int rid;
 	private long poid;

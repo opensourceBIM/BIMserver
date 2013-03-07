@@ -2301,6 +2301,9 @@ public class Service implements ServiceInterface {
 	public Long createObject(Long tid, String className) throws UserException {
 		requireAuthenticationAndRunningServer();
 		EClass eClass = ((Database) bimServer.getDatabase()).getEClassForName(className);
+		if (eClass == null) {
+			throw new UserException("Unknown type: \"" + className + "\"");
+		}
 		Long oid = bimServer.getDatabase().newOid(eClass);
 		CreateObjectChange createObject = new CreateObjectChange(className, oid, eClass);
 		LongTransaction longTransaction = bimServer.getLongTransactionManager().get(tid);
@@ -2360,40 +2363,64 @@ public class Service implements ServiceInterface {
 	}
 	
 	public Integer getIntegerAttribute(Long tid, Long oid, String attributeName) throws ServerException ,UserException {
-		requireAuthenticationAndRunningServer();
 		return (Integer)getAttribute(tid, oid, attributeName);
 	}
 
 	public Long getLongAttribute(Long tid, Long oid, String attributeName) throws ServerException ,UserException {
-		requireAuthenticationAndRunningServer();
 		return (Long)getAttribute(tid, oid, attributeName);
 	}
 
 	@Override
 	public void setBooleanAttribute(Long tid, Long oid, String attributeName, Boolean value) throws UserException {
-		requireAuthenticationAndRunningServer();
 		bimServer.getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
 	}
 	
 	@Override
 	public Boolean getBooleanAttribute(Long tid, Long oid, String attributeName) throws ServerException, UserException {
-		requireAuthenticationAndRunningServer();
 		return (Boolean)getAttribute(tid, oid, attributeName);
 	}
 
 	@Override
 	public void setDoubleAttribute(Long tid, Long oid, String attributeName, Double value) throws UserException {
-		requireAuthenticationAndRunningServer();
 		bimServer.getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
 	}
 	
 	@Override
 	public Double getDoubleAttribute(Long tid, Long oid, String attributeName) throws ServerException, UserException {
-		requireAuthenticationAndRunningServer();
 		return (Double)getAttribute(tid, oid, attributeName);
 	}
+	
+	@Override
+	public List<Double> getDoubleAttributes(Long tid, Long oid, String attributeName) throws ServerException, UserException {
+		return (List<Double>)getAttribute(tid, oid, attributeName);
+	}
 
+	public List<Boolean> getBooleanAttributes(Long tid, Long oid, String attributeName) throws ServerException ,UserException {
+		return (List<Boolean>)getAttribute(tid, oid, attributeName);
+	}
+	
+	@Override
+	public byte[] getByteArrayAttribute(Long tid, Long oid, String attributeName) throws ServerException, UserException {
+		return (byte[])getAttribute(tid, oid, attributeName);
+	}
+
+	@Override
+	public List<byte[]> getByteArrayAttributes(Long tid, Long oid, String attributeName) throws ServerException, UserException {
+		return (List<byte[]>)getAttribute(tid, oid, attributeName);
+	}
+	
+	@Override
+	public List<Integer> getIntegerAttributes(Long tid, Long oid, String attributeName) throws ServerException, UserException {
+		return (List<Integer>)getAttribute(tid, oid, attributeName);
+	}
+	
+	@Override
+	public List<String> getStringAttributes(Long tid, Long oid, String attributeName) throws ServerException, UserException {
+		return (List<String>)getAttribute(tid, oid, attributeName);
+	}
+	
 	private Object getAttribute(Long tid, Long oid, String attributeName) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
 			LongTransaction transaction = bimServer.getLongTransactionManager().get(tid);

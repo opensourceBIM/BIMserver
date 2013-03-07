@@ -183,6 +183,8 @@ public class LodToExcel2 {
 					model.getAll(GeometryInfo.class);
 					model.getAll(Vector3f.class);
 					
+					int nrSpaces = 0;
+					
 					for (IfcSpace ifcSpace : model.getAll(IfcSpace.class)) {
 						RenderEngineInstance instance = ifcEngineModel.getInstanceFromExpressId(ifcSpace.getExpressId());
 	
@@ -191,6 +193,7 @@ public class LodToExcel2 {
 						
 						double v = cubicScaleFactor * (bounds.maxX - bounds.minX) * (bounds.maxY - bounds.minY) * (bounds.maxZ - bounds.minZ);
 						totalSpaceM3 += v;
+						nrSpaces++;
 					}
 					
 					for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
@@ -247,9 +250,9 @@ public class LodToExcel2 {
 					System.out.println(totalBounds);
 					System.out.println("Cubic scale factor: " + cubicScaleFactor);
 					
-					writeRow(allSheet, row, f.getName(), cubicScaleFactor, totalNrTriangles, nrIfcProducts, totalBounds, totalUsedAttributes, totalSpaceM3);
-					writeRow(noFurnitureSheet, row, f.getName(), cubicScaleFactor, totalNrTrianglesNoFurniture, nrIfcProductsNoFurniture, totalBounds, totalUsedAttributesNoFurniture, totalSpaceM3);
-					writeRow(noProxySheet, row, f.getName(), cubicScaleFactor, totalNrTrianglesNoProxies, nrIfcProductsNoProxies, totalBounds, totalUsedAttributesNoProxies, totalSpaceM3);
+					writeRow(allSheet, row, f.getName(), cubicScaleFactor, totalNrTriangles, nrIfcProducts, totalBounds, totalUsedAttributes, totalSpaceM3, nrSpaces);
+					writeRow(noFurnitureSheet, row, f.getName(), cubicScaleFactor, totalNrTrianglesNoFurniture, nrIfcProductsNoFurniture, totalBounds, totalUsedAttributesNoFurniture, totalSpaceM3, nrSpaces);
+					writeRow(noProxySheet, row, f.getName(), cubicScaleFactor, totalNrTrianglesNoProxies, nrIfcProductsNoProxies, totalBounds, totalUsedAttributesNoProxies, totalSpaceM3, nrSpaces);
 					
 					row++;
 					ifcEngineModel.close();
@@ -294,30 +297,32 @@ public class LodToExcel2 {
 		return bounds;
 	}
 
-	private void writeRow(WritableSheet allSheet, int row, String name, double cubicScaleFactor, int totalNrTriangles, int nrIfcProducts, Bounds totalBounds, int totalUsedProperties, double totalSpaceM3) throws WriteException, RowsExceededException {
+	private void writeRow(WritableSheet allSheet, int row, String name, double cubicScaleFactor, int totalNrTriangles, int nrIfcProducts, Bounds totalBounds, int totalUsedProperties, double totalSpaceM3, int nrSpaces) throws WriteException, RowsExceededException {
 		double volume = cubicScaleFactor * (totalBounds.maxX - totalBounds.minX) * (totalBounds.maxY - totalBounds.minY) * (totalBounds.maxZ - totalBounds.minZ);
 		allSheet.addCell(new Label(0, row, name, times));
 		allSheet.addCell(new Label(1, row, String.valueOf(nrIfcProducts), times));
 		allSheet.addCell(new Label(2, row, String.format("%.2f", volume), times));
-		allSheet.addCell(new Label(3, row, String.format("%.2f", totalSpaceM3), times));
-		allSheet.addCell(new Label(4, row, String.valueOf(totalNrTriangles), times));
-		allSheet.addCell(new Label(5, row, String.format("%.2f", nrIfcProducts / volume), times));
-		allSheet.addCell(new Label(6, row, String.format("%.2f", totalNrTriangles / volume), times));
-		allSheet.addCell(new Label(7, row, String.format("%.2f", nrIfcProducts / totalSpaceM3), times));
-		allSheet.addCell(new Label(8, row, String.format("%.2f", totalNrTriangles / totalSpaceM3), times));
-		allSheet.addCell(new Label(9, row, String.format("%.2f", (totalUsedProperties) / (float)nrIfcProducts), times));
+		allSheet.addCell(new Label(3, row, "" + nrSpaces));
+		allSheet.addCell(new Label(4, row, String.format("%.2f", totalSpaceM3), times));
+		allSheet.addCell(new Label(5, row, String.valueOf(totalNrTriangles), times));
+		allSheet.addCell(new Label(6, row, String.format("%.2f", nrIfcProducts / volume), times));
+		allSheet.addCell(new Label(7, row, String.format("%.2f", totalNrTriangles / volume), times));
+		allSheet.addCell(new Label(8, row, String.format("%.2f", nrIfcProducts / totalSpaceM3), times));
+		allSheet.addCell(new Label(9, row, String.format("%.2f", totalNrTriangles / totalSpaceM3), times));
+		allSheet.addCell(new Label(10, row, String.format("%.2f", (totalUsedProperties) / (float)nrIfcProducts), times));
 	}
 
 	private void createHeader(WritableSheet allSheet) throws WriteException, RowsExceededException {
 		allSheet.addCell(new Label(0, 0, "File", timesbold));
 		allSheet.addCell(new Label(1, 0, "# Objects", timesbold));
 		allSheet.addCell(new Label(2, 0, "Volume M\u00B3", timesbold));
-		allSheet.addCell(new Label(3, 0, "Space Volume M\u00B3", timesbold));
-		allSheet.addCell(new Label(4, 0, "# Triangles", timesbold));
-		allSheet.addCell(new Label(5, 0, "# Objects / Volume M\u00B3", timesbold));
-		allSheet.addCell(new Label(6, 0, "# Triangles / Volume M\u00B3", timesbold));
-		allSheet.addCell(new Label(7, 0, "# Objects / Space Volume m\u00B3", timesbold));
-		allSheet.addCell(new Label(8, 0, "# Triangles / Space Volume M\u00B3", timesbold));
-		allSheet.addCell(new Label(9, 0, "Avg. # Object properties / Object", timesbold));
+		allSheet.addCell(new Label(3, 0, "# Spaces", timesbold));
+		allSheet.addCell(new Label(4, 0, "Space Volume M\u00B3", timesbold));
+		allSheet.addCell(new Label(5, 0, "# Triangles", timesbold));
+		allSheet.addCell(new Label(6, 0, "# Objects / Volume M\u00B3", timesbold));
+		allSheet.addCell(new Label(7, 0, "# Triangles / Volume M\u00B3", timesbold));
+		allSheet.addCell(new Label(8, 0, "# Objects / Space Volume m\u00B3", timesbold));
+		allSheet.addCell(new Label(9, 0, "# Triangles / Space Volume M\u00B3", timesbold));
+		allSheet.addCell(new Label(10, 0, "Avg. # Object properties / Object", timesbold));
 	}
 }
