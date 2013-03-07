@@ -1,7 +1,15 @@
 
-˜
-
-notification.protoorg.bimserver.pbservice.proto"4
+ò
+notification.protoorg.bimserver.pbservice.proto"D
+#ClosedProgressOnProjectTopicRequest
+poid (
+topicId ("S
+$ClosedProgressOnRevisionTopicRequest
+poid (
+roid (
+topicId ("5
+"ClosedProgressOnServerTopicRequest
+topicId ("4
 NewExtendedDataRequest
 roid (
 edid ("A
@@ -11,7 +19,9 @@
 !NewProgressOnRevisionTopicRequest
 poid (
 roid (
-topicId ("*
+topicId ("2
+NewProgressOnServerTopicRequest
+topicId ("*
 NewProgressTopicRequest
 topicId ("!
 NewProjectRequest
@@ -23,11 +33,15 @@
 uoid ("U
 ProgressRequest
 topicId (1
-state (2".org.bimserver.pb.SLongActionState2û
-NotificationInterface[
+state (2".org.bimserver.pb.SLongActionState2Ï	
+NotificationInterfaceu
+closedProgressOnProjectTopic5.org.bimserver.pb.ClosedProgressOnProjectTopicRequest.org.bimserver.pb.VoidResponsew
+closedProgressOnRevisionTopic6.org.bimserver.pb.ClosedProgressOnRevisionTopicRequest.org.bimserver.pb.VoidResponses
+closedProgressOnServerTopic4.org.bimserver.pb.ClosedProgressOnServerTopicRequest.org.bimserver.pb.VoidResponse[
 newExtendedData(.org.bimserver.pb.NewExtendedDataRequest.org.bimserver.pb.VoidResponseo
 newProgressOnProjectTopic2.org.bimserver.pb.NewProgressOnProjectTopicRequest.org.bimserver.pb.VoidResponseq
-newProgressOnRevisionTopic3.org.bimserver.pb.NewProgressOnRevisionTopicRequest.org.bimserver.pb.VoidResponse]
+newProgressOnRevisionTopic3.org.bimserver.pb.NewProgressOnRevisionTopicRequest.org.bimserver.pb.VoidResponsem
+newProgressOnServerTopic1.org.bimserver.pb.NewProgressOnServerTopicRequest.org.bimserver.pb.VoidResponse]
 newProgressTopic).org.bimserver.pb.NewProgressTopicRequest.org.bimserver.pb.VoidResponseQ
 
 newProject#.org.bimserver.pb.NewProjectRequest.org.bimserver.pb.VoidResponseS
