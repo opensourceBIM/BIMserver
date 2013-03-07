@@ -1777,6 +1777,18 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "tid", partName = "getReference.tid") Long tid,
 		@WebParam(name = "oid", partName = "getReference.oid") Long oid, 
 		@WebParam(name = "referenceName", partName = "getReference.referenceName") String referenceName) throws ServerException, UserException;
+
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param referenceName Name of the reference
+	 * @param referenceOid ObjectID of the newly referred object
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getReferences")
+	List<Long> getReferences(
+			@WebParam(name = "tid", partName = "getReferences.tid") Long tid,
+			@WebParam(name = "oid", partName = "getReferences.oid") Long oid, 
+			@WebParam(name = "referenceName", partName = "getReferences.referenceName") String referenceName) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change

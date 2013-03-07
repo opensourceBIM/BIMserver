@@ -26,7 +26,7 @@ public class TestCreateUnknownTypeLowLevelCalls extends TestWithEmbeddedServer {
 			// Start a transaction
 			Long tid = serviceInterface.startTransaction(newProject.getOid());
 			
-			Long cartesianPointOid = serviceInterface.createObject(tid, "IfcCartesionPoint"); // IfcCartesi(O)nPoint
+			serviceInterface.createObject(tid, "IfcCartesionPoint"); // IfcCartesi(O)nPoint
 			
 			// Commit the transaction
 			serviceInterface.commitTransaction(tid, "test");

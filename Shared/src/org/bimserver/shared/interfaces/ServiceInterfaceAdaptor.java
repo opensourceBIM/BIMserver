@@ -651,6 +651,10 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
+	public java.util.List<java.lang.Long> getReferences(java.lang.Long tid, java.lang.Long oid, java.lang.String referenceName) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.lang.String getRemoteAddress() throws UserException, ServerException {
 		return null;
 	}
