@@ -36,6 +36,7 @@ import java.util.Set;
 
 import javax.activation.DataHandler;
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -2470,6 +2471,30 @@ public class Service implements ServiceInterface {
 				return -1L;
 			}
 			return ref.getOid();
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Long> getReferences(Long tid, Long oid, String referenceName) throws ServerException, UserException {
+		DatabaseSession session = bimServer.getDatabase().createSession();
+		try {
+			LongTransaction transaction = bimServer.getLongTransactionManager().get(tid);
+			EClass eClass = session.getEClassForOid(oid);
+			IdEObject object = session.get(eClass, oid, new Query(transaction.getPid(), transaction.getRid(), null, Deep.NO));
+			if (object == null) {
+				throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found");
+			}
+			List<IdEObject> list = (List<IdEObject>) object.eGet(object.eClass().getEStructuralFeature(referenceName));
+			List<Long> oidList = new ArrayList<>();
+			for (IdEObject idEObject : list) {
+				oidList.add(idEObject.getOid());
+			}
+			return oidList;
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
