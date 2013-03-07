@@ -3717,7 +3717,7 @@ public class Service implements ServiceInterface {
 			User user = session.querySingle(condition, User.class, Query.getDefault());
 			if (user != null) {
 				for (InternalServicePluginConfiguration internalServicePluginConfiguration : user.getUserSettings().getServices()) {
-					if (internalServicePluginConfiguration.getClassName().equals(serviceIdentifier) && internalServicePluginConfiguration.isRemoteAccessible()) {
+					if (internalServicePluginConfiguration.getClassName().equals(serviceIdentifier)) {
 						SProfileDescriptor sProfileDescriptor = new SProfileDescriptor();
 						descriptors.add(sProfileDescriptor);
 						
