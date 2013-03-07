@@ -36,7 +36,6 @@ import java.util.Set;
 
 import javax.activation.DataHandler;
 import javax.jws.WebMethod;
-import javax.jws.WebParam;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -102,7 +101,6 @@ import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
 import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
-import org.bimserver.interfaces.objects.SNewRevisionAdded;
 import org.bimserver.interfaces.objects.SObjectDefinition;
 import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
@@ -113,7 +111,6 @@ import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
-import org.bimserver.interfaces.objects.SRemoteServiceUpdate;
 import org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SRevision;
@@ -173,6 +170,7 @@ import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.UserType;
 import org.bimserver.notifications.ChangeProgressTopicOnProjectTopic;
 import org.bimserver.notifications.ChangeProgressTopicOnRevisionTopic;
+import org.bimserver.notifications.ChangeProgressTopicOnServerTopic;
 import org.bimserver.notifications.NewExtendedDataNotification;
 import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.notifications.NewRevisionOnSpecificProjectTopic;
@@ -3861,28 +3859,13 @@ public class Service implements ServiceInterface {
 	public void triggerNewRevision(Long roid, Long soid) throws ServerException, UserException {
 		DatabaseSession session = bimServer.getDatabase().createSession();
 		try {
-//			org.bimserver.models.store.Service service = (org.bimserver.models.store.Service)session.get(StorePackage.eINSTANCE.getService(), soid, Query.getDefault());
 			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
-			SNewRevisionAdded newRevisionNotification = new SNewRevisionAdded();
-			newRevisionNotification.setRevisionId(revision.getOid());
-			newRevisionNotification.setProjectId(revision.getProject().getOid());
-			
-			bimServer.getNotificationsManager().notify(new NewRevisionNotification(revision.getProject().getOid(), revision.getOid()));
-//			bimServer.getNotificationsManager().triggerNewRevision(bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), newRevisionNotification, revision.getProject(), roid, Trigger.NEW_REVISION, service);
+			bimServer.getNotificationsManager().notify(new NewRevisionNotification(revision.getProject().getOid(), revision.getOid(), soid));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
 			session.close();
 		}
-	}
-	
-	@Override
-	public void externalServiceUpdate(String uuid, SRemoteServiceUpdate sExternalServiceUpdate) throws ServerException, UserException {
-//		RunningExternalService runningExternalService = bimServer.getRunningServicesManager().getRunningExternalService(uuid);
-//		if (sExternalServiceUpdate instanceof SPercentageChange) {
-//			SPercentageChange sPercentageChange = (SPercentageChange)sExternalServiceUpdate;
-//			runningExternalService.updatePercentage(sPercentageChange.getPercentage());
-//		}
 	}
 	
 	@Override
@@ -4216,6 +4199,28 @@ public class Service implements ServiceInterface {
 		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
 		try {
 			changeProgressOnProjectTopic.register(endPoint);
+		} catch (TopicRegisterException e) {
+			handleException(e);
+		}
+	}
+
+	@Override
+	public void registerChangeProgressOnServer(Long endPointId) throws ServerException, UserException {
+		ChangeProgressTopicOnServerTopic changeProgressTopicOnServerTopic = bimServer.getNotificationsManager().getChangeProgressTopicOnServerTopic();
+		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
+		try {
+			changeProgressTopicOnServerTopic.register(endPoint);
+		} catch (TopicRegisterException e) {
+			handleException(e);
+		}
+	}
+	
+	@Override
+	public void unregisterChangeProgressOnServer(Long endPointId) throws ServerException, UserException {
+		ChangeProgressTopicOnServerTopic changeProgressTopicOnServerTopic = bimServer.getNotificationsManager().getChangeProgressTopicOnServerTopic();
+		EndPoint endPoint = bimServer.getEndPointManager().get(endPointId);
+		try {
+			changeProgressTopicOnServerTopic.unregister(endPoint);
 		} catch (TopicRegisterException e) {
 			handleException(e);
 		}

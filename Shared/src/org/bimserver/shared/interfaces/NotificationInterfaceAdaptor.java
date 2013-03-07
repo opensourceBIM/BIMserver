@@ -27,6 +27,9 @@ public class NotificationInterfaceAdaptor implements NotificationInterface {
 	public void closedProgressOnRevisionTopic(java.lang.Long poid, java.lang.Long roid, java.lang.Long topicId) throws UserException, ServerException {
 	}
 	
+	public void closedProgressOnServerTopic(java.lang.Long topicId) throws UserException, ServerException {
+	}
+	
 	public void newExtendedData(java.lang.Long roid, java.lang.Long edid) throws UserException, ServerException {
 	}
 	
@@ -34,6 +37,9 @@ public class NotificationInterfaceAdaptor implements NotificationInterface {
 	}
 	
 	public void newProgressOnRevisionTopic(java.lang.Long poid, java.lang.Long roid, java.lang.Long topicId) throws UserException, ServerException {
+	}
+	
+	public void newProgressOnServerTopic(java.lang.Long topicId) throws UserException, ServerException {
 	}
 	
 	public void newProgressTopic(java.lang.Long topicId) throws UserException, ServerException {

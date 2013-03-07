@@ -847,6 +847,9 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	public void registerChangeProgressOnRevision(java.lang.Long endPointId, java.lang.Long roid, java.lang.Long poid) throws UserException, ServerException {
 	}
 	
+	public void registerChangeProgressOnServer(java.lang.Long endPointId) throws UserException, ServerException {
+	}
+	
 	public void registerNewProjectHandler(java.lang.Long endPointId) throws UserException, ServerException {
 	}
 	
@@ -1024,6 +1027,9 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	}
 	
 	public void unregisterChangeProgressOnRevision(java.lang.Long endPointId, java.lang.Long roid, java.lang.Long poid) throws UserException, ServerException {
+	}
+	
+	public void unregisterChangeProgressOnServer(java.lang.Long endPointId) throws UserException, ServerException {
 	}
 	
 	public void unregisterNewProjectHandler(java.lang.Long endPointId) throws UserException, ServerException {

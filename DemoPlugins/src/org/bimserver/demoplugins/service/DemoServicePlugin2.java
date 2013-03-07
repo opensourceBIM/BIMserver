@@ -74,8 +74,8 @@ public class DemoServicePlugin2 extends ServicePlugin {
 				SLongActionState state = new SLongActionState();
 				state.setTitle("Doing absolutely nothing...");
 				state.setState(SActionState.STARTED);
-				serviceInterface.updateProgressTopic(topicId, state);
 				state.setProgress(-1);
+				serviceInterface.updateProgressTopic(topicId, state);
 				for (int i=0; i<100; i++) {
 					try {
 						Thread.sleep(200);

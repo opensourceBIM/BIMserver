@@ -62,6 +62,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	// These are for keeping track of new/removed progress topics
 	private final Map<ChangeProgressTopicOnProjectTopicKey, ChangeProgressTopicOnProjectTopic> changeProgressTopicOnProjectTopics = new HashMap<ChangeProgressTopicOnProjectTopicKey, ChangeProgressTopicOnProjectTopic>();
 	private final Map<ChangeProgressTopicOnRevisionTopicKey, ChangeProgressTopicOnRevisionTopic> changeProgressTopicOnRevisionTopics = new HashMap<ChangeProgressTopicOnRevisionTopicKey, ChangeProgressTopicOnRevisionTopic>();
+	private final ChangeProgressTopicOnServerTopic changeProgressTopicOnServerTopic = new ChangeProgressTopicOnServerTopic();
 
 	// All progress topics have an id for easy referencing
 	private final Map<Long, ProgressTopic> progressTopicsById = new HashMap<Long, ProgressTopic>();
@@ -249,6 +250,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		ProgressTopicKey key = new ProgressTopicKey();
 		ProgressTopic topic = new ProgressTopic(key, uoid, type, description);
 		progressTopicsById.put(key.getId(), topic);
+		addToQueue(new NewProgressTopicOnServerNotification(key.getId()));
 		return topic;
 	}
 
@@ -314,17 +316,21 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		ChangeProgressTopicOnProjectTopicKey key = new ChangeProgressTopicOnProjectTopicKey(poid);
 		ChangeProgressTopicOnProjectTopic topic = changeProgressTopicOnProjectTopics.get(key);
 		if (topic == null) {
-			topic = new ChangeProgressTopicOnProjectTopic(key);
+			topic = new ChangeProgressTopicOnProjectTopic();
 			changeProgressTopicOnProjectTopics.put(key, topic);
 		}
 		return topic;
 	}
 
+	public ChangeProgressTopicOnServerTopic getChangeProgressTopicOnServerTopic() {
+		return changeProgressTopicOnServerTopic;
+	}
+	
 	public ChangeProgressTopicOnRevisionTopic getChangeProgressOnRevisionTopic(Long poid, Long roid) {
 		ChangeProgressTopicOnRevisionTopicKey key = new ChangeProgressTopicOnRevisionTopicKey(poid, roid);
 		ChangeProgressTopicOnRevisionTopic topic = changeProgressTopicOnRevisionTopics.get(key);
 		if (topic == null) {
-			topic = new ChangeProgressTopicOnRevisionTopic(key);
+			topic = new ChangeProgressTopicOnRevisionTopic();
 			changeProgressTopicOnRevisionTopics.put(key, topic);
 		}
 		return topic;

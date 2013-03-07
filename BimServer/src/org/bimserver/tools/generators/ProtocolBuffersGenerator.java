@@ -437,7 +437,7 @@ public class ProtocolBuffersGenerator {
 			return "int64";
 		} else if (clazz == Date.class) {
 			return "int64";
-		} else if (clazz == DataHandler.class || clazz == byte[].class) {
+		} else if (clazz == DataHandler.class || clazz == byte[].class || clazz == Byte[].class) {
 			return "bytes";
 		} else if (clazz == Integer.class | clazz == int.class) {
 			return "int32";
