@@ -2488,7 +2488,7 @@ public class Service implements ServiceInterface {
 				throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found");
 			}
 			List<IdEObject> list = (List<IdEObject>) object.eGet(object.eClass().getEStructuralFeature(referenceName));
-			List<Long> oidList = new ArrayList<>();
+			List<Long> oidList = new ArrayList<Long>();
 			for (IdEObject idEObject : list) {
 				oidList.add(idEObject.getOid());
 			}
