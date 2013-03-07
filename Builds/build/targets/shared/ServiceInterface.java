@@ -1500,6 +1500,18 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
+	 * @param value New String value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getStringAttributes")
+	List<String> getStringAttributes(
+			@WebParam(name = "tid", partName = "getStringAttributes.tid") Long tid,
+			@WebParam(name = "oid", partName = "getStringAttributes.oid") Long oid, 
+			@WebParam(name = "attributeName", partName = "getStringAttributes.attributeName") String attributeName) throws ServerException, UserException;
+	
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
 	 * @param value New Double value
 	 * @throws ServerException, UserException
 	 */
@@ -1534,6 +1546,18 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "tid", partName = "getDoubleAttribute.tid") Long tid,
 		@WebParam(name = "oid", partName = "getDoubleAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "getDoubleAttribute.attributeName") String attributeName) throws ServerException, UserException;
+
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value New Double value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getDoubleAttributes")
+	List<Double> getDoubleAttributes(
+		@WebParam(name = "tid", partName = "getDoubleAttributes.tid") Long tid,
+		@WebParam(name = "oid", partName = "getDoubleAttributes.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "getDoubleAttributes.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -1637,6 +1661,42 @@ public interface ServiceInterface extends PublicInterface {
 	 * @param value new Integer value
 	 * @throws ServerException, UserException
 	 */
+	@WebMethod(action = "getByteArrayAttribute")
+	byte[] getByteArrayAttribute(
+		@WebParam(name = "tid", partName = "getByteArrayAttribute.tid") Long tid,
+		@WebParam(name = "oid", partName = "getByteArrayAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "getByteArrayAttribute.attributeName") String attributeName) throws ServerException, UserException;
+
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value new Integer value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getByteArrayAttributes")
+	List<byte[]> getByteArrayAttributes(
+			@WebParam(name = "tid", partName = "getByteArrayAttributes.tid") Long tid,
+			@WebParam(name = "oid", partName = "getByteArrayAttributes.oid") Long oid, 
+			@WebParam(name = "attributeName", partName = "getByteArrayAttributes.attributeName") String attributeName) throws ServerException, UserException;
+	
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value new Integer value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getIntegerAttributes")
+	List<Integer> getIntegerAttributes(
+			@WebParam(name = "tid", partName = "getIntegerAttributes.tid") Long tid,
+			@WebParam(name = "oid", partName = "getIntegerAttributes.oid") Long oid, 
+			@WebParam(name = "attributeName", partName = "getIntegerAttributes.attributeName") String attributeName) throws ServerException, UserException;
+	
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value new Integer value
+	 * @throws ServerException, UserException
+	 */
 	@WebMethod(action = "getLongAttribute")
 	Long getLongAttribute(
 			@WebParam(name = "tid", partName = "getLongAttribute.tid") Long tid,
@@ -1683,6 +1743,18 @@ public interface ServiceInterface extends PublicInterface {
 	
 	/**
 	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value New Boolean value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getBooleanAttributes")
+	List<Boolean> getBooleanAttributes(
+			@WebParam(name = "tid", partName = "getBooleanAttributes.tid") Long tid,
+			@WebParam(name = "oid", partName = "getBooleanAttributes.oid") Long oid, 
+			@WebParam(name = "attributeName", partName = "getBooleanAttributes.attributeName") String attributeName) throws ServerException, UserException;
+	
+	/**
+	 * @param oid ObjectID of the object to change
 	 * @param referenceName Name of the reference
 	 * @param referenceOid ObjectID of the newly referred object
 	 * @throws ServerException, UserException
@@ -1705,6 +1777,18 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "tid", partName = "getReference.tid") Long tid,
 		@WebParam(name = "oid", partName = "getReference.oid") Long oid, 
 		@WebParam(name = "referenceName", partName = "getReference.referenceName") String referenceName) throws ServerException, UserException;
+
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param referenceName Name of the reference
+	 * @param referenceOid ObjectID of the newly referred object
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getReferences")
+	List<Long> getReferences(
+			@WebParam(name = "tid", partName = "getReferences.tid") Long tid,
+			@WebParam(name = "oid", partName = "getReferences.oid") Long oid, 
+			@WebParam(name = "referenceName", partName = "getReferences.referenceName") String referenceName) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -2484,6 +2568,14 @@ public interface ServiceInterface extends PublicInterface {
 	void registerChangeProgressOnProject(
 		@WebParam(name = "endPointId", partName = "registerChangeProgressOnProject.endPointId") Long endPointId, 
 		@WebParam(name = "poid", partName = "registerChangeProgressOnProject.poid") Long poid) throws ServerException, UserException;
+	
+	@WebMethod(action = "registerChangeProgressOnServer")
+	void registerChangeProgressOnServer(
+			@WebParam(name = "endPointId", partName = "registerChangeProgressOnServer.endPointId") Long endPointId) throws ServerException, UserException;
+	
+	@WebMethod(action = "unregisterChangeProgressOnServer")
+	void unregisterChangeProgressOnServer(
+			@WebParam(name = "endPointId", partName = "unregisterChangeProgressOnServer.endPointId") Long endPointId) throws ServerException, UserException;
 	
 	@WebMethod(action = "registerChangeProgressOnRevision")
 	void registerChangeProgressOnRevision(
