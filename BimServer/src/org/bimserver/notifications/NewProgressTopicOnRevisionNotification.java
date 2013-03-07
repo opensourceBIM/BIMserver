@@ -18,13 +18,25 @@ public class NewProgressTopicOnRevisionNotification extends Notification {
 		this.topicId = topicId;
 	}
 
+	public long getTopicId() {
+		return topicId;
+	}
+	
+	public long getPoid() {
+		return poid;
+	}
+	
+	public long getRoid() {
+		return roid;
+	}
+	
 	@Override
 	public void process(BimServer bimServer, DatabaseSession session, NotificationsManager notificationsManager) throws BimserverDatabaseException, UserException, ServerException {
 		ChangeProgressTopicOnRevisionTopic changeProgressOnRevisionTopic = notificationsManager.getChangeProgressOnRevisionTopic(poid, roid);
-		changeProgressOnRevisionTopic.notifyOfNewTopic(topicId);
+		changeProgressOnRevisionTopic.notifyOfNewTopic(this);
 		ChangeProgressTopicOnProjectTopic changeProgressOnProjectTopic = notificationsManager.getChangeProgressOnProjectTopic(poid);
-		changeProgressOnProjectTopic.notifyOfNewTopic(topicId);
-
-		// TODO also notify bimserver-wide listeners
+		changeProgressOnProjectTopic.notifyOfNewTopic(new NewProgressTopicOnProjectNotification(poid, topicId));
+		ChangeProgressTopicOnServerTopic changeProgressTopicOnServerTopic = notificationsManager.getChangeProgressTopicOnServerTopic();
+		changeProgressTopicOnServerTopic.notifyOfNewTopic(new NewProgressTopicOnServerNotification(topicId));
 	}
 }

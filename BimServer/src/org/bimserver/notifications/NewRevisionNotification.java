@@ -24,25 +24,38 @@ public class NewRevisionNotification extends Notification {
 	private static final Logger LOGGER = LoggerFactory.getLogger(NewRevisionNotification.class);
 	private long roid;
 	private long poid;
+	private long soid;
+
+	public NewRevisionNotification(long poid, long roid, long soid) {
+		this.poid = poid;
+		this.roid = roid;
+		this.soid = soid;
+	}
 
 	public NewRevisionNotification(long poid, long roid) {
 		this.poid = poid;
 		this.roid = roid;
+		this.soid = -1;
 	}
 
 	@Override
 	public void process(BimServer bimServer, DatabaseSession session, NotificationsManager notificationsManager) throws BimserverDatabaseException, UserException, ServerException {
-		NewRevisionTopic newRevisionTopic = notificationsManager.getNewRevisionTopic();
 		Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
 		for (Service service : project.getServices()) {
-			triggerNewRevision(notificationsManager, bimServer, notificationsManager.getSiteAddress(), project, roid, Trigger.NEW_REVISION, service);
+			if (soid == -1 || service.getOid() == soid) {
+				triggerNewRevision(notificationsManager, bimServer, notificationsManager.getSiteAddress(), project, roid, Trigger.NEW_REVISION, service);
+			}
 		}
-		if (newRevisionTopic != null) {
-			newRevisionTopic.process(session, poid, roid, this);
-		}
-		NewRevisionOnSpecificProjectTopic newRevisionOnSpecificProjectTopic = notificationsManager.getNewRevisionOnSpecificProjectTopic(new NewRevisionOnSpecificProjectTopicKey(poid));
-		if (newRevisionOnSpecificProjectTopic != null) {
-			newRevisionOnSpecificProjectTopic.process(session, poid, roid, this);
+		if (soid == -1) {
+			// Only execute if we are not triggering a specific service with this notification
+			NewRevisionTopic newRevisionTopic = notificationsManager.getNewRevisionTopic();
+			if (newRevisionTopic != null) {
+				newRevisionTopic.process(session, poid, roid, this);
+			}
+			NewRevisionOnSpecificProjectTopic newRevisionOnSpecificProjectTopic = notificationsManager.getNewRevisionOnSpecificProjectTopic(new NewRevisionOnSpecificProjectTopicKey(poid));
+			if (newRevisionOnSpecificProjectTopic != null) {
+				newRevisionOnSpecificProjectTopic.process(session, poid, roid, this);
+			}
 		}
 	}
 	

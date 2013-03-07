@@ -6,15 +6,9 @@ import org.bimserver.shared.exceptions.UserException;
 
 public class ChangeProgressTopicOnRevisionTopic extends Topic {
 
-	private ChangeProgressTopicOnRevisionTopicKey key;
-
-	public ChangeProgressTopicOnRevisionTopic(ChangeProgressTopicOnRevisionTopicKey key) {
-		this.key = key;
-	}
-	
-	public void notifyOfNewTopic(long topicId) throws UserException, ServerException {
+	public void notifyOfNewTopic(NewProgressTopicOnRevisionNotification notification) throws UserException, ServerException {
 		for (EndPoint endpoint : getEndPoints()) {
-			endpoint.getNotificationInterface().newProgressOnRevisionTopic(key.getPoid(), key.getRoid(), topicId);
+			endpoint.getNotificationInterface().newProgressOnRevisionTopic(notification.getPoid(), notification.getRoid(), notification.getTopicId());
 		}
 	}
 }

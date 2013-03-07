@@ -22,13 +22,16 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         TestCreateGuidEmf.class,
         TestCreateGuidLowLevelCalls.class,
+        TestCreateListsLowLevelCalls.class,
+        TestCreateReferenceListsLowLevelCalls.class,
+        TestCreateUnknownTypeLowLevelCalls.class,
+        TestDeleteObjectsEmf.class,
+        TestListWalls.class,
         TestLoadCompleteModel.class,
         TestMultiCheckinAndDownload.class,
         TestReadTrim.class,
-        TestDeleteObjectsEmf.class,
-        TestUpdateProject.class,
-        TestListWalls.class,
-        TestSingleCheckinAndDownload.class})
+        TestSingleCheckinAndDownload.class,
+        TestUpdateProject.class})
 public class AllTests {
 	public static BimServer bimServer;
 	public static boolean running = false;

@@ -2443,11 +2443,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "sService", partName = "addLocalServiceToProject.sService") SService sService,
 		@WebParam(name = "internalServiceOid", partName = "addLocalServiceToProject.internalServiceOid") Long internalServiceOid) throws ServerException, UserException;
 	
-	@WebMethod(action = "externalServiceUpdate")
-	void externalServiceUpdate(
-		@WebParam(name = "uuid", partName = "externalServiceUpdate.uuid") String uuid,
-		@WebParam(name = "sExternalServiceUpdate", partName = "externalServiceUpdate.sExternalServiceUpdate") SRemoteServiceUpdate sExternalServiceUpdate) throws ServerException, UserException;
-	
 	@WebMethod(action = "setWhiteListedDomains")
 	void setWhiteListedDomains(
 		@WebParam(name = "domains", partName = "setWhiteListedDomains.domains") List<String> domains) throws ServerException, UserException;
@@ -2568,6 +2563,14 @@ public interface ServiceInterface extends PublicInterface {
 	void registerChangeProgressOnProject(
 		@WebParam(name = "endPointId", partName = "registerChangeProgressOnProject.endPointId") Long endPointId, 
 		@WebParam(name = "poid", partName = "registerChangeProgressOnProject.poid") Long poid) throws ServerException, UserException;
+	
+	@WebMethod(action = "registerChangeProgressOnServer")
+	void registerChangeProgressOnServer(
+			@WebParam(name = "endPointId", partName = "registerChangeProgressOnServer.endPointId") Long endPointId) throws ServerException, UserException;
+	
+	@WebMethod(action = "unregisterChangeProgressOnServer")
+	void unregisterChangeProgressOnServer(
+			@WebParam(name = "endPointId", partName = "unregisterChangeProgressOnServer.endPointId") Long endPointId) throws ServerException, UserException;
 	
 	@WebMethod(action = "registerChangeProgressOnRevision")
 	void registerChangeProgressOnRevision(

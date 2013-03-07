@@ -186,6 +186,12 @@ function BimServerApi(baseUrl, notifier) {
 		});
 	};
 
+	this.unregisterChangeProgressProjectHandler = function(poid, newHandler, closedHandler, callback) {
+		othis.unregister(newHandler);
+		othis.unregister(closedHandler);
+		othis.call("ServiceInterface", "unregisterChangeProgressOnProject", {poid: poid, endPointId: othis.server.endPointId}, callback);		
+	};
+
 	this.registerChangeProgressProjectHandler = function(poid, newHandler, closedHandler, callback) {
 		othis.register("NotificationInterface", "newProgressOnProjectTopic", newHandler, function(){
 			othis.register("NotificationInterface", "closedProgressOnProjectTopic", closedHandler, function(){
@@ -198,12 +204,38 @@ function BimServerApi(baseUrl, notifier) {
 		});
 	}
 
-	this.registerChangeProgressRevisionHandler = function(roid, handler, callback) {
-		othis.register("NotificationInterface", "newProgressOnRevisionTopic", handler, function(){
-			othis.call("ServiceInterface", "registerChangeProgressOnRevision", {roid: roid, endPointId: othis.server.endPointId}, function(){
-				if (callback != null) {
-					callback();
-				}
+	this.unregisterChangeProgressServerHandler = function(newHandler, closedHandler, callback) {
+		othis.unregister(newHandler);
+		othis.unregister(closedHandler);
+		othis.call("ServiceInterface", "unregisterChangeProgressOnServer", {endPointId: othis.server.endPointId}, callback);
+	};
+	
+	this.registerChangeProgressServerHandler = function(newHandler, closedHandler, callback) {
+		othis.register("NotificationInterface", "newProgressOnServerTopic", newHandler, function(){
+			othis.register("NotificationInterface", "closedProgressOnServerTopic", closedHandler, function(){
+				othis.call("ServiceInterface", "registerChangeProgressOnServer", {endPointId: othis.server.endPointId}, function(){
+					if (callback != null) {
+						callback();
+					}
+				});
+			});
+		});
+	}
+
+	this.unregisterChangeProgressRevisionHandler = function(roid, newHandler, closedHandler, callback) {
+		othis.unregister(newHandler);
+		othis.unregister(closedHandler);
+		othis.call("ServiceInterface", "unregisterChangeProgressOnProject", {roid: roid, endPointId: othis.server.endPointId}, callback);		
+	};
+	
+	this.registerChangeProgressRevisionHandler = function(roid, newHandler, closedHandler, callback) {
+		othis.register("NotificationInterface", "newProgressOnRevisionTopic", newHandler, function(){
+			othis.register("NotificationInterface", "closedProgressOnRevisionTopic", closedHandler, function(){
+				othis.call("ServiceInterface", "registerChangeProgressOnRevision", {roid: roid, endPointId: othis.server.endPointId}, function(){
+					if (callback != null) {
+						callback();
+					}
+				});
 			});
 		});
 	}
@@ -901,14 +933,17 @@ function Model(bimServerApi, poid, roid) {
 								data.objects.forEach(function(object){
 									othis.resolveReferences(object, function(){
 										var item = getValueMethod(object);
-										targetMap[item] = object;
-										if (fetchingMap[item] != null) {
-											fetchingMap[item].forEach(function(cb){
-												cb(object);
-											});
-											delete fetchingMap[item];
+										// Checking the value again, because sometimes serializers send more objects...
+										if (item != null) {
+											targetMap[item] = object;
+											if (fetchingMap[item] != null) {
+												fetchingMap[item].forEach(function(cb){
+													cb(object);
+												});
+												delete fetchingMap[item];
+											}
+											callback(object);
 										}
-										callback(object);
 										done++;
 										if (done == data.objects.length) {
 											bimServerApi.call("ServiceInterface", "cleanupLongAction", {actionId: laid}, function(){
@@ -938,7 +973,7 @@ function Model(bimServerApi, poid, roid) {
 	};
 	
 	this.getByName = function(names, callback) {
-		othis.getByX("getByName", "name", othis.namesFetching, othis.objectsByName, "downloadByNames", "names", function(object){console.log("gbn", object); return object.getName()}, names, callback);
+		othis.getByX("getByName", "name", othis.namesFetching, othis.objectsByName, "downloadByNames", "names", function(object){return object.getName == null ? null : object.getName()}, names, callback);
 	};
 	
 	this.getAllOfType = function(type, includeAllSubTypes, callback) {
