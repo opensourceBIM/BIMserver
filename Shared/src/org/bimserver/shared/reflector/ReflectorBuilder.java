@@ -159,14 +159,14 @@ public class ReflectorBuilder {
 					parameters[i] = pool.get(sParameter.getType().toJavaCode());
 					i++;
 				}
-				CtMethod method = new CtMethod(pool.get(sMethod.getReturnType().getName()), sMethod.getName(), parameters, reflectorImplClass);
+				CtMethod method = new CtMethod(pool.get(sMethod.getReturnType().toJavaCode()), sMethod.getName(), parameters, reflectorImplClass);
 				StringBuilder methodBuilder = new StringBuilder();
 				methodBuilder.append("{");
 				if (sMethod.getReturnType().isVoid()) {
 				} else {
-					methodBuilder.append("return (" + sMethod.getReturnType().getName() + ")");
+					methodBuilder.append("return (" + sMethod.getReturnType().toJavaCode() + ")");
 				}
-				methodBuilder.append("reflector.callMethod(\"" + interfaceClass.getSimpleName() + "\", \"" + sMethod.getName() + "\", " + sMethod.getReturnType().getName() + ".class");
+				methodBuilder.append("reflector.callMethod(\"" + interfaceClass.getSimpleName() + "\", \"" + sMethod.getName() + "\", " + sMethod.getReturnType().toJavaCode() + ".class");
 				if (sMethod.getParameters().isEmpty()) {
 					methodBuilder.append(", new org.bimserver.shared.reflector.KeyValuePair[0]");
 				} else {

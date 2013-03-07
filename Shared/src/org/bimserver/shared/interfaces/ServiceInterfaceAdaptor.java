@@ -407,6 +407,18 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
+	public java.util.List<java.lang.Boolean> getBooleanAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
+		return null;
+	}
+	
+	public byte[] getByteArrayAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.util.List<byte[]> getByteArrayAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.Set<java.lang.String> getCheckinWarnings(java.lang.Long poid) throws UserException, ServerException {
 		return null;
 	}
@@ -475,6 +487,10 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
+	public java.util.List<java.lang.Double> getDoubleAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SDownloadResult getDownloadData(java.lang.Long actionId) throws UserException, ServerException {
 		return null;
 	}
@@ -508,6 +524,10 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	}
 	
 	public java.lang.Integer getIntegerAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.util.List<java.lang.Integer> getIntegerAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -732,6 +752,10 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	}
 	
 	public java.lang.String getStringAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.util.List<java.lang.String> getStringAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
 		return null;
 	}
 	

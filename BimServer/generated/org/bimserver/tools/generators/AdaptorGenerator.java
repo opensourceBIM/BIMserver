@@ -68,7 +68,7 @@ SService sService = (SService)argument;
 for (SMethod method : sService.getMethods()) {
 
     stringBuffer.append(TEXT_7);
-    stringBuffer.append(method.getGenericReturnType() != null ? (method.getReturnType() + "<" + method.getGenericReturnType() + ">") : method.getReturnType());
+    stringBuffer.append(method.getGenericReturnType() != null ? (method.getReturnType().toJavaCode() + "<" + method.getGenericReturnType().toJavaCode() + ">") : method.getReturnType().toJavaCode());
     stringBuffer.append(TEXT_8);
     stringBuffer.append(method.getName());
     stringBuffer.append(TEXT_9);
