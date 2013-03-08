@@ -52,7 +52,9 @@ public class EmbeddedWebServer {
 	}
 	
 	public void start(WebModulePlugin defaultWebModule, List<WebModulePlugin> webModules) {
-		context.setResourceBase("../BimServer/www");
+		if (context.getResourceBase() == null) {
+			context.setResourceBase("../BimServer/www");
+		}
 		if (webModules != null) {
 			for (WebModulePlugin webModulePlugin : webModules) {
 				context.addServlet(new ServletHolder(new WebModuleServlet(webModulePlugin)), webModulePlugin.getContextPath());
