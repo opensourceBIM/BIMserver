@@ -36,6 +36,8 @@ import org.bimserver.shared.reflector.Reflector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import sun.reflect.generics.reflectiveObjects.GenericArrayTypeImpl;
+
 public class SMethod {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SMethod.class);
 	private String doc = "";
@@ -77,7 +79,14 @@ public class SMethod {
 		if (method.getReturnType() == List.class || method.getReturnType() == Set.class) {
 			Type genericReturnType = method.getGenericReturnType();
 			ParameterizedType parameterizedType = (ParameterizedType)genericReturnType;
-			this.genericReturnType = service.getSType(((Class)parameterizedType.getActualTypeArguments()[0]).getName());
+			Type type = parameterizedType.getActualTypeArguments()[0];
+			if (type instanceof Class) {
+				this.genericReturnType = service.getSType(((Class)type).getName());
+			} else if (type instanceof GenericArrayTypeImpl) {
+				// Somehow this only happens on Java 6 JVMs
+				GenericArrayTypeImpl genericArrayTypeImpl = (GenericArrayTypeImpl)type;
+				this.genericReturnType = service.getSType(((Class)genericArrayTypeImpl.getGenericComponentType()).getName());
+			}
 		}
  	}
 
