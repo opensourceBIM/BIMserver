@@ -47,6 +47,7 @@ public class SMethod {
 	private String name;
 	private SService service;
 	
+	@SuppressWarnings("rawtypes")
 	public SMethod(SService service, Method method) {
 		this.service = service;
 		this.method = method;
@@ -76,7 +77,7 @@ public class SMethod {
 		if (method.getReturnType() == List.class || method.getReturnType() == Set.class) {
 			Type genericReturnType = method.getGenericReturnType();
 			ParameterizedType parameterizedType = (ParameterizedType)genericReturnType;
-			this.genericReturnType = service.getSType(((Class<?>)parameterizedType.getActualTypeArguments()[0]).getName());
+			this.genericReturnType = service.getSType(((Class)parameterizedType.getActualTypeArguments()[0]).getName());
 		}
  	}
 
