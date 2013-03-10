@@ -218,31 +218,69 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryData.getVertices());
 			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
 
-			writer.print("\"material\":\"" + material + "\",");
-			writer.print("\"type\":\"geometry\",");
-			writer.print("\"coreId\":\"" + ifcObject.getOid() + "\",");
-			writer.print("\"primitive\":\"triangles\",");
-			writer.print("\"positions\":[");
-			int t = geometryInfo.getPrimitiveCount() * 3 * 3;
-//			reorder(verticesBuffer, t);
-			for (int i = 0; i < t; i++) {
-				if (i < t - 1) {
-					writer.print(verticesBuffer.getFloat() + ",");
-				} else {
-					writer.print(verticesBuffer.getFloat());
+			int totalNrVertices = verticesBuffer.capacity() / 4;
+			
+			int maxVertexValues = 1639300; // Extra large to disable this code for now
+			if (totalNrVertices > maxVertexValues) {
+				writer.print("\"coreId\":\"" + ifcObject.getOid() + "\",");
+				writer.print("\"material\":\"" + material + "\",");
+				writer.print("\"nodes\":[");
+				int nrParts = (totalNrVertices + maxVertexValues - 1) / maxVertexValues;
+				for (int part=0; part<nrParts; part++) {
+					writer.print("{");
+					writer.print("\"type\":\"geometry\",");
+					writer.print("\"coreId\":\"" + ifcObject.getOid() + "." + part + "\",");
+					writer.print("\"primitive\":\"triangles\",");
+					writer.print("\"positions\":[");
+					int nrVertices = Math.min(maxVertexValues, totalNrVertices - (part * maxVertexValues));
+					for (int i = part * maxVertexValues; i < part * maxVertexValues + nrVertices; i++) {
+						if (i < part * maxVertexValues + nrVertices - 1) {
+							writer.print(verticesBuffer.getFloat(i * 4) + ",");
+						} else {
+							writer.print(verticesBuffer.getFloat(i * 4));
+						}
+					}
+					writer.print("], \"normals\":[");
+					for (int i = part * maxVertexValues; i < part * maxVertexValues + nrVertices; i++) {
+						if (i < part * maxVertexValues + nrVertices - 1) {
+							writer.print(normalsBuffer.getFloat(i * 4) + ",");
+						} else {
+							writer.print(normalsBuffer.getFloat(i * 4));
+						}
+					}
+					writer.print("]");
+					writer.print(",\"nrindices\":" + nrVertices / 3);
+					writer.print("}");
+					if (part != nrParts - 1) {
+						writer.print(",");
+					}
 				}
-			}
-//			reorder(normalsBuffer, t);
-			writer.print("], \"normals\":[");
-			for (int i = 0; i < t; i++) {
-				if (i < t - 1) {
-					writer.print(normalsBuffer.getFloat() + ",");
-				} else {
-					writer.print(normalsBuffer.getFloat());
+				writer.print("]");
+			} else {
+				writer.print("\"material\":\"" + material + "\",");
+				writer.print("\"type\":\"geometry\",");
+				writer.print("\"coreId\":\"" + ifcObject.getOid() + "\",");
+				writer.print("\"primitive\":\"triangles\",");
+				writer.print("\"positions\":[");
+				int nrVertices = verticesBuffer.capacity() / 4;
+				for (int i = 0; i < nrVertices; i++) {
+					if (i < nrVertices - 1) {
+						writer.print(verticesBuffer.getFloat() + ",");
+					} else {
+						writer.print(verticesBuffer.getFloat());
+					}
 				}
+				writer.print("], \"normals\":[");
+				for (int i = 0; i < nrVertices; i++) {
+					if (i < nrVertices - 1) {
+						writer.print(normalsBuffer.getFloat() + ",");
+					} else {
+						writer.print(normalsBuffer.getFloat());
+					}
+				}
+				writer.print("]");
+				writer.print(",\"nrindices\":" + (geometryInfo.getPrimitiveCount() * 3));
 			}
-			writer.print("]");
-			writer.print(",\"nrindices\":" + (geometryInfo.getPrimitiveCount() * 3));
 		}
 	}
 	
