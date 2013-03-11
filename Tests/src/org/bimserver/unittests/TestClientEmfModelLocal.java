@@ -33,7 +33,6 @@ import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.ClientIfcModel;
 import org.bimserver.client.ProtocolBuffersBimServerClientFactory;
-import org.bimserver.client.Session;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevisionSummary;
@@ -50,7 +49,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TestClientEmfModelLocal {
-	private Session session;
 	private BimServerClient bimServerClient;
 	private static BimServer bimServer;
 
@@ -75,14 +73,14 @@ public class TestClientEmfModelLocal {
 		// bimServer.stop();
 	}
 
-	private int createProject() {
+	private SProject createProject() {
 		try {
 			SProject project = bimServerClient.getServiceInterface().addProject("Project " + new Random().nextInt());
-			return project.getId();
+			return project;
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
-		return -1;
+		return null;
 	}
 
 	@Test
@@ -101,20 +99,18 @@ public class TestClientEmfModelLocal {
 			e.printStackTrace();
 		}
 		try {
-			session = bimServerClient.createSession();
-			int poid = createProject();
-			session.startTransaction(poid);
+			ClientIfcModel model = bimServerClient.newModel(createProject());
+			SProject project = createProject();
 			CreateFromScratch createFromScratch = new CreateFromScratch();
-			createFromScratch.createIfcProject(session);
-			long roid = session.commitTransaction("tralala");
+			createFromScratch.createIfcProject(model);
+			long roid = model.commit("tralala");
 
-			dumpToFile(poid, roid);
+			dumpToFile(project.getOid(), roid);
 			
-			session.startTransaction(poid);
-			createFromScratch.createWall(session);
-			roid = session.commitTransaction("test");
+			createFromScratch.createWall(model);
+			roid = model.commit("test");
 			
-			dumpToFile(poid, roid);
+			dumpToFile(project.getOid(), roid);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getMessage());

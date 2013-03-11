@@ -31,7 +31,10 @@ public class StreamingServlet extends WebSocketServlet {
 
 	@Override
 	public WebSocket doWebSocketConnect(HttpServletRequest request, String response) {
-		return new StreamingSocket((BimServer)getServletContext().getAttribute("bimserver"));
+		StreamingSocket streamingSocket = new StreamingSocket();
+		Streamer streamer = new Streamer(streamingSocket, (BimServer)getServletContext().getAttribute("bimserver"));
+		streamingSocket.setStreamer(streamer);
+		return streamingSocket;
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

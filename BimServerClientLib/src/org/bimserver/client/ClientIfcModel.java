@@ -523,6 +523,10 @@ public class ClientIfcModel extends IfcModel {
 		super.remove(idEObject);
 	}
 
+	public <T extends IdEObject> T create(Class<T> clazz) throws IfcModelInterfaceException {
+		return create((EClass)Ifc2x3tc1Package.eINSTANCE.getEClassifier(clazz.getName()));
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends IdEObject> T create(EClass eClass) throws IfcModelInterfaceException {

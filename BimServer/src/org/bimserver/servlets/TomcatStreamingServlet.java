@@ -27,7 +27,9 @@ public class TomcatStreamingServlet extends WebSocketServlet {
 	
 	@Override
 	protected StreamInbound createWebSocketInbound(String arg0, HttpServletRequest arg1) {
-		final BimServer bimServer = (BimServer)getServletContext().getAttribute("bimserver");
-		return new TomcatStreamInbound(bimServer);
+		TomcatStreamInbound streamingSocket = new TomcatStreamInbound();
+		Streamer streamer = new Streamer(streamingSocket, (BimServer)getServletContext().getAttribute("bimserver"));
+		streamingSocket.setStreamer(streamer);
+		return streamingSocket;
 	}
 }
