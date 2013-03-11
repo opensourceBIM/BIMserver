@@ -34,6 +34,7 @@ import java.io.InputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 
+import org.apache.commons.io.IOUtils;
 import org.bimserver.ifcengine.jvm.IfcEngineServer;
 import org.bimserver.plugins.renderengine.RenderEngine;
 import org.bimserver.plugins.renderengine.RenderEngineException;
@@ -189,16 +190,7 @@ public class JvmIfcEngine implements RenderEngine {
 		writeCommand(Command.OPEN_MODEL_STREAMING);
 		try {
 			out.writeInt(size);
-			int total = 0;
-			while (total < size) {
-				byte[] buffer = new byte[1024];
-				int red = inputStream.read(buffer);
-				if (red == -1) {
-					break;
-				}
-				out.write(buffer, 0, red);
-				total += red;
-			}
+			IOUtils.copy(inputStream, out);
 		} catch (IOException e) {
 			throw new RenderEngineException(e);
 		}
@@ -249,7 +241,8 @@ public class JvmIfcEngine implements RenderEngine {
 		}
 	}
 
-	public synchronized void close() {
+	public synchronized void close() throws RenderEngineException {
+		checkRunning();
 		if (process != null) {
 			try {
 				writeCommand(Command.CLOSE);

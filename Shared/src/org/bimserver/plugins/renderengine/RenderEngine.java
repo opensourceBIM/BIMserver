@@ -24,6 +24,6 @@ public interface RenderEngine {
 	RenderEngineModel openModel(File ifcFile) throws RenderEngineException;
 	RenderEngineModel openModel(InputStream inputStream, int size) throws RenderEngineException;
 	RenderEngineModel openModel(byte[] bytes) throws RenderEngineException;
-	void close();
+	void close() throws RenderEngineException;
 	void init() throws RenderEngineException;
 }
