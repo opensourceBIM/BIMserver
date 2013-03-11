@@ -219,7 +219,7 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
 
 			int totalNrVertexValues = verticesBuffer.capacity() / 4;
-			int maxVertexValues = 49167; // Must be devisable by 9!
+			int maxVertexValues = 49167; // Must be divisible by 9!
 
 			if (totalNrVertexValues > maxVertexValues) {
 				writer.print("\"coreId\":\"" + ifcObject.getOid() + "\",");
