@@ -171,7 +171,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 			@Override
 			public void newRevision(final Long poid, final Long roid, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) throws UserException, ServerException {
 				InternalChannel internalChannel = new InternalChannel(internalRemoteServiceInterfaces.get(serviceIdentifier));
-				ServiceInterface serviceInterfaceImpl = bimServer.getServiceFactory().getService(ServiceInterface.class, token, AccessMethod.JSON);
+				ServiceInterface serviceInterfaceImpl = bimServer.getServiceFactory().get(token, AccessMethod.JSON).get(ServiceInterface.class);
 				internalChannel.addServiceInterface(ServiceInterface.class, serviceInterfaceImpl);
 				final ServiceInterface serviceInterface = internalChannel.getServiceInterface();
 				SService service = serviceInterface.getService(Long.parseLong(profileIdentifier));

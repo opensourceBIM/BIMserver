@@ -20,7 +20,7 @@ package org.bimserver.shared.json;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.meta.SMethod;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.reflector.KeyValuePair;
 import org.bimserver.shared.reflector.Reflector;
 import org.codehaus.jettison.json.JSONException;
@@ -31,9 +31,9 @@ import com.google.gson.JsonPrimitive;
 public abstract class JsonReflector implements Reflector {
 
 	private final JsonConverter converter;
-	private final ServicesMap servicesMap;
+	private final SServicesMap servicesMap;
 
-	public JsonReflector(ServicesMap servicesMap) {
+	public JsonReflector(SServicesMap servicesMap) {
 		this.servicesMap = servicesMap;
 		this.converter = new JsonConverter(servicesMap);
 	}

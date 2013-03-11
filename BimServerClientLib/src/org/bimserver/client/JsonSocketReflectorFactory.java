@@ -23,14 +23,14 @@ import org.apache.http.impl.conn.PoolingClientConnectionManager;
 import org.apache.http.params.CoreProtocolPNames;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.json.JsonSocketReflector;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 
 public class JsonSocketReflectorFactory implements JsonReflectorFactory {
-	private ServicesMap servicesMap;
+	private SServicesMap servicesMap;
 	private DefaultHttpClient httpclient;
 	private PoolingClientConnectionManager connectionManager;
 
-	public JsonSocketReflectorFactory(ServicesMap servicesMap) {
+	public JsonSocketReflectorFactory(SServicesMap servicesMap) {
 		this.servicesMap = servicesMap;
 
 		connectionManager = new PoolingClientConnectionManager();

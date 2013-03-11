@@ -23,7 +23,7 @@ import java.util.Set;
 
 import org.bimserver.shared.reflector.ReflectorFactory;
 
-public class ServicesMap {
+public class SServicesMap {
 	private final Map<String, SService> servicesByName = new LinkedHashMap<String, SService>();
 	private final Map<String, SService> servicesBySimpleName = new LinkedHashMap<String, SService>();
 	private ReflectorFactory reflectorFactory;
@@ -66,5 +66,20 @@ public class ServicesMap {
 	
 	public ReflectorFactory getReflectorFactory() {
 		return reflectorFactory;
+	}
+
+	/**
+	 * Inefficient method of getting a SMethod
+	 * @param methodName
+	 * @return
+	 */
+	public SMethod findMethod(String methodName) {
+		for (SService sService : servicesByName.values()) {
+			SMethod method = sService.getSMethod(methodName);
+			if (method != null) {
+				return method;
+			}
+		}
+		return null;
 	}
 }

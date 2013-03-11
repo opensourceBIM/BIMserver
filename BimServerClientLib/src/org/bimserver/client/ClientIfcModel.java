@@ -65,7 +65,7 @@ public class ClientIfcModel extends IfcModel {
 		this.bimServerClient = bimServerClient;
 		this.roid = roid;
 		try {
-			tid = bimServerClient.getServiceInterface().startTransaction(poid);
+			tid = bimServerClient.getLowLevelInterface().startTransaction(poid);
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {
@@ -81,7 +81,7 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	public long commit(String comment) throws ServerException, UserException {
-		return bimServerClient.getServiceInterface().commitTransaction(tid, comment);
+		return bimServerClient.getLowLevelInterface().commitTransaction(tid, comment);
 	}
 
 	public long getIfcSerializerOid() throws ServerException, UserException {
@@ -529,7 +529,7 @@ public class ClientIfcModel extends IfcModel {
 		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		object.setDelegate(new ClientDelegate(this, object, null));
 		try {
-			Long oid = bimServerClient.getServiceInterface().createObject(tid, eClass.getName());
+			Long oid = bimServerClient.getLowLevelInterface().createObject(tid, eClass.getName());
 			object.setOid(oid);
 			add(oid, object);
 		} catch (ServerException e) {

@@ -23,8 +23,6 @@ import org.bimserver.BimServer;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.PublicInterface;
-import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.webservices.authorization.AnonymousAuthorization;
 import org.bimserver.webservices.authorization.Authorization;
 
@@ -35,31 +33,22 @@ public class PublicInterfaceFactory implements ServiceFactory {
 		this.bimServer = bimServer;
 	}
 
-	@SuppressWarnings("unchecked")
-	public <T extends PublicInterface> T getService(Class<T> publicInterface, Authorization authorization, AccessMethod accessMethod) {
-		if (publicInterface == ServiceInterface.class) {
-			return (T) new Service(bimServer, accessMethod, "", authorization);
-		} else {
-			return (T) new NotificationImpl(bimServer);
-		}
+	public ServiceMap get(Authorization authorization, AccessMethod accessMethod) {
+		ServiceMap serviceMap = new ServiceMap(bimServer, authorization, accessMethod, null);
+		return serviceMap;
 	}
 	
-	public synchronized <T extends PublicInterface> T getService(Class<T> publicInterface, AccessMethod accessMethod) throws UserException {
+	public synchronized ServiceMap get(AccessMethod accessMethod) throws UserException {
 		Authorization authorization = new AnonymousAuthorization(1, TimeUnit.HOURS);
-		return getService(publicInterface, authorization, accessMethod);
+		return get(authorization, accessMethod);
 	}
 	
-	public synchronized <T extends PublicInterface> T getService(Class<T> publicInterface, String token, AccessMethod accessMethod) throws UserException {
+	public synchronized ServiceMap get(String token, AccessMethod accessMethod) throws UserException {
 		try {
 			Authorization authorization = Authorization.fromToken(bimServer.getEncryptionKey(), token);
-			return getService(publicInterface, authorization, accessMethod);
+			return get(authorization, accessMethod);
 		} catch (Exception e) {
 			throw new UserException(e);
 		}
-	}
-
-	@Override
-	public String getName() {
-		return "ServiceInterface";
 	}
 }

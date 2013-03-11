@@ -71,7 +71,7 @@ public class NewRevisionNotification extends Notification {
 				long readExtendedDataRoid = service.getReadExtendedData() != null ? roid : -1;
 				ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(readRevisionRoid, writeProjectPoid, readExtendedDataRoid, writeExtendedDataRoid);
 				authorization.setUoid(service.getUser().getOid());
-				ServiceInterface newService = bimServer.getServiceFactory().getService(ServiceInterface.class, authorization, AccessMethod.INTERNAL);
+				ServiceInterface newService = bimServer.getServiceFactory().get(authorization, AccessMethod.INTERNAL).get(ServiceInterface.class);
 				((org.bimserver.webservices.Service)newService).setAuthorization(authorization);
 				
 				remoteServiceInterface.newRevision(poid, roid, service.getServiceIdentifier(), service.getProfileIdentifier(), authorization.asHexToken(bimServer.getEncryptionKey()), bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());

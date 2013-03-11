@@ -20,13 +20,13 @@ package org.bimserver.client;
 import org.bimserver.client.channels.SoapChannel;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 
 public class SoapBimServerClientFactory extends AbstractBimServerClientFactory {
 
 	private String address;
 
-	public SoapBimServerClientFactory(String address, ServicesMap servicesMap) {
+	public SoapBimServerClientFactory(String address, SServicesMap servicesMap) {
 		super(servicesMap);
 		this.address = address;
 	}

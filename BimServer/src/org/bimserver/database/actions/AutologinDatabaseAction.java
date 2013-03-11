@@ -30,7 +30,7 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.Hashers;
-import org.bimserver.webservices.Service;
+import org.bimserver.webservices.ServiceMap;
 import org.bimserver.webservices.authorization.AdminAuthorization;
 import org.bimserver.webservices.authorization.Authorization;
 import org.bimserver.webservices.authorization.UserAuthorization;
@@ -39,13 +39,13 @@ public class AutologinDatabaseAction extends BimDatabaseAction<String>{
 
 	private final String hash;
 	private final String username;
-	private final Service service;
 	private BimServer bimServer;
+	private ServiceMap serviceMap;
 
-	public AutologinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, Service service, AccessMethod accessMethod, String username, String hash) {
+	public AutologinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, ServiceMap serviceMap, AccessMethod accessMethod, String username, String hash) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
-		this.service = service;
+		this.serviceMap = serviceMap;
 		this.username = username;
 		this.hash = hash;
 	}
@@ -71,7 +71,7 @@ public class AutologinDatabaseAction extends BimDatabaseAction<String>{
 			authorization.setUoid(user.getOid());
 			String asHexToken = authorization.asHexToken(bimServer.getEncryptionKey());
 			
-			service.setAuthorization(authorization);
+			serviceMap.setAuthorization(authorization);
 			getDatabaseSession().store(user);
 			return asHexToken;
 		} else {

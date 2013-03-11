@@ -23,7 +23,7 @@ import java.net.Socket;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ReflectiveRpcChannel;
 import org.bimserver.webservices.PublicInterfaceFactory;
@@ -37,10 +37,10 @@ public class ProtocolBuffersServer extends Thread {
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
 	private final int port;
 	private ServerSocket serverSocket;
-	private final ServicesMap servicesMap;
+	private final SServicesMap servicesMap;
 	private final PublicInterfaceFactory publicInterfaceFactory;
 
-	public ProtocolBuffersServer(ProtocolBuffersMetaData protocolBuffersMetaData, PublicInterfaceFactory publicInterfaceFactory, ServicesMap servicesMap, int port) {
+	public ProtocolBuffersServer(ProtocolBuffersMetaData protocolBuffersMetaData, PublicInterfaceFactory publicInterfaceFactory, SServicesMap servicesMap, int port) {
 		this.publicInterfaceFactory = publicInterfaceFactory;
 		setName("ProtocolBuffersServer");
 		this.servicesMap = servicesMap;

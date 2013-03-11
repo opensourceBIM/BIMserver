@@ -31,7 +31,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.bimserver.shared.TokenHolder;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 import org.codehaus.jettison.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +48,7 @@ public class JsonSocketReflector extends JsonReflector {
 	private final HttpContext context;
 	private TokenHolder tokenHolder;
 
-	public JsonSocketReflector(DefaultHttpClient httpclient, ServicesMap servicesMap, String remoteAddress, TokenHolder tokenHolder) {
+	public JsonSocketReflector(DefaultHttpClient httpclient, SServicesMap servicesMap, String remoteAddress, TokenHolder tokenHolder) {
 		super(servicesMap);
 		this.httpclient = httpclient;
 		this.remoteAddress = remoteAddress;

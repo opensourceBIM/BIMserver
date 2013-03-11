@@ -38,6 +38,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.comparators.SRevisionIdComparator;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,17 +78,20 @@ public class SyndicationServlet extends HttpServlet {
 			String password = split[1];
 			String token = (String) getServletContext().getAttribute("token");
 			ServiceInterface service = null;
+			AuthInterface authInterface = null;
 			try {
 				if (token == null) {
-					service = bimServer.getServiceFactory().getService(ServiceInterface.class, AccessMethod.SYNDICATION);
+					service = bimServer.getServiceFactory().get(AccessMethod.SYNDICATION).get(ServiceInterface.class);
+					authInterface = bimServer.getServiceFactory().get(AccessMethod.SYNDICATION).get(AuthInterface.class);
 				} else {
-					service = bimServer.getServiceFactory().getService(ServiceInterface.class, token, AccessMethod.SYNDICATION);
+					service = bimServer.getServiceFactory().get(token, AccessMethod.SYNDICATION).get(ServiceInterface.class);
+					authInterface = bimServer.getServiceFactory().get(token, AccessMethod.SYNDICATION).get(AuthInterface.class);
 				}
 			} catch (UserException e) {
 				LOGGER.error("", e);
 			}
 			try {
-				if (service.login(username, password) != null) {
+				if (authInterface.login(username, password) != null) {
 					String requestURI = request.getRequestURI();
 					response.setContentType("application/atom+xml");
 					try {

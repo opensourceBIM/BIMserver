@@ -190,4 +190,8 @@ public class SMethod {
 		Reflector reflector = this.service.getServicesMap().getReflectorFactory().createReflector(clazz, service);
 		return reflector.callMethod(clazz.getName(), getName(), getReturnType().getInstanceClass(), keyValuePairs);
 	}
+	
+	public SService getService() {
+		return service;
+	}
 }

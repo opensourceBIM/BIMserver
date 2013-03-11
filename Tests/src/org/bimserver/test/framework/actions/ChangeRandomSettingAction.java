@@ -19,7 +19,7 @@ package org.bimserver.test.framework.actions;
 
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.test.framework.TestFramework;
 import org.bimserver.test.framework.VirtualUser;
 
@@ -32,23 +32,23 @@ public class ChangeRandomSettingAction extends Action {
 	@Override
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
 		int random = nextInt(18);
-		ServiceInterface serviceInterface = virtualUser.getBimServerClient().getServiceInterface();
+		SettingsInterface settingsInterface = virtualUser.getBimServerClient().getSettingsInterface();
 		switch (random) {
 		case 0:
 			virtualUser.getActionResults().setText("Setting allow self registration");
-			serviceInterface.setSettingAllowSelfRegistration(nextBoolean());
+			settingsInterface.setSettingAllowSelfRegistration(nextBoolean());
 			break;
 		case 1:
 			virtualUser.getActionResults().setText("Setting allow self registration");
-			serviceInterface.setSettingAllowUsersToCreateTopLevelProjects(nextBoolean());
+			settingsInterface.setSettingAllowUsersToCreateTopLevelProjects(nextBoolean());
 			break;
 		case 3:
 			virtualUser.getActionResults().setText("Setting allow self registration");
-			serviceInterface.setSettingCacheOutputFiles(nextBoolean());
+			settingsInterface.setSettingCacheOutputFiles(nextBoolean());
 			break;
 		case 4:
 			virtualUser.getActionResults().setText("Setting checkin merin enabled");
-			serviceInterface.setSettingCheckinMergingEnabled(nextBoolean());
+			settingsInterface.setSettingCheckinMergingEnabled(nextBoolean());
 			break;
 		case 5:
 //			serviceInterface.setSettingCustomLogoAddress("");
@@ -57,13 +57,13 @@ public class ChangeRandomSettingAction extends Action {
 //			serviceInterface.setSettingEmailSenderAddress("");
 			break;
 		case 9:
-			serviceInterface.setSettingHideUserListForNonAdmin(nextBoolean());
+			settingsInterface.setSettingHideUserListForNonAdmin(nextBoolean());
 			break;
 		case 12:
-			serviceInterface.setSettingProtocolBuffersPort(1024 + nextInt(1024));
+			settingsInterface.setSettingProtocolBuffersPort(1024 + nextInt(1024));
 			break;
 		case 14:
-			serviceInterface.setSettingSendConfirmationEmailAfterRegistration(nextBoolean());
+			settingsInterface.setSettingSendConfirmationEmailAfterRegistration(nextBoolean());
 			break;
 		case 16:
 //			serviceInterface.setSettingSiteAddress("");

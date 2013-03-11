@@ -23,7 +23,7 @@ import java.net.InetSocketAddress;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.TokenHolder;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersReflector;
 import org.bimserver.shared.pb.SocketProtocolBuffersChannel;
@@ -34,7 +34,7 @@ public class ProtocolBuffersChannel extends Channel implements ConnectDisconnect
 
 	private SocketProtocolBuffersChannel protocolBuffersChannel;
 	private final static ProtocolBuffersMetaData protocolBuffersMetaData;
-	private ServicesMap servicesMap;
+	private SServicesMap servicesMap;
 	private ReflectorFactory reflectorFactory;
 	private String address;
 	private int port;
@@ -49,7 +49,7 @@ public class ProtocolBuffersChannel extends Channel implements ConnectDisconnect
 		}
 	}
 	
-	public ProtocolBuffersChannel(ServicesMap servicesMap, ReflectorFactory reflectorFactory, String address, int port) {
+	public ProtocolBuffersChannel(SServicesMap servicesMap, ReflectorFactory reflectorFactory, String address, int port) {
 		this.servicesMap = servicesMap;
 		this.reflectorFactory = reflectorFactory;
 		this.address = address;

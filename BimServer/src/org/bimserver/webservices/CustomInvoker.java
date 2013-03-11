@@ -58,14 +58,14 @@ public class CustomInvoker extends AbstractInvoker {
 			}
 			if (token != null) {
 				try {
-					return serviceFactory.getService(ServiceInterface.class, token, AccessMethod.SOAP);
+					return serviceFactory.get(token, AccessMethod.SOAP).get(ServiceInterface.class);
 				} catch (UserException e) {
 					LOGGER.error("", e);
 					return null;
 				}
 			} else {
 				try {
-					ServiceInterface newService = serviceFactory.getService(ServiceInterface.class, AccessMethod.SOAP);
+					ServiceInterface newService = serviceFactory.get(AccessMethod.SOAP).get(ServiceInterface.class);
 					context.getSession().put("token", token);
 					return newService;
 				} catch (UserException e) {
@@ -74,7 +74,7 @@ public class CustomInvoker extends AbstractInvoker {
 			}
 		} else {
 			try {
-				return serviceFactory.getService(ServiceInterface.class, AccessMethod.SOAP);
+				return serviceFactory.get(AccessMethod.SOAP).get(ServiceInterface.class);
 			} catch (UserException e) {
 				LOGGER.error("", e);
 			}

@@ -25,7 +25,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.bimserver.shared.interfaces.NotificationInterface;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +35,7 @@ public class SocketNotificationsClient extends NotificationsClient {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SocketNotificationsClient.class);
 	private ProtocolBuffersMetaData protocolBuffersMetaData;
 	private InetSocketAddress address;
-	private ServicesMap servicesMap;
+	private SServicesMap servicesMap;
 	private boolean running;
 	private ServerSocket serverSocket;
 	private final Set<Handler> handlers = new HashSet<Handler>();
@@ -63,7 +63,7 @@ public class SocketNotificationsClient extends NotificationsClient {
 		thread.start();
 	}
 
-	public void connect(ServicesMap servicesMap, InetSocketAddress address) {
+	public void connect(SServicesMap servicesMap, InetSocketAddress address) {
 		this.servicesMap = servicesMap;
 		this.address = address;
 	}

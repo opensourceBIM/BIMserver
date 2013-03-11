@@ -35,7 +35,7 @@ import org.bimserver.client.notifications.SocketNotificationsClient;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.meta.SService;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -82,7 +82,7 @@ public class TestNotifications {
 //			}
 //		};
 		try {
-			ServicesMap servicesMap = new ServicesMap();
+			SServicesMap servicesMap = new SServicesMap();
 			servicesMap.add(new SService(FileUtils.readFileToString(new File("../Shared/src/org/bimserver/shared/NotificationInterface.java")), NotificationInterface.class));
 			socketNotificationsClient.connect(servicesMap, new InetSocketAddress("localhost", 8055));
 		} catch (IOException e2) {
@@ -94,7 +94,7 @@ public class TestNotifications {
 		
 		try {
 			BimServerClient bimServerClient = factory.create();
-			bimServerClient.getServiceInterface().login("admin@bimserver.org", "admin");
+			bimServerClient.getAuthInterface().login("admin@bimserver.org", "admin");
 			//TODO
 //			bimServerClient.getServiceInterface().setHttpCallback(bimServerClient.getServiceInterface().getCurrentUser().getOid(), "localhost:8055");
 			bimServerClient.getServiceInterface().addProject("test12345");

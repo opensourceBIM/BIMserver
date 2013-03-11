@@ -35,7 +35,7 @@ import org.bimserver.shared.meta.SField;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
@@ -103,7 +103,7 @@ public class JsonApiServlet extends HttpServlet {
 		siteAddress = bimServer.getServerSettingsCache().getServerSettings().getSiteAddress();
 		writeHeader(writer);
 		writer.println("<h1>BIMserver JSON API Documentation</h1>");
-		ServicesMap serviceInterfaces = bimServer.getServicesMap();
+		SServicesMap serviceInterfaces = bimServer.getServicesMap();
 		for (String name : serviceInterfaces.keySetName()) {
 			writeMenu(writer, serviceInterfaces.getByName(name));
 		}

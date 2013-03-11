@@ -118,11 +118,17 @@ import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
 import org.bimserver.serializers.SerializerFactory;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.interfaces.AdminInterface;
+import org.bimserver.shared.interfaces.AuthInterface;
+import org.bimserver.shared.interfaces.LowLevelInterface;
+import org.bimserver.shared.interfaces.MetaInterface;
 import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.shared.meta.SService;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.reflector.ReflectorBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
@@ -160,7 +166,7 @@ public class BimServer {
 	private NotificationsManager notificationsManager;
 	private CompareCache compareCache;
 	private ProtocolBuffersMetaData protocolBuffersMetaData;
-	private final ServicesMap servicesMap = new ServicesMap();
+	private final SServicesMap servicesMap = new SServicesMap();
 	private EmbeddedWebServer embeddedWebServer;
 	private final BimServerConfig config;
 	private ProtocolBuffersServer protocolBuffersServer;
@@ -362,17 +368,29 @@ public class BimServer {
 			}
 			
 			URL resource1 = config.getResourceFetcher().getResource("ServiceInterface.java");
-			String content1 = getContent(resource1);
-			SService serviceInterfaceMeta = new SServiceInterfaceService(content1, ServiceInterface.class);
+			SService serviceInterfaceMeta = new SServiceInterfaceService(getContent(resource1), ServiceInterface.class);
 			servicesMap.add(serviceInterfaceMeta);
 
 			URL resource2 = config.getResourceFetcher().getResource("NotificationInterface.java");
-			String content2 = getContent(resource2);
-			servicesMap.add(new SService(content2, NotificationInterface.class, Collections.singletonList(serviceInterfaceMeta)));
+			servicesMap.add(new SService(getContent(resource2), NotificationInterface.class, Collections.singletonList(serviceInterfaceMeta)));
 
 			URL resource3 = config.getResourceFetcher().getResource("RemoteServiceInterface.java");
-			String content3 = getContent(resource3);
-			servicesMap.add(new SService(content3, RemoteServiceInterface.class, Collections.singletonList(serviceInterfaceMeta)));
+			servicesMap.add(new SService(getContent(resource3), RemoteServiceInterface.class, Collections.singletonList(serviceInterfaceMeta)));
+
+			URL resource4 = config.getResourceFetcher().getResource("AdminInterface.java");
+			servicesMap.add(new SService(getContent(resource4), AdminInterface.class, Collections.singletonList(serviceInterfaceMeta)));
+
+			URL resource5 = config.getResourceFetcher().getResource("MetaInterface.java");
+			servicesMap.add(new SService(getContent(resource5), MetaInterface.class, Collections.singletonList(serviceInterfaceMeta)));
+
+			URL resource6 = config.getResourceFetcher().getResource("SettingsInterface.java");
+			servicesMap.add(new SService(getContent(resource6), SettingsInterface.class, Collections.singletonList(serviceInterfaceMeta)));
+
+			URL resource7 = config.getResourceFetcher().getResource("AuthInterface.java");
+			servicesMap.add(new SService(getContent(resource7), AuthInterface.class, Collections.singletonList(serviceInterfaceMeta)));
+			
+			URL resource8 = config.getResourceFetcher().getResource("LowLevelInterface.java");
+			servicesMap.add(new SService(getContent(resource8), LowLevelInterface.class, Collections.singletonList(serviceInterfaceMeta)));
 			
 			notificationsManager.start();
 
@@ -883,7 +901,7 @@ public class BimServer {
 		return embeddedWebServer;
 	}
 
-	public ServicesMap getServicesMap() {
+	public SServicesMap getServicesMap() {
 		return servicesMap;
 	}
 
@@ -903,8 +921,8 @@ public class BimServer {
 		return serverSettingsCache;
 	}
 
-	public ServiceInterface getSystemService() {
-		return getServiceFactory().getService(ServiceInterface.class, new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL);
+	public <T extends PublicInterface> T getService(Class<T> clazz) {
+		return getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(clazz);
 	}
 	
 	public LongTransactionManager getLongTransactionManager() {

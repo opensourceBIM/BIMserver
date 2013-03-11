@@ -31,6 +31,8 @@ import org.bimserver.models.store.ServerState;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.servlets.StreamingServlet;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
+import org.bimserver.shared.interfaces.AdminInterface;
+import org.bimserver.shared.interfaces.SettingsInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -72,12 +74,12 @@ public class TestFramework {
 				bimServer.start();
 				// Convenience, setup the server to make sure it is in RUNNING state
 				if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
-					bimServer.getSystemService().setup("http://localhost", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
-					bimServer.getSystemService().setSettingGenerateGeometryOnCheckin(false);
+					bimServer.getService(AdminInterface.class).setup("http://localhost", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
+					bimServer.getService(SettingsInterface.class).setSettingGenerateGeometryOnCheckin(false);
 				}
 				
 				// Change a setting so normal users can create projects
-				bimServer.getSystemService().setSettingAllowUsersToCreateTopLevelProjects(true);
+				bimServer.getService(SettingsInterface.class).setSettingAllowUsersToCreateTopLevelProjects(true);
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}

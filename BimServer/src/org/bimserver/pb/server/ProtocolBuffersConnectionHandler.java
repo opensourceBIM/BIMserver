@@ -29,7 +29,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SService;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
 import org.bimserver.shared.pb.ReflectiveRpcChannel;
@@ -46,12 +46,12 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 	private OutputStream outputStream;
 	private DataInputStream dataInputStream;
 	private final ProtocolBuffersServer protocolBuffersServer;
-	private final ServicesMap servicesMap;
+	private final SServicesMap servicesMap;
 	private PublicInterfaceFactory serviceFactory;
 	private volatile boolean running;
 	private Socket socket;
 
-	public ProtocolBuffersConnectionHandler(Socket socket, ProtocolBuffersServer protocolBuffersServer, PublicInterfaceFactory serviceFactory, ServicesMap servicesMap) {
+	public ProtocolBuffersConnectionHandler(Socket socket, ProtocolBuffersServer protocolBuffersServer, PublicInterfaceFactory serviceFactory, SServicesMap servicesMap) {
 		this.socket = socket;
 		this.protocolBuffersServer = protocolBuffersServer;
 		this.serviceFactory = serviceFactory;
@@ -86,9 +86,9 @@ public class ProtocolBuffersConnectionHandler extends Thread {
 				
 				ServiceInterface service = null;
 				if (token.equals("")) {
-					service = serviceFactory.getService(ServiceInterface.class, AccessMethod.PROTOCOL_BUFFERS);
+					service = serviceFactory.get(AccessMethod.PROTOCOL_BUFFERS).get(ServiceInterface.class);
 				} else {
-					service = serviceFactory.getService(ServiceInterface.class, token, AccessMethod.PROTOCOL_BUFFERS);
+					service = serviceFactory.get(token, AccessMethod.PROTOCOL_BUFFERS).get(ServiceInterface.class);
 				}
 
 				ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(ServiceInterface.class, service, protocolBuffersMetaData, servicesMap);

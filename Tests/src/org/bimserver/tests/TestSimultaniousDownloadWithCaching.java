@@ -48,7 +48,10 @@ import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.AdminInterface;
+import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.interfaces.SettingsInterface;
 
 public class TestSimultaniousDownloadWithCaching {
 	public static void main(String[] args) {
@@ -76,7 +79,7 @@ public class TestSimultaniousDownloadWithCaching {
 			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
 			bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
-				bimServer.getSystemService().setup("http://localhost", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
+				bimServer.getService(AdminInterface.class).setup("http://localhost", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
 			}
 		} catch (PluginException e2) {
 			e2.printStackTrace();
@@ -93,10 +96,12 @@ public class TestSimultaniousDownloadWithCaching {
 		}
 
 		try {
-			ServiceInterface serviceInterface = bimServer.getServiceFactory().getService(ServiceInterface.class, AccessMethod.INTERNAL);
-			serviceInterface = bimServer.getServiceFactory().getService(ServiceInterface.class, serviceInterface.login("admin@bimserver.org", "admin"), AccessMethod.INTERNAL);
-			serviceInterface.setSettingCacheOutputFiles(true);
-			serviceInterface.setSettingGenerateGeometryOnCheckin(false);
+			ServiceInterface serviceInterface = bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(ServiceInterface.class);
+			SettingsInterface settingsInterface = bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(SettingsInterface.class);
+			final AuthInterface authInterface = bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(AuthInterface.class);
+			serviceInterface = bimServer.getServiceFactory().get(authInterface.login("admin@bimserver.org", "admin"), AccessMethod.INTERNAL).get(ServiceInterface.class);
+			settingsInterface.setSettingCacheOutputFiles(true);
+			settingsInterface.setSettingGenerateGeometryOnCheckin(false);
 			final SProject project = serviceInterface.addProject("test");
 			SDeserializerPluginConfiguration deserializerByName = serviceInterface.getDeserializerByName("IfcStepDeserializer");
 			File file = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
@@ -108,8 +113,8 @@ public class TestSimultaniousDownloadWithCaching {
 					@Override
 					public void run() {
 						try {
-							ServiceInterface serviceInterface = bimServer.getServiceFactory().getService(ServiceInterface.class, AccessMethod.INTERNAL);
-							serviceInterface = bimServer.getServiceFactory().getService(ServiceInterface.class, serviceInterface.login("admin@bimserver.org", "admin"), AccessMethod.INTERNAL);
+							ServiceInterface serviceInterface = bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(ServiceInterface.class);
+							serviceInterface = bimServer.getServiceFactory().get(authInterface.login("admin@bimserver.org", "admin"), AccessMethod.INTERNAL).get(ServiceInterface.class);
 							SSerializerPluginConfiguration serializerPluginConfiguration = serviceInterface.getSerializerByName("Ifc2x3");
 							Long download = serviceInterface.download(projectUpdate.getLastRevisionId(), serializerPluginConfiguration.getOid(), true, true);
 							SDownloadResult downloadData = serviceInterface.getDownloadData(download);

@@ -19,7 +19,6 @@ package org.bimserver.shared;
 
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.PublicInterface;
 
 /******************************************************************************
  * Copyright (C) 2009-2012  BIMserver.org
@@ -39,7 +38,6 @@ import org.bimserver.shared.interfaces.PublicInterface;
  *****************************************************************************/
 
 public interface ServiceFactory {
-	<T extends PublicInterface> T getService(Class<T> serviceInterface, String token, AccessMethod accessMethod) throws UserException;
-	String getName();
-	<T extends PublicInterface> T getService(Class<T> publicInterface, AccessMethod accessMethod) throws UserException;
+	ServiceMapInterface get(String token, AccessMethod accessMethod) throws UserException;
+	ServiceMapInterface get(AccessMethod accessMethod) throws UserException;
 }

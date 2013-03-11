@@ -27,9 +27,14 @@ import java.util.Set;
 import org.apache.commons.io.FileUtils;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.shared.interfaces.AdminInterface;
+import org.bimserver.shared.interfaces.AuthInterface;
+import org.bimserver.shared.interfaces.LowLevelInterface;
+import org.bimserver.shared.interfaces.MetaInterface;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.tools.generators.AdaptorGeneratorWrapper;
 import org.bimserver.tools.generators.DataObjectGeneratorWrapper;
@@ -96,6 +101,11 @@ public class CodeMigrator {
 		generateFiles(ServiceInterface.class, "service");
 		generateFiles(NotificationInterface.class, "notification");
 		generateFiles(RemoteServiceInterface.class, "remoteservice");
+		generateFiles(AdminInterface.class, "adminservice");
+		generateFiles(AuthInterface.class, "authservice");
+		generateFiles(SettingsInterface.class, "settingsservice");
+		generateFiles(LowLevelInterface.class, "lowlevelservice");
+		generateFiles(MetaInterface.class, "metaservice");
 
 		SPackageGeneratorWrapper sPackageGeneratorWrapper = new SPackageGeneratorWrapper();
 		sPackageGeneratorWrapper.generate(ePackages);

@@ -63,7 +63,7 @@ public class TestIfcEngineEmbedded {
 			BimServerClient client = bimServer.getBimServerClientFactory().create();
 
 			// Setup the server
-			client.getServiceInterface().setup("http://localhost:8080", "localhost", "noreply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
+			client.getAdminInterface().setup("http://localhost:8080", "localhost", "noreply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
 			
 			// Authenticate
 			client.setAuthentication(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));

@@ -21,16 +21,7 @@ import org.bimserver.shared.exceptions.ServerException;
 
 public class ServiceInterfaceAdaptor implements ServiceInterface {
 
-	public void abortTransaction(java.lang.Long tid) throws UserException, ServerException {
-	}
-	
-	public void addBooleanAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Boolean value) throws UserException, ServerException {
-	}
-	
 	public void addDeserializer(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration deserializer) throws UserException, ServerException {
-	}
-	
-	public void addDoubleAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Double value) throws UserException, ServerException {
 	}
 	
 	public void addExtendedDataSchema(org.bimserver.interfaces.objects.SExtendedDataSchema extendedDataSchema) throws UserException, ServerException {
@@ -40,9 +31,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	}
 	
 	public void addExtendedDataToRevision(java.lang.Long roid, org.bimserver.interfaces.objects.SExtendedData extendedData) throws UserException, ServerException {
-	}
-	
-	public void addIntegerAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Integer value) throws UserException, ServerException {
 	}
 	
 	public void addInternalService(org.bimserver.interfaces.objects.SInternalServicePluginConfiguration internalService) throws UserException, ServerException {
@@ -71,9 +59,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	public void addQueryEngine(org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration queryEngine) throws UserException, ServerException {
 	}
 	
-	public void addReference(java.lang.Long tid, java.lang.Long oid, java.lang.String referenceName, java.lang.Long referenceOid) throws UserException, ServerException {
-	}
-	
 	public void addRenderEngine(org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration renderEngine) throws UserException, ServerException {
 	}
 	
@@ -81,9 +66,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	}
 	
 	public void addServiceToProject(java.lang.Long poid, org.bimserver.interfaces.objects.SService sService) throws UserException, ServerException {
-	}
-	
-	public void addStringAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.String value) throws UserException, ServerException {
 	}
 	
 	public org.bimserver.interfaces.objects.SUser addUser(java.lang.String username, java.lang.String name, org.bimserver.interfaces.objects.SUserType type, java.lang.Boolean selfRegistration) throws UserException, ServerException {
@@ -94,10 +76,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	}
 	
 	public java.lang.Boolean addUserToProject(java.lang.Long uoid, java.lang.Long poid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.String autologin(java.lang.String username, java.lang.String hash) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -135,23 +113,11 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	public void cleanupLongAction(java.lang.Long actionId) throws UserException, ServerException {
 	}
 	
-	public java.lang.Integer clearOutputFileCache() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long commitTransaction(java.lang.Long tid, java.lang.String comment) throws UserException, ServerException {
-		return null;
-	}
-	
 	public org.bimserver.interfaces.objects.SCompareResult compare(java.lang.Long roid1, java.lang.Long roid2, org.bimserver.interfaces.objects.SCompareType sCompareType, java.lang.Long mcid) throws UserException, ServerException {
 		return null;
 	}
 	
 	public java.lang.Integer count(java.lang.Long roid, java.lang.String className) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long createObject(java.lang.Long tid, java.lang.String className) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -190,9 +156,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public void disablePlugin(java.lang.String name) throws UserException, ServerException {
-	}
-	
 	public java.lang.Long download(java.lang.Long roid, java.lang.Long serializerOid, java.lang.Boolean showOwn, java.lang.Boolean sync) throws UserException, ServerException {
 		return null;
 	}
@@ -222,20 +185,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	}
 	
 	public java.lang.Long downloadRevisions(java.util.Set<java.lang.Long> roids, java.lang.Long serializerOid, java.lang.Boolean sync) throws UserException, ServerException {
-		return null;
-	}
-	
-	public void enablePlugin(java.lang.String name) throws UserException, ServerException {
-	}
-	
-	public void externalServiceUpdate(java.lang.String uuid, org.bimserver.interfaces.objects.SRemoteServiceUpdate sExternalServiceUpdate) throws UserException, ServerException {
-	}
-	
-	public org.bimserver.interfaces.objects.SAccessMethod getAccessMethod() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SLongAction> getActiveLongActions() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -319,10 +268,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> getAllPlugins() throws UserException, ServerException {
-		return null;
-	}
-	
 	public java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor> getAllPrivateProfiles(java.lang.String notificationsUrl, java.lang.String serviceIdentifier, java.lang.String token) throws UserException, ServerException {
 		return null;
 	}
@@ -399,55 +344,11 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SBimServerInfo getBimServerInfo() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Boolean getBooleanAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<java.lang.Boolean> getBooleanAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
-		return null;
-	}
-	
-	public byte[] getByteArrayAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<byte[]> getByteArrayAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
-		return null;
-	}
-	
 	public java.util.Set<java.lang.String> getCheckinWarnings(java.lang.Long poid) throws UserException, ServerException {
 		return null;
 	}
 	
 	public java.util.Set<java.lang.String> getCheckoutWarnings(java.lang.Long poid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SUser getCurrentUser() throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SDataObject getDataObjectByGuid(java.lang.Long roid, java.lang.String guid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SDataObject getDataObjectByOid(java.lang.Long roid, java.lang.Long oid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SDataObject> getDataObjects(java.lang.Long roid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SDataObject> getDataObjectsByType(java.lang.Long roid, java.lang.String className) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SDatabaseInformation getDatabaseInformation() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -483,19 +384,7 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.lang.Double getDoubleAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<java.lang.Double> getDoubleAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
-		return null;
-	}
-	
 	public org.bimserver.interfaces.objects.SDownloadResult getDownloadData(java.lang.Long actionId) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.String getEnumAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -523,47 +412,11 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.lang.Integer getIntegerAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<java.lang.Integer> getIntegerAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
-		return null;
-	}
-	
 	public org.bimserver.interfaces.objects.SInternalServicePluginConfiguration getInternalServiceById(java.lang.Long oid) throws UserException, ServerException {
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SJavaInfo getJavaInfo() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.Date getLastDatabaseReset() throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SVersion getLatestVersion() throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SUser getLoggedInUser() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SLogAction> getLogs() throws UserException, ServerException {
-		return null;
-	}
-	
 	public org.bimserver.interfaces.objects.SLongActionState getLongActionState(java.lang.Long actionId) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long getLongAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SMigration> getMigrations() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -627,10 +480,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.lang.String getProtocolBuffersFile() throws UserException, ServerException {
-		return null;
-	}
-	
 	public org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration getQueryEngineById(java.lang.Long oid) throws UserException, ServerException {
 		return null;
 	}
@@ -644,18 +493,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	}
 	
 	public java.util.List<java.lang.String> getQueryEngineExampleKeys(java.lang.Long qeid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long getReference(java.lang.Long tid, java.lang.Long oid, java.lang.String referenceName) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<java.lang.Long> getReferences(java.lang.Long tid, java.lang.Long oid, java.lang.String referenceName) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.String getRemoteAddress() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -695,22 +532,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SServerInfo getServerInfo() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.String getServerLog() throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SServerSettings getServerSettings() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.Date getServerStartTime() throws UserException, ServerException {
-		return null;
-	}
-	
 	public org.bimserver.interfaces.objects.SService getService(java.lang.Long soid) throws UserException, ServerException {
 		return null;
 	}
@@ -719,59 +540,11 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SServiceInterface> getServiceInterfaces() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SServiceParameter> getServiceMethodParameters(java.lang.String serviceInterfaceName, java.lang.String serviceMethodName) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SServiceMethod> getServiceMethods(java.lang.String serviceInterfaceName) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.String getServiceRepositoryUrl() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SServiceType> getServiceTypes(java.lang.String serviceInterfaceName) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.String getSettingEmailSenderAddress() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Integer getSettingProtocolBuffersPort() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.String getSettingSiteAddress() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.String getSettingSmtpServer() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.String getStringAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<java.lang.String> getStringAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
-		return null;
-	}
-	
 	public java.util.List<org.bimserver.interfaces.objects.SProject> getSubProjects(java.lang.Long poid) throws UserException, ServerException {
 		return null;
 	}
 	
 	public org.bimserver.interfaces.objects.SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(java.lang.String extension) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SSystemInfo getSystemInfo() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -791,54 +564,8 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SVersion getVersion() throws UserException, ServerException {
-		return null;
-	}
-	
 	public java.lang.Boolean hasActiveSerializer(java.lang.String contentType) throws UserException, ServerException {
 		return null;
-	}
-	
-	public java.lang.Boolean isLoggedIn() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Boolean isSettingAllowSelfRegistration() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Boolean isSettingAllowUsersToCreateTopLevelProjects() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Boolean isSettingCacheOutputFiles() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Boolean isSettingCheckinMergingEnabled() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Boolean isSettingGenerateGeometryOnCheckin() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Boolean isSettingHideUserListForNonAdmin() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Boolean isSettingSendConfirmationEmailAfterRegistration() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.String login(java.lang.String username, java.lang.String password) throws UserException, ServerException {
-		return null;
-	}
-	
-	public void logout() throws UserException, ServerException {
-	}
-	
-	public void migrateDatabase() throws UserException, ServerException {
 	}
 	
 	public void registerChangeProgressOnProject(java.lang.Long endPointId, java.lang.Long poid) throws UserException, ServerException {
@@ -874,15 +601,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public void removeAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Integer index) throws UserException, ServerException {
-	}
-	
-	public void removeObject(java.lang.Long tid, java.lang.Long oid) throws UserException, ServerException {
-	}
-	
-	public void removeReference(java.lang.Long tid, java.lang.Long oid, java.lang.String referenceName, java.lang.Integer index) throws UserException, ServerException {
-	}
-	
 	public void removeUserFromExtendedDataSchema(java.lang.Long uoid, java.lang.Long edsid) throws UserException, ServerException {
 	}
 	
@@ -894,15 +612,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	}
 	
 	public void sendCompareEmail(org.bimserver.interfaces.objects.SCompareType sCompareType, java.lang.Long mcid, java.lang.Long poid, java.lang.Long roid1, java.lang.Long roid2, java.lang.String address) throws UserException, ServerException {
-	}
-	
-	public void setBooleanAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Boolean value) throws UserException, ServerException {
-	}
-	
-	public void setBooleanAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.util.List<java.lang.Boolean> values) throws UserException, ServerException {
-	}
-	
-	public void setByteArrayAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Byte[] value) throws UserException, ServerException {
 	}
 	
 	public void setDefaultModelCompare(java.lang.Long oid) throws UserException, ServerException {
@@ -923,89 +632,13 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	public void setDefaultSerializer(java.lang.Long oid) throws UserException, ServerException {
 	}
 	
-	public void setDoubleAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Double value) throws UserException, ServerException {
-	}
-	
-	public void setDoubleAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.util.List<java.lang.Double> values) throws UserException, ServerException {
-	}
-	
-	public void setEnumAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.String value) throws UserException, ServerException {
-	}
-	
-	public void setIntegerAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Integer value) throws UserException, ServerException {
-	}
-	
-	public void setIntegerAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.util.List<java.lang.Integer> values) throws UserException, ServerException {
-	}
-	
-	public void setLongAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Long value) throws UserException, ServerException {
-	}
-	
-	public void setLongAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.util.List<java.lang.Long> values) throws UserException, ServerException {
-	}
-	
 	public void setPluginSettings(java.lang.Long poid, org.bimserver.interfaces.objects.SObjectType settings) throws UserException, ServerException {
-	}
-	
-	public void setReference(java.lang.Long tid, java.lang.Long oid, java.lang.String referenceName, java.lang.Long referenceOid) throws UserException, ServerException {
 	}
 	
 	public void setRevisionTag(java.lang.Long roid, java.lang.String tag) throws UserException, ServerException {
 	}
 	
-	public void setServerSettings(org.bimserver.interfaces.objects.SServerSettings serverSettings) throws UserException, ServerException {
-	}
-	
-	public void setServiceRepositoryUrl(java.lang.String url) throws UserException, ServerException {
-	}
-	
-	public void setSettingAllowSelfRegistration(java.lang.Boolean allowSelfRegistration) throws UserException, ServerException {
-	}
-	
-	public void setSettingAllowUsersToCreateTopLevelProjects(java.lang.Boolean allowUsersToCreateTopLevelProjects) throws UserException, ServerException {
-	}
-	
-	public void setSettingCacheOutputFiles(java.lang.Boolean cacheOutputFiles) throws UserException, ServerException {
-	}
-	
-	public void setSettingCheckinMergingEnabled(java.lang.Boolean checkinMergingEnabled) throws UserException, ServerException {
-	}
-	
-	public void setSettingEmailSenderAddress(java.lang.String emailSenderAddress) throws UserException, ServerException {
-	}
-	
-	public void setSettingGenerateGeometryOnCheckin(java.lang.Boolean generateGeometryOnCheckin) throws UserException, ServerException {
-	}
-	
-	public void setSettingHideUserListForNonAdmin(java.lang.Boolean hideUserListForNonAdmin) throws UserException, ServerException {
-	}
-	
-	public void setSettingProtocolBuffersPort(java.lang.Integer port) throws UserException, ServerException {
-	}
-	
-	public void setSettingSendConfirmationEmailAfterRegistration(java.lang.Boolean sendConfirmationEmailAfterRegistration) throws UserException, ServerException {
-	}
-	
-	public void setSettingSiteAddress(java.lang.String siteAddress) throws UserException, ServerException {
-	}
-	
-	public void setSettingSmtpServer(java.lang.String smtpServer) throws UserException, ServerException {
-	}
-	
-	public void setStringAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.String value) throws UserException, ServerException {
-	}
-	
-	public void setWhiteListedDomains(java.util.List<java.lang.String> domains) throws UserException, ServerException {
-	}
-	
-	public void setup(java.lang.String siteAddress, java.lang.String smtpServer, java.lang.String smtpSender, java.lang.String adminName, java.lang.String adminUsername, java.lang.String adminPassword) throws UserException, ServerException {
-	}
-	
 	public java.lang.String shareRevision(java.lang.Long roid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long startTransaction(java.lang.Long poid) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -1047,12 +680,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	public void unregisterProgressTopic(java.lang.Long topicId) throws UserException, ServerException {
 	}
 	
-	public void unsetAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
-	}
-	
-	public void unsetReference(java.lang.Long tid, java.lang.Long oid, java.lang.String referenceName) throws UserException, ServerException {
-	}
-	
 	public void updateDeserializer(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration deserializer) throws UserException, ServerException {
 	}
 	
@@ -1087,10 +714,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	}
 	
 	public void updateSerializer(org.bimserver.interfaces.objects.SSerializerPluginConfiguration serializer) throws UserException, ServerException {
-	}
-	
-	public java.lang.Boolean upgradePossible() throws UserException, ServerException {
-		return null;
 	}
 	
 	public java.lang.Long uploadFile(org.bimserver.interfaces.objects.SFile file) throws UserException, ServerException {
