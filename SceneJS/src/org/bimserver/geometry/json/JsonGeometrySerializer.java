@@ -218,21 +218,21 @@ public class JsonGeometrySerializer extends AbstractGeometrySerializer {
 			ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryData.getVertices());
 			ByteBuffer normalsBuffer = ByteBuffer.wrap(geometryData.getNormals());
 
-			int totalNrVertices = verticesBuffer.capacity() / 4;
-			
-			int maxVertexValues = 1639300; // Extra large to disable this code for now
-			if (totalNrVertices > maxVertexValues) {
+			int totalNrVertexValues = verticesBuffer.capacity() / 4;
+			int maxVertexValues = 49167; // Must be devisable by 9!
+
+			if (totalNrVertexValues > maxVertexValues) {
 				writer.print("\"coreId\":\"" + ifcObject.getOid() + "\",");
 				writer.print("\"material\":\"" + material + "\",");
 				writer.print("\"nodes\":[");
-				int nrParts = (totalNrVertices + maxVertexValues - 1) / maxVertexValues;
+				int nrParts = (totalNrVertexValues + maxVertexValues - 1) / maxVertexValues;
 				for (int part=0; part<nrParts; part++) {
 					writer.print("{");
 					writer.print("\"type\":\"geometry\",");
 					writer.print("\"coreId\":\"" + ifcObject.getOid() + "." + part + "\",");
 					writer.print("\"primitive\":\"triangles\",");
 					writer.print("\"positions\":[");
-					int nrVertices = Math.min(maxVertexValues, totalNrVertices - (part * maxVertexValues));
+					int nrVertices = Math.min(maxVertexValues, totalNrVertexValues - (part * maxVertexValues));
 					for (int i = part * maxVertexValues; i < part * maxVertexValues + nrVertices; i++) {
 						if (i < part * maxVertexValues + nrVertices - 1) {
 							writer.print(verticesBuffer.getFloat(i * 4) + ",");
