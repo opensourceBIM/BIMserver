@@ -47,6 +47,7 @@ import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
@@ -71,15 +72,20 @@ public abstract class Channel {
 	}
 
 	public NotificationInterface getNotificationInterface() {
-		return (NotificationInterface) getServiceInterface(NotificationInterface.class);
+		return (NotificationInterface) get(NotificationInterface.class);
 	}
 	
 	public ServiceInterface getServiceInterface() {
-		return (ServiceInterface) getServiceInterface(ServiceInterface.class);
+		return (ServiceInterface) get(ServiceInterface.class);
+	}
+
+	public LowLevelInterface getLowLevelInterface() {
+		return (LowLevelInterface) get(LowLevelInterface.class);
 	}
 	
-	public PublicInterface getServiceInterface(Class<? extends PublicInterface> interfaceClass) {
-		return serviceInterfaces.get(interfaceClass);
+	@SuppressWarnings("unchecked")
+	public <T extends PublicInterface> T get(Class<T> interfaceClass) {
+		return (T) serviceInterfaces.get(interfaceClass);
 	}
 	
 	public void registerConnectDisconnectListener(ConnectDisconnectListener connectDisconnectListener) {
@@ -229,6 +235,6 @@ public abstract class Channel {
 	}
 
 	public RemoteServiceInterface getRemoteServiceInterface() {
-		return (RemoteServiceInterface) getServiceInterface(RemoteServiceInterface.class);
+		return (RemoteServiceInterface) get(RemoteServiceInterface.class);
 	}
 }

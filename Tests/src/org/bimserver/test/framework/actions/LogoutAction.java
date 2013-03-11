@@ -32,7 +32,7 @@ public class LogoutAction extends Action {
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
 		if (!virtualUser.getUserNames().isEmpty()) {
 			virtualUser.getActionResults().setText("Logging out");
-			virtualUser.getBimServerClient().getServiceInterface().logout();
+			virtualUser.getBimServerClient().getAuthInterface().logout();
 		}
 	}
 }

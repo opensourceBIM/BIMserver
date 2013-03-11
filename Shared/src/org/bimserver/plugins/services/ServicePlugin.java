@@ -32,7 +32,7 @@ public abstract class ServicePlugin implements Plugin {
 	private PluginManager pluginManager;
 	
 	public ServiceInterface getServiceInterface(String token) throws UserException {
-		return pluginManager.getServiceFactory().getService(ServiceInterface.class, token, AccessMethod.INTERNAL);
+		return pluginManager.getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
 	}
 
 	protected void registerNewRevisionHandler(ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {

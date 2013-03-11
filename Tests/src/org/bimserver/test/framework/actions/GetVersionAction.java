@@ -33,7 +33,7 @@ public class GetVersionAction extends Action {
 	@Override
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
 		virtualUser.getLogger().info("Getting version");
-		SVersion version = virtualUser.getBimServerClient().getServiceInterface().getVersion();
+		SVersion version = virtualUser.getBimServerClient().getAdminInterface().getVersion();
 		virtualUser.getLogger().info(version.getMajor() + "." + version.getMinor() + "." + version.getRevision() + " " + version.getDate());
 	}
 }

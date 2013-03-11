@@ -34,7 +34,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SMethod;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
 import org.bimserver.shared.reflector.KeyValuePair;
 import org.bimserver.shared.reflector.Reflector;
@@ -55,9 +55,9 @@ public class ProtocolBuffersReflector extends ProtocolBuffersConverter implement
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProtocolBuffersReflector.class);
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
 	private final SocketProtocolBuffersChannel channel;
-	private ServicesMap servicesMap;
+	private SServicesMap servicesMap;
 
-	public ProtocolBuffersReflector(ProtocolBuffersMetaData protocolBuffersMetaData, ServicesMap servicesMap, SocketProtocolBuffersChannel channel) {
+	public ProtocolBuffersReflector(ProtocolBuffersMetaData protocolBuffersMetaData, SServicesMap servicesMap, SocketProtocolBuffersChannel channel) {
 		super(protocolBuffersMetaData);
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
 		this.servicesMap = servicesMap;

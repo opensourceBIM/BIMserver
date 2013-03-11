@@ -24,7 +24,7 @@ import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.PublicInterface;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 
 public class DirectBimServerClientFactory<T extends PublicInterface> extends AbstractBimServerClientFactory {
 
@@ -33,7 +33,7 @@ public class DirectBimServerClientFactory<T extends PublicInterface> extends Abs
 	private ServiceFactory serviceFactory;
 	private String baseAddress;
 
-	public DirectBimServerClientFactory(String baseAddress, Class<T> interfaceClass, ServiceFactory serviceFactory, ServicesMap servicesMap) {
+	public DirectBimServerClientFactory(String baseAddress, Class<T> interfaceClass, ServiceFactory serviceFactory, SServicesMap servicesMap) {
 		super(servicesMap);
 		this.baseAddress = baseAddress;
 		this.interfaceClass = interfaceClass;
@@ -45,7 +45,7 @@ public class DirectBimServerClientFactory<T extends PublicInterface> extends Abs
 	@Override
 	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
 		DirectChannel channel = new DirectChannel();
-		channel.connect(interfaceClass, serviceFactory.getService(interfaceClass, AccessMethod.INTERNAL));
+		channel.connect(interfaceClass, serviceFactory.get(AccessMethod.INTERNAL).get(interfaceClass));
 		BimServerClient bimServerClient = new BimServerClient(baseAddress, getServicesMap(), channel);
 		bimServerClient.setAuthentication(authenticationInfo);
 		return bimServerClient;

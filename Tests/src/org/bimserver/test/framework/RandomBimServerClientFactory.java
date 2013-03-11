@@ -30,7 +30,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.reflector.ReflectorBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
 import org.slf4j.Logger;
@@ -59,7 +59,7 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 		} else {
 			this.types = types;
 		}
-		ServicesMap servicesMap = new ServicesMap();
+		SServicesMap servicesMap = new SServicesMap();
 		servicesMap.add(new SServiceInterfaceService(null, ServiceInterface.class));
 		
 		ReflectorFactory reflectorFactory = new ReflectorBuilder(servicesMap).newReflectorFactory();

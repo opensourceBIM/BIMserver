@@ -36,23 +36,23 @@ import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ReflectorBuilder {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReflectorBuilder.class);
-	private ServicesMap servicesMap;
+	private SServicesMap servicesMap;
 	private ClassPool pool;
 	private static int implementationCounter = 0;
 	private static final String GENERATED_CLASSES_PACKAGE = "org.bimserver.generated";
 
-	public ReflectorBuilder(ServicesMap servicesMap) {
+	public ReflectorBuilder(SServicesMap servicesMap) {
 		this.servicesMap = servicesMap;
 	}
 
 	public static void main(String[] args) {
-		ServicesMap servicesMap = new ServicesMap();
+		SServicesMap servicesMap = new SServicesMap();
 		SService sService = new SService("", org.bimserver.shared.interfaces.ServiceInterface.class);
 		servicesMap.add(sService);
 		servicesMap.add(new SService("", NotificationInterface.class, Collections.singletonList(sService)));

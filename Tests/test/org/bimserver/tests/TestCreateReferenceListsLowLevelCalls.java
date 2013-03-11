@@ -8,6 +8,7 @@ import java.util.List;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.junit.Test;
 
@@ -22,27 +23,29 @@ public class TestCreateReferenceListsLowLevelCalls extends TestWithEmbeddedServe
 			// Get the service interface
 			ServiceInterface serviceInterface = bimServerClient.getServiceInterface();
 			
+			LowLevelInterface lowLevelInterface = bimServerClient.getLowLevelInterface();
+			
 			// Create a new project
 			SProject newProject = serviceInterface.addProject("test" + Math.random());
 			
 			// Start a transaction
-			Long tid = serviceInterface.startTransaction(newProject.getOid());
+			Long tid = lowLevelInterface.startTransaction(newProject.getOid());
 			
-			Long ifcShapeRepresentationOid = serviceInterface.createObject(tid, "IfcShapeRepresentation");
+			Long ifcShapeRepresentationOid = lowLevelInterface.createObject(tid, "IfcShapeRepresentation");
 			
-			long ifcRepresentationItem1 = serviceInterface.createObject(tid, "IfcStyledItem");
-			long ifcRepresentationItem2 = serviceInterface.createObject(tid, "IfcMappedItem");
-			long ifcRepresentationItem3 = serviceInterface.createObject(tid, "IfcGeometricRepresentationItem");
+			long ifcRepresentationItem1 = lowLevelInterface.createObject(tid, "IfcStyledItem");
+			long ifcRepresentationItem2 = lowLevelInterface.createObject(tid, "IfcMappedItem");
+			long ifcRepresentationItem3 = lowLevelInterface.createObject(tid, "IfcGeometricRepresentationItem");
 			
-			serviceInterface.addReference(tid, ifcShapeRepresentationOid, "Items", ifcRepresentationItem1);
-			serviceInterface.addReference(tid, ifcShapeRepresentationOid, "Items", ifcRepresentationItem2);
-			serviceInterface.addReference(tid, ifcShapeRepresentationOid, "Items", ifcRepresentationItem3);
+			lowLevelInterface.addReference(tid, ifcShapeRepresentationOid, "Items", ifcRepresentationItem1);
+			lowLevelInterface.addReference(tid, ifcShapeRepresentationOid, "Items", ifcRepresentationItem2);
+			lowLevelInterface.addReference(tid, ifcShapeRepresentationOid, "Items", ifcRepresentationItem3);
 			
 			// Commit the transaction
-			serviceInterface.commitTransaction(tid, "test");
+			lowLevelInterface.commitTransaction(tid, "test");
 
-			tid = serviceInterface.startTransaction(newProject.getOid());
-			List<Long> itemOids = serviceInterface.getReferences(tid, ifcShapeRepresentationOid, "Items");
+			tid = lowLevelInterface.startTransaction(newProject.getOid());
+			List<Long> itemOids = lowLevelInterface.getReferences(tid, ifcShapeRepresentationOid, "Items");
 			assertTrue(itemOids.get(0) == ifcRepresentationItem1 && itemOids.get(1) == ifcRepresentationItem2 && itemOids.get(2) == ifcRepresentationItem3);
 		} catch (Exception e) {
 			e.printStackTrace();

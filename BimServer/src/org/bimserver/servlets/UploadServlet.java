@@ -130,7 +130,7 @@ public class UploadServlet extends HttpServlet {
 						DataHandler ifcFile = new DataHandler(inputStreamDataSource);
 						
 						if (token != null) {
-							ServiceInterface service = bimServer.getServiceFactory().getService(ServiceInterface.class, token, AccessMethod.INTERNAL);
+							ServiceInterface service = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
 							long checkinId = service.checkin(poid, comment, deserializerOid, size, name, ifcFile, merge, sync);
 							result.put("checkinid", checkinId);
 						}

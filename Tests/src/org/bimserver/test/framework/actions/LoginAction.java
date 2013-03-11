@@ -32,12 +32,12 @@ public class LoginAction extends Action {
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
 		if (nextInt(virtualUser.getUserNames().size() + 1) == 0) {
 			virtualUser.getActionResults().setText("Logging in as admin@bimserver.org");
-			virtualUser.getBimServerClient().getServiceInterface().login("admin@bimserver.org", "admin");
+			virtualUser.getBimServerClient().getAuthInterface().login("admin@bimserver.org", "admin");
 		} else {
 			if (!virtualUser.getUserNames().isEmpty()) {
 				String username = virtualUser.getRandomUserName();
 				virtualUser.getActionResults().setText("Logging in as " + username);
-				virtualUser.getBimServerClient().getServiceInterface().login(username, "test");
+				virtualUser.getBimServerClient().getAuthInterface().login(username, "test");
 			}
 		}
 	}

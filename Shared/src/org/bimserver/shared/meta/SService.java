@@ -56,7 +56,7 @@ public class SService {
 	// Disabled for now, makes the deployed JAR stop at this point
 	private boolean processJavaDoc = true;
 	private List<SService> others;
-	private ServicesMap servicesMap;
+	private SServicesMap servicesMap;
 	private String simpleName;
 
 	public SService(String sourceCode, Class<?> clazz) {
@@ -240,6 +240,11 @@ public class SService {
 	}
 
 	public SClass getSType(String name) {
+		return getSType(name, new HashSet<SService>());
+	}
+
+	public SClass getSType(String name, Set<SService> checked) {
+		checked.add(this);
 		SClass sType = types.get(name);
 		if (sType == null) {
 			if (name.contains(".")) {
@@ -249,9 +254,11 @@ public class SService {
 		}
 		if (sType == null) {
 			for (SService other : others) {
-				SClass otherClass = other.getSType(name);
-				if (otherClass != null) {
-					return otherClass;
+				if (!checked.contains(other)) {
+					SClass otherClass = other.getSType(name, checked);
+					if (otherClass != null) {
+						return otherClass;
+					}
 				}
 			}
 		}
@@ -283,11 +290,11 @@ public class SService {
 		}
 	}
 
-	public void setServicesMap(ServicesMap servicesMap) {
+	public void setServicesMap(SServicesMap servicesMap) {
 		this.servicesMap = servicesMap;
 	}
 	
-	public ServicesMap getServicesMap() {
+	public SServicesMap getServicesMap() {
 		return servicesMap;
 	}
 

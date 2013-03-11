@@ -54,6 +54,9 @@ import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.interfaces.AdminInterface;
+import org.bimserver.shared.interfaces.AuthInterface;
+import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.eclipse.emf.common.util.EList;
 import org.junit.AfterClass;
@@ -64,6 +67,7 @@ public class TestLowLevelChanges {
 
 	private static BimServer bimServer;
 	private static ServiceInterface service;
+	private static LowLevelInterface lowLevelInterface;
 	private static PluginManager pluginManager;
 
 	@BeforeClass
@@ -88,7 +92,7 @@ public class TestLowLevelChanges {
 
 			// Convenience, setup the server to make sure it is in RUNNING state
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
-				bimServer.getSystemService().setup("http://localhost", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
+				bimServer.getService(AdminInterface.class).setup("http://localhost", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
 			}
 			
 			// Change a setting to normal users can create projects
@@ -107,7 +111,8 @@ public class TestLowLevelChanges {
 			e.printStackTrace();
 		}
 
-		service = bimServer.getSystemService();
+		service = bimServer.getService(ServiceInterface.class);
+		lowLevelInterface = bimServer.getService(LowLevelInterface.class);
 		pluginManager = bimServer.getPluginManager();
 		createUserAndLogin();
 	}
@@ -123,7 +128,7 @@ public class TestLowLevelChanges {
 			String username = "test" + nextInt + "@bimserver.org";
 			long addUser = service.addUser(username, "User " + nextInt, SUserType.USER, false).getOid();
 			service.changePassword(addUser, null, "test");
-			service.login(username, "test");
+			bimServer.getService(AuthInterface.class).login(username, "test");
 			return addUser;
 		} catch (ServiceException e) {
 			e.printStackTrace();
@@ -154,9 +159,9 @@ public class TestLowLevelChanges {
 	public void testCreateObject() {
 		try {
 			long poid = createProject();
-			long tid = service.startTransaction(poid);
-			long wallOid = service.createObject(tid, "IfcWall");
-			long roid = service.commitTransaction(tid, "test");
+			long tid = lowLevelInterface.startTransaction(poid);
+			long wallOid = lowLevelInterface.createObject(tid, "IfcWall");
+			long roid = lowLevelInterface.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 1) {
 				fail("1 object expected, found " + model.size());
@@ -176,11 +181,11 @@ public class TestLowLevelChanges {
 	public void testSetStringAttribute() {
 		try {
 			long poid = createProject();
-			long tid = service.startTransaction(poid);
-			long windowOid = service.createObject(tid, "IfcWindow");
+			long tid = lowLevelInterface.startTransaction(poid);
+			long windowOid = lowLevelInterface.createObject(tid, "IfcWindow");
 			String name = "TestX";
-			service.setStringAttribute(tid, windowOid, "Name", name);
-			long roid = service.commitTransaction(tid, "test");
+			lowLevelInterface.setStringAttribute(tid, windowOid, "Name", name);
+			long roid = lowLevelInterface.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 1) {
 				fail("1 object expected, found " + model.size());
@@ -204,11 +209,11 @@ public class TestLowLevelChanges {
 	public void testSetFloatAttribute() {
 		try {
 			long poid = createProject();
-			long tid = service.startTransaction(poid);
-			long windowOid = service.createObject(tid, "IfcWindow");
+			long tid = lowLevelInterface.startTransaction(poid);
+			long windowOid = lowLevelInterface.createObject(tid, "IfcWindow");
 			double overallHeight = 200.5;
-			service.setDoubleAttribute(tid, windowOid, "OverallHeight", overallHeight);
-			long roid = service.commitTransaction(tid, "test");
+			lowLevelInterface.setDoubleAttribute(tid, windowOid, "OverallHeight", overallHeight);
+			long roid = lowLevelInterface.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 1) {
 				fail("1 object expected, found " + model.size());
@@ -232,11 +237,11 @@ public class TestLowLevelChanges {
 	public void testSetReference() {
 		try {
 			long poid = createProject();
-			long tid = service.startTransaction(poid);
-			long siteId = service.createObject(tid, "IfcSite");
-			long ownerHistoryId = service.createObject(tid, "IfcOwnerHistory");
-			service.setReference(tid, siteId, "OwnerHistory", ownerHistoryId); // TODO test
-			long roid = service.commitTransaction(tid, "test");
+			long tid = lowLevelInterface.startTransaction(poid);
+			long siteId = lowLevelInterface.createObject(tid, "IfcSite");
+			long ownerHistoryId = lowLevelInterface.createObject(tid, "IfcOwnerHistory");
+			lowLevelInterface.setReference(tid, siteId, "OwnerHistory", ownerHistoryId); // TODO test
+			long roid = lowLevelInterface.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 2) {
 				fail("2 objects expected, found " + model.size());
@@ -262,15 +267,15 @@ public class TestLowLevelChanges {
 	public void testAddFloatAttribute() {
 		try {
 			long poid = createProject();
-			Long tid = service.startTransaction(poid);
-			long cartesianPointId = service.createObject(tid, "IfcCartesianPoint");
+			Long tid = lowLevelInterface.startTransaction(poid);
+			long cartesianPointId = lowLevelInterface.createObject(tid, "IfcCartesianPoint");
 			double firstVal = 5.1;
-			service.addDoubleAttribute(tid, cartesianPointId, "Coordinates", firstVal);
+			lowLevelInterface.addDoubleAttribute(tid, cartesianPointId, "Coordinates", firstVal);
 			double secondVal = 6.2;
-			service.addDoubleAttribute(tid, cartesianPointId, "Coordinates", secondVal);
+			lowLevelInterface.addDoubleAttribute(tid, cartesianPointId, "Coordinates", secondVal);
 			double thirdVal = 7.3;
-			service.addDoubleAttribute(tid, cartesianPointId, "Coordinates", thirdVal);
-			long roid = service.commitTransaction(tid, "test");
+			lowLevelInterface.addDoubleAttribute(tid, cartesianPointId, "Coordinates", thirdVal);
+			long roid = lowLevelInterface.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
 			List<IfcCartesianPoint> cartesianPoints = model.getAll(IfcCartesianPoint.class);
 			if (cartesianPoints.size() != 1) {
@@ -293,12 +298,12 @@ public class TestLowLevelChanges {
 	public void testRemoveObject() {
 		try {
 			long poid = createProject();
-			long tid = service.startTransaction(poid);
-			long windowId = service.createObject(tid, "IfcWindow");
-			service.commitTransaction(tid, "test");
-			tid = service.startTransaction(poid);
-			service.removeObject(tid, windowId);
-			long roid = service.commitTransaction(tid, "test");
+			long tid = lowLevelInterface.startTransaction(poid);
+			long windowId = lowLevelInterface.createObject(tid, "IfcWindow");
+			lowLevelInterface.commitTransaction(tid, "test");
+			tid = lowLevelInterface.startTransaction(poid);
+			lowLevelInterface.removeObject(tid, windowId);
+			long roid = lowLevelInterface.commitTransaction(tid, "test");
 			IfcModelInterface model = getSingleRevision(roid);
 			if (model.size() != 0) {
 				fail("Model should be empty");

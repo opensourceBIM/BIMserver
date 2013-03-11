@@ -42,7 +42,7 @@ public class DumpDataObjects extends Action {
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
 		SRevision revision = virtualUser.getRandomRevision();
 		if (revision != null) {
-			List<SDataObject> dataObjects = virtualUser.getBimServerClient().getServiceInterface().getDataObjects(revision.getOid());
+			List<SDataObject> dataObjects = virtualUser.getBimServerClient().getLowLevelInterface().getDataObjects(revision.getOid());
 			virtualUser.getLogger().info(dataObjects.size() + " dataobjects");
 			if (verbose) {
 				for (SDataObject dataObject : dataObjects) {

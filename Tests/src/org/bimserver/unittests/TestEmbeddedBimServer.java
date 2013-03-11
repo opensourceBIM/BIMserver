@@ -42,6 +42,8 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.VoidReporter;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.interfaces.AdminInterface;
+import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.tests.TestFile;
 import org.bimserver.webservices.Service;
@@ -78,7 +80,7 @@ public class TestEmbeddedBimServer {
 
 			// Convenience, setup the server to make sure it is in RUNNING state
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
-				bimServer.getSystemService().setup("http://localhost", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
+				bimServer.getService(AdminInterface.class).setup("http://localhost", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
 			}
 
 			// Change a setting to normal users can create projects
@@ -113,8 +115,8 @@ public class TestEmbeddedBimServer {
 		try {
 			username = "test" + new Random().nextInt() + "@bimserver.org";
 			password = "test";
-			long userId = bimServer.getSystemService().addUser(username, "Test", SUserType.USER, false).getOid();
-			bimServer.getSystemService().changePassword(userId, null, password);
+			long userId = bimServer.getService(ServiceInterface.class).addUser(username, "Test", SUserType.USER, false).getOid();
+			bimServer.getService(ServiceInterface.class).changePassword(userId, null, password);
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
@@ -126,8 +128,8 @@ public class TestEmbeddedBimServer {
 	@Test
 	public void testUpload() {
 		try {
-			ServiceInterface service = bimServer.getServiceFactory().getService(ServiceInterface.class, AccessMethod.INTERNAL);
-			service.login(username, password);
+			ServiceInterface service = bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(ServiceInterface.class);
+			bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(AuthInterface.class).login(username, password);
 			SProject project = service.addProject("test " + new Random().nextInt());
 			File sourceFile = TestFile.AC11.getFile();
 			service.checkin(project.getOid(), "test", -1L, sourceFile.length(), "test", new DataHandler(new FileDataSource(sourceFile)), false, true); // TODO
@@ -144,9 +146,9 @@ public class TestEmbeddedBimServer {
 	@Test
 	public void testDump() {
 		try {
-			ServiceInterface service = bimServer.getServiceFactory().getService(ServiceInterface.class, AccessMethod.INTERNAL);
-			String token = service.login(username, password);
-			service = bimServer.getServiceFactory().getService(ServiceInterface.class, token, AccessMethod.INTERNAL);
+			ServiceInterface service = bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(ServiceInterface.class);
+			String token = bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(AuthInterface.class).login(username, password);
+			service = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
 			BimDatabase database = bimServer.getDatabase();
 			DatabaseSession session = database.createSession();
 			SProject firstProjectWithRevisions = null;

@@ -61,7 +61,7 @@ import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.stillimagerenderer.StillImageRenderPlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
 import org.bimserver.shared.ServiceFactory;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -73,9 +73,9 @@ public class PluginManager {
 	private final String baseClassPath;
 	private ServiceFactory serviceFactory;
 	private NotificationsManagerInterface notificationsManagerInterface;
-	private ServicesMap servicesMap;
+	private SServicesMap servicesMap;
 
-	public PluginManager(File tempDir, String baseClassPath, ServiceFactory serviceFactory, NotificationsManagerInterface notificationsManagerInterface, ServicesMap servicesMap) {
+	public PluginManager(File tempDir, String baseClassPath, ServiceFactory serviceFactory, NotificationsManagerInterface notificationsManagerInterface, SServicesMap servicesMap) {
 		this.tempDir = tempDir;
 		this.baseClassPath = baseClassPath;
 		this.serviceFactory = serviceFactory;
@@ -507,7 +507,7 @@ public class PluginManager {
 		}
 	}
 	
-	public ServicesMap getServicesMap() {
+	public SServicesMap getServicesMap() {
 		return servicesMap;
 	}
 

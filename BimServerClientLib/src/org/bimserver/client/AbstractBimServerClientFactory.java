@@ -21,18 +21,18 @@ import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 
 public abstract class AbstractBimServerClientFactory implements BimServerClientFactory {
 
-	private ServicesMap servicesMap;
+	private SServicesMap servicesMap;
 
-	public AbstractBimServerClientFactory(ServicesMap servicesMap) {
+	public AbstractBimServerClientFactory(SServicesMap servicesMap) {
 		this.servicesMap = servicesMap;
 	}
 
 	public AbstractBimServerClientFactory() {
-		this.servicesMap = new ServicesMap();
+		this.servicesMap = new SServicesMap();
 		addService(new SServiceInterfaceService(null, ServiceInterface.class));
 	}
 	
@@ -45,7 +45,7 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 		servicesMap.add(sService);
 	}
 	
-	public ServicesMap getServicesMap() {
+	public SServicesMap getServicesMap() {
 		return servicesMap;
 	}
 }

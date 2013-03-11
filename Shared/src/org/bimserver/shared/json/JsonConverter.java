@@ -38,7 +38,7 @@ import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 import org.codehaus.jettison.json.JSONException;
 
 import com.google.common.base.Charsets;
@@ -51,9 +51,9 @@ import com.google.gson.stream.JsonWriter;
 
 public class JsonConverter {
 
-	private final ServicesMap servicesMap;
+	private final SServicesMap servicesMap;
 
-	public JsonConverter(ServicesMap servicesMap) {
+	public JsonConverter(SServicesMap servicesMap) {
 		this.servicesMap = servicesMap;
 	}
 	

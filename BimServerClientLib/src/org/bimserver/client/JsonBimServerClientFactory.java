@@ -19,7 +19,7 @@ package org.bimserver.client;
 
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.reflector.ReflectorBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
 
@@ -29,7 +29,7 @@ public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
 	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private ReflectorFactory reflectorFactory;
 
-	public JsonBimServerClientFactory(String address, ServicesMap servicesMap, JsonSocketReflectorFactory jsonSocketReflectorFactory, ReflectorFactory reflectorFactory) {
+	public JsonBimServerClientFactory(String address, SServicesMap servicesMap, JsonSocketReflectorFactory jsonSocketReflectorFactory, ReflectorFactory reflectorFactory) {
 		super(servicesMap);
 		this.address = address;
 		this.jsonSocketReflectorFactory = jsonSocketReflectorFactory;

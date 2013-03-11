@@ -42,10 +42,14 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.AdminInterface;
+import org.bimserver.shared.interfaces.AuthInterface;
+import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.interfaces.SettingsInterface;
+import org.bimserver.shared.meta.SServicesMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,14 +58,14 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
 	private final Set<TokenChangeListener> tokenChangeListeners = new HashSet<TokenChangeListener>();
 	private final Channel channel;
-	private final ServicesMap servicesMap;
+	private final SServicesMap servicesMap;
 	private final SocketNotificationsClient notificationsClient;
 	private final String baseAddress;
 	private MetaDataManager metaDataManager = new MetaDataManager();
 	private AuthenticationInfo authenticationInfo = new AnonymousAuthentication();
 	private String token;
 
-	protected BimServerClient(String baseAddress, ServicesMap servicesMap, Channel channel) {
+	protected BimServerClient(String baseAddress, SServicesMap servicesMap, Channel channel) {
 		this.baseAddress = baseAddress;
 		this.servicesMap = servicesMap;
 		this.channel = channel;
@@ -88,10 +92,10 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 	private void authenticate() throws ServerException, UserException {
 		if (authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
 			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo) authenticationInfo;
-			setToken(channel.getServiceInterface().login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword()));
+			setToken(channel.get(AuthInterface.class).login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword()));
 		} else if (authenticationInfo instanceof AutologinAuthenticationInfo) {
 			AutologinAuthenticationInfo autologinAuthenticationInfo = (AutologinAuthenticationInfo) authenticationInfo;
-			setToken(channel.getServiceInterface().autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode()));
+			setToken(channel.get(AuthInterface.class).autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode()));
 		}
 	}
 
@@ -115,16 +119,24 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 		}
 	}
 
+	public LowLevelInterface getLowLevelInterface() {
+		return channel.getLowLevelInterface();
+	}
+	
 	public ServiceInterface getServiceInterface() {
 		return channel.getServiceInterface();
 	}
 
+	public AdminInterface getAdminInterface() {
+		return channel.get(AdminInterface.class);
+	}
+
 	public Session createSession() {
-		ServiceInterface serviceInterface = getServiceInterface();
-		if (serviceInterface == null) {
+		LowLevelInterface lowLevelInterface = getLowLevelInterface();
+		if (lowLevelInterface == null) {
 			throw new RuntimeException("Connect first");
 		}
-		Session session = new Session(serviceInterface);
+		Session session = new Session(lowLevelInterface);
 		return session;
 	}
 
@@ -137,10 +149,10 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 		try {
 			if (authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
 				UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo) authenticationInfo;
-				setToken(channel.getServiceInterface().login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword()));
+				setToken(channel.get(AuthInterface.class).login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword()));
 			} else if (authenticationInfo instanceof AutologinAuthenticationInfo) {
 				AutologinAuthenticationInfo autologinAuthenticationInfo = (AutologinAuthenticationInfo) authenticationInfo;
-				setToken(channel.getServiceInterface().autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode()));
+				setToken(channel.get(AuthInterface.class).autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode()));
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
@@ -218,7 +230,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 		return null;
 	}
 	
-	public ServicesMap getServicesMap() {
+	public SServicesMap getServicesMap() {
 		return servicesMap;
 	}
 
@@ -281,5 +293,13 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 
 	public ClientIfcModel newModel(SProject project) throws ServerException, UserException, BimServerClientException {
 		return new ClientIfcModel(this, project.getOid(), -1, false);
+	}
+
+	public AuthInterface getAuthInterface() {
+		return channel.get(AuthInterface.class);
+	}
+
+	public SettingsInterface getSettingsInterface() {
+		return channel.get(SettingsInterface.class);
 	}
 }

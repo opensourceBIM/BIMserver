@@ -51,6 +51,7 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -83,13 +84,14 @@ public class DownloadServlet extends HttpServlet {
 			if (token == null) {
 				token = request.getParameter("token");
 			}
-			ServiceInterface service = bimServer.getServiceFactory().getService(ServiceInterface.class, token, AccessMethod.INTERNAL);
+			ServiceInterface serviceInterface = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
+			AdminInterface adminInterface = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL).get(AdminInterface.class);
 
 			String action = request.getParameter("action");
 			if (action != null) {
 				if (action.equals("extendeddata")) {
-					SExtendedData sExtendedData = service.getExtendedData(Long.parseLong(request.getParameter("edid")));
-					SFile file = service.getFile(sExtendedData.getFileId());
+					SExtendedData sExtendedData = serviceInterface.getExtendedData(Long.parseLong(request.getParameter("edid")));
+					SFile file = serviceInterface.getFile(sExtendedData.getFileId());
 					if (file.getMime() != null) {
 						response.setContentType(file.getMime());
 					}
@@ -107,7 +109,7 @@ public class DownloadServlet extends HttpServlet {
 						String file = request.getParameter("file");
 						if (file.equals("service.proto")) {
 							try {
-								String protocolBuffersFile = service.getProtocolBuffersFile();
+								String protocolBuffersFile = adminInterface.getProtocolBuffersFile();
 								outputStream.write(protocolBuffersFile.getBytes(Charsets.UTF_8));
 							} catch (ServiceException e) {
 								LOGGER.error("", e);
@@ -115,7 +117,7 @@ public class DownloadServlet extends HttpServlet {
 						} else if (file.equals("serverlog")) {
 							try {
 								OutputStreamWriter writer = new OutputStreamWriter(outputStream);
-								writer.write(service.getServerLog());
+								writer.write(adminInterface.getServerLog());
 								writer.flush();
 							} catch (ServerException e) {
 								LOGGER.error("", e);
@@ -129,9 +131,9 @@ public class DownloadServlet extends HttpServlet {
 			SSerializerPluginConfiguration serializer = null;
 			if (request.getParameter("serializerOid") != null) {
 				long serializerOid = Long.parseLong(request.getParameter("serializerOid"));
-				serializer = service.getSerializerById(serializerOid);
+				serializer = serviceInterface.getSerializerById(serializerOid);
 			} else {
-				serializer = service.getSerializerByName(request.getParameter("serializerName"));
+				serializer = serviceInterface.getSerializerByName(request.getParameter("serializerName"));
 			}
 			long downloadId = -1;
 			if (request.getParameter("longActionId") != null) {
@@ -146,18 +148,18 @@ public class DownloadServlet extends HttpServlet {
 						}
 					}
 				}
-				downloadId = service.downloadRevisions(roids, serializer.getOid(), true);
+				downloadId = serviceInterface.downloadRevisions(roids, serializer.getOid(), true);
 			} else if (request.getParameter("compare") != null) {
 				SCompareType sCompareType = SCompareType.valueOf(request.getParameter("type"));
 				Long roid1 = Long.parseLong(request.getParameter("roid1"));
 				Long roid2 = Long.parseLong(request.getParameter("roid2"));
-				downloadId = service.downloadCompareResults(serializer.getOid(), roid1, roid2, Long.valueOf(request.getParameter("mcid")), sCompareType, true);
+				downloadId = serviceInterface.downloadCompareResults(serializer.getOid(), roid1, roid2, Long.valueOf(request.getParameter("mcid")), sCompareType, true);
 			} else {
 				long roid = -1;
 				if (request.getParameter("roid") == null) {
 					if (request.getParameter("poid") != null) {
 						long poid = Long.parseLong(request.getParameter("poid"));
-						SProject projectByPoid = service.getProjectByPoid(poid);
+						SProject projectByPoid = serviceInterface.getProjectByPoid(poid);
 						if (projectByPoid == null) {
 							throw new UserException("Project with oid " + poid + " not found");
 						}
@@ -172,7 +174,7 @@ public class DownloadServlet extends HttpServlet {
 					roid = Long.parseLong(request.getParameter("roid"));
 				}
 				if (request.getParameter("checkout") != null) {
-					downloadId = service.checkout(roid, serializer.getOid(), true);
+					downloadId = serviceInterface.checkout(roid, serializer.getOid(), true);
 				} else {
 					if (request.getParameter("classses") != null) {
 						Set<String> classes = new HashSet<String>();
@@ -181,7 +183,7 @@ public class DownloadServlet extends HttpServlet {
 						}
 						Set<Long> roids = new HashSet<Long>();
 						roids.add(roid);
-						downloadId = service.downloadByTypes(roids, classes, serializer.getOid(), false, true, true, true);
+						downloadId = serviceInterface.downloadByTypes(roids, classes, serializer.getOid(), false, true, true, true);
 					} else if (request.getParameter("oids") != null) {
 						Set<Long> oids = new HashSet<Long>();
 						for (String oidString : request.getParameter("oids").split(";")) {
@@ -189,7 +191,7 @@ public class DownloadServlet extends HttpServlet {
 						}
 						Set<Long> roids = new HashSet<Long>();
 						roids.add(roid);
-						downloadId = service.downloadByOids(roids, oids, serializer.getOid(), true, true);
+						downloadId = serviceInterface.downloadByOids(roids, oids, serializer.getOid(), true, true);
 					} else if (request.getParameter("guids") != null) {
 						Set<String> guids = new HashSet<String>();
 						for (String guid : request.getParameter("guids").split(";")) {
@@ -197,9 +199,9 @@ public class DownloadServlet extends HttpServlet {
 						}
 						Set<Long> roids = new HashSet<Long>();
 						roids.add(roid);
-						downloadId = service.downloadByGuids(roids, guids, serializer.getOid(), false, true);
+						downloadId = serviceInterface.downloadByGuids(roids, guids, serializer.getOid(), false, true);
 					} else {
-						downloadId = service.download(roid, serializer.getOid(), true, true);
+						downloadId = serviceInterface.download(roid, serializer.getOid(), true, true);
 					}
 				}
 			}
@@ -207,12 +209,12 @@ public class DownloadServlet extends HttpServlet {
 				response.getWriter().println("No valid download");
 				return;
 			}
-			SDownloadResult checkoutResult = service.getDownloadData(downloadId);
+			SDownloadResult checkoutResult = serviceInterface.getDownloadData(downloadId);
 			if (checkoutResult == null) {
 				LOGGER.error("Invalid downloadId: " + downloadId);
 			} else {
 				DataSource dataSource = checkoutResult.getFile().getDataSource();
-				PluginConfiguration pluginConfiguration = new PluginConfiguration(service.getPluginSettings(serializer.getOid()));
+				PluginConfiguration pluginConfiguration = new PluginConfiguration(serviceInterface.getPluginSettings(serializer.getOid()));
 				if (zip) {
 					if (pluginConfiguration.getString("ZipExtension") != null) {
 						response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.ZIP_EXTENSION) + "\"");

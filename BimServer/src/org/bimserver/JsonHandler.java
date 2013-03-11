@@ -85,7 +85,12 @@ public class JsonHandler {
 			}
 			SMethod method = sService.getSMethod(methodName);
 			if (method == null) {
-				throw new UserException("Method " + methodName + " not found on " + interfaceName);
+				SMethod alternative = bimServer.getServicesMap().findMethod(methodName);
+				if (alternative == null) {
+					throw new UserException("Method " + methodName + " not found on " + interfaceName);
+				} else {
+					throw new UserException("Method " + methodName + " not found on " + interfaceName + " (suggestion: " + alternative.getService().getSimpleName() + ")");
+				}
 			}
 			KeyValuePair[] parameters = new KeyValuePair[method.getParameters().size()];
 			if (request.has("parameters")) {
@@ -139,21 +144,21 @@ public class JsonHandler {
 	private <T extends PublicInterface> T getServiceInterface(HttpServletRequest httpRequest, BimServer bimServer, Class<T> interfaceClass, String methodName, String jsonToken) throws JSONException, UserException, ServerException {
 		String token = httpRequest == null ? null : (String) httpRequest.getSession().getAttribute("token");
 		if (methodName.equals("login") || methodName.equals("autologin")) {
-			return bimServer.getServiceFactory().getService(interfaceClass, AccessMethod.JSON);
+			return bimServer.getServiceFactory().get(AccessMethod.JSON).get(interfaceClass);
 		}
 		T service = null;
 		if (token == null) {
 			// There is no token in the HTTP Session, but we also allow the user
 			// to not use sessions and provide the token in the json request
 			if (jsonToken != null) {
-				service = bimServer.getServiceFactory().getService(interfaceClass, jsonToken, AccessMethod.JSON);
+				service = bimServer.getServiceFactory().get(jsonToken, AccessMethod.JSON).get(interfaceClass);
 				token = jsonToken;
 			}
 		} else {
-			service = bimServer.getServiceFactory().getService(interfaceClass, token, AccessMethod.JSON);
+			service = bimServer.getServiceFactory().get(token, AccessMethod.JSON).get(interfaceClass);
 		}
 		if (service == null) {
-			service = bimServer.getServiceFactory().getService(interfaceClass, AccessMethod.JSON);
+			service = bimServer.getServiceFactory().get(AccessMethod.JSON).get(interfaceClass);
 			if (httpRequest != null) {
 				httpRequest.getSession().setAttribute("token", token);
 			}

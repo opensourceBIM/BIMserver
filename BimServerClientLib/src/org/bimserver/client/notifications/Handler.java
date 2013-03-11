@@ -26,7 +26,7 @@ import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
 import org.bimserver.shared.pb.ReflectiveRpcChannel;
@@ -44,9 +44,9 @@ public class Handler extends Thread {
 	private final SocketNotificationsClient socketNotificationsClient;
 	private ServiceFactory serviceFactory;
 	private boolean running;
-	private final ServicesMap servicesMap;
+	private final SServicesMap servicesMap;
 
-	public Handler(SocketNotificationsClient socketNotificationsClient, Socket socket, final NotificationInterface notificationInterface, ProtocolBuffersMetaData protocolBuffersMetaData, ServicesMap servicesMap) {
+	public Handler(SocketNotificationsClient socketNotificationsClient, Socket socket, final NotificationInterface notificationInterface, ProtocolBuffersMetaData protocolBuffersMetaData, SServicesMap servicesMap) {
 		this.socketNotificationsClient = socketNotificationsClient;
 		this.socket = socket;
 		this.protocolBuffersMetaData = protocolBuffersMetaData;
@@ -59,7 +59,7 @@ public class Handler extends Thread {
 		try {
 			DataInputStream dis = new DataInputStream(socket.getInputStream());
 			String token = dis.readUTF();
-			ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(ServiceInterface.class, serviceFactory.getService(ServiceInterface.class, token, AccessMethod.INTERNAL), protocolBuffersMetaData, servicesMap);
+			ReflectiveRpcChannel reflectiveRpcChannel = new ReflectiveRpcChannel(ServiceInterface.class, serviceFactory.get(token, AccessMethod.INTERNAL).get(ServiceInterface.class), protocolBuffersMetaData, servicesMap);
 			while (running) {
 				String serviceName = dis.readUTF();
 				String methodName = dis.readUTF();

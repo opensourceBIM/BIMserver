@@ -52,7 +52,7 @@ function BimServerApi(baseUrl, notifier) {
 			username: username,
 			hash: autologin
 		};
-		othis.call("ServiceInterface", "autologin", request, function(data){
+		othis.call("AuthInterface", "autologin", request, function(data){
 			othis.token = data;
 			othis.notifier.info("Auto login successful, logout to disable autologin");
 			othis.resolveUser();
@@ -75,7 +75,7 @@ function BimServerApi(baseUrl, notifier) {
 			username: username,
 			password: password
 		};
-		othis.call("ServiceInterface", "login", request, function(data){
+		othis.call("AuthInterface", "login", request, function(data){
 			othis.token = data;
 			var autologin = Sha256.hash(username + Sha256.hash(password));
 			if (rememberme) {
@@ -110,7 +110,7 @@ function BimServerApi(baseUrl, notifier) {
 	};
 	
 	this.resolveUser = function() {
-		othis.call("ServiceInterface", "getCurrentUser", {}, function(data){
+		othis.call("AuthInterface", "getCurrentUser", {}, function(data){
 			othis.user = data;
 		});
 	};
@@ -119,7 +119,7 @@ function BimServerApi(baseUrl, notifier) {
 		$.removeCookie("username");
 		$.removeCookie("autologin");
 		$.removeCookie("address");
-		othis.call("ServiceInterface", "logout", {}, function(){
+		othis.call("AuthInterface", "logout", {}, function(){
 			othis.notifier.info("Logout successful");
 			callback();
 		});
@@ -153,7 +153,6 @@ function BimServerApi(baseUrl, notifier) {
 			if (registerCallback != null) {
 				registerCallback();
 			}
-			//othis.call("ServiceInterface", "registerAll", {endPointId: othis.server.endPointId}, registerCallback);
 		});
 	};
 	
@@ -546,7 +545,7 @@ function Model(bimServerApi, poid, roid) {
 	othis.logging = true;
 	
 	othis.transactionSynchronizer = new Synchronizer(function(callback){
-		bimServerApi.call("ServiceInterface", "startTransaction", {poid: othis.poid}, function(tid){
+		bimServerApi.call("LowLevelInterface", "startTransaction", {poid: othis.poid}, function(tid){
 			callback(tid);
 		});
 	});
@@ -605,7 +604,7 @@ function Model(bimServerApi, poid, roid) {
 		othis.transactionSynchronizer.fetch(function(tid){
 			object.__type = className;
 			othis.resolveReferences(object, function(){
-				bimServerApi.call("ServiceInterface", "createObject", {tid: tid, className: className}, function(oid){
+				bimServerApi.call("LowLevelInterface", "createObject", {tid: tid, className: className}, function(oid){
 					object.__oid = oid;
 					if (callback != null) {
 						callback(object);
@@ -651,7 +650,7 @@ function Model(bimServerApi, poid, roid) {
 
 	this.commit = function(comment, callback){
 		othis.transactionSynchronizer.fetch(function(tid){
-			bimServerApi.call("ServiceInterface", "commitTransaction", {tid: tid, comment: comment}, function(roid){
+			bimServerApi.call("LowLevelInterface", "commitTransaction", {tid: tid, comment: comment}, function(roid){
 				if (callback != null) {
 					callback(roid);
 				}
@@ -670,7 +669,7 @@ function Model(bimServerApi, poid, roid) {
 							object[fieldName] = value;
 							othis.incrementRunningCalls("set" + fieldName.firstUpper());
 							if (value == null) {
-								bimServerApi.call("ServiceInterface", "unsetReference", {
+								bimServerApi.call("LowLevelInterface", "unsetReference", {
 									tid: tid,
 									oid: object.__oid,
 									referenceName: fieldName,
@@ -683,7 +682,7 @@ function Model(bimServerApi, poid, roid) {
 									othis.changedObjectOids[object.oid] = true;
 								});
 							} else {
-								bimServerApi.call("ServiceInterface", "setReference", {
+								bimServerApi.call("LowLevelInterface", "setReference", {
 									tid: tid,
 									oid: object.__oid,
 									referenceName: fieldName,
@@ -746,7 +745,7 @@ function Model(bimServerApi, poid, roid) {
 							}
 							object[fieldName].push = function(val){
 								othis.transactionSynchronizer.fetch(function(tid){
-									bimServerApi.call("ServiceInterface", "addDoubleAttribute", {
+									bimServerApi.call("LowLevelInterface", "addDoubleAttribute", {
 										tid: tid,
 										oid: object.__oid,
 										attributeName: fieldName,
@@ -766,7 +765,7 @@ function Model(bimServerApi, poid, roid) {
 						othis.incrementRunningCalls("set" + fieldName.firstUpper());
 						othis.transactionSynchronizer.fetch(function(tid){
 							if (field.many) {
-								bimServerApi.call("ServiceInterface", "setDoubleAttributes", {
+								bimServerApi.call("LowLevelInterface", "setDoubleAttributes", {
 									tid: tid,
 									oid: object.__oid,
 									attributeName: fieldName,
@@ -776,7 +775,7 @@ function Model(bimServerApi, poid, roid) {
 								});
 							} else {
 								if (value == null) {
-									bimServerApi.call("ServiceInterface", "unsetAttribute", {
+									bimServerApi.call("LowLevelInterface", "unsetAttribute", {
 										tid: tid,
 										oid: object.__oid,
 										attributeName: fieldName
@@ -784,7 +783,7 @@ function Model(bimServerApi, poid, roid) {
 										othis.decrementRunningCalls("set" + fieldName.firstUpper());
 									});
 								} else if (field.type == "string") {
-									bimServerApi.call("ServiceInterface", "setStringAttribute", {
+									bimServerApi.call("LowLevelInterface", "setStringAttribute", {
 										tid: tid,
 										oid: object.__oid,
 										attributeName: fieldName,
@@ -793,7 +792,7 @@ function Model(bimServerApi, poid, roid) {
 										othis.decrementRunningCalls("set" + fieldName.firstUpper());
 									});
 								} else if (field.type == "double") {
-									bimServerApi.call("ServiceInterface", "setDoubleAttribute", {
+									bimServerApi.call("LowLevelInterface", "setDoubleAttribute", {
 										tid: tid,
 										oid: object.__oid,
 										attributeName: fieldName,
@@ -802,7 +801,7 @@ function Model(bimServerApi, poid, roid) {
 										othis.decrementRunningCalls("set" + fieldName.firstUpper());
 									});
 								} else if (field.type == "boolean") {
-									bimServerApi.call("ServiceInterface", "setBooleanAttribute", {
+									bimServerApi.call("LowLevelInterface", "setBooleanAttribute", {
 										tid: tid,
 										oid: object.__oid,
 										attributeName: fieldName,
@@ -811,7 +810,7 @@ function Model(bimServerApi, poid, roid) {
 										othis.decrementRunningCalls("set" + fieldName.firstUpper());
 									});
 								} else if (field.type == "int") {
-									bimServerApi.call("ServiceInterface", "setIntegerAttribute", {
+									bimServerApi.call("LowLevelInterface", "setIntegerAttribute", {
 										tid: tid,
 										oid: object.__oid,
 										attributeName: fieldName,
@@ -820,7 +819,7 @@ function Model(bimServerApi, poid, roid) {
 										othis.decrementRunningCalls("set" + fieldName.firstUpper());
 									});
 								} else if (field.type == "enum") {
-									bimServerApi.call("ServiceInterface", "setEnumAttribute", {
+									bimServerApi.call("LowLevelInterface", "setEnumAttribute", {
 										tid: tid,
 										oid: object.__oid,
 										attributeName: fieldName,
@@ -858,7 +857,7 @@ function Model(bimServerApi, poid, roid) {
 		object.remove = function(removeCallback){
 			othis.incrementRunningCalls("removeObject");
 			othis.transactionSynchronizer.fetch(function(tid){
-				bimServerApi.call("ServiceInterface", "removeObject", {tid: tid, oid: object.__oid}, function(){
+				bimServerApi.call("LowLevelInterface", "removeObject", {tid: tid, oid: object.__oid}, function(){
 					if (removeCallback != null) {
 						removeCallback();
 					}

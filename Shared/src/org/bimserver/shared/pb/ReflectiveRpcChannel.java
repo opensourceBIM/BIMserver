@@ -31,7 +31,7 @@ import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
 import org.bimserver.shared.reflector.KeyValuePair;
 import org.slf4j.Logger;
@@ -52,9 +52,9 @@ public class ReflectiveRpcChannel extends ProtocolBuffersConverter {
 	private final ProtocolBuffersMetaData protocolBuffersMetaData;
 	private Class<? extends PublicInterface> publicInterface = null;
 	private final PublicInterface service;
-	private ServicesMap servicesMap;
+	private SServicesMap servicesMap;
 
-	public ReflectiveRpcChannel(Class<? extends PublicInterface> publicInterface, PublicInterface service, ProtocolBuffersMetaData protocolBuffersMetaData, ServicesMap servicesMap) {
+	public ReflectiveRpcChannel(Class<? extends PublicInterface> publicInterface, PublicInterface service, ProtocolBuffersMetaData protocolBuffersMetaData, SServicesMap servicesMap) {
 		super(protocolBuffersMetaData);
 		this.service = service;
 		this.publicInterface = publicInterface;

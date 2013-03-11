@@ -19,13 +19,13 @@ package org.bimserver.pb.server;
 
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.meta.ServicesMap;
+import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ReflectiveRpcChannel;
 
 public abstract class ServiceReflectiveRpcChannel extends ReflectiveRpcChannel {
 
-	public ServiceReflectiveRpcChannel(PublicInterface serviceFactory, ProtocolBuffersMetaData protocolBuffersMetaData, ServicesMap servicesMap) {
+	public ServiceReflectiveRpcChannel(PublicInterface serviceFactory, ProtocolBuffersMetaData protocolBuffersMetaData, SServicesMap servicesMap) {
 		super(ServiceInterface.class, serviceFactory, protocolBuffersMetaData, servicesMap);
 	}
 }

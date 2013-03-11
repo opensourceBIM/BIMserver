@@ -27,6 +27,7 @@ import org.bimserver.endpoints.EndPoint;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.codehaus.jettison.json.JSONException;
@@ -77,8 +78,8 @@ public class StreamingSocket implements WebSocket.OnTextMessage, EndPoint, Strea
 			if (request.has("token")) {
 				String token = request.get("token").getAsString();
 				try {
-					org.bimserver.shared.interfaces.ServiceInterface service = bimServer.getServiceFactory().getService(org.bimserver.shared.interfaces.ServiceInterface.class, token, AccessMethod.JSON);
-					uoid = service.getCurrentUser().getOid();
+					AuthInterface authInterface = bimServer.getServiceFactory().get(token, AccessMethod.JSON).get(AuthInterface.class);
+					uoid = authInterface.getCurrentUser().getOid();
 
 					this.endpointid = bimServer.getEndPointManager().register(this);
 					

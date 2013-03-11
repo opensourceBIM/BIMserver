@@ -32,7 +32,7 @@ import org.bimserver.interfaces.objects.SSimpleDataValue;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -46,12 +46,12 @@ import org.slf4j.LoggerFactory;
 public class Session {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(Session.class);
-	private ServiceInterface serviceInterface;
+	private LowLevelInterface lowLevelInterface;
 	private Set<IdEObject> newObjects = new HashSet<IdEObject>();
 	private long tid;
 
-	public Session(ServiceInterface serviceInterface) {
-		this.serviceInterface = serviceInterface;
+	public Session(LowLevelInterface lowLevelInterface) {
+		this.lowLevelInterface = lowLevelInterface;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -59,7 +59,7 @@ public class Session {
 		EClass eClass = (EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(cl.getSimpleName());
 		IdEObject eObject = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(eClass);
 		try {
-			Long oid = serviceInterface.createObject(tid, cl.getSimpleName());
+			Long oid = lowLevelInterface.createObject(tid, cl.getSimpleName());
 			newObjects.add(eObject);
 			((IdEObjectImpl)eObject).setOid(oid);
 		} catch (ServiceException e) {
@@ -70,7 +70,7 @@ public class Session {
 
 	public void startTransaction(long poid) {
 		try {
-			tid = serviceInterface.startTransaction(poid);
+			tid = lowLevelInterface.startTransaction(poid);
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}
@@ -89,24 +89,24 @@ public class Session {
 								List list = (List) val;
 								for (Object o : list) {
 									if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
-										serviceInterface.addStringAttribute(tid, eObject.getOid(), eAttribute.getName(), (String) o);
+										lowLevelInterface.addStringAttribute(tid, eObject.getOid(), eAttribute.getName(), (String) o);
 									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEInt()) {
-										serviceInterface.addIntegerAttribute(tid, eObject.getOid(), eAttribute.getName(), (Integer) o);
+										lowLevelInterface.addIntegerAttribute(tid, eObject.getOid(), eAttribute.getName(), (Integer) o);
 									} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-										serviceInterface.addDoubleAttribute(tid, eObject.getOid(), eAttribute.getName(), (Double) o);
+										lowLevelInterface.addDoubleAttribute(tid, eObject.getOid(), eAttribute.getName(), (Double) o);
 									} else {
 										throw new RuntimeException("Unimplemented: " + eAttribute.getEType());
 									}
 								}
 							} else {
 								if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEString()) {
-									serviceInterface.setStringAttribute(tid, eObject.getOid(), eAttribute.getName(), (String) val);
+									lowLevelInterface.setStringAttribute(tid, eObject.getOid(), eAttribute.getName(), (String) val);
 								} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEInt()) {
-									serviceInterface.setIntegerAttribute(tid, eObject.getOid(), eAttribute.getName(), (Integer) val);
+									lowLevelInterface.setIntegerAttribute(tid, eObject.getOid(), eAttribute.getName(), (Integer) val);
 								} else if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-									serviceInterface.setDoubleAttribute(tid, eObject.getOid(), eAttribute.getName(), (Double) val);
+									lowLevelInterface.setDoubleAttribute(tid, eObject.getOid(), eAttribute.getName(), (Double) val);
 								} else if (eAttribute.getEType() instanceof EEnum) {
-									serviceInterface.setEnumAttribute(tid, eObject.getOid(), eAttribute.getName(), val.toString());
+									lowLevelInterface.setEnumAttribute(tid, eObject.getOid(), eAttribute.getName(), val.toString());
 								} else {
 									throw new RuntimeException("Unimplemented: " + eAttribute.getEType());
 								}
@@ -117,17 +117,17 @@ public class Session {
 								@SuppressWarnings("unchecked")
 								List<IdEObject> list = (List<IdEObject>) val;
 								for (IdEObject object : list) {
-									serviceInterface.addReference(tid, eObject.getOid(), eReference.getName(), object.getOid());
+									lowLevelInterface.addReference(tid, eObject.getOid(), eReference.getName(), object.getOid());
 								}
 							} else {
 								IdEObject referredObject = (IdEObject) val;
-								serviceInterface.setReference(tid, eObject.getOid(), eReference.getName(), referredObject.getOid());
+								lowLevelInterface.setReference(tid, eObject.getOid(), eReference.getName(), referredObject.getOid());
 							}
 						}
 					}
 				}
 			}
-			return serviceInterface.commitTransaction(tid, comment);
+			return lowLevelInterface.commitTransaction(tid, comment);
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}
@@ -137,7 +137,7 @@ public class Session {
 	@SuppressWarnings("unused")
 	public IfcModelInterface loadModel(long roid) {
 		try {
-			List<SDataObject> dataObjects = serviceInterface.getDataObjects(roid);
+			List<SDataObject> dataObjects = lowLevelInterface.getDataObjects(roid);
 			for (SDataObject dataObject : dataObjects) {
 				EClass eClass = (EClass) Ifc2x3tc1Package.eINSTANCE.getEClassifier(dataObject.getType());
 				EObject eObject = Ifc2x3tc1Factory.eINSTANCE.create(eClass);
