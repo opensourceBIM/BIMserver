@@ -46,6 +46,7 @@ import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
@@ -61,7 +62,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 	private final SServicesMap servicesMap;
 	private final SocketNotificationsClient notificationsClient;
 	private final String baseAddress;
-	private MetaDataManager metaDataManager = new MetaDataManager();
+	private final MetaDataManager metaDataManager = new MetaDataManager();
 	private AuthenticationInfo authenticationInfo = new AnonymousAuthentication();
 	private String token;
 
@@ -117,27 +118,6 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 		for (ConnectDisconnectListener connectDisconnectListener : connectDisconnectListeners) {
 			connectDisconnectListener.disconnected();
 		}
-	}
-
-	public LowLevelInterface getLowLevelInterface() {
-		return channel.getLowLevelInterface();
-	}
-	
-	public ServiceInterface getServiceInterface() {
-		return channel.getServiceInterface();
-	}
-
-	public AdminInterface getAdminInterface() {
-		return channel.get(AdminInterface.class);
-	}
-
-	public Session createSession() {
-		LowLevelInterface lowLevelInterface = getLowLevelInterface();
-		if (lowLevelInterface == null) {
-			throw new RuntimeException("Connect first");
-		}
-		Session session = new Session(lowLevelInterface);
-		return session;
 	}
 
 	public void disconnect() {
@@ -217,17 +197,31 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 	}
 
 	public NotificationInterface getNotificationInterface() {
-		if (channel != null) {
-			return channel.getNotificationInterface();
-		}
-		return null;
+		return get(NotificationInterface.class);
 	}
 
 	public RemoteServiceInterface getRemoteServiceInterface() {
-		if (channel != null) {
-			return channel.getRemoteServiceInterface();
-		}
-		return null;
+		return get(RemoteServiceInterface.class);
+	}
+	
+	public LowLevelInterface getLowLevelInterface() {
+		return get(LowLevelInterface.class);
+	}
+	
+	public ServiceInterface getServiceInterface() {
+		return get(ServiceInterface.class);
+	}
+
+	public AdminInterface getAdminInterface() {
+		return get(AdminInterface.class);
+	}
+	
+	public AuthInterface getAuthInterface() {
+		return get(AuthInterface.class);
+	}
+
+	public SettingsInterface getSettingsInterface() {
+		return get(SettingsInterface.class);
 	}
 	
 	public SServicesMap getServicesMap() {
@@ -295,11 +289,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 		return new ClientIfcModel(this, project.getOid(), -1, false);
 	}
 
-	public AuthInterface getAuthInterface() {
-		return channel.get(AuthInterface.class);
-	}
-
-	public SettingsInterface getSettingsInterface() {
-		return channel.get(SettingsInterface.class);
+	public <T extends PublicInterface> T get(Class<T> clazz) {
+		return channel.get(clazz);
 	}
 }

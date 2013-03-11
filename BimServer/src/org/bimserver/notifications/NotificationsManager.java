@@ -173,7 +173,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 				InternalChannel internalChannel = new InternalChannel(internalRemoteServiceInterfaces.get(serviceIdentifier));
 				ServiceInterface serviceInterfaceImpl = bimServer.getServiceFactory().get(token, AccessMethod.JSON).get(ServiceInterface.class);
 				internalChannel.addServiceInterface(ServiceInterface.class, serviceInterfaceImpl);
-				final ServiceInterface serviceInterface = internalChannel.getServiceInterface();
+				final ServiceInterface serviceInterface = internalChannel.get(ServiceInterface.class);
 				SService service = serviceInterface.getService(Long.parseLong(profileIdentifier));
 				final SObjectType settings = serviceInterface.getPluginSettings(service.getInternalServiceId());
 				

@@ -21,66 +21,26 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.nio.CharBuffer;
-import java.util.GregorianCalendar;
 
 import org.apache.catalina.websocket.StreamInbound;
 import org.apache.catalina.websocket.WsOutbound;
-import org.apache.commons.io.output.NullWriter;
-import org.bimserver.BimServer;
-import org.bimserver.endpoints.EndPoint;
-import org.bimserver.models.log.AccessMethod;
-import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.AuthInterface;
-import org.bimserver.shared.interfaces.NotificationInterface;
-import org.bimserver.shared.interfaces.RemoteServiceInterface;
-import org.codehaus.jettison.json.JSONException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.stream.JsonReader;
 
-public class TomcatStreamInbound extends StreamInbound implements EndPoint, StreamingSocketInterface {
-	private static final Logger LOGGER = LoggerFactory.getLogger(TomcatStreamInbound.class);
-	private BimServer bimServer;
-	private long uoid;
-	private long endpointid;
-	private NotificationInterface notificationInterface;
+public class TomcatStreamInbound extends StreamInbound implements StreamingSocketInterface {
 	private WsOutbound outbound;
-	private RemoteServiceInterface remoteServiceInterface;
+	private Streamer streamer;
 
-	public TomcatStreamInbound(BimServer bimServer) {
-		this.bimServer = bimServer;
-		notificationInterface = bimServer.getReflectorFactory().createReflector(NotificationInterface.class, new JsonWebsocketReflector(bimServer.getServicesMap(), this));
-		remoteServiceInterface = bimServer.getReflectorFactory().createReflector(RemoteServiceInterface.class, new JsonWebsocketReflector(bimServer.getServicesMap(), this));
-	}
-
-	@Override
-	protected void onOpen(WsOutbound outbound) {
-		this.outbound = outbound;
-		JsonObject welcome = new JsonObject();
-		welcome.add("welcome", new JsonPrimitive(new GregorianCalendar().getTimeInMillis()));
-		send(welcome);
+	public void setStreamer(Streamer streamer) {
+		this.streamer = streamer;
 	}
 	
 	@Override
-	public long getEndPointId() {
-		return endpointid;
+	protected void onOpen(WsOutbound outbound) {
+		this.outbound = outbound;
+		streamer.onOpen();
 	}
-
-	@Override
-	public NotificationInterface getNotificationInterface() {
-		return notificationInterface;
-	}
-
-	@Override
-	public void cleanup() {
-		bimServer.getEndPointManager().unregister(endpointid);
-	}
-
+	
 	@Override
 	public void send(JsonObject request) {
 		String toString = request.toString();
@@ -94,51 +54,16 @@ public class TomcatStreamInbound extends StreamInbound implements EndPoint, Stre
 	
 	@Override
 	protected void onTextData(Reader reader) throws IOException {
-		try {
-			JsonReader jsonreader = new JsonReader(reader);
-			JsonParser parser = new JsonParser();
-			JsonObject request = (JsonObject) parser.parse(jsonreader);
-			if (request.has("token")) {
-				String token = request.get("token").getAsString();
-				try {
-					AuthInterface authInterface = bimServer.getServiceFactory().get(token, AccessMethod.JSON).get(AuthInterface.class);
-					uoid = authInterface.getCurrentUser().getOid();
-
-					this.endpointid = bimServer.getEndPointManager().register(this);
-					
-					JsonObject enpointMessage = new JsonObject();
-					enpointMessage.add("endpointid", new JsonPrimitive(endpointid));
-					send(enpointMessage);
-				} catch (UserException e) {
-					e.printStackTrace();
-				} catch (ServerException e) {
-					e.printStackTrace();
-				}
-			} else {
-				bimServer.getJsonHandler().execute(request, null, new NullWriter());
-			}
-		} catch (JSONException e) {
-			LOGGER.error("", e);
-		}
+		streamer.onText(reader);
 	}
 	
 	@Override
 	protected void onClose(int status) {
-		bimServer.getEndPointManager().unregister(this);
+		streamer.onClose();
 		super.onClose(status);
 	}
 	
 	@Override
 	protected void onBinaryData(InputStream arg0) throws IOException {
-	}
-	
-	@Override
-	public long getUoid() {
-		return uoid;
-	}
-
-	@Override
-	public RemoteServiceInterface getRemoteServiceInterface() {
-		return remoteServiceInterface;
 	}
 }

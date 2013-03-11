@@ -24,8 +24,8 @@ import java.util.Random;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
+import org.bimserver.client.ClientIfcModel;
 import org.bimserver.client.ProtocolBuffersBimServerClientFactory;
-import org.bimserver.client.Session;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
@@ -36,7 +36,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TestClientEmfModelRemoteProtocolBuffers {
-	private Session session;
 	private static BimServerClient bimServerClient;
 
 	@BeforeClass
@@ -61,24 +60,22 @@ public class TestClientEmfModelRemoteProtocolBuffers {
 		bimServerClient.disconnect();
 	}
 
-	private int createProject() {
+	private SProject createProject() {
 		try {
 			SProject project = bimServerClient.getServiceInterface().addProject("Project " + new Random().nextInt());
-			return project.getId();
+			return project;
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
-		return -1;
+		return null;
 	}
 
 	@Test
 	public void test() {
 		try {
-			session = bimServerClient.createSession();
-			int pid = createProject();
-			session.startTransaction(pid);
-			new CreateFromScratch().createIfcProject(session);
-			session.commitTransaction("tralala");
+			ClientIfcModel model = bimServerClient.newModel(createProject());
+			new CreateFromScratch().createIfcProject(model);
+			model.commit("tralala");
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getMessage());

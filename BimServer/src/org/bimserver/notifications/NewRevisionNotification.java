@@ -64,7 +64,7 @@ public class NewRevisionNotification extends Notification {
 			Channel channel = null;
 			try {
 				channel = notificationsManager.getChannel(service);
-				RemoteServiceInterface remoteServiceInterface = channel.getRemoteServiceInterface();
+				RemoteServiceInterface remoteServiceInterface = channel.get(RemoteServiceInterface.class);
 				long writeProjectPoid = service.getWriteRevision() == null ? -1 : service.getWriteRevision().getOid();
 				long writeExtendedDataRoid = service.getWriteExtendedData() != null ? roid : -1;
 				long readRevisionRoid = service.isReadRevision() ? roid : -1;
