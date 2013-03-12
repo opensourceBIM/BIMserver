@@ -57,9 +57,9 @@ public interface NotificationInterface extends PublicInterface {
 
 	@WebMethod(action = "closedProgressOnRevisionTopic")
 	void closedProgressOnRevisionTopic(
-			@WebParam(name = "poid", partName = "closedProgressOnRevisionTopic.poid") Long poid,
-			@WebParam(name = "roid", partName = "closedProgressOnRevisionTopic.roid") Long roid,
-			@WebParam(name = "topicId", partName = "closedProgressOnRevisionTopic.topicId") Long topicId) throws UserException, ServerException;
+		@WebParam(name = "poid", partName = "closedProgressOnRevisionTopic.poid") Long poid,
+		@WebParam(name = "roid", partName = "closedProgressOnRevisionTopic.roid") Long roid,
+		@WebParam(name = "topicId", partName = "closedProgressOnRevisionTopic.topicId") Long topicId) throws UserException, ServerException;
 	
 	@WebMethod(action = "newProgressTopic")
 	void newProgressTopic(
