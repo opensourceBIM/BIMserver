@@ -17,7 +17,6 @@ package org.bimserver.shared.interfaces;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -31,13 +30,9 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
 import javax.xml.bind.annotation.XmlMimeType;
 
-import org.bimserver.interfaces.objects.SAccessMethod;
-import org.bimserver.interfaces.objects.SBimServerInfo;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SCompareResult;
 import org.bimserver.interfaces.objects.SCompareType;
-import org.bimserver.interfaces.objects.SDataObject;
-import org.bimserver.interfaces.objects.SDatabaseInformation;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
@@ -46,11 +41,7 @@ import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
-import org.bimserver.interfaces.objects.SJavaInfo;
-import org.bimserver.interfaces.objects.SLogAction;
-import org.bimserver.interfaces.objects.SLongAction;
 import org.bimserver.interfaces.objects.SLongActionState;
-import org.bimserver.interfaces.objects.SMigration;
 import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
@@ -59,33 +50,23 @@ import org.bimserver.interfaces.objects.SObjectDefinition;
 import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectType;
-import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
-import org.bimserver.interfaces.objects.SRemoteServiceUpdate;
 import org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
-import org.bimserver.interfaces.objects.SServerInfo;
-import org.bimserver.interfaces.objects.SServerSettings;
 import org.bimserver.interfaces.objects.SService;
 import org.bimserver.interfaces.objects.SServiceDescriptor;
-import org.bimserver.interfaces.objects.SServiceInterface;
-import org.bimserver.interfaces.objects.SServiceMethod;
-import org.bimserver.interfaces.objects.SServiceParameter;
 import org.bimserver.interfaces.objects.SServicePluginDescriptor;
-import org.bimserver.interfaces.objects.SServiceType;
-import org.bimserver.interfaces.objects.SSystemInfo;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSettings;
 import org.bimserver.interfaces.objects.SUserType;
-import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -96,30 +77,6 @@ import org.bimserver.shared.exceptions.UserException;
 @WebService(name = "soap")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface ServiceInterface extends PublicInterface {
-	/**
-	 * Login with a username/password combination
-	 * @param username The username (must be a valid e-mail address)
-	 * @param password The password
-	 * @return True when successful, false if not
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "login")
-	String login(
-		@WebParam(name = "username", partName = "login.username") String username,
-		@WebParam(name = "password", partName = "login.password") String password) throws ServerException, UserException;
-
-	/**
-	 * Login with an autologin hash (useful for the "remember-me" functionality in web-interfaces)
-	 * @param username The username (must be a valid e-mail address)
-	 * @param hash The hash (which is computed as sha256(username + sha256(password))
-	 * @return True when successful, false if not
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "autologin")
-	String autologin(
-		@WebParam(name = "username", partName = "autologin.username") String username,
-		@WebParam(name = "hash", partName = "autologin.hash") String hash) throws ServerException, UserException;
-
 	/**
 	 * Checkin a new model by sending a serialized form
 	 * 
@@ -556,13 +513,6 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getAvailableClassesInRevision")
 	List<String> getAvailableClassesInRevision(
 		@WebParam(name = "roid", partName = "getAvailableClassesInRevision.roid") Long roid) throws ServerException, UserException;
-	
-	/**
-	 * @return The User that it currently loggedin on this ServiceInterface
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getLoggedInUser")
-	SUser getLoggedInUser() throws ServerException, UserException;
 
 	/**
 	 * Get a list of all Projects the given User does not have authorization for
@@ -573,13 +523,6 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getAllNonAuthorizedProjectsOfUser")
 	List<SProject> getAllNonAuthorizedProjectsOfUser(
 		@WebParam(name = "uoid", partName = "getAllNonAuthorizedProjectsOfUser.uoid") Long uoid) throws ServerException, UserException;
-
-	/**
-	 * Logout from this ServiceInterface (beware, the ServiceInterface is not closed and is still usable)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "logout")
-	void logout() throws ServerException, UserException;
 
 	/**
 	 * Change a User's password, not the preferred way, use requestPasswordChange for a safer version
@@ -678,44 +621,6 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "userHasRights")
 	Boolean userHasRights(
 		@WebParam(name = "poid", partName = "userHasRights.poid") Long poid) throws ServerException, UserException;
-
-	@WebMethod(action = "getDataObjectByOid")
-	SDataObject getDataObjectByOid(
-		@WebParam(name = "roid", partName = "getDataObjectByOid.roid") Long roid,
-		@WebParam(name = "oid", partName = "getDataObjectByOid.oid") Long oid) throws ServerException, UserException;
-
-	/**
-	 * Get DataObjects based on a list of GUIDs
-	 * 
-	 * @param roid ObjectID of the Revision
-	 * @param guid An IFC GUID
-	 * @return The object with the given GUID in the given Revision, of null if not found
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getDataObjectByGuid")
-	SDataObject getDataObjectByGuid(
-		@WebParam(name = "roid", partName = "getDataObjectByGuid.roid") Long roid,
-		@WebParam(name = "guid", partName = "getDataObjectByGuid.guid") String guid) throws ServerException, UserException;
-
-	/**
-	 * @param roid ObjectID of the Revision
-	 * @param className Name of the class to query (e.g. "IfcWindow")
-	 * @return A list of DataObjects from the given Revision matching the given class
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getDataObjectsByType")
-	List<SDataObject> getDataObjectsByType(
-		@WebParam(name = "roid", partName = "getDataObjectsByType.roid") Long roid,
-		@WebParam(name = "className", partName = "getDataObjectsByType.className") String className) throws ServerException, UserException;
-
-	/**
-	 * @param roid ObjectID of the Revision
-	 * @return A list of DataObjects from the given Revision
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getDataObjects")
-	List<SDataObject> getDataObjects(
-		@WebParam(name = "roid", partName = "getDataObjects.roid") Long roid) throws ServerException, UserException;
 
 	/**
 	 * Branch a given Revision as a new Revision on a new Project, branching is always synchronous
@@ -828,27 +733,6 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getSubProjects")
 	List<SProject> getSubProjects(
 		@WebParam(name = "poid", partName = "getSubProjects.poid") Long poid) throws ServerException, UserException;
-
-	/**
-	 * @return The currently logged-in User
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getCurrentUser")
-	SUser getCurrentUser() throws ServerException, UserException;
-
-	/**
-	 * @return Whether this ServiceInterface is logged-in
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "isLoggedIn")
-	Boolean isLoggedIn() throws ServerException, UserException;
-
-	/**
-	 * @return The method of access this ServiceInterface is using (SOAP, PB etc...)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAccessMethod")
-	SAccessMethod getAccessMethod() throws ServerException, UserException;
 
 	@WebMethod(action = "getAllCheckoutsOfProjectAndSubProjects")
 	List<SCheckout> getAllCheckoutsOfProjectAndSubProjects(
@@ -1425,492 +1309,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "pluginClassName", partName = "getSerializerByPluginClassName.pluginClassName") String pluginClassName) throws ServerException, UserException;
 	
 	/**
-	 * @param pid ObjectID of the Project to start a transaction on
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "startTransaction")
-	Long startTransaction(
-		@WebParam(name = "poid", partName = "startTransaction.poid") Long poid) throws ServerException, UserException;
-
-	/**
-	 * Commit the current transaction, changes will be saved, a transaction must be started by startTransaction first
-	 * @param comment Comment describing what has changed
-	 * @return ObjectID of the Revision
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "commitTransaction")
-	Long commitTransaction(
-		@WebParam(name = "tid", partName = "commitTransaction.tid") Long tid,
-		@WebParam(name = "comment", partName = "commitTransaction.comment") String comment) throws ServerException, UserException;
-	
-	/**
-	 * Abort the current transaction, changes will not be saved
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "abortTransaction")
-	void abortTransaction(
-		@WebParam(name = "tid", partName = "abortTransaction.tid") Long tid) throws ServerException, UserException;
-	
-	/**
-	 * Create a new Object
-	 * @param className The type of the new object
-	 * @return The ObjectID of the newly created object
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "createObject")
-	Long createObject(
-		@WebParam(name = "tid", partName = "createObject.tid") Long tid,
-		@WebParam(name = "className", partName = "createObject.className") String className) throws ServerException, UserException;
-	
-	/**
-	 * Remove an object
-	 * @param oid ObjectID of the object to remove
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "removeObject")
-	void removeObject(
-		@WebParam(name = "tid", partName = "removeObject.tid") Long tid,
-		@WebParam(name = "oid", partName = "removeObject.oid") Long oid) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value New String value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setStringAttribute")
-	void setStringAttribute(
-		@WebParam(name = "tid", partName = "setStringAttribute.tid") Long tid,
-		@WebParam(name = "oid", partName = "setStringAttribute.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "setStringAttribute.attributeName") String attributeName, 
-		@WebParam(name = "value", partName = "setStringAttribute.value") String value) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value New String value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getStringAttribute")
-	String getStringAttribute(
-		@WebParam(name = "tid", partName = "getStringAttribute.tid") Long tid,
-		@WebParam(name = "oid", partName = "getStringAttribute.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "getStringAttribute.attributeName") String attributeName) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value New String value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getStringAttributes")
-	List<String> getStringAttributes(
-			@WebParam(name = "tid", partName = "getStringAttributes.tid") Long tid,
-			@WebParam(name = "oid", partName = "getStringAttributes.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "getStringAttributes.attributeName") String attributeName) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value New Double value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setDoubleAttribute")
-	void setDoubleAttribute(
-		@WebParam(name = "tid", partName = "setDoubleAttribute.tid") Long tid,
-		@WebParam(name = "oid", partName = "setDoubleAttribute.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "setDoubleAttribute.attributeName") String attributeName, 
-		@WebParam(name = "value", partName = "setDoubleAttribute.value") Double value) throws ServerException, UserException;
-
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value New Double value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setDoubleAttributes")
-	void setDoubleAttributes(
-		@WebParam(name = "tid", partName = "setDoubleAttributes.tid") Long tid,
-		@WebParam(name = "oid", partName = "setDoubleAttributes.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "setDoubleAttributes.attributeName") String attributeName, 
-		@WebParam(name = "values", partName = "setDoubleAttributes.values") List<Double> values) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value New Double value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getDoubleAttribute")
-	Double getDoubleAttribute(
-		@WebParam(name = "tid", partName = "getDoubleAttribute.tid") Long tid,
-		@WebParam(name = "oid", partName = "getDoubleAttribute.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "getDoubleAttribute.attributeName") String attributeName) throws ServerException, UserException;
-
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value New Double value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getDoubleAttributes")
-	List<Double> getDoubleAttributes(
-		@WebParam(name = "tid", partName = "getDoubleAttributes.tid") Long tid,
-		@WebParam(name = "oid", partName = "getDoubleAttributes.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "getDoubleAttributes.attributeName") String attributeName) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value New Enum value (name of the enum item)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setEnumAttribute")
-	void setEnumAttribute(
-		@WebParam(name = "tid", partName = "setEnumAttribute.tid") Long tid,
-		@WebParam(name = "oid", partName = "setEnumAttribute.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "setEnumAttribute.attributeName") String attributeName, 
-		@WebParam(name = "value", partName = "setEnumAttribute.value") String value) throws ServerException, UserException;
-
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value New Enum value (name of the enum item)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getEnumAttribute")
-	String getEnumAttribute(
-		@WebParam(name = "tid", partName = "getEnumAttribute.tid") Long tid,
-		@WebParam(name = "oid", partName = "getEnumAttribute.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "getEnumAttribute.attributeName") String attributeName) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value new Integer value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setIntegerAttribute")
-	void setIntegerAttribute(
-		@WebParam(name = "tid", partName = "setIntegerAttribute.tid") Long tid,
-		@WebParam(name = "oid", partName = "setIntegerAttribute.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "setIntegerAttribute.attributeName") String attributeName, 
-		@WebParam(name = "value", partName = "setIntegerAttribute.value") Integer value) throws ServerException, UserException;
-
-	@WebMethod(action = "setByteArrayAttribute")
-	void setByteArrayAttribute(
-		@WebParam(name = "tid", partName = "setByteArrayAttribute.tid") Long tid, 
-		@WebParam(name = "oid", partName = "setByteArrayAttribute.oid") Long oid,
-		@WebParam(name = "attributeName", partName = "setByteArrayAttribute.attributeName") String attributeName, 
-		@WebParam(name = "value", partName = "setByteArrayAttribute.value") Byte[] value) throws UserException, ServerException;
-
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value new Integer value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setIntegerAttributes")
-	void setIntegerAttributes(
-		@WebParam(name = "tid", partName = "setIntegerAttributes.tid") Long tid,
-		@WebParam(name = "oid", partName = "setIntegerAttributes.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "setIntegerAttributes.attributeName") String attributeName, 
-		@WebParam(name = "values", partName = "setIntegerAttributes.value") List<Integer> values) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value new Integer value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setLongAttribute")
-	void setLongAttribute(
-		@WebParam(name = "tid", partName = "setLongAttribute.tid") Long tid,
-		@WebParam(name = "oid", partName = "setLongAttribute.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "setLongAttribute.attributeName") String attributeName, 
-		@WebParam(name = "value", partName = "setLongAttribute.value") Long value) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value new Integer value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setLongAttributes")
-	void setLongAttributes(
-			@WebParam(name = "tid", partName = "setLongAttributes.tid") Long tid,
-			@WebParam(name = "oid", partName = "setLongAttributes.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "setLongAttributes.attributeName") String attributeName, 
-			@WebParam(name = "values", partName = "setLongAttributes.value") List<Long> values) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value new Integer value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getIntegerAttribute")
-	Integer getIntegerAttribute(
-		@WebParam(name = "tid", partName = "getIntegerAttribute.tid") Long tid,
-		@WebParam(name = "oid", partName = "getIntegerAttribute.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "getIntegerAttribute.attributeName") String attributeName) throws ServerException, UserException;
-
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value new Integer value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getByteArrayAttribute")
-	byte[] getByteArrayAttribute(
-		@WebParam(name = "tid", partName = "getByteArrayAttribute.tid") Long tid,
-		@WebParam(name = "oid", partName = "getByteArrayAttribute.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "getByteArrayAttribute.attributeName") String attributeName) throws ServerException, UserException;
-
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value new Integer value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getByteArrayAttributes")
-	List<byte[]> getByteArrayAttributes(
-			@WebParam(name = "tid", partName = "getByteArrayAttributes.tid") Long tid,
-			@WebParam(name = "oid", partName = "getByteArrayAttributes.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "getByteArrayAttributes.attributeName") String attributeName) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value new Integer value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getIntegerAttributes")
-	List<Integer> getIntegerAttributes(
-			@WebParam(name = "tid", partName = "getIntegerAttributes.tid") Long tid,
-			@WebParam(name = "oid", partName = "getIntegerAttributes.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "getIntegerAttributes.attributeName") String attributeName) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value new Integer value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getLongAttribute")
-	Long getLongAttribute(
-			@WebParam(name = "tid", partName = "getLongAttribute.tid") Long tid,
-			@WebParam(name = "oid", partName = "getLongAttribute.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "getLongAttribute.attributeName") String attributeName) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value New Boolean value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setBooleanAttribute")
-	void setBooleanAttribute(
-		@WebParam(name = "tid", partName = "setBooleanAttribute.tid") Long tid,
-		@WebParam(name = "oid", partName = "setBooleanAttribute.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "setBooleanAttribute.attributeName") String attributeName, 
-		@WebParam(name = "value", partName = "setBooleanAttribute.value") Boolean value) throws ServerException, UserException;
-
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value New Boolean value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setBooleanAttributes")
-	void setBooleanAttributes(
-		@WebParam(name = "tid", partName = "setBooleanAttributes.tid") Long tid,
-		@WebParam(name = "oid", partName = "setBooleanAttributes.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "setBooleanAttributes.attributeName") String attributeName, 
-		@WebParam(name = "values", partName = "setBooleanAttributes.values") List<Boolean> values) throws ServerException, UserException;
-
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value New Boolean value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getBooleanAttribute")
-	Boolean getBooleanAttribute(
-		@WebParam(name = "tid", partName = "getBooleanAttribute.tid") Long tid,
-		@WebParam(name = "oid", partName = "getBooleanAttribute.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "getBooleanAttribute.attributeName") String attributeName) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute
-	 * @param value New Boolean value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getBooleanAttributes")
-	List<Boolean> getBooleanAttributes(
-			@WebParam(name = "tid", partName = "getBooleanAttributes.tid") Long tid,
-			@WebParam(name = "oid", partName = "getBooleanAttributes.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "getBooleanAttributes.attributeName") String attributeName) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param referenceName Name of the reference
-	 * @param referenceOid ObjectID of the newly referred object
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setReference")
-	void setReference(
-		@WebParam(name = "tid", partName = "setReference.tid") Long tid,
-		@WebParam(name = "oid", partName = "setReference.oid") Long oid, 
-		@WebParam(name = "referenceName", partName = "setReference.referenceName") String referenceName, 
-		@WebParam(name = "referenceOid", partName = "setReference.referenceOid") Long referenceOid) throws ServerException, UserException;
-
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param referenceName Name of the reference
-	 * @param referenceOid ObjectID of the newly referred object
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getReference")
-	Long getReference(
-		@WebParam(name = "tid", partName = "getReference.tid") Long tid,
-		@WebParam(name = "oid", partName = "getReference.oid") Long oid, 
-		@WebParam(name = "referenceName", partName = "getReference.referenceName") String referenceName) throws ServerException, UserException;
-
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param referenceName Name of the reference
-	 * @param referenceOid ObjectID of the newly referred object
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getReferences")
-	List<Long> getReferences(
-			@WebParam(name = "tid", partName = "getReferences.tid") Long tid,
-			@WebParam(name = "oid", partName = "getReferences.oid") Long oid, 
-			@WebParam(name = "referenceName", partName = "getReferences.referenceName") String referenceName) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute to unset
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "unsetAttribute")
-	void unsetAttribute(
-		@WebParam(name = "tid", partName = "unsetAttribute.tid") Long tid,
-		@WebParam(name = "oid", partName = "unsetAttribute.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "unsetAttribute.attributeName") String attributeName) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param referenceName Name of the reference to unset (null)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "unsetReference")
-	void unsetReference(
-		@WebParam(name = "tid", partName = "unsetReference.tid") Long tid,
-		@WebParam(name = "oid", partName = "unsetReference.oid") Long oid,
-		@WebParam(name = "referenceName", partName = "unsetReference.referenceName") String referenceName) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute to add a value to
-	 * @param value New String value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "addStringAttribute")
-	void addStringAttribute(
-		@WebParam(name = "tid", partName = "addStringAttribute.tid") Long tid,
-		@WebParam(name = "oid", partName = "addStringAttribute.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "addStringAttribute.attributeName") String attributeName,
-		@WebParam(name = "value", partName = "addStringAttribute.value") String value) throws ServerException, UserException;
-
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute to add a value to
-	 * @param value New Double value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "addDoubleAttribute")
-	void addDoubleAttribute(
-		@WebParam(name = "tid", partName = "addDoubleAttribute.tid") Long tid,
-		@WebParam(name = "oid", partName = "addDoubleAttribute.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "addDoubleAttribute.attributeName") String attributeName,
-		@WebParam(name = "value", partName = "addDoubleAttribute.value") Double value) throws ServerException, UserException;
-
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute to add a value to
-	 * @param value New Integer value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "addIntegerAttribute")
-	void addIntegerAttribute(
-		@WebParam(name = "tid", partName = "addIntegerAttribute.tid") Long tid,
-		@WebParam(name = "oid", partName = "addIntegerAttribute.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "addIntegerAttribute.attributeName") String attributeName,
-		@WebParam(name = "value", partName = "addIntegerAttribute.value") Integer value) throws ServerException, UserException;
-
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute to add a value to
-	 * @param value New Boolean value
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "addBooleanAttribute")
-	void addBooleanAttribute(
-		@WebParam(name = "tid", partName = "addBooleanAttribute.tid") Long tid,
-		@WebParam(name = "oid", partName = "addBooleanAttribute.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "addBooleanAttribute.attributeName") String attributeName,
-		@WebParam(name = "value", partName = "addBooleanAttribute.value") Boolean value) throws ServerException, UserException;
-
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param referenceName Name of the reference to add a reference to
-	 * @param referenceOid ObjectID of the newly referenced Object
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "addReference")
-	void addReference(
-		@WebParam(name = "tid", partName = "addReference.tid") Long tid,
-		@WebParam(name = "oid", partName = "addReference.oid") Long oid, 
-		@WebParam(name = "referenceName", partName = "addReference.referenceName") String referenceName, 
-		@WebParam(name = "referenceOid", partName = "addReference.referenceOid") Long referenceOid) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param attributeName Name of the attribute from which to remove an item
-	 * @param index Index of the item to remove
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "removeAttribute")
-	void removeAttribute(
-		@WebParam(name = "tid", partName = "removeAttribute.tid") Long tid,
-		@WebParam(name = "oid", partName = "removeAttribute.oid") Long oid, 
-		@WebParam(name = "attributeName", partName = "removeAttribute.attributeName") String attributeName, 
-		@WebParam(name = "index", partName = "removeAttribute.index") Integer index) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the object to change
-	 * @param referenceName Name of the reference from which to remove an item
-	 * @param index Index of the item to remove
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "removeReference")
-	void removeReference(
-		@WebParam(name = "tid", partName = "removeReference.tid") Long tid,
-		@WebParam(name = "oid", partName = "removeReference.oid") Long oid, 
-		@WebParam(name = "referenceName", partName = "removeReference.referenceName") String referenceName, 
-		@WebParam(name = "index", partName = "removeReference.index") Integer index) throws ServerException, UserException;
-	
-	/**
-	 * @return The Date when the BIMserver was last started
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getServerStartTime")
-	Date getServerStartTime() throws ServerException, UserException;
-	
-	/**
 	 * @param type The type
 	 * @return SSerializerPluginDescriptor
 	 * @throws ServerException, UserException
@@ -1949,53 +1347,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "sync", partName = "downloadQuery.sync") Boolean sync,
 		@WebParam(name = "serializerOid", partName = "downloadQuery.serializerOid") Long serializerOid) throws ServerException, UserException;
 
-	/**
-	 * Thsi will return the content of the .proto file (equivalent for SOAP's WSDL) for the ProtocolBuffers interface
-	 * @return Returns a serialized version of the .proto file for the ServiceInterface
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getProtocolBuffersFile")
-	String getProtocolBuffersFile() throws ServerException, UserException;
-	
-	/**
-	 * Get the actual version of this BIMserver
-	 * @return A SVersion object containg the version information
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getVersion")
-	SVersion getVersion() throws ServerException, UserException;
-	
-	/**
-	 * Check which version of BIMserver is the latest available (will download an XML file from bimserver.org)
-	 * @return A SVersion object containing the version information
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getLatestVersion")
-	SVersion getLatestVersion() throws ServerException, UserException;
-	
-	/**
-	 * Check whether an upgrade of the BIMserver is available (will download an XML file from bimserver.org)
-	 * @return Whether a new version is available
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "upgradePossible")
-	Boolean upgradePossible() throws ServerException, UserException;
-
-	/**
-	 * Get the remove address (which is actually the address the server thinks the client is connecting from)
-	 * @return A string with a hostname or ip address
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getRemoteAddress")
-	String getRemoteAddress() throws ServerException, UserException;
-
-	/**
-	 * @return The BIMserver log (can be big)
-	 * @throws ServerException 
-	 */
-	@WebMethod(action = "getServerLog")
-	String getServerLog() throws ServerException, UserException;
-	
 	/**
 	 * @return The name of the suggested deserializer
 	 * @throws ServerException 
@@ -2063,13 +1414,6 @@ public interface ServiceInterface extends PublicInterface {
 	void setDefaultObjectIDM(
 		@WebParam(name = "oid", partName = "setDefaultObjectIDM.oid") Long oid) throws UserException, ServerException;
 
-	@WebMethod(action="getServiceRepositoryUrl")
-	String getServiceRepositoryUrl() throws ServerException, UserException;
-
-	@WebMethod(action="setServiceRepositoryUrl")
-	void setServiceRepositoryUrl(
-		@WebParam(name = "url", partName = "setServiceRepositoryUrl.url") String url) throws ServerException, UserException;
-	
 	@WebMethod(action="getServiceDescriptor")
 	SServiceDescriptor getServiceDescriptor(
 		@WebParam(name = "url", partName = "getServiceDescriptor.url") String url) throws ServerException, UserException;
@@ -2098,22 +1442,6 @@ public interface ServiceInterface extends PublicInterface {
 	org.bimserver.interfaces.objects.SService getService(
 		@WebParam(name = "soid", partName = "getService.soid") Long soid) throws ServerException, UserException;
 
-	@WebMethod(action="getServiceInterfaces")
-	List<SServiceInterface> getServiceInterfaces() throws ServerException, UserException;
-	
-	@WebMethod(action="getServiceMethods")
-	List<SServiceMethod> getServiceMethods(
-		@WebParam(name = "serviceInterfaceName", partName = "getServiceMethods.serviceInterfaceName") String serviceInterfaceName) throws ServerException, UserException;
-	
-	@WebMethod(action="getServiceTypes")
-	List<SServiceType> getServiceTypes(
-		@WebParam(name = "serviceInterfaceName", partName = "getServiceTypes.serviceInterfaceName") String serviceInterfaceName) throws ServerException, UserException;
-	
-	@WebMethod(action="getServiceMethodParameters")
-	List<SServiceParameter> getServiceMethodParameters(
-		@WebParam(name = "serviceInterfaceName", partName = "getServiceMethodParameters.serviceInterfaceName") String serviceInterfaceName,
-		@WebParam(name = "serviceMethodName", partName = "getServiceMethodParameters.serviceMethodName") String serviceMethodName) throws ServerException, UserException;
-	
 	@WebMethod(action="getInternalServiceById")
 	SInternalServicePluginConfiguration getInternalServiceById(
 		@WebParam(name = "oid", partName = "getEServiceById.oid") Long oid) throws ServerException, UserException;
@@ -2134,258 +1462,6 @@ public interface ServiceInterface extends PublicInterface {
 	List<SInternalServicePluginConfiguration> getAllInternalServices(
 		@WebParam(name = "onlyEnabled", partName = "getAllInternalServices.onlyEnabled") Boolean onlyEnabled) throws UserException, ServerException;
 	
-	@WebMethod(action = "getSettingEmailSenderAddress")
-	String getSettingEmailSenderAddress() throws ServerException, UserException;
-
-	/**
-	 * @param emailSenderAddress The new e-mail address e-mail will be sent from
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingEmailSenderAddress")
-	void setSettingEmailSenderAddress(
-		@WebParam(name = "emailSenderAddress", partName = "setSettingsEmailSenderAddress.emailSenderAddress") String emailSenderAddress) throws ServerException, UserException;
-
-	/**
-	 * @return The port on which the ProtocolBuffers server runs
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSettingProtocolBuffersPort")
-	Integer getSettingProtocolBuffersPort() throws ServerException, UserException;
-
-	/**
-	 * @param port Set the port the ProtocolBuffers server runs on
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingProtocolBuffersPort")
-	void setSettingProtocolBuffersPort(
-		@WebParam(name = "port", partName = "setSettingsProtocolBuffersPort.port") Integer port) throws ServerException, UserException;
-	
-	/**
-	 * @return The address the BIMserver is running on (used for links in e-mail for example)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSettingSiteAddress")
-	String getSettingSiteAddress() throws ServerException, UserException;
-
-	/**
-	 * @param siteAddress The new address the BIMserver is running on (used for links in e-mail for example)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingSiteAddress")
-	void setSettingSiteAddress(
-		@WebParam(name = "siteAddress", partName = "setSettingsSiteAddress.siteAddress") String siteAddress) throws ServerException, UserException;
-
-	/**
-	 * @return Address of the SMTP server used for sending e-mails
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSettingSmtpServer")
-	String getSettingSmtpServer() throws ServerException, UserException;
-
-	/**
-	 * @param smtpServer New address of the SMTP server used for sending e-mails
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingSmtpServer")
-	void setSettingSmtpServer(
-		@WebParam(name = "smtpServer", partName = "setSettingsSmtpServer.smtpServer") String smtpServer) throws ServerException, UserException;
-
-	/**
-	 * @return Whether self-registration is enabled
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "isSettingAllowSelfRegistration")
-	Boolean isSettingAllowSelfRegistration() throws ServerException, UserException;
-
-	/**
-	 * @param allowSelfRegistration Change whether self-registration is enabled
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingAllowSelfRegistration")
-	void setSettingAllowSelfRegistration(
-		@WebParam(name = "allowSelfRegistration", partName = "setSettingAllowSelfRegistration.allowSelfRegistration") Boolean allowSelfRegistration)throws ServerException, UserException;
-
-	/**
-	 * @return Whether to hide user lists (pricacy)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "isSettingHideUserListForNonAdmin")
-	Boolean isSettingHideUserListForNonAdmin() throws ServerException, UserException;
-
-	/**
-	 * @param hideUserListForNonAdmin Set whether user lists should be hidden (privacy)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingHideUserListForNonAdmin")
-	void setSettingHideUserListForNonAdmin(
-		@WebParam(name = "hideUserListForNonAdmin", partName = "setSettingHideUserListForNonAdmin.hideUserListForNonAdmin") Boolean hideUserListForNonAdmin) throws ServerException, UserException;
-
-	/**
-	 * @return Whether a user can create top level projects
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "isSettingAllowUsersToCreateTopLevelProjects")
-	Boolean isSettingAllowUsersToCreateTopLevelProjects() throws ServerException, UserException;
-
-	/**
-	 * @param allowUsersToCreateTopLevelProjects Set if users can create top level projects
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingAllowUsersToCreateTopLevelProjects")
-	void setSettingAllowUsersToCreateTopLevelProjects(
-		@WebParam(name = "allowUsersToCreateTopLevelProjects", partName = "setSettingAllowUsersToCreateTopLevelProjects.allowUsersToCreateTopLevelProjects") Boolean allowUsersToCreateTopLevelProjects) throws ServerException, UserException;
-
-	/**
-	 * @return Whether the BIMserver should do checkin merging (warning: this will alter your models)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "isSettingCheckinMergingEnabled")
-	Boolean isSettingCheckinMergingEnabled() throws ServerException, UserException;
-
-	/**
-	 * @param checkinMergingEnabled Set whether the BIMserver should do checkin merging (warning: this wil alter your models)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingCheckinMergingEnabled")
-	void setSettingCheckinMergingEnabled(
-		@WebParam(name = "checkinMergingEnabled", partName = "setSettingCheckinMergingEnabled.checkinMergingEnabled") Boolean checkinMergingEnabled) throws ServerException, UserException;
-
-	/**
-	 * @return Whether a confirmation e-mail should be send after registration
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "isSettingSendConfirmationEmailAfterRegistration")
-	Boolean isSettingSendConfirmationEmailAfterRegistration() throws ServerException, UserException;
-
-	/**
-	 * @param sendConfirmationEmailAfterRegistration Set whether a confirmation e-mail should be send after registration
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingSendConfirmationEmailAfterRegistration")
-	void setSettingSendConfirmationEmailAfterRegistration(
-		@WebParam(name = "sendConfirmationEmailAfterRegistration", partName = "setSettingSendConfirmationEmailAfterRegistration.sendConfirmationEmailAfterRegistration") Boolean sendConfirmationEmailAfterRegistration) throws ServerException, UserException;
-
-	/**
-	 * @return Whether output files (serialized version) should be cached on disk
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "isSettingCacheOutputFiles")
-	Boolean isSettingCacheOutputFiles() throws ServerException, UserException;
-
-	/**
-	 * @return Whether output files (serialized version) should be cached on disk
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "isSettingGenerateGeometryOnCheckin")
-	Boolean isSettingGenerateGeometryOnCheckin() throws ServerException, UserException;
-	
-	/**
-	 * @param cacheOutputFiles Set whether output files (serialized version) should be cached on disk
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingCacheOutputFiles")
-	void setSettingCacheOutputFiles(
-		@WebParam(name = "cacheOutputFiles", partName = "setCacheOutputFiles.cacheOutputFiles") Boolean cacheOutputFiles) throws ServerException, UserException;
-
-	/**
-	 * @param cacheOutputFiles Set whether output files (serialized version) should be cached on disk
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setSettingGenerateGeometryOnCheckin")
-	void setSettingGenerateGeometryOnCheckin(
-		@WebParam(name = "generateGeometryOnCheckin", partName = "setSettingGenerateGeometryOnCheckin.generateGeometryOnCheckin") Boolean generateGeometryOnCheckin) throws ServerException, UserException;
-	
-	/**
-	 * @return A list of all plugins
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllPlugins")
-	List<SPluginDescriptor> getAllPlugins() throws ServerException, UserException;
-	
-	/**
-	 * @param name Name of the plugin to enable
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "enablePlugin")
-	void enablePlugin(
-		@WebParam(name = "name", partName = "enablePlugin.name") String name) throws ServerException, UserException;
-	
-	/**
-	 * @param name Name of the plugin to disable
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "disablePlugin")
-	void disablePlugin(
-		@WebParam(name = "name", partName = "disablePlugin.name") String name) throws ServerException, UserException;
-	
-	/**
-	 * Get information about the BIMserver database
-	 * @return A SDatabaseInformation Object containing the information
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getDatabaseInformation")
-	SDatabaseInformation getDatabaseInformation() throws ServerException, UserException;
-
-	/**
-	 * @return When the last database reset occurred
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getLastDatabaseReset")
-	Date getLastDatabaseReset() throws ServerException, UserException;
-
-	/**
-	 * Setup this BIMserver
-	 * @param siteAddress The address the server will be reachable at (for example: http://demo.bimserver.org)
-	 * @param smtpServer The address of the SMTP server that wil be used for sending e-mails
-	 * @param adminName Name of the admin User (e.g. "Administrator")
-	 * @param adminUsername Username of the admin User (must be a valid e-mail address)
-	 * @param adminPassword Password of the admin User
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "setup")
-	void setup(@WebParam(name = "siteAddress", partName = "setup.siteAddress") String siteAddress,
-		@WebParam(name = "smtpServer", partName = "setup.smtpServer") String smtpServer,
-		@WebParam(name = "smtpSender", partName = "setup.smtpSender") String smtpSender,
-		@WebParam(name = "adminName", partName = "setup.adminName") String adminName,
-		@WebParam(name = "adminUsername", partName = "setup.adminUsername") String adminUsername,
-		@WebParam(name = "adminPassword", partName = "setup.adminPassword") String adminPassword) throws ServerException, UserException;
-	
-	/**
-	 * @return A list with all Log objects, Log objects contain information about action performed on the BIMserver like ProjectAdded, UserAdded etc...
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getLogs")
-	List<SLogAction> getLogs() throws ServerException, UserException;
-
-	/**
-	 * @return A list with the currently running Long actions
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getActiveLongActions")
-	List<SLongAction> getActiveLongActions() throws ServerException, UserException;
-
-	/**
-	 * @return A list of all Migrations (either executed or not)
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getMigrations")
-	List<SMigration> getMigrations() throws ServerException, UserException;
-
-	/**
-	 * This will try to upgrade the database to the latest revision, this method will do nothing if the database schema is already up-to-date
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "migrateDatabase")
-	void migrateDatabase() throws ServerException, UserException;
-	
-	/**
-	 * Get information about this BIMserver's state
-	 * @return A SServerInfo object containing information about the current state
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getServerInfo")
-	SServerInfo getServerInfo() throws ServerException, UserException;
-	
 	@WebMethod(action = "getAllPrivateProfiles")
 	List<SProfileDescriptor> getAllPrivateProfiles(
 		@WebParam(name = "notificationsUrl", partName = "getAllPrivateProfiles.notificationsUrl") String notificationsUrl, 
@@ -2404,13 +1480,6 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getPluginSettings")
 	SObjectType getPluginSettings(
 		@WebParam(name = "poid", partName = "getPluginSettings.poid") Long poid) throws ServerException, UserException;
-	
-	@WebMethod(action = "getServerSettings")
-	SServerSettings getServerSettings() throws ServerException, UserException;
-
-	@WebMethod(action = "setServerSettings")
-	void setServerSettings(
-		@WebParam(name = "serverSettings", partName = "setServerSettings.serverSettings") SServerSettings serverSettings) throws ServerException, UserException;
 	
 	@WebMethod(action = "uploadFile")
 	Long uploadFile(
@@ -2442,27 +1511,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "poid", partName = "addLocalServiceToProject.poid") Long poid, 
 		@WebParam(name = "sService", partName = "addLocalServiceToProject.sService") SService sService,
 		@WebParam(name = "internalServiceOid", partName = "addLocalServiceToProject.internalServiceOid") Long internalServiceOid) throws ServerException, UserException;
-	
-	@WebMethod(action = "externalServiceUpdate")
-	void externalServiceUpdate(
-		@WebParam(name = "uuid", partName = "externalServiceUpdate.uuid") String uuid,
-		@WebParam(name = "sExternalServiceUpdate", partName = "externalServiceUpdate.sExternalServiceUpdate") SRemoteServiceUpdate sExternalServiceUpdate) throws ServerException, UserException;
-	
-	@WebMethod(action = "setWhiteListedDomains")
-	void setWhiteListedDomains(
-		@WebParam(name = "domains", partName = "setWhiteListedDomains.domains") List<String> domains) throws ServerException, UserException;
-
-	@WebMethod(action = "clearOutputFileCache")
-	Integer clearOutputFileCache() throws UserException, ServerException;
-
-	@WebMethod(action = "getSystemInfo")
-	SSystemInfo getSystemInfo() throws UserException, ServerException;
-	
-	@WebMethod(action = "getJavaInfo")
-	SJavaInfo getJavaInfo() throws UserException, ServerException;
-
-	@WebMethod(action = "getBimServerInfo")
-	SBimServerInfo getBimServerInfo() throws ServerException, UserException;
 	
 	@WebMethod(action = "shareRevision")
 	String shareRevision(
