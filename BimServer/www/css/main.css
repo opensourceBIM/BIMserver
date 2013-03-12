@@ -1,0 +1,108 @@
+a {
+	cursor: pointer;
+}
+
+.container {
+	padding: 10px;
+}
+
+.initialhide {
+	display: none
+}
+
+table .header {
+	font-weight: bold;
+}
+
+.login .span5 {
+	padding-top: 50px;
+	width: 500px;
+}
+
+.modal {
+	overflow: visible;
+}
+
+.modal-body {
+	overflow-y: visible;
+}
+
+.addservice2 .loadPrivateProfiles form {
+	margin-bottom: 0px;
+}
+
+.linkspacer {
+	margin: 8px;
+}
+
+table.table-hover tr {
+	cursor: pointer;
+}
+
+table .btn {
+	padding: 1px 5px 1px;
+	margin-right: -3px;
+}
+
+.accept {
+	background-image: url("../img/accept.png");
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
+.basicserversettings .removeDomainButton {
+	margin-left: 5px;
+}
+
+.basicserversettings .whiteListedDomainDiv {
+	margin-bottom: 3px;
+}
+
+.basicserversettings .form-horizontal .control-label {
+	width: 250px;
+}
+
+.basicserversettings .form-horizontal .controls {
+	margin-left: 260px;
+}
+
+.statusholder {
+	text-align: center;
+	width: 100%;
+	top: 40px;
+	z-index: 1000;
+	position: fixed;
+}
+
+.status {
+	display: inline-block;
+	padding: 5px;
+	font-size: small;
+	padding-right: 18px;
+	cursor: pointer;
+	margin-bottom: 0px;
+}
+
+.classpath {
+	max-width: 400px;	
+}
+
+.error {
+	color: red;
+}
+
+.success {
+	color: green;
+}
+
+.running {
+	color: blue;
+}
+
+label.checkbox {
+	cursor: pointer;
+}
+
+.progresstd .progress {
+	margin-bottom: 2px;
+}
