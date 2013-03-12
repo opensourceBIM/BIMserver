@@ -1,0 +1,260 @@
+<div class="basicserversettings">
+	<form class="form-horizontal">
+		<div class="control-group">
+			<label class="control-label" for="inputRepositoryServer"><a rel="tooltip" data-original-title="Central repository server from which services, plugins and extended data schemas can be loaded" data-placement="right">Repository Server</a></label>
+			<div class="controls">
+				<input type="text" class="input-xlarge inputRepositoryServer" id="inputRepositoryServer" placeholder="Name">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="siteAddress"><a rel="tooltip" data-original-title="Address where this BIMserver can primarily be found. Make sure you add a port number if the server is not running on port 80. Also include http:// or https://" data-placement="right">Site address</a></label>
+			<div class="controls">
+				<input type="text" class="input-xlarge siteAddress" id="siteAddress" placeholder="Name">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="smtpServer"><a rel="tooltip" data-original-title="SMTP server to use for sending emails" data-placement="right">SMTP server</a></label>
+			<div class="controls">
+				<input type="text" class="input-xlarge smtpServer" id="smtpServer" placeholder="Name">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="emailSenderAddress"><a rel="tooltip" data-original-title="Email address to send emails from" data-placement="right">Email sender address</a></label>
+			<div class="controls">
+				<input type="text" class="input-xlarge emailSenderAddress" id="emailSenderAddress" placeholder="Name">
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="emailSenderName"><a rel="tooltip" data-original-title="Name to use for sending emails" data-placement="right">Email sender name</a></label>
+			<div class="controls">
+				<input type="text" class="input-xlarge emailSenderName" id="emailSenderName" placeholder="Name">
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<label class="checkbox" for="hideUserList"><a rel="tooltip" data-original-title="Whether to hide the list of users for non-admin users" data-placement="right">Hide userlist for non-admin users</a>
+					<input type="checkbox" class="hideUserList" id="hideUserList">
+				</label>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="protocolBuffersPort"><a rel="tooltip" data-original-title="Port to run the protocol buffers server on" data-placement="right">Protocol buffers port</a></label>
+			<div class="controls">
+				<input type="text" class="protocolBuffersPort" id="protocolBuffersPort">
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<label class="checkbox" for="cacheOutputFiles"><a rel="tooltip" data-original-title="Whether serialized versions of models should be cached on disk. The first time a model is downloaded a cache file will be created. The server administrator is responsible for cleaning up cached files" data-placement="right">Cache output files</a>
+					<input type="checkbox" class="input-xxlarge cacheOutputFiles" id="cacheOutputFiles">
+				</label>
+				<button class="btn clearCacheButton">Clear cache</button>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<label class="checkbox" for="checkinMergingEnabled"><a rel="tooltip" data-original-title="Whether checkin-merging is enabled" data-placement="right">Checkin merging enabled</a>
+					<input type="checkbox" class="checkinMergingEnabled" id="checkinMergingEnabled">
+				</label>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<label class="checkbox" for="generateGeometryCheckin"><a rel="tooltip" data-original-title="Whether to generate geometry on checkin" data-placement="right">Generate geometry on checkin</a>
+					<input type="checkbox" class="generateGeometryCheckin" id="generateGeometryCheckin">
+				</label>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<label class="checkbox" for="createTopLevelProjects"><a rel="tooltip" data-original-title="Allow user to create top level projects" data-placement="right">Allow user to create top level projects</a>
+					<input type="checkbox" class="createTopLevelProjects" id="createTopLevelProjects">
+				</label>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<label class="checkbox" for="allowSelfRegistration"><a rel="tooltip" data-original-title="Whether to allow users to register themselves" data-placement="right">Allow self registration</a>
+					<input type="checkbox" class="allowSelfRegistration" id="allowSelfRegistration"/>
+				</label>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<label class="checkbox" for="sendConfirmationEmailAfterRegistration"><a rel="tooltip" data-original-title="Whether a confirmation e-mail should be send after a new user has been registered" data-placement="right">Send confirmation email after registration</a>
+					<input type="checkbox" class="sendConfirmationEmailAfterRegistration" id="sendConfirmationEmailAfterRegistration"/>
+				</label>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<label class="checkbox" for="allowOnlyWhitelisted"><a rel="tooltip" data-original-title="Whether only whitelisted (below) domains should be authorized to connect" data-placement="right">Only white listed domains</a>
+					<input type="checkbox" class="allowOnlyWhitelisted" id="allowOnlyWhitelisted"/>
+				</label>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label"><a rel="tooltip" data-original-title="Select from which referred domains web browsers can connect to this BIMserver. More information about this can be found by searching for 'CORS'" data-placement="right">Whitelisted domains</a></label>
+			<div class="controls whiteListedDomains">
+			</div>
+		</div>
+	</form>
+</div>
+<script>
+function BasicServerSettings(main, serversettings) {
+	var othis = this;
+	othis.change = false;
+	
+	this.removeDomainButton = function(){
+		$(this).parent().remove();		
+		othis.change = true;
+		othis.save();
+	};
+
+	this.checkWhiteListedDomains = function() {
+		othis.change = true;
+		var empty = 0;
+		$(".basicserversettings .whiteListedDomainDiv").each(function(){
+			if ($(this).find(".whiteListedDomain").val() == "") {
+				empty++;
+				$(this).find("button").hide();
+			} else {
+				$(this).find("button").show();
+			}
+		});
+		if (empty == 0) {
+			othis.addWhiteListedDomain("");
+		} else if (empty > 1) {
+			var found = 0;
+			$(".basicserversettings .whiteListedDomainDiv").each(function(){
+				if ($(this).find(".whiteListedDomain").val() == "") {
+					found++;
+					if (found > 1) {
+						$(this).remove();
+					}
+				}
+			});
+		}
+	};
+	
+	this.save = function(force) {
+		if (othis.change) {
+			var serverSettings = {
+				__type: "SServerSettings"
+			};
+			serverSettings.whitelistedDomains = [];
+			$(".basicserversettings .whiteListedDomainDiv").each(function(){
+				var val = $(this).find("input").val();
+				if (val != "") {
+					serverSettings.whitelistedDomains.push(val);
+				}
+			});
+			serverSettings.serviceRepositoryUrl = $(".basicserversettings .inputRepositoryServer").val();
+			serverSettings.siteAddress = $(".basicserversettings .siteAddress").val();
+			serverSettings.smtpServer = $(".basicserversettings .smtpServer").val();
+			serverSettings.emailSenderAddress = $(".basicserversettings .emailSenderAddress").val();
+			serverSettings.emailSenderName = $(".basicserversettings .emailSenderName").val();
+			serverSettings.hideUserListForNonAdmin = $(".basicserversettings .hideUserList").prop("checked");
+			serverSettings.protocolBuffersPort = $(".basicserversettings .protocolBuffersPort").val();
+			serverSettings.cacheOutputFiles = $(".basicserversettings .cacheOutputFiles").prop("checked");
+			serverSettings.checkinMergingEnabled = $(".basicserversettings .checkinMergingEnabled").prop("checked");
+			serverSettings.allowUsersToCreateTopLevelProjects = $(".basicserversettings .createTopLevelProjects").prop("checked");
+			serverSettings.allowSelfRegistration = $(".basicserversettings .allowSelfRegistration").prop("checked");
+			serverSettings.sendConfirmationEmailAfterRegistration = $(".basicserversettings .sendConfirmationEmailAfterRegistration").prop("checked");
+			serverSettings.allowOnlyWhitelisted = $(".basicserversettings .allowOnlyWhitelisted").prop("checked");
+			serverSettings.generateGeometryOnCheckin = $(".basicserversettings .generateGeometryCheckin").prop("checked");
+			Global.bimServerApi.callWithFullIndication("SettingsInterface", "setServerSettings", {serverSettings: serverSettings}, function(data){
+				othis.change = false;
+			});
+		}
+	};
+
+	this.addWhiteListedDomain = function(domain) {
+		var div = $("<div class=\"whiteListedDomainDiv\">");
+		var input = $("<input type=\"text\" class=\"whiteListedDomain input-xlarge\">");
+		input.val(domain);
+		if (domain == "") {
+			input.attr("placeHolder", "Add a new domain");
+		}
+		var button = $("<button class=\"btn btn-small removeDomainButton\"><i class=\"icon-minus\"/></button>");
+		button.attr("title", "Remove domain");
+		button.click(othis.removeDomainButton);
+		div.append(input);
+		input.blur(othis.save);
+		input.keyup(othis.checkWhiteListedDomains);
+		div.append(button);
+		if (domain == "") {
+			button.hide();
+		}
+		$(".basicserversettings .whiteListedDomains").append(div);
+	};
+	
+	this.loadSettings = function() {
+		Global.bimServerApi.call("SettingsInterface", "getServerSettings", {}, function(data){
+			$(".basicserversettings .inputRepositoryServer").val(data.serviceRepositoryUrl);
+			$(".basicserversettings .siteAddress").val(data.siteAddress);
+			$(".basicserversettings .smtpServer").val(data.smtpServer);
+			$(".basicserversettings .emailSenderAddress").val(data.emailSenderAddress);
+			$(".basicserversettings .emailSenderName").val(data.emailSenderName);
+			$(".basicserversettings .hideUserList").prop("checked", data.hideUserListForNonAdmin);
+			$(".basicserversettings .protocolBuffersPort").val(data.protocolBuffersPort);
+			$(".basicserversettings .cacheOutputFiles").prop("checked", data.cacheOutputFiles);
+			$(".basicserversettings .checkinMergingEnabled").prop("checked", data.checkinMergingEnabled);
+			$(".basicserversettings .createTopLevelProjects").prop("checked", data.allowUsersToCreateTopLevelProjects);
+			$(".basicserversettings .allowSelfRegistration").prop("checked", data.allowSelfRegistration);
+			$(".basicserversettings .sendConfirmationEmailAfterRegistration").prop("checked", data.sendConfirmationEmailAfterRegistration);
+			$(".basicserversettings .allowOnlyWhitelisted").prop("checked", data.allowOnlyWhitelisted);
+			$(".basicserversettings .generateGeometryCheckin").prop("checked", data.generateGeometryOnCheckin);
+			data.whitelistedDomains.forEach(function(domain){
+				othis.addWhiteListedDomain(domain);
+			});
+			othis.addWhiteListedDomain("");
+			othis.updateWhiteListedVisible(data.allowOnlyWhitelisted);
+		});
+	};
+	
+	this.updateWhiteListedVisible = function(allowOnlyWhitelisted){
+		if (allowOnlyWhitelisted) {
+			$(".basicserversettings .whiteListedDomains input").removeAttr("disabled");
+			$(".basicserversettings .whiteListedDomains button").show();
+			$(".basicserversettings .whiteListedDomains input").each(function(){
+				if ($(this).val() == "") {
+					$(this).show();
+				}
+			});
+		} else {
+			$(".basicserversettings .whiteListedDomains input").attr("disabled", "disabled");
+			$(".basicserversettings .whiteListedDomains button").hide();
+			$(".basicserversettings .whiteListedDomains input").each(function(){
+				if ($(this).val() == "") {
+					$(this).hide();
+				}
+			});
+		}
+	};
+	
+	this.clearCacheClick = function(event){
+		event.preventDefault();
+		Global.bimServerApi.call("AdminInterface", "clearOutputFileCache", {}, function(data){
+			alert(data + " cache files removed");
+		});
+	};
+	
+	this.close = function(){
+	};
+	
+	$(".basicserversettings input[type='checkbox']").change(function(){othis.change = true; othis.save()});
+	$(".basicserversettings input[type='text']").blur(othis.save);
+	$(".basicserversettings input[type='text']").enterpress(othis.save);
+	$(".basicserversettings input[type='text']").keyup(function(event){
+		if (event.which != 13 && event.which != 9) {
+			othis.change = true;
+		}
+	});
+	$(".basicserversettings .allowOnlyWhitelisted").change(function(event){othis.updateWhiteListedVisible($(this).is(":checked"))});
+	$(".basicserversettings .clearCacheButton").click(othis.clearCacheClick);
+	
+	$("[rel=tooltip]").tooltip();
+	othis.loadSettings();
+}
+</script>

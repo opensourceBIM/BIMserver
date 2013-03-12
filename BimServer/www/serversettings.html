@@ -1,0 +1,119 @@
+<div class="serversettings">
+	<div class="tabbable tabs-left">
+		<ul class="nav nav-tabs">
+			<li><a class="basicServerSettingsLink">Server Settings</a></li>
+			<li><a class="migrationsLink">Migrations</a></li>
+			<li><a class="pluginsLink">Plugins</a></li>
+			<li><a class="extendedDataSchemasLink">Extended Data Schemas</a></li>
+		</ul>
+		<div class="tab-content">
+		</div>
+	</div>
+</div>
+<script>
+	function ServerSettings(main) {
+		var othis = this;
+
+		this.changePage = function(linkElement, page, constructorFunction, callback) {
+			if (othis.current != null) {
+				othis.current.close();
+			}
+			$(".serversettings .nav li").removeClass("active");
+			linkElement.parent().addClass("active");
+			$(".serversettings .tab-content").load(page, function(){
+				constructorFunction();
+				if (callback != null) {
+					callback.call(othis.current);
+				}
+			});
+		};
+		
+		this.showAddNewExtendedDataSchema = function(extendedDataSchema, callback, alterState) {
+			othis.changePage($(".extendedDataSchemasLink"), "addnewextendeddataschema.html", function(){
+				othis.current = new AddExtendedDataSchema(main, othis, extendedDataSchema);
+				if (alterState) {
+					pushHistory({page: "ServerSettings", subpage: "AddNewExtendedDataSchema"});
+				}
+			}, callback);
+		};
+
+		this.showAddRepoExtendedDataSchema = function(callback, alterState) {
+			othis.changePage($(".extendedDataSchemasLink"), "addrepoextendeddataschema.html", function(){
+				othis.current = new AddRepoExtendedDataSchema(main, othis);
+				if (alterState) {
+					pushHistory({page: "ServerSettings", subpage: "AddRepoExtendedDataSchema"});
+				}
+			}, callback);
+		};
+		
+		this.showExtendedDataSchema = function(extendedDataSchema, callback, alterState) {
+			othis.changePage($(".extendedDataSchemasLink"), "extendeddataschema.html", function(){
+				othis.current = new ExtendedDataSchema(main, extendedDataSchema);
+				if (alterState) {
+					pushHistory({page: "ServerSettings", subpage: "ExtendedDataSchema"});
+				}
+			}, callback);
+		};
+
+		this.showBasicServerSettings = function(callback, alterState) {
+			othis.changePage($(".basicServerSettingsLink"), "basicserversettings.html", function(){
+				othis.current = new BasicServerSettings(main, othis);
+				if (alterState) {
+					pushHistory({page: "ServerSettings", subpage: "BasicServerSettings"});
+				}
+			}, callback);
+		};
+
+		this.showMigrations = function(callback, alterState) {
+			othis.changePage($(".migrationsLink"), "migrations.html", function(){
+				othis.current = new Migrations(main, othis);
+				if (alterState) {
+					pushHistory({page: "ServerSettings", subpage: "Migrations"});
+				}
+			}, callback);
+		};
+
+		this.showPlugins = function(callback, alterState) {
+			othis.changePage($(".pluginsLink"), "plugins.html", function(){
+				othis.current = new Plugins(main, othis);
+				if (alterState) {
+					pushHistory({page: "ServerSettings", subpage: "Plugins"});
+				}
+			}, callback);
+		};
+
+		this.showExtendedDataSchemas = function(callback, alterState) {
+			othis.changePage($(".extendedDataSchemasLink"), "extendeddataschemas.html", function(){
+				othis.current = new ExtendedDataSchemas(main, othis);
+				if (alterState) {
+					pushHistory({page: "ServerSettings", subpage: "ExtendedDataSchemas"});
+				}
+			}, callback);
+		};
+		
+		this.close = function() {
+		};
+		
+		this.getName = function() {
+			return "ServerSettings";
+		};
+
+		var history = History.getState().data;
+		if (history.subpage == "BasicServerSettings") {
+			othis.showBasicServerSettings();
+		} else if (history.subpage == "Migrations") {
+			othis.showMigrations();
+		} else if (history.subpage == "Plugins") {
+			othis.showPlugins();
+		} else if (history.subpage == "ExtendedDataSchemas") {
+			othis.showExtendedDataSchemas();
+		} else {
+			othis.showBasicServerSettings();
+		}
+
+		$(".serversettings .basicServerSettingsLink").click(function(){othis.showBasicServerSettings(null, true)});
+		$(".serversettings .migrationsLink").click(function(){othis.showMigrations(null, true)});
+		$(".serversettings .pluginsLink").click(function(){othis.showPlugins(null, true)});
+		$(".serversettings .extendedDataSchemasLink").click(function(){othis.showExtendedDataSchemas(null, true)});
+	}
+</script>

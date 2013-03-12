@@ -1,0 +1,125 @@
+<div class="login container">
+    <div class="span5">
+    	<img src="img/logo.gif"/>
+    	<form class="form-horizontal">
+    	<legend>Login</legend>
+		<div class="control-group">
+			<label class="control-label" for="inputServer">Server</label>
+			<div class="controls">
+				<div class="btn-group input-append">
+					<div class="input-prepend">
+  						<span class="add-on">http://</span>
+						<input type="text" id="inputServer" class="address" placeholder="BIMserver">
+					</div>
+					<a class="btn dropdown-toggle btn" title="Suggestions" data-toggle="dropdown"><i class="icon-star"></i></a>
+					<ul id="serverDropdown" class="dropdown-menu">
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputEmail">Username</label>
+			<div class="controls">
+				<div class="input-prepend">
+  					<span class="add-on">@</span>
+					<input type="email" class="username" id="inputEmail" placeholder="Username (e-mail address)">
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="inputPassword">Password</label>
+			<div class="controls">
+				<input type="password" class="password" id="inputPassword" placeholder="Password">
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<label class="checkbox"> <input type="checkbox" class="rememberme" id="rememberMe"> Remember me
+				</label>
+				<button type="button" class="btn loginButton">Sign in</button>
+				<button type="button" class="btn resetPasswordButton">Reset password</button>
+			</div>
+		</div>
+	</form>
+  </div>
+</div>
+<script>
+function Login(address, username) {
+	var othis = this;
+	if (address != null && address.startsWith("http://")) {
+		address = address.substring(7);
+	}
+	
+	this.login = function(address) {
+		loadBimServerApi(address, Global.notifier, function(serverInfo){
+			if (serverInfo.serverState == "NOT_SETUP") {
+				$(".indexcontainer").load("setup.html", function(){
+					new Setup(address);
+				});
+			} else if (serverInfo.serverState == "UNDEFINED") {
+			} else if (serverInfo.serverState == "MIGRATION_REQUIRED") {
+			} else if (serverInfo.serverState == "MIGRATION_IMPOSSIBLE") {
+			} else if (serverInfo.serverState == "FATAL_ERROR") {
+			} else if (serverInfo.serverState == "RUNNING") {
+				var username = $("#inputEmail").val()
+				Global.bimServerApi.login(username, $("#inputPassword").val(), $("#rememberMe").is(":checked"), function(data){
+					$(".indexcontainer").load("main.html", function(){
+						new Main(address, username).show(false);
+					});
+				});
+			}
+		}, function(){
+			
+		});
+	}
+
+	if (address != null) {
+		$("#inputServer").val(address);
+	}
+	if (username != null) {
+		$("#inputEmail").val(username);
+		$("#inputPassword").focus();
+	}
+	
+	$("#serverDropdown").click(function(event){
+		event.preventDefault();
+		$("#inputServer").val($(event.target).attr("address"));
+	});
+	$(".loginButton").click(function(){
+		othis.login("http://" + $("#inputServer").val());
+	});
+	
+	Settings.getServerList(function(servers){
+		$("#serverDropdown li").remove();
+		servers.forEach(function(server){
+			$("#serverDropdown").append("<li><a address=\"" + stripHttp(server.address) + "\">" + server.name + "</a></li>");
+		});
+	});
+	
+	$(".login .username, .login .address, .login .password, .login .rememberme").enterpress(function(){
+		othis.login("http://" + $("#inputServer").val());
+	});
+	
+	this.resetPassword = function(address){
+		loadBimServerApi(address, Global.notifier, function(serverInfo){
+			if (serverInfo.serverState == "NOT_SETUP") {
+				$(".indexcontainer").load("setup.html", function(){
+					new Setup(address);
+				});
+			} else if (serverInfo.serverState == "UNDEFINED") {
+			} else if (serverInfo.serverState == "MIGRATION_REQUIRED") {
+			} else if (serverInfo.serverState == "MIGRATION_IMPOSSIBLE") {
+			} else if (serverInfo.serverState == "FATAL_ERROR") {
+			} else if (serverInfo.serverState == "RUNNING") {
+				Global.bimServerApi.callWithFullIndication("ServiceInterface", "requestPasswordChange", {username: $(".username").val(), resetUrl: getBaseURL() + "?page=ResetPassword"}, function(){});
+			}
+		});
+	};
+	
+	$(".resetPasswordButton").click(function(){
+		othis.resetPassword("http://" + $("#inputServer").val());
+	});
+	
+	$("#inputServer").focus();
+}
+</script>

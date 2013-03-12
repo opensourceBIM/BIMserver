@@ -54,7 +54,7 @@ function Setup(address) {
 	
 	this.setup = function(event){
 		event.preventDefault();
-		bimServerApi.call("ServiceInterface", "setup", {
+		Global.bimServerApi.call("ServiceInterface", "setup", {
 			siteAddress: $(".setup .siteAddressInput").val(),
 			smtpServer: $(".setup .smtpServerInput").val(),
 			smtpSender: $(".setup .smtpSenderInput").val(),
@@ -62,10 +62,14 @@ function Setup(address) {
 			adminUsername: $(".setup .adminUsernameInput").val(),
 			adminPassword: $(".setup .adminPasswordInput").val()
 		}, function(){
-			updateStatus();
+			var address = $(".setup .siteAddressInput").val();
+			var username = $(".setup .adminUsernameInput").val();
+			$(".indexcontainer").load("login.html", function(){
+				new Login(address, username);
+			});
 		});
 	};
-
+	
 	$(".setup .setupButton").click(othis.setup);
 }
 </script>

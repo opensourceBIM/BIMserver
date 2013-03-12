@@ -1,0 +1,38 @@
+<div class="plugins">
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Enabled</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+</div>
+<script>
+function Plugins(main, serversettings) {
+	var othis = this;
+
+	this.addPlugin = function(plugin){
+		var tr = $("<tr>");
+		tr.append("<td>" + plugin.simpleName + "</td>");
+		tr.append("<td>" + plugin.description + "</td>");
+		tr.append("<td>" + plugin.enabled + "</td>");
+		$(".plugins table tbody").append(tr);
+	};
+	
+	this.loadPlugins = function(){
+		Global.bimServerApi.call("AdminInterface", "getAllPlugins", {}, function(plugins){
+			plugins.forEach(function(plugin){
+				othis.addPlugin(plugin);
+			});
+		});
+	};
+	
+	this.close = function(){
+	};
+	
+	othis.loadPlugins();
+}
+</script>
