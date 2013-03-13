@@ -24,19 +24,19 @@ import javax.activation.DataHandler;
 
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.interfaces.objects.SDownloadResult;
+import org.bimserver.shared.ServiceMapInterface;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.utils.InputStreamDataSource;
 
 public class DirectChannel extends Channel {
-	public DirectChannel() {
+	public DirectChannel(ServiceMapInterface serviceMapInterface) {
+		super(serviceMapInterface);
 	}
 	
-	public void connect(Class<? extends PublicInterface> serviceClass, PublicInterface publicInterface) {
-		addServiceInterface(serviceClass, publicInterface);
+	public void connect() {
 		notifyOfConnect();
 	}
 

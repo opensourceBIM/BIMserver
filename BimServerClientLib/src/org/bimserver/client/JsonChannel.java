@@ -18,6 +18,7 @@ package org.bimserver.client;
  *****************************************************************************/
 
 import org.bimserver.client.channels.Channel;
+import org.bimserver.shared.ServiceMapInterface;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.json.JsonReflector;
 import org.bimserver.shared.reflector.ReflectorFactory;
@@ -29,7 +30,8 @@ public class JsonChannel extends Channel {
 	private JsonReflector reflector;
 	private String address;
 
-	public JsonChannel(ReflectorFactory reflectorFactory, JsonReflectorFactory jsonReflectorFactory, String address) {
+	public JsonChannel(ReflectorFactory reflectorFactory, JsonReflectorFactory jsonReflectorFactory, String address, ServiceMapInterface serviceMapInterface) {
+		super(serviceMapInterface);
 		this.reflectorFactory = reflectorFactory;
 		this.jsonReflectorFactory = jsonReflectorFactory;
 		this.address = address;
