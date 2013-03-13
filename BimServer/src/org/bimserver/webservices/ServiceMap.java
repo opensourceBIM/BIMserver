@@ -1,5 +1,8 @@
 package org.bimserver.webservices;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.bimserver.BimServer;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ServiceMapInterface;
@@ -18,6 +21,7 @@ public class ServiceMap implements ServiceMapInterface {
 	private AccessMethod accessMethod;
 	private String remoteAddress;
 	private Authorization authorization;
+	private final Map<Class<PublicInterface>, PublicInterface> interfaces = new HashMap<Class<PublicInterface>, PublicInterface>();
 
 	public ServiceMap(BimServer bimServer, Authorization authorization, AccessMethod accessMethod, String remoteAddress) {
 		this.bimServer = bimServer;
@@ -26,6 +30,10 @@ public class ServiceMap implements ServiceMapInterface {
 		this.remoteAddress = remoteAddress;
 	}
 
+	public void put(Class<PublicInterface> clazz, PublicInterface publicInterface) {
+		interfaces.put(clazz, publicInterface);
+	}
+	
 	public BimServer getBimServer() {
 		return bimServer;
 	}
@@ -48,22 +56,28 @@ public class ServiceMap implements ServiceMapInterface {
 
 	@SuppressWarnings("unchecked")
 	public <T extends PublicInterface> T get(Class<T> clazz) {
+		PublicInterface publicInterface = interfaces.get(clazz);
+		if (publicInterface != null) {
+			return (T) publicInterface;
+		}
 		if (clazz == ServiceInterface.class) {
-			return (T) new Service(this);
+			publicInterface = new Service(this);
 		} else if (clazz == AuthInterface.class) {
-			return (T) new AuthServiceImpl(this);
+			publicInterface = new AuthServiceImpl(this);
 		} else if (clazz == AdminInterface.class) {
-			return (T) new AdminServiceImpl(this);
+			publicInterface = new AdminServiceImpl(this);
 		} else if (clazz == LowLevelInterface.class) {
-			return (T) new LowLevelServiceImpl(this);
+			publicInterface = new LowLevelServiceImpl(this);
 		} else if (clazz == MetaInterface.class) {
-			return (T) new MetaServiceImpl(this);
+			publicInterface = new MetaServiceImpl(this);
 		} else if (clazz == SettingsInterface.class) {
-			return (T) new SettingsServiceImpl(this);
+			publicInterface = new SettingsServiceImpl(this);
 		} else if (clazz == NotificationInterface.class) {
-			return (T) new NotificationImpl(bimServer);
+			publicInterface = new NotificationImpl(bimServer);
 		} else {
 			throw new RuntimeException("Unknown interface: " + clazz.getName());
 		}
+		interfaces.put((Class<PublicInterface>) clazz, publicInterface);
+		return (T) publicInterface;
 	}
 }

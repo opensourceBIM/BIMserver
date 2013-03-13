@@ -44,8 +44,8 @@ public class DirectBimServerClientFactory<T extends PublicInterface> extends Abs
 
 	@Override
 	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
-		DirectChannel channel = new DirectChannel();
-		channel.connect(interfaceClass, serviceFactory.get(AccessMethod.INTERNAL).get(interfaceClass));
+		DirectChannel channel = new DirectChannel(serviceFactory.get(AccessMethod.INTERNAL));
+		channel.connect();
 		BimServerClient bimServerClient = new BimServerClient(baseAddress, getServicesMap(), channel);
 		bimServerClient.setAuthentication(authenticationInfo);
 		return bimServerClient;

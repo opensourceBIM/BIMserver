@@ -19,18 +19,13 @@ package org.bimserver.notifications;
 
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.channels.Channel;
+import org.bimserver.shared.ServiceMapInterface;
 import org.bimserver.shared.TokenHolder;
-import org.bimserver.shared.interfaces.NotificationInterface;
-import org.bimserver.shared.interfaces.RemoteServiceInterface;
 
 public class InternalChannel extends Channel {
 
-	public InternalChannel(NotificationInterface notificationInterface) {
-		addServiceInterface(NotificationInterface.class, notificationInterface);
-	}
-
-	public InternalChannel(RemoteServiceInterface remoteServiceInterface) {
-		addServiceInterface(RemoteServiceInterface.class, remoteServiceInterface);
+	public InternalChannel(ServiceMapInterface serviceMapInterface) {
+		super(serviceMapInterface);
 	}
 
 	@Override
