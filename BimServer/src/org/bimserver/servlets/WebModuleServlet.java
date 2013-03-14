@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.bimserver.plugins.web.WebModulePlugin;
 
 public class WebModuleServlet extends HttpServlet {
+	private static final long serialVersionUID = -6171114430760535167L;
 	private WebModulePlugin webModule;
 
 	public WebModuleServlet(WebModulePlugin webModule) {

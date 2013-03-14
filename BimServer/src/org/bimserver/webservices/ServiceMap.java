@@ -12,6 +12,7 @@ import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
+import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.webservices.authorization.Authorization;
@@ -21,7 +22,7 @@ public class ServiceMap implements ServiceMapInterface {
 	private AccessMethod accessMethod;
 	private String remoteAddress;
 	private Authorization authorization;
-	private final Map<Class<PublicInterface>, PublicInterface> interfaces = new HashMap<Class<PublicInterface>, PublicInterface>();
+	private final Map<Class<? extends PublicInterface>, PublicInterface> interfaces = new HashMap<Class<? extends PublicInterface>, PublicInterface>();
 
 	public ServiceMap(BimServer bimServer, Authorization authorization, AccessMethod accessMethod, String remoteAddress) {
 		this.bimServer = bimServer;
@@ -72,6 +73,8 @@ public class ServiceMap implements ServiceMapInterface {
 			publicInterface = new MetaServiceImpl(this);
 		} else if (clazz == SettingsInterface.class) {
 			publicInterface = new SettingsServiceImpl(this);
+		} else if (clazz == RemoteServiceInterface.class) {
+			publicInterface = new RemoteServiceImpl(this);
 		} else if (clazz == NotificationInterface.class) {
 			publicInterface = new NotificationImpl(bimServer);
 		} else {
@@ -79,5 +82,10 @@ public class ServiceMap implements ServiceMapInterface {
 		}
 		interfaces.put((Class<PublicInterface>) clazz, publicInterface);
 		return (T) publicInterface;
+	}
+
+	@Override
+	public <T extends PublicInterface> void add(Class<T> class1, T remoteServiceInterface) {
+		interfaces.put(class1, remoteServiceInterface);
 	}
 }

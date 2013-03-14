@@ -9,6 +9,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
 public interface AuthInterface extends PublicInterface {
+	
 	/**
 	 * Login with a username/password combination
 	 * @param username The username (must be a valid e-mail address)
@@ -32,7 +33,6 @@ public interface AuthInterface extends PublicInterface {
 	String autologin(
 		@WebParam(name = "username", partName = "autologin.username") String username,
 		@WebParam(name = "hash", partName = "autologin.hash") String hash) throws ServerException, UserException;
-
 
 	/**
 	 * Logout from this ServiceInterface (beware, the ServiceInterface is not closed and is still usable)

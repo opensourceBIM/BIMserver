@@ -24,7 +24,9 @@ import org.apache.catalina.websocket.WebSocketServlet;
 import org.bimserver.BimServer;
 
 public class TomcatStreamingServlet extends WebSocketServlet {
-	
+
+	private static final long serialVersionUID = -3886850416536157915L;
+
 	@Override
 	protected StreamInbound createWebSocketInbound(String arg0, HttpServletRequest arg1) {
 		TomcatStreamInbound streamingSocket = new TomcatStreamInbound();

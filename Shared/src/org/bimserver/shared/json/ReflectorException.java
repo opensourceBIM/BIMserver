@@ -20,6 +20,8 @@ package org.bimserver.shared.json;
 
 public class ReflectorException extends Exception {
 
+	private static final long serialVersionUID = -2528318594532968849L;
+
 	public ReflectorException(String message) {
 		super(message);
 	}

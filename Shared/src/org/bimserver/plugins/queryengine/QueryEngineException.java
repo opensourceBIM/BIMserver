@@ -19,6 +19,8 @@ package org.bimserver.plugins.queryengine;
 
 public class QueryEngineException extends Exception {
 
+	private static final long serialVersionUID = -4696550025070787174L;
+
 	public QueryEngineException(Exception e) {
 		super(e);
 	}

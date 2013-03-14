@@ -19,6 +19,8 @@ package org.bimserver.client;
 
 public class BimServerClientException extends Exception {
 
+	private static final long serialVersionUID = 3618469350907375201L;
+
 	public BimServerClientException(String message) {
 		super(message);
 	}

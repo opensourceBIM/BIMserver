@@ -134,18 +134,14 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	}
 
 	public Channel getChannel(Service service) throws ChannelConnectionException {
-		if (service.getInternalService() != null) {
-			// Overrule definition
-			ServiceMapInterface serviceMapInterface = new ServiceMap(bimServer, null, AccessMethod.INTERNAL, null);
-			return new InternalChannel(internalRemoteServiceInterfaces.get(service.getServiceIdentifier()));
-		}
 		switch (service.getNotificationProtocol()) {
 		case JSON:
-			JsonChannel jsonChannel = new JsonChannel(bimServer.getReflectorFactory(), jsonSocketReflectorFactory, service.getUrl());
+			JsonChannel jsonChannel = new JsonChannel(bimServer.getReflectorFactory(), jsonSocketReflectorFactory, service.getUrl(), bimServer.getServicesMap());
 			jsonChannel.connect(new SimpleTokenHolder());
 			return jsonChannel;
 		case INTERNAL:
-			return new InternalChannel(internalRemoteServiceInterfaces.get(service.getServiceIdentifier()));
+			internalRemoteServiceInterfaces.get(service.getServiceIdentifier());
+			return new InternalChannel();
 		default: 
 			LOGGER.error("Unimplemented AccessMethod: " + service.getNotificationProtocol());
 			return null;
@@ -173,9 +169,9 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		register(serviceDescriptor, new RemoteServiceInterfaceAdaptor(){
 			@Override
 			public void newRevision(final Long poid, final Long roid, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) throws UserException, ServerException {
-				ServiceMapInterface serviceMapInterface = new ServiceMap(bimServer, authorization, AccessMethod.JSON, null);
-				serviceMapInterface.add(ServiceInterface.class, internalRemoteServiceInterfaces.get(serviceIdentifier));
-				InternalChannel internalChannel = new InternalChannel(serviceMapInterface);
+				ServiceMapInterface serviceMapInterface = new ServiceMap(bimServer, null, AccessMethod.JSON, null);
+				serviceMapInterface.add(RemoteServiceInterface.class, internalRemoteServiceInterfaces.get(serviceIdentifier));
+				InternalChannel internalChannel = new InternalChannel();
 				final ServiceInterface serviceInterface = internalChannel.get(ServiceInterface.class);
 				SService service = serviceInterface.getService(Long.parseLong(profileIdentifier));
 				final SObjectType settings = serviceInterface.getPluginSettings(service.getInternalServiceId());

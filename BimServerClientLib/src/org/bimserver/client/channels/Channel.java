@@ -44,18 +44,11 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HttpContext;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.shared.ConnectDisconnectListener;
-import org.bimserver.shared.ServiceMapInterface;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.AdminInterface;
-import org.bimserver.shared.interfaces.LowLevelInterface;
-import org.bimserver.shared.interfaces.MetaInterface;
-import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
-import org.bimserver.shared.interfaces.RemoteServiceInterface;
-import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.shared.reflector.Reflector;
 import org.bimserver.shared.reflector.ReflectorFactory;
 import org.slf4j.Logger;
@@ -67,18 +60,21 @@ import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
 public abstract class Channel {
-	private final Map<Class<? extends PublicInterface>, PublicInterface> serviceInterfaces = new HashMap<Class<? extends PublicInterface>, PublicInterface>();
+	private final Map<String, PublicInterface> serviceInterfaces = new HashMap<String, PublicInterface>();
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
 	private static final Logger LOGGER = LoggerFactory.getLogger(Channel.class);
-	private ServiceMapInterface serviceMapInterface;
 
-	public Channel(ServiceMapInterface serviceMapInterface) {
-		this.serviceMapInterface = serviceMapInterface;
+	@SuppressWarnings("unchecked")
+	public <T extends PublicInterface> T get(String interfaceClass) {
+		return (T) serviceInterfaces.get(interfaceClass);
 	}
 	
-	@SuppressWarnings("unchecked")
-	public <T extends PublicInterface> T get(Class<T> interfaceClass) {
-		return (T) serviceInterfaces.get(interfaceClass);
+	public void add(String interfaceClass, PublicInterface service) {
+		serviceInterfaces.put(interfaceClass, service);
+	}
+	
+	public Map<String, PublicInterface> getServiceInterfaces() {
+		return serviceInterfaces;
 	}
 	
 	public void registerConnectDisconnectListener(ConnectDisconnectListener connectDisconnectListener) {
@@ -98,13 +94,6 @@ public abstract class Channel {
 	}
 
 	protected void finish(Reflector reflector, ReflectorFactory reflectorFactory) {
-		serviceInterfaces.put(ServiceInterface.class, reflectorFactory.createReflector(ServiceInterface.class, reflector));
-		serviceInterfaces.put(NotificationInterface.class, reflectorFactory.createReflector(NotificationInterface.class, reflector));
-		serviceInterfaces.put(RemoteServiceInterface.class, reflectorFactory.createReflector(RemoteServiceInterface.class, reflector));
-		serviceInterfaces.put(AdminInterface.class, reflectorFactory.createReflector(AdminInterface.class, reflector));
-		serviceInterfaces.put(MetaInterface.class, reflectorFactory.createReflector(MetaInterface.class, reflector));
-		serviceInterfaces.put(LowLevelInterface.class, reflectorFactory.createReflector(LowLevelInterface.class, reflector));
-		serviceInterfaces.put(SettingsInterface.class, reflectorFactory.createReflector(SettingsInterface.class, reflector));
 	}
 	
 	public abstract void disconnect();
@@ -229,5 +218,9 @@ public abstract class Channel {
 			LOGGER.error("", e);
 		}
 		return null;
+	}
+
+	public <T extends PublicInterface> T get(Class<T> class1) {
+		return get(class1.getName());
 	}
 }

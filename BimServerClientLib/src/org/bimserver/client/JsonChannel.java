@@ -18,9 +18,10 @@ package org.bimserver.client;
  *****************************************************************************/
 
 import org.bimserver.client.channels.Channel;
-import org.bimserver.shared.ServiceMapInterface;
 import org.bimserver.shared.TokenHolder;
+import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.json.JsonReflector;
+import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.reflector.ReflectorFactory;
 
 public class JsonChannel extends Channel {
@@ -30,11 +31,15 @@ public class JsonChannel extends Channel {
 	private JsonReflector reflector;
 	private String address;
 
-	public JsonChannel(ReflectorFactory reflectorFactory, JsonReflectorFactory jsonReflectorFactory, String address, ServiceMapInterface serviceMapInterface) {
-		super(serviceMapInterface);
+	public JsonChannel(ReflectorFactory reflectorFactory, JsonReflectorFactory jsonReflectorFactory, String address, SServicesMap sServicesMap) {
+		super();
 		this.reflectorFactory = reflectorFactory;
 		this.jsonReflectorFactory = jsonReflectorFactory;
 		this.address = address;
+		for (Class<? extends PublicInterface> interface1 : sServicesMap.getInterfaceClasses()) {
+			PublicInterface createReflector = reflectorFactory.createReflector(interface1, reflector);
+			add(interface1.getName(), createReflector);
+		}
 	}
 
 	@Override

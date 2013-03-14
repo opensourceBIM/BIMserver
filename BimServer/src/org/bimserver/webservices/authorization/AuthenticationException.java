@@ -19,6 +19,8 @@ package org.bimserver.webservices.authorization;
 
 public class AuthenticationException extends Exception {
 
+	private static final long serialVersionUID = -402147016943330424L;
+
 	public AuthenticationException(String message) {
 		super(message);
 	}

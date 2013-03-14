@@ -18,7 +18,6 @@ package org.bimserver.client;
  *****************************************************************************/
 
 import org.bimserver.client.channels.DirectChannel;
-import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ServiceFactory;
@@ -29,14 +28,12 @@ import org.bimserver.shared.meta.SServicesMap;
 public class DirectBimServerClientFactory<T extends PublicInterface> extends AbstractBimServerClientFactory {
 
 	private final PluginManager pluginManager;
-	private Class<T> interfaceClass;
 	private ServiceFactory serviceFactory;
 	private String baseAddress;
 
-	public DirectBimServerClientFactory(String baseAddress, Class<T> interfaceClass, ServiceFactory serviceFactory, SServicesMap servicesMap) {
+	public DirectBimServerClientFactory(String baseAddress, ServiceFactory serviceFactory, SServicesMap servicesMap) {
 		super(servicesMap);
 		this.baseAddress = baseAddress;
-		this.interfaceClass = interfaceClass;
 		this.serviceFactory = serviceFactory;
 		pluginManager = new PluginManager();
 		pluginManager.loadPluginsFromCurrentClassloader();
@@ -44,7 +41,7 @@ public class DirectBimServerClientFactory<T extends PublicInterface> extends Abs
 
 	@Override
 	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
-		DirectChannel channel = new DirectChannel(serviceFactory.get(AccessMethod.INTERNAL));
+		DirectChannel channel = new DirectChannel(serviceFactory, getServicesMap());
 		channel.connect();
 		BimServerClient bimServerClient = new BimServerClient(baseAddress, getServicesMap(), channel);
 		bimServerClient.setAuthentication(authenticationInfo);
