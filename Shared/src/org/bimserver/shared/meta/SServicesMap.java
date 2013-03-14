@@ -17,10 +17,12 @@ package org.bimserver.shared.meta;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.reflector.ReflectorFactory;
 
 public class SServicesMap {
@@ -60,6 +62,14 @@ public class SServicesMap {
 		return servicesBySimpleName.keySet();
 	}
 
+	public Set<Class<? extends PublicInterface>> getInterfaceClasses() {
+		Set<Class<? extends PublicInterface>> result = new HashSet<>();
+		for (SService sService : servicesByName.values()) {
+			result.add((Class<? extends PublicInterface>) sService.getInstanceClass());
+		}
+		return result;
+	}
+	
 	public void setReflectorFactory(ReflectorFactory reflectorFactory) {
 		this.reflectorFactory = reflectorFactory;
 	}

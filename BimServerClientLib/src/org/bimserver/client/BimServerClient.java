@@ -91,12 +91,13 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 	}
 
 	private void authenticate() throws ServerException, UserException {
+		AuthInterface authInterface = channel.get(AuthInterface.class);
 		if (authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
 			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo) authenticationInfo;
-			setToken(channel.get(AuthInterface.class).login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword()));
+			setToken(authInterface.login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword()));
 		} else if (authenticationInfo instanceof AutologinAuthenticationInfo) {
 			AutologinAuthenticationInfo autologinAuthenticationInfo = (AutologinAuthenticationInfo) authenticationInfo;
-			setToken(channel.get(AuthInterface.class).autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode()));
+			setToken(authInterface.autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode()));
 		}
 	}
 

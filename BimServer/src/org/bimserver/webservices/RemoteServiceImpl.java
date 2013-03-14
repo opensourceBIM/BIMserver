@@ -3,7 +3,6 @@ package org.bimserver.webservices;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
@@ -19,10 +18,10 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.RemoteServiceInterfaceAdaptor;
 
 public class RemoteServiceImpl extends RemoteServiceInterfaceAdaptor {
-	private BimServer bimServer;
+	private ServiceMap serviceMapInterface;
 
-	public RemoteServiceImpl(BimServer bimServer) {
-		this.bimServer = bimServer;
+	public RemoteServiceImpl(ServiceMap serviceMapInterface) {
+		this.serviceMapInterface = serviceMapInterface;
 	}
 	
 	@Override
@@ -32,7 +31,7 @@ public class RemoteServiceImpl extends RemoteServiceInterfaceAdaptor {
 
 	@Override
 	public List<SProfileDescriptor> getPrivateProfiles(String serviceIdentifier, String token) throws UserException, ServerException {
-		DatabaseSession session = bimServer.getDatabase().createSession();
+		DatabaseSession session = serviceMapInterface.getBimServer().getDatabase().createSession();
 		List<SProfileDescriptor> descriptors = new ArrayList<SProfileDescriptor>();
 		try {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Token(), new StringLiteral(token));

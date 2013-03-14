@@ -19,6 +19,8 @@ package org.bimserver.plugins.modelcompare;
 
 public class ModelCompareException extends Exception {
 
+	private static final long serialVersionUID = 3946450198824740458L;
+
 	public ModelCompareException(Exception e) {
 		super(e);
 	}

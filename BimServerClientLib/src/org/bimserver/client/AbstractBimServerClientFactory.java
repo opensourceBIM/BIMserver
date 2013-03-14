@@ -19,7 +19,12 @@ package org.bimserver.client;
 
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.interfaces.AdminInterface;
+import org.bimserver.shared.interfaces.AuthInterface;
+import org.bimserver.shared.interfaces.LowLevelInterface;
+import org.bimserver.shared.interfaces.MetaInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SServicesMap;
 
@@ -34,6 +39,11 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 	public AbstractBimServerClientFactory() {
 		this.servicesMap = new SServicesMap();
 		addService(new SServiceInterfaceService(null, ServiceInterface.class));
+		addService(new SService(null, AuthInterface.class));
+		addService(new SService(null, MetaInterface.class));
+		addService(new SService(null, SettingsInterface.class));
+		addService(new SService(null, AdminInterface.class));
+		addService(new SService(null, LowLevelInterface.class));
 	}
 	
 	@Override

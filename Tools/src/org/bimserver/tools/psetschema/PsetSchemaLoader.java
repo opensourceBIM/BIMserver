@@ -18,6 +18,7 @@ public class PsetSchemaLoader {
 		load(new File("psd"));
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static PsetSchema load(File baseDir) {
 		PsetSchema psetSchema = new PsetSchema();
 		for (File f : baseDir.listFiles()) {

@@ -29,6 +29,8 @@ import org.eclipse.jetty.websocket.WebSocketServlet;
 
 public class StreamingServlet extends WebSocketServlet {
 
+	private static final long serialVersionUID = -1813872488590907887L;
+
 	@Override
 	public WebSocket doWebSocketConnect(HttpServletRequest request, String response) {
 		StreamingSocket streamingSocket = new StreamingSocket();

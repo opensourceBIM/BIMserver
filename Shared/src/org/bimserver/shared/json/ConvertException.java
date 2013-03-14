@@ -19,6 +19,8 @@ package org.bimserver.shared.json;
 
 public class ConvertException extends Exception {
 
+	private static final long serialVersionUID = -3445582396158193091L;
+
 	public ConvertException(String message) {
 		super(message);
 	}

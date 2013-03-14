@@ -10,8 +10,6 @@ import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
-import org.bimserver.models.ifc2x3tc1.IfcSpatialStructureElement;
-import org.bimserver.models.ifc2x3tc1.IfcWallStandardCase;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.junit.Test;

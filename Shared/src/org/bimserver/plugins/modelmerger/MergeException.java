@@ -19,6 +19,8 @@ package org.bimserver.plugins.modelmerger;
 
 public class MergeException extends Exception {
 
+	private static final long serialVersionUID = -6578324332007662840L;
+
 	public MergeException(Exception e) {
 		super(e);
 	}
