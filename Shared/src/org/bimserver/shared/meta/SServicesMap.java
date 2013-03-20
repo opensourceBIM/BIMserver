@@ -62,8 +62,9 @@ public class SServicesMap {
 		return servicesBySimpleName.keySet();
 	}
 
+	@SuppressWarnings("unchecked")
 	public Set<Class<? extends PublicInterface>> getInterfaceClasses() {
-		Set<Class<? extends PublicInterface>> result = new HashSet<>();
+		Set<Class<? extends PublicInterface>> result = new HashSet<Class<? extends PublicInterface>>();
 		for (SService sService : servicesByName.values()) {
 			result.add((Class<? extends PublicInterface>) sService.getInstanceClass());
 		}
