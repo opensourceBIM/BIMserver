@@ -12,6 +12,7 @@ import org.bimserver.changes.RemoveObjectChange;
 import org.bimserver.changes.RemoveReferenceChange;
 import org.bimserver.changes.SetAttributeChange;
 import org.bimserver.changes.SetReferenceChange;
+import org.bimserver.changes.SetWrappedAttributeChange;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
@@ -262,6 +263,17 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	}
 	
 	@Override
+	public void setWrappedStringAttribute(Long tid, Long oid, String attributeName, String type, String value)
+			throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetWrappedAttributeChange(oid, attributeName, type, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
+	}
+	
+	@Override
 	public String getStringAttribute(Long tid, Long oid, String attributeName) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		return (String)getAttribute(tid, oid, attributeName);
@@ -278,6 +290,16 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	}
 
 	@Override
+	public void setWrappedIntegerAttribute(Long tid, Long oid, String attributeName, String type, Integer value) throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetWrappedAttributeChange(oid, attributeName, type, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
+	}
+	
+	@Override
 	public void setByteArrayAttribute(Long tid, Long oid, String attributeName, Byte[] value) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		try {
@@ -292,6 +314,16 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 		requireAuthenticationAndRunningServer();
 		try {
 			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
+	}
+	
+	@Override
+	public void setWrappedLongAttribute(Long tid, Long oid, String attributeName, String type, Long value) throws UserException, ServerException {
+		requireAuthenticationAndRunningServer();
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetWrappedAttributeChange(oid, attributeName, type, value));
 		} catch (NoTransactionException e) {
 			handleException(e);
 		}
@@ -315,6 +347,15 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	}
 	
 	@Override
+	public void setWrappedBooleanAttribute(Long tid, Long oid, String attributeName, String type, Boolean value) throws UserException, ServerException {
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetWrappedAttributeChange(oid, attributeName, type, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
+	}
+	
+	@Override
 	public Boolean getBooleanAttribute(Long tid, Long oid, String attributeName) throws ServerException, UserException {
 		return (Boolean)getAttribute(tid, oid, attributeName);
 	}
@@ -323,6 +364,15 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	public void setDoubleAttribute(Long tid, Long oid, String attributeName, Double value) throws UserException, ServerException {
 		try {
 			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
+	}
+	
+	@Override
+	public void setWrappedDoubleAttribute(Long tid, Long oid, String attributeName, String type, Double value) throws UserException, ServerException {
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetWrappedAttributeChange(oid, attributeName, type, value));
 		} catch (NoTransactionException e) {
 			handleException(e);
 		}
@@ -377,7 +427,12 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 			if (object == null) {
 				throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found");
 			}
-			return object.eGet(object.eClass().getEStructuralFeature(attributeName));
+			Object eGet = object.eGet(object.eClass().getEStructuralFeature(attributeName));
+			if (eGet instanceof IdEObject) {
+				IdEObject refObject = (IdEObject)eGet;
+				return refObject.eGet(refObject.eClass().getEStructuralFeature("wrappedValue"));
+			}
+			return eGet;
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {

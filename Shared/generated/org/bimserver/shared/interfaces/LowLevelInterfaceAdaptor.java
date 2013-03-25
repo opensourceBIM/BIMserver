@@ -167,6 +167,21 @@ public class LowLevelInterfaceAdaptor implements LowLevelInterface {
 	public void setStringAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.String value) throws UserException, ServerException {
 	}
 	
+	public void setWrappedBooleanAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.String type, java.lang.Boolean value) throws UserException, ServerException {
+	}
+	
+	public void setWrappedDoubleAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.String type, java.lang.Double value) throws UserException, ServerException {
+	}
+	
+	public void setWrappedIntegerAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.String type, java.lang.Integer value) throws UserException, ServerException {
+	}
+	
+	public void setWrappedLongAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.String type, java.lang.Long value) throws UserException, ServerException {
+	}
+	
+	public void setWrappedStringAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.String type, java.lang.String value) throws UserException, ServerException {
+	}
+	
 	public java.lang.Long startTransaction(java.lang.Long poid) throws UserException, ServerException {
 		return null;
 	}
