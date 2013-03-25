@@ -2331,31 +2331,13 @@ public interface StorePackage extends EPackage {
 	int SERIALIZER_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Default Extension</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_EXTENSION = PLUGIN_DESCRIPTOR_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Default Content Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_CONTENT_TYPE = PLUGIN_DESCRIPTOR_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Serializer Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERIALIZER_PLUGIN_DESCRIPTOR_FEATURE_COUNT = PLUGIN_DESCRIPTOR_FEATURE_COUNT + 2;
+	int SERIALIZER_PLUGIN_DESCRIPTOR_FEATURE_COUNT = PLUGIN_DESCRIPTOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.DeserializerPluginDescriptorImpl <em>Deserializer Plugin Descriptor</em>}' class.
@@ -7903,28 +7885,6 @@ public interface StorePackage extends EPackage {
 	EClass getSerializerPluginDescriptor();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.SerializerPluginDescriptor#getDefaultExtension <em>Default Extension</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Default Extension</em>'.
-	 * @see org.bimserver.models.store.SerializerPluginDescriptor#getDefaultExtension()
-	 * @see #getSerializerPluginDescriptor()
-	 * @generated
-	 */
-	EAttribute getSerializerPluginDescriptor_DefaultExtension();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.SerializerPluginDescriptor#getDefaultContentType <em>Default Content Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Default Content Type</em>'.
-	 * @see org.bimserver.models.store.SerializerPluginDescriptor#getDefaultContentType()
-	 * @see #getSerializerPluginDescriptor()
-	 * @generated
-	 */
-	EAttribute getSerializerPluginDescriptor_DefaultContentType();
-
-	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.DeserializerPluginDescriptor <em>Deserializer Plugin Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12199,22 +12159,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EClass SERIALIZER_PLUGIN_DESCRIPTOR = eINSTANCE.getSerializerPluginDescriptor();
-
-		/**
-		 * The meta object literal for the '<em><b>Default Extension</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_EXTENSION = eINSTANCE.getSerializerPluginDescriptor_DefaultExtension();
-
-		/**
-		 * The meta object literal for the '<em><b>Default Content Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_CONTENT_TYPE = eINSTANCE.getSerializerPluginDescriptor_DefaultContentType();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DeserializerPluginDescriptorImpl <em>Deserializer Plugin Descriptor</em>}' class.

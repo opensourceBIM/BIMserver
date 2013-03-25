@@ -2604,24 +2604,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSerializerPluginDescriptor_DefaultExtension() {
-		return (EAttribute) getSerializerPluginDescriptor().getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getSerializerPluginDescriptor_DefaultContentType() {
-		return (EAttribute) getSerializerPluginDescriptor().getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getDeserializerPluginDescriptor() {
 		if (deserializerPluginDescriptorEClass == null) {
 			deserializerPluginDescriptorEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(31);

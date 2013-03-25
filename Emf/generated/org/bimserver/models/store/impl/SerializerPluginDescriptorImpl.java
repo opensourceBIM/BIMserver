@@ -25,11 +25,6 @@ import org.eclipse.emf.ecore.EClass;
  * An implementation of the model object '<em><b>Serializer Plugin Descriptor</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl#getDefaultExtension <em>Default Extension</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl#getDefaultContentType <em>Default Content Type</em>}</li>
- * </ul>
  * </p>
  *
  * @generated
@@ -52,42 +47,6 @@ public class SerializerPluginDescriptorImpl extends PluginDescriptorImpl impleme
 	@Override
 	protected EClass eStaticClass() {
 		return StorePackage.Literals.SERIALIZER_PLUGIN_DESCRIPTOR;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getDefaultExtension() {
-		return (String) eGet(StorePackage.Literals.SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_EXTENSION, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDefaultExtension(String newDefaultExtension) {
-		eSet(StorePackage.Literals.SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_EXTENSION, newDefaultExtension);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getDefaultContentType() {
-		return (String) eGet(StorePackage.Literals.SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_CONTENT_TYPE, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDefaultContentType(String newDefaultContentType) {
-		eSet(StorePackage.Literals.SERIALIZER_PLUGIN_DESCRIPTOR__DEFAULT_CONTENT_TYPE, newDefaultContentType);
 	}
 
 } //SerializerPluginDescriptorImpl

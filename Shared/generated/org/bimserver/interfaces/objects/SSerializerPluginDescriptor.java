@@ -29,8 +29,6 @@ public class SSerializerPluginDescriptor extends SPluginDescriptor implements SD
 
 	@XmlTransient
 	private static SClass sClass;
-	private java.lang.String defaultExtension;
-	private java.lang.String defaultContentType;
 
 	public long getOid() {
 		return this.oid;
@@ -76,12 +74,6 @@ public class SSerializerPluginDescriptor extends SPluginDescriptor implements SD
 		if (sField.getName().equals("enabled")) {
 			return getEnabled();
 		}
-		if (sField.getName().equals("defaultExtension")) {
-			return getDefaultExtension();
-		}
-		if (sField.getName().equals("defaultContentType")) {
-			return getDefaultContentType();
-		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -116,14 +108,6 @@ public class SSerializerPluginDescriptor extends SPluginDescriptor implements SD
 			setEnabled((Boolean)val);
 			return;
 		}
-		if (sField.getName().equals("defaultExtension")) {
-			setDefaultExtension((String)val);
-			return;
-		}
-		if (sField.getName().equals("defaultContentType")) {
-			setDefaultContentType((String)val);
-			return;
-		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -133,22 +117,6 @@ public class SSerializerPluginDescriptor extends SPluginDescriptor implements SD
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
-	}
-	
-	public java.lang.String getDefaultExtension() {
-		return defaultExtension;
-	}
-
-	public void setDefaultExtension(java.lang.String defaultExtension) {
-		this.defaultExtension = defaultExtension;
-	}
-	
-	public java.lang.String getDefaultContentType() {
-		return defaultContentType;
-	}
-
-	public void setDefaultContentType(java.lang.String defaultContentType) {
-		this.defaultContentType = defaultContentType;
 	}
 	
 	@Override

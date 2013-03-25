@@ -77,6 +77,20 @@ public interface LowLevelInterface extends PublicInterface {
 	 * @param value New String value
 	 * @throws ServerException, UserException
 	 */
+	@WebMethod(action = "setWrappedStringAttribute")
+	void setWrappedStringAttribute(
+			@WebParam(name = "tid", partName = "setWrappedStringAttribute.tid") Long tid,
+			@WebParam(name = "oid", partName = "setWrappedStringAttribute.oid") Long oid, 
+			@WebParam(name = "attributeName", partName = "setWrappedStringAttribute.attributeName") String attributeName, 
+			@WebParam(name = "type", partName = "setWrappedStringAttribute.type") String type, 
+			@WebParam(name = "value", partName = "setWrappedStringAttribute.value") String value) throws ServerException, UserException;
+
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value New String value
+	 * @throws ServerException, UserException
+	 */
 	@WebMethod(action = "getStringAttribute")
 	String getStringAttribute(
 		@WebParam(name = "tid", partName = "getStringAttribute.tid") Long tid,
@@ -108,6 +122,20 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "setDoubleAttribute.attributeName") String attributeName, 
 		@WebParam(name = "value", partName = "setDoubleAttribute.value") Double value) throws ServerException, UserException;
 
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value New Double value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setWrappedDoubleAttribute")
+	void setWrappedDoubleAttribute(
+		@WebParam(name = "tid", partName = "setWrappedDoubleAttribute.tid") Long tid,
+		@WebParam(name = "oid", partName = "setWrappedDoubleAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "setWrappedDoubleAttribute.attributeName") String attributeName, 
+		@WebParam(name = "type", partName = "setWrappedDoubleAttribute.type") String type, 
+		@WebParam(name = "value", partName = "setWrappedDoubleAttribute.value") Double value) throws ServerException, UserException;
+	
 	/**
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
@@ -183,6 +211,20 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "setIntegerAttribute.attributeName") String attributeName, 
 		@WebParam(name = "value", partName = "setIntegerAttribute.value") Integer value) throws ServerException, UserException;
 
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value new Integer value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setWrappedIntegerAttribute")
+	void setWrappedIntegerAttribute(
+		@WebParam(name = "tid", partName = "setWrappedIntegerAttribute.tid") Long tid,
+		@WebParam(name = "oid", partName = "setWrappedIntegerAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "setWrappedIntegerAttribute.attributeName") String attributeName, 
+		@WebParam(name = "type", partName = "setWrappedIntegerAttribute.type") String type, 
+		@WebParam(name = "value", partName = "setWrappedIntegerAttribute.value") Integer value) throws ServerException, UserException;
+	
 	@WebMethod(action = "setByteArrayAttribute")
 	void setByteArrayAttribute(
 		@WebParam(name = "tid", partName = "setByteArrayAttribute.tid") Long tid, 
@@ -215,6 +257,20 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "oid", partName = "setLongAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "setLongAttribute.attributeName") String attributeName, 
 		@WebParam(name = "value", partName = "setLongAttribute.value") Long value) throws ServerException, UserException;
+	
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value new Integer value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setWrappedLongAttribute")
+	void setWrappedLongAttribute(
+			@WebParam(name = "tid", partName = "setWrappedLongAttribute.tid") Long tid,
+			@WebParam(name = "oid", partName = "setWrappedLongAttribute.oid") Long oid, 
+			@WebParam(name = "attributeName", partName = "setWrappedLongAttribute.attributeName") String attributeName, 
+			@WebParam(name = "type", partName = "setWrappedLongAttribute.type") String type, 
+			@WebParam(name = "value", partName = "setWrappedLongAttribute.value") Long value) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the object to change
@@ -302,6 +358,20 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "setBooleanAttribute.attributeName") String attributeName, 
 		@WebParam(name = "value", partName = "setBooleanAttribute.value") Boolean value) throws ServerException, UserException;
 
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value New Boolean value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setWrappedBooleanAttribute")
+	void setWrappedBooleanAttribute(
+		@WebParam(name = "tid", partName = "setWrappedBooleanAttribute.tid") Long tid,
+		@WebParam(name = "oid", partName = "setWrappedBooleanAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "setWrappedBooleanAttribute.attributeName") String attributeName, 
+		@WebParam(name = "type", partName = "setWrappedBooleanAttribute.type") String type, 
+		@WebParam(name = "value", partName = "setWrappedBooleanAttribute.value") Boolean value) throws ServerException, UserException;
+	
 	/**
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
