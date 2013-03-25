@@ -488,6 +488,17 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "oid", partName = "removeReference.oid") Long oid, 
 		@WebParam(name = "referenceName", partName = "removeReference.referenceName") String referenceName, 
 		@WebParam(name = "index", partName = "removeReference.index") Integer index) throws ServerException, UserException;
+
+	/**
+	 * @param oid ObjectID of the object to change
+	 * @param referenceName Name of the reference from which to remove an item
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "removeAllReferences")
+	void removeAllReferences(
+		@WebParam(name = "tid", partName = "removeAllReferences.tid") Long tid,
+		@WebParam(name = "oid", partName = "removeAllReferences.oid") Long oid, 
+		@WebParam(name = "referenceName", partName = "removeAllReferences.referenceName") String referenceName) throws ServerException, UserException;
 	
 	@WebMethod(action = "getDataObjectByOid")
 	SDataObject getDataObjectByOid(
@@ -526,5 +537,4 @@ public interface LowLevelInterface extends PublicInterface {
 	@WebMethod(action = "getDataObjects")
 	List<SDataObject> getDataObjects(
 		@WebParam(name = "roid", partName = "getDataObjects.roid") Long roid) throws ServerException, UserException;
-
 }

@@ -100,6 +100,8 @@ public class GenericServiceImpl {
 		} else if (e instanceof ServerException) {
 			LOGGER.error("", e);
 			throw (ServerException) e;
+		} else if (e instanceof NoTransactionException) {
+			throw new UserException(e);
 		} else if (e instanceof BimserverConcurrentModificationDatabaseException) {
 			throw new ServerException("Concurrent modification of object, please try again", e);
 		} else if (e instanceof BimserverDatabaseException) {

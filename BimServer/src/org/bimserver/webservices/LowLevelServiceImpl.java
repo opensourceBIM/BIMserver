@@ -6,6 +6,7 @@ import java.util.List;
 import org.bimserver.changes.AddAttributeChange;
 import org.bimserver.changes.AddReferenceChange;
 import org.bimserver.changes.CreateObjectChange;
+import org.bimserver.changes.RemoveAllReferencesChange;
 import org.bimserver.changes.RemoveAttributeChange;
 import org.bimserver.changes.RemoveObjectChange;
 import org.bimserver.changes.RemoveReferenceChange;
@@ -69,84 +70,128 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	public Long commitTransaction(Long tid, String comment) throws UserException {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
-		LongTransaction longTransaction = getBimServer().getLongTransactionManager().get(tid);
-		if (longTransaction == null) {
-			throw new UserException("No transaction with tid " + tid + " was found");
-		}
-		CommitTransactionDatabaseAction action = new CommitTransactionDatabaseAction(getBimServer(), session, getInternalAccessMethod(), getAuthorization(), longTransaction, comment);
 		try {
-			session.executeAndCommitAction(action);
-			return action.getRevision().getOid();
-		} catch (BimserverDatabaseException e) {
-			LOGGER.error("", e);
-		} finally {
-			session.close();
+			LongTransaction longTransaction = getBimServer().getLongTransactionManager().get(tid);
+			if (longTransaction == null) {
+				throw new UserException("No transaction with tid " + tid + " was found");
+			}
+			CommitTransactionDatabaseAction action = new CommitTransactionDatabaseAction(getBimServer(), session, getInternalAccessMethod(), getAuthorization(), longTransaction, comment);
+			try {
+				session.executeAndCommitAction(action);
+				return action.getRevision().getOid();
+			} catch (BimserverDatabaseException e) {
+				LOGGER.error("", e);
+			} finally {
+				session.close();
+			}
+		} catch (NoTransactionException e1) {
+			e1.printStackTrace();
 		}
 		return -1L;
 	}
 
 	@Override
-	public void abortTransaction(Long tid) throws UserException {
+	public void abortTransaction(Long tid) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).close();
+		try {
+			getBimServer().getLongTransactionManager().get(tid).close();
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 
 	@Override
-	public void addStringAttribute(Long tid, Long oid, String attributeName, String value) throws UserException {
+	public void addStringAttribute(Long tid, Long oid, String attributeName, String value) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new AddAttributeChange(oid, attributeName, value));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new AddAttributeChange(oid, attributeName, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 
 	@Override
-	public void addIntegerAttribute(Long tid, Long oid, String attributeName, Integer value) throws UserException {
+	public void addIntegerAttribute(Long tid, Long oid, String attributeName, Integer value) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new AddAttributeChange(oid, attributeName, value));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new AddAttributeChange(oid, attributeName, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 
 	@Override
-	public void addDoubleAttribute(Long tid, Long oid, String attributeName, Double value) throws UserException {
+	public void addDoubleAttribute(Long tid, Long oid, String attributeName, Double value) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new AddAttributeChange(oid, attributeName, value));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new AddAttributeChange(oid, attributeName, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 	
 	@Override
 	public void setDoubleAttributes(Long tid, Long oid, String attributeName, List<Double> values) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, values));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, values));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 
 	@Override
 	public void setIntegerAttributes(Long tid, Long oid, String attributeName, List<Integer> values) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, values));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, values));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 
 	@Override
 	public void setLongAttributes(Long tid, Long oid, String attributeName, List<Long> values) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, values));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, values));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 
 	@Override
 	public void setBooleanAttributes(Long tid, Long oid, String attributeName, List<Boolean> values) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, values));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, values));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 
 	@Override
-	public void addBooleanAttribute(Long tid, Long oid, String attributeName, Boolean value) throws UserException {
+	public void addBooleanAttribute(Long tid, Long oid, String attributeName, Boolean value) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new AddAttributeChange(oid, attributeName, value));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new AddAttributeChange(oid, attributeName, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 
 	@Override
-	public void addReference(Long tid, Long oid, String referenceName, Long referenceOid) throws UserException {
+	public void addReference(Long tid, Long oid, String referenceName, Long referenceOid) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new AddReferenceChange(oid, referenceName, referenceOid));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new AddReferenceChange(oid, referenceName, referenceOid));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 
 	@Override
-	public Long createObject(Long tid, String className) throws UserException {
+	public Long createObject(Long tid, String className) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		EClass eClass = ((Database) getBimServer().getDatabase()).getEClassForName(className);
 		if (eClass == null) {
@@ -154,36 +199,66 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 		}
 		Long oid = getBimServer().getDatabase().newOid(eClass);
 		CreateObjectChange createObject = new CreateObjectChange(className, oid, eClass);
-		LongTransaction longTransaction = getBimServer().getLongTransactionManager().get(tid);
-		if (longTransaction == null) {
-			throw new UserException("No transaction with tid " + tid + " was found");
+		try {
+			LongTransaction longTransaction = getBimServer().getLongTransactionManager().get(tid);
+			if (longTransaction == null) {
+				throw new UserException("No transaction with tid " + tid + " was found");
+			}
+			longTransaction.add(createObject);
+			return oid;
+		} catch (NoTransactionException e) {
+			return handleException(e);
 		}
-		longTransaction.add(createObject);
-		return oid;
 	}
 
 	@Override
-	public void removeAttribute(Long tid, Long oid, String attributeName, Integer index) throws UserException {
+	public void removeAttribute(Long tid, Long oid, String attributeName, Integer index) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new RemoveAttributeChange(oid, attributeName, index));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new RemoveAttributeChange(oid, attributeName, index));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 
 	@Override
-	public void removeObject(Long tid, Long oid) throws UserException {
+	public void removeObject(Long tid, Long oid) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new RemoveObjectChange(oid, getBimServer().getDatabase().getEClassForOid(oid)));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new RemoveObjectChange(oid, getBimServer().getDatabase().getEClassForOid(oid)));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 
 	@Override
-	public void removeReference(Long tid, Long oid, String referenceName, Integer index) throws UserException {
+	public void removeReference(Long tid, Long oid, String referenceName, Integer index) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new RemoveReferenceChange(oid, referenceName, index));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new RemoveReferenceChange(oid, referenceName, index));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
+	}
+	
+	@Override
+	public void removeAllReferences(Long tid, Long oid, String referenceName) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new RemoveAllReferencesChange(oid, referenceName));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 
 	@Override
-	public void setStringAttribute(Long tid, Long oid, String attributeName, String value) throws UserException {
+	public void setStringAttribute(Long tid, Long oid, String attributeName, String value) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 	
 	@Override
@@ -193,21 +268,33 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	}
 	
 	@Override
-	public void setIntegerAttribute(Long tid, Long oid, String attributeName, Integer value) throws UserException {
+	public void setIntegerAttribute(Long tid, Long oid, String attributeName, Integer value) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 
 	@Override
-	public void setByteArrayAttribute(Long tid, Long oid, String attributeName, Byte[] value) throws UserException {
+	public void setByteArrayAttribute(Long tid, Long oid, String attributeName, Byte[] value) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 	
 	@Override
-	public void setLongAttribute(Long tid, Long oid, String attributeName, Long value) throws UserException {
+	public void setLongAttribute(Long tid, Long oid, String attributeName, Long value) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 	
 	public Integer getIntegerAttribute(Long tid, Long oid, String attributeName) throws ServerException ,UserException {
@@ -219,8 +306,12 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	}
 
 	@Override
-	public void setBooleanAttribute(Long tid, Long oid, String attributeName, Boolean value) throws UserException {
-		getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+	public void setBooleanAttribute(Long tid, Long oid, String attributeName, Boolean value) throws UserException, ServerException {
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 	
 	@Override
@@ -229,8 +320,12 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	}
 
 	@Override
-	public void setDoubleAttribute(Long tid, Long oid, String attributeName, Double value) throws UserException {
-		getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+	public void setDoubleAttribute(Long tid, Long oid, String attributeName, Double value) throws UserException, ServerException {
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 	
 	@Override
@@ -291,9 +386,13 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	}
 
 	@Override
-	public void setEnumAttribute(Long tid, Long oid, String attributeName, String value) throws UserException {
+	public void setEnumAttribute(Long tid, Long oid, String attributeName, String value) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 	
 	@Override
@@ -303,9 +402,13 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	}
 
 	@Override
-	public void setReference(Long tid, Long oid, String referenceName, Long referenceOid) throws UserException {
+	public void setReference(Long tid, Long oid, String referenceName, Long referenceOid) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new SetReferenceChange(oid, referenceName, referenceOid));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetReferenceChange(oid, referenceName, referenceOid));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 	
 	@Override
@@ -355,15 +458,23 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	}
 
 	@Override
-	public void unsetAttribute(Long tid, Long oid, String attributeName) throws UserException {
+	public void unsetAttribute(Long tid, Long oid, String attributeName) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, null));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, null));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 
 	@Override
-	public void unsetReference(Long tid, Long oid, String referenceName) throws UserException {
+	public void unsetReference(Long tid, Long oid, String referenceName) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		getBimServer().getLongTransactionManager().get(tid).add(new SetReferenceChange(oid, referenceName, -1));
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetReferenceChange(oid, referenceName, -1));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
 	}
 	
 	@Override

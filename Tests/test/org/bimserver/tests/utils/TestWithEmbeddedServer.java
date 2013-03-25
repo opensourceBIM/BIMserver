@@ -1,7 +1,8 @@
-package org.bimserver.tests;
+package org.bimserver.tests.utils;
 
 import org.bimserver.BimServer;
 import org.bimserver.client.BimServerClientFactory;
+import org.bimserver.tests.AllTests;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 

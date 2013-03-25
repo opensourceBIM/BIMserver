@@ -1,4 +1,4 @@
-package org.bimserver.tests;
+package org.bimserver.tests.lowlevel;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -7,6 +7,7 @@ import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.interfaces.LowLevelInterface;
+import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
 public class TestCreateGuidLowLevelCalls extends TestWithEmbeddedServer {

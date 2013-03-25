@@ -1,4 +1,4 @@
-package org.bimserver.tests;
+package org.bimserver.tests.serviceinterface;
 
 import static org.junit.Assert.fail;
 
@@ -15,6 +15,7 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
 public class TestMultiCheckinAndDownload extends TestWithEmbeddedServer {

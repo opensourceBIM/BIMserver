@@ -1,4 +1,4 @@
-package org.bimserver.tests;
+package org.bimserver.tests.emf;
 
 import static org.junit.Assert.fail;
 
@@ -8,12 +8,14 @@ import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ClientIfcModel;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.models.ifc2x3tc1.IfcWallStandardCase;
+import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
+import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
-public class TestListWalls extends TestWithEmbeddedServer {
+public class TestContainedInStructure extends TestWithEmbeddedServer {
 
 	@Test
 	public void test() {
@@ -23,6 +25,7 @@ public class TestListWalls extends TestWithEmbeddedServer {
 			
 			// Get the service interface
 			ServiceInterface serviceInterface = bimServerClient.getServiceInterface();
+			bimServerClient.getSettingsInterface().setSettingGenerateGeometryOnCheckin(false);
 			
 			// Create a new project
 			SProject newProject = serviceInterface.addProject("test" + Math.random());
@@ -31,14 +34,17 @@ public class TestListWalls extends TestWithEmbeddedServer {
 			SDeserializerPluginConfiguration deserializer = serviceInterface.getSuggestedDeserializerForExtension("ifc");
 
 			// Checkin the file
-			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, true, new File("C:\\Users\\Ruben de Laat\\Downloads\\Jesse.1.ifc"));
+			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, true, new File("../TestData/data/AC11-FZK-Haus-IFC.ifc"));
 
 			// Refresh project info
 			newProject = serviceInterface.getProjectByPoid(newProject.getOid());
 
 			ClientIfcModel model = bimServerClient.getModel(newProject.getOid(), newProject.getLastRevisionId(), true);
-			for (IfcWallStandardCase wall : model.getAllWithSubTypes(IfcWallStandardCase.class)) {
-				System.out.println(wall);
+			for (IfcFurnishingElement ifcFurnishingElement : model.getAllWithSubTypes(IfcFurnishingElement.class)) {
+				System.out.println(ifcFurnishingElement);
+				for (IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure : ifcFurnishingElement.getContainedInStructure()) {
+					System.out.println(ifcRelContainedInSpatialStructure.getRelatingStructure());
+				}
 			}
 		} catch (Throwable e) {
 			e.printStackTrace();

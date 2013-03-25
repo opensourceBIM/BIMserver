@@ -1,4 +1,4 @@
-package org.bimserver.tests;
+package org.bimserver.tests.emf;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -13,6 +13,7 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
 public class TestLoadCompleteModel extends TestWithEmbeddedServer {

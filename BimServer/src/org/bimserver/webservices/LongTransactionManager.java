@@ -14,11 +14,16 @@ public class LongTransactionManager {
 		return longTransaction;
 	}
 
-	public LongTransaction get(Long tid) {
-		return runningTransactions.get(tid);
+	public LongTransaction get(Long tid) throws NoTransactionException {
+		LongTransaction longTransaction = runningTransactions.get(tid);
+		if (longTransaction == null) {
+			throw new NoTransactionException("No transaction with tid " + tid + " could be found");
+		}
+		return longTransaction;
 	}
 
-	public void remove(long tid) {
+	public void remove(long tid) throws NoTransactionException {
+		get(tid);
 		runningTransactions.remove(tid);
 	}
 }

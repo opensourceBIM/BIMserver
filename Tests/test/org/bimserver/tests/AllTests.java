@@ -14,6 +14,19 @@ import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.JsonBimServerClientFactory;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
+import org.bimserver.tests.emf.TestCreateGuidEmf;
+import org.bimserver.tests.emf.TestDeleteObjectsEmf;
+import org.bimserver.tests.emf.TestListWalls;
+import org.bimserver.tests.emf.TestLoadCompleteModel;
+import org.bimserver.tests.emf.TestReadTrim;
+import org.bimserver.tests.emf.TestRemoveReferenceList;
+import org.bimserver.tests.lowlevel.TestCreateGuidLowLevelCalls;
+import org.bimserver.tests.lowlevel.TestCreateListsLowLevelCalls;
+import org.bimserver.tests.lowlevel.TestCreateReferenceListsLowLevelCalls;
+import org.bimserver.tests.lowlevel.TestCreateUnknownTypeLowLevelCalls;
+import org.bimserver.tests.serviceinterface.TestMultiCheckinAndDownload;
+import org.bimserver.tests.serviceinterface.TestSingleCheckinAndDownload;
+import org.bimserver.tests.serviceinterface.TestUpdateProject;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
@@ -31,6 +44,7 @@ import org.junit.runners.Suite;
         TestMultiCheckinAndDownload.class,
         TestReadTrim.class,
         TestSingleCheckinAndDownload.class,
+        TestRemoveReferenceList.class,
         TestUpdateProject.class})
 public class AllTests {
 	public static BimServer bimServer;
