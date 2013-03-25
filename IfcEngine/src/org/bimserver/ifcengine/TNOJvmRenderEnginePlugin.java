@@ -65,7 +65,7 @@ public class TNOJvmRenderEnginePlugin implements RenderEnginePlugin {
 			String os = System.getProperty("os.name").toLowerCase();
 			String libraryName = "";
 			if (os.contains("windows")) {
-				libraryName = "IFCEngine.dll";
+				libraryName = "ifcengine.dll";
 			} else if (os.contains("osx") || os.contains("os x") || os.contains("darwin")) {
 				libraryName = "libIFCEngine.dylib";
 			} else if (os.contains("linux")) {
