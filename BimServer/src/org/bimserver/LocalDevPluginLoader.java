@@ -26,8 +26,8 @@ public class LocalDevPluginLoader {
 	public static void loadPlugins(PluginManager pluginManager) throws PluginException {
 		pluginManager.loadAllPluginsFromEclipseWorkspace(new File(".."));
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("C:\\Users\\Ruben de Laat\\git\\bimql\\BimQL"));
-		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("C:\\Users\\Ruben de Laat\\git\\BootstrapBIM\\BootstrapBIM"));
-		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("C:\\Users\\Ruben de Laat\\git\\BIMsurfer"));
+		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("C:\\Users\\Ruben\\git\\BootstrapBIM\\BootstrapBIM"));
+		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("C:\\Users\\Ruben\\git\\BIMsurfer"));
 //		pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
 //		pluginManager.loadPluginsFromJar(new File("../Builds/plugins/jqe.jar"));
 	}

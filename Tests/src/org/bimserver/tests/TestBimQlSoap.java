@@ -29,6 +29,7 @@ import org.apache.commons.io.IOUtils;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
+import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.client.SoapBimServerClientFactory;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
@@ -78,6 +79,8 @@ public class TestBimQlSoap {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ServiceException e) {
+			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();
 		}
 	}

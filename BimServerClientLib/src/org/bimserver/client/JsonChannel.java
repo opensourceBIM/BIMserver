@@ -30,16 +30,14 @@ public class JsonChannel extends Channel {
 	private final JsonReflectorFactory jsonReflectorFactory;
 	private JsonReflector reflector;
 	private String address;
+	private SServicesMap sServicesMap;
 
 	public JsonChannel(ReflectorFactory reflectorFactory, JsonReflectorFactory jsonReflectorFactory, String address, SServicesMap sServicesMap) {
 		super();
 		this.reflectorFactory = reflectorFactory;
 		this.jsonReflectorFactory = jsonReflectorFactory;
 		this.address = address;
-		for (Class<? extends PublicInterface> interface1 : sServicesMap.getInterfaceClasses()) {
-			PublicInterface createReflector = reflectorFactory.createReflector(interface1, reflector);
-			add(interface1.getName(), createReflector);
-		}
+		this.sServicesMap = sServicesMap;
 	}
 
 	@Override
@@ -48,6 +46,10 @@ public class JsonChannel extends Channel {
 
 	public void connect(TokenHolder tokenHolder) throws ChannelConnectionException {
 		reflector = jsonReflectorFactory.create(address, tokenHolder);
+		for (Class<? extends PublicInterface> interface1 : sServicesMap.getInterfaceClasses()) {
+			PublicInterface createReflector = reflectorFactory.createReflector(interface1, reflector);
+			add(interface1.getName(), createReflector);
+		}
 		finish(reflector, reflectorFactory);
 	}
 }

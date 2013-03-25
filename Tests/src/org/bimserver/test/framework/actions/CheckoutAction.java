@@ -27,8 +27,6 @@ import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
 import org.bimserver.test.framework.VirtualUser;
 
@@ -40,7 +38,7 @@ public class CheckoutAction extends Action {
 	}
 
 	@Override
-	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
+	public void execute(VirtualUser virtualUser) throws Exception {
 		SProject project = virtualUser.getRandomProject();
 		if (project.getLastRevisionId() != -1) {
 			List<SSerializerPluginConfiguration> allSerializers = virtualUser.getBimServerClient().getServiceInterface().getAllSerializers(true);

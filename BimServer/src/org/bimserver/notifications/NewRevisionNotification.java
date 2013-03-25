@@ -2,6 +2,7 @@ package org.bimserver.notifications;
 
 import org.bimserver.BimServer;
 import org.bimserver.client.ChannelConnectionException;
+import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.client.channels.Channel;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
@@ -76,6 +77,8 @@ public class NewRevisionNotification extends Notification {
 				
 				remoteServiceInterface.newRevision(poid, roid, service.getServiceIdentifier(), service.getProfileIdentifier(), authorization.asHexToken(bimServer.getEncryptionKey()), bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
 			} catch (ChannelConnectionException e) {
+				LOGGER.error("", e);
+			} catch (PublicInterfaceNotFoundException e) {
 				LOGGER.error("", e);
 			} finally {
 				if (channel != null) {

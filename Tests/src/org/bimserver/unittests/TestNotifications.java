@@ -31,6 +31,7 @@ import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.ProtocolBuffersBimServerClientFactory;
+import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.client.notifications.SocketNotificationsClient;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.NotificationInterface;
@@ -63,7 +64,7 @@ public class TestNotifications {
 	}
 	
 	@Test
-	public void test() {
+	public void test() throws PublicInterfaceNotFoundException {
 		final ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
 		try {
 			protocolBuffersMetaData.load(new File("../BimServerClientLib/src/service.desc"));

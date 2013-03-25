@@ -17,6 +17,7 @@ package org.bimserver.test.framework.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSIPrefix;
 import org.bimserver.shared.exceptions.ServerException;
@@ -31,7 +32,7 @@ public class UpdateProjectAction extends Action {
 	}
 
 	@Override
-	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
+	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		SProject project = virtualUser.getRandomProject();
 		virtualUser.getLogger().info("Changing settings of project " + project.getName());
 		project.setDescription(randomString());

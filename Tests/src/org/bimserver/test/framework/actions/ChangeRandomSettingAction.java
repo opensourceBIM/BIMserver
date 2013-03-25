@@ -17,6 +17,7 @@ package org.bimserver.test.framework.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.SettingsInterface;
@@ -30,7 +31,7 @@ public class ChangeRandomSettingAction extends Action {
 	}
 
 	@Override
-	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
+	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		int random = nextInt(18);
 		SettingsInterface settingsInterface = virtualUser.getBimServerClient().getSettingsInterface();
 		switch (random) {

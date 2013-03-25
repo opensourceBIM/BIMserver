@@ -19,6 +19,7 @@ package org.bimserver.test.framework.actions;
 
 import java.util.List;
 
+import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -32,7 +33,7 @@ public class RemoveUserFromProjectAction extends Action {
 	}
 
 	@Override
-	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
+	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		SProject project = virtualUser.getRandomProject();
 		List<Long> hasAuthorizedUsers = project.getHasAuthorizedUsers();
 		if (!hasAuthorizedUsers.isEmpty()) {

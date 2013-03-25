@@ -21,6 +21,7 @@ import java.io.File;
 
 import org.bimserver.client.BimServerClientException;
 import org.bimserver.client.ClientIfcModel;
+import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
@@ -41,7 +42,7 @@ public class DownloadModelLowLevel extends Action {
 	}
 
 	@Override
-	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
+	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		SRevision randomRevision = virtualUser.getRandomRevision();
 		if (randomRevision != null) {
 			ClientIfcModel model;

@@ -65,7 +65,6 @@ public class ReflectorBuilder {
 				return null;
 			}
 		});
-		
 		System.out.println(createReflector);
 	}
 	
@@ -136,11 +135,11 @@ public class ReflectorBuilder {
 		reflectorFactoryImpl.addMethod(method);
 	}
 	
-	public void build1(Class<? extends PublicInterface> interfaceClass, org.bimserver.shared.meta.SService sService) {
+	private void build1(Class<? extends PublicInterface> interfaceClass, org.bimserver.shared.meta.SService sService) {
 		try {
 			CtClass reflectorImplClass = pool.makeClass(GENERATED_CLASSES_PACKAGE + "." + interfaceClass.getSimpleName() + "Impl" + implementationCounter);
 			reflectorImplClass.addInterface(pool.get(interfaceClass.getName()));
-			CtClass reflectorClass = pool.get("org.bimserver.shared.reflector.Reflector");
+			CtClass reflectorClass = pool.get(Reflector.class.getName());
 			CtField reflectorField = new CtField(reflectorClass, "reflector", reflectorImplClass);
 			reflectorImplClass.addField(reflectorField);
 			CtConstructor constructor = new CtConstructor(new CtClass[] {reflectorClass}, reflectorImplClass);
@@ -167,12 +166,12 @@ public class ReflectorBuilder {
 				}
 				methodBuilder.append("reflector.callMethod(\"" + interfaceClass.getSimpleName() + "\", \"" + sMethod.getName() + "\", " + sMethod.getReturnType().toJavaCode() + ".class");
 				if (sMethod.getParameters().isEmpty()) {
-					methodBuilder.append(", new org.bimserver.shared.reflector.KeyValuePair[0]");
+					methodBuilder.append(", new " + KeyValuePair.class.getName() + "[0]");
 				} else {
-					methodBuilder.append(", new org.bimserver.shared.reflector.KeyValuePair[]{");
+					methodBuilder.append(", new " + KeyValuePair.class.getName() + "[]{");
 					int x=1;
 					for (SParameter sParameter : sMethod.getParameters()) {
-						methodBuilder.append("new org.bimserver.shared.reflector.KeyValuePair(\"" + sParameter.getName() + "\", $" + x + ")");
+						methodBuilder.append("new " + KeyValuePair.class.getName() + "(\"" + sParameter.getName() + "\", $" + x + ")");
 						if (sMethod.getParameter(sMethod.getParameters().size() - 1) != sParameter) {
 							methodBuilder.append(", ");
 						}
@@ -191,10 +190,10 @@ public class ReflectorBuilder {
 		}
 	}
 	
-	public void build2(Class<? extends PublicInterface> interfaceClass, org.bimserver.shared.meta.SService sService) {
+	private void build2(Class<? extends PublicInterface> interfaceClass, org.bimserver.shared.meta.SService sService) {
 		try {
 			CtClass reflectorImplClass = pool.makeClass(GENERATED_CLASSES_PACKAGE + "." + interfaceClass.getSimpleName() + "Reflector" + implementationCounter);
-			CtClass reflectorClass = pool.get("org.bimserver.shared.reflector.Reflector");
+			CtClass reflectorClass = pool.get(Reflector.class.getName());
 			CtClass interfaceCtClass = pool.get(interfaceClass.getName());
 			reflectorImplClass.addInterface(reflectorClass);
 			CtField reflectorField = new CtField(interfaceCtClass, "publicInterface", reflectorImplClass);
@@ -208,11 +207,11 @@ public class ReflectorBuilder {
 			constructor.setBody(sb.toString());
 
 			CtClass[] parameters = new CtClass[4];
-			parameters[0] = pool.get("java.lang.String");
-			parameters[1] = pool.get("java.lang.String");
-			parameters[2] = pool.get("java.lang.Class");
-			parameters[3] = pool.get("org.bimserver.shared.reflector.KeyValuePair[]");
-			CtMethod method = new CtMethod(pool.get("java.lang.Object"), "callMethod", parameters, reflectorImplClass);
+			parameters[0] = pool.get(String.class.getName());
+			parameters[1] = pool.get(String.class.getName());
+			parameters[2] = pool.get(Class.class.getName());
+			parameters[3] = pool.get(KeyValuePair.class.getName() + "[]");
+			CtMethod method = new CtMethod(pool.get(Object.class.getName()), "callMethod", parameters, reflectorImplClass);
 
 			StringBuilder methodBuilder = new StringBuilder();
 			methodBuilder.append("{");

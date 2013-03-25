@@ -19,6 +19,7 @@ package org.bimserver.test.framework.actions;
 
 import java.util.List;
 
+import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDataValue;
 import org.bimserver.interfaces.objects.SListDataValue;
@@ -39,7 +40,7 @@ public class DumpDataObjects extends Action {
 	}
 
 	@Override
-	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
+	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		SRevision revision = virtualUser.getRandomRevision();
 		if (revision != null) {
 			List<SDataObject> dataObjects = virtualUser.getBimServerClient().getLowLevelInterface().getDataObjects(revision.getOid());
