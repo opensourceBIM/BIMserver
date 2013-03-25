@@ -60,7 +60,7 @@ public class ClientIfcModel extends IfcModel {
 	private long ifcSerializerOid = -1;
 	private long jsonGeometrySerializerOid = -1;
 
-	public ClientIfcModel(BimServerClient bimServerClient, long poid, long roid, boolean deep) throws ServerException, UserException, BimServerClientException {
+	public ClientIfcModel(BimServerClient bimServerClient, long poid, long roid, boolean deep) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
 		super();
 		this.bimServerClient = bimServerClient;
 		this.roid = roid;
@@ -69,6 +69,8 @@ public class ClientIfcModel extends IfcModel {
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {
+			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();
 		}
 		if (deep) {
@@ -80,11 +82,11 @@ public class ClientIfcModel extends IfcModel {
 		return bimServerClient;
 	}
 
-	public long commit(String comment) throws ServerException, UserException {
+	public long commit(String comment) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		return bimServerClient.getLowLevelInterface().commitTransaction(tid, comment);
 	}
 
-	public long getIfcSerializerOid() throws ServerException, UserException {
+	public long getIfcSerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
 		if (ifcSerializerOid == -1) {
 			SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getServiceInterface().getSerializerByPluginClassName(
 					"org.bimserver.serializers.JsonSerializerPlugin");
@@ -95,7 +97,7 @@ public class ClientIfcModel extends IfcModel {
 		return ifcSerializerOid;
 	}
 
-	public long getJsonGeometrySerializerOid() throws ServerException, UserException {
+	public long getJsonGeometrySerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
 		if (jsonGeometrySerializerOid == -1) {
 			SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getServiceInterface().getSerializerByPluginClassName(
 					"org.bimserver.geometry.json.JsonGeometrySerializerPlugin");
@@ -106,7 +108,7 @@ public class ClientIfcModel extends IfcModel {
 		return jsonGeometrySerializerOid;
 	}
 	
-	private void loadDeep() throws ServerException, UserException, BimServerClientException {
+	private void loadDeep() throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
 		modelState = ModelState.LOADING;
 		Long download = bimServerClient.getServiceInterface().download(roid, getIfcSerializerOid(), true, true);
 		processDownload(download);
@@ -114,7 +116,7 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private void processDownload(Long download) throws BimServerClientException, UserException, ServerException {
+	private void processDownload(Long download) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException {
 		WaitingList<Long> waitingList = new WaitingList<Long>();
 		try {
 			InputStream downloadData = bimServerClient.getDownloadData(download, getIfcSerializerOid());
@@ -375,6 +377,8 @@ public class ClientIfcModel extends IfcModel {
 			e.printStackTrace();
 		} catch (BimServerClientException e) {
 			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e) {
+			e.printStackTrace();
 		}
 		return super.size();
 	}
@@ -388,6 +392,8 @@ public class ClientIfcModel extends IfcModel {
 		} catch (UserException e) {
 			e.printStackTrace();
 		} catch (BimServerClientException e) {
+			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();
 		}
 		return super.keySet();
@@ -420,6 +426,8 @@ public class ClientIfcModel extends IfcModel {
 			e.printStackTrace();
 		} catch (BimServerClientException e) {
 			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -436,6 +444,8 @@ public class ClientIfcModel extends IfcModel {
 		} catch (UserException e) {
 			e.printStackTrace();
 		} catch (BimServerClientException e) {
+			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();
 		}
 		return super.getValues();
@@ -460,6 +470,8 @@ public class ClientIfcModel extends IfcModel {
 			} catch (UserException e) {
 				e.printStackTrace();
 			} catch (BimServerClientException e) {
+				e.printStackTrace();
+			} catch (PublicInterfaceNotFoundException e) {
 				e.printStackTrace();
 			}
 		}
@@ -512,6 +524,8 @@ public class ClientIfcModel extends IfcModel {
 				e.printStackTrace();
 			} catch (BimServerClientException e) {
 				e.printStackTrace();
+			} catch (PublicInterfaceNotFoundException e) {
+				e.printStackTrace();
 			}
 		}
 		return idEObject;
@@ -539,6 +553,8 @@ public class ClientIfcModel extends IfcModel {
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {
+			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();
 		}
 		return (T) object;
@@ -594,6 +610,8 @@ public class ClientIfcModel extends IfcModel {
 		} catch (UserException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();
 		}
 	}

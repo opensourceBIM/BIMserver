@@ -20,6 +20,7 @@ package org.bimserver.test.framework.actions;
 import java.io.File;
 import java.io.IOException;
 
+import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
@@ -39,7 +40,7 @@ public class CheckinAction extends Action {
 	}
 
 	@Override
-	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
+	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		SProject project = virtualUser.getRandomProject();
 		File randomFile = getTestFramework().getTestFile();
 		String fileName = randomFile.getName();

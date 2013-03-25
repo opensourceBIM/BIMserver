@@ -23,6 +23,7 @@ import java.io.InputStream;
 import javax.activation.DataHandler;
 
 import org.bimserver.client.ChannelConnectionException;
+import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ServiceFactory;
@@ -33,8 +34,11 @@ import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.utils.InputStreamDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DirectChannel extends Channel {
+	private static final Logger LOGGER = LoggerFactory.getLogger(DirectChannel.class);
 	private ServiceFactory serviceFactory;
 	private SServicesMap sServicesMap;
 
@@ -57,7 +61,12 @@ public class DirectChannel extends Channel {
 	
 	@Override
 	public long checkin(String baseAddress, String token, long poid, String comment, long deserializerOid, boolean merge, boolean sync, long fileSize, String filename, InputStream inputStream) throws ServerException, UserException {
-		return get(ServiceInterface.class).checkin(poid, comment, deserializerOid, fileSize, filename, new DataHandler(new InputStreamDataSource(inputStream)), merge, sync);
+		try {
+			return get(ServiceInterface.class).checkin(poid, comment, deserializerOid, fileSize, filename, new DataHandler(new InputStreamDataSource(inputStream)), merge, sync);
+		} catch (PublicInterfaceNotFoundException e) {
+			LOGGER.error("", e);
+			return -1;
+		}
 	}
 	
 	@Override
@@ -66,9 +75,11 @@ public class DirectChannel extends Channel {
 			SDownloadResult downloadData = get(ServiceInterface.class).getDownloadData(download);
 			return downloadData.getFile().getInputStream();
 		} catch (ServerException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
+		} catch (PublicInterfaceNotFoundException e) {
+			LOGGER.error("", e);
 		}
 		return null;
 	}

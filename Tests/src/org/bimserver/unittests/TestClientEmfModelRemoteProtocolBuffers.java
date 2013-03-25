@@ -26,6 +26,7 @@ import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.ClientIfcModel;
 import org.bimserver.client.ProtocolBuffersBimServerClientFactory;
+import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
@@ -60,7 +61,7 @@ public class TestClientEmfModelRemoteProtocolBuffers {
 		bimServerClient.disconnect();
 	}
 
-	private SProject createProject() {
+	private SProject createProject() throws PublicInterfaceNotFoundException {
 		try {
 			SProject project = bimServerClient.getServiceInterface().addProject("Project " + new Random().nextInt());
 			return project;

@@ -71,7 +71,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 		this.servicesMap = servicesMap;
 		this.channel = channel;
 		this.notificationsClient = new SocketNotificationsClient();
-		metaDataManager.addEPackage(Ifc2x3tc1Package.eINSTANCE);
+		this.metaDataManager.addEPackage(Ifc2x3tc1Package.eINSTANCE);
 	}
 
 	public MetaDataManager getMetaDataManager() {
@@ -91,13 +91,17 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 	}
 
 	private void authenticate() throws ServerException, UserException {
-		AuthInterface authInterface = channel.get(AuthInterface.class);
-		if (authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
-			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo) authenticationInfo;
-			setToken(authInterface.login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword()));
-		} else if (authenticationInfo instanceof AutologinAuthenticationInfo) {
-			AutologinAuthenticationInfo autologinAuthenticationInfo = (AutologinAuthenticationInfo) authenticationInfo;
-			setToken(authInterface.autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode()));
+		try {
+			AuthInterface authInterface = channel.get(AuthInterface.class);
+			if (authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
+				UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo) authenticationInfo;
+				setToken(authInterface.login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword()));
+			} else if (authenticationInfo instanceof AutologinAuthenticationInfo) {
+				AutologinAuthenticationInfo autologinAuthenticationInfo = (AutologinAuthenticationInfo) authenticationInfo;
+				setToken(authInterface.autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode()));
+			}
+		} catch (PublicInterfaceNotFoundException e) {
+			LOGGER.error("", e);
 		}
 	}
 
@@ -128,13 +132,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 	@Override
 	public void connected() {
 		try {
-			if (authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
-				UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo) authenticationInfo;
-				setToken(channel.get(AuthInterface.class).login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword()));
-			} else if (authenticationInfo instanceof AutologinAuthenticationInfo) {
-				AutologinAuthenticationInfo autologinAuthenticationInfo = (AutologinAuthenticationInfo) authenticationInfo;
-				setToken(channel.get(AuthInterface.class).autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode()));
-			}
+			authenticate();
 		} catch (ServiceException e) {
 			LOGGER.error("", e);
 		}
@@ -185,7 +183,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 		}
 	}
 
-	public ClientIfcModel getModel(long poid, long roid, boolean deep) throws BimServerClientException, UserException, ServerException {
+	public ClientIfcModel getModel(long poid, long roid, boolean deep) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException {
 		return new ClientIfcModel(this, poid, roid, deep);
 	}
 
@@ -197,31 +195,31 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 		notificationsClient.unregisterNotifictionListener(notificationInterface);
 	}
 
-	public NotificationInterface getNotificationInterface() {
+	public NotificationInterface getNotificationInterface() throws PublicInterfaceNotFoundException {
 		return get(NotificationInterface.class);
 	}
 
-	public RemoteServiceInterface getRemoteServiceInterface() {
+	public RemoteServiceInterface getRemoteServiceInterface() throws PublicInterfaceNotFoundException {
 		return get(RemoteServiceInterface.class);
 	}
 	
-	public LowLevelInterface getLowLevelInterface() {
+	public LowLevelInterface getLowLevelInterface() throws PublicInterfaceNotFoundException {
 		return get(LowLevelInterface.class);
 	}
 	
-	public ServiceInterface getServiceInterface() {
+	public ServiceInterface getServiceInterface() throws PublicInterfaceNotFoundException {
 		return get(ServiceInterface.class);
 	}
 
-	public AdminInterface getAdminInterface() {
+	public AdminInterface getAdminInterface() throws PublicInterfaceNotFoundException {
 		return get(AdminInterface.class);
 	}
 	
-	public AuthInterface getAuthInterface() {
+	public AuthInterface getAuthInterface() throws PublicInterfaceNotFoundException {
 		return get(AuthInterface.class);
 	}
 
-	public SettingsInterface getSettingsInterface() {
+	public SettingsInterface getSettingsInterface() throws PublicInterfaceNotFoundException {
 		return get(SettingsInterface.class);
 	}
 	
@@ -273,6 +271,8 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -286,11 +286,15 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 		return channel.getDownloadData(baseAddress, token, download, serializerOid);
 	}
 
-	public ClientIfcModel newModel(SProject project) throws ServerException, UserException, BimServerClientException {
+	public ClientIfcModel newModel(SProject project) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
 		return new ClientIfcModel(this, project.getOid(), -1, false);
 	}
 
-	public <T extends PublicInterface> T get(Class<T> clazz) {
+	public <T extends PublicInterface> T get(Class<T> clazz) throws PublicInterfaceNotFoundException {
+		T t = channel.get(clazz);
+		if (t == null) {
+			throw new PublicInterfaceNotFoundException("No interface of type " + clazz.getSimpleName() + " registered on this channel");
+		}
 		return channel.get(clazz);
 	}
 }

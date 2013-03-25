@@ -17,6 +17,7 @@ package org.bimserver.test.framework.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.exceptions.ServerException;
@@ -31,7 +32,7 @@ public class CreateUserAction extends Action {
 	}
 
 	@Override
-	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
+	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		String username = randomString() + "@bimserver.org";
 		virtualUser.getActionResults().setText("Creating new user: " + username);
 		SUser user = virtualUser.getBimServerClient().getServiceInterface().addUser(username, randomString(), SUserType.values()[nextInt(SUserType.values().length)], nextBoolean());

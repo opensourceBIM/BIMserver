@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.JsonBimServerClientFactory;
+import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
@@ -43,6 +44,8 @@ public class FileLoader {
 						} catch (UserException e) {
 							e.printStackTrace();
 						} catch (IOException e) {
+							e.printStackTrace();
+						} catch (PublicInterfaceNotFoundException e) {
 							e.printStackTrace();
 						}
 					}});

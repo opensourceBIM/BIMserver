@@ -252,7 +252,15 @@ public class Service extends GenericServiceImpl implements ServiceInterface {
 			URL url = new URL(urlString);
 			InputStream input = url.openStream();
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-			fileName = dateFormat.format(new Date()) + "-" + fileName;
+			if (fileName == null) {
+				if (urlString.contains("/")) {
+					fileName = urlString.substring(urlString.lastIndexOf("/") + 1);
+				} else {
+					fileName = urlString;
+				}
+			} else {
+				fileName = dateFormat.format(new Date()) + "-" + fileName;
+			}
 			File file = new File(userDirIncoming, fileName);
 			InputStream inputStream = new MultiplexingInputStream(input, new FileOutputStream(file));
 			try {

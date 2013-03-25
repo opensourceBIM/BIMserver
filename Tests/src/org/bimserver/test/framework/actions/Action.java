@@ -45,7 +45,7 @@ public abstract class Action {
 		return "" + Math.abs(random.nextInt());
 	}
 
-	public abstract void execute(VirtualUser virtualUser) throws ServerException, UserException;
+	public abstract void execute(VirtualUser virtualUser) throws Exception;
 	
 	public int getWeight() {
 		return 1;

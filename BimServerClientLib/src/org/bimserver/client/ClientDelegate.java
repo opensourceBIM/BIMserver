@@ -33,6 +33,8 @@ public class ClientDelegate extends Delegate {
 			model.getBimServerClient().getLowLevelInterface().unsetAttribute(model.getTransactionId(), getOid(), eFeature.getName());
 		} catch (ServiceException e) {
 			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e) {
+			e.printStackTrace();
 		}
 		loadForEdit();
 	}
@@ -62,6 +64,8 @@ public class ClientDelegate extends Delegate {
 					throw new RuntimeException("Unimplemented " + eFeature.getEType().getName());
 				}
 			} catch (ServiceException e) {
+				e.printStackTrace();
+			} catch (PublicInterfaceNotFoundException e) {
 				e.printStackTrace();
 			}
 		}
@@ -105,6 +109,8 @@ public class ClientDelegate extends Delegate {
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {
+			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();
 		}
 		super.remove();

@@ -33,6 +33,7 @@ import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.ClientIfcModel;
 import org.bimserver.client.ProtocolBuffersBimServerClientFactory;
+import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevisionSummary;
@@ -73,7 +74,7 @@ public class TestClientEmfModelLocal {
 		// bimServer.stop();
 	}
 
-	private SProject createProject() {
+	private SProject createProject() throws PublicInterfaceNotFoundException {
 		try {
 			SProject project = bimServerClient.getServiceInterface().addProject("Project " + new Random().nextInt());
 			return project;
@@ -133,10 +134,12 @@ public class TestClientEmfModelLocal {
 			e.printStackTrace();
 		} catch (ServerException e) {
 			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 
-	public void dumpSummary(long roid) throws ServiceException {
+	public void dumpSummary(long roid) throws ServiceException, PublicInterfaceNotFoundException {
 		SRevisionSummary revisionSummary = bimServerClient.getServiceInterface().getRevisionSummary(roid);
 		List<SRevisionSummaryContainer> list = revisionSummary.getList();
 		for (SRevisionSummaryContainer container : list) {

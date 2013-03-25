@@ -29,6 +29,7 @@ import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.JsonBimServerClientFactory;
+import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
@@ -81,6 +82,8 @@ public class TestSceneJsDownload {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ServiceException e) {
+			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();
 		}
 	}

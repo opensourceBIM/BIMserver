@@ -24,6 +24,7 @@ import java.io.InputStream;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
@@ -50,7 +51,7 @@ public class DownloadRevisionAction extends Action {
 	}
 
 	@Override
-	public void execute(VirtualUser virtualUser) throws ServerException, UserException {
+	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		SProject project = virtualUser.getRandomProject();
 		if (project != null) {
 			if (project.getLastRevisionId() != -1) {

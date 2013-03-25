@@ -43,11 +43,11 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HttpContext;
 import org.bimserver.client.ChannelConnectionException;
+import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.reflector.Reflector;
 import org.bimserver.shared.reflector.ReflectorFactory;
@@ -220,7 +220,11 @@ public abstract class Channel {
 		return null;
 	}
 
-	public <T extends PublicInterface> T get(Class<T> class1) {
-		return get(class1.getName());
+	public <T extends PublicInterface> T get(Class<T> class1) throws PublicInterfaceNotFoundException {
+		T t = get(class1.getName());
+		if (t == null) {
+			throw new PublicInterfaceNotFoundException("Interface " + class1.getSimpleName() + " not registered on channel");
+		}
+		return t;
 	}
 }

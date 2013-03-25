@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.bimserver.client.BimServerClient;
+import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
@@ -114,7 +115,7 @@ public class VirtualUser extends Thread {
 		}
 	}
 
-	public SUser getRandomUser() {
+	public SUser getRandomUser() throws PublicInterfaceNotFoundException {
 		try {
 			List<SUser> users = bimServerClient.getServiceInterface().getAllUsers();
 			if (users.isEmpty()) {
@@ -133,7 +134,7 @@ public class VirtualUser extends Thread {
 		return null;
 	}
 
-	public SProject getRandomProject() throws UserException {
+	public SProject getRandomProject() throws UserException, PublicInterfaceNotFoundException {
 		try {
 			List<SProject> allProjects = bimServerClient.getServiceInterface().getAllProjects(false);
 			if (allProjects == null || allProjects.isEmpty()) {
@@ -170,7 +171,7 @@ public class VirtualUser extends Thread {
 		return usernames.get(random.nextInt(usernames.size()));
 	}
 
-	public SRevision getRandomRevision() throws ServerException, UserException {
+	public SRevision getRandomRevision() throws ServerException, UserException, PublicInterfaceNotFoundException {
 		SProject project = getRandomProject();
 		if (project.getLastRevisionId() == -1) {
 			CheckinAction checkinAction = new CheckinAction(testFramework, new CheckinSettings());
