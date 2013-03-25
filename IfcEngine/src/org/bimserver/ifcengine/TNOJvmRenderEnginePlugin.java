@@ -69,7 +69,7 @@ public class TNOJvmRenderEnginePlugin implements RenderEnginePlugin {
 			} else if (os.contains("osx") || os.contains("os x") || os.contains("darwin")) {
 				libraryName = "libIFCEngine.dylib";
 			} else if (os.contains("linux")) {
-				libraryName = "libIFCEngine.so";
+				libraryName = "libifcengine.so";
 			}
 			InputStream inputStream = pluginContext.getResourceAsInputStream("lib/" + System.getProperty("sun.arch.data.model") + "/" + libraryName);
 			if (inputStream != null) {
