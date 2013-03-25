@@ -37,7 +37,7 @@ import com.sun.jna.ptr.PointerByReference;
  */
 public interface IfcEngineInterface extends Library {
 	IfcEngineInterface INSTANCE = (IfcEngineInterface) Native.loadLibrary(
-			"IFCEngine", IfcEngineInterface.class);
+			"ifcengine", IfcEngineInterface.class);
 	// Optional: wraps every call to the native library in a
 	// synchronized block, limiting native calls to one at a time
 	// IfcEngineInterface SYNC_INSTANCE = (IfcEngineInterface) Native
