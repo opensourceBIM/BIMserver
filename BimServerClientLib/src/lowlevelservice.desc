@@ -1,5 +1,5 @@
 
-ÃL
+‡M
 lowlevelservice.protoorg.bimserver.pbservice.protonotification.protoremoteservice.protoadminservice.protoauthservice.protosettingsservice.proto"&
 AbortTransactionRequest
 tid ("\
@@ -64,10 +64,10 @@
 GetByteArrayAttributesRequest
 tid (
 oid (
-attributeName (	"e
+attributeName (	"E
 GetByteArrayAttributesResponse
-errorMessage (	-
-value (2.org.bimserver.pb.VoidResponse"8
+errorMessage (	
+value ("8
 GetDataObjectByGuidRequest
 roid (
 guid (	"a
@@ -160,7 +160,11 @@
 attributeName (	"B
 GetStringAttributesResponse
 errorMessage (	
-value (	"X
+value (	"M
+RemoveAllReferencesRequest
+tid (
+oid (
+referenceName (	"X
 RemoveAttributeRequest
 tid (
 oid (
@@ -246,7 +250,7 @@
 UnsetReferenceRequest
 tid (
 oid (
-referenceName (	2È#
+referenceName (	2Œ$
 LowLevelInterface]
 abortTransaction).org.bimserver.pb.AbortTransactionRequest.org.bimserver.pb.VoidResponsec
 addBooleanAttribute,.org.bimserver.pb.AddBooleanAttributeRequest.org.bimserver.pb.VoidResponsea
@@ -273,7 +277,8 @@
 getReference%.org.bimserver.pb.GetReferenceRequest&.org.bimserver.pb.GetReferenceResponse`
 getReferences&.org.bimserver.pb.GetReferencesRequest'.org.bimserver.pb.GetReferencesResponseo
 getStringAttribute+.org.bimserver.pb.GetStringAttributeRequest,.org.bimserver.pb.GetStringAttributeResponser
-getStringAttributes,.org.bimserver.pb.GetStringAttributesRequest-.org.bimserver.pb.GetStringAttributesResponse[
+getStringAttributes,.org.bimserver.pb.GetStringAttributesRequest-.org.bimserver.pb.GetStringAttributesResponsec
+removeAllReferences,.org.bimserver.pb.RemoveAllReferencesRequest.org.bimserver.pb.VoidResponse[
 removeAttribute(.org.bimserver.pb.RemoveAttributeRequest.org.bimserver.pb.VoidResponseU
 removeObject%.org.bimserver.pb.RemoveObjectRequest.org.bimserver.pb.VoidResponse[
 removeReference(.org.bimserver.pb.RemoveReferenceRequest.org.bimserver.pb.VoidResponsec

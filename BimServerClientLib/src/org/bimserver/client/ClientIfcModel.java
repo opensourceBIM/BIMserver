@@ -538,7 +538,7 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	public <T extends IdEObject> T create(Class<T> clazz) throws IfcModelInterfaceException {
-		return create((EClass)Ifc2x3tc1Package.eINSTANCE.getEClassifier(clazz.getName()));
+		return create((EClass)Ifc2x3tc1Package.eINSTANCE.getEClassifier(clazz.getSimpleName()));
 	}
 	
 	@SuppressWarnings("unchecked")

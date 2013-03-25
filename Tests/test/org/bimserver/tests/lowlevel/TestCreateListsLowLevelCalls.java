@@ -1,16 +1,19 @@
-package org.bimserver.tests;
+package org.bimserver.tests.lowlevel;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+
+import java.util.List;
 
 import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
-public class TestCreateUnknownTypeLowLevelCalls extends TestWithEmbeddedServer {
+public class TestCreateListsLowLevelCalls extends TestWithEmbeddedServer {
 
 	@Test
 	public void test() {
@@ -29,17 +32,24 @@ public class TestCreateUnknownTypeLowLevelCalls extends TestWithEmbeddedServer {
 			// Start a transaction
 			Long tid = lowLevelInterface.startTransaction(newProject.getOid());
 			
-			lowLevelInterface.createObject(tid, "IfcCartesionPoint"); // IfcCartesi(O)nPoint
+			Long cartesianPointOid = lowLevelInterface.createObject(tid, "IfcCartesianPoint");
+			
+			double firstVal = 5.1;
+			lowLevelInterface.addDoubleAttribute(tid, cartesianPointOid, "Coordinates", firstVal);
+			double secondVal = 6.2;
+			lowLevelInterface.addDoubleAttribute(tid, cartesianPointOid, "Coordinates", secondVal);
+			double thirdVal = 7.3;
+			lowLevelInterface.addDoubleAttribute(tid, cartesianPointOid, "Coordinates", thirdVal);
 			
 			// Commit the transaction
 			lowLevelInterface.commitTransaction(tid, "test");
+
+			tid = lowLevelInterface.startTransaction(newProject.getOid());
+			List<Double> coordinates = lowLevelInterface.getDoubleAttributes(tid, cartesianPointOid, "Coordinates");
+			assertTrue(coordinates.get(0) == firstVal && coordinates.get(1) == secondVal && coordinates.get(2) == thirdVal);
 		} catch (Exception e) {
-			if (e instanceof UserException) {
-				
-			} else {
-				e.printStackTrace();
-				fail(e.getMessage());
-			}
+			e.printStackTrace();
+			fail(e.getMessage());
 		}
 	}
 }

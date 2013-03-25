@@ -42,6 +42,7 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.LongTransaction;
+import org.bimserver.webservices.NoTransactionException;
 import org.bimserver.webservices.authorization.Authorization;
 
 public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseAction {
@@ -102,7 +103,11 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 			@Override
 			public void execute() throws UserException {
 				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(newRevisionAdded));
-				bimServer.getLongTransactionManager().remove(longTransaction.getTid());
+				try {
+					bimServer.getLongTransactionManager().remove(longTransaction.getTid());
+				} catch (NoTransactionException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 

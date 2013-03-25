@@ -62,16 +62,16 @@ revisionId	 (
 profileDescription (	
 url (	
 serviceName (	=
-notificationProtocol	 (2.org.bimserver.pb.SAccessMethod
-token
- (	
-rid (
-providerName (	
-description (	
-oid (
-userId (
-writeRevisionId (
-readExtendedDataId (
+notificationProtocol	 (2.org.bimserver.pb.SAccessMethod
+rid
+ (
+token (	
+providerName (	
+oid (
+description (	
+writeRevisionId (
+readExtendedDataId (
+userId (
 name (	
 serviceIdentifier (	
 writeExtendedDataId (
@@ -116,15 +116,15 @@ revisionId	 (
 hasAuthorizedUsers
  (
 rid (
-geoTagId (>
-exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
-description (	
+geoTagId (
+description (	>
+exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
 oid (
 name (	
 subProjects (
-lastRevisionId (
-createdDate (
-	revisions (
+lastRevisionId (
+	revisions (
+createdDate (
 	checkouts ("U
 AddProjectResponse
 errorMessage (	)
@@ -269,24 +269,19 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"X
 roid1 (
 roid2 (4
 sCompareType (2.org.bimserver.pb.SCompareType
-mcid ("b
+mcid ("(
+SObjectAdded
+rid (
+oid ("*
+SObjectRemoved
+rid (
+oid ("b
 SObjectModified
 newValue (	
 rid (
 oid (
 oldValue (	
-	fieldName (	"*
-SObjectRemoved
-rid (
-oid ("(
-SObjectAdded
-rid (
-oid ("O
-SReferenceDataValue
-guid (	
-typeName (	
-rid (
-oid ("A
+	fieldName (	"A
 SSimpleDataValue
 rid (
 oid (
@@ -294,13 +289,18 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"X
 SListDataValue,
 values (2.org.bimserver.pb.SDataValue
 rid (
-oid ("’
+oid ("O
+SReferenceDataValue
+guid (	
+typeName (	
+rid (
+oid ("’
 
 SDataValue
-__actual_type (	D
-__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue>
-__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValue:
-__SListDataValue (2 .org.bimserver.pb.SListDataValue
+__actual_type (	>
+__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValue:
+__SListDataValue (2 .org.bimserver.pb.SListDataValueD
+__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue
 rid (
 oid (
 	fieldName (	"
@@ -312,10 +312,10 @@ SDataValue
 name (	
 type (	"¤
 SCompareItem
-__actual_type (	<
-__SObjectModified (2!.org.bimserver.pb.SObjectModified:
-__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved6
-__SObjectAdded (2.org.bimserver.pb.SObjectAdded
+__actual_type (	6
+__SObjectAdded (2.org.bimserver.pb.SObjectAdded:
+__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved<
+__SObjectModified (2!.org.bimserver.pb.SObjectModified
 rid (
 oid (1
 
@@ -448,9 +448,9 @@ classNames (	
 uoid ("µ
 	SRevision
 hasGeometry (
-lastConcreteRevisionId (
-logs (
-bmi (
+lastConcreteRevisionId (
+bmi (
+logs (
 tag (	
 concreteRevisions (
 	projectId (
@@ -462,9 +462,9 @@ classNames (	
 extendedData (
 rid (
 oid (
-userId (
-comment (	
-	lastError (	
+userId (
+	lastError (	
+comment (	
 	checkouts ("Ñ
 	SCheckout,
 checkin (2.org.bimserver.pb.SRevision-
@@ -532,10 +532,10 @@ identifier (	"h
 errorMessage (	3
 value (2$.org.bimserver.pb.SProfileDescriptor"&
 $GetAllLocalServiceDescriptorsRequest"Ë
-SServiceDescriptor
-writeExtendedData (	=
-notificationProtocol (2.org.bimserver.pb.SAccessMethod+
-trigger (2.org.bimserver.pb.STrigger
+SServiceDescriptor+
+trigger (2.org.bimserver.pb.STrigger
+writeExtendedData (	=
+notificationProtocol (2.org.bimserver.pb.SAccessMethod
 writeRevision (
 readExtendedData (	
 providerName (	
@@ -659,9 +659,9 @@ identifier (	
 value (2.org.bimserver.pb.SRevision"*
 (GetAllSerializerPluginDescriptorsRequest"m
 SSerializerPluginDescriptor
-rid (
-defaultExtension (	
-oid (
+rid (
+oid (
+defaultExtension (	
 defaultContentType (	"
 )GetAllSerializerPluginDescriptorsResponse
 errorMessage (	<
@@ -870,10 +870,10 @@ revisionNr (
 SPrimitiveDefinition.
 type (2 .org.bimserver.pb.SPrimitiveEnum"ò
 STypeDefinition
-__actual_type (	>
-__SArrayDefinition (2".org.bimserver.pb.SArrayDefinitionF
-__SPrimitiveDefinition (2&.org.bimserver.pb.SPrimitiveDefinition@
-__SObjectDefinition (2#.org.bimserver.pb.SObjectDefinition"”
+__actual_type (	@
+__SObjectDefinition (2#.org.bimserver.pb.SObjectDefinition>
+__SArrayDefinition (2".org.bimserver.pb.SArrayDefinitionF
+__SPrimitiveDefinition (2&.org.bimserver.pb.SPrimitiveDefinition"”
 SParameterDefinition
 description (	
 name (	
@@ -892,7 +892,11 @@ parameters (2&.org.bimserver.pb.SParameterDefinition"m
 SArrayType'
 values (2.org.bimserver.pb.SType
 rid (
-oid ("9
+oid ("6
+SDoubleType
+rid (
+oid (
+value ("9
 SByteArrayType
 rid (
 oid (
@@ -900,33 +904,29 @@ SArrayType'
 SBooleanType
 rid (
 oid (
-value ("6
-SStringType
-rid (
-oid (
-value (	"4
+value ("4
 	SLongType
 rid (
 oid (
 value ("6
-SDoubleType
+SStringType
 rid (
 oid (
-value ("Ó
+value (	"Ó
 SPrimitiveType
-__actual_type (	:
-__SByteArrayType (2 .org.bimserver.pb.SByteArrayType6
-__SBooleanType (2.org.bimserver.pb.SBooleanType4
-__SStringType (2.org.bimserver.pb.SStringType0
+__actual_type (	4
+__SDoubleType (2.org.bimserver.pb.SDoubleType:
+__SByteArrayType (2 .org.bimserver.pb.SByteArrayType6
+__SBooleanType (2.org.bimserver.pb.SBooleanType0
 __SLongType (2.org.bimserver.pb.SLongType4
-__SDoubleType (2.org.bimserver.pb.SDoubleType
+__SStringType (2.org.bimserver.pb.SStringType
 rid (
 oid ("Þ
 SType
-__actual_type (	4
-__SObjectType (2.org.bimserver.pb.SObjectType2
-__SArrayType (2.org.bimserver.pb.SArrayType:
-__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType
+__actual_type (	2
+__SArrayType (2.org.bimserver.pb.SArrayType:
+__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType4
+__SObjectType (2.org.bimserver.pb.SObjectType
 rid (
 oid ("\
 
@@ -1095,11 +1095,11 @@ $GetSerializerPluginDescriptorRequest
 objectIDMs (
 defaultObjectIDMId (
 defaultModelCompareId (
-defaultQueryEngineId	 (
-rid
- (
-renderEngines (
-deserializers (
+defaultQueryEngineId	 (
+renderEngines
+ (
+deserializers (
+rid (
 oid (
 defaultRenderEngineId (
 defaultSerializerId (

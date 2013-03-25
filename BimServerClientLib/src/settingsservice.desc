@@ -17,9 +17,9 @@ webModules (
  (
 
 smtpServer (	
-whitelistedDomains (	
-cacheOutputFiles (
-oid (
+whitelistedDomains (	
+oid (
+cacheOutputFiles (
 emailSenderAddress (	
 hideUserListForNonAdmin (
 emailSenderName (	

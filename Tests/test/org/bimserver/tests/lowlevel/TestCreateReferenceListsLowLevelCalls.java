@@ -1,4 +1,4 @@
-package org.bimserver.tests;
+package org.bimserver.tests.lowlevel;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -10,6 +10,7 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
 public class TestCreateReferenceListsLowLevelCalls extends TestWithEmbeddedServer {
@@ -47,6 +48,15 @@ public class TestCreateReferenceListsLowLevelCalls extends TestWithEmbeddedServe
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			List<Long> itemOids = lowLevelInterface.getReferences(tid, ifcShapeRepresentationOid, "Items");
 			assertTrue(itemOids.get(0) == ifcRepresentationItem1 && itemOids.get(1) == ifcRepresentationItem2 && itemOids.get(2) == ifcRepresentationItem3);
+			
+			lowLevelInterface.removeAllReferences(tid, ifcShapeRepresentationOid, "Items");
+			
+			lowLevelInterface.commitTransaction(tid, "removed all references");
+			
+			tid = lowLevelInterface.startTransaction(newProject.getOid());
+			
+			itemOids = lowLevelInterface.getReferences(tid, ifcShapeRepresentationOid, "Items");
+			assertTrue(itemOids.size() == 0);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getMessage());

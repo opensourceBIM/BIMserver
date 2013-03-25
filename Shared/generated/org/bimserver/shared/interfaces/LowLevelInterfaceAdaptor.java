@@ -59,7 +59,7 @@ public class LowLevelInterfaceAdaptor implements LowLevelInterface {
 		return null;
 	}
 	
-	public java.util.List getByteArrayAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
+	public java.util.List<byte[]> getByteArrayAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -117,6 +117,9 @@ public class LowLevelInterfaceAdaptor implements LowLevelInterface {
 	
 	public java.util.List<java.lang.String> getStringAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
 		return null;
+	}
+	
+	public void removeAllReferences(java.lang.Long tid, java.lang.Long oid, java.lang.String referenceName) throws UserException, ServerException {
 	}
 	
 	public void removeAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Integer index) throws UserException, ServerException {

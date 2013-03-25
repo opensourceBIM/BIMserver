@@ -1,4 +1,4 @@
-package org.bimserver.tests;
+package org.bimserver.tests.emf;
 
 import static org.junit.Assert.fail;
 
@@ -8,14 +8,13 @@ import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ClientIfcModel;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.models.ifc2x3tc1.IfcParameterValue;
-import org.bimserver.models.ifc2x3tc1.IfcTrimmedCurve;
-import org.bimserver.models.ifc2x3tc1.IfcTrimmingSelect;
+import org.bimserver.models.ifc2x3tc1.IfcWallStandardCase;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
-public class TestReadTrim extends TestWithEmbeddedServer {
+public class TestListWalls extends TestWithEmbeddedServer {
 
 	@Test
 	public void test() {
@@ -31,27 +30,16 @@ public class TestReadTrim extends TestWithEmbeddedServer {
 			
 			// Get the appropriate deserializer
 			SDeserializerPluginConfiguration deserializer = serviceInterface.getSuggestedDeserializerForExtension("ifc");
-			
+
 			// Checkin the file
-			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, true, new File("C:\\Users\\Ruben de Laat\\Downloads\\TST.ifc"));
-			
+			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, true, new File("../TestData/data/Jesse.1.ifc"));
+
 			// Refresh project info
 			newProject = serviceInterface.getProjectByPoid(newProject.getOid());
-			
+
 			ClientIfcModel model = bimServerClient.getModel(newProject.getOid(), newProject.getLastRevisionId(), true);
-			for (IfcTrimmedCurve ifcTrimmedCurve : model.getAllWithSubTypes(IfcTrimmedCurve.class)) {
-				for (IfcTrimmingSelect ifcTrimmingSelect : ifcTrimmedCurve.getTrim1()) {
-					if (ifcTrimmingSelect instanceof IfcParameterValue) {
-						IfcParameterValue ifcParameterValue = (IfcParameterValue)ifcTrimmingSelect;
-						System.out.println("Trim1: " + ifcParameterValue.getWrappedValue());
-					}
-				}
-				for (IfcTrimmingSelect ifcTrimmingSelect : ifcTrimmedCurve.getTrim2()) {
-					if (ifcTrimmingSelect instanceof IfcParameterValue) {
-						IfcParameterValue ifcParameterValue = (IfcParameterValue)ifcTrimmingSelect;
-						System.out.println("Trim2: " + ifcParameterValue.getWrappedValue());
-					}
-				}
+			for (IfcWallStandardCase wall : model.getAllWithSubTypes(IfcWallStandardCase.class)) {
+				System.out.println(wall);
 			}
 		} catch (Throwable e) {
 			e.printStackTrace();
