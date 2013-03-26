@@ -28,6 +28,7 @@ public class SetWrappedAttributeChange implements Change {
 		this.value = value;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException,
 			BimserverDatabaseException {

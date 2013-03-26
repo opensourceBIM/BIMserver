@@ -10,108 +10,224 @@ public final class RemoteServiceInterfaceImpl {
   }
   public interface GetPrivateProfilesRequestOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
-    
+
     // optional string serviceIdentifier = 1;
+    /**
+     * <code>optional string serviceIdentifier = 1;</code>
+     */
     boolean hasServiceIdentifier();
-    String getServiceIdentifier();
-    
+    /**
+     * <code>optional string serviceIdentifier = 1;</code>
+     */
+    java.lang.String getServiceIdentifier();
+    /**
+     * <code>optional string serviceIdentifier = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdentifierBytes();
+
     // optional string token = 2;
+    /**
+     * <code>optional string token = 2;</code>
+     */
     boolean hasToken();
-    String getToken();
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    java.lang.String getToken();
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getTokenBytes();
   }
+  /**
+   * Protobuf type {@code org.bimserver.pb.GetPrivateProfilesRequest}
+   */
   public static final class GetPrivateProfilesRequest extends
       com.google.protobuf.GeneratedMessage
       implements GetPrivateProfilesRequestOrBuilder {
     // Use GetPrivateProfilesRequest.newBuilder() to construct.
-    private GetPrivateProfilesRequest(Builder builder) {
+    private GetPrivateProfilesRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
+      this.unknownFields = builder.getUnknownFields();
     }
-    private GetPrivateProfilesRequest(boolean noInit) {}
-    
+    private GetPrivateProfilesRequest(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
     private static final GetPrivateProfilesRequest defaultInstance;
     public static GetPrivateProfilesRequest getDefaultInstance() {
       return defaultInstance;
     }
-    
+
     public GetPrivateProfilesRequest getDefaultInstanceForType() {
       return defaultInstance;
     }
-    
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetPrivateProfilesRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              serviceIdentifier_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              token_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPrivateProfilesRequest_descriptor;
     }
-    
+
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPrivateProfilesRequest_fieldAccessorTable;
+      return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPrivateProfilesRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest.class, org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest.Builder.class);
     }
-    
+
+    public static com.google.protobuf.Parser<GetPrivateProfilesRequest> PARSER =
+        new com.google.protobuf.AbstractParser<GetPrivateProfilesRequest>() {
+      public GetPrivateProfilesRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetPrivateProfilesRequest(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetPrivateProfilesRequest> getParserForType() {
+      return PARSER;
+    }
+
     private int bitField0_;
     // optional string serviceIdentifier = 1;
     public static final int SERVICEIDENTIFIER_FIELD_NUMBER = 1;
-    private Object serviceIdentifier_;
+    private java.lang.Object serviceIdentifier_;
+    /**
+     * <code>optional string serviceIdentifier = 1;</code>
+     */
     public boolean hasServiceIdentifier() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public String getServiceIdentifier() {
-      Object ref = serviceIdentifier_;
-      if (ref instanceof String) {
-        return (String) ref;
+    /**
+     * <code>optional string serviceIdentifier = 1;</code>
+     */
+    public java.lang.String getServiceIdentifier() {
+      java.lang.Object ref = serviceIdentifier_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
           serviceIdentifier_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getServiceIdentifierBytes() {
-      Object ref = serviceIdentifier_;
-      if (ref instanceof String) {
+    /**
+     * <code>optional string serviceIdentifier = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdentifierBytes() {
+      java.lang.Object ref = serviceIdentifier_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
         serviceIdentifier_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
-    
+
     // optional string token = 2;
     public static final int TOKEN_FIELD_NUMBER = 2;
-    private Object token_;
+    private java.lang.Object token_;
+    /**
+     * <code>optional string token = 2;</code>
+     */
     public boolean hasToken() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public String getToken() {
-      Object ref = token_;
-      if (ref instanceof String) {
-        return (String) ref;
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    public java.lang.String getToken() {
+      java.lang.Object ref = token_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
           token_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getTokenBytes() {
-      Object ref = token_;
-      if (ref instanceof String) {
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTokenBytes() {
+      java.lang.Object ref = token_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
         token_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
-    
+
     private void initFields() {
       serviceIdentifier_ = "";
       token_ = "";
@@ -120,11 +236,11 @@ public final class RemoteServiceInterfaceImpl {
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
-      
+
       memoizedIsInitialized = 1;
       return true;
     }
-    
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -136,12 +252,12 @@ public final class RemoteServiceInterfaceImpl {
       }
       getUnknownFields().writeTo(output);
     }
-    
+
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-    
+
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -155,92 +271,83 @@ public final class RemoteServiceInterfaceImpl {
       memoizedSerializedSize = size;
       return size;
     }
-    
+
+    private static final long serialVersionUID = 0L;
     @java.lang.Override
-    protected Object writeReplace() throws java.io.ObjectStreamException {
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-    
+
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
-    
+
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-    
+
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
+    /**
+     * Protobuf type {@code org.bimserver.pb.GetPrivateProfilesRequest}
+     */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
        implements org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequestOrBuilder {
@@ -248,18 +355,21 @@ public final class RemoteServiceInterfaceImpl {
           getDescriptor() {
         return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPrivateProfilesRequest_descriptor;
       }
-      
+
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPrivateProfilesRequest_fieldAccessorTable;
+        return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPrivateProfilesRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest.class, org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest.Builder.class);
       }
-      
+
       // Construct using org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-      
-      private Builder(BuilderParent parent) {
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -270,7 +380,7 @@ public final class RemoteServiceInterfaceImpl {
       private static Builder create() {
         return new Builder();
       }
-      
+
       public Builder clear() {
         super.clear();
         serviceIdentifier_ = "";
@@ -279,20 +389,20 @@ public final class RemoteServiceInterfaceImpl {
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
-      
+
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-      
+
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest.getDescriptor();
+        return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPrivateProfilesRequest_descriptor;
       }
-      
+
       public org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest getDefaultInstanceForType() {
         return org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest.getDefaultInstance();
       }
-      
+
       public org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest build() {
         org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest result = buildPartial();
         if (!result.isInitialized()) {
@@ -300,17 +410,7 @@ public final class RemoteServiceInterfaceImpl {
         }
         return result;
       }
-      
-      private org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest buildParsed()
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(
-            result).asInvalidProtocolBufferException();
-        }
-        return result;
-      }
-      
+
       public org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest buildPartial() {
         org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest result = new org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest(this);
         int from_bitField0_ = bitField0_;
@@ -327,7 +427,7 @@ public final class RemoteServiceInterfaceImpl {
         onBuilt();
         return result;
       }
-      
+
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest) {
           return mergeFrom((org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest)other);
@@ -336,78 +436,89 @@ public final class RemoteServiceInterfaceImpl {
           return this;
         }
       }
-      
+
       public Builder mergeFrom(org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest other) {
         if (other == org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest.getDefaultInstance()) return this;
         if (other.hasServiceIdentifier()) {
-          setServiceIdentifier(other.getServiceIdentifier());
+          bitField0_ |= 0x00000001;
+          serviceIdentifier_ = other.serviceIdentifier_;
+          onChanged();
         }
         if (other.hasToken()) {
-          setToken(other.getToken());
+          bitField0_ |= 0x00000002;
+          token_ = other.token_;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-      
+
       public final boolean isInitialized() {
         return true;
       }
-      
+
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
-        while (true) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
-              onChanged();
-              return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                onChanged();
-                return this;
-              }
-              break;
-            }
-            case 10: {
-              bitField0_ |= 0x00000001;
-              serviceIdentifier_ = input.readBytes();
-              break;
-            }
-            case 18: {
-              bitField0_ |= 0x00000002;
-              token_ = input.readBytes();
-              break;
-            }
+        org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
           }
         }
+        return this;
       }
-      
       private int bitField0_;
-      
+
       // optional string serviceIdentifier = 1;
-      private Object serviceIdentifier_ = "";
+      private java.lang.Object serviceIdentifier_ = "";
+      /**
+       * <code>optional string serviceIdentifier = 1;</code>
+       */
       public boolean hasServiceIdentifier() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public String getServiceIdentifier() {
-        Object ref = serviceIdentifier_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+      /**
+       * <code>optional string serviceIdentifier = 1;</code>
+       */
+      public java.lang.String getServiceIdentifier() {
+        java.lang.Object ref = serviceIdentifier_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
           serviceIdentifier_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
-      public Builder setServiceIdentifier(String value) {
+      /**
+       * <code>optional string serviceIdentifier = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdentifierBytes() {
+        java.lang.Object ref = serviceIdentifier_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          serviceIdentifier_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string serviceIdentifier = 1;</code>
+       */
+      public Builder setServiceIdentifier(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -416,34 +527,72 @@ public final class RemoteServiceInterfaceImpl {
         onChanged();
         return this;
       }
+      /**
+       * <code>optional string serviceIdentifier = 1;</code>
+       */
       public Builder clearServiceIdentifier() {
         bitField0_ = (bitField0_ & ~0x00000001);
         serviceIdentifier_ = getDefaultInstance().getServiceIdentifier();
         onChanged();
         return this;
       }
-      void setServiceIdentifier(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000001;
+      /**
+       * <code>optional string serviceIdentifier = 1;</code>
+       */
+      public Builder setServiceIdentifierBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
         serviceIdentifier_ = value;
         onChanged();
+        return this;
       }
-      
+
       // optional string token = 2;
-      private Object token_ = "";
+      private java.lang.Object token_ = "";
+      /**
+       * <code>optional string token = 2;</code>
+       */
       public boolean hasToken() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public String getToken() {
-        Object ref = token_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public java.lang.String getToken() {
+        java.lang.Object ref = token_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
           token_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
-      public Builder setToken(String value) {
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTokenBytes() {
+        java.lang.Object ref = token_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          token_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public Builder setToken(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -452,128 +601,269 @@ public final class RemoteServiceInterfaceImpl {
         onChanged();
         return this;
       }
+      /**
+       * <code>optional string token = 2;</code>
+       */
       public Builder clearToken() {
         bitField0_ = (bitField0_ & ~0x00000002);
         token_ = getDefaultInstance().getToken();
         onChanged();
         return this;
       }
-      void setToken(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000002;
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public Builder setTokenBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
         token_ = value;
         onChanged();
+        return this;
       }
-      
+
       // @@protoc_insertion_point(builder_scope:org.bimserver.pb.GetPrivateProfilesRequest)
     }
-    
+
     static {
       defaultInstance = new GetPrivateProfilesRequest(true);
       defaultInstance.initFields();
     }
-    
+
     // @@protoc_insertion_point(class_scope:org.bimserver.pb.GetPrivateProfilesRequest)
   }
-  
+
   public interface GetPrivateProfilesResponseOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
-    
+
     // optional string errorMessage = 1;
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
     boolean hasErrorMessage();
-    String getErrorMessage();
-    
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    java.lang.String getErrorMessage();
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getErrorMessageBytes();
+
     // repeated .org.bimserver.pb.SProfileDescriptor value = 2;
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     java.util.List<org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor> 
         getValueList();
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor getValue(int index);
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     int getValueCount();
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     java.util.List<? extends org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptorOrBuilder> 
         getValueOrBuilderList();
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptorOrBuilder getValueOrBuilder(
         int index);
   }
+  /**
+   * Protobuf type {@code org.bimserver.pb.GetPrivateProfilesResponse}
+   */
   public static final class GetPrivateProfilesResponse extends
       com.google.protobuf.GeneratedMessage
       implements GetPrivateProfilesResponseOrBuilder {
     // Use GetPrivateProfilesResponse.newBuilder() to construct.
-    private GetPrivateProfilesResponse(Builder builder) {
+    private GetPrivateProfilesResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
+      this.unknownFields = builder.getUnknownFields();
     }
-    private GetPrivateProfilesResponse(boolean noInit) {}
-    
+    private GetPrivateProfilesResponse(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
     private static final GetPrivateProfilesResponse defaultInstance;
     public static GetPrivateProfilesResponse getDefaultInstance() {
       return defaultInstance;
     }
-    
+
     public GetPrivateProfilesResponse getDefaultInstanceForType() {
       return defaultInstance;
     }
-    
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetPrivateProfilesResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              errorMessage_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                value_ = new java.util.ArrayList<org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              value_.add(input.readMessage(org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.PARSER, extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          value_ = java.util.Collections.unmodifiableList(value_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPrivateProfilesResponse_descriptor;
     }
-    
+
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPrivateProfilesResponse_fieldAccessorTable;
+      return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPrivateProfilesResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse.class, org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse.Builder.class);
     }
-    
+
+    public static com.google.protobuf.Parser<GetPrivateProfilesResponse> PARSER =
+        new com.google.protobuf.AbstractParser<GetPrivateProfilesResponse>() {
+      public GetPrivateProfilesResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetPrivateProfilesResponse(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetPrivateProfilesResponse> getParserForType() {
+      return PARSER;
+    }
+
     private int bitField0_;
     // optional string errorMessage = 1;
     public static final int ERRORMESSAGE_FIELD_NUMBER = 1;
-    private Object errorMessage_;
+    private java.lang.Object errorMessage_;
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
     public boolean hasErrorMessage() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public String getErrorMessage() {
-      Object ref = errorMessage_;
-      if (ref instanceof String) {
-        return (String) ref;
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    public java.lang.String getErrorMessage() {
+      java.lang.Object ref = errorMessage_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
           errorMessage_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getErrorMessageBytes() {
-      Object ref = errorMessage_;
-      if (ref instanceof String) {
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getErrorMessageBytes() {
+      java.lang.Object ref = errorMessage_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
         errorMessage_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
-    
+
     // repeated .org.bimserver.pb.SProfileDescriptor value = 2;
     public static final int VALUE_FIELD_NUMBER = 2;
     private java.util.List<org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor> value_;
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     public java.util.List<org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor> getValueList() {
       return value_;
     }
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     public java.util.List<? extends org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptorOrBuilder> 
         getValueOrBuilderList() {
       return value_;
     }
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     public int getValueCount() {
       return value_.size();
     }
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     public org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor getValue(int index) {
       return value_.get(index);
     }
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     public org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptorOrBuilder getValueOrBuilder(
         int index) {
       return value_.get(index);
     }
-    
+
     private void initFields() {
       errorMessage_ = "";
       value_ = java.util.Collections.emptyList();
@@ -582,11 +872,11 @@ public final class RemoteServiceInterfaceImpl {
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
-      
+
       memoizedIsInitialized = 1;
       return true;
     }
-    
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -598,12 +888,12 @@ public final class RemoteServiceInterfaceImpl {
       }
       getUnknownFields().writeTo(output);
     }
-    
+
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-    
+
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -617,92 +907,83 @@ public final class RemoteServiceInterfaceImpl {
       memoizedSerializedSize = size;
       return size;
     }
-    
+
+    private static final long serialVersionUID = 0L;
     @java.lang.Override
-    protected Object writeReplace() throws java.io.ObjectStreamException {
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-    
+
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
-    
+
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-    
+
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
+    /**
+     * Protobuf type {@code org.bimserver.pb.GetPrivateProfilesResponse}
+     */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
        implements org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponseOrBuilder {
@@ -710,18 +991,21 @@ public final class RemoteServiceInterfaceImpl {
           getDescriptor() {
         return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPrivateProfilesResponse_descriptor;
       }
-      
+
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPrivateProfilesResponse_fieldAccessorTable;
+        return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPrivateProfilesResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse.class, org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse.Builder.class);
       }
-      
+
       // Construct using org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-      
-      private Builder(BuilderParent parent) {
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -733,7 +1017,7 @@ public final class RemoteServiceInterfaceImpl {
       private static Builder create() {
         return new Builder();
       }
-      
+
       public Builder clear() {
         super.clear();
         errorMessage_ = "";
@@ -746,20 +1030,20 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
-      
+
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-      
+
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse.getDescriptor();
+        return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPrivateProfilesResponse_descriptor;
       }
-      
+
       public org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse getDefaultInstanceForType() {
         return org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse.getDefaultInstance();
       }
-      
+
       public org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse build() {
         org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse result = buildPartial();
         if (!result.isInitialized()) {
@@ -767,17 +1051,7 @@ public final class RemoteServiceInterfaceImpl {
         }
         return result;
       }
-      
-      private org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse buildParsed()
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(
-            result).asInvalidProtocolBufferException();
-        }
-        return result;
-      }
-      
+
       public org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse buildPartial() {
         org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse result = new org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse(this);
         int from_bitField0_ = bitField0_;
@@ -799,7 +1073,7 @@ public final class RemoteServiceInterfaceImpl {
         onBuilt();
         return result;
       }
-      
+
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse) {
           return mergeFrom((org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse)other);
@@ -808,11 +1082,13 @@ public final class RemoteServiceInterfaceImpl {
           return this;
         }
       }
-      
+
       public Builder mergeFrom(org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse other) {
         if (other == org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse.getDefaultInstance()) return this;
         if (other.hasErrorMessage()) {
-          setErrorMessage(other.getErrorMessage());
+          bitField0_ |= 0x00000001;
+          errorMessage_ = other.errorMessage_;
+          onChanged();
         }
         if (valueBuilder_ == null) {
           if (!other.value_.isEmpty()) {
@@ -843,67 +1119,73 @@ public final class RemoteServiceInterfaceImpl {
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-      
+
       public final boolean isInitialized() {
         return true;
       }
-      
+
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
-        while (true) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
-              onChanged();
-              return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                onChanged();
-                return this;
-              }
-              break;
-            }
-            case 10: {
-              bitField0_ |= 0x00000001;
-              errorMessage_ = input.readBytes();
-              break;
-            }
-            case 18: {
-              org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.Builder subBuilder = org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.newBuilder();
-              input.readMessage(subBuilder, extensionRegistry);
-              addValue(subBuilder.buildPartial());
-              break;
-            }
+        org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
           }
         }
+        return this;
       }
-      
       private int bitField0_;
-      
+
       // optional string errorMessage = 1;
-      private Object errorMessage_ = "";
+      private java.lang.Object errorMessage_ = "";
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
       public boolean hasErrorMessage() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public String getErrorMessage() {
-        Object ref = errorMessage_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public java.lang.String getErrorMessage() {
+        java.lang.Object ref = errorMessage_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
           errorMessage_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
-      public Builder setErrorMessage(String value) {
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getErrorMessageBytes() {
+        java.lang.Object ref = errorMessage_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          errorMessage_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public Builder setErrorMessage(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -912,18 +1194,29 @@ public final class RemoteServiceInterfaceImpl {
         onChanged();
         return this;
       }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
       public Builder clearErrorMessage() {
         bitField0_ = (bitField0_ & ~0x00000001);
         errorMessage_ = getDefaultInstance().getErrorMessage();
         onChanged();
         return this;
       }
-      void setErrorMessage(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000001;
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public Builder setErrorMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
         errorMessage_ = value;
         onChanged();
+        return this;
       }
-      
+
       // repeated .org.bimserver.pb.SProfileDescriptor value = 2;
       private java.util.List<org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor> value_ =
         java.util.Collections.emptyList();
@@ -933,10 +1226,13 @@ public final class RemoteServiceInterfaceImpl {
           bitField0_ |= 0x00000002;
          }
       }
-      
+
       private com.google.protobuf.RepeatedFieldBuilder<
           org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor, org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.Builder, org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptorOrBuilder> valueBuilder_;
-      
+
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public java.util.List<org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor> getValueList() {
         if (valueBuilder_ == null) {
           return java.util.Collections.unmodifiableList(value_);
@@ -944,6 +1240,9 @@ public final class RemoteServiceInterfaceImpl {
           return valueBuilder_.getMessageList();
         }
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public int getValueCount() {
         if (valueBuilder_ == null) {
           return value_.size();
@@ -951,6 +1250,9 @@ public final class RemoteServiceInterfaceImpl {
           return valueBuilder_.getCount();
         }
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor getValue(int index) {
         if (valueBuilder_ == null) {
           return value_.get(index);
@@ -958,6 +1260,9 @@ public final class RemoteServiceInterfaceImpl {
           return valueBuilder_.getMessage(index);
         }
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public Builder setValue(
           int index, org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor value) {
         if (valueBuilder_ == null) {
@@ -972,6 +1277,9 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public Builder setValue(
           int index, org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.Builder builderForValue) {
         if (valueBuilder_ == null) {
@@ -983,6 +1291,9 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public Builder addValue(org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor value) {
         if (valueBuilder_ == null) {
           if (value == null) {
@@ -996,6 +1307,9 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public Builder addValue(
           int index, org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor value) {
         if (valueBuilder_ == null) {
@@ -1010,6 +1324,9 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public Builder addValue(
           org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.Builder builderForValue) {
         if (valueBuilder_ == null) {
@@ -1021,6 +1338,9 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public Builder addValue(
           int index, org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.Builder builderForValue) {
         if (valueBuilder_ == null) {
@@ -1032,6 +1352,9 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public Builder addAllValue(
           java.lang.Iterable<? extends org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor> values) {
         if (valueBuilder_ == null) {
@@ -1043,6 +1366,9 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public Builder clearValue() {
         if (valueBuilder_ == null) {
           value_ = java.util.Collections.emptyList();
@@ -1053,6 +1379,9 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public Builder removeValue(int index) {
         if (valueBuilder_ == null) {
           ensureValueIsMutable();
@@ -1063,10 +1392,16 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.Builder getValueBuilder(
           int index) {
         return getValueFieldBuilder().getBuilder(index);
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptorOrBuilder getValueOrBuilder(
           int index) {
         if (valueBuilder_ == null) {
@@ -1074,6 +1409,9 @@ public final class RemoteServiceInterfaceImpl {
           return valueBuilder_.getMessageOrBuilder(index);
         }
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public java.util.List<? extends org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptorOrBuilder> 
            getValueOrBuilderList() {
         if (valueBuilder_ != null) {
@@ -1082,15 +1420,24 @@ public final class RemoteServiceInterfaceImpl {
           return java.util.Collections.unmodifiableList(value_);
         }
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.Builder addValueBuilder() {
         return getValueFieldBuilder().addBuilder(
             org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.getDefaultInstance());
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.Builder addValueBuilder(
           int index) {
         return getValueFieldBuilder().addBuilder(
             index, org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.getDefaultInstance());
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public java.util.List<org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.Builder> 
            getValueBuilderList() {
         return getValueFieldBuilder().getBuilderList();
@@ -1109,86 +1456,175 @@ public final class RemoteServiceInterfaceImpl {
         }
         return valueBuilder_;
       }
-      
+
       // @@protoc_insertion_point(builder_scope:org.bimserver.pb.GetPrivateProfilesResponse)
     }
-    
+
     static {
       defaultInstance = new GetPrivateProfilesResponse(true);
       defaultInstance.initFields();
     }
-    
+
     // @@protoc_insertion_point(class_scope:org.bimserver.pb.GetPrivateProfilesResponse)
   }
-  
+
   public interface GetPublicProfilesRequestOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
-    
+
     // optional string serviceIdentifier = 1;
+    /**
+     * <code>optional string serviceIdentifier = 1;</code>
+     */
     boolean hasServiceIdentifier();
-    String getServiceIdentifier();
+    /**
+     * <code>optional string serviceIdentifier = 1;</code>
+     */
+    java.lang.String getServiceIdentifier();
+    /**
+     * <code>optional string serviceIdentifier = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdentifierBytes();
   }
+  /**
+   * Protobuf type {@code org.bimserver.pb.GetPublicProfilesRequest}
+   */
   public static final class GetPublicProfilesRequest extends
       com.google.protobuf.GeneratedMessage
       implements GetPublicProfilesRequestOrBuilder {
     // Use GetPublicProfilesRequest.newBuilder() to construct.
-    private GetPublicProfilesRequest(Builder builder) {
+    private GetPublicProfilesRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
+      this.unknownFields = builder.getUnknownFields();
     }
-    private GetPublicProfilesRequest(boolean noInit) {}
-    
+    private GetPublicProfilesRequest(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
     private static final GetPublicProfilesRequest defaultInstance;
     public static GetPublicProfilesRequest getDefaultInstance() {
       return defaultInstance;
     }
-    
+
     public GetPublicProfilesRequest getDefaultInstanceForType() {
       return defaultInstance;
     }
-    
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetPublicProfilesRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              serviceIdentifier_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPublicProfilesRequest_descriptor;
     }
-    
+
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPublicProfilesRequest_fieldAccessorTable;
+      return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPublicProfilesRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest.class, org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest.Builder.class);
     }
-    
+
+    public static com.google.protobuf.Parser<GetPublicProfilesRequest> PARSER =
+        new com.google.protobuf.AbstractParser<GetPublicProfilesRequest>() {
+      public GetPublicProfilesRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetPublicProfilesRequest(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetPublicProfilesRequest> getParserForType() {
+      return PARSER;
+    }
+
     private int bitField0_;
     // optional string serviceIdentifier = 1;
     public static final int SERVICEIDENTIFIER_FIELD_NUMBER = 1;
-    private Object serviceIdentifier_;
+    private java.lang.Object serviceIdentifier_;
+    /**
+     * <code>optional string serviceIdentifier = 1;</code>
+     */
     public boolean hasServiceIdentifier() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public String getServiceIdentifier() {
-      Object ref = serviceIdentifier_;
-      if (ref instanceof String) {
-        return (String) ref;
+    /**
+     * <code>optional string serviceIdentifier = 1;</code>
+     */
+    public java.lang.String getServiceIdentifier() {
+      java.lang.Object ref = serviceIdentifier_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
           serviceIdentifier_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getServiceIdentifierBytes() {
-      Object ref = serviceIdentifier_;
-      if (ref instanceof String) {
+    /**
+     * <code>optional string serviceIdentifier = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdentifierBytes() {
+      java.lang.Object ref = serviceIdentifier_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
         serviceIdentifier_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
-    
+
     private void initFields() {
       serviceIdentifier_ = "";
     }
@@ -1196,11 +1632,11 @@ public final class RemoteServiceInterfaceImpl {
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
-      
+
       memoizedIsInitialized = 1;
       return true;
     }
-    
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -1209,12 +1645,12 @@ public final class RemoteServiceInterfaceImpl {
       }
       getUnknownFields().writeTo(output);
     }
-    
+
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-    
+
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1224,92 +1660,83 @@ public final class RemoteServiceInterfaceImpl {
       memoizedSerializedSize = size;
       return size;
     }
-    
+
+    private static final long serialVersionUID = 0L;
     @java.lang.Override
-    protected Object writeReplace() throws java.io.ObjectStreamException {
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-    
+
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
-    
+
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-    
+
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
+    /**
+     * Protobuf type {@code org.bimserver.pb.GetPublicProfilesRequest}
+     */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
        implements org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequestOrBuilder {
@@ -1317,18 +1744,21 @@ public final class RemoteServiceInterfaceImpl {
           getDescriptor() {
         return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPublicProfilesRequest_descriptor;
       }
-      
+
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPublicProfilesRequest_fieldAccessorTable;
+        return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPublicProfilesRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest.class, org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest.Builder.class);
       }
-      
+
       // Construct using org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-      
-      private Builder(BuilderParent parent) {
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -1339,27 +1769,27 @@ public final class RemoteServiceInterfaceImpl {
       private static Builder create() {
         return new Builder();
       }
-      
+
       public Builder clear() {
         super.clear();
         serviceIdentifier_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
-      
+
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-      
+
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest.getDescriptor();
+        return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPublicProfilesRequest_descriptor;
       }
-      
+
       public org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest getDefaultInstanceForType() {
         return org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest.getDefaultInstance();
       }
-      
+
       public org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest build() {
         org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest result = buildPartial();
         if (!result.isInitialized()) {
@@ -1367,17 +1797,7 @@ public final class RemoteServiceInterfaceImpl {
         }
         return result;
       }
-      
-      private org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest buildParsed()
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(
-            result).asInvalidProtocolBufferException();
-        }
-        return result;
-      }
-      
+
       public org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest buildPartial() {
         org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest result = new org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest(this);
         int from_bitField0_ = bitField0_;
@@ -1390,7 +1810,7 @@ public final class RemoteServiceInterfaceImpl {
         onBuilt();
         return result;
       }
-      
+
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest) {
           return mergeFrom((org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest)other);
@@ -1399,70 +1819,84 @@ public final class RemoteServiceInterfaceImpl {
           return this;
         }
       }
-      
+
       public Builder mergeFrom(org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest other) {
         if (other == org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest.getDefaultInstance()) return this;
         if (other.hasServiceIdentifier()) {
-          setServiceIdentifier(other.getServiceIdentifier());
+          bitField0_ |= 0x00000001;
+          serviceIdentifier_ = other.serviceIdentifier_;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-      
+
       public final boolean isInitialized() {
         return true;
       }
-      
+
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
-        while (true) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
-              onChanged();
-              return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                onChanged();
-                return this;
-              }
-              break;
-            }
-            case 10: {
-              bitField0_ |= 0x00000001;
-              serviceIdentifier_ = input.readBytes();
-              break;
-            }
+        org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
           }
         }
+        return this;
       }
-      
       private int bitField0_;
-      
+
       // optional string serviceIdentifier = 1;
-      private Object serviceIdentifier_ = "";
+      private java.lang.Object serviceIdentifier_ = "";
+      /**
+       * <code>optional string serviceIdentifier = 1;</code>
+       */
       public boolean hasServiceIdentifier() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public String getServiceIdentifier() {
-        Object ref = serviceIdentifier_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+      /**
+       * <code>optional string serviceIdentifier = 1;</code>
+       */
+      public java.lang.String getServiceIdentifier() {
+        java.lang.Object ref = serviceIdentifier_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
           serviceIdentifier_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
-      public Builder setServiceIdentifier(String value) {
+      /**
+       * <code>optional string serviceIdentifier = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdentifierBytes() {
+        java.lang.Object ref = serviceIdentifier_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          serviceIdentifier_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string serviceIdentifier = 1;</code>
+       */
+      public Builder setServiceIdentifier(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1471,128 +1905,269 @@ public final class RemoteServiceInterfaceImpl {
         onChanged();
         return this;
       }
+      /**
+       * <code>optional string serviceIdentifier = 1;</code>
+       */
       public Builder clearServiceIdentifier() {
         bitField0_ = (bitField0_ & ~0x00000001);
         serviceIdentifier_ = getDefaultInstance().getServiceIdentifier();
         onChanged();
         return this;
       }
-      void setServiceIdentifier(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000001;
+      /**
+       * <code>optional string serviceIdentifier = 1;</code>
+       */
+      public Builder setServiceIdentifierBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
         serviceIdentifier_ = value;
         onChanged();
+        return this;
       }
-      
+
       // @@protoc_insertion_point(builder_scope:org.bimserver.pb.GetPublicProfilesRequest)
     }
-    
+
     static {
       defaultInstance = new GetPublicProfilesRequest(true);
       defaultInstance.initFields();
     }
-    
+
     // @@protoc_insertion_point(class_scope:org.bimserver.pb.GetPublicProfilesRequest)
   }
-  
+
   public interface GetPublicProfilesResponseOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
-    
+
     // optional string errorMessage = 1;
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
     boolean hasErrorMessage();
-    String getErrorMessage();
-    
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    java.lang.String getErrorMessage();
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getErrorMessageBytes();
+
     // repeated .org.bimserver.pb.SProfileDescriptor value = 2;
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     java.util.List<org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor> 
         getValueList();
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor getValue(int index);
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     int getValueCount();
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     java.util.List<? extends org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptorOrBuilder> 
         getValueOrBuilderList();
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptorOrBuilder getValueOrBuilder(
         int index);
   }
+  /**
+   * Protobuf type {@code org.bimserver.pb.GetPublicProfilesResponse}
+   */
   public static final class GetPublicProfilesResponse extends
       com.google.protobuf.GeneratedMessage
       implements GetPublicProfilesResponseOrBuilder {
     // Use GetPublicProfilesResponse.newBuilder() to construct.
-    private GetPublicProfilesResponse(Builder builder) {
+    private GetPublicProfilesResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
+      this.unknownFields = builder.getUnknownFields();
     }
-    private GetPublicProfilesResponse(boolean noInit) {}
-    
+    private GetPublicProfilesResponse(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
     private static final GetPublicProfilesResponse defaultInstance;
     public static GetPublicProfilesResponse getDefaultInstance() {
       return defaultInstance;
     }
-    
+
     public GetPublicProfilesResponse getDefaultInstanceForType() {
       return defaultInstance;
     }
-    
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetPublicProfilesResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              errorMessage_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                value_ = new java.util.ArrayList<org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              value_.add(input.readMessage(org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.PARSER, extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          value_ = java.util.Collections.unmodifiableList(value_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPublicProfilesResponse_descriptor;
     }
-    
+
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPublicProfilesResponse_fieldAccessorTable;
+      return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPublicProfilesResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse.class, org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse.Builder.class);
     }
-    
+
+    public static com.google.protobuf.Parser<GetPublicProfilesResponse> PARSER =
+        new com.google.protobuf.AbstractParser<GetPublicProfilesResponse>() {
+      public GetPublicProfilesResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetPublicProfilesResponse(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetPublicProfilesResponse> getParserForType() {
+      return PARSER;
+    }
+
     private int bitField0_;
     // optional string errorMessage = 1;
     public static final int ERRORMESSAGE_FIELD_NUMBER = 1;
-    private Object errorMessage_;
+    private java.lang.Object errorMessage_;
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
     public boolean hasErrorMessage() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public String getErrorMessage() {
-      Object ref = errorMessage_;
-      if (ref instanceof String) {
-        return (String) ref;
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    public java.lang.String getErrorMessage() {
+      java.lang.Object ref = errorMessage_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
           errorMessage_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getErrorMessageBytes() {
-      Object ref = errorMessage_;
-      if (ref instanceof String) {
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getErrorMessageBytes() {
+      java.lang.Object ref = errorMessage_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
         errorMessage_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
-    
+
     // repeated .org.bimserver.pb.SProfileDescriptor value = 2;
     public static final int VALUE_FIELD_NUMBER = 2;
     private java.util.List<org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor> value_;
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     public java.util.List<org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor> getValueList() {
       return value_;
     }
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     public java.util.List<? extends org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptorOrBuilder> 
         getValueOrBuilderList() {
       return value_;
     }
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     public int getValueCount() {
       return value_.size();
     }
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     public org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor getValue(int index) {
       return value_.get(index);
     }
+    /**
+     * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+     */
     public org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptorOrBuilder getValueOrBuilder(
         int index) {
       return value_.get(index);
     }
-    
+
     private void initFields() {
       errorMessage_ = "";
       value_ = java.util.Collections.emptyList();
@@ -1601,11 +2176,11 @@ public final class RemoteServiceInterfaceImpl {
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
-      
+
       memoizedIsInitialized = 1;
       return true;
     }
-    
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -1617,12 +2192,12 @@ public final class RemoteServiceInterfaceImpl {
       }
       getUnknownFields().writeTo(output);
     }
-    
+
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-    
+
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1636,92 +2211,83 @@ public final class RemoteServiceInterfaceImpl {
       memoizedSerializedSize = size;
       return size;
     }
-    
+
+    private static final long serialVersionUID = 0L;
     @java.lang.Override
-    protected Object writeReplace() throws java.io.ObjectStreamException {
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-    
+
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data).buildParsed();
+      return PARSER.parseFrom(data);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return newBuilder().mergeFrom(data, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(data, extensionRegistry);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      Builder builder = newBuilder();
-      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
-        return builder.buildParsed();
-      } else {
-        return null;
-      }
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input).buildParsed();
+      return PARSER.parseFrom(input);
     }
     public static org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return newBuilder().mergeFrom(input, extensionRegistry)
-               .buildParsed();
+      return PARSER.parseFrom(input, extensionRegistry);
     }
-    
+
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-    
+
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
+    /**
+     * Protobuf type {@code org.bimserver.pb.GetPublicProfilesResponse}
+     */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
        implements org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponseOrBuilder {
@@ -1729,18 +2295,21 @@ public final class RemoteServiceInterfaceImpl {
           getDescriptor() {
         return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPublicProfilesResponse_descriptor;
       }
-      
+
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPublicProfilesResponse_fieldAccessorTable;
+        return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPublicProfilesResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse.class, org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse.Builder.class);
       }
-      
+
       // Construct using org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-      
-      private Builder(BuilderParent parent) {
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -1752,7 +2321,7 @@ public final class RemoteServiceInterfaceImpl {
       private static Builder create() {
         return new Builder();
       }
-      
+
       public Builder clear() {
         super.clear();
         errorMessage_ = "";
@@ -1765,20 +2334,20 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
-      
+
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-      
+
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse.getDescriptor();
+        return org.bimserver.pb.RemoteServiceInterfaceImpl.internal_static_org_bimserver_pb_GetPublicProfilesResponse_descriptor;
       }
-      
+
       public org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse getDefaultInstanceForType() {
         return org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse.getDefaultInstance();
       }
-      
+
       public org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse build() {
         org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse result = buildPartial();
         if (!result.isInitialized()) {
@@ -1786,17 +2355,7 @@ public final class RemoteServiceInterfaceImpl {
         }
         return result;
       }
-      
-      private org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse buildParsed()
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(
-            result).asInvalidProtocolBufferException();
-        }
-        return result;
-      }
-      
+
       public org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse buildPartial() {
         org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse result = new org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse(this);
         int from_bitField0_ = bitField0_;
@@ -1818,7 +2377,7 @@ public final class RemoteServiceInterfaceImpl {
         onBuilt();
         return result;
       }
-      
+
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse) {
           return mergeFrom((org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse)other);
@@ -1827,11 +2386,13 @@ public final class RemoteServiceInterfaceImpl {
           return this;
         }
       }
-      
+
       public Builder mergeFrom(org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse other) {
         if (other == org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse.getDefaultInstance()) return this;
         if (other.hasErrorMessage()) {
-          setErrorMessage(other.getErrorMessage());
+          bitField0_ |= 0x00000001;
+          errorMessage_ = other.errorMessage_;
+          onChanged();
         }
         if (valueBuilder_ == null) {
           if (!other.value_.isEmpty()) {
@@ -1862,67 +2423,73 @@ public final class RemoteServiceInterfaceImpl {
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-      
+
       public final boolean isInitialized() {
         return true;
       }
-      
+
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder(
-            this.getUnknownFields());
-        while (true) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              this.setUnknownFields(unknownFields.build());
-              onChanged();
-              return this;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                this.setUnknownFields(unknownFields.build());
-                onChanged();
-                return this;
-              }
-              break;
-            }
-            case 10: {
-              bitField0_ |= 0x00000001;
-              errorMessage_ = input.readBytes();
-              break;
-            }
-            case 18: {
-              org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.Builder subBuilder = org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.newBuilder();
-              input.readMessage(subBuilder, extensionRegistry);
-              addValue(subBuilder.buildPartial());
-              break;
-            }
+        org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
           }
         }
+        return this;
       }
-      
       private int bitField0_;
-      
+
       // optional string errorMessage = 1;
-      private Object errorMessage_ = "";
+      private java.lang.Object errorMessage_ = "";
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
       public boolean hasErrorMessage() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public String getErrorMessage() {
-        Object ref = errorMessage_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public java.lang.String getErrorMessage() {
+        java.lang.Object ref = errorMessage_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
           errorMessage_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
-      public Builder setErrorMessage(String value) {
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getErrorMessageBytes() {
+        java.lang.Object ref = errorMessage_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          errorMessage_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public Builder setErrorMessage(
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1931,18 +2498,29 @@ public final class RemoteServiceInterfaceImpl {
         onChanged();
         return this;
       }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
       public Builder clearErrorMessage() {
         bitField0_ = (bitField0_ & ~0x00000001);
         errorMessage_ = getDefaultInstance().getErrorMessage();
         onChanged();
         return this;
       }
-      void setErrorMessage(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000001;
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public Builder setErrorMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
         errorMessage_ = value;
         onChanged();
+        return this;
       }
-      
+
       // repeated .org.bimserver.pb.SProfileDescriptor value = 2;
       private java.util.List<org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor> value_ =
         java.util.Collections.emptyList();
@@ -1952,10 +2530,13 @@ public final class RemoteServiceInterfaceImpl {
           bitField0_ |= 0x00000002;
          }
       }
-      
+
       private com.google.protobuf.RepeatedFieldBuilder<
           org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor, org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.Builder, org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptorOrBuilder> valueBuilder_;
-      
+
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public java.util.List<org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor> getValueList() {
         if (valueBuilder_ == null) {
           return java.util.Collections.unmodifiableList(value_);
@@ -1963,6 +2544,9 @@ public final class RemoteServiceInterfaceImpl {
           return valueBuilder_.getMessageList();
         }
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public int getValueCount() {
         if (valueBuilder_ == null) {
           return value_.size();
@@ -1970,6 +2554,9 @@ public final class RemoteServiceInterfaceImpl {
           return valueBuilder_.getCount();
         }
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor getValue(int index) {
         if (valueBuilder_ == null) {
           return value_.get(index);
@@ -1977,6 +2564,9 @@ public final class RemoteServiceInterfaceImpl {
           return valueBuilder_.getMessage(index);
         }
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public Builder setValue(
           int index, org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor value) {
         if (valueBuilder_ == null) {
@@ -1991,6 +2581,9 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public Builder setValue(
           int index, org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.Builder builderForValue) {
         if (valueBuilder_ == null) {
@@ -2002,6 +2595,9 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public Builder addValue(org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor value) {
         if (valueBuilder_ == null) {
           if (value == null) {
@@ -2015,6 +2611,9 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public Builder addValue(
           int index, org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor value) {
         if (valueBuilder_ == null) {
@@ -2029,6 +2628,9 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public Builder addValue(
           org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.Builder builderForValue) {
         if (valueBuilder_ == null) {
@@ -2040,6 +2642,9 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public Builder addValue(
           int index, org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.Builder builderForValue) {
         if (valueBuilder_ == null) {
@@ -2051,6 +2656,9 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public Builder addAllValue(
           java.lang.Iterable<? extends org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor> values) {
         if (valueBuilder_ == null) {
@@ -2062,6 +2670,9 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public Builder clearValue() {
         if (valueBuilder_ == null) {
           value_ = java.util.Collections.emptyList();
@@ -2072,6 +2683,9 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public Builder removeValue(int index) {
         if (valueBuilder_ == null) {
           ensureValueIsMutable();
@@ -2082,10 +2696,16 @@ public final class RemoteServiceInterfaceImpl {
         }
         return this;
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.Builder getValueBuilder(
           int index) {
         return getValueFieldBuilder().getBuilder(index);
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptorOrBuilder getValueOrBuilder(
           int index) {
         if (valueBuilder_ == null) {
@@ -2093,6 +2713,9 @@ public final class RemoteServiceInterfaceImpl {
           return valueBuilder_.getMessageOrBuilder(index);
         }
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public java.util.List<? extends org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptorOrBuilder> 
            getValueOrBuilderList() {
         if (valueBuilder_ != null) {
@@ -2101,15 +2724,24 @@ public final class RemoteServiceInterfaceImpl {
           return java.util.Collections.unmodifiableList(value_);
         }
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.Builder addValueBuilder() {
         return getValueFieldBuilder().addBuilder(
             org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.getDefaultInstance());
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.Builder addValueBuilder(
           int index) {
         return getValueFieldBuilder().addBuilder(
             index, org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.getDefaultInstance());
       }
+      /**
+       * <code>repeated .org.bimserver.pb.SProfileDescriptor value = 2;</code>
+       */
       public java.util.List<org.bimserver.pb.ServiceInterfaceImpl.SProfileDescriptor.Builder> 
            getValueBuilderList() {
         return getValueFieldBuilder().getBuilderList();
@@ -2128,45 +2760,60 @@ public final class RemoteServiceInterfaceImpl {
         }
         return valueBuilder_;
       }
-      
+
       // @@protoc_insertion_point(builder_scope:org.bimserver.pb.GetPublicProfilesResponse)
     }
-    
+
     static {
       defaultInstance = new GetPublicProfilesResponse(true);
       defaultInstance.initFields();
     }
-    
+
     // @@protoc_insertion_point(class_scope:org.bimserver.pb.GetPublicProfilesResponse)
   }
-  
+
+  /**
+   * Protobuf service {@code org.bimserver.pb.RemoteServiceInterface}
+   */
   public static abstract class RemoteServiceInterface
       implements com.google.protobuf.Service {
     protected RemoteServiceInterface() {}
-    
+
     public interface Interface {
+      /**
+       * <code>rpc getPrivateProfiles(.org.bimserver.pb.GetPrivateProfilesRequest) returns (.org.bimserver.pb.GetPrivateProfilesResponse);</code>
+       */
       public abstract void getPrivateProfiles(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse> done);
-      
+
+      /**
+       * <code>rpc getPublicProfiles(.org.bimserver.pb.GetPublicProfilesRequest) returns (.org.bimserver.pb.GetPublicProfilesResponse);</code>
+       */
       public abstract void getPublicProfiles(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse> done);
-      
+
+      /**
+       * <code>rpc getService(.org.bimserver.pb.GetServiceRequest) returns (.org.bimserver.pb.GetServiceResponse);</code>
+       */
       public abstract void getService(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.ServiceInterfaceImpl.GetServiceRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.GetServiceResponse> done);
-      
+
+      /**
+       * <code>rpc newRevision(.org.bimserver.pb.NewRevisionRequest) returns (.org.bimserver.pb.VoidResponse);</code>
+       */
       public abstract void newRevision(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
-      
+
     }
-    
+
     public static com.google.protobuf.Service newReflectiveService(
         final Interface impl) {
       return new RemoteServiceInterface() {
@@ -2177,7 +2824,7 @@ public final class RemoteServiceInterfaceImpl {
             com.google.protobuf.RpcCallback<org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse> done) {
           impl.getPrivateProfiles(controller, request, done);
         }
-        
+
         @java.lang.Override
         public  void getPublicProfiles(
             com.google.protobuf.RpcController controller,
@@ -2185,7 +2832,7 @@ public final class RemoteServiceInterfaceImpl {
             com.google.protobuf.RpcCallback<org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse> done) {
           impl.getPublicProfiles(controller, request, done);
         }
-        
+
         @java.lang.Override
         public  void getService(
             com.google.protobuf.RpcController controller,
@@ -2193,7 +2840,7 @@ public final class RemoteServiceInterfaceImpl {
             com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.GetServiceResponse> done) {
           impl.getService(controller, request, done);
         }
-        
+
         @java.lang.Override
         public  void newRevision(
             com.google.protobuf.RpcController controller,
@@ -2201,10 +2848,10 @@ public final class RemoteServiceInterfaceImpl {
             com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
           impl.newRevision(controller, request, done);
         }
-        
+
       };
     }
-    
+
     public static com.google.protobuf.BlockingService
         newReflectiveBlockingService(final BlockingInterface impl) {
       return new com.google.protobuf.BlockingService() {
@@ -2212,7 +2859,7 @@ public final class RemoteServiceInterfaceImpl {
             getDescriptorForType() {
           return getDescriptor();
         }
-        
+
         public final com.google.protobuf.Message callBlockingMethod(
             com.google.protobuf.Descriptors.MethodDescriptor method,
             com.google.protobuf.RpcController controller,
@@ -2236,7 +2883,7 @@ public final class RemoteServiceInterfaceImpl {
               throw new java.lang.AssertionError("Can't get here.");
           }
         }
-        
+
         public final com.google.protobuf.Message
             getRequestPrototype(
             com.google.protobuf.Descriptors.MethodDescriptor method) {
@@ -2258,7 +2905,7 @@ public final class RemoteServiceInterfaceImpl {
               throw new java.lang.AssertionError("Can't get here.");
           }
         }
-        
+
         public final com.google.protobuf.Message
             getResponsePrototype(
             com.google.protobuf.Descriptors.MethodDescriptor method) {
@@ -2280,30 +2927,42 @@ public final class RemoteServiceInterfaceImpl {
               throw new java.lang.AssertionError("Can't get here.");
           }
         }
-        
+
       };
     }
-    
+
+    /**
+     * <code>rpc getPrivateProfiles(.org.bimserver.pb.GetPrivateProfilesRequest) returns (.org.bimserver.pb.GetPrivateProfilesResponse);</code>
+     */
     public abstract void getPrivateProfiles(
         com.google.protobuf.RpcController controller,
         org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest request,
         com.google.protobuf.RpcCallback<org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse> done);
-    
+
+    /**
+     * <code>rpc getPublicProfiles(.org.bimserver.pb.GetPublicProfilesRequest) returns (.org.bimserver.pb.GetPublicProfilesResponse);</code>
+     */
     public abstract void getPublicProfiles(
         com.google.protobuf.RpcController controller,
         org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest request,
         com.google.protobuf.RpcCallback<org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse> done);
-    
+
+    /**
+     * <code>rpc getService(.org.bimserver.pb.GetServiceRequest) returns (.org.bimserver.pb.GetServiceResponse);</code>
+     */
     public abstract void getService(
         com.google.protobuf.RpcController controller,
         org.bimserver.pb.ServiceInterfaceImpl.GetServiceRequest request,
         com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.GetServiceResponse> done);
-    
+
+    /**
+     * <code>rpc newRevision(.org.bimserver.pb.NewRevisionRequest) returns (.org.bimserver.pb.VoidResponse);</code>
+     */
     public abstract void newRevision(
         com.google.protobuf.RpcController controller,
         org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest request,
         com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
-    
+
     public static final
         com.google.protobuf.Descriptors.ServiceDescriptor
         getDescriptor() {
@@ -2313,7 +2972,7 @@ public final class RemoteServiceInterfaceImpl {
         getDescriptorForType() {
       return getDescriptor();
     }
-    
+
     public final void callMethod(
         com.google.protobuf.Descriptors.MethodDescriptor method,
         com.google.protobuf.RpcController controller,
@@ -2350,7 +3009,7 @@ public final class RemoteServiceInterfaceImpl {
           throw new java.lang.AssertionError("Can't get here.");
       }
     }
-    
+
     public final com.google.protobuf.Message
         getRequestPrototype(
         com.google.protobuf.Descriptors.MethodDescriptor method) {
@@ -2372,7 +3031,7 @@ public final class RemoteServiceInterfaceImpl {
           throw new java.lang.AssertionError("Can't get here.");
       }
     }
-    
+
     public final com.google.protobuf.Message
         getResponsePrototype(
         com.google.protobuf.Descriptors.MethodDescriptor method) {
@@ -2394,23 +3053,23 @@ public final class RemoteServiceInterfaceImpl {
           throw new java.lang.AssertionError("Can't get here.");
       }
     }
-    
+
     public static Stub newStub(
         com.google.protobuf.RpcChannel channel) {
       return new Stub(channel);
     }
-    
+
     public static final class Stub extends org.bimserver.pb.RemoteServiceInterfaceImpl.RemoteServiceInterface implements Interface {
       private Stub(com.google.protobuf.RpcChannel channel) {
         this.channel = channel;
       }
-      
+
       private final com.google.protobuf.RpcChannel channel;
-      
+
       public com.google.protobuf.RpcChannel getChannel() {
         return channel;
       }
-      
+
       public  void getPrivateProfiles(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest request,
@@ -2425,7 +3084,7 @@ public final class RemoteServiceInterfaceImpl {
             org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse.class,
             org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse.getDefaultInstance()));
       }
-      
+
       public  void getPublicProfiles(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest request,
@@ -2440,7 +3099,7 @@ public final class RemoteServiceInterfaceImpl {
             org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse.class,
             org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse.getDefaultInstance()));
       }
-      
+
       public  void getService(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.ServiceInterfaceImpl.GetServiceRequest request,
@@ -2455,7 +3114,7 @@ public final class RemoteServiceInterfaceImpl {
             org.bimserver.pb.ServiceInterfaceImpl.GetServiceResponse.class,
             org.bimserver.pb.ServiceInterfaceImpl.GetServiceResponse.getDefaultInstance()));
       }
-      
+
       public  void newRevision(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest request,
@@ -2471,41 +3130,41 @@ public final class RemoteServiceInterfaceImpl {
             org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance()));
       }
     }
-    
+
     public static BlockingInterface newBlockingStub(
         com.google.protobuf.BlockingRpcChannel channel) {
       return new BlockingStub(channel);
     }
-    
+
     public interface BlockingInterface {
       public org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse getPrivateProfiles(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest request)
           throws com.google.protobuf.ServiceException;
-      
+
       public org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse getPublicProfiles(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest request)
           throws com.google.protobuf.ServiceException;
-      
+
       public org.bimserver.pb.ServiceInterfaceImpl.GetServiceResponse getService(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.ServiceInterfaceImpl.GetServiceRequest request)
           throws com.google.protobuf.ServiceException;
-      
+
       public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse newRevision(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest request)
           throws com.google.protobuf.ServiceException;
     }
-    
+
     private static final class BlockingStub implements BlockingInterface {
       private BlockingStub(com.google.protobuf.BlockingRpcChannel channel) {
         this.channel = channel;
       }
-      
+
       private final com.google.protobuf.BlockingRpcChannel channel;
-      
+
       public org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse getPrivateProfiles(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest request)
@@ -2516,8 +3175,8 @@ public final class RemoteServiceInterfaceImpl {
           request,
           org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse.getDefaultInstance());
       }
-      
-      
+
+
       public org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse getPublicProfiles(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest request)
@@ -2528,8 +3187,8 @@ public final class RemoteServiceInterfaceImpl {
           request,
           org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse.getDefaultInstance());
       }
-      
-      
+
+
       public org.bimserver.pb.ServiceInterfaceImpl.GetServiceResponse getService(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.ServiceInterfaceImpl.GetServiceRequest request)
@@ -2540,8 +3199,8 @@ public final class RemoteServiceInterfaceImpl {
           request,
           org.bimserver.pb.ServiceInterfaceImpl.GetServiceResponse.getDefaultInstance());
       }
-      
-      
+
+
       public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse newRevision(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.NotificationInterfaceImpl.NewRevisionRequest request)
@@ -2552,10 +3211,12 @@ public final class RemoteServiceInterfaceImpl {
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
       }
-      
+
     }
+
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.RemoteServiceInterface)
   }
-  
+
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_org_bimserver_pb_GetPrivateProfilesRequest_descriptor;
   private static
@@ -2576,7 +3237,7 @@ public final class RemoteServiceInterfaceImpl {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_bimserver_pb_GetPublicProfilesResponse_fieldAccessorTable;
-  
+
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
@@ -2618,33 +3279,25 @@ public final class RemoteServiceInterfaceImpl {
           internal_static_org_bimserver_pb_GetPrivateProfilesRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetPrivateProfilesRequest_descriptor,
-              new java.lang.String[] { "ServiceIdentifier", "Token", },
-              org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest.class,
-              org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesRequest.Builder.class);
+              new java.lang.String[] { "ServiceIdentifier", "Token", });
           internal_static_org_bimserver_pb_GetPrivateProfilesResponse_descriptor =
             getDescriptor().getMessageTypes().get(1);
           internal_static_org_bimserver_pb_GetPrivateProfilesResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetPrivateProfilesResponse_descriptor,
-              new java.lang.String[] { "ErrorMessage", "Value", },
-              org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse.class,
-              org.bimserver.pb.RemoteServiceInterfaceImpl.GetPrivateProfilesResponse.Builder.class);
+              new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetPublicProfilesRequest_descriptor =
             getDescriptor().getMessageTypes().get(2);
           internal_static_org_bimserver_pb_GetPublicProfilesRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetPublicProfilesRequest_descriptor,
-              new java.lang.String[] { "ServiceIdentifier", },
-              org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest.class,
-              org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesRequest.Builder.class);
+              new java.lang.String[] { "ServiceIdentifier", });
           internal_static_org_bimserver_pb_GetPublicProfilesResponse_descriptor =
             getDescriptor().getMessageTypes().get(3);
           internal_static_org_bimserver_pb_GetPublicProfilesResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetPublicProfilesResponse_descriptor,
-              new java.lang.String[] { "ErrorMessage", "Value", },
-              org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse.class,
-              org.bimserver.pb.RemoteServiceInterfaceImpl.GetPublicProfilesResponse.Builder.class);
+              new java.lang.String[] { "ErrorMessage", "Value", });
           return null;
         }
       };
@@ -2655,6 +3308,6 @@ public final class RemoteServiceInterfaceImpl {
           org.bimserver.pb.NotificationInterfaceImpl.getDescriptor(),
         }, assigner);
   }
-  
+
   // @@protoc_insertion_point(outer_class_scope)
 }

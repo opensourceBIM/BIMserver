@@ -19,8 +19,6 @@ package org.bimserver.test.framework.actions;
 
 import java.util.Random;
 
-import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
 import org.bimserver.test.framework.VirtualUser;
 

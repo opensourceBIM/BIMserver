@@ -1,5 +1,5 @@
 
-àM
+ÏV
 lowlevelservice.protoorg.bimserver.pbservice.protonotification.protoremoteservice.protoadminservice.protoauthservice.protosettingsservice.proto"&
 AbortTransactionRequest
 tid ("\
@@ -237,7 +237,37 @@
 tid (
 oid (
 attributeName (	
-value (	"'
+value (	"q
+!SetWrappedBooleanAttributeRequest
+tid (
+oid (
+attributeName (	
+type (	
+value ("p
+ SetWrappedDoubleAttributeRequest
+tid (
+oid (
+attributeName (	
+type (	
+value ("q
+!SetWrappedIntegerAttributeRequest
+tid (
+oid (
+attributeName (	
+type (	
+value ("n
+SetWrappedLongAttributeRequest
+tid (
+oid (
+attributeName (	
+type (	
+value ("p
+ SetWrappedStringAttributeRequest
+tid (
+oid (
+attributeName (	
+type (	
+value (	"'
 StartTransactionRequest
 poid ("?
 StartTransactionResponse
@@ -250,7 +280,7 @@
 UnsetReferenceRequest
 tid (
 oid (
-referenceName (	2Î$
+referenceName (	2ƒ)
 LowLevelInterface]
 abortTransaction).org.bimserver.pb.AbortTransactionRequest.org.bimserver.pb.VoidResponsec
 addBooleanAttribute,.org.bimserver.pb.AddBooleanAttributeRequest.org.bimserver.pb.VoidResponsea
@@ -293,7 +323,12 @@
 setLongAttribute).org.bimserver.pb.SetLongAttributeRequest.org.bimserver.pb.VoidResponse_
 setLongAttributes*.org.bimserver.pb.SetLongAttributesRequest.org.bimserver.pb.VoidResponseU
 setReference%.org.bimserver.pb.SetReferenceRequest.org.bimserver.pb.VoidResponsea
-setStringAttribute+.org.bimserver.pb.SetStringAttributeRequest.org.bimserver.pb.VoidResponsei
+setStringAttribute+.org.bimserver.pb.SetStringAttributeRequest.org.bimserver.pb.VoidResponseq
+setWrappedBooleanAttribute3.org.bimserver.pb.SetWrappedBooleanAttributeRequest.org.bimserver.pb.VoidResponseo
+setWrappedDoubleAttribute2.org.bimserver.pb.SetWrappedDoubleAttributeRequest.org.bimserver.pb.VoidResponseq
+setWrappedIntegerAttribute3.org.bimserver.pb.SetWrappedIntegerAttributeRequest.org.bimserver.pb.VoidResponsek
+setWrappedLongAttribute0.org.bimserver.pb.SetWrappedLongAttributeRequest.org.bimserver.pb.VoidResponseo
+setWrappedStringAttribute2.org.bimserver.pb.SetWrappedStringAttributeRequest.org.bimserver.pb.VoidResponsei
 startTransaction).org.bimserver.pb.StartTransactionRequest*.org.bimserver.pb.StartTransactionResponseY
 unsetAttribute'.org.bimserver.pb.UnsetAttributeRequest.org.bimserver.pb.VoidResponseY
 unsetReference'.org.bimserver.pb.UnsetReferenceRequest.org.bimserver.pb.VoidResponseBBLowLevelInterfaceImplHˆ

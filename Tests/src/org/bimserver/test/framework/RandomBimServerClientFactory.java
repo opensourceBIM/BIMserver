@@ -29,7 +29,12 @@ import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.AdminInterface;
+import org.bimserver.shared.interfaces.AuthInterface;
+import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.interfaces.SettingsInterface;
+import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.reflector.ReflectorBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
@@ -61,10 +66,14 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 		}
 		SServicesMap servicesMap = new SServicesMap();
 		servicesMap.add(new SServiceInterfaceService(null, ServiceInterface.class));
+		servicesMap.add(new SService(null, AuthInterface.class));
+		servicesMap.add(new SService(null, LowLevelInterface.class));
+		servicesMap.add(new SService(null, SettingsInterface.class));
+		servicesMap.add(new SService(null, AdminInterface.class));
 		
 		ReflectorFactory reflectorFactory = new ReflectorBuilder(servicesMap).newReflectorFactory();
 		
-		jsonBimServerClientFactory = new JsonBimServerClientFactory("http://localhost:8080", servicesMap, new JsonSocketReflectorFactory(servicesMap), null); // TODO
+		jsonBimServerClientFactory = new JsonBimServerClientFactory("http://localhost:8080", servicesMap, new JsonSocketReflectorFactory(servicesMap), reflectorFactory);
 		protocolBuffersBimServerClientFactory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, servicesMap, reflectorFactory);
 		soapBimServerClientFactory = new SoapBimServerClientFactory("http://localhost:8080", servicesMap);
 	}

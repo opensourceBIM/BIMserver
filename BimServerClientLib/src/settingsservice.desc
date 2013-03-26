@@ -11,15 +11,15 @@
 "allowUsersToCreateTopLevelProjects (
 serviceRepositoryUrl (	
 
-webModules (
-rid	 (
-allowSelfRegistration
- (
+webModules (
+whitelistedDomains	 (	
+rid
+ (
+allowSelfRegistration (
 
-smtpServer (	
-whitelistedDomains (	
-oid (
-cacheOutputFiles (
+smtpServer (	
+cacheOutputFiles (
+oid (
 emailSenderAddress (	
 hideUserListForNonAdmin (
 emailSenderName (	
