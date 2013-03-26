@@ -98,14 +98,14 @@ public class CodeMigrator {
 		LOGGER.info("Generating protocol buffers file and classes...");
 		protocolBuffersGenerator = new ProtocolBuffersGenerator();
 
-		generateFiles(ServiceInterface.class, "service");
-		generateFiles(NotificationInterface.class, "notification");
-		generateFiles(RemoteServiceInterface.class, "remoteservice");
-		generateFiles(AdminInterface.class, "adminservice");
-		generateFiles(AuthInterface.class, "authservice");
-		generateFiles(SettingsInterface.class, "settingsservice");
-		generateFiles(LowLevelInterface.class, "lowlevelservice");
-		generateFiles(MetaInterface.class, "metaservice");
+		generateFiles(ServiceInterface.class);
+		generateFiles(NotificationInterface.class);
+		generateFiles(RemoteServiceInterface.class);
+		generateFiles(AdminInterface.class);
+		generateFiles(AuthInterface.class);
+		generateFiles(SettingsInterface.class);
+		generateFiles(LowLevelInterface.class);
+		generateFiles(MetaInterface.class);
 
 		SPackageGeneratorWrapper sPackageGeneratorWrapper = new SPackageGeneratorWrapper();
 		sPackageGeneratorWrapper.generate(ePackages);
@@ -115,21 +115,21 @@ public class CodeMigrator {
 		LOGGER.info("Migration successfull");
 	}
 
-	private void generateFiles(Class<?> interfaceClass, String shortName) {
+	private void generateFiles(Class<?> interfaceClass) {
 		try {
 			File javaFile = new File("../Shared/src/org/bimserver/shared/interfaces/" + interfaceClass.getSimpleName() + ".java");
 			SService service = new SService(FileUtils.readFileToString(javaFile), interfaceClass, knownServices);
 			AdaptorGeneratorWrapper adaptorGeneratorWrapper = new AdaptorGeneratorWrapper();
 			adaptorGeneratorWrapper.generate(interfaceClass, service);
-			File protoFile = new File("../Builds/build/pb/" + shortName + ".proto");
-			File descFile = new File("../Builds/build/pb/" + shortName + ".desc");
+			File protoFile = new File("../Builds/build/pb/" + interfaceClass.getSimpleName() + ".proto");
+			File descFile = new File("../Builds/build/pb/" + interfaceClass.getSimpleName() + ".desc");
 			protocolBuffersGenerator.generate(interfaceClass, protoFile, descFile, this.knownServices.isEmpty(), service, knownShortNames);
 			FileUtils.copyFile(javaFile, new File("../Builds/build/targets/shared/" + interfaceClass.getSimpleName() + ".java"));
-			FileUtils.copyFile(protoFile, new File("../Builds/build/targets/shared/" + shortName + ".proto"));
-			FileUtils.copyFile(descFile, new File("../Builds/build/targets/shared/" + shortName + ".desc"));
-			FileUtils.copyFile(descFile, new File("../BimServerClientLib/src/" + shortName + ".desc"));
+			FileUtils.copyFile(protoFile, new File("../Builds/build/targets/shared/" + interfaceClass.getSimpleName() + ".proto"));
+			FileUtils.copyFile(descFile, new File("../Builds/build/targets/shared/" + interfaceClass.getSimpleName() + ".desc"));
+			FileUtils.copyFile(descFile, new File("../BimServerClientLib/src/" + interfaceClass.getSimpleName() + ".desc"));
 			this.knownServices .add(service);
-			this.knownShortNames.add(shortName);
+			this.knownShortNames.add(interfaceClass.getSimpleName());
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		}

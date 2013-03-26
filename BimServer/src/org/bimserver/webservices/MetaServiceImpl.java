@@ -29,6 +29,7 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 		for (String name : getBimServer().getServicesMap().keySetName()) {
 			SServiceInterface sServiceInterface = new SServiceInterface();
 			sServiceInterface.setName(name);
+			sServiceInterface.setSimpleName(getBimServer().getServicesMap().getByName(name).getSimpleName());
 			sServiceInterfaces.add(sServiceInterface);
 		}
 		return sServiceInterfaces;

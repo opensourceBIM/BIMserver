@@ -154,8 +154,8 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	
 
 	@Override
-	public String getProtocolBuffersFile() throws ServerException, UserException {
-		File file = getBimServer().getResourceFetcher().getFile("service.proto");
+	public String getProtocolBuffersFile(String interfaceName) throws ServerException, UserException {
+		File file = getBimServer().getResourceFetcher().getFile(interfaceName + ".proto");
 		try {
 			return FileUtils.readFileToString(file);
 		} catch (IOException e) {
@@ -220,9 +220,9 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	@Override
 	public void setup(String siteAddress, String smtpServer, String smtpSender, String adminName, String adminUsername, String adminPassword) throws ServerException, UserException {
 		SettingsInterface settingsInterface = getServiceMap().get(SettingsInterface.class);
-		settingsInterface.setSettingSmtpServer(smtpServer);
-		settingsInterface.setSettingSiteAddress(siteAddress);
-		settingsInterface.setSettingEmailSenderAddress(smtpSender);
+		settingsInterface.setSmtpServer(smtpServer);
+		settingsInterface.setSiteAddress(siteAddress);
+		settingsInterface.setEmailSenderAddress(smtpSender);
 
 		if (adminUsername.trim().isEmpty()) {
 			throw new UserException("Admin Username cannot be empty");

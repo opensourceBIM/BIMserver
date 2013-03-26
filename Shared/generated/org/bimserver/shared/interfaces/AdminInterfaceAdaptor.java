@@ -67,7 +67,7 @@ public class AdminInterfaceAdaptor implements AdminInterface {
 		return null;
 	}
 	
-	public java.lang.String getProtocolBuffersFile() throws UserException, ServerException {
+	public java.lang.String getProtocolBuffersFile(java.lang.String interfaceName) throws UserException, ServerException {
 		return null;
 	}
 	

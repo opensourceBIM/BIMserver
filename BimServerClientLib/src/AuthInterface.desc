@@ -1,0 +1,46 @@
+
+”
+AuthInterface.protoorg.bimserver.pbServiceInterface.protoNotificationInterface.protoRemoteServiceInterface.protoAdminInterface.proto"2
+AutologinRequest
+username (	
+hash (	"8
+AutologinResponse
+errorMessage (	
+value (	"
+GetAccessMethodRequest"_
+GetAccessMethodResponse
+errorMessage (	.
+value (2.org.bimserver.pb.SAccessMethod"
+GetCurrentUserRequest"V
+GetCurrentUserResponse
+errorMessage (	&
+value (2.org.bimserver.pb.SUser"
+GetLoggedInUserRequest"W
+GetLoggedInUserResponse
+errorMessage (	&
+value (2.org.bimserver.pb.SUser"
+GetRemoteAddressRequest"?
+GetRemoteAddressResponse
+errorMessage (	
+value (	"
+IsLoggedInRequest"9
+IsLoggedInResponse
+errorMessage (	
+value ("2
+LoginRequest
+username (	
+password (	"4
+LoginResponse
+errorMessage (	
+value (	"
+LogoutRequest2ó
+AuthInterfaceT
+	autologin".org.bimserver.pb.AutologinRequest#.org.bimserver.pb.AutologinResponsef
+getAccessMethod(.org.bimserver.pb.GetAccessMethodRequest).org.bimserver.pb.GetAccessMethodResponsec
+getCurrentUser'.org.bimserver.pb.GetCurrentUserRequest(.org.bimserver.pb.GetCurrentUserResponsef
+getLoggedInUser(.org.bimserver.pb.GetLoggedInUserRequest).org.bimserver.pb.GetLoggedInUserResponsei
+getRemoteAddress).org.bimserver.pb.GetRemoteAddressRequest*.org.bimserver.pb.GetRemoteAddressResponseW
+
+isLoggedIn#.org.bimserver.pb.IsLoggedInRequest$.org.bimserver.pb.IsLoggedInResponseH
+login.org.bimserver.pb.LoginRequest.org.bimserver.pb.LoginResponseI
+logout.org.bimserver.pb.LogoutRequest.org.bimserver.pb.VoidResponseBBAuthInterfaceImplHˆ

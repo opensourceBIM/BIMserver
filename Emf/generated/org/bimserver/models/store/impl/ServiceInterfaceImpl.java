@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.ServiceInterfaceImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServiceInterfaceImpl#getSimpleName <em>Simple Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -80,6 +81,24 @@ public class ServiceInterfaceImpl extends IdEObjectImpl implements ServiceInterf
 	 */
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.SERVICE_INTERFACE__NAME, newName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSimpleName() {
+		return (String) eGet(StorePackage.Literals.SERVICE_INTERFACE__SIMPLE_NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSimpleName(String newSimpleName) {
+		eSet(StorePackage.Literals.SERVICE_INTERFACE__SIMPLE_NAME, newSimpleName);
 	}
 
 } //ServiceInterfaceImpl

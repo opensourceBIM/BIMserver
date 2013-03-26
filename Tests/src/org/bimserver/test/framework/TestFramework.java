@@ -75,11 +75,11 @@ public class TestFramework {
 				// Convenience, setup the server to make sure it is in RUNNING state
 				if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 					bimServer.getService(AdminInterface.class).setup("http://localhost", "localhost", "no-reply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
-					bimServer.getService(SettingsInterface.class).setSettingGenerateGeometryOnCheckin(false);
+					bimServer.getService(SettingsInterface.class).setGenerateGeometryOnCheckin(false);
 				}
 				
 				// Change a setting so normal users can create projects
-				bimServer.getService(SettingsInterface.class).setSettingAllowUsersToCreateTopLevelProjects(true);
+				bimServer.getService(SettingsInterface.class).setAllowUsersToCreateTopLevelProjects(true);
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}

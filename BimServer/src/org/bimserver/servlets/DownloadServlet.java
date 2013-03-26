@@ -105,162 +105,164 @@ public class DownloadServlet extends HttpServlet {
 					outputStream.flush();
 					return;
 				} else if (action.equals("getfile")) {
-					if (request.getParameter("file") != null) {
-						String file = request.getParameter("file");
-						if (file.equals("service.proto")) {
-							try {
-								String protocolBuffersFile = adminInterface.getProtocolBuffersFile();
-								outputStream.write(protocolBuffersFile.getBytes(Charsets.UTF_8));
-							} catch (ServiceException e) {
-								LOGGER.error("", e);
+					String type = request.getParameter("type");
+					if (type.equals("proto")) {
+						try {
+							String protocolBuffersFile = adminInterface.getProtocolBuffersFile(request.getParameter("name"));
+							outputStream.write(protocolBuffersFile.getBytes(Charsets.UTF_8));
+							outputStream.flush();
+						} catch (ServiceException e) {
+							LOGGER.error("", e);
+						}
+					} else if (type.equals("serverlog")) {
+						try {
+							OutputStreamWriter writer = new OutputStreamWriter(outputStream);
+							writer.write(adminInterface.getServerLog());
+							writer.flush();
+						} catch (ServerException e) {
+							LOGGER.error("", e);
+						} catch (UserException e) {
+							LOGGER.error("", e);
+						}
+					}
+				}
+			} else {
+				SSerializerPluginConfiguration serializer = null;
+				if (request.getParameter("serializerOid") != null) {
+					long serializerOid = Long.parseLong(request.getParameter("serializerOid"));
+					serializer = serviceInterface.getSerializerById(serializerOid);
+				} else {
+					serializer = serviceInterface.getSerializerByName(request.getParameter("serializerName"));
+				}
+				long downloadId = -1;
+				if (request.getParameter("longActionId") != null) {
+					downloadId = Integer.parseInt(request.getParameter("longActionId"));
+				} else if (request.getParameter("multiple") != null) {
+					Set<Long> roids = new HashSet<Long>();
+					for (Object key : request.getParameterMap().keySet()) {
+						String keyString = (String) key;
+						if (keyString.startsWith("download_")) {
+							if (!request.getParameter(keyString).equals("[off]")) {
+								roids.add(Long.parseLong(request.getParameter(keyString)));
 							}
-						} else if (file.equals("serverlog")) {
-							try {
-								OutputStreamWriter writer = new OutputStreamWriter(outputStream);
-								writer.write(adminInterface.getServerLog());
-								writer.flush();
-							} catch (ServerException e) {
-								LOGGER.error("", e);
-							} catch (UserException e) {
-								LOGGER.error("", e);
+						}
+					}
+					downloadId = serviceInterface.downloadRevisions(roids, serializer.getOid(), true);
+				} else if (request.getParameter("compare") != null) {
+					SCompareType sCompareType = SCompareType.valueOf(request.getParameter("type"));
+					Long roid1 = Long.parseLong(request.getParameter("roid1"));
+					Long roid2 = Long.parseLong(request.getParameter("roid2"));
+					downloadId = serviceInterface.downloadCompareResults(serializer.getOid(), roid1, roid2, Long.valueOf(request.getParameter("mcid")), sCompareType, true);
+				} else {
+					long roid = -1;
+					if (request.getParameter("roid") == null) {
+						if (request.getParameter("poid") != null) {
+							long poid = Long.parseLong(request.getParameter("poid"));
+							SProject projectByPoid = serviceInterface.getProjectByPoid(poid);
+							if (projectByPoid == null) {
+								throw new UserException("Project with oid " + poid + " not found");
 							}
-						}
-					}
-				}
-			}
-			SSerializerPluginConfiguration serializer = null;
-			if (request.getParameter("serializerOid") != null) {
-				long serializerOid = Long.parseLong(request.getParameter("serializerOid"));
-				serializer = serviceInterface.getSerializerById(serializerOid);
-			} else {
-				serializer = serviceInterface.getSerializerByName(request.getParameter("serializerName"));
-			}
-			long downloadId = -1;
-			if (request.getParameter("longActionId") != null) {
-				downloadId = Integer.parseInt(request.getParameter("longActionId"));
-			} else if (request.getParameter("multiple") != null) {
-				Set<Long> roids = new HashSet<Long>();
-				for (Object key : request.getParameterMap().keySet()) {
-					String keyString = (String) key;
-					if (keyString.startsWith("download_")) {
-						if (!request.getParameter(keyString).equals("[off]")) {
-							roids.add(Long.parseLong(request.getParameter(keyString)));
-						}
-					}
-				}
-				downloadId = serviceInterface.downloadRevisions(roids, serializer.getOid(), true);
-			} else if (request.getParameter("compare") != null) {
-				SCompareType sCompareType = SCompareType.valueOf(request.getParameter("type"));
-				Long roid1 = Long.parseLong(request.getParameter("roid1"));
-				Long roid2 = Long.parseLong(request.getParameter("roid2"));
-				downloadId = serviceInterface.downloadCompareResults(serializer.getOid(), roid1, roid2, Long.valueOf(request.getParameter("mcid")), sCompareType, true);
-			} else {
-				long roid = -1;
-				if (request.getParameter("roid") == null) {
-					if (request.getParameter("poid") != null) {
-						long poid = Long.parseLong(request.getParameter("poid"));
-						SProject projectByPoid = serviceInterface.getProjectByPoid(poid);
-						if (projectByPoid == null) {
-							throw new UserException("Project with oid " + poid + " not found");
-						}
-						roid = projectByPoid.getLastRevisionId();
-						if (roid == -1) {
-							throw new UserException("No revisions");
+							roid = projectByPoid.getLastRevisionId();
+							if (roid == -1) {
+								throw new UserException("No revisions");
+							}
+						} else {
+							throw new UserException("A poid or roid is required for downloading");
 						}
 					} else {
-						throw new UserException("A poid or roid is required for downloading");
+						roid = Long.parseLong(request.getParameter("roid"));
 					}
+					if (request.getParameter("checkout") != null) {
+						downloadId = serviceInterface.checkout(roid, serializer.getOid(), true);
+					} else {
+						if (request.getParameter("classses") != null) {
+							Set<String> classes = new HashSet<String>();
+							for (String className : request.getParameter("classses").split(";")) {
+								classes.add(className);
+							}
+							Set<Long> roids = new HashSet<Long>();
+							roids.add(roid);
+							downloadId = serviceInterface.downloadByTypes(roids, classes, serializer.getOid(), false, true, true, true);
+						} else if (request.getParameter("oids") != null) {
+							Set<Long> oids = new HashSet<Long>();
+							for (String oidString : request.getParameter("oids").split(";")) {
+								oids.add(Long.parseLong(oidString));
+							}
+							Set<Long> roids = new HashSet<Long>();
+							roids.add(roid);
+							downloadId = serviceInterface.downloadByOids(roids, oids, serializer.getOid(), true, true);
+						} else if (request.getParameter("guids") != null) {
+							Set<String> guids = new HashSet<String>();
+							for (String guid : request.getParameter("guids").split(";")) {
+								guids.add(guid);
+							}
+							Set<Long> roids = new HashSet<Long>();
+							roids.add(roid);
+							downloadId = serviceInterface.downloadByGuids(roids, guids, serializer.getOid(), false, true);
+						} else {
+							downloadId = serviceInterface.download(roid, serializer.getOid(), true, true);
+						}
+					}
+				}
+				if (downloadId == -1) {
+					response.getWriter().println("No valid download");
+					return;
+				}
+				SDownloadResult checkoutResult = serviceInterface.getDownloadData(downloadId);
+				if (checkoutResult == null) {
+					LOGGER.error("Invalid downloadId: " + downloadId);
 				} else {
-					roid = Long.parseLong(request.getParameter("roid"));
-				}
-				if (request.getParameter("checkout") != null) {
-					downloadId = serviceInterface.checkout(roid, serializer.getOid(), true);
-				} else {
-					if (request.getParameter("classses") != null) {
-						Set<String> classes = new HashSet<String>();
-						for (String className : request.getParameter("classses").split(";")) {
-							classes.add(className);
+					DataSource dataSource = checkoutResult.getFile().getDataSource();
+					PluginConfiguration pluginConfiguration = new PluginConfiguration(serviceInterface.getPluginSettings(serializer.getOid()));
+					if (zip) {
+						if (pluginConfiguration.getString("ZipExtension") != null) {
+							response.setHeader("Content-Disposition",
+									"inline; filename=\"" + dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.ZIP_EXTENSION) + "\"");
+						} else {
+							response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + ".zip" + "\"");
 						}
-						Set<Long> roids = new HashSet<Long>();
-						roids.add(roid);
-						downloadId = serviceInterface.downloadByTypes(roids, classes, serializer.getOid(), false, true, true, true);
-					} else if (request.getParameter("oids") != null) {
-						Set<Long> oids = new HashSet<Long>();
-						for (String oidString : request.getParameter("oids").split(";")) {
-							oids.add(Long.parseLong(oidString));
-						}
-						Set<Long> roids = new HashSet<Long>();
-						roids.add(roid);
-						downloadId = serviceInterface.downloadByOids(roids, oids, serializer.getOid(), true, true);
-					} else if (request.getParameter("guids") != null) {
-						Set<String> guids = new HashSet<String>();
-						for (String guid : request.getParameter("guids").split(";")) {
-							guids.add(guid);
-						}
-						Set<Long> roids = new HashSet<Long>();
-						roids.add(roid);
-						downloadId = serviceInterface.downloadByGuids(roids, guids, serializer.getOid(), false, true);
-					} else {
-						downloadId = serviceInterface.download(roid, serializer.getOid(), true, true);
-					}
-				}
-			}
-			if (downloadId == -1) {
-				response.getWriter().println("No valid download");
-				return;
-			}
-			SDownloadResult checkoutResult = serviceInterface.getDownloadData(downloadId);
-			if (checkoutResult == null) {
-				LOGGER.error("Invalid downloadId: " + downloadId);
-			} else {
-				DataSource dataSource = checkoutResult.getFile().getDataSource();
-				PluginConfiguration pluginConfiguration = new PluginConfiguration(serviceInterface.getPluginSettings(serializer.getOid()));
-				if (zip) {
-					if (pluginConfiguration.getString("ZipExtension") != null) {
-						response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.ZIP_EXTENSION) + "\"");
-					} else {
-						response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + ".zip" + "\"");
-					}
-					response.setContentType("application/zip");
-					String nameInZip = checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION);
-					ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream);
-					zipOutputStream.putNextEntry(new ZipEntry(nameInZip));
-					if (dataSource instanceof FileInputStreamDataSource) {
-						InputStream inputStream = ((FileInputStreamDataSource)dataSource).getInputStream();
-						IOUtils.copy(inputStream, zipOutputStream);
-						inputStream.close();
-					} else {
-						((EmfSerializerDataSource)dataSource).writeToOutputStream(zipOutputStream);
-					}
-					try {
-						zipOutputStream.finish();
-					} catch (IOException e) {
-						// Sometimes it's already closed, that's no problem
-					}
-				} else {
-					if (request.getParameter("mime") == null) {
-						response.setContentType(pluginConfiguration.getString(SerializerPlugin.CONTENT_TYPE));
-						response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION) + "\"");
-					} else {
-						response.setContentType(request.getParameter("mime"));
-					}
-					try {
+						response.setContentType("application/zip");
+						String nameInZip = checkoutResult.getProjectName() + "." + checkoutResult.getRevisionNr() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION);
+						ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream);
+						zipOutputStream.putNextEntry(new ZipEntry(nameInZip));
 						if (dataSource instanceof FileInputStreamDataSource) {
-							InputStream inputStream = ((FileInputStreamDataSource)dataSource).getInputStream();
-							IOUtils.copy(inputStream, outputStream);
+							InputStream inputStream = ((FileInputStreamDataSource) dataSource).getInputStream();
+							IOUtils.copy(inputStream, zipOutputStream);
 							inputStream.close();
 						} else {
-							((EmfSerializerDataSource)dataSource).writeToOutputStream(outputStream);
+							((EmfSerializerDataSource) dataSource).writeToOutputStream(zipOutputStream);
 						}
-					} catch (SerializerException e) {
-						LOGGER.error("", e);
+						try {
+							zipOutputStream.finish();
+						} catch (IOException e) {
+							// Sometimes it's already closed, that's no problem
+						}
+					} else {
+						if (request.getParameter("mime") == null) {
+							response.setContentType(pluginConfiguration.getString(SerializerPlugin.CONTENT_TYPE));
+							response.setHeader("Content-Disposition",
+									"inline; filename=\"" + dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION) + "\"");
+						} else {
+							response.setContentType(request.getParameter("mime"));
+						}
+						try {
+							if (dataSource instanceof FileInputStreamDataSource) {
+								InputStream inputStream = ((FileInputStreamDataSource) dataSource).getInputStream();
+								IOUtils.copy(inputStream, outputStream);
+								inputStream.close();
+							} else {
+								((EmfSerializerDataSource) dataSource).writeToOutputStream(outputStream);
+							}
+						} catch (SerializerException e) {
+							LOGGER.error("", e);
+						}
 					}
 				}
-				if (outputStream instanceof GZIPOutputStream) {
-					((GZIPOutputStream) outputStream).finish();
-				}
-				outputStream.flush();
 			}
+			if (outputStream instanceof GZIPOutputStream) {
+				((GZIPOutputStream) outputStream).finish();
+			}
+			outputStream.flush();
 		} catch (NumberFormatException e) {
 			LOGGER.error("", e);
 			response.getWriter().println("Some number was incorrectly formatted");

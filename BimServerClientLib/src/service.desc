@@ -14,16 +14,16 @@
 fileId (
 extendedData (
 users (
-rid (
-oid (
-description (	
+rid (
+description (	
+oid (
 name (	7
 type (2).org.bimserver.pb.SExtendedDataSchemaType
 validate	 (
 url
- (	
-	namespace (	
-size ("a
+ (	
+size (
+	namespace (	"a
 AddExtendedDataSchemaRequestA
 extendedDataSchema (2%.org.bimserver.pb.SExtendedDataSchema"»
 SExtendedData
@@ -62,17 +62,17 @@ revisionId	 (
 profileDescription (	
 url (	
 serviceName (	=
-notificationProtocol	 (2.org.bimserver.pb.SAccessMethod
-rid
- (
-token (	
+notificationProtocol	 (2.org.bimserver.pb.SAccessMethod
+token
+ (	
+rid (
 providerName (	
 description (	
-oid (
-userId (
-writeRevisionId (
-readExtendedDataId (
-name (	
+oid (
+name (	
+writeRevisionId (
+userId (
+readExtendedDataId (
 serviceIdentifier (	
 writeExtendedDataId (
 profilePublic (
@@ -111,20 +111,20 @@ revisionId	 (
 concreteRevisions (
 
 id (
-parentId (
-hasAuthorizedUsers	 (
-extendedData
+parentId (
+extendedData	 (
+hasAuthorizedUsers
  (
-rid (
-geoTagId (>
-exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
-description (	
-oid (
+rid (
+description (	
+geoTagId (
+oid (>
+exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
 name (	
 subProjects (
-lastRevisionId (
-createdDate (
-	revisions (
+lastRevisionId (
+	revisions (
+createdDate (
 	checkouts ("U
 AddProjectResponse
 errorMessage (	)
@@ -174,10 +174,10 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"X
 createdById (
 logs (
 validationToken (	-
-state (2.org.bimserver.pb.SObjectState
-hasRightsOn	 (
-password
- (	-
+state (2.org.bimserver.pb.SObjectState
+password	 (	
+hasRightsOn
+ (-
 userType (2.org.bimserver.pb.SUserType
 	createdOn (
 extendedData (
@@ -185,9 +185,9 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"X
 token (	
 rid (
 oid (
-name (	
-validationTokenCreated (
-	revisions ("O
+name (	
+	revisions (
+validationTokenCreated ("O
 AddUserResponse
 errorMessage (	&
 value (2.org.bimserver.pb.SUser"A
@@ -269,38 +269,38 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"X
 roid1 (
 roid2 (4
 sCompareType (2.org.bimserver.pb.SCompareType
-mcid ("b
+mcid ("*
+SObjectRemoved
+rid (
+oid ("(
+SObjectAdded
+rid (
+oid ("b
 SObjectModified
 newValue (	
 rid (
 oid (
 oldValue (	
-	fieldName (	"(
-SObjectAdded
-rid (
-oid ("*
-SObjectRemoved
-rid (
-oid ("O
-SReferenceDataValue
-guid (	
-typeName (	
+	fieldName (	"O
+SReferenceDataValue
+typeName (	
+guid (	
 rid (
-oid ("A
-SSimpleDataValue
-rid (
-oid (
-stringValue (	"X
+oid ("X
 SListDataValue,
 values (2.org.bimserver.pb.SDataValue
 rid (
-oid ("’
+oid ("A
+SSimpleDataValue
+rid (
+oid (
+stringValue (	"’
 
 SDataValue
 __actual_type (	D
-__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue>
-__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValue:
-__SListDataValue (2 .org.bimserver.pb.SListDataValue
+__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue:
+__SListDataValue (2 .org.bimserver.pb.SListDataValue>
+__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValue
 rid (
 oid (
 	fieldName (	"
@@ -312,10 +312,10 @@ SDataValue
 name (	
 type (	"¤
 SCompareItem
-__actual_type (	<
-__SObjectModified (2!.org.bimserver.pb.SObjectModified6
-__SObjectAdded (2.org.bimserver.pb.SObjectAdded:
-__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved
+__actual_type (	:
+__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved6
+__SObjectAdded (2.org.bimserver.pb.SObjectAdded<
+__SObjectModified (2!.org.bimserver.pb.SObjectModified
 rid (
 oid (1
 
@@ -532,10 +532,10 @@ identifier (	"h
 errorMessage (	3
 value (2$.org.bimserver.pb.SProfileDescriptor"&
 $GetAllLocalServiceDescriptorsRequest"Ë
-SServiceDescriptor
-writeExtendedData (	=
-notificationProtocol (2.org.bimserver.pb.SAccessMethod+
-trigger (2.org.bimserver.pb.STrigger
+SServiceDescriptor+
+trigger (2.org.bimserver.pb.STrigger
+writeExtendedData (	=
+notificationProtocol (2.org.bimserver.pb.SAccessMethod
 writeRevision (
 readExtendedData (	
 providerName (	
@@ -750,9 +750,9 @@ $GetAvailableClassesInRevisionRequest
 SDownloadResult
 __actual_type (	<
 __SCheckoutResult (2!.org.bimserver.pb.SCheckoutResult
-rid (
-oid (
-file (
+rid (
+file (
+oid (
 
 revisionNr (
 projectName (	"a
@@ -868,16 +868,16 @@ revisionNr (
 SPrimitiveDefinition.
 type (2 .org.bimserver.pb.SPrimitiveEnum"ò
 STypeDefinition
-__actual_type (	@
-__SObjectDefinition (2#.org.bimserver.pb.SObjectDefinition>
-__SArrayDefinition (2".org.bimserver.pb.SArrayDefinitionF
-__SPrimitiveDefinition (2&.org.bimserver.pb.SPrimitiveDefinition"”
+__actual_type (	>
+__SArrayDefinition (2".org.bimserver.pb.SArrayDefinitionF
+__SPrimitiveDefinition (2&.org.bimserver.pb.SPrimitiveDefinition@
+__SObjectDefinition (2#.org.bimserver.pb.SObjectDefinition"”
 SParameterDefinition
 description (	
 name (	
-defaultValueId (
-required (/
-type (2!.org.bimserver.pb.STypeDefinition"O
+defaultValueId (/
+type (2!.org.bimserver.pb.STypeDefinition
+required ("O
 SObjectDefinition:
 
 parameters (2&.org.bimserver.pb.SParameterDefinition"m
@@ -885,46 +885,46 @@ parameters (2&.org.bimserver.pb.SParameterDefinition"m
 errorMessage (	2
 value (2#.org.bimserver.pb.SObjectDefinition"(
 GetPluginSettingsRequest
-poid ("6
-SDoubleType
-rid (
-oid (
-value ("9
-SByteArrayType
-rid (
-oid (
-value ("7
-SBooleanType
-rid (
-oid (
-value ("6
-SStringType
-rid (
-oid (
-value (	"4
-	SLongType
-rid (
-oid (
-value ("Ó
-SPrimitiveType
-__actual_type (	4
-__SDoubleType (2.org.bimserver.pb.SDoubleType:
-__SByteArrayType (2 .org.bimserver.pb.SByteArrayType6
-__SBooleanType (2.org.bimserver.pb.SBooleanType4
-__SStringType (2.org.bimserver.pb.SStringType0
-__SLongType (2.org.bimserver.pb.SLongType
-rid (
-oid ("O
+poid ("O
 
 SArrayType'
 values (2.org.bimserver.pb.SType
 rid (
-oid ("Þ
+oid ("7
+SBooleanType
+rid (
+oid (
+value ("4
+	SLongType
+rid (
+oid (
+value ("9
+SByteArrayType
+rid (
+oid (
+value ("6
+SStringType
+rid (
+oid (
+value (	"6
+SDoubleType
+rid (
+oid (
+value ("Ó
+SPrimitiveType
+__actual_type (	6
+__SBooleanType (2.org.bimserver.pb.SBooleanType0
+__SLongType (2.org.bimserver.pb.SLongType:
+__SByteArrayType (2 .org.bimserver.pb.SByteArrayType4
+__SStringType (2.org.bimserver.pb.SStringType4
+__SDoubleType (2.org.bimserver.pb.SDoubleType
+rid (
+oid ("Þ
 SType
 __actual_type (	4
-__SObjectType (2.org.bimserver.pb.SObjectType:
-__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType2
-__SArrayType (2.org.bimserver.pb.SArrayType
+__SObjectType (2.org.bimserver.pb.SObjectType2
+__SArrayType (2.org.bimserver.pb.SArrayType:
+__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType
 rid (
 oid ("\
 
