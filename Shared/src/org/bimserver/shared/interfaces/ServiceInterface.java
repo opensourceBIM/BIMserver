@@ -74,7 +74,7 @@ import org.bimserver.shared.exceptions.UserException;
  * This interface defines all functions that are made available via SOAP and Protocol Buffers, but
  * also used by the JSP web interface
  */
-@WebService(name = "soap")
+@WebService(name = "serviceinterface")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface ServiceInterface extends PublicInterface {
 	/**

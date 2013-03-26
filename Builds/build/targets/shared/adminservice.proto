@@ -1,0 +1,586 @@
+package org.bimserver.pb;
+
+/******************************************************************************
+ * Copyright (C) 2009-2013  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+import "service.proto";
+import "notification.proto";
+import "remoteservice.proto";
+option java_generic_services = true;
+
+option java_outer_classname = "AdminInterfaceImpl";
+
+option optimize_for = SPEED;
+
+service AdminInterface {
+	rpc clearOutputFileCache (ClearOutputFileCacheRequest) returns (ClearOutputFileCacheResponse);
+
+	rpc disablePlugin (DisablePluginRequest) returns (VoidResponse);
+
+	rpc enablePlugin (EnablePluginRequest) returns (VoidResponse);
+
+	rpc getActiveLongActions (GetActiveLongActionsRequest) returns (GetActiveLongActionsResponse);
+
+	rpc getAllPlugins (GetAllPluginsRequest) returns (GetAllPluginsResponse);
+
+	rpc getBimServerInfo (GetBimServerInfoRequest) returns (GetBimServerInfoResponse);
+
+	rpc getDatabaseInformation (GetDatabaseInformationRequest) returns (GetDatabaseInformationResponse);
+
+	rpc getJavaInfo (GetJavaInfoRequest) returns (GetJavaInfoResponse);
+
+	rpc getLastDatabaseReset (GetLastDatabaseResetRequest) returns (GetLastDatabaseResetResponse);
+
+	rpc getLatestVersion (GetLatestVersionRequest) returns (GetLatestVersionResponse);
+
+	rpc getLogs (GetLogsRequest) returns (GetLogsResponse);
+
+	rpc getMigrations (GetMigrationsRequest) returns (GetMigrationsResponse);
+
+	rpc getProtocolBuffersFile (GetProtocolBuffersFileRequest) returns (GetProtocolBuffersFileResponse);
+
+	rpc getServerInfo (GetServerInfoRequest) returns (GetServerInfoResponse);
+
+	rpc getServerLog (GetServerLogRequest) returns (GetServerLogResponse);
+
+	rpc getServerStartTime (GetServerStartTimeRequest) returns (GetServerStartTimeResponse);
+
+	rpc getSystemInfo (GetSystemInfoRequest) returns (GetSystemInfoResponse);
+
+	rpc getVersion (GetVersionRequest) returns (GetVersionResponse);
+
+	rpc migrateDatabase (MigrateDatabaseRequest) returns (VoidResponse);
+
+	rpc setup (SetupRequest) returns (VoidResponse);
+
+	rpc upgradePossible (UpgradePossibleRequest) returns (UpgradePossibleResponse);
+
+}
+
+message ClearOutputFileCacheRequest {
+}
+
+message ClearOutputFileCacheResponse {
+	optional string errorMessage = 1;
+	optional int32 value = 2;
+}
+
+message DisablePluginRequest {
+	optional string name = 1;
+}
+
+message EnablePluginRequest {
+	optional string name = 1;
+}
+
+message GetActiveLongActionsRequest {
+}
+
+message SLongAction {
+	optional string username = 1;
+	optional int64 start = 2;
+	optional int32 rid = 3;
+	optional string identification = 4;
+	optional int64 oid = 5;
+	optional int64 userId = 6;
+	optional string name = 7;
+}
+
+message GetActiveLongActionsResponse {
+	optional string errorMessage = 1;
+	repeated SLongAction value = 2;
+}
+
+message GetAllPluginsRequest {
+}
+
+message SWebModulePluginDescriptor {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SPluginDescriptor {
+	required string __actual_type = 1;
+	optional SServicePluginDescriptor __SServicePluginDescriptor = 2;
+	optional SRenderEnginePluginDescriptor __SRenderEnginePluginDescriptor = 3;
+	optional SModelMergerPluginDescriptor __SModelMergerPluginDescriptor = 4;
+	optional SQueryEnginePluginDescriptor __SQueryEnginePluginDescriptor = 5;
+	optional SDeserializerPluginDescriptor __SDeserializerPluginDescriptor = 6;
+	optional SWebModulePluginDescriptor __SWebModulePluginDescriptor = 7;
+	optional SModelComparePluginDescriptor __SModelComparePluginDescriptor = 8;
+	optional SSerializerPluginDescriptor __SSerializerPluginDescriptor = 9;
+	optional string defaultName = 10;
+	optional bool enabled = 11;
+	optional string simpleName = 12;
+	optional int32 rid = 13;
+	optional string location = 14;
+	optional int64 oid = 15;
+	optional string description = 16;
+	optional string pluginClassName = 17;
+}
+
+message GetAllPluginsResponse {
+	optional string errorMessage = 1;
+	repeated SPluginDescriptor value = 2;
+}
+
+message GetBimServerInfoRequest {
+}
+
+message SBimServerInfo {
+	optional int64 latestDate = 1;
+	optional int32 users = 2;
+	optional string uptime = 3;
+	optional string latestVersion = 4;
+	optional int32 projects = 5;
+	optional string serverLogUrl = 6;
+	optional int32 rid = 7;
+	optional int64 currentDate = 8;
+	optional int64 oid = 9;
+	optional string currentVersion = 10;
+	optional int64 started = 11;
+	optional int32 revisions = 12;
+	optional int32 schemaVersion = 13;
+	optional int32 checkouts = 14;
+}
+
+message GetBimServerInfoResponse {
+	optional string errorMessage = 1;
+	optional SBimServerInfo value = 2;
+}
+
+message GetDatabaseInformationRequest {
+}
+
+message SDatabaseInformationItem {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional string value = 3;
+	optional string key = 4;
+}
+
+message SDatabaseInformationCategory {
+	optional string title = 1;
+	repeated SDatabaseInformationItem items = 2;
+	optional int32 rid = 3;
+	optional int64 oid = 4;
+}
+
+message SDatabaseInformation {
+	optional int32 numberOfProjects = 1;
+	optional int64 created = 2;
+	optional int32 rid = 3;
+	optional string location = 4;
+	optional int64 oid = 5;
+	repeated SDatabaseInformationCategory categories = 6;
+	optional int32 numberOfUsers = 7;
+	optional int64 databaseSizeInBytes = 8;
+	optional string type = 9;
+	optional int32 schemaVersion = 10;
+	optional int32 numberOfCheckouts = 11;
+	optional int32 numberOfRevisions = 12;
+}
+
+message GetDatabaseInformationResponse {
+	optional string errorMessage = 1;
+	optional SDatabaseInformation value = 2;
+}
+
+message GetJavaInfoRequest {
+}
+
+message SJavaInfo {
+	optional string javaFileSeparator = 1;
+	optional string javaVendor = 2;
+	optional string javaIoTmp = 3;
+	optional string javavmVersion = 4;
+	optional string javaspecVendor = 5;
+	optional int32 threads = 6;
+	optional string javaVendorurl = 7;
+	optional int64 oid = 8;
+	optional string javaExtdir = 9;
+	optional string javaVersion = 10;
+	optional string javavmVendor = 11;
+	optional int64 heapTotal = 12;
+	repeated string javaLibrarypath = 13;
+	optional string javaspecVersion = 14;
+	optional string javaCompiler = 15;
+	optional string javaClassVersion = 16;
+	optional int64 heapFree = 17;
+	optional string javaHome = 18;
+	optional string javaPathSeparator = 19;
+	optional string javaLineSeparator = 20;
+	optional int32 rid = 21;
+	repeated string javaClasspath = 22;
+	optional int64 heapUsed = 23;
+	optional string javaspecName = 24;
+	optional string javavmName = 25;
+	optional int64 heapMax = 26;
+}
+
+message GetJavaInfoResponse {
+	optional string errorMessage = 1;
+	optional SJavaInfo value = 2;
+}
+
+message GetLastDatabaseResetRequest {
+}
+
+message GetLastDatabaseResetResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
+message GetLatestVersionRequest {
+}
+
+message SVersion {
+	optional string supportEmail = 1;
+	optional int32 revision = 2;
+	optional int32 minor = 3;
+	optional int32 rid = 4;
+	optional int64 oid = 5;
+	optional string supportUrl = 6;
+	optional string downloadUrl = 7;
+	optional int64 date = 8;
+	optional int32 major = 9;
+}
+
+message GetLatestVersionResponse {
+	optional string errorMessage = 1;
+	optional SVersion value = 2;
+}
+
+message GetLogsRequest {
+}
+
+message SPasswordReset {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 userId = 3;
+}
+
+message SNewCheckoutAdded {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 checkoutId = 3;
+}
+
+message SNewRevisionAdded {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 projectId = 3;
+	optional int64 revisionId = 4;
+}
+
+message SProjectUpdated {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 projectId = 3;
+}
+
+message SPasswordChanged {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 userId = 3;
+}
+
+message SExtendedDataAddedToProject {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 projectId = 3;
+	optional int64 extendedDataId = 4;
+}
+
+message SUserChanged {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 userId = 3;
+}
+
+message SRevisionBranched {
+	optional int64 newrevisionId = 1;
+	optional int32 rid = 2;
+	optional int64 oid = 3;
+	optional int64 oldrevisionId = 4;
+}
+
+enum SNotifictionResultEnum{
+	NR_ERROR = 0;
+	SUCCESS = 1;
+	PROGRESS_UNKNOWN = 2;
+	PROGRESS_PERCENTAGE = 3;
+}
+
+message SRemoteServiceCalled {
+	repeated string infos = 1;
+	repeated string errors = 2;
+	optional int64 serviceId = 3;
+	optional int32 percentage = 4;
+	optional int32 rid = 5;
+	optional int64 oid = 6;
+	optional SNotifictionResultEnum state = 7;
+	repeated string warnings = 8;
+}
+
+message SRevisionUpdated {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 revisionId = 3;
+}
+
+message SUserUndeleted {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 userId = 3;
+}
+
+message SNewObjectIDMUploaded {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SExtendedDataAddedToRevision {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 extendedDataId = 3;
+	optional int64 revisionId = 4;
+}
+
+message SUserRemovedFromProject {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 userId = 3;
+	optional int64 projectId = 4;
+}
+
+message SDatabaseCreated {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional string path = 3;
+	optional int32 version = 4;
+}
+
+message SProjectDeleted {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 projectId = 3;
+}
+
+message SUserDeleted {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 userId = 3;
+}
+
+message SServerStarted {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SNewUserAdded {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 userId = 3;
+}
+
+message SUserAddedToProject {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 userId = 3;
+	optional int64 projectId = 4;
+}
+
+message SSettingsSaved {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SNewProjectAdded {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 projectId = 3;
+	optional int64 parentProjectId = 4;
+}
+
+message SGeoTagUpdated {
+	optional int32 rid = 1;
+	optional int64 geoTagId = 2;
+	optional int64 oid = 3;
+}
+
+message SDownload {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
+message SProjectUndeleted {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 projectId = 3;
+}
+
+message SLogAction {
+	required string __actual_type = 1;
+	optional SPasswordReset __SPasswordReset = 2;
+	optional SNewCheckoutAdded __SNewCheckoutAdded = 3;
+	optional SNewRevisionAdded __SNewRevisionAdded = 4;
+	optional SProjectUpdated __SProjectUpdated = 5;
+	optional SPasswordChanged __SPasswordChanged = 6;
+	optional SExtendedDataAddedToProject __SExtendedDataAddedToProject = 7;
+	optional SUserChanged __SUserChanged = 8;
+	optional SRevisionBranched __SRevisionBranched = 9;
+	optional SRemoteServiceCalled __SRemoteServiceCalled = 10;
+	optional SRevisionUpdated __SRevisionUpdated = 11;
+	optional SUserUndeleted __SUserUndeleted = 12;
+	optional SNewObjectIDMUploaded __SNewObjectIDMUploaded = 13;
+	optional SExtendedDataAddedToRevision __SExtendedDataAddedToRevision = 14;
+	optional SUserRemovedFromProject __SUserRemovedFromProject = 15;
+	optional SDatabaseCreated __SDatabaseCreated = 16;
+	optional SProjectDeleted __SProjectDeleted = 17;
+	optional SUserDeleted __SUserDeleted = 18;
+	optional SServerStarted __SServerStarted = 19;
+	optional SNewUserAdded __SNewUserAdded = 20;
+	optional SUserAddedToProject __SUserAddedToProject = 21;
+	optional SSettingsSaved __SSettingsSaved = 22;
+	optional SNewProjectAdded __SNewProjectAdded = 23;
+	optional SGeoTagUpdated __SGeoTagUpdated = 24;
+	optional SDownload __SDownload = 25;
+	optional SProjectUndeleted __SProjectUndeleted = 26;
+	optional int64 executorId = 27;
+	optional int32 rid = 28;
+	optional int64 oid = 29;
+	optional SAccessMethod accessMethod = 30;
+	optional int64 date = 31;
+}
+
+message GetLogsResponse {
+	optional string errorMessage = 1;
+	repeated SLogAction value = 2;
+}
+
+message GetMigrationsRequest {
+}
+
+message SMigration {
+	optional bool executed = 1;
+	optional int32 rid = 2;
+	optional int64 oid = 3;
+	optional string description = 4;
+	optional int32 number = 5;
+}
+
+message GetMigrationsResponse {
+	optional string errorMessage = 1;
+	repeated SMigration value = 2;
+}
+
+message GetProtocolBuffersFileRequest {
+}
+
+message GetProtocolBuffersFileResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+
+message GetServerInfoRequest {
+}
+
+enum SServerState{
+	UNDEFINED = 0;
+	NOT_SETUP = 1;
+	MIGRATION_REQUIRED = 2;
+	MIGRATION_IMPOSSIBLE = 3;
+	FATAL_ERROR = 4;
+	RUNNING = 5;
+}
+
+message SServerInfo {
+	optional string errorMessage = 1;
+	optional int32 rid = 2;
+	optional int64 oid = 3;
+	optional SServerState serverState = 4;
+}
+
+message GetServerInfoResponse {
+	optional string errorMessage = 1;
+	optional SServerInfo value = 2;
+}
+
+message GetServerLogRequest {
+}
+
+message GetServerLogResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+
+message GetServerStartTimeRequest {
+}
+
+message GetServerStartTimeResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
+message GetSystemInfoRequest {
+}
+
+message SSystemInfo {
+	optional string userDir = 1;
+	optional string osname = 2;
+	optional string userHome = 3;
+	optional int32 rid = 4;
+	optional int64 oid = 5;
+	optional string userName = 6;
+	optional int64 datetime = 7;
+	optional string osversion = 8;
+	optional int32 cpucores = 9;
+}
+
+message GetSystemInfoResponse {
+	optional string errorMessage = 1;
+	optional SSystemInfo value = 2;
+}
+
+message GetVersionRequest {
+}
+
+message GetVersionResponse {
+	optional string errorMessage = 1;
+	optional SVersion value = 2;
+}
+
+message MigrateDatabaseRequest {
+}
+
+message SetupRequest {
+	optional string siteAddress = 1;
+	optional string smtpServer = 2;
+	optional string smtpSender = 3;
+	optional string adminName = 4;
+	optional string adminUsername = 5;
+	optional string adminPassword = 6;
+}
+
+message UpgradePossibleRequest {
+}
+
+message UpgradePossibleResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+

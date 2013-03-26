@@ -29,8 +29,9 @@ import org.apache.cxf.message.Message;
 import org.apache.cxf.message.MessageContentsList;
 import org.apache.cxf.service.invoker.AbstractInvoker;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.shared.Token;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.interfaces.PublicInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,35 +39,37 @@ public class CustomInvoker extends AbstractInvoker {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CustomInvoker.class);
 	private final PublicInterfaceFactory serviceFactory;
+	private Class<? extends PublicInterface> interfaceClass;
 
-	public CustomInvoker(PublicInterfaceFactory serviceFactory) {
+	public CustomInvoker(PublicInterfaceFactory serviceFactory, Class<? extends PublicInterface> interfaceClass) {
 		this.serviceFactory = serviceFactory;
+		this.interfaceClass = interfaceClass;
 	}
 
 	@Override
-	public Object getServiceObject(Exchange context) {
-		Message inMessage = context.getInMessage();
+	public Object getServiceObject(Exchange exchange) {
+		Message inMessage = exchange.getInMessage();
 		if (inMessage instanceof SoapMessage) {
 			SoapMessage soapMessage = (SoapMessage) inMessage;
-			Header header = soapMessage.getHeader(new QName("uri:java.lang.String", "token"));
+			Header header = soapMessage.getHeader(new QName("uri:org.bimserver.shared", "token"));
 			String token = null;
 			if (header != null) {
-				token = (String)header.getObject();
+				token = ((Token)(header.getObject())).getToken();
 			}
 			if (token == null) {
-				token = (String) context.getSession().get("token");
+				token = (String) exchange.getSession().get("token");
 			}
 			if (token != null) {
 				try {
-					return serviceFactory.get(token, AccessMethod.SOAP).get(ServiceInterface.class);
+					return serviceFactory.get(token, AccessMethod.SOAP).get(interfaceClass);
 				} catch (UserException e) {
 					LOGGER.error("", e);
 					return null;
 				}
 			} else {
 				try {
-					ServiceInterface newService = serviceFactory.get(AccessMethod.SOAP).get(ServiceInterface.class);
-					context.getSession().put("token", token);
+					PublicInterface newService = serviceFactory.get(AccessMethod.SOAP).get(interfaceClass);
+					exchange.getSession().put("token", token);
 					return newService;
 				} catch (UserException e) {
 					LOGGER.error("", e);
@@ -74,7 +77,7 @@ public class CustomInvoker extends AbstractInvoker {
 			}
 		} else {
 			try {
-				return serviceFactory.get(AccessMethod.SOAP).get(ServiceInterface.class);
+				return serviceFactory.get(AccessMethod.SOAP).get(interfaceClass);
 			} catch (UserException e) {
 				LOGGER.error("", e);
 			}

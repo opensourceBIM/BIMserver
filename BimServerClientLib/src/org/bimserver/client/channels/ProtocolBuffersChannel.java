@@ -23,6 +23,15 @@ import java.net.InetSocketAddress;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.TokenHolder;
+import org.bimserver.shared.interfaces.AdminInterface;
+import org.bimserver.shared.interfaces.AuthInterface;
+import org.bimserver.shared.interfaces.LowLevelInterface;
+import org.bimserver.shared.interfaces.MetaInterface;
+import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.PublicInterface;
+import org.bimserver.shared.interfaces.RemoteServiceInterface;
+import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersReflector;
@@ -44,6 +53,12 @@ public class ProtocolBuffersChannel extends Channel implements ConnectDisconnect
 		try {
 			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("service.desc"));
 			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("notification.desc"));
+			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("remoteservice.desc"));
+			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("adminservice.desc"));
+			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("authservice.desc"));
+			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("settingsservice.desc"));
+			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("lowlevelservice.desc"));
+			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("metaservice.desc"));
 		} catch (IOException e) {
 			LoggerFactory.getLogger(ProtocolBuffersChannel.class).error("", e);
 		}
@@ -59,7 +74,14 @@ public class ProtocolBuffersChannel extends Channel implements ConnectDisconnect
 	public void connect(TokenHolder tokenHolder) throws ChannelConnectionException {
 		protocolBuffersChannel = new SocketProtocolBuffersChannel(tokenHolder);
 		protocolBuffersChannel.registerConnectDisconnectListener(this);
-		finish(new ProtocolBuffersReflector(protocolBuffersMetaData, servicesMap, protocolBuffersChannel), reflectorFactory);
+		
+		ProtocolBuffersReflector reflector = new ProtocolBuffersReflector(protocolBuffersMetaData, servicesMap, protocolBuffersChannel);
+		for (Class<? extends PublicInterface> interface1 : servicesMap.getInterfaceClasses()) {
+			PublicInterface createReflector = reflectorFactory.createReflector(interface1, reflector);
+			add(interface1.getName(), createReflector);
+		}
+		
+		finish(reflector, reflectorFactory);
 		try {
 			protocolBuffersChannel.connect(new InetSocketAddress(address, port));
 		} catch (IOException e) {

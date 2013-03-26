@@ -31,13 +31,13 @@ public class TestAll {
 		TestConfiguration testConfiguration = new TestConfiguration();
 		TestFramework testFramework = new TestFramework(testConfiguration);
 
-		testConfiguration.setHomeDir(new File("G:\\Test"));
+		testConfiguration.setHomeDir(new File("D:\\Test"));
 		testConfiguration.setActionFactory(new AllActionsFactory(testFramework));
-		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.JSON));
-		testConfiguration.setTestFileProvider(new FolderWalker(new File("C:\\Users\\Ruben de Laat\\Dropbox\\Logic Labs\\Clients\\TNO\\ifc selected"), testFramework));
-		testConfiguration.setOutputFolder(new File("G:\\Output"));
-		testConfiguration.setNrVirtualUsers(6);
-		
+		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.SOAP, Type.PROTOCOL_BUFFERS, Type.JSON));
+		testConfiguration.setTestFileProvider(new FolderWalker(new File("D:\\ifc selected"), testFramework));
+		testConfiguration.setOutputFolder(new File("D:\\Output"));
+		testConfiguration.setNrVirtualUsers(1);
+
 		testFramework.start();
 	}
 }

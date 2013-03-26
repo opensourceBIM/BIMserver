@@ -23,7 +23,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -143,17 +142,20 @@ public class ProtocolBuffersMetaData {
 	private final Map<String, ServiceDescriptorContainer> serviceDescriptors = new HashMap<String, ServiceDescriptorContainer>();
 	private final Map<String, MessageDescriptorContainer> messageDescriptors = new HashMap<String, MessageDescriptorContainer>();
 
-	private final List<FileDescriptor> loaded = new ArrayList<Descriptors.FileDescriptor>();
+	private final Map<String, FileDescriptor> loaded = new HashMap<String, Descriptors.FileDescriptor>();
 	
 	public String load(InputStream inputStream) {
 		try {
 			FileDescriptorSet descriptorSet = FileDescriptorSet.parseFrom(inputStream);
 			List<FileDescriptorProto> fileList = descriptorSet.getFileList();
 			FileDescriptorProto fileDescriptorProto = fileList.get(0);
-			FileDescriptor[] ar = new FileDescriptor[loaded.size()];
-			loaded.toArray(ar);
+			FileDescriptor[] ar = new FileDescriptor[fileDescriptorProto.getDependencyCount()];
+			int i=0;
+			for (String dep : fileDescriptorProto.getDependencyList()) {
+				ar[i++] = loaded.get(dep);
+			}
 			FileDescriptor fileDescriptor = FileDescriptor.buildFrom(fileDescriptorProto, ar);
-			loaded.add(fileDescriptor);
+			loaded.put(fileDescriptor.getName(), fileDescriptor);
 			for (Descriptor descriptor : fileDescriptor.getMessageTypes()) {
 				this.messageDescriptors.put(descriptor.getName(), new MessageDescriptorContainer(descriptor));
 			}
@@ -181,8 +183,16 @@ public class ProtocolBuffersMetaData {
 		return serviceDescriptors.get(serviceName).getMethodDescriptors();
 	}
 
-	public MethodDescriptorContainer getMethod(String serviceName, String methodName) {
-		return serviceDescriptors.get(serviceName).getMethodDescriptor(methodName);
+	public MethodDescriptorContainer getMethod(String serviceName, String methodName) throws ServiceNotFoundException, ServiceMethodNotFoundException {
+		ServiceDescriptorContainer serviceDescriptorContainer = serviceDescriptors.get(serviceName);
+		if (serviceDescriptorContainer == null) {
+			throw new ServiceNotFoundException("No service with name " + serviceName + " was found");
+		}
+		MethodDescriptorContainer methodDescriptor = serviceDescriptorContainer.getMethodDescriptor(methodName);
+		if (methodDescriptor == null) {
+			throw new ServiceMethodNotFoundException("No method with name " + methodName + " was found on service " + serviceName);
+		}
+		return methodDescriptor;
 	}
 
 	public MessageDescriptorContainer getMessageDescriptor(String name) {

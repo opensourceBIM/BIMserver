@@ -363,6 +363,12 @@ public class BimServer {
 			try {
 				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("service.desc"));
 				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("notification.desc"));
+				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("remoteservice.desc"));
+				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("adminservice.desc"));
+				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("authservice.desc"));
+				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("settingsservice.desc"));
+				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("lowlevelservice.desc"));
+				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("metaservice.desc"));
 			} catch (IOException e) {
 				LOGGER.error("", e);
 			}

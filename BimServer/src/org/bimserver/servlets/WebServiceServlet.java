@@ -33,7 +33,8 @@ import org.apache.cxf.jaxb.JAXBDataBinding;
 import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
 import org.apache.cxf.transport.servlet.CXFNonSpringServlet;
 import org.bimserver.BimServer;
-import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.Token;
+import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.webservices.CustomInvoker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,7 +53,7 @@ public class WebServiceServlet extends CXFNonSpringServlet {
 		headerManager.registerHeaderProcessor(new HeaderProcessor() {
 			@Override
 			public String getNamespace() {
-				return "uri:java.lang.String";
+				return "uri:org.bimserver.shared";
 			}
 			
 			@Override
@@ -63,7 +64,7 @@ public class WebServiceServlet extends CXFNonSpringServlet {
 			@Override
 			public DataBinding getDataBinding() {
 				try {
-					return new JAXBDataBinding(String.class);
+					return new JAXBDataBinding(Token.class);
 				} catch (JAXBException e) {
 					LOGGER.error("", e);
 				}
@@ -71,14 +72,17 @@ public class WebServiceServlet extends CXFNonSpringServlet {
 			}
 		});
 		BusFactory.setDefaultBus(bus);
-		JaxWsServerFactoryBean serverFactoryBean = new JaxWsServerFactoryBean();
-		Map<String,Object> properties = new HashMap<String, Object>();
-		properties.put("mtom-enabled", Boolean.TRUE);
-		serverFactoryBean.setProperties(properties);
-		serverFactoryBean.setServiceClass(ServiceInterface.class);
-		serverFactoryBean.setInvoker(new CustomInvoker(bimServer.getServiceFactory()));
-		serverFactoryBean.setAddress("/");
-		serverFactoryBean.setTransportId("http://schemas.xmlsoap.org/soap/http");
-		serverFactoryBean.create();
+		
+		for (Class<? extends PublicInterface> clazz : bimServer.getServicesMap().getInterfaceClasses()) {
+			JaxWsServerFactoryBean serverFactoryBean = new JaxWsServerFactoryBean();
+			Map<String,Object> properties = new HashMap<String, Object>();
+			properties.put("mtom-enabled", Boolean.TRUE);
+			serverFactoryBean.setProperties(properties);
+			serverFactoryBean.setServiceClass(clazz);
+			serverFactoryBean.setInvoker(new CustomInvoker(bimServer.getServiceFactory(), clazz));
+			serverFactoryBean.setAddress("/" + clazz.getSimpleName().toLowerCase());
+			serverFactoryBean.setTransportId("http://schemas.xmlsoap.org/soap/http");
+			serverFactoryBean.create();
+		}
 	}
 }

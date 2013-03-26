@@ -13,8 +13,9 @@
 	<classpathentry exported="true" kind="lib" path="lib/gson-2.2.2.jar" sourcepath="libsrc/gson-2.2.2-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/openmali.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/classmexer.jar"/>
-	<classpathentry kind="lib" path="lib/cors-filter-1.5.jar"/>
-	<classpathentry kind="lib" path="lib/je-5.0.73.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cors-filter-1.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/je-5.0.73.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cxf/httpmime-4.2.2.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="starter"/>
@@ -67,7 +68,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/asm-3.3.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/ehcache-core-2.5.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/jaxb-api-2.2.6.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/jettison-1.3.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/neethi-3.0.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/oauth-20100527.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/oauth-provider-20100527.jar"/>
@@ -89,17 +89,12 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="lib/tomcat/catalina.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/commons-codec-1.7.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-2.7.1.jar" sourcepath="libsrc/apache-cxf-2.4.3-src.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-sts-core-2.7.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-wsn-api-2.7.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-services-wsn-core-2.7.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-boolean-2.6.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-bug671-2.6.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-dv-2.6.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-runtime-2.6.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/cxf-xjc-ts-2.6.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/FastInfoset-1.2.12.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/geronimo-servlet_3.0_spec-1.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/httpasyncclient-4.0-beta3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/httpclient-4.2.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/httpcore-4.2.2.jar"/>
@@ -108,7 +103,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/cxf/jaxb-impl-2.2.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/jaxb-xjc-2.2.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/mina-core-2.0.5.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/cxf/wss4j-1.6.8.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlbeans-2.6.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/xmlsec-1.5.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jetty/jetty-ajp-8.1.9.v20130131.jar"/>

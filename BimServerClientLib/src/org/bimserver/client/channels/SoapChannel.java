@@ -33,6 +33,7 @@ import org.apache.cxf.headers.Header;
 import org.apache.cxf.jaxb.JAXBDataBinding;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
+import org.bimserver.shared.Token;
 import org.bimserver.shared.TokenChangeListener;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.interfaces.PublicInterface;
@@ -55,8 +56,8 @@ public class SoapChannel extends Channel implements TokenChangeListener {
 	public void connect(TokenHolder tokenHolder) {
 		for (Class<? extends PublicInterface> interface1 : interfaces) {
 			JaxWsProxyFactoryBean cpfb = new JaxWsProxyFactoryBean();
-			cpfb.setServiceClass(interface1.getClass());
-			cpfb.setAddress(address);
+			cpfb.setServiceClass(interface1);
+			cpfb.setAddress(address + "/" + interface1.getSimpleName().toLowerCase());
 			Map<String, Object> properties = new HashMap<String, Object>();
 			properties.put("mtom-enabled", Boolean.TRUE);
 			cpfb.setProperties(properties);
@@ -69,13 +70,12 @@ public class SoapChannel extends Channel implements TokenChangeListener {
 			http.getClient().setAllowChunking(false);
 			http.getClient().setReceiveTimeout(320000);
 			
-			tokenHolder.registerTokenChangeListener(this);
-			
 			if (!useSoapHeaderSessions) {
 				((BindingProvider) serviceInterface).getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY, Boolean.TRUE);
 			}
 			add(interface1.getName(), serviceInterface);
 		}
+		tokenHolder.registerTokenChangeListener(this);
 		notifyOfConnect();
 	}
 
@@ -85,14 +85,15 @@ public class SoapChannel extends Channel implements TokenChangeListener {
 			for (PublicInterface p : getServiceInterfaces().values()) {
 				List<Header> headers = new ArrayList<Header>();
 				try {
-					Header sessionHeader = new Header(new QName("uri:java.lang.String", "token"), token, new JAXBDataBinding(String.class));
+					Token tokenObject = new Token(token);
+					Header sessionHeader = new Header(new QName("uri:org.bimserver.shared", "token"), tokenObject, new JAXBDataBinding(Token.class));
 					headers.add(sessionHeader);
 				} catch (JAXBException e) {
 					LOGGER.error("", e);
 				}
 				((BindingProvider) p).getRequestContext().put(Header.HEADER_LIST, headers);
 			}
-		}		
+		}
 	}
 	
 	@Override

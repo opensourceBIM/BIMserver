@@ -30,6 +30,8 @@ import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData.MethodDescriptorContainer;
 import org.bimserver.shared.pb.ReflectiveRpcChannel;
+import org.bimserver.shared.pb.ServiceMethodNotFoundException;
+import org.bimserver.shared.pb.ServiceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,13 +65,21 @@ public class Handler extends Thread {
 			while (running) {
 				String serviceName = dis.readUTF();
 				String methodName = dis.readUTF();
-				MethodDescriptorContainer methodDescriptorContainer = protocolBuffersMetaData.getMethod(serviceName, methodName);
-				
-				Builder newBuilder = DynamicMessage.newBuilder(methodDescriptorContainer.getInputDescriptor());
-				newBuilder.mergeDelimitedFrom(dis);
-				DynamicMessage request = newBuilder.build();
-				Message response = reflectiveRpcChannel.callBlockingMethod(methodDescriptorContainer, request);
-				response.writeDelimitedTo(socket.getOutputStream());
+				MethodDescriptorContainer methodDescriptorContainer;
+				try {
+					methodDescriptorContainer = protocolBuffersMetaData.getMethod(serviceName, methodName);
+					Builder newBuilder = DynamicMessage.newBuilder(methodDescriptorContainer.getInputDescriptor());
+					newBuilder.mergeDelimitedFrom(dis);
+					DynamicMessage request = newBuilder.build();
+					Message response = reflectiveRpcChannel.callBlockingMethod(methodDescriptorContainer, request);
+					response.writeDelimitedTo(socket.getOutputStream());
+				} catch (ServiceNotFoundException e) {
+					// TODO should return a usable pb message for the user
+					LOGGER.error("", e);
+				} catch (ServiceMethodNotFoundException e) {
+					// TODO should return a usable pb message for the user
+					LOGGER.error("", e);
+				}
 			}
 		} catch (IOException e) {
 			LOGGER.error("", e);
