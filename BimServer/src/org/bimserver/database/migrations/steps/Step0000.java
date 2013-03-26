@@ -605,6 +605,7 @@ public class Step0000 extends Migration {
 		EClass serviceInterface = schema.createEClass("store", "ServiceInterface");
 		serviceInterface.getEAnnotations().add(createNoDatabaseAnnotation());
 		schema.createEAttribute(serviceInterface, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(serviceInterface, "simpleName", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		
 		EClass serviceMethod = schema.createEClass("store", "ServiceMethod");
 		serviceMethod.getEAnnotations().add(createNoDatabaseAnnotation());

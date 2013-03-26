@@ -80,7 +80,7 @@ public class WebServiceServlet extends CXFNonSpringServlet {
 			serverFactoryBean.setProperties(properties);
 			serverFactoryBean.setServiceClass(clazz);
 			serverFactoryBean.setInvoker(new CustomInvoker(bimServer.getServiceFactory(), clazz));
-			serverFactoryBean.setAddress("/" + clazz.getSimpleName().toLowerCase());
+			serverFactoryBean.setAddress("/" + clazz.getSimpleName());
 			serverFactoryBean.setTransportId("http://schemas.xmlsoap.org/soap/http");
 			serverFactoryBean.create();
 		}

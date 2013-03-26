@@ -1,9 +1,11 @@
 
-Æ
+Ú
 metaservice.protoorg.bimserver.pbservice.protonotification.protoremoteservice.protoadminservice.protoauthservice.protosettingsservice.protolowlevelservice.proto"
-GetServiceInterfacesRequest"!
-SServiceInterface
-name (	"h
+GetServiceInterfacesRequest"5
+SServiceInterface
+
+simpleName (	
+name (	"h
 GetServiceInterfacesResponse
 errorMessage (	2
 value (2#.org.bimserver.pb.SServiceInterface"\

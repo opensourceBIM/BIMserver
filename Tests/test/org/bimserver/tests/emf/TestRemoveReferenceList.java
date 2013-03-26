@@ -22,7 +22,7 @@ public class TestRemoveReferenceList extends TestWithEmbeddedServer {
 			
 			// Get the service interface
 			ServiceInterface serviceInterface = bimServerClient.getServiceInterface();
-			bimServerClient.getSettingsInterface().setSettingGenerateGeometryOnCheckin(false);
+			bimServerClient.getSettingsInterface().setGenerateGeometryOnCheckin(false);
 
 			// Create a new project
 			SProject newProject = serviceInterface.addProject("test" + Math.random());

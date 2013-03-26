@@ -24,7 +24,7 @@ import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
-@WebService(name = "admininterface")
+@WebService(name = "AdminInterface")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface AdminInterface extends PublicInterface {
 	/**
@@ -125,15 +125,35 @@ public interface AdminInterface extends PublicInterface {
 	@WebMethod(action = "getServerLog")
 	String getServerLog() throws ServerException, UserException;
 	
+	/**
+	 * @return Initiate clearing the output cache
+	 * @throws UserException
+	 * @throws ServerException
+	 */
 	@WebMethod(action = "clearOutputFileCache")
 	Integer clearOutputFileCache() throws UserException, ServerException;
 
+	/**
+	 * @return Get information about the system this BIMserver is running on
+	 * @throws UserException
+	 * @throws ServerException
+	 */
 	@WebMethod(action = "getSystemInfo")
 	SSystemInfo getSystemInfo() throws UserException, ServerException;
 	
+	/**
+	 * @return Get information about the Java environment this BIMserver is running on
+	 * @throws UserException
+	 * @throws ServerException
+	 */
 	@WebMethod(action = "getJavaInfo")
 	SJavaInfo getJavaInfo() throws UserException, ServerException;
 
+	/**
+	 * @return Get information about this BIMserver
+	 * @throws ServerException
+	 * @throws UserException
+	 */
 	@WebMethod(action = "getBimServerInfo")
 	SBimServerInfo getBimServerInfo() throws ServerException, UserException;
 	
@@ -143,7 +163,8 @@ public interface AdminInterface extends PublicInterface {
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getProtocolBuffersFile")
-	String getProtocolBuffersFile() throws ServerException, UserException;
+	String getProtocolBuffersFile(
+		@WebParam(name = "interfaceName", partName = "getProtocolBuffersFile.interfaceName") String interfaceName) throws ServerException, UserException;
 	
 	/**
 	 * Get the actual version of this BIMserver

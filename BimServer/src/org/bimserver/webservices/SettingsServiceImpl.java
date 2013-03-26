@@ -25,7 +25,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	}
 
 	@Override
-	public String getSettingEmailSenderAddress() throws ServerException, UserException {
+	public String getEmailSenderAddress() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		return getBimServer().getServerSettingsCache().getServerSettings().getEmailSenderAddress();
 	}
@@ -55,7 +55,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	}
 
 	@Override
-	public void setSettingProtocolBuffersPort(final Integer port) throws ServerException, UserException {
+	public void setProtocolBuffersPort(final Integer port) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
@@ -73,13 +73,13 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	}
 
 	@Override
-	public Integer getSettingProtocolBuffersPort() throws ServerException, UserException {
+	public Integer getProtocolBuffersPort() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		return getBimServer().getServerSettingsCache().getServerSettings().getProtocolBuffersPort();
 	}
 
 	@Override
-	public void setSettingEmailSenderAddress(final String emailSenderAddress) throws ServerException, UserException {
+	public void setEmailSenderAddress(final String emailSenderAddress) throws ServerException, UserException {
 		if (getBimServer().getServerInfo().getServerState() != ServerState.NOT_SETUP) {
 			requireAdminAuthentication();
 		}
@@ -102,13 +102,13 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	}
 
 	@Override
-	public String getSettingSiteAddress() throws ServerException, UserException {
+	public String getSiteAddress() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		return getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress();
 	}
 
 	@Override
-	public void setSettingSiteAddress(final String siteAddress) throws ServerException, UserException {
+	public void setSiteAddress(final String siteAddress) throws ServerException, UserException {
 		if (getBimServer().getServerInfo().getServerState() != ServerState.NOT_SETUP) {
 			requireAdminAuthentication();
 		}
@@ -133,13 +133,13 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	}
 
 	@Override
-	public String getSettingSmtpServer() throws ServerException, UserException {
+	public String getSmtpServer() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		return getBimServer().getServerSettingsCache().getServerSettings().getSmtpServer();
 	}
 
 	@Override
-	public void setSettingSmtpServer(final String smtpServer) throws ServerException, UserException {
+	public void setSmtpServer(final String smtpServer) throws ServerException, UserException {
 		if (getBimServer().getServerInfo().getServerState() != ServerState.NOT_SETUP) {
 			requireAdminAuthentication();
 		}
@@ -162,18 +162,18 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	}
 
 	@Override
-	public Boolean isSettingAllowSelfRegistration() throws ServerException, UserException {
+	public Boolean isAllowSelfRegistration() throws ServerException, UserException {
 		return getBimServer().getServerSettingsCache().getServerSettings().getAllowSelfRegistration();
 	}
 
 	@Override
-	public Boolean isSettingHideUserListForNonAdmin() throws ServerException, UserException {
+	public Boolean isHideUserListForNonAdmin() throws ServerException, UserException {
 		requireAuthentication();
 		return getBimServer().getServerSettingsCache().getServerSettings().getHideUserListForNonAdmin();
 	}
 
 	@Override
-	public void setSettingHideUserListForNonAdmin(final Boolean hideUserListForNonAdmin) throws ServerException, UserException {
+	public void setHideUserListForNonAdmin(final Boolean hideUserListForNonAdmin) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
@@ -191,7 +191,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	}
 
 	@Override
-	public void setSettingAllowSelfRegistration(final Boolean allowSelfRegistration) throws ServerException, UserException {
+	public void setAllowSelfRegistration(final Boolean allowSelfRegistration) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
@@ -209,13 +209,13 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	}
 
 	@Override
-	public Boolean isSettingAllowUsersToCreateTopLevelProjects() throws ServerException, UserException {
+	public Boolean isAllowUsersToCreateTopLevelProjects() throws ServerException, UserException {
 		requireAuthentication();
 		return getBimServer().getServerSettingsCache().getServerSettings().isAllowUsersToCreateTopLevelProjects();
 	}
 
 	@Override
-	public void setSettingAllowUsersToCreateTopLevelProjects(final Boolean allowUsersToCreateTopLevelProjects) throws ServerException, UserException {
+	public void setAllowUsersToCreateTopLevelProjects(final Boolean allowUsersToCreateTopLevelProjects) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
@@ -233,7 +233,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	}
 
 	@Override
-	public Boolean isSettingCheckinMergingEnabled() throws ServerException, UserException {
+	public Boolean isCheckinMergingEnabled() throws ServerException, UserException {
 		requireAuthentication();
 		return getBimServer().getServerSettingsCache().getServerSettings().getCheckinMergingEnabled();
 	}
@@ -257,13 +257,13 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	}
 
 	@Override
-	public Boolean isSettingSendConfirmationEmailAfterRegistration() throws ServerException, UserException {
+	public Boolean isSendConfirmationEmailAfterRegistration() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		return getBimServer().getServerSettingsCache().getServerSettings().isSendConfirmationEmailAfterRegistration();
 	}
 
 	@Override
-	public void setSettingSendConfirmationEmailAfterRegistration(final Boolean sendConfirmationEmailAfterRegistration) throws ServerException, UserException {
+	public void setSendConfirmationEmailAfterRegistration(final Boolean sendConfirmationEmailAfterRegistration) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
@@ -281,19 +281,19 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	}
 
 	@Override
-	public Boolean isSettingCacheOutputFiles() throws ServerException, UserException {
+	public Boolean isCacheOutputFiles() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		return getBimServer().getServerSettingsCache().getServerSettings().getCacheOutputFiles();
 	}
 
 	@Override
-	public Boolean isSettingGenerateGeometryOnCheckin() throws ServerException, UserException {
+	public Boolean isGenerateGeometryOnCheckin() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		return getBimServer().getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin();
 	}
 	
 	@Override
-	public void setSettingCacheOutputFiles(final Boolean cacheOutputFiles) throws ServerException, UserException {
+	public void setCacheOutputFiles(final Boolean cacheOutputFiles) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
@@ -311,7 +311,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	}
 	
 	@Override
-	public void setSettingGenerateGeometryOnCheckin(final Boolean generateGeometryOnCheckin) throws ServerException, UserException {
+	public void setGenerateGeometryOnCheckin(final Boolean generateGeometryOnCheckin) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {

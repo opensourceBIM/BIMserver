@@ -21,6 +21,14 @@ import org.bimserver.shared.exceptions.ServerException;
 
 public class SettingsInterfaceAdaptor implements SettingsInterface {
 
+	public java.lang.String getEmailSenderAddress() throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.lang.Integer getProtocolBuffersPort() throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SServerSettings getServerSettings() throws UserException, ServerException {
 		return null;
 	}
@@ -29,48 +37,64 @@ public class SettingsInterfaceAdaptor implements SettingsInterface {
 		return null;
 	}
 	
-	public java.lang.String getSettingEmailSenderAddress() throws UserException, ServerException {
+	public java.lang.String getSiteAddress() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.lang.Integer getSettingProtocolBuffersPort() throws UserException, ServerException {
+	public java.lang.String getSmtpServer() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.lang.String getSettingSiteAddress() throws UserException, ServerException {
+	public java.lang.Boolean isAllowSelfRegistration() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.lang.String getSettingSmtpServer() throws UserException, ServerException {
+	public java.lang.Boolean isAllowUsersToCreateTopLevelProjects() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.lang.Boolean isSettingAllowSelfRegistration() throws UserException, ServerException {
+	public java.lang.Boolean isCacheOutputFiles() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.lang.Boolean isSettingAllowUsersToCreateTopLevelProjects() throws UserException, ServerException {
+	public java.lang.Boolean isCheckinMergingEnabled() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.lang.Boolean isSettingCacheOutputFiles() throws UserException, ServerException {
+	public java.lang.Boolean isGenerateGeometryOnCheckin() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.lang.Boolean isSettingCheckinMergingEnabled() throws UserException, ServerException {
+	public java.lang.Boolean isHideUserListForNonAdmin() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.lang.Boolean isSettingGenerateGeometryOnCheckin() throws UserException, ServerException {
+	public java.lang.Boolean isSendConfirmationEmailAfterRegistration() throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.lang.Boolean isSettingHideUserListForNonAdmin() throws UserException, ServerException {
-		return null;
+	public void setAllowSelfRegistration(java.lang.Boolean allowSelfRegistration) throws UserException, ServerException {
 	}
 	
-	public java.lang.Boolean isSettingSendConfirmationEmailAfterRegistration() throws UserException, ServerException {
-		return null;
+	public void setAllowUsersToCreateTopLevelProjects(java.lang.Boolean allowUsersToCreateTopLevelProjects) throws UserException, ServerException {
+	}
+	
+	public void setCacheOutputFiles(java.lang.Boolean cacheOutputFiles) throws UserException, ServerException {
+	}
+	
+	public void setEmailSenderAddress(java.lang.String emailSenderAddress) throws UserException, ServerException {
+	}
+	
+	public void setGenerateGeometryOnCheckin(java.lang.Boolean generateGeometryOnCheckin) throws UserException, ServerException {
+	}
+	
+	public void setHideUserListForNonAdmin(java.lang.Boolean hideUserListForNonAdmin) throws UserException, ServerException {
+	}
+	
+	public void setProtocolBuffersPort(java.lang.Integer port) throws UserException, ServerException {
+	}
+	
+	public void setSendConfirmationEmailAfterRegistration(java.lang.Boolean sendConfirmationEmailAfterRegistration) throws UserException, ServerException {
 	}
 	
 	public void setServerSettings(org.bimserver.interfaces.objects.SServerSettings serverSettings) throws UserException, ServerException {
@@ -79,37 +103,13 @@ public class SettingsInterfaceAdaptor implements SettingsInterface {
 	public void setServiceRepositoryUrl(java.lang.String url) throws UserException, ServerException {
 	}
 	
-	public void setSettingAllowSelfRegistration(java.lang.Boolean allowSelfRegistration) throws UserException, ServerException {
-	}
-	
-	public void setSettingAllowUsersToCreateTopLevelProjects(java.lang.Boolean allowUsersToCreateTopLevelProjects) throws UserException, ServerException {
-	}
-	
-	public void setSettingCacheOutputFiles(java.lang.Boolean cacheOutputFiles) throws UserException, ServerException {
-	}
-	
 	public void setSettingCheckinMergingEnabled(java.lang.Boolean checkinMergingEnabled) throws UserException, ServerException {
 	}
 	
-	public void setSettingEmailSenderAddress(java.lang.String emailSenderAddress) throws UserException, ServerException {
+	public void setSiteAddress(java.lang.String siteAddress) throws UserException, ServerException {
 	}
 	
-	public void setSettingGenerateGeometryOnCheckin(java.lang.Boolean generateGeometryOnCheckin) throws UserException, ServerException {
-	}
-	
-	public void setSettingHideUserListForNonAdmin(java.lang.Boolean hideUserListForNonAdmin) throws UserException, ServerException {
-	}
-	
-	public void setSettingProtocolBuffersPort(java.lang.Integer port) throws UserException, ServerException {
-	}
-	
-	public void setSettingSendConfirmationEmailAfterRegistration(java.lang.Boolean sendConfirmationEmailAfterRegistration) throws UserException, ServerException {
-	}
-	
-	public void setSettingSiteAddress(java.lang.String siteAddress) throws UserException, ServerException {
-	}
-	
-	public void setSettingSmtpServer(java.lang.String smtpServer) throws UserException, ServerException {
+	public void setSmtpServer(java.lang.String smtpServer) throws UserException, ServerException {
 	}
 	
 	public void setWhiteListedDomains(java.util.List<java.lang.String> domains) throws UserException, ServerException {

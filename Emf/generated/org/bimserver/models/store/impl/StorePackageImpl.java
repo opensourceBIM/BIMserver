@@ -3921,6 +3921,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getServiceInterface_SimpleName() {
+		return (EAttribute) getServiceInterface().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getServiceMethod() {
 		if (serviceMethodEClass == null) {
 			serviceMethodEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(70);

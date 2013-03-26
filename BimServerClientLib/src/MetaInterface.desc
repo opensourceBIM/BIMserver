@@ -1,0 +1,53 @@
+
+ÿ
+MetaInterface.protoorg.bimserver.pbServiceInterface.protoNotificationInterface.protoRemoteServiceInterface.protoAdminInterface.protoAuthInterface.protoSettingsInterface.protoLowLevelInterface.proto"
+GetServiceInterfacesRequest"5
+SServiceInterface
+
+simpleName (	
+name (	"h
+GetServiceInterfacesResponse
+errorMessage (	2
+value (2#.org.bimserver.pb.SServiceInterface"\
+!GetServiceMethodParametersRequest
+serviceInterfaceName (	
+serviceMethodName (	"
+SServiceField3
+genericType (2.org.bimserver.pb.SServiceType
+name (	
+doc (	,
+type (2.org.bimserver.pb.SServiceType"{
+SServiceType
+
+simpleName (	
+rid (
+oid (
+name (	/
+fields (2.org.bimserver.pb.SServiceField"‘
+SServiceParameter3
+genericType (2.org.bimserver.pb.SServiceType
+name (	
+doc (	,
+type (2.org.bimserver.pb.SServiceType"n
+"GetServiceMethodParametersResponse
+errorMessage (	2
+value (2#.org.bimserver.pb.SServiceParameter"8
+GetServiceMethodsRequest
+serviceInterfaceName (	">
+SServiceMethod
+name (	
+doc (	
+	returnDoc (	"b
+GetServiceMethodsResponse
+errorMessage (	/
+value (2 .org.bimserver.pb.SServiceMethod"6
+GetServiceTypesRequest
+serviceInterfaceName (	"^
+GetServiceTypesResponse
+errorMessage (	-
+value (2.org.bimserver.pb.SServiceType2æ
+MetaInterfaceu
+getServiceInterfaces-.org.bimserver.pb.GetServiceInterfacesRequest..org.bimserver.pb.GetServiceInterfacesResponse‡
+getServiceMethodParameters3.org.bimserver.pb.GetServiceMethodParametersRequest4.org.bimserver.pb.GetServiceMethodParametersResponsel
+getServiceMethods*.org.bimserver.pb.GetServiceMethodsRequest+.org.bimserver.pb.GetServiceMethodsResponsef
+getServiceTypes(.org.bimserver.pb.GetServiceTypesRequest).org.bimserver.pb.GetServiceTypesResponseBBMetaInterfaceImplHˆ

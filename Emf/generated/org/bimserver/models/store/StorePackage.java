@@ -4516,13 +4516,22 @@ public interface StorePackage extends EPackage {
 	int SERVICE_INTERFACE__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_INTERFACE__SIMPLE_NAME = 1;
+
+	/**
 	 * The number of structural features of the '<em>Service Interface</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_INTERFACE_FEATURE_COUNT = 1;
+	int SERVICE_INTERFACE_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServiceMethodImpl <em>Service Method</em>}' class.
@@ -9336,6 +9345,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getServiceInterface_Name();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceInterface#getSimpleName <em>Simple Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Simple Name</em>'.
+	 * @see org.bimserver.models.store.ServiceInterface#getSimpleName()
+	 * @see #getServiceInterface()
+	 * @generated
+	 */
+	EAttribute getServiceInterface_SimpleName();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ServiceMethod <em>Service Method</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13307,6 +13327,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERVICE_INTERFACE__NAME = eINSTANCE.getServiceInterface_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Simple Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_INTERFACE__SIMPLE_NAME = eINSTANCE.getServiceInterface_SimpleName();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServiceMethodImpl <em>Service Method</em>}' class.

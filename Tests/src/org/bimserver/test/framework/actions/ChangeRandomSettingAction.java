@@ -37,15 +37,15 @@ public class ChangeRandomSettingAction extends Action {
 		switch (random) {
 		case 0:
 			virtualUser.getActionResults().setText("Setting allow self registration");
-			settingsInterface.setSettingAllowSelfRegistration(nextBoolean());
+			settingsInterface.setAllowSelfRegistration(nextBoolean());
 			break;
 		case 1:
 			virtualUser.getActionResults().setText("Setting allow self registration");
-			settingsInterface.setSettingAllowUsersToCreateTopLevelProjects(nextBoolean());
+			settingsInterface.setAllowUsersToCreateTopLevelProjects(nextBoolean());
 			break;
 		case 3:
 			virtualUser.getActionResults().setText("Setting allow self registration");
-			settingsInterface.setSettingCacheOutputFiles(nextBoolean());
+			settingsInterface.setCacheOutputFiles(nextBoolean());
 			break;
 		case 4:
 			virtualUser.getActionResults().setText("Setting checkin merin enabled");
@@ -58,13 +58,13 @@ public class ChangeRandomSettingAction extends Action {
 //			serviceInterface.setSettingEmailSenderAddress("");
 			break;
 		case 9:
-			settingsInterface.setSettingHideUserListForNonAdmin(nextBoolean());
+			settingsInterface.setHideUserListForNonAdmin(nextBoolean());
 			break;
 		case 12:
-			settingsInterface.setSettingProtocolBuffersPort(1024 + nextInt(1024));
+			settingsInterface.setProtocolBuffersPort(1024 + nextInt(1024));
 			break;
 		case 14:
-			settingsInterface.setSettingSendConfirmationEmailAfterRegistration(nextBoolean());
+			settingsInterface.setSendConfirmationEmailAfterRegistration(nextBoolean());
 			break;
 		case 16:
 //			serviceInterface.setSettingSiteAddress("");
