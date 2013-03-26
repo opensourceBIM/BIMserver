@@ -1,0 +1,555 @@
+package org.bimserver.pb;
+
+/******************************************************************************
+ * Copyright (C) 2009-2013  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+import "ServiceInterface.proto";
+import "NotificationInterface.proto";
+import "RemoteServiceInterface.proto";
+import "AdminInterface.proto";
+import "AuthInterface.proto";
+import "SettingsInterface.proto";
+option java_generic_services = true;
+
+option java_outer_classname = "LowLevelInterfaceImpl";
+
+option optimize_for = SPEED;
+
+service LowLevelInterface {
+	rpc abortTransaction (AbortTransactionRequest) returns (VoidResponse);
+
+	rpc addBooleanAttribute (AddBooleanAttributeRequest) returns (VoidResponse);
+
+	rpc addDoubleAttribute (AddDoubleAttributeRequest) returns (VoidResponse);
+
+	rpc addIntegerAttribute (AddIntegerAttributeRequest) returns (VoidResponse);
+
+	rpc addReference (AddReferenceRequest) returns (VoidResponse);
+
+	rpc addStringAttribute (AddStringAttributeRequest) returns (VoidResponse);
+
+	rpc commitTransaction (CommitTransactionRequest) returns (CommitTransactionResponse);
+
+	rpc createObject (CreateObjectRequest) returns (CreateObjectResponse);
+
+	rpc getBooleanAttribute (GetBooleanAttributeRequest) returns (GetBooleanAttributeResponse);
+
+	rpc getBooleanAttributes (GetBooleanAttributesRequest) returns (GetBooleanAttributesResponse);
+
+	rpc getByteArrayAttribute (GetByteArrayAttributeRequest) returns (GetByteArrayAttributeResponse);
+
+	rpc getByteArrayAttributes (GetByteArrayAttributesRequest) returns (GetByteArrayAttributesResponse);
+
+	rpc getDataObjectByGuid (GetDataObjectByGuidRequest) returns (GetDataObjectByGuidResponse);
+
+	rpc getDataObjectByOid (GetDataObjectByOidRequest) returns (GetDataObjectByOidResponse);
+
+	rpc getDataObjects (GetDataObjectsRequest) returns (GetDataObjectsResponse);
+
+	rpc getDataObjectsByType (GetDataObjectsByTypeRequest) returns (GetDataObjectsByTypeResponse);
+
+	rpc getDoubleAttribute (GetDoubleAttributeRequest) returns (GetDoubleAttributeResponse);
+
+	rpc getDoubleAttributes (GetDoubleAttributesRequest) returns (GetDoubleAttributesResponse);
+
+	rpc getEnumAttribute (GetEnumAttributeRequest) returns (GetEnumAttributeResponse);
+
+	rpc getIntegerAttribute (GetIntegerAttributeRequest) returns (GetIntegerAttributeResponse);
+
+	rpc getIntegerAttributes (GetIntegerAttributesRequest) returns (GetIntegerAttributesResponse);
+
+	rpc getLongAttribute (GetLongAttributeRequest) returns (GetLongAttributeResponse);
+
+	rpc getReference (GetReferenceRequest) returns (GetReferenceResponse);
+
+	rpc getReferences (GetReferencesRequest) returns (GetReferencesResponse);
+
+	rpc getStringAttribute (GetStringAttributeRequest) returns (GetStringAttributeResponse);
+
+	rpc getStringAttributes (GetStringAttributesRequest) returns (GetStringAttributesResponse);
+
+	rpc removeAllReferences (RemoveAllReferencesRequest) returns (VoidResponse);
+
+	rpc removeAttribute (RemoveAttributeRequest) returns (VoidResponse);
+
+	rpc removeObject (RemoveObjectRequest) returns (VoidResponse);
+
+	rpc removeReference (RemoveReferenceRequest) returns (VoidResponse);
+
+	rpc setBooleanAttribute (SetBooleanAttributeRequest) returns (VoidResponse);
+
+	rpc setBooleanAttributes (SetBooleanAttributesRequest) returns (VoidResponse);
+
+	rpc setByteArrayAttribute (SetByteArrayAttributeRequest) returns (VoidResponse);
+
+	rpc setDoubleAttribute (SetDoubleAttributeRequest) returns (VoidResponse);
+
+	rpc setDoubleAttributes (SetDoubleAttributesRequest) returns (VoidResponse);
+
+	rpc setEnumAttribute (SetEnumAttributeRequest) returns (VoidResponse);
+
+	rpc setIntegerAttribute (SetIntegerAttributeRequest) returns (VoidResponse);
+
+	rpc setIntegerAttributes (SetIntegerAttributesRequest) returns (VoidResponse);
+
+	rpc setLongAttribute (SetLongAttributeRequest) returns (VoidResponse);
+
+	rpc setLongAttributes (SetLongAttributesRequest) returns (VoidResponse);
+
+	rpc setReference (SetReferenceRequest) returns (VoidResponse);
+
+	rpc setStringAttribute (SetStringAttributeRequest) returns (VoidResponse);
+
+	rpc setWrappedBooleanAttribute (SetWrappedBooleanAttributeRequest) returns (VoidResponse);
+
+	rpc setWrappedDoubleAttribute (SetWrappedDoubleAttributeRequest) returns (VoidResponse);
+
+	rpc setWrappedIntegerAttribute (SetWrappedIntegerAttributeRequest) returns (VoidResponse);
+
+	rpc setWrappedLongAttribute (SetWrappedLongAttributeRequest) returns (VoidResponse);
+
+	rpc setWrappedStringAttribute (SetWrappedStringAttributeRequest) returns (VoidResponse);
+
+	rpc startTransaction (StartTransactionRequest) returns (StartTransactionResponse);
+
+	rpc unsetAttribute (UnsetAttributeRequest) returns (VoidResponse);
+
+	rpc unsetReference (UnsetReferenceRequest) returns (VoidResponse);
+
+}
+
+message AbortTransactionRequest {
+	optional int64 tid = 1;
+}
+
+message AddBooleanAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional bool value = 4;
+}
+
+message AddDoubleAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional double value = 4;
+}
+
+message AddIntegerAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional int32 value = 4;
+}
+
+message AddReferenceRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string referenceName = 3;
+	optional int64 referenceOid = 4;
+}
+
+message AddStringAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional string value = 4;
+}
+
+message CommitTransactionRequest {
+	optional int64 tid = 1;
+	optional string comment = 2;
+}
+
+message CommitTransactionResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
+message CreateObjectRequest {
+	optional int64 tid = 1;
+	optional string className = 2;
+}
+
+message CreateObjectResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
+message GetBooleanAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+}
+
+message GetBooleanAttributeResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message GetBooleanAttributesRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+}
+
+message GetBooleanAttributesResponse {
+	optional string errorMessage = 1;
+	repeated bool value = 2;
+}
+
+message GetByteArrayAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+}
+
+message GetByteArrayAttributeResponse {
+	optional string errorMessage = 1;
+	optional bytes value = 2;
+}
+
+message GetByteArrayAttributesRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+}
+
+message GetByteArrayAttributesResponse {
+	optional string errorMessage = 1;
+	repeated bytes value = 2;
+}
+
+message GetDataObjectByGuidRequest {
+	optional int64 roid = 1;
+	optional string guid = 2;
+}
+
+message GetDataObjectByGuidResponse {
+	optional string errorMessage = 1;
+	optional SDataObject value = 2;
+}
+
+message GetDataObjectByOidRequest {
+	optional int64 roid = 1;
+	optional int64 oid = 2;
+}
+
+message GetDataObjectByOidResponse {
+	optional string errorMessage = 1;
+	optional SDataObject value = 2;
+}
+
+message GetDataObjectsRequest {
+	optional int64 roid = 1;
+}
+
+message GetDataObjectsResponse {
+	optional string errorMessage = 1;
+	repeated SDataObject value = 2;
+}
+
+message GetDataObjectsByTypeRequest {
+	optional int64 roid = 1;
+	optional string className = 2;
+}
+
+message GetDataObjectsByTypeResponse {
+	optional string errorMessage = 1;
+	repeated SDataObject value = 2;
+}
+
+message GetDoubleAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+}
+
+message GetDoubleAttributeResponse {
+	optional string errorMessage = 1;
+	optional double value = 2;
+}
+
+message GetDoubleAttributesRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+}
+
+message GetDoubleAttributesResponse {
+	optional string errorMessage = 1;
+	repeated double value = 2;
+}
+
+message GetEnumAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+}
+
+message GetEnumAttributeResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+
+message GetIntegerAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+}
+
+message GetIntegerAttributeResponse {
+	optional string errorMessage = 1;
+	optional int32 value = 2;
+}
+
+message GetIntegerAttributesRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+}
+
+message GetIntegerAttributesResponse {
+	optional string errorMessage = 1;
+	repeated int32 value = 2;
+}
+
+message GetLongAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+}
+
+message GetLongAttributeResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
+message GetReferenceRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string referenceName = 3;
+}
+
+message GetReferenceResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
+message GetReferencesRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string referenceName = 3;
+}
+
+message GetReferencesResponse {
+	optional string errorMessage = 1;
+	repeated int64 value = 2;
+}
+
+message GetStringAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+}
+
+message GetStringAttributeResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
+}
+
+message GetStringAttributesRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+}
+
+message GetStringAttributesResponse {
+	optional string errorMessage = 1;
+	repeated string value = 2;
+}
+
+message RemoveAllReferencesRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string referenceName = 3;
+}
+
+message RemoveAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional int32 index = 4;
+}
+
+message RemoveObjectRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+}
+
+message RemoveReferenceRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string referenceName = 3;
+	optional int32 index = 4;
+}
+
+message SetBooleanAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional bool value = 4;
+}
+
+message SetBooleanAttributesRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	repeated bool values = 4;
+}
+
+message SetByteArrayAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional bytes value = 4;
+}
+
+message SetDoubleAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional double value = 4;
+}
+
+message SetDoubleAttributesRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	repeated double values = 4;
+}
+
+message SetEnumAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional string value = 4;
+}
+
+message SetIntegerAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional int32 value = 4;
+}
+
+message SetIntegerAttributesRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	repeated int32 values = 4;
+}
+
+message SetLongAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional int64 value = 4;
+}
+
+message SetLongAttributesRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	repeated int64 values = 4;
+}
+
+message SetReferenceRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string referenceName = 3;
+	optional int64 referenceOid = 4;
+}
+
+message SetStringAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional string value = 4;
+}
+
+message SetWrappedBooleanAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional string type = 4;
+	optional bool value = 5;
+}
+
+message SetWrappedDoubleAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional string type = 4;
+	optional double value = 5;
+}
+
+message SetWrappedIntegerAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional string type = 4;
+	optional int32 value = 5;
+}
+
+message SetWrappedLongAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional string type = 4;
+	optional int64 value = 5;
+}
+
+message SetWrappedStringAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+	optional string type = 4;
+	optional string value = 5;
+}
+
+message StartTransactionRequest {
+	optional int64 poid = 1;
+}
+
+message StartTransactionResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
+message UnsetAttributeRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string attributeName = 3;
+}
+
+message UnsetReferenceRequest {
+	optional int64 tid = 1;
+	optional int64 oid = 2;
+	optional string referenceName = 3;
+}
+

@@ -14,7 +14,7 @@ import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
-@WebService(name = "lowlevelinterface")
+@WebService(name = "LowLevelInterface")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface LowLevelInterface extends PublicInterface {
 	/**

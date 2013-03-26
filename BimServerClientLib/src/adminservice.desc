@@ -1,407 +1,0 @@
-
-ŠX
-adminservice.protoorg.bimserver.pbservice.protonotification.protoremoteservice.proto"
-ClearOutputFileCacheRequest"C
-ClearOutputFileCacheResponse
-errorMessage (	
-value ("$
-DisablePluginRequest
-name (	"#
-EnablePluginRequest
-name (	"
-GetActiveLongActionsRequest"~
-SLongAction
-username (	
-start (
-rid (
-oid (
-identification (	
-name (	
-userId ("b
-GetActiveLongActionsResponse
-errorMessage (	,
-value (2.org.bimserver.pb.SLongAction"
-GetAllPluginsRequest"6
-SWebModulePluginDescriptor
-rid (
-oid ("ö
-SPluginDescriptor
-__actual_type (	R
-__SWebModulePluginDescriptor (2,.org.bimserver.pb.SWebModulePluginDescriptorN
-__SServicePluginDescriptor (2*.org.bimserver.pb.SServicePluginDescriptorX
-__SDeserializerPluginDescriptor (2/.org.bimserver.pb.SDeserializerPluginDescriptorV
-__SModelMergerPluginDescriptor (2..org.bimserver.pb.SModelMergerPluginDescriptorT
-__SSerializerPluginDescriptor (2-.org.bimserver.pb.SSerializerPluginDescriptorX
-__SModelComparePluginDescriptor (2/.org.bimserver.pb.SModelComparePluginDescriptorX
-__SRenderEnginePluginDescriptor (2/.org.bimserver.pb.SRenderEnginePluginDescriptorV
-__SQueryEnginePluginDescriptor	 (2..org.bimserver.pb.SQueryEnginePluginDescriptor
-defaultName
- (	
-
-simpleName (	
-enabled (
-location (	
-rid (
-description (	
-oid (
-pluginClassName (	"a
-GetAllPluginsResponse
-errorMessage (	2
-value (2#.org.bimserver.pb.SPluginDescriptor"
-GetBimServerInfoRequest"—
-SBimServerInfo
-
-latestDate (
-users (
-uptime (	
-latestVersion (	
-projects (
-serverLogUrl (	
-rid (
-currentDate (
-oid	 (
-currentVersion
- (	
-started (
-	revisions (
-schemaVersion (
-	checkouts ("a
-GetBimServerInfoResponse
-errorMessage (	/
-value (2 .org.bimserver.pb.SBimServerInfo"
-GetDatabaseInformationRequest"P
-SDatabaseInformationItem
-rid (
-oid (
-value (	
-key (	"‚
-SDatabaseInformationCategory
-title (	9
-items (2*.org.bimserver.pb.SDatabaseInformationItem
-rid (
-oid ("À
-SDatabaseInformation
-location (	
-numberOfProjects (
-created (
-rid (
-oid (B
-
-categories (2..org.bimserver.pb.SDatabaseInformationCategory
-numberOfUsers (
-type (	
-databaseSizeInBytes	 (
-schemaVersion
- (
-numberOfCheckouts (
-numberOfRevisions ("m
-GetDatabaseInformationResponse
-errorMessage (	5
-value (2&.org.bimserver.pb.SDatabaseInformation"
-GetJavaInfoRequest"°
-	SJavaInfo
-javaFileSeparator (	
-
-javaVendor (	
-javavmVersion (	
-	javaIoTmp (	
-javaspecVendor (	
-threads (
-javaVendorurl (	
-oid (
-
-javaExtdir	 (	
-javaVersion
- (	
-javavmVendor (	
-	heapTotal (
-javaLibrarypath (	
-javaspecVersion (	
-javaCompiler (	
-javaClassVersion (	
-heapFree (
-javaHome (	
-javaPathSeparator (	
-javaLineSeparator (	
-rid (
-javaClasspath (	
-heapUsed (
-javaspecName (	
-
-javavmName (	
-heapMax ("W
-GetJavaInfoResponse
-errorMessage (	*
-value (2.org.bimserver.pb.SJavaInfo"
-GetLastDatabaseResetRequest"C
-GetLastDatabaseResetResponse
-errorMessage (	
-value ("
-GetLatestVersionRequest"¡
-SVersion
-supportEmail (	
-revision (
-minor (
-rid (
-oid (
-
-supportUrl (	
-downloadUrl (	
-date (
-major	 ("[
-GetLatestVersionResponse
-errorMessage (	)
-value (2.org.bimserver.pb.SVersion"
-GetLogsRequest"*
-SServerStarted
-rid (
-oid ("b
-SExtendedDataAddedToProject
-rid (
-oid (
-	projectId (
-extendedDataId ("1
-SNewObjectIDMUploaded
-rid (
-oid ("T
-SNewRevisionAdded
-rid (
-oid (
-	projectId (
-
-revisionId ("Á
-SRemoteServiceCalled
-infos (	
-errors (	
-	serviceId (
-
-percentage (
-rid (
-oid (7
-state (2(.org.bimserver.pb.SNotifictionResultEnum
-warnings (	"K
-SDatabaseCreated
-rid (
-oid (
-path (	
-version (":
-SPasswordReset
-rid (
-oid (
-userId ("[
-SRevisionBranched
-newrevisionId (
-rid (
-oid (
-oldrevisionId (">
-SProjectDeleted
-rid (
-oid (
-	projectId ("<
-SGeoTagUpdated
-rid (
-geoTagId (
-oid ("*
-SSettingsSaved
-rid (
-oid ("8
-SUserChanged
-rid (
-oid (
-userId ("@
-SRevisionUpdated
-rid (
-oid (
-
-revisionId ("8
-SUserDeleted
-rid (
-oid (
-userId (">
-SProjectUpdated
-rid (
-oid (
-	projectId ("%
-	SDownload
-rid (
-oid ("X
-SNewProjectAdded
-rid (
-oid (
-	projectId (
-parentProjectId ("9
-SNewUserAdded
-rid (
-oid (
-userId ("@
-SProjectUndeleted
-rid (
-oid (
-	projectId ("<
-SPasswordChanged
-rid (
-oid (
-userId ("V
-SUserRemovedFromProject
-rid (
-oid (
-userId (
-	projectId (":
-SUserUndeleted
-rid (
-oid (
-userId ("R
-SUserAddedToProject
-rid (
-oid (
-userId (
-	projectId ("A
-SNewCheckoutAdded
-rid (
-oid (
-
-checkoutId ("d
-SExtendedDataAddedToRevision
-rid (
-oid (
-extendedDataId (
-
-revisionId ("ö
-
-SLogAction
-__actual_type (	:
-__SServerStarted (2 .org.bimserver.pb.SServerStartedT
-__SExtendedDataAddedToProject (2-.org.bimserver.pb.SExtendedDataAddedToProjectH
-__SNewObjectIDMUploaded (2'.org.bimserver.pb.SNewObjectIDMUploaded@
-__SNewRevisionAdded (2#.org.bimserver.pb.SNewRevisionAddedF
-__SRemoteServiceCalled (2&.org.bimserver.pb.SRemoteServiceCalled>
-__SDatabaseCreated (2".org.bimserver.pb.SDatabaseCreated:
-__SPasswordReset (2 .org.bimserver.pb.SPasswordReset@
-__SRevisionBranched	 (2#.org.bimserver.pb.SRevisionBranched<
-__SProjectDeleted
- (2!.org.bimserver.pb.SProjectDeleted:
-__SGeoTagUpdated (2 .org.bimserver.pb.SGeoTagUpdated:
-__SSettingsSaved (2 .org.bimserver.pb.SSettingsSaved6
-__SUserChanged (2.org.bimserver.pb.SUserChanged>
-__SRevisionUpdated (2".org.bimserver.pb.SRevisionUpdated6
-__SUserDeleted (2.org.bimserver.pb.SUserDeleted<
-__SProjectUpdated (2!.org.bimserver.pb.SProjectUpdated0
-__SDownload (2.org.bimserver.pb.SDownload>
-__SNewProjectAdded (2".org.bimserver.pb.SNewProjectAdded8
-__SNewUserAdded (2.org.bimserver.pb.SNewUserAdded@
-__SProjectUndeleted (2#.org.bimserver.pb.SProjectUndeleted>
-__SPasswordChanged (2".org.bimserver.pb.SPasswordChangedL
-__SUserRemovedFromProject (2).org.bimserver.pb.SUserRemovedFromProject:
-__SUserUndeleted (2 .org.bimserver.pb.SUserUndeletedD
-__SUserAddedToProject (2%.org.bimserver.pb.SUserAddedToProject@
-__SNewCheckoutAdded (2#.org.bimserver.pb.SNewCheckoutAddedV
-__SExtendedDataAddedToRevision (2..org.bimserver.pb.SExtendedDataAddedToRevision
-
-executorId (
-rid (
-oid (5
-accessMethod (2.org.bimserver.pb.SAccessMethod
-date ("T
-GetLogsResponse
-errorMessage (	+
-value (2.org.bimserver.pb.SLogAction"
-GetMigrationsRequest"]
-
-SMigration
-executed (
-rid (
-description (	
-oid (
-number ("Z
-GetMigrationsResponse
-errorMessage (	+
-value (2.org.bimserver.pb.SMigration"6
-GetProtocolBuffersFileRequest
-interfaceName (	"E
-GetProtocolBuffersFileResponse
-errorMessage (	
-value (	"
-GetServerInfoRequest"r
-SServerInfo
-errorMessage (	
-rid (
-oid (3
-serverState (2.org.bimserver.pb.SServerState"[
-GetServerInfoResponse
-errorMessage (	,
-value (2.org.bimserver.pb.SServerInfo"
-GetServerLogRequest";
-GetServerLogResponse
-errorMessage (	
-value (	"
-GetServerStartTimeRequest"A
-GetServerStartTimeResponse
-errorMessage (	
-value ("
-GetSystemInfoRequest"£
-SSystemInfo
-userDir (	
-osname (	
-userHome (	
-rid (
-oid (
-userName (	
-datetime (
-	osversion (	
-cpucores	 ("[
-GetSystemInfoResponse
-errorMessage (	,
-value (2.org.bimserver.pb.SSystemInfo"
-GetVersionRequest"U
-GetVersionResponse
-errorMessage (	)
-value (2.org.bimserver.pb.SVersion"
-MigrateDatabaseRequest"Œ
-SetupRequest
-siteAddress (	
-
-smtpServer (	
-
-smtpSender (	
-	adminName (	
-adminUsername (	
-adminPassword (	"
-UpgradePossibleRequest">
-UpgradePossibleResponse
-errorMessage (	
-value (*b
-SNotifictionResultEnum
-NR_ERROR 
-SUCCESS
-PROGRESS_UNKNOWN
-PROGRESS_PERCENTAGE*|
-SServerState
-	UNDEFINED 
-	NOT_SETUP
-MIGRATION_REQUIRED
-MIGRATION_IMPOSSIBLE
-FATAL_ERROR
-RUNNING2à
-AdminInterfaceu
-clearOutputFileCache-.org.bimserver.pb.ClearOutputFileCacheRequest..org.bimserver.pb.ClearOutputFileCacheResponseW
-disablePlugin&.org.bimserver.pb.DisablePluginRequest.org.bimserver.pb.VoidResponseU
-enablePlugin%.org.bimserver.pb.EnablePluginRequest.org.bimserver.pb.VoidResponseu
-getActiveLongActions-.org.bimserver.pb.GetActiveLongActionsRequest..org.bimserver.pb.GetActiveLongActionsResponse`
-getAllPlugins&.org.bimserver.pb.GetAllPluginsRequest'.org.bimserver.pb.GetAllPluginsResponsei
-getBimServerInfo).org.bimserver.pb.GetBimServerInfoRequest*.org.bimserver.pb.GetBimServerInfoResponse{
-getDatabaseInformation/.org.bimserver.pb.GetDatabaseInformationRequest0.org.bimserver.pb.GetDatabaseInformationResponseZ
-getJavaInfo$.org.bimserver.pb.GetJavaInfoRequest%.org.bimserver.pb.GetJavaInfoResponseu
-getLastDatabaseReset-.org.bimserver.pb.GetLastDatabaseResetRequest..org.bimserver.pb.GetLastDatabaseResetResponsei
-getLatestVersion).org.bimserver.pb.GetLatestVersionRequest*.org.bimserver.pb.GetLatestVersionResponseN
-getLogs .org.bimserver.pb.GetLogsRequest!.org.bimserver.pb.GetLogsResponse`
-getMigrations&.org.bimserver.pb.GetMigrationsRequest'.org.bimserver.pb.GetMigrationsResponse{
-getProtocolBuffersFile/.org.bimserver.pb.GetProtocolBuffersFileRequest0.org.bimserver.pb.GetProtocolBuffersFileResponse`
-getServerInfo&.org.bimserver.pb.GetServerInfoRequest'.org.bimserver.pb.GetServerInfoResponse]
-getServerLog%.org.bimserver.pb.GetServerLogRequest&.org.bimserver.pb.GetServerLogResponseo
-getServerStartTime+.org.bimserver.pb.GetServerStartTimeRequest,.org.bimserver.pb.GetServerStartTimeResponse`
-getSystemInfo&.org.bimserver.pb.GetSystemInfoRequest'.org.bimserver.pb.GetSystemInfoResponseW
-
-getVersion#.org.bimserver.pb.GetVersionRequest$.org.bimserver.pb.GetVersionResponse[
-migrateDatabase(.org.bimserver.pb.MigrateDatabaseRequest.org.bimserver.pb.VoidResponseG
-setup.org.bimserver.pb.SetupRequest.org.bimserver.pb.VoidResponsef
-upgradePossible(.org.bimserver.pb.UpgradePossibleRequest).org.bimserver.pb.UpgradePossibleResponseBBAdminInterfaceImplHˆ

@@ -1,0 +1,334 @@
+
+òV
+LowLevelInterface.protoorg.bimserver.pbServiceInterface.protoNotificationInterface.protoRemoteServiceInterface.protoAdminInterface.protoAuthInterface.protoSettingsInterface.proto"&
+AbortTransactionRequest
+tid ("\
+AddBooleanAttributeRequest
+tid (
+oid (
+attributeName (	
+value ("[
+AddDoubleAttributeRequest
+tid (
+oid (
+attributeName (	
+value ("\
+AddIntegerAttributeRequest
+tid (
+oid (
+attributeName (	
+value ("\
+AddReferenceRequest
+tid (
+oid (
+referenceName (	
+referenceOid ("[
+AddStringAttributeRequest
+tid (
+oid (
+attributeName (	
+value (	"8
+CommitTransactionRequest
+tid (
+comment (	"@
+CommitTransactionResponse
+errorMessage (	
+value ("5
+CreateObjectRequest
+tid (
+	className (	";
+CreateObjectResponse
+errorMessage (	
+value ("M
+GetBooleanAttributeRequest
+tid (
+oid (
+attributeName (	"B
+GetBooleanAttributeResponse
+errorMessage (	
+value ("N
+GetBooleanAttributesRequest
+tid (
+oid (
+attributeName (	"C
+GetBooleanAttributesResponse
+errorMessage (	
+value ("O
+GetByteArrayAttributeRequest
+tid (
+oid (
+attributeName (	"D
+GetByteArrayAttributeResponse
+errorMessage (	
+value ("P
+GetByteArrayAttributesRequest
+tid (
+oid (
+attributeName (	"E
+GetByteArrayAttributesResponse
+errorMessage (	
+value ("8
+GetDataObjectByGuidRequest
+roid (
+guid (	"a
+GetDataObjectByGuidResponse
+errorMessage (	,
+value (2.org.bimserver.pb.SDataObject"6
+GetDataObjectByOidRequest
+roid (
+oid ("`
+GetDataObjectByOidResponse
+errorMessage (	,
+value (2.org.bimserver.pb.SDataObject"%
+GetDataObjectsRequest
+roid ("\
+GetDataObjectsResponse
+errorMessage (	,
+value (2.org.bimserver.pb.SDataObject">
+GetDataObjectsByTypeRequest
+roid (
+	className (	"b
+GetDataObjectsByTypeResponse
+errorMessage (	,
+value (2.org.bimserver.pb.SDataObject"L
+GetDoubleAttributeRequest
+tid (
+oid (
+attributeName (	"A
+GetDoubleAttributeResponse
+errorMessage (	
+value ("M
+GetDoubleAttributesRequest
+tid (
+oid (
+attributeName (	"B
+GetDoubleAttributesResponse
+errorMessage (	
+value ("J
+GetEnumAttributeRequest
+tid (
+oid (
+attributeName (	"?
+GetEnumAttributeResponse
+errorMessage (	
+value (	"M
+GetIntegerAttributeRequest
+tid (
+oid (
+attributeName (	"B
+GetIntegerAttributeResponse
+errorMessage (	
+value ("N
+GetIntegerAttributesRequest
+tid (
+oid (
+attributeName (	"C
+GetIntegerAttributesResponse
+errorMessage (	
+value ("J
+GetLongAttributeRequest
+tid (
+oid (
+attributeName (	"?
+GetLongAttributeResponse
+errorMessage (	
+value ("F
+GetReferenceRequest
+tid (
+oid (
+referenceName (	";
+GetReferenceResponse
+errorMessage (	
+value ("G
+GetReferencesRequest
+tid (
+oid (
+referenceName (	"<
+GetReferencesResponse
+errorMessage (	
+value ("L
+GetStringAttributeRequest
+tid (
+oid (
+attributeName (	"A
+GetStringAttributeResponse
+errorMessage (	
+value (	"M
+GetStringAttributesRequest
+tid (
+oid (
+attributeName (	"B
+GetStringAttributesResponse
+errorMessage (	
+value (	"M
+RemoveAllReferencesRequest
+tid (
+oid (
+referenceName (	"X
+RemoveAttributeRequest
+tid (
+oid (
+attributeName (	
+index ("/
+RemoveObjectRequest
+tid (
+oid ("X
+RemoveReferenceRequest
+tid (
+oid (
+referenceName (	
+index ("\
+SetBooleanAttributeRequest
+tid (
+oid (
+attributeName (	
+value ("^
+SetBooleanAttributesRequest
+tid (
+oid (
+attributeName (	
+values ("^
+SetByteArrayAttributeRequest
+tid (
+oid (
+attributeName (	
+value ("[
+SetDoubleAttributeRequest
+tid (
+oid (
+attributeName (	
+value ("]
+SetDoubleAttributesRequest
+tid (
+oid (
+attributeName (	
+values ("Y
+SetEnumAttributeRequest
+tid (
+oid (
+attributeName (	
+value (	"\
+SetIntegerAttributeRequest
+tid (
+oid (
+attributeName (	
+value ("^
+SetIntegerAttributesRequest
+tid (
+oid (
+attributeName (	
+values ("Y
+SetLongAttributeRequest
+tid (
+oid (
+attributeName (	
+value ("[
+SetLongAttributesRequest
+tid (
+oid (
+attributeName (	
+values ("\
+SetReferenceRequest
+tid (
+oid (
+referenceName (	
+referenceOid ("[
+SetStringAttributeRequest
+tid (
+oid (
+attributeName (	
+value (	"q
+!SetWrappedBooleanAttributeRequest
+tid (
+oid (
+attributeName (	
+type (	
+value ("p
+ SetWrappedDoubleAttributeRequest
+tid (
+oid (
+attributeName (	
+type (	
+value ("q
+!SetWrappedIntegerAttributeRequest
+tid (
+oid (
+attributeName (	
+type (	
+value ("n
+SetWrappedLongAttributeRequest
+tid (
+oid (
+attributeName (	
+type (	
+value ("p
+ SetWrappedStringAttributeRequest
+tid (
+oid (
+attributeName (	
+type (	
+value (	"'
+StartTransactionRequest
+poid ("?
+StartTransactionResponse
+errorMessage (	
+value ("H
+UnsetAttributeRequest
+tid (
+oid (
+attributeName (	"H
+UnsetReferenceRequest
+tid (
+oid (
+referenceName (	2ƒ)
+LowLevelInterface]
+abortTransaction).org.bimserver.pb.AbortTransactionRequest.org.bimserver.pb.VoidResponsec
+addBooleanAttribute,.org.bimserver.pb.AddBooleanAttributeRequest.org.bimserver.pb.VoidResponsea
+addDoubleAttribute+.org.bimserver.pb.AddDoubleAttributeRequest.org.bimserver.pb.VoidResponsec
+addIntegerAttribute,.org.bimserver.pb.AddIntegerAttributeRequest.org.bimserver.pb.VoidResponseU
+addReference%.org.bimserver.pb.AddReferenceRequest.org.bimserver.pb.VoidResponsea
+addStringAttribute+.org.bimserver.pb.AddStringAttributeRequest.org.bimserver.pb.VoidResponsel
+commitTransaction*.org.bimserver.pb.CommitTransactionRequest+.org.bimserver.pb.CommitTransactionResponse]
+createObject%.org.bimserver.pb.CreateObjectRequest&.org.bimserver.pb.CreateObjectResponser
+getBooleanAttribute,.org.bimserver.pb.GetBooleanAttributeRequest-.org.bimserver.pb.GetBooleanAttributeResponseu
+getBooleanAttributes-.org.bimserver.pb.GetBooleanAttributesRequest..org.bimserver.pb.GetBooleanAttributesResponsex
+getByteArrayAttribute..org.bimserver.pb.GetByteArrayAttributeRequest/.org.bimserver.pb.GetByteArrayAttributeResponse{
+getByteArrayAttributes/.org.bimserver.pb.GetByteArrayAttributesRequest0.org.bimserver.pb.GetByteArrayAttributesResponser
+getDataObjectByGuid,.org.bimserver.pb.GetDataObjectByGuidRequest-.org.bimserver.pb.GetDataObjectByGuidResponseo
+getDataObjectByOid+.org.bimserver.pb.GetDataObjectByOidRequest,.org.bimserver.pb.GetDataObjectByOidResponsec
+getDataObjects'.org.bimserver.pb.GetDataObjectsRequest(.org.bimserver.pb.GetDataObjectsResponseu
+getDataObjectsByType-.org.bimserver.pb.GetDataObjectsByTypeRequest..org.bimserver.pb.GetDataObjectsByTypeResponseo
+getDoubleAttribute+.org.bimserver.pb.GetDoubleAttributeRequest,.org.bimserver.pb.GetDoubleAttributeResponser
+getDoubleAttributes,.org.bimserver.pb.GetDoubleAttributesRequest-.org.bimserver.pb.GetDoubleAttributesResponsei
+getEnumAttribute).org.bimserver.pb.GetEnumAttributeRequest*.org.bimserver.pb.GetEnumAttributeResponser
+getIntegerAttribute,.org.bimserver.pb.GetIntegerAttributeRequest-.org.bimserver.pb.GetIntegerAttributeResponseu
+getIntegerAttributes-.org.bimserver.pb.GetIntegerAttributesRequest..org.bimserver.pb.GetIntegerAttributesResponsei
+getLongAttribute).org.bimserver.pb.GetLongAttributeRequest*.org.bimserver.pb.GetLongAttributeResponse]
+getReference%.org.bimserver.pb.GetReferenceRequest&.org.bimserver.pb.GetReferenceResponse`
+getReferences&.org.bimserver.pb.GetReferencesRequest'.org.bimserver.pb.GetReferencesResponseo
+getStringAttribute+.org.bimserver.pb.GetStringAttributeRequest,.org.bimserver.pb.GetStringAttributeResponser
+getStringAttributes,.org.bimserver.pb.GetStringAttributesRequest-.org.bimserver.pb.GetStringAttributesResponsec
+removeAllReferences,.org.bimserver.pb.RemoveAllReferencesRequest.org.bimserver.pb.VoidResponse[
+removeAttribute(.org.bimserver.pb.RemoveAttributeRequest.org.bimserver.pb.VoidResponseU
+removeObject%.org.bimserver.pb.RemoveObjectRequest.org.bimserver.pb.VoidResponse[
+removeReference(.org.bimserver.pb.RemoveReferenceRequest.org.bimserver.pb.VoidResponsec
+setBooleanAttribute,.org.bimserver.pb.SetBooleanAttributeRequest.org.bimserver.pb.VoidResponsee
+setBooleanAttributes-.org.bimserver.pb.SetBooleanAttributesRequest.org.bimserver.pb.VoidResponseg
+setByteArrayAttribute..org.bimserver.pb.SetByteArrayAttributeRequest.org.bimserver.pb.VoidResponsea
+setDoubleAttribute+.org.bimserver.pb.SetDoubleAttributeRequest.org.bimserver.pb.VoidResponsec
+setDoubleAttributes,.org.bimserver.pb.SetDoubleAttributesRequest.org.bimserver.pb.VoidResponse]
+setEnumAttribute).org.bimserver.pb.SetEnumAttributeRequest.org.bimserver.pb.VoidResponsec
+setIntegerAttribute,.org.bimserver.pb.SetIntegerAttributeRequest.org.bimserver.pb.VoidResponsee
+setIntegerAttributes-.org.bimserver.pb.SetIntegerAttributesRequest.org.bimserver.pb.VoidResponse]
+setLongAttribute).org.bimserver.pb.SetLongAttributeRequest.org.bimserver.pb.VoidResponse_
+setLongAttributes*.org.bimserver.pb.SetLongAttributesRequest.org.bimserver.pb.VoidResponseU
+setReference%.org.bimserver.pb.SetReferenceRequest.org.bimserver.pb.VoidResponsea
+setStringAttribute+.org.bimserver.pb.SetStringAttributeRequest.org.bimserver.pb.VoidResponseq
+setWrappedBooleanAttribute3.org.bimserver.pb.SetWrappedBooleanAttributeRequest.org.bimserver.pb.VoidResponseo
+setWrappedDoubleAttribute2.org.bimserver.pb.SetWrappedDoubleAttributeRequest.org.bimserver.pb.VoidResponseq
+setWrappedIntegerAttribute3.org.bimserver.pb.SetWrappedIntegerAttributeRequest.org.bimserver.pb.VoidResponsek
+setWrappedLongAttribute0.org.bimserver.pb.SetWrappedLongAttributeRequest.org.bimserver.pb.VoidResponseo
+setWrappedStringAttribute2.org.bimserver.pb.SetWrappedStringAttributeRequest.org.bimserver.pb.VoidResponsei
+startTransaction).org.bimserver.pb.StartTransactionRequest*.org.bimserver.pb.StartTransactionResponseY
+unsetAttribute'.org.bimserver.pb.UnsetAttributeRequest.org.bimserver.pb.VoidResponseY
+unsetReference'.org.bimserver.pb.UnsetReferenceRequest.org.bimserver.pb.VoidResponseBBLowLevelInterfaceImplHˆ

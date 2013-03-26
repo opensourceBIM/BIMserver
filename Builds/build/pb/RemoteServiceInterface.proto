@@ -1,0 +1,56 @@
+package org.bimserver.pb;
+
+/******************************************************************************
+ * Copyright (C) 2009-2013  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+import "ServiceInterface.proto";
+import "NotificationInterface.proto";
+option java_generic_services = true;
+
+option java_outer_classname = "RemoteServiceInterfaceImpl";
+
+option optimize_for = SPEED;
+
+service RemoteServiceInterface {
+	rpc getPrivateProfiles (GetPrivateProfilesRequest) returns (GetPrivateProfilesResponse);
+
+	rpc getPublicProfiles (GetPublicProfilesRequest) returns (GetPublicProfilesResponse);
+
+	rpc getService (GetServiceRequest) returns (GetServiceResponse);
+
+	rpc newRevision (NewRevisionRequest) returns (VoidResponse);
+
+}
+
+message GetPrivateProfilesRequest {
+	optional string serviceIdentifier = 1;
+	optional string token = 2;
+}
+
+message GetPrivateProfilesResponse {
+	optional string errorMessage = 1;
+	repeated SProfileDescriptor value = 2;
+}
+
+message GetPublicProfilesRequest {
+	optional string serviceIdentifier = 1;
+}
+
+message GetPublicProfilesResponse {
+	optional string errorMessage = 1;
+	repeated SProfileDescriptor value = 2;
+}
+
