@@ -1,0 +1,111 @@
+package org.bimserver.pb;
+
+/******************************************************************************
+ * Copyright (C) 2009-2013  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+import "ServiceInterface.proto";
+import "NotificationInterface.proto";
+import "RemoteServiceInterface.proto";
+import "AdminInterface.proto";
+import "AuthInterface.proto";
+import "SettingsInterface.proto";
+import "LowLevelInterface.proto";
+option java_generic_services = true;
+
+option java_outer_classname = "MetaInterfaceImpl";
+
+option optimize_for = SPEED;
+
+service MetaInterface {
+	rpc getServiceInterfaces (GetServiceInterfacesRequest) returns (GetServiceInterfacesResponse);
+
+	rpc getServiceMethodParameters (GetServiceMethodParametersRequest) returns (GetServiceMethodParametersResponse);
+
+	rpc getServiceMethods (GetServiceMethodsRequest) returns (GetServiceMethodsResponse);
+
+	rpc getServiceTypes (GetServiceTypesRequest) returns (GetServiceTypesResponse);
+
+}
+
+message GetServiceInterfacesRequest {
+}
+
+message SServiceInterface {
+	optional string simpleName = 1;
+	optional string name = 2;
+}
+
+message GetServiceInterfacesResponse {
+	optional string errorMessage = 1;
+	repeated SServiceInterface value = 2;
+}
+
+message GetServiceMethodParametersRequest {
+	optional string serviceInterfaceName = 1;
+	optional string serviceMethodName = 2;
+}
+
+message SServiceField {
+	optional SServiceType genericType = 1;
+	optional string name = 2;
+	optional string doc = 3;
+	optional SServiceType type = 4;
+}
+
+message SServiceType {
+	optional string simpleName = 1;
+	optional int32 rid = 2;
+	optional int64 oid = 3;
+	optional string name = 4;
+	repeated SServiceField fields = 5;
+}
+
+message SServiceParameter {
+	optional SServiceType genericType = 1;
+	optional string name = 2;
+	optional string doc = 3;
+	optional SServiceType type = 4;
+}
+
+message GetServiceMethodParametersResponse {
+	optional string errorMessage = 1;
+	repeated SServiceParameter value = 2;
+}
+
+message GetServiceMethodsRequest {
+	optional string serviceInterfaceName = 1;
+}
+
+message SServiceMethod {
+	optional string name = 1;
+	optional string doc = 2;
+	optional string returnDoc = 3;
+}
+
+message GetServiceMethodsResponse {
+	optional string errorMessage = 1;
+	repeated SServiceMethod value = 2;
+}
+
+message GetServiceTypesRequest {
+	optional string serviceInterfaceName = 1;
+}
+
+message GetServiceTypesResponse {
+	optional string errorMessage = 1;
+	repeated SServiceType value = 2;
+}
+

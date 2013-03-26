@@ -17,20 +17,44 @@ import org.bimserver.interfaces.objects.SServiceType;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
-@WebService(name = "metainterface")
+@WebService(name = "MetaInterface")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface MetaInterface extends PublicInterface {
+	/**
+	 * @return A list of all the registered services
+	 * @throws ServerException
+	 * @throws UserException
+	 */
 	@WebMethod(action="getServiceInterfaces")
 	List<SServiceInterface> getServiceInterfaces() throws ServerException, UserException;
 	
+	/**
+	 * @param serviceInterfaceName
+	 * @return A list of all methods of the given service
+	 * @throws ServerException
+	 * @throws UserException
+	 */
 	@WebMethod(action="getServiceMethods")
 	List<SServiceMethod> getServiceMethods(
 		@WebParam(name = "serviceInterfaceName", partName = "getServiceMethods.serviceInterfaceName") String serviceInterfaceName) throws ServerException, UserException;
 	
+	/**
+	 * @param serviceInterfaceName
+	 * @return A list of all types known for the given service
+	 * @throws ServerException
+	 * @throws UserException
+	 */
 	@WebMethod(action="getServiceTypes")
 	List<SServiceType> getServiceTypes(
 		@WebParam(name = "serviceInterfaceName", partName = "getServiceTypes.serviceInterfaceName") String serviceInterfaceName) throws ServerException, UserException;
 	
+	/**
+	 * @param serviceInterfaceName
+	 * @param serviceMethodName
+	 * @return A list of all parameters of the given method of the given service
+	 * @throws ServerException
+	 * @throws UserException
+	 */
 	@WebMethod(action="getServiceMethodParameters")
 	List<SServiceParameter> getServiceMethodParameters(
 		@WebParam(name = "serviceInterfaceName", partName = "getServiceMethodParameters.serviceInterfaceName") String serviceInterfaceName,
