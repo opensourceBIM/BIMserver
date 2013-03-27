@@ -29,8 +29,6 @@ service ServiceInterface {
 
 	rpc addExtendedDataToRevision (AddExtendedDataToRevisionRequest) returns (VoidResponse);
 
-	rpc addInternalService (AddInternalServiceRequest) returns (VoidResponse);
-
 	rpc addLocalServiceToProject (AddLocalServiceToProjectRequest) returns (VoidResponse);
 
 	rpc addProject (AddProjectRequest) returns (AddProjectResponse);
@@ -64,8 +62,6 @@ service ServiceInterface {
 	rpc compare (CompareRequest) returns (CompareResponse);
 
 	rpc count (CountRequest) returns (CountResponse);
-
-	rpc deleteInternalService (DeleteInternalServiceRequest) returns (VoidResponse);
 
 	rpc deleteProject (DeleteProjectRequest) returns (DeleteProjectResponse);
 
@@ -102,8 +98,6 @@ service ServiceInterface {
 	rpc getAllExtendedDataOfRevision (GetAllExtendedDataOfRevisionRequest) returns (GetAllExtendedDataOfRevisionResponse);
 
 	rpc getAllExtendedDataSchemas (GetAllExtendedDataSchemasRequest) returns (GetAllExtendedDataSchemasResponse);
-
-	rpc getAllInternalServices (GetAllInternalServicesRequest) returns (GetAllInternalServicesResponse);
 
 	rpc getAllLocalProfiles (GetAllLocalProfilesRequest) returns (GetAllLocalProfilesResponse);
 
@@ -157,8 +151,6 @@ service ServiceInterface {
 
 	rpc getGeoTag (GetGeoTagRequest) returns (GetGeoTagResponse);
 
-	rpc getInternalServiceById (GetInternalServiceByIdRequest) returns (GetInternalServiceByIdResponse);
-
 	rpc getLongActionState (GetLongActionStateRequest) returns (GetLongActionStateResponse);
 
 	rpc getOidByGuid (GetOidByGuidRequest) returns (GetOidByGuidResponse);
@@ -210,8 +202,6 @@ service ServiceInterface {
 	rpc undeleteUser (UndeleteUserRequest) returns (UndeleteUserResponse);
 
 	rpc updateGeoTag (UpdateGeoTagRequest) returns (VoidResponse);
-
-	rpc updateInternalService (UpdateInternalServiceRequest) returns (VoidResponse);
 
 	rpc updateProject (UpdateProjectRequest) returns (VoidResponse);
 
@@ -279,17 +269,6 @@ message AddExtendedDataToRevisionRequest {
 	optional SExtendedData extendedData = 2;
 }
 
-message SInternalServicePluginConfiguration {
-	optional int64 userSettingsId = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
-	optional bool remoteAccessible = 4;
-}
-
-message AddInternalServiceRequest {
-	optional SInternalServicePluginConfiguration internalService = 1;
-}
-
 enum STrigger{
 	NEW_REVISION = 0;
 	NEW_PROJECT = 1;
@@ -316,14 +295,14 @@ message SService {
 	optional string url = 7;
 	optional string serviceName = 8;
 	optional SAccessMethod notificationProtocol = 9;
-	optional string token = 10;
-	optional int32 rid = 11;
-	optional string providerName = 12;
-	optional string description = 13;
-	optional int64 oid = 14;
-	optional int64 writeRevisionId = 15;
-	optional int64 readExtendedDataId = 16;
-	optional int64 userId = 17;
+	optional int32 rid = 10;
+	optional string providerName = 11;
+	optional string token = 12;
+	optional int64 oid = 13;
+	optional string description = 14;
+	optional int64 userId = 15;
+	optional int64 writeRevisionId = 16;
+	optional int64 readExtendedDataId = 17;
 	optional string name = 18;
 	optional string serviceIdentifier = 19;
 	optional int64 writeExtendedDataId = 20;
@@ -375,13 +354,13 @@ message SProject {
 	repeated int64 concreteRevisions = 6;
 	optional int32 id = 7;
 	optional int64 parentId = 8;
-	repeated int64 hasAuthorizedUsers = 9;
-	repeated int64 extendedData = 10;
+	repeated int64 extendedData = 9;
+	repeated int64 hasAuthorizedUsers = 10;
 	optional int32 rid = 11;
 	optional int64 geoTagId = 12;
-	optional SSIPrefix exportLengthMeasurePrefix = 13;
-	optional string description = 14;
-	optional int64 oid = 15;
+	optional int64 oid = 13;
+	optional SSIPrefix exportLengthMeasurePrefix = 14;
+	optional string description = 15;
 	optional string name = 16;
 	repeated int64 subProjects = 17;
 	optional int64 lastRevisionId = 18;
@@ -427,8 +406,8 @@ message AddUserRequest {
 message SUser {
 	optional int64 userSettingsId = 1;
 	optional int64 lastSeen = 2;
-	repeated int64 services = 3;
-	repeated int64 schemas = 4;
+	repeated int64 schemas = 3;
+	repeated int64 services = 4;
 	optional int64 createdById = 5;
 	repeated int64 logs = 6;
 	optional string validationToken = 7;
@@ -443,8 +422,8 @@ message SUser {
 	optional int32 rid = 16;
 	optional int64 oid = 17;
 	optional string name = 18;
-	repeated int64 revisions = 19;
-	optional int64 validationTokenCreated = 20;
+	optional int64 validationTokenCreated = 19;
+	repeated int64 revisions = 20;
 }
 
 message AddUserResponse {
@@ -567,11 +546,6 @@ message CompareRequest {
 	optional int64 mcid = 4;
 }
 
-message SObjectAdded {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
 message SObjectRemoved {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
@@ -583,6 +557,11 @@ message SObjectModified {
 	optional int64 oid = 3;
 	optional string oldValue = 4;
 	optional string fieldName = 5;
+}
+
+message SObjectAdded {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
 }
 
 message SSimpleDataValue {
@@ -625,24 +604,24 @@ message SDataObject {
 
 message SCompareItem {
 	required string __actual_type = 1;
-	optional SObjectAdded __SObjectAdded = 2;
-	optional SObjectRemoved __SObjectRemoved = 3;
-	optional SObjectModified __SObjectModified = 4;
+	optional SObjectRemoved __SObjectRemoved = 2;
+	optional SObjectModified __SObjectModified = 3;
+	optional SObjectAdded __SObjectAdded = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 	optional SDataObject dataObject = 7;
 }
 
 message SCompareContainer {
-	optional int32 rid = 1;
-	repeated SCompareItem items = 2;
+	repeated SCompareItem items = 1;
+	optional int32 rid = 2;
 	optional int64 oid = 3;
 	optional string type = 4;
 }
 
 message SCompareResult {
-	optional int32 rid = 1;
-	repeated SCompareContainer items = 2;
+	repeated SCompareContainer items = 1;
+	optional int32 rid = 2;
 	optional int64 oid = 3;
 }
 
@@ -659,10 +638,6 @@ message CountRequest {
 message CountResponse {
 	optional string errorMessage = 1;
 	optional int32 value = 2;
-}
-
-message DeleteInternalServiceRequest {
-	optional int64 oid = 1;
 }
 
 message DeleteProjectRequest {
@@ -807,8 +782,8 @@ message GetAllCheckoutsByUserRequest {
 message SRevision {
 	optional bool hasGeometry = 1;
 	optional int64 lastConcreteRevisionId = 2;
-	repeated int64 logs = 3;
-	optional int32 bmi = 4;
+	optional int32 bmi = 3;
+	repeated int64 logs = 4;
 	optional string tag = 5;
 	repeated int64 concreteRevisions = 6;
 	optional int64 projectId = 7;
@@ -819,8 +794,8 @@ message SRevision {
 	optional int32 rid = 12;
 	optional int64 oid = 13;
 	optional int64 userId = 14;
-	optional string comment = 15;
-	optional string lastError = 16;
+	optional string lastError = 15;
+	optional string comment = 16;
 	repeated int64 checkouts = 17;
 }
 
@@ -885,15 +860,6 @@ message GetAllExtendedDataSchemasResponse {
 	repeated SExtendedDataSchema value = 2;
 }
 
-message GetAllInternalServicesRequest {
-	optional bool onlyEnabled = 1;
-}
-
-message GetAllInternalServicesResponse {
-	optional string errorMessage = 1;
-	repeated SInternalServicePluginConfiguration value = 2;
-}
-
 message GetAllLocalProfilesRequest {
 	optional string serviceIdentifier = 1;
 }
@@ -914,13 +880,13 @@ message GetAllLocalServiceDescriptorsRequest {
 }
 
 message SServiceDescriptor {
-	optional STrigger trigger = 1;
-	optional string writeExtendedData = 2;
-	optional SAccessMethod notificationProtocol = 3;
+	optional string writeExtendedData = 1;
+	optional SAccessMethod notificationProtocol = 2;
+	optional STrigger trigger = 3;
 	optional bool writeRevision = 4;
 	optional string readExtendedData = 5;
-	optional string providerName = 6;
-	optional string token = 7;
+	optional string token = 6;
+	optional string providerName = 7;
 	optional string description = 8;
 	optional string name = 9;
 	optional bool readRevision = 10;
@@ -1173,8 +1139,8 @@ message GetGeoTagRequest {
 message SGeoTag {
 	optional bool enabled = 1;
 	repeated int64 projects = 2;
-	optional int32 rid = 3;
-	optional int32 epsg = 4;
+	optional int32 epsg = 3;
+	optional int32 rid = 4;
 	optional int64 oid = 5;
 	optional double directionAngle = 6;
 	optional double z = 7;
@@ -1185,15 +1151,6 @@ message SGeoTag {
 message GetGeoTagResponse {
 	optional string errorMessage = 1;
 	optional SGeoTag value = 2;
-}
-
-message GetInternalServiceByIdRequest {
-	optional int64 oid = 1;
-}
-
-message GetInternalServiceByIdResponse {
-	optional string errorMessage = 1;
-	optional SInternalServicePluginConfiguration value = 2;
 }
 
 message GetLongActionStateRequest {
@@ -1382,9 +1339,9 @@ message SUserSettings {
 	optional int64 defaultObjectIDMId = 7;
 	optional int64 defaultModelCompareId = 8;
 	optional int64 defaultQueryEngineId = 9;
-	optional int32 rid = 10;
-	repeated int64 renderEngines = 11;
-	repeated int64 deserializers = 12;
+	repeated int64 renderEngines = 10;
+	repeated int64 deserializers = 11;
+	optional int32 rid = 12;
 	optional int64 oid = 13;
 	optional int64 defaultRenderEngineId = 14;
 	optional int64 defaultSerializerId = 15;
@@ -1473,10 +1430,6 @@ message UndeleteUserResponse {
 
 message UpdateGeoTagRequest {
 	optional SGeoTag sGeoTag = 1;
-}
-
-message UpdateInternalServiceRequest {
-	optional SInternalServicePluginConfiguration internalService = 1;
 }
 
 message UpdateProjectRequest {

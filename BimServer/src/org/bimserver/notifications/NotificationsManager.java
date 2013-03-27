@@ -27,11 +27,13 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 import org.bimserver.BimServer;
+import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.JsonChannel;
 import org.bimserver.client.JsonSocketReflectorFactory;
 import org.bimserver.client.SimpleTokenHolder;
 import org.bimserver.client.channels.Channel;
+import org.bimserver.client.channels.DirectChannel;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SObjectType;
@@ -45,7 +47,9 @@ import org.bimserver.plugins.NotificationsManagerInterface;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.ServiceMapInterface;
+import org.bimserver.shared.TokenAuthentication;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterfaceAdaptor;
@@ -141,8 +145,14 @@ public class NotificationsManager extends Thread implements NotificationsManager
 			jsonChannel.connect(new SimpleTokenHolder());
 			return jsonChannel;
 		case INTERNAL:
-			internalRemoteServiceInterfaces.get(service.getServiceIdentifier());
-			return new InternalChannel();
+			DirectChannel directChannel = new DirectChannel(bimServer.getServiceFactory(), bimServer.getServicesMap());
+			directChannel.add(RemoteServiceInterface.class.getName(), internalRemoteServiceInterfaces.get(service.getServiceIdentifier()));
+			try {
+				directChannel.connect();
+			} catch (UserException e) {
+				e.printStackTrace();
+			}
+			return directChannel;
 		default: 
 			LOGGER.error("Unimplemented AccessMethod: " + service.getNotificationProtocol());
 			return null;
@@ -172,11 +182,18 @@ public class NotificationsManager extends Thread implements NotificationsManager
 			public void newRevision(final Long poid, final Long roid, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) throws UserException, ServerException {
 				ServiceMapInterface serviceMapInterface = new ServiceMap(bimServer, null, AccessMethod.JSON, null);
 				serviceMapInterface.add(RemoteServiceInterface.class, internalRemoteServiceInterfaces.get(serviceIdentifier));
-				final InternalChannel internalChannel = new InternalChannel();
+				final InternalChannel internalChannel = new InternalChannel(bimServer.getServiceFactory(), bimServer.getServicesMap());
 				try {
-					final ServiceInterface serviceInterface = internalChannel.get(ServiceInterface.class);
+					internalChannel.connect(new SimpleTokenHolder());
+				} catch (ChannelConnectionException e2) {
+					e2.printStackTrace();
+				}
+				try {
+					final ServiceInterface serviceInterface = bimServer.getService(ServiceInterface.class);
 					SService service = serviceInterface.getService(Long.parseLong(profileIdentifier));
 					final SObjectType settings = internalChannel.getPlugin().getPluginSettings(service.getInternalServiceId());
+
+					final BimServerClient bimServerClient = bimServer.getBimServerClientFactory().create(new TokenAuthentication(token));
 					
 					// TODO this should somehow be managed...
 					// This must be asynchronous because we don't want the BIMserver's notifications processor to wait for this to finish...
@@ -184,7 +201,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 						@Override
 						public void run() {
 							try {
-								newRevisionHandler.newRevision(internalChannel, poid, roid, settings);
+								newRevisionHandler.newRevision(bimServerClient.getChannel(), poid, roid, settings);
 							} catch (ServerException e) {
 								LOGGER.error("", e);
 							} catch (UserException e) {
@@ -193,6 +210,10 @@ public class NotificationsManager extends Thread implements NotificationsManager
 						}
 					}.start();
 				} catch (PublicInterfaceNotFoundException e1) {
+					e1.printStackTrace();
+				} catch (ServiceException e1) {
+					e1.printStackTrace();
+				} catch (ChannelConnectionException e1) {
 					e1.printStackTrace();
 				}
 			}

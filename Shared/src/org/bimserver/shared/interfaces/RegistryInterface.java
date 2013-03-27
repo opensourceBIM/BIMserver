@@ -52,11 +52,11 @@ public interface RegistryInterface extends PublicInterface {
 
 	@WebMethod(action = "registerNewUserHandler")
 	void registerNewUserHandler(
-			@WebParam(name = "endPointId", partName = "registerNewUserHandler.endPointId") Long endPointId) throws UserException, ServerException;
+		@WebParam(name = "endPointId", partName = "registerNewUserHandler.endPointId") Long endPointId) throws UserException, ServerException;
 	
 	@WebMethod(action = "unregisterNewUserHandler")
 	void unregisterNewUserHandler(
-			@WebParam(name = "endPointId", partName = "unregisterNewUserHandler.endPointId") Long endPointId) throws UserException, ServerException;
+		@WebParam(name = "endPointId", partName = "unregisterNewUserHandler.endPointId") Long endPointId) throws UserException, ServerException;
 	
 	@WebMethod(action = "unregisterNewRevisionOnSpecificProjectHandler")
 	void unregisterNewRevisionOnSpecificProjectHandler(
@@ -104,11 +104,11 @@ public interface RegistryInterface extends PublicInterface {
 	
 	@WebMethod(action = "registerChangeProgressOnServer")
 	void registerChangeProgressOnServer(
-			@WebParam(name = "endPointId", partName = "registerChangeProgressOnServer.endPointId") Long endPointId) throws ServerException, UserException;
+		@WebParam(name = "endPointId", partName = "registerChangeProgressOnServer.endPointId") Long endPointId) throws ServerException, UserException;
 	
 	@WebMethod(action = "unregisterChangeProgressOnServer")
 	void unregisterChangeProgressOnServer(
-			@WebParam(name = "endPointId", partName = "unregisterChangeProgressOnServer.endPointId") Long endPointId) throws ServerException, UserException;
+		@WebParam(name = "endPointId", partName = "unregisterChangeProgressOnServer.endPointId") Long endPointId) throws ServerException, UserException;
 	
 	@WebMethod(action = "registerChangeProgressOnRevision")
 	void registerChangeProgressOnRevision(

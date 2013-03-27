@@ -128,7 +128,6 @@ public class CodeMigrator {
 			File protoFile = new File("../Builds/build/pb/" + interfaceClass.getSimpleName() + ".proto");
 			File descFile = new File("../Builds/build/pb/" + interfaceClass.getSimpleName() + ".desc");
 			protocolBuffersGenerator.generate(interfaceClass, protoFile, descFile, this.knownServices.isEmpty(), service, knownShortNames);
-			FileUtils.copyFile(javaFile, new File("../Builds/build/targets/shared/" + interfaceClass.getSimpleName() + ".java"));
 			this.knownServices .add(service);
 			this.knownShortNames.add(interfaceClass.getSimpleName());
 		} catch (IOException e) {

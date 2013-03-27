@@ -33,6 +33,8 @@ option optimize_for = SPEED;
 service PluginInterface {
 	rpc addDeserializer (AddDeserializerRequest) returns (VoidResponse);
 
+	rpc addInternalService (AddInternalServiceRequest) returns (VoidResponse);
+
 	rpc addModelCompare (AddModelCompareRequest) returns (VoidResponse);
 
 	rpc addModelMerger (AddModelMergerRequest) returns (VoidResponse);
@@ -46,6 +48,8 @@ service PluginInterface {
 	rpc addSerializer (AddSerializerRequest) returns (VoidResponse);
 
 	rpc deleteDeserializer (DeleteDeserializerRequest) returns (VoidResponse);
+
+	rpc deleteInternalService (DeleteInternalServiceRequest) returns (VoidResponse);
 
 	rpc deleteModelCompare (DeleteModelCompareRequest) returns (VoidResponse);
 
@@ -62,6 +66,8 @@ service PluginInterface {
 	rpc getAllDeserializerPluginDescriptors (GetAllDeserializerPluginDescriptorsRequest) returns (GetAllDeserializerPluginDescriptorsResponse);
 
 	rpc getAllDeserializers (GetAllDeserializersRequest) returns (GetAllDeserializersResponse);
+
+	rpc getAllInternalServices (GetAllInternalServicesRequest) returns (GetAllInternalServicesResponse);
 
 	rpc getAllModelComparePluginDescriptors (GetAllModelComparePluginDescriptorsRequest) returns (GetAllModelComparePluginDescriptorsResponse);
 
@@ -102,6 +108,8 @@ service PluginInterface {
 	rpc getDeserializerById (GetDeserializerByIdRequest) returns (GetDeserializerByIdResponse);
 
 	rpc getDeserializerByName (GetDeserializerByNameRequest) returns (GetDeserializerByNameResponse);
+
+	rpc getInternalServiceById (GetInternalServiceByIdRequest) returns (GetInternalServiceByIdResponse);
 
 	rpc getModelCompareById (GetModelCompareByIdRequest) returns (GetModelCompareByIdResponse);
 
@@ -155,6 +163,8 @@ service PluginInterface {
 
 	rpc updateDeserializer (UpdateDeserializerRequest) returns (VoidResponse);
 
+	rpc updateInternalService (UpdateInternalServiceRequest) returns (VoidResponse);
+
 	rpc updateModelCompare (UpdateModelCompareRequest) returns (VoidResponse);
 
 	rpc updateModelMerger (UpdateModelMergerRequest) returns (VoidResponse);
@@ -171,6 +181,17 @@ service PluginInterface {
 
 message AddDeserializerRequest {
 	optional SDeserializerPluginConfiguration deserializer = 1;
+}
+
+message SInternalServicePluginConfiguration {
+	optional int64 userSettingsId = 1;
+	optional int32 rid = 2;
+	optional int64 oid = 3;
+	optional bool remoteAccessible = 4;
+}
+
+message AddInternalServiceRequest {
+	optional SInternalServicePluginConfiguration internalService = 1;
 }
 
 message SModelComparePluginConfiguration {
@@ -241,6 +262,10 @@ message DeleteDeserializerRequest {
 	optional int64 sid = 1;
 }
 
+message DeleteInternalServiceRequest {
+	optional int64 oid = 1;
+}
+
 message DeleteModelCompareRequest {
 	optional int64 iid = 1;
 }
@@ -280,6 +305,15 @@ message GetAllDeserializersRequest {
 message GetAllDeserializersResponse {
 	optional string errorMessage = 1;
 	repeated SDeserializerPluginConfiguration value = 2;
+}
+
+message GetAllInternalServicesRequest {
+	optional bool onlyEnabled = 1;
+}
+
+message GetAllInternalServicesResponse {
+	optional string errorMessage = 1;
+	repeated SInternalServicePluginConfiguration value = 2;
 }
 
 message GetAllModelComparePluginDescriptorsRequest {
@@ -450,6 +484,15 @@ message GetDeserializerByNameResponse {
 	optional SDeserializerPluginConfiguration value = 2;
 }
 
+message GetInternalServiceByIdRequest {
+	optional int64 oid = 1;
+}
+
+message GetInternalServiceByIdResponse {
+	optional string errorMessage = 1;
+	optional SInternalServicePluginConfiguration value = 2;
+}
+
 message GetModelCompareByIdRequest {
 	optional int64 oid = 1;
 }
@@ -526,9 +569,9 @@ message SPrimitiveDefinition {
 
 message STypeDefinition {
 	required string __actual_type = 1;
-	optional SObjectDefinition __SObjectDefinition = 2;
-	optional SArrayDefinition __SArrayDefinition = 3;
-	optional SPrimitiveDefinition __SPrimitiveDefinition = 4;
+	optional SArrayDefinition __SArrayDefinition = 2;
+	optional SPrimitiveDefinition __SPrimitiveDefinition = 3;
+	optional SObjectDefinition __SObjectDefinition = 4;
 }
 
 message SParameterDefinition {
@@ -552,28 +595,10 @@ message GetPluginSettingsRequest {
 	optional int64 poid = 1;
 }
 
-message SByteArrayType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional bytes value = 3;
-}
-
-message SLongType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional int64 value = 3;
-}
-
 message SDoubleType {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 	optional double value = 3;
-}
-
-message SStringType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional string value = 3;
 }
 
 message SBooleanType {
@@ -582,13 +607,31 @@ message SBooleanType {
 	optional bool value = 3;
 }
 
+message SLongType {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional int64 value = 3;
+}
+
+message SStringType {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional string value = 3;
+}
+
+message SByteArrayType {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional bytes value = 3;
+}
+
 message SPrimitiveType {
 	required string __actual_type = 1;
-	optional SByteArrayType __SByteArrayType = 2;
-	optional SLongType __SLongType = 3;
-	optional SDoubleType __SDoubleType = 4;
+	optional SDoubleType __SDoubleType = 2;
+	optional SBooleanType __SBooleanType = 3;
+	optional SLongType __SLongType = 4;
 	optional SStringType __SStringType = 5;
-	optional SBooleanType __SBooleanType = 6;
+	optional SByteArrayType __SByteArrayType = 6;
 	optional int32 rid = 7;
 	optional int64 oid = 8;
 }
@@ -748,6 +791,10 @@ message SetPluginSettingsRequest {
 
 message UpdateDeserializerRequest {
 	optional SDeserializerPluginConfiguration deserializer = 1;
+}
+
+message UpdateInternalServiceRequest {
+	optional SInternalServicePluginConfiguration internalService = 1;
 }
 
 message UpdateModelCompareRequest {
