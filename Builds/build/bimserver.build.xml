@@ -97,8 +97,6 @@
 		<mkdir dir="builds/BuildWar/WEB-INF/logs" />
 		<mkdir dir="builds/BuildWar/WEB-INF/tmp" />
 
-		<copy file="pb/service.proto" tofile="builds/BuildWar/WEB-INF/service.proto" />
-
 		<copy todir="builds/BuildWar/META-INF" overwrite="true">
 			<fileset file="${buildtargets}/shared/context.xml" />
 		</copy>
