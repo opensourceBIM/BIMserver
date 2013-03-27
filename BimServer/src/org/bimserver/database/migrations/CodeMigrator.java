@@ -32,6 +32,8 @@ import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
 import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.PluginInterface;
+import org.bimserver.shared.interfaces.RegistryInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
@@ -106,6 +108,8 @@ public class CodeMigrator {
 		generateFiles(SettingsInterface.class);
 		generateFiles(LowLevelInterface.class);
 		generateFiles(MetaInterface.class);
+		generateFiles(PluginInterface.class);
+		generateFiles(RegistryInterface.class);
 
 		SPackageGeneratorWrapper sPackageGeneratorWrapper = new SPackageGeneratorWrapper();
 		sPackageGeneratorWrapper.generate(ePackages);
@@ -125,9 +129,6 @@ public class CodeMigrator {
 			File descFile = new File("../Builds/build/pb/" + interfaceClass.getSimpleName() + ".desc");
 			protocolBuffersGenerator.generate(interfaceClass, protoFile, descFile, this.knownServices.isEmpty(), service, knownShortNames);
 			FileUtils.copyFile(javaFile, new File("../Builds/build/targets/shared/" + interfaceClass.getSimpleName() + ".java"));
-			FileUtils.copyFile(protoFile, new File("../Builds/build/targets/shared/" + interfaceClass.getSimpleName() + ".proto"));
-			FileUtils.copyFile(descFile, new File("../Builds/build/targets/shared/" + interfaceClass.getSimpleName() + ".desc"));
-			FileUtils.copyFile(descFile, new File("../BimServerClientLib/src/" + interfaceClass.getSimpleName() + ".desc"));
 			this.knownServices .add(service);
 			this.knownShortNames.add(interfaceClass.getSimpleName());
 		} catch (IOException e) {

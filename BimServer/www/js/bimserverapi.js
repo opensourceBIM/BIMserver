@@ -10,7 +10,7 @@ function BimServerApi(baseUrl, notifier) {
 	var othis = this;
 
 	othis.jsonSerializerFetcher = new Synchronizer(function(callback){
-		othis.call("ServiceInterface", "getSerializerByPluginClassName", {pluginClassName: "org.bimserver.serializers.JsonSerializerPlugin"}, function(serializer){
+		othis.call("PluginInterface", "getSerializerByPluginClassName", {pluginClassName: "org.bimserver.serializers.JsonSerializerPlugin"}, function(serializer){
 			callback(serializer.oid);
 		});
 	});
@@ -158,7 +158,7 @@ function BimServerApi(baseUrl, notifier) {
 	
 	this.registerNewRevisionOnSpecificProjectHandler = function(poid, handler, callback){
 		othis.register("NotificationInterface", "newRevision", handler, function(){
-			othis.call("ServiceInterface", "registerNewRevisionOnSpecificProjectHandler", {endPointId: othis.server.endPointId, poid: poid}, function(){
+			othis.call("RegistryInterface", "registerNewRevisionOnSpecificProjectHandler", {endPointId: othis.server.endPointId, poid: poid}, function(){
 				if (callback != null) {
 					callback();
 				}
@@ -168,7 +168,7 @@ function BimServerApi(baseUrl, notifier) {
 
 	this.registerNewUserHandler = function(handler, callback) {
 		othis.register("NotificationInterface", "newUser", handler, function(){
-			othis.call("ServiceInterface", "registerNewUserHandler", {endPointId: othis.server.endPointId}, function(){
+			othis.call("RegistryInterface", "registerNewUserHandler", {endPointId: othis.server.endPointId}, function(){
 				if (callback != null) {
 					callback();
 				}
@@ -178,7 +178,7 @@ function BimServerApi(baseUrl, notifier) {
 
 	this.unregisterNewUserHandler = function(handler, callback) {
 		othis.unregister(handler);
-		othis.call("ServiceInterface", "unregisterNewUserHandler", {endPointId: othis.server.endPointId}, function(){
+		othis.call("RegistryInterface", "unregisterNewUserHandler", {endPointId: othis.server.endPointId}, function(){
 			if (callback != null) {
 				callback();
 			}
@@ -188,13 +188,13 @@ function BimServerApi(baseUrl, notifier) {
 	this.unregisterChangeProgressProjectHandler = function(poid, newHandler, closedHandler, callback) {
 		othis.unregister(newHandler);
 		othis.unregister(closedHandler);
-		othis.call("ServiceInterface", "unregisterChangeProgressOnProject", {poid: poid, endPointId: othis.server.endPointId}, callback);		
+		othis.call("RegistryInterface", "unregisterChangeProgressOnProject", {poid: poid, endPointId: othis.server.endPointId}, callback);		
 	};
 
 	this.registerChangeProgressProjectHandler = function(poid, newHandler, closedHandler, callback) {
 		othis.register("NotificationInterface", "newProgressOnProjectTopic", newHandler, function(){
 			othis.register("NotificationInterface", "closedProgressOnProjectTopic", closedHandler, function(){
-				othis.call("ServiceInterface", "registerChangeProgressOnProject", {poid: poid, endPointId: othis.server.endPointId}, function(){
+				othis.call("RegistryInterface", "registerChangeProgressOnProject", {poid: poid, endPointId: othis.server.endPointId}, function(){
 					if (callback != null) {
 						callback();
 					}
@@ -206,13 +206,13 @@ function BimServerApi(baseUrl, notifier) {
 	this.unregisterChangeProgressServerHandler = function(newHandler, closedHandler, callback) {
 		othis.unregister(newHandler);
 		othis.unregister(closedHandler);
-		othis.call("ServiceInterface", "unregisterChangeProgressOnServer", {endPointId: othis.server.endPointId}, callback);
+		othis.call("RegistryInterface", "unregisterChangeProgressOnServer", {endPointId: othis.server.endPointId}, callback);
 	};
 	
 	this.registerChangeProgressServerHandler = function(newHandler, closedHandler, callback) {
 		othis.register("NotificationInterface", "newProgressOnServerTopic", newHandler, function(){
 			othis.register("NotificationInterface", "closedProgressOnServerTopic", closedHandler, function(){
-				othis.call("ServiceInterface", "registerChangeProgressOnServer", {endPointId: othis.server.endPointId}, function(){
+				othis.call("RegistryInterface", "registerChangeProgressOnServer", {endPointId: othis.server.endPointId}, function(){
 					if (callback != null) {
 						callback();
 					}
@@ -224,13 +224,13 @@ function BimServerApi(baseUrl, notifier) {
 	this.unregisterChangeProgressRevisionHandler = function(roid, newHandler, closedHandler, callback) {
 		othis.unregister(newHandler);
 		othis.unregister(closedHandler);
-		othis.call("ServiceInterface", "unregisterChangeProgressOnProject", {roid: roid, endPointId: othis.server.endPointId}, callback);		
+		othis.call("RegistryInterface", "unregisterChangeProgressOnProject", {roid: roid, endPointId: othis.server.endPointId}, callback);		
 	};
 	
 	this.registerChangeProgressRevisionHandler = function(roid, newHandler, closedHandler, callback) {
 		othis.register("NotificationInterface", "newProgressOnRevisionTopic", newHandler, function(){
 			othis.register("NotificationInterface", "closedProgressOnRevisionTopic", closedHandler, function(){
-				othis.call("ServiceInterface", "registerChangeProgressOnRevision", {roid: roid, endPointId: othis.server.endPointId}, function(){
+				othis.call("RegistryInterface", "registerChangeProgressOnRevision", {roid: roid, endPointId: othis.server.endPointId}, function(){
 					if (callback != null) {
 						callback();
 					}
@@ -241,7 +241,7 @@ function BimServerApi(baseUrl, notifier) {
 	
 	this.registerNewProjectHandler = function(handler, callback) {
 		othis.register("NotificationInterface", "newProject", handler, function(){
-			othis.call("ServiceInterface", "registerNewProjectHandler", {endPointId: othis.server.endPointId}, function(){
+			othis.call("RegistryInterface", "registerNewProjectHandler", {endPointId: othis.server.endPointId}, function(){
 				if (callback != null) {
 					callback();
 				}
@@ -251,7 +251,7 @@ function BimServerApi(baseUrl, notifier) {
 
 	this.unregisterNewProjectHandler = function(handler, callback){
 		othis.unregister(handler);
-		othis.call("ServiceInterface", "unregisterNewProjectHandler", {endPointId: othis.server.endPointId}, function(){
+		othis.call("RegistryInterface", "unregisterNewProjectHandler", {endPointId: othis.server.endPointId}, function(){
 			if (callback != null) {
 				callback();
 			}
@@ -260,7 +260,7 @@ function BimServerApi(baseUrl, notifier) {
 
 	this.unregisterNewRevisionOnSpecificProjectHandler = function(poid, handler, callback){
 		othis.unregister(handler);
-		othis.call("ServiceInterface", "unregisterNewRevisionOnSpecificProjectHandler", {endPointId: othis.server.endPointId, poid: poid}, function(){
+		othis.call("RegistryInterface", "unregisterNewRevisionOnSpecificProjectHandler", {endPointId: othis.server.endPointId, poid: poid}, function(){
 			if (callback != null) {
 				callback();
 			}
@@ -269,7 +269,7 @@ function BimServerApi(baseUrl, notifier) {
 
 	this.registerProgressHandler = function(topicId, handler, callback){
 		othis.register("NotificationInterface", "progress", handler, function(){
-			othis.call("ServiceInterface", "registerProgressHandler", {topicId: topicId, endPointId: othis.server.endPointId}, function(){
+			othis.call("RegistryInterface", "registerProgressHandler", {topicId: topicId, endPointId: othis.server.endPointId}, function(){
 				if (callback != null) {
 					callback();
 				}
@@ -279,7 +279,7 @@ function BimServerApi(baseUrl, notifier) {
 
 	this.unregisterProgressHandler = function(topicId, handler, callback){
 		othis.unregister(handler);
-		othis.call("ServiceInterface", "unregisterProgressHandler", {topicId: topicId, endPointId: othis.server.endPointId}, function(){
+		othis.call("RegistryInterface", "unregisterProgressHandler", {topicId: topicId, endPointId: othis.server.endPointId}, function(){
 			if (callback != null) {
 				callback();
 			}

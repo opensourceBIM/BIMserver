@@ -21,9 +21,6 @@ import org.bimserver.shared.exceptions.ServerException;
 
 public class ServiceInterfaceAdaptor implements ServiceInterface {
 
-	public void addDeserializer(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration deserializer) throws UserException, ServerException {
-	}
-	
 	public void addExtendedDataSchema(org.bimserver.interfaces.objects.SExtendedDataSchema extendedDataSchema) throws UserException, ServerException {
 	}
 	
@@ -39,30 +36,12 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	public void addLocalServiceToProject(java.lang.Long poid, org.bimserver.interfaces.objects.SService sService, java.lang.Long internalServiceOid) throws UserException, ServerException {
 	}
 	
-	public void addModelCompare(org.bimserver.interfaces.objects.SModelComparePluginConfiguration modelCompare) throws UserException, ServerException {
-	}
-	
-	public void addModelMerger(org.bimserver.interfaces.objects.SModelMergerPluginConfiguration modelMerger) throws UserException, ServerException {
-	}
-	
-	public void addObjectIDM(org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration objectIDM) throws UserException, ServerException {
-	}
-	
 	public org.bimserver.interfaces.objects.SProject addProject(java.lang.String projectName) throws UserException, ServerException {
 		return null;
 	}
 	
 	public org.bimserver.interfaces.objects.SProject addProjectAsSubProject(java.lang.String projectName, java.lang.Long parentPoid) throws UserException, ServerException {
 		return null;
-	}
-	
-	public void addQueryEngine(org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration queryEngine) throws UserException, ServerException {
-	}
-	
-	public void addRenderEngine(org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration renderEngine) throws UserException, ServerException {
-	}
-	
-	public void addSerializer(org.bimserver.interfaces.objects.SSerializerPluginConfiguration serializer) throws UserException, ServerException {
 	}
 	
 	public void addServiceToProject(java.lang.Long poid, org.bimserver.interfaces.objects.SService sService) throws UserException, ServerException {
@@ -84,10 +63,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	}
 	
 	public java.lang.Long branchToNewProject(java.lang.Long roid, java.lang.String projectName, java.lang.String comment, java.lang.Boolean sync) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Boolean changePassword(java.lang.Long uoid, java.lang.String oldPassword, java.lang.String newPassword) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -121,32 +96,11 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public void deleteDeserializer(java.lang.Long sid) throws UserException, ServerException {
-	}
-	
 	public void deleteInternalService(java.lang.Long oid) throws UserException, ServerException {
-	}
-	
-	public void deleteModelCompare(java.lang.Long iid) throws UserException, ServerException {
-	}
-	
-	public void deleteModelMerger(java.lang.Long iid) throws UserException, ServerException {
-	}
-	
-	public void deleteObjectIDM(java.lang.Long oid) throws UserException, ServerException {
 	}
 	
 	public java.lang.Boolean deleteProject(java.lang.Long poid) throws UserException, ServerException {
 		return null;
-	}
-	
-	public void deleteQueryEngine(java.lang.Long iid) throws UserException, ServerException {
-	}
-	
-	public void deleteRenderEngine(java.lang.Long iid) throws UserException, ServerException {
-	}
-	
-	public void deleteSerializer(java.lang.Long sid) throws UserException, ServerException {
 	}
 	
 	public void deleteService(java.lang.Long oid) throws UserException, ServerException {
@@ -208,14 +162,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SDeserializerPluginDescriptor> getAllDeserializerPluginDescriptors() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SDeserializerPluginConfiguration> getAllDeserializers(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
-		return null;
-	}
-	
 	public java.util.List<org.bimserver.interfaces.objects.SExtendedData> getAllExtendedDataOfRevision(java.lang.Long roid) throws UserException, ServerException {
 		return null;
 	}
@@ -236,22 +182,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SModelComparePluginDescriptor> getAllModelComparePluginDescriptors() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SModelComparePluginConfiguration> getAllModelCompares(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SModelMergerPluginDescriptor> getAllModelMergerPluginDescriptors() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SModelMergerPluginConfiguration> getAllModelMergers(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
-		return null;
-	}
-	
 	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllNonAuthorizedProjectsOfUser(java.lang.Long uoid) throws UserException, ServerException {
 		return null;
 	}
@@ -261,10 +191,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	}
 	
 	public java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor> getAllObjectIDMPluginDescriptors() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration> getAllObjectIDMs(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -280,23 +206,7 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor> getAllQueryEnginePluginDescriptors() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration> getAllQueryEngines(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
-		return null;
-	}
-	
 	public java.util.List<org.bimserver.interfaces.objects.SProject> getAllReadableProjects() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor> getAllRenderEnginePluginDescriptors() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration> getAllRenderEngines(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -312,19 +222,7 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SSerializerPluginConfiguration> getAllSerializers(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
-		return null;
-	}
-	
 	public java.util.List<org.bimserver.interfaces.objects.SServiceDescriptor> getAllServiceDescriptors() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SServicePluginDescriptor> getAllServicePluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -349,38 +247,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	}
 	
 	public java.util.Set<java.lang.String> getCheckoutWarnings(java.lang.Long poid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SModelComparePluginConfiguration getDefaultModelCompare() throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SModelMergerPluginConfiguration getDefaultModelMerger() throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration getDefaultObjectIDM() throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration getDefaultQueryEngine() throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration getDefaultRenderEngine() throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SSerializerPluginConfiguration getDefaultSerializer() throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SDeserializerPluginConfiguration getDeserializerById(java.lang.Long oid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SDeserializerPluginConfiguration getDeserializerByName(java.lang.String deserializerName) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -420,55 +286,7 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SModelComparePluginConfiguration getModelCompareById(java.lang.Long oid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SModelComparePluginConfiguration getModelCompareByName(java.lang.String name) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SModelMergerPluginConfiguration getModelMergerById(java.lang.Long oid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SModelMergerPluginConfiguration getModelMergerByName(java.lang.String name) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration getObjectIDMById(java.lang.Long oid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration getObjectIDMByName(java.lang.String objectIDMName) throws UserException, ServerException {
-		return null;
-	}
-	
 	public java.lang.Long getOidByGuid(java.lang.Long roid, java.lang.String guid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SObjectDefinition getPluginObjectDefinition(java.lang.String className) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SObjectType getPluginSettings(java.lang.Long poid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SLongActionState getProgress(java.lang.Long topicId) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<java.lang.Long> getProgressTopicsOnProject(java.lang.Long poid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<java.lang.Long> getProgressTopicsOnRevision(java.lang.Long poid, java.lang.Long roid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<java.lang.Long> getProgressTopicsOnServer() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -480,14 +298,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration getQueryEngineById(java.lang.Long oid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration getQueryEngineByName(java.lang.String name) throws UserException, ServerException {
-		return null;
-	}
-	
 	public java.lang.String getQueryEngineExample(java.lang.Long qeid, java.lang.String key) throws UserException, ServerException {
 		return null;
 	}
@@ -496,39 +306,11 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration getRenderEngineById(java.lang.Long oid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration getRenderEngineByName(java.lang.String name) throws UserException, ServerException {
-		return null;
-	}
-	
 	public org.bimserver.interfaces.objects.SRevision getRevision(java.lang.Long roid) throws UserException, ServerException {
 		return null;
 	}
 	
 	public org.bimserver.interfaces.objects.SRevisionSummary getRevisionSummary(java.lang.Long roid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SSerializerPluginConfiguration getSerializerByContentType(java.lang.String contentType) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SSerializerPluginConfiguration getSerializerById(java.lang.Long oid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SSerializerPluginConfiguration getSerializerByName(java.lang.String serializerName) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SSerializerPluginConfiguration getSerializerByPluginClassName(java.lang.String pluginClassName) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SSerializerPluginDescriptor getSerializerPluginDescriptor(java.lang.String type) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -564,43 +346,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.lang.Boolean hasActiveSerializer(java.lang.String contentType) throws UserException, ServerException {
-		return null;
-	}
-	
-	public void registerChangeProgressOnProject(java.lang.Long endPointId, java.lang.Long poid) throws UserException, ServerException {
-	}
-	
-	public void registerChangeProgressOnRevision(java.lang.Long endPointId, java.lang.Long roid, java.lang.Long poid) throws UserException, ServerException {
-	}
-	
-	public void registerChangeProgressOnServer(java.lang.Long endPointId) throws UserException, ServerException {
-	}
-	
-	public void registerNewProjectHandler(java.lang.Long endPointId) throws UserException, ServerException {
-	}
-	
-	public void registerNewRevisionOnSpecificProjectHandler(java.lang.Long endPointId, java.lang.Long poid) throws UserException, ServerException {
-	}
-	
-	public void registerNewUserHandler(java.lang.Long endPointId) throws UserException, ServerException {
-	}
-	
-	public void registerProgressHandler(java.lang.Long topicId, java.lang.Long endPointId) throws UserException, ServerException {
-	}
-	
-	public java.lang.Long registerProgressOnProjectTopic(org.bimserver.interfaces.objects.SProgressTopicType type, java.lang.Long poid, java.lang.String description) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long registerProgressOnRevisionTopic(org.bimserver.interfaces.objects.SProgressTopicType type, java.lang.Long poid, java.lang.Long roid, java.lang.String description) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long registerProgressTopic(org.bimserver.interfaces.objects.SProgressTopicType type, java.lang.String description) throws UserException, ServerException {
-		return null;
-	}
-	
 	public void removeUserFromExtendedDataSchema(java.lang.Long uoid, java.lang.Long edsid) throws UserException, ServerException {
 	}
 	
@@ -608,31 +353,7 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public void requestPasswordChange(java.lang.String username, java.lang.String resetUrl) throws UserException, ServerException {
-	}
-	
 	public void sendCompareEmail(org.bimserver.interfaces.objects.SCompareType sCompareType, java.lang.Long mcid, java.lang.Long poid, java.lang.Long roid1, java.lang.Long roid2, java.lang.String address) throws UserException, ServerException {
-	}
-	
-	public void setDefaultModelCompare(java.lang.Long oid) throws UserException, ServerException {
-	}
-	
-	public void setDefaultModelMerger(java.lang.Long oid) throws UserException, ServerException {
-	}
-	
-	public void setDefaultObjectIDM(java.lang.Long oid) throws UserException, ServerException {
-	}
-	
-	public void setDefaultQueryEngine(java.lang.Long oid) throws UserException, ServerException {
-	}
-	
-	public void setDefaultRenderEngine(java.lang.Long oid) throws UserException, ServerException {
-	}
-	
-	public void setDefaultSerializer(java.lang.Long oid) throws UserException, ServerException {
-	}
-	
-	public void setPluginSettings(java.lang.Long poid, org.bimserver.interfaces.objects.SObjectType settings) throws UserException, ServerException {
 	}
 	
 	public void setRevisionTag(java.lang.Long roid, java.lang.String tag) throws UserException, ServerException {
@@ -656,64 +377,16 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public void unregisterChangeProgressOnProject(java.lang.Long endPointId, java.lang.Long poid) throws UserException, ServerException {
-	}
-	
-	public void unregisterChangeProgressOnRevision(java.lang.Long endPointId, java.lang.Long roid, java.lang.Long poid) throws UserException, ServerException {
-	}
-	
-	public void unregisterChangeProgressOnServer(java.lang.Long endPointId) throws UserException, ServerException {
-	}
-	
-	public void unregisterNewProjectHandler(java.lang.Long endPointId) throws UserException, ServerException {
-	}
-	
-	public void unregisterNewRevisionOnSpecificProjectHandler(java.lang.Long endPointId, java.lang.Long poid) throws UserException, ServerException {
-	}
-	
-	public void unregisterNewUserHandler(java.lang.Long endPointId) throws UserException, ServerException {
-	}
-	
-	public void unregisterProgressHandler(java.lang.Long topicId, java.lang.Long endPointId) throws UserException, ServerException {
-	}
-	
-	public void unregisterProgressTopic(java.lang.Long topicId) throws UserException, ServerException {
-	}
-	
-	public void updateDeserializer(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration deserializer) throws UserException, ServerException {
-	}
-	
 	public void updateGeoTag(org.bimserver.interfaces.objects.SGeoTag sGeoTag) throws UserException, ServerException {
 	}
 	
 	public void updateInternalService(org.bimserver.interfaces.objects.SInternalServicePluginConfiguration internalService) throws UserException, ServerException {
 	}
 	
-	public void updateModelCompare(org.bimserver.interfaces.objects.SModelComparePluginConfiguration modelCompare) throws UserException, ServerException {
-	}
-	
-	public void updateModelMerger(org.bimserver.interfaces.objects.SModelMergerPluginConfiguration modelMerger) throws UserException, ServerException {
-	}
-	
-	public void updateObjectIDM(org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration objectIDM) throws UserException, ServerException {
-	}
-	
-	public void updateProgressTopic(java.lang.Long topicId, org.bimserver.interfaces.objects.SLongActionState state) throws UserException, ServerException {
-	}
-	
 	public void updateProject(org.bimserver.interfaces.objects.SProject sProject) throws UserException, ServerException {
 	}
 	
-	public void updateQueryEngine(org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration queryEngine) throws UserException, ServerException {
-	}
-	
-	public void updateRenderEngine(org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration renderEngine) throws UserException, ServerException {
-	}
-	
 	public void updateRevision(org.bimserver.interfaces.objects.SRevision sRevision) throws UserException, ServerException {
-	}
-	
-	public void updateSerializer(org.bimserver.interfaces.objects.SSerializerPluginConfiguration serializer) throws UserException, ServerException {
 	}
 	
 	public java.lang.Long uploadFile(org.bimserver.interfaces.objects.SFile file) throws UserException, ServerException {
@@ -725,10 +398,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	}
 	
 	public java.lang.Boolean userHasRights(java.lang.Long poid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SUser validateAccount(java.lang.Long uoid, java.lang.String token, java.lang.String password) throws UserException, ServerException {
 		return null;
 	}
 	

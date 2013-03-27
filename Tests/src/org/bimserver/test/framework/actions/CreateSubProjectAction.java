@@ -17,8 +17,8 @@ package org.bimserver.test.framework.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
@@ -35,6 +35,6 @@ public class CreateSubProjectAction extends Action {
 		SProject parentProject = virtualUser.getRandomProject();
 		String name = "Project " + randomString();
 		virtualUser.getActionResults().setText("Creating new project: " + name + " as subproject of " + parentProject.getName());
-		virtualUser.getBimServerClient().getServiceInterface().addProjectAsSubProject(name, parentProject.getOid());
+		virtualUser.getBimServerClient().getService().addProjectAsSubProject(name, parentProject.getOid());
 	}
 }

@@ -29,13 +29,13 @@ import org.apache.commons.io.IOUtils;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
-import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.client.SoapBimServerClientFactory;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -48,7 +48,7 @@ public class TestBimQlSoap {
 		try {
 			BimServerClient bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
-			ServiceInterface service = bimServerClient.getServiceInterface();
+			ServiceInterface service = bimServerClient.getService();
 			List<SProject> projects = service.getAllProjects(true);
 			if (projects.isEmpty()) {
 				throw new RuntimeException("No projects");
@@ -57,8 +57,8 @@ public class TestBimQlSoap {
 				List<SRevision> revisionsOfProject = service.getAllRevisionsOfProject(project.getOid());
 				if (!revisionsOfProject.isEmpty()) {
 					SRevision revision = revisionsOfProject.get(0);
-					SSerializerPluginConfiguration serializerPluginConfiguration = service.getSerializerByContentType("application/ifc");
-					SQueryEnginePluginConfiguration queryEngine = service.getQueryEngineByName("BimQL Engine");
+					SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getPlugin().getSerializerByContentType("application/ifc");
+					SQueryEnginePluginConfiguration queryEngine = bimServerClient.getPlugin().getQueryEngineByName("BimQL Engine");
 					if (queryEngine == null) {
 						throw new RuntimeException("No BIMQL query engines found");
 					}

@@ -104,8 +104,8 @@ message GetServerSettingsRequest {
 }
 
 message SServerSettings {
-	optional bool generateGeometryOnCheckin = 1;
-	optional bool sendConfirmationEmailAfterRegistration = 2;
+	optional bool sendConfirmationEmailAfterRegistration = 1;
+	optional bool generateGeometryOnCheckin = 2;
 	optional int32 protocolBuffersPort = 3;
 	optional bool allowOnlyWhitelisted = 4;
 	optional string siteAddress = 5;
@@ -114,10 +114,10 @@ message SServerSettings {
 	repeated int64 webModules = 8;
 	repeated string whitelistedDomains = 9;
 	optional int32 rid = 10;
-	optional string smtpServer = 11;
-	optional bool allowSelfRegistration = 12;
-	optional int64 oid = 13;
-	optional bool cacheOutputFiles = 14;
+	optional bool allowSelfRegistration = 11;
+	optional string smtpServer = 12;
+	optional bool cacheOutputFiles = 13;
+	optional int64 oid = 14;
 	optional string emailSenderAddress = 15;
 	optional bool hideUserListForNonAdmin = 16;
 	optional string emailSenderName = 17;

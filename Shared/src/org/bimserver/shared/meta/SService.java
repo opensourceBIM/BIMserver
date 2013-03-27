@@ -156,7 +156,6 @@ public class SService {
 		for (Method method : clazz.getMethods()) {
 			methods.put(method.getName(), new SMethod(this, method));
 		}
-		LOGGER.info(methods.size() + " methods in " + getName());
 	}
 
 	private Class<?> getGenericType(Method method) {

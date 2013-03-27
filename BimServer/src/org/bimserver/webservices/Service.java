@@ -45,23 +45,85 @@ import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.JsonBimServerClientFactory;
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
-import org.bimserver.database.actions.*;
+import org.bimserver.database.actions.AddExtendedDataSchemaDatabaseAction;
+import org.bimserver.database.actions.AddExtendedDataToProjectDatabaseAction;
+import org.bimserver.database.actions.AddExtendedDataToRevisionDatabaseAction;
+import org.bimserver.database.actions.AddInternalServiceDatabaseAction;
+import org.bimserver.database.actions.AddLocalServiceToProjectDatabaseAction;
+import org.bimserver.database.actions.AddProjectDatabaseAction;
+import org.bimserver.database.actions.AddServiceToProjectDatabaseAction;
+import org.bimserver.database.actions.AddUserDatabaseAction;
+import org.bimserver.database.actions.AddUserToExtendedDataSchemaDatabaseAction;
+import org.bimserver.database.actions.AddUserToProjectDatabaseAction;
+import org.bimserver.database.actions.BimDatabaseAction;
+import org.bimserver.database.actions.BranchToExistingProjectDatabaseAction;
+import org.bimserver.database.actions.BranchToNewProjectDatabaseAction;
+import org.bimserver.database.actions.ChangeUserTypeDatabaseAction;
+import org.bimserver.database.actions.CheckinDatabaseAction;
+import org.bimserver.database.actions.CompareDatabaseAction;
+import org.bimserver.database.actions.CountDatabaseAction;
+import org.bimserver.database.actions.DeleteInternalServiceDatabaseAction;
+import org.bimserver.database.actions.DeleteProjectDatabaseAction;
+import org.bimserver.database.actions.DeleteServiceDatabaseAction;
+import org.bimserver.database.actions.DeleteUserDatabaseAction;
+import org.bimserver.database.actions.GetAllAuthorizedUsersOfProjectDatabaseAction;
+import org.bimserver.database.actions.GetAllCheckoutsByUserDatabaseAction;
+import org.bimserver.database.actions.GetAllCheckoutsOfProjectDatabaseAction;
+import org.bimserver.database.actions.GetAllCheckoutsOfRevisionDatabaseAction;
+import org.bimserver.database.actions.GetAllExtendedDataSchemasDatabaseAction;
+import org.bimserver.database.actions.GetAllNonAuthorizedProjectsOfUserDatabaseAction;
+import org.bimserver.database.actions.GetAllNonAuthorizedUsersOfProjectDatabaseAction;
+import org.bimserver.database.actions.GetAllProjectsDatabaseAction;
+import org.bimserver.database.actions.GetAllReadableProjectsDatabaseAction;
+import org.bimserver.database.actions.GetAllRevisionsByUserDatabaseAction;
+import org.bimserver.database.actions.GetAllRevisionsOfProjectDatabaseAction;
+import org.bimserver.database.actions.GetAllServicesOfProjectDatabaseAction;
+import org.bimserver.database.actions.GetAllUsersDatabaseAction;
+import org.bimserver.database.actions.GetAvailableClassesDatabaseAction;
+import org.bimserver.database.actions.GetAvailableClassesInRevisionDatabaseAction;
+import org.bimserver.database.actions.GetByIdDatabaseAction;
+import org.bimserver.database.actions.GetCheckinWarningsDatabaseAction;
+import org.bimserver.database.actions.GetCheckoutWarningsDatabaseAction;
+import org.bimserver.database.actions.GetExtendedDataByIdDatabaseAction;
+import org.bimserver.database.actions.GetExtendedDataSchemaByIdDatabaseAction;
+import org.bimserver.database.actions.GetExtendedDataSchemaByNamespaceDatabaseAction;
+import org.bimserver.database.actions.GetGeoTagDatabaseAction;
+import org.bimserver.database.actions.GetOidByGuidDatabaseAction;
+import org.bimserver.database.actions.GetProjectByPoidDatabaseAction;
+import org.bimserver.database.actions.GetProjectsByNameDatabaseAction;
+import org.bimserver.database.actions.GetProjectsOfUserDatabaseAction;
+import org.bimserver.database.actions.GetRevisionDatabaseAction;
+import org.bimserver.database.actions.GetRevisionSummaryDatabaseAction;
+import org.bimserver.database.actions.GetSerializerByContentTypeDatabaseAction;
+import org.bimserver.database.actions.GetSerializerByIdDatabaseAction;
+import org.bimserver.database.actions.GetSerializerByPluginClassNameDatabaseAction;
+import org.bimserver.database.actions.GetSubProjectsDatabaseAction;
+import org.bimserver.database.actions.GetUserByUoidDatabaseAction;
+import org.bimserver.database.actions.GetUserByUserNameDatabaseAction;
+import org.bimserver.database.actions.RemoveUserFromExtendedDataSchemaDatabaseAction;
+import org.bimserver.database.actions.RemoveUserFromProjectDatabaseAction;
+import org.bimserver.database.actions.SetRevisionTagDatabaseAction;
+import org.bimserver.database.actions.UndeleteProjectDatabaseAction;
+import org.bimserver.database.actions.UndeleteUserDatabaseAction;
+import org.bimserver.database.actions.UpdateDatabaseAction;
+import org.bimserver.database.actions.UpdateGeoTagDatabaseAction;
+import org.bimserver.database.actions.UpdateProjectDatabaseAction;
+import org.bimserver.database.actions.UpdateRevisionDatabaseAction;
+import org.bimserver.database.actions.UploadFileDatabaseAction;
+import org.bimserver.database.actions.UserHasCheckinRightsDatabaseAction;
+import org.bimserver.database.actions.UserHasRightsDatabaseAction;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
-import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.interfaces.objects.SCompareResult;
 import org.bimserver.interfaces.objects.SCompareType;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataAddedToRevision;
@@ -71,27 +133,15 @@ import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
-import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
-import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
-import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
-import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
-import org.bimserver.interfaces.objects.SObjectDefinition;
-import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
-import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
-import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
-import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
-import org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration;
-import org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServiceDescriptor;
-import org.bimserver.interfaces.objects.SServicePluginDescriptor;
 import org.bimserver.interfaces.objects.STrigger;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSettings;
@@ -111,35 +161,22 @@ import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
-import org.bimserver.models.store.ModelComparePluginConfiguration;
-import org.bimserver.models.store.ModelMergerPluginConfiguration;
-import org.bimserver.models.store.ObjectType;
-import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Project;
-import org.bimserver.models.store.QueryEnginePluginConfiguration;
-import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
-import org.bimserver.notifications.ChangeProgressTopicOnProjectTopic;
-import org.bimserver.notifications.ChangeProgressTopicOnRevisionTopic;
-import org.bimserver.notifications.ChangeProgressTopicOnServerTopic;
 import org.bimserver.notifications.NewExtendedDataNotification;
 import org.bimserver.notifications.NewRevisionNotification;
-import org.bimserver.notifications.NewRevisionOnSpecificProjectTopic;
-import org.bimserver.notifications.NewRevisionOnSpecificProjectTopicKey;
-import org.bimserver.notifications.ProgressOnRevisionTopic;
-import org.bimserver.notifications.ProgressTopic;
-import org.bimserver.notifications.TopicRegisterException;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.compare.CompareWriter;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -348,11 +385,6 @@ public class Service extends GenericServiceImpl implements ServiceInterface {
 		} finally {
 			session.close();
 		}
-	}
-
-	private UserSettings getUserSettings(DatabaseSession session) throws BimserverLockConflictException, BimserverDatabaseException {
-		User user = session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
-		return user.getUserSettings();
 	}
 
 	@Override
@@ -703,20 +735,6 @@ public class Service extends GenericServiceImpl implements ServiceInterface {
 		try {
 			BimDatabaseAction<Set<Project>> action = new GetAllNonAuthorizedProjectsOfUserDatabaseAction(session, getInternalAccessMethod(), uoid);
 			return getBimServer().getSConverter().convertToSListProject(session.executeAndCommitAction(action));
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public Boolean changePassword(Long uoid, String oldPassword, String newPassword) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			BimDatabaseAction<Boolean> action = new ChangePasswordDatabaseAction(getBimServer(), session, getInternalAccessMethod(), uoid, oldPassword, newPassword, getAuthorization());
-			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -1175,34 +1193,6 @@ public class Service extends GenericServiceImpl implements ServiceInterface {
 	}
 
 	@Override
-	public void requestPasswordChange(String username, String resetUrl) throws ServerException, UserException {
-		// No authentication required because you should be able to do this wihout logging in...
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			BimDatabaseAction<Void> action = new RequestPasswordChangeDatabaseAction(session, getInternalAccessMethod(), getBimServer(), username, resetUrl);
-			session.executeAndCommitAction(action);
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public SUser validateAccount(Long uoid, String token, String password) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			BimDatabaseAction<User> action = new ValidateUserDatabaseAction(session, getInternalAccessMethod(), uoid, token, password);
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
 	public List<SProject> getAllReadableProjects() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -1215,320 +1205,6 @@ public class Service extends GenericServiceImpl implements ServiceInterface {
 		} finally {
 			session.close();
 		}
-	}
-
-
-	@Override
-	public List<SSerializerPluginConfiguration> getAllSerializers(Boolean onlyEnabled) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			List<SSerializerPluginConfiguration> serializers = getBimServer().getSConverter().convertToSListSerializerPluginConfiguration(getUserSettings(session).getSerializers());
-			Collections.sort(serializers, new SPluginConfigurationComparator());
-			return serializers;
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
-	public List<SDeserializerPluginConfiguration> getAllDeserializers(Boolean onlyEnabled) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			List<SDeserializerPluginConfiguration> deserializers = getBimServer().getSConverter().convertToSListDeserializerPluginConfiguration(getUserSettings(session).getDeserializers());
-			Collections.sort(deserializers, new SPluginConfigurationComparator());
-			return deserializers;
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
-	public void addSerializer(SSerializerPluginConfiguration serializer) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			SerializerPluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(serializer, session);
-			session.executeAndCommitAction(new AddSerializerDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), convert));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void addDeserializer(SDeserializerPluginConfiguration deserializer) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			DeserializerPluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(deserializer, session);
-			session.executeAndCommitAction(new AddDeserializerDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), convert));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void updateSerializer(SSerializerPluginConfiguration serializer) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			SerializerPluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(serializer, session);
-			session.executeAndCommitAction(new UpdateSerializerDatabaseAction(session, getInternalAccessMethod(), convert));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void updateDeserializer(SDeserializerPluginConfiguration deserializer) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			DeserializerPluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(deserializer, session);
-			session.executeAndCommitAction(new UpdateDeserializerDatabaseAction(session, getInternalAccessMethod(), convert));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public List<SObjectIDMPluginConfiguration> getAllObjectIDMs(Boolean onlyEnabled) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			List<SObjectIDMPluginConfiguration> objectIdms = getBimServer().getSConverter().convertToSListObjectIDMPluginConfiguration(getUserSettings(session).getObjectIDMs());
-			Collections.sort(objectIdms, new SPluginConfigurationComparator());
-			return objectIdms;
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
-	public void addObjectIDM(SObjectIDMPluginConfiguration objectIDM) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			session.executeAndCommitAction(new AddObjectIDMDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), getBimServer().getSConverter().convertFromSObject(objectIDM, session)));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void updateObjectIDM(SObjectIDMPluginConfiguration objectIDM) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			session.executeAndCommitAction(new UpdateObjectIDMDatabaseAction(session, getInternalAccessMethod(), getBimServer().getSConverter().convertFromSObject(objectIDM, session)));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public SSerializerPluginConfiguration getSerializerById(Long oid) throws ServerException, UserException {
-		requireAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
-	public SDeserializerPluginConfiguration getDeserializerById(Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetDeserializerByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
-	public SObjectIDMPluginConfiguration getObjectIDMById(Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetObjectIDMByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
-	public List<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws UserException {
-		requireRealUserAuthentication();
-		return getBimServer().getSerializerFactory().getAllSerializerPluginDescriptors();
-	}
-
-	@Override
-	public void deleteObjectIDM(Long ifid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			BimDatabaseAction<Void> action = new DeleteObjectIDMDatabaseAction(session, getInternalAccessMethod(), ifid);
-			session.executeAndCommitAction(action);
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void deleteSerializer(Long sid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			BimDatabaseAction<Void> action = new DeleteSerializerDatabaseAction(session, getInternalAccessMethod(), sid);
-			session.executeAndCommitAction(action);
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void deleteDeserializer(Long sid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			BimDatabaseAction<Void> action = new DeleteDeserializerDatabaseAction(session, getInternalAccessMethod(), sid);
-			session.executeAndCommitAction(action);
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public SSerializerPluginConfiguration getSerializerByName(String serializerName) throws ServerException, UserException {
-		requireAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByNameDatabaseAction(session, getInternalAccessMethod(), serializerName)));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
-	public SObjectIDMPluginConfiguration getObjectIDMByName(String ObjectIDMName) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetObjectIDMByNameDatabaseAction(session, getInternalAccessMethod(), ObjectIDMName)));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
-	public SDeserializerPluginConfiguration getDeserializerByName(String deserializerName) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetDeserializerByNameDatabaseAction(session, getInternalAccessMethod(), deserializerName)));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
-	public SSerializerPluginConfiguration getSerializerByContentType(String contentType) throws ServerException, UserException {
-		// Not checking for real authentication here because a remote service should be able to use a serializer for download call
-		requireAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByContentTypeDatabaseAction(session, getInternalAccessMethod(), contentType)));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
-	public SSerializerPluginConfiguration getSerializerByPluginClassName(String pluginClassName) throws ServerException, UserException {
-		// Not checking for real authentication here because a remote service should be able to use a serializer for download call
-		requireAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByPluginClassNameDatabaseAction(session, getInternalAccessMethod(), pluginClassName)));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
-	public Boolean hasActiveSerializer(String contentType) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		try {
-			SSerializerPluginConfiguration serializer = getSerializerByContentType(contentType);
-			if (serializer != null) {
-				if (serializer.getEnabled()) {
-					return getBimServer().getPluginManager().isEnabled(serializer.getClassName());
-				}
-			}
-		} catch (Exception e) {
-		}
-		return false;
-	}
-
-	@Override
-	public SSerializerPluginDescriptor getSerializerPluginDescriptor(String type) throws UserException {
-		requireRealUserAuthentication();
-		return getBimServer().getSerializerFactory().getSerializerPluginDescriptor(type);
 	}
 
 	@Override
@@ -1551,19 +1227,6 @@ public class Service extends GenericServiceImpl implements ServiceInterface {
 	}
 
 	@Override
-	public List<SDeserializerPluginDescriptor> getAllDeserializerPluginDescriptors() throws ServerException, UserException {
-		requireRealUserAuthentication();
-		List<SDeserializerPluginDescriptor> descriptors = new ArrayList<SDeserializerPluginDescriptor>();
-		for (DeserializerPlugin deserializerPlugin : getBimServer().getPluginManager().getAllDeserializerPlugins(true)) {
-			SDeserializerPluginDescriptor descriptor = new SDeserializerPluginDescriptor();
-			descriptor.setDefaultName(deserializerPlugin.getDefaultName());
-			descriptor.setPluginClassName(deserializerPlugin.getClass().getName());
-			descriptors.add(descriptor);
-		}
-		return descriptors;
-	}
-
-	@Override
 	public List<String> getAvailableClassesInRevision(Long roid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -1578,367 +1241,6 @@ public class Service extends GenericServiceImpl implements ServiceInterface {
 		return null;
 	}
 
-	@Override
-	public List<SRenderEnginePluginDescriptor> getAllRenderEnginePluginDescriptors() throws ServerException, UserException {
-		requireRealUserAuthentication();
-		return getBimServer().getSerializerFactory().getAllRenderEnginePluginDescriptors();
-	}
-
-	@Override
-	public List<SQueryEnginePluginDescriptor> getAllQueryEnginePluginDescriptors() throws ServerException, UserException {
-		requireRealUserAuthentication();
-		return getBimServer().getSerializerFactory().getAllQueryEnginePluginDescriptors();
-	}
-
-	@Override
-	public List<SServicePluginDescriptor> getAllServicePluginDescriptors() throws ServerException, UserException {
-		requireRealUserAuthentication();
-		return getBimServer().getSerializerFactory().getAllServicePluginDescriptors();
-	}
-
-	@Override
-	public List<SModelComparePluginDescriptor> getAllModelComparePluginDescriptors() throws ServerException, UserException {
-		requireRealUserAuthentication();
-		return getBimServer().getSerializerFactory().getAllModelComparePluginDescriptors();
-	}
-
-	@Override
-	public List<SModelMergerPluginDescriptor> getAllModelMergerPluginDescriptors() throws ServerException, UserException {
-		requireRealUserAuthentication();
-		return getBimServer().getSerializerFactory().getAllModelMergerPluginDescriptors();
-	}
-
-	@Override
-	public List<SRenderEnginePluginConfiguration> getAllRenderEngines(Boolean onlyEnabled) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			List<SRenderEnginePluginConfiguration> renderEngines = getBimServer().getSConverter().convertToSListRenderEnginePluginConfiguration(getUserSettings(session).getRenderEngines());
-			Collections.sort(renderEngines, new SPluginConfigurationComparator());
-			return renderEngines;
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public List<SQueryEnginePluginConfiguration> getAllQueryEngines(Boolean onlyEnabled) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			List<SQueryEnginePluginConfiguration> queryEngines = getBimServer().getSConverter().convertToSListQueryEnginePluginConfiguration(getUserSettings(session).getQueryengines());
-			Collections.sort(queryEngines, new SPluginConfigurationComparator());
-			return queryEngines;
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public List<SModelComparePluginConfiguration> getAllModelCompares(Boolean onlyEnabled) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			List<SModelComparePluginConfiguration> modelCompares = getBimServer().getSConverter().convertToSListModelComparePluginConfiguration(getUserSettings(session).getModelcompares());
-			Collections.sort(modelCompares, new SPluginConfigurationComparator());
-			return modelCompares;
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public List<SModelMergerPluginConfiguration> getAllModelMergers(Boolean onlyEnabled) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			List<SModelMergerPluginConfiguration> modelMergers = getBimServer().getSConverter().convertToSListModelMergerPluginConfiguration(getUserSettings(session).getModelmergers());
-			Collections.sort(modelMergers, new SPluginConfigurationComparator());
-			return modelMergers;
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void updateRenderEngine(SRenderEnginePluginConfiguration renderEngine) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			RenderEnginePluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(renderEngine, session);
-			session.executeAndCommitAction(new UpdateRenderEngineDatabaseAction(session, getInternalAccessMethod(), convert));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void updateQueryEngine(SQueryEnginePluginConfiguration queryEngine) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			QueryEnginePluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(queryEngine, session);
-			session.executeAndCommitAction(new UpdateQueryEngineDatabaseAction(session, getInternalAccessMethod(), convert));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void updateModelCompare(SModelComparePluginConfiguration modelCompare) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			ModelComparePluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(modelCompare, session);
-			session.executeAndCommitAction(new UpdateModelCompareDatabaseAction(session, getInternalAccessMethod(), convert));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void updateModelMerger(SModelMergerPluginConfiguration modelMerger) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			ModelMergerPluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(modelMerger, session);
-			session.executeAndCommitAction(new UpdateModelMergerDatabaseAction(session, getInternalAccessMethod(), convert));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void deleteRenderEngine(Long iid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			BimDatabaseAction<Void> action = new DeleteRenderEngineDatabaseAction(session, getInternalAccessMethod(), iid);
-			session.executeAndCommitAction(action);
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void deleteQueryEngine(Long iid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			BimDatabaseAction<Void> action = new DeleteQueryEngineDatabaseAction(session, getInternalAccessMethod(), iid);
-			session.executeAndCommitAction(action);
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void deleteModelCompare(Long iid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			BimDatabaseAction<Void> action = new DeleteModelCompareDatabaseAction(session, getInternalAccessMethod(), iid);
-			session.executeAndCommitAction(action);
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void deleteModelMerger(Long iid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			BimDatabaseAction<Void> action = new DeleteModelMergerDatabaseAction(session, getInternalAccessMethod(), iid);
-			session.executeAndCommitAction(action);
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public SRenderEnginePluginConfiguration getRenderEngineByName(String name) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetRenderEngineByNameDatabaseAction(session, getInternalAccessMethod(), name)));
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public SQueryEnginePluginConfiguration getQueryEngineByName(String name) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetQueryEngineByNameDatabaseAction(session, getInternalAccessMethod(), name)));
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public SModelMergerPluginConfiguration getModelMergerById(Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetModelMergerByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public SModelComparePluginConfiguration getModelCompareById(Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetModelCompareByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public SModelComparePluginConfiguration getModelCompareByName(String name) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetModelCompareByNameDatabaseAction(session, getInternalAccessMethod(), name)));
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public SModelMergerPluginConfiguration getModelMergerByName(String name) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetModelMergerByNameDatabaseAction(session, getInternalAccessMethod(), name)));
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public SRenderEnginePluginConfiguration getRenderEngineById(Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetRenderEngineByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public SQueryEnginePluginConfiguration getQueryEngineById(Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetQueryEngineByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void addRenderEngine(SRenderEnginePluginConfiguration renderEngine) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			RenderEnginePluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(renderEngine, session);
-			session.executeAndCommitAction(new AddRenderEngineDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), convert));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void addQueryEngine(SQueryEnginePluginConfiguration queryEngine) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			QueryEnginePluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(queryEngine, session);
-			session.executeAndCommitAction(new AddQueryEngineDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), convert));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void addModelCompare(SModelComparePluginConfiguration modelCompare) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			ModelComparePluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(modelCompare, session);
-			session.executeAndCommitAction(new AddModelCompareDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), convert));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void addModelMerger(SModelMergerPluginConfiguration modelMerger) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			ModelMergerPluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(modelMerger, session);
-			session.executeAndCommitAction(new AddModelMergerDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), convert));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
 
 	@Override
 	public SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(String extension) throws ServerException, UserException {
@@ -2084,205 +1386,24 @@ public class Service extends GenericServiceImpl implements ServiceInterface {
 	@Override
 	public String getQueryEngineExample(Long qeid, String key) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		SQueryEnginePluginConfiguration queryEngineById = getQueryEngineById(qeid);
-		QueryEnginePlugin queryEngine = getBimServer().getPluginManager().getQueryEngine(queryEngineById.getClassName(), true);
-		return queryEngine.getExample(key);
+		try {
+			SQueryEnginePluginConfiguration queryEngineById = getServiceMap().getPlugin().getQueryEngineById(qeid);
+			QueryEnginePlugin queryEngine = getBimServer().getPluginManager().getQueryEngine(queryEngineById.getClassName(), true);
+			return queryEngine.getExample(key);
+		} catch (PublicInterfaceNotFoundException e) {
+			return handleException(e);
+		}
 	}
 
 	@Override
 	public List<String> getQueryEngineExampleKeys(Long qeid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		SQueryEnginePluginConfiguration queryEngineById = getQueryEngineById(qeid);
-		QueryEnginePlugin queryEngine = getBimServer().getPluginManager().getQueryEngine(queryEngineById.getClassName(), true);
-		return new ArrayList<String>(queryEngine.getExampleKeys());
-	}
-
-	private <T extends IdEObject> T find(List<T> list, long oid) {
-		for (T t : list) {
-			if (t.getOid() == oid) {
-				return t;
-			}
-		}
-		return null;
-	}
-
-	public SRenderEnginePluginConfiguration getDefaultRenderEngine() throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			UserSettings settings = getUserSettings(session);
-			return getBimServer().getSConverter().convertToSObject(settings.getDefaultRenderEngine());
-		} catch (Exception e) {
+			SQueryEnginePluginConfiguration queryEngineById = getServiceMap().getPlugin().getQueryEngineById(qeid);
+			QueryEnginePlugin queryEngine = getBimServer().getPluginManager().getQueryEngine(queryEngineById.getClassName(), true);
+			return new ArrayList<String>(queryEngine.getExampleKeys());
+		} catch (PublicInterfaceNotFoundException e) {
 			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	public SQueryEnginePluginConfiguration getDefaultQueryEngine() throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			UserSettings settings = getUserSettings(session);
-			return getBimServer().getSConverter().convertToSObject(settings.getDefaultQueryEngine());
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	public SModelComparePluginConfiguration getDefaultModelCompare() throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			UserSettings settings = getUserSettings(session);
-			return getBimServer().getSConverter().convertToSObject(settings.getDefaultModelCompare());
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	public SModelMergerPluginConfiguration getDefaultModelMerger() throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			UserSettings settings = getUserSettings(session);
-			return getBimServer().getSConverter().convertToSObject(settings.getDefaultModelMerger());
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	public SSerializerPluginConfiguration getDefaultSerializer() throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			UserSettings settings = getUserSettings(session);
-			return getBimServer().getSConverter().convertToSObject(settings.getDefaultSerializer());
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	public SObjectIDMPluginConfiguration getDefaultObjectIDM() throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			UserSettings settings = getUserSettings(session);
-			return getBimServer().getSConverter().convertToSObject(settings.getDefaultObjectIDM());
-		} catch (BimserverDatabaseException e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	public void setDefaultRenderEngine(final Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), new UserSettingsSetter() {
-				@Override
-				public void set(UserSettings userSettings) {
-					userSettings.setDefaultRenderEngine(find(userSettings.getRenderEngines(), oid));
-				}});
-			session.executeAndCommitAction(action);
-		} catch (BimserverDatabaseException e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	public void setDefaultQueryEngine(final Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), new UserSettingsSetter() {
-				@Override
-				public void set(UserSettings userSettings) {
-					userSettings.setDefaultQueryEngine(find(userSettings.getQueryengines(), oid));
-				}});
-			session.executeAndCommitAction(action);
-		} catch (BimserverDatabaseException e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	public void setDefaultModelCompare(final Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), new UserSettingsSetter() {
-				@Override
-				public void set(UserSettings userSettings) {
-					userSettings.setDefaultModelCompare(find(userSettings.getModelcompares(), oid));
-				}});
-			session.executeAndCommitAction(action);
-		} catch (BimserverDatabaseException e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	public void setDefaultModelMerger(final Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), new UserSettingsSetter() {
-				@Override
-				public void set(UserSettings userSettings) {
-					userSettings.setDefaultModelMerger(find(userSettings.getModelmergers(), oid));
-				}});
-			session.executeAndCommitAction(action);
-		} catch (BimserverDatabaseException e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	public void setDefaultSerializer(final Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), new UserSettingsSetter() {
-				@Override
-				public void set(UserSettings userSettings) {
-					userSettings.setDefaultSerializer(find(userSettings.getSerializers(), oid));
-				}});
-			session.executeAndCommitAction(action);
-		} catch (BimserverDatabaseException e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	public void setDefaultObjectIDM(final Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), new UserSettingsSetter() {
-				@Override
-				public void set(UserSettings userSettings) {
-					userSettings.setDefaultObjectIDM(find(userSettings.getObjectIDMs(), oid));
-				}});
-			session.executeAndCommitAction(action);
-		} catch (BimserverDatabaseException e) {
-			handleException(e);
-		} finally {
-			session.close();
 		}
 	}
 
@@ -2586,38 +1707,6 @@ public class Service extends GenericServiceImpl implements ServiceInterface {
 	}
 
 	@Override
-	public SObjectDefinition getPluginObjectDefinition(String className) throws ServerException, UserException {
-		return getBimServer().getSConverter().convertToSObject(getBimServer().getPluginManager().getPlugin(className, false).getSettingsDefinition());
-	}
-
-	public SObjectType getPluginSettings(Long poid) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			PluginConfiguration pluginConfiguration = session.get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, Query.getDefault());
-			ObjectType settings = pluginConfiguration.getSettings();
-			return getBimServer().getSConverter().convertToSObject(settings);
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-	
-	@Override
-	public void setPluginSettings(Long poid, SObjectType settings) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			ObjectType convertedSettings = getBimServer().getSConverter().convertFromSObject(settings, session);
-			SetPluginSettingsDatabaseAction action = new SetPluginSettingsDatabaseAction(session, getInternalAccessMethod(), poid, convertedSettings);
-			session.executeAndCommitAction(action);
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
 	public SExtendedDataSchema getExtendedDataSchemaFromRepository(String namespace) throws UserException, ServerException {
 		requireRealUserAuthentication();
 		try {
@@ -2734,250 +1823,6 @@ public class Service extends GenericServiceImpl implements ServiceInterface {
 			return handleException(e);
 		} finally {
 			session.close();
-		}
-	}
-	
-	@Override
-	public void registerProgressHandler(Long topicId, Long endPointId) throws UserException {
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
-		if (endPoint == null) {
-			throw new UserException("Endpoint with id " + endPointId + " not found");
-		}
-		ProgressTopic progressTopic = getBimServer().getNotificationsManager().getProgressTopic(topicId);
-		if (progressTopic == null) {
-			throw new UserException("Topic with id " + topicId + " not found");
-		}
-		try {
-			progressTopic.register(endPoint);
-		} catch (TopicRegisterException e) {
-			throw new UserException(e);
-		}
-	}
-	
-	@Override
-	public void unregisterProgressHandler(Long topicId, Long endPointId) throws UserException, ServerException {
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
-		if (endPoint == null) {
-			throw new UserException("Endpoint with id " + endPointId + " not found");
-		}
-		ProgressTopic progressTopic = getBimServer().getNotificationsManager().getProgressTopic(topicId);
-		if (progressTopic == null) {
-			throw new UserException("Topic with id " + topicId + " not found");
-		}
-		try {
-			progressTopic.unregister(endPoint);
-		} catch (TopicRegisterException e) {
-			handleException(e);
-		}
-	}
-
-	@Override
-	public void updateProgressTopic(Long topicId, SLongActionState state) throws UserException, ServerException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			getBimServer().getNotificationsManager().getProgressTopic(topicId).updateProgress(getBimServer().getSConverter().convertFromSObject(state, session));
-		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void registerNewRevisionOnSpecificProjectHandler(Long endPointId, Long poid) {
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
-		NewRevisionOnSpecificProjectTopic newRevisionOnSpecificProjectTopic = getBimServer().getNotificationsManager().getOrCreateNewRevisionOnSpecificProjectTopic(new NewRevisionOnSpecificProjectTopicKey(poid));
-		try {
-			newRevisionOnSpecificProjectTopic.register(endPoint);
-		} catch (TopicRegisterException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@Override
-	public void unregisterNewRevisionOnSpecificProjectHandler(Long endPointId, Long poid) throws ServerException, UserException {
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
-		try {
-			getBimServer().getNotificationsManager().getNewRevisionOnSpecificProjectTopic(new NewRevisionOnSpecificProjectTopicKey(poid)).unregister(endPoint);
-		} catch (TopicRegisterException e) {
-			handleException(e);
-		}
-	}
-
-	@Override
-	public Long registerProgressTopic(SProgressTopicType type, String description) throws UserException, ServerException {
-		return getBimServer().getNotificationsManager().createProgressTopic(getCurrentUser().getOid(), type, description).getKey().getId();
-	}
-
-	@Override
-	public Long registerProgressOnRevisionTopic(SProgressTopicType type, Long poid, Long roid, String description) throws UserException, ServerException {
-		return getBimServer().getNotificationsManager().createProgressOnRevisionTopic(getCurrentUser().getOid(), poid, roid, type, description).getKey().getId();
-	}
-
-	@Override
-	public Long registerProgressOnProjectTopic(SProgressTopicType type, Long poid, String description) throws UserException, ServerException {
-		return getBimServer().getNotificationsManager().createProgressOnProjectTopic(getCurrentUser().getOid(), poid, type, description).getKey().getId();
-	}
-
-	@Override
-	public void unregisterProgressTopic(Long topicId) {
-		getBimServer().getNotificationsManager().unregister(topicId);
-	}
-
-	@Override
-	public void registerNewProjectHandler(Long endPointId) {
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
-		try {
-			getBimServer().getNotificationsManager().getNewProjectTopic().register(endPoint);
-		} catch (TopicRegisterException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void unregisterNewProjectHandler(Long endPointId) throws ServerException, UserException {
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
-		try {
-			getBimServer().getNotificationsManager().getNewProjectTopic().unregister(endPoint);
-		} catch (TopicRegisterException e) {
-			handleException(e);
-		}
-	}
-
-	@Override
-	public void registerNewUserHandler(Long endPointId) {
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
-		try {
-			getBimServer().getNotificationsManager().getNewUserTopic().register(endPoint);
-		} catch (TopicRegisterException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void unregisterNewUserHandler(Long endPointId) throws ServerException, UserException {
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
-		try {
-			getBimServer().getNotificationsManager().getNewUserTopic().unregister(endPoint);
-		} catch (TopicRegisterException e) {
-			handleException(e);
-		}
-	}
-	
-	@Override
-	public List<Long> getProgressTopicsOnProject(Long poid) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			List<Long> list = new ArrayList<Long>();
-			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
-			List<Long> revisionOids = new ArrayList<Long>();
-			for (Revision revision : project.getRevisions()) {
-				revisionOids.add(revision.getOid());
-			}
-			Set<ProgressTopic> progressOnProjectTopics = getBimServer().getNotificationsManager().getProgressOnProjectTopics(poid, revisionOids);
-			if (progressOnProjectTopics != null) {
-				for (ProgressTopic topic : progressOnProjectTopics) {
-					list.add(topic.getKey().getId());
-				}
-			}
-			return list;
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-	
-	@Override
-	public List<Long> getProgressTopicsOnRevision(Long poid, Long roid) {
-		List<Long> list = new ArrayList<Long>();
-		for (ProgressOnRevisionTopic topic : getBimServer().getNotificationsManager().getProgressOnRevisionTopics(poid, roid)) {
-			list.add(topic.getKey().getId());
-		}
-		return list;
-	}
-	
-	@Override
-	public List<Long> getProgressTopicsOnServer() {
-		List<Long> list = new ArrayList<Long>();
-		for (ProgressTopic topic : getBimServer().getNotificationsManager().getProgressOnServerTopics()) {
-			list.add(topic.getKey().getId());
-		}
-		return list;
-	}
-	
-	@Override
-	public SLongActionState getProgress(Long topicId) throws UserException, ServerException {
-		ProgressTopic progressTopic = getBimServer().getNotificationsManager().getProgressTopic(topicId);
-		if (progressTopic != null) {
-			return getBimServer().getSConverter().convertToSObject(progressTopic.getLastProgress());
-		}
-		return null;
-	}
-	
-	@Override
-	public void registerChangeProgressOnProject(Long endPointId, Long poid) throws ServerException, UserException {
-		ChangeProgressTopicOnProjectTopic changeProgressOnProjectTopic = getBimServer().getNotificationsManager().getChangeProgressOnProjectTopic(poid);
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
-		try {
-			changeProgressOnProjectTopic.register(endPoint);
-		} catch (TopicRegisterException e) {
-			handleException(e);
-		}
-	}
-
-	@Override
-	public void registerChangeProgressOnServer(Long endPointId) throws ServerException, UserException {
-		ChangeProgressTopicOnServerTopic changeProgressTopicOnServerTopic = getBimServer().getNotificationsManager().getChangeProgressTopicOnServerTopic();
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
-		try {
-			changeProgressTopicOnServerTopic.register(endPoint);
-		} catch (TopicRegisterException e) {
-			handleException(e);
-		}
-	}
-	
-	@Override
-	public void unregisterChangeProgressOnServer(Long endPointId) throws ServerException, UserException {
-		ChangeProgressTopicOnServerTopic changeProgressTopicOnServerTopic = getBimServer().getNotificationsManager().getChangeProgressTopicOnServerTopic();
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
-		try {
-			changeProgressTopicOnServerTopic.unregister(endPoint);
-		} catch (TopicRegisterException e) {
-			handleException(e);
-		}
-	}
-	
-	@Override
-	public void registerChangeProgressOnRevision(Long endPointId, Long poid, Long roid) throws ServerException, UserException {
-		ChangeProgressTopicOnRevisionTopic changeProgressOnProjectTopic = getBimServer().getNotificationsManager().getChangeProgressOnRevisionTopic(poid, roid);
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
-		try {
-			changeProgressOnProjectTopic.register(endPoint);
-		} catch (TopicRegisterException e) {
-			handleException(e);
-		}
-	}
-	
-	@Override
-	public void unregisterChangeProgressOnProject(Long endPointId, Long poid) throws ServerException, UserException {
-		ChangeProgressTopicOnProjectTopic changeProgressOnProjectTopic = getBimServer().getNotificationsManager().getChangeProgressOnProjectTopic(poid);
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
-		try {
-			changeProgressOnProjectTopic.unregister(endPoint);
-		} catch (TopicRegisterException e) {
-			handleException(e);
-		}
-	}
-	
-	@Override
-	public void unregisterChangeProgressOnRevision(Long endPointId, Long poid, Long roid) throws ServerException, UserException {
-		ChangeProgressTopicOnRevisionTopic changeProgressOnProjectTopic = getBimServer().getNotificationsManager().getChangeProgressOnRevisionTopic(poid, roid);
-		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
-		try {
-			changeProgressOnProjectTopic.unregister(endPoint);
-		} catch (TopicRegisterException e) {
-			handleException(e);
 		}
 	}
 }

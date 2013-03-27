@@ -23,8 +23,6 @@ option java_outer_classname = "ServiceInterfaceImpl";
 option optimize_for = SPEED;
 
 service ServiceInterface {
-	rpc addDeserializer (AddDeserializerRequest) returns (VoidResponse);
-
 	rpc addExtendedDataSchema (AddExtendedDataSchemaRequest) returns (VoidResponse);
 
 	rpc addExtendedDataToProject (AddExtendedDataToProjectRequest) returns (VoidResponse);
@@ -35,21 +33,9 @@ service ServiceInterface {
 
 	rpc addLocalServiceToProject (AddLocalServiceToProjectRequest) returns (VoidResponse);
 
-	rpc addModelCompare (AddModelCompareRequest) returns (VoidResponse);
-
-	rpc addModelMerger (AddModelMergerRequest) returns (VoidResponse);
-
-	rpc addObjectIDM (AddObjectIDMRequest) returns (VoidResponse);
-
 	rpc addProject (AddProjectRequest) returns (AddProjectResponse);
 
 	rpc addProjectAsSubProject (AddProjectAsSubProjectRequest) returns (AddProjectAsSubProjectResponse);
-
-	rpc addQueryEngine (AddQueryEngineRequest) returns (VoidResponse);
-
-	rpc addRenderEngine (AddRenderEngineRequest) returns (VoidResponse);
-
-	rpc addSerializer (AddSerializerRequest) returns (VoidResponse);
 
 	rpc addServiceToProject (AddServiceToProjectRequest) returns (VoidResponse);
 
@@ -62,8 +48,6 @@ service ServiceInterface {
 	rpc branchToExistingProject (BranchToExistingProjectRequest) returns (BranchToExistingProjectResponse);
 
 	rpc branchToNewProject (BranchToNewProjectRequest) returns (BranchToNewProjectResponse);
-
-	rpc changePassword (ChangePasswordRequest) returns (ChangePasswordResponse);
 
 	rpc changeUserType (ChangeUserTypeRequest) returns (VoidResponse);
 
@@ -81,23 +65,9 @@ service ServiceInterface {
 
 	rpc count (CountRequest) returns (CountResponse);
 
-	rpc deleteDeserializer (DeleteDeserializerRequest) returns (VoidResponse);
-
 	rpc deleteInternalService (DeleteInternalServiceRequest) returns (VoidResponse);
 
-	rpc deleteModelCompare (DeleteModelCompareRequest) returns (VoidResponse);
-
-	rpc deleteModelMerger (DeleteModelMergerRequest) returns (VoidResponse);
-
-	rpc deleteObjectIDM (DeleteObjectIDMRequest) returns (VoidResponse);
-
 	rpc deleteProject (DeleteProjectRequest) returns (DeleteProjectResponse);
-
-	rpc deleteQueryEngine (DeleteQueryEngineRequest) returns (VoidResponse);
-
-	rpc deleteRenderEngine (DeleteRenderEngineRequest) returns (VoidResponse);
-
-	rpc deleteSerializer (DeleteSerializerRequest) returns (VoidResponse);
 
 	rpc deleteService (DeleteServiceRequest) returns (VoidResponse);
 
@@ -129,10 +99,6 @@ service ServiceInterface {
 
 	rpc getAllCheckoutsOfRevision (GetAllCheckoutsOfRevisionRequest) returns (GetAllCheckoutsOfRevisionResponse);
 
-	rpc getAllDeserializerPluginDescriptors (GetAllDeserializerPluginDescriptorsRequest) returns (GetAllDeserializerPluginDescriptorsResponse);
-
-	rpc getAllDeserializers (GetAllDeserializersRequest) returns (GetAllDeserializersResponse);
-
 	rpc getAllExtendedDataOfRevision (GetAllExtendedDataOfRevisionRequest) returns (GetAllExtendedDataOfRevisionResponse);
 
 	rpc getAllExtendedDataSchemas (GetAllExtendedDataSchemasRequest) returns (GetAllExtendedDataSchemasResponse);
@@ -143,21 +109,11 @@ service ServiceInterface {
 
 	rpc getAllLocalServiceDescriptors (GetAllLocalServiceDescriptorsRequest) returns (GetAllLocalServiceDescriptorsResponse);
 
-	rpc getAllModelComparePluginDescriptors (GetAllModelComparePluginDescriptorsRequest) returns (GetAllModelComparePluginDescriptorsResponse);
-
-	rpc getAllModelCompares (GetAllModelComparesRequest) returns (GetAllModelComparesResponse);
-
-	rpc getAllModelMergerPluginDescriptors (GetAllModelMergerPluginDescriptorsRequest) returns (GetAllModelMergerPluginDescriptorsResponse);
-
-	rpc getAllModelMergers (GetAllModelMergersRequest) returns (GetAllModelMergersResponse);
-
 	rpc getAllNonAuthorizedProjectsOfUser (GetAllNonAuthorizedProjectsOfUserRequest) returns (GetAllNonAuthorizedProjectsOfUserResponse);
 
 	rpc getAllNonAuthorizedUsersOfProject (GetAllNonAuthorizedUsersOfProjectRequest) returns (GetAllNonAuthorizedUsersOfProjectResponse);
 
 	rpc getAllObjectIDMPluginDescriptors (GetAllObjectIDMPluginDescriptorsRequest) returns (GetAllObjectIDMPluginDescriptorsResponse);
-
-	rpc getAllObjectIDMs (GetAllObjectIDMsRequest) returns (GetAllObjectIDMsResponse);
 
 	rpc getAllPrivateProfiles (GetAllPrivateProfilesRequest) returns (GetAllPrivateProfilesResponse);
 
@@ -165,15 +121,7 @@ service ServiceInterface {
 
 	rpc getAllPublicProfiles (GetAllPublicProfilesRequest) returns (GetAllPublicProfilesResponse);
 
-	rpc getAllQueryEnginePluginDescriptors (GetAllQueryEnginePluginDescriptorsRequest) returns (GetAllQueryEnginePluginDescriptorsResponse);
-
-	rpc getAllQueryEngines (GetAllQueryEnginesRequest) returns (GetAllQueryEnginesResponse);
-
 	rpc getAllReadableProjects (GetAllReadableProjectsRequest) returns (GetAllReadableProjectsResponse);
-
-	rpc getAllRenderEnginePluginDescriptors (GetAllRenderEnginePluginDescriptorsRequest) returns (GetAllRenderEnginePluginDescriptorsResponse);
-
-	rpc getAllRenderEngines (GetAllRenderEnginesRequest) returns (GetAllRenderEnginesResponse);
 
 	rpc getAllRepositoryExtendedDataSchemas (GetAllRepositoryExtendedDataSchemasRequest) returns (GetAllRepositoryExtendedDataSchemasResponse);
 
@@ -181,13 +129,7 @@ service ServiceInterface {
 
 	rpc getAllRevisionsOfProject (GetAllRevisionsOfProjectRequest) returns (GetAllRevisionsOfProjectResponse);
 
-	rpc getAllSerializerPluginDescriptors (GetAllSerializerPluginDescriptorsRequest) returns (GetAllSerializerPluginDescriptorsResponse);
-
-	rpc getAllSerializers (GetAllSerializersRequest) returns (GetAllSerializersResponse);
-
 	rpc getAllServiceDescriptors (GetAllServiceDescriptorsRequest) returns (GetAllServiceDescriptorsResponse);
-
-	rpc getAllServicePluginDescriptors (GetAllServicePluginDescriptorsRequest) returns (GetAllServicePluginDescriptorsResponse);
 
 	rpc getAllServicesOfProject (GetAllServicesOfProjectRequest) returns (GetAllServicesOfProjectResponse);
 
@@ -200,22 +142,6 @@ service ServiceInterface {
 	rpc getCheckinWarnings (GetCheckinWarningsRequest) returns (GetCheckinWarningsResponse);
 
 	rpc getCheckoutWarnings (GetCheckoutWarningsRequest) returns (GetCheckoutWarningsResponse);
-
-	rpc getDefaultModelCompare (GetDefaultModelCompareRequest) returns (GetDefaultModelCompareResponse);
-
-	rpc getDefaultModelMerger (GetDefaultModelMergerRequest) returns (GetDefaultModelMergerResponse);
-
-	rpc getDefaultObjectIDM (GetDefaultObjectIDMRequest) returns (GetDefaultObjectIDMResponse);
-
-	rpc getDefaultQueryEngine (GetDefaultQueryEngineRequest) returns (GetDefaultQueryEngineResponse);
-
-	rpc getDefaultRenderEngine (GetDefaultRenderEngineRequest) returns (GetDefaultRenderEngineResponse);
-
-	rpc getDefaultSerializer (GetDefaultSerializerRequest) returns (GetDefaultSerializerResponse);
-
-	rpc getDeserializerById (GetDeserializerByIdRequest) returns (GetDeserializerByIdResponse);
-
-	rpc getDeserializerByName (GetDeserializerByNameRequest) returns (GetDeserializerByNameResponse);
 
 	rpc getDownloadData (GetDownloadDataRequest) returns (GetDownloadDataResponse);
 
@@ -235,61 +161,19 @@ service ServiceInterface {
 
 	rpc getLongActionState (GetLongActionStateRequest) returns (GetLongActionStateResponse);
 
-	rpc getModelCompareById (GetModelCompareByIdRequest) returns (GetModelCompareByIdResponse);
-
-	rpc getModelCompareByName (GetModelCompareByNameRequest) returns (GetModelCompareByNameResponse);
-
-	rpc getModelMergerById (GetModelMergerByIdRequest) returns (GetModelMergerByIdResponse);
-
-	rpc getModelMergerByName (GetModelMergerByNameRequest) returns (GetModelMergerByNameResponse);
-
-	rpc getObjectIDMById (GetObjectIDMByIdRequest) returns (GetObjectIDMByIdResponse);
-
-	rpc getObjectIDMByName (GetObjectIDMByNameRequest) returns (GetObjectIDMByNameResponse);
-
 	rpc getOidByGuid (GetOidByGuidRequest) returns (GetOidByGuidResponse);
-
-	rpc getPluginObjectDefinition (GetPluginObjectDefinitionRequest) returns (GetPluginObjectDefinitionResponse);
-
-	rpc getPluginSettings (GetPluginSettingsRequest) returns (GetPluginSettingsResponse);
-
-	rpc getProgress (GetProgressRequest) returns (GetProgressResponse);
-
-	rpc getProgressTopicsOnProject (GetProgressTopicsOnProjectRequest) returns (GetProgressTopicsOnProjectResponse);
-
-	rpc getProgressTopicsOnRevision (GetProgressTopicsOnRevisionRequest) returns (GetProgressTopicsOnRevisionResponse);
-
-	rpc getProgressTopicsOnServer (GetProgressTopicsOnServerRequest) returns (GetProgressTopicsOnServerResponse);
 
 	rpc getProjectByPoid (GetProjectByPoidRequest) returns (GetProjectByPoidResponse);
 
 	rpc getProjectsByName (GetProjectsByNameRequest) returns (GetProjectsByNameResponse);
 
-	rpc getQueryEngineById (GetQueryEngineByIdRequest) returns (GetQueryEngineByIdResponse);
-
-	rpc getQueryEngineByName (GetQueryEngineByNameRequest) returns (GetQueryEngineByNameResponse);
-
 	rpc getQueryEngineExample (GetQueryEngineExampleRequest) returns (GetQueryEngineExampleResponse);
 
 	rpc getQueryEngineExampleKeys (GetQueryEngineExampleKeysRequest) returns (GetQueryEngineExampleKeysResponse);
 
-	rpc getRenderEngineById (GetRenderEngineByIdRequest) returns (GetRenderEngineByIdResponse);
-
-	rpc getRenderEngineByName (GetRenderEngineByNameRequest) returns (GetRenderEngineByNameResponse);
-
 	rpc getRevision (GetRevisionRequest) returns (GetRevisionResponse);
 
 	rpc getRevisionSummary (GetRevisionSummaryRequest) returns (GetRevisionSummaryResponse);
-
-	rpc getSerializerByContentType (GetSerializerByContentTypeRequest) returns (GetSerializerByContentTypeResponse);
-
-	rpc getSerializerById (GetSerializerByIdRequest) returns (GetSerializerByIdResponse);
-
-	rpc getSerializerByName (GetSerializerByNameRequest) returns (GetSerializerByNameResponse);
-
-	rpc getSerializerByPluginClassName (GetSerializerByPluginClassNameRequest) returns (GetSerializerByPluginClassNameResponse);
-
-	rpc getSerializerPluginDescriptor (GetSerializerPluginDescriptorRequest) returns (GetSerializerPluginDescriptorResponse);
 
 	rpc getService (GetServiceRequest) returns (GetServiceResponse);
 
@@ -307,49 +191,11 @@ service ServiceInterface {
 
 	rpc getUsersProjects (GetUsersProjectsRequest) returns (GetUsersProjectsResponse);
 
-	rpc hasActiveSerializer (HasActiveSerializerRequest) returns (HasActiveSerializerResponse);
-
-	rpc registerChangeProgressOnProject (RegisterChangeProgressOnProjectRequest) returns (VoidResponse);
-
-	rpc registerChangeProgressOnRevision (RegisterChangeProgressOnRevisionRequest) returns (VoidResponse);
-
-	rpc registerChangeProgressOnServer (RegisterChangeProgressOnServerRequest) returns (VoidResponse);
-
-	rpc registerNewProjectHandler (RegisterNewProjectHandlerRequest) returns (VoidResponse);
-
-	rpc registerNewRevisionOnSpecificProjectHandler (RegisterNewRevisionOnSpecificProjectHandlerRequest) returns (VoidResponse);
-
-	rpc registerNewUserHandler (RegisterNewUserHandlerRequest) returns (VoidResponse);
-
-	rpc registerProgressHandler (RegisterProgressHandlerRequest) returns (VoidResponse);
-
-	rpc registerProgressOnProjectTopic (RegisterProgressOnProjectTopicRequest) returns (RegisterProgressOnProjectTopicResponse);
-
-	rpc registerProgressOnRevisionTopic (RegisterProgressOnRevisionTopicRequest) returns (RegisterProgressOnRevisionTopicResponse);
-
-	rpc registerProgressTopic (RegisterProgressTopicRequest) returns (RegisterProgressTopicResponse);
-
 	rpc removeUserFromExtendedDataSchema (RemoveUserFromExtendedDataSchemaRequest) returns (VoidResponse);
 
 	rpc removeUserFromProject (RemoveUserFromProjectRequest) returns (RemoveUserFromProjectResponse);
 
-	rpc requestPasswordChange (RequestPasswordChangeRequest) returns (VoidResponse);
-
 	rpc sendCompareEmail (SendCompareEmailRequest) returns (VoidResponse);
-
-	rpc setDefaultModelCompare (SetDefaultModelCompareRequest) returns (VoidResponse);
-
-	rpc setDefaultModelMerger (SetDefaultModelMergerRequest) returns (VoidResponse);
-
-	rpc setDefaultObjectIDM (SetDefaultObjectIDMRequest) returns (VoidResponse);
-
-	rpc setDefaultQueryEngine (SetDefaultQueryEngineRequest) returns (VoidResponse);
-
-	rpc setDefaultRenderEngine (SetDefaultRenderEngineRequest) returns (VoidResponse);
-
-	rpc setDefaultSerializer (SetDefaultSerializerRequest) returns (VoidResponse);
-
-	rpc setPluginSettings (SetPluginSettingsRequest) returns (VoidResponse);
 
 	rpc setRevisionTag (SetRevisionTagRequest) returns (VoidResponse);
 
@@ -363,53 +209,19 @@ service ServiceInterface {
 
 	rpc undeleteUser (UndeleteUserRequest) returns (UndeleteUserResponse);
 
-	rpc unregisterChangeProgressOnProject (UnregisterChangeProgressOnProjectRequest) returns (VoidResponse);
-
-	rpc unregisterChangeProgressOnRevision (UnregisterChangeProgressOnRevisionRequest) returns (VoidResponse);
-
-	rpc unregisterChangeProgressOnServer (UnregisterChangeProgressOnServerRequest) returns (VoidResponse);
-
-	rpc unregisterNewProjectHandler (UnregisterNewProjectHandlerRequest) returns (VoidResponse);
-
-	rpc unregisterNewRevisionOnSpecificProjectHandler (UnregisterNewRevisionOnSpecificProjectHandlerRequest) returns (VoidResponse);
-
-	rpc unregisterNewUserHandler (UnregisterNewUserHandlerRequest) returns (VoidResponse);
-
-	rpc unregisterProgressHandler (UnregisterProgressHandlerRequest) returns (VoidResponse);
-
-	rpc unregisterProgressTopic (UnregisterProgressTopicRequest) returns (VoidResponse);
-
-	rpc updateDeserializer (UpdateDeserializerRequest) returns (VoidResponse);
-
 	rpc updateGeoTag (UpdateGeoTagRequest) returns (VoidResponse);
 
 	rpc updateInternalService (UpdateInternalServiceRequest) returns (VoidResponse);
 
-	rpc updateModelCompare (UpdateModelCompareRequest) returns (VoidResponse);
-
-	rpc updateModelMerger (UpdateModelMergerRequest) returns (VoidResponse);
-
-	rpc updateObjectIDM (UpdateObjectIDMRequest) returns (VoidResponse);
-
-	rpc updateProgressTopic (UpdateProgressTopicRequest) returns (VoidResponse);
-
 	rpc updateProject (UpdateProjectRequest) returns (VoidResponse);
 
-	rpc updateQueryEngine (UpdateQueryEngineRequest) returns (VoidResponse);
-
-	rpc updateRenderEngine (UpdateRenderEngineRequest) returns (VoidResponse);
-
 	rpc updateRevision (UpdateRevisionRequest) returns (VoidResponse);
-
-	rpc updateSerializer (UpdateSerializerRequest) returns (VoidResponse);
 
 	rpc uploadFile (UploadFileRequest) returns (UploadFileResponse);
 
 	rpc userHasCheckinRights (UserHasCheckinRightsRequest) returns (UserHasCheckinRightsResponse);
 
 	rpc userHasRights (UserHasRightsRequest) returns (UserHasRightsResponse);
-
-	rpc validateAccount (ValidateAccountRequest) returns (ValidateAccountResponse);
 
 }
 
@@ -418,17 +230,7 @@ message VoidResponse {
 }
 
 message Void {
-}message SDeserializerPluginConfiguration {
-	optional int64 userSettingsId = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
-}
-
-message AddDeserializerRequest {
-	optional SDeserializerPluginConfiguration deserializer = 1;
-}
-
-enum SExtendedDataSchemaType{
+}enum SExtendedDataSchemaType{
 	XSD = 0;
 	PDF = 1;
 	TXT = 2;
@@ -519,9 +321,9 @@ message SService {
 	optional string providerName = 12;
 	optional string description = 13;
 	optional int64 oid = 14;
-	optional int64 userId = 15;
-	optional int64 writeRevisionId = 16;
-	optional int64 readExtendedDataId = 17;
+	optional int64 writeRevisionId = 15;
+	optional int64 readExtendedDataId = 16;
+	optional int64 userId = 17;
 	optional string name = 18;
 	optional string serviceIdentifier = 19;
 	optional int64 writeExtendedDataId = 20;
@@ -533,37 +335,6 @@ message AddLocalServiceToProjectRequest {
 	optional int64 poid = 1;
 	optional SService sService = 2;
 	optional int64 internalServiceOid = 3;
-}
-
-message SModelComparePluginConfiguration {
-	optional int64 userSettingsId = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
-}
-
-message AddModelCompareRequest {
-	optional SModelComparePluginConfiguration modelCompare = 1;
-}
-
-message SModelMergerPluginConfiguration {
-	optional int64 userSettingsId = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
-}
-
-message AddModelMergerRequest {
-	optional SModelMergerPluginConfiguration modelMerger = 1;
-}
-
-message SObjectIDMPluginConfiguration {
-	optional int64 userSettingsId = 1;
-	repeated int64 serializers = 2;
-	optional int32 rid = 3;
-	optional int64 oid = 4;
-}
-
-message AddObjectIDMRequest {
-	optional SObjectIDMPluginConfiguration objectIDM = 1;
 }
 
 message AddProjectRequest {
@@ -634,39 +405,6 @@ message AddProjectAsSubProjectResponse {
 	optional SProject value = 2;
 }
 
-message SQueryEnginePluginConfiguration {
-	optional int64 userSettingsId = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
-}
-
-message AddQueryEngineRequest {
-	optional SQueryEnginePluginConfiguration queryEngine = 1;
-}
-
-message SRenderEnginePluginConfiguration {
-	optional int64 userSettingsId = 1;
-	repeated int64 serializers = 2;
-	optional int32 rid = 3;
-	optional int64 oid = 4;
-}
-
-message AddRenderEngineRequest {
-	optional SRenderEnginePluginConfiguration renderEngine = 1;
-}
-
-message SSerializerPluginConfiguration {
-	optional int64 userSettingsId = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
-	optional int64 objectIDMId = 4;
-	optional int64 renderEngineId = 5;
-}
-
-message AddSerializerRequest {
-	optional SSerializerPluginConfiguration serializer = 1;
-}
-
 message AddServiceToProjectRequest {
 	optional int64 poid = 1;
 	optional SService sService = 2;
@@ -689,14 +427,14 @@ message AddUserRequest {
 message SUser {
 	optional int64 userSettingsId = 1;
 	optional int64 lastSeen = 2;
-	repeated int64 schemas = 3;
-	repeated int64 services = 4;
+	repeated int64 services = 3;
+	repeated int64 schemas = 4;
 	optional int64 createdById = 5;
 	repeated int64 logs = 6;
 	optional string validationToken = 7;
 	optional SObjectState state = 8;
-	repeated int64 hasRightsOn = 9;
-	optional string password = 10;
+	optional string password = 9;
+	repeated int64 hasRightsOn = 10;
 	optional SUserType userType = 11;
 	optional int64 createdOn = 12;
 	repeated int64 extendedData = 13;
@@ -705,8 +443,8 @@ message SUser {
 	optional int32 rid = 16;
 	optional int64 oid = 17;
 	optional string name = 18;
-	optional int64 validationTokenCreated = 19;
-	repeated int64 revisions = 20;
+	repeated int64 revisions = 19;
+	optional int64 validationTokenCreated = 20;
 }
 
 message AddUserResponse {
@@ -751,17 +489,6 @@ message BranchToNewProjectRequest {
 message BranchToNewProjectResponse {
 	optional string errorMessage = 1;
 	optional int64 value = 2;
-}
-
-message ChangePasswordRequest {
-	optional int64 uoid = 1;
-	optional string oldPassword = 2;
-	optional string newPassword = 3;
-}
-
-message ChangePasswordResponse {
-	optional string errorMessage = 1;
-	optional bool value = 2;
 }
 
 message ChangeUserTypeRequest {
@@ -840,12 +567,9 @@ message CompareRequest {
 	optional int64 mcid = 4;
 }
 
-message SObjectModified {
-	optional string newValue = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
-	optional string oldValue = 4;
-	optional string fieldName = 5;
+message SObjectAdded {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
 }
 
 message SObjectRemoved {
@@ -853,9 +577,12 @@ message SObjectRemoved {
 	optional int64 oid = 2;
 }
 
-message SObjectAdded {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
+message SObjectModified {
+	optional string newValue = 1;
+	optional int32 rid = 2;
+	optional int64 oid = 3;
+	optional string oldValue = 4;
+	optional string fieldName = 5;
 }
 
 message SSimpleDataValue {
@@ -898,24 +625,24 @@ message SDataObject {
 
 message SCompareItem {
 	required string __actual_type = 1;
-	optional SObjectModified __SObjectModified = 2;
+	optional SObjectAdded __SObjectAdded = 2;
 	optional SObjectRemoved __SObjectRemoved = 3;
-	optional SObjectAdded __SObjectAdded = 4;
+	optional SObjectModified __SObjectModified = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 	optional SDataObject dataObject = 7;
 }
 
 message SCompareContainer {
-	repeated SCompareItem items = 1;
-	optional int32 rid = 2;
+	optional int32 rid = 1;
+	repeated SCompareItem items = 2;
 	optional int64 oid = 3;
 	optional string type = 4;
 }
 
 message SCompareResult {
-	repeated SCompareContainer items = 1;
-	optional int32 rid = 2;
+	optional int32 rid = 1;
+	repeated SCompareContainer items = 2;
 	optional int64 oid = 3;
 }
 
@@ -934,23 +661,7 @@ message CountResponse {
 	optional int32 value = 2;
 }
 
-message DeleteDeserializerRequest {
-	optional int64 sid = 1;
-}
-
 message DeleteInternalServiceRequest {
-	optional int64 oid = 1;
-}
-
-message DeleteModelCompareRequest {
-	optional int64 iid = 1;
-}
-
-message DeleteModelMergerRequest {
-	optional int64 iid = 1;
-}
-
-message DeleteObjectIDMRequest {
 	optional int64 oid = 1;
 }
 
@@ -961,18 +672,6 @@ message DeleteProjectRequest {
 message DeleteProjectResponse {
 	optional string errorMessage = 1;
 	optional bool value = 2;
-}
-
-message DeleteQueryEngineRequest {
-	optional int64 iid = 1;
-}
-
-message DeleteRenderEngineRequest {
-	optional int64 iid = 1;
-}
-
-message DeleteSerializerRequest {
-	optional int64 sid = 1;
 }
 
 message DeleteServiceRequest {
@@ -1169,28 +868,6 @@ message GetAllCheckoutsOfRevisionResponse {
 	repeated SCheckout value = 2;
 }
 
-message GetAllDeserializerPluginDescriptorsRequest {
-}
-
-message SDeserializerPluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message GetAllDeserializerPluginDescriptorsResponse {
-	optional string errorMessage = 1;
-	repeated SDeserializerPluginDescriptor value = 2;
-}
-
-message GetAllDeserializersRequest {
-	optional bool onlyEnabled = 1;
-}
-
-message GetAllDeserializersResponse {
-	optional string errorMessage = 1;
-	repeated SDeserializerPluginConfiguration value = 2;
-}
-
 message GetAllExtendedDataOfRevisionRequest {
 	optional int64 roid = 1;
 }
@@ -1237,9 +914,9 @@ message GetAllLocalServiceDescriptorsRequest {
 }
 
 message SServiceDescriptor {
-	optional SAccessMethod notificationProtocol = 1;
+	optional STrigger trigger = 1;
 	optional string writeExtendedData = 2;
-	optional STrigger trigger = 3;
+	optional SAccessMethod notificationProtocol = 3;
 	optional bool writeRevision = 4;
 	optional string readExtendedData = 5;
 	optional string providerName = 6;
@@ -1254,50 +931,6 @@ message SServiceDescriptor {
 message GetAllLocalServiceDescriptorsResponse {
 	optional string errorMessage = 1;
 	repeated SServiceDescriptor value = 2;
-}
-
-message GetAllModelComparePluginDescriptorsRequest {
-}
-
-message SModelComparePluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message GetAllModelComparePluginDescriptorsResponse {
-	optional string errorMessage = 1;
-	repeated SModelComparePluginDescriptor value = 2;
-}
-
-message GetAllModelComparesRequest {
-	optional bool onlyEnabled = 1;
-}
-
-message GetAllModelComparesResponse {
-	optional string errorMessage = 1;
-	repeated SModelComparePluginConfiguration value = 2;
-}
-
-message GetAllModelMergerPluginDescriptorsRequest {
-}
-
-message SModelMergerPluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message GetAllModelMergerPluginDescriptorsResponse {
-	optional string errorMessage = 1;
-	repeated SModelMergerPluginDescriptor value = 2;
-}
-
-message GetAllModelMergersRequest {
-	optional bool onlyEnabled = 1;
-}
-
-message GetAllModelMergersResponse {
-	optional string errorMessage = 1;
-	repeated SModelMergerPluginConfiguration value = 2;
 }
 
 message GetAllNonAuthorizedProjectsOfUserRequest {
@@ -1332,15 +965,6 @@ message GetAllObjectIDMPluginDescriptorsResponse {
 	repeated SObjectIDMPluginDescriptor value = 2;
 }
 
-message GetAllObjectIDMsRequest {
-	optional bool onlyEnabled = 1;
-}
-
-message GetAllObjectIDMsResponse {
-	optional string errorMessage = 1;
-	repeated SObjectIDMPluginConfiguration value = 2;
-}
-
 message GetAllPrivateProfilesRequest {
 	optional string notificationsUrl = 1;
 	optional string serviceIdentifier = 2;
@@ -1371,56 +995,12 @@ message GetAllPublicProfilesResponse {
 	repeated SProfileDescriptor value = 2;
 }
 
-message GetAllQueryEnginePluginDescriptorsRequest {
-}
-
-message SQueryEnginePluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message GetAllQueryEnginePluginDescriptorsResponse {
-	optional string errorMessage = 1;
-	repeated SQueryEnginePluginDescriptor value = 2;
-}
-
-message GetAllQueryEnginesRequest {
-	optional bool onlyEnabled = 1;
-}
-
-message GetAllQueryEnginesResponse {
-	optional string errorMessage = 1;
-	repeated SQueryEnginePluginConfiguration value = 2;
-}
-
 message GetAllReadableProjectsRequest {
 }
 
 message GetAllReadableProjectsResponse {
 	optional string errorMessage = 1;
 	repeated SProject value = 2;
-}
-
-message GetAllRenderEnginePluginDescriptorsRequest {
-}
-
-message SRenderEnginePluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message GetAllRenderEnginePluginDescriptorsResponse {
-	optional string errorMessage = 1;
-	repeated SRenderEnginePluginDescriptor value = 2;
-}
-
-message GetAllRenderEnginesRequest {
-	optional bool onlyEnabled = 1;
-}
-
-message GetAllRenderEnginesResponse {
-	optional string errorMessage = 1;
-	repeated SRenderEnginePluginConfiguration value = 2;
 }
 
 message GetAllRepositoryExtendedDataSchemasRequest {
@@ -1449,47 +1029,12 @@ message GetAllRevisionsOfProjectResponse {
 	repeated SRevision value = 2;
 }
 
-message GetAllSerializerPluginDescriptorsRequest {
-}
-
-message SSerializerPluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message GetAllSerializerPluginDescriptorsResponse {
-	optional string errorMessage = 1;
-	repeated SSerializerPluginDescriptor value = 2;
-}
-
-message GetAllSerializersRequest {
-	optional bool onlyEnabled = 1;
-}
-
-message GetAllSerializersResponse {
-	optional string errorMessage = 1;
-	repeated SSerializerPluginConfiguration value = 2;
-}
-
 message GetAllServiceDescriptorsRequest {
 }
 
 message GetAllServiceDescriptorsResponse {
 	optional string errorMessage = 1;
 	repeated SServiceDescriptor value = 2;
-}
-
-message GetAllServicePluginDescriptorsRequest {
-}
-
-message SServicePluginDescriptor {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message GetAllServicePluginDescriptorsResponse {
-	optional string errorMessage = 1;
-	repeated SServicePluginDescriptor value = 2;
 }
 
 message GetAllServicesOfProjectRequest {
@@ -1542,72 +1087,6 @@ message GetCheckoutWarningsRequest {
 message GetCheckoutWarningsResponse {
 	optional string errorMessage = 1;
 	repeated string value = 2;
-}
-
-message GetDefaultModelCompareRequest {
-}
-
-message GetDefaultModelCompareResponse {
-	optional string errorMessage = 1;
-	optional SModelComparePluginConfiguration value = 2;
-}
-
-message GetDefaultModelMergerRequest {
-}
-
-message GetDefaultModelMergerResponse {
-	optional string errorMessage = 1;
-	optional SModelMergerPluginConfiguration value = 2;
-}
-
-message GetDefaultObjectIDMRequest {
-}
-
-message GetDefaultObjectIDMResponse {
-	optional string errorMessage = 1;
-	optional SObjectIDMPluginConfiguration value = 2;
-}
-
-message GetDefaultQueryEngineRequest {
-}
-
-message GetDefaultQueryEngineResponse {
-	optional string errorMessage = 1;
-	optional SQueryEnginePluginConfiguration value = 2;
-}
-
-message GetDefaultRenderEngineRequest {
-}
-
-message GetDefaultRenderEngineResponse {
-	optional string errorMessage = 1;
-	optional SRenderEnginePluginConfiguration value = 2;
-}
-
-message GetDefaultSerializerRequest {
-}
-
-message GetDefaultSerializerResponse {
-	optional string errorMessage = 1;
-	optional SSerializerPluginConfiguration value = 2;
-}
-
-message GetDeserializerByIdRequest {
-	optional int64 oid = 1;
-}
-
-message GetDeserializerByIdResponse {
-	optional string errorMessage = 1;
-	optional SDeserializerPluginConfiguration value = 2;
-}
-
-message GetDeserializerByNameRequest {
-	optional string deserializerName = 1;
-}
-
-message GetDeserializerByNameResponse {
-	optional string errorMessage = 1;
-	optional SDeserializerPluginConfiguration value = 2;
 }
 
 message GetDownloadDataRequest {
@@ -1694,8 +1173,8 @@ message GetGeoTagRequest {
 message SGeoTag {
 	optional bool enabled = 1;
 	repeated int64 projects = 2;
-	optional int32 epsg = 3;
-	optional int32 rid = 4;
+	optional int32 rid = 3;
+	optional int32 epsg = 4;
 	optional int64 oid = 5;
 	optional double directionAngle = 6;
 	optional double z = 7;
@@ -1745,60 +1224,6 @@ message GetLongActionStateResponse {
 	optional SLongActionState value = 2;
 }
 
-message GetModelCompareByIdRequest {
-	optional int64 oid = 1;
-}
-
-message GetModelCompareByIdResponse {
-	optional string errorMessage = 1;
-	optional SModelComparePluginConfiguration value = 2;
-}
-
-message GetModelCompareByNameRequest {
-	optional string name = 1;
-}
-
-message GetModelCompareByNameResponse {
-	optional string errorMessage = 1;
-	optional SModelComparePluginConfiguration value = 2;
-}
-
-message GetModelMergerByIdRequest {
-	optional int64 oid = 1;
-}
-
-message GetModelMergerByIdResponse {
-	optional string errorMessage = 1;
-	optional SModelMergerPluginConfiguration value = 2;
-}
-
-message GetModelMergerByNameRequest {
-	optional string name = 1;
-}
-
-message GetModelMergerByNameResponse {
-	optional string errorMessage = 1;
-	optional SModelMergerPluginConfiguration value = 2;
-}
-
-message GetObjectIDMByIdRequest {
-	optional int64 oid = 1;
-}
-
-message GetObjectIDMByIdResponse {
-	optional string errorMessage = 1;
-	optional SObjectIDMPluginConfiguration value = 2;
-}
-
-message GetObjectIDMByNameRequest {
-	optional string objectIDMName = 1;
-}
-
-message GetObjectIDMByNameResponse {
-	optional string errorMessage = 1;
-	optional SObjectIDMPluginConfiguration value = 2;
-}
-
 message GetOidByGuidRequest {
 	optional int64 roid = 1;
 	optional string guid = 2;
@@ -1807,165 +1232,6 @@ message GetOidByGuidRequest {
 message GetOidByGuidResponse {
 	optional string errorMessage = 1;
 	optional int64 value = 2;
-}
-
-message GetPluginObjectDefinitionRequest {
-	optional string className = 1;
-}
-
-message SArrayDefinition {
-	optional STypeDefinition type = 1;
-}
-
-enum SPrimitiveEnum{
-	LONG = 0;
-	DOUBLE = 1;
-	BOOLEAN = 2;
-	STRING = 3;
-	BYTE_ARRAY = 4;
-}
-
-message SPrimitiveDefinition {
-	optional SPrimitiveEnum type = 1;
-}
-
-message STypeDefinition {
-	required string __actual_type = 1;
-	optional SObjectDefinition __SObjectDefinition = 2;
-	optional SArrayDefinition __SArrayDefinition = 3;
-	optional SPrimitiveDefinition __SPrimitiveDefinition = 4;
-}
-
-message SParameterDefinition {
-	optional string description = 1;
-	optional string name = 2;
-	optional int64 defaultValueId = 3;
-	optional bool required = 4;
-	optional STypeDefinition type = 5;
-}
-
-message SObjectDefinition {
-	repeated SParameterDefinition parameters = 1;
-}
-
-message GetPluginObjectDefinitionResponse {
-	optional string errorMessage = 1;
-	optional SObjectDefinition value = 2;
-}
-
-message GetPluginSettingsRequest {
-	optional int64 poid = 1;
-}
-
-message SArrayType {
-	repeated SType values = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
-}
-
-message SLongType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional int64 value = 3;
-}
-
-message SDoubleType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional double value = 3;
-}
-
-message SBooleanType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional bool value = 3;
-}
-
-message SByteArrayType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional bytes value = 3;
-}
-
-message SStringType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional string value = 3;
-}
-
-message SPrimitiveType {
-	required string __actual_type = 1;
-	optional SLongType __SLongType = 2;
-	optional SDoubleType __SDoubleType = 3;
-	optional SBooleanType __SBooleanType = 4;
-	optional SByteArrayType __SByteArrayType = 5;
-	optional SStringType __SStringType = 6;
-	optional int32 rid = 7;
-	optional int64 oid = 8;
-}
-
-message SType {
-	required string __actual_type = 1;
-	optional SObjectType __SObjectType = 2;
-	optional SArrayType __SArrayType = 3;
-	optional SPrimitiveType __SPrimitiveType = 4;
-	optional int32 rid = 5;
-	optional int64 oid = 6;
-}
-
-message SParameter {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional string name = 3;
-	optional SType value = 4;
-}
-
-message SObjectType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional string name = 3;
-	repeated SParameter parameters = 4;
-}
-
-message GetPluginSettingsResponse {
-	optional string errorMessage = 1;
-	optional SObjectType value = 2;
-}
-
-message GetProgressRequest {
-	optional int64 topicId = 1;
-}
-
-message GetProgressResponse {
-	optional string errorMessage = 1;
-	optional SLongActionState value = 2;
-}
-
-message GetProgressTopicsOnProjectRequest {
-	optional int64 poid = 1;
-}
-
-message GetProgressTopicsOnProjectResponse {
-	optional string errorMessage = 1;
-	repeated int64 value = 2;
-}
-
-message GetProgressTopicsOnRevisionRequest {
-	optional int64 poid = 1;
-	optional int64 roid = 2;
-}
-
-message GetProgressTopicsOnRevisionResponse {
-	optional string errorMessage = 1;
-	repeated int64 value = 2;
-}
-
-message GetProgressTopicsOnServerRequest {
-}
-
-message GetProgressTopicsOnServerResponse {
-	optional string errorMessage = 1;
-	repeated int64 value = 2;
 }
 
 message GetProjectByPoidRequest {
@@ -1986,24 +1252,6 @@ message GetProjectsByNameResponse {
 	repeated SProject value = 2;
 }
 
-message GetQueryEngineByIdRequest {
-	optional int64 oid = 1;
-}
-
-message GetQueryEngineByIdResponse {
-	optional string errorMessage = 1;
-	optional SQueryEnginePluginConfiguration value = 2;
-}
-
-message GetQueryEngineByNameRequest {
-	optional string name = 1;
-}
-
-message GetQueryEngineByNameResponse {
-	optional string errorMessage = 1;
-	optional SQueryEnginePluginConfiguration value = 2;
-}
-
 message GetQueryEngineExampleRequest {
 	optional int64 qeid = 1;
 	optional string key = 2;
@@ -2021,24 +1269,6 @@ message GetQueryEngineExampleKeysRequest {
 message GetQueryEngineExampleKeysResponse {
 	optional string errorMessage = 1;
 	repeated string value = 2;
-}
-
-message GetRenderEngineByIdRequest {
-	optional int64 oid = 1;
-}
-
-message GetRenderEngineByIdResponse {
-	optional string errorMessage = 1;
-	optional SRenderEnginePluginConfiguration value = 2;
-}
-
-message GetRenderEngineByNameRequest {
-	optional string name = 1;
-}
-
-message GetRenderEngineByNameResponse {
-	optional string errorMessage = 1;
-	optional SRenderEnginePluginConfiguration value = 2;
 }
 
 message GetRevisionRequest {
@@ -2079,51 +1309,6 @@ message GetRevisionSummaryResponse {
 	optional SRevisionSummary value = 2;
 }
 
-message GetSerializerByContentTypeRequest {
-	optional string contentType = 1;
-}
-
-message GetSerializerByContentTypeResponse {
-	optional string errorMessage = 1;
-	optional SSerializerPluginConfiguration value = 2;
-}
-
-message GetSerializerByIdRequest {
-	optional int64 oid = 1;
-}
-
-message GetSerializerByIdResponse {
-	optional string errorMessage = 1;
-	optional SSerializerPluginConfiguration value = 2;
-}
-
-message GetSerializerByNameRequest {
-	optional string serializerName = 1;
-}
-
-message GetSerializerByNameResponse {
-	optional string errorMessage = 1;
-	optional SSerializerPluginConfiguration value = 2;
-}
-
-message GetSerializerByPluginClassNameRequest {
-	optional string pluginClassName = 1;
-}
-
-message GetSerializerByPluginClassNameResponse {
-	optional string errorMessage = 1;
-	optional SSerializerPluginConfiguration value = 2;
-}
-
-message GetSerializerPluginDescriptorRequest {
-	optional string type = 1;
-}
-
-message GetSerializerPluginDescriptorResponse {
-	optional string errorMessage = 1;
-	optional SSerializerPluginDescriptor value = 2;
-}
-
 message GetServiceRequest {
 	optional int64 soid = 1;
 }
@@ -2153,6 +1338,12 @@ message GetSubProjectsResponse {
 
 message GetSuggestedDeserializerForExtensionRequest {
 	optional string extension = 1;
+}
+
+message SDeserializerPluginConfiguration {
+	optional int64 userSettingsId = 1;
+	optional int32 rid = 2;
+	optional int64 oid = 3;
 }
 
 message GetSuggestedDeserializerForExtensionResponse {
@@ -2214,88 +1405,6 @@ message GetUsersProjectsResponse {
 	repeated SProject value = 2;
 }
 
-message HasActiveSerializerRequest {
-	optional string contentType = 1;
-}
-
-message HasActiveSerializerResponse {
-	optional string errorMessage = 1;
-	optional bool value = 2;
-}
-
-message RegisterChangeProgressOnProjectRequest {
-	optional int64 endPointId = 1;
-	optional int64 poid = 2;
-}
-
-message RegisterChangeProgressOnRevisionRequest {
-	optional int64 endPointId = 1;
-	optional int64 roid = 2;
-	optional int64 poid = 3;
-}
-
-message RegisterChangeProgressOnServerRequest {
-	optional int64 endPointId = 1;
-}
-
-message RegisterNewProjectHandlerRequest {
-	optional int64 endPointId = 1;
-}
-
-message RegisterNewRevisionOnSpecificProjectHandlerRequest {
-	optional int64 endPointId = 1;
-	optional int64 poid = 2;
-}
-
-message RegisterNewUserHandlerRequest {
-	optional int64 endPointId = 1;
-}
-
-message RegisterProgressHandlerRequest {
-	optional int64 topicId = 1;
-	optional int64 endPointId = 2;
-}
-
-enum SProgressTopicType{
-	DOWNLOAD = 0;
-	UPLOAD = 1;
-	RUNNING_SERVICE = 2;
-	BRANCH = 3;
-}
-
-message RegisterProgressOnProjectTopicRequest {
-	optional SProgressTopicType type = 1;
-	optional int64 poid = 2;
-	optional string description = 3;
-}
-
-message RegisterProgressOnProjectTopicResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message RegisterProgressOnRevisionTopicRequest {
-	optional SProgressTopicType type = 1;
-	optional int64 poid = 2;
-	optional int64 roid = 3;
-	optional string description = 4;
-}
-
-message RegisterProgressOnRevisionTopicResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message RegisterProgressTopicRequest {
-	optional SProgressTopicType type = 1;
-	optional string description = 2;
-}
-
-message RegisterProgressTopicResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
 message RemoveUserFromExtendedDataSchemaRequest {
 	optional int64 uoid = 1;
 	optional int64 edsid = 2;
@@ -2311,11 +1420,6 @@ message RemoveUserFromProjectResponse {
 	optional bool value = 2;
 }
 
-message RequestPasswordChangeRequest {
-	optional string username = 1;
-	optional string resetUrl = 2;
-}
-
 message SendCompareEmailRequest {
 	optional SCompareType sCompareType = 1;
 	optional int64 mcid = 2;
@@ -2323,35 +1427,6 @@ message SendCompareEmailRequest {
 	optional int64 roid1 = 4;
 	optional int64 roid2 = 5;
 	optional string address = 6;
-}
-
-message SetDefaultModelCompareRequest {
-	optional int64 oid = 1;
-}
-
-message SetDefaultModelMergerRequest {
-	optional int64 oid = 1;
-}
-
-message SetDefaultObjectIDMRequest {
-	optional int64 oid = 1;
-}
-
-message SetDefaultQueryEngineRequest {
-	optional int64 oid = 1;
-}
-
-message SetDefaultRenderEngineRequest {
-	optional int64 oid = 1;
-}
-
-message SetDefaultSerializerRequest {
-	optional int64 oid = 1;
-}
-
-message SetPluginSettingsRequest {
-	optional int64 poid = 1;
-	optional SObjectType settings = 2;
 }
 
 message SetRevisionTagRequest {
@@ -2396,47 +1471,6 @@ message UndeleteUserResponse {
 	optional bool value = 2;
 }
 
-message UnregisterChangeProgressOnProjectRequest {
-	optional int64 endPointId = 1;
-	optional int64 poid = 2;
-}
-
-message UnregisterChangeProgressOnRevisionRequest {
-	optional int64 endPointId = 1;
-	optional int64 roid = 2;
-	optional int64 poid = 3;
-}
-
-message UnregisterChangeProgressOnServerRequest {
-	optional int64 endPointId = 1;
-}
-
-message UnregisterNewProjectHandlerRequest {
-	optional int64 endPointId = 1;
-}
-
-message UnregisterNewRevisionOnSpecificProjectHandlerRequest {
-	optional int64 endPointId = 1;
-	optional int64 poid = 2;
-}
-
-message UnregisterNewUserHandlerRequest {
-	optional int64 endPointId = 1;
-}
-
-message UnregisterProgressHandlerRequest {
-	optional int64 topicId = 1;
-	optional int64 endPointId = 2;
-}
-
-message UnregisterProgressTopicRequest {
-	optional int64 topicId = 1;
-}
-
-message UpdateDeserializerRequest {
-	optional SDeserializerPluginConfiguration deserializer = 1;
-}
-
 message UpdateGeoTagRequest {
 	optional SGeoTag sGeoTag = 1;
 }
@@ -2445,41 +1479,12 @@ message UpdateInternalServiceRequest {
 	optional SInternalServicePluginConfiguration internalService = 1;
 }
 
-message UpdateModelCompareRequest {
-	optional SModelComparePluginConfiguration modelCompare = 1;
-}
-
-message UpdateModelMergerRequest {
-	optional SModelMergerPluginConfiguration modelMerger = 1;
-}
-
-message UpdateObjectIDMRequest {
-	optional SObjectIDMPluginConfiguration objectIDM = 1;
-}
-
-message UpdateProgressTopicRequest {
-	optional int64 topicId = 1;
-	optional SLongActionState state = 2;
-}
-
 message UpdateProjectRequest {
 	optional SProject sProject = 1;
 }
 
-message UpdateQueryEngineRequest {
-	optional SQueryEnginePluginConfiguration queryEngine = 1;
-}
-
-message UpdateRenderEngineRequest {
-	optional SRenderEnginePluginConfiguration renderEngine = 1;
-}
-
 message UpdateRevisionRequest {
 	optional SRevision sRevision = 1;
-}
-
-message UpdateSerializerRequest {
-	optional SSerializerPluginConfiguration serializer = 1;
 }
 
 message UploadFileRequest {
@@ -2508,16 +1513,5 @@ message UserHasRightsRequest {
 message UserHasRightsResponse {
 	optional string errorMessage = 1;
 	optional bool value = 2;
-}
-
-message ValidateAccountRequest {
-	optional int64 uoid = 1;
-	optional string token = 2;
-	optional string password = 3;
-}
-
-message ValidateAccountResponse {
-	optional string errorMessage = 1;
-	optional SUser value = 2;
 }
 

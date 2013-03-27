@@ -52,6 +52,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AdminInterface;
+import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -85,6 +86,7 @@ public class DownloadServlet extends HttpServlet {
 				token = request.getParameter("token");
 			}
 			ServiceInterface serviceInterface = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
+			PluginInterface pluginInterface = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL).get(PluginInterface.class);
 			AdminInterface adminInterface = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL).get(AdminInterface.class);
 
 			String action = request.getParameter("action");
@@ -130,9 +132,9 @@ public class DownloadServlet extends HttpServlet {
 				SSerializerPluginConfiguration serializer = null;
 				if (request.getParameter("serializerOid") != null) {
 					long serializerOid = Long.parseLong(request.getParameter("serializerOid"));
-					serializer = serviceInterface.getSerializerById(serializerOid);
+					serializer = pluginInterface.getSerializerById(serializerOid);
 				} else {
-					serializer = serviceInterface.getSerializerByName(request.getParameter("serializerName"));
+					serializer = pluginInterface.getSerializerByName(request.getParameter("serializerName"));
 				}
 				long downloadId = -1;
 				if (request.getParameter("longActionId") != null) {
@@ -213,7 +215,7 @@ public class DownloadServlet extends HttpServlet {
 					LOGGER.error("Invalid downloadId: " + downloadId);
 				} else {
 					DataSource dataSource = checkoutResult.getFile().getDataSource();
-					PluginConfiguration pluginConfiguration = new PluginConfiguration(serviceInterface.getPluginSettings(serializer.getOid()));
+					PluginConfiguration pluginConfiguration = new PluginConfiguration(pluginInterface.getPluginSettings(serializer.getOid()));
 					if (zip) {
 						if (pluginConfiguration.getString("ZipExtension") != null) {
 							response.setHeader("Content-Disposition",

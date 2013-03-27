@@ -43,12 +43,21 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HttpContext;
 import org.bimserver.client.ChannelConnectionException;
-import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.shared.ConnectDisconnectListener;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
+import org.bimserver.shared.ServiceHolder;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.AdminInterface;
+import org.bimserver.shared.interfaces.AuthInterface;
+import org.bimserver.shared.interfaces.LowLevelInterface;
+import org.bimserver.shared.interfaces.MetaInterface;
+import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
+import org.bimserver.shared.interfaces.RegistryInterface;
+import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.shared.reflector.Reflector;
 import org.bimserver.shared.reflector.ReflectorFactory;
 import org.slf4j.Logger;
@@ -59,7 +68,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
-public abstract class Channel {
+public abstract class Channel implements ServiceHolder {
 	private final Map<String, PublicInterface> serviceInterfaces = new HashMap<String, PublicInterface>();
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
 	private static final Logger LOGGER = LoggerFactory.getLogger(Channel.class);
@@ -226,5 +235,45 @@ public abstract class Channel {
 			throw new PublicInterfaceNotFoundException("Interface " + class1.getSimpleName() + " not registered on channel");
 		}
 		return t;
+	}
+	
+	@Override
+	public AdminInterface getAdmin() throws PublicInterfaceNotFoundException {
+		return get(AdminInterface.class);
+	}
+	
+	@Override
+	public AuthInterface getAuth() throws PublicInterfaceNotFoundException {
+		return get(AuthInterface.class);
+	}
+	
+	@Override
+	public LowLevelInterface getLowLevel() throws PublicInterfaceNotFoundException {
+		return get(LowLevelInterface.class);
+	}
+	
+	@Override
+	public MetaInterface getMeta() throws PublicInterfaceNotFoundException {
+		return get(MetaInterface.class);
+	}
+	
+	@Override
+	public PluginInterface getPlugin() throws PublicInterfaceNotFoundException {
+		return get(PluginInterface.class);
+	}
+	
+	@Override
+	public RegistryInterface getRegistry() throws PublicInterfaceNotFoundException {
+		return get(RegistryInterface.class);
+	}
+	
+	@Override
+	public SettingsInterface getSettings() throws PublicInterfaceNotFoundException {
+		return get(SettingsInterface.class);
+	}
+	
+	@Override
+	public ServiceInterface getService() throws PublicInterfaceNotFoundException {
+		return get(ServiceInterface.class);
 	}
 }

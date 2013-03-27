@@ -25,16 +25,16 @@ public class TestLoadCompleteModel extends TestWithEmbeddedServer {
 			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Create a project
-			SProject project = bimServerClient.getServiceInterface().addProject("test" + Math.random());
+			SProject project = bimServerClient.getService().addProject("test" + Math.random());
 			
 			// Look for a deserializer
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc");
+			SDeserializerPluginConfiguration deserializer = bimServerClient.getService().getSuggestedDeserializerForExtension("ifc");
 			
 			// Checkin file
 			bimServerClient.checkin(project.getOid(), "test", deserializer.getOid(), false, true, new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc"));
 			
 			// Refresh project
-			project = bimServerClient.getServiceInterface().getProjectByPoid(project.getOid());
+			project = bimServerClient.getService().getProjectByPoid(project.getOid());
 			
 			// Load model without lazy loading (complete model at once)
 			ClientIfcModel model = bimServerClient.getModel(project.getOid(), project.getLastRevisionId(), false);

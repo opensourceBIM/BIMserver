@@ -22,10 +22,10 @@ import java.util.List;
 import java.util.Random;
 
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SUser;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.actions.Action;
@@ -73,7 +73,7 @@ public class VirtualUser extends Thread {
 			while (running && (nrRunsPerVirtualUser == -1 || nrRuns < nrRunsPerVirtualUser)) {
 				Action action = null;
 				try {
-					if (!bimServerClient.getAuthInterface().isLoggedIn()) {
+					if (!bimServerClient.getAuth().isLoggedIn()) {
 						action = new LoginAction(testFramework);
 						action.execute(this);
 					} else {
@@ -117,12 +117,12 @@ public class VirtualUser extends Thread {
 
 	public SUser getRandomUser() throws PublicInterfaceNotFoundException {
 		try {
-			List<SUser> users = bimServerClient.getServiceInterface().getAllUsers();
+			List<SUser> users = bimServerClient.getService().getAllUsers();
 			if (users.isEmpty()) {
 				CreateUserAction createUserAction = new CreateUserAction(testFramework);
 				createUserAction.execute(this);
 			}
-			users = bimServerClient.getServiceInterface().getAllUsers();
+			users = bimServerClient.getService().getAllUsers();
 			if (!users.isEmpty()) {
 				return users.get(random.nextInt(users.size()));
 			}
@@ -136,12 +136,12 @@ public class VirtualUser extends Thread {
 
 	public SProject getRandomProject() throws UserException, PublicInterfaceNotFoundException {
 		try {
-			List<SProject> allProjects = bimServerClient.getServiceInterface().getAllProjects(false);
+			List<SProject> allProjects = bimServerClient.getService().getAllProjects(false);
 			if (allProjects == null || allProjects.isEmpty()) {
 				CreateProjectAction createProjectAction = new CreateProjectAction(testFramework);
 				createProjectAction.execute(this);
 			}
-			allProjects = bimServerClient.getServiceInterface().getAllProjects(false);
+			allProjects = bimServerClient.getService().getAllProjects(false);
 			if (!allProjects.isEmpty()) {
 				return allProjects.get(random.nextInt(allProjects.size()));
 			}
@@ -177,9 +177,9 @@ public class VirtualUser extends Thread {
 			CheckinAction checkinAction = new CheckinAction(testFramework, new CheckinSettings());
 			checkinAction.execute(this);
 		}
-		project = getBimServerClient().getServiceInterface().getProjectByPoid(project.getOid());
+		project = getBimServerClient().getService().getProjectByPoid(project.getOid());
 		if (project.getLastRevisionId() != -1) {
-			return bimServerClient.getServiceInterface().getRevision(project.getLastRevisionId());
+			return bimServerClient.getService().getRevision(project.getLastRevisionId());
 		}
 		return null;
 	}

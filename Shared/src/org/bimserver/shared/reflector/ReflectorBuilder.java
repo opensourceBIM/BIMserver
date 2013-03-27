@@ -17,8 +17,6 @@ package org.bimserver.shared.reflector;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.Collections;
-
 import javassist.CannotCompileException;
 import javassist.ClassClassPath;
 import javassist.ClassPool;
@@ -28,11 +26,7 @@ import javassist.CtField;
 import javassist.CtMethod;
 import javassist.NotFoundException;
 
-import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
-import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
@@ -51,23 +45,6 @@ public class ReflectorBuilder {
 		this.servicesMap = servicesMap;
 	}
 
-	public static void main(String[] args) {
-		SServicesMap servicesMap = new SServicesMap();
-		servicesMap.add(new SService("", org.bimserver.shared.interfaces.ServiceInterface.class));
-		servicesMap.add(new SService("", org.bimserver.shared.interfaces.AuthInterface.class));
-		servicesMap.add(new SService("", NotificationInterface.class, Collections.singletonList(new SService("", org.bimserver.shared.interfaces.ServiceInterface.class))));
-		
-		ReflectorBuilder reflectorBuilder = new ReflectorBuilder(servicesMap);
-		ReflectorFactory reflectorFactory = reflectorBuilder.newReflectorFactory();
-		ServiceInterface createReflector = reflectorFactory.createReflector(ServiceInterface.class, new Reflector() {
-			@Override
-			public Object callMethod(String interfaceName, String methodName, Class<?> definedReturnType, KeyValuePair... args) throws ServerException, UserException {
-				return null;
-			}
-		});
-		System.out.println(createReflector);
-	}
-	
 	@SuppressWarnings("unchecked")
 	public ReflectorFactory newReflectorFactory() {
 		implementationCounter++;

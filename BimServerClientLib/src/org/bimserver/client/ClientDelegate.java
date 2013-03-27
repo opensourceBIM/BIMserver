@@ -4,6 +4,7 @@ import org.bimserver.client.ClientIfcModel.ModelState;
 import org.bimserver.emf.Delegate;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.QueryInterface;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
@@ -30,7 +31,7 @@ public class ClientDelegate extends Delegate {
 	@Override
 	public void eUnset(EStructuralFeature eFeature) {
 		try {
-			model.getBimServerClient().getLowLevelInterface().unsetAttribute(model.getTransactionId(), getOid(), eFeature.getName());
+			model.getBimServerClient().getLowLevel().unsetAttribute(model.getTransactionId(), getOid(), eFeature.getName());
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
@@ -45,21 +46,21 @@ public class ClientDelegate extends Delegate {
 		if (model.getModelState() != ModelState.LOADING) {
 			try {
 				if (newValue instanceof String) {
-					model.getBimServerClient().getLowLevelInterface().setStringAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (String)newValue);
+					model.getBimServerClient().getLowLevel().setStringAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (String)newValue);
 				} else if (newValue instanceof Long) {
-					model.getBimServerClient().getLowLevelInterface().setLongAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Long)newValue);
+					model.getBimServerClient().getLowLevel().setLongAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Long)newValue);
 				} else if (newValue instanceof Double) {
-					model.getBimServerClient().getLowLevelInterface().setDoubleAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Double)newValue);
+					model.getBimServerClient().getLowLevel().setDoubleAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Double)newValue);
 				} else if (newValue instanceof Boolean) {
-					model.getBimServerClient().getLowLevelInterface().setBooleanAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Boolean)newValue);
+					model.getBimServerClient().getLowLevel().setBooleanAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Boolean)newValue);
 				} else if (newValue instanceof Integer) {
-					model.getBimServerClient().getLowLevelInterface().setIntegerAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Integer)newValue);
+					model.getBimServerClient().getLowLevel().setIntegerAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Integer)newValue);
 				} else if (newValue instanceof byte[]) {
-					model.getBimServerClient().getLowLevelInterface().setByteArrayAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Byte[])newValue);
+					model.getBimServerClient().getLowLevel().setByteArrayAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Byte[])newValue);
 				} else if (newValue instanceof Enum) {
-					model.getBimServerClient().getLowLevelInterface().setEnumAttribute(model.getTransactionId(), getOid(), eFeature.getName(), ((Enum<?>)newValue).toString());
+					model.getBimServerClient().getLowLevel().setEnumAttribute(model.getTransactionId(), getOid(), eFeature.getName(), ((Enum<?>)newValue).toString());
 				} else if (newValue instanceof IdEObject) {
-					model.getBimServerClient().getLowLevelInterface().setReference(model.getTransactionId(), getOid(), eFeature.getName(), ((IdEObject)newValue).getOid());
+					model.getBimServerClient().getLowLevel().setReference(model.getTransactionId(), getOid(), eFeature.getName(), ((IdEObject)newValue).getOid());
 				} else {
 					throw new RuntimeException("Unimplemented " + eFeature.getEType().getName());
 				}
@@ -105,7 +106,7 @@ public class ClientDelegate extends Delegate {
 	@Override
 	public void remove() {
 		try {
-			model.getBimServerClient().getLowLevelInterface().removeObject(model.getTransactionId(), getOid());
+			model.getBimServerClient().getLowLevel().removeObject(model.getTransactionId(), getOid());
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {

@@ -2,7 +2,6 @@ package org.bimserver.notifications;
 
 import org.bimserver.BimServer;
 import org.bimserver.client.ChannelConnectionException;
-import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.client.channels.Channel;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
@@ -12,6 +11,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.Trigger;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;

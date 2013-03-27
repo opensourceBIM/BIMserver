@@ -34,7 +34,6 @@ import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SCompareResult;
 import org.bimserver.interfaces.objects.SCompareType;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
@@ -42,28 +41,13 @@ import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
-import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
-import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
-import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
-import org.bimserver.interfaces.objects.SModelMergerPluginDescriptor;
-import org.bimserver.interfaces.objects.SObjectDefinition;
-import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
-import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
-import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
-import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
-import org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration;
-import org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
-import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SService;
 import org.bimserver.interfaces.objects.SServiceDescriptor;
-import org.bimserver.interfaces.objects.SServicePluginDescriptor;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSettings;
 import org.bimserver.interfaces.objects.SUserType;
@@ -74,7 +58,7 @@ import org.bimserver.shared.exceptions.UserException;
  * This interface defines all functions that are made available via SOAP and Protocol Buffers, but
  * also used by the JSP web interface
  */
-@WebService(name = "ServiceInterface")
+@WebService(name = "ServiceInterface", targetNamespace="org.buildingsmart.bimsie")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface ServiceInterface extends PublicInterface {
 	/**
@@ -274,6 +258,20 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "roids", partName = "downloadRevisions.roids") Set<Long> roids,
 		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
 		@WebParam(name = "sync", partName = "downloadRevisions.sync") Boolean sync) throws ServerException, UserException;
+
+	/**
+	 * @param roid ObjectID of the Revision to perform this query on
+	 * @param code The Java code, should be an implementation of the QueryInterface interface
+	 * @return SRunResult
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "downloadQuery")
+	Long downloadQuery(
+		@WebParam(name = "roid", partName = "downloadQuery.roid") Long roid, 
+		@WebParam(name = "qeid", partName = "downloadQuery.qeid") Long qeid, 
+		@WebParam(name = "code", partName = "downloadQuery.code") String code,
+		@WebParam(name = "sync", partName = "downloadQuery.sync") Boolean sync,
+		@WebParam(name = "serializerOid", partName = "downloadQuery.serializerOid") Long serializerOid) throws ServerException, UserException;
 
 	/**
 	 * Get the data for a download/checkout
@@ -525,20 +523,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "uoid", partName = "getAllNonAuthorizedProjectsOfUser.uoid") Long uoid) throws ServerException, UserException;
 
 	/**
-	 * Change a User's password, not the preferred way, use requestPasswordChange for a safer version
-	 * @param uoid The ObjectID of the User
-	 * @param oldPassword The old password
-	 * @param newPassword The new password
-	 * @return Whether the password was successfully changed
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "changePassword")
-	Boolean changePassword(
-		@WebParam(name = "uoid", partName = "changePassword.uoid") Long uoid,
-		@WebParam(name = "oldPassword", partName = "changePassword.oldPassword") String oldPassword,
-		@WebParam(name = "newPassword", partName = "changePassword.newPassword") String newPassword) throws ServerException, UserException;
-
-	/**
 	 * Get a User by its UserNmae (e-mail address)
 	 * @param username The username (must be a valid e-mail address)
 	 * @return The SUser Object if found, otherwise null
@@ -739,29 +723,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "poid", partName = "getAllCheckoutsOfProjectAndSubProjects.poid") Long poid) throws ServerException, UserException;
 
 	/**
-	 * Request a password change, an e-mail will be send with a validation url
-	 * @param username The username of the user to change tot password for
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "requestPasswordChange")
-	void requestPasswordChange(
-		@WebParam(name = "username", partName = "requestPasswordChange.username") String username,
-		@WebParam(name = "resetUrl", partName = "requestPasswordChange.resetUrl") String resetUrl) throws ServerException, UserException;
-
-	/**
-	 * @param uoid The ObejctID of the User
-	 * @param token The token generated by requestPasswordChange
-	 * @param password The new password
-	 * @return A User object if the change is successful, null otherwise
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "validateAccount")
-	SUser validateAccount(
-		@WebParam(name = "uoid", partName = "validateAccount.uoid") Long uoid,
-		@WebParam(name = "token", partName = "validateAccount.token") String token,
-		@WebParam(name = "password", partName = "validateAccount.password") String password) throws ServerException, UserException;
-
-	/**
 	 * Send an e-mail with the results of a compare
 	 * @param sCompareType How to compare (All, Only Added, Only Modified or Only Deleted)
 	 * @param sCompareIdentifier How to identify equal objects (by Guid or by Name)
@@ -779,51 +740,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "roid1", partName = "sendClashesEmail.roid1") Long roid1,
 		@WebParam(name = "roid2", partName = "sendClashesEmail.roid2") Long roid2,
 		@WebParam(name = "address", partName = "sendClashesEmail.address") String address) throws ServerException, UserException;
-	
-	/**
-	 * @param onlyEnabled Whether to only include enabled serializers
-	 * @return A list of Serializers
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllSerializers")
-	List<SSerializerPluginConfiguration> getAllSerializers(
-		@WebParam(name = "onlyEnabled", partName = "getAllSerializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
-
-	/**
-	 * @param onlyEnabled Whether to only include enabled IFC engines
-	 * @return A list of RenderEngines
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllRenderEngines")
-	List<SRenderEnginePluginConfiguration> getAllRenderEngines(
-		@WebParam(name = "onlyEnabled", partName = "getAllRenderEngines.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
-
-	/**
-	 * @param onlyEnabled Whether to only include enabled query engines
-	 * @return A list of QueryEngines
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllQueryEngines")
-	List<SQueryEnginePluginConfiguration> getAllQueryEngines(
-		@WebParam(name = "onlyEnabled", partName = "getAllQueryEngines.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
-	
-	/**
-	 * @param onlyEnabled Whether to only include enabled model mergers
-	 * @return A list of SModelMerger
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllModelMergers")
-	List<SModelMergerPluginConfiguration> getAllModelMergers(
-		@WebParam(name = "onlyEnabled", partName = "getAllModelMergers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
-	
-	/**
-	 * @param onlyEnabled Whether to only include enabled model compare
-	 * @return A list of SModelCompare
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllModelCompares")
-	List<SModelComparePluginConfiguration> getAllModelCompares(
-		@WebParam(name = "onlyEnabled", partName = "getAllModelCompares.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 	
 	/**
 	 * @param onlyEnabled Whether to only include enabled query engines
@@ -844,14 +760,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "qeid", partName = "getQueryEngineExample.qeid") Long qeid,
 		@WebParam(name = "key", partName = "getQueryEngineExample.key") String key) throws ServerException, UserException;
 	
-	/**
-	 * @param oid ObjectID of the Serializer
-	 * @return Serializer
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSerializerById")
-	SSerializerPluginConfiguration getSerializerById(
-		@WebParam(name = "oid", partName = "getSerializerById.oid") Long oid) throws ServerException, UserException;
+
 
 	/**
 	 * @param oid ObjectID of the ExtendedDataSchema
@@ -879,59 +788,6 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getAllExtendedDataOfRevision")
 	List<SExtendedData> getAllExtendedDataOfRevision(
 		@WebParam(name = "roid", partName = "getAllExtendedDataOfRevision.roid") Long roid) throws ServerException, UserException;
-
-	/**
-	 * @param oid ObjectID of the RenderEngine
-	 * @return RenderEngine
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getRenderEngineById")
-	SRenderEnginePluginConfiguration getRenderEngineById(
-		@WebParam(name = "oid", partName = "getRenderEngineById.oid") Long oid) throws ServerException, UserException;
-
-	/**
-	 * @param oid ObjectID of the QueryEngine
-	 * @return QueryEngine
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getQueryEngineById")
-	SQueryEnginePluginConfiguration getQueryEngineById(
-		@WebParam(name = "oid", partName = "getQueryEngineById.oid") Long oid) throws ServerException, UserException;
-
-	/**
-	 * @param oid ObjectID of the ModelMerger
-	 * @return SModelMerger
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getModelMergerById")
-	SModelMergerPluginConfiguration getModelMergerById(
-		@WebParam(name = "oid", partName = "getModelMergerById.oid") Long oid) throws ServerException, UserException;
-
-	/**
-	 * @param oid ObjectID of the ModelCompare
-	 * @return SModelCompare
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getModelCompareById")
-	SModelComparePluginConfiguration getModelCompareById(
-		@WebParam(name = "oid", partName = "getModelCompareById.oid") Long oid) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the Deserializer
-	 * @return Deserializer
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getDeserializerById")
-	SDeserializerPluginConfiguration getDeserializerById(
-		@WebParam(name = "oid", partName = "getDeserializerById.oid") Long oid) throws ServerException, UserException;
-
-	/**
-	 * @param serializer Serializer to add
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "addSerializer")
-	void addSerializer(
-		@WebParam(name = "serializer", partName = "addSerializer.serializer") SSerializerPluginConfiguration serializer) throws ServerException, UserException;
 
 	/**
 	 * @param extendedDataSchema ExtendedDataSchema to add
@@ -992,360 +848,11 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "extendedData", partName = "addExtendedDataToProject.extendedData") SExtendedData extendedData) throws ServerException, UserException;
 	
 	/**
-	 * @param renderEngine RenderEngine to add
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "addRenderEngine")
-	void addRenderEngine(
-		@WebParam(name = "renderEngine", partName = "addRenderEngine.renderEngine") SRenderEnginePluginConfiguration renderEngine) throws ServerException, UserException;
-
-	/**
-	 * @param queryEngine QueryEngine to add
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "addQueryEngine")
-	void addQueryEngine(
-		@WebParam(name = "queryEngine", partName = "addQueryEngine.queryEngine") SQueryEnginePluginConfiguration queryEngine) throws ServerException, UserException;
-
-	/**
-	 * @param modelMerger ModelMerger to add
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "addModelMerger")
-	void addModelMerger(
-		@WebParam(name = "modelMerger", partName = "addModelMerger.modelMerger") SModelMergerPluginConfiguration modelMerger) throws ServerException, UserException;
-
-	/**
-	 * @param modelCompare ModelCompare to add
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "addModelCompare")
-	void addModelCompare(
-		@WebParam(name = "modelCompare", partName = "addModelCompare.modelCompare") SModelComparePluginConfiguration modelCompare) throws ServerException, UserException;
-
-	/**
-	 * @param deserializer Deserializer to add
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "addDeserializer")
-	void addDeserializer(
-		@WebParam(name = "deserializer", partName = "addDeserializer.deserializer") SDeserializerPluginConfiguration deserializer) throws ServerException, UserException;
-
-	/**
-	 * @param serializer Serializer to update
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "updateSerializer")
-	void updateSerializer(
-		@WebParam(name = "serializer", partName = "updateSerializer.serializer") SSerializerPluginConfiguration serializer) throws ServerException, UserException;
-
-	/**
-	 * @param renderEngine RenderEngine to update
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "updateRenderEngine")
-	void updateRenderEngine(
-		@WebParam(name = "renderEngine", partName = "updateRenderEngine.renderEngine") SRenderEnginePluginConfiguration renderEngine) throws ServerException, UserException;
-
-	/**
-	 * @param queryEngine QueryEngine to update
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "updateQueryEngine")
-	void updateQueryEngine(
-		@WebParam(name = "queryEngine", partName = "updateQueryEngine.queryEngine") SQueryEnginePluginConfiguration queryEngine) throws ServerException, UserException;
-
-	/**
-	 * @param modelMerger ModelMerger to update
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "updateModelMerger")
-	void updateModelMerger(
-		@WebParam(name = "modelMerger", partName = "updateModelMerger.modelMerger") SModelMergerPluginConfiguration modelMerger) throws ServerException, UserException;
-
-	/**
-	 * @param modelCompare ModelCompare to update
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "updateModelCompare")
-	void updateModelCompare(
-		@WebParam(name = "modelCompare", partName = "updateModelCompare.modelCompare") SModelComparePluginConfiguration modelCompare) throws ServerException, UserException;
-
-	/**
-	 * @param deserializer Deserializer to update
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "updateDeserializer")
-	void updateDeserializer(
-		@WebParam(name = "deserializer", partName = "updateDeserializer.deserializer") SDeserializerPluginConfiguration deserializer) throws ServerException, UserException;
-
-	/**
-	 * @param onlyEnabled Whether to include only enabled ObjectIDMs
-	 * @return A list of ObjectIDMs
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllObjectIDMs")
-	List<SObjectIDMPluginConfiguration> getAllObjectIDMs(
-		@WebParam(name = "onlyEnabled", partName = "getAllSerializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the ObjectIDM
-	 * @return ObjectIDM
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getObjectIDMById")
-	SObjectIDMPluginConfiguration getObjectIDMById(
-		@WebParam(name = "oid", partName = "getObjectIDMById.oid") Long oid) throws ServerException, UserException;
-	
-	/**
-	 * @param objectIDM The ObjectIDM to add
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "addObjectIDM")
-	void addObjectIDM(
-		@WebParam(name = "objectIDM", partName = "addObjectIDM.objectIDM") SObjectIDMPluginConfiguration objectIDM) throws ServerException, UserException;
-	
-	/**
-	 * @param objectIDM The ObjectIDM to update
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "updateObjectIDM")
-	void updateObjectIDM(
-		@WebParam(name = "objectIDM", partName = "updateObjectIDM.objectIDM") SObjectIDMPluginConfiguration objectIDM) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the ObjectIDM to delete
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "deleteObjectIDM")
-	void deleteObjectIDM(
-		@WebParam(name = "oid", partName = "deleteObjectIDM.oid") Long oid) throws ServerException, UserException;
-
-	/**
-	 * @param sid ObjectID of the Serializer to delete
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "deleteSerializer")
-	void deleteSerializer(
-		@WebParam(name = "sid", partName = "deleteSerializer.sid") Long sid) throws ServerException, UserException;
-
-	/**
-	 * @param iid ObjectID of the RenderEngine to delete
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "deleteRenderEngine")
-	void deleteRenderEngine(
-		@WebParam(name = "iid", partName = "deleteRenderEngine.iid") Long iid) throws ServerException, UserException;
-
-	/**
-	 * @param iid ObjectID of the ModelMerger to delete
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "deleteModelMerger")
-	void deleteModelMerger(
-		@WebParam(name = "iid", partName = "deleteModelMerger.iid") Long iid) throws ServerException, UserException;
-
-	/**
-	 * @param iid ObjectID of the ModelCompare to delete
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "deleteModelCompare")
-	void deleteModelCompare(
-		@WebParam(name = "iid", partName = "deleteModelCompare.iid") Long iid) throws ServerException, UserException;
-
-	/**
-	 * @param iid ObjectID of the QueryEngine to delete
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "deleteQueryEngine")
-	void deleteQueryEngine(
-		@WebParam(name = "iid", partName = "deleteQueryEngine.iid") Long iid) throws ServerException, UserException;
-
-	/**
-	 * @param sid ObjectID of the Deserializer to delete
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "deleteDeserializer")
-	void deleteDeserializer(
-		@WebParam(name = "sid", partName = "deleteDeserializer.sid") Long sid) throws ServerException, UserException;
-
-	/**
-	 * @return List of all SerializerPluginDescriptors
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllSerializerPluginDescriptors")
-	List<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws ServerException, UserException;
-
-	/**
-	 * @return List of all SerializerPluginDescriptors
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllRenderEnginePluginDescriptors")
-	List<SRenderEnginePluginDescriptor> getAllRenderEnginePluginDescriptors() throws ServerException, UserException;
-
-	/**
-	 * @return List of all DeserializerPluginDescriptors
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllDeserializerPluginDescriptors")
-	List<SDeserializerPluginDescriptor> getAllDeserializerPluginDescriptors() throws ServerException, UserException;
-
-	/**
-	 * @return List of all QueryEnginePluginDescriptors
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllQueryEnginePluginDescriptors")
-	List<SQueryEnginePluginDescriptor> getAllQueryEnginePluginDescriptors() throws ServerException, UserException;
-
-	/**
-	 * @return List of all getAllServicePluginDescriptors
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllServicePluginDescriptors")
-	List<SServicePluginDescriptor> getAllServicePluginDescriptors() throws ServerException, UserException;
-	
-	/**
-	 * @return List of all SModelComparePluginDescriptor
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllModelComparePluginDescriptors")
-	List<SModelComparePluginDescriptor> getAllModelComparePluginDescriptors() throws ServerException, UserException;
-
-	/**
-	 * @return List of all SModelMergerPluginDescriptor
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllModelMergerPluginDescriptors")
-	List<SModelMergerPluginDescriptor> getAllModelMergerPluginDescriptors() throws ServerException, UserException;
-	
-	/**
-	 * @param serializerName Name of the Serializer
-	 * @return Serializer
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSerializerByName")
-	SSerializerPluginConfiguration getSerializerByName(
-		@WebParam(name = "serializerName", partName = "getSerializerByName.serializerName") String serializerName) throws ServerException, UserException;
-
-	/**
-	 * @param name Name of the RenderEngine
-	 * @return RenderEngine
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getRenderEngineByName")
-	SRenderEnginePluginConfiguration getRenderEngineByName(
-		@WebParam(name = "name", partName = "getRenderEngineByName.name") String name) throws ServerException, UserException;
-
-	/**
-	 * @param name Name of the QueryEngine
-	 * @return QueryEngine
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getQueryEngineByName")
-	SQueryEnginePluginConfiguration getQueryEngineByName(
-		@WebParam(name = "name", partName = "getQueryEngineByName.name") String name) throws ServerException, UserException;
-
-	/**
-	 * @param name Name of the ModelMerger
-	 * @return SModelMerger
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getModelMergerByName")
-	SModelMergerPluginConfiguration getModelMergerByName(
-		@WebParam(name = "name", partName = "getModelMergerByName.name") String name) throws ServerException, UserException;
-
-	/**
-	 * @param name Name of the ModelCompare
-	 * @return SModelCompare
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getModelCompareByName")
-	SModelComparePluginConfiguration getModelCompareByName(
-		@WebParam(name = "name", partName = "getModelCompareByName.name") String name) throws ServerException, UserException;
-
-	/**
-	 * @param objectIDMName Name of the ObjectIDM
-	 * @return ObjectIDM
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getObjectIDMByName")
-	SObjectIDMPluginConfiguration getObjectIDMByName(
-		@WebParam(name = "objectIDMName", partName = "getObjectIDMByName.objectIDMName") String objectIDMName) throws ServerException, UserException;
-
-	/**
-	 * @param deserializerName Name of the Deserializer
-	 * @return Deserializer
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getDeserializerByName")
-	SDeserializerPluginConfiguration getDeserializerByName(
-		@WebParam(name = "deserializerName", partName = "getDeserializerByName.deserializerName") String deserializerName) throws ServerException, UserException;
-
-	/**
-	 * @param contentType Content type
-	 * @return Whether there is an active Serializer supporting the given ContentType
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "hasActiveSerializer")
-	Boolean hasActiveSerializer(
-		@WebParam(name = "contentType", partName = "hasActiveSerializer.contentType") String contentType) throws ServerException, UserException;
-	
-	/**
-	 * @param contentType The ContentType
-	 * @return Serializer supporting the given ContentType
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSerializerByContentType")
-	SSerializerPluginConfiguration getSerializerByContentType(
-		@WebParam(name = "contentType", partName = "getSerializerByContentType.contentType") String contentType) throws ServerException, UserException;
-
-	/**
-	 * @param contentType The ContentType
-	 * @return Serializer supporting the given ContentType
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSerializerByPluginClassName")
-	SSerializerPluginConfiguration getSerializerByPluginClassName(
-		@WebParam(name = "pluginClassName", partName = "getSerializerByPluginClassName.pluginClassName") String pluginClassName) throws ServerException, UserException;
-	
-	/**
-	 * @param type The type
-	 * @return SSerializerPluginDescriptor
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSerializerPluginDescriptor")
-	SSerializerPluginDescriptor getSerializerPluginDescriptor(
-		@WebParam(name = "type", partName = "getSerializerPluginDescriptor.type") String type) throws ServerException, UserException;
-	
-	/**
 	 * @return A list of available IDMPlugins
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getAllObjectIDMPluginDescriptors")
 	List<SObjectIDMPluginDescriptor> getAllObjectIDMPluginDescriptors() throws ServerException, UserException;
-
-	/**
-	 * @param onlyEnabled Whether to only include enabled deserializers
-	 * @return A list of all available deserializers
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllDeserializers")
-	List<SDeserializerPluginConfiguration> getAllDeserializers(
-		@WebParam(name = "onlyEnabled", partName = "getAllDeserializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
-	
-	/**
-	 * @param roid ObjectID of the Revision to perform this query on
-	 * @param code The Java code, should be an implementation of the QueryInterface interface
-	 * @return SRunResult
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "downloadQuery")
-	Long downloadQuery(
-		@WebParam(name = "roid", partName = "downloadQuery.roid") Long roid, 
-		@WebParam(name = "qeid", partName = "downloadQuery.qeid") Long qeid, 
-		@WebParam(name = "code", partName = "downloadQuery.code") String code,
-		@WebParam(name = "sync", partName = "downloadQuery.sync") Boolean sync,
-		@WebParam(name = "serializerOid", partName = "downloadQuery.serializerOid") Long serializerOid) throws ServerException, UserException;
 
 	/**
 	 * @return The name of the suggested deserializer
@@ -1371,48 +878,6 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllExtendedDataSchemas")
 	List<SExtendedDataSchema> getAllExtendedDataSchemas () throws ServerException, UserException;
-	
-	@WebMethod(action="getDefaultRenderEngine")
-	SRenderEnginePluginConfiguration getDefaultRenderEngine() throws ServerException, UserException;
-
-	@WebMethod(action="getDefaultQueryEngine")
-	SQueryEnginePluginConfiguration getDefaultQueryEngine() throws ServerException, UserException;
-
-	@WebMethod(action="getDefaultModelCompare")
-	SModelComparePluginConfiguration getDefaultModelCompare() throws ServerException, UserException;
-
-	@WebMethod(action="getDefaultModelMerger")
-	SModelMergerPluginConfiguration getDefaultModelMerger() throws ServerException, UserException;
-
-	@WebMethod(action="getDefaultSerializer")
-	SSerializerPluginConfiguration getDefaultSerializer() throws ServerException, UserException;
-
-	@WebMethod(action="getDefaultObjectIDM")
-	SObjectIDMPluginConfiguration getDefaultObjectIDM() throws ServerException, UserException;
-
-	@WebMethod(action="setDefaultRenderEngine")
-	void setDefaultRenderEngine(
-		@WebParam(name = "oid", partName = "setDefaultRenderEngine.oid") Long oid) throws UserException, ServerException;
-
-	@WebMethod(action="setDefaultQueryEngine")
-	void setDefaultQueryEngine(
-		@WebParam(name = "oid", partName = "setDefaultQueryEngine.oid") Long oid) throws UserException, ServerException;
-
-	@WebMethod(action="setDefaultModelCompare")
-	void setDefaultModelCompare(
-		@WebParam(name = "oid", partName = "setDefaultModelCompare.oid") Long oid) throws UserException, ServerException;
-
-	@WebMethod(action="setDefaultModelMerger")
-	void setDefaultModelMerger(
-		@WebParam(name = "oid", partName = "setDefaultModelMerger.oid") Long oid) throws UserException, ServerException;
-
-	@WebMethod(action="setDefaultSerializer")
-	void setDefaultSerializer(
-		@WebParam(name = "oid", partName = "setDefaultSerializer.oid") Long oid) throws UserException, ServerException;
-
-	@WebMethod(action="setDefaultObjectIDM")
-	void setDefaultObjectIDM(
-		@WebParam(name = "oid", partName = "setDefaultObjectIDM.oid") Long oid) throws UserException, ServerException;
 
 	@WebMethod(action="getServiceDescriptor")
 	SServiceDescriptor getServiceDescriptor(
@@ -1468,19 +933,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "serviceIdentifier", partName = "getAllPrivateProfiles.serviceIdentifier") String serviceIdentifier,
 		@WebParam(name = "token", partName = "getAllPrivateProfiles.token") String token) throws ServerException, UserException;
 	
-	@WebMethod(action = "getPluginObjectDefinition")
-	SObjectDefinition getPluginObjectDefinition(
-		@WebParam(name = "className", partName = "getPluginObjectDefinition.className") String className) throws ServerException, UserException;
-
-	@WebMethod(action = "setPluginSettings")
-	void setPluginSettings(
-		@WebParam(name = "poid", partName = "setPluginSettings.poid") Long poid, 
-		@WebParam(name = "settings", partName = "setPluginSettings.settings") SObjectType settings) throws ServerException, UserException;
-
-	@WebMethod(action = "getPluginSettings")
-	SObjectType getPluginSettings(
-		@WebParam(name = "poid", partName = "getPluginSettings.poid") Long poid) throws ServerException, UserException;
-	
 	@WebMethod(action = "uploadFile")
 	Long uploadFile(
 		@WebParam(name = "file", partName = "uploadFile.file") SFile file) throws ServerException, UserException;
@@ -1532,113 +984,4 @@ public interface ServiceInterface extends PublicInterface {
 	
 	@WebMethod(action = "getUserSettings")
 	SUserSettings getUserSettings() throws ServerException, UserException;
-	
-	@WebMethod(action = "registerProgressTopic")
-	Long registerProgressTopic(
-		@WebParam(name = "type", partName = "registerProgressTopic.type") SProgressTopicType type,
-		@WebParam(name = "description", partName = "registerProgressTopic.description") String description) throws UserException, ServerException;
-
-	@WebMethod(action = "updateProgressTopic")
-	void updateProgressTopic(
-		@WebParam(name = "topicId", partName = "registerProgressTopic.topicId") Long topicId, 
-		@WebParam(name = "state", partName = "registerProgressTopic.state") SLongActionState state) throws UserException, ServerException;
-	
-	@WebMethod(action = "unregisterProgressTopic")
-	void unregisterProgressTopic(
-		@WebParam(name = "topicId", partName = "unregisterProgressTopic.topicId") Long topicId) throws UserException, ServerException;
-	
-	@WebMethod(action = "registerProgressHandler")
-	void registerProgressHandler(
-		@WebParam(name = "topicId", partName = "registerProgressHandler.topicId") Long topicId, 
-		@WebParam(name = "endPointId", partName = "registerProgressHandler.endPointId") Long endPointId) throws UserException, ServerException;
-
-	@WebMethod(action = "registerNewRevisionOnSpecificProjectHandler")
-	void registerNewRevisionOnSpecificProjectHandler(
-		@WebParam(name = "endPointId", partName = "registerNewRevisionOnSpecificProjectHandler.endPointId") Long endPointId,
-		@WebParam(name = "poid", partName = "registerNewRevisionOnSpecificProjectHandler.poid") Long poid) throws UserException, ServerException;
-
-	@WebMethod(action = "registerNewProjectHandler")
-	void registerNewProjectHandler(
-		@WebParam(name = "endPointId", partName = "registerNewProjectHandler.endPointId") Long endPointId) throws UserException, ServerException;
-
-	@WebMethod(action = "unregisterNewProjectHandler")
-	void unregisterNewProjectHandler(
-		@WebParam(name = "endPointId", partName = "unregisterNewProjectHandler.endPointId") Long endPointId) throws UserException, ServerException;
-
-	@WebMethod(action = "registerNewUserHandler")
-	void registerNewUserHandler(
-			@WebParam(name = "endPointId", partName = "registerNewUserHandler.endPointId") Long endPointId) throws UserException, ServerException;
-	
-	@WebMethod(action = "unregisterNewUserHandler")
-	void unregisterNewUserHandler(
-			@WebParam(name = "endPointId", partName = "unregisterNewUserHandler.endPointId") Long endPointId) throws UserException, ServerException;
-	
-	@WebMethod(action = "unregisterNewRevisionOnSpecificProjectHandler")
-	void unregisterNewRevisionOnSpecificProjectHandler(
-		@WebParam(name = "endPointId", partName = "unregisterNewRevisionOnSpecificProjectHandler.endPointId") Long endPointId,
-		@WebParam(name = "poid", partName = "unregisterNewRevisionOnSpecificProjectHandler.poid") Long poid) throws UserException, ServerException;
-
-	@WebMethod(action = "unregisterProgressHandler")
-	void unregisterProgressHandler(
-		@WebParam(name = "topicId", partName = "unregisterProgressHandler.topicId") Long topicId, 
-		@WebParam(name = "endPointId", partName = "unregisterProgressHandler.endPointId") Long endPointId) throws UserException, ServerException;
-
-	@WebMethod(action = "getProgress")
-	SLongActionState getProgress(
-		@WebParam(name = "topicId", partName = "getProgress.topicId") Long topicId) throws UserException, ServerException;
-	
-	@WebMethod(action = "getProgressTopicsOnRevision")
-	List<Long> getProgressTopicsOnRevision(
-		@WebParam(name = "poid", partName = "getProgressTopicsOnRevision.poid") Long poid,
-		@WebParam(name = "roid", partName = "getProgressTopicsOnRevision.roid") Long roid) throws UserException, ServerException;
-
-	@WebMethod(action = "getProgressTopicsOnProject")
-	List<Long> getProgressTopicsOnProject(
-		@WebParam(name = "poid", partName = "getProgressTopicsOnProject.poid") Long poid) throws UserException, ServerException;
-
-	@WebMethod(action = "getProgressTopicsOnServer")
-	List<Long> getProgressTopicsOnServer() throws UserException, ServerException;
-	
-	@WebMethod(action = "registerProgressOnRevisionTopic")
-	Long registerProgressOnRevisionTopic(
-		@WebParam(name = "type", partName = "registerProgressOnRevisionTopic.type") SProgressTopicType type, 
-		@WebParam(name = "poid", partName = "registerProgressOnRevisionTopic.poid") Long poid, 
-		@WebParam(name = "roid", partName = "registerProgressOnRevisionTopic.roid") Long roid, 
-		@WebParam(name = "description", partName = "registerProgressOnRevisionTopic.description") String description) throws UserException, ServerException;
-
-	@WebMethod(action = "registerProgressOnProjectTopic")
-	Long registerProgressOnProjectTopic(
-		@WebParam(name = "type", partName = "registerProgressOnProjectTopic.type") SProgressTopicType type, 
-		@WebParam(name = "poid", partName = "registerProgressOnProjectTopic.poid") Long poid, 
-		@WebParam(name = "description", partName = "registerProgressOnProjectTopic.description") String description) throws UserException, ServerException;
-	
-	@WebMethod(action = "registerChangeProgressOnProject")
-	void registerChangeProgressOnProject(
-		@WebParam(name = "endPointId", partName = "registerChangeProgressOnProject.endPointId") Long endPointId, 
-		@WebParam(name = "poid", partName = "registerChangeProgressOnProject.poid") Long poid) throws ServerException, UserException;
-	
-	@WebMethod(action = "registerChangeProgressOnServer")
-	void registerChangeProgressOnServer(
-			@WebParam(name = "endPointId", partName = "registerChangeProgressOnServer.endPointId") Long endPointId) throws ServerException, UserException;
-	
-	@WebMethod(action = "unregisterChangeProgressOnServer")
-	void unregisterChangeProgressOnServer(
-			@WebParam(name = "endPointId", partName = "unregisterChangeProgressOnServer.endPointId") Long endPointId) throws ServerException, UserException;
-	
-	@WebMethod(action = "registerChangeProgressOnRevision")
-	void registerChangeProgressOnRevision(
-		@WebParam(name = "endPointId", partName = "registerChangeProgressOnRevision.endPointId") Long endPointId,
-		@WebParam(name = "roid", partName = "registerChangeProgressOnRevision.roid") Long roid,
-		@WebParam(name = "poid", partName = "registerChangeProgressOnRevision.poid") Long poid) throws ServerException, UserException;
-	
-	@WebMethod(action = "unregisterChangeProgressOnProject")
-	void unregisterChangeProgressOnProject(
-		@WebParam(name = "endPointId", partName = "unregisterChangeProgressOnProject.endPointId") Long endPointId, 
-		@WebParam(name = "poid", partName = "unregisterChangeProgressOnProject.poid") Long poid) throws ServerException, UserException;
-
-	@WebMethod(action = "unregisterChangeProgressOnRevision")
-	void unregisterChangeProgressOnRevision(
-		@WebParam(name = "endPointId", partName = "unregisterChangeProgressOnRevision.endPointId") Long endPointId, 
-		@WebParam(name = "roid", partName = "unregisterChangeProgressOnRevision.roid") Long roid,
-		@WebParam(name = "poid", partName = "unregisterChangeProgressOnRevision.poid") Long poid) throws ServerException, UserException;
 }

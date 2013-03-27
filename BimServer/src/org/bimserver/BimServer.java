@@ -123,7 +123,9 @@ import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
 import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
+import org.bimserver.shared.interfaces.RegistryInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
@@ -248,7 +250,8 @@ public class BimServer {
 		return jsonSocketReflectorFactory;
 	}
 
-	public String getContent(URL url) {
+	public String getContent(String javaFile) {
+		URL url = config.getResourceFetcher().getResource(javaFile);
 		if (url != null) {
 			try {
 				InputStream inputStream = url.openStream();
@@ -361,42 +364,31 @@ public class BimServer {
 
 			protocolBuffersMetaData = new ProtocolBuffersMetaData();
 			try {
-				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("service.desc"));
-				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("notification.desc"));
-				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("remoteservice.desc"));
-				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("adminservice.desc"));
-				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("authservice.desc"));
-				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("settingsservice.desc"));
-				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("lowlevelservice.desc"));
-				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("metaservice.desc"));
+				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("ServiceInterface.desc"));
+				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("NotificationInterface.desc"));
+				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("RemoteServiceInterface.desc"));
+				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("AdminInterface.desc"));
+				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("AuthInterface.desc"));
+				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("SettingsInterface.desc"));
+				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("LowLevelInterface.desc"));
+				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("MetaInterface.desc"));
+				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("PluginInterface.desc"));
+				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("RegistryInterface.desc"));
 			} catch (IOException e) {
 				LOGGER.error("", e);
 			}
-			
-			URL resource1 = config.getResourceFetcher().getResource("ServiceInterface.java");
-			SService serviceInterfaceMeta = new SServiceInterfaceService(getContent(resource1), ServiceInterface.class);
-			servicesMap.add(serviceInterfaceMeta);
 
-			URL resource2 = config.getResourceFetcher().getResource("NotificationInterface.java");
-			servicesMap.add(new SService(getContent(resource2), NotificationInterface.class, Collections.singletonList(serviceInterfaceMeta)));
-
-			URL resource3 = config.getResourceFetcher().getResource("RemoteServiceInterface.java");
-			servicesMap.add(new SService(getContent(resource3), RemoteServiceInterface.class, Collections.singletonList(serviceInterfaceMeta)));
-
-			URL resource4 = config.getResourceFetcher().getResource("AdminInterface.java");
-			servicesMap.add(new SService(getContent(resource4), AdminInterface.class, Collections.singletonList(serviceInterfaceMeta)));
-
-			URL resource5 = config.getResourceFetcher().getResource("MetaInterface.java");
-			servicesMap.add(new SService(getContent(resource5), MetaInterface.class, Collections.singletonList(serviceInterfaceMeta)));
-
-			URL resource6 = config.getResourceFetcher().getResource("SettingsInterface.java");
-			servicesMap.add(new SService(getContent(resource6), SettingsInterface.class, Collections.singletonList(serviceInterfaceMeta)));
-
-			URL resource7 = config.getResourceFetcher().getResource("AuthInterface.java");
-			servicesMap.add(new SService(getContent(resource7), AuthInterface.class, Collections.singletonList(serviceInterfaceMeta)));
-			
-			URL resource8 = config.getResourceFetcher().getResource("LowLevelInterface.java");
-			servicesMap.add(new SService(getContent(resource8), LowLevelInterface.class, Collections.singletonList(serviceInterfaceMeta)));
+			SService serviceInterface = new SServiceInterfaceService(getContent("ServiceInterface.java"), ServiceInterface.class);
+			servicesMap.add(serviceInterface);
+			servicesMap.add(new SService(getContent("NotificationInterface.java"), NotificationInterface.class, Collections.singletonList(serviceInterface)));
+			servicesMap.add(new SService(getContent("RemoteServiceInterface.java"), RemoteServiceInterface.class, Collections.singletonList(serviceInterface)));
+			servicesMap.add(new SService(getContent("AdminInterface.java"), AdminInterface.class, Collections.singletonList(serviceInterface)));
+			servicesMap.add(new SService(getContent("MetaInterface.java"), MetaInterface.class, Collections.singletonList(serviceInterface)));
+			servicesMap.add(new SService(getContent("SettingsInterface.java"), SettingsInterface.class, Collections.singletonList(serviceInterface)));
+			servicesMap.add(new SService(getContent("AuthInterface.java"), AuthInterface.class, Collections.singletonList(serviceInterface)));
+			servicesMap.add(new SService(getContent("LowLevelInterface.java"), LowLevelInterface.class, Collections.singletonList(serviceInterface)));
+			servicesMap.add(new SService(getContent("RegistryInterface.java"), RegistryInterface.class, Collections.singletonList(serviceInterface)));
+			servicesMap.add(new SService(getContent("PluginInterface.java"), PluginInterface.class, Collections.singletonList(serviceInterface)));
 			
 			notificationsManager.start();
 

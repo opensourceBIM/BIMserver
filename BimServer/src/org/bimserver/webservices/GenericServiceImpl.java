@@ -2,6 +2,7 @@ package org.bimserver.webservices;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
+import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
@@ -10,6 +11,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserSettings;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.AdminAuthorization;
@@ -133,5 +135,10 @@ public class GenericServiceImpl {
 	
 	public ServiceMap getServiceMap() {
 		return serviceMap;
+	}
+	
+	protected UserSettings getUserSettings(DatabaseSession session) throws BimserverLockConflictException, BimserverDatabaseException {
+		User user = session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
+		return user.getUserSettings();
 	}
 }

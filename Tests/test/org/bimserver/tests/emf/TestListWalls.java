@@ -23,7 +23,7 @@ public class TestListWalls extends TestWithEmbeddedServer {
 			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Get the service interface
-			ServiceInterface serviceInterface = bimServerClient.getServiceInterface();
+			ServiceInterface serviceInterface = bimServerClient.getService();
 			
 			// Create a new project
 			SProject newProject = serviceInterface.addProject("test" + Math.random());

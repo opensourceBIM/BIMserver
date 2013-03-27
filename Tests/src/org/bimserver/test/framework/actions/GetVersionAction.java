@@ -17,8 +17,8 @@ package org.bimserver.test.framework.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SVersion;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
@@ -34,7 +34,7 @@ public class GetVersionAction extends Action {
 	@Override
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		virtualUser.getLogger().info("Getting version");
-		SVersion version = virtualUser.getBimServerClient().getAdminInterface().getVersion();
+		SVersion version = virtualUser.getBimServerClient().getAdmin().getVersion();
 		virtualUser.getLogger().info(version.getMajor() + "." + version.getMinor() + "." + version.getRevision() + " " + version.getDate());
 	}
 }

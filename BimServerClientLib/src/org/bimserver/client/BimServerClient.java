@@ -36,6 +36,8 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.AutologinAuthenticationInfo;
 import org.bimserver.shared.ConnectDisconnectListener;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
+import org.bimserver.shared.ServiceHolder;
 import org.bimserver.shared.TokenChangeListener;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
@@ -45,8 +47,11 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.LowLevelInterface;
+import org.bimserver.shared.interfaces.MetaInterface;
 import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
+import org.bimserver.shared.interfaces.RegistryInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
@@ -54,7 +59,7 @@ import org.bimserver.shared.meta.SServicesMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
+public class BimServerClient implements ConnectDisconnectListener, TokenHolder, ServiceHolder {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BimServerClient.class);
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
 	private final Set<TokenChangeListener> tokenChangeListeners = new HashSet<TokenChangeListener>();
@@ -203,24 +208,28 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 		return get(RemoteServiceInterface.class);
 	}
 	
-	public LowLevelInterface getLowLevelInterface() throws PublicInterfaceNotFoundException {
+	public LowLevelInterface getLowLevel() throws PublicInterfaceNotFoundException {
 		return get(LowLevelInterface.class);
 	}
 	
-	public ServiceInterface getServiceInterface() throws PublicInterfaceNotFoundException {
+	public ServiceInterface getService() throws PublicInterfaceNotFoundException {
 		return get(ServiceInterface.class);
 	}
 
-	public AdminInterface getAdminInterface() throws PublicInterfaceNotFoundException {
+	public AdminInterface getAdmin() throws PublicInterfaceNotFoundException {
 		return get(AdminInterface.class);
 	}
 	
-	public AuthInterface getAuthInterface() throws PublicInterfaceNotFoundException {
+	public AuthInterface getAuth() throws PublicInterfaceNotFoundException {
 		return get(AuthInterface.class);
 	}
 
-	public SettingsInterface getSettingsInterface() throws PublicInterfaceNotFoundException {
+	public SettingsInterface getSettings() throws PublicInterfaceNotFoundException {
 		return get(SettingsInterface.class);
+	}
+	
+	public PluginInterface getPlugin() throws PublicInterfaceNotFoundException {
+		return get(PluginInterface.class);
 	}
 	
 	public SServicesMap getServicesMap() {
@@ -261,10 +270,10 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 
 	public void download(long roid, long serializerOid, OutputStream outputStream) {
 		try {
-			Long download = getServiceInterface().download(roid, serializerOid, true, true);
+			Long download = getService().download(roid, serializerOid, true, true);
 			InputStream inputStream = getDownloadData(download, serializerOid);
 			IOUtils.copy(inputStream, outputStream);
-			getServiceInterface().cleanupLongAction(download);
+			getService().cleanupLongAction(download);
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {
@@ -296,5 +305,15 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder {
 			throw new PublicInterfaceNotFoundException("No interface of type " + clazz.getSimpleName() + " registered on this channel");
 		}
 		return channel.get(clazz);
+	}
+	
+	@Override
+	public MetaInterface getMeta() throws PublicInterfaceNotFoundException {
+		return channel.getMeta();
+	}
+	
+	@Override
+	public RegistryInterface getRegistry() throws PublicInterfaceNotFoundException {
+		return channel.getRegistry();
 	}
 }

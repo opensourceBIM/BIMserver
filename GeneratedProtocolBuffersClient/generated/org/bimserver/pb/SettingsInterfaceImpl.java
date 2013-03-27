@@ -2117,25 +2117,25 @@ public final class SettingsInterfaceImpl {
   public interface SServerSettingsOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
-    // optional bool generateGeometryOnCheckin = 1;
+    // optional bool sendConfirmationEmailAfterRegistration = 1;
     /**
-     * <code>optional bool generateGeometryOnCheckin = 1;</code>
-     */
-    boolean hasGenerateGeometryOnCheckin();
-    /**
-     * <code>optional bool generateGeometryOnCheckin = 1;</code>
-     */
-    boolean getGenerateGeometryOnCheckin();
-
-    // optional bool sendConfirmationEmailAfterRegistration = 2;
-    /**
-     * <code>optional bool sendConfirmationEmailAfterRegistration = 2;</code>
+     * <code>optional bool sendConfirmationEmailAfterRegistration = 1;</code>
      */
     boolean hasSendConfirmationEmailAfterRegistration();
     /**
-     * <code>optional bool sendConfirmationEmailAfterRegistration = 2;</code>
+     * <code>optional bool sendConfirmationEmailAfterRegistration = 1;</code>
      */
     boolean getSendConfirmationEmailAfterRegistration();
+
+    // optional bool generateGeometryOnCheckin = 2;
+    /**
+     * <code>optional bool generateGeometryOnCheckin = 2;</code>
+     */
+    boolean hasGenerateGeometryOnCheckin();
+    /**
+     * <code>optional bool generateGeometryOnCheckin = 2;</code>
+     */
+    boolean getGenerateGeometryOnCheckin();
 
     // optional int32 protocolBuffersPort = 3;
     /**
@@ -2241,50 +2241,50 @@ public final class SettingsInterfaceImpl {
      */
     int getRid();
 
-    // optional string smtpServer = 11;
+    // optional bool allowSelfRegistration = 11;
     /**
-     * <code>optional string smtpServer = 11;</code>
+     * <code>optional bool allowSelfRegistration = 11;</code>
+     */
+    boolean hasAllowSelfRegistration();
+    /**
+     * <code>optional bool allowSelfRegistration = 11;</code>
+     */
+    boolean getAllowSelfRegistration();
+
+    // optional string smtpServer = 12;
+    /**
+     * <code>optional string smtpServer = 12;</code>
      */
     boolean hasSmtpServer();
     /**
-     * <code>optional string smtpServer = 11;</code>
+     * <code>optional string smtpServer = 12;</code>
      */
     java.lang.String getSmtpServer();
     /**
-     * <code>optional string smtpServer = 11;</code>
+     * <code>optional string smtpServer = 12;</code>
      */
     com.google.protobuf.ByteString
         getSmtpServerBytes();
 
-    // optional bool allowSelfRegistration = 12;
+    // optional bool cacheOutputFiles = 13;
     /**
-     * <code>optional bool allowSelfRegistration = 12;</code>
-     */
-    boolean hasAllowSelfRegistration();
-    /**
-     * <code>optional bool allowSelfRegistration = 12;</code>
-     */
-    boolean getAllowSelfRegistration();
-
-    // optional int64 oid = 13;
-    /**
-     * <code>optional int64 oid = 13;</code>
-     */
-    boolean hasOid();
-    /**
-     * <code>optional int64 oid = 13;</code>
-     */
-    long getOid();
-
-    // optional bool cacheOutputFiles = 14;
-    /**
-     * <code>optional bool cacheOutputFiles = 14;</code>
+     * <code>optional bool cacheOutputFiles = 13;</code>
      */
     boolean hasCacheOutputFiles();
     /**
-     * <code>optional bool cacheOutputFiles = 14;</code>
+     * <code>optional bool cacheOutputFiles = 13;</code>
      */
     boolean getCacheOutputFiles();
+
+    // optional int64 oid = 14;
+    /**
+     * <code>optional int64 oid = 14;</code>
+     */
+    boolean hasOid();
+    /**
+     * <code>optional int64 oid = 14;</code>
+     */
+    long getOid();
 
     // optional string emailSenderAddress = 15;
     /**
@@ -2399,12 +2399,12 @@ public final class SettingsInterfaceImpl {
             }
             case 8: {
               bitField0_ |= 0x00000001;
-              generateGeometryOnCheckin_ = input.readBool();
+              sendConfirmationEmailAfterRegistration_ = input.readBool();
               break;
             }
             case 16: {
               bitField0_ |= 0x00000002;
-              sendConfirmationEmailAfterRegistration_ = input.readBool();
+              generateGeometryOnCheckin_ = input.readBool();
               break;
             }
             case 24: {
@@ -2466,24 +2466,24 @@ public final class SettingsInterfaceImpl {
               rid_ = input.readInt32();
               break;
             }
-            case 90: {
+            case 88: {
               bitField0_ |= 0x00000100;
-              smtpServer_ = input.readBytes();
+              allowSelfRegistration_ = input.readBool();
               break;
             }
-            case 96: {
+            case 98: {
               bitField0_ |= 0x00000200;
-              allowSelfRegistration_ = input.readBool();
+              smtpServer_ = input.readBytes();
               break;
             }
             case 104: {
               bitField0_ |= 0x00000400;
-              oid_ = input.readInt64();
+              cacheOutputFiles_ = input.readBool();
               break;
             }
             case 112: {
               bitField0_ |= 0x00000800;
-              cacheOutputFiles_ = input.readBool();
+              oid_ = input.readInt64();
               break;
             }
             case 122: {
@@ -2557,36 +2557,36 @@ public final class SettingsInterfaceImpl {
     }
 
     private int bitField0_;
-    // optional bool generateGeometryOnCheckin = 1;
-    public static final int GENERATEGEOMETRYONCHECKIN_FIELD_NUMBER = 1;
-    private boolean generateGeometryOnCheckin_;
+    // optional bool sendConfirmationEmailAfterRegistration = 1;
+    public static final int SENDCONFIRMATIONEMAILAFTERREGISTRATION_FIELD_NUMBER = 1;
+    private boolean sendConfirmationEmailAfterRegistration_;
     /**
-     * <code>optional bool generateGeometryOnCheckin = 1;</code>
+     * <code>optional bool sendConfirmationEmailAfterRegistration = 1;</code>
      */
-    public boolean hasGenerateGeometryOnCheckin() {
+    public boolean hasSendConfirmationEmailAfterRegistration() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>optional bool generateGeometryOnCheckin = 1;</code>
-     */
-    public boolean getGenerateGeometryOnCheckin() {
-      return generateGeometryOnCheckin_;
-    }
-
-    // optional bool sendConfirmationEmailAfterRegistration = 2;
-    public static final int SENDCONFIRMATIONEMAILAFTERREGISTRATION_FIELD_NUMBER = 2;
-    private boolean sendConfirmationEmailAfterRegistration_;
-    /**
-     * <code>optional bool sendConfirmationEmailAfterRegistration = 2;</code>
-     */
-    public boolean hasSendConfirmationEmailAfterRegistration() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>optional bool sendConfirmationEmailAfterRegistration = 2;</code>
+     * <code>optional bool sendConfirmationEmailAfterRegistration = 1;</code>
      */
     public boolean getSendConfirmationEmailAfterRegistration() {
       return sendConfirmationEmailAfterRegistration_;
+    }
+
+    // optional bool generateGeometryOnCheckin = 2;
+    public static final int GENERATEGEOMETRYONCHECKIN_FIELD_NUMBER = 2;
+    private boolean generateGeometryOnCheckin_;
+    /**
+     * <code>optional bool generateGeometryOnCheckin = 2;</code>
+     */
+    public boolean hasGenerateGeometryOnCheckin() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional bool generateGeometryOnCheckin = 2;</code>
+     */
+    public boolean getGenerateGeometryOnCheckin() {
+      return generateGeometryOnCheckin_;
     }
 
     // optional int32 protocolBuffersPort = 3;
@@ -2792,17 +2792,33 @@ public final class SettingsInterfaceImpl {
       return rid_;
     }
 
-    // optional string smtpServer = 11;
-    public static final int SMTPSERVER_FIELD_NUMBER = 11;
-    private java.lang.Object smtpServer_;
+    // optional bool allowSelfRegistration = 11;
+    public static final int ALLOWSELFREGISTRATION_FIELD_NUMBER = 11;
+    private boolean allowSelfRegistration_;
     /**
-     * <code>optional string smtpServer = 11;</code>
+     * <code>optional bool allowSelfRegistration = 11;</code>
      */
-    public boolean hasSmtpServer() {
+    public boolean hasAllowSelfRegistration() {
       return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     /**
-     * <code>optional string smtpServer = 11;</code>
+     * <code>optional bool allowSelfRegistration = 11;</code>
+     */
+    public boolean getAllowSelfRegistration() {
+      return allowSelfRegistration_;
+    }
+
+    // optional string smtpServer = 12;
+    public static final int SMTPSERVER_FIELD_NUMBER = 12;
+    private java.lang.Object smtpServer_;
+    /**
+     * <code>optional string smtpServer = 12;</code>
+     */
+    public boolean hasSmtpServer() {
+      return ((bitField0_ & 0x00000200) == 0x00000200);
+    }
+    /**
+     * <code>optional string smtpServer = 12;</code>
      */
     public java.lang.String getSmtpServer() {
       java.lang.Object ref = smtpServer_;
@@ -2819,7 +2835,7 @@ public final class SettingsInterfaceImpl {
       }
     }
     /**
-     * <code>optional string smtpServer = 11;</code>
+     * <code>optional string smtpServer = 12;</code>
      */
     public com.google.protobuf.ByteString
         getSmtpServerBytes() {
@@ -2835,52 +2851,36 @@ public final class SettingsInterfaceImpl {
       }
     }
 
-    // optional bool allowSelfRegistration = 12;
-    public static final int ALLOWSELFREGISTRATION_FIELD_NUMBER = 12;
-    private boolean allowSelfRegistration_;
+    // optional bool cacheOutputFiles = 13;
+    public static final int CACHEOUTPUTFILES_FIELD_NUMBER = 13;
+    private boolean cacheOutputFiles_;
     /**
-     * <code>optional bool allowSelfRegistration = 12;</code>
+     * <code>optional bool cacheOutputFiles = 13;</code>
      */
-    public boolean hasAllowSelfRegistration() {
-      return ((bitField0_ & 0x00000200) == 0x00000200);
-    }
-    /**
-     * <code>optional bool allowSelfRegistration = 12;</code>
-     */
-    public boolean getAllowSelfRegistration() {
-      return allowSelfRegistration_;
-    }
-
-    // optional int64 oid = 13;
-    public static final int OID_FIELD_NUMBER = 13;
-    private long oid_;
-    /**
-     * <code>optional int64 oid = 13;</code>
-     */
-    public boolean hasOid() {
+    public boolean hasCacheOutputFiles() {
       return ((bitField0_ & 0x00000400) == 0x00000400);
     }
     /**
-     * <code>optional int64 oid = 13;</code>
-     */
-    public long getOid() {
-      return oid_;
-    }
-
-    // optional bool cacheOutputFiles = 14;
-    public static final int CACHEOUTPUTFILES_FIELD_NUMBER = 14;
-    private boolean cacheOutputFiles_;
-    /**
-     * <code>optional bool cacheOutputFiles = 14;</code>
-     */
-    public boolean hasCacheOutputFiles() {
-      return ((bitField0_ & 0x00000800) == 0x00000800);
-    }
-    /**
-     * <code>optional bool cacheOutputFiles = 14;</code>
+     * <code>optional bool cacheOutputFiles = 13;</code>
      */
     public boolean getCacheOutputFiles() {
       return cacheOutputFiles_;
+    }
+
+    // optional int64 oid = 14;
+    public static final int OID_FIELD_NUMBER = 14;
+    private long oid_;
+    /**
+     * <code>optional int64 oid = 14;</code>
+     */
+    public boolean hasOid() {
+      return ((bitField0_ & 0x00000800) == 0x00000800);
+    }
+    /**
+     * <code>optional int64 oid = 14;</code>
+     */
+    public long getOid() {
+      return oid_;
     }
 
     // optional string emailSenderAddress = 15;
@@ -3018,8 +3018,8 @@ public final class SettingsInterfaceImpl {
     }
 
     private void initFields() {
-      generateGeometryOnCheckin_ = false;
       sendConfirmationEmailAfterRegistration_ = false;
+      generateGeometryOnCheckin_ = false;
       protocolBuffersPort_ = 0;
       allowOnlyWhitelisted_ = false;
       siteAddress_ = "";
@@ -3028,10 +3028,10 @@ public final class SettingsInterfaceImpl {
       webModules_ = java.util.Collections.emptyList();
       whitelistedDomains_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       rid_ = 0;
-      smtpServer_ = "";
       allowSelfRegistration_ = false;
-      oid_ = 0L;
+      smtpServer_ = "";
       cacheOutputFiles_ = false;
+      oid_ = 0L;
       emailSenderAddress_ = "";
       hideUserListForNonAdmin_ = false;
       emailSenderName_ = "";
@@ -3051,10 +3051,10 @@ public final class SettingsInterfaceImpl {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBool(1, generateGeometryOnCheckin_);
+        output.writeBool(1, sendConfirmationEmailAfterRegistration_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBool(2, sendConfirmationEmailAfterRegistration_);
+        output.writeBool(2, generateGeometryOnCheckin_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeInt32(3, protocolBuffersPort_);
@@ -3081,16 +3081,16 @@ public final class SettingsInterfaceImpl {
         output.writeInt32(10, rid_);
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        output.writeBytes(11, getSmtpServerBytes());
+        output.writeBool(11, allowSelfRegistration_);
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
-        output.writeBool(12, allowSelfRegistration_);
+        output.writeBytes(12, getSmtpServerBytes());
       }
       if (((bitField0_ & 0x00000400) == 0x00000400)) {
-        output.writeInt64(13, oid_);
+        output.writeBool(13, cacheOutputFiles_);
       }
       if (((bitField0_ & 0x00000800) == 0x00000800)) {
-        output.writeBool(14, cacheOutputFiles_);
+        output.writeInt64(14, oid_);
       }
       if (((bitField0_ & 0x00001000) == 0x00001000)) {
         output.writeBytes(15, getEmailSenderAddressBytes());
@@ -3118,11 +3118,11 @@ public final class SettingsInterfaceImpl {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, generateGeometryOnCheckin_);
+          .computeBoolSize(1, sendConfirmationEmailAfterRegistration_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(2, sendConfirmationEmailAfterRegistration_);
+          .computeBoolSize(2, generateGeometryOnCheckin_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
@@ -3168,19 +3168,19 @@ public final class SettingsInterfaceImpl {
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(11, getSmtpServerBytes());
+          .computeBoolSize(11, allowSelfRegistration_);
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(12, allowSelfRegistration_);
+          .computeBytesSize(12, getSmtpServerBytes());
       }
       if (((bitField0_ & 0x00000400) == 0x00000400)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(13, oid_);
+          .computeBoolSize(13, cacheOutputFiles_);
       }
       if (((bitField0_ & 0x00000800) == 0x00000800)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(14, cacheOutputFiles_);
+          .computeInt64Size(14, oid_);
       }
       if (((bitField0_ & 0x00001000) == 0x00001000)) {
         size += com.google.protobuf.CodedOutputStream
@@ -3318,9 +3318,9 @@ public final class SettingsInterfaceImpl {
 
       public Builder clear() {
         super.clear();
-        generateGeometryOnCheckin_ = false;
-        bitField0_ = (bitField0_ & ~0x00000001);
         sendConfirmationEmailAfterRegistration_ = false;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        generateGeometryOnCheckin_ = false;
         bitField0_ = (bitField0_ & ~0x00000002);
         protocolBuffersPort_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -3338,13 +3338,13 @@ public final class SettingsInterfaceImpl {
         bitField0_ = (bitField0_ & ~0x00000100);
         rid_ = 0;
         bitField0_ = (bitField0_ & ~0x00000200);
-        smtpServer_ = "";
-        bitField0_ = (bitField0_ & ~0x00000400);
         allowSelfRegistration_ = false;
+        bitField0_ = (bitField0_ & ~0x00000400);
+        smtpServer_ = "";
         bitField0_ = (bitField0_ & ~0x00000800);
-        oid_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00001000);
         cacheOutputFiles_ = false;
+        bitField0_ = (bitField0_ & ~0x00001000);
+        oid_ = 0L;
         bitField0_ = (bitField0_ & ~0x00002000);
         emailSenderAddress_ = "";
         bitField0_ = (bitField0_ & ~0x00004000);
@@ -3387,11 +3387,11 @@ public final class SettingsInterfaceImpl {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.generateGeometryOnCheckin_ = generateGeometryOnCheckin_;
+        result.sendConfirmationEmailAfterRegistration_ = sendConfirmationEmailAfterRegistration_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.sendConfirmationEmailAfterRegistration_ = sendConfirmationEmailAfterRegistration_;
+        result.generateGeometryOnCheckin_ = generateGeometryOnCheckin_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
@@ -3430,19 +3430,19 @@ public final class SettingsInterfaceImpl {
         if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
           to_bitField0_ |= 0x00000100;
         }
-        result.smtpServer_ = smtpServer_;
+        result.allowSelfRegistration_ = allowSelfRegistration_;
         if (((from_bitField0_ & 0x00000800) == 0x00000800)) {
           to_bitField0_ |= 0x00000200;
         }
-        result.allowSelfRegistration_ = allowSelfRegistration_;
+        result.smtpServer_ = smtpServer_;
         if (((from_bitField0_ & 0x00001000) == 0x00001000)) {
           to_bitField0_ |= 0x00000400;
         }
-        result.oid_ = oid_;
+        result.cacheOutputFiles_ = cacheOutputFiles_;
         if (((from_bitField0_ & 0x00002000) == 0x00002000)) {
           to_bitField0_ |= 0x00000800;
         }
-        result.cacheOutputFiles_ = cacheOutputFiles_;
+        result.oid_ = oid_;
         if (((from_bitField0_ & 0x00004000) == 0x00004000)) {
           to_bitField0_ |= 0x00001000;
         }
@@ -3479,11 +3479,11 @@ public final class SettingsInterfaceImpl {
 
       public Builder mergeFrom(org.bimserver.pb.SettingsInterfaceImpl.SServerSettings other) {
         if (other == org.bimserver.pb.SettingsInterfaceImpl.SServerSettings.getDefaultInstance()) return this;
-        if (other.hasGenerateGeometryOnCheckin()) {
-          setGenerateGeometryOnCheckin(other.getGenerateGeometryOnCheckin());
-        }
         if (other.hasSendConfirmationEmailAfterRegistration()) {
           setSendConfirmationEmailAfterRegistration(other.getSendConfirmationEmailAfterRegistration());
+        }
+        if (other.hasGenerateGeometryOnCheckin()) {
+          setGenerateGeometryOnCheckin(other.getGenerateGeometryOnCheckin());
         }
         if (other.hasProtocolBuffersPort()) {
           setProtocolBuffersPort(other.getProtocolBuffersPort());
@@ -3527,19 +3527,19 @@ public final class SettingsInterfaceImpl {
         if (other.hasRid()) {
           setRid(other.getRid());
         }
-        if (other.hasSmtpServer()) {
-          bitField0_ |= 0x00000400;
-          smtpServer_ = other.smtpServer_;
-          onChanged();
-        }
         if (other.hasAllowSelfRegistration()) {
           setAllowSelfRegistration(other.getAllowSelfRegistration());
         }
-        if (other.hasOid()) {
-          setOid(other.getOid());
+        if (other.hasSmtpServer()) {
+          bitField0_ |= 0x00000800;
+          smtpServer_ = other.smtpServer_;
+          onChanged();
         }
         if (other.hasCacheOutputFiles()) {
           setCacheOutputFiles(other.getCacheOutputFiles());
+        }
+        if (other.hasOid()) {
+          setOid(other.getOid());
         }
         if (other.hasEmailSenderAddress()) {
           bitField0_ |= 0x00004000;
@@ -3587,68 +3587,68 @@ public final class SettingsInterfaceImpl {
       }
       private int bitField0_;
 
-      // optional bool generateGeometryOnCheckin = 1;
-      private boolean generateGeometryOnCheckin_ ;
+      // optional bool sendConfirmationEmailAfterRegistration = 1;
+      private boolean sendConfirmationEmailAfterRegistration_ ;
       /**
-       * <code>optional bool generateGeometryOnCheckin = 1;</code>
+       * <code>optional bool sendConfirmationEmailAfterRegistration = 1;</code>
        */
-      public boolean hasGenerateGeometryOnCheckin() {
+      public boolean hasSendConfirmationEmailAfterRegistration() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>optional bool generateGeometryOnCheckin = 1;</code>
-       */
-      public boolean getGenerateGeometryOnCheckin() {
-        return generateGeometryOnCheckin_;
-      }
-      /**
-       * <code>optional bool generateGeometryOnCheckin = 1;</code>
-       */
-      public Builder setGenerateGeometryOnCheckin(boolean value) {
-        bitField0_ |= 0x00000001;
-        generateGeometryOnCheckin_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bool generateGeometryOnCheckin = 1;</code>
-       */
-      public Builder clearGenerateGeometryOnCheckin() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        generateGeometryOnCheckin_ = false;
-        onChanged();
-        return this;
-      }
-
-      // optional bool sendConfirmationEmailAfterRegistration = 2;
-      private boolean sendConfirmationEmailAfterRegistration_ ;
-      /**
-       * <code>optional bool sendConfirmationEmailAfterRegistration = 2;</code>
-       */
-      public boolean hasSendConfirmationEmailAfterRegistration() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>optional bool sendConfirmationEmailAfterRegistration = 2;</code>
+       * <code>optional bool sendConfirmationEmailAfterRegistration = 1;</code>
        */
       public boolean getSendConfirmationEmailAfterRegistration() {
         return sendConfirmationEmailAfterRegistration_;
       }
       /**
-       * <code>optional bool sendConfirmationEmailAfterRegistration = 2;</code>
+       * <code>optional bool sendConfirmationEmailAfterRegistration = 1;</code>
        */
       public Builder setSendConfirmationEmailAfterRegistration(boolean value) {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000001;
         sendConfirmationEmailAfterRegistration_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional bool sendConfirmationEmailAfterRegistration = 2;</code>
+       * <code>optional bool sendConfirmationEmailAfterRegistration = 1;</code>
        */
       public Builder clearSendConfirmationEmailAfterRegistration() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000001);
         sendConfirmationEmailAfterRegistration_ = false;
+        onChanged();
+        return this;
+      }
+
+      // optional bool generateGeometryOnCheckin = 2;
+      private boolean generateGeometryOnCheckin_ ;
+      /**
+       * <code>optional bool generateGeometryOnCheckin = 2;</code>
+       */
+      public boolean hasGenerateGeometryOnCheckin() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional bool generateGeometryOnCheckin = 2;</code>
+       */
+      public boolean getGenerateGeometryOnCheckin() {
+        return generateGeometryOnCheckin_;
+      }
+      /**
+       * <code>optional bool generateGeometryOnCheckin = 2;</code>
+       */
+      public Builder setGenerateGeometryOnCheckin(boolean value) {
+        bitField0_ |= 0x00000002;
+        generateGeometryOnCheckin_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool generateGeometryOnCheckin = 2;</code>
+       */
+      public Builder clearGenerateGeometryOnCheckin() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        generateGeometryOnCheckin_ = false;
         onChanged();
         return this;
       }
@@ -4092,16 +4092,49 @@ public final class SettingsInterfaceImpl {
         return this;
       }
 
-      // optional string smtpServer = 11;
-      private java.lang.Object smtpServer_ = "";
+      // optional bool allowSelfRegistration = 11;
+      private boolean allowSelfRegistration_ ;
       /**
-       * <code>optional string smtpServer = 11;</code>
+       * <code>optional bool allowSelfRegistration = 11;</code>
        */
-      public boolean hasSmtpServer() {
+      public boolean hasAllowSelfRegistration() {
         return ((bitField0_ & 0x00000400) == 0x00000400);
       }
       /**
-       * <code>optional string smtpServer = 11;</code>
+       * <code>optional bool allowSelfRegistration = 11;</code>
+       */
+      public boolean getAllowSelfRegistration() {
+        return allowSelfRegistration_;
+      }
+      /**
+       * <code>optional bool allowSelfRegistration = 11;</code>
+       */
+      public Builder setAllowSelfRegistration(boolean value) {
+        bitField0_ |= 0x00000400;
+        allowSelfRegistration_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool allowSelfRegistration = 11;</code>
+       */
+      public Builder clearAllowSelfRegistration() {
+        bitField0_ = (bitField0_ & ~0x00000400);
+        allowSelfRegistration_ = false;
+        onChanged();
+        return this;
+      }
+
+      // optional string smtpServer = 12;
+      private java.lang.Object smtpServer_ = "";
+      /**
+       * <code>optional string smtpServer = 12;</code>
+       */
+      public boolean hasSmtpServer() {
+        return ((bitField0_ & 0x00000800) == 0x00000800);
+      }
+      /**
+       * <code>optional string smtpServer = 12;</code>
        */
       public java.lang.String getSmtpServer() {
         java.lang.Object ref = smtpServer_;
@@ -4115,7 +4148,7 @@ public final class SettingsInterfaceImpl {
         }
       }
       /**
-       * <code>optional string smtpServer = 11;</code>
+       * <code>optional string smtpServer = 12;</code>
        */
       public com.google.protobuf.ByteString
           getSmtpServerBytes() {
@@ -4131,136 +4164,103 @@ public final class SettingsInterfaceImpl {
         }
       }
       /**
-       * <code>optional string smtpServer = 11;</code>
+       * <code>optional string smtpServer = 12;</code>
        */
       public Builder setSmtpServer(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000400;
+  bitField0_ |= 0x00000800;
         smtpServer_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string smtpServer = 11;</code>
+       * <code>optional string smtpServer = 12;</code>
        */
       public Builder clearSmtpServer() {
-        bitField0_ = (bitField0_ & ~0x00000400);
+        bitField0_ = (bitField0_ & ~0x00000800);
         smtpServer_ = getDefaultInstance().getSmtpServer();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string smtpServer = 11;</code>
+       * <code>optional string smtpServer = 12;</code>
        */
       public Builder setSmtpServerBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000400;
+  bitField0_ |= 0x00000800;
         smtpServer_ = value;
         onChanged();
         return this;
       }
 
-      // optional bool allowSelfRegistration = 12;
-      private boolean allowSelfRegistration_ ;
+      // optional bool cacheOutputFiles = 13;
+      private boolean cacheOutputFiles_ ;
       /**
-       * <code>optional bool allowSelfRegistration = 12;</code>
+       * <code>optional bool cacheOutputFiles = 13;</code>
        */
-      public boolean hasAllowSelfRegistration() {
-        return ((bitField0_ & 0x00000800) == 0x00000800);
-      }
-      /**
-       * <code>optional bool allowSelfRegistration = 12;</code>
-       */
-      public boolean getAllowSelfRegistration() {
-        return allowSelfRegistration_;
-      }
-      /**
-       * <code>optional bool allowSelfRegistration = 12;</code>
-       */
-      public Builder setAllowSelfRegistration(boolean value) {
-        bitField0_ |= 0x00000800;
-        allowSelfRegistration_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bool allowSelfRegistration = 12;</code>
-       */
-      public Builder clearAllowSelfRegistration() {
-        bitField0_ = (bitField0_ & ~0x00000800);
-        allowSelfRegistration_ = false;
-        onChanged();
-        return this;
-      }
-
-      // optional int64 oid = 13;
-      private long oid_ ;
-      /**
-       * <code>optional int64 oid = 13;</code>
-       */
-      public boolean hasOid() {
+      public boolean hasCacheOutputFiles() {
         return ((bitField0_ & 0x00001000) == 0x00001000);
       }
       /**
-       * <code>optional int64 oid = 13;</code>
-       */
-      public long getOid() {
-        return oid_;
-      }
-      /**
-       * <code>optional int64 oid = 13;</code>
-       */
-      public Builder setOid(long value) {
-        bitField0_ |= 0x00001000;
-        oid_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional int64 oid = 13;</code>
-       */
-      public Builder clearOid() {
-        bitField0_ = (bitField0_ & ~0x00001000);
-        oid_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      // optional bool cacheOutputFiles = 14;
-      private boolean cacheOutputFiles_ ;
-      /**
-       * <code>optional bool cacheOutputFiles = 14;</code>
-       */
-      public boolean hasCacheOutputFiles() {
-        return ((bitField0_ & 0x00002000) == 0x00002000);
-      }
-      /**
-       * <code>optional bool cacheOutputFiles = 14;</code>
+       * <code>optional bool cacheOutputFiles = 13;</code>
        */
       public boolean getCacheOutputFiles() {
         return cacheOutputFiles_;
       }
       /**
-       * <code>optional bool cacheOutputFiles = 14;</code>
+       * <code>optional bool cacheOutputFiles = 13;</code>
        */
       public Builder setCacheOutputFiles(boolean value) {
-        bitField0_ |= 0x00002000;
+        bitField0_ |= 0x00001000;
         cacheOutputFiles_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional bool cacheOutputFiles = 14;</code>
+       * <code>optional bool cacheOutputFiles = 13;</code>
        */
       public Builder clearCacheOutputFiles() {
-        bitField0_ = (bitField0_ & ~0x00002000);
+        bitField0_ = (bitField0_ & ~0x00001000);
         cacheOutputFiles_ = false;
+        onChanged();
+        return this;
+      }
+
+      // optional int64 oid = 14;
+      private long oid_ ;
+      /**
+       * <code>optional int64 oid = 14;</code>
+       */
+      public boolean hasOid() {
+        return ((bitField0_ & 0x00002000) == 0x00002000);
+      }
+      /**
+       * <code>optional int64 oid = 14;</code>
+       */
+      public long getOid() {
+        return oid_;
+      }
+      /**
+       * <code>optional int64 oid = 14;</code>
+       */
+      public Builder setOid(long value) {
+        bitField0_ |= 0x00002000;
+        oid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 oid = 14;</code>
+       */
+      public Builder clearOid() {
+        bitField0_ = (bitField0_ & ~0x00002000);
+        oid_ = 0L;
         onChanged();
         return this;
       }
@@ -22379,17 +22379,17 @@ public final class SettingsInterfaceImpl {
       "otocolBuffersPortRequest\"E\n\036GetProtocolB" +
       "uffersPortResponse\022\024\n\014errorMessage\030\001 \001(\t" +
       "\022\r\n\005value\030\002 \001(\005\"\032\n\030GetServerSettingsRequ",
-      "est\"\237\004\n\017SServerSettings\022!\n\031generateGeome" +
-      "tryOnCheckin\030\001 \001(\010\022.\n&sendConfirmationEm" +
-      "ailAfterRegistration\030\002 \001(\010\022\033\n\023protocolBu" +
+      "est\"\237\004\n\017SServerSettings\022.\n&sendConfirmat" +
+      "ionEmailAfterRegistration\030\001 \001(\010\022!\n\031gener" +
+      "ateGeometryOnCheckin\030\002 \001(\010\022\033\n\023protocolBu" +
       "ffersPort\030\003 \001(\005\022\034\n\024allowOnlyWhitelisted\030" +
       "\004 \001(\010\022\023\n\013siteAddress\030\005 \001(\t\022*\n\"allowUsers" +
       "ToCreateTopLevelProjects\030\006 \001(\010\022\034\n\024servic" +
       "eRepositoryUrl\030\007 \001(\t\022\022\n\nwebModules\030\010 \003(\003" +
       "\022\032\n\022whitelistedDomains\030\t \003(\t\022\013\n\003rid\030\n \001(" +
-      "\005\022\022\n\nsmtpServer\030\013 \001(\t\022\035\n\025allowSelfRegist" +
-      "ration\030\014 \001(\010\022\013\n\003oid\030\r \001(\003\022\030\n\020cacheOutput",
-      "Files\030\016 \001(\010\022\032\n\022emailSenderAddress\030\017 \001(\t\022" +
+      "\005\022\035\n\025allowSelfRegistration\030\013 \001(\010\022\022\n\nsmtp" +
+      "Server\030\014 \001(\t\022\030\n\020cacheOutputFiles\030\r \001(\010\022\013",
+      "\n\003oid\030\016 \001(\003\022\032\n\022emailSenderAddress\030\017 \001(\t\022" +
       "\037\n\027hideUserListForNonAdmin\030\020 \001(\010\022\027\n\017emai" +
       "lSenderName\030\021 \001(\t\022\023\n\013webModuleId\030\022 \001(\003\022\035" +
       "\n\025checkinMergingEnabled\030\023 \001(\010\"c\n\031GetServ" +
@@ -22569,7 +22569,7 @@ public final class SettingsInterfaceImpl {
           internal_static_org_bimserver_pb_SServerSettings_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SServerSettings_descriptor,
-              new java.lang.String[] { "GenerateGeometryOnCheckin", "SendConfirmationEmailAfterRegistration", "ProtocolBuffersPort", "AllowOnlyWhitelisted", "SiteAddress", "AllowUsersToCreateTopLevelProjects", "ServiceRepositoryUrl", "WebModules", "WhitelistedDomains", "Rid", "SmtpServer", "AllowSelfRegistration", "Oid", "CacheOutputFiles", "EmailSenderAddress", "HideUserListForNonAdmin", "EmailSenderName", "WebModuleId", "CheckinMergingEnabled", });
+              new java.lang.String[] { "SendConfirmationEmailAfterRegistration", "GenerateGeometryOnCheckin", "ProtocolBuffersPort", "AllowOnlyWhitelisted", "SiteAddress", "AllowUsersToCreateTopLevelProjects", "ServiceRepositoryUrl", "WebModules", "WhitelistedDomains", "Rid", "AllowSelfRegistration", "SmtpServer", "CacheOutputFiles", "Oid", "EmailSenderAddress", "HideUserListForNonAdmin", "EmailSenderName", "WebModuleId", "CheckinMergingEnabled", });
           internal_static_org_bimserver_pb_GetServerSettingsResponse_descriptor =
             getDescriptor().getMessageTypes().get(6);
           internal_static_org_bimserver_pb_GetServerSettingsResponse_fieldAccessorTable = new

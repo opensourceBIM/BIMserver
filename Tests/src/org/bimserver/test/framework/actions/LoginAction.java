@@ -17,7 +17,7 @@ package org.bimserver.test.framework.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.client.PublicInterfaceNotFoundException;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
@@ -33,12 +33,12 @@ public class LoginAction extends Action {
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		if (nextInt(virtualUser.getUserNames().size() + 1) == 0) {
 			virtualUser.getActionResults().setText("Logging in as admin@bimserver.org");
-			virtualUser.getBimServerClient().getAuthInterface().login("admin@bimserver.org", "admin");
+			virtualUser.getBimServerClient().getAuth().login("admin@bimserver.org", "admin");
 		} else {
 			if (!virtualUser.getUserNames().isEmpty()) {
 				String username = virtualUser.getRandomUserName();
 				virtualUser.getActionResults().setText("Logging in as " + username);
-				virtualUser.getBimServerClient().getAuthInterface().login(username, "test");
+				virtualUser.getBimServerClient().getAuth().login(username, "test");
 			}
 		}
 	}

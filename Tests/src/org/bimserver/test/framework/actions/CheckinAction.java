@@ -20,11 +20,11 @@ package org.bimserver.test.framework.actions;
 import java.io.File;
 import java.io.IOException;
 
-import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
@@ -45,7 +45,7 @@ public class CheckinAction extends Action {
 		File randomFile = getTestFramework().getTestFile();
 		String fileName = randomFile.getName();
 		String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
-		SDeserializerPluginConfiguration suggestedDeserializerForExtension = virtualUser.getBimServerClient().getServiceInterface().getSuggestedDeserializerForExtension(extension);
+		SDeserializerPluginConfiguration suggestedDeserializerForExtension = virtualUser.getBimServerClient().getService().getSuggestedDeserializerForExtension(extension);
 		
 		if (suggestedDeserializerForExtension == null) {
 			virtualUser.getActionResults().setText("No deserializer found for extension " + extension + " in file " + fileName);
@@ -59,13 +59,13 @@ public class CheckinAction extends Action {
 		try {
 			checkinId = virtualUser.getBimServerClient().checkin(project.getOid(), randomString(), suggestedDeserializerForExtension.getOid(), merge, sync, randomFile);
 			if (sync) {
-				SLongActionState longActionState = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(checkinId);
+				SLongActionState longActionState = virtualUser.getBimServerClient().getService().getLongActionState(checkinId);
 				if (longActionState.getState() == SActionState.AS_ERROR) {
 					virtualUser.getActionResults().setText("" + longActionState.getErrors());
 				}
 			} else {
 				while (true) {
-					SLongActionState checkinState = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(checkinId);
+					SLongActionState checkinState = virtualUser.getBimServerClient().getService().getLongActionState(checkinId);
 					if (checkinState.getState() == SActionState.FINISHED || checkinState.getState() == SActionState.UNKNOWN) {
 						break;
 					}

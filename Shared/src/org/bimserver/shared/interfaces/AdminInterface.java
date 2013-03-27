@@ -24,7 +24,7 @@ import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
-@WebService(name = "AdminInterface")
+@WebService(name = "AdminInterface", targetNamespace="org.bimserver")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface AdminInterface extends PublicInterface {
 	/**

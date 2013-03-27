@@ -14,7 +14,7 @@ import org.bimserver.interfaces.objects.SServerSettings;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
-@WebService(name = "SettingsInterface")
+@WebService(name = "SettingsInterface", targetNamespace="org.bimserver")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface SettingsInterface extends PublicInterface {
 	/**

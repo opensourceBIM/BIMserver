@@ -15,7 +15,7 @@ import org.bimserver.interfaces.objects.SServiceDescriptor;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
-@WebService(name = "RemoteServiceInterface")
+@WebService(name = "RemoteServiceInterface", targetNamespace="org.buildingsmart.bimsie")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface RemoteServiceInterface extends PublicInterface {
 	
