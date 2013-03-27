@@ -624,6 +624,1152 @@ public final class PluginInterfaceImpl {
     // @@protoc_insertion_point(class_scope:org.bimserver.pb.AddDeserializerRequest)
   }
 
+  public interface SInternalServicePluginConfigurationOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional int64 userSettingsId = 1;
+    /**
+     * <code>optional int64 userSettingsId = 1;</code>
+     */
+    boolean hasUserSettingsId();
+    /**
+     * <code>optional int64 userSettingsId = 1;</code>
+     */
+    long getUserSettingsId();
+
+    // optional int32 rid = 2;
+    /**
+     * <code>optional int32 rid = 2;</code>
+     */
+    boolean hasRid();
+    /**
+     * <code>optional int32 rid = 2;</code>
+     */
+    int getRid();
+
+    // optional int64 oid = 3;
+    /**
+     * <code>optional int64 oid = 3;</code>
+     */
+    boolean hasOid();
+    /**
+     * <code>optional int64 oid = 3;</code>
+     */
+    long getOid();
+
+    // optional bool remoteAccessible = 4;
+    /**
+     * <code>optional bool remoteAccessible = 4;</code>
+     */
+    boolean hasRemoteAccessible();
+    /**
+     * <code>optional bool remoteAccessible = 4;</code>
+     */
+    boolean getRemoteAccessible();
+  }
+  /**
+   * Protobuf type {@code org.bimserver.pb.SInternalServicePluginConfiguration}
+   */
+  public static final class SInternalServicePluginConfiguration extends
+      com.google.protobuf.GeneratedMessage
+      implements SInternalServicePluginConfigurationOrBuilder {
+    // Use SInternalServicePluginConfiguration.newBuilder() to construct.
+    private SInternalServicePluginConfiguration(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private SInternalServicePluginConfiguration(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final SInternalServicePluginConfiguration defaultInstance;
+    public static SInternalServicePluginConfiguration getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public SInternalServicePluginConfiguration getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SInternalServicePluginConfiguration(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              userSettingsId_ = input.readInt64();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              rid_ = input.readInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              oid_ = input.readInt64();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              remoteAccessible_ = input.readBool();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SInternalServicePluginConfiguration_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SInternalServicePluginConfiguration_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.class, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<SInternalServicePluginConfiguration> PARSER =
+        new com.google.protobuf.AbstractParser<SInternalServicePluginConfiguration>() {
+      public SInternalServicePluginConfiguration parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SInternalServicePluginConfiguration(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SInternalServicePluginConfiguration> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional int64 userSettingsId = 1;
+    public static final int USERSETTINGSID_FIELD_NUMBER = 1;
+    private long userSettingsId_;
+    /**
+     * <code>optional int64 userSettingsId = 1;</code>
+     */
+    public boolean hasUserSettingsId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional int64 userSettingsId = 1;</code>
+     */
+    public long getUserSettingsId() {
+      return userSettingsId_;
+    }
+
+    // optional int32 rid = 2;
+    public static final int RID_FIELD_NUMBER = 2;
+    private int rid_;
+    /**
+     * <code>optional int32 rid = 2;</code>
+     */
+    public boolean hasRid() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional int32 rid = 2;</code>
+     */
+    public int getRid() {
+      return rid_;
+    }
+
+    // optional int64 oid = 3;
+    public static final int OID_FIELD_NUMBER = 3;
+    private long oid_;
+    /**
+     * <code>optional int64 oid = 3;</code>
+     */
+    public boolean hasOid() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional int64 oid = 3;</code>
+     */
+    public long getOid() {
+      return oid_;
+    }
+
+    // optional bool remoteAccessible = 4;
+    public static final int REMOTEACCESSIBLE_FIELD_NUMBER = 4;
+    private boolean remoteAccessible_;
+    /**
+     * <code>optional bool remoteAccessible = 4;</code>
+     */
+    public boolean hasRemoteAccessible() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional bool remoteAccessible = 4;</code>
+     */
+    public boolean getRemoteAccessible() {
+      return remoteAccessible_;
+    }
+
+    private void initFields() {
+      userSettingsId_ = 0L;
+      rid_ = 0;
+      oid_ = 0L;
+      remoteAccessible_ = false;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt64(1, userSettingsId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt32(2, rid_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt64(3, oid_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBool(4, remoteAccessible_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, userSettingsId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, rid_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, oid_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, remoteAccessible_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.bimserver.pb.SInternalServicePluginConfiguration}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SInternalServicePluginConfiguration_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SInternalServicePluginConfiguration_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.class, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder.class);
+      }
+
+      // Construct using org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        userSettingsId_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        rid_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        oid_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        remoteAccessible_ = false;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SInternalServicePluginConfiguration_descriptor;
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration getDefaultInstanceForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.getDefaultInstance();
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration build() {
+        org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration buildPartial() {
+        org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration result = new org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.userSettingsId_ = userSettingsId_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.rid_ = rid_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.oid_ = oid_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.remoteAccessible_ = remoteAccessible_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration) {
+          return mergeFrom((org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration other) {
+        if (other == org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.getDefaultInstance()) return this;
+        if (other.hasUserSettingsId()) {
+          setUserSettingsId(other.getUserSettingsId());
+        }
+        if (other.hasRid()) {
+          setRid(other.getRid());
+        }
+        if (other.hasOid()) {
+          setOid(other.getOid());
+        }
+        if (other.hasRemoteAccessible()) {
+          setRemoteAccessible(other.getRemoteAccessible());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional int64 userSettingsId = 1;
+      private long userSettingsId_ ;
+      /**
+       * <code>optional int64 userSettingsId = 1;</code>
+       */
+      public boolean hasUserSettingsId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional int64 userSettingsId = 1;</code>
+       */
+      public long getUserSettingsId() {
+        return userSettingsId_;
+      }
+      /**
+       * <code>optional int64 userSettingsId = 1;</code>
+       */
+      public Builder setUserSettingsId(long value) {
+        bitField0_ |= 0x00000001;
+        userSettingsId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 userSettingsId = 1;</code>
+       */
+      public Builder clearUserSettingsId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        userSettingsId_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // optional int32 rid = 2;
+      private int rid_ ;
+      /**
+       * <code>optional int32 rid = 2;</code>
+       */
+      public boolean hasRid() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional int32 rid = 2;</code>
+       */
+      public int getRid() {
+        return rid_;
+      }
+      /**
+       * <code>optional int32 rid = 2;</code>
+       */
+      public Builder setRid(int value) {
+        bitField0_ |= 0x00000002;
+        rid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 rid = 2;</code>
+       */
+      public Builder clearRid() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        rid_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional int64 oid = 3;
+      private long oid_ ;
+      /**
+       * <code>optional int64 oid = 3;</code>
+       */
+      public boolean hasOid() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional int64 oid = 3;</code>
+       */
+      public long getOid() {
+        return oid_;
+      }
+      /**
+       * <code>optional int64 oid = 3;</code>
+       */
+      public Builder setOid(long value) {
+        bitField0_ |= 0x00000004;
+        oid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 oid = 3;</code>
+       */
+      public Builder clearOid() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        oid_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // optional bool remoteAccessible = 4;
+      private boolean remoteAccessible_ ;
+      /**
+       * <code>optional bool remoteAccessible = 4;</code>
+       */
+      public boolean hasRemoteAccessible() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional bool remoteAccessible = 4;</code>
+       */
+      public boolean getRemoteAccessible() {
+        return remoteAccessible_;
+      }
+      /**
+       * <code>optional bool remoteAccessible = 4;</code>
+       */
+      public Builder setRemoteAccessible(boolean value) {
+        bitField0_ |= 0x00000008;
+        remoteAccessible_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool remoteAccessible = 4;</code>
+       */
+      public Builder clearRemoteAccessible() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        remoteAccessible_ = false;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.SInternalServicePluginConfiguration)
+    }
+
+    static {
+      defaultInstance = new SInternalServicePluginConfiguration(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.SInternalServicePluginConfiguration)
+  }
+
+  public interface AddInternalServiceRequestOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;
+    /**
+     * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+     */
+    boolean hasInternalService();
+    /**
+     * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+     */
+    org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration getInternalService();
+    /**
+     * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+     */
+    org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder getInternalServiceOrBuilder();
+  }
+  /**
+   * Protobuf type {@code org.bimserver.pb.AddInternalServiceRequest}
+   */
+  public static final class AddInternalServiceRequest extends
+      com.google.protobuf.GeneratedMessage
+      implements AddInternalServiceRequestOrBuilder {
+    // Use AddInternalServiceRequest.newBuilder() to construct.
+    private AddInternalServiceRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private AddInternalServiceRequest(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final AddInternalServiceRequest defaultInstance;
+    public static AddInternalServiceRequest getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public AddInternalServiceRequest getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private AddInternalServiceRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000001) == 0x00000001)) {
+                subBuilder = internalService_.toBuilder();
+              }
+              internalService_ = input.readMessage(org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(internalService_);
+                internalService_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000001;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_AddInternalServiceRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_AddInternalServiceRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest.class, org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<AddInternalServiceRequest> PARSER =
+        new com.google.protobuf.AbstractParser<AddInternalServiceRequest>() {
+      public AddInternalServiceRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new AddInternalServiceRequest(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<AddInternalServiceRequest> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;
+    public static final int INTERNALSERVICE_FIELD_NUMBER = 1;
+    private org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration internalService_;
+    /**
+     * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+     */
+    public boolean hasInternalService() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+     */
+    public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration getInternalService() {
+      return internalService_;
+    }
+    /**
+     * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+     */
+    public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder getInternalServiceOrBuilder() {
+      return internalService_;
+    }
+
+    private void initFields() {
+      internalService_ = org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.getDefaultInstance();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeMessage(1, internalService_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, internalService_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.bimserver.pb.AddInternalServiceRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_AddInternalServiceRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_AddInternalServiceRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest.class, org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest.Builder.class);
+      }
+
+      // Construct using org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getInternalServiceFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        if (internalServiceBuilder_ == null) {
+          internalService_ = org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.getDefaultInstance();
+        } else {
+          internalServiceBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_AddInternalServiceRequest_descriptor;
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest getDefaultInstanceForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest.getDefaultInstance();
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest build() {
+        org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest buildPartial() {
+        org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest result = new org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        if (internalServiceBuilder_ == null) {
+          result.internalService_ = internalService_;
+        } else {
+          result.internalService_ = internalServiceBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest) {
+          return mergeFrom((org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest other) {
+        if (other == org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest.getDefaultInstance()) return this;
+        if (other.hasInternalService()) {
+          mergeInternalService(other.getInternalService());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;
+      private org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration internalService_ = org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder> internalServiceBuilder_;
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+       */
+      public boolean hasInternalService() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration getInternalService() {
+        if (internalServiceBuilder_ == null) {
+          return internalService_;
+        } else {
+          return internalServiceBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+       */
+      public Builder setInternalService(org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration value) {
+        if (internalServiceBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          internalService_ = value;
+          onChanged();
+        } else {
+          internalServiceBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+       */
+      public Builder setInternalService(
+          org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder builderForValue) {
+        if (internalServiceBuilder_ == null) {
+          internalService_ = builderForValue.build();
+          onChanged();
+        } else {
+          internalServiceBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+       */
+      public Builder mergeInternalService(org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration value) {
+        if (internalServiceBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              internalService_ != org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.getDefaultInstance()) {
+            internalService_ =
+              org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.newBuilder(internalService_).mergeFrom(value).buildPartial();
+          } else {
+            internalService_ = value;
+          }
+          onChanged();
+        } else {
+          internalServiceBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+       */
+      public Builder clearInternalService() {
+        if (internalServiceBuilder_ == null) {
+          internalService_ = org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.getDefaultInstance();
+          onChanged();
+        } else {
+          internalServiceBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder getInternalServiceBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getInternalServiceFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder getInternalServiceOrBuilder() {
+        if (internalServiceBuilder_ != null) {
+          return internalServiceBuilder_.getMessageOrBuilder();
+        } else {
+          return internalService_;
+        }
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder> 
+          getInternalServiceFieldBuilder() {
+        if (internalServiceBuilder_ == null) {
+          internalServiceBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder>(
+                  internalService_,
+                  getParentForChildren(),
+                  isClean());
+          internalService_ = null;
+        }
+        return internalServiceBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.AddInternalServiceRequest)
+    }
+
+    static {
+      defaultInstance = new AddInternalServiceRequest(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.AddInternalServiceRequest)
+  }
+
   public interface SModelComparePluginConfigurationOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
@@ -7886,6 +9032,402 @@ public final class PluginInterfaceImpl {
     // @@protoc_insertion_point(class_scope:org.bimserver.pb.DeleteDeserializerRequest)
   }
 
+  public interface DeleteInternalServiceRequestOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional int64 oid = 1;
+    /**
+     * <code>optional int64 oid = 1;</code>
+     */
+    boolean hasOid();
+    /**
+     * <code>optional int64 oid = 1;</code>
+     */
+    long getOid();
+  }
+  /**
+   * Protobuf type {@code org.bimserver.pb.DeleteInternalServiceRequest}
+   */
+  public static final class DeleteInternalServiceRequest extends
+      com.google.protobuf.GeneratedMessage
+      implements DeleteInternalServiceRequestOrBuilder {
+    // Use DeleteInternalServiceRequest.newBuilder() to construct.
+    private DeleteInternalServiceRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private DeleteInternalServiceRequest(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final DeleteInternalServiceRequest defaultInstance;
+    public static DeleteInternalServiceRequest getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public DeleteInternalServiceRequest getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private DeleteInternalServiceRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              oid_ = input.readInt64();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_DeleteInternalServiceRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_DeleteInternalServiceRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest.class, org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<DeleteInternalServiceRequest> PARSER =
+        new com.google.protobuf.AbstractParser<DeleteInternalServiceRequest>() {
+      public DeleteInternalServiceRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new DeleteInternalServiceRequest(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<DeleteInternalServiceRequest> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional int64 oid = 1;
+    public static final int OID_FIELD_NUMBER = 1;
+    private long oid_;
+    /**
+     * <code>optional int64 oid = 1;</code>
+     */
+    public boolean hasOid() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional int64 oid = 1;</code>
+     */
+    public long getOid() {
+      return oid_;
+    }
+
+    private void initFields() {
+      oid_ = 0L;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt64(1, oid_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, oid_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.bimserver.pb.DeleteInternalServiceRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_DeleteInternalServiceRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_DeleteInternalServiceRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest.class, org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest.Builder.class);
+      }
+
+      // Construct using org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        oid_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_DeleteInternalServiceRequest_descriptor;
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest getDefaultInstanceForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest.getDefaultInstance();
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest build() {
+        org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest buildPartial() {
+        org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest result = new org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.oid_ = oid_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest) {
+          return mergeFrom((org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest other) {
+        if (other == org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest.getDefaultInstance()) return this;
+        if (other.hasOid()) {
+          setOid(other.getOid());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional int64 oid = 1;
+      private long oid_ ;
+      /**
+       * <code>optional int64 oid = 1;</code>
+       */
+      public boolean hasOid() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional int64 oid = 1;</code>
+       */
+      public long getOid() {
+        return oid_;
+      }
+      /**
+       * <code>optional int64 oid = 1;</code>
+       */
+      public Builder setOid(long value) {
+        bitField0_ |= 0x00000001;
+        oid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 oid = 1;</code>
+       */
+      public Builder clearOid() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        oid_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.DeleteInternalServiceRequest)
+    }
+
+    static {
+      defaultInstance = new DeleteInternalServiceRequest(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.DeleteInternalServiceRequest)
+  }
+
   public interface DeleteModelCompareRequestOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
@@ -12631,6 +14173,1235 @@ public final class PluginInterfaceImpl {
     }
 
     // @@protoc_insertion_point(class_scope:org.bimserver.pb.GetAllDeserializersResponse)
+  }
+
+  public interface GetAllInternalServicesRequestOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional bool onlyEnabled = 1;
+    /**
+     * <code>optional bool onlyEnabled = 1;</code>
+     */
+    boolean hasOnlyEnabled();
+    /**
+     * <code>optional bool onlyEnabled = 1;</code>
+     */
+    boolean getOnlyEnabled();
+  }
+  /**
+   * Protobuf type {@code org.bimserver.pb.GetAllInternalServicesRequest}
+   */
+  public static final class GetAllInternalServicesRequest extends
+      com.google.protobuf.GeneratedMessage
+      implements GetAllInternalServicesRequestOrBuilder {
+    // Use GetAllInternalServicesRequest.newBuilder() to construct.
+    private GetAllInternalServicesRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private GetAllInternalServicesRequest(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final GetAllInternalServicesRequest defaultInstance;
+    public static GetAllInternalServicesRequest getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public GetAllInternalServicesRequest getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetAllInternalServicesRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              onlyEnabled_ = input.readBool();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetAllInternalServicesRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetAllInternalServicesRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest.class, org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<GetAllInternalServicesRequest> PARSER =
+        new com.google.protobuf.AbstractParser<GetAllInternalServicesRequest>() {
+      public GetAllInternalServicesRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetAllInternalServicesRequest(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetAllInternalServicesRequest> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional bool onlyEnabled = 1;
+    public static final int ONLYENABLED_FIELD_NUMBER = 1;
+    private boolean onlyEnabled_;
+    /**
+     * <code>optional bool onlyEnabled = 1;</code>
+     */
+    public boolean hasOnlyEnabled() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional bool onlyEnabled = 1;</code>
+     */
+    public boolean getOnlyEnabled() {
+      return onlyEnabled_;
+    }
+
+    private void initFields() {
+      onlyEnabled_ = false;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBool(1, onlyEnabled_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, onlyEnabled_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.bimserver.pb.GetAllInternalServicesRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetAllInternalServicesRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetAllInternalServicesRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest.class, org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest.Builder.class);
+      }
+
+      // Construct using org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        onlyEnabled_ = false;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetAllInternalServicesRequest_descriptor;
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest getDefaultInstanceForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest.getDefaultInstance();
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest build() {
+        org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest buildPartial() {
+        org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest result = new org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.onlyEnabled_ = onlyEnabled_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest) {
+          return mergeFrom((org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest other) {
+        if (other == org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest.getDefaultInstance()) return this;
+        if (other.hasOnlyEnabled()) {
+          setOnlyEnabled(other.getOnlyEnabled());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional bool onlyEnabled = 1;
+      private boolean onlyEnabled_ ;
+      /**
+       * <code>optional bool onlyEnabled = 1;</code>
+       */
+      public boolean hasOnlyEnabled() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional bool onlyEnabled = 1;</code>
+       */
+      public boolean getOnlyEnabled() {
+        return onlyEnabled_;
+      }
+      /**
+       * <code>optional bool onlyEnabled = 1;</code>
+       */
+      public Builder setOnlyEnabled(boolean value) {
+        bitField0_ |= 0x00000001;
+        onlyEnabled_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool onlyEnabled = 1;</code>
+       */
+      public Builder clearOnlyEnabled() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onlyEnabled_ = false;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.GetAllInternalServicesRequest)
+    }
+
+    static {
+      defaultInstance = new GetAllInternalServicesRequest(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.GetAllInternalServicesRequest)
+  }
+
+  public interface GetAllInternalServicesResponseOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional string errorMessage = 1;
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    boolean hasErrorMessage();
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    java.lang.String getErrorMessage();
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getErrorMessageBytes();
+
+    // repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;
+    /**
+     * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+     */
+    java.util.List<org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration> 
+        getValueList();
+    /**
+     * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+     */
+    org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration getValue(int index);
+    /**
+     * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+     */
+    int getValueCount();
+    /**
+     * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+     */
+    java.util.List<? extends org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder> 
+        getValueOrBuilderList();
+    /**
+     * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+     */
+    org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder getValueOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code org.bimserver.pb.GetAllInternalServicesResponse}
+   */
+  public static final class GetAllInternalServicesResponse extends
+      com.google.protobuf.GeneratedMessage
+      implements GetAllInternalServicesResponseOrBuilder {
+    // Use GetAllInternalServicesResponse.newBuilder() to construct.
+    private GetAllInternalServicesResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private GetAllInternalServicesResponse(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final GetAllInternalServicesResponse defaultInstance;
+    public static GetAllInternalServicesResponse getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public GetAllInternalServicesResponse getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetAllInternalServicesResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              errorMessage_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                value_ = new java.util.ArrayList<org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              value_.add(input.readMessage(org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.PARSER, extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          value_ = java.util.Collections.unmodifiableList(value_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetAllInternalServicesResponse_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetAllInternalServicesResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse.class, org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<GetAllInternalServicesResponse> PARSER =
+        new com.google.protobuf.AbstractParser<GetAllInternalServicesResponse>() {
+      public GetAllInternalServicesResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetAllInternalServicesResponse(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetAllInternalServicesResponse> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional string errorMessage = 1;
+    public static final int ERRORMESSAGE_FIELD_NUMBER = 1;
+    private java.lang.Object errorMessage_;
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    public boolean hasErrorMessage() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    public java.lang.String getErrorMessage() {
+      java.lang.Object ref = errorMessage_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          errorMessage_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getErrorMessageBytes() {
+      java.lang.Object ref = errorMessage_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        errorMessage_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;
+    public static final int VALUE_FIELD_NUMBER = 2;
+    private java.util.List<org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration> value_;
+    /**
+     * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+     */
+    public java.util.List<org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration> getValueList() {
+      return value_;
+    }
+    /**
+     * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+     */
+    public java.util.List<? extends org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder> 
+        getValueOrBuilderList() {
+      return value_;
+    }
+    /**
+     * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+     */
+    public int getValueCount() {
+      return value_.size();
+    }
+    /**
+     * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+     */
+    public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration getValue(int index) {
+      return value_.get(index);
+    }
+    /**
+     * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+     */
+    public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder getValueOrBuilder(
+        int index) {
+      return value_.get(index);
+    }
+
+    private void initFields() {
+      errorMessage_ = "";
+      value_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getErrorMessageBytes());
+      }
+      for (int i = 0; i < value_.size(); i++) {
+        output.writeMessage(2, value_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getErrorMessageBytes());
+      }
+      for (int i = 0; i < value_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, value_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.bimserver.pb.GetAllInternalServicesResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetAllInternalServicesResponse_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetAllInternalServicesResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse.class, org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse.Builder.class);
+      }
+
+      // Construct using org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getValueFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        errorMessage_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (valueBuilder_ == null) {
+          value_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          valueBuilder_.clear();
+        }
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetAllInternalServicesResponse_descriptor;
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse getDefaultInstanceForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse.getDefaultInstance();
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse build() {
+        org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse buildPartial() {
+        org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse result = new org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.errorMessage_ = errorMessage_;
+        if (valueBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            value_ = java.util.Collections.unmodifiableList(value_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.value_ = value_;
+        } else {
+          result.value_ = valueBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse) {
+          return mergeFrom((org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse other) {
+        if (other == org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse.getDefaultInstance()) return this;
+        if (other.hasErrorMessage()) {
+          bitField0_ |= 0x00000001;
+          errorMessage_ = other.errorMessage_;
+          onChanged();
+        }
+        if (valueBuilder_ == null) {
+          if (!other.value_.isEmpty()) {
+            if (value_.isEmpty()) {
+              value_ = other.value_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureValueIsMutable();
+              value_.addAll(other.value_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.value_.isEmpty()) {
+            if (valueBuilder_.isEmpty()) {
+              valueBuilder_.dispose();
+              valueBuilder_ = null;
+              value_ = other.value_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              valueBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getValueFieldBuilder() : null;
+            } else {
+              valueBuilder_.addAllMessages(other.value_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional string errorMessage = 1;
+      private java.lang.Object errorMessage_ = "";
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public boolean hasErrorMessage() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public java.lang.String getErrorMessage() {
+        java.lang.Object ref = errorMessage_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          errorMessage_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getErrorMessageBytes() {
+        java.lang.Object ref = errorMessage_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          errorMessage_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public Builder setErrorMessage(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        errorMessage_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public Builder clearErrorMessage() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        errorMessage_ = getDefaultInstance().getErrorMessage();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public Builder setErrorMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        errorMessage_ = value;
+        onChanged();
+        return this;
+      }
+
+      // repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;
+      private java.util.List<org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration> value_ =
+        java.util.Collections.emptyList();
+      private void ensureValueIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          value_ = new java.util.ArrayList<org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration>(value_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder> valueBuilder_;
+
+      /**
+       * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public java.util.List<org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration> getValueList() {
+        if (valueBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(value_);
+        } else {
+          return valueBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public int getValueCount() {
+        if (valueBuilder_ == null) {
+          return value_.size();
+        } else {
+          return valueBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration getValue(int index) {
+        if (valueBuilder_ == null) {
+          return value_.get(index);
+        } else {
+          return valueBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public Builder setValue(
+          int index, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration value) {
+        if (valueBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureValueIsMutable();
+          value_.set(index, value);
+          onChanged();
+        } else {
+          valueBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public Builder setValue(
+          int index, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder builderForValue) {
+        if (valueBuilder_ == null) {
+          ensureValueIsMutable();
+          value_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          valueBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public Builder addValue(org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration value) {
+        if (valueBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureValueIsMutable();
+          value_.add(value);
+          onChanged();
+        } else {
+          valueBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public Builder addValue(
+          int index, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration value) {
+        if (valueBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureValueIsMutable();
+          value_.add(index, value);
+          onChanged();
+        } else {
+          valueBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public Builder addValue(
+          org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder builderForValue) {
+        if (valueBuilder_ == null) {
+          ensureValueIsMutable();
+          value_.add(builderForValue.build());
+          onChanged();
+        } else {
+          valueBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public Builder addValue(
+          int index, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder builderForValue) {
+        if (valueBuilder_ == null) {
+          ensureValueIsMutable();
+          value_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          valueBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public Builder addAllValue(
+          java.lang.Iterable<? extends org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration> values) {
+        if (valueBuilder_ == null) {
+          ensureValueIsMutable();
+          super.addAll(values, value_);
+          onChanged();
+        } else {
+          valueBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public Builder clearValue() {
+        if (valueBuilder_ == null) {
+          value_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          valueBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public Builder removeValue(int index) {
+        if (valueBuilder_ == null) {
+          ensureValueIsMutable();
+          value_.remove(index);
+          onChanged();
+        } else {
+          valueBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder getValueBuilder(
+          int index) {
+        return getValueFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder getValueOrBuilder(
+          int index) {
+        if (valueBuilder_ == null) {
+          return value_.get(index);  } else {
+          return valueBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public java.util.List<? extends org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder> 
+           getValueOrBuilderList() {
+        if (valueBuilder_ != null) {
+          return valueBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(value_);
+        }
+      }
+      /**
+       * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder addValueBuilder() {
+        return getValueFieldBuilder().addBuilder(
+            org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder addValueBuilder(
+          int index) {
+        return getValueFieldBuilder().addBuilder(
+            index, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public java.util.List<org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder> 
+           getValueBuilderList() {
+        return getValueFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder> 
+          getValueFieldBuilder() {
+        if (valueBuilder_ == null) {
+          valueBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder>(
+                  value_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          value_ = null;
+        }
+        return valueBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.GetAllInternalServicesResponse)
+    }
+
+    static {
+      defaultInstance = new GetAllInternalServicesResponse(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.GetAllInternalServicesResponse)
   }
 
   public interface GetAllModelComparePluginDescriptorsRequestOrBuilder
@@ -34884,6 +37655,1065 @@ public final class PluginInterfaceImpl {
     // @@protoc_insertion_point(class_scope:org.bimserver.pb.GetDeserializerByNameResponse)
   }
 
+  public interface GetInternalServiceByIdRequestOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional int64 oid = 1;
+    /**
+     * <code>optional int64 oid = 1;</code>
+     */
+    boolean hasOid();
+    /**
+     * <code>optional int64 oid = 1;</code>
+     */
+    long getOid();
+  }
+  /**
+   * Protobuf type {@code org.bimserver.pb.GetInternalServiceByIdRequest}
+   */
+  public static final class GetInternalServiceByIdRequest extends
+      com.google.protobuf.GeneratedMessage
+      implements GetInternalServiceByIdRequestOrBuilder {
+    // Use GetInternalServiceByIdRequest.newBuilder() to construct.
+    private GetInternalServiceByIdRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private GetInternalServiceByIdRequest(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final GetInternalServiceByIdRequest defaultInstance;
+    public static GetInternalServiceByIdRequest getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public GetInternalServiceByIdRequest getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetInternalServiceByIdRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              oid_ = input.readInt64();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetInternalServiceByIdRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetInternalServiceByIdRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest.class, org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<GetInternalServiceByIdRequest> PARSER =
+        new com.google.protobuf.AbstractParser<GetInternalServiceByIdRequest>() {
+      public GetInternalServiceByIdRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetInternalServiceByIdRequest(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetInternalServiceByIdRequest> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional int64 oid = 1;
+    public static final int OID_FIELD_NUMBER = 1;
+    private long oid_;
+    /**
+     * <code>optional int64 oid = 1;</code>
+     */
+    public boolean hasOid() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional int64 oid = 1;</code>
+     */
+    public long getOid() {
+      return oid_;
+    }
+
+    private void initFields() {
+      oid_ = 0L;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt64(1, oid_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, oid_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.bimserver.pb.GetInternalServiceByIdRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetInternalServiceByIdRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetInternalServiceByIdRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest.class, org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest.Builder.class);
+      }
+
+      // Construct using org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        oid_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetInternalServiceByIdRequest_descriptor;
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest getDefaultInstanceForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest.getDefaultInstance();
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest build() {
+        org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest buildPartial() {
+        org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest result = new org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.oid_ = oid_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest) {
+          return mergeFrom((org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest other) {
+        if (other == org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest.getDefaultInstance()) return this;
+        if (other.hasOid()) {
+          setOid(other.getOid());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional int64 oid = 1;
+      private long oid_ ;
+      /**
+       * <code>optional int64 oid = 1;</code>
+       */
+      public boolean hasOid() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional int64 oid = 1;</code>
+       */
+      public long getOid() {
+        return oid_;
+      }
+      /**
+       * <code>optional int64 oid = 1;</code>
+       */
+      public Builder setOid(long value) {
+        bitField0_ |= 0x00000001;
+        oid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 oid = 1;</code>
+       */
+      public Builder clearOid() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        oid_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.GetInternalServiceByIdRequest)
+    }
+
+    static {
+      defaultInstance = new GetInternalServiceByIdRequest(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.GetInternalServiceByIdRequest)
+  }
+
+  public interface GetInternalServiceByIdResponseOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional string errorMessage = 1;
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    boolean hasErrorMessage();
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    java.lang.String getErrorMessage();
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getErrorMessageBytes();
+
+    // optional .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;
+    /**
+     * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+     */
+    boolean hasValue();
+    /**
+     * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+     */
+    org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration getValue();
+    /**
+     * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+     */
+    org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder getValueOrBuilder();
+  }
+  /**
+   * Protobuf type {@code org.bimserver.pb.GetInternalServiceByIdResponse}
+   */
+  public static final class GetInternalServiceByIdResponse extends
+      com.google.protobuf.GeneratedMessage
+      implements GetInternalServiceByIdResponseOrBuilder {
+    // Use GetInternalServiceByIdResponse.newBuilder() to construct.
+    private GetInternalServiceByIdResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private GetInternalServiceByIdResponse(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final GetInternalServiceByIdResponse defaultInstance;
+    public static GetInternalServiceByIdResponse getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public GetInternalServiceByIdResponse getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetInternalServiceByIdResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              errorMessage_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                subBuilder = value_.toBuilder();
+              }
+              value_ = input.readMessage(org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(value_);
+                value_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000002;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetInternalServiceByIdResponse_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetInternalServiceByIdResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse.class, org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<GetInternalServiceByIdResponse> PARSER =
+        new com.google.protobuf.AbstractParser<GetInternalServiceByIdResponse>() {
+      public GetInternalServiceByIdResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetInternalServiceByIdResponse(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetInternalServiceByIdResponse> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional string errorMessage = 1;
+    public static final int ERRORMESSAGE_FIELD_NUMBER = 1;
+    private java.lang.Object errorMessage_;
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    public boolean hasErrorMessage() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    public java.lang.String getErrorMessage() {
+      java.lang.Object ref = errorMessage_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          errorMessage_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getErrorMessageBytes() {
+      java.lang.Object ref = errorMessage_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        errorMessage_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;
+    public static final int VALUE_FIELD_NUMBER = 2;
+    private org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration value_;
+    /**
+     * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+     */
+    public boolean hasValue() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+     */
+    public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration getValue() {
+      return value_;
+    }
+    /**
+     * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+     */
+    public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder getValueOrBuilder() {
+      return value_;
+    }
+
+    private void initFields() {
+      errorMessage_ = "";
+      value_ = org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.getDefaultInstance();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getErrorMessageBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeMessage(2, value_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getErrorMessageBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, value_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.bimserver.pb.GetInternalServiceByIdResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetInternalServiceByIdResponse_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetInternalServiceByIdResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse.class, org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse.Builder.class);
+      }
+
+      // Construct using org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getValueFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        errorMessage_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (valueBuilder_ == null) {
+          value_ = org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.getDefaultInstance();
+        } else {
+          valueBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_GetInternalServiceByIdResponse_descriptor;
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse getDefaultInstanceForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse.getDefaultInstance();
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse build() {
+        org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse buildPartial() {
+        org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse result = new org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.errorMessage_ = errorMessage_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        if (valueBuilder_ == null) {
+          result.value_ = value_;
+        } else {
+          result.value_ = valueBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse) {
+          return mergeFrom((org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse other) {
+        if (other == org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse.getDefaultInstance()) return this;
+        if (other.hasErrorMessage()) {
+          bitField0_ |= 0x00000001;
+          errorMessage_ = other.errorMessage_;
+          onChanged();
+        }
+        if (other.hasValue()) {
+          mergeValue(other.getValue());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional string errorMessage = 1;
+      private java.lang.Object errorMessage_ = "";
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public boolean hasErrorMessage() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public java.lang.String getErrorMessage() {
+        java.lang.Object ref = errorMessage_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          errorMessage_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getErrorMessageBytes() {
+        java.lang.Object ref = errorMessage_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          errorMessage_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public Builder setErrorMessage(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        errorMessage_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public Builder clearErrorMessage() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        errorMessage_ = getDefaultInstance().getErrorMessage();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public Builder setErrorMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        errorMessage_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;
+      private org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration value_ = org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder> valueBuilder_;
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public boolean hasValue() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration getValue() {
+        if (valueBuilder_ == null) {
+          return value_;
+        } else {
+          return valueBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public Builder setValue(org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration value) {
+        if (valueBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          value_ = value;
+          onChanged();
+        } else {
+          valueBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public Builder setValue(
+          org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder builderForValue) {
+        if (valueBuilder_ == null) {
+          value_ = builderForValue.build();
+          onChanged();
+        } else {
+          valueBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public Builder mergeValue(org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration value) {
+        if (valueBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              value_ != org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.getDefaultInstance()) {
+            value_ =
+              org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.newBuilder(value_).mergeFrom(value).buildPartial();
+          } else {
+            value_ = value;
+          }
+          onChanged();
+        } else {
+          valueBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public Builder clearValue() {
+        if (valueBuilder_ == null) {
+          value_ = org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.getDefaultInstance();
+          onChanged();
+        } else {
+          valueBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder getValueBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getValueFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder getValueOrBuilder() {
+        if (valueBuilder_ != null) {
+          return valueBuilder_.getMessageOrBuilder();
+        } else {
+          return value_;
+        }
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration value = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder> 
+          getValueFieldBuilder() {
+        if (valueBuilder_ == null) {
+          valueBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder>(
+                  value_,
+                  getParentForChildren(),
+                  isClean());
+          value_ = null;
+        }
+        return valueBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.GetInternalServiceByIdResponse)
+    }
+
+    static {
+      defaultInstance = new GetInternalServiceByIdResponse(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.GetInternalServiceByIdResponse)
+  }
+
   public interface GetModelCompareByIdRequestOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
@@ -42876,47 +46706,47 @@ public final class PluginInterfaceImpl {
     com.google.protobuf.ByteString
         getActualTypeBytes();
 
-    // optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 2;
+    // optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 2;
     /**
-     * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 2;</code>
-     */
-    boolean hasSObjectDefinition();
-    /**
-     * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 2;</code>
-     */
-    org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition getSObjectDefinition();
-    /**
-     * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 2;</code>
-     */
-    org.bimserver.pb.PluginInterfaceImpl.SObjectDefinitionOrBuilder getSObjectDefinitionOrBuilder();
-
-    // optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 3;
-    /**
-     * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 3;</code>
+     * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 2;</code>
      */
     boolean hasSArrayDefinition();
     /**
-     * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 3;</code>
+     * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 2;</code>
      */
     org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition getSArrayDefinition();
     /**
-     * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 3;</code>
+     * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 2;</code>
      */
     org.bimserver.pb.PluginInterfaceImpl.SArrayDefinitionOrBuilder getSArrayDefinitionOrBuilder();
 
-    // optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 4;
+    // optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 3;
     /**
-     * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 4;</code>
+     * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 3;</code>
      */
     boolean hasSPrimitiveDefinition();
     /**
-     * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 4;</code>
+     * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 3;</code>
      */
     org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition getSPrimitiveDefinition();
     /**
-     * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 4;</code>
+     * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 3;</code>
      */
     org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinitionOrBuilder getSPrimitiveDefinitionOrBuilder();
+
+    // optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 4;
+    /**
+     * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 4;</code>
+     */
+    boolean hasSObjectDefinition();
+    /**
+     * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 4;</code>
+     */
+    org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition getSObjectDefinition();
+    /**
+     * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 4;</code>
+     */
+    org.bimserver.pb.PluginInterfaceImpl.SObjectDefinitionOrBuilder getSObjectDefinitionOrBuilder();
   }
   /**
    * Protobuf type {@code org.bimserver.pb.STypeDefinition}
@@ -42975,21 +46805,8 @@ public final class PluginInterfaceImpl {
               break;
             }
             case 18: {
-              org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000002) == 0x00000002)) {
-                subBuilder = SObjectDefinition_.toBuilder();
-              }
-              SObjectDefinition_ = input.readMessage(org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(SObjectDefinition_);
-                SObjectDefinition_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000002;
-              break;
-            }
-            case 26: {
               org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000004) == 0x00000004)) {
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
                 subBuilder = SArrayDefinition_.toBuilder();
               }
               SArrayDefinition_ = input.readMessage(org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition.PARSER, extensionRegistry);
@@ -42997,18 +46814,31 @@ public final class PluginInterfaceImpl {
                 subBuilder.mergeFrom(SArrayDefinition_);
                 SArrayDefinition_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000004;
+              bitField0_ |= 0x00000002;
               break;
             }
-            case 34: {
+            case 26: {
               org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000008) == 0x00000008)) {
+              if (((bitField0_ & 0x00000004) == 0x00000004)) {
                 subBuilder = SPrimitiveDefinition_.toBuilder();
               }
               SPrimitiveDefinition_ = input.readMessage(org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition.PARSER, extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(SPrimitiveDefinition_);
                 SPrimitiveDefinition_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000004;
+              break;
+            }
+            case 34: {
+              org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000008) == 0x00000008)) {
+                subBuilder = SObjectDefinition_.toBuilder();
+              }
+              SObjectDefinition_ = input.readMessage(org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(SObjectDefinition_);
+                SObjectDefinition_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000008;
               break;
@@ -43096,77 +46926,77 @@ public final class PluginInterfaceImpl {
       }
     }
 
-    // optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 2;
-    public static final int __SOBJECTDEFINITION_FIELD_NUMBER = 2;
-    private org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition SObjectDefinition_;
+    // optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 2;
+    public static final int __SARRAYDEFINITION_FIELD_NUMBER = 2;
+    private org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition SArrayDefinition_;
     /**
-     * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 2;</code>
+     * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 2;</code>
      */
-    public boolean hasSObjectDefinition() {
+    public boolean hasSArrayDefinition() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 2;</code>
-     */
-    public org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition getSObjectDefinition() {
-      return SObjectDefinition_;
-    }
-    /**
-     * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 2;</code>
-     */
-    public org.bimserver.pb.PluginInterfaceImpl.SObjectDefinitionOrBuilder getSObjectDefinitionOrBuilder() {
-      return SObjectDefinition_;
-    }
-
-    // optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 3;
-    public static final int __SARRAYDEFINITION_FIELD_NUMBER = 3;
-    private org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition SArrayDefinition_;
-    /**
-     * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 3;</code>
-     */
-    public boolean hasSArrayDefinition() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 3;</code>
+     * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 2;</code>
      */
     public org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition getSArrayDefinition() {
       return SArrayDefinition_;
     }
     /**
-     * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 3;</code>
+     * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 2;</code>
      */
     public org.bimserver.pb.PluginInterfaceImpl.SArrayDefinitionOrBuilder getSArrayDefinitionOrBuilder() {
       return SArrayDefinition_;
     }
 
-    // optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 4;
-    public static final int __SPRIMITIVEDEFINITION_FIELD_NUMBER = 4;
+    // optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 3;
+    public static final int __SPRIMITIVEDEFINITION_FIELD_NUMBER = 3;
     private org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition SPrimitiveDefinition_;
     /**
-     * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 4;</code>
+     * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 3;</code>
      */
     public boolean hasSPrimitiveDefinition() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 4;</code>
+     * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 3;</code>
      */
     public org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition getSPrimitiveDefinition() {
       return SPrimitiveDefinition_;
     }
     /**
-     * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 4;</code>
+     * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 3;</code>
      */
     public org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinitionOrBuilder getSPrimitiveDefinitionOrBuilder() {
       return SPrimitiveDefinition_;
     }
 
+    // optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 4;
+    public static final int __SOBJECTDEFINITION_FIELD_NUMBER = 4;
+    private org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition SObjectDefinition_;
+    /**
+     * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 4;</code>
+     */
+    public boolean hasSObjectDefinition() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 4;</code>
+     */
+    public org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition getSObjectDefinition() {
+      return SObjectDefinition_;
+    }
+    /**
+     * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 4;</code>
+     */
+    public org.bimserver.pb.PluginInterfaceImpl.SObjectDefinitionOrBuilder getSObjectDefinitionOrBuilder() {
+      return SObjectDefinition_;
+    }
+
     private void initFields() {
       ActualType_ = "";
-      SObjectDefinition_ = org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.getDefaultInstance();
       SArrayDefinition_ = org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition.getDefaultInstance();
       SPrimitiveDefinition_ = org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition.getDefaultInstance();
+      SObjectDefinition_ = org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -43177,14 +47007,14 @@ public final class PluginInterfaceImpl {
         memoizedIsInitialized = 0;
         return false;
       }
-      if (hasSObjectDefinition()) {
-        if (!getSObjectDefinition().isInitialized()) {
+      if (hasSArrayDefinition()) {
+        if (!getSArrayDefinition().isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
       }
-      if (hasSArrayDefinition()) {
-        if (!getSArrayDefinition().isInitialized()) {
+      if (hasSObjectDefinition()) {
+        if (!getSObjectDefinition().isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
@@ -43200,13 +47030,13 @@ public final class PluginInterfaceImpl {
         output.writeBytes(1, getActualTypeBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeMessage(2, SObjectDefinition_);
+        output.writeMessage(2, SArrayDefinition_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeMessage(3, SArrayDefinition_);
+        output.writeMessage(3, SPrimitiveDefinition_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeMessage(4, SPrimitiveDefinition_);
+        output.writeMessage(4, SObjectDefinition_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -43223,15 +47053,15 @@ public final class PluginInterfaceImpl {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, SObjectDefinition_);
+          .computeMessageSize(2, SArrayDefinition_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, SArrayDefinition_);
+          .computeMessageSize(3, SPrimitiveDefinition_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, SPrimitiveDefinition_);
+          .computeMessageSize(4, SObjectDefinition_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -43341,9 +47171,9 @@ public final class PluginInterfaceImpl {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getSObjectDefinitionFieldBuilder();
           getSArrayDefinitionFieldBuilder();
           getSPrimitiveDefinitionFieldBuilder();
+          getSObjectDefinitionFieldBuilder();
         }
       }
       private static Builder create() {
@@ -43354,22 +47184,22 @@ public final class PluginInterfaceImpl {
         super.clear();
         ActualType_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        if (SObjectDefinitionBuilder_ == null) {
-          SObjectDefinition_ = org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.getDefaultInstance();
-        } else {
-          SObjectDefinitionBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000002);
         if (SArrayDefinitionBuilder_ == null) {
           SArrayDefinition_ = org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition.getDefaultInstance();
         } else {
           SArrayDefinitionBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         if (SPrimitiveDefinitionBuilder_ == null) {
           SPrimitiveDefinition_ = org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition.getDefaultInstance();
         } else {
           SPrimitiveDefinitionBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000004);
+        if (SObjectDefinitionBuilder_ == null) {
+          SObjectDefinition_ = org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.getDefaultInstance();
+        } else {
+          SObjectDefinitionBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
@@ -43407,26 +47237,26 @@ public final class PluginInterfaceImpl {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        if (SObjectDefinitionBuilder_ == null) {
-          result.SObjectDefinition_ = SObjectDefinition_;
-        } else {
-          result.SObjectDefinition_ = SObjectDefinitionBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
         if (SArrayDefinitionBuilder_ == null) {
           result.SArrayDefinition_ = SArrayDefinition_;
         } else {
           result.SArrayDefinition_ = SArrayDefinitionBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
         }
         if (SPrimitiveDefinitionBuilder_ == null) {
           result.SPrimitiveDefinition_ = SPrimitiveDefinition_;
         } else {
           result.SPrimitiveDefinition_ = SPrimitiveDefinitionBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        if (SObjectDefinitionBuilder_ == null) {
+          result.SObjectDefinition_ = SObjectDefinition_;
+        } else {
+          result.SObjectDefinition_ = SObjectDefinitionBuilder_.build();
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -43449,14 +47279,14 @@ public final class PluginInterfaceImpl {
           ActualType_ = other.ActualType_;
           onChanged();
         }
-        if (other.hasSObjectDefinition()) {
-          mergeSObjectDefinition(other.getSObjectDefinition());
-        }
         if (other.hasSArrayDefinition()) {
           mergeSArrayDefinition(other.getSArrayDefinition());
         }
         if (other.hasSPrimitiveDefinition()) {
           mergeSPrimitiveDefinition(other.getSPrimitiveDefinition());
+        }
+        if (other.hasSObjectDefinition()) {
+          mergeSObjectDefinition(other.getSObjectDefinition());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -43467,14 +47297,14 @@ public final class PluginInterfaceImpl {
           
           return false;
         }
-        if (hasSObjectDefinition()) {
-          if (!getSObjectDefinition().isInitialized()) {
+        if (hasSArrayDefinition()) {
+          if (!getSArrayDefinition().isInitialized()) {
             
             return false;
           }
         }
-        if (hasSArrayDefinition()) {
-          if (!getSArrayDefinition().isInitialized()) {
+        if (hasSObjectDefinition()) {
+          if (!getSObjectDefinition().isInitialized()) {
             
             return false;
           }
@@ -43575,135 +47405,18 @@ public final class PluginInterfaceImpl {
         return this;
       }
 
-      // optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 2;
-      private org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition SObjectDefinition_ = org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition, org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.Builder, org.bimserver.pb.PluginInterfaceImpl.SObjectDefinitionOrBuilder> SObjectDefinitionBuilder_;
-      /**
-       * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 2;</code>
-       */
-      public boolean hasSObjectDefinition() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 2;</code>
-       */
-      public org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition getSObjectDefinition() {
-        if (SObjectDefinitionBuilder_ == null) {
-          return SObjectDefinition_;
-        } else {
-          return SObjectDefinitionBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 2;</code>
-       */
-      public Builder setSObjectDefinition(org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition value) {
-        if (SObjectDefinitionBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          SObjectDefinition_ = value;
-          onChanged();
-        } else {
-          SObjectDefinitionBuilder_.setMessage(value);
-        }
-        bitField0_ |= 0x00000002;
-        return this;
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 2;</code>
-       */
-      public Builder setSObjectDefinition(
-          org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.Builder builderForValue) {
-        if (SObjectDefinitionBuilder_ == null) {
-          SObjectDefinition_ = builderForValue.build();
-          onChanged();
-        } else {
-          SObjectDefinitionBuilder_.setMessage(builderForValue.build());
-        }
-        bitField0_ |= 0x00000002;
-        return this;
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 2;</code>
-       */
-      public Builder mergeSObjectDefinition(org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition value) {
-        if (SObjectDefinitionBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002) &&
-              SObjectDefinition_ != org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.getDefaultInstance()) {
-            SObjectDefinition_ =
-              org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.newBuilder(SObjectDefinition_).mergeFrom(value).buildPartial();
-          } else {
-            SObjectDefinition_ = value;
-          }
-          onChanged();
-        } else {
-          SObjectDefinitionBuilder_.mergeFrom(value);
-        }
-        bitField0_ |= 0x00000002;
-        return this;
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 2;</code>
-       */
-      public Builder clearSObjectDefinition() {
-        if (SObjectDefinitionBuilder_ == null) {
-          SObjectDefinition_ = org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.getDefaultInstance();
-          onChanged();
-        } else {
-          SObjectDefinitionBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000002);
-        return this;
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 2;</code>
-       */
-      public org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.Builder getSObjectDefinitionBuilder() {
-        bitField0_ |= 0x00000002;
-        onChanged();
-        return getSObjectDefinitionFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 2;</code>
-       */
-      public org.bimserver.pb.PluginInterfaceImpl.SObjectDefinitionOrBuilder getSObjectDefinitionOrBuilder() {
-        if (SObjectDefinitionBuilder_ != null) {
-          return SObjectDefinitionBuilder_.getMessageOrBuilder();
-        } else {
-          return SObjectDefinition_;
-        }
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 2;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilder<
-          org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition, org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.Builder, org.bimserver.pb.PluginInterfaceImpl.SObjectDefinitionOrBuilder> 
-          getSObjectDefinitionFieldBuilder() {
-        if (SObjectDefinitionBuilder_ == null) {
-          SObjectDefinitionBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition, org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.Builder, org.bimserver.pb.PluginInterfaceImpl.SObjectDefinitionOrBuilder>(
-                  SObjectDefinition_,
-                  getParentForChildren(),
-                  isClean());
-          SObjectDefinition_ = null;
-        }
-        return SObjectDefinitionBuilder_;
-      }
-
-      // optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 3;
+      // optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 2;
       private org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition SArrayDefinition_ = org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition, org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition.Builder, org.bimserver.pb.PluginInterfaceImpl.SArrayDefinitionOrBuilder> SArrayDefinitionBuilder_;
       /**
-       * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 3;</code>
+       * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 2;</code>
        */
       public boolean hasSArrayDefinition() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 3;</code>
+       * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 2;</code>
        */
       public org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition getSArrayDefinition() {
         if (SArrayDefinitionBuilder_ == null) {
@@ -43713,7 +47426,7 @@ public final class PluginInterfaceImpl {
         }
       }
       /**
-       * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 3;</code>
+       * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 2;</code>
        */
       public Builder setSArrayDefinition(org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition value) {
         if (SArrayDefinitionBuilder_ == null) {
@@ -43725,11 +47438,11 @@ public final class PluginInterfaceImpl {
         } else {
           SArrayDefinitionBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 3;</code>
+       * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 2;</code>
        */
       public Builder setSArrayDefinition(
           org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition.Builder builderForValue) {
@@ -43739,15 +47452,15 @@ public final class PluginInterfaceImpl {
         } else {
           SArrayDefinitionBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 3;</code>
+       * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 2;</code>
        */
       public Builder mergeSArrayDefinition(org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition value) {
         if (SArrayDefinitionBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) == 0x00000004) &&
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
               SArrayDefinition_ != org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition.getDefaultInstance()) {
             SArrayDefinition_ =
               org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition.newBuilder(SArrayDefinition_).mergeFrom(value).buildPartial();
@@ -43758,11 +47471,11 @@ public final class PluginInterfaceImpl {
         } else {
           SArrayDefinitionBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 3;</code>
+       * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 2;</code>
        */
       public Builder clearSArrayDefinition() {
         if (SArrayDefinitionBuilder_ == null) {
@@ -43771,19 +47484,19 @@ public final class PluginInterfaceImpl {
         } else {
           SArrayDefinitionBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
       /**
-       * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 3;</code>
+       * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 2;</code>
        */
       public org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition.Builder getSArrayDefinitionBuilder() {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000002;
         onChanged();
         return getSArrayDefinitionFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 3;</code>
+       * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 2;</code>
        */
       public org.bimserver.pb.PluginInterfaceImpl.SArrayDefinitionOrBuilder getSArrayDefinitionOrBuilder() {
         if (SArrayDefinitionBuilder_ != null) {
@@ -43793,7 +47506,7 @@ public final class PluginInterfaceImpl {
         }
       }
       /**
-       * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 3;</code>
+       * <code>optional .org.bimserver.pb.SArrayDefinition __SArrayDefinition = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition, org.bimserver.pb.PluginInterfaceImpl.SArrayDefinition.Builder, org.bimserver.pb.PluginInterfaceImpl.SArrayDefinitionOrBuilder> 
@@ -43809,18 +47522,18 @@ public final class PluginInterfaceImpl {
         return SArrayDefinitionBuilder_;
       }
 
-      // optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 4;
+      // optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 3;
       private org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition SPrimitiveDefinition_ = org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition, org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition.Builder, org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinitionOrBuilder> SPrimitiveDefinitionBuilder_;
       /**
-       * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 4;</code>
+       * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 3;</code>
        */
       public boolean hasSPrimitiveDefinition() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 4;</code>
+       * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 3;</code>
        */
       public org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition getSPrimitiveDefinition() {
         if (SPrimitiveDefinitionBuilder_ == null) {
@@ -43830,7 +47543,7 @@ public final class PluginInterfaceImpl {
         }
       }
       /**
-       * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 4;</code>
+       * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 3;</code>
        */
       public Builder setSPrimitiveDefinition(org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition value) {
         if (SPrimitiveDefinitionBuilder_ == null) {
@@ -43842,11 +47555,11 @@ public final class PluginInterfaceImpl {
         } else {
           SPrimitiveDefinitionBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 4;</code>
+       * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 3;</code>
        */
       public Builder setSPrimitiveDefinition(
           org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition.Builder builderForValue) {
@@ -43856,15 +47569,15 @@ public final class PluginInterfaceImpl {
         } else {
           SPrimitiveDefinitionBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 4;</code>
+       * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 3;</code>
        */
       public Builder mergeSPrimitiveDefinition(org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition value) {
         if (SPrimitiveDefinitionBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) == 0x00000008) &&
+          if (((bitField0_ & 0x00000004) == 0x00000004) &&
               SPrimitiveDefinition_ != org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition.getDefaultInstance()) {
             SPrimitiveDefinition_ =
               org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition.newBuilder(SPrimitiveDefinition_).mergeFrom(value).buildPartial();
@@ -43875,11 +47588,11 @@ public final class PluginInterfaceImpl {
         } else {
           SPrimitiveDefinitionBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 4;</code>
+       * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 3;</code>
        */
       public Builder clearSPrimitiveDefinition() {
         if (SPrimitiveDefinitionBuilder_ == null) {
@@ -43888,19 +47601,19 @@ public final class PluginInterfaceImpl {
         } else {
           SPrimitiveDefinitionBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       /**
-       * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 4;</code>
+       * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 3;</code>
        */
       public org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition.Builder getSPrimitiveDefinitionBuilder() {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
         onChanged();
         return getSPrimitiveDefinitionFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 4;</code>
+       * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 3;</code>
        */
       public org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinitionOrBuilder getSPrimitiveDefinitionOrBuilder() {
         if (SPrimitiveDefinitionBuilder_ != null) {
@@ -43910,7 +47623,7 @@ public final class PluginInterfaceImpl {
         }
       }
       /**
-       * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 4;</code>
+       * <code>optional .org.bimserver.pb.SPrimitiveDefinition __SPrimitiveDefinition = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition, org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinition.Builder, org.bimserver.pb.PluginInterfaceImpl.SPrimitiveDefinitionOrBuilder> 
@@ -43924,6 +47637,123 @@ public final class PluginInterfaceImpl {
           SPrimitiveDefinition_ = null;
         }
         return SPrimitiveDefinitionBuilder_;
+      }
+
+      // optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 4;
+      private org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition SObjectDefinition_ = org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition, org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.Builder, org.bimserver.pb.PluginInterfaceImpl.SObjectDefinitionOrBuilder> SObjectDefinitionBuilder_;
+      /**
+       * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 4;</code>
+       */
+      public boolean hasSObjectDefinition() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 4;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition getSObjectDefinition() {
+        if (SObjectDefinitionBuilder_ == null) {
+          return SObjectDefinition_;
+        } else {
+          return SObjectDefinitionBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 4;</code>
+       */
+      public Builder setSObjectDefinition(org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition value) {
+        if (SObjectDefinitionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          SObjectDefinition_ = value;
+          onChanged();
+        } else {
+          SObjectDefinitionBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000008;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 4;</code>
+       */
+      public Builder setSObjectDefinition(
+          org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.Builder builderForValue) {
+        if (SObjectDefinitionBuilder_ == null) {
+          SObjectDefinition_ = builderForValue.build();
+          onChanged();
+        } else {
+          SObjectDefinitionBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000008;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 4;</code>
+       */
+      public Builder mergeSObjectDefinition(org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition value) {
+        if (SObjectDefinitionBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008) &&
+              SObjectDefinition_ != org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.getDefaultInstance()) {
+            SObjectDefinition_ =
+              org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.newBuilder(SObjectDefinition_).mergeFrom(value).buildPartial();
+          } else {
+            SObjectDefinition_ = value;
+          }
+          onChanged();
+        } else {
+          SObjectDefinitionBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000008;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 4;</code>
+       */
+      public Builder clearSObjectDefinition() {
+        if (SObjectDefinitionBuilder_ == null) {
+          SObjectDefinition_ = org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.getDefaultInstance();
+          onChanged();
+        } else {
+          SObjectDefinitionBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000008);
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 4;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.Builder getSObjectDefinitionBuilder() {
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return getSObjectDefinitionFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 4;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SObjectDefinitionOrBuilder getSObjectDefinitionOrBuilder() {
+        if (SObjectDefinitionBuilder_ != null) {
+          return SObjectDefinitionBuilder_.getMessageOrBuilder();
+        } else {
+          return SObjectDefinition_;
+        }
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SObjectDefinition __SObjectDefinition = 4;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition, org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.Builder, org.bimserver.pb.PluginInterfaceImpl.SObjectDefinitionOrBuilder> 
+          getSObjectDefinitionFieldBuilder() {
+        if (SObjectDefinitionBuilder_ == null) {
+          SObjectDefinitionBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition, org.bimserver.pb.PluginInterfaceImpl.SObjectDefinition.Builder, org.bimserver.pb.PluginInterfaceImpl.SObjectDefinitionOrBuilder>(
+                  SObjectDefinition_,
+                  getParentForChildren(),
+                  isClean());
+          SObjectDefinition_ = null;
+        }
+        return SObjectDefinitionBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:org.bimserver.pb.STypeDefinition)
@@ -46687,7 +50517,7 @@ public final class PluginInterfaceImpl {
     // @@protoc_insertion_point(class_scope:org.bimserver.pb.GetPluginSettingsRequest)
   }
 
-  public interface SByteArrayTypeOrBuilder
+  public interface SDoubleTypeOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
     // optional int32 rid = 1;
@@ -46710,35 +50540,35 @@ public final class PluginInterfaceImpl {
      */
     long getOid();
 
-    // optional bytes value = 3;
+    // optional double value = 3;
     /**
-     * <code>optional bytes value = 3;</code>
+     * <code>optional double value = 3;</code>
      */
     boolean hasValue();
     /**
-     * <code>optional bytes value = 3;</code>
+     * <code>optional double value = 3;</code>
      */
-    com.google.protobuf.ByteString getValue();
+    double getValue();
   }
   /**
-   * Protobuf type {@code org.bimserver.pb.SByteArrayType}
+   * Protobuf type {@code org.bimserver.pb.SDoubleType}
    */
-  public static final class SByteArrayType extends
+  public static final class SDoubleType extends
       com.google.protobuf.GeneratedMessage
-      implements SByteArrayTypeOrBuilder {
-    // Use SByteArrayType.newBuilder() to construct.
-    private SByteArrayType(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      implements SDoubleTypeOrBuilder {
+    // Use SDoubleType.newBuilder() to construct.
+    private SDoubleType(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
       this.unknownFields = builder.getUnknownFields();
     }
-    private SByteArrayType(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+    private SDoubleType(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
-    private static final SByteArrayType defaultInstance;
-    public static SByteArrayType getDefaultInstance() {
+    private static final SDoubleType defaultInstance;
+    public static SDoubleType getDefaultInstance() {
       return defaultInstance;
     }
 
-    public SByteArrayType getDefaultInstanceForType() {
+    public SDoubleType getDefaultInstanceForType() {
       return defaultInstance;
     }
 
@@ -46748,7 +50578,7 @@ public final class PluginInterfaceImpl {
         getUnknownFields() {
       return this.unknownFields;
     }
-    private SByteArrayType(
+    private SDoubleType(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -46781,9 +50611,9 @@ public final class PluginInterfaceImpl {
               oid_ = input.readInt64();
               break;
             }
-            case 26: {
+            case 25: {
               bitField0_ |= 0x00000004;
-              value_ = input.readBytes();
+              value_ = input.readDouble();
               break;
             }
           }
@@ -46800,28 +50630,28 @@ public final class PluginInterfaceImpl {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SByteArrayType_descriptor;
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SDoubleType_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SByteArrayType_fieldAccessorTable
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SDoubleType_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.class, org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.Builder.class);
+              org.bimserver.pb.PluginInterfaceImpl.SDoubleType.class, org.bimserver.pb.PluginInterfaceImpl.SDoubleType.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<SByteArrayType> PARSER =
-        new com.google.protobuf.AbstractParser<SByteArrayType>() {
-      public SByteArrayType parsePartialFrom(
+    public static com.google.protobuf.Parser<SDoubleType> PARSER =
+        new com.google.protobuf.AbstractParser<SDoubleType>() {
+      public SDoubleType parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SByteArrayType(input, extensionRegistry);
+        return new SDoubleType(input, extensionRegistry);
       }
     };
 
     @java.lang.Override
-    public com.google.protobuf.Parser<SByteArrayType> getParserForType() {
+    public com.google.protobuf.Parser<SDoubleType> getParserForType() {
       return PARSER;
     }
 
@@ -46858,26 +50688,26 @@ public final class PluginInterfaceImpl {
       return oid_;
     }
 
-    // optional bytes value = 3;
+    // optional double value = 3;
     public static final int VALUE_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString value_;
+    private double value_;
     /**
-     * <code>optional bytes value = 3;</code>
+     * <code>optional double value = 3;</code>
      */
     public boolean hasValue() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>optional bytes value = 3;</code>
+     * <code>optional double value = 3;</code>
      */
-    public com.google.protobuf.ByteString getValue() {
+    public double getValue() {
       return value_;
     }
 
     private void initFields() {
       rid_ = 0;
       oid_ = 0L;
-      value_ = com.google.protobuf.ByteString.EMPTY;
+      value_ = 0D;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -46898,7 +50728,7 @@ public final class PluginInterfaceImpl {
         output.writeInt64(2, oid_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, value_);
+        output.writeDouble(3, value_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -46919,7 +50749,7 @@ public final class PluginInterfaceImpl {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, value_);
+          .computeDoubleSize(3, value_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -46933,53 +50763,53 @@ public final class PluginInterfaceImpl {
       return super.writeReplace();
     }
 
-    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseFrom(
+    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseFrom(
+    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseFrom(byte[] data)
+    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseFrom(
+    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseFrom(java.io.InputStream input)
+    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseFrom(
+    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseDelimitedFrom(java.io.InputStream input)
+    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseDelimitedFrom(
+    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseFrom(
+    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseFrom(
+    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -46988,7 +50818,7 @@ public final class PluginInterfaceImpl {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.bimserver.pb.PluginInterfaceImpl.SByteArrayType prototype) {
+    public static Builder newBuilder(org.bimserver.pb.PluginInterfaceImpl.SDoubleType prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -47000,24 +50830,24 @@ public final class PluginInterfaceImpl {
       return builder;
     }
     /**
-     * Protobuf type {@code org.bimserver.pb.SByteArrayType}
+     * Protobuf type {@code org.bimserver.pb.SDoubleType}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements org.bimserver.pb.PluginInterfaceImpl.SByteArrayTypeOrBuilder {
+       implements org.bimserver.pb.PluginInterfaceImpl.SDoubleTypeOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SByteArrayType_descriptor;
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SDoubleType_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SByteArrayType_fieldAccessorTable
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SDoubleType_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.class, org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.Builder.class);
+                org.bimserver.pb.PluginInterfaceImpl.SDoubleType.class, org.bimserver.pb.PluginInterfaceImpl.SDoubleType.Builder.class);
       }
 
-      // Construct using org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.newBuilder()
+      // Construct using org.bimserver.pb.PluginInterfaceImpl.SDoubleType.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -47041,7 +50871,7 @@ public final class PluginInterfaceImpl {
         bitField0_ = (bitField0_ & ~0x00000001);
         oid_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000002);
-        value_ = com.google.protobuf.ByteString.EMPTY;
+        value_ = 0D;
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
@@ -47052,23 +50882,23 @@ public final class PluginInterfaceImpl {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SByteArrayType_descriptor;
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SDoubleType_descriptor;
       }
 
-      public org.bimserver.pb.PluginInterfaceImpl.SByteArrayType getDefaultInstanceForType() {
-        return org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.getDefaultInstance();
+      public org.bimserver.pb.PluginInterfaceImpl.SDoubleType getDefaultInstanceForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.SDoubleType.getDefaultInstance();
       }
 
-      public org.bimserver.pb.PluginInterfaceImpl.SByteArrayType build() {
-        org.bimserver.pb.PluginInterfaceImpl.SByteArrayType result = buildPartial();
+      public org.bimserver.pb.PluginInterfaceImpl.SDoubleType build() {
+        org.bimserver.pb.PluginInterfaceImpl.SDoubleType result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public org.bimserver.pb.PluginInterfaceImpl.SByteArrayType buildPartial() {
-        org.bimserver.pb.PluginInterfaceImpl.SByteArrayType result = new org.bimserver.pb.PluginInterfaceImpl.SByteArrayType(this);
+      public org.bimserver.pb.PluginInterfaceImpl.SDoubleType buildPartial() {
+        org.bimserver.pb.PluginInterfaceImpl.SDoubleType result = new org.bimserver.pb.PluginInterfaceImpl.SDoubleType(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -47089,16 +50919,16 @@ public final class PluginInterfaceImpl {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.bimserver.pb.PluginInterfaceImpl.SByteArrayType) {
-          return mergeFrom((org.bimserver.pb.PluginInterfaceImpl.SByteArrayType)other);
+        if (other instanceof org.bimserver.pb.PluginInterfaceImpl.SDoubleType) {
+          return mergeFrom((org.bimserver.pb.PluginInterfaceImpl.SDoubleType)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(org.bimserver.pb.PluginInterfaceImpl.SByteArrayType other) {
-        if (other == org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.getDefaultInstance()) return this;
+      public Builder mergeFrom(org.bimserver.pb.PluginInterfaceImpl.SDoubleType other) {
+        if (other == org.bimserver.pb.PluginInterfaceImpl.SDoubleType.getDefaultInstance()) return this;
         if (other.hasRid()) {
           setRid(other.getRid());
         }
@@ -47120,11 +50950,11 @@ public final class PluginInterfaceImpl {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parsedMessage = null;
+        org.bimserver.pb.PluginInterfaceImpl.SDoubleType parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (org.bimserver.pb.PluginInterfaceImpl.SByteArrayType) e.getUnfinishedMessage();
+          parsedMessage = (org.bimserver.pb.PluginInterfaceImpl.SDoubleType) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -47201,51 +51031,606 @@ public final class PluginInterfaceImpl {
         return this;
       }
 
-      // optional bytes value = 3;
-      private com.google.protobuf.ByteString value_ = com.google.protobuf.ByteString.EMPTY;
+      // optional double value = 3;
+      private double value_ ;
       /**
-       * <code>optional bytes value = 3;</code>
+       * <code>optional double value = 3;</code>
        */
       public boolean hasValue() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional bytes value = 3;</code>
+       * <code>optional double value = 3;</code>
        */
-      public com.google.protobuf.ByteString getValue() {
+      public double getValue() {
         return value_;
       }
       /**
-       * <code>optional bytes value = 3;</code>
+       * <code>optional double value = 3;</code>
        */
-      public Builder setValue(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+      public Builder setValue(double value) {
+        bitField0_ |= 0x00000004;
         value_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional bytes value = 3;</code>
+       * <code>optional double value = 3;</code>
        */
       public Builder clearValue() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        value_ = getDefaultInstance().getValue();
+        value_ = 0D;
         onChanged();
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.SByteArrayType)
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.SDoubleType)
     }
 
     static {
-      defaultInstance = new SByteArrayType(true);
+      defaultInstance = new SDoubleType(true);
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:org.bimserver.pb.SByteArrayType)
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.SDoubleType)
+  }
+
+  public interface SBooleanTypeOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional int32 rid = 1;
+    /**
+     * <code>optional int32 rid = 1;</code>
+     */
+    boolean hasRid();
+    /**
+     * <code>optional int32 rid = 1;</code>
+     */
+    int getRid();
+
+    // optional int64 oid = 2;
+    /**
+     * <code>optional int64 oid = 2;</code>
+     */
+    boolean hasOid();
+    /**
+     * <code>optional int64 oid = 2;</code>
+     */
+    long getOid();
+
+    // optional bool value = 3;
+    /**
+     * <code>optional bool value = 3;</code>
+     */
+    boolean hasValue();
+    /**
+     * <code>optional bool value = 3;</code>
+     */
+    boolean getValue();
+  }
+  /**
+   * Protobuf type {@code org.bimserver.pb.SBooleanType}
+   */
+  public static final class SBooleanType extends
+      com.google.protobuf.GeneratedMessage
+      implements SBooleanTypeOrBuilder {
+    // Use SBooleanType.newBuilder() to construct.
+    private SBooleanType(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private SBooleanType(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final SBooleanType defaultInstance;
+    public static SBooleanType getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public SBooleanType getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SBooleanType(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              rid_ = input.readInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              oid_ = input.readInt64();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              value_ = input.readBool();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SBooleanType_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SBooleanType_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.PluginInterfaceImpl.SBooleanType.class, org.bimserver.pb.PluginInterfaceImpl.SBooleanType.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<SBooleanType> PARSER =
+        new com.google.protobuf.AbstractParser<SBooleanType>() {
+      public SBooleanType parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SBooleanType(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SBooleanType> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional int32 rid = 1;
+    public static final int RID_FIELD_NUMBER = 1;
+    private int rid_;
+    /**
+     * <code>optional int32 rid = 1;</code>
+     */
+    public boolean hasRid() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional int32 rid = 1;</code>
+     */
+    public int getRid() {
+      return rid_;
+    }
+
+    // optional int64 oid = 2;
+    public static final int OID_FIELD_NUMBER = 2;
+    private long oid_;
+    /**
+     * <code>optional int64 oid = 2;</code>
+     */
+    public boolean hasOid() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional int64 oid = 2;</code>
+     */
+    public long getOid() {
+      return oid_;
+    }
+
+    // optional bool value = 3;
+    public static final int VALUE_FIELD_NUMBER = 3;
+    private boolean value_;
+    /**
+     * <code>optional bool value = 3;</code>
+     */
+    public boolean hasValue() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional bool value = 3;</code>
+     */
+    public boolean getValue() {
+      return value_;
+    }
+
+    private void initFields() {
+      rid_ = 0;
+      oid_ = 0L;
+      value_ = false;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt32(1, rid_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt64(2, oid_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBool(3, value_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, rid_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, oid_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, value_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.bimserver.pb.PluginInterfaceImpl.SBooleanType prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.bimserver.pb.SBooleanType}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.bimserver.pb.PluginInterfaceImpl.SBooleanTypeOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SBooleanType_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SBooleanType_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.PluginInterfaceImpl.SBooleanType.class, org.bimserver.pb.PluginInterfaceImpl.SBooleanType.Builder.class);
+      }
+
+      // Construct using org.bimserver.pb.PluginInterfaceImpl.SBooleanType.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        rid_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        oid_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        value_ = false;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SBooleanType_descriptor;
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.SBooleanType getDefaultInstanceForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.SBooleanType.getDefaultInstance();
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.SBooleanType build() {
+        org.bimserver.pb.PluginInterfaceImpl.SBooleanType result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.SBooleanType buildPartial() {
+        org.bimserver.pb.PluginInterfaceImpl.SBooleanType result = new org.bimserver.pb.PluginInterfaceImpl.SBooleanType(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.rid_ = rid_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.oid_ = oid_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.value_ = value_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.bimserver.pb.PluginInterfaceImpl.SBooleanType) {
+          return mergeFrom((org.bimserver.pb.PluginInterfaceImpl.SBooleanType)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.bimserver.pb.PluginInterfaceImpl.SBooleanType other) {
+        if (other == org.bimserver.pb.PluginInterfaceImpl.SBooleanType.getDefaultInstance()) return this;
+        if (other.hasRid()) {
+          setRid(other.getRid());
+        }
+        if (other.hasOid()) {
+          setOid(other.getOid());
+        }
+        if (other.hasValue()) {
+          setValue(other.getValue());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.bimserver.pb.PluginInterfaceImpl.SBooleanType parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.PluginInterfaceImpl.SBooleanType) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional int32 rid = 1;
+      private int rid_ ;
+      /**
+       * <code>optional int32 rid = 1;</code>
+       */
+      public boolean hasRid() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional int32 rid = 1;</code>
+       */
+      public int getRid() {
+        return rid_;
+      }
+      /**
+       * <code>optional int32 rid = 1;</code>
+       */
+      public Builder setRid(int value) {
+        bitField0_ |= 0x00000001;
+        rid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 rid = 1;</code>
+       */
+      public Builder clearRid() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        rid_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional int64 oid = 2;
+      private long oid_ ;
+      /**
+       * <code>optional int64 oid = 2;</code>
+       */
+      public boolean hasOid() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional int64 oid = 2;</code>
+       */
+      public long getOid() {
+        return oid_;
+      }
+      /**
+       * <code>optional int64 oid = 2;</code>
+       */
+      public Builder setOid(long value) {
+        bitField0_ |= 0x00000002;
+        oid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 oid = 2;</code>
+       */
+      public Builder clearOid() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        oid_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // optional bool value = 3;
+      private boolean value_ ;
+      /**
+       * <code>optional bool value = 3;</code>
+       */
+      public boolean hasValue() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional bool value = 3;</code>
+       */
+      public boolean getValue() {
+        return value_;
+      }
+      /**
+       * <code>optional bool value = 3;</code>
+       */
+      public Builder setValue(boolean value) {
+        bitField0_ |= 0x00000004;
+        value_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool value = 3;</code>
+       */
+      public Builder clearValue() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        value_ = false;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.SBooleanType)
+    }
+
+    static {
+      defaultInstance = new SBooleanType(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.SBooleanType)
   }
 
   public interface SLongTypeOrBuilder
@@ -47804,564 +52189,6 @@ public final class PluginInterfaceImpl {
     }
 
     // @@protoc_insertion_point(class_scope:org.bimserver.pb.SLongType)
-  }
-
-  public interface SDoubleTypeOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
-
-    // optional int32 rid = 1;
-    /**
-     * <code>optional int32 rid = 1;</code>
-     */
-    boolean hasRid();
-    /**
-     * <code>optional int32 rid = 1;</code>
-     */
-    int getRid();
-
-    // optional int64 oid = 2;
-    /**
-     * <code>optional int64 oid = 2;</code>
-     */
-    boolean hasOid();
-    /**
-     * <code>optional int64 oid = 2;</code>
-     */
-    long getOid();
-
-    // optional double value = 3;
-    /**
-     * <code>optional double value = 3;</code>
-     */
-    boolean hasValue();
-    /**
-     * <code>optional double value = 3;</code>
-     */
-    double getValue();
-  }
-  /**
-   * Protobuf type {@code org.bimserver.pb.SDoubleType}
-   */
-  public static final class SDoubleType extends
-      com.google.protobuf.GeneratedMessage
-      implements SDoubleTypeOrBuilder {
-    // Use SDoubleType.newBuilder() to construct.
-    private SDoubleType(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
-    }
-    private SDoubleType(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final SDoubleType defaultInstance;
-    public static SDoubleType getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public SDoubleType getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
-    }
-    private SDoubleType(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              rid_ = input.readInt32();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              oid_ = input.readInt64();
-              break;
-            }
-            case 25: {
-              bitField0_ |= 0x00000004;
-              value_ = input.readDouble();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SDoubleType_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SDoubleType_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              org.bimserver.pb.PluginInterfaceImpl.SDoubleType.class, org.bimserver.pb.PluginInterfaceImpl.SDoubleType.Builder.class);
-    }
-
-    public static com.google.protobuf.Parser<SDoubleType> PARSER =
-        new com.google.protobuf.AbstractParser<SDoubleType>() {
-      public SDoubleType parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SDoubleType(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<SDoubleType> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
-    // optional int32 rid = 1;
-    public static final int RID_FIELD_NUMBER = 1;
-    private int rid_;
-    /**
-     * <code>optional int32 rid = 1;</code>
-     */
-    public boolean hasRid() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>optional int32 rid = 1;</code>
-     */
-    public int getRid() {
-      return rid_;
-    }
-
-    // optional int64 oid = 2;
-    public static final int OID_FIELD_NUMBER = 2;
-    private long oid_;
-    /**
-     * <code>optional int64 oid = 2;</code>
-     */
-    public boolean hasOid() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>optional int64 oid = 2;</code>
-     */
-    public long getOid() {
-      return oid_;
-    }
-
-    // optional double value = 3;
-    public static final int VALUE_FIELD_NUMBER = 3;
-    private double value_;
-    /**
-     * <code>optional double value = 3;</code>
-     */
-    public boolean hasValue() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional double value = 3;</code>
-     */
-    public double getValue() {
-      return value_;
-    }
-
-    private void initFields() {
-      rid_ = 0;
-      oid_ = 0L;
-      value_ = 0D;
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, rid_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt64(2, oid_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeDouble(3, value_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, rid_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, oid_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(3, value_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
-    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
-    }
-    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
-    }
-    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static org.bimserver.pb.PluginInterfaceImpl.SDoubleType parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.bimserver.pb.PluginInterfaceImpl.SDoubleType prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code org.bimserver.pb.SDoubleType}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements org.bimserver.pb.PluginInterfaceImpl.SDoubleTypeOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SDoubleType_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SDoubleType_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                org.bimserver.pb.PluginInterfaceImpl.SDoubleType.class, org.bimserver.pb.PluginInterfaceImpl.SDoubleType.Builder.class);
-      }
-
-      // Construct using org.bimserver.pb.PluginInterfaceImpl.SDoubleType.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-
-      public Builder clear() {
-        super.clear();
-        rid_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        oid_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        value_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SDoubleType_descriptor;
-      }
-
-      public org.bimserver.pb.PluginInterfaceImpl.SDoubleType getDefaultInstanceForType() {
-        return org.bimserver.pb.PluginInterfaceImpl.SDoubleType.getDefaultInstance();
-      }
-
-      public org.bimserver.pb.PluginInterfaceImpl.SDoubleType build() {
-        org.bimserver.pb.PluginInterfaceImpl.SDoubleType result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public org.bimserver.pb.PluginInterfaceImpl.SDoubleType buildPartial() {
-        org.bimserver.pb.PluginInterfaceImpl.SDoubleType result = new org.bimserver.pb.PluginInterfaceImpl.SDoubleType(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.rid_ = rid_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.oid_ = oid_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.value_ = value_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.bimserver.pb.PluginInterfaceImpl.SDoubleType) {
-          return mergeFrom((org.bimserver.pb.PluginInterfaceImpl.SDoubleType)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(org.bimserver.pb.PluginInterfaceImpl.SDoubleType other) {
-        if (other == org.bimserver.pb.PluginInterfaceImpl.SDoubleType.getDefaultInstance()) return this;
-        if (other.hasRid()) {
-          setRid(other.getRid());
-        }
-        if (other.hasOid()) {
-          setOid(other.getOid());
-        }
-        if (other.hasValue()) {
-          setValue(other.getValue());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        org.bimserver.pb.PluginInterfaceImpl.SDoubleType parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (org.bimserver.pb.PluginInterfaceImpl.SDoubleType) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      // optional int32 rid = 1;
-      private int rid_ ;
-      /**
-       * <code>optional int32 rid = 1;</code>
-       */
-      public boolean hasRid() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>optional int32 rid = 1;</code>
-       */
-      public int getRid() {
-        return rid_;
-      }
-      /**
-       * <code>optional int32 rid = 1;</code>
-       */
-      public Builder setRid(int value) {
-        bitField0_ |= 0x00000001;
-        rid_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional int32 rid = 1;</code>
-       */
-      public Builder clearRid() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        rid_ = 0;
-        onChanged();
-        return this;
-      }
-
-      // optional int64 oid = 2;
-      private long oid_ ;
-      /**
-       * <code>optional int64 oid = 2;</code>
-       */
-      public boolean hasOid() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>optional int64 oid = 2;</code>
-       */
-      public long getOid() {
-        return oid_;
-      }
-      /**
-       * <code>optional int64 oid = 2;</code>
-       */
-      public Builder setOid(long value) {
-        bitField0_ |= 0x00000002;
-        oid_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional int64 oid = 2;</code>
-       */
-      public Builder clearOid() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        oid_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      // optional double value = 3;
-      private double value_ ;
-      /**
-       * <code>optional double value = 3;</code>
-       */
-      public boolean hasValue() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>optional double value = 3;</code>
-       */
-      public double getValue() {
-        return value_;
-      }
-      /**
-       * <code>optional double value = 3;</code>
-       */
-      public Builder setValue(double value) {
-        bitField0_ |= 0x00000004;
-        value_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional double value = 3;</code>
-       */
-      public Builder clearValue() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        value_ = 0D;
-        onChanged();
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.SDoubleType)
-    }
-
-    static {
-      defaultInstance = new SDoubleType(true);
-      defaultInstance.initFields();
-    }
-
-    // @@protoc_insertion_point(class_scope:org.bimserver.pb.SDoubleType)
   }
 
   public interface SStringTypeOrBuilder
@@ -48997,7 +52824,7 @@ public final class PluginInterfaceImpl {
     // @@protoc_insertion_point(class_scope:org.bimserver.pb.SStringType)
   }
 
-  public interface SBooleanTypeOrBuilder
+  public interface SByteArrayTypeOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
     // optional int32 rid = 1;
@@ -49020,35 +52847,35 @@ public final class PluginInterfaceImpl {
      */
     long getOid();
 
-    // optional bool value = 3;
+    // optional bytes value = 3;
     /**
-     * <code>optional bool value = 3;</code>
+     * <code>optional bytes value = 3;</code>
      */
     boolean hasValue();
     /**
-     * <code>optional bool value = 3;</code>
+     * <code>optional bytes value = 3;</code>
      */
-    boolean getValue();
+    com.google.protobuf.ByteString getValue();
   }
   /**
-   * Protobuf type {@code org.bimserver.pb.SBooleanType}
+   * Protobuf type {@code org.bimserver.pb.SByteArrayType}
    */
-  public static final class SBooleanType extends
+  public static final class SByteArrayType extends
       com.google.protobuf.GeneratedMessage
-      implements SBooleanTypeOrBuilder {
-    // Use SBooleanType.newBuilder() to construct.
-    private SBooleanType(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      implements SByteArrayTypeOrBuilder {
+    // Use SByteArrayType.newBuilder() to construct.
+    private SByteArrayType(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
       this.unknownFields = builder.getUnknownFields();
     }
-    private SBooleanType(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+    private SByteArrayType(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
-    private static final SBooleanType defaultInstance;
-    public static SBooleanType getDefaultInstance() {
+    private static final SByteArrayType defaultInstance;
+    public static SByteArrayType getDefaultInstance() {
       return defaultInstance;
     }
 
-    public SBooleanType getDefaultInstanceForType() {
+    public SByteArrayType getDefaultInstanceForType() {
       return defaultInstance;
     }
 
@@ -49058,7 +52885,7 @@ public final class PluginInterfaceImpl {
         getUnknownFields() {
       return this.unknownFields;
     }
-    private SBooleanType(
+    private SByteArrayType(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -49091,9 +52918,9 @@ public final class PluginInterfaceImpl {
               oid_ = input.readInt64();
               break;
             }
-            case 24: {
+            case 26: {
               bitField0_ |= 0x00000004;
-              value_ = input.readBool();
+              value_ = input.readBytes();
               break;
             }
           }
@@ -49110,28 +52937,28 @@ public final class PluginInterfaceImpl {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SBooleanType_descriptor;
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SByteArrayType_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SBooleanType_fieldAccessorTable
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SByteArrayType_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              org.bimserver.pb.PluginInterfaceImpl.SBooleanType.class, org.bimserver.pb.PluginInterfaceImpl.SBooleanType.Builder.class);
+              org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.class, org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<SBooleanType> PARSER =
-        new com.google.protobuf.AbstractParser<SBooleanType>() {
-      public SBooleanType parsePartialFrom(
+    public static com.google.protobuf.Parser<SByteArrayType> PARSER =
+        new com.google.protobuf.AbstractParser<SByteArrayType>() {
+      public SByteArrayType parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SBooleanType(input, extensionRegistry);
+        return new SByteArrayType(input, extensionRegistry);
       }
     };
 
     @java.lang.Override
-    public com.google.protobuf.Parser<SBooleanType> getParserForType() {
+    public com.google.protobuf.Parser<SByteArrayType> getParserForType() {
       return PARSER;
     }
 
@@ -49168,26 +52995,26 @@ public final class PluginInterfaceImpl {
       return oid_;
     }
 
-    // optional bool value = 3;
+    // optional bytes value = 3;
     public static final int VALUE_FIELD_NUMBER = 3;
-    private boolean value_;
+    private com.google.protobuf.ByteString value_;
     /**
-     * <code>optional bool value = 3;</code>
+     * <code>optional bytes value = 3;</code>
      */
     public boolean hasValue() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>optional bool value = 3;</code>
+     * <code>optional bytes value = 3;</code>
      */
-    public boolean getValue() {
+    public com.google.protobuf.ByteString getValue() {
       return value_;
     }
 
     private void initFields() {
       rid_ = 0;
       oid_ = 0L;
-      value_ = false;
+      value_ = com.google.protobuf.ByteString.EMPTY;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -49208,7 +53035,7 @@ public final class PluginInterfaceImpl {
         output.writeInt64(2, oid_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBool(3, value_);
+        output.writeBytes(3, value_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -49229,7 +53056,7 @@ public final class PluginInterfaceImpl {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(3, value_);
+          .computeBytesSize(3, value_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -49243,53 +53070,53 @@ public final class PluginInterfaceImpl {
       return super.writeReplace();
     }
 
-    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseFrom(
+    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseFrom(
+    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseFrom(byte[] data)
+    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseFrom(
+    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseFrom(java.io.InputStream input)
+    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseFrom(
+    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseDelimitedFrom(java.io.InputStream input)
+    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseDelimitedFrom(
+    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseFrom(
+    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static org.bimserver.pb.PluginInterfaceImpl.SBooleanType parseFrom(
+    public static org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -49298,7 +53125,7 @@ public final class PluginInterfaceImpl {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.bimserver.pb.PluginInterfaceImpl.SBooleanType prototype) {
+    public static Builder newBuilder(org.bimserver.pb.PluginInterfaceImpl.SByteArrayType prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -49310,24 +53137,24 @@ public final class PluginInterfaceImpl {
       return builder;
     }
     /**
-     * Protobuf type {@code org.bimserver.pb.SBooleanType}
+     * Protobuf type {@code org.bimserver.pb.SByteArrayType}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements org.bimserver.pb.PluginInterfaceImpl.SBooleanTypeOrBuilder {
+       implements org.bimserver.pb.PluginInterfaceImpl.SByteArrayTypeOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SBooleanType_descriptor;
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SByteArrayType_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SBooleanType_fieldAccessorTable
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SByteArrayType_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                org.bimserver.pb.PluginInterfaceImpl.SBooleanType.class, org.bimserver.pb.PluginInterfaceImpl.SBooleanType.Builder.class);
+                org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.class, org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.Builder.class);
       }
 
-      // Construct using org.bimserver.pb.PluginInterfaceImpl.SBooleanType.newBuilder()
+      // Construct using org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -49351,7 +53178,7 @@ public final class PluginInterfaceImpl {
         bitField0_ = (bitField0_ & ~0x00000001);
         oid_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000002);
-        value_ = false;
+        value_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
@@ -49362,23 +53189,23 @@ public final class PluginInterfaceImpl {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SBooleanType_descriptor;
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_SByteArrayType_descriptor;
       }
 
-      public org.bimserver.pb.PluginInterfaceImpl.SBooleanType getDefaultInstanceForType() {
-        return org.bimserver.pb.PluginInterfaceImpl.SBooleanType.getDefaultInstance();
+      public org.bimserver.pb.PluginInterfaceImpl.SByteArrayType getDefaultInstanceForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.getDefaultInstance();
       }
 
-      public org.bimserver.pb.PluginInterfaceImpl.SBooleanType build() {
-        org.bimserver.pb.PluginInterfaceImpl.SBooleanType result = buildPartial();
+      public org.bimserver.pb.PluginInterfaceImpl.SByteArrayType build() {
+        org.bimserver.pb.PluginInterfaceImpl.SByteArrayType result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public org.bimserver.pb.PluginInterfaceImpl.SBooleanType buildPartial() {
-        org.bimserver.pb.PluginInterfaceImpl.SBooleanType result = new org.bimserver.pb.PluginInterfaceImpl.SBooleanType(this);
+      public org.bimserver.pb.PluginInterfaceImpl.SByteArrayType buildPartial() {
+        org.bimserver.pb.PluginInterfaceImpl.SByteArrayType result = new org.bimserver.pb.PluginInterfaceImpl.SByteArrayType(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -49399,16 +53226,16 @@ public final class PluginInterfaceImpl {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.bimserver.pb.PluginInterfaceImpl.SBooleanType) {
-          return mergeFrom((org.bimserver.pb.PluginInterfaceImpl.SBooleanType)other);
+        if (other instanceof org.bimserver.pb.PluginInterfaceImpl.SByteArrayType) {
+          return mergeFrom((org.bimserver.pb.PluginInterfaceImpl.SByteArrayType)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(org.bimserver.pb.PluginInterfaceImpl.SBooleanType other) {
-        if (other == org.bimserver.pb.PluginInterfaceImpl.SBooleanType.getDefaultInstance()) return this;
+      public Builder mergeFrom(org.bimserver.pb.PluginInterfaceImpl.SByteArrayType other) {
+        if (other == org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.getDefaultInstance()) return this;
         if (other.hasRid()) {
           setRid(other.getRid());
         }
@@ -49430,11 +53257,11 @@ public final class PluginInterfaceImpl {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        org.bimserver.pb.PluginInterfaceImpl.SBooleanType parsedMessage = null;
+        org.bimserver.pb.PluginInterfaceImpl.SByteArrayType parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (org.bimserver.pb.PluginInterfaceImpl.SBooleanType) e.getUnfinishedMessage();
+          parsedMessage = (org.bimserver.pb.PluginInterfaceImpl.SByteArrayType) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -49511,48 +53338,51 @@ public final class PluginInterfaceImpl {
         return this;
       }
 
-      // optional bool value = 3;
-      private boolean value_ ;
+      // optional bytes value = 3;
+      private com.google.protobuf.ByteString value_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>optional bool value = 3;</code>
+       * <code>optional bytes value = 3;</code>
        */
       public boolean hasValue() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional bool value = 3;</code>
+       * <code>optional bytes value = 3;</code>
        */
-      public boolean getValue() {
+      public com.google.protobuf.ByteString getValue() {
         return value_;
       }
       /**
-       * <code>optional bool value = 3;</code>
+       * <code>optional bytes value = 3;</code>
        */
-      public Builder setValue(boolean value) {
-        bitField0_ |= 0x00000004;
+      public Builder setValue(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
         value_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional bool value = 3;</code>
+       * <code>optional bytes value = 3;</code>
        */
       public Builder clearValue() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        value_ = false;
+        value_ = getDefaultInstance().getValue();
         onChanged();
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.SBooleanType)
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.SByteArrayType)
     }
 
     static {
-      defaultInstance = new SBooleanType(true);
+      defaultInstance = new SByteArrayType(true);
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:org.bimserver.pb.SBooleanType)
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.SByteArrayType)
   }
 
   public interface SPrimitiveTypeOrBuilder
@@ -49573,47 +53403,47 @@ public final class PluginInterfaceImpl {
     com.google.protobuf.ByteString
         getActualTypeBytes();
 
-    // optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 2;
+    // optional .org.bimserver.pb.SDoubleType __SDoubleType = 2;
     /**
-     * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 2;</code>
-     */
-    boolean hasSByteArrayType();
-    /**
-     * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 2;</code>
-     */
-    org.bimserver.pb.PluginInterfaceImpl.SByteArrayType getSByteArrayType();
-    /**
-     * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 2;</code>
-     */
-    org.bimserver.pb.PluginInterfaceImpl.SByteArrayTypeOrBuilder getSByteArrayTypeOrBuilder();
-
-    // optional .org.bimserver.pb.SLongType __SLongType = 3;
-    /**
-     * <code>optional .org.bimserver.pb.SLongType __SLongType = 3;</code>
-     */
-    boolean hasSLongType();
-    /**
-     * <code>optional .org.bimserver.pb.SLongType __SLongType = 3;</code>
-     */
-    org.bimserver.pb.PluginInterfaceImpl.SLongType getSLongType();
-    /**
-     * <code>optional .org.bimserver.pb.SLongType __SLongType = 3;</code>
-     */
-    org.bimserver.pb.PluginInterfaceImpl.SLongTypeOrBuilder getSLongTypeOrBuilder();
-
-    // optional .org.bimserver.pb.SDoubleType __SDoubleType = 4;
-    /**
-     * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 4;</code>
+     * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 2;</code>
      */
     boolean hasSDoubleType();
     /**
-     * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 4;</code>
+     * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 2;</code>
      */
     org.bimserver.pb.PluginInterfaceImpl.SDoubleType getSDoubleType();
     /**
-     * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 4;</code>
+     * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 2;</code>
      */
     org.bimserver.pb.PluginInterfaceImpl.SDoubleTypeOrBuilder getSDoubleTypeOrBuilder();
+
+    // optional .org.bimserver.pb.SBooleanType __SBooleanType = 3;
+    /**
+     * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 3;</code>
+     */
+    boolean hasSBooleanType();
+    /**
+     * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 3;</code>
+     */
+    org.bimserver.pb.PluginInterfaceImpl.SBooleanType getSBooleanType();
+    /**
+     * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 3;</code>
+     */
+    org.bimserver.pb.PluginInterfaceImpl.SBooleanTypeOrBuilder getSBooleanTypeOrBuilder();
+
+    // optional .org.bimserver.pb.SLongType __SLongType = 4;
+    /**
+     * <code>optional .org.bimserver.pb.SLongType __SLongType = 4;</code>
+     */
+    boolean hasSLongType();
+    /**
+     * <code>optional .org.bimserver.pb.SLongType __SLongType = 4;</code>
+     */
+    org.bimserver.pb.PluginInterfaceImpl.SLongType getSLongType();
+    /**
+     * <code>optional .org.bimserver.pb.SLongType __SLongType = 4;</code>
+     */
+    org.bimserver.pb.PluginInterfaceImpl.SLongTypeOrBuilder getSLongTypeOrBuilder();
 
     // optional .org.bimserver.pb.SStringType __SStringType = 5;
     /**
@@ -49629,19 +53459,19 @@ public final class PluginInterfaceImpl {
      */
     org.bimserver.pb.PluginInterfaceImpl.SStringTypeOrBuilder getSStringTypeOrBuilder();
 
-    // optional .org.bimserver.pb.SBooleanType __SBooleanType = 6;
+    // optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 6;
     /**
-     * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 6;</code>
+     * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 6;</code>
      */
-    boolean hasSBooleanType();
+    boolean hasSByteArrayType();
     /**
-     * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 6;</code>
+     * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 6;</code>
      */
-    org.bimserver.pb.PluginInterfaceImpl.SBooleanType getSBooleanType();
+    org.bimserver.pb.PluginInterfaceImpl.SByteArrayType getSByteArrayType();
     /**
-     * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 6;</code>
+     * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 6;</code>
      */
-    org.bimserver.pb.PluginInterfaceImpl.SBooleanTypeOrBuilder getSBooleanTypeOrBuilder();
+    org.bimserver.pb.PluginInterfaceImpl.SByteArrayTypeOrBuilder getSByteArrayTypeOrBuilder();
 
     // optional int32 rid = 7;
     /**
@@ -49720,40 +53550,40 @@ public final class PluginInterfaceImpl {
               break;
             }
             case 18: {
-              org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000002) == 0x00000002)) {
-                subBuilder = SByteArrayType_.toBuilder();
-              }
-              SByteArrayType_ = input.readMessage(org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(SByteArrayType_);
-                SByteArrayType_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000002;
-              break;
-            }
-            case 26: {
-              org.bimserver.pb.PluginInterfaceImpl.SLongType.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000004) == 0x00000004)) {
-                subBuilder = SLongType_.toBuilder();
-              }
-              SLongType_ = input.readMessage(org.bimserver.pb.PluginInterfaceImpl.SLongType.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(SLongType_);
-                SLongType_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000004;
-              break;
-            }
-            case 34: {
               org.bimserver.pb.PluginInterfaceImpl.SDoubleType.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000008) == 0x00000008)) {
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
                 subBuilder = SDoubleType_.toBuilder();
               }
               SDoubleType_ = input.readMessage(org.bimserver.pb.PluginInterfaceImpl.SDoubleType.PARSER, extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(SDoubleType_);
                 SDoubleType_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000002;
+              break;
+            }
+            case 26: {
+              org.bimserver.pb.PluginInterfaceImpl.SBooleanType.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000004) == 0x00000004)) {
+                subBuilder = SBooleanType_.toBuilder();
+              }
+              SBooleanType_ = input.readMessage(org.bimserver.pb.PluginInterfaceImpl.SBooleanType.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(SBooleanType_);
+                SBooleanType_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000004;
+              break;
+            }
+            case 34: {
+              org.bimserver.pb.PluginInterfaceImpl.SLongType.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000008) == 0x00000008)) {
+                subBuilder = SLongType_.toBuilder();
+              }
+              SLongType_ = input.readMessage(org.bimserver.pb.PluginInterfaceImpl.SLongType.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(SLongType_);
+                SLongType_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000008;
               break;
@@ -49772,14 +53602,14 @@ public final class PluginInterfaceImpl {
               break;
             }
             case 50: {
-              org.bimserver.pb.PluginInterfaceImpl.SBooleanType.Builder subBuilder = null;
+              org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.Builder subBuilder = null;
               if (((bitField0_ & 0x00000020) == 0x00000020)) {
-                subBuilder = SBooleanType_.toBuilder();
+                subBuilder = SByteArrayType_.toBuilder();
               }
-              SBooleanType_ = input.readMessage(org.bimserver.pb.PluginInterfaceImpl.SBooleanType.PARSER, extensionRegistry);
+              SByteArrayType_ = input.readMessage(org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.PARSER, extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(SBooleanType_);
-                SBooleanType_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(SByteArrayType_);
+                SByteArrayType_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000020;
               break;
@@ -49877,70 +53707,70 @@ public final class PluginInterfaceImpl {
       }
     }
 
-    // optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 2;
-    public static final int __SBYTEARRAYTYPE_FIELD_NUMBER = 2;
-    private org.bimserver.pb.PluginInterfaceImpl.SByteArrayType SByteArrayType_;
+    // optional .org.bimserver.pb.SDoubleType __SDoubleType = 2;
+    public static final int __SDOUBLETYPE_FIELD_NUMBER = 2;
+    private org.bimserver.pb.PluginInterfaceImpl.SDoubleType SDoubleType_;
     /**
-     * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 2;</code>
+     * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 2;</code>
      */
-    public boolean hasSByteArrayType() {
+    public boolean hasSDoubleType() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 2;</code>
-     */
-    public org.bimserver.pb.PluginInterfaceImpl.SByteArrayType getSByteArrayType() {
-      return SByteArrayType_;
-    }
-    /**
-     * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 2;</code>
-     */
-    public org.bimserver.pb.PluginInterfaceImpl.SByteArrayTypeOrBuilder getSByteArrayTypeOrBuilder() {
-      return SByteArrayType_;
-    }
-
-    // optional .org.bimserver.pb.SLongType __SLongType = 3;
-    public static final int __SLONGTYPE_FIELD_NUMBER = 3;
-    private org.bimserver.pb.PluginInterfaceImpl.SLongType SLongType_;
-    /**
-     * <code>optional .org.bimserver.pb.SLongType __SLongType = 3;</code>
-     */
-    public boolean hasSLongType() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional .org.bimserver.pb.SLongType __SLongType = 3;</code>
-     */
-    public org.bimserver.pb.PluginInterfaceImpl.SLongType getSLongType() {
-      return SLongType_;
-    }
-    /**
-     * <code>optional .org.bimserver.pb.SLongType __SLongType = 3;</code>
-     */
-    public org.bimserver.pb.PluginInterfaceImpl.SLongTypeOrBuilder getSLongTypeOrBuilder() {
-      return SLongType_;
-    }
-
-    // optional .org.bimserver.pb.SDoubleType __SDoubleType = 4;
-    public static final int __SDOUBLETYPE_FIELD_NUMBER = 4;
-    private org.bimserver.pb.PluginInterfaceImpl.SDoubleType SDoubleType_;
-    /**
-     * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 4;</code>
-     */
-    public boolean hasSDoubleType() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 4;</code>
+     * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 2;</code>
      */
     public org.bimserver.pb.PluginInterfaceImpl.SDoubleType getSDoubleType() {
       return SDoubleType_;
     }
     /**
-     * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 4;</code>
+     * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 2;</code>
      */
     public org.bimserver.pb.PluginInterfaceImpl.SDoubleTypeOrBuilder getSDoubleTypeOrBuilder() {
       return SDoubleType_;
+    }
+
+    // optional .org.bimserver.pb.SBooleanType __SBooleanType = 3;
+    public static final int __SBOOLEANTYPE_FIELD_NUMBER = 3;
+    private org.bimserver.pb.PluginInterfaceImpl.SBooleanType SBooleanType_;
+    /**
+     * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 3;</code>
+     */
+    public boolean hasSBooleanType() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 3;</code>
+     */
+    public org.bimserver.pb.PluginInterfaceImpl.SBooleanType getSBooleanType() {
+      return SBooleanType_;
+    }
+    /**
+     * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 3;</code>
+     */
+    public org.bimserver.pb.PluginInterfaceImpl.SBooleanTypeOrBuilder getSBooleanTypeOrBuilder() {
+      return SBooleanType_;
+    }
+
+    // optional .org.bimserver.pb.SLongType __SLongType = 4;
+    public static final int __SLONGTYPE_FIELD_NUMBER = 4;
+    private org.bimserver.pb.PluginInterfaceImpl.SLongType SLongType_;
+    /**
+     * <code>optional .org.bimserver.pb.SLongType __SLongType = 4;</code>
+     */
+    public boolean hasSLongType() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional .org.bimserver.pb.SLongType __SLongType = 4;</code>
+     */
+    public org.bimserver.pb.PluginInterfaceImpl.SLongType getSLongType() {
+      return SLongType_;
+    }
+    /**
+     * <code>optional .org.bimserver.pb.SLongType __SLongType = 4;</code>
+     */
+    public org.bimserver.pb.PluginInterfaceImpl.SLongTypeOrBuilder getSLongTypeOrBuilder() {
+      return SLongType_;
     }
 
     // optional .org.bimserver.pb.SStringType __SStringType = 5;
@@ -49965,26 +53795,26 @@ public final class PluginInterfaceImpl {
       return SStringType_;
     }
 
-    // optional .org.bimserver.pb.SBooleanType __SBooleanType = 6;
-    public static final int __SBOOLEANTYPE_FIELD_NUMBER = 6;
-    private org.bimserver.pb.PluginInterfaceImpl.SBooleanType SBooleanType_;
+    // optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 6;
+    public static final int __SBYTEARRAYTYPE_FIELD_NUMBER = 6;
+    private org.bimserver.pb.PluginInterfaceImpl.SByteArrayType SByteArrayType_;
     /**
-     * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 6;</code>
+     * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 6;</code>
      */
-    public boolean hasSBooleanType() {
+    public boolean hasSByteArrayType() {
       return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     /**
-     * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 6;</code>
+     * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 6;</code>
      */
-    public org.bimserver.pb.PluginInterfaceImpl.SBooleanType getSBooleanType() {
-      return SBooleanType_;
+    public org.bimserver.pb.PluginInterfaceImpl.SByteArrayType getSByteArrayType() {
+      return SByteArrayType_;
     }
     /**
-     * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 6;</code>
+     * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 6;</code>
      */
-    public org.bimserver.pb.PluginInterfaceImpl.SBooleanTypeOrBuilder getSBooleanTypeOrBuilder() {
-      return SBooleanType_;
+    public org.bimserver.pb.PluginInterfaceImpl.SByteArrayTypeOrBuilder getSByteArrayTypeOrBuilder() {
+      return SByteArrayType_;
     }
 
     // optional int32 rid = 7;
@@ -50021,11 +53851,11 @@ public final class PluginInterfaceImpl {
 
     private void initFields() {
       ActualType_ = "";
-      SByteArrayType_ = org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.getDefaultInstance();
-      SLongType_ = org.bimserver.pb.PluginInterfaceImpl.SLongType.getDefaultInstance();
       SDoubleType_ = org.bimserver.pb.PluginInterfaceImpl.SDoubleType.getDefaultInstance();
-      SStringType_ = org.bimserver.pb.PluginInterfaceImpl.SStringType.getDefaultInstance();
       SBooleanType_ = org.bimserver.pb.PluginInterfaceImpl.SBooleanType.getDefaultInstance();
+      SLongType_ = org.bimserver.pb.PluginInterfaceImpl.SLongType.getDefaultInstance();
+      SStringType_ = org.bimserver.pb.PluginInterfaceImpl.SStringType.getDefaultInstance();
+      SByteArrayType_ = org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.getDefaultInstance();
       rid_ = 0;
       oid_ = 0L;
     }
@@ -50049,19 +53879,19 @@ public final class PluginInterfaceImpl {
         output.writeBytes(1, getActualTypeBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeMessage(2, SByteArrayType_);
+        output.writeMessage(2, SDoubleType_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeMessage(3, SLongType_);
+        output.writeMessage(3, SBooleanType_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeMessage(4, SDoubleType_);
+        output.writeMessage(4, SLongType_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeMessage(5, SStringType_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeMessage(6, SBooleanType_);
+        output.writeMessage(6, SByteArrayType_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         output.writeInt32(7, rid_);
@@ -50084,15 +53914,15 @@ public final class PluginInterfaceImpl {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, SByteArrayType_);
+          .computeMessageSize(2, SDoubleType_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, SLongType_);
+          .computeMessageSize(3, SBooleanType_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, SDoubleType_);
+          .computeMessageSize(4, SLongType_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
@@ -50100,7 +53930,7 @@ public final class PluginInterfaceImpl {
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, SBooleanType_);
+          .computeMessageSize(6, SByteArrayType_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
@@ -50218,11 +54048,11 @@ public final class PluginInterfaceImpl {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getSByteArrayTypeFieldBuilder();
-          getSLongTypeFieldBuilder();
           getSDoubleTypeFieldBuilder();
-          getSStringTypeFieldBuilder();
           getSBooleanTypeFieldBuilder();
+          getSLongTypeFieldBuilder();
+          getSStringTypeFieldBuilder();
+          getSByteArrayTypeFieldBuilder();
         }
       }
       private static Builder create() {
@@ -50233,22 +54063,22 @@ public final class PluginInterfaceImpl {
         super.clear();
         ActualType_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        if (SByteArrayTypeBuilder_ == null) {
-          SByteArrayType_ = org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.getDefaultInstance();
-        } else {
-          SByteArrayTypeBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000002);
-        if (SLongTypeBuilder_ == null) {
-          SLongType_ = org.bimserver.pb.PluginInterfaceImpl.SLongType.getDefaultInstance();
-        } else {
-          SLongTypeBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000004);
         if (SDoubleTypeBuilder_ == null) {
           SDoubleType_ = org.bimserver.pb.PluginInterfaceImpl.SDoubleType.getDefaultInstance();
         } else {
           SDoubleTypeBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        if (SBooleanTypeBuilder_ == null) {
+          SBooleanType_ = org.bimserver.pb.PluginInterfaceImpl.SBooleanType.getDefaultInstance();
+        } else {
+          SBooleanTypeBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000004);
+        if (SLongTypeBuilder_ == null) {
+          SLongType_ = org.bimserver.pb.PluginInterfaceImpl.SLongType.getDefaultInstance();
+        } else {
+          SLongTypeBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000008);
         if (SStringTypeBuilder_ == null) {
@@ -50257,10 +54087,10 @@ public final class PluginInterfaceImpl {
           SStringTypeBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000010);
-        if (SBooleanTypeBuilder_ == null) {
-          SBooleanType_ = org.bimserver.pb.PluginInterfaceImpl.SBooleanType.getDefaultInstance();
+        if (SByteArrayTypeBuilder_ == null) {
+          SByteArrayType_ = org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.getDefaultInstance();
         } else {
-          SBooleanTypeBuilder_.clear();
+          SByteArrayTypeBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000020);
         rid_ = 0;
@@ -50302,26 +54132,26 @@ public final class PluginInterfaceImpl {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        if (SByteArrayTypeBuilder_ == null) {
-          result.SByteArrayType_ = SByteArrayType_;
+        if (SDoubleTypeBuilder_ == null) {
+          result.SDoubleType_ = SDoubleType_;
         } else {
-          result.SByteArrayType_ = SByteArrayTypeBuilder_.build();
+          result.SDoubleType_ = SDoubleTypeBuilder_.build();
         }
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
+        }
+        if (SBooleanTypeBuilder_ == null) {
+          result.SBooleanType_ = SBooleanType_;
+        } else {
+          result.SBooleanType_ = SBooleanTypeBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
         }
         if (SLongTypeBuilder_ == null) {
           result.SLongType_ = SLongType_;
         } else {
           result.SLongType_ = SLongTypeBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        if (SDoubleTypeBuilder_ == null) {
-          result.SDoubleType_ = SDoubleType_;
-        } else {
-          result.SDoubleType_ = SDoubleTypeBuilder_.build();
         }
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
@@ -50334,10 +54164,10 @@ public final class PluginInterfaceImpl {
         if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000020;
         }
-        if (SBooleanTypeBuilder_ == null) {
-          result.SBooleanType_ = SBooleanType_;
+        if (SByteArrayTypeBuilder_ == null) {
+          result.SByteArrayType_ = SByteArrayType_;
         } else {
-          result.SBooleanType_ = SBooleanTypeBuilder_.build();
+          result.SByteArrayType_ = SByteArrayTypeBuilder_.build();
         }
         if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
           to_bitField0_ |= 0x00000040;
@@ -50368,20 +54198,20 @@ public final class PluginInterfaceImpl {
           ActualType_ = other.ActualType_;
           onChanged();
         }
-        if (other.hasSByteArrayType()) {
-          mergeSByteArrayType(other.getSByteArrayType());
+        if (other.hasSDoubleType()) {
+          mergeSDoubleType(other.getSDoubleType());
+        }
+        if (other.hasSBooleanType()) {
+          mergeSBooleanType(other.getSBooleanType());
         }
         if (other.hasSLongType()) {
           mergeSLongType(other.getSLongType());
         }
-        if (other.hasSDoubleType()) {
-          mergeSDoubleType(other.getSDoubleType());
-        }
         if (other.hasSStringType()) {
           mergeSStringType(other.getSStringType());
         }
-        if (other.hasSBooleanType()) {
-          mergeSBooleanType(other.getSBooleanType());
+        if (other.hasSByteArrayType()) {
+          mergeSByteArrayType(other.getSByteArrayType());
         }
         if (other.hasRid()) {
           setRid(other.getRid());
@@ -50494,252 +54324,18 @@ public final class PluginInterfaceImpl {
         return this;
       }
 
-      // optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 2;
-      private org.bimserver.pb.PluginInterfaceImpl.SByteArrayType SByteArrayType_ = org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          org.bimserver.pb.PluginInterfaceImpl.SByteArrayType, org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.Builder, org.bimserver.pb.PluginInterfaceImpl.SByteArrayTypeOrBuilder> SByteArrayTypeBuilder_;
-      /**
-       * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 2;</code>
-       */
-      public boolean hasSByteArrayType() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 2;</code>
-       */
-      public org.bimserver.pb.PluginInterfaceImpl.SByteArrayType getSByteArrayType() {
-        if (SByteArrayTypeBuilder_ == null) {
-          return SByteArrayType_;
-        } else {
-          return SByteArrayTypeBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 2;</code>
-       */
-      public Builder setSByteArrayType(org.bimserver.pb.PluginInterfaceImpl.SByteArrayType value) {
-        if (SByteArrayTypeBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          SByteArrayType_ = value;
-          onChanged();
-        } else {
-          SByteArrayTypeBuilder_.setMessage(value);
-        }
-        bitField0_ |= 0x00000002;
-        return this;
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 2;</code>
-       */
-      public Builder setSByteArrayType(
-          org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.Builder builderForValue) {
-        if (SByteArrayTypeBuilder_ == null) {
-          SByteArrayType_ = builderForValue.build();
-          onChanged();
-        } else {
-          SByteArrayTypeBuilder_.setMessage(builderForValue.build());
-        }
-        bitField0_ |= 0x00000002;
-        return this;
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 2;</code>
-       */
-      public Builder mergeSByteArrayType(org.bimserver.pb.PluginInterfaceImpl.SByteArrayType value) {
-        if (SByteArrayTypeBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002) &&
-              SByteArrayType_ != org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.getDefaultInstance()) {
-            SByteArrayType_ =
-              org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.newBuilder(SByteArrayType_).mergeFrom(value).buildPartial();
-          } else {
-            SByteArrayType_ = value;
-          }
-          onChanged();
-        } else {
-          SByteArrayTypeBuilder_.mergeFrom(value);
-        }
-        bitField0_ |= 0x00000002;
-        return this;
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 2;</code>
-       */
-      public Builder clearSByteArrayType() {
-        if (SByteArrayTypeBuilder_ == null) {
-          SByteArrayType_ = org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.getDefaultInstance();
-          onChanged();
-        } else {
-          SByteArrayTypeBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000002);
-        return this;
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 2;</code>
-       */
-      public org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.Builder getSByteArrayTypeBuilder() {
-        bitField0_ |= 0x00000002;
-        onChanged();
-        return getSByteArrayTypeFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 2;</code>
-       */
-      public org.bimserver.pb.PluginInterfaceImpl.SByteArrayTypeOrBuilder getSByteArrayTypeOrBuilder() {
-        if (SByteArrayTypeBuilder_ != null) {
-          return SByteArrayTypeBuilder_.getMessageOrBuilder();
-        } else {
-          return SByteArrayType_;
-        }
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 2;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilder<
-          org.bimserver.pb.PluginInterfaceImpl.SByteArrayType, org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.Builder, org.bimserver.pb.PluginInterfaceImpl.SByteArrayTypeOrBuilder> 
-          getSByteArrayTypeFieldBuilder() {
-        if (SByteArrayTypeBuilder_ == null) {
-          SByteArrayTypeBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              org.bimserver.pb.PluginInterfaceImpl.SByteArrayType, org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.Builder, org.bimserver.pb.PluginInterfaceImpl.SByteArrayTypeOrBuilder>(
-                  SByteArrayType_,
-                  getParentForChildren(),
-                  isClean());
-          SByteArrayType_ = null;
-        }
-        return SByteArrayTypeBuilder_;
-      }
-
-      // optional .org.bimserver.pb.SLongType __SLongType = 3;
-      private org.bimserver.pb.PluginInterfaceImpl.SLongType SLongType_ = org.bimserver.pb.PluginInterfaceImpl.SLongType.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          org.bimserver.pb.PluginInterfaceImpl.SLongType, org.bimserver.pb.PluginInterfaceImpl.SLongType.Builder, org.bimserver.pb.PluginInterfaceImpl.SLongTypeOrBuilder> SLongTypeBuilder_;
-      /**
-       * <code>optional .org.bimserver.pb.SLongType __SLongType = 3;</code>
-       */
-      public boolean hasSLongType() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SLongType __SLongType = 3;</code>
-       */
-      public org.bimserver.pb.PluginInterfaceImpl.SLongType getSLongType() {
-        if (SLongTypeBuilder_ == null) {
-          return SLongType_;
-        } else {
-          return SLongTypeBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SLongType __SLongType = 3;</code>
-       */
-      public Builder setSLongType(org.bimserver.pb.PluginInterfaceImpl.SLongType value) {
-        if (SLongTypeBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          SLongType_ = value;
-          onChanged();
-        } else {
-          SLongTypeBuilder_.setMessage(value);
-        }
-        bitField0_ |= 0x00000004;
-        return this;
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SLongType __SLongType = 3;</code>
-       */
-      public Builder setSLongType(
-          org.bimserver.pb.PluginInterfaceImpl.SLongType.Builder builderForValue) {
-        if (SLongTypeBuilder_ == null) {
-          SLongType_ = builderForValue.build();
-          onChanged();
-        } else {
-          SLongTypeBuilder_.setMessage(builderForValue.build());
-        }
-        bitField0_ |= 0x00000004;
-        return this;
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SLongType __SLongType = 3;</code>
-       */
-      public Builder mergeSLongType(org.bimserver.pb.PluginInterfaceImpl.SLongType value) {
-        if (SLongTypeBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) == 0x00000004) &&
-              SLongType_ != org.bimserver.pb.PluginInterfaceImpl.SLongType.getDefaultInstance()) {
-            SLongType_ =
-              org.bimserver.pb.PluginInterfaceImpl.SLongType.newBuilder(SLongType_).mergeFrom(value).buildPartial();
-          } else {
-            SLongType_ = value;
-          }
-          onChanged();
-        } else {
-          SLongTypeBuilder_.mergeFrom(value);
-        }
-        bitField0_ |= 0x00000004;
-        return this;
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SLongType __SLongType = 3;</code>
-       */
-      public Builder clearSLongType() {
-        if (SLongTypeBuilder_ == null) {
-          SLongType_ = org.bimserver.pb.PluginInterfaceImpl.SLongType.getDefaultInstance();
-          onChanged();
-        } else {
-          SLongTypeBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000004);
-        return this;
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SLongType __SLongType = 3;</code>
-       */
-      public org.bimserver.pb.PluginInterfaceImpl.SLongType.Builder getSLongTypeBuilder() {
-        bitField0_ |= 0x00000004;
-        onChanged();
-        return getSLongTypeFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SLongType __SLongType = 3;</code>
-       */
-      public org.bimserver.pb.PluginInterfaceImpl.SLongTypeOrBuilder getSLongTypeOrBuilder() {
-        if (SLongTypeBuilder_ != null) {
-          return SLongTypeBuilder_.getMessageOrBuilder();
-        } else {
-          return SLongType_;
-        }
-      }
-      /**
-       * <code>optional .org.bimserver.pb.SLongType __SLongType = 3;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilder<
-          org.bimserver.pb.PluginInterfaceImpl.SLongType, org.bimserver.pb.PluginInterfaceImpl.SLongType.Builder, org.bimserver.pb.PluginInterfaceImpl.SLongTypeOrBuilder> 
-          getSLongTypeFieldBuilder() {
-        if (SLongTypeBuilder_ == null) {
-          SLongTypeBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              org.bimserver.pb.PluginInterfaceImpl.SLongType, org.bimserver.pb.PluginInterfaceImpl.SLongType.Builder, org.bimserver.pb.PluginInterfaceImpl.SLongTypeOrBuilder>(
-                  SLongType_,
-                  getParentForChildren(),
-                  isClean());
-          SLongType_ = null;
-        }
-        return SLongTypeBuilder_;
-      }
-
-      // optional .org.bimserver.pb.SDoubleType __SDoubleType = 4;
+      // optional .org.bimserver.pb.SDoubleType __SDoubleType = 2;
       private org.bimserver.pb.PluginInterfaceImpl.SDoubleType SDoubleType_ = org.bimserver.pb.PluginInterfaceImpl.SDoubleType.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           org.bimserver.pb.PluginInterfaceImpl.SDoubleType, org.bimserver.pb.PluginInterfaceImpl.SDoubleType.Builder, org.bimserver.pb.PluginInterfaceImpl.SDoubleTypeOrBuilder> SDoubleTypeBuilder_;
       /**
-       * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 4;</code>
+       * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 2;</code>
        */
       public boolean hasSDoubleType() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 4;</code>
+       * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 2;</code>
        */
       public org.bimserver.pb.PluginInterfaceImpl.SDoubleType getSDoubleType() {
         if (SDoubleTypeBuilder_ == null) {
@@ -50749,7 +54345,7 @@ public final class PluginInterfaceImpl {
         }
       }
       /**
-       * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 4;</code>
+       * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 2;</code>
        */
       public Builder setSDoubleType(org.bimserver.pb.PluginInterfaceImpl.SDoubleType value) {
         if (SDoubleTypeBuilder_ == null) {
@@ -50761,11 +54357,11 @@ public final class PluginInterfaceImpl {
         } else {
           SDoubleTypeBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 4;</code>
+       * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 2;</code>
        */
       public Builder setSDoubleType(
           org.bimserver.pb.PluginInterfaceImpl.SDoubleType.Builder builderForValue) {
@@ -50775,15 +54371,15 @@ public final class PluginInterfaceImpl {
         } else {
           SDoubleTypeBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 4;</code>
+       * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 2;</code>
        */
       public Builder mergeSDoubleType(org.bimserver.pb.PluginInterfaceImpl.SDoubleType value) {
         if (SDoubleTypeBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) == 0x00000008) &&
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
               SDoubleType_ != org.bimserver.pb.PluginInterfaceImpl.SDoubleType.getDefaultInstance()) {
             SDoubleType_ =
               org.bimserver.pb.PluginInterfaceImpl.SDoubleType.newBuilder(SDoubleType_).mergeFrom(value).buildPartial();
@@ -50794,11 +54390,11 @@ public final class PluginInterfaceImpl {
         } else {
           SDoubleTypeBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 4;</code>
+       * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 2;</code>
        */
       public Builder clearSDoubleType() {
         if (SDoubleTypeBuilder_ == null) {
@@ -50807,19 +54403,19 @@ public final class PluginInterfaceImpl {
         } else {
           SDoubleTypeBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
       /**
-       * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 4;</code>
+       * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 2;</code>
        */
       public org.bimserver.pb.PluginInterfaceImpl.SDoubleType.Builder getSDoubleTypeBuilder() {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000002;
         onChanged();
         return getSDoubleTypeFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 4;</code>
+       * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 2;</code>
        */
       public org.bimserver.pb.PluginInterfaceImpl.SDoubleTypeOrBuilder getSDoubleTypeOrBuilder() {
         if (SDoubleTypeBuilder_ != null) {
@@ -50829,7 +54425,7 @@ public final class PluginInterfaceImpl {
         }
       }
       /**
-       * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 4;</code>
+       * <code>optional .org.bimserver.pb.SDoubleType __SDoubleType = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           org.bimserver.pb.PluginInterfaceImpl.SDoubleType, org.bimserver.pb.PluginInterfaceImpl.SDoubleType.Builder, org.bimserver.pb.PluginInterfaceImpl.SDoubleTypeOrBuilder> 
@@ -50843,6 +54439,240 @@ public final class PluginInterfaceImpl {
           SDoubleType_ = null;
         }
         return SDoubleTypeBuilder_;
+      }
+
+      // optional .org.bimserver.pb.SBooleanType __SBooleanType = 3;
+      private org.bimserver.pb.PluginInterfaceImpl.SBooleanType SBooleanType_ = org.bimserver.pb.PluginInterfaceImpl.SBooleanType.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          org.bimserver.pb.PluginInterfaceImpl.SBooleanType, org.bimserver.pb.PluginInterfaceImpl.SBooleanType.Builder, org.bimserver.pb.PluginInterfaceImpl.SBooleanTypeOrBuilder> SBooleanTypeBuilder_;
+      /**
+       * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 3;</code>
+       */
+      public boolean hasSBooleanType() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 3;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SBooleanType getSBooleanType() {
+        if (SBooleanTypeBuilder_ == null) {
+          return SBooleanType_;
+        } else {
+          return SBooleanTypeBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 3;</code>
+       */
+      public Builder setSBooleanType(org.bimserver.pb.PluginInterfaceImpl.SBooleanType value) {
+        if (SBooleanTypeBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          SBooleanType_ = value;
+          onChanged();
+        } else {
+          SBooleanTypeBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000004;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 3;</code>
+       */
+      public Builder setSBooleanType(
+          org.bimserver.pb.PluginInterfaceImpl.SBooleanType.Builder builderForValue) {
+        if (SBooleanTypeBuilder_ == null) {
+          SBooleanType_ = builderForValue.build();
+          onChanged();
+        } else {
+          SBooleanTypeBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000004;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 3;</code>
+       */
+      public Builder mergeSBooleanType(org.bimserver.pb.PluginInterfaceImpl.SBooleanType value) {
+        if (SBooleanTypeBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004) &&
+              SBooleanType_ != org.bimserver.pb.PluginInterfaceImpl.SBooleanType.getDefaultInstance()) {
+            SBooleanType_ =
+              org.bimserver.pb.PluginInterfaceImpl.SBooleanType.newBuilder(SBooleanType_).mergeFrom(value).buildPartial();
+          } else {
+            SBooleanType_ = value;
+          }
+          onChanged();
+        } else {
+          SBooleanTypeBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000004;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 3;</code>
+       */
+      public Builder clearSBooleanType() {
+        if (SBooleanTypeBuilder_ == null) {
+          SBooleanType_ = org.bimserver.pb.PluginInterfaceImpl.SBooleanType.getDefaultInstance();
+          onChanged();
+        } else {
+          SBooleanTypeBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 3;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SBooleanType.Builder getSBooleanTypeBuilder() {
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return getSBooleanTypeFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 3;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SBooleanTypeOrBuilder getSBooleanTypeOrBuilder() {
+        if (SBooleanTypeBuilder_ != null) {
+          return SBooleanTypeBuilder_.getMessageOrBuilder();
+        } else {
+          return SBooleanType_;
+        }
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          org.bimserver.pb.PluginInterfaceImpl.SBooleanType, org.bimserver.pb.PluginInterfaceImpl.SBooleanType.Builder, org.bimserver.pb.PluginInterfaceImpl.SBooleanTypeOrBuilder> 
+          getSBooleanTypeFieldBuilder() {
+        if (SBooleanTypeBuilder_ == null) {
+          SBooleanTypeBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.bimserver.pb.PluginInterfaceImpl.SBooleanType, org.bimserver.pb.PluginInterfaceImpl.SBooleanType.Builder, org.bimserver.pb.PluginInterfaceImpl.SBooleanTypeOrBuilder>(
+                  SBooleanType_,
+                  getParentForChildren(),
+                  isClean());
+          SBooleanType_ = null;
+        }
+        return SBooleanTypeBuilder_;
+      }
+
+      // optional .org.bimserver.pb.SLongType __SLongType = 4;
+      private org.bimserver.pb.PluginInterfaceImpl.SLongType SLongType_ = org.bimserver.pb.PluginInterfaceImpl.SLongType.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          org.bimserver.pb.PluginInterfaceImpl.SLongType, org.bimserver.pb.PluginInterfaceImpl.SLongType.Builder, org.bimserver.pb.PluginInterfaceImpl.SLongTypeOrBuilder> SLongTypeBuilder_;
+      /**
+       * <code>optional .org.bimserver.pb.SLongType __SLongType = 4;</code>
+       */
+      public boolean hasSLongType() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SLongType __SLongType = 4;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SLongType getSLongType() {
+        if (SLongTypeBuilder_ == null) {
+          return SLongType_;
+        } else {
+          return SLongTypeBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SLongType __SLongType = 4;</code>
+       */
+      public Builder setSLongType(org.bimserver.pb.PluginInterfaceImpl.SLongType value) {
+        if (SLongTypeBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          SLongType_ = value;
+          onChanged();
+        } else {
+          SLongTypeBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000008;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SLongType __SLongType = 4;</code>
+       */
+      public Builder setSLongType(
+          org.bimserver.pb.PluginInterfaceImpl.SLongType.Builder builderForValue) {
+        if (SLongTypeBuilder_ == null) {
+          SLongType_ = builderForValue.build();
+          onChanged();
+        } else {
+          SLongTypeBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000008;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SLongType __SLongType = 4;</code>
+       */
+      public Builder mergeSLongType(org.bimserver.pb.PluginInterfaceImpl.SLongType value) {
+        if (SLongTypeBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008) &&
+              SLongType_ != org.bimserver.pb.PluginInterfaceImpl.SLongType.getDefaultInstance()) {
+            SLongType_ =
+              org.bimserver.pb.PluginInterfaceImpl.SLongType.newBuilder(SLongType_).mergeFrom(value).buildPartial();
+          } else {
+            SLongType_ = value;
+          }
+          onChanged();
+        } else {
+          SLongTypeBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000008;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SLongType __SLongType = 4;</code>
+       */
+      public Builder clearSLongType() {
+        if (SLongTypeBuilder_ == null) {
+          SLongType_ = org.bimserver.pb.PluginInterfaceImpl.SLongType.getDefaultInstance();
+          onChanged();
+        } else {
+          SLongTypeBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000008);
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SLongType __SLongType = 4;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SLongType.Builder getSLongTypeBuilder() {
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return getSLongTypeFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SLongType __SLongType = 4;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SLongTypeOrBuilder getSLongTypeOrBuilder() {
+        if (SLongTypeBuilder_ != null) {
+          return SLongTypeBuilder_.getMessageOrBuilder();
+        } else {
+          return SLongType_;
+        }
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SLongType __SLongType = 4;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          org.bimserver.pb.PluginInterfaceImpl.SLongType, org.bimserver.pb.PluginInterfaceImpl.SLongType.Builder, org.bimserver.pb.PluginInterfaceImpl.SLongTypeOrBuilder> 
+          getSLongTypeFieldBuilder() {
+        if (SLongTypeBuilder_ == null) {
+          SLongTypeBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.bimserver.pb.PluginInterfaceImpl.SLongType, org.bimserver.pb.PluginInterfaceImpl.SLongType.Builder, org.bimserver.pb.PluginInterfaceImpl.SLongTypeOrBuilder>(
+                  SLongType_,
+                  getParentForChildren(),
+                  isClean());
+          SLongType_ = null;
+        }
+        return SLongTypeBuilder_;
       }
 
       // optional .org.bimserver.pb.SStringType __SStringType = 5;
@@ -50962,121 +54792,121 @@ public final class PluginInterfaceImpl {
         return SStringTypeBuilder_;
       }
 
-      // optional .org.bimserver.pb.SBooleanType __SBooleanType = 6;
-      private org.bimserver.pb.PluginInterfaceImpl.SBooleanType SBooleanType_ = org.bimserver.pb.PluginInterfaceImpl.SBooleanType.getDefaultInstance();
+      // optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 6;
+      private org.bimserver.pb.PluginInterfaceImpl.SByteArrayType SByteArrayType_ = org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          org.bimserver.pb.PluginInterfaceImpl.SBooleanType, org.bimserver.pb.PluginInterfaceImpl.SBooleanType.Builder, org.bimserver.pb.PluginInterfaceImpl.SBooleanTypeOrBuilder> SBooleanTypeBuilder_;
+          org.bimserver.pb.PluginInterfaceImpl.SByteArrayType, org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.Builder, org.bimserver.pb.PluginInterfaceImpl.SByteArrayTypeOrBuilder> SByteArrayTypeBuilder_;
       /**
-       * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 6;</code>
+       * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 6;</code>
        */
-      public boolean hasSBooleanType() {
+      public boolean hasSByteArrayType() {
         return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       /**
-       * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 6;</code>
+       * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 6;</code>
        */
-      public org.bimserver.pb.PluginInterfaceImpl.SBooleanType getSBooleanType() {
-        if (SBooleanTypeBuilder_ == null) {
-          return SBooleanType_;
+      public org.bimserver.pb.PluginInterfaceImpl.SByteArrayType getSByteArrayType() {
+        if (SByteArrayTypeBuilder_ == null) {
+          return SByteArrayType_;
         } else {
-          return SBooleanTypeBuilder_.getMessage();
+          return SByteArrayTypeBuilder_.getMessage();
         }
       }
       /**
-       * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 6;</code>
+       * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 6;</code>
        */
-      public Builder setSBooleanType(org.bimserver.pb.PluginInterfaceImpl.SBooleanType value) {
-        if (SBooleanTypeBuilder_ == null) {
+      public Builder setSByteArrayType(org.bimserver.pb.PluginInterfaceImpl.SByteArrayType value) {
+        if (SByteArrayTypeBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          SBooleanType_ = value;
+          SByteArrayType_ = value;
           onChanged();
         } else {
-          SBooleanTypeBuilder_.setMessage(value);
+          SByteArrayTypeBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000020;
         return this;
       }
       /**
-       * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 6;</code>
+       * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 6;</code>
        */
-      public Builder setSBooleanType(
-          org.bimserver.pb.PluginInterfaceImpl.SBooleanType.Builder builderForValue) {
-        if (SBooleanTypeBuilder_ == null) {
-          SBooleanType_ = builderForValue.build();
+      public Builder setSByteArrayType(
+          org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.Builder builderForValue) {
+        if (SByteArrayTypeBuilder_ == null) {
+          SByteArrayType_ = builderForValue.build();
           onChanged();
         } else {
-          SBooleanTypeBuilder_.setMessage(builderForValue.build());
+          SByteArrayTypeBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000020;
         return this;
       }
       /**
-       * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 6;</code>
+       * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 6;</code>
        */
-      public Builder mergeSBooleanType(org.bimserver.pb.PluginInterfaceImpl.SBooleanType value) {
-        if (SBooleanTypeBuilder_ == null) {
+      public Builder mergeSByteArrayType(org.bimserver.pb.PluginInterfaceImpl.SByteArrayType value) {
+        if (SByteArrayTypeBuilder_ == null) {
           if (((bitField0_ & 0x00000020) == 0x00000020) &&
-              SBooleanType_ != org.bimserver.pb.PluginInterfaceImpl.SBooleanType.getDefaultInstance()) {
-            SBooleanType_ =
-              org.bimserver.pb.PluginInterfaceImpl.SBooleanType.newBuilder(SBooleanType_).mergeFrom(value).buildPartial();
+              SByteArrayType_ != org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.getDefaultInstance()) {
+            SByteArrayType_ =
+              org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.newBuilder(SByteArrayType_).mergeFrom(value).buildPartial();
           } else {
-            SBooleanType_ = value;
+            SByteArrayType_ = value;
           }
           onChanged();
         } else {
-          SBooleanTypeBuilder_.mergeFrom(value);
+          SByteArrayTypeBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000020;
         return this;
       }
       /**
-       * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 6;</code>
+       * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 6;</code>
        */
-      public Builder clearSBooleanType() {
-        if (SBooleanTypeBuilder_ == null) {
-          SBooleanType_ = org.bimserver.pb.PluginInterfaceImpl.SBooleanType.getDefaultInstance();
+      public Builder clearSByteArrayType() {
+        if (SByteArrayTypeBuilder_ == null) {
+          SByteArrayType_ = org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.getDefaultInstance();
           onChanged();
         } else {
-          SBooleanTypeBuilder_.clear();
+          SByteArrayTypeBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
       /**
-       * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 6;</code>
+       * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 6;</code>
        */
-      public org.bimserver.pb.PluginInterfaceImpl.SBooleanType.Builder getSBooleanTypeBuilder() {
+      public org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.Builder getSByteArrayTypeBuilder() {
         bitField0_ |= 0x00000020;
         onChanged();
-        return getSBooleanTypeFieldBuilder().getBuilder();
+        return getSByteArrayTypeFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 6;</code>
+       * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 6;</code>
        */
-      public org.bimserver.pb.PluginInterfaceImpl.SBooleanTypeOrBuilder getSBooleanTypeOrBuilder() {
-        if (SBooleanTypeBuilder_ != null) {
-          return SBooleanTypeBuilder_.getMessageOrBuilder();
+      public org.bimserver.pb.PluginInterfaceImpl.SByteArrayTypeOrBuilder getSByteArrayTypeOrBuilder() {
+        if (SByteArrayTypeBuilder_ != null) {
+          return SByteArrayTypeBuilder_.getMessageOrBuilder();
         } else {
-          return SBooleanType_;
+          return SByteArrayType_;
         }
       }
       /**
-       * <code>optional .org.bimserver.pb.SBooleanType __SBooleanType = 6;</code>
+       * <code>optional .org.bimserver.pb.SByteArrayType __SByteArrayType = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.bimserver.pb.PluginInterfaceImpl.SBooleanType, org.bimserver.pb.PluginInterfaceImpl.SBooleanType.Builder, org.bimserver.pb.PluginInterfaceImpl.SBooleanTypeOrBuilder> 
-          getSBooleanTypeFieldBuilder() {
-        if (SBooleanTypeBuilder_ == null) {
-          SBooleanTypeBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              org.bimserver.pb.PluginInterfaceImpl.SBooleanType, org.bimserver.pb.PluginInterfaceImpl.SBooleanType.Builder, org.bimserver.pb.PluginInterfaceImpl.SBooleanTypeOrBuilder>(
-                  SBooleanType_,
+          org.bimserver.pb.PluginInterfaceImpl.SByteArrayType, org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.Builder, org.bimserver.pb.PluginInterfaceImpl.SByteArrayTypeOrBuilder> 
+          getSByteArrayTypeFieldBuilder() {
+        if (SByteArrayTypeBuilder_ == null) {
+          SByteArrayTypeBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.bimserver.pb.PluginInterfaceImpl.SByteArrayType, org.bimserver.pb.PluginInterfaceImpl.SByteArrayType.Builder, org.bimserver.pb.PluginInterfaceImpl.SByteArrayTypeOrBuilder>(
+                  SByteArrayType_,
                   getParentForChildren(),
                   isClean());
-          SBooleanType_ = null;
+          SByteArrayType_ = null;
         }
-        return SBooleanTypeBuilder_;
+        return SByteArrayTypeBuilder_;
       }
 
       // optional int32 rid = 7;
@@ -70266,6 +74096,513 @@ public final class PluginInterfaceImpl {
     // @@protoc_insertion_point(class_scope:org.bimserver.pb.UpdateDeserializerRequest)
   }
 
+  public interface UpdateInternalServiceRequestOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;
+    /**
+     * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+     */
+    boolean hasInternalService();
+    /**
+     * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+     */
+    org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration getInternalService();
+    /**
+     * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+     */
+    org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder getInternalServiceOrBuilder();
+  }
+  /**
+   * Protobuf type {@code org.bimserver.pb.UpdateInternalServiceRequest}
+   */
+  public static final class UpdateInternalServiceRequest extends
+      com.google.protobuf.GeneratedMessage
+      implements UpdateInternalServiceRequestOrBuilder {
+    // Use UpdateInternalServiceRequest.newBuilder() to construct.
+    private UpdateInternalServiceRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private UpdateInternalServiceRequest(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final UpdateInternalServiceRequest defaultInstance;
+    public static UpdateInternalServiceRequest getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public UpdateInternalServiceRequest getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private UpdateInternalServiceRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000001) == 0x00000001)) {
+                subBuilder = internalService_.toBuilder();
+              }
+              internalService_ = input.readMessage(org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(internalService_);
+                internalService_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000001;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_UpdateInternalServiceRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_UpdateInternalServiceRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest.class, org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<UpdateInternalServiceRequest> PARSER =
+        new com.google.protobuf.AbstractParser<UpdateInternalServiceRequest>() {
+      public UpdateInternalServiceRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new UpdateInternalServiceRequest(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UpdateInternalServiceRequest> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;
+    public static final int INTERNALSERVICE_FIELD_NUMBER = 1;
+    private org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration internalService_;
+    /**
+     * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+     */
+    public boolean hasInternalService() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+     */
+    public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration getInternalService() {
+      return internalService_;
+    }
+    /**
+     * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+     */
+    public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder getInternalServiceOrBuilder() {
+      return internalService_;
+    }
+
+    private void initFields() {
+      internalService_ = org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.getDefaultInstance();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeMessage(1, internalService_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, internalService_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.bimserver.pb.UpdateInternalServiceRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_UpdateInternalServiceRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_UpdateInternalServiceRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest.class, org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest.Builder.class);
+      }
+
+      // Construct using org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getInternalServiceFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        if (internalServiceBuilder_ == null) {
+          internalService_ = org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.getDefaultInstance();
+        } else {
+          internalServiceBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.internal_static_org_bimserver_pb_UpdateInternalServiceRequest_descriptor;
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest getDefaultInstanceForType() {
+        return org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest.getDefaultInstance();
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest build() {
+        org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest buildPartial() {
+        org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest result = new org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        if (internalServiceBuilder_ == null) {
+          result.internalService_ = internalService_;
+        } else {
+          result.internalService_ = internalServiceBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest) {
+          return mergeFrom((org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest other) {
+        if (other == org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest.getDefaultInstance()) return this;
+        if (other.hasInternalService()) {
+          mergeInternalService(other.getInternalService());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;
+      private org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration internalService_ = org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder> internalServiceBuilder_;
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+       */
+      public boolean hasInternalService() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration getInternalService() {
+        if (internalServiceBuilder_ == null) {
+          return internalService_;
+        } else {
+          return internalServiceBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+       */
+      public Builder setInternalService(org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration value) {
+        if (internalServiceBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          internalService_ = value;
+          onChanged();
+        } else {
+          internalServiceBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+       */
+      public Builder setInternalService(
+          org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder builderForValue) {
+        if (internalServiceBuilder_ == null) {
+          internalService_ = builderForValue.build();
+          onChanged();
+        } else {
+          internalServiceBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+       */
+      public Builder mergeInternalService(org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration value) {
+        if (internalServiceBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              internalService_ != org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.getDefaultInstance()) {
+            internalService_ =
+              org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.newBuilder(internalService_).mergeFrom(value).buildPartial();
+          } else {
+            internalService_ = value;
+          }
+          onChanged();
+        } else {
+          internalServiceBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+       */
+      public Builder clearInternalService() {
+        if (internalServiceBuilder_ == null) {
+          internalService_ = org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.getDefaultInstance();
+          onChanged();
+        } else {
+          internalServiceBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder getInternalServiceBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getInternalServiceFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+       */
+      public org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder getInternalServiceOrBuilder() {
+        if (internalServiceBuilder_ != null) {
+          return internalServiceBuilder_.getMessageOrBuilder();
+        } else {
+          return internalService_;
+        }
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SInternalServicePluginConfiguration internalService = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder> 
+          getInternalServiceFieldBuilder() {
+        if (internalServiceBuilder_ == null) {
+          internalServiceBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfiguration.Builder, org.bimserver.pb.PluginInterfaceImpl.SInternalServicePluginConfigurationOrBuilder>(
+                  internalService_,
+                  getParentForChildren(),
+                  isClean());
+          internalService_ = null;
+        }
+        return internalServiceBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.UpdateInternalServiceRequest)
+    }
+
+    static {
+      defaultInstance = new UpdateInternalServiceRequest(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.UpdateInternalServiceRequest)
+  }
+
   public interface UpdateModelCompareRequestOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
@@ -73325,6 +77662,14 @@ public final class PluginInterfaceImpl {
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
 
       /**
+       * <code>rpc addInternalService(.org.bimserver.pb.AddInternalServiceRequest) returns (.org.bimserver.pb.VoidResponse);</code>
+       */
+      public abstract void addInternalService(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
+
+      /**
        * <code>rpc addModelCompare(.org.bimserver.pb.AddModelCompareRequest) returns (.org.bimserver.pb.VoidResponse);</code>
        */
       public abstract void addModelCompare(
@@ -73378,6 +77723,14 @@ public final class PluginInterfaceImpl {
       public abstract void deleteDeserializer(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.PluginInterfaceImpl.DeleteDeserializerRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
+
+      /**
+       * <code>rpc deleteInternalService(.org.bimserver.pb.DeleteInternalServiceRequest) returns (.org.bimserver.pb.VoidResponse);</code>
+       */
+      public abstract void deleteInternalService(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
 
       /**
@@ -73443,6 +77796,14 @@ public final class PluginInterfaceImpl {
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersResponse> done);
+
+      /**
+       * <code>rpc getAllInternalServices(.org.bimserver.pb.GetAllInternalServicesRequest) returns (.org.bimserver.pb.GetAllInternalServicesResponse);</code>
+       */
+      public abstract void getAllInternalServices(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse> done);
 
       /**
        * <code>rpc getAllModelComparePluginDescriptors(.org.bimserver.pb.GetAllModelComparePluginDescriptorsRequest) returns (.org.bimserver.pb.GetAllModelComparePluginDescriptorsResponse);</code>
@@ -73603,6 +77964,14 @@ public final class PluginInterfaceImpl {
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameResponse> done);
+
+      /**
+       * <code>rpc getInternalServiceById(.org.bimserver.pb.GetInternalServiceByIdRequest) returns (.org.bimserver.pb.GetInternalServiceByIdResponse);</code>
+       */
+      public abstract void getInternalServiceById(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse> done);
 
       /**
        * <code>rpc getModelCompareById(.org.bimserver.pb.GetModelCompareByIdRequest) returns (.org.bimserver.pb.GetModelCompareByIdResponse);</code>
@@ -73813,6 +78182,14 @@ public final class PluginInterfaceImpl {
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
 
       /**
+       * <code>rpc updateInternalService(.org.bimserver.pb.UpdateInternalServiceRequest) returns (.org.bimserver.pb.VoidResponse);</code>
+       */
+      public abstract void updateInternalService(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
+
+      /**
        * <code>rpc updateModelCompare(.org.bimserver.pb.UpdateModelCompareRequest) returns (.org.bimserver.pb.VoidResponse);</code>
        */
       public abstract void updateModelCompare(
@@ -73874,6 +78251,14 @@ public final class PluginInterfaceImpl {
         }
 
         @java.lang.Override
+        public  void addInternalService(
+            com.google.protobuf.RpcController controller,
+            org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest request,
+            com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
+          impl.addInternalService(controller, request, done);
+        }
+
+        @java.lang.Override
         public  void addModelCompare(
             com.google.protobuf.RpcController controller,
             org.bimserver.pb.PluginInterfaceImpl.AddModelCompareRequest request,
@@ -73927,6 +78312,14 @@ public final class PluginInterfaceImpl {
             org.bimserver.pb.PluginInterfaceImpl.DeleteDeserializerRequest request,
             com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
           impl.deleteDeserializer(controller, request, done);
+        }
+
+        @java.lang.Override
+        public  void deleteInternalService(
+            com.google.protobuf.RpcController controller,
+            org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest request,
+            com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
+          impl.deleteInternalService(controller, request, done);
         }
 
         @java.lang.Override
@@ -73991,6 +78384,14 @@ public final class PluginInterfaceImpl {
             org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersRequest request,
             com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersResponse> done) {
           impl.getAllDeserializers(controller, request, done);
+        }
+
+        @java.lang.Override
+        public  void getAllInternalServices(
+            com.google.protobuf.RpcController controller,
+            org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest request,
+            com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse> done) {
+          impl.getAllInternalServices(controller, request, done);
         }
 
         @java.lang.Override
@@ -74151,6 +78552,14 @@ public final class PluginInterfaceImpl {
             org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameRequest request,
             com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameResponse> done) {
           impl.getDeserializerByName(controller, request, done);
+        }
+
+        @java.lang.Override
+        public  void getInternalServiceById(
+            com.google.protobuf.RpcController controller,
+            org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest request,
+            com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse> done) {
+          impl.getInternalServiceById(controller, request, done);
         }
 
         @java.lang.Override
@@ -74362,6 +78771,14 @@ public final class PluginInterfaceImpl {
         }
 
         @java.lang.Override
+        public  void updateInternalService(
+            com.google.protobuf.RpcController controller,
+            org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest request,
+            com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
+          impl.updateInternalService(controller, request, done);
+        }
+
+        @java.lang.Override
         public  void updateModelCompare(
             com.google.protobuf.RpcController controller,
             org.bimserver.pb.PluginInterfaceImpl.UpdateModelCompareRequest request,
@@ -74434,138 +78851,148 @@ public final class PluginInterfaceImpl {
             case 0:
               return impl.addDeserializer(controller, (org.bimserver.pb.PluginInterfaceImpl.AddDeserializerRequest)request);
             case 1:
-              return impl.addModelCompare(controller, (org.bimserver.pb.PluginInterfaceImpl.AddModelCompareRequest)request);
+              return impl.addInternalService(controller, (org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest)request);
             case 2:
-              return impl.addModelMerger(controller, (org.bimserver.pb.PluginInterfaceImpl.AddModelMergerRequest)request);
+              return impl.addModelCompare(controller, (org.bimserver.pb.PluginInterfaceImpl.AddModelCompareRequest)request);
             case 3:
-              return impl.addObjectIDM(controller, (org.bimserver.pb.PluginInterfaceImpl.AddObjectIDMRequest)request);
+              return impl.addModelMerger(controller, (org.bimserver.pb.PluginInterfaceImpl.AddModelMergerRequest)request);
             case 4:
-              return impl.addQueryEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.AddQueryEngineRequest)request);
+              return impl.addObjectIDM(controller, (org.bimserver.pb.PluginInterfaceImpl.AddObjectIDMRequest)request);
             case 5:
-              return impl.addRenderEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.AddRenderEngineRequest)request);
+              return impl.addQueryEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.AddQueryEngineRequest)request);
             case 6:
-              return impl.addSerializer(controller, (org.bimserver.pb.PluginInterfaceImpl.AddSerializerRequest)request);
+              return impl.addRenderEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.AddRenderEngineRequest)request);
             case 7:
-              return impl.deleteDeserializer(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteDeserializerRequest)request);
+              return impl.addSerializer(controller, (org.bimserver.pb.PluginInterfaceImpl.AddSerializerRequest)request);
             case 8:
-              return impl.deleteModelCompare(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteModelCompareRequest)request);
+              return impl.deleteDeserializer(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteDeserializerRequest)request);
             case 9:
-              return impl.deleteModelMerger(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteModelMergerRequest)request);
+              return impl.deleteInternalService(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest)request);
             case 10:
-              return impl.deleteObjectIDM(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteObjectIDMRequest)request);
+              return impl.deleteModelCompare(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteModelCompareRequest)request);
             case 11:
-              return impl.deleteQueryEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteQueryEngineRequest)request);
+              return impl.deleteModelMerger(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteModelMergerRequest)request);
             case 12:
-              return impl.deleteRenderEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteRenderEngineRequest)request);
+              return impl.deleteObjectIDM(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteObjectIDMRequest)request);
             case 13:
-              return impl.deleteSerializer(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteSerializerRequest)request);
+              return impl.deleteQueryEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteQueryEngineRequest)request);
             case 14:
-              return impl.getAllDeserializerPluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializerPluginDescriptorsRequest)request);
+              return impl.deleteRenderEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteRenderEngineRequest)request);
             case 15:
-              return impl.getAllDeserializers(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersRequest)request);
+              return impl.deleteSerializer(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteSerializerRequest)request);
             case 16:
-              return impl.getAllModelComparePluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparePluginDescriptorsRequest)request);
+              return impl.getAllDeserializerPluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializerPluginDescriptorsRequest)request);
             case 17:
-              return impl.getAllModelCompares(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparesRequest)request);
+              return impl.getAllDeserializers(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersRequest)request);
             case 18:
-              return impl.getAllModelMergerPluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergerPluginDescriptorsRequest)request);
+              return impl.getAllInternalServices(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest)request);
             case 19:
-              return impl.getAllModelMergers(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergersRequest)request);
+              return impl.getAllModelComparePluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparePluginDescriptorsRequest)request);
             case 20:
-              return impl.getAllObjectIDMs(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllObjectIDMsRequest)request);
+              return impl.getAllModelCompares(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparesRequest)request);
             case 21:
-              return impl.getAllQueryEnginePluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginePluginDescriptorsRequest)request);
+              return impl.getAllModelMergerPluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergerPluginDescriptorsRequest)request);
             case 22:
-              return impl.getAllQueryEngines(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginesRequest)request);
+              return impl.getAllModelMergers(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergersRequest)request);
             case 23:
-              return impl.getAllRenderEnginePluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginePluginDescriptorsRequest)request);
+              return impl.getAllObjectIDMs(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllObjectIDMsRequest)request);
             case 24:
-              return impl.getAllRenderEngines(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginesRequest)request);
+              return impl.getAllQueryEnginePluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginePluginDescriptorsRequest)request);
             case 25:
-              return impl.getAllSerializerPluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllSerializerPluginDescriptorsRequest)request);
+              return impl.getAllQueryEngines(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginesRequest)request);
             case 26:
-              return impl.getAllSerializers(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllSerializersRequest)request);
+              return impl.getAllRenderEnginePluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginePluginDescriptorsRequest)request);
             case 27:
-              return impl.getAllServicePluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllServicePluginDescriptorsRequest)request);
+              return impl.getAllRenderEngines(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginesRequest)request);
             case 28:
-              return impl.getDefaultModelCompare(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelCompareRequest)request);
+              return impl.getAllSerializerPluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllSerializerPluginDescriptorsRequest)request);
             case 29:
-              return impl.getDefaultModelMerger(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelMergerRequest)request);
+              return impl.getAllSerializers(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllSerializersRequest)request);
             case 30:
-              return impl.getDefaultObjectIDM(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDefaultObjectIDMRequest)request);
+              return impl.getAllServicePluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllServicePluginDescriptorsRequest)request);
             case 31:
-              return impl.getDefaultQueryEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDefaultQueryEngineRequest)request);
+              return impl.getDefaultModelCompare(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelCompareRequest)request);
             case 32:
-              return impl.getDefaultRenderEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDefaultRenderEngineRequest)request);
+              return impl.getDefaultModelMerger(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelMergerRequest)request);
             case 33:
-              return impl.getDefaultSerializer(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDefaultSerializerRequest)request);
+              return impl.getDefaultObjectIDM(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDefaultObjectIDMRequest)request);
             case 34:
-              return impl.getDeserializerById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByIdRequest)request);
+              return impl.getDefaultQueryEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDefaultQueryEngineRequest)request);
             case 35:
-              return impl.getDeserializerByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameRequest)request);
+              return impl.getDefaultRenderEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDefaultRenderEngineRequest)request);
             case 36:
-              return impl.getModelCompareById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByIdRequest)request);
+              return impl.getDefaultSerializer(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDefaultSerializerRequest)request);
             case 37:
-              return impl.getModelCompareByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByNameRequest)request);
+              return impl.getDeserializerById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByIdRequest)request);
             case 38:
-              return impl.getModelMergerById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByIdRequest)request);
+              return impl.getDeserializerByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameRequest)request);
             case 39:
-              return impl.getModelMergerByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByNameRequest)request);
+              return impl.getInternalServiceById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest)request);
             case 40:
-              return impl.getObjectIDMById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByIdRequest)request);
+              return impl.getModelCompareById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByIdRequest)request);
             case 41:
-              return impl.getObjectIDMByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByNameRequest)request);
+              return impl.getModelCompareByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByNameRequest)request);
             case 42:
-              return impl.getPluginObjectDefinition(controller, (org.bimserver.pb.PluginInterfaceImpl.GetPluginObjectDefinitionRequest)request);
+              return impl.getModelMergerById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByIdRequest)request);
             case 43:
-              return impl.getPluginSettings(controller, (org.bimserver.pb.PluginInterfaceImpl.GetPluginSettingsRequest)request);
+              return impl.getModelMergerByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByNameRequest)request);
             case 44:
-              return impl.getQueryEngineById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByIdRequest)request);
+              return impl.getObjectIDMById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByIdRequest)request);
             case 45:
-              return impl.getQueryEngineByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByNameRequest)request);
+              return impl.getObjectIDMByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByNameRequest)request);
             case 46:
-              return impl.getRenderEngineById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByIdRequest)request);
+              return impl.getPluginObjectDefinition(controller, (org.bimserver.pb.PluginInterfaceImpl.GetPluginObjectDefinitionRequest)request);
             case 47:
-              return impl.getRenderEngineByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByNameRequest)request);
+              return impl.getPluginSettings(controller, (org.bimserver.pb.PluginInterfaceImpl.GetPluginSettingsRequest)request);
             case 48:
-              return impl.getSerializerByContentType(controller, (org.bimserver.pb.PluginInterfaceImpl.GetSerializerByContentTypeRequest)request);
+              return impl.getQueryEngineById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByIdRequest)request);
             case 49:
-              return impl.getSerializerById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetSerializerByIdRequest)request);
+              return impl.getQueryEngineByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByNameRequest)request);
             case 50:
-              return impl.getSerializerByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetSerializerByNameRequest)request);
+              return impl.getRenderEngineById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByIdRequest)request);
             case 51:
-              return impl.getSerializerByPluginClassName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetSerializerByPluginClassNameRequest)request);
+              return impl.getRenderEngineByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByNameRequest)request);
             case 52:
-              return impl.getSerializerPluginDescriptor(controller, (org.bimserver.pb.PluginInterfaceImpl.GetSerializerPluginDescriptorRequest)request);
+              return impl.getSerializerByContentType(controller, (org.bimserver.pb.PluginInterfaceImpl.GetSerializerByContentTypeRequest)request);
             case 53:
-              return impl.hasActiveSerializer(controller, (org.bimserver.pb.PluginInterfaceImpl.HasActiveSerializerRequest)request);
+              return impl.getSerializerById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetSerializerByIdRequest)request);
             case 54:
-              return impl.setDefaultModelCompare(controller, (org.bimserver.pb.PluginInterfaceImpl.SetDefaultModelCompareRequest)request);
+              return impl.getSerializerByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetSerializerByNameRequest)request);
             case 55:
-              return impl.setDefaultModelMerger(controller, (org.bimserver.pb.PluginInterfaceImpl.SetDefaultModelMergerRequest)request);
+              return impl.getSerializerByPluginClassName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetSerializerByPluginClassNameRequest)request);
             case 56:
-              return impl.setDefaultObjectIDM(controller, (org.bimserver.pb.PluginInterfaceImpl.SetDefaultObjectIDMRequest)request);
+              return impl.getSerializerPluginDescriptor(controller, (org.bimserver.pb.PluginInterfaceImpl.GetSerializerPluginDescriptorRequest)request);
             case 57:
-              return impl.setDefaultQueryEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.SetDefaultQueryEngineRequest)request);
+              return impl.hasActiveSerializer(controller, (org.bimserver.pb.PluginInterfaceImpl.HasActiveSerializerRequest)request);
             case 58:
-              return impl.setDefaultRenderEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.SetDefaultRenderEngineRequest)request);
+              return impl.setDefaultModelCompare(controller, (org.bimserver.pb.PluginInterfaceImpl.SetDefaultModelCompareRequest)request);
             case 59:
-              return impl.setDefaultSerializer(controller, (org.bimserver.pb.PluginInterfaceImpl.SetDefaultSerializerRequest)request);
+              return impl.setDefaultModelMerger(controller, (org.bimserver.pb.PluginInterfaceImpl.SetDefaultModelMergerRequest)request);
             case 60:
-              return impl.setPluginSettings(controller, (org.bimserver.pb.PluginInterfaceImpl.SetPluginSettingsRequest)request);
+              return impl.setDefaultObjectIDM(controller, (org.bimserver.pb.PluginInterfaceImpl.SetDefaultObjectIDMRequest)request);
             case 61:
-              return impl.updateDeserializer(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateDeserializerRequest)request);
+              return impl.setDefaultQueryEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.SetDefaultQueryEngineRequest)request);
             case 62:
-              return impl.updateModelCompare(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateModelCompareRequest)request);
+              return impl.setDefaultRenderEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.SetDefaultRenderEngineRequest)request);
             case 63:
-              return impl.updateModelMerger(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateModelMergerRequest)request);
+              return impl.setDefaultSerializer(controller, (org.bimserver.pb.PluginInterfaceImpl.SetDefaultSerializerRequest)request);
             case 64:
-              return impl.updateObjectIDM(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateObjectIDMRequest)request);
+              return impl.setPluginSettings(controller, (org.bimserver.pb.PluginInterfaceImpl.SetPluginSettingsRequest)request);
             case 65:
-              return impl.updateQueryEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateQueryEngineRequest)request);
+              return impl.updateDeserializer(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateDeserializerRequest)request);
             case 66:
-              return impl.updateRenderEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateRenderEngineRequest)request);
+              return impl.updateInternalService(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest)request);
             case 67:
+              return impl.updateModelCompare(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateModelCompareRequest)request);
+            case 68:
+              return impl.updateModelMerger(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateModelMergerRequest)request);
+            case 69:
+              return impl.updateObjectIDM(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateObjectIDMRequest)request);
+            case 70:
+              return impl.updateQueryEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateQueryEngineRequest)request);
+            case 71:
+              return impl.updateRenderEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateRenderEngineRequest)request);
+            case 72:
               return impl.updateSerializer(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateSerializerRequest)request);
             default:
               throw new java.lang.AssertionError("Can't get here.");
@@ -74584,138 +79011,148 @@ public final class PluginInterfaceImpl {
             case 0:
               return org.bimserver.pb.PluginInterfaceImpl.AddDeserializerRequest.getDefaultInstance();
             case 1:
-              return org.bimserver.pb.PluginInterfaceImpl.AddModelCompareRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest.getDefaultInstance();
             case 2:
-              return org.bimserver.pb.PluginInterfaceImpl.AddModelMergerRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.AddModelCompareRequest.getDefaultInstance();
             case 3:
-              return org.bimserver.pb.PluginInterfaceImpl.AddObjectIDMRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.AddModelMergerRequest.getDefaultInstance();
             case 4:
-              return org.bimserver.pb.PluginInterfaceImpl.AddQueryEngineRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.AddObjectIDMRequest.getDefaultInstance();
             case 5:
-              return org.bimserver.pb.PluginInterfaceImpl.AddRenderEngineRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.AddQueryEngineRequest.getDefaultInstance();
             case 6:
-              return org.bimserver.pb.PluginInterfaceImpl.AddSerializerRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.AddRenderEngineRequest.getDefaultInstance();
             case 7:
-              return org.bimserver.pb.PluginInterfaceImpl.DeleteDeserializerRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.AddSerializerRequest.getDefaultInstance();
             case 8:
-              return org.bimserver.pb.PluginInterfaceImpl.DeleteModelCompareRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.DeleteDeserializerRequest.getDefaultInstance();
             case 9:
-              return org.bimserver.pb.PluginInterfaceImpl.DeleteModelMergerRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest.getDefaultInstance();
             case 10:
-              return org.bimserver.pb.PluginInterfaceImpl.DeleteObjectIDMRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.DeleteModelCompareRequest.getDefaultInstance();
             case 11:
-              return org.bimserver.pb.PluginInterfaceImpl.DeleteQueryEngineRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.DeleteModelMergerRequest.getDefaultInstance();
             case 12:
-              return org.bimserver.pb.PluginInterfaceImpl.DeleteRenderEngineRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.DeleteObjectIDMRequest.getDefaultInstance();
             case 13:
-              return org.bimserver.pb.PluginInterfaceImpl.DeleteSerializerRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.DeleteQueryEngineRequest.getDefaultInstance();
             case 14:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializerPluginDescriptorsRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.DeleteRenderEngineRequest.getDefaultInstance();
             case 15:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.DeleteSerializerRequest.getDefaultInstance();
             case 16:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparePluginDescriptorsRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializerPluginDescriptorsRequest.getDefaultInstance();
             case 17:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparesRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersRequest.getDefaultInstance();
             case 18:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergerPluginDescriptorsRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest.getDefaultInstance();
             case 19:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergersRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparePluginDescriptorsRequest.getDefaultInstance();
             case 20:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllObjectIDMsRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparesRequest.getDefaultInstance();
             case 21:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginePluginDescriptorsRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergerPluginDescriptorsRequest.getDefaultInstance();
             case 22:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginesRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergersRequest.getDefaultInstance();
             case 23:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginePluginDescriptorsRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllObjectIDMsRequest.getDefaultInstance();
             case 24:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginesRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginePluginDescriptorsRequest.getDefaultInstance();
             case 25:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllSerializerPluginDescriptorsRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginesRequest.getDefaultInstance();
             case 26:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllSerializersRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginePluginDescriptorsRequest.getDefaultInstance();
             case 27:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllServicePluginDescriptorsRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginesRequest.getDefaultInstance();
             case 28:
-              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelCompareRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllSerializerPluginDescriptorsRequest.getDefaultInstance();
             case 29:
-              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelMergerRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllSerializersRequest.getDefaultInstance();
             case 30:
-              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultObjectIDMRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllServicePluginDescriptorsRequest.getDefaultInstance();
             case 31:
-              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultQueryEngineRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelCompareRequest.getDefaultInstance();
             case 32:
-              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultRenderEngineRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelMergerRequest.getDefaultInstance();
             case 33:
-              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultSerializerRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultObjectIDMRequest.getDefaultInstance();
             case 34:
-              return org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByIdRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultQueryEngineRequest.getDefaultInstance();
             case 35:
-              return org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultRenderEngineRequest.getDefaultInstance();
             case 36:
-              return org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByIdRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultSerializerRequest.getDefaultInstance();
             case 37:
-              return org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByNameRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByIdRequest.getDefaultInstance();
             case 38:
-              return org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByIdRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameRequest.getDefaultInstance();
             case 39:
-              return org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByNameRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest.getDefaultInstance();
             case 40:
-              return org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByIdRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByIdRequest.getDefaultInstance();
             case 41:
-              return org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByNameRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByNameRequest.getDefaultInstance();
             case 42:
-              return org.bimserver.pb.PluginInterfaceImpl.GetPluginObjectDefinitionRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByIdRequest.getDefaultInstance();
             case 43:
-              return org.bimserver.pb.PluginInterfaceImpl.GetPluginSettingsRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByNameRequest.getDefaultInstance();
             case 44:
-              return org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByIdRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByIdRequest.getDefaultInstance();
             case 45:
-              return org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByNameRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByNameRequest.getDefaultInstance();
             case 46:
-              return org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByIdRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetPluginObjectDefinitionRequest.getDefaultInstance();
             case 47:
-              return org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByNameRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetPluginSettingsRequest.getDefaultInstance();
             case 48:
-              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByContentTypeRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByIdRequest.getDefaultInstance();
             case 49:
-              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByIdRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByNameRequest.getDefaultInstance();
             case 50:
-              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByNameRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByIdRequest.getDefaultInstance();
             case 51:
-              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByPluginClassNameRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByNameRequest.getDefaultInstance();
             case 52:
-              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerPluginDescriptorRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByContentTypeRequest.getDefaultInstance();
             case 53:
-              return org.bimserver.pb.PluginInterfaceImpl.HasActiveSerializerRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByIdRequest.getDefaultInstance();
             case 54:
-              return org.bimserver.pb.PluginInterfaceImpl.SetDefaultModelCompareRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByNameRequest.getDefaultInstance();
             case 55:
-              return org.bimserver.pb.PluginInterfaceImpl.SetDefaultModelMergerRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByPluginClassNameRequest.getDefaultInstance();
             case 56:
-              return org.bimserver.pb.PluginInterfaceImpl.SetDefaultObjectIDMRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerPluginDescriptorRequest.getDefaultInstance();
             case 57:
-              return org.bimserver.pb.PluginInterfaceImpl.SetDefaultQueryEngineRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.HasActiveSerializerRequest.getDefaultInstance();
             case 58:
-              return org.bimserver.pb.PluginInterfaceImpl.SetDefaultRenderEngineRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.SetDefaultModelCompareRequest.getDefaultInstance();
             case 59:
-              return org.bimserver.pb.PluginInterfaceImpl.SetDefaultSerializerRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.SetDefaultModelMergerRequest.getDefaultInstance();
             case 60:
-              return org.bimserver.pb.PluginInterfaceImpl.SetPluginSettingsRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.SetDefaultObjectIDMRequest.getDefaultInstance();
             case 61:
-              return org.bimserver.pb.PluginInterfaceImpl.UpdateDeserializerRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.SetDefaultQueryEngineRequest.getDefaultInstance();
             case 62:
-              return org.bimserver.pb.PluginInterfaceImpl.UpdateModelCompareRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.SetDefaultRenderEngineRequest.getDefaultInstance();
             case 63:
-              return org.bimserver.pb.PluginInterfaceImpl.UpdateModelMergerRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.SetDefaultSerializerRequest.getDefaultInstance();
             case 64:
-              return org.bimserver.pb.PluginInterfaceImpl.UpdateObjectIDMRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.SetPluginSettingsRequest.getDefaultInstance();
             case 65:
-              return org.bimserver.pb.PluginInterfaceImpl.UpdateQueryEngineRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.UpdateDeserializerRequest.getDefaultInstance();
             case 66:
-              return org.bimserver.pb.PluginInterfaceImpl.UpdateRenderEngineRequest.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest.getDefaultInstance();
             case 67:
+              return org.bimserver.pb.PluginInterfaceImpl.UpdateModelCompareRequest.getDefaultInstance();
+            case 68:
+              return org.bimserver.pb.PluginInterfaceImpl.UpdateModelMergerRequest.getDefaultInstance();
+            case 69:
+              return org.bimserver.pb.PluginInterfaceImpl.UpdateObjectIDMRequest.getDefaultInstance();
+            case 70:
+              return org.bimserver.pb.PluginInterfaceImpl.UpdateQueryEngineRequest.getDefaultInstance();
+            case 71:
+              return org.bimserver.pb.PluginInterfaceImpl.UpdateRenderEngineRequest.getDefaultInstance();
+            case 72:
               return org.bimserver.pb.PluginInterfaceImpl.UpdateSerializerRequest.getDefaultInstance();
             default:
               throw new java.lang.AssertionError("Can't get here.");
@@ -74760,93 +79197,93 @@ public final class PluginInterfaceImpl {
             case 13:
               return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
             case 14:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializerPluginDescriptorsResponse.getDefaultInstance();
+              return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
             case 15:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersResponse.getDefaultInstance();
+              return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
             case 16:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparePluginDescriptorsResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializerPluginDescriptorsResponse.getDefaultInstance();
             case 17:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparesResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersResponse.getDefaultInstance();
             case 18:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergerPluginDescriptorsResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse.getDefaultInstance();
             case 19:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergersResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparePluginDescriptorsResponse.getDefaultInstance();
             case 20:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllObjectIDMsResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparesResponse.getDefaultInstance();
             case 21:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginePluginDescriptorsResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergerPluginDescriptorsResponse.getDefaultInstance();
             case 22:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginesResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergersResponse.getDefaultInstance();
             case 23:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginePluginDescriptorsResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllObjectIDMsResponse.getDefaultInstance();
             case 24:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginesResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginePluginDescriptorsResponse.getDefaultInstance();
             case 25:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllSerializerPluginDescriptorsResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginesResponse.getDefaultInstance();
             case 26:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllSerializersResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginePluginDescriptorsResponse.getDefaultInstance();
             case 27:
-              return org.bimserver.pb.PluginInterfaceImpl.GetAllServicePluginDescriptorsResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginesResponse.getDefaultInstance();
             case 28:
-              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelCompareResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllSerializerPluginDescriptorsResponse.getDefaultInstance();
             case 29:
-              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelMergerResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllSerializersResponse.getDefaultInstance();
             case 30:
-              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultObjectIDMResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetAllServicePluginDescriptorsResponse.getDefaultInstance();
             case 31:
-              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultQueryEngineResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelCompareResponse.getDefaultInstance();
             case 32:
-              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultRenderEngineResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelMergerResponse.getDefaultInstance();
             case 33:
-              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultSerializerResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultObjectIDMResponse.getDefaultInstance();
             case 34:
-              return org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByIdResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultQueryEngineResponse.getDefaultInstance();
             case 35:
-              return org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultRenderEngineResponse.getDefaultInstance();
             case 36:
-              return org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByIdResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetDefaultSerializerResponse.getDefaultInstance();
             case 37:
-              return org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByNameResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByIdResponse.getDefaultInstance();
             case 38:
-              return org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByIdResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameResponse.getDefaultInstance();
             case 39:
-              return org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByNameResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse.getDefaultInstance();
             case 40:
-              return org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByIdResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByIdResponse.getDefaultInstance();
             case 41:
-              return org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByNameResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByNameResponse.getDefaultInstance();
             case 42:
-              return org.bimserver.pb.PluginInterfaceImpl.GetPluginObjectDefinitionResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByIdResponse.getDefaultInstance();
             case 43:
-              return org.bimserver.pb.PluginInterfaceImpl.GetPluginSettingsResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByNameResponse.getDefaultInstance();
             case 44:
-              return org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByIdResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByIdResponse.getDefaultInstance();
             case 45:
-              return org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByNameResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByNameResponse.getDefaultInstance();
             case 46:
-              return org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByIdResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetPluginObjectDefinitionResponse.getDefaultInstance();
             case 47:
-              return org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByNameResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetPluginSettingsResponse.getDefaultInstance();
             case 48:
-              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByContentTypeResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByIdResponse.getDefaultInstance();
             case 49:
-              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByIdResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByNameResponse.getDefaultInstance();
             case 50:
-              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByNameResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByIdResponse.getDefaultInstance();
             case 51:
-              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByPluginClassNameResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByNameResponse.getDefaultInstance();
             case 52:
-              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerPluginDescriptorResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByContentTypeResponse.getDefaultInstance();
             case 53:
-              return org.bimserver.pb.PluginInterfaceImpl.HasActiveSerializerResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByIdResponse.getDefaultInstance();
             case 54:
-              return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByNameResponse.getDefaultInstance();
             case 55:
-              return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByPluginClassNameResponse.getDefaultInstance();
             case 56:
-              return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.GetSerializerPluginDescriptorResponse.getDefaultInstance();
             case 57:
-              return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+              return org.bimserver.pb.PluginInterfaceImpl.HasActiveSerializerResponse.getDefaultInstance();
             case 58:
               return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
             case 59:
@@ -74867,6 +79304,16 @@ public final class PluginInterfaceImpl {
               return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
             case 67:
               return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+            case 68:
+              return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+            case 69:
+              return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+            case 70:
+              return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+            case 71:
+              return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+            case 72:
+              return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
             default:
               throw new java.lang.AssertionError("Can't get here.");
           }
@@ -74881,6 +79328,14 @@ public final class PluginInterfaceImpl {
     public abstract void addDeserializer(
         com.google.protobuf.RpcController controller,
         org.bimserver.pb.PluginInterfaceImpl.AddDeserializerRequest request,
+        com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
+
+    /**
+     * <code>rpc addInternalService(.org.bimserver.pb.AddInternalServiceRequest) returns (.org.bimserver.pb.VoidResponse);</code>
+     */
+    public abstract void addInternalService(
+        com.google.protobuf.RpcController controller,
+        org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest request,
         com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
 
     /**
@@ -74937,6 +79392,14 @@ public final class PluginInterfaceImpl {
     public abstract void deleteDeserializer(
         com.google.protobuf.RpcController controller,
         org.bimserver.pb.PluginInterfaceImpl.DeleteDeserializerRequest request,
+        com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
+
+    /**
+     * <code>rpc deleteInternalService(.org.bimserver.pb.DeleteInternalServiceRequest) returns (.org.bimserver.pb.VoidResponse);</code>
+     */
+    public abstract void deleteInternalService(
+        com.google.protobuf.RpcController controller,
+        org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest request,
         com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
 
     /**
@@ -75002,6 +79465,14 @@ public final class PluginInterfaceImpl {
         com.google.protobuf.RpcController controller,
         org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersRequest request,
         com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersResponse> done);
+
+    /**
+     * <code>rpc getAllInternalServices(.org.bimserver.pb.GetAllInternalServicesRequest) returns (.org.bimserver.pb.GetAllInternalServicesResponse);</code>
+     */
+    public abstract void getAllInternalServices(
+        com.google.protobuf.RpcController controller,
+        org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest request,
+        com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse> done);
 
     /**
      * <code>rpc getAllModelComparePluginDescriptors(.org.bimserver.pb.GetAllModelComparePluginDescriptorsRequest) returns (.org.bimserver.pb.GetAllModelComparePluginDescriptorsResponse);</code>
@@ -75162,6 +79633,14 @@ public final class PluginInterfaceImpl {
         com.google.protobuf.RpcController controller,
         org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameRequest request,
         com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameResponse> done);
+
+    /**
+     * <code>rpc getInternalServiceById(.org.bimserver.pb.GetInternalServiceByIdRequest) returns (.org.bimserver.pb.GetInternalServiceByIdResponse);</code>
+     */
+    public abstract void getInternalServiceById(
+        com.google.protobuf.RpcController controller,
+        org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest request,
+        com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse> done);
 
     /**
      * <code>rpc getModelCompareById(.org.bimserver.pb.GetModelCompareByIdRequest) returns (.org.bimserver.pb.GetModelCompareByIdResponse);</code>
@@ -75372,6 +79851,14 @@ public final class PluginInterfaceImpl {
         com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
 
     /**
+     * <code>rpc updateInternalService(.org.bimserver.pb.UpdateInternalServiceRequest) returns (.org.bimserver.pb.VoidResponse);</code>
+     */
+    public abstract void updateInternalService(
+        com.google.protobuf.RpcController controller,
+        org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest request,
+        com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
+
+    /**
      * <code>rpc updateModelCompare(.org.bimserver.pb.UpdateModelCompareRequest) returns (.org.bimserver.pb.VoidResponse);</code>
      */
     public abstract void updateModelCompare(
@@ -75447,336 +79934,361 @@ public final class PluginInterfaceImpl {
               done));
           return;
         case 1:
-          this.addModelCompare(controller, (org.bimserver.pb.PluginInterfaceImpl.AddModelCompareRequest)request,
+          this.addInternalService(controller, (org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 2:
-          this.addModelMerger(controller, (org.bimserver.pb.PluginInterfaceImpl.AddModelMergerRequest)request,
+          this.addModelCompare(controller, (org.bimserver.pb.PluginInterfaceImpl.AddModelCompareRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 3:
-          this.addObjectIDM(controller, (org.bimserver.pb.PluginInterfaceImpl.AddObjectIDMRequest)request,
+          this.addModelMerger(controller, (org.bimserver.pb.PluginInterfaceImpl.AddModelMergerRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 4:
-          this.addQueryEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.AddQueryEngineRequest)request,
+          this.addObjectIDM(controller, (org.bimserver.pb.PluginInterfaceImpl.AddObjectIDMRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 5:
-          this.addRenderEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.AddRenderEngineRequest)request,
+          this.addQueryEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.AddQueryEngineRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 6:
-          this.addSerializer(controller, (org.bimserver.pb.PluginInterfaceImpl.AddSerializerRequest)request,
+          this.addRenderEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.AddRenderEngineRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 7:
-          this.deleteDeserializer(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteDeserializerRequest)request,
+          this.addSerializer(controller, (org.bimserver.pb.PluginInterfaceImpl.AddSerializerRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 8:
-          this.deleteModelCompare(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteModelCompareRequest)request,
+          this.deleteDeserializer(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteDeserializerRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 9:
-          this.deleteModelMerger(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteModelMergerRequest)request,
+          this.deleteInternalService(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 10:
-          this.deleteObjectIDM(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteObjectIDMRequest)request,
+          this.deleteModelCompare(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteModelCompareRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 11:
-          this.deleteQueryEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteQueryEngineRequest)request,
+          this.deleteModelMerger(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteModelMergerRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 12:
-          this.deleteRenderEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteRenderEngineRequest)request,
+          this.deleteObjectIDM(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteObjectIDMRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 13:
-          this.deleteSerializer(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteSerializerRequest)request,
+          this.deleteQueryEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteQueryEngineRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 14:
+          this.deleteRenderEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteRenderEngineRequest)request,
+            com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
+              done));
+          return;
+        case 15:
+          this.deleteSerializer(controller, (org.bimserver.pb.PluginInterfaceImpl.DeleteSerializerRequest)request,
+            com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
+              done));
+          return;
+        case 16:
           this.getAllDeserializerPluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializerPluginDescriptorsRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializerPluginDescriptorsResponse>specializeCallback(
               done));
           return;
-        case 15:
+        case 17:
           this.getAllDeserializers(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersResponse>specializeCallback(
               done));
           return;
-        case 16:
+        case 18:
+          this.getAllInternalServices(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest)request,
+            com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse>specializeCallback(
+              done));
+          return;
+        case 19:
           this.getAllModelComparePluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparePluginDescriptorsRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparePluginDescriptorsResponse>specializeCallback(
               done));
           return;
-        case 17:
+        case 20:
           this.getAllModelCompares(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparesRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparesResponse>specializeCallback(
               done));
           return;
-        case 18:
+        case 21:
           this.getAllModelMergerPluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergerPluginDescriptorsRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergerPluginDescriptorsResponse>specializeCallback(
               done));
           return;
-        case 19:
+        case 22:
           this.getAllModelMergers(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergersRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergersResponse>specializeCallback(
               done));
           return;
-        case 20:
+        case 23:
           this.getAllObjectIDMs(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllObjectIDMsRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetAllObjectIDMsResponse>specializeCallback(
               done));
           return;
-        case 21:
+        case 24:
           this.getAllQueryEnginePluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginePluginDescriptorsRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginePluginDescriptorsResponse>specializeCallback(
               done));
           return;
-        case 22:
+        case 25:
           this.getAllQueryEngines(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginesRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginesResponse>specializeCallback(
               done));
           return;
-        case 23:
+        case 26:
           this.getAllRenderEnginePluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginePluginDescriptorsRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginePluginDescriptorsResponse>specializeCallback(
               done));
           return;
-        case 24:
+        case 27:
           this.getAllRenderEngines(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginesRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginesResponse>specializeCallback(
               done));
           return;
-        case 25:
+        case 28:
           this.getAllSerializerPluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllSerializerPluginDescriptorsRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetAllSerializerPluginDescriptorsResponse>specializeCallback(
               done));
           return;
-        case 26:
+        case 29:
           this.getAllSerializers(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllSerializersRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetAllSerializersResponse>specializeCallback(
               done));
           return;
-        case 27:
+        case 30:
           this.getAllServicePluginDescriptors(controller, (org.bimserver.pb.PluginInterfaceImpl.GetAllServicePluginDescriptorsRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetAllServicePluginDescriptorsResponse>specializeCallback(
               done));
           return;
-        case 28:
+        case 31:
           this.getDefaultModelCompare(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelCompareRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelCompareResponse>specializeCallback(
               done));
           return;
-        case 29:
+        case 32:
           this.getDefaultModelMerger(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelMergerRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelMergerResponse>specializeCallback(
               done));
           return;
-        case 30:
+        case 33:
           this.getDefaultObjectIDM(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDefaultObjectIDMRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetDefaultObjectIDMResponse>specializeCallback(
               done));
           return;
-        case 31:
+        case 34:
           this.getDefaultQueryEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDefaultQueryEngineRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetDefaultQueryEngineResponse>specializeCallback(
               done));
           return;
-        case 32:
+        case 35:
           this.getDefaultRenderEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDefaultRenderEngineRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetDefaultRenderEngineResponse>specializeCallback(
               done));
           return;
-        case 33:
+        case 36:
           this.getDefaultSerializer(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDefaultSerializerRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetDefaultSerializerResponse>specializeCallback(
               done));
           return;
-        case 34:
+        case 37:
           this.getDeserializerById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByIdRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByIdResponse>specializeCallback(
               done));
           return;
-        case 35:
+        case 38:
           this.getDeserializerByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameResponse>specializeCallback(
               done));
           return;
-        case 36:
+        case 39:
+          this.getInternalServiceById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest)request,
+            com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse>specializeCallback(
+              done));
+          return;
+        case 40:
           this.getModelCompareById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByIdRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByIdResponse>specializeCallback(
               done));
           return;
-        case 37:
+        case 41:
           this.getModelCompareByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByNameRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByNameResponse>specializeCallback(
               done));
           return;
-        case 38:
+        case 42:
           this.getModelMergerById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByIdRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByIdResponse>specializeCallback(
               done));
           return;
-        case 39:
+        case 43:
           this.getModelMergerByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByNameRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByNameResponse>specializeCallback(
               done));
           return;
-        case 40:
+        case 44:
           this.getObjectIDMById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByIdRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByIdResponse>specializeCallback(
               done));
           return;
-        case 41:
+        case 45:
           this.getObjectIDMByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByNameRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByNameResponse>specializeCallback(
               done));
           return;
-        case 42:
+        case 46:
           this.getPluginObjectDefinition(controller, (org.bimserver.pb.PluginInterfaceImpl.GetPluginObjectDefinitionRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetPluginObjectDefinitionResponse>specializeCallback(
               done));
           return;
-        case 43:
+        case 47:
           this.getPluginSettings(controller, (org.bimserver.pb.PluginInterfaceImpl.GetPluginSettingsRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetPluginSettingsResponse>specializeCallback(
               done));
           return;
-        case 44:
+        case 48:
           this.getQueryEngineById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByIdRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByIdResponse>specializeCallback(
               done));
           return;
-        case 45:
+        case 49:
           this.getQueryEngineByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByNameRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByNameResponse>specializeCallback(
               done));
           return;
-        case 46:
+        case 50:
           this.getRenderEngineById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByIdRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByIdResponse>specializeCallback(
               done));
           return;
-        case 47:
+        case 51:
           this.getRenderEngineByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByNameRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByNameResponse>specializeCallback(
               done));
           return;
-        case 48:
+        case 52:
           this.getSerializerByContentType(controller, (org.bimserver.pb.PluginInterfaceImpl.GetSerializerByContentTypeRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetSerializerByContentTypeResponse>specializeCallback(
               done));
           return;
-        case 49:
+        case 53:
           this.getSerializerById(controller, (org.bimserver.pb.PluginInterfaceImpl.GetSerializerByIdRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetSerializerByIdResponse>specializeCallback(
               done));
           return;
-        case 50:
+        case 54:
           this.getSerializerByName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetSerializerByNameRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetSerializerByNameResponse>specializeCallback(
               done));
           return;
-        case 51:
+        case 55:
           this.getSerializerByPluginClassName(controller, (org.bimserver.pb.PluginInterfaceImpl.GetSerializerByPluginClassNameRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetSerializerByPluginClassNameResponse>specializeCallback(
               done));
           return;
-        case 52:
+        case 56:
           this.getSerializerPluginDescriptor(controller, (org.bimserver.pb.PluginInterfaceImpl.GetSerializerPluginDescriptorRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.GetSerializerPluginDescriptorResponse>specializeCallback(
               done));
           return;
-        case 53:
+        case 57:
           this.hasActiveSerializer(controller, (org.bimserver.pb.PluginInterfaceImpl.HasActiveSerializerRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.PluginInterfaceImpl.HasActiveSerializerResponse>specializeCallback(
               done));
           return;
-        case 54:
+        case 58:
           this.setDefaultModelCompare(controller, (org.bimserver.pb.PluginInterfaceImpl.SetDefaultModelCompareRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
-        case 55:
+        case 59:
           this.setDefaultModelMerger(controller, (org.bimserver.pb.PluginInterfaceImpl.SetDefaultModelMergerRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
-        case 56:
+        case 60:
           this.setDefaultObjectIDM(controller, (org.bimserver.pb.PluginInterfaceImpl.SetDefaultObjectIDMRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
-        case 57:
+        case 61:
           this.setDefaultQueryEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.SetDefaultQueryEngineRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
-        case 58:
+        case 62:
           this.setDefaultRenderEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.SetDefaultRenderEngineRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
-        case 59:
+        case 63:
           this.setDefaultSerializer(controller, (org.bimserver.pb.PluginInterfaceImpl.SetDefaultSerializerRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
-        case 60:
+        case 64:
           this.setPluginSettings(controller, (org.bimserver.pb.PluginInterfaceImpl.SetPluginSettingsRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
-        case 61:
+        case 65:
           this.updateDeserializer(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateDeserializerRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
-        case 62:
-          this.updateModelCompare(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateModelCompareRequest)request,
-            com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
-              done));
-          return;
-        case 63:
-          this.updateModelMerger(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateModelMergerRequest)request,
-            com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
-              done));
-          return;
-        case 64:
-          this.updateObjectIDM(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateObjectIDMRequest)request,
-            com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
-              done));
-          return;
-        case 65:
-          this.updateQueryEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateQueryEngineRequest)request,
-            com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
-              done));
-          return;
         case 66:
-          this.updateRenderEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateRenderEngineRequest)request,
+          this.updateInternalService(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 67:
+          this.updateModelCompare(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateModelCompareRequest)request,
+            com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
+              done));
+          return;
+        case 68:
+          this.updateModelMerger(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateModelMergerRequest)request,
+            com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
+              done));
+          return;
+        case 69:
+          this.updateObjectIDM(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateObjectIDMRequest)request,
+            com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
+              done));
+          return;
+        case 70:
+          this.updateQueryEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateQueryEngineRequest)request,
+            com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
+              done));
+          return;
+        case 71:
+          this.updateRenderEngine(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateRenderEngineRequest)request,
+            com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
+              done));
+          return;
+        case 72:
           this.updateSerializer(controller, (org.bimserver.pb.PluginInterfaceImpl.UpdateSerializerRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
@@ -75798,138 +80310,148 @@ public final class PluginInterfaceImpl {
         case 0:
           return org.bimserver.pb.PluginInterfaceImpl.AddDeserializerRequest.getDefaultInstance();
         case 1:
-          return org.bimserver.pb.PluginInterfaceImpl.AddModelCompareRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest.getDefaultInstance();
         case 2:
-          return org.bimserver.pb.PluginInterfaceImpl.AddModelMergerRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.AddModelCompareRequest.getDefaultInstance();
         case 3:
-          return org.bimserver.pb.PluginInterfaceImpl.AddObjectIDMRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.AddModelMergerRequest.getDefaultInstance();
         case 4:
-          return org.bimserver.pb.PluginInterfaceImpl.AddQueryEngineRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.AddObjectIDMRequest.getDefaultInstance();
         case 5:
-          return org.bimserver.pb.PluginInterfaceImpl.AddRenderEngineRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.AddQueryEngineRequest.getDefaultInstance();
         case 6:
-          return org.bimserver.pb.PluginInterfaceImpl.AddSerializerRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.AddRenderEngineRequest.getDefaultInstance();
         case 7:
-          return org.bimserver.pb.PluginInterfaceImpl.DeleteDeserializerRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.AddSerializerRequest.getDefaultInstance();
         case 8:
-          return org.bimserver.pb.PluginInterfaceImpl.DeleteModelCompareRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.DeleteDeserializerRequest.getDefaultInstance();
         case 9:
-          return org.bimserver.pb.PluginInterfaceImpl.DeleteModelMergerRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest.getDefaultInstance();
         case 10:
-          return org.bimserver.pb.PluginInterfaceImpl.DeleteObjectIDMRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.DeleteModelCompareRequest.getDefaultInstance();
         case 11:
-          return org.bimserver.pb.PluginInterfaceImpl.DeleteQueryEngineRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.DeleteModelMergerRequest.getDefaultInstance();
         case 12:
-          return org.bimserver.pb.PluginInterfaceImpl.DeleteRenderEngineRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.DeleteObjectIDMRequest.getDefaultInstance();
         case 13:
-          return org.bimserver.pb.PluginInterfaceImpl.DeleteSerializerRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.DeleteQueryEngineRequest.getDefaultInstance();
         case 14:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializerPluginDescriptorsRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.DeleteRenderEngineRequest.getDefaultInstance();
         case 15:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.DeleteSerializerRequest.getDefaultInstance();
         case 16:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparePluginDescriptorsRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializerPluginDescriptorsRequest.getDefaultInstance();
         case 17:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparesRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersRequest.getDefaultInstance();
         case 18:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergerPluginDescriptorsRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest.getDefaultInstance();
         case 19:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergersRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparePluginDescriptorsRequest.getDefaultInstance();
         case 20:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllObjectIDMsRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparesRequest.getDefaultInstance();
         case 21:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginePluginDescriptorsRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergerPluginDescriptorsRequest.getDefaultInstance();
         case 22:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginesRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergersRequest.getDefaultInstance();
         case 23:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginePluginDescriptorsRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllObjectIDMsRequest.getDefaultInstance();
         case 24:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginesRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginePluginDescriptorsRequest.getDefaultInstance();
         case 25:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllSerializerPluginDescriptorsRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginesRequest.getDefaultInstance();
         case 26:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllSerializersRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginePluginDescriptorsRequest.getDefaultInstance();
         case 27:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllServicePluginDescriptorsRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginesRequest.getDefaultInstance();
         case 28:
-          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelCompareRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllSerializerPluginDescriptorsRequest.getDefaultInstance();
         case 29:
-          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelMergerRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllSerializersRequest.getDefaultInstance();
         case 30:
-          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultObjectIDMRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllServicePluginDescriptorsRequest.getDefaultInstance();
         case 31:
-          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultQueryEngineRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelCompareRequest.getDefaultInstance();
         case 32:
-          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultRenderEngineRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelMergerRequest.getDefaultInstance();
         case 33:
-          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultSerializerRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultObjectIDMRequest.getDefaultInstance();
         case 34:
-          return org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByIdRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultQueryEngineRequest.getDefaultInstance();
         case 35:
-          return org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultRenderEngineRequest.getDefaultInstance();
         case 36:
-          return org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByIdRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultSerializerRequest.getDefaultInstance();
         case 37:
-          return org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByNameRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByIdRequest.getDefaultInstance();
         case 38:
-          return org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByIdRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameRequest.getDefaultInstance();
         case 39:
-          return org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByNameRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest.getDefaultInstance();
         case 40:
-          return org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByIdRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByIdRequest.getDefaultInstance();
         case 41:
-          return org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByNameRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByNameRequest.getDefaultInstance();
         case 42:
-          return org.bimserver.pb.PluginInterfaceImpl.GetPluginObjectDefinitionRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByIdRequest.getDefaultInstance();
         case 43:
-          return org.bimserver.pb.PluginInterfaceImpl.GetPluginSettingsRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByNameRequest.getDefaultInstance();
         case 44:
-          return org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByIdRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByIdRequest.getDefaultInstance();
         case 45:
-          return org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByNameRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByNameRequest.getDefaultInstance();
         case 46:
-          return org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByIdRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetPluginObjectDefinitionRequest.getDefaultInstance();
         case 47:
-          return org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByNameRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetPluginSettingsRequest.getDefaultInstance();
         case 48:
-          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByContentTypeRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByIdRequest.getDefaultInstance();
         case 49:
-          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByIdRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByNameRequest.getDefaultInstance();
         case 50:
-          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByNameRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByIdRequest.getDefaultInstance();
         case 51:
-          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByPluginClassNameRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByNameRequest.getDefaultInstance();
         case 52:
-          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerPluginDescriptorRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByContentTypeRequest.getDefaultInstance();
         case 53:
-          return org.bimserver.pb.PluginInterfaceImpl.HasActiveSerializerRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByIdRequest.getDefaultInstance();
         case 54:
-          return org.bimserver.pb.PluginInterfaceImpl.SetDefaultModelCompareRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByNameRequest.getDefaultInstance();
         case 55:
-          return org.bimserver.pb.PluginInterfaceImpl.SetDefaultModelMergerRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByPluginClassNameRequest.getDefaultInstance();
         case 56:
-          return org.bimserver.pb.PluginInterfaceImpl.SetDefaultObjectIDMRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerPluginDescriptorRequest.getDefaultInstance();
         case 57:
-          return org.bimserver.pb.PluginInterfaceImpl.SetDefaultQueryEngineRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.HasActiveSerializerRequest.getDefaultInstance();
         case 58:
-          return org.bimserver.pb.PluginInterfaceImpl.SetDefaultRenderEngineRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.SetDefaultModelCompareRequest.getDefaultInstance();
         case 59:
-          return org.bimserver.pb.PluginInterfaceImpl.SetDefaultSerializerRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.SetDefaultModelMergerRequest.getDefaultInstance();
         case 60:
-          return org.bimserver.pb.PluginInterfaceImpl.SetPluginSettingsRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.SetDefaultObjectIDMRequest.getDefaultInstance();
         case 61:
-          return org.bimserver.pb.PluginInterfaceImpl.UpdateDeserializerRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.SetDefaultQueryEngineRequest.getDefaultInstance();
         case 62:
-          return org.bimserver.pb.PluginInterfaceImpl.UpdateModelCompareRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.SetDefaultRenderEngineRequest.getDefaultInstance();
         case 63:
-          return org.bimserver.pb.PluginInterfaceImpl.UpdateModelMergerRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.SetDefaultSerializerRequest.getDefaultInstance();
         case 64:
-          return org.bimserver.pb.PluginInterfaceImpl.UpdateObjectIDMRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.SetPluginSettingsRequest.getDefaultInstance();
         case 65:
-          return org.bimserver.pb.PluginInterfaceImpl.UpdateQueryEngineRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.UpdateDeserializerRequest.getDefaultInstance();
         case 66:
-          return org.bimserver.pb.PluginInterfaceImpl.UpdateRenderEngineRequest.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest.getDefaultInstance();
         case 67:
+          return org.bimserver.pb.PluginInterfaceImpl.UpdateModelCompareRequest.getDefaultInstance();
+        case 68:
+          return org.bimserver.pb.PluginInterfaceImpl.UpdateModelMergerRequest.getDefaultInstance();
+        case 69:
+          return org.bimserver.pb.PluginInterfaceImpl.UpdateObjectIDMRequest.getDefaultInstance();
+        case 70:
+          return org.bimserver.pb.PluginInterfaceImpl.UpdateQueryEngineRequest.getDefaultInstance();
+        case 71:
+          return org.bimserver.pb.PluginInterfaceImpl.UpdateRenderEngineRequest.getDefaultInstance();
+        case 72:
           return org.bimserver.pb.PluginInterfaceImpl.UpdateSerializerRequest.getDefaultInstance();
         default:
           throw new java.lang.AssertionError("Can't get here.");
@@ -75974,93 +80496,93 @@ public final class PluginInterfaceImpl {
         case 13:
           return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
         case 14:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializerPluginDescriptorsResponse.getDefaultInstance();
+          return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
         case 15:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersResponse.getDefaultInstance();
+          return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
         case 16:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparePluginDescriptorsResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializerPluginDescriptorsResponse.getDefaultInstance();
         case 17:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparesResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersResponse.getDefaultInstance();
         case 18:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergerPluginDescriptorsResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse.getDefaultInstance();
         case 19:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergersResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparePluginDescriptorsResponse.getDefaultInstance();
         case 20:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllObjectIDMsResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparesResponse.getDefaultInstance();
         case 21:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginePluginDescriptorsResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergerPluginDescriptorsResponse.getDefaultInstance();
         case 22:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginesResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergersResponse.getDefaultInstance();
         case 23:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginePluginDescriptorsResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllObjectIDMsResponse.getDefaultInstance();
         case 24:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginesResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginePluginDescriptorsResponse.getDefaultInstance();
         case 25:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllSerializerPluginDescriptorsResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginesResponse.getDefaultInstance();
         case 26:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllSerializersResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginePluginDescriptorsResponse.getDefaultInstance();
         case 27:
-          return org.bimserver.pb.PluginInterfaceImpl.GetAllServicePluginDescriptorsResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginesResponse.getDefaultInstance();
         case 28:
-          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelCompareResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllSerializerPluginDescriptorsResponse.getDefaultInstance();
         case 29:
-          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelMergerResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllSerializersResponse.getDefaultInstance();
         case 30:
-          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultObjectIDMResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetAllServicePluginDescriptorsResponse.getDefaultInstance();
         case 31:
-          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultQueryEngineResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelCompareResponse.getDefaultInstance();
         case 32:
-          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultRenderEngineResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelMergerResponse.getDefaultInstance();
         case 33:
-          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultSerializerResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultObjectIDMResponse.getDefaultInstance();
         case 34:
-          return org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByIdResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultQueryEngineResponse.getDefaultInstance();
         case 35:
-          return org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultRenderEngineResponse.getDefaultInstance();
         case 36:
-          return org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByIdResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetDefaultSerializerResponse.getDefaultInstance();
         case 37:
-          return org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByNameResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByIdResponse.getDefaultInstance();
         case 38:
-          return org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByIdResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameResponse.getDefaultInstance();
         case 39:
-          return org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByNameResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse.getDefaultInstance();
         case 40:
-          return org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByIdResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByIdResponse.getDefaultInstance();
         case 41:
-          return org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByNameResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByNameResponse.getDefaultInstance();
         case 42:
-          return org.bimserver.pb.PluginInterfaceImpl.GetPluginObjectDefinitionResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByIdResponse.getDefaultInstance();
         case 43:
-          return org.bimserver.pb.PluginInterfaceImpl.GetPluginSettingsResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByNameResponse.getDefaultInstance();
         case 44:
-          return org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByIdResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByIdResponse.getDefaultInstance();
         case 45:
-          return org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByNameResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByNameResponse.getDefaultInstance();
         case 46:
-          return org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByIdResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetPluginObjectDefinitionResponse.getDefaultInstance();
         case 47:
-          return org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByNameResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetPluginSettingsResponse.getDefaultInstance();
         case 48:
-          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByContentTypeResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByIdResponse.getDefaultInstance();
         case 49:
-          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByIdResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByNameResponse.getDefaultInstance();
         case 50:
-          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByNameResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByIdResponse.getDefaultInstance();
         case 51:
-          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByPluginClassNameResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByNameResponse.getDefaultInstance();
         case 52:
-          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerPluginDescriptorResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByContentTypeResponse.getDefaultInstance();
         case 53:
-          return org.bimserver.pb.PluginInterfaceImpl.HasActiveSerializerResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByIdResponse.getDefaultInstance();
         case 54:
-          return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByNameResponse.getDefaultInstance();
         case 55:
-          return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerByPluginClassNameResponse.getDefaultInstance();
         case 56:
-          return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.GetSerializerPluginDescriptorResponse.getDefaultInstance();
         case 57:
-          return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+          return org.bimserver.pb.PluginInterfaceImpl.HasActiveSerializerResponse.getDefaultInstance();
         case 58:
           return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
         case 59:
@@ -76080,6 +80602,16 @@ public final class PluginInterfaceImpl {
         case 66:
           return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
         case 67:
+          return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+        case 68:
+          return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+        case 69:
+          return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+        case 70:
+          return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+        case 71:
+          return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+        case 72:
           return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
         default:
           throw new java.lang.AssertionError("Can't get here.");
@@ -76117,12 +80649,27 @@ public final class PluginInterfaceImpl {
             org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance()));
       }
 
+      public  void addInternalService(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
+        channel.callMethod(
+          getDescriptor().getMethods().get(1),
+          controller,
+          request,
+          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
+          com.google.protobuf.RpcUtil.generalizeCallback(
+            done,
+            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.class,
+            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance()));
+      }
+
       public  void addModelCompare(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.PluginInterfaceImpl.AddModelCompareRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(1),
+          getDescriptor().getMethods().get(2),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -76137,7 +80684,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.AddModelMergerRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(2),
+          getDescriptor().getMethods().get(3),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -76152,7 +80699,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.AddObjectIDMRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(3),
+          getDescriptor().getMethods().get(4),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -76167,7 +80714,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.AddQueryEngineRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(4),
+          getDescriptor().getMethods().get(5),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -76182,7 +80729,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.AddRenderEngineRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(5),
+          getDescriptor().getMethods().get(6),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -76197,7 +80744,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.AddSerializerRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(6),
+          getDescriptor().getMethods().get(7),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -76212,7 +80759,22 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.DeleteDeserializerRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(7),
+          getDescriptor().getMethods().get(8),
+          controller,
+          request,
+          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
+          com.google.protobuf.RpcUtil.generalizeCallback(
+            done,
+            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.class,
+            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance()));
+      }
+
+      public  void deleteInternalService(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
+        channel.callMethod(
+          getDescriptor().getMethods().get(9),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -76227,7 +80789,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.DeleteModelCompareRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(8),
+          getDescriptor().getMethods().get(10),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -76242,7 +80804,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.DeleteModelMergerRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(9),
+          getDescriptor().getMethods().get(11),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -76257,7 +80819,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.DeleteObjectIDMRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(10),
+          getDescriptor().getMethods().get(12),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -76272,7 +80834,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.DeleteQueryEngineRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(11),
+          getDescriptor().getMethods().get(13),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -76287,7 +80849,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.DeleteRenderEngineRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(12),
+          getDescriptor().getMethods().get(14),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -76302,7 +80864,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.DeleteSerializerRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(13),
+          getDescriptor().getMethods().get(15),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -76317,7 +80879,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializerPluginDescriptorsRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializerPluginDescriptorsResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(14),
+          getDescriptor().getMethods().get(16),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializerPluginDescriptorsResponse.getDefaultInstance(),
@@ -76332,7 +80894,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(15),
+          getDescriptor().getMethods().get(17),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersResponse.getDefaultInstance(),
@@ -76342,12 +80904,27 @@ public final class PluginInterfaceImpl {
             org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersResponse.getDefaultInstance()));
       }
 
+      public  void getAllInternalServices(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse> done) {
+        channel.callMethod(
+          getDescriptor().getMethods().get(18),
+          controller,
+          request,
+          org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse.getDefaultInstance(),
+          com.google.protobuf.RpcUtil.generalizeCallback(
+            done,
+            org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse.class,
+            org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse.getDefaultInstance()));
+      }
+
       public  void getAllModelComparePluginDescriptors(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparePluginDescriptorsRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparePluginDescriptorsResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(16),
+          getDescriptor().getMethods().get(19),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparePluginDescriptorsResponse.getDefaultInstance(),
@@ -76362,7 +80939,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparesRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparesResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(17),
+          getDescriptor().getMethods().get(20),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparesResponse.getDefaultInstance(),
@@ -76377,7 +80954,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergerPluginDescriptorsRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergerPluginDescriptorsResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(18),
+          getDescriptor().getMethods().get(21),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergerPluginDescriptorsResponse.getDefaultInstance(),
@@ -76392,7 +80969,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergersRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergersResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(19),
+          getDescriptor().getMethods().get(22),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergersResponse.getDefaultInstance(),
@@ -76407,7 +80984,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllObjectIDMsRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllObjectIDMsResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(20),
+          getDescriptor().getMethods().get(23),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllObjectIDMsResponse.getDefaultInstance(),
@@ -76422,7 +80999,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginePluginDescriptorsRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginePluginDescriptorsResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(21),
+          getDescriptor().getMethods().get(24),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginePluginDescriptorsResponse.getDefaultInstance(),
@@ -76437,7 +81014,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginesRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginesResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(22),
+          getDescriptor().getMethods().get(25),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginesResponse.getDefaultInstance(),
@@ -76452,7 +81029,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginePluginDescriptorsRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginePluginDescriptorsResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(23),
+          getDescriptor().getMethods().get(26),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginePluginDescriptorsResponse.getDefaultInstance(),
@@ -76467,7 +81044,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginesRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginesResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(24),
+          getDescriptor().getMethods().get(27),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginesResponse.getDefaultInstance(),
@@ -76482,7 +81059,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllSerializerPluginDescriptorsRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllSerializerPluginDescriptorsResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(25),
+          getDescriptor().getMethods().get(28),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllSerializerPluginDescriptorsResponse.getDefaultInstance(),
@@ -76497,7 +81074,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllSerializersRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllSerializersResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(26),
+          getDescriptor().getMethods().get(29),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllSerializersResponse.getDefaultInstance(),
@@ -76512,7 +81089,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllServicePluginDescriptorsRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetAllServicePluginDescriptorsResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(27),
+          getDescriptor().getMethods().get(30),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllServicePluginDescriptorsResponse.getDefaultInstance(),
@@ -76527,7 +81104,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelCompareRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelCompareResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(28),
+          getDescriptor().getMethods().get(31),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelCompareResponse.getDefaultInstance(),
@@ -76542,7 +81119,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelMergerRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelMergerResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(29),
+          getDescriptor().getMethods().get(32),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelMergerResponse.getDefaultInstance(),
@@ -76557,7 +81134,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultObjectIDMRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetDefaultObjectIDMResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(30),
+          getDescriptor().getMethods().get(33),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultObjectIDMResponse.getDefaultInstance(),
@@ -76572,7 +81149,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultQueryEngineRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetDefaultQueryEngineResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(31),
+          getDescriptor().getMethods().get(34),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultQueryEngineResponse.getDefaultInstance(),
@@ -76587,7 +81164,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultRenderEngineRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetDefaultRenderEngineResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(32),
+          getDescriptor().getMethods().get(35),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultRenderEngineResponse.getDefaultInstance(),
@@ -76602,7 +81179,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultSerializerRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetDefaultSerializerResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(33),
+          getDescriptor().getMethods().get(36),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultSerializerResponse.getDefaultInstance(),
@@ -76617,7 +81194,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByIdRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByIdResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(34),
+          getDescriptor().getMethods().get(37),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByIdResponse.getDefaultInstance(),
@@ -76632,7 +81209,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(35),
+          getDescriptor().getMethods().get(38),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameResponse.getDefaultInstance(),
@@ -76642,12 +81219,27 @@ public final class PluginInterfaceImpl {
             org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameResponse.getDefaultInstance()));
       }
 
+      public  void getInternalServiceById(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse> done) {
+        channel.callMethod(
+          getDescriptor().getMethods().get(39),
+          controller,
+          request,
+          org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse.getDefaultInstance(),
+          com.google.protobuf.RpcUtil.generalizeCallback(
+            done,
+            org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse.class,
+            org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse.getDefaultInstance()));
+      }
+
       public  void getModelCompareById(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByIdRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByIdResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(36),
+          getDescriptor().getMethods().get(40),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByIdResponse.getDefaultInstance(),
@@ -76662,7 +81254,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByNameRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByNameResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(37),
+          getDescriptor().getMethods().get(41),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByNameResponse.getDefaultInstance(),
@@ -76677,7 +81269,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByIdRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByIdResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(38),
+          getDescriptor().getMethods().get(42),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByIdResponse.getDefaultInstance(),
@@ -76692,7 +81284,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByNameRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByNameResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(39),
+          getDescriptor().getMethods().get(43),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByNameResponse.getDefaultInstance(),
@@ -76707,7 +81299,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByIdRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByIdResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(40),
+          getDescriptor().getMethods().get(44),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByIdResponse.getDefaultInstance(),
@@ -76722,7 +81314,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByNameRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByNameResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(41),
+          getDescriptor().getMethods().get(45),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByNameResponse.getDefaultInstance(),
@@ -76737,7 +81329,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetPluginObjectDefinitionRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetPluginObjectDefinitionResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(42),
+          getDescriptor().getMethods().get(46),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetPluginObjectDefinitionResponse.getDefaultInstance(),
@@ -76752,7 +81344,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetPluginSettingsRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetPluginSettingsResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(43),
+          getDescriptor().getMethods().get(47),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetPluginSettingsResponse.getDefaultInstance(),
@@ -76767,7 +81359,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByIdRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByIdResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(44),
+          getDescriptor().getMethods().get(48),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByIdResponse.getDefaultInstance(),
@@ -76782,7 +81374,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByNameRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByNameResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(45),
+          getDescriptor().getMethods().get(49),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByNameResponse.getDefaultInstance(),
@@ -76797,7 +81389,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByIdRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByIdResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(46),
+          getDescriptor().getMethods().get(50),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByIdResponse.getDefaultInstance(),
@@ -76812,7 +81404,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByNameRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByNameResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(47),
+          getDescriptor().getMethods().get(51),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByNameResponse.getDefaultInstance(),
@@ -76827,7 +81419,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerByContentTypeRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetSerializerByContentTypeResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(48),
+          getDescriptor().getMethods().get(52),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerByContentTypeResponse.getDefaultInstance(),
@@ -76842,7 +81434,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerByIdRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetSerializerByIdResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(49),
+          getDescriptor().getMethods().get(53),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerByIdResponse.getDefaultInstance(),
@@ -76857,7 +81449,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerByNameRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetSerializerByNameResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(50),
+          getDescriptor().getMethods().get(54),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerByNameResponse.getDefaultInstance(),
@@ -76872,7 +81464,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerByPluginClassNameRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetSerializerByPluginClassNameResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(51),
+          getDescriptor().getMethods().get(55),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerByPluginClassNameResponse.getDefaultInstance(),
@@ -76887,7 +81479,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerPluginDescriptorRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.GetSerializerPluginDescriptorResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(52),
+          getDescriptor().getMethods().get(56),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerPluginDescriptorResponse.getDefaultInstance(),
@@ -76902,7 +81494,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.HasActiveSerializerRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.PluginInterfaceImpl.HasActiveSerializerResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(53),
+          getDescriptor().getMethods().get(57),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.HasActiveSerializerResponse.getDefaultInstance(),
@@ -76917,7 +81509,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.SetDefaultModelCompareRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(54),
+          getDescriptor().getMethods().get(58),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -76932,7 +81524,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.SetDefaultModelMergerRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(55),
+          getDescriptor().getMethods().get(59),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -76947,7 +81539,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.SetDefaultObjectIDMRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(56),
+          getDescriptor().getMethods().get(60),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -76962,7 +81554,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.SetDefaultQueryEngineRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(57),
+          getDescriptor().getMethods().get(61),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -76977,7 +81569,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.SetDefaultRenderEngineRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(58),
+          getDescriptor().getMethods().get(62),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -76992,7 +81584,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.SetDefaultSerializerRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(59),
+          getDescriptor().getMethods().get(63),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -77007,7 +81599,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.SetPluginSettingsRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(60),
+          getDescriptor().getMethods().get(64),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -77022,7 +81614,22 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.UpdateDeserializerRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(61),
+          getDescriptor().getMethods().get(65),
+          controller,
+          request,
+          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
+          com.google.protobuf.RpcUtil.generalizeCallback(
+            done,
+            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.class,
+            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance()));
+      }
+
+      public  void updateInternalService(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
+        channel.callMethod(
+          getDescriptor().getMethods().get(66),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -77037,7 +81644,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.UpdateModelCompareRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(62),
+          getDescriptor().getMethods().get(67),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -77052,7 +81659,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.UpdateModelMergerRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(63),
+          getDescriptor().getMethods().get(68),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -77067,7 +81674,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.UpdateObjectIDMRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(64),
+          getDescriptor().getMethods().get(69),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -77082,7 +81689,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.UpdateQueryEngineRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(65),
+          getDescriptor().getMethods().get(70),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -77097,7 +81704,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.UpdateRenderEngineRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(66),
+          getDescriptor().getMethods().get(71),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -77112,7 +81719,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.UpdateSerializerRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(67),
+          getDescriptor().getMethods().get(72),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -77132,6 +81739,11 @@ public final class PluginInterfaceImpl {
       public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse addDeserializer(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.PluginInterfaceImpl.AddDeserializerRequest request)
+          throws com.google.protobuf.ServiceException;
+
+      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse addInternalService(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest request)
           throws com.google.protobuf.ServiceException;
 
       public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse addModelCompare(
@@ -77167,6 +81779,11 @@ public final class PluginInterfaceImpl {
       public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse deleteDeserializer(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.PluginInterfaceImpl.DeleteDeserializerRequest request)
+          throws com.google.protobuf.ServiceException;
+
+      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse deleteInternalService(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest request)
           throws com.google.protobuf.ServiceException;
 
       public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse deleteModelCompare(
@@ -77207,6 +81824,11 @@ public final class PluginInterfaceImpl {
       public org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersResponse getAllDeserializers(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersRequest request)
+          throws com.google.protobuf.ServiceException;
+
+      public org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse getAllInternalServices(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest request)
           throws com.google.protobuf.ServiceException;
 
       public org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparePluginDescriptorsResponse getAllModelComparePluginDescriptors(
@@ -77307,6 +81929,11 @@ public final class PluginInterfaceImpl {
       public org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameResponse getDeserializerByName(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameRequest request)
+          throws com.google.protobuf.ServiceException;
+
+      public org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse getInternalServiceById(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest request)
           throws com.google.protobuf.ServiceException;
 
       public org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByIdResponse getModelCompareById(
@@ -77437,6 +82064,11 @@ public final class PluginInterfaceImpl {
       public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse updateDeserializer(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.PluginInterfaceImpl.UpdateDeserializerRequest request)
+          throws com.google.protobuf.ServiceException;
+
+      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse updateInternalService(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest request)
           throws com.google.protobuf.ServiceException;
 
       public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse updateModelCompare(
@@ -77489,12 +82121,24 @@ public final class PluginInterfaceImpl {
       }
 
 
+      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse addInternalService(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.AddInternalServiceRequest request)
+          throws com.google.protobuf.ServiceException {
+        return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
+          getDescriptor().getMethods().get(1),
+          controller,
+          request,
+          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
+      }
+
+
       public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse addModelCompare(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.PluginInterfaceImpl.AddModelCompareRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(1),
+          getDescriptor().getMethods().get(2),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -77506,7 +82150,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.AddModelMergerRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(2),
+          getDescriptor().getMethods().get(3),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -77518,7 +82162,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.AddObjectIDMRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(3),
+          getDescriptor().getMethods().get(4),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -77530,7 +82174,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.AddQueryEngineRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(4),
+          getDescriptor().getMethods().get(5),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -77542,7 +82186,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.AddRenderEngineRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(5),
+          getDescriptor().getMethods().get(6),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -77554,7 +82198,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.AddSerializerRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(6),
+          getDescriptor().getMethods().get(7),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -77566,7 +82210,19 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.DeleteDeserializerRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(7),
+          getDescriptor().getMethods().get(8),
+          controller,
+          request,
+          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
+      }
+
+
+      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse deleteInternalService(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.DeleteInternalServiceRequest request)
+          throws com.google.protobuf.ServiceException {
+        return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
+          getDescriptor().getMethods().get(9),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -77578,7 +82234,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.DeleteModelCompareRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(8),
+          getDescriptor().getMethods().get(10),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -77590,7 +82246,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.DeleteModelMergerRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(9),
+          getDescriptor().getMethods().get(11),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -77602,7 +82258,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.DeleteObjectIDMRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(10),
+          getDescriptor().getMethods().get(12),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -77614,7 +82270,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.DeleteQueryEngineRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(11),
+          getDescriptor().getMethods().get(13),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -77626,7 +82282,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.DeleteRenderEngineRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(12),
+          getDescriptor().getMethods().get(14),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -77638,7 +82294,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.DeleteSerializerRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(13),
+          getDescriptor().getMethods().get(15),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -77650,7 +82306,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializerPluginDescriptorsRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializerPluginDescriptorsResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(14),
+          getDescriptor().getMethods().get(16),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializerPluginDescriptorsResponse.getDefaultInstance());
@@ -77662,10 +82318,22 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(15),
+          getDescriptor().getMethods().get(17),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllDeserializersResponse.getDefaultInstance());
+      }
+
+
+      public org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse getAllInternalServices(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesRequest request)
+          throws com.google.protobuf.ServiceException {
+        return (org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse) channel.callBlockingMethod(
+          getDescriptor().getMethods().get(18),
+          controller,
+          request,
+          org.bimserver.pb.PluginInterfaceImpl.GetAllInternalServicesResponse.getDefaultInstance());
       }
 
 
@@ -77674,7 +82342,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparePluginDescriptorsRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparePluginDescriptorsResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(16),
+          getDescriptor().getMethods().get(19),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparePluginDescriptorsResponse.getDefaultInstance());
@@ -77686,7 +82354,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparesRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparesResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(17),
+          getDescriptor().getMethods().get(20),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllModelComparesResponse.getDefaultInstance());
@@ -77698,7 +82366,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergerPluginDescriptorsRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergerPluginDescriptorsResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(18),
+          getDescriptor().getMethods().get(21),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergerPluginDescriptorsResponse.getDefaultInstance());
@@ -77710,7 +82378,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergersRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergersResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(19),
+          getDescriptor().getMethods().get(22),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllModelMergersResponse.getDefaultInstance());
@@ -77722,7 +82390,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllObjectIDMsRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetAllObjectIDMsResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(20),
+          getDescriptor().getMethods().get(23),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllObjectIDMsResponse.getDefaultInstance());
@@ -77734,7 +82402,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginePluginDescriptorsRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginePluginDescriptorsResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(21),
+          getDescriptor().getMethods().get(24),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginePluginDescriptorsResponse.getDefaultInstance());
@@ -77746,7 +82414,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginesRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginesResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(22),
+          getDescriptor().getMethods().get(25),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllQueryEnginesResponse.getDefaultInstance());
@@ -77758,7 +82426,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginePluginDescriptorsRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginePluginDescriptorsResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(23),
+          getDescriptor().getMethods().get(26),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginePluginDescriptorsResponse.getDefaultInstance());
@@ -77770,7 +82438,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginesRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginesResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(24),
+          getDescriptor().getMethods().get(27),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllRenderEnginesResponse.getDefaultInstance());
@@ -77782,7 +82450,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllSerializerPluginDescriptorsRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetAllSerializerPluginDescriptorsResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(25),
+          getDescriptor().getMethods().get(28),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllSerializerPluginDescriptorsResponse.getDefaultInstance());
@@ -77794,7 +82462,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllSerializersRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetAllSerializersResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(26),
+          getDescriptor().getMethods().get(29),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllSerializersResponse.getDefaultInstance());
@@ -77806,7 +82474,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetAllServicePluginDescriptorsRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetAllServicePluginDescriptorsResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(27),
+          getDescriptor().getMethods().get(30),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetAllServicePluginDescriptorsResponse.getDefaultInstance());
@@ -77818,7 +82486,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelCompareRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelCompareResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(28),
+          getDescriptor().getMethods().get(31),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelCompareResponse.getDefaultInstance());
@@ -77830,7 +82498,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelMergerRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelMergerResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(29),
+          getDescriptor().getMethods().get(32),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultModelMergerResponse.getDefaultInstance());
@@ -77842,7 +82510,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultObjectIDMRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetDefaultObjectIDMResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(30),
+          getDescriptor().getMethods().get(33),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultObjectIDMResponse.getDefaultInstance());
@@ -77854,7 +82522,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultQueryEngineRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetDefaultQueryEngineResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(31),
+          getDescriptor().getMethods().get(34),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultQueryEngineResponse.getDefaultInstance());
@@ -77866,7 +82534,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultRenderEngineRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetDefaultRenderEngineResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(32),
+          getDescriptor().getMethods().get(35),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultRenderEngineResponse.getDefaultInstance());
@@ -77878,7 +82546,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultSerializerRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetDefaultSerializerResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(33),
+          getDescriptor().getMethods().get(36),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetDefaultSerializerResponse.getDefaultInstance());
@@ -77890,7 +82558,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByIdRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByIdResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(34),
+          getDescriptor().getMethods().get(37),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByIdResponse.getDefaultInstance());
@@ -77902,10 +82570,22 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(35),
+          getDescriptor().getMethods().get(38),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetDeserializerByNameResponse.getDefaultInstance());
+      }
+
+
+      public org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse getInternalServiceById(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdRequest request)
+          throws com.google.protobuf.ServiceException {
+        return (org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse) channel.callBlockingMethod(
+          getDescriptor().getMethods().get(39),
+          controller,
+          request,
+          org.bimserver.pb.PluginInterfaceImpl.GetInternalServiceByIdResponse.getDefaultInstance());
       }
 
 
@@ -77914,7 +82594,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByIdRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByIdResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(36),
+          getDescriptor().getMethods().get(40),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByIdResponse.getDefaultInstance());
@@ -77926,7 +82606,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByNameRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByNameResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(37),
+          getDescriptor().getMethods().get(41),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetModelCompareByNameResponse.getDefaultInstance());
@@ -77938,7 +82618,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByIdRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByIdResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(38),
+          getDescriptor().getMethods().get(42),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByIdResponse.getDefaultInstance());
@@ -77950,7 +82630,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByNameRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByNameResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(39),
+          getDescriptor().getMethods().get(43),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetModelMergerByNameResponse.getDefaultInstance());
@@ -77962,7 +82642,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByIdRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByIdResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(40),
+          getDescriptor().getMethods().get(44),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByIdResponse.getDefaultInstance());
@@ -77974,7 +82654,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByNameRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByNameResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(41),
+          getDescriptor().getMethods().get(45),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetObjectIDMByNameResponse.getDefaultInstance());
@@ -77986,7 +82666,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetPluginObjectDefinitionRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetPluginObjectDefinitionResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(42),
+          getDescriptor().getMethods().get(46),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetPluginObjectDefinitionResponse.getDefaultInstance());
@@ -77998,7 +82678,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetPluginSettingsRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetPluginSettingsResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(43),
+          getDescriptor().getMethods().get(47),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetPluginSettingsResponse.getDefaultInstance());
@@ -78010,7 +82690,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByIdRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByIdResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(44),
+          getDescriptor().getMethods().get(48),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByIdResponse.getDefaultInstance());
@@ -78022,7 +82702,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByNameRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByNameResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(45),
+          getDescriptor().getMethods().get(49),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetQueryEngineByNameResponse.getDefaultInstance());
@@ -78034,7 +82714,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByIdRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByIdResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(46),
+          getDescriptor().getMethods().get(50),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByIdResponse.getDefaultInstance());
@@ -78046,7 +82726,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByNameRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByNameResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(47),
+          getDescriptor().getMethods().get(51),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetRenderEngineByNameResponse.getDefaultInstance());
@@ -78058,7 +82738,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerByContentTypeRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetSerializerByContentTypeResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(48),
+          getDescriptor().getMethods().get(52),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerByContentTypeResponse.getDefaultInstance());
@@ -78070,7 +82750,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerByIdRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetSerializerByIdResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(49),
+          getDescriptor().getMethods().get(53),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerByIdResponse.getDefaultInstance());
@@ -78082,7 +82762,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerByNameRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetSerializerByNameResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(50),
+          getDescriptor().getMethods().get(54),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerByNameResponse.getDefaultInstance());
@@ -78094,7 +82774,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerByPluginClassNameRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetSerializerByPluginClassNameResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(51),
+          getDescriptor().getMethods().get(55),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerByPluginClassNameResponse.getDefaultInstance());
@@ -78106,7 +82786,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerPluginDescriptorRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.GetSerializerPluginDescriptorResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(52),
+          getDescriptor().getMethods().get(56),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.GetSerializerPluginDescriptorResponse.getDefaultInstance());
@@ -78118,7 +82798,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.HasActiveSerializerRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.PluginInterfaceImpl.HasActiveSerializerResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(53),
+          getDescriptor().getMethods().get(57),
           controller,
           request,
           org.bimserver.pb.PluginInterfaceImpl.HasActiveSerializerResponse.getDefaultInstance());
@@ -78130,7 +82810,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.SetDefaultModelCompareRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(54),
+          getDescriptor().getMethods().get(58),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -78142,7 +82822,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.SetDefaultModelMergerRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(55),
+          getDescriptor().getMethods().get(59),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -78154,7 +82834,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.SetDefaultObjectIDMRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(56),
+          getDescriptor().getMethods().get(60),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -78166,7 +82846,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.SetDefaultQueryEngineRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(57),
+          getDescriptor().getMethods().get(61),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -78178,7 +82858,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.SetDefaultRenderEngineRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(58),
+          getDescriptor().getMethods().get(62),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -78190,7 +82870,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.SetDefaultSerializerRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(59),
+          getDescriptor().getMethods().get(63),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -78202,7 +82882,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.SetPluginSettingsRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(60),
+          getDescriptor().getMethods().get(64),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -78214,7 +82894,19 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.UpdateDeserializerRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(61),
+          getDescriptor().getMethods().get(65),
+          controller,
+          request,
+          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
+      }
+
+
+      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse updateInternalService(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.PluginInterfaceImpl.UpdateInternalServiceRequest request)
+          throws com.google.protobuf.ServiceException {
+        return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
+          getDescriptor().getMethods().get(66),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -78226,7 +82918,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.UpdateModelCompareRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(62),
+          getDescriptor().getMethods().get(67),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -78238,7 +82930,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.UpdateModelMergerRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(63),
+          getDescriptor().getMethods().get(68),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -78250,7 +82942,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.UpdateObjectIDMRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(64),
+          getDescriptor().getMethods().get(69),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -78262,7 +82954,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.UpdateQueryEngineRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(65),
+          getDescriptor().getMethods().get(70),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -78274,7 +82966,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.UpdateRenderEngineRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(66),
+          getDescriptor().getMethods().get(71),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -78286,7 +82978,7 @@ public final class PluginInterfaceImpl {
           org.bimserver.pb.PluginInterfaceImpl.UpdateSerializerRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(67),
+          getDescriptor().getMethods().get(72),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -78302,6 +82994,16 @@ public final class PluginInterfaceImpl {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_bimserver_pb_AddDeserializerRequest_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_bimserver_pb_SInternalServicePluginConfiguration_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_bimserver_pb_SInternalServicePluginConfiguration_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_bimserver_pb_AddInternalServiceRequest_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_bimserver_pb_AddInternalServiceRequest_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_org_bimserver_pb_SModelComparePluginConfiguration_descriptor;
   private static
@@ -78368,6 +83070,11 @@ public final class PluginInterfaceImpl {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_bimserver_pb_DeleteDeserializerRequest_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_bimserver_pb_DeleteInternalServiceRequest_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_bimserver_pb_DeleteInternalServiceRequest_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_org_bimserver_pb_DeleteModelCompareRequest_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -78417,6 +83124,16 @@ public final class PluginInterfaceImpl {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_bimserver_pb_GetAllDeserializersResponse_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_bimserver_pb_GetAllInternalServicesRequest_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_bimserver_pb_GetAllInternalServicesRequest_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_bimserver_pb_GetAllInternalServicesResponse_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_bimserver_pb_GetAllInternalServicesResponse_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_org_bimserver_pb_GetAllModelComparePluginDescriptorsRequest_descriptor;
   private static
@@ -78618,6 +83335,16 @@ public final class PluginInterfaceImpl {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_bimserver_pb_GetDeserializerByNameResponse_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_bimserver_pb_GetInternalServiceByIdRequest_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_bimserver_pb_GetInternalServiceByIdRequest_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_bimserver_pb_GetInternalServiceByIdResponse_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_bimserver_pb_GetInternalServiceByIdResponse_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_org_bimserver_pb_GetModelCompareByIdRequest_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -78718,30 +83445,30 @@ public final class PluginInterfaceImpl {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_bimserver_pb_GetPluginSettingsRequest_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_org_bimserver_pb_SByteArrayType_descriptor;
+    internal_static_org_bimserver_pb_SDoubleType_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_org_bimserver_pb_SByteArrayType_fieldAccessorTable;
+      internal_static_org_bimserver_pb_SDoubleType_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_bimserver_pb_SBooleanType_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_bimserver_pb_SBooleanType_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_org_bimserver_pb_SLongType_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_bimserver_pb_SLongType_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_org_bimserver_pb_SDoubleType_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_org_bimserver_pb_SDoubleType_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_org_bimserver_pb_SStringType_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_bimserver_pb_SStringType_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_org_bimserver_pb_SBooleanType_descriptor;
+    internal_static_org_bimserver_pb_SByteArrayType_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_org_bimserver_pb_SBooleanType_fieldAccessorTable;
+      internal_static_org_bimserver_pb_SByteArrayType_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_org_bimserver_pb_SPrimitiveType_descriptor;
   private static
@@ -78913,6 +83640,11 @@ public final class PluginInterfaceImpl {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_bimserver_pb_UpdateDeserializerRequest_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_bimserver_pb_UpdateInternalServiceRequest_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_bimserver_pb_UpdateInternalServiceRequest_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_org_bimserver_pb_UpdateModelCompareRequest_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -78959,477 +83691,509 @@ public final class PluginInterfaceImpl {
       "elInterface.proto\032\023MetaInterface.proto\"b" +
       "\n\026AddDeserializerRequest\022H\n\014deserializer" +
       "\030\001 \001(\01322.org.bimserver.pb.SDeserializerP" +
-      "luginConfiguration\"T\n SModelComparePlugi" +
-      "nConfiguration\022\026\n\016userSettingsId\030\001 \001(\003\022\013",
-      "\n\003rid\030\002 \001(\005\022\013\n\003oid\030\003 \001(\003\"b\n\026AddModelComp" +
-      "areRequest\022H\n\014modelCompare\030\001 \001(\01322.org.b" +
-      "imserver.pb.SModelComparePluginConfigura" +
-      "tion\"S\n\037SModelMergerPluginConfiguration\022" +
-      "\026\n\016userSettingsId\030\001 \001(\003\022\013\n\003rid\030\002 \001(\005\022\013\n\003" +
-      "oid\030\003 \001(\003\"_\n\025AddModelMergerRequest\022F\n\013mo" +
-      "delMerger\030\001 \001(\01321.org.bimserver.pb.SMode" +
-      "lMergerPluginConfiguration\"f\n\035SObjectIDM" +
-      "PluginConfiguration\022\026\n\016userSettingsId\030\001 " +
-      "\001(\003\022\023\n\013serializers\030\002 \003(\003\022\013\n\003rid\030\003 \001(\005\022\013\n",
-      "\003oid\030\004 \001(\003\"Y\n\023AddObjectIDMRequest\022B\n\tobj" +
-      "ectIDM\030\001 \001(\0132/.org.bimserver.pb.SObjectI" +
-      "DMPluginConfiguration\"S\n\037SQueryEnginePlu" +
-      "ginConfiguration\022\026\n\016userSettingsId\030\001 \001(\003" +
-      "\022\013\n\003rid\030\002 \001(\005\022\013\n\003oid\030\003 \001(\003\"_\n\025AddQueryEn" +
-      "gineRequest\022F\n\013queryEngine\030\001 \001(\01321.org.b" +
-      "imserver.pb.SQueryEnginePluginConfigurat" +
-      "ion\"i\n SRenderEnginePluginConfiguration\022" +
-      "\026\n\016userSettingsId\030\001 \001(\003\022\023\n\013serializers\030\002" +
-      " \003(\003\022\013\n\003rid\030\003 \001(\005\022\013\n\003oid\030\004 \001(\003\"b\n\026AddRen",
-      "derEngineRequest\022H\n\014renderEngine\030\001 \001(\01322" +
-      ".org.bimserver.pb.SRenderEnginePluginCon" +
-      "figuration\"\177\n\036SSerializerPluginConfigura" +
-      "tion\022\026\n\016userSettingsId\030\001 \001(\003\022\013\n\003rid\030\002 \001(" +
-      "\005\022\013\n\003oid\030\003 \001(\003\022\023\n\013objectIDMId\030\004 \001(\003\022\026\n\016r" +
-      "enderEngineId\030\005 \001(\003\"\\\n\024AddSerializerRequ" +
-      "est\022D\n\nserializer\030\001 \001(\01320.org.bimserver." +
-      "pb.SSerializerPluginConfiguration\"(\n\031Del" +
-      "eteDeserializerRequest\022\013\n\003sid\030\001 \001(\003\"(\n\031D" +
-      "eleteModelCompareRequest\022\013\n\003iid\030\001 \001(\003\"\'\n",
-      "\030DeleteModelMergerRequest\022\013\n\003iid\030\001 \001(\003\"%" +
-      "\n\026DeleteObjectIDMRequest\022\013\n\003oid\030\001 \001(\003\"\'\n" +
-      "\030DeleteQueryEngineRequest\022\013\n\003iid\030\001 \001(\003\"(" +
-      "\n\031DeleteRenderEngineRequest\022\013\n\003iid\030\001 \001(\003" +
-      "\"&\n\027DeleteSerializerRequest\022\013\n\003sid\030\001 \001(\003" +
-      "\",\n*GetAllDeserializerPluginDescriptorsR" +
-      "equest\"\203\001\n+GetAllDeserializerPluginDescr" +
-      "iptorsResponse\022\024\n\014errorMessage\030\001 \001(\t\022>\n\005" +
-      "value\030\002 \003(\0132/.org.bimserver.pb.SDeserial" +
-      "izerPluginDescriptor\"1\n\032GetAllDeserializ",
-      "ersRequest\022\023\n\013onlyEnabled\030\001 \001(\010\"v\n\033GetAl" +
-      "lDeserializersResponse\022\024\n\014errorMessage\030\001" +
-      " \001(\t\022A\n\005value\030\002 \003(\01322.org.bimserver.pb.S" +
-      "DeserializerPluginConfiguration\",\n*GetAl" +
-      "lModelComparePluginDescriptorsRequest\"\203\001" +
-      "\n+GetAllModelComparePluginDescriptorsRes" +
-      "ponse\022\024\n\014errorMessage\030\001 \001(\t\022>\n\005value\030\002 \003" +
-      "(\0132/.org.bimserver.pb.SModelComparePlugi" +
-      "nDescriptor\"1\n\032GetAllModelComparesReques" +
-      "t\022\023\n\013onlyEnabled\030\001 \001(\010\"v\n\033GetAllModelCom",
-      "paresResponse\022\024\n\014errorMessage\030\001 \001(\t\022A\n\005v" +
-      "alue\030\002 \003(\01322.org.bimserver.pb.SModelComp" +
-      "arePluginConfiguration\"+\n)GetAllModelMer" +
-      "gerPluginDescriptorsRequest\"\201\001\n*GetAllMo" +
-      "delMergerPluginDescriptorsResponse\022\024\n\014er" +
-      "rorMessage\030\001 \001(\t\022=\n\005value\030\002 \003(\0132..org.bi" +
-      "mserver.pb.SModelMergerPluginDescriptor\"" +
-      "0\n\031GetAllModelMergersRequest\022\023\n\013onlyEnab" +
-      "led\030\001 \001(\010\"t\n\032GetAllModelMergersResponse\022" +
-      "\024\n\014errorMessage\030\001 \001(\t\022@\n\005value\030\002 \003(\01321.o",
-      "rg.bimserver.pb.SModelMergerPluginConfig" +
-      "uration\".\n\027GetAllObjectIDMsRequest\022\023\n\013on" +
-      "lyEnabled\030\001 \001(\010\"p\n\030GetAllObjectIDMsRespo" +
+      "luginConfiguration\"q\n#SInternalServicePl" +
+      "uginConfiguration\022\026\n\016userSettingsId\030\001 \001(",
+      "\003\022\013\n\003rid\030\002 \001(\005\022\013\n\003oid\030\003 \001(\003\022\030\n\020remoteAcc" +
+      "essible\030\004 \001(\010\"k\n\031AddInternalServiceReque" +
+      "st\022N\n\017internalService\030\001 \001(\01325.org.bimser" +
+      "ver.pb.SInternalServicePluginConfigurati" +
+      "on\"T\n SModelComparePluginConfiguration\022\026" +
+      "\n\016userSettingsId\030\001 \001(\003\022\013\n\003rid\030\002 \001(\005\022\013\n\003o" +
+      "id\030\003 \001(\003\"b\n\026AddModelCompareRequest\022H\n\014mo" +
+      "delCompare\030\001 \001(\01322.org.bimserver.pb.SMod" +
+      "elComparePluginConfiguration\"S\n\037SModelMe" +
+      "rgerPluginConfiguration\022\026\n\016userSettingsI",
+      "d\030\001 \001(\003\022\013\n\003rid\030\002 \001(\005\022\013\n\003oid\030\003 \001(\003\"_\n\025Add" +
+      "ModelMergerRequest\022F\n\013modelMerger\030\001 \001(\0132" +
+      "1.org.bimserver.pb.SModelMergerPluginCon" +
+      "figuration\"f\n\035SObjectIDMPluginConfigurat" +
+      "ion\022\026\n\016userSettingsId\030\001 \001(\003\022\023\n\013serialize" +
+      "rs\030\002 \003(\003\022\013\n\003rid\030\003 \001(\005\022\013\n\003oid\030\004 \001(\003\"Y\n\023Ad" +
+      "dObjectIDMRequest\022B\n\tobjectIDM\030\001 \001(\0132/.o" +
+      "rg.bimserver.pb.SObjectIDMPluginConfigur" +
+      "ation\"S\n\037SQueryEnginePluginConfiguration" +
+      "\022\026\n\016userSettingsId\030\001 \001(\003\022\013\n\003rid\030\002 \001(\005\022\013\n",
+      "\003oid\030\003 \001(\003\"_\n\025AddQueryEngineRequest\022F\n\013q" +
+      "ueryEngine\030\001 \001(\01321.org.bimserver.pb.SQue" +
+      "ryEnginePluginConfiguration\"i\n SRenderEn" +
+      "ginePluginConfiguration\022\026\n\016userSettingsI" +
+      "d\030\001 \001(\003\022\023\n\013serializers\030\002 \003(\003\022\013\n\003rid\030\003 \001(" +
+      "\005\022\013\n\003oid\030\004 \001(\003\"b\n\026AddRenderEngineRequest" +
+      "\022H\n\014renderEngine\030\001 \001(\01322.org.bimserver.p" +
+      "b.SRenderEnginePluginConfiguration\"\177\n\036SS" +
+      "erializerPluginConfiguration\022\026\n\016userSett" +
+      "ingsId\030\001 \001(\003\022\013\n\003rid\030\002 \001(\005\022\013\n\003oid\030\003 \001(\003\022\023",
+      "\n\013objectIDMId\030\004 \001(\003\022\026\n\016renderEngineId\030\005 " +
+      "\001(\003\"\\\n\024AddSerializerRequest\022D\n\nserialize" +
+      "r\030\001 \001(\01320.org.bimserver.pb.SSerializerPl" +
+      "uginConfiguration\"(\n\031DeleteDeserializerR" +
+      "equest\022\013\n\003sid\030\001 \001(\003\"+\n\034DeleteInternalSer" +
+      "viceRequest\022\013\n\003oid\030\001 \001(\003\"(\n\031DeleteModelC" +
+      "ompareRequest\022\013\n\003iid\030\001 \001(\003\"\'\n\030DeleteMode" +
+      "lMergerRequest\022\013\n\003iid\030\001 \001(\003\"%\n\026DeleteObj" +
+      "ectIDMRequest\022\013\n\003oid\030\001 \001(\003\"\'\n\030DeleteQuer" +
+      "yEngineRequest\022\013\n\003iid\030\001 \001(\003\"(\n\031DeleteRen",
+      "derEngineRequest\022\013\n\003iid\030\001 \001(\003\"&\n\027DeleteS" +
+      "erializerRequest\022\013\n\003sid\030\001 \001(\003\",\n*GetAllD" +
+      "eserializerPluginDescriptorsRequest\"\203\001\n+" +
+      "GetAllDeserializerPluginDescriptorsRespo" +
       "nse\022\024\n\014errorMessage\030\001 \001(\t\022>\n\005value\030\002 \003(\013" +
-      "2/.org.bimserver.pb.SObjectIDMPluginConf" +
-      "iguration\"+\n)GetAllQueryEnginePluginDesc" +
-      "riptorsRequest\"\201\001\n*GetAllQueryEnginePlug" +
-      "inDescriptorsResponse\022\024\n\014errorMessage\030\001 " +
-      "\001(\t\022=\n\005value\030\002 \003(\0132..org.bimserver.pb.SQ" +
-      "ueryEnginePluginDescriptor\"0\n\031GetAllQuer",
-      "yEnginesRequest\022\023\n\013onlyEnabled\030\001 \001(\010\"t\n\032" +
-      "GetAllQueryEnginesResponse\022\024\n\014errorMessa" +
-      "ge\030\001 \001(\t\022@\n\005value\030\002 \003(\01321.org.bimserver." +
-      "pb.SQueryEnginePluginConfiguration\",\n*Ge" +
-      "tAllRenderEnginePluginDescriptorsRequest" +
-      "\"\203\001\n+GetAllRenderEnginePluginDescriptors" +
-      "Response\022\024\n\014errorMessage\030\001 \001(\t\022>\n\005value\030" +
-      "\002 \003(\0132/.org.bimserver.pb.SRenderEnginePl" +
-      "uginDescriptor\"1\n\032GetAllRenderEnginesReq" +
-      "uest\022\023\n\013onlyEnabled\030\001 \001(\010\"v\n\033GetAllRende",
-      "rEnginesResponse\022\024\n\014errorMessage\030\001 \001(\t\022A" +
-      "\n\005value\030\002 \003(\01322.org.bimserver.pb.SRender" +
-      "EnginePluginConfiguration\"*\n(GetAllSeria" +
-      "lizerPluginDescriptorsRequest\"\177\n)GetAllS" +
-      "erializerPluginDescriptorsResponse\022\024\n\014er" +
-      "rorMessage\030\001 \001(\t\022<\n\005value\030\002 \003(\0132-.org.bi" +
-      "mserver.pb.SSerializerPluginDescriptor\"/" +
-      "\n\030GetAllSerializersRequest\022\023\n\013onlyEnable" +
-      "d\030\001 \001(\010\"r\n\031GetAllSerializersResponse\022\024\n\014" +
-      "errorMessage\030\001 \001(\t\022?\n\005value\030\002 \003(\01320.org.",
-      "bimserver.pb.SSerializerPluginConfigurat" +
-      "ion\"\'\n%GetAllServicePluginDescriptorsReq" +
-      "uest\"y\n&GetAllServicePluginDescriptorsRe" +
-      "sponse\022\024\n\014errorMessage\030\001 \001(\t\0229\n\005value\030\002 " +
-      "\003(\0132*.org.bimserver.pb.SServicePluginDes" +
-      "criptor\"\037\n\035GetDefaultModelCompareRequest" +
-      "\"y\n\036GetDefaultModelCompareResponse\022\024\n\014er" +
-      "rorMessage\030\001 \001(\t\022A\n\005value\030\002 \001(\01322.org.bi" +
-      "mserver.pb.SModelComparePluginConfigurat" +
-      "ion\"\036\n\034GetDefaultModelMergerRequest\"w\n\035G",
-      "etDefaultModelMergerResponse\022\024\n\014errorMes" +
-      "sage\030\001 \001(\t\022@\n\005value\030\002 \001(\01321.org.bimserve" +
-      "r.pb.SModelMergerPluginConfiguration\"\034\n\032" +
-      "GetDefaultObjectIDMRequest\"s\n\033GetDefault" +
-      "ObjectIDMResponse\022\024\n\014errorMessage\030\001 \001(\t\022" +
-      ">\n\005value\030\002 \001(\0132/.org.bimserver.pb.SObjec" +
-      "tIDMPluginConfiguration\"\036\n\034GetDefaultQue" +
-      "ryEngineRequest\"w\n\035GetDefaultQueryEngine" +
+      "2/.org.bimserver.pb.SDeserializerPluginD" +
+      "escriptor\"1\n\032GetAllDeserializersRequest\022" +
+      "\023\n\013onlyEnabled\030\001 \001(\010\"v\n\033GetAllDeserializ" +
+      "ersResponse\022\024\n\014errorMessage\030\001 \001(\t\022A\n\005val" +
+      "ue\030\002 \003(\01322.org.bimserver.pb.SDeserialize",
+      "rPluginConfiguration\"4\n\035GetAllInternalSe" +
+      "rvicesRequest\022\023\n\013onlyEnabled\030\001 \001(\010\"|\n\036Ge" +
+      "tAllInternalServicesResponse\022\024\n\014errorMes" +
+      "sage\030\001 \001(\t\022D\n\005value\030\002 \003(\01325.org.bimserve" +
+      "r.pb.SInternalServicePluginConfiguration" +
+      "\",\n*GetAllModelComparePluginDescriptorsR" +
+      "equest\"\203\001\n+GetAllModelComparePluginDescr" +
+      "iptorsResponse\022\024\n\014errorMessage\030\001 \001(\t\022>\n\005" +
+      "value\030\002 \003(\0132/.org.bimserver.pb.SModelCom" +
+      "parePluginDescriptor\"1\n\032GetAllModelCompa",
+      "resRequest\022\023\n\013onlyEnabled\030\001 \001(\010\"v\n\033GetAl" +
+      "lModelComparesResponse\022\024\n\014errorMessage\030\001" +
+      " \001(\t\022A\n\005value\030\002 \003(\01322.org.bimserver.pb.S" +
+      "ModelComparePluginConfiguration\"+\n)GetAl" +
+      "lModelMergerPluginDescriptorsRequest\"\201\001\n" +
+      "*GetAllModelMergerPluginDescriptorsRespo" +
+      "nse\022\024\n\014errorMessage\030\001 \001(\t\022=\n\005value\030\002 \003(\013" +
+      "2..org.bimserver.pb.SModelMergerPluginDe" +
+      "scriptor\"0\n\031GetAllModelMergersRequest\022\023\n" +
+      "\013onlyEnabled\030\001 \001(\010\"t\n\032GetAllModelMergers",
       "Response\022\024\n\014errorMessage\030\001 \001(\t\022@\n\005value\030" +
-      "\002 \001(\01321.org.bimserver.pb.SQueryEnginePlu",
-      "ginConfiguration\"\037\n\035GetDefaultRenderEngi" +
-      "neRequest\"y\n\036GetDefaultRenderEngineRespo" +
+      "\002 \003(\01321.org.bimserver.pb.SModelMergerPlu" +
+      "ginConfiguration\".\n\027GetAllObjectIDMsRequ" +
+      "est\022\023\n\013onlyEnabled\030\001 \001(\010\"p\n\030GetAllObject" +
+      "IDMsResponse\022\024\n\014errorMessage\030\001 \001(\t\022>\n\005va" +
+      "lue\030\002 \003(\0132/.org.bimserver.pb.SObjectIDMP" +
+      "luginConfiguration\"+\n)GetAllQueryEngineP" +
+      "luginDescriptorsRequest\"\201\001\n*GetAllQueryE" +
+      "nginePluginDescriptorsResponse\022\024\n\014errorM" +
+      "essage\030\001 \001(\t\022=\n\005value\030\002 \003(\0132..org.bimser",
+      "ver.pb.SQueryEnginePluginDescriptor\"0\n\031G" +
+      "etAllQueryEnginesRequest\022\023\n\013onlyEnabled\030" +
+      "\001 \001(\010\"t\n\032GetAllQueryEnginesResponse\022\024\n\014e" +
+      "rrorMessage\030\001 \001(\t\022@\n\005value\030\002 \003(\01321.org.b" +
+      "imserver.pb.SQueryEnginePluginConfigurat" +
+      "ion\",\n*GetAllRenderEnginePluginDescripto" +
+      "rsRequest\"\203\001\n+GetAllRenderEnginePluginDe" +
+      "scriptorsResponse\022\024\n\014errorMessage\030\001 \001(\t\022" +
+      ">\n\005value\030\002 \003(\0132/.org.bimserver.pb.SRende" +
+      "rEnginePluginDescriptor\"1\n\032GetAllRenderE",
+      "nginesRequest\022\023\n\013onlyEnabled\030\001 \001(\010\"v\n\033Ge" +
+      "tAllRenderEnginesResponse\022\024\n\014errorMessag" +
+      "e\030\001 \001(\t\022A\n\005value\030\002 \003(\01322.org.bimserver.p" +
+      "b.SRenderEnginePluginConfiguration\"*\n(Ge" +
+      "tAllSerializerPluginDescriptorsRequest\"\177" +
+      "\n)GetAllSerializerPluginDescriptorsRespo" +
+      "nse\022\024\n\014errorMessage\030\001 \001(\t\022<\n\005value\030\002 \003(\013" +
+      "2-.org.bimserver.pb.SSerializerPluginDes" +
+      "criptor\"/\n\030GetAllSerializersRequest\022\023\n\013o" +
+      "nlyEnabled\030\001 \001(\010\"r\n\031GetAllSerializersRes",
+      "ponse\022\024\n\014errorMessage\030\001 \001(\t\022?\n\005value\030\002 \003" +
+      "(\01320.org.bimserver.pb.SSerializerPluginC" +
+      "onfiguration\"\'\n%GetAllServicePluginDescr" +
+      "iptorsRequest\"y\n&GetAllServicePluginDesc" +
+      "riptorsResponse\022\024\n\014errorMessage\030\001 \001(\t\0229\n" +
+      "\005value\030\002 \003(\0132*.org.bimserver.pb.SService" +
+      "PluginDescriptor\"\037\n\035GetDefaultModelCompa" +
+      "reRequest\"y\n\036GetDefaultModelCompareRespo" +
       "nse\022\024\n\014errorMessage\030\001 \001(\t\022A\n\005value\030\002 \001(\013" +
-      "22.org.bimserver.pb.SRenderEnginePluginC" +
-      "onfiguration\"\035\n\033GetDefaultSerializerRequ" +
-      "est\"u\n\034GetDefaultSerializerResponse\022\024\n\014e" +
-      "rrorMessage\030\001 \001(\t\022?\n\005value\030\002 \001(\01320.org.b" +
-      "imserver.pb.SSerializerPluginConfigurati" +
-      "on\")\n\032GetDeserializerByIdRequest\022\013\n\003oid\030" +
-      "\001 \001(\003\"v\n\033GetDeserializerByIdResponse\022\024\n\014",
-      "errorMessage\030\001 \001(\t\022A\n\005value\030\002 \001(\01322.org." +
-      "bimserver.pb.SDeserializerPluginConfigur" +
-      "ation\"8\n\034GetDeserializerByNameRequest\022\030\n" +
-      "\020deserializerName\030\001 \001(\t\"x\n\035GetDeserializ" +
-      "erByNameResponse\022\024\n\014errorMessage\030\001 \001(\t\022A" +
-      "\n\005value\030\002 \001(\01322.org.bimserver.pb.SDeseri" +
-      "alizerPluginConfiguration\")\n\032GetModelCom" +
-      "pareByIdRequest\022\013\n\003oid\030\001 \001(\003\"v\n\033GetModel" +
-      "CompareByIdResponse\022\024\n\014errorMessage\030\001 \001(" +
-      "\t\022A\n\005value\030\002 \001(\01322.org.bimserver.pb.SMod",
-      "elComparePluginConfiguration\",\n\034GetModel" +
-      "CompareByNameRequest\022\014\n\004name\030\001 \001(\t\"x\n\035Ge" +
-      "tModelCompareByNameResponse\022\024\n\014errorMess" +
-      "age\030\001 \001(\t\022A\n\005value\030\002 \001(\01322.org.bimserver" +
-      ".pb.SModelComparePluginConfiguration\"(\n\031" +
-      "GetModelMergerByIdRequest\022\013\n\003oid\030\001 \001(\003\"t" +
-      "\n\032GetModelMergerByIdResponse\022\024\n\014errorMes" +
-      "sage\030\001 \001(\t\022@\n\005value\030\002 \001(\01321.org.bimserve" +
-      "r.pb.SModelMergerPluginConfiguration\"+\n\033" +
-      "GetModelMergerByNameRequest\022\014\n\004name\030\001 \001(",
-      "\t\"v\n\034GetModelMergerByNameResponse\022\024\n\014err" +
-      "orMessage\030\001 \001(\t\022@\n\005value\030\002 \001(\01321.org.bim" +
-      "server.pb.SModelMergerPluginConfiguratio" +
-      "n\"&\n\027GetObjectIDMByIdRequest\022\013\n\003oid\030\001 \001(" +
-      "\003\"p\n\030GetObjectIDMByIdResponse\022\024\n\014errorMe" +
-      "ssage\030\001 \001(\t\022>\n\005value\030\002 \001(\0132/.org.bimserv" +
-      "er.pb.SObjectIDMPluginConfiguration\"2\n\031G" +
-      "etObjectIDMByNameRequest\022\025\n\robjectIDMNam" +
-      "e\030\001 \001(\t\"r\n\032GetObjectIDMByNameResponse\022\024\n" +
-      "\014errorMessage\030\001 \001(\t\022>\n\005value\030\002 \001(\0132/.org",
-      ".bimserver.pb.SObjectIDMPluginConfigurat" +
-      "ion\"5\n GetPluginObjectDefinitionRequest\022" +
-      "\021\n\tclassName\030\001 \001(\t\"C\n\020SArrayDefinition\022/" +
-      "\n\004type\030\001 \001(\0132!.org.bimserver.pb.STypeDef" +
-      "inition\"F\n\024SPrimitiveDefinition\022.\n\004type\030" +
-      "\001 \001(\0162 .org.bimserver.pb.SPrimitiveEnum\"" +
-      "\362\001\n\017STypeDefinition\022\025\n\r__actual_type\030\001 \002" +
-      "(\t\022@\n\023__SObjectDefinition\030\002 \001(\0132#.org.bi" +
-      "mserver.pb.SObjectDefinition\022>\n\022__SArray" +
-      "Definition\030\003 \001(\0132\".org.bimserver.pb.SArr",
-      "ayDefinition\022F\n\026__SPrimitiveDefinition\030\004" +
-      " \001(\0132&.org.bimserver.pb.SPrimitiveDefini" +
-      "tion\"\224\001\n\024SParameterDefinition\022\023\n\013descrip" +
-      "tion\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\026\n\016defaultValue" +
-      "Id\030\003 \001(\003\022\020\n\010required\030\004 \001(\010\022/\n\004type\030\005 \001(\013" +
-      "2!.org.bimserver.pb.STypeDefinition\"O\n\021S" +
-      "ObjectDefinition\022:\n\nparameters\030\001 \003(\0132&.o" +
-      "rg.bimserver.pb.SParameterDefinition\"m\n!" +
-      "GetPluginObjectDefinitionResponse\022\024\n\014err" +
-      "orMessage\030\001 \001(\t\0222\n\005value\030\002 \001(\0132#.org.bim",
-      "server.pb.SObjectDefinition\"(\n\030GetPlugin" +
-      "SettingsRequest\022\014\n\004poid\030\001 \001(\003\"9\n\016SByteAr" +
-      "rayType\022\013\n\003rid\030\001 \001(\005\022\013\n\003oid\030\002 \001(\003\022\r\n\005val" +
-      "ue\030\003 \001(\014\"4\n\tSLongType\022\013\n\003rid\030\001 \001(\005\022\013\n\003oi" +
-      "d\030\002 \001(\003\022\r\n\005value\030\003 \001(\003\"6\n\013SDoubleType\022\013\n" +
-      "\003rid\030\001 \001(\005\022\013\n\003oid\030\002 \001(\003\022\r\n\005value\030\003 \001(\001\"6" +
-      "\n\013SStringType\022\013\n\003rid\030\001 \001(\005\022\013\n\003oid\030\002 \001(\003\022" +
-      "\r\n\005value\030\003 \001(\t\"7\n\014SBooleanType\022\013\n\003rid\030\001 " +
-      "\001(\005\022\013\n\003oid\030\002 \001(\003\022\r\n\005value\030\003 \001(\010\"\323\002\n\016SPri" +
-      "mitiveType\022\025\n\r__actual_type\030\001 \002(\t\022:\n\020__S",
-      "ByteArrayType\030\002 \001(\0132 .org.bimserver.pb.S" +
-      "ByteArrayType\0220\n\013__SLongType\030\003 \001(\0132\033.org" +
-      ".bimserver.pb.SLongType\0224\n\r__SDoubleType" +
-      "\030\004 \001(\0132\035.org.bimserver.pb.SDoubleType\0224\n" +
-      "\r__SStringType\030\005 \001(\0132\035.org.bimserver.pb." +
-      "SStringType\0226\n\016__SBooleanType\030\006 \001(\0132\036.or" +
-      "g.bimserver.pb.SBooleanType\022\013\n\003rid\030\007 \001(\005" +
-      "\022\013\n\003oid\030\010 \001(\003\"O\n\nSArrayType\022\'\n\006values\030\001 " +
-      "\003(\0132\027.org.bimserver.pb.SType\022\013\n\003rid\030\002 \001(" +
-      "\005\022\013\n\003oid\030\003 \001(\003\"\336\001\n\005SType\022\025\n\r__actual_typ",
-      "e\030\001 \002(\t\0224\n\r__SObjectType\030\002 \001(\0132\035.org.bim" +
-      "server.pb.SObjectType\022:\n\020__SPrimitiveTyp" +
-      "e\030\003 \001(\0132 .org.bimserver.pb.SPrimitiveTyp" +
-      "e\0222\n\014__SArrayType\030\004 \001(\0132\034.org.bimserver." +
-      "pb.SArrayType\022\013\n\003rid\030\005 \001(\005\022\013\n\003oid\030\006 \001(\003\"" +
-      "\\\n\nSParameter\022\013\n\003rid\030\001 \001(\005\022\013\n\003oid\030\002 \001(\003\022" +
-      "\014\n\004name\030\003 \001(\t\022&\n\005value\030\004 \001(\0132\027.org.bimse" +
-      "rver.pb.SType\"g\n\013SObjectType\022\013\n\003rid\030\001 \001(" +
-      "\005\022\013\n\003oid\030\002 \001(\003\022\014\n\004name\030\003 \001(\t\0220\n\nparamete" +
-      "rs\030\004 \003(\0132\034.org.bimserver.pb.SParameter\"_",
-      "\n\031GetPluginSettingsResponse\022\024\n\014errorMess" +
-      "age\030\001 \001(\t\022,\n\005value\030\002 \001(\0132\035.org.bimserver" +
-      ".pb.SObjectType\"(\n\031GetQueryEngineByIdReq" +
-      "uest\022\013\n\003oid\030\001 \001(\003\"t\n\032GetQueryEngineByIdR" +
-      "esponse\022\024\n\014errorMessage\030\001 \001(\t\022@\n\005value\030\002" +
-      " \001(\01321.org.bimserver.pb.SQueryEnginePlug" +
-      "inConfiguration\"+\n\033GetQueryEngineByNameR" +
-      "equest\022\014\n\004name\030\001 \001(\t\"v\n\034GetQueryEngineBy" +
-      "NameResponse\022\024\n\014errorMessage\030\001 \001(\t\022@\n\005va" +
-      "lue\030\002 \001(\01321.org.bimserver.pb.SQueryEngin",
-      "ePluginConfiguration\")\n\032GetRenderEngineB" +
-      "yIdRequest\022\013\n\003oid\030\001 \001(\003\"v\n\033GetRenderEngi" +
-      "neByIdResponse\022\024\n\014errorMessage\030\001 \001(\t\022A\n\005" +
-      "value\030\002 \001(\01322.org.bimserver.pb.SRenderEn" +
-      "ginePluginConfiguration\",\n\034GetRenderEngi" +
-      "neByNameRequest\022\014\n\004name\030\001 \001(\t\"x\n\035GetRend" +
-      "erEngineByNameResponse\022\024\n\014errorMessage\030\001" +
-      " \001(\t\022A\n\005value\030\002 \001(\01322.org.bimserver.pb.S" +
-      "RenderEnginePluginConfiguration\"8\n!GetSe" +
-      "rializerByContentTypeRequest\022\023\n\013contentT",
-      "ype\030\001 \001(\t\"{\n\"GetSerializerByContentTypeR" +
-      "esponse\022\024\n\014errorMessage\030\001 \001(\t\022?\n\005value\030\002" +
-      " \001(\01320.org.bimserver.pb.SSerializerPlugi" +
-      "nConfiguration\"\'\n\030GetSerializerByIdReque" +
-      "st\022\013\n\003oid\030\001 \001(\003\"r\n\031GetSerializerByIdResp" +
+      "22.org.bimserver.pb.SModelComparePluginC",
+      "onfiguration\"\036\n\034GetDefaultModelMergerReq" +
+      "uest\"w\n\035GetDefaultModelMergerResponse\022\024\n" +
+      "\014errorMessage\030\001 \001(\t\022@\n\005value\030\002 \001(\01321.org" +
+      ".bimserver.pb.SModelMergerPluginConfigur" +
+      "ation\"\034\n\032GetDefaultObjectIDMRequest\"s\n\033G" +
+      "etDefaultObjectIDMResponse\022\024\n\014errorMessa" +
+      "ge\030\001 \001(\t\022>\n\005value\030\002 \001(\0132/.org.bimserver." +
+      "pb.SObjectIDMPluginConfiguration\"\036\n\034GetD" +
+      "efaultQueryEngineRequest\"w\n\035GetDefaultQu" +
+      "eryEngineResponse\022\024\n\014errorMessage\030\001 \001(\t\022",
+      "@\n\005value\030\002 \001(\01321.org.bimserver.pb.SQuery" +
+      "EnginePluginConfiguration\"\037\n\035GetDefaultR" +
+      "enderEngineRequest\"y\n\036GetDefaultRenderEn" +
+      "gineResponse\022\024\n\014errorMessage\030\001 \001(\t\022A\n\005va" +
+      "lue\030\002 \001(\01322.org.bimserver.pb.SRenderEngi" +
+      "nePluginConfiguration\"\035\n\033GetDefaultSeria" +
+      "lizerRequest\"u\n\034GetDefaultSerializerResp" +
       "onse\022\024\n\014errorMessage\030\001 \001(\t\022?\n\005value\030\002 \001(" +
       "\01320.org.bimserver.pb.SSerializerPluginCo" +
-      "nfiguration\"4\n\032GetSerializerByNameReques" +
-      "t\022\026\n\016serializerName\030\001 \001(\t\"t\n\033GetSerializ" +
-      "erByNameResponse\022\024\n\014errorMessage\030\001 \001(\t\022?",
-      "\n\005value\030\002 \001(\01320.org.bimserver.pb.SSerial" +
-      "izerPluginConfiguration\"@\n%GetSerializer" +
-      "ByPluginClassNameRequest\022\027\n\017pluginClassN" +
-      "ame\030\001 \001(\t\"\177\n&GetSerializerByPluginClassN" +
-      "ameResponse\022\024\n\014errorMessage\030\001 \001(\t\022?\n\005val" +
-      "ue\030\002 \001(\01320.org.bimserver.pb.SSerializerP" +
-      "luginConfiguration\"4\n$GetSerializerPlugi" +
-      "nDescriptorRequest\022\014\n\004type\030\001 \001(\t\"{\n%GetS" +
-      "erializerPluginDescriptorResponse\022\024\n\014err" +
-      "orMessage\030\001 \001(\t\022<\n\005value\030\002 \001(\0132-.org.bim",
-      "server.pb.SSerializerPluginDescriptor\"1\n" +
-      "\032HasActiveSerializerRequest\022\023\n\013contentTy" +
-      "pe\030\001 \001(\t\"B\n\033HasActiveSerializerResponse\022" +
-      "\024\n\014errorMessage\030\001 \001(\t\022\r\n\005value\030\002 \001(\010\",\n\035" +
-      "SetDefaultModelCompareRequest\022\013\n\003oid\030\001 \001" +
-      "(\003\"+\n\034SetDefaultModelMergerRequest\022\013\n\003oi" +
-      "d\030\001 \001(\003\")\n\032SetDefaultObjectIDMRequest\022\013\n" +
-      "\003oid\030\001 \001(\003\"+\n\034SetDefaultQueryEngineReque" +
-      "st\022\013\n\003oid\030\001 \001(\003\",\n\035SetDefaultRenderEngin" +
-      "eRequest\022\013\n\003oid\030\001 \001(\003\"*\n\033SetDefaultSeria",
-      "lizerRequest\022\013\n\003oid\030\001 \001(\003\"Y\n\030SetPluginSe" +
-      "ttingsRequest\022\014\n\004poid\030\001 \001(\003\022/\n\010settings\030" +
-      "\002 \001(\0132\035.org.bimserver.pb.SObjectType\"e\n\031" +
-      "UpdateDeserializerRequest\022H\n\014deserialize" +
-      "r\030\001 \001(\01322.org.bimserver.pb.SDeserializer" +
-      "PluginConfiguration\"e\n\031UpdateModelCompar" +
-      "eRequest\022H\n\014modelCompare\030\001 \001(\01322.org.bim" +
-      "server.pb.SModelComparePluginConfigurati" +
-      "on\"b\n\030UpdateModelMergerRequest\022F\n\013modelM" +
-      "erger\030\001 \001(\01321.org.bimserver.pb.SModelMer",
-      "gerPluginConfiguration\"\\\n\026UpdateObjectID" +
-      "MRequest\022B\n\tobjectIDM\030\001 \001(\0132/.org.bimser" +
-      "ver.pb.SObjectIDMPluginConfiguration\"b\n\030" +
-      "UpdateQueryEngineRequest\022F\n\013queryEngine\030" +
-      "\001 \001(\01321.org.bimserver.pb.SQueryEnginePlu" +
-      "ginConfiguration\"e\n\031UpdateRenderEngineRe" +
-      "quest\022H\n\014renderEngine\030\001 \001(\01322.org.bimser" +
-      "ver.pb.SRenderEnginePluginConfiguration\"" +
-      "_\n\027UpdateSerializerRequest\022D\n\nserializer" +
-      "\030\001 \001(\01320.org.bimserver.pb.SSerializerPlu",
-      "ginConfiguration*O\n\016SPrimitiveEnum\022\010\n\004LO" +
-      "NG\020\000\022\n\n\006DOUBLE\020\001\022\013\n\007BOOLEAN\020\002\022\n\n\006STRING\020" +
-      "\003\022\016\n\nBYTE_ARRAY\020\0042\375<\n\017PluginInterface\022[\n" +
-      "\017addDeserializer\022(.org.bimserver.pb.AddD" +
-      "eserializerRequest\032\036.org.bimserver.pb.Vo" +
-      "idResponse\022[\n\017addModelCompare\022(.org.bims" +
-      "erver.pb.AddModelCompareRequest\032\036.org.bi" +
-      "mserver.pb.VoidResponse\022Y\n\016addModelMerge" +
-      "r\022\'.org.bimserver.pb.AddModelMergerReque" +
-      "st\032\036.org.bimserver.pb.VoidResponse\022U\n\014ad",
-      "dObjectIDM\022%.org.bimserver.pb.AddObjectI" +
-      "DMRequest\032\036.org.bimserver.pb.VoidRespons" +
-      "e\022Y\n\016addQueryEngine\022\'.org.bimserver.pb.A" +
-      "ddQueryEngineRequest\032\036.org.bimserver.pb." +
-      "VoidResponse\022[\n\017addRenderEngine\022(.org.bi" +
-      "mserver.pb.AddRenderEngineRequest\032\036.org." +
-      "bimserver.pb.VoidResponse\022W\n\raddSerializ" +
-      "er\022&.org.bimserver.pb.AddSerializerReque" +
-      "st\032\036.org.bimserver.pb.VoidResponse\022a\n\022de" +
-      "leteDeserializer\022+.org.bimserver.pb.Dele",
-      "teDeserializerRequest\032\036.org.bimserver.pb" +
-      ".VoidResponse\022a\n\022deleteModelCompare\022+.or" +
-      "g.bimserver.pb.DeleteModelCompareRequest" +
-      "\032\036.org.bimserver.pb.VoidResponse\022_\n\021dele" +
-      "teModelMerger\022*.org.bimserver.pb.DeleteM" +
-      "odelMergerRequest\032\036.org.bimserver.pb.Voi" +
-      "dResponse\022[\n\017deleteObjectIDM\022(.org.bimse" +
-      "rver.pb.DeleteObjectIDMRequest\032\036.org.bim" +
-      "server.pb.VoidResponse\022_\n\021deleteQueryEng" +
-      "ine\022*.org.bimserver.pb.DeleteQueryEngine",
-      "Request\032\036.org.bimserver.pb.VoidResponse\022" +
-      "a\n\022deleteRenderEngine\022+.org.bimserver.pb" +
-      ".DeleteRenderEngineRequest\032\036.org.bimserv" +
-      "er.pb.VoidResponse\022]\n\020deleteSerializer\022)" +
-      ".org.bimserver.pb.DeleteSerializerReques" +
-      "t\032\036.org.bimserver.pb.VoidResponse\022\242\001\n#ge" +
-      "tAllDeserializerPluginDescriptors\022<.org." +
-      "bimserver.pb.GetAllDeserializerPluginDes" +
-      "criptorsRequest\032=.org.bimserver.pb.GetAl" +
-      "lDeserializerPluginDescriptorsResponse\022r",
-      "\n\023getAllDeserializers\022,.org.bimserver.pb" +
-      ".GetAllDeserializersRequest\032-.org.bimser" +
-      "ver.pb.GetAllDeserializersResponse\022\242\001\n#g" +
-      "etAllModelComparePluginDescriptors\022<.org" +
-      ".bimserver.pb.GetAllModelComparePluginDe" +
-      "scriptorsRequest\032=.org.bimserver.pb.GetA" +
-      "llModelComparePluginDescriptorsResponse\022" +
-      "r\n\023getAllModelCompares\022,.org.bimserver.p" +
-      "b.GetAllModelComparesRequest\032-.org.bimse" +
-      "rver.pb.GetAllModelComparesResponse\022\237\001\n\"",
-      "getAllModelMergerPluginDescriptors\022;.org" +
-      ".bimserver.pb.GetAllModelMergerPluginDes" +
-      "criptorsRequest\032<.org.bimserver.pb.GetAl" +
-      "lModelMergerPluginDescriptorsResponse\022o\n" +
-      "\022getAllModelMergers\022+.org.bimserver.pb.G" +
-      "etAllModelMergersRequest\032,.org.bimserver" +
-      ".pb.GetAllModelMergersResponse\022i\n\020getAll" +
-      "ObjectIDMs\022).org.bimserver.pb.GetAllObje" +
-      "ctIDMsRequest\032*.org.bimserver.pb.GetAllO" +
-      "bjectIDMsResponse\022\237\001\n\"getAllQueryEngineP",
-      "luginDescriptors\022;.org.bimserver.pb.GetA" +
-      "llQueryEnginePluginDescriptorsRequest\032<." +
-      "org.bimserver.pb.GetAllQueryEnginePlugin" +
-      "DescriptorsResponse\022o\n\022getAllQueryEngine" +
-      "s\022+.org.bimserver.pb.GetAllQueryEnginesR" +
-      "equest\032,.org.bimserver.pb.GetAllQueryEng" +
-      "inesResponse\022\242\001\n#getAllRenderEnginePlugi" +
-      "nDescriptors\022<.org.bimserver.pb.GetAllRe" +
-      "nderEnginePluginDescriptorsRequest\032=.org" +
-      ".bimserver.pb.GetAllRenderEnginePluginDe",
-      "scriptorsResponse\022r\n\023getAllRenderEngines" +
-      "\022,.org.bimserver.pb.GetAllRenderEnginesR" +
-      "equest\032-.org.bimserver.pb.GetAllRenderEn" +
-      "ginesResponse\022\234\001\n!getAllSerializerPlugin" +
-      "Descriptors\022:.org.bimserver.pb.GetAllSer" +
-      "ializerPluginDescriptorsRequest\032;.org.bi" +
-      "mserver.pb.GetAllSerializerPluginDescrip" +
-      "torsResponse\022l\n\021getAllSerializers\022*.org." +
-      "bimserver.pb.GetAllSerializersRequest\032+." +
-      "org.bimserver.pb.GetAllSerializersRespon",
-      "se\022\223\001\n\036getAllServicePluginDescriptors\0227." +
-      "org.bimserver.pb.GetAllServicePluginDesc" +
-      "riptorsRequest\0328.org.bimserver.pb.GetAll" +
-      "ServicePluginDescriptorsResponse\022{\n\026getD" +
-      "efaultModelCompare\022/.org.bimserver.pb.Ge" +
-      "tDefaultModelCompareRequest\0320.org.bimser" +
-      "ver.pb.GetDefaultModelCompareResponse\022x\n" +
-      "\025getDefaultModelMerger\022..org.bimserver.p" +
-      "b.GetDefaultModelMergerRequest\032/.org.bim" +
-      "server.pb.GetDefaultModelMergerResponse\022",
-      "r\n\023getDefaultObjectIDM\022,.org.bimserver.p" +
-      "b.GetDefaultObjectIDMRequest\032-.org.bimse" +
-      "rver.pb.GetDefaultObjectIDMResponse\022x\n\025g" +
-      "etDefaultQueryEngine\022..org.bimserver.pb." +
-      "GetDefaultQueryEngineRequest\032/.org.bimse" +
-      "rver.pb.GetDefaultQueryEngineResponse\022{\n" +
-      "\026getDefaultRenderEngine\022/.org.bimserver." +
-      "pb.GetDefaultRenderEngineRequest\0320.org.b" +
-      "imserver.pb.GetDefaultRenderEngineRespon" +
-      "se\022u\n\024getDefaultSerializer\022-.org.bimserv",
-      "er.pb.GetDefaultSerializerRequest\032..org." +
-      "bimserver.pb.GetDefaultSerializerRespons" +
-      "e\022r\n\023getDeserializerById\022,.org.bimserver" +
-      ".pb.GetDeserializerByIdRequest\032-.org.bim" +
-      "server.pb.GetDeserializerByIdResponse\022x\n" +
-      "\025getDeserializerByName\022..org.bimserver.p" +
-      "b.GetDeserializerByNameRequest\032/.org.bim" +
-      "server.pb.GetDeserializerByNameResponse\022" +
-      "r\n\023getModelCompareById\022,.org.bimserver.p" +
-      "b.GetModelCompareByIdRequest\032-.org.bimse",
-      "rver.pb.GetModelCompareByIdResponse\022x\n\025g" +
-      "etModelCompareByName\022..org.bimserver.pb." +
-      "GetModelCompareByNameRequest\032/.org.bimse" +
-      "rver.pb.GetModelCompareByNameResponse\022o\n" +
-      "\022getModelMergerById\022+.org.bimserver.pb.G" +
-      "etModelMergerByIdRequest\032,.org.bimserver" +
-      ".pb.GetModelMergerByIdResponse\022u\n\024getMod" +
-      "elMergerByName\022-.org.bimserver.pb.GetMod" +
-      "elMergerByNameRequest\032..org.bimserver.pb" +
-      ".GetModelMergerByNameResponse\022i\n\020getObje",
-      "ctIDMById\022).org.bimserver.pb.GetObjectID" +
-      "MByIdRequest\032*.org.bimserver.pb.GetObjec" +
-      "tIDMByIdResponse\022o\n\022getObjectIDMByName\022+" +
-      ".org.bimserver.pb.GetObjectIDMByNameRequ" +
-      "est\032,.org.bimserver.pb.GetObjectIDMByNam" +
-      "eResponse\022\204\001\n\031getPluginObjectDefinition\022" +
-      "2.org.bimserver.pb.GetPluginObjectDefini" +
-      "tionRequest\0323.org.bimserver.pb.GetPlugin" +
-      "ObjectDefinitionResponse\022l\n\021getPluginSet" +
-      "tings\022*.org.bimserver.pb.GetPluginSettin",
-      "gsRequest\032+.org.bimserver.pb.GetPluginSe" +
-      "ttingsResponse\022o\n\022getQueryEngineById\022+.o" +
-      "rg.bimserver.pb.GetQueryEngineByIdReques" +
-      "t\032,.org.bimserver.pb.GetQueryEngineByIdR" +
-      "esponse\022u\n\024getQueryEngineByName\022-.org.bi" +
-      "mserver.pb.GetQueryEngineByNameRequest\032." +
-      ".org.bimserver.pb.GetQueryEngineByNameRe" +
-      "sponse\022r\n\023getRenderEngineById\022,.org.bims" +
-      "erver.pb.GetRenderEngineByIdRequest\032-.or" +
-      "g.bimserver.pb.GetRenderEngineByIdRespon",
-      "se\022x\n\025getRenderEngineByName\022..org.bimser" +
-      "ver.pb.GetRenderEngineByNameRequest\032/.or" +
-      "g.bimserver.pb.GetRenderEngineByNameResp" +
-      "onse\022\207\001\n\032getSerializerByContentType\0223.or" +
-      "g.bimserver.pb.GetSerializerByContentTyp" +
-      "eRequest\0324.org.bimserver.pb.GetSerialize" +
-      "rByContentTypeResponse\022l\n\021getSerializerB" +
-      "yId\022*.org.bimserver.pb.GetSerializerById" +
-      "Request\032+.org.bimserver.pb.GetSerializer" +
-      "ByIdResponse\022r\n\023getSerializerByName\022,.or",
-      "g.bimserver.pb.GetSerializerByNameReques" +
-      "t\032-.org.bimserver.pb.GetSerializerByName" +
-      "Response\022\223\001\n\036getSerializerByPluginClassN" +
-      "ame\0227.org.bimserver.pb.GetSerializerByPl" +
-      "uginClassNameRequest\0328.org.bimserver.pb." +
-      "GetSerializerByPluginClassNameResponse\022\220" +
-      "\001\n\035getSerializerPluginDescriptor\0226.org.b" +
-      "imserver.pb.GetSerializerPluginDescripto" +
-      "rRequest\0327.org.bimserver.pb.GetSerialize" +
-      "rPluginDescriptorResponse\022r\n\023hasActiveSe",
-      "rializer\022,.org.bimserver.pb.HasActiveSer" +
-      "ializerRequest\032-.org.bimserver.pb.HasAct" +
-      "iveSerializerResponse\022i\n\026setDefaultModel" +
-      "Compare\022/.org.bimserver.pb.SetDefaultMod" +
-      "elCompareRequest\032\036.org.bimserver.pb.Void" +
-      "Response\022g\n\025setDefaultModelMerger\022..org." +
-      "bimserver.pb.SetDefaultModelMergerReques" +
-      "t\032\036.org.bimserver.pb.VoidResponse\022c\n\023set" +
-      "DefaultObjectIDM\022,.org.bimserver.pb.SetD" +
-      "efaultObjectIDMRequest\032\036.org.bimserver.p",
-      "b.VoidResponse\022g\n\025setDefaultQueryEngine\022" +
-      "..org.bimserver.pb.SetDefaultQueryEngine" +
-      "Request\032\036.org.bimserver.pb.VoidResponse\022" +
-      "i\n\026setDefaultRenderEngine\022/.org.bimserve" +
-      "r.pb.SetDefaultRenderEngineRequest\032\036.org" +
-      ".bimserver.pb.VoidResponse\022e\n\024setDefault" +
-      "Serializer\022-.org.bimserver.pb.SetDefault" +
-      "SerializerRequest\032\036.org.bimserver.pb.Voi" +
-      "dResponse\022_\n\021setPluginSettings\022*.org.bim" +
-      "server.pb.SetPluginSettingsRequest\032\036.org",
-      ".bimserver.pb.VoidResponse\022a\n\022updateDese" +
-      "rializer\022+.org.bimserver.pb.UpdateDeseri" +
+      "nfiguration\")\n\032GetDeserializerByIdReques",
+      "t\022\013\n\003oid\030\001 \001(\003\"v\n\033GetDeserializerByIdRes" +
+      "ponse\022\024\n\014errorMessage\030\001 \001(\t\022A\n\005value\030\002 \001" +
+      "(\01322.org.bimserver.pb.SDeserializerPlugi" +
+      "nConfiguration\"8\n\034GetDeserializerByNameR" +
+      "equest\022\030\n\020deserializerName\030\001 \001(\t\"x\n\035GetD" +
+      "eserializerByNameResponse\022\024\n\014errorMessag" +
+      "e\030\001 \001(\t\022A\n\005value\030\002 \001(\01322.org.bimserver.p" +
+      "b.SDeserializerPluginConfiguration\",\n\035Ge" +
+      "tInternalServiceByIdRequest\022\013\n\003oid\030\001 \001(\003" +
+      "\"|\n\036GetInternalServiceByIdResponse\022\024\n\014er",
+      "rorMessage\030\001 \001(\t\022D\n\005value\030\002 \001(\01325.org.bi" +
+      "mserver.pb.SInternalServicePluginConfigu" +
+      "ration\")\n\032GetModelCompareByIdRequest\022\013\n\003" +
+      "oid\030\001 \001(\003\"v\n\033GetModelCompareByIdResponse" +
+      "\022\024\n\014errorMessage\030\001 \001(\t\022A\n\005value\030\002 \001(\01322." +
+      "org.bimserver.pb.SModelComparePluginConf" +
+      "iguration\",\n\034GetModelCompareByNameReques" +
+      "t\022\014\n\004name\030\001 \001(\t\"x\n\035GetModelCompareByName" +
+      "Response\022\024\n\014errorMessage\030\001 \001(\t\022A\n\005value\030" +
+      "\002 \001(\01322.org.bimserver.pb.SModelComparePl",
+      "uginConfiguration\"(\n\031GetModelMergerByIdR" +
+      "equest\022\013\n\003oid\030\001 \001(\003\"t\n\032GetModelMergerByI" +
+      "dResponse\022\024\n\014errorMessage\030\001 \001(\t\022@\n\005value" +
+      "\030\002 \001(\01321.org.bimserver.pb.SModelMergerPl" +
+      "uginConfiguration\"+\n\033GetModelMergerByNam" +
+      "eRequest\022\014\n\004name\030\001 \001(\t\"v\n\034GetModelMerger" +
+      "ByNameResponse\022\024\n\014errorMessage\030\001 \001(\t\022@\n\005" +
+      "value\030\002 \001(\01321.org.bimserver.pb.SModelMer" +
+      "gerPluginConfiguration\"&\n\027GetObjectIDMBy" +
+      "IdRequest\022\013\n\003oid\030\001 \001(\003\"p\n\030GetObjectIDMBy",
+      "IdResponse\022\024\n\014errorMessage\030\001 \001(\t\022>\n\005valu" +
+      "e\030\002 \001(\0132/.org.bimserver.pb.SObjectIDMPlu" +
+      "ginConfiguration\"2\n\031GetObjectIDMByNameRe" +
+      "quest\022\025\n\robjectIDMName\030\001 \001(\t\"r\n\032GetObjec" +
+      "tIDMByNameResponse\022\024\n\014errorMessage\030\001 \001(\t" +
+      "\022>\n\005value\030\002 \001(\0132/.org.bimserver.pb.SObje" +
+      "ctIDMPluginConfiguration\"5\n GetPluginObj" +
+      "ectDefinitionRequest\022\021\n\tclassName\030\001 \001(\t\"" +
+      "C\n\020SArrayDefinition\022/\n\004type\030\001 \001(\0132!.org." +
+      "bimserver.pb.STypeDefinition\"F\n\024SPrimiti",
+      "veDefinition\022.\n\004type\030\001 \001(\0162 .org.bimserv" +
+      "er.pb.SPrimitiveEnum\"\362\001\n\017STypeDefinition" +
+      "\022\025\n\r__actual_type\030\001 \002(\t\022>\n\022__SArrayDefin" +
+      "ition\030\002 \001(\0132\".org.bimserver.pb.SArrayDef" +
+      "inition\022F\n\026__SPrimitiveDefinition\030\003 \001(\0132" +
+      "&.org.bimserver.pb.SPrimitiveDefinition\022" +
+      "@\n\023__SObjectDefinition\030\004 \001(\0132#.org.bimse" +
+      "rver.pb.SObjectDefinition\"\224\001\n\024SParameter" +
+      "Definition\022\023\n\013description\030\001 \001(\t\022\014\n\004name\030" +
+      "\002 \001(\t\022\026\n\016defaultValueId\030\003 \001(\003\022\020\n\010require",
+      "d\030\004 \001(\010\022/\n\004type\030\005 \001(\0132!.org.bimserver.pb" +
+      ".STypeDefinition\"O\n\021SObjectDefinition\022:\n" +
+      "\nparameters\030\001 \003(\0132&.org.bimserver.pb.SPa" +
+      "rameterDefinition\"m\n!GetPluginObjectDefi" +
+      "nitionResponse\022\024\n\014errorMessage\030\001 \001(\t\0222\n\005" +
+      "value\030\002 \001(\0132#.org.bimserver.pb.SObjectDe" +
+      "finition\"(\n\030GetPluginSettingsRequest\022\014\n\004" +
+      "poid\030\001 \001(\003\"6\n\013SDoubleType\022\013\n\003rid\030\001 \001(\005\022\013" +
+      "\n\003oid\030\002 \001(\003\022\r\n\005value\030\003 \001(\001\"7\n\014SBooleanTy" +
+      "pe\022\013\n\003rid\030\001 \001(\005\022\013\n\003oid\030\002 \001(\003\022\r\n\005value\030\003 ",
+      "\001(\010\"4\n\tSLongType\022\013\n\003rid\030\001 \001(\005\022\013\n\003oid\030\002 \001" +
+      "(\003\022\r\n\005value\030\003 \001(\003\"6\n\013SStringType\022\013\n\003rid\030" +
+      "\001 \001(\005\022\013\n\003oid\030\002 \001(\003\022\r\n\005value\030\003 \001(\t\"9\n\016SBy" +
+      "teArrayType\022\013\n\003rid\030\001 \001(\005\022\013\n\003oid\030\002 \001(\003\022\r\n" +
+      "\005value\030\003 \001(\014\"\323\002\n\016SPrimitiveType\022\025\n\r__act" +
+      "ual_type\030\001 \002(\t\0224\n\r__SDoubleType\030\002 \001(\0132\035." +
+      "org.bimserver.pb.SDoubleType\0226\n\016__SBoole" +
+      "anType\030\003 \001(\0132\036.org.bimserver.pb.SBoolean" +
+      "Type\0220\n\013__SLongType\030\004 \001(\0132\033.org.bimserve" +
+      "r.pb.SLongType\0224\n\r__SStringType\030\005 \001(\0132\035.",
+      "org.bimserver.pb.SStringType\022:\n\020__SByteA" +
+      "rrayType\030\006 \001(\0132 .org.bimserver.pb.SByteA" +
+      "rrayType\022\013\n\003rid\030\007 \001(\005\022\013\n\003oid\030\010 \001(\003\"O\n\nSA" +
+      "rrayType\022\'\n\006values\030\001 \003(\0132\027.org.bimserver" +
+      ".pb.SType\022\013\n\003rid\030\002 \001(\005\022\013\n\003oid\030\003 \001(\003\"\336\001\n\005" +
+      "SType\022\025\n\r__actual_type\030\001 \002(\t\0224\n\r__SObjec" +
+      "tType\030\002 \001(\0132\035.org.bimserver.pb.SObjectTy" +
+      "pe\022:\n\020__SPrimitiveType\030\003 \001(\0132 .org.bimse" +
+      "rver.pb.SPrimitiveType\0222\n\014__SArrayType\030\004" +
+      " \001(\0132\034.org.bimserver.pb.SArrayType\022\013\n\003ri",
+      "d\030\005 \001(\005\022\013\n\003oid\030\006 \001(\003\"\\\n\nSParameter\022\013\n\003ri" +
+      "d\030\001 \001(\005\022\013\n\003oid\030\002 \001(\003\022\014\n\004name\030\003 \001(\t\022&\n\005va" +
+      "lue\030\004 \001(\0132\027.org.bimserver.pb.SType\"g\n\013SO" +
+      "bjectType\022\013\n\003rid\030\001 \001(\005\022\013\n\003oid\030\002 \001(\003\022\014\n\004n" +
+      "ame\030\003 \001(\t\0220\n\nparameters\030\004 \003(\0132\034.org.bims" +
+      "erver.pb.SParameter\"_\n\031GetPluginSettings" +
+      "Response\022\024\n\014errorMessage\030\001 \001(\t\022,\n\005value\030" +
+      "\002 \001(\0132\035.org.bimserver.pb.SObjectType\"(\n\031" +
+      "GetQueryEngineByIdRequest\022\013\n\003oid\030\001 \001(\003\"t" +
+      "\n\032GetQueryEngineByIdResponse\022\024\n\014errorMes",
+      "sage\030\001 \001(\t\022@\n\005value\030\002 \001(\01321.org.bimserve" +
+      "r.pb.SQueryEnginePluginConfiguration\"+\n\033" +
+      "GetQueryEngineByNameRequest\022\014\n\004name\030\001 \001(" +
+      "\t\"v\n\034GetQueryEngineByNameResponse\022\024\n\014err" +
+      "orMessage\030\001 \001(\t\022@\n\005value\030\002 \001(\01321.org.bim" +
+      "server.pb.SQueryEnginePluginConfiguratio" +
+      "n\")\n\032GetRenderEngineByIdRequest\022\013\n\003oid\030\001" +
+      " \001(\003\"v\n\033GetRenderEngineByIdResponse\022\024\n\014e" +
+      "rrorMessage\030\001 \001(\t\022A\n\005value\030\002 \001(\01322.org.b" +
+      "imserver.pb.SRenderEnginePluginConfigura",
+      "tion\",\n\034GetRenderEngineByNameRequest\022\014\n\004" +
+      "name\030\001 \001(\t\"x\n\035GetRenderEngineByNameRespo" +
+      "nse\022\024\n\014errorMessage\030\001 \001(\t\022A\n\005value\030\002 \001(\013" +
+      "22.org.bimserver.pb.SRenderEnginePluginC" +
+      "onfiguration\"8\n!GetSerializerByContentTy" +
+      "peRequest\022\023\n\013contentType\030\001 \001(\t\"{\n\"GetSer" +
+      "ializerByContentTypeResponse\022\024\n\014errorMes" +
+      "sage\030\001 \001(\t\022?\n\005value\030\002 \001(\01320.org.bimserve" +
+      "r.pb.SSerializerPluginConfiguration\"\'\n\030G" +
+      "etSerializerByIdRequest\022\013\n\003oid\030\001 \001(\003\"r\n\031",
+      "GetSerializerByIdResponse\022\024\n\014errorMessag" +
+      "e\030\001 \001(\t\022?\n\005value\030\002 \001(\01320.org.bimserver.p" +
+      "b.SSerializerPluginConfiguration\"4\n\032GetS" +
+      "erializerByNameRequest\022\026\n\016serializerName" +
+      "\030\001 \001(\t\"t\n\033GetSerializerByNameResponse\022\024\n" +
+      "\014errorMessage\030\001 \001(\t\022?\n\005value\030\002 \001(\01320.org" +
+      ".bimserver.pb.SSerializerPluginConfigura" +
+      "tion\"@\n%GetSerializerByPluginClassNameRe" +
+      "quest\022\027\n\017pluginClassName\030\001 \001(\t\"\177\n&GetSer" +
+      "ializerByPluginClassNameResponse\022\024\n\014erro",
+      "rMessage\030\001 \001(\t\022?\n\005value\030\002 \001(\01320.org.bims" +
+      "erver.pb.SSerializerPluginConfiguration\"" +
+      "4\n$GetSerializerPluginDescriptorRequest\022" +
+      "\014\n\004type\030\001 \001(\t\"{\n%GetSerializerPluginDesc" +
+      "riptorResponse\022\024\n\014errorMessage\030\001 \001(\t\022<\n\005" +
+      "value\030\002 \001(\0132-.org.bimserver.pb.SSerializ" +
+      "erPluginDescriptor\"1\n\032HasActiveSerialize" +
+      "rRequest\022\023\n\013contentType\030\001 \001(\t\"B\n\033HasActi" +
+      "veSerializerResponse\022\024\n\014errorMessage\030\001 \001" +
+      "(\t\022\r\n\005value\030\002 \001(\010\",\n\035SetDefaultModelComp",
+      "areRequest\022\013\n\003oid\030\001 \001(\003\"+\n\034SetDefaultMod" +
+      "elMergerRequest\022\013\n\003oid\030\001 \001(\003\")\n\032SetDefau" +
+      "ltObjectIDMRequest\022\013\n\003oid\030\001 \001(\003\"+\n\034SetDe" +
+      "faultQueryEngineRequest\022\013\n\003oid\030\001 \001(\003\",\n\035" +
+      "SetDefaultRenderEngineRequest\022\013\n\003oid\030\001 \001" +
+      "(\003\"*\n\033SetDefaultSerializerRequest\022\013\n\003oid" +
+      "\030\001 \001(\003\"Y\n\030SetPluginSettingsRequest\022\014\n\004po" +
+      "id\030\001 \001(\003\022/\n\010settings\030\002 \001(\0132\035.org.bimserv" +
+      "er.pb.SObjectType\"e\n\031UpdateDeserializerR" +
+      "equest\022H\n\014deserializer\030\001 \001(\01322.org.bimse",
+      "rver.pb.SDeserializerPluginConfiguration" +
+      "\"n\n\034UpdateInternalServiceRequest\022N\n\017inte" +
+      "rnalService\030\001 \001(\01325.org.bimserver.pb.SIn" +
+      "ternalServicePluginConfiguration\"e\n\031Upda" +
+      "teModelCompareRequest\022H\n\014modelCompare\030\001 " +
+      "\001(\01322.org.bimserver.pb.SModelComparePlug" +
+      "inConfiguration\"b\n\030UpdateModelMergerRequ" +
+      "est\022F\n\013modelMerger\030\001 \001(\01321.org.bimserver" +
+      ".pb.SModelMergerPluginConfiguration\"\\\n\026U" +
+      "pdateObjectIDMRequest\022B\n\tobjectIDM\030\001 \001(\013",
+      "2/.org.bimserver.pb.SObjectIDMPluginConf" +
+      "iguration\"b\n\030UpdateQueryEngineRequest\022F\n" +
+      "\013queryEngine\030\001 \001(\01321.org.bimserver.pb.SQ" +
+      "ueryEnginePluginConfiguration\"e\n\031UpdateR" +
+      "enderEngineRequest\022H\n\014renderEngine\030\001 \001(\013" +
+      "22.org.bimserver.pb.SRenderEnginePluginC" +
+      "onfiguration\"_\n\027UpdateSerializerRequest\022" +
+      "D\n\nserializer\030\001 \001(\01320.org.bimserver.pb.S" +
+      "SerializerPluginConfiguration*O\n\016SPrimit" +
+      "iveEnum\022\010\n\004LONG\020\000\022\n\n\006DOUBLE\020\001\022\013\n\007BOOLEAN",
+      "\020\002\022\n\n\006STRING\020\003\022\016\n\nBYTE_ARRAY\020\0042\254A\n\017Plugi" +
+      "nInterface\022[\n\017addDeserializer\022(.org.bims" +
+      "erver.pb.AddDeserializerRequest\032\036.org.bi" +
+      "mserver.pb.VoidResponse\022a\n\022addInternalSe" +
+      "rvice\022+.org.bimserver.pb.AddInternalServ" +
+      "iceRequest\032\036.org.bimserver.pb.VoidRespon" +
+      "se\022[\n\017addModelCompare\022(.org.bimserver.pb" +
+      ".AddModelCompareRequest\032\036.org.bimserver." +
+      "pb.VoidResponse\022Y\n\016addModelMerger\022\'.org." +
+      "bimserver.pb.AddModelMergerRequest\032\036.org",
+      ".bimserver.pb.VoidResponse\022U\n\014addObjectI" +
+      "DM\022%.org.bimserver.pb.AddObjectIDMReques" +
+      "t\032\036.org.bimserver.pb.VoidResponse\022Y\n\016add" +
+      "QueryEngine\022\'.org.bimserver.pb.AddQueryE" +
+      "ngineRequest\032\036.org.bimserver.pb.VoidResp" +
+      "onse\022[\n\017addRenderEngine\022(.org.bimserver." +
+      "pb.AddRenderEngineRequest\032\036.org.bimserve" +
+      "r.pb.VoidResponse\022W\n\raddSerializer\022&.org" +
+      ".bimserver.pb.AddSerializerRequest\032\036.org" +
+      ".bimserver.pb.VoidResponse\022a\n\022deleteDese",
+      "rializer\022+.org.bimserver.pb.DeleteDeseri" +
       "alizerRequest\032\036.org.bimserver.pb.VoidRes" +
-      "ponse\022a\n\022updateModelCompare\022+.org.bimser" +
-      "ver.pb.UpdateModelCompareRequest\032\036.org.b" +
-      "imserver.pb.VoidResponse\022_\n\021updateModelM" +
-      "erger\022*.org.bimserver.pb.UpdateModelMerg" +
-      "erRequest\032\036.org.bimserver.pb.VoidRespons" +
-      "e\022[\n\017updateObjectIDM\022(.org.bimserver.pb." +
-      "UpdateObjectIDMRequest\032\036.org.bimserver.p",
-      "b.VoidResponse\022_\n\021updateQueryEngine\022*.or" +
-      "g.bimserver.pb.UpdateQueryEngineRequest\032" +
-      "\036.org.bimserver.pb.VoidResponse\022a\n\022updat" +
-      "eRenderEngine\022+.org.bimserver.pb.UpdateR" +
-      "enderEngineRequest\032\036.org.bimserver.pb.Vo" +
-      "idResponse\022]\n\020updateSerializer\022).org.bim" +
-      "server.pb.UpdateSerializerRequest\032\036.org." +
-      "bimserver.pb.VoidResponseB\032B\023PluginInter" +
-      "faceImplH\001\210\001\001"
+      "ponse\022g\n\025deleteInternalService\022..org.bim" +
+      "server.pb.DeleteInternalServiceRequest\032\036" +
+      ".org.bimserver.pb.VoidResponse\022a\n\022delete" +
+      "ModelCompare\022+.org.bimserver.pb.DeleteMo" +
+      "delCompareRequest\032\036.org.bimserver.pb.Voi" +
+      "dResponse\022_\n\021deleteModelMerger\022*.org.bim" +
+      "server.pb.DeleteModelMergerRequest\032\036.org" +
+      ".bimserver.pb.VoidResponse\022[\n\017deleteObje",
+      "ctIDM\022(.org.bimserver.pb.DeleteObjectIDM" +
+      "Request\032\036.org.bimserver.pb.VoidResponse\022" +
+      "_\n\021deleteQueryEngine\022*.org.bimserver.pb." +
+      "DeleteQueryEngineRequest\032\036.org.bimserver" +
+      ".pb.VoidResponse\022a\n\022deleteRenderEngine\022+" +
+      ".org.bimserver.pb.DeleteRenderEngineRequ" +
+      "est\032\036.org.bimserver.pb.VoidResponse\022]\n\020d" +
+      "eleteSerializer\022).org.bimserver.pb.Delet" +
+      "eSerializerRequest\032\036.org.bimserver.pb.Vo" +
+      "idResponse\022\242\001\n#getAllDeserializerPluginD",
+      "escriptors\022<.org.bimserver.pb.GetAllDese" +
+      "rializerPluginDescriptorsRequest\032=.org.b" +
+      "imserver.pb.GetAllDeserializerPluginDesc" +
+      "riptorsResponse\022r\n\023getAllDeserializers\022," +
+      ".org.bimserver.pb.GetAllDeserializersReq" +
+      "uest\032-.org.bimserver.pb.GetAllDeserializ" +
+      "ersResponse\022{\n\026getAllInternalServices\022/." +
+      "org.bimserver.pb.GetAllInternalServicesR" +
+      "equest\0320.org.bimserver.pb.GetAllInternal" +
+      "ServicesResponse\022\242\001\n#getAllModelCompareP",
+      "luginDescriptors\022<.org.bimserver.pb.GetA" +
+      "llModelComparePluginDescriptorsRequest\032=" +
+      ".org.bimserver.pb.GetAllModelComparePlug" +
+      "inDescriptorsResponse\022r\n\023getAllModelComp" +
+      "ares\022,.org.bimserver.pb.GetAllModelCompa" +
+      "resRequest\032-.org.bimserver.pb.GetAllMode" +
+      "lComparesResponse\022\237\001\n\"getAllModelMergerP" +
+      "luginDescriptors\022;.org.bimserver.pb.GetA" +
+      "llModelMergerPluginDescriptorsRequest\032<." +
+      "org.bimserver.pb.GetAllModelMergerPlugin",
+      "DescriptorsResponse\022o\n\022getAllModelMerger" +
+      "s\022+.org.bimserver.pb.GetAllModelMergersR" +
+      "equest\032,.org.bimserver.pb.GetAllModelMer" +
+      "gersResponse\022i\n\020getAllObjectIDMs\022).org.b" +
+      "imserver.pb.GetAllObjectIDMsRequest\032*.or" +
+      "g.bimserver.pb.GetAllObjectIDMsResponse\022" +
+      "\237\001\n\"getAllQueryEnginePluginDescriptors\022;" +
+      ".org.bimserver.pb.GetAllQueryEnginePlugi" +
+      "nDescriptorsRequest\032<.org.bimserver.pb.G" +
+      "etAllQueryEnginePluginDescriptorsRespons",
+      "e\022o\n\022getAllQueryEngines\022+.org.bimserver." +
+      "pb.GetAllQueryEnginesRequest\032,.org.bimse" +
+      "rver.pb.GetAllQueryEnginesResponse\022\242\001\n#g" +
+      "etAllRenderEnginePluginDescriptors\022<.org" +
+      ".bimserver.pb.GetAllRenderEnginePluginDe" +
+      "scriptorsRequest\032=.org.bimserver.pb.GetA" +
+      "llRenderEnginePluginDescriptorsResponse\022" +
+      "r\n\023getAllRenderEngines\022,.org.bimserver.p" +
+      "b.GetAllRenderEnginesRequest\032-.org.bimse" +
+      "rver.pb.GetAllRenderEnginesResponse\022\234\001\n!",
+      "getAllSerializerPluginDescriptors\022:.org." +
+      "bimserver.pb.GetAllSerializerPluginDescr" +
+      "iptorsRequest\032;.org.bimserver.pb.GetAllS" +
+      "erializerPluginDescriptorsResponse\022l\n\021ge" +
+      "tAllSerializers\022*.org.bimserver.pb.GetAl" +
+      "lSerializersRequest\032+.org.bimserver.pb.G" +
+      "etAllSerializersResponse\022\223\001\n\036getAllServi" +
+      "cePluginDescriptors\0227.org.bimserver.pb.G" +
+      "etAllServicePluginDescriptorsRequest\0328.o" +
+      "rg.bimserver.pb.GetAllServicePluginDescr",
+      "iptorsResponse\022{\n\026getDefaultModelCompare" +
+      "\022/.org.bimserver.pb.GetDefaultModelCompa" +
+      "reRequest\0320.org.bimserver.pb.GetDefaultM" +
+      "odelCompareResponse\022x\n\025getDefaultModelMe" +
+      "rger\022..org.bimserver.pb.GetDefaultModelM" +
+      "ergerRequest\032/.org.bimserver.pb.GetDefau" +
+      "ltModelMergerResponse\022r\n\023getDefaultObjec" +
+      "tIDM\022,.org.bimserver.pb.GetDefaultObject" +
+      "IDMRequest\032-.org.bimserver.pb.GetDefault" +
+      "ObjectIDMResponse\022x\n\025getDefaultQueryEngi",
+      "ne\022..org.bimserver.pb.GetDefaultQueryEng" +
+      "ineRequest\032/.org.bimserver.pb.GetDefault" +
+      "QueryEngineResponse\022{\n\026getDefaultRenderE" +
+      "ngine\022/.org.bimserver.pb.GetDefaultRende" +
+      "rEngineRequest\0320.org.bimserver.pb.GetDef" +
+      "aultRenderEngineResponse\022u\n\024getDefaultSe" +
+      "rializer\022-.org.bimserver.pb.GetDefaultSe" +
+      "rializerRequest\032..org.bimserver.pb.GetDe" +
+      "faultSerializerResponse\022r\n\023getDeserializ" +
+      "erById\022,.org.bimserver.pb.GetDeserialize",
+      "rByIdRequest\032-.org.bimserver.pb.GetDeser" +
+      "ializerByIdResponse\022x\n\025getDeserializerBy" +
+      "Name\022..org.bimserver.pb.GetDeserializerB" +
+      "yNameRequest\032/.org.bimserver.pb.GetDeser" +
+      "ializerByNameResponse\022{\n\026getInternalServ" +
+      "iceById\022/.org.bimserver.pb.GetInternalSe" +
+      "rviceByIdRequest\0320.org.bimserver.pb.GetI" +
+      "nternalServiceByIdResponse\022r\n\023getModelCo" +
+      "mpareById\022,.org.bimserver.pb.GetModelCom" +
+      "pareByIdRequest\032-.org.bimserver.pb.GetMo",
+      "delCompareByIdResponse\022x\n\025getModelCompar" +
+      "eByName\022..org.bimserver.pb.GetModelCompa" +
+      "reByNameRequest\032/.org.bimserver.pb.GetMo" +
+      "delCompareByNameResponse\022o\n\022getModelMerg" +
+      "erById\022+.org.bimserver.pb.GetModelMerger" +
+      "ByIdRequest\032,.org.bimserver.pb.GetModelM" +
+      "ergerByIdResponse\022u\n\024getModelMergerByNam" +
+      "e\022-.org.bimserver.pb.GetModelMergerByNam" +
+      "eRequest\032..org.bimserver.pb.GetModelMerg" +
+      "erByNameResponse\022i\n\020getObjectIDMById\022).o",
+      "rg.bimserver.pb.GetObjectIDMByIdRequest\032" +
+      "*.org.bimserver.pb.GetObjectIDMByIdRespo" +
+      "nse\022o\n\022getObjectIDMByName\022+.org.bimserve" +
+      "r.pb.GetObjectIDMByNameRequest\032,.org.bim" +
+      "server.pb.GetObjectIDMByNameResponse\022\204\001\n" +
+      "\031getPluginObjectDefinition\0222.org.bimserv" +
+      "er.pb.GetPluginObjectDefinitionRequest\0323" +
+      ".org.bimserver.pb.GetPluginObjectDefinit" +
+      "ionResponse\022l\n\021getPluginSettings\022*.org.b" +
+      "imserver.pb.GetPluginSettingsRequest\032+.o",
+      "rg.bimserver.pb.GetPluginSettingsRespons" +
+      "e\022o\n\022getQueryEngineById\022+.org.bimserver." +
+      "pb.GetQueryEngineByIdRequest\032,.org.bimse" +
+      "rver.pb.GetQueryEngineByIdResponse\022u\n\024ge" +
+      "tQueryEngineByName\022-.org.bimserver.pb.Ge" +
+      "tQueryEngineByNameRequest\032..org.bimserve" +
+      "r.pb.GetQueryEngineByNameResponse\022r\n\023get" +
+      "RenderEngineById\022,.org.bimserver.pb.GetR" +
+      "enderEngineByIdRequest\032-.org.bimserver.p" +
+      "b.GetRenderEngineByIdResponse\022x\n\025getRend",
+      "erEngineByName\022..org.bimserver.pb.GetRen" +
+      "derEngineByNameRequest\032/.org.bimserver.p" +
+      "b.GetRenderEngineByNameResponse\022\207\001\n\032getS" +
+      "erializerByContentType\0223.org.bimserver.p" +
+      "b.GetSerializerByContentTypeRequest\0324.or" +
+      "g.bimserver.pb.GetSerializerByContentTyp" +
+      "eResponse\022l\n\021getSerializerById\022*.org.bim" +
+      "server.pb.GetSerializerByIdRequest\032+.org" +
+      ".bimserver.pb.GetSerializerByIdResponse\022" +
+      "r\n\023getSerializerByName\022,.org.bimserver.p",
+      "b.GetSerializerByNameRequest\032-.org.bimse" +
+      "rver.pb.GetSerializerByNameResponse\022\223\001\n\036" +
+      "getSerializerByPluginClassName\0227.org.bim" +
+      "server.pb.GetSerializerByPluginClassName" +
+      "Request\0328.org.bimserver.pb.GetSerializer" +
+      "ByPluginClassNameResponse\022\220\001\n\035getSeriali" +
+      "zerPluginDescriptor\0226.org.bimserver.pb.G" +
+      "etSerializerPluginDescriptorRequest\0327.or" +
+      "g.bimserver.pb.GetSerializerPluginDescri" +
+      "ptorResponse\022r\n\023hasActiveSerializer\022,.or",
+      "g.bimserver.pb.HasActiveSerializerReques" +
+      "t\032-.org.bimserver.pb.HasActiveSerializer" +
+      "Response\022i\n\026setDefaultModelCompare\022/.org" +
+      ".bimserver.pb.SetDefaultModelCompareRequ" +
+      "est\032\036.org.bimserver.pb.VoidResponse\022g\n\025s" +
+      "etDefaultModelMerger\022..org.bimserver.pb." +
+      "SetDefaultModelMergerRequest\032\036.org.bimse" +
+      "rver.pb.VoidResponse\022c\n\023setDefaultObject" +
+      "IDM\022,.org.bimserver.pb.SetDefaultObjectI" +
+      "DMRequest\032\036.org.bimserver.pb.VoidRespons",
+      "e\022g\n\025setDefaultQueryEngine\022..org.bimserv" +
+      "er.pb.SetDefaultQueryEngineRequest\032\036.org" +
+      ".bimserver.pb.VoidResponse\022i\n\026setDefault" +
+      "RenderEngine\022/.org.bimserver.pb.SetDefau" +
+      "ltRenderEngineRequest\032\036.org.bimserver.pb" +
+      ".VoidResponse\022e\n\024setDefaultSerializer\022-." +
+      "org.bimserver.pb.SetDefaultSerializerReq" +
+      "uest\032\036.org.bimserver.pb.VoidResponse\022_\n\021" +
+      "setPluginSettings\022*.org.bimserver.pb.Set" +
+      "PluginSettingsRequest\032\036.org.bimserver.pb",
+      ".VoidResponse\022a\n\022updateDeserializer\022+.or" +
+      "g.bimserver.pb.UpdateDeserializerRequest" +
+      "\032\036.org.bimserver.pb.VoidResponse\022g\n\025upda" +
+      "teInternalService\022..org.bimserver.pb.Upd" +
+      "ateInternalServiceRequest\032\036.org.bimserve" +
+      "r.pb.VoidResponse\022a\n\022updateModelCompare\022" +
+      "+.org.bimserver.pb.UpdateModelCompareReq" +
+      "uest\032\036.org.bimserver.pb.VoidResponse\022_\n\021" +
+      "updateModelMerger\022*.org.bimserver.pb.Upd" +
+      "ateModelMergerRequest\032\036.org.bimserver.pb",
+      ".VoidResponse\022[\n\017updateObjectIDM\022(.org.b" +
+      "imserver.pb.UpdateObjectIDMRequest\032\036.org" +
+      ".bimserver.pb.VoidResponse\022_\n\021updateQuer" +
+      "yEngine\022*.org.bimserver.pb.UpdateQueryEn" +
+      "gineRequest\032\036.org.bimserver.pb.VoidRespo" +
+      "nse\022a\n\022updateRenderEngine\022+.org.bimserve" +
+      "r.pb.UpdateRenderEngineRequest\032\036.org.bim" +
+      "server.pb.VoidResponse\022]\n\020updateSerializ" +
+      "er\022).org.bimserver.pb.UpdateSerializerRe" +
+      "quest\032\036.org.bimserver.pb.VoidResponseB\032B",
+      "\023PluginInterfaceImplH\001\210\001\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -79442,770 +84206,818 @@ public final class PluginInterfaceImpl {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_AddDeserializerRequest_descriptor,
               new java.lang.String[] { "Deserializer", });
-          internal_static_org_bimserver_pb_SModelComparePluginConfiguration_descriptor =
+          internal_static_org_bimserver_pb_SInternalServicePluginConfiguration_descriptor =
             getDescriptor().getMessageTypes().get(1);
+          internal_static_org_bimserver_pb_SInternalServicePluginConfiguration_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_bimserver_pb_SInternalServicePluginConfiguration_descriptor,
+              new java.lang.String[] { "UserSettingsId", "Rid", "Oid", "RemoteAccessible", });
+          internal_static_org_bimserver_pb_AddInternalServiceRequest_descriptor =
+            getDescriptor().getMessageTypes().get(2);
+          internal_static_org_bimserver_pb_AddInternalServiceRequest_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_bimserver_pb_AddInternalServiceRequest_descriptor,
+              new java.lang.String[] { "InternalService", });
+          internal_static_org_bimserver_pb_SModelComparePluginConfiguration_descriptor =
+            getDescriptor().getMessageTypes().get(3);
           internal_static_org_bimserver_pb_SModelComparePluginConfiguration_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SModelComparePluginConfiguration_descriptor,
               new java.lang.String[] { "UserSettingsId", "Rid", "Oid", });
           internal_static_org_bimserver_pb_AddModelCompareRequest_descriptor =
-            getDescriptor().getMessageTypes().get(2);
+            getDescriptor().getMessageTypes().get(4);
           internal_static_org_bimserver_pb_AddModelCompareRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_AddModelCompareRequest_descriptor,
               new java.lang.String[] { "ModelCompare", });
           internal_static_org_bimserver_pb_SModelMergerPluginConfiguration_descriptor =
-            getDescriptor().getMessageTypes().get(3);
+            getDescriptor().getMessageTypes().get(5);
           internal_static_org_bimserver_pb_SModelMergerPluginConfiguration_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SModelMergerPluginConfiguration_descriptor,
               new java.lang.String[] { "UserSettingsId", "Rid", "Oid", });
           internal_static_org_bimserver_pb_AddModelMergerRequest_descriptor =
-            getDescriptor().getMessageTypes().get(4);
+            getDescriptor().getMessageTypes().get(6);
           internal_static_org_bimserver_pb_AddModelMergerRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_AddModelMergerRequest_descriptor,
               new java.lang.String[] { "ModelMerger", });
           internal_static_org_bimserver_pb_SObjectIDMPluginConfiguration_descriptor =
-            getDescriptor().getMessageTypes().get(5);
+            getDescriptor().getMessageTypes().get(7);
           internal_static_org_bimserver_pb_SObjectIDMPluginConfiguration_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SObjectIDMPluginConfiguration_descriptor,
               new java.lang.String[] { "UserSettingsId", "Serializers", "Rid", "Oid", });
           internal_static_org_bimserver_pb_AddObjectIDMRequest_descriptor =
-            getDescriptor().getMessageTypes().get(6);
+            getDescriptor().getMessageTypes().get(8);
           internal_static_org_bimserver_pb_AddObjectIDMRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_AddObjectIDMRequest_descriptor,
               new java.lang.String[] { "ObjectIDM", });
           internal_static_org_bimserver_pb_SQueryEnginePluginConfiguration_descriptor =
-            getDescriptor().getMessageTypes().get(7);
+            getDescriptor().getMessageTypes().get(9);
           internal_static_org_bimserver_pb_SQueryEnginePluginConfiguration_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SQueryEnginePluginConfiguration_descriptor,
               new java.lang.String[] { "UserSettingsId", "Rid", "Oid", });
           internal_static_org_bimserver_pb_AddQueryEngineRequest_descriptor =
-            getDescriptor().getMessageTypes().get(8);
+            getDescriptor().getMessageTypes().get(10);
           internal_static_org_bimserver_pb_AddQueryEngineRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_AddQueryEngineRequest_descriptor,
               new java.lang.String[] { "QueryEngine", });
           internal_static_org_bimserver_pb_SRenderEnginePluginConfiguration_descriptor =
-            getDescriptor().getMessageTypes().get(9);
+            getDescriptor().getMessageTypes().get(11);
           internal_static_org_bimserver_pb_SRenderEnginePluginConfiguration_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SRenderEnginePluginConfiguration_descriptor,
               new java.lang.String[] { "UserSettingsId", "Serializers", "Rid", "Oid", });
           internal_static_org_bimserver_pb_AddRenderEngineRequest_descriptor =
-            getDescriptor().getMessageTypes().get(10);
+            getDescriptor().getMessageTypes().get(12);
           internal_static_org_bimserver_pb_AddRenderEngineRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_AddRenderEngineRequest_descriptor,
               new java.lang.String[] { "RenderEngine", });
           internal_static_org_bimserver_pb_SSerializerPluginConfiguration_descriptor =
-            getDescriptor().getMessageTypes().get(11);
+            getDescriptor().getMessageTypes().get(13);
           internal_static_org_bimserver_pb_SSerializerPluginConfiguration_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SSerializerPluginConfiguration_descriptor,
               new java.lang.String[] { "UserSettingsId", "Rid", "Oid", "ObjectIDMId", "RenderEngineId", });
           internal_static_org_bimserver_pb_AddSerializerRequest_descriptor =
-            getDescriptor().getMessageTypes().get(12);
+            getDescriptor().getMessageTypes().get(14);
           internal_static_org_bimserver_pb_AddSerializerRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_AddSerializerRequest_descriptor,
               new java.lang.String[] { "Serializer", });
           internal_static_org_bimserver_pb_DeleteDeserializerRequest_descriptor =
-            getDescriptor().getMessageTypes().get(13);
+            getDescriptor().getMessageTypes().get(15);
           internal_static_org_bimserver_pb_DeleteDeserializerRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_DeleteDeserializerRequest_descriptor,
               new java.lang.String[] { "Sid", });
+          internal_static_org_bimserver_pb_DeleteInternalServiceRequest_descriptor =
+            getDescriptor().getMessageTypes().get(16);
+          internal_static_org_bimserver_pb_DeleteInternalServiceRequest_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_bimserver_pb_DeleteInternalServiceRequest_descriptor,
+              new java.lang.String[] { "Oid", });
           internal_static_org_bimserver_pb_DeleteModelCompareRequest_descriptor =
-            getDescriptor().getMessageTypes().get(14);
+            getDescriptor().getMessageTypes().get(17);
           internal_static_org_bimserver_pb_DeleteModelCompareRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_DeleteModelCompareRequest_descriptor,
               new java.lang.String[] { "Iid", });
           internal_static_org_bimserver_pb_DeleteModelMergerRequest_descriptor =
-            getDescriptor().getMessageTypes().get(15);
+            getDescriptor().getMessageTypes().get(18);
           internal_static_org_bimserver_pb_DeleteModelMergerRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_DeleteModelMergerRequest_descriptor,
               new java.lang.String[] { "Iid", });
           internal_static_org_bimserver_pb_DeleteObjectIDMRequest_descriptor =
-            getDescriptor().getMessageTypes().get(16);
+            getDescriptor().getMessageTypes().get(19);
           internal_static_org_bimserver_pb_DeleteObjectIDMRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_DeleteObjectIDMRequest_descriptor,
               new java.lang.String[] { "Oid", });
           internal_static_org_bimserver_pb_DeleteQueryEngineRequest_descriptor =
-            getDescriptor().getMessageTypes().get(17);
+            getDescriptor().getMessageTypes().get(20);
           internal_static_org_bimserver_pb_DeleteQueryEngineRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_DeleteQueryEngineRequest_descriptor,
               new java.lang.String[] { "Iid", });
           internal_static_org_bimserver_pb_DeleteRenderEngineRequest_descriptor =
-            getDescriptor().getMessageTypes().get(18);
+            getDescriptor().getMessageTypes().get(21);
           internal_static_org_bimserver_pb_DeleteRenderEngineRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_DeleteRenderEngineRequest_descriptor,
               new java.lang.String[] { "Iid", });
           internal_static_org_bimserver_pb_DeleteSerializerRequest_descriptor =
-            getDescriptor().getMessageTypes().get(19);
+            getDescriptor().getMessageTypes().get(22);
           internal_static_org_bimserver_pb_DeleteSerializerRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_DeleteSerializerRequest_descriptor,
               new java.lang.String[] { "Sid", });
           internal_static_org_bimserver_pb_GetAllDeserializerPluginDescriptorsRequest_descriptor =
-            getDescriptor().getMessageTypes().get(20);
+            getDescriptor().getMessageTypes().get(23);
           internal_static_org_bimserver_pb_GetAllDeserializerPluginDescriptorsRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllDeserializerPluginDescriptorsRequest_descriptor,
               new java.lang.String[] { });
           internal_static_org_bimserver_pb_GetAllDeserializerPluginDescriptorsResponse_descriptor =
-            getDescriptor().getMessageTypes().get(21);
+            getDescriptor().getMessageTypes().get(24);
           internal_static_org_bimserver_pb_GetAllDeserializerPluginDescriptorsResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllDeserializerPluginDescriptorsResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetAllDeserializersRequest_descriptor =
-            getDescriptor().getMessageTypes().get(22);
+            getDescriptor().getMessageTypes().get(25);
           internal_static_org_bimserver_pb_GetAllDeserializersRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllDeserializersRequest_descriptor,
               new java.lang.String[] { "OnlyEnabled", });
           internal_static_org_bimserver_pb_GetAllDeserializersResponse_descriptor =
-            getDescriptor().getMessageTypes().get(23);
+            getDescriptor().getMessageTypes().get(26);
           internal_static_org_bimserver_pb_GetAllDeserializersResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllDeserializersResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
+          internal_static_org_bimserver_pb_GetAllInternalServicesRequest_descriptor =
+            getDescriptor().getMessageTypes().get(27);
+          internal_static_org_bimserver_pb_GetAllInternalServicesRequest_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_bimserver_pb_GetAllInternalServicesRequest_descriptor,
+              new java.lang.String[] { "OnlyEnabled", });
+          internal_static_org_bimserver_pb_GetAllInternalServicesResponse_descriptor =
+            getDescriptor().getMessageTypes().get(28);
+          internal_static_org_bimserver_pb_GetAllInternalServicesResponse_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_bimserver_pb_GetAllInternalServicesResponse_descriptor,
+              new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetAllModelComparePluginDescriptorsRequest_descriptor =
-            getDescriptor().getMessageTypes().get(24);
+            getDescriptor().getMessageTypes().get(29);
           internal_static_org_bimserver_pb_GetAllModelComparePluginDescriptorsRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllModelComparePluginDescriptorsRequest_descriptor,
               new java.lang.String[] { });
           internal_static_org_bimserver_pb_GetAllModelComparePluginDescriptorsResponse_descriptor =
-            getDescriptor().getMessageTypes().get(25);
+            getDescriptor().getMessageTypes().get(30);
           internal_static_org_bimserver_pb_GetAllModelComparePluginDescriptorsResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllModelComparePluginDescriptorsResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetAllModelComparesRequest_descriptor =
-            getDescriptor().getMessageTypes().get(26);
+            getDescriptor().getMessageTypes().get(31);
           internal_static_org_bimserver_pb_GetAllModelComparesRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllModelComparesRequest_descriptor,
               new java.lang.String[] { "OnlyEnabled", });
           internal_static_org_bimserver_pb_GetAllModelComparesResponse_descriptor =
-            getDescriptor().getMessageTypes().get(27);
+            getDescriptor().getMessageTypes().get(32);
           internal_static_org_bimserver_pb_GetAllModelComparesResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllModelComparesResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetAllModelMergerPluginDescriptorsRequest_descriptor =
-            getDescriptor().getMessageTypes().get(28);
+            getDescriptor().getMessageTypes().get(33);
           internal_static_org_bimserver_pb_GetAllModelMergerPluginDescriptorsRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllModelMergerPluginDescriptorsRequest_descriptor,
               new java.lang.String[] { });
           internal_static_org_bimserver_pb_GetAllModelMergerPluginDescriptorsResponse_descriptor =
-            getDescriptor().getMessageTypes().get(29);
+            getDescriptor().getMessageTypes().get(34);
           internal_static_org_bimserver_pb_GetAllModelMergerPluginDescriptorsResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllModelMergerPluginDescriptorsResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetAllModelMergersRequest_descriptor =
-            getDescriptor().getMessageTypes().get(30);
+            getDescriptor().getMessageTypes().get(35);
           internal_static_org_bimserver_pb_GetAllModelMergersRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllModelMergersRequest_descriptor,
               new java.lang.String[] { "OnlyEnabled", });
           internal_static_org_bimserver_pb_GetAllModelMergersResponse_descriptor =
-            getDescriptor().getMessageTypes().get(31);
+            getDescriptor().getMessageTypes().get(36);
           internal_static_org_bimserver_pb_GetAllModelMergersResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllModelMergersResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetAllObjectIDMsRequest_descriptor =
-            getDescriptor().getMessageTypes().get(32);
+            getDescriptor().getMessageTypes().get(37);
           internal_static_org_bimserver_pb_GetAllObjectIDMsRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllObjectIDMsRequest_descriptor,
               new java.lang.String[] { "OnlyEnabled", });
           internal_static_org_bimserver_pb_GetAllObjectIDMsResponse_descriptor =
-            getDescriptor().getMessageTypes().get(33);
+            getDescriptor().getMessageTypes().get(38);
           internal_static_org_bimserver_pb_GetAllObjectIDMsResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllObjectIDMsResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetAllQueryEnginePluginDescriptorsRequest_descriptor =
-            getDescriptor().getMessageTypes().get(34);
+            getDescriptor().getMessageTypes().get(39);
           internal_static_org_bimserver_pb_GetAllQueryEnginePluginDescriptorsRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllQueryEnginePluginDescriptorsRequest_descriptor,
               new java.lang.String[] { });
           internal_static_org_bimserver_pb_GetAllQueryEnginePluginDescriptorsResponse_descriptor =
-            getDescriptor().getMessageTypes().get(35);
+            getDescriptor().getMessageTypes().get(40);
           internal_static_org_bimserver_pb_GetAllQueryEnginePluginDescriptorsResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllQueryEnginePluginDescriptorsResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetAllQueryEnginesRequest_descriptor =
-            getDescriptor().getMessageTypes().get(36);
+            getDescriptor().getMessageTypes().get(41);
           internal_static_org_bimserver_pb_GetAllQueryEnginesRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllQueryEnginesRequest_descriptor,
               new java.lang.String[] { "OnlyEnabled", });
           internal_static_org_bimserver_pb_GetAllQueryEnginesResponse_descriptor =
-            getDescriptor().getMessageTypes().get(37);
+            getDescriptor().getMessageTypes().get(42);
           internal_static_org_bimserver_pb_GetAllQueryEnginesResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllQueryEnginesResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetAllRenderEnginePluginDescriptorsRequest_descriptor =
-            getDescriptor().getMessageTypes().get(38);
+            getDescriptor().getMessageTypes().get(43);
           internal_static_org_bimserver_pb_GetAllRenderEnginePluginDescriptorsRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllRenderEnginePluginDescriptorsRequest_descriptor,
               new java.lang.String[] { });
           internal_static_org_bimserver_pb_GetAllRenderEnginePluginDescriptorsResponse_descriptor =
-            getDescriptor().getMessageTypes().get(39);
+            getDescriptor().getMessageTypes().get(44);
           internal_static_org_bimserver_pb_GetAllRenderEnginePluginDescriptorsResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllRenderEnginePluginDescriptorsResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetAllRenderEnginesRequest_descriptor =
-            getDescriptor().getMessageTypes().get(40);
+            getDescriptor().getMessageTypes().get(45);
           internal_static_org_bimserver_pb_GetAllRenderEnginesRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllRenderEnginesRequest_descriptor,
               new java.lang.String[] { "OnlyEnabled", });
           internal_static_org_bimserver_pb_GetAllRenderEnginesResponse_descriptor =
-            getDescriptor().getMessageTypes().get(41);
+            getDescriptor().getMessageTypes().get(46);
           internal_static_org_bimserver_pb_GetAllRenderEnginesResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllRenderEnginesResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetAllSerializerPluginDescriptorsRequest_descriptor =
-            getDescriptor().getMessageTypes().get(42);
+            getDescriptor().getMessageTypes().get(47);
           internal_static_org_bimserver_pb_GetAllSerializerPluginDescriptorsRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllSerializerPluginDescriptorsRequest_descriptor,
               new java.lang.String[] { });
           internal_static_org_bimserver_pb_GetAllSerializerPluginDescriptorsResponse_descriptor =
-            getDescriptor().getMessageTypes().get(43);
+            getDescriptor().getMessageTypes().get(48);
           internal_static_org_bimserver_pb_GetAllSerializerPluginDescriptorsResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllSerializerPluginDescriptorsResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetAllSerializersRequest_descriptor =
-            getDescriptor().getMessageTypes().get(44);
+            getDescriptor().getMessageTypes().get(49);
           internal_static_org_bimserver_pb_GetAllSerializersRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllSerializersRequest_descriptor,
               new java.lang.String[] { "OnlyEnabled", });
           internal_static_org_bimserver_pb_GetAllSerializersResponse_descriptor =
-            getDescriptor().getMessageTypes().get(45);
+            getDescriptor().getMessageTypes().get(50);
           internal_static_org_bimserver_pb_GetAllSerializersResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllSerializersResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetAllServicePluginDescriptorsRequest_descriptor =
-            getDescriptor().getMessageTypes().get(46);
+            getDescriptor().getMessageTypes().get(51);
           internal_static_org_bimserver_pb_GetAllServicePluginDescriptorsRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllServicePluginDescriptorsRequest_descriptor,
               new java.lang.String[] { });
           internal_static_org_bimserver_pb_GetAllServicePluginDescriptorsResponse_descriptor =
-            getDescriptor().getMessageTypes().get(47);
+            getDescriptor().getMessageTypes().get(52);
           internal_static_org_bimserver_pb_GetAllServicePluginDescriptorsResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAllServicePluginDescriptorsResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetDefaultModelCompareRequest_descriptor =
-            getDescriptor().getMessageTypes().get(48);
+            getDescriptor().getMessageTypes().get(53);
           internal_static_org_bimserver_pb_GetDefaultModelCompareRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetDefaultModelCompareRequest_descriptor,
               new java.lang.String[] { });
           internal_static_org_bimserver_pb_GetDefaultModelCompareResponse_descriptor =
-            getDescriptor().getMessageTypes().get(49);
+            getDescriptor().getMessageTypes().get(54);
           internal_static_org_bimserver_pb_GetDefaultModelCompareResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetDefaultModelCompareResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetDefaultModelMergerRequest_descriptor =
-            getDescriptor().getMessageTypes().get(50);
+            getDescriptor().getMessageTypes().get(55);
           internal_static_org_bimserver_pb_GetDefaultModelMergerRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetDefaultModelMergerRequest_descriptor,
               new java.lang.String[] { });
           internal_static_org_bimserver_pb_GetDefaultModelMergerResponse_descriptor =
-            getDescriptor().getMessageTypes().get(51);
+            getDescriptor().getMessageTypes().get(56);
           internal_static_org_bimserver_pb_GetDefaultModelMergerResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetDefaultModelMergerResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetDefaultObjectIDMRequest_descriptor =
-            getDescriptor().getMessageTypes().get(52);
+            getDescriptor().getMessageTypes().get(57);
           internal_static_org_bimserver_pb_GetDefaultObjectIDMRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetDefaultObjectIDMRequest_descriptor,
               new java.lang.String[] { });
           internal_static_org_bimserver_pb_GetDefaultObjectIDMResponse_descriptor =
-            getDescriptor().getMessageTypes().get(53);
+            getDescriptor().getMessageTypes().get(58);
           internal_static_org_bimserver_pb_GetDefaultObjectIDMResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetDefaultObjectIDMResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetDefaultQueryEngineRequest_descriptor =
-            getDescriptor().getMessageTypes().get(54);
+            getDescriptor().getMessageTypes().get(59);
           internal_static_org_bimserver_pb_GetDefaultQueryEngineRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetDefaultQueryEngineRequest_descriptor,
               new java.lang.String[] { });
           internal_static_org_bimserver_pb_GetDefaultQueryEngineResponse_descriptor =
-            getDescriptor().getMessageTypes().get(55);
+            getDescriptor().getMessageTypes().get(60);
           internal_static_org_bimserver_pb_GetDefaultQueryEngineResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetDefaultQueryEngineResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetDefaultRenderEngineRequest_descriptor =
-            getDescriptor().getMessageTypes().get(56);
+            getDescriptor().getMessageTypes().get(61);
           internal_static_org_bimserver_pb_GetDefaultRenderEngineRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetDefaultRenderEngineRequest_descriptor,
               new java.lang.String[] { });
           internal_static_org_bimserver_pb_GetDefaultRenderEngineResponse_descriptor =
-            getDescriptor().getMessageTypes().get(57);
+            getDescriptor().getMessageTypes().get(62);
           internal_static_org_bimserver_pb_GetDefaultRenderEngineResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetDefaultRenderEngineResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetDefaultSerializerRequest_descriptor =
-            getDescriptor().getMessageTypes().get(58);
+            getDescriptor().getMessageTypes().get(63);
           internal_static_org_bimserver_pb_GetDefaultSerializerRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetDefaultSerializerRequest_descriptor,
               new java.lang.String[] { });
           internal_static_org_bimserver_pb_GetDefaultSerializerResponse_descriptor =
-            getDescriptor().getMessageTypes().get(59);
+            getDescriptor().getMessageTypes().get(64);
           internal_static_org_bimserver_pb_GetDefaultSerializerResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetDefaultSerializerResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetDeserializerByIdRequest_descriptor =
-            getDescriptor().getMessageTypes().get(60);
+            getDescriptor().getMessageTypes().get(65);
           internal_static_org_bimserver_pb_GetDeserializerByIdRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetDeserializerByIdRequest_descriptor,
               new java.lang.String[] { "Oid", });
           internal_static_org_bimserver_pb_GetDeserializerByIdResponse_descriptor =
-            getDescriptor().getMessageTypes().get(61);
+            getDescriptor().getMessageTypes().get(66);
           internal_static_org_bimserver_pb_GetDeserializerByIdResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetDeserializerByIdResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetDeserializerByNameRequest_descriptor =
-            getDescriptor().getMessageTypes().get(62);
+            getDescriptor().getMessageTypes().get(67);
           internal_static_org_bimserver_pb_GetDeserializerByNameRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetDeserializerByNameRequest_descriptor,
               new java.lang.String[] { "DeserializerName", });
           internal_static_org_bimserver_pb_GetDeserializerByNameResponse_descriptor =
-            getDescriptor().getMessageTypes().get(63);
+            getDescriptor().getMessageTypes().get(68);
           internal_static_org_bimserver_pb_GetDeserializerByNameResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetDeserializerByNameResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
+          internal_static_org_bimserver_pb_GetInternalServiceByIdRequest_descriptor =
+            getDescriptor().getMessageTypes().get(69);
+          internal_static_org_bimserver_pb_GetInternalServiceByIdRequest_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_bimserver_pb_GetInternalServiceByIdRequest_descriptor,
+              new java.lang.String[] { "Oid", });
+          internal_static_org_bimserver_pb_GetInternalServiceByIdResponse_descriptor =
+            getDescriptor().getMessageTypes().get(70);
+          internal_static_org_bimserver_pb_GetInternalServiceByIdResponse_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_bimserver_pb_GetInternalServiceByIdResponse_descriptor,
+              new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetModelCompareByIdRequest_descriptor =
-            getDescriptor().getMessageTypes().get(64);
+            getDescriptor().getMessageTypes().get(71);
           internal_static_org_bimserver_pb_GetModelCompareByIdRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetModelCompareByIdRequest_descriptor,
               new java.lang.String[] { "Oid", });
           internal_static_org_bimserver_pb_GetModelCompareByIdResponse_descriptor =
-            getDescriptor().getMessageTypes().get(65);
+            getDescriptor().getMessageTypes().get(72);
           internal_static_org_bimserver_pb_GetModelCompareByIdResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetModelCompareByIdResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetModelCompareByNameRequest_descriptor =
-            getDescriptor().getMessageTypes().get(66);
+            getDescriptor().getMessageTypes().get(73);
           internal_static_org_bimserver_pb_GetModelCompareByNameRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetModelCompareByNameRequest_descriptor,
               new java.lang.String[] { "Name", });
           internal_static_org_bimserver_pb_GetModelCompareByNameResponse_descriptor =
-            getDescriptor().getMessageTypes().get(67);
+            getDescriptor().getMessageTypes().get(74);
           internal_static_org_bimserver_pb_GetModelCompareByNameResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetModelCompareByNameResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetModelMergerByIdRequest_descriptor =
-            getDescriptor().getMessageTypes().get(68);
+            getDescriptor().getMessageTypes().get(75);
           internal_static_org_bimserver_pb_GetModelMergerByIdRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetModelMergerByIdRequest_descriptor,
               new java.lang.String[] { "Oid", });
           internal_static_org_bimserver_pb_GetModelMergerByIdResponse_descriptor =
-            getDescriptor().getMessageTypes().get(69);
+            getDescriptor().getMessageTypes().get(76);
           internal_static_org_bimserver_pb_GetModelMergerByIdResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetModelMergerByIdResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetModelMergerByNameRequest_descriptor =
-            getDescriptor().getMessageTypes().get(70);
+            getDescriptor().getMessageTypes().get(77);
           internal_static_org_bimserver_pb_GetModelMergerByNameRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetModelMergerByNameRequest_descriptor,
               new java.lang.String[] { "Name", });
           internal_static_org_bimserver_pb_GetModelMergerByNameResponse_descriptor =
-            getDescriptor().getMessageTypes().get(71);
+            getDescriptor().getMessageTypes().get(78);
           internal_static_org_bimserver_pb_GetModelMergerByNameResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetModelMergerByNameResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetObjectIDMByIdRequest_descriptor =
-            getDescriptor().getMessageTypes().get(72);
+            getDescriptor().getMessageTypes().get(79);
           internal_static_org_bimserver_pb_GetObjectIDMByIdRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetObjectIDMByIdRequest_descriptor,
               new java.lang.String[] { "Oid", });
           internal_static_org_bimserver_pb_GetObjectIDMByIdResponse_descriptor =
-            getDescriptor().getMessageTypes().get(73);
+            getDescriptor().getMessageTypes().get(80);
           internal_static_org_bimserver_pb_GetObjectIDMByIdResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetObjectIDMByIdResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetObjectIDMByNameRequest_descriptor =
-            getDescriptor().getMessageTypes().get(74);
+            getDescriptor().getMessageTypes().get(81);
           internal_static_org_bimserver_pb_GetObjectIDMByNameRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetObjectIDMByNameRequest_descriptor,
               new java.lang.String[] { "ObjectIDMName", });
           internal_static_org_bimserver_pb_GetObjectIDMByNameResponse_descriptor =
-            getDescriptor().getMessageTypes().get(75);
+            getDescriptor().getMessageTypes().get(82);
           internal_static_org_bimserver_pb_GetObjectIDMByNameResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetObjectIDMByNameResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetPluginObjectDefinitionRequest_descriptor =
-            getDescriptor().getMessageTypes().get(76);
+            getDescriptor().getMessageTypes().get(83);
           internal_static_org_bimserver_pb_GetPluginObjectDefinitionRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetPluginObjectDefinitionRequest_descriptor,
               new java.lang.String[] { "ClassName", });
           internal_static_org_bimserver_pb_SArrayDefinition_descriptor =
-            getDescriptor().getMessageTypes().get(77);
+            getDescriptor().getMessageTypes().get(84);
           internal_static_org_bimserver_pb_SArrayDefinition_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SArrayDefinition_descriptor,
               new java.lang.String[] { "Type", });
           internal_static_org_bimserver_pb_SPrimitiveDefinition_descriptor =
-            getDescriptor().getMessageTypes().get(78);
+            getDescriptor().getMessageTypes().get(85);
           internal_static_org_bimserver_pb_SPrimitiveDefinition_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SPrimitiveDefinition_descriptor,
               new java.lang.String[] { "Type", });
           internal_static_org_bimserver_pb_STypeDefinition_descriptor =
-            getDescriptor().getMessageTypes().get(79);
+            getDescriptor().getMessageTypes().get(86);
           internal_static_org_bimserver_pb_STypeDefinition_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_STypeDefinition_descriptor,
-              new java.lang.String[] { "ActualType", "SObjectDefinition", "SArrayDefinition", "SPrimitiveDefinition", });
+              new java.lang.String[] { "ActualType", "SArrayDefinition", "SPrimitiveDefinition", "SObjectDefinition", });
           internal_static_org_bimserver_pb_SParameterDefinition_descriptor =
-            getDescriptor().getMessageTypes().get(80);
+            getDescriptor().getMessageTypes().get(87);
           internal_static_org_bimserver_pb_SParameterDefinition_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SParameterDefinition_descriptor,
               new java.lang.String[] { "Description", "Name", "DefaultValueId", "Required", "Type", });
           internal_static_org_bimserver_pb_SObjectDefinition_descriptor =
-            getDescriptor().getMessageTypes().get(81);
+            getDescriptor().getMessageTypes().get(88);
           internal_static_org_bimserver_pb_SObjectDefinition_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SObjectDefinition_descriptor,
               new java.lang.String[] { "Parameters", });
           internal_static_org_bimserver_pb_GetPluginObjectDefinitionResponse_descriptor =
-            getDescriptor().getMessageTypes().get(82);
+            getDescriptor().getMessageTypes().get(89);
           internal_static_org_bimserver_pb_GetPluginObjectDefinitionResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetPluginObjectDefinitionResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetPluginSettingsRequest_descriptor =
-            getDescriptor().getMessageTypes().get(83);
+            getDescriptor().getMessageTypes().get(90);
           internal_static_org_bimserver_pb_GetPluginSettingsRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetPluginSettingsRequest_descriptor,
               new java.lang.String[] { "Poid", });
-          internal_static_org_bimserver_pb_SByteArrayType_descriptor =
-            getDescriptor().getMessageTypes().get(84);
-          internal_static_org_bimserver_pb_SByteArrayType_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_org_bimserver_pb_SByteArrayType_descriptor,
-              new java.lang.String[] { "Rid", "Oid", "Value", });
-          internal_static_org_bimserver_pb_SLongType_descriptor =
-            getDescriptor().getMessageTypes().get(85);
-          internal_static_org_bimserver_pb_SLongType_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_org_bimserver_pb_SLongType_descriptor,
-              new java.lang.String[] { "Rid", "Oid", "Value", });
           internal_static_org_bimserver_pb_SDoubleType_descriptor =
-            getDescriptor().getMessageTypes().get(86);
+            getDescriptor().getMessageTypes().get(91);
           internal_static_org_bimserver_pb_SDoubleType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SDoubleType_descriptor,
               new java.lang.String[] { "Rid", "Oid", "Value", });
-          internal_static_org_bimserver_pb_SStringType_descriptor =
-            getDescriptor().getMessageTypes().get(87);
-          internal_static_org_bimserver_pb_SStringType_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_org_bimserver_pb_SStringType_descriptor,
-              new java.lang.String[] { "Rid", "Oid", "Value", });
           internal_static_org_bimserver_pb_SBooleanType_descriptor =
-            getDescriptor().getMessageTypes().get(88);
+            getDescriptor().getMessageTypes().get(92);
           internal_static_org_bimserver_pb_SBooleanType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SBooleanType_descriptor,
               new java.lang.String[] { "Rid", "Oid", "Value", });
+          internal_static_org_bimserver_pb_SLongType_descriptor =
+            getDescriptor().getMessageTypes().get(93);
+          internal_static_org_bimserver_pb_SLongType_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_bimserver_pb_SLongType_descriptor,
+              new java.lang.String[] { "Rid", "Oid", "Value", });
+          internal_static_org_bimserver_pb_SStringType_descriptor =
+            getDescriptor().getMessageTypes().get(94);
+          internal_static_org_bimserver_pb_SStringType_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_bimserver_pb_SStringType_descriptor,
+              new java.lang.String[] { "Rid", "Oid", "Value", });
+          internal_static_org_bimserver_pb_SByteArrayType_descriptor =
+            getDescriptor().getMessageTypes().get(95);
+          internal_static_org_bimserver_pb_SByteArrayType_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_bimserver_pb_SByteArrayType_descriptor,
+              new java.lang.String[] { "Rid", "Oid", "Value", });
           internal_static_org_bimserver_pb_SPrimitiveType_descriptor =
-            getDescriptor().getMessageTypes().get(89);
+            getDescriptor().getMessageTypes().get(96);
           internal_static_org_bimserver_pb_SPrimitiveType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SPrimitiveType_descriptor,
-              new java.lang.String[] { "ActualType", "SByteArrayType", "SLongType", "SDoubleType", "SStringType", "SBooleanType", "Rid", "Oid", });
+              new java.lang.String[] { "ActualType", "SDoubleType", "SBooleanType", "SLongType", "SStringType", "SByteArrayType", "Rid", "Oid", });
           internal_static_org_bimserver_pb_SArrayType_descriptor =
-            getDescriptor().getMessageTypes().get(90);
+            getDescriptor().getMessageTypes().get(97);
           internal_static_org_bimserver_pb_SArrayType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SArrayType_descriptor,
               new java.lang.String[] { "Values", "Rid", "Oid", });
           internal_static_org_bimserver_pb_SType_descriptor =
-            getDescriptor().getMessageTypes().get(91);
+            getDescriptor().getMessageTypes().get(98);
           internal_static_org_bimserver_pb_SType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SType_descriptor,
               new java.lang.String[] { "ActualType", "SObjectType", "SPrimitiveType", "SArrayType", "Rid", "Oid", });
           internal_static_org_bimserver_pb_SParameter_descriptor =
-            getDescriptor().getMessageTypes().get(92);
+            getDescriptor().getMessageTypes().get(99);
           internal_static_org_bimserver_pb_SParameter_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SParameter_descriptor,
               new java.lang.String[] { "Rid", "Oid", "Name", "Value", });
           internal_static_org_bimserver_pb_SObjectType_descriptor =
-            getDescriptor().getMessageTypes().get(93);
+            getDescriptor().getMessageTypes().get(100);
           internal_static_org_bimserver_pb_SObjectType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SObjectType_descriptor,
               new java.lang.String[] { "Rid", "Oid", "Name", "Parameters", });
           internal_static_org_bimserver_pb_GetPluginSettingsResponse_descriptor =
-            getDescriptor().getMessageTypes().get(94);
+            getDescriptor().getMessageTypes().get(101);
           internal_static_org_bimserver_pb_GetPluginSettingsResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetPluginSettingsResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetQueryEngineByIdRequest_descriptor =
-            getDescriptor().getMessageTypes().get(95);
+            getDescriptor().getMessageTypes().get(102);
           internal_static_org_bimserver_pb_GetQueryEngineByIdRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetQueryEngineByIdRequest_descriptor,
               new java.lang.String[] { "Oid", });
           internal_static_org_bimserver_pb_GetQueryEngineByIdResponse_descriptor =
-            getDescriptor().getMessageTypes().get(96);
+            getDescriptor().getMessageTypes().get(103);
           internal_static_org_bimserver_pb_GetQueryEngineByIdResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetQueryEngineByIdResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetQueryEngineByNameRequest_descriptor =
-            getDescriptor().getMessageTypes().get(97);
+            getDescriptor().getMessageTypes().get(104);
           internal_static_org_bimserver_pb_GetQueryEngineByNameRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetQueryEngineByNameRequest_descriptor,
               new java.lang.String[] { "Name", });
           internal_static_org_bimserver_pb_GetQueryEngineByNameResponse_descriptor =
-            getDescriptor().getMessageTypes().get(98);
+            getDescriptor().getMessageTypes().get(105);
           internal_static_org_bimserver_pb_GetQueryEngineByNameResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetQueryEngineByNameResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetRenderEngineByIdRequest_descriptor =
-            getDescriptor().getMessageTypes().get(99);
+            getDescriptor().getMessageTypes().get(106);
           internal_static_org_bimserver_pb_GetRenderEngineByIdRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetRenderEngineByIdRequest_descriptor,
               new java.lang.String[] { "Oid", });
           internal_static_org_bimserver_pb_GetRenderEngineByIdResponse_descriptor =
-            getDescriptor().getMessageTypes().get(100);
+            getDescriptor().getMessageTypes().get(107);
           internal_static_org_bimserver_pb_GetRenderEngineByIdResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetRenderEngineByIdResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetRenderEngineByNameRequest_descriptor =
-            getDescriptor().getMessageTypes().get(101);
+            getDescriptor().getMessageTypes().get(108);
           internal_static_org_bimserver_pb_GetRenderEngineByNameRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetRenderEngineByNameRequest_descriptor,
               new java.lang.String[] { "Name", });
           internal_static_org_bimserver_pb_GetRenderEngineByNameResponse_descriptor =
-            getDescriptor().getMessageTypes().get(102);
+            getDescriptor().getMessageTypes().get(109);
           internal_static_org_bimserver_pb_GetRenderEngineByNameResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetRenderEngineByNameResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetSerializerByContentTypeRequest_descriptor =
-            getDescriptor().getMessageTypes().get(103);
+            getDescriptor().getMessageTypes().get(110);
           internal_static_org_bimserver_pb_GetSerializerByContentTypeRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetSerializerByContentTypeRequest_descriptor,
               new java.lang.String[] { "ContentType", });
           internal_static_org_bimserver_pb_GetSerializerByContentTypeResponse_descriptor =
-            getDescriptor().getMessageTypes().get(104);
+            getDescriptor().getMessageTypes().get(111);
           internal_static_org_bimserver_pb_GetSerializerByContentTypeResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetSerializerByContentTypeResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetSerializerByIdRequest_descriptor =
-            getDescriptor().getMessageTypes().get(105);
+            getDescriptor().getMessageTypes().get(112);
           internal_static_org_bimserver_pb_GetSerializerByIdRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetSerializerByIdRequest_descriptor,
               new java.lang.String[] { "Oid", });
           internal_static_org_bimserver_pb_GetSerializerByIdResponse_descriptor =
-            getDescriptor().getMessageTypes().get(106);
+            getDescriptor().getMessageTypes().get(113);
           internal_static_org_bimserver_pb_GetSerializerByIdResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetSerializerByIdResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetSerializerByNameRequest_descriptor =
-            getDescriptor().getMessageTypes().get(107);
+            getDescriptor().getMessageTypes().get(114);
           internal_static_org_bimserver_pb_GetSerializerByNameRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetSerializerByNameRequest_descriptor,
               new java.lang.String[] { "SerializerName", });
           internal_static_org_bimserver_pb_GetSerializerByNameResponse_descriptor =
-            getDescriptor().getMessageTypes().get(108);
+            getDescriptor().getMessageTypes().get(115);
           internal_static_org_bimserver_pb_GetSerializerByNameResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetSerializerByNameResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetSerializerByPluginClassNameRequest_descriptor =
-            getDescriptor().getMessageTypes().get(109);
+            getDescriptor().getMessageTypes().get(116);
           internal_static_org_bimserver_pb_GetSerializerByPluginClassNameRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetSerializerByPluginClassNameRequest_descriptor,
               new java.lang.String[] { "PluginClassName", });
           internal_static_org_bimserver_pb_GetSerializerByPluginClassNameResponse_descriptor =
-            getDescriptor().getMessageTypes().get(110);
+            getDescriptor().getMessageTypes().get(117);
           internal_static_org_bimserver_pb_GetSerializerByPluginClassNameResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetSerializerByPluginClassNameResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetSerializerPluginDescriptorRequest_descriptor =
-            getDescriptor().getMessageTypes().get(111);
+            getDescriptor().getMessageTypes().get(118);
           internal_static_org_bimserver_pb_GetSerializerPluginDescriptorRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetSerializerPluginDescriptorRequest_descriptor,
               new java.lang.String[] { "Type", });
           internal_static_org_bimserver_pb_GetSerializerPluginDescriptorResponse_descriptor =
-            getDescriptor().getMessageTypes().get(112);
+            getDescriptor().getMessageTypes().get(119);
           internal_static_org_bimserver_pb_GetSerializerPluginDescriptorResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetSerializerPluginDescriptorResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_HasActiveSerializerRequest_descriptor =
-            getDescriptor().getMessageTypes().get(113);
+            getDescriptor().getMessageTypes().get(120);
           internal_static_org_bimserver_pb_HasActiveSerializerRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_HasActiveSerializerRequest_descriptor,
               new java.lang.String[] { "ContentType", });
           internal_static_org_bimserver_pb_HasActiveSerializerResponse_descriptor =
-            getDescriptor().getMessageTypes().get(114);
+            getDescriptor().getMessageTypes().get(121);
           internal_static_org_bimserver_pb_HasActiveSerializerResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_HasActiveSerializerResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_SetDefaultModelCompareRequest_descriptor =
-            getDescriptor().getMessageTypes().get(115);
+            getDescriptor().getMessageTypes().get(122);
           internal_static_org_bimserver_pb_SetDefaultModelCompareRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SetDefaultModelCompareRequest_descriptor,
               new java.lang.String[] { "Oid", });
           internal_static_org_bimserver_pb_SetDefaultModelMergerRequest_descriptor =
-            getDescriptor().getMessageTypes().get(116);
+            getDescriptor().getMessageTypes().get(123);
           internal_static_org_bimserver_pb_SetDefaultModelMergerRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SetDefaultModelMergerRequest_descriptor,
               new java.lang.String[] { "Oid", });
           internal_static_org_bimserver_pb_SetDefaultObjectIDMRequest_descriptor =
-            getDescriptor().getMessageTypes().get(117);
+            getDescriptor().getMessageTypes().get(124);
           internal_static_org_bimserver_pb_SetDefaultObjectIDMRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SetDefaultObjectIDMRequest_descriptor,
               new java.lang.String[] { "Oid", });
           internal_static_org_bimserver_pb_SetDefaultQueryEngineRequest_descriptor =
-            getDescriptor().getMessageTypes().get(118);
+            getDescriptor().getMessageTypes().get(125);
           internal_static_org_bimserver_pb_SetDefaultQueryEngineRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SetDefaultQueryEngineRequest_descriptor,
               new java.lang.String[] { "Oid", });
           internal_static_org_bimserver_pb_SetDefaultRenderEngineRequest_descriptor =
-            getDescriptor().getMessageTypes().get(119);
+            getDescriptor().getMessageTypes().get(126);
           internal_static_org_bimserver_pb_SetDefaultRenderEngineRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SetDefaultRenderEngineRequest_descriptor,
               new java.lang.String[] { "Oid", });
           internal_static_org_bimserver_pb_SetDefaultSerializerRequest_descriptor =
-            getDescriptor().getMessageTypes().get(120);
+            getDescriptor().getMessageTypes().get(127);
           internal_static_org_bimserver_pb_SetDefaultSerializerRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SetDefaultSerializerRequest_descriptor,
               new java.lang.String[] { "Oid", });
           internal_static_org_bimserver_pb_SetPluginSettingsRequest_descriptor =
-            getDescriptor().getMessageTypes().get(121);
+            getDescriptor().getMessageTypes().get(128);
           internal_static_org_bimserver_pb_SetPluginSettingsRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SetPluginSettingsRequest_descriptor,
               new java.lang.String[] { "Poid", "Settings", });
           internal_static_org_bimserver_pb_UpdateDeserializerRequest_descriptor =
-            getDescriptor().getMessageTypes().get(122);
+            getDescriptor().getMessageTypes().get(129);
           internal_static_org_bimserver_pb_UpdateDeserializerRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_UpdateDeserializerRequest_descriptor,
               new java.lang.String[] { "Deserializer", });
+          internal_static_org_bimserver_pb_UpdateInternalServiceRequest_descriptor =
+            getDescriptor().getMessageTypes().get(130);
+          internal_static_org_bimserver_pb_UpdateInternalServiceRequest_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_bimserver_pb_UpdateInternalServiceRequest_descriptor,
+              new java.lang.String[] { "InternalService", });
           internal_static_org_bimserver_pb_UpdateModelCompareRequest_descriptor =
-            getDescriptor().getMessageTypes().get(123);
+            getDescriptor().getMessageTypes().get(131);
           internal_static_org_bimserver_pb_UpdateModelCompareRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_UpdateModelCompareRequest_descriptor,
               new java.lang.String[] { "ModelCompare", });
           internal_static_org_bimserver_pb_UpdateModelMergerRequest_descriptor =
-            getDescriptor().getMessageTypes().get(124);
+            getDescriptor().getMessageTypes().get(132);
           internal_static_org_bimserver_pb_UpdateModelMergerRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_UpdateModelMergerRequest_descriptor,
               new java.lang.String[] { "ModelMerger", });
           internal_static_org_bimserver_pb_UpdateObjectIDMRequest_descriptor =
-            getDescriptor().getMessageTypes().get(125);
+            getDescriptor().getMessageTypes().get(133);
           internal_static_org_bimserver_pb_UpdateObjectIDMRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_UpdateObjectIDMRequest_descriptor,
               new java.lang.String[] { "ObjectIDM", });
           internal_static_org_bimserver_pb_UpdateQueryEngineRequest_descriptor =
-            getDescriptor().getMessageTypes().get(126);
+            getDescriptor().getMessageTypes().get(134);
           internal_static_org_bimserver_pb_UpdateQueryEngineRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_UpdateQueryEngineRequest_descriptor,
               new java.lang.String[] { "QueryEngine", });
           internal_static_org_bimserver_pb_UpdateRenderEngineRequest_descriptor =
-            getDescriptor().getMessageTypes().get(127);
+            getDescriptor().getMessageTypes().get(135);
           internal_static_org_bimserver_pb_UpdateRenderEngineRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_UpdateRenderEngineRequest_descriptor,
               new java.lang.String[] { "RenderEngine", });
           internal_static_org_bimserver_pb_UpdateSerializerRequest_descriptor =
-            getDescriptor().getMessageTypes().get(128);
+            getDescriptor().getMessageTypes().get(136);
           internal_static_org_bimserver_pb_UpdateSerializerRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_UpdateSerializerRequest_descriptor,

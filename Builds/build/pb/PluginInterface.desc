@@ -1,8 +1,15 @@
 
-½•
+ÉŸ
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoNotificationInterface.protoRemoteServiceInterface.protoAdminInterface.protoAuthInterface.protoSettingsInterface.protoLowLevelInterface.protoMetaInterface.proto"b
 AddDeserializerRequestH
-deserializer (22.org.bimserver.pb.SDeserializerPluginConfiguration"T
+deserializer (22.org.bimserver.pb.SDeserializerPluginConfiguration"q
+#SInternalServicePluginConfiguration
+userSettingsId (
+rid (
+oid (
+remoteAccessible ("k
+AddInternalServiceRequestN
+internalService (25.org.bimserver.pb.SInternalServicePluginConfiguration"T
  SModelComparePluginConfiguration
 userSettingsId (
 rid (
@@ -45,7 +52,9 @@
 
 serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"(
 DeleteDeserializerRequest
-sid ("(
+sid ("+
+DeleteInternalServiceRequest
+oid ("(
 DeleteModelCompareRequest
 iid ("'
 DeleteModelMergerRequest
@@ -66,7 +75,12 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"(
 onlyEnabled ("v
 GetAllDeserializersResponse
 errorMessage (	A
-value (22.org.bimserver.pb.SDeserializerPluginConfiguration",
+value (22.org.bimserver.pb.SDeserializerPluginConfiguration"4
+GetAllInternalServicesRequest
+onlyEnabled ("|
+GetAllInternalServicesResponse
+errorMessage (	D
+value (25.org.bimserver.pb.SInternalServicePluginConfiguration",
 *GetAllModelComparePluginDescriptorsRequest"ƒ
 +GetAllModelComparePluginDescriptorsResponse
 errorMessage (	>
@@ -154,7 +168,12 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"(
 deserializerName (	"x
 GetDeserializerByNameResponse
 errorMessage (	A
-value (22.org.bimserver.pb.SDeserializerPluginConfiguration")
+value (22.org.bimserver.pb.SDeserializerPluginConfiguration",
+GetInternalServiceByIdRequest
+oid ("|
+GetInternalServiceByIdResponse
+errorMessage (	D
+value (25.org.bimserver.pb.SInternalServicePluginConfiguration")
 GetModelCompareByIdRequest
 oid ("v
 GetModelCompareByIdResponse
@@ -192,10 +211,10 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"(
 SPrimitiveDefinition.
 type (2 .org.bimserver.pb.SPrimitiveEnum"ò
 STypeDefinition
-__actual_type (	@
-__SObjectDefinition (2#.org.bimserver.pb.SObjectDefinition>
-__SArrayDefinition (2".org.bimserver.pb.SArrayDefinitionF
-__SPrimitiveDefinition (2&.org.bimserver.pb.SPrimitiveDefinition"”
+__actual_type (	>
+__SArrayDefinition (2".org.bimserver.pb.SArrayDefinitionF
+__SPrimitiveDefinition (2&.org.bimserver.pb.SPrimitiveDefinition@
+__SObjectDefinition (2#.org.bimserver.pb.SObjectDefinition"”
 SParameterDefinition
 description (	
 name (	
@@ -209,34 +228,34 @@ parameters (2&.org.bimserver.pb.SParameterDefinition"m
 errorMessage (	2
 value (2#.org.bimserver.pb.SObjectDefinition"(
 GetPluginSettingsRequest
-poid ("9
-SByteArrayType
+poid ("6
+SDoubleType
 rid (
 oid (
-value ("4
+value ("7
+SBooleanType
+rid (
+oid (
+value ("4
 	SLongType
 rid (
 oid (
 value ("6
-SDoubleType
-rid (
-oid (
-value ("6
 SStringType
 rid (
 oid (
-value (	"7
-SBooleanType
+value (	"9
+SByteArrayType
 rid (
 oid (
-value ("Ó
+value ("Ó
 SPrimitiveType
-__actual_type (	:
-__SByteArrayType (2 .org.bimserver.pb.SByteArrayType0
-__SLongType (2.org.bimserver.pb.SLongType4
-__SDoubleType (2.org.bimserver.pb.SDoubleType4
-__SStringType (2.org.bimserver.pb.SStringType6
-__SBooleanType (2.org.bimserver.pb.SBooleanType
+__actual_type (	4
+__SDoubleType (2.org.bimserver.pb.SDoubleType6
+__SBooleanType (2.org.bimserver.pb.SBooleanType0
+__SLongType (2.org.bimserver.pb.SLongType4
+__SStringType (2.org.bimserver.pb.SStringType:
+__SByteArrayType (2 .org.bimserver.pb.SByteArrayType
 rid (
 oid ("O
 
@@ -332,7 +351,9 @@ $GetSerializerPluginDescriptorRequest
 poid (/
 settings (2.org.bimserver.pb.SObjectType"e
 UpdateDeserializerRequestH
-deserializer (22.org.bimserver.pb.SDeserializerPluginConfiguration"e
+deserializer (22.org.bimserver.pb.SDeserializerPluginConfiguration"n
+UpdateInternalServiceRequestN
+internalService (25.org.bimserver.pb.SInternalServicePluginConfiguration"e
 UpdateModelCompareRequestH
 modelCompare (22.org.bimserver.pb.SModelComparePluginConfiguration"b
 UpdateModelMergerRequestF
@@ -354,16 +375,18 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*O
 
 STRING
 
-BYTE_ARRAY2ý<
+BYTE_ARRAY2¬A
 PluginInterface[
-addDeserializer(.org.bimserver.pb.AddDeserializerRequest.org.bimserver.pb.VoidResponse[
+addDeserializer(.org.bimserver.pb.AddDeserializerRequest.org.bimserver.pb.VoidResponsea
+addInternalService+.org.bimserver.pb.AddInternalServiceRequest.org.bimserver.pb.VoidResponse[
 addModelCompare(.org.bimserver.pb.AddModelCompareRequest.org.bimserver.pb.VoidResponseY
 addModelMerger'.org.bimserver.pb.AddModelMergerRequest.org.bimserver.pb.VoidResponseU
 addObjectIDM%.org.bimserver.pb.AddObjectIDMRequest.org.bimserver.pb.VoidResponseY
 addQueryEngine'.org.bimserver.pb.AddQueryEngineRequest.org.bimserver.pb.VoidResponse[
 addRenderEngine(.org.bimserver.pb.AddRenderEngineRequest.org.bimserver.pb.VoidResponseW
 addSerializer&.org.bimserver.pb.AddSerializerRequest.org.bimserver.pb.VoidResponsea
-deleteDeserializer+.org.bimserver.pb.DeleteDeserializerRequest.org.bimserver.pb.VoidResponsea
+deleteDeserializer+.org.bimserver.pb.DeleteDeserializerRequest.org.bimserver.pb.VoidResponseg
+deleteInternalService..org.bimserver.pb.DeleteInternalServiceRequest.org.bimserver.pb.VoidResponsea
 deleteModelCompare+.org.bimserver.pb.DeleteModelCompareRequest.org.bimserver.pb.VoidResponse_
 deleteModelMerger*.org.bimserver.pb.DeleteModelMergerRequest.org.bimserver.pb.VoidResponse[
 deleteObjectIDM(.org.bimserver.pb.DeleteObjectIDMRequest.org.bimserver.pb.VoidResponse_
@@ -371,7 +394,8 @@ BYTE_ARRAY2ý<
 deleteRenderEngine+.org.bimserver.pb.DeleteRenderEngineRequest.org.bimserver.pb.VoidResponse]
 deleteSerializer).org.bimserver.pb.DeleteSerializerRequest.org.bimserver.pb.VoidResponse¢
 #getAllDeserializerPluginDescriptors<.org.bimserver.pb.GetAllDeserializerPluginDescriptorsRequest=.org.bimserver.pb.GetAllDeserializerPluginDescriptorsResponser
-getAllDeserializers,.org.bimserver.pb.GetAllDeserializersRequest-.org.bimserver.pb.GetAllDeserializersResponse¢
+getAllDeserializers,.org.bimserver.pb.GetAllDeserializersRequest-.org.bimserver.pb.GetAllDeserializersResponse{
+getAllInternalServices/.org.bimserver.pb.GetAllInternalServicesRequest0.org.bimserver.pb.GetAllInternalServicesResponse¢
 #getAllModelComparePluginDescriptors<.org.bimserver.pb.GetAllModelComparePluginDescriptorsRequest=.org.bimserver.pb.GetAllModelComparePluginDescriptorsResponser
 getAllModelCompares,.org.bimserver.pb.GetAllModelComparesRequest-.org.bimserver.pb.GetAllModelComparesResponseŸ
 "getAllModelMergerPluginDescriptors;.org.bimserver.pb.GetAllModelMergerPluginDescriptorsRequest<.org.bimserver.pb.GetAllModelMergerPluginDescriptorsResponseo
@@ -391,7 +415,8 @@ BYTE_ARRAY2ý<
 getDefaultRenderEngine/.org.bimserver.pb.GetDefaultRenderEngineRequest0.org.bimserver.pb.GetDefaultRenderEngineResponseu
 getDefaultSerializer-.org.bimserver.pb.GetDefaultSerializerRequest..org.bimserver.pb.GetDefaultSerializerResponser
 getDeserializerById,.org.bimserver.pb.GetDeserializerByIdRequest-.org.bimserver.pb.GetDeserializerByIdResponsex
-getDeserializerByName..org.bimserver.pb.GetDeserializerByNameRequest/.org.bimserver.pb.GetDeserializerByNameResponser
+getDeserializerByName..org.bimserver.pb.GetDeserializerByNameRequest/.org.bimserver.pb.GetDeserializerByNameResponse{
+getInternalServiceById/.org.bimserver.pb.GetInternalServiceByIdRequest0.org.bimserver.pb.GetInternalServiceByIdResponser
 getModelCompareById,.org.bimserver.pb.GetModelCompareByIdRequest-.org.bimserver.pb.GetModelCompareByIdResponsex
 getModelCompareByName..org.bimserver.pb.GetModelCompareByNameRequest/.org.bimserver.pb.GetModelCompareByNameResponseo
 getModelMergerById+.org.bimserver.pb.GetModelMergerByIdRequest,.org.bimserver.pb.GetModelMergerByIdResponseu
@@ -417,7 +442,8 @@ BYTE_ARRAY2ý<
 setDefaultRenderEngine/.org.bimserver.pb.SetDefaultRenderEngineRequest.org.bimserver.pb.VoidResponsee
 setDefaultSerializer-.org.bimserver.pb.SetDefaultSerializerRequest.org.bimserver.pb.VoidResponse_
 setPluginSettings*.org.bimserver.pb.SetPluginSettingsRequest.org.bimserver.pb.VoidResponsea
-updateDeserializer+.org.bimserver.pb.UpdateDeserializerRequest.org.bimserver.pb.VoidResponsea
+updateDeserializer+.org.bimserver.pb.UpdateDeserializerRequest.org.bimserver.pb.VoidResponseg
+updateInternalService..org.bimserver.pb.UpdateInternalServiceRequest.org.bimserver.pb.VoidResponsea
 updateModelCompare+.org.bimserver.pb.UpdateModelCompareRequest.org.bimserver.pb.VoidResponse_
 updateModelMerger*.org.bimserver.pb.UpdateModelMergerRequest.org.bimserver.pb.VoidResponse[
 updateObjectIDM(.org.bimserver.pb.UpdateObjectIDMRequest.org.bimserver.pb.VoidResponse_

@@ -2137,25 +2137,25 @@ public final class SettingsInterfaceImpl {
      */
     boolean getGenerateGeometryOnCheckin();
 
-    // optional int32 protocolBuffersPort = 3;
+    // optional bool allowOnlyWhitelisted = 3;
     /**
-     * <code>optional int32 protocolBuffersPort = 3;</code>
-     */
-    boolean hasProtocolBuffersPort();
-    /**
-     * <code>optional int32 protocolBuffersPort = 3;</code>
-     */
-    int getProtocolBuffersPort();
-
-    // optional bool allowOnlyWhitelisted = 4;
-    /**
-     * <code>optional bool allowOnlyWhitelisted = 4;</code>
+     * <code>optional bool allowOnlyWhitelisted = 3;</code>
      */
     boolean hasAllowOnlyWhitelisted();
     /**
-     * <code>optional bool allowOnlyWhitelisted = 4;</code>
+     * <code>optional bool allowOnlyWhitelisted = 3;</code>
      */
     boolean getAllowOnlyWhitelisted();
+
+    // optional int32 protocolBuffersPort = 4;
+    /**
+     * <code>optional int32 protocolBuffersPort = 4;</code>
+     */
+    boolean hasProtocolBuffersPort();
+    /**
+     * <code>optional int32 protocolBuffersPort = 4;</code>
+     */
+    int getProtocolBuffersPort();
 
     // optional string siteAddress = 5;
     /**
@@ -2211,95 +2211,95 @@ public final class SettingsInterfaceImpl {
      */
     long getWebModules(int index);
 
-    // repeated string whitelistedDomains = 9;
+    // optional int32 rid = 9;
     /**
-     * <code>repeated string whitelistedDomains = 9;</code>
-     */
-    java.util.List<java.lang.String>
-    getWhitelistedDomainsList();
-    /**
-     * <code>repeated string whitelistedDomains = 9;</code>
-     */
-    int getWhitelistedDomainsCount();
-    /**
-     * <code>repeated string whitelistedDomains = 9;</code>
-     */
-    java.lang.String getWhitelistedDomains(int index);
-    /**
-     * <code>repeated string whitelistedDomains = 9;</code>
-     */
-    com.google.protobuf.ByteString
-        getWhitelistedDomainsBytes(int index);
-
-    // optional int32 rid = 10;
-    /**
-     * <code>optional int32 rid = 10;</code>
+     * <code>optional int32 rid = 9;</code>
      */
     boolean hasRid();
     /**
-     * <code>optional int32 rid = 10;</code>
+     * <code>optional int32 rid = 9;</code>
      */
     int getRid();
 
-    // optional bool allowSelfRegistration = 11;
+    // optional bool allowSelfRegistration = 10;
     /**
-     * <code>optional bool allowSelfRegistration = 11;</code>
+     * <code>optional bool allowSelfRegistration = 10;</code>
      */
     boolean hasAllowSelfRegistration();
     /**
-     * <code>optional bool allowSelfRegistration = 11;</code>
+     * <code>optional bool allowSelfRegistration = 10;</code>
      */
     boolean getAllowSelfRegistration();
 
-    // optional string smtpServer = 12;
+    // optional string smtpServer = 11;
     /**
-     * <code>optional string smtpServer = 12;</code>
+     * <code>optional string smtpServer = 11;</code>
      */
     boolean hasSmtpServer();
     /**
-     * <code>optional string smtpServer = 12;</code>
+     * <code>optional string smtpServer = 11;</code>
      */
     java.lang.String getSmtpServer();
     /**
-     * <code>optional string smtpServer = 12;</code>
+     * <code>optional string smtpServer = 11;</code>
      */
     com.google.protobuf.ByteString
         getSmtpServerBytes();
 
-    // optional bool cacheOutputFiles = 13;
+    // repeated string whitelistedDomains = 12;
     /**
-     * <code>optional bool cacheOutputFiles = 13;</code>
+     * <code>repeated string whitelistedDomains = 12;</code>
      */
-    boolean hasCacheOutputFiles();
+    java.util.List<java.lang.String>
+    getWhitelistedDomainsList();
     /**
-     * <code>optional bool cacheOutputFiles = 13;</code>
+     * <code>repeated string whitelistedDomains = 12;</code>
      */
-    boolean getCacheOutputFiles();
+    int getWhitelistedDomainsCount();
+    /**
+     * <code>repeated string whitelistedDomains = 12;</code>
+     */
+    java.lang.String getWhitelistedDomains(int index);
+    /**
+     * <code>repeated string whitelistedDomains = 12;</code>
+     */
+    com.google.protobuf.ByteString
+        getWhitelistedDomainsBytes(int index);
 
-    // optional int64 oid = 14;
+    // optional int64 oid = 13;
     /**
-     * <code>optional int64 oid = 14;</code>
+     * <code>optional int64 oid = 13;</code>
      */
     boolean hasOid();
     /**
-     * <code>optional int64 oid = 14;</code>
+     * <code>optional int64 oid = 13;</code>
      */
     long getOid();
 
-    // optional string emailSenderAddress = 15;
+    // optional string emailSenderAddress = 14;
     /**
-     * <code>optional string emailSenderAddress = 15;</code>
+     * <code>optional string emailSenderAddress = 14;</code>
      */
     boolean hasEmailSenderAddress();
     /**
-     * <code>optional string emailSenderAddress = 15;</code>
+     * <code>optional string emailSenderAddress = 14;</code>
      */
     java.lang.String getEmailSenderAddress();
     /**
-     * <code>optional string emailSenderAddress = 15;</code>
+     * <code>optional string emailSenderAddress = 14;</code>
      */
     com.google.protobuf.ByteString
         getEmailSenderAddressBytes();
+
+    // optional bool cacheOutputFiles = 15;
+    /**
+     * <code>optional bool cacheOutputFiles = 15;</code>
+     */
+    boolean hasCacheOutputFiles();
+    /**
+     * <code>optional bool cacheOutputFiles = 15;</code>
+     */
+    boolean getCacheOutputFiles();
 
     // optional bool hideUserListForNonAdmin = 16;
     /**
@@ -2409,12 +2409,12 @@ public final class SettingsInterfaceImpl {
             }
             case 24: {
               bitField0_ |= 0x00000004;
-              protocolBuffersPort_ = input.readInt32();
+              allowOnlyWhitelisted_ = input.readBool();
               break;
             }
             case 32: {
               bitField0_ |= 0x00000008;
-              allowOnlyWhitelisted_ = input.readBool();
+              protocolBuffersPort_ = input.readInt32();
               break;
             }
             case 42: {
@@ -2453,42 +2453,42 @@ public final class SettingsInterfaceImpl {
               input.popLimit(limit);
               break;
             }
-            case 74: {
-              if (!((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
-                whitelistedDomains_ = new com.google.protobuf.LazyStringArrayList();
-                mutable_bitField0_ |= 0x00000100;
-              }
-              whitelistedDomains_.add(input.readBytes());
-              break;
-            }
-            case 80: {
+            case 72: {
               bitField0_ |= 0x00000080;
               rid_ = input.readInt32();
               break;
             }
-            case 88: {
+            case 80: {
               bitField0_ |= 0x00000100;
               allowSelfRegistration_ = input.readBool();
               break;
             }
-            case 98: {
+            case 90: {
               bitField0_ |= 0x00000200;
               smtpServer_ = input.readBytes();
               break;
             }
-            case 104: {
-              bitField0_ |= 0x00000400;
-              cacheOutputFiles_ = input.readBool();
+            case 98: {
+              if (!((mutable_bitField0_ & 0x00000800) == 0x00000800)) {
+                whitelistedDomains_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000800;
+              }
+              whitelistedDomains_.add(input.readBytes());
               break;
             }
-            case 112: {
-              bitField0_ |= 0x00000800;
+            case 104: {
+              bitField0_ |= 0x00000400;
               oid_ = input.readInt64();
               break;
             }
-            case 122: {
-              bitField0_ |= 0x00001000;
+            case 114: {
+              bitField0_ |= 0x00000800;
               emailSenderAddress_ = input.readBytes();
+              break;
+            }
+            case 120: {
+              bitField0_ |= 0x00001000;
+              cacheOutputFiles_ = input.readBool();
               break;
             }
             case 128: {
@@ -2522,7 +2522,7 @@ public final class SettingsInterfaceImpl {
         if (((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
           webModules_ = java.util.Collections.unmodifiableList(webModules_);
         }
-        if (((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
+        if (((mutable_bitField0_ & 0x00000800) == 0x00000800)) {
           whitelistedDomains_ = new com.google.protobuf.UnmodifiableLazyStringList(whitelistedDomains_);
         }
         this.unknownFields = unknownFields.build();
@@ -2589,36 +2589,36 @@ public final class SettingsInterfaceImpl {
       return generateGeometryOnCheckin_;
     }
 
-    // optional int32 protocolBuffersPort = 3;
-    public static final int PROTOCOLBUFFERSPORT_FIELD_NUMBER = 3;
-    private int protocolBuffersPort_;
+    // optional bool allowOnlyWhitelisted = 3;
+    public static final int ALLOWONLYWHITELISTED_FIELD_NUMBER = 3;
+    private boolean allowOnlyWhitelisted_;
     /**
-     * <code>optional int32 protocolBuffersPort = 3;</code>
+     * <code>optional bool allowOnlyWhitelisted = 3;</code>
      */
-    public boolean hasProtocolBuffersPort() {
+    public boolean hasAllowOnlyWhitelisted() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>optional int32 protocolBuffersPort = 3;</code>
-     */
-    public int getProtocolBuffersPort() {
-      return protocolBuffersPort_;
-    }
-
-    // optional bool allowOnlyWhitelisted = 4;
-    public static final int ALLOWONLYWHITELISTED_FIELD_NUMBER = 4;
-    private boolean allowOnlyWhitelisted_;
-    /**
-     * <code>optional bool allowOnlyWhitelisted = 4;</code>
-     */
-    public boolean hasAllowOnlyWhitelisted() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>optional bool allowOnlyWhitelisted = 4;</code>
+     * <code>optional bool allowOnlyWhitelisted = 3;</code>
      */
     public boolean getAllowOnlyWhitelisted() {
       return allowOnlyWhitelisted_;
+    }
+
+    // optional int32 protocolBuffersPort = 4;
+    public static final int PROTOCOLBUFFERSPORT_FIELD_NUMBER = 4;
+    private int protocolBuffersPort_;
+    /**
+     * <code>optional int32 protocolBuffersPort = 4;</code>
+     */
+    public boolean hasProtocolBuffersPort() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional int32 protocolBuffersPort = 4;</code>
+     */
+    public int getProtocolBuffersPort() {
+      return protocolBuffersPort_;
     }
 
     // optional string siteAddress = 5;
@@ -2746,79 +2746,49 @@ public final class SettingsInterfaceImpl {
       return webModules_.get(index);
     }
 
-    // repeated string whitelistedDomains = 9;
-    public static final int WHITELISTEDDOMAINS_FIELD_NUMBER = 9;
-    private com.google.protobuf.LazyStringList whitelistedDomains_;
-    /**
-     * <code>repeated string whitelistedDomains = 9;</code>
-     */
-    public java.util.List<java.lang.String>
-        getWhitelistedDomainsList() {
-      return whitelistedDomains_;
-    }
-    /**
-     * <code>repeated string whitelistedDomains = 9;</code>
-     */
-    public int getWhitelistedDomainsCount() {
-      return whitelistedDomains_.size();
-    }
-    /**
-     * <code>repeated string whitelistedDomains = 9;</code>
-     */
-    public java.lang.String getWhitelistedDomains(int index) {
-      return whitelistedDomains_.get(index);
-    }
-    /**
-     * <code>repeated string whitelistedDomains = 9;</code>
-     */
-    public com.google.protobuf.ByteString
-        getWhitelistedDomainsBytes(int index) {
-      return whitelistedDomains_.getByteString(index);
-    }
-
-    // optional int32 rid = 10;
-    public static final int RID_FIELD_NUMBER = 10;
+    // optional int32 rid = 9;
+    public static final int RID_FIELD_NUMBER = 9;
     private int rid_;
     /**
-     * <code>optional int32 rid = 10;</code>
+     * <code>optional int32 rid = 9;</code>
      */
     public boolean hasRid() {
       return ((bitField0_ & 0x00000080) == 0x00000080);
     }
     /**
-     * <code>optional int32 rid = 10;</code>
+     * <code>optional int32 rid = 9;</code>
      */
     public int getRid() {
       return rid_;
     }
 
-    // optional bool allowSelfRegistration = 11;
-    public static final int ALLOWSELFREGISTRATION_FIELD_NUMBER = 11;
+    // optional bool allowSelfRegistration = 10;
+    public static final int ALLOWSELFREGISTRATION_FIELD_NUMBER = 10;
     private boolean allowSelfRegistration_;
     /**
-     * <code>optional bool allowSelfRegistration = 11;</code>
+     * <code>optional bool allowSelfRegistration = 10;</code>
      */
     public boolean hasAllowSelfRegistration() {
       return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     /**
-     * <code>optional bool allowSelfRegistration = 11;</code>
+     * <code>optional bool allowSelfRegistration = 10;</code>
      */
     public boolean getAllowSelfRegistration() {
       return allowSelfRegistration_;
     }
 
-    // optional string smtpServer = 12;
-    public static final int SMTPSERVER_FIELD_NUMBER = 12;
+    // optional string smtpServer = 11;
+    public static final int SMTPSERVER_FIELD_NUMBER = 11;
     private java.lang.Object smtpServer_;
     /**
-     * <code>optional string smtpServer = 12;</code>
+     * <code>optional string smtpServer = 11;</code>
      */
     public boolean hasSmtpServer() {
       return ((bitField0_ & 0x00000200) == 0x00000200);
     }
     /**
-     * <code>optional string smtpServer = 12;</code>
+     * <code>optional string smtpServer = 11;</code>
      */
     public java.lang.String getSmtpServer() {
       java.lang.Object ref = smtpServer_;
@@ -2835,7 +2805,7 @@ public final class SettingsInterfaceImpl {
       }
     }
     /**
-     * <code>optional string smtpServer = 12;</code>
+     * <code>optional string smtpServer = 11;</code>
      */
     public com.google.protobuf.ByteString
         getSmtpServerBytes() {
@@ -2851,49 +2821,63 @@ public final class SettingsInterfaceImpl {
       }
     }
 
-    // optional bool cacheOutputFiles = 13;
-    public static final int CACHEOUTPUTFILES_FIELD_NUMBER = 13;
-    private boolean cacheOutputFiles_;
+    // repeated string whitelistedDomains = 12;
+    public static final int WHITELISTEDDOMAINS_FIELD_NUMBER = 12;
+    private com.google.protobuf.LazyStringList whitelistedDomains_;
     /**
-     * <code>optional bool cacheOutputFiles = 13;</code>
+     * <code>repeated string whitelistedDomains = 12;</code>
      */
-    public boolean hasCacheOutputFiles() {
+    public java.util.List<java.lang.String>
+        getWhitelistedDomainsList() {
+      return whitelistedDomains_;
+    }
+    /**
+     * <code>repeated string whitelistedDomains = 12;</code>
+     */
+    public int getWhitelistedDomainsCount() {
+      return whitelistedDomains_.size();
+    }
+    /**
+     * <code>repeated string whitelistedDomains = 12;</code>
+     */
+    public java.lang.String getWhitelistedDomains(int index) {
+      return whitelistedDomains_.get(index);
+    }
+    /**
+     * <code>repeated string whitelistedDomains = 12;</code>
+     */
+    public com.google.protobuf.ByteString
+        getWhitelistedDomainsBytes(int index) {
+      return whitelistedDomains_.getByteString(index);
+    }
+
+    // optional int64 oid = 13;
+    public static final int OID_FIELD_NUMBER = 13;
+    private long oid_;
+    /**
+     * <code>optional int64 oid = 13;</code>
+     */
+    public boolean hasOid() {
       return ((bitField0_ & 0x00000400) == 0x00000400);
     }
     /**
-     * <code>optional bool cacheOutputFiles = 13;</code>
-     */
-    public boolean getCacheOutputFiles() {
-      return cacheOutputFiles_;
-    }
-
-    // optional int64 oid = 14;
-    public static final int OID_FIELD_NUMBER = 14;
-    private long oid_;
-    /**
-     * <code>optional int64 oid = 14;</code>
-     */
-    public boolean hasOid() {
-      return ((bitField0_ & 0x00000800) == 0x00000800);
-    }
-    /**
-     * <code>optional int64 oid = 14;</code>
+     * <code>optional int64 oid = 13;</code>
      */
     public long getOid() {
       return oid_;
     }
 
-    // optional string emailSenderAddress = 15;
-    public static final int EMAILSENDERADDRESS_FIELD_NUMBER = 15;
+    // optional string emailSenderAddress = 14;
+    public static final int EMAILSENDERADDRESS_FIELD_NUMBER = 14;
     private java.lang.Object emailSenderAddress_;
     /**
-     * <code>optional string emailSenderAddress = 15;</code>
+     * <code>optional string emailSenderAddress = 14;</code>
      */
     public boolean hasEmailSenderAddress() {
-      return ((bitField0_ & 0x00001000) == 0x00001000);
+      return ((bitField0_ & 0x00000800) == 0x00000800);
     }
     /**
-     * <code>optional string emailSenderAddress = 15;</code>
+     * <code>optional string emailSenderAddress = 14;</code>
      */
     public java.lang.String getEmailSenderAddress() {
       java.lang.Object ref = emailSenderAddress_;
@@ -2910,7 +2894,7 @@ public final class SettingsInterfaceImpl {
       }
     }
     /**
-     * <code>optional string emailSenderAddress = 15;</code>
+     * <code>optional string emailSenderAddress = 14;</code>
      */
     public com.google.protobuf.ByteString
         getEmailSenderAddressBytes() {
@@ -2924,6 +2908,22 @@ public final class SettingsInterfaceImpl {
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
+    }
+
+    // optional bool cacheOutputFiles = 15;
+    public static final int CACHEOUTPUTFILES_FIELD_NUMBER = 15;
+    private boolean cacheOutputFiles_;
+    /**
+     * <code>optional bool cacheOutputFiles = 15;</code>
+     */
+    public boolean hasCacheOutputFiles() {
+      return ((bitField0_ & 0x00001000) == 0x00001000);
+    }
+    /**
+     * <code>optional bool cacheOutputFiles = 15;</code>
+     */
+    public boolean getCacheOutputFiles() {
+      return cacheOutputFiles_;
     }
 
     // optional bool hideUserListForNonAdmin = 16;
@@ -3020,19 +3020,19 @@ public final class SettingsInterfaceImpl {
     private void initFields() {
       sendConfirmationEmailAfterRegistration_ = false;
       generateGeometryOnCheckin_ = false;
-      protocolBuffersPort_ = 0;
       allowOnlyWhitelisted_ = false;
+      protocolBuffersPort_ = 0;
       siteAddress_ = "";
       allowUsersToCreateTopLevelProjects_ = false;
       serviceRepositoryUrl_ = "";
       webModules_ = java.util.Collections.emptyList();
-      whitelistedDomains_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       rid_ = 0;
       allowSelfRegistration_ = false;
       smtpServer_ = "";
-      cacheOutputFiles_ = false;
+      whitelistedDomains_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       oid_ = 0L;
       emailSenderAddress_ = "";
+      cacheOutputFiles_ = false;
       hideUserListForNonAdmin_ = false;
       emailSenderName_ = "";
       webModuleId_ = 0L;
@@ -3057,10 +3057,10 @@ public final class SettingsInterfaceImpl {
         output.writeBool(2, generateGeometryOnCheckin_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(3, protocolBuffersPort_);
+        output.writeBool(3, allowOnlyWhitelisted_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBool(4, allowOnlyWhitelisted_);
+        output.writeInt32(4, protocolBuffersPort_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeBytes(5, getSiteAddressBytes());
@@ -3074,26 +3074,26 @@ public final class SettingsInterfaceImpl {
       for (int i = 0; i < webModules_.size(); i++) {
         output.writeInt64(8, webModules_.get(i));
       }
-      for (int i = 0; i < whitelistedDomains_.size(); i++) {
-        output.writeBytes(9, whitelistedDomains_.getByteString(i));
-      }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeInt32(10, rid_);
+        output.writeInt32(9, rid_);
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        output.writeBool(11, allowSelfRegistration_);
+        output.writeBool(10, allowSelfRegistration_);
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
-        output.writeBytes(12, getSmtpServerBytes());
+        output.writeBytes(11, getSmtpServerBytes());
+      }
+      for (int i = 0; i < whitelistedDomains_.size(); i++) {
+        output.writeBytes(12, whitelistedDomains_.getByteString(i));
       }
       if (((bitField0_ & 0x00000400) == 0x00000400)) {
-        output.writeBool(13, cacheOutputFiles_);
+        output.writeInt64(13, oid_);
       }
       if (((bitField0_ & 0x00000800) == 0x00000800)) {
-        output.writeInt64(14, oid_);
+        output.writeBytes(14, getEmailSenderAddressBytes());
       }
       if (((bitField0_ & 0x00001000) == 0x00001000)) {
-        output.writeBytes(15, getEmailSenderAddressBytes());
+        output.writeBool(15, cacheOutputFiles_);
       }
       if (((bitField0_ & 0x00002000) == 0x00002000)) {
         output.writeBool(16, hideUserListForNonAdmin_);
@@ -3126,11 +3126,11 @@ public final class SettingsInterfaceImpl {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, protocolBuffersPort_);
+          .computeBoolSize(3, allowOnlyWhitelisted_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(4, allowOnlyWhitelisted_);
+          .computeInt32Size(4, protocolBuffersPort_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
@@ -3153,6 +3153,18 @@ public final class SettingsInterfaceImpl {
         size += dataSize;
         size += 1 * getWebModulesList().size();
       }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(9, rid_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(10, allowSelfRegistration_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(11, getSmtpServerBytes());
+      }
       {
         int dataSize = 0;
         for (int i = 0; i < whitelistedDomains_.size(); i++) {
@@ -3162,29 +3174,17 @@ public final class SettingsInterfaceImpl {
         size += dataSize;
         size += 1 * getWhitelistedDomainsList().size();
       }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(10, rid_);
-      }
-      if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(11, allowSelfRegistration_);
-      }
-      if (((bitField0_ & 0x00000200) == 0x00000200)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(12, getSmtpServerBytes());
-      }
       if (((bitField0_ & 0x00000400) == 0x00000400)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(13, cacheOutputFiles_);
+          .computeInt64Size(13, oid_);
       }
       if (((bitField0_ & 0x00000800) == 0x00000800)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(14, oid_);
+          .computeBytesSize(14, getEmailSenderAddressBytes());
       }
       if (((bitField0_ & 0x00001000) == 0x00001000)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(15, getEmailSenderAddressBytes());
+          .computeBoolSize(15, cacheOutputFiles_);
       }
       if (((bitField0_ & 0x00002000) == 0x00002000)) {
         size += com.google.protobuf.CodedOutputStream
@@ -3322,9 +3322,9 @@ public final class SettingsInterfaceImpl {
         bitField0_ = (bitField0_ & ~0x00000001);
         generateGeometryOnCheckin_ = false;
         bitField0_ = (bitField0_ & ~0x00000002);
-        protocolBuffersPort_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
         allowOnlyWhitelisted_ = false;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        protocolBuffersPort_ = 0;
         bitField0_ = (bitField0_ & ~0x00000008);
         siteAddress_ = "";
         bitField0_ = (bitField0_ & ~0x00000010);
@@ -3334,19 +3334,19 @@ public final class SettingsInterfaceImpl {
         bitField0_ = (bitField0_ & ~0x00000040);
         webModules_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000080);
-        whitelistedDomains_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000100);
         rid_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000200);
+        bitField0_ = (bitField0_ & ~0x00000100);
         allowSelfRegistration_ = false;
-        bitField0_ = (bitField0_ & ~0x00000400);
+        bitField0_ = (bitField0_ & ~0x00000200);
         smtpServer_ = "";
+        bitField0_ = (bitField0_ & ~0x00000400);
+        whitelistedDomains_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000800);
-        cacheOutputFiles_ = false;
-        bitField0_ = (bitField0_ & ~0x00001000);
         oid_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00002000);
+        bitField0_ = (bitField0_ & ~0x00001000);
         emailSenderAddress_ = "";
+        bitField0_ = (bitField0_ & ~0x00002000);
+        cacheOutputFiles_ = false;
         bitField0_ = (bitField0_ & ~0x00004000);
         hideUserListForNonAdmin_ = false;
         bitField0_ = (bitField0_ & ~0x00008000);
@@ -3395,11 +3395,11 @@ public final class SettingsInterfaceImpl {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.protocolBuffersPort_ = protocolBuffersPort_;
+        result.allowOnlyWhitelisted_ = allowOnlyWhitelisted_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.allowOnlyWhitelisted_ = allowOnlyWhitelisted_;
+        result.protocolBuffersPort_ = protocolBuffersPort_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
@@ -3417,36 +3417,36 @@ public final class SettingsInterfaceImpl {
           bitField0_ = (bitField0_ & ~0x00000080);
         }
         result.webModules_ = webModules_;
-        if (((bitField0_ & 0x00000100) == 0x00000100)) {
-          whitelistedDomains_ = new com.google.protobuf.UnmodifiableLazyStringList(
-              whitelistedDomains_);
-          bitField0_ = (bitField0_ & ~0x00000100);
-        }
-        result.whitelistedDomains_ = whitelistedDomains_;
-        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
           to_bitField0_ |= 0x00000080;
         }
         result.rid_ = rid_;
-        if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
+        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
           to_bitField0_ |= 0x00000100;
         }
         result.allowSelfRegistration_ = allowSelfRegistration_;
-        if (((from_bitField0_ & 0x00000800) == 0x00000800)) {
+        if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
           to_bitField0_ |= 0x00000200;
         }
         result.smtpServer_ = smtpServer_;
+        if (((bitField0_ & 0x00000800) == 0x00000800)) {
+          whitelistedDomains_ = new com.google.protobuf.UnmodifiableLazyStringList(
+              whitelistedDomains_);
+          bitField0_ = (bitField0_ & ~0x00000800);
+        }
+        result.whitelistedDomains_ = whitelistedDomains_;
         if (((from_bitField0_ & 0x00001000) == 0x00001000)) {
           to_bitField0_ |= 0x00000400;
         }
-        result.cacheOutputFiles_ = cacheOutputFiles_;
+        result.oid_ = oid_;
         if (((from_bitField0_ & 0x00002000) == 0x00002000)) {
           to_bitField0_ |= 0x00000800;
         }
-        result.oid_ = oid_;
+        result.emailSenderAddress_ = emailSenderAddress_;
         if (((from_bitField0_ & 0x00004000) == 0x00004000)) {
           to_bitField0_ |= 0x00001000;
         }
-        result.emailSenderAddress_ = emailSenderAddress_;
+        result.cacheOutputFiles_ = cacheOutputFiles_;
         if (((from_bitField0_ & 0x00008000) == 0x00008000)) {
           to_bitField0_ |= 0x00002000;
         }
@@ -3485,11 +3485,11 @@ public final class SettingsInterfaceImpl {
         if (other.hasGenerateGeometryOnCheckin()) {
           setGenerateGeometryOnCheckin(other.getGenerateGeometryOnCheckin());
         }
-        if (other.hasProtocolBuffersPort()) {
-          setProtocolBuffersPort(other.getProtocolBuffersPort());
-        }
         if (other.hasAllowOnlyWhitelisted()) {
           setAllowOnlyWhitelisted(other.getAllowOnlyWhitelisted());
+        }
+        if (other.hasProtocolBuffersPort()) {
+          setProtocolBuffersPort(other.getProtocolBuffersPort());
         }
         if (other.hasSiteAddress()) {
           bitField0_ |= 0x00000010;
@@ -3514,16 +3514,6 @@ public final class SettingsInterfaceImpl {
           }
           onChanged();
         }
-        if (!other.whitelistedDomains_.isEmpty()) {
-          if (whitelistedDomains_.isEmpty()) {
-            whitelistedDomains_ = other.whitelistedDomains_;
-            bitField0_ = (bitField0_ & ~0x00000100);
-          } else {
-            ensureWhitelistedDomainsIsMutable();
-            whitelistedDomains_.addAll(other.whitelistedDomains_);
-          }
-          onChanged();
-        }
         if (other.hasRid()) {
           setRid(other.getRid());
         }
@@ -3531,20 +3521,30 @@ public final class SettingsInterfaceImpl {
           setAllowSelfRegistration(other.getAllowSelfRegistration());
         }
         if (other.hasSmtpServer()) {
-          bitField0_ |= 0x00000800;
+          bitField0_ |= 0x00000400;
           smtpServer_ = other.smtpServer_;
           onChanged();
         }
-        if (other.hasCacheOutputFiles()) {
-          setCacheOutputFiles(other.getCacheOutputFiles());
+        if (!other.whitelistedDomains_.isEmpty()) {
+          if (whitelistedDomains_.isEmpty()) {
+            whitelistedDomains_ = other.whitelistedDomains_;
+            bitField0_ = (bitField0_ & ~0x00000800);
+          } else {
+            ensureWhitelistedDomainsIsMutable();
+            whitelistedDomains_.addAll(other.whitelistedDomains_);
+          }
+          onChanged();
         }
         if (other.hasOid()) {
           setOid(other.getOid());
         }
         if (other.hasEmailSenderAddress()) {
-          bitField0_ |= 0x00004000;
+          bitField0_ |= 0x00002000;
           emailSenderAddress_ = other.emailSenderAddress_;
           onChanged();
+        }
+        if (other.hasCacheOutputFiles()) {
+          setCacheOutputFiles(other.getCacheOutputFiles());
         }
         if (other.hasHideUserListForNonAdmin()) {
           setHideUserListForNonAdmin(other.getHideUserListForNonAdmin());
@@ -3653,68 +3653,68 @@ public final class SettingsInterfaceImpl {
         return this;
       }
 
-      // optional int32 protocolBuffersPort = 3;
-      private int protocolBuffersPort_ ;
+      // optional bool allowOnlyWhitelisted = 3;
+      private boolean allowOnlyWhitelisted_ ;
       /**
-       * <code>optional int32 protocolBuffersPort = 3;</code>
+       * <code>optional bool allowOnlyWhitelisted = 3;</code>
        */
-      public boolean hasProtocolBuffersPort() {
+      public boolean hasAllowOnlyWhitelisted() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional int32 protocolBuffersPort = 3;</code>
-       */
-      public int getProtocolBuffersPort() {
-        return protocolBuffersPort_;
-      }
-      /**
-       * <code>optional int32 protocolBuffersPort = 3;</code>
-       */
-      public Builder setProtocolBuffersPort(int value) {
-        bitField0_ |= 0x00000004;
-        protocolBuffersPort_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional int32 protocolBuffersPort = 3;</code>
-       */
-      public Builder clearProtocolBuffersPort() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        protocolBuffersPort_ = 0;
-        onChanged();
-        return this;
-      }
-
-      // optional bool allowOnlyWhitelisted = 4;
-      private boolean allowOnlyWhitelisted_ ;
-      /**
-       * <code>optional bool allowOnlyWhitelisted = 4;</code>
-       */
-      public boolean hasAllowOnlyWhitelisted() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      /**
-       * <code>optional bool allowOnlyWhitelisted = 4;</code>
+       * <code>optional bool allowOnlyWhitelisted = 3;</code>
        */
       public boolean getAllowOnlyWhitelisted() {
         return allowOnlyWhitelisted_;
       }
       /**
-       * <code>optional bool allowOnlyWhitelisted = 4;</code>
+       * <code>optional bool allowOnlyWhitelisted = 3;</code>
        */
       public Builder setAllowOnlyWhitelisted(boolean value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
         allowOnlyWhitelisted_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional bool allowOnlyWhitelisted = 4;</code>
+       * <code>optional bool allowOnlyWhitelisted = 3;</code>
        */
       public Builder clearAllowOnlyWhitelisted() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         allowOnlyWhitelisted_ = false;
+        onChanged();
+        return this;
+      }
+
+      // optional int32 protocolBuffersPort = 4;
+      private int protocolBuffersPort_ ;
+      /**
+       * <code>optional int32 protocolBuffersPort = 4;</code>
+       */
+      public boolean hasProtocolBuffersPort() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional int32 protocolBuffersPort = 4;</code>
+       */
+      public int getProtocolBuffersPort() {
+        return protocolBuffersPort_;
+      }
+      /**
+       * <code>optional int32 protocolBuffersPort = 4;</code>
+       */
+      public Builder setProtocolBuffersPort(int value) {
+        bitField0_ |= 0x00000008;
+        protocolBuffersPort_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 protocolBuffersPort = 4;</code>
+       */
+      public Builder clearProtocolBuffersPort() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        protocolBuffersPort_ = 0;
         onChanged();
         return this;
       }
@@ -3966,175 +3966,82 @@ public final class SettingsInterfaceImpl {
         return this;
       }
 
-      // repeated string whitelistedDomains = 9;
-      private com.google.protobuf.LazyStringList whitelistedDomains_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureWhitelistedDomainsIsMutable() {
-        if (!((bitField0_ & 0x00000100) == 0x00000100)) {
-          whitelistedDomains_ = new com.google.protobuf.LazyStringArrayList(whitelistedDomains_);
-          bitField0_ |= 0x00000100;
-         }
-      }
-      /**
-       * <code>repeated string whitelistedDomains = 9;</code>
-       */
-      public java.util.List<java.lang.String>
-          getWhitelistedDomainsList() {
-        return java.util.Collections.unmodifiableList(whitelistedDomains_);
-      }
-      /**
-       * <code>repeated string whitelistedDomains = 9;</code>
-       */
-      public int getWhitelistedDomainsCount() {
-        return whitelistedDomains_.size();
-      }
-      /**
-       * <code>repeated string whitelistedDomains = 9;</code>
-       */
-      public java.lang.String getWhitelistedDomains(int index) {
-        return whitelistedDomains_.get(index);
-      }
-      /**
-       * <code>repeated string whitelistedDomains = 9;</code>
-       */
-      public com.google.protobuf.ByteString
-          getWhitelistedDomainsBytes(int index) {
-        return whitelistedDomains_.getByteString(index);
-      }
-      /**
-       * <code>repeated string whitelistedDomains = 9;</code>
-       */
-      public Builder setWhitelistedDomains(
-          int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureWhitelistedDomainsIsMutable();
-        whitelistedDomains_.set(index, value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string whitelistedDomains = 9;</code>
-       */
-      public Builder addWhitelistedDomains(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureWhitelistedDomainsIsMutable();
-        whitelistedDomains_.add(value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string whitelistedDomains = 9;</code>
-       */
-      public Builder addAllWhitelistedDomains(
-          java.lang.Iterable<java.lang.String> values) {
-        ensureWhitelistedDomainsIsMutable();
-        super.addAll(values, whitelistedDomains_);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string whitelistedDomains = 9;</code>
-       */
-      public Builder clearWhitelistedDomains() {
-        whitelistedDomains_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000100);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string whitelistedDomains = 9;</code>
-       */
-      public Builder addWhitelistedDomainsBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureWhitelistedDomainsIsMutable();
-        whitelistedDomains_.add(value);
-        onChanged();
-        return this;
-      }
-
-      // optional int32 rid = 10;
+      // optional int32 rid = 9;
       private int rid_ ;
       /**
-       * <code>optional int32 rid = 10;</code>
+       * <code>optional int32 rid = 9;</code>
        */
       public boolean hasRid() {
-        return ((bitField0_ & 0x00000200) == 0x00000200);
+        return ((bitField0_ & 0x00000100) == 0x00000100);
       }
       /**
-       * <code>optional int32 rid = 10;</code>
+       * <code>optional int32 rid = 9;</code>
        */
       public int getRid() {
         return rid_;
       }
       /**
-       * <code>optional int32 rid = 10;</code>
+       * <code>optional int32 rid = 9;</code>
        */
       public Builder setRid(int value) {
-        bitField0_ |= 0x00000200;
+        bitField0_ |= 0x00000100;
         rid_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int32 rid = 10;</code>
+       * <code>optional int32 rid = 9;</code>
        */
       public Builder clearRid() {
-        bitField0_ = (bitField0_ & ~0x00000200);
+        bitField0_ = (bitField0_ & ~0x00000100);
         rid_ = 0;
         onChanged();
         return this;
       }
 
-      // optional bool allowSelfRegistration = 11;
+      // optional bool allowSelfRegistration = 10;
       private boolean allowSelfRegistration_ ;
       /**
-       * <code>optional bool allowSelfRegistration = 11;</code>
+       * <code>optional bool allowSelfRegistration = 10;</code>
        */
       public boolean hasAllowSelfRegistration() {
-        return ((bitField0_ & 0x00000400) == 0x00000400);
+        return ((bitField0_ & 0x00000200) == 0x00000200);
       }
       /**
-       * <code>optional bool allowSelfRegistration = 11;</code>
+       * <code>optional bool allowSelfRegistration = 10;</code>
        */
       public boolean getAllowSelfRegistration() {
         return allowSelfRegistration_;
       }
       /**
-       * <code>optional bool allowSelfRegistration = 11;</code>
+       * <code>optional bool allowSelfRegistration = 10;</code>
        */
       public Builder setAllowSelfRegistration(boolean value) {
-        bitField0_ |= 0x00000400;
+        bitField0_ |= 0x00000200;
         allowSelfRegistration_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional bool allowSelfRegistration = 11;</code>
+       * <code>optional bool allowSelfRegistration = 10;</code>
        */
       public Builder clearAllowSelfRegistration() {
-        bitField0_ = (bitField0_ & ~0x00000400);
+        bitField0_ = (bitField0_ & ~0x00000200);
         allowSelfRegistration_ = false;
         onChanged();
         return this;
       }
 
-      // optional string smtpServer = 12;
+      // optional string smtpServer = 11;
       private java.lang.Object smtpServer_ = "";
       /**
-       * <code>optional string smtpServer = 12;</code>
+       * <code>optional string smtpServer = 11;</code>
        */
       public boolean hasSmtpServer() {
-        return ((bitField0_ & 0x00000800) == 0x00000800);
+        return ((bitField0_ & 0x00000400) == 0x00000400);
       }
       /**
-       * <code>optional string smtpServer = 12;</code>
+       * <code>optional string smtpServer = 11;</code>
        */
       public java.lang.String getSmtpServer() {
         java.lang.Object ref = smtpServer_;
@@ -4148,7 +4055,7 @@ public final class SettingsInterfaceImpl {
         }
       }
       /**
-       * <code>optional string smtpServer = 12;</code>
+       * <code>optional string smtpServer = 11;</code>
        */
       public com.google.protobuf.ByteString
           getSmtpServerBytes() {
@@ -4164,117 +4071,177 @@ public final class SettingsInterfaceImpl {
         }
       }
       /**
-       * <code>optional string smtpServer = 12;</code>
+       * <code>optional string smtpServer = 11;</code>
        */
       public Builder setSmtpServer(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000800;
+  bitField0_ |= 0x00000400;
         smtpServer_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string smtpServer = 12;</code>
+       * <code>optional string smtpServer = 11;</code>
        */
       public Builder clearSmtpServer() {
-        bitField0_ = (bitField0_ & ~0x00000800);
+        bitField0_ = (bitField0_ & ~0x00000400);
         smtpServer_ = getDefaultInstance().getSmtpServer();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string smtpServer = 12;</code>
+       * <code>optional string smtpServer = 11;</code>
        */
       public Builder setSmtpServerBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000800;
+  bitField0_ |= 0x00000400;
         smtpServer_ = value;
         onChanged();
         return this;
       }
 
-      // optional bool cacheOutputFiles = 13;
-      private boolean cacheOutputFiles_ ;
-      /**
-       * <code>optional bool cacheOutputFiles = 13;</code>
-       */
-      public boolean hasCacheOutputFiles() {
-        return ((bitField0_ & 0x00001000) == 0x00001000);
+      // repeated string whitelistedDomains = 12;
+      private com.google.protobuf.LazyStringList whitelistedDomains_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureWhitelistedDomainsIsMutable() {
+        if (!((bitField0_ & 0x00000800) == 0x00000800)) {
+          whitelistedDomains_ = new com.google.protobuf.LazyStringArrayList(whitelistedDomains_);
+          bitField0_ |= 0x00000800;
+         }
       }
       /**
-       * <code>optional bool cacheOutputFiles = 13;</code>
+       * <code>repeated string whitelistedDomains = 12;</code>
        */
-      public boolean getCacheOutputFiles() {
-        return cacheOutputFiles_;
+      public java.util.List<java.lang.String>
+          getWhitelistedDomainsList() {
+        return java.util.Collections.unmodifiableList(whitelistedDomains_);
       }
       /**
-       * <code>optional bool cacheOutputFiles = 13;</code>
+       * <code>repeated string whitelistedDomains = 12;</code>
        */
-      public Builder setCacheOutputFiles(boolean value) {
-        bitField0_ |= 0x00001000;
-        cacheOutputFiles_ = value;
+      public int getWhitelistedDomainsCount() {
+        return whitelistedDomains_.size();
+      }
+      /**
+       * <code>repeated string whitelistedDomains = 12;</code>
+       */
+      public java.lang.String getWhitelistedDomains(int index) {
+        return whitelistedDomains_.get(index);
+      }
+      /**
+       * <code>repeated string whitelistedDomains = 12;</code>
+       */
+      public com.google.protobuf.ByteString
+          getWhitelistedDomainsBytes(int index) {
+        return whitelistedDomains_.getByteString(index);
+      }
+      /**
+       * <code>repeated string whitelistedDomains = 12;</code>
+       */
+      public Builder setWhitelistedDomains(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureWhitelistedDomainsIsMutable();
+        whitelistedDomains_.set(index, value);
         onChanged();
         return this;
       }
       /**
-       * <code>optional bool cacheOutputFiles = 13;</code>
+       * <code>repeated string whitelistedDomains = 12;</code>
        */
-      public Builder clearCacheOutputFiles() {
-        bitField0_ = (bitField0_ & ~0x00001000);
-        cacheOutputFiles_ = false;
+      public Builder addWhitelistedDomains(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureWhitelistedDomainsIsMutable();
+        whitelistedDomains_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string whitelistedDomains = 12;</code>
+       */
+      public Builder addAllWhitelistedDomains(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureWhitelistedDomainsIsMutable();
+        super.addAll(values, whitelistedDomains_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string whitelistedDomains = 12;</code>
+       */
+      public Builder clearWhitelistedDomains() {
+        whitelistedDomains_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000800);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string whitelistedDomains = 12;</code>
+       */
+      public Builder addWhitelistedDomainsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureWhitelistedDomainsIsMutable();
+        whitelistedDomains_.add(value);
         onChanged();
         return this;
       }
 
-      // optional int64 oid = 14;
+      // optional int64 oid = 13;
       private long oid_ ;
       /**
-       * <code>optional int64 oid = 14;</code>
+       * <code>optional int64 oid = 13;</code>
        */
       public boolean hasOid() {
-        return ((bitField0_ & 0x00002000) == 0x00002000);
+        return ((bitField0_ & 0x00001000) == 0x00001000);
       }
       /**
-       * <code>optional int64 oid = 14;</code>
+       * <code>optional int64 oid = 13;</code>
        */
       public long getOid() {
         return oid_;
       }
       /**
-       * <code>optional int64 oid = 14;</code>
+       * <code>optional int64 oid = 13;</code>
        */
       public Builder setOid(long value) {
-        bitField0_ |= 0x00002000;
+        bitField0_ |= 0x00001000;
         oid_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int64 oid = 14;</code>
+       * <code>optional int64 oid = 13;</code>
        */
       public Builder clearOid() {
-        bitField0_ = (bitField0_ & ~0x00002000);
+        bitField0_ = (bitField0_ & ~0x00001000);
         oid_ = 0L;
         onChanged();
         return this;
       }
 
-      // optional string emailSenderAddress = 15;
+      // optional string emailSenderAddress = 14;
       private java.lang.Object emailSenderAddress_ = "";
       /**
-       * <code>optional string emailSenderAddress = 15;</code>
+       * <code>optional string emailSenderAddress = 14;</code>
        */
       public boolean hasEmailSenderAddress() {
-        return ((bitField0_ & 0x00004000) == 0x00004000);
+        return ((bitField0_ & 0x00002000) == 0x00002000);
       }
       /**
-       * <code>optional string emailSenderAddress = 15;</code>
+       * <code>optional string emailSenderAddress = 14;</code>
        */
       public java.lang.String getEmailSenderAddress() {
         java.lang.Object ref = emailSenderAddress_;
@@ -4288,7 +4255,7 @@ public final class SettingsInterfaceImpl {
         }
       }
       /**
-       * <code>optional string emailSenderAddress = 15;</code>
+       * <code>optional string emailSenderAddress = 14;</code>
        */
       public com.google.protobuf.ByteString
           getEmailSenderAddressBytes() {
@@ -4304,37 +4271,70 @@ public final class SettingsInterfaceImpl {
         }
       }
       /**
-       * <code>optional string emailSenderAddress = 15;</code>
+       * <code>optional string emailSenderAddress = 14;</code>
        */
       public Builder setEmailSenderAddress(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00004000;
+  bitField0_ |= 0x00002000;
         emailSenderAddress_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string emailSenderAddress = 15;</code>
+       * <code>optional string emailSenderAddress = 14;</code>
        */
       public Builder clearEmailSenderAddress() {
-        bitField0_ = (bitField0_ & ~0x00004000);
+        bitField0_ = (bitField0_ & ~0x00002000);
         emailSenderAddress_ = getDefaultInstance().getEmailSenderAddress();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string emailSenderAddress = 15;</code>
+       * <code>optional string emailSenderAddress = 14;</code>
        */
       public Builder setEmailSenderAddressBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00004000;
+  bitField0_ |= 0x00002000;
         emailSenderAddress_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional bool cacheOutputFiles = 15;
+      private boolean cacheOutputFiles_ ;
+      /**
+       * <code>optional bool cacheOutputFiles = 15;</code>
+       */
+      public boolean hasCacheOutputFiles() {
+        return ((bitField0_ & 0x00004000) == 0x00004000);
+      }
+      /**
+       * <code>optional bool cacheOutputFiles = 15;</code>
+       */
+      public boolean getCacheOutputFiles() {
+        return cacheOutputFiles_;
+      }
+      /**
+       * <code>optional bool cacheOutputFiles = 15;</code>
+       */
+      public Builder setCacheOutputFiles(boolean value) {
+        bitField0_ |= 0x00004000;
+        cacheOutputFiles_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool cacheOutputFiles = 15;</code>
+       */
+      public Builder clearCacheOutputFiles() {
+        bitField0_ = (bitField0_ & ~0x00004000);
+        cacheOutputFiles_ = false;
         onChanged();
         return this;
       }
@@ -22381,15 +22381,15 @@ public final class SettingsInterfaceImpl {
       "\022\r\n\005value\030\002 \001(\005\"\032\n\030GetServerSettingsRequ",
       "est\"\237\004\n\017SServerSettings\022.\n&sendConfirmat" +
       "ionEmailAfterRegistration\030\001 \001(\010\022!\n\031gener" +
-      "ateGeometryOnCheckin\030\002 \001(\010\022\033\n\023protocolBu" +
-      "ffersPort\030\003 \001(\005\022\034\n\024allowOnlyWhitelisted\030" +
-      "\004 \001(\010\022\023\n\013siteAddress\030\005 \001(\t\022*\n\"allowUsers" +
+      "ateGeometryOnCheckin\030\002 \001(\010\022\034\n\024allowOnlyW" +
+      "hitelisted\030\003 \001(\010\022\033\n\023protocolBuffersPort\030" +
+      "\004 \001(\005\022\023\n\013siteAddress\030\005 \001(\t\022*\n\"allowUsers" +
       "ToCreateTopLevelProjects\030\006 \001(\010\022\034\n\024servic" +
       "eRepositoryUrl\030\007 \001(\t\022\022\n\nwebModules\030\010 \003(\003" +
-      "\022\032\n\022whitelistedDomains\030\t \003(\t\022\013\n\003rid\030\n \001(" +
-      "\005\022\035\n\025allowSelfRegistration\030\013 \001(\010\022\022\n\nsmtp" +
-      "Server\030\014 \001(\t\022\030\n\020cacheOutputFiles\030\r \001(\010\022\013",
-      "\n\003oid\030\016 \001(\003\022\032\n\022emailSenderAddress\030\017 \001(\t\022" +
+      "\022\013\n\003rid\030\t \001(\005\022\035\n\025allowSelfRegistration\030\n" +
+      " \001(\010\022\022\n\nsmtpServer\030\013 \001(\t\022\032\n\022whitelistedD" +
+      "omains\030\014 \003(\t\022\013\n\003oid\030\r \001(\003\022\032\n\022emailSender",
+      "Address\030\016 \001(\t\022\030\n\020cacheOutputFiles\030\017 \001(\010\022" +
       "\037\n\027hideUserListForNonAdmin\030\020 \001(\010\022\027\n\017emai" +
       "lSenderName\030\021 \001(\t\022\023\n\013webModuleId\030\022 \001(\003\022\035" +
       "\n\025checkinMergingEnabled\030\023 \001(\010\"c\n\031GetServ" +
@@ -22569,7 +22569,7 @@ public final class SettingsInterfaceImpl {
           internal_static_org_bimserver_pb_SServerSettings_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SServerSettings_descriptor,
-              new java.lang.String[] { "SendConfirmationEmailAfterRegistration", "GenerateGeometryOnCheckin", "ProtocolBuffersPort", "AllowOnlyWhitelisted", "SiteAddress", "AllowUsersToCreateTopLevelProjects", "ServiceRepositoryUrl", "WebModules", "WhitelistedDomains", "Rid", "AllowSelfRegistration", "SmtpServer", "CacheOutputFiles", "Oid", "EmailSenderAddress", "HideUserListForNonAdmin", "EmailSenderName", "WebModuleId", "CheckinMergingEnabled", });
+              new java.lang.String[] { "SendConfirmationEmailAfterRegistration", "GenerateGeometryOnCheckin", "AllowOnlyWhitelisted", "ProtocolBuffersPort", "SiteAddress", "AllowUsersToCreateTopLevelProjects", "ServiceRepositoryUrl", "WebModules", "Rid", "AllowSelfRegistration", "SmtpServer", "WhitelistedDomains", "Oid", "EmailSenderAddress", "CacheOutputFiles", "HideUserListForNonAdmin", "EmailSenderName", "WebModuleId", "CheckinMergingEnabled", });
           internal_static_org_bimserver_pb_GetServerSettingsResponse_descriptor =
             getDescriptor().getMessageTypes().get(6);
           internal_static_org_bimserver_pb_GetServerSettingsResponse_fieldAccessorTable = new
