@@ -19,9 +19,9 @@ package org.bimserver.test.framework.actions;
 
 import java.util.List;
 
-import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
@@ -39,10 +39,10 @@ public class UpdateRevisionAction extends Action {
 		List<Long> revisions = project.getRevisions();
 		if (!revisions.isEmpty()) {
 			Long revisionId = revisions.get(nextInt(revisions.size()));
-			SRevision revision = virtualUser.getBimServerClient().getServiceInterface().getRevision(revisionId);
+			SRevision revision = virtualUser.getBimServerClient().getService().getRevision(revisionId);
 			revision.setTag(randomString());
 			virtualUser.getLogger().info("Updating revision " + revision.getOid());
-			virtualUser.getBimServerClient().getServiceInterface().updateRevision(revision);
+			virtualUser.getBimServerClient().getService().updateRevision(revision);
 		}
 	}
 }

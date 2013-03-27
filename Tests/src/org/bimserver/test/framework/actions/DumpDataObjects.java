@@ -19,13 +19,13 @@ package org.bimserver.test.framework.actions;
 
 import java.util.List;
 
-import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SDataValue;
 import org.bimserver.interfaces.objects.SListDataValue;
 import org.bimserver.interfaces.objects.SReferenceDataValue;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSimpleDataValue;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
@@ -43,7 +43,7 @@ public class DumpDataObjects extends Action {
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		SRevision revision = virtualUser.getRandomRevision();
 		if (revision != null) {
-			List<SDataObject> dataObjects = virtualUser.getBimServerClient().getLowLevelInterface().getDataObjects(revision.getOid());
+			List<SDataObject> dataObjects = virtualUser.getBimServerClient().getLowLevel().getDataObjects(revision.getOid());
 			virtualUser.getLogger().info(dataObjects.size() + " dataobjects");
 			if (verbose) {
 				for (SDataObject dataObject : dataObjects) {

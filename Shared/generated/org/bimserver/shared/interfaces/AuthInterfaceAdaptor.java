@@ -25,6 +25,10 @@ public class AuthInterfaceAdaptor implements AuthInterface {
 		return null;
 	}
 	
+	public java.lang.Boolean changePassword(java.lang.Long uoid, java.lang.String oldPassword, java.lang.String newPassword) throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SAccessMethod getAccessMethod() throws UserException, ServerException {
 		return null;
 	}
@@ -50,6 +54,13 @@ public class AuthInterfaceAdaptor implements AuthInterface {
 	}
 	
 	public void logout() throws UserException, ServerException {
+	}
+	
+	public void requestPasswordChange(java.lang.String username, java.lang.String resetUrl) throws UserException, ServerException {
+	}
+	
+	public org.bimserver.interfaces.objects.SUser validateAccount(java.lang.Long uoid, java.lang.String token, java.lang.String password) throws UserException, ServerException {
+		return null;
 	}
 	
 }

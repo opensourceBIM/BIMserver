@@ -18,10 +18,10 @@ public class TestIfcMeasureWithUnit extends TestWithEmbeddedServer {
 			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Get the low level interface
-			LowLevelInterface lowLevelInterface = bimServerClient.getLowLevelInterface();
+			LowLevelInterface lowLevelInterface = bimServerClient.getLowLevel();
 			
 			// Create a new project
-			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random());
+			SProject newProject = bimServerClient.getService().addProject("test" + Math.random());
 			
 			// Start a transaction
 			Long tid = lowLevelInterface.startTransaction(newProject.getOid());

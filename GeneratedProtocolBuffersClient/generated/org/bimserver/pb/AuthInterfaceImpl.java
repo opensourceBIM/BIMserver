@@ -1262,6 +1262,1266 @@ public final class AuthInterfaceImpl {
     // @@protoc_insertion_point(class_scope:org.bimserver.pb.AutologinResponse)
   }
 
+  public interface ChangePasswordRequestOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional int64 uoid = 1;
+    /**
+     * <code>optional int64 uoid = 1;</code>
+     */
+    boolean hasUoid();
+    /**
+     * <code>optional int64 uoid = 1;</code>
+     */
+    long getUoid();
+
+    // optional string oldPassword = 2;
+    /**
+     * <code>optional string oldPassword = 2;</code>
+     */
+    boolean hasOldPassword();
+    /**
+     * <code>optional string oldPassword = 2;</code>
+     */
+    java.lang.String getOldPassword();
+    /**
+     * <code>optional string oldPassword = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getOldPasswordBytes();
+
+    // optional string newPassword = 3;
+    /**
+     * <code>optional string newPassword = 3;</code>
+     */
+    boolean hasNewPassword();
+    /**
+     * <code>optional string newPassword = 3;</code>
+     */
+    java.lang.String getNewPassword();
+    /**
+     * <code>optional string newPassword = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getNewPasswordBytes();
+  }
+  /**
+   * Protobuf type {@code org.bimserver.pb.ChangePasswordRequest}
+   */
+  public static final class ChangePasswordRequest extends
+      com.google.protobuf.GeneratedMessage
+      implements ChangePasswordRequestOrBuilder {
+    // Use ChangePasswordRequest.newBuilder() to construct.
+    private ChangePasswordRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private ChangePasswordRequest(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final ChangePasswordRequest defaultInstance;
+    public static ChangePasswordRequest getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public ChangePasswordRequest getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ChangePasswordRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              uoid_ = input.readInt64();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              oldPassword_ = input.readBytes();
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000004;
+              newPassword_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ChangePasswordRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ChangePasswordRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest.class, org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<ChangePasswordRequest> PARSER =
+        new com.google.protobuf.AbstractParser<ChangePasswordRequest>() {
+      public ChangePasswordRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ChangePasswordRequest(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ChangePasswordRequest> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional int64 uoid = 1;
+    public static final int UOID_FIELD_NUMBER = 1;
+    private long uoid_;
+    /**
+     * <code>optional int64 uoid = 1;</code>
+     */
+    public boolean hasUoid() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional int64 uoid = 1;</code>
+     */
+    public long getUoid() {
+      return uoid_;
+    }
+
+    // optional string oldPassword = 2;
+    public static final int OLDPASSWORD_FIELD_NUMBER = 2;
+    private java.lang.Object oldPassword_;
+    /**
+     * <code>optional string oldPassword = 2;</code>
+     */
+    public boolean hasOldPassword() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional string oldPassword = 2;</code>
+     */
+    public java.lang.String getOldPassword() {
+      java.lang.Object ref = oldPassword_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          oldPassword_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string oldPassword = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getOldPasswordBytes() {
+      java.lang.Object ref = oldPassword_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        oldPassword_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional string newPassword = 3;
+    public static final int NEWPASSWORD_FIELD_NUMBER = 3;
+    private java.lang.Object newPassword_;
+    /**
+     * <code>optional string newPassword = 3;</code>
+     */
+    public boolean hasNewPassword() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional string newPassword = 3;</code>
+     */
+    public java.lang.String getNewPassword() {
+      java.lang.Object ref = newPassword_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          newPassword_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string newPassword = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNewPasswordBytes() {
+      java.lang.Object ref = newPassword_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        newPassword_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private void initFields() {
+      uoid_ = 0L;
+      oldPassword_ = "";
+      newPassword_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt64(1, uoid_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getOldPasswordBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getNewPasswordBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, uoid_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getOldPasswordBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getNewPasswordBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.bimserver.pb.ChangePasswordRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ChangePasswordRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ChangePasswordRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest.class, org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest.Builder.class);
+      }
+
+      // Construct using org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        uoid_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        oldPassword_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        newPassword_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ChangePasswordRequest_descriptor;
+      }
+
+      public org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest getDefaultInstanceForType() {
+        return org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest.getDefaultInstance();
+      }
+
+      public org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest build() {
+        org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest buildPartial() {
+        org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest result = new org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.uoid_ = uoid_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.oldPassword_ = oldPassword_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.newPassword_ = newPassword_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest) {
+          return mergeFrom((org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest other) {
+        if (other == org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest.getDefaultInstance()) return this;
+        if (other.hasUoid()) {
+          setUoid(other.getUoid());
+        }
+        if (other.hasOldPassword()) {
+          bitField0_ |= 0x00000002;
+          oldPassword_ = other.oldPassword_;
+          onChanged();
+        }
+        if (other.hasNewPassword()) {
+          bitField0_ |= 0x00000004;
+          newPassword_ = other.newPassword_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional int64 uoid = 1;
+      private long uoid_ ;
+      /**
+       * <code>optional int64 uoid = 1;</code>
+       */
+      public boolean hasUoid() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional int64 uoid = 1;</code>
+       */
+      public long getUoid() {
+        return uoid_;
+      }
+      /**
+       * <code>optional int64 uoid = 1;</code>
+       */
+      public Builder setUoid(long value) {
+        bitField0_ |= 0x00000001;
+        uoid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 uoid = 1;</code>
+       */
+      public Builder clearUoid() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        uoid_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // optional string oldPassword = 2;
+      private java.lang.Object oldPassword_ = "";
+      /**
+       * <code>optional string oldPassword = 2;</code>
+       */
+      public boolean hasOldPassword() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional string oldPassword = 2;</code>
+       */
+      public java.lang.String getOldPassword() {
+        java.lang.Object ref = oldPassword_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          oldPassword_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string oldPassword = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getOldPasswordBytes() {
+        java.lang.Object ref = oldPassword_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          oldPassword_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string oldPassword = 2;</code>
+       */
+      public Builder setOldPassword(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        oldPassword_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string oldPassword = 2;</code>
+       */
+      public Builder clearOldPassword() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        oldPassword_ = getDefaultInstance().getOldPassword();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string oldPassword = 2;</code>
+       */
+      public Builder setOldPasswordBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        oldPassword_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional string newPassword = 3;
+      private java.lang.Object newPassword_ = "";
+      /**
+       * <code>optional string newPassword = 3;</code>
+       */
+      public boolean hasNewPassword() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional string newPassword = 3;</code>
+       */
+      public java.lang.String getNewPassword() {
+        java.lang.Object ref = newPassword_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          newPassword_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string newPassword = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNewPasswordBytes() {
+        java.lang.Object ref = newPassword_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          newPassword_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string newPassword = 3;</code>
+       */
+      public Builder setNewPassword(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        newPassword_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string newPassword = 3;</code>
+       */
+      public Builder clearNewPassword() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        newPassword_ = getDefaultInstance().getNewPassword();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string newPassword = 3;</code>
+       */
+      public Builder setNewPasswordBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        newPassword_ = value;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.ChangePasswordRequest)
+    }
+
+    static {
+      defaultInstance = new ChangePasswordRequest(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.ChangePasswordRequest)
+  }
+
+  public interface ChangePasswordResponseOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional string errorMessage = 1;
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    boolean hasErrorMessage();
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    java.lang.String getErrorMessage();
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getErrorMessageBytes();
+
+    // optional bool value = 2;
+    /**
+     * <code>optional bool value = 2;</code>
+     */
+    boolean hasValue();
+    /**
+     * <code>optional bool value = 2;</code>
+     */
+    boolean getValue();
+  }
+  /**
+   * Protobuf type {@code org.bimserver.pb.ChangePasswordResponse}
+   */
+  public static final class ChangePasswordResponse extends
+      com.google.protobuf.GeneratedMessage
+      implements ChangePasswordResponseOrBuilder {
+    // Use ChangePasswordResponse.newBuilder() to construct.
+    private ChangePasswordResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private ChangePasswordResponse(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final ChangePasswordResponse defaultInstance;
+    public static ChangePasswordResponse getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public ChangePasswordResponse getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ChangePasswordResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              errorMessage_ = input.readBytes();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              value_ = input.readBool();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ChangePasswordResponse_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ChangePasswordResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse.class, org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<ChangePasswordResponse> PARSER =
+        new com.google.protobuf.AbstractParser<ChangePasswordResponse>() {
+      public ChangePasswordResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ChangePasswordResponse(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ChangePasswordResponse> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional string errorMessage = 1;
+    public static final int ERRORMESSAGE_FIELD_NUMBER = 1;
+    private java.lang.Object errorMessage_;
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    public boolean hasErrorMessage() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    public java.lang.String getErrorMessage() {
+      java.lang.Object ref = errorMessage_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          errorMessage_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getErrorMessageBytes() {
+      java.lang.Object ref = errorMessage_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        errorMessage_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional bool value = 2;
+    public static final int VALUE_FIELD_NUMBER = 2;
+    private boolean value_;
+    /**
+     * <code>optional bool value = 2;</code>
+     */
+    public boolean hasValue() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional bool value = 2;</code>
+     */
+    public boolean getValue() {
+      return value_;
+    }
+
+    private void initFields() {
+      errorMessage_ = "";
+      value_ = false;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getErrorMessageBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBool(2, value_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getErrorMessageBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(2, value_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.bimserver.pb.ChangePasswordResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ChangePasswordResponse_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ChangePasswordResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse.class, org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse.Builder.class);
+      }
+
+      // Construct using org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        errorMessage_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        value_ = false;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ChangePasswordResponse_descriptor;
+      }
+
+      public org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse getDefaultInstanceForType() {
+        return org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse.getDefaultInstance();
+      }
+
+      public org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse build() {
+        org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse buildPartial() {
+        org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse result = new org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.errorMessage_ = errorMessage_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.value_ = value_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse) {
+          return mergeFrom((org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse other) {
+        if (other == org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse.getDefaultInstance()) return this;
+        if (other.hasErrorMessage()) {
+          bitField0_ |= 0x00000001;
+          errorMessage_ = other.errorMessage_;
+          onChanged();
+        }
+        if (other.hasValue()) {
+          setValue(other.getValue());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional string errorMessage = 1;
+      private java.lang.Object errorMessage_ = "";
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public boolean hasErrorMessage() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public java.lang.String getErrorMessage() {
+        java.lang.Object ref = errorMessage_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          errorMessage_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getErrorMessageBytes() {
+        java.lang.Object ref = errorMessage_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          errorMessage_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public Builder setErrorMessage(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        errorMessage_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public Builder clearErrorMessage() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        errorMessage_ = getDefaultInstance().getErrorMessage();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public Builder setErrorMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        errorMessage_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional bool value = 2;
+      private boolean value_ ;
+      /**
+       * <code>optional bool value = 2;</code>
+       */
+      public boolean hasValue() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional bool value = 2;</code>
+       */
+      public boolean getValue() {
+        return value_;
+      }
+      /**
+       * <code>optional bool value = 2;</code>
+       */
+      public Builder setValue(boolean value) {
+        bitField0_ |= 0x00000002;
+        value_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool value = 2;</code>
+       */
+      public Builder clearValue() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        value_ = false;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.ChangePasswordResponse)
+    }
+
+    static {
+      defaultInstance = new ChangePasswordResponse(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.ChangePasswordResponse)
+  }
+
   public interface GetAccessMethodRequestOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
   }
@@ -7436,6 +8696,2004 @@ public final class AuthInterfaceImpl {
     // @@protoc_insertion_point(class_scope:org.bimserver.pb.LogoutRequest)
   }
 
+  public interface RequestPasswordChangeRequestOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional string username = 1;
+    /**
+     * <code>optional string username = 1;</code>
+     */
+    boolean hasUsername();
+    /**
+     * <code>optional string username = 1;</code>
+     */
+    java.lang.String getUsername();
+    /**
+     * <code>optional string username = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getUsernameBytes();
+
+    // optional string resetUrl = 2;
+    /**
+     * <code>optional string resetUrl = 2;</code>
+     */
+    boolean hasResetUrl();
+    /**
+     * <code>optional string resetUrl = 2;</code>
+     */
+    java.lang.String getResetUrl();
+    /**
+     * <code>optional string resetUrl = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getResetUrlBytes();
+  }
+  /**
+   * Protobuf type {@code org.bimserver.pb.RequestPasswordChangeRequest}
+   */
+  public static final class RequestPasswordChangeRequest extends
+      com.google.protobuf.GeneratedMessage
+      implements RequestPasswordChangeRequestOrBuilder {
+    // Use RequestPasswordChangeRequest.newBuilder() to construct.
+    private RequestPasswordChangeRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private RequestPasswordChangeRequest(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final RequestPasswordChangeRequest defaultInstance;
+    public static RequestPasswordChangeRequest getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public RequestPasswordChangeRequest getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private RequestPasswordChangeRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              username_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              resetUrl_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_RequestPasswordChangeRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_RequestPasswordChangeRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest.class, org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<RequestPasswordChangeRequest> PARSER =
+        new com.google.protobuf.AbstractParser<RequestPasswordChangeRequest>() {
+      public RequestPasswordChangeRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new RequestPasswordChangeRequest(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<RequestPasswordChangeRequest> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional string username = 1;
+    public static final int USERNAME_FIELD_NUMBER = 1;
+    private java.lang.Object username_;
+    /**
+     * <code>optional string username = 1;</code>
+     */
+    public boolean hasUsername() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string username = 1;</code>
+     */
+    public java.lang.String getUsername() {
+      java.lang.Object ref = username_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          username_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string username = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUsernameBytes() {
+      java.lang.Object ref = username_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        username_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional string resetUrl = 2;
+    public static final int RESETURL_FIELD_NUMBER = 2;
+    private java.lang.Object resetUrl_;
+    /**
+     * <code>optional string resetUrl = 2;</code>
+     */
+    public boolean hasResetUrl() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional string resetUrl = 2;</code>
+     */
+    public java.lang.String getResetUrl() {
+      java.lang.Object ref = resetUrl_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          resetUrl_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string resetUrl = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getResetUrlBytes() {
+      java.lang.Object ref = resetUrl_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        resetUrl_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private void initFields() {
+      username_ = "";
+      resetUrl_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getUsernameBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getResetUrlBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getUsernameBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getResetUrlBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.bimserver.pb.RequestPasswordChangeRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_RequestPasswordChangeRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_RequestPasswordChangeRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest.class, org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest.Builder.class);
+      }
+
+      // Construct using org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        username_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        resetUrl_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_RequestPasswordChangeRequest_descriptor;
+      }
+
+      public org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest getDefaultInstanceForType() {
+        return org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest.getDefaultInstance();
+      }
+
+      public org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest build() {
+        org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest buildPartial() {
+        org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest result = new org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.username_ = username_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.resetUrl_ = resetUrl_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest) {
+          return mergeFrom((org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest other) {
+        if (other == org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest.getDefaultInstance()) return this;
+        if (other.hasUsername()) {
+          bitField0_ |= 0x00000001;
+          username_ = other.username_;
+          onChanged();
+        }
+        if (other.hasResetUrl()) {
+          bitField0_ |= 0x00000002;
+          resetUrl_ = other.resetUrl_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional string username = 1;
+      private java.lang.Object username_ = "";
+      /**
+       * <code>optional string username = 1;</code>
+       */
+      public boolean hasUsername() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string username = 1;</code>
+       */
+      public java.lang.String getUsername() {
+        java.lang.Object ref = username_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          username_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string username = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUsernameBytes() {
+        java.lang.Object ref = username_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          username_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string username = 1;</code>
+       */
+      public Builder setUsername(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        username_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string username = 1;</code>
+       */
+      public Builder clearUsername() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        username_ = getDefaultInstance().getUsername();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string username = 1;</code>
+       */
+      public Builder setUsernameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        username_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional string resetUrl = 2;
+      private java.lang.Object resetUrl_ = "";
+      /**
+       * <code>optional string resetUrl = 2;</code>
+       */
+      public boolean hasResetUrl() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional string resetUrl = 2;</code>
+       */
+      public java.lang.String getResetUrl() {
+        java.lang.Object ref = resetUrl_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          resetUrl_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string resetUrl = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getResetUrlBytes() {
+        java.lang.Object ref = resetUrl_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          resetUrl_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string resetUrl = 2;</code>
+       */
+      public Builder setResetUrl(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        resetUrl_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string resetUrl = 2;</code>
+       */
+      public Builder clearResetUrl() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        resetUrl_ = getDefaultInstance().getResetUrl();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string resetUrl = 2;</code>
+       */
+      public Builder setResetUrlBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        resetUrl_ = value;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.RequestPasswordChangeRequest)
+    }
+
+    static {
+      defaultInstance = new RequestPasswordChangeRequest(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.RequestPasswordChangeRequest)
+  }
+
+  public interface ValidateAccountRequestOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional int64 uoid = 1;
+    /**
+     * <code>optional int64 uoid = 1;</code>
+     */
+    boolean hasUoid();
+    /**
+     * <code>optional int64 uoid = 1;</code>
+     */
+    long getUoid();
+
+    // optional string token = 2;
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    boolean hasToken();
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    java.lang.String getToken();
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getTokenBytes();
+
+    // optional string password = 3;
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    boolean hasPassword();
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    java.lang.String getPassword();
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getPasswordBytes();
+  }
+  /**
+   * Protobuf type {@code org.bimserver.pb.ValidateAccountRequest}
+   */
+  public static final class ValidateAccountRequest extends
+      com.google.protobuf.GeneratedMessage
+      implements ValidateAccountRequestOrBuilder {
+    // Use ValidateAccountRequest.newBuilder() to construct.
+    private ValidateAccountRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private ValidateAccountRequest(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final ValidateAccountRequest defaultInstance;
+    public static ValidateAccountRequest getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public ValidateAccountRequest getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ValidateAccountRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              uoid_ = input.readInt64();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              token_ = input.readBytes();
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000004;
+              password_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ValidateAccountRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ValidateAccountRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest.class, org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<ValidateAccountRequest> PARSER =
+        new com.google.protobuf.AbstractParser<ValidateAccountRequest>() {
+      public ValidateAccountRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ValidateAccountRequest(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ValidateAccountRequest> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional int64 uoid = 1;
+    public static final int UOID_FIELD_NUMBER = 1;
+    private long uoid_;
+    /**
+     * <code>optional int64 uoid = 1;</code>
+     */
+    public boolean hasUoid() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional int64 uoid = 1;</code>
+     */
+    public long getUoid() {
+      return uoid_;
+    }
+
+    // optional string token = 2;
+    public static final int TOKEN_FIELD_NUMBER = 2;
+    private java.lang.Object token_;
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    public boolean hasToken() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    public java.lang.String getToken() {
+      java.lang.Object ref = token_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          token_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTokenBytes() {
+      java.lang.Object ref = token_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        token_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional string password = 3;
+    public static final int PASSWORD_FIELD_NUMBER = 3;
+    private java.lang.Object password_;
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    public boolean hasPassword() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    public java.lang.String getPassword() {
+      java.lang.Object ref = password_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          password_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPasswordBytes() {
+      java.lang.Object ref = password_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        password_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private void initFields() {
+      uoid_ = 0L;
+      token_ = "";
+      password_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt64(1, uoid_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getTokenBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getPasswordBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, uoid_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getTokenBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getPasswordBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.bimserver.pb.ValidateAccountRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ValidateAccountRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ValidateAccountRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest.class, org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest.Builder.class);
+      }
+
+      // Construct using org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        uoid_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        token_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        password_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ValidateAccountRequest_descriptor;
+      }
+
+      public org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest getDefaultInstanceForType() {
+        return org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest.getDefaultInstance();
+      }
+
+      public org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest build() {
+        org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest buildPartial() {
+        org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest result = new org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.uoid_ = uoid_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.token_ = token_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.password_ = password_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest) {
+          return mergeFrom((org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest other) {
+        if (other == org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest.getDefaultInstance()) return this;
+        if (other.hasUoid()) {
+          setUoid(other.getUoid());
+        }
+        if (other.hasToken()) {
+          bitField0_ |= 0x00000002;
+          token_ = other.token_;
+          onChanged();
+        }
+        if (other.hasPassword()) {
+          bitField0_ |= 0x00000004;
+          password_ = other.password_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional int64 uoid = 1;
+      private long uoid_ ;
+      /**
+       * <code>optional int64 uoid = 1;</code>
+       */
+      public boolean hasUoid() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional int64 uoid = 1;</code>
+       */
+      public long getUoid() {
+        return uoid_;
+      }
+      /**
+       * <code>optional int64 uoid = 1;</code>
+       */
+      public Builder setUoid(long value) {
+        bitField0_ |= 0x00000001;
+        uoid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 uoid = 1;</code>
+       */
+      public Builder clearUoid() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        uoid_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // optional string token = 2;
+      private java.lang.Object token_ = "";
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public boolean hasToken() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public java.lang.String getToken() {
+        java.lang.Object ref = token_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          token_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTokenBytes() {
+        java.lang.Object ref = token_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          token_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public Builder setToken(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        token_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public Builder clearToken() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        token_ = getDefaultInstance().getToken();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public Builder setTokenBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        token_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional string password = 3;
+      private java.lang.Object password_ = "";
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public boolean hasPassword() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public java.lang.String getPassword() {
+        java.lang.Object ref = password_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          password_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPasswordBytes() {
+        java.lang.Object ref = password_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          password_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public Builder setPassword(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        password_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public Builder clearPassword() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        password_ = getDefaultInstance().getPassword();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public Builder setPasswordBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        password_ = value;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.ValidateAccountRequest)
+    }
+
+    static {
+      defaultInstance = new ValidateAccountRequest(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.ValidateAccountRequest)
+  }
+
+  public interface ValidateAccountResponseOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional string errorMessage = 1;
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    boolean hasErrorMessage();
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    java.lang.String getErrorMessage();
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getErrorMessageBytes();
+
+    // optional .org.bimserver.pb.SUser value = 2;
+    /**
+     * <code>optional .org.bimserver.pb.SUser value = 2;</code>
+     */
+    boolean hasValue();
+    /**
+     * <code>optional .org.bimserver.pb.SUser value = 2;</code>
+     */
+    org.bimserver.pb.ServiceInterfaceImpl.SUser getValue();
+    /**
+     * <code>optional .org.bimserver.pb.SUser value = 2;</code>
+     */
+    org.bimserver.pb.ServiceInterfaceImpl.SUserOrBuilder getValueOrBuilder();
+  }
+  /**
+   * Protobuf type {@code org.bimserver.pb.ValidateAccountResponse}
+   */
+  public static final class ValidateAccountResponse extends
+      com.google.protobuf.GeneratedMessage
+      implements ValidateAccountResponseOrBuilder {
+    // Use ValidateAccountResponse.newBuilder() to construct.
+    private ValidateAccountResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private ValidateAccountResponse(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final ValidateAccountResponse defaultInstance;
+    public static ValidateAccountResponse getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public ValidateAccountResponse getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ValidateAccountResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              errorMessage_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              org.bimserver.pb.ServiceInterfaceImpl.SUser.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                subBuilder = value_.toBuilder();
+              }
+              value_ = input.readMessage(org.bimserver.pb.ServiceInterfaceImpl.SUser.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(value_);
+                value_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000002;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ValidateAccountResponse_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ValidateAccountResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse.class, org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<ValidateAccountResponse> PARSER =
+        new com.google.protobuf.AbstractParser<ValidateAccountResponse>() {
+      public ValidateAccountResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ValidateAccountResponse(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ValidateAccountResponse> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional string errorMessage = 1;
+    public static final int ERRORMESSAGE_FIELD_NUMBER = 1;
+    private java.lang.Object errorMessage_;
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    public boolean hasErrorMessage() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    public java.lang.String getErrorMessage() {
+      java.lang.Object ref = errorMessage_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          errorMessage_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string errorMessage = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getErrorMessageBytes() {
+      java.lang.Object ref = errorMessage_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        errorMessage_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional .org.bimserver.pb.SUser value = 2;
+    public static final int VALUE_FIELD_NUMBER = 2;
+    private org.bimserver.pb.ServiceInterfaceImpl.SUser value_;
+    /**
+     * <code>optional .org.bimserver.pb.SUser value = 2;</code>
+     */
+    public boolean hasValue() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional .org.bimserver.pb.SUser value = 2;</code>
+     */
+    public org.bimserver.pb.ServiceInterfaceImpl.SUser getValue() {
+      return value_;
+    }
+    /**
+     * <code>optional .org.bimserver.pb.SUser value = 2;</code>
+     */
+    public org.bimserver.pb.ServiceInterfaceImpl.SUserOrBuilder getValueOrBuilder() {
+      return value_;
+    }
+
+    private void initFields() {
+      errorMessage_ = "";
+      value_ = org.bimserver.pb.ServiceInterfaceImpl.SUser.getDefaultInstance();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getErrorMessageBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeMessage(2, value_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getErrorMessageBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, value_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.bimserver.pb.ValidateAccountResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ValidateAccountResponse_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ValidateAccountResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse.class, org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse.Builder.class);
+      }
+
+      // Construct using org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getValueFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        errorMessage_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (valueBuilder_ == null) {
+          value_ = org.bimserver.pb.ServiceInterfaceImpl.SUser.getDefaultInstance();
+        } else {
+          valueBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_ValidateAccountResponse_descriptor;
+      }
+
+      public org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse getDefaultInstanceForType() {
+        return org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse.getDefaultInstance();
+      }
+
+      public org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse build() {
+        org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse buildPartial() {
+        org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse result = new org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.errorMessage_ = errorMessage_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        if (valueBuilder_ == null) {
+          result.value_ = value_;
+        } else {
+          result.value_ = valueBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse) {
+          return mergeFrom((org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse other) {
+        if (other == org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse.getDefaultInstance()) return this;
+        if (other.hasErrorMessage()) {
+          bitField0_ |= 0x00000001;
+          errorMessage_ = other.errorMessage_;
+          onChanged();
+        }
+        if (other.hasValue()) {
+          mergeValue(other.getValue());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional string errorMessage = 1;
+      private java.lang.Object errorMessage_ = "";
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public boolean hasErrorMessage() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public java.lang.String getErrorMessage() {
+        java.lang.Object ref = errorMessage_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          errorMessage_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getErrorMessageBytes() {
+        java.lang.Object ref = errorMessage_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          errorMessage_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public Builder setErrorMessage(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        errorMessage_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public Builder clearErrorMessage() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        errorMessage_ = getDefaultInstance().getErrorMessage();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string errorMessage = 1;</code>
+       */
+      public Builder setErrorMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        errorMessage_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional .org.bimserver.pb.SUser value = 2;
+      private org.bimserver.pb.ServiceInterfaceImpl.SUser value_ = org.bimserver.pb.ServiceInterfaceImpl.SUser.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          org.bimserver.pb.ServiceInterfaceImpl.SUser, org.bimserver.pb.ServiceInterfaceImpl.SUser.Builder, org.bimserver.pb.ServiceInterfaceImpl.SUserOrBuilder> valueBuilder_;
+      /**
+       * <code>optional .org.bimserver.pb.SUser value = 2;</code>
+       */
+      public boolean hasValue() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SUser value = 2;</code>
+       */
+      public org.bimserver.pb.ServiceInterfaceImpl.SUser getValue() {
+        if (valueBuilder_ == null) {
+          return value_;
+        } else {
+          return valueBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SUser value = 2;</code>
+       */
+      public Builder setValue(org.bimserver.pb.ServiceInterfaceImpl.SUser value) {
+        if (valueBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          value_ = value;
+          onChanged();
+        } else {
+          valueBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SUser value = 2;</code>
+       */
+      public Builder setValue(
+          org.bimserver.pb.ServiceInterfaceImpl.SUser.Builder builderForValue) {
+        if (valueBuilder_ == null) {
+          value_ = builderForValue.build();
+          onChanged();
+        } else {
+          valueBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SUser value = 2;</code>
+       */
+      public Builder mergeValue(org.bimserver.pb.ServiceInterfaceImpl.SUser value) {
+        if (valueBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              value_ != org.bimserver.pb.ServiceInterfaceImpl.SUser.getDefaultInstance()) {
+            value_ =
+              org.bimserver.pb.ServiceInterfaceImpl.SUser.newBuilder(value_).mergeFrom(value).buildPartial();
+          } else {
+            value_ = value;
+          }
+          onChanged();
+        } else {
+          valueBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SUser value = 2;</code>
+       */
+      public Builder clearValue() {
+        if (valueBuilder_ == null) {
+          value_ = org.bimserver.pb.ServiceInterfaceImpl.SUser.getDefaultInstance();
+          onChanged();
+        } else {
+          valueBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SUser value = 2;</code>
+       */
+      public org.bimserver.pb.ServiceInterfaceImpl.SUser.Builder getValueBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getValueFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SUser value = 2;</code>
+       */
+      public org.bimserver.pb.ServiceInterfaceImpl.SUserOrBuilder getValueOrBuilder() {
+        if (valueBuilder_ != null) {
+          return valueBuilder_.getMessageOrBuilder();
+        } else {
+          return value_;
+        }
+      }
+      /**
+       * <code>optional .org.bimserver.pb.SUser value = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          org.bimserver.pb.ServiceInterfaceImpl.SUser, org.bimserver.pb.ServiceInterfaceImpl.SUser.Builder, org.bimserver.pb.ServiceInterfaceImpl.SUserOrBuilder> 
+          getValueFieldBuilder() {
+        if (valueBuilder_ == null) {
+          valueBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.bimserver.pb.ServiceInterfaceImpl.SUser, org.bimserver.pb.ServiceInterfaceImpl.SUser.Builder, org.bimserver.pb.ServiceInterfaceImpl.SUserOrBuilder>(
+                  value_,
+                  getParentForChildren(),
+                  isClean());
+          value_ = null;
+        }
+        return valueBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.ValidateAccountResponse)
+    }
+
+    static {
+      defaultInstance = new ValidateAccountResponse(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.ValidateAccountResponse)
+  }
+
   /**
    * Protobuf service {@code org.bimserver.pb.AuthInterface}
    */
@@ -7451,6 +10709,14 @@ public final class AuthInterfaceImpl {
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.AuthInterfaceImpl.AutologinRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.AuthInterfaceImpl.AutologinResponse> done);
+
+      /**
+       * <code>rpc changePassword(.org.bimserver.pb.ChangePasswordRequest) returns (.org.bimserver.pb.ChangePasswordResponse);</code>
+       */
+      public abstract void changePassword(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse> done);
 
       /**
        * <code>rpc getAccessMethod(.org.bimserver.pb.GetAccessMethodRequest) returns (.org.bimserver.pb.GetAccessMethodResponse);</code>
@@ -7508,6 +10774,22 @@ public final class AuthInterfaceImpl {
           org.bimserver.pb.AuthInterfaceImpl.LogoutRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
 
+      /**
+       * <code>rpc requestPasswordChange(.org.bimserver.pb.RequestPasswordChangeRequest) returns (.org.bimserver.pb.VoidResponse);</code>
+       */
+      public abstract void requestPasswordChange(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
+
+      /**
+       * <code>rpc validateAccount(.org.bimserver.pb.ValidateAccountRequest) returns (.org.bimserver.pb.ValidateAccountResponse);</code>
+       */
+      public abstract void validateAccount(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse> done);
+
     }
 
     public static com.google.protobuf.Service newReflectiveService(
@@ -7519,6 +10801,14 @@ public final class AuthInterfaceImpl {
             org.bimserver.pb.AuthInterfaceImpl.AutologinRequest request,
             com.google.protobuf.RpcCallback<org.bimserver.pb.AuthInterfaceImpl.AutologinResponse> done) {
           impl.autologin(controller, request, done);
+        }
+
+        @java.lang.Override
+        public  void changePassword(
+            com.google.protobuf.RpcController controller,
+            org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest request,
+            com.google.protobuf.RpcCallback<org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse> done) {
+          impl.changePassword(controller, request, done);
         }
 
         @java.lang.Override
@@ -7577,6 +10867,22 @@ public final class AuthInterfaceImpl {
           impl.logout(controller, request, done);
         }
 
+        @java.lang.Override
+        public  void requestPasswordChange(
+            com.google.protobuf.RpcController controller,
+            org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest request,
+            com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
+          impl.requestPasswordChange(controller, request, done);
+        }
+
+        @java.lang.Override
+        public  void validateAccount(
+            com.google.protobuf.RpcController controller,
+            org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest request,
+            com.google.protobuf.RpcCallback<org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse> done) {
+          impl.validateAccount(controller, request, done);
+        }
+
       };
     }
 
@@ -7602,19 +10908,25 @@ public final class AuthInterfaceImpl {
             case 0:
               return impl.autologin(controller, (org.bimserver.pb.AuthInterfaceImpl.AutologinRequest)request);
             case 1:
-              return impl.getAccessMethod(controller, (org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodRequest)request);
+              return impl.changePassword(controller, (org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest)request);
             case 2:
-              return impl.getCurrentUser(controller, (org.bimserver.pb.AuthInterfaceImpl.GetCurrentUserRequest)request);
+              return impl.getAccessMethod(controller, (org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodRequest)request);
             case 3:
-              return impl.getLoggedInUser(controller, (org.bimserver.pb.AuthInterfaceImpl.GetLoggedInUserRequest)request);
+              return impl.getCurrentUser(controller, (org.bimserver.pb.AuthInterfaceImpl.GetCurrentUserRequest)request);
             case 4:
-              return impl.getRemoteAddress(controller, (org.bimserver.pb.AuthInterfaceImpl.GetRemoteAddressRequest)request);
+              return impl.getLoggedInUser(controller, (org.bimserver.pb.AuthInterfaceImpl.GetLoggedInUserRequest)request);
             case 5:
-              return impl.isLoggedIn(controller, (org.bimserver.pb.AuthInterfaceImpl.IsLoggedInRequest)request);
+              return impl.getRemoteAddress(controller, (org.bimserver.pb.AuthInterfaceImpl.GetRemoteAddressRequest)request);
             case 6:
-              return impl.login(controller, (org.bimserver.pb.AuthInterfaceImpl.LoginRequest)request);
+              return impl.isLoggedIn(controller, (org.bimserver.pb.AuthInterfaceImpl.IsLoggedInRequest)request);
             case 7:
+              return impl.login(controller, (org.bimserver.pb.AuthInterfaceImpl.LoginRequest)request);
+            case 8:
               return impl.logout(controller, (org.bimserver.pb.AuthInterfaceImpl.LogoutRequest)request);
+            case 9:
+              return impl.requestPasswordChange(controller, (org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest)request);
+            case 10:
+              return impl.validateAccount(controller, (org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest)request);
             default:
               throw new java.lang.AssertionError("Can't get here.");
           }
@@ -7632,19 +10944,25 @@ public final class AuthInterfaceImpl {
             case 0:
               return org.bimserver.pb.AuthInterfaceImpl.AutologinRequest.getDefaultInstance();
             case 1:
-              return org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodRequest.getDefaultInstance();
+              return org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest.getDefaultInstance();
             case 2:
-              return org.bimserver.pb.AuthInterfaceImpl.GetCurrentUserRequest.getDefaultInstance();
+              return org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodRequest.getDefaultInstance();
             case 3:
-              return org.bimserver.pb.AuthInterfaceImpl.GetLoggedInUserRequest.getDefaultInstance();
+              return org.bimserver.pb.AuthInterfaceImpl.GetCurrentUserRequest.getDefaultInstance();
             case 4:
-              return org.bimserver.pb.AuthInterfaceImpl.GetRemoteAddressRequest.getDefaultInstance();
+              return org.bimserver.pb.AuthInterfaceImpl.GetLoggedInUserRequest.getDefaultInstance();
             case 5:
-              return org.bimserver.pb.AuthInterfaceImpl.IsLoggedInRequest.getDefaultInstance();
+              return org.bimserver.pb.AuthInterfaceImpl.GetRemoteAddressRequest.getDefaultInstance();
             case 6:
-              return org.bimserver.pb.AuthInterfaceImpl.LoginRequest.getDefaultInstance();
+              return org.bimserver.pb.AuthInterfaceImpl.IsLoggedInRequest.getDefaultInstance();
             case 7:
+              return org.bimserver.pb.AuthInterfaceImpl.LoginRequest.getDefaultInstance();
+            case 8:
               return org.bimserver.pb.AuthInterfaceImpl.LogoutRequest.getDefaultInstance();
+            case 9:
+              return org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest.getDefaultInstance();
+            case 10:
+              return org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest.getDefaultInstance();
             default:
               throw new java.lang.AssertionError("Can't get here.");
           }
@@ -7662,19 +10980,25 @@ public final class AuthInterfaceImpl {
             case 0:
               return org.bimserver.pb.AuthInterfaceImpl.AutologinResponse.getDefaultInstance();
             case 1:
-              return org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodResponse.getDefaultInstance();
+              return org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse.getDefaultInstance();
             case 2:
-              return org.bimserver.pb.AuthInterfaceImpl.GetCurrentUserResponse.getDefaultInstance();
+              return org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodResponse.getDefaultInstance();
             case 3:
-              return org.bimserver.pb.AuthInterfaceImpl.GetLoggedInUserResponse.getDefaultInstance();
+              return org.bimserver.pb.AuthInterfaceImpl.GetCurrentUserResponse.getDefaultInstance();
             case 4:
-              return org.bimserver.pb.AuthInterfaceImpl.GetRemoteAddressResponse.getDefaultInstance();
+              return org.bimserver.pb.AuthInterfaceImpl.GetLoggedInUserResponse.getDefaultInstance();
             case 5:
-              return org.bimserver.pb.AuthInterfaceImpl.IsLoggedInResponse.getDefaultInstance();
+              return org.bimserver.pb.AuthInterfaceImpl.GetRemoteAddressResponse.getDefaultInstance();
             case 6:
-              return org.bimserver.pb.AuthInterfaceImpl.LoginResponse.getDefaultInstance();
+              return org.bimserver.pb.AuthInterfaceImpl.IsLoggedInResponse.getDefaultInstance();
             case 7:
+              return org.bimserver.pb.AuthInterfaceImpl.LoginResponse.getDefaultInstance();
+            case 8:
               return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+            case 9:
+              return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+            case 10:
+              return org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse.getDefaultInstance();
             default:
               throw new java.lang.AssertionError("Can't get here.");
           }
@@ -7690,6 +11014,14 @@ public final class AuthInterfaceImpl {
         com.google.protobuf.RpcController controller,
         org.bimserver.pb.AuthInterfaceImpl.AutologinRequest request,
         com.google.protobuf.RpcCallback<org.bimserver.pb.AuthInterfaceImpl.AutologinResponse> done);
+
+    /**
+     * <code>rpc changePassword(.org.bimserver.pb.ChangePasswordRequest) returns (.org.bimserver.pb.ChangePasswordResponse);</code>
+     */
+    public abstract void changePassword(
+        com.google.protobuf.RpcController controller,
+        org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest request,
+        com.google.protobuf.RpcCallback<org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse> done);
 
     /**
      * <code>rpc getAccessMethod(.org.bimserver.pb.GetAccessMethodRequest) returns (.org.bimserver.pb.GetAccessMethodResponse);</code>
@@ -7747,6 +11079,22 @@ public final class AuthInterfaceImpl {
         org.bimserver.pb.AuthInterfaceImpl.LogoutRequest request,
         com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
 
+    /**
+     * <code>rpc requestPasswordChange(.org.bimserver.pb.RequestPasswordChangeRequest) returns (.org.bimserver.pb.VoidResponse);</code>
+     */
+    public abstract void requestPasswordChange(
+        com.google.protobuf.RpcController controller,
+        org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest request,
+        com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
+
+    /**
+     * <code>rpc validateAccount(.org.bimserver.pb.ValidateAccountRequest) returns (.org.bimserver.pb.ValidateAccountResponse);</code>
+     */
+    public abstract void validateAccount(
+        com.google.protobuf.RpcController controller,
+        org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest request,
+        com.google.protobuf.RpcCallback<org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse> done);
+
     public static final
         com.google.protobuf.Descriptors.ServiceDescriptor
         getDescriptor() {
@@ -7775,38 +11123,53 @@ public final class AuthInterfaceImpl {
               done));
           return;
         case 1:
+          this.changePassword(controller, (org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest)request,
+            com.google.protobuf.RpcUtil.<org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse>specializeCallback(
+              done));
+          return;
+        case 2:
           this.getAccessMethod(controller, (org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodResponse>specializeCallback(
               done));
           return;
-        case 2:
+        case 3:
           this.getCurrentUser(controller, (org.bimserver.pb.AuthInterfaceImpl.GetCurrentUserRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.AuthInterfaceImpl.GetCurrentUserResponse>specializeCallback(
               done));
           return;
-        case 3:
+        case 4:
           this.getLoggedInUser(controller, (org.bimserver.pb.AuthInterfaceImpl.GetLoggedInUserRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.AuthInterfaceImpl.GetLoggedInUserResponse>specializeCallback(
               done));
           return;
-        case 4:
+        case 5:
           this.getRemoteAddress(controller, (org.bimserver.pb.AuthInterfaceImpl.GetRemoteAddressRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.AuthInterfaceImpl.GetRemoteAddressResponse>specializeCallback(
               done));
           return;
-        case 5:
+        case 6:
           this.isLoggedIn(controller, (org.bimserver.pb.AuthInterfaceImpl.IsLoggedInRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.AuthInterfaceImpl.IsLoggedInResponse>specializeCallback(
               done));
           return;
-        case 6:
+        case 7:
           this.login(controller, (org.bimserver.pb.AuthInterfaceImpl.LoginRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.AuthInterfaceImpl.LoginResponse>specializeCallback(
               done));
           return;
-        case 7:
+        case 8:
           this.logout(controller, (org.bimserver.pb.AuthInterfaceImpl.LogoutRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
+              done));
+          return;
+        case 9:
+          this.requestPasswordChange(controller, (org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest)request,
+            com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
+              done));
+          return;
+        case 10:
+          this.validateAccount(controller, (org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest)request,
+            com.google.protobuf.RpcUtil.<org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse>specializeCallback(
               done));
           return;
         default:
@@ -7826,19 +11189,25 @@ public final class AuthInterfaceImpl {
         case 0:
           return org.bimserver.pb.AuthInterfaceImpl.AutologinRequest.getDefaultInstance();
         case 1:
-          return org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodRequest.getDefaultInstance();
+          return org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest.getDefaultInstance();
         case 2:
-          return org.bimserver.pb.AuthInterfaceImpl.GetCurrentUserRequest.getDefaultInstance();
+          return org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodRequest.getDefaultInstance();
         case 3:
-          return org.bimserver.pb.AuthInterfaceImpl.GetLoggedInUserRequest.getDefaultInstance();
+          return org.bimserver.pb.AuthInterfaceImpl.GetCurrentUserRequest.getDefaultInstance();
         case 4:
-          return org.bimserver.pb.AuthInterfaceImpl.GetRemoteAddressRequest.getDefaultInstance();
+          return org.bimserver.pb.AuthInterfaceImpl.GetLoggedInUserRequest.getDefaultInstance();
         case 5:
-          return org.bimserver.pb.AuthInterfaceImpl.IsLoggedInRequest.getDefaultInstance();
+          return org.bimserver.pb.AuthInterfaceImpl.GetRemoteAddressRequest.getDefaultInstance();
         case 6:
-          return org.bimserver.pb.AuthInterfaceImpl.LoginRequest.getDefaultInstance();
+          return org.bimserver.pb.AuthInterfaceImpl.IsLoggedInRequest.getDefaultInstance();
         case 7:
+          return org.bimserver.pb.AuthInterfaceImpl.LoginRequest.getDefaultInstance();
+        case 8:
           return org.bimserver.pb.AuthInterfaceImpl.LogoutRequest.getDefaultInstance();
+        case 9:
+          return org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest.getDefaultInstance();
+        case 10:
+          return org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest.getDefaultInstance();
         default:
           throw new java.lang.AssertionError("Can't get here.");
       }
@@ -7856,19 +11225,25 @@ public final class AuthInterfaceImpl {
         case 0:
           return org.bimserver.pb.AuthInterfaceImpl.AutologinResponse.getDefaultInstance();
         case 1:
-          return org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodResponse.getDefaultInstance();
+          return org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse.getDefaultInstance();
         case 2:
-          return org.bimserver.pb.AuthInterfaceImpl.GetCurrentUserResponse.getDefaultInstance();
+          return org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodResponse.getDefaultInstance();
         case 3:
-          return org.bimserver.pb.AuthInterfaceImpl.GetLoggedInUserResponse.getDefaultInstance();
+          return org.bimserver.pb.AuthInterfaceImpl.GetCurrentUserResponse.getDefaultInstance();
         case 4:
-          return org.bimserver.pb.AuthInterfaceImpl.GetRemoteAddressResponse.getDefaultInstance();
+          return org.bimserver.pb.AuthInterfaceImpl.GetLoggedInUserResponse.getDefaultInstance();
         case 5:
-          return org.bimserver.pb.AuthInterfaceImpl.IsLoggedInResponse.getDefaultInstance();
+          return org.bimserver.pb.AuthInterfaceImpl.GetRemoteAddressResponse.getDefaultInstance();
         case 6:
-          return org.bimserver.pb.AuthInterfaceImpl.LoginResponse.getDefaultInstance();
+          return org.bimserver.pb.AuthInterfaceImpl.IsLoggedInResponse.getDefaultInstance();
         case 7:
+          return org.bimserver.pb.AuthInterfaceImpl.LoginResponse.getDefaultInstance();
+        case 8:
           return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+        case 9:
+          return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+        case 10:
+          return org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse.getDefaultInstance();
         default:
           throw new java.lang.AssertionError("Can't get here.");
       }
@@ -7905,12 +11280,27 @@ public final class AuthInterfaceImpl {
             org.bimserver.pb.AuthInterfaceImpl.AutologinResponse.getDefaultInstance()));
       }
 
+      public  void changePassword(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse> done) {
+        channel.callMethod(
+          getDescriptor().getMethods().get(1),
+          controller,
+          request,
+          org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse.getDefaultInstance(),
+          com.google.protobuf.RpcUtil.generalizeCallback(
+            done,
+            org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse.class,
+            org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse.getDefaultInstance()));
+      }
+
       public  void getAccessMethod(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(1),
+          getDescriptor().getMethods().get(2),
           controller,
           request,
           org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodResponse.getDefaultInstance(),
@@ -7925,7 +11315,7 @@ public final class AuthInterfaceImpl {
           org.bimserver.pb.AuthInterfaceImpl.GetCurrentUserRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.AuthInterfaceImpl.GetCurrentUserResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(2),
+          getDescriptor().getMethods().get(3),
           controller,
           request,
           org.bimserver.pb.AuthInterfaceImpl.GetCurrentUserResponse.getDefaultInstance(),
@@ -7940,7 +11330,7 @@ public final class AuthInterfaceImpl {
           org.bimserver.pb.AuthInterfaceImpl.GetLoggedInUserRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.AuthInterfaceImpl.GetLoggedInUserResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(3),
+          getDescriptor().getMethods().get(4),
           controller,
           request,
           org.bimserver.pb.AuthInterfaceImpl.GetLoggedInUserResponse.getDefaultInstance(),
@@ -7955,7 +11345,7 @@ public final class AuthInterfaceImpl {
           org.bimserver.pb.AuthInterfaceImpl.GetRemoteAddressRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.AuthInterfaceImpl.GetRemoteAddressResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(4),
+          getDescriptor().getMethods().get(5),
           controller,
           request,
           org.bimserver.pb.AuthInterfaceImpl.GetRemoteAddressResponse.getDefaultInstance(),
@@ -7970,7 +11360,7 @@ public final class AuthInterfaceImpl {
           org.bimserver.pb.AuthInterfaceImpl.IsLoggedInRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.AuthInterfaceImpl.IsLoggedInResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(5),
+          getDescriptor().getMethods().get(6),
           controller,
           request,
           org.bimserver.pb.AuthInterfaceImpl.IsLoggedInResponse.getDefaultInstance(),
@@ -7985,7 +11375,7 @@ public final class AuthInterfaceImpl {
           org.bimserver.pb.AuthInterfaceImpl.LoginRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.AuthInterfaceImpl.LoginResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(6),
+          getDescriptor().getMethods().get(7),
           controller,
           request,
           org.bimserver.pb.AuthInterfaceImpl.LoginResponse.getDefaultInstance(),
@@ -8000,7 +11390,7 @@ public final class AuthInterfaceImpl {
           org.bimserver.pb.AuthInterfaceImpl.LogoutRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(7),
+          getDescriptor().getMethods().get(8),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -8008,6 +11398,36 @@ public final class AuthInterfaceImpl {
             done,
             org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.class,
             org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance()));
+      }
+
+      public  void requestPasswordChange(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
+        channel.callMethod(
+          getDescriptor().getMethods().get(9),
+          controller,
+          request,
+          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
+          com.google.protobuf.RpcUtil.generalizeCallback(
+            done,
+            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.class,
+            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance()));
+      }
+
+      public  void validateAccount(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse> done) {
+        channel.callMethod(
+          getDescriptor().getMethods().get(10),
+          controller,
+          request,
+          org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse.getDefaultInstance(),
+          com.google.protobuf.RpcUtil.generalizeCallback(
+            done,
+            org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse.class,
+            org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse.getDefaultInstance()));
       }
     }
 
@@ -8020,6 +11440,11 @@ public final class AuthInterfaceImpl {
       public org.bimserver.pb.AuthInterfaceImpl.AutologinResponse autologin(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.AuthInterfaceImpl.AutologinRequest request)
+          throws com.google.protobuf.ServiceException;
+
+      public org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse changePassword(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest request)
           throws com.google.protobuf.ServiceException;
 
       public org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodResponse getAccessMethod(
@@ -8055,6 +11480,16 @@ public final class AuthInterfaceImpl {
       public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse logout(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.AuthInterfaceImpl.LogoutRequest request)
+          throws com.google.protobuf.ServiceException;
+
+      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse requestPasswordChange(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest request)
+          throws com.google.protobuf.ServiceException;
+
+      public org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse validateAccount(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest request)
           throws com.google.protobuf.ServiceException;
     }
 
@@ -8077,12 +11512,24 @@ public final class AuthInterfaceImpl {
       }
 
 
+      public org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse changePassword(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.AuthInterfaceImpl.ChangePasswordRequest request)
+          throws com.google.protobuf.ServiceException {
+        return (org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse) channel.callBlockingMethod(
+          getDescriptor().getMethods().get(1),
+          controller,
+          request,
+          org.bimserver.pb.AuthInterfaceImpl.ChangePasswordResponse.getDefaultInstance());
+      }
+
+
       public org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodResponse getAccessMethod(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(1),
+          getDescriptor().getMethods().get(2),
           controller,
           request,
           org.bimserver.pb.AuthInterfaceImpl.GetAccessMethodResponse.getDefaultInstance());
@@ -8094,7 +11541,7 @@ public final class AuthInterfaceImpl {
           org.bimserver.pb.AuthInterfaceImpl.GetCurrentUserRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.AuthInterfaceImpl.GetCurrentUserResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(2),
+          getDescriptor().getMethods().get(3),
           controller,
           request,
           org.bimserver.pb.AuthInterfaceImpl.GetCurrentUserResponse.getDefaultInstance());
@@ -8106,7 +11553,7 @@ public final class AuthInterfaceImpl {
           org.bimserver.pb.AuthInterfaceImpl.GetLoggedInUserRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.AuthInterfaceImpl.GetLoggedInUserResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(3),
+          getDescriptor().getMethods().get(4),
           controller,
           request,
           org.bimserver.pb.AuthInterfaceImpl.GetLoggedInUserResponse.getDefaultInstance());
@@ -8118,7 +11565,7 @@ public final class AuthInterfaceImpl {
           org.bimserver.pb.AuthInterfaceImpl.GetRemoteAddressRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.AuthInterfaceImpl.GetRemoteAddressResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(4),
+          getDescriptor().getMethods().get(5),
           controller,
           request,
           org.bimserver.pb.AuthInterfaceImpl.GetRemoteAddressResponse.getDefaultInstance());
@@ -8130,7 +11577,7 @@ public final class AuthInterfaceImpl {
           org.bimserver.pb.AuthInterfaceImpl.IsLoggedInRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.AuthInterfaceImpl.IsLoggedInResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(5),
+          getDescriptor().getMethods().get(6),
           controller,
           request,
           org.bimserver.pb.AuthInterfaceImpl.IsLoggedInResponse.getDefaultInstance());
@@ -8142,7 +11589,7 @@ public final class AuthInterfaceImpl {
           org.bimserver.pb.AuthInterfaceImpl.LoginRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.AuthInterfaceImpl.LoginResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(6),
+          getDescriptor().getMethods().get(7),
           controller,
           request,
           org.bimserver.pb.AuthInterfaceImpl.LoginResponse.getDefaultInstance());
@@ -8154,10 +11601,34 @@ public final class AuthInterfaceImpl {
           org.bimserver.pb.AuthInterfaceImpl.LogoutRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(7),
+          getDescriptor().getMethods().get(8),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
+      }
+
+
+      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse requestPasswordChange(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest request)
+          throws com.google.protobuf.ServiceException {
+        return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
+          getDescriptor().getMethods().get(9),
+          controller,
+          request,
+          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
+      }
+
+
+      public org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse validateAccount(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest request)
+          throws com.google.protobuf.ServiceException {
+        return (org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse) channel.callBlockingMethod(
+          getDescriptor().getMethods().get(10),
+          controller,
+          request,
+          org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse.getDefaultInstance());
       }
 
     }
@@ -8175,6 +11646,16 @@ public final class AuthInterfaceImpl {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_bimserver_pb_AutologinResponse_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_bimserver_pb_ChangePasswordRequest_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_bimserver_pb_ChangePasswordRequest_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_bimserver_pb_ChangePasswordResponse_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_bimserver_pb_ChangePasswordResponse_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_org_bimserver_pb_GetAccessMethodRequest_descriptor;
   private static
@@ -8240,6 +11721,21 @@ public final class AuthInterfaceImpl {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_bimserver_pb_LogoutRequest_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_bimserver_pb_RequestPasswordChangeRequest_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_bimserver_pb_RequestPasswordChangeRequest_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_bimserver_pb_ValidateAccountRequest_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_bimserver_pb_ValidateAccountRequest_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_bimserver_pb_ValidateAccountResponse_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_bimserver_pb_ValidateAccountResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -8255,43 +11751,60 @@ public final class AuthInterfaceImpl {
       "to\032\024AdminInterface.proto\"2\n\020AutologinReq" +
       "uest\022\020\n\010username\030\001 \001(\t\022\014\n\004hash\030\002 \001(\t\"8\n\021" +
       "AutologinResponse\022\024\n\014errorMessage\030\001 \001(\t\022" +
-      "\r\n\005value\030\002 \001(\t\"\030\n\026GetAccessMethodRequest" +
-      "\"_\n\027GetAccessMethodResponse\022\024\n\014errorMess" +
-      "age\030\001 \001(\t\022.\n\005value\030\002 \001(\0162\037.org.bimserver" +
-      ".pb.SAccessMethod\"\027\n\025GetCurrentUserReque",
-      "st\"V\n\026GetCurrentUserResponse\022\024\n\014errorMes" +
-      "sage\030\001 \001(\t\022&\n\005value\030\002 \001(\0132\027.org.bimserve" +
-      "r.pb.SUser\"\030\n\026GetLoggedInUserRequest\"W\n\027" +
-      "GetLoggedInUserResponse\022\024\n\014errorMessage\030" +
-      "\001 \001(\t\022&\n\005value\030\002 \001(\0132\027.org.bimserver.pb." +
-      "SUser\"\031\n\027GetRemoteAddressRequest\"?\n\030GetR" +
-      "emoteAddressResponse\022\024\n\014errorMessage\030\001 \001" +
-      "(\t\022\r\n\005value\030\002 \001(\t\"\023\n\021IsLoggedInRequest\"9" +
-      "\n\022IsLoggedInResponse\022\024\n\014errorMessage\030\001 \001" +
-      "(\t\022\r\n\005value\030\002 \001(\010\"2\n\014LoginRequest\022\020\n\010use",
-      "rname\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"4\n\rLoginRe" +
-      "sponse\022\024\n\014errorMessage\030\001 \001(\t\022\r\n\005value\030\002 " +
-      "\001(\t\"\017\n\rLogoutRequest2\363\005\n\rAuthInterface\022T" +
-      "\n\tautologin\022\".org.bimserver.pb.Autologin" +
-      "Request\032#.org.bimserver.pb.AutologinResp" +
-      "onse\022f\n\017getAccessMethod\022(.org.bimserver." +
-      "pb.GetAccessMethodRequest\032).org.bimserve" +
-      "r.pb.GetAccessMethodResponse\022c\n\016getCurre" +
-      "ntUser\022\'.org.bimserver.pb.GetCurrentUser" +
-      "Request\032(.org.bimserver.pb.GetCurrentUse",
-      "rResponse\022f\n\017getLoggedInUser\022(.org.bimse" +
-      "rver.pb.GetLoggedInUserRequest\032).org.bim" +
-      "server.pb.GetLoggedInUserResponse\022i\n\020get" +
-      "RemoteAddress\022).org.bimserver.pb.GetRemo" +
-      "teAddressRequest\032*.org.bimserver.pb.GetR" +
-      "emoteAddressResponse\022W\n\nisLoggedIn\022#.org" +
-      ".bimserver.pb.IsLoggedInRequest\032$.org.bi" +
-      "mserver.pb.IsLoggedInResponse\022H\n\005login\022\036" +
-      ".org.bimserver.pb.LoginRequest\032\037.org.bim" +
-      "server.pb.LoginResponse\022I\n\006logout\022\037.org.",
-      "bimserver.pb.LogoutRequest\032\036.org.bimserv" +
-      "er.pb.VoidResponseB\030B\021AuthInterfaceImplH" +
-      "\001\210\001\001"
+      "\r\n\005value\030\002 \001(\t\"O\n\025ChangePasswordRequest\022" +
+      "\014\n\004uoid\030\001 \001(\003\022\023\n\013oldPassword\030\002 \001(\t\022\023\n\013ne" +
+      "wPassword\030\003 \001(\t\"=\n\026ChangePasswordRespons" +
+      "e\022\024\n\014errorMessage\030\001 \001(\t\022\r\n\005value\030\002 \001(\010\"\030",
+      "\n\026GetAccessMethodRequest\"_\n\027GetAccessMet" +
+      "hodResponse\022\024\n\014errorMessage\030\001 \001(\t\022.\n\005val" +
+      "ue\030\002 \001(\0162\037.org.bimserver.pb.SAccessMetho" +
+      "d\"\027\n\025GetCurrentUserRequest\"V\n\026GetCurrent" +
+      "UserResponse\022\024\n\014errorMessage\030\001 \001(\t\022&\n\005va" +
+      "lue\030\002 \001(\0132\027.org.bimserver.pb.SUser\"\030\n\026Ge" +
+      "tLoggedInUserRequest\"W\n\027GetLoggedInUserR" +
+      "esponse\022\024\n\014errorMessage\030\001 \001(\t\022&\n\005value\030\002" +
+      " \001(\0132\027.org.bimserver.pb.SUser\"\031\n\027GetRemo" +
+      "teAddressRequest\"?\n\030GetRemoteAddressResp",
+      "onse\022\024\n\014errorMessage\030\001 \001(\t\022\r\n\005value\030\002 \001(" +
+      "\t\"\023\n\021IsLoggedInRequest\"9\n\022IsLoggedInResp" +
+      "onse\022\024\n\014errorMessage\030\001 \001(\t\022\r\n\005value\030\002 \001(" +
+      "\010\"2\n\014LoginRequest\022\020\n\010username\030\001 \001(\t\022\020\n\010p" +
+      "assword\030\002 \001(\t\"4\n\rLoginResponse\022\024\n\014errorM" +
+      "essage\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"\017\n\rLogoutReq" +
+      "uest\"B\n\034RequestPasswordChangeRequest\022\020\n\010" +
+      "username\030\001 \001(\t\022\020\n\010resetUrl\030\002 \001(\t\"G\n\026Vali" +
+      "dateAccountRequest\022\014\n\004uoid\030\001 \001(\003\022\r\n\005toke" +
+      "n\030\002 \001(\t\022\020\n\010password\030\003 \001(\t\"W\n\027ValidateAcc",
+      "ountResponse\022\024\n\014errorMessage\030\001 \001(\t\022&\n\005va" +
+      "lue\030\002 \001(\0132\027.org.bimserver.pb.SUser2\251\010\n\rA" +
+      "uthInterface\022T\n\tautologin\022\".org.bimserve" +
+      "r.pb.AutologinRequest\032#.org.bimserver.pb" +
+      ".AutologinResponse\022c\n\016changePassword\022\'.o" +
+      "rg.bimserver.pb.ChangePasswordRequest\032(." +
+      "org.bimserver.pb.ChangePasswordResponse\022" +
+      "f\n\017getAccessMethod\022(.org.bimserver.pb.Ge" +
+      "tAccessMethodRequest\032).org.bimserver.pb." +
+      "GetAccessMethodResponse\022c\n\016getCurrentUse",
+      "r\022\'.org.bimserver.pb.GetCurrentUserReque" +
+      "st\032(.org.bimserver.pb.GetCurrentUserResp" +
+      "onse\022f\n\017getLoggedInUser\022(.org.bimserver." +
+      "pb.GetLoggedInUserRequest\032).org.bimserve" +
+      "r.pb.GetLoggedInUserResponse\022i\n\020getRemot" +
+      "eAddress\022).org.bimserver.pb.GetRemoteAdd" +
+      "ressRequest\032*.org.bimserver.pb.GetRemote" +
+      "AddressResponse\022W\n\nisLoggedIn\022#.org.bims" +
+      "erver.pb.IsLoggedInRequest\032$.org.bimserv" +
+      "er.pb.IsLoggedInResponse\022H\n\005login\022\036.org.",
+      "bimserver.pb.LoginRequest\032\037.org.bimserve" +
+      "r.pb.LoginResponse\022I\n\006logout\022\037.org.bimse" +
+      "rver.pb.LogoutRequest\032\036.org.bimserver.pb" +
+      ".VoidResponse\022g\n\025requestPasswordChange\022." +
+      ".org.bimserver.pb.RequestPasswordChangeR" +
+      "equest\032\036.org.bimserver.pb.VoidResponse\022f" +
+      "\n\017validateAccount\022(.org.bimserver.pb.Val" +
+      "idateAccountRequest\032).org.bimserver.pb.V" +
+      "alidateAccountResponseB\030B\021AuthInterfaceI" +
+      "mplH\001\210\001\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -8310,84 +11823,114 @@ public final class AuthInterfaceImpl {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_AutologinResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
-          internal_static_org_bimserver_pb_GetAccessMethodRequest_descriptor =
+          internal_static_org_bimserver_pb_ChangePasswordRequest_descriptor =
             getDescriptor().getMessageTypes().get(2);
+          internal_static_org_bimserver_pb_ChangePasswordRequest_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_bimserver_pb_ChangePasswordRequest_descriptor,
+              new java.lang.String[] { "Uoid", "OldPassword", "NewPassword", });
+          internal_static_org_bimserver_pb_ChangePasswordResponse_descriptor =
+            getDescriptor().getMessageTypes().get(3);
+          internal_static_org_bimserver_pb_ChangePasswordResponse_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_bimserver_pb_ChangePasswordResponse_descriptor,
+              new java.lang.String[] { "ErrorMessage", "Value", });
+          internal_static_org_bimserver_pb_GetAccessMethodRequest_descriptor =
+            getDescriptor().getMessageTypes().get(4);
           internal_static_org_bimserver_pb_GetAccessMethodRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAccessMethodRequest_descriptor,
               new java.lang.String[] { });
           internal_static_org_bimserver_pb_GetAccessMethodResponse_descriptor =
-            getDescriptor().getMessageTypes().get(3);
+            getDescriptor().getMessageTypes().get(5);
           internal_static_org_bimserver_pb_GetAccessMethodResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetAccessMethodResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetCurrentUserRequest_descriptor =
-            getDescriptor().getMessageTypes().get(4);
+            getDescriptor().getMessageTypes().get(6);
           internal_static_org_bimserver_pb_GetCurrentUserRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetCurrentUserRequest_descriptor,
               new java.lang.String[] { });
           internal_static_org_bimserver_pb_GetCurrentUserResponse_descriptor =
-            getDescriptor().getMessageTypes().get(5);
+            getDescriptor().getMessageTypes().get(7);
           internal_static_org_bimserver_pb_GetCurrentUserResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetCurrentUserResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetLoggedInUserRequest_descriptor =
-            getDescriptor().getMessageTypes().get(6);
+            getDescriptor().getMessageTypes().get(8);
           internal_static_org_bimserver_pb_GetLoggedInUserRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetLoggedInUserRequest_descriptor,
               new java.lang.String[] { });
           internal_static_org_bimserver_pb_GetLoggedInUserResponse_descriptor =
-            getDescriptor().getMessageTypes().get(7);
+            getDescriptor().getMessageTypes().get(9);
           internal_static_org_bimserver_pb_GetLoggedInUserResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetLoggedInUserResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_GetRemoteAddressRequest_descriptor =
-            getDescriptor().getMessageTypes().get(8);
+            getDescriptor().getMessageTypes().get(10);
           internal_static_org_bimserver_pb_GetRemoteAddressRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetRemoteAddressRequest_descriptor,
               new java.lang.String[] { });
           internal_static_org_bimserver_pb_GetRemoteAddressResponse_descriptor =
-            getDescriptor().getMessageTypes().get(9);
+            getDescriptor().getMessageTypes().get(11);
           internal_static_org_bimserver_pb_GetRemoteAddressResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_GetRemoteAddressResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_IsLoggedInRequest_descriptor =
-            getDescriptor().getMessageTypes().get(10);
+            getDescriptor().getMessageTypes().get(12);
           internal_static_org_bimserver_pb_IsLoggedInRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_IsLoggedInRequest_descriptor,
               new java.lang.String[] { });
           internal_static_org_bimserver_pb_IsLoggedInResponse_descriptor =
-            getDescriptor().getMessageTypes().get(11);
+            getDescriptor().getMessageTypes().get(13);
           internal_static_org_bimserver_pb_IsLoggedInResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_IsLoggedInResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_LoginRequest_descriptor =
-            getDescriptor().getMessageTypes().get(12);
+            getDescriptor().getMessageTypes().get(14);
           internal_static_org_bimserver_pb_LoginRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_LoginRequest_descriptor,
               new java.lang.String[] { "Username", "Password", });
           internal_static_org_bimserver_pb_LoginResponse_descriptor =
-            getDescriptor().getMessageTypes().get(13);
+            getDescriptor().getMessageTypes().get(15);
           internal_static_org_bimserver_pb_LoginResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_LoginResponse_descriptor,
               new java.lang.String[] { "ErrorMessage", "Value", });
           internal_static_org_bimserver_pb_LogoutRequest_descriptor =
-            getDescriptor().getMessageTypes().get(14);
+            getDescriptor().getMessageTypes().get(16);
           internal_static_org_bimserver_pb_LogoutRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_LogoutRequest_descriptor,
               new java.lang.String[] { });
+          internal_static_org_bimserver_pb_RequestPasswordChangeRequest_descriptor =
+            getDescriptor().getMessageTypes().get(17);
+          internal_static_org_bimserver_pb_RequestPasswordChangeRequest_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_bimserver_pb_RequestPasswordChangeRequest_descriptor,
+              new java.lang.String[] { "Username", "ResetUrl", });
+          internal_static_org_bimserver_pb_ValidateAccountRequest_descriptor =
+            getDescriptor().getMessageTypes().get(18);
+          internal_static_org_bimserver_pb_ValidateAccountRequest_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_bimserver_pb_ValidateAccountRequest_descriptor,
+              new java.lang.String[] { "Uoid", "Token", "Password", });
+          internal_static_org_bimserver_pb_ValidateAccountResponse_descriptor =
+            getDescriptor().getMessageTypes().get(19);
+          internal_static_org_bimserver_pb_ValidateAccountResponse_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_bimserver_pb_ValidateAccountResponse_descriptor,
+              new java.lang.String[] { "ErrorMessage", "Value", });
           return null;
         }
       };

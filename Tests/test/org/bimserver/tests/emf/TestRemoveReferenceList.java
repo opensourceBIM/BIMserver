@@ -21,8 +21,8 @@ public class TestRemoveReferenceList extends TestWithEmbeddedServer {
 			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Get the service interface
-			ServiceInterface serviceInterface = bimServerClient.getServiceInterface();
-			bimServerClient.getSettingsInterface().setGenerateGeometryOnCheckin(false);
+			ServiceInterface serviceInterface = bimServerClient.getService();
+			bimServerClient.getSettings().setGenerateGeometryOnCheckin(false);
 
 			// Create a new project
 			SProject newProject = serviceInterface.addProject("test" + Math.random());
@@ -46,7 +46,7 @@ public class TestRemoveReferenceList extends TestWithEmbeddedServer {
 			model.commit("initial");
 			
 			// refresh
-			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
+			newProject = bimServerClient.getService().getProjectByPoid(newProject.getOid());
 			
 			model = bimServerClient.getModel(newProject.getOid(), newProject.getLastRevisionId(), true);
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
@@ -59,7 +59,7 @@ public class TestRemoveReferenceList extends TestWithEmbeddedServer {
 			model.commit("removed middle link");
 			
 			// refresh
-			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
+			newProject = bimServerClient.getService().getProjectByPoid(newProject.getOid());
 			for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
 				if (ifcFurnishingElement.getContainedInStructure().size() != 2) {
 					fail("Size should be 2");

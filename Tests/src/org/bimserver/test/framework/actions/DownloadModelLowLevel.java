@@ -21,7 +21,6 @@ import java.io.File;
 
 import org.bimserver.client.BimServerClientException;
 import org.bimserver.client.ClientIfcModel;
-import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
@@ -30,6 +29,7 @@ import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;

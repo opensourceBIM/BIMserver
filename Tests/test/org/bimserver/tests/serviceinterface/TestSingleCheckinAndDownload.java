@@ -34,7 +34,7 @@ public class TestSingleCheckinAndDownload extends TestWithEmbeddedServer {
 			boolean useChannel = false; // Using the channel is slower
 
 			// Get the service interface
-			ServiceInterface serviceInterface = bimServerClient.getServiceInterface();
+			ServiceInterface serviceInterface = bimServerClient.getService();
 			
 			// Create a new project
 			SProject newProject = serviceInterface.addProject("test" + Math.random());
@@ -57,7 +57,7 @@ public class TestSingleCheckinAndDownload extends TestWithEmbeddedServer {
 			SLongActionState longActionState = serviceInterface.getLongActionState(stateId);
 			if (longActionState.getState() == SActionState.FINISHED) {
 				// Find a serializer
-				SSerializerPluginConfiguration serializer = serviceInterface.getSerializerByContentType("application/ifc");
+				SSerializerPluginConfiguration serializer = bimServerClient.getPlugin().getSerializerByContentType("application/ifc");
 				
 				// Get the project details
 				newProject = serviceInterface.getProjectByPoid(newProject.getOid());

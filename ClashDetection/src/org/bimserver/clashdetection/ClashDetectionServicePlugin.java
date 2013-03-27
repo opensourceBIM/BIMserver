@@ -54,9 +54,10 @@ import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.stillimagerenderer.StillImageRenderer;
 import org.bimserver.plugins.stillimagerenderer.StillImageRendererException;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
+import org.bimserver.shared.ServiceHolder;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.ServiceInterface;
 import org.openmali.vecmath2.Vector3f;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,143 +83,149 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		clashDetection.setReadRevision(true);
 		clashDetection.setWriteExtendedData("http://www.buildingsmart-tech.org/specifications/bcf-releases");
 		clashDetection.setTrigger(Trigger.NEW_REVISION);
-		registerNewRevisionHandler(clashDetection, new NewRevisionHandler(){
-			public void newRevision(ServiceInterface serviceInterface, long poid, long roid, SObjectType settings) throws ServerException, UserException {
+		registerNewRevisionHandler(clashDetection, new NewRevisionHandler() {
+			public void newRevision(ServiceHolder serviceHolder, long poid, long roid, SObjectType settings) throws ServerException, UserException {
 				Bcf bcf = new Bcf();
-				
-				SSerializerPluginConfiguration sSerializer = serviceInterface.getSerializerByPluginClassName("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin");
-				
-				long download = serviceInterface.download(roid, sSerializer.getOid(), true, true);
-				SDownloadResult downloadData = serviceInterface.getDownloadData(download);
-				
-				try {
-					ByteArrayOutputStream baos = new ByteArrayOutputStream();
-					((EmfSerializerDataSource)downloadData.getFile().getDataSource()).getSerializer().writeToOutputStream(baos);
-					
-					Deserializer deserializer = getPluginManager().requireDeserializer("ifc").createDeserializer(new PluginConfiguration());
-					deserializer.init(getPluginManager().requireSchemaDefinition());
-					IfcModelInterface model = deserializer.read(new ByteArrayInputStream(baos.toByteArray()), "test.ifc", baos.size());
-					List<IfcProject> ifcProjects = model.getAll(IfcProject.class);
-					IfcProject mainIfcProject = null;
-					if (!ifcProjects.isEmpty()) {
-						mainIfcProject = ifcProjects.get(0);
-					}
-					
-					RenderEngine renderEngine = getPluginManager().requireRenderEngine().createRenderEngine(new PluginConfiguration());
-					renderEngine.init();
-					
-					RenderEngineModel renderEngineModel = renderEngine.openModel(new ByteArrayInputStream(baos.toByteArray()), baos.size());
-					Set<RenderEngineClash> clashes = renderEngineModel.findClashesWithEids(pluginConfiguration.getDouble("margin"));
-					RenderEngineGeometry geometry = renderEngineModel.finalizeModelling(renderEngineModel.initializeModelling());
 
-					StillImageRenderer stillImageRenderer = getPluginManager().getFirstStillImageRenderPlugin().create(new PluginConfiguration());
-					boolean renderImage = true;
+				SSerializerPluginConfiguration sSerializer;
+				try {
+					sSerializer = serviceHolder.getPlugin().getSerializerByPluginClassName("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin");
+
+					long download = serviceHolder.getService().download(roid, sSerializer.getOid(), true, true);
+					SDownloadResult downloadData = serviceHolder.getService().getDownloadData(download);
+
 					try {
-						stillImageRenderer.init(model);
-					} catch (StillImageRendererException e) {
-						renderImage = false;
-					}
+						ByteArrayOutputStream baos = new ByteArrayOutputStream();
+						((EmfSerializerDataSource) downloadData.getFile().getDataSource()).getSerializer().writeToOutputStream(baos);
 
-					for (RenderEngineClash clash : clashes) {
-						RenderEngineInstanceVisualisationProperties vp = renderEngineModel.getInstanceFromExpressId((int) clash.getEid1()).getVisualisationProperties();
-						float x = geometry.getVertex(geometry.getIndex(vp.getStartIndex()));
-						float y = geometry.getVertex(geometry.getIndex(vp.getStartIndex()));
-						float z = geometry.getVertex(geometry.getIndex(vp.getStartIndex()));
-						
-						String guid1 = ((IfcRoot)model.get(clash.getEid1())).getGlobalId();
-						String guid2 = ((IfcRoot)model.get(clash.getEid2())).getGlobalId();
-						
-						UUID topicUuid = UUID.randomUUID();
-						Issue issue = new Issue(topicUuid);
-						
-						Markup markup = new Markup();
-						Header header = new Header();
-						File file = new File();
-						file.setIfcProject(mainIfcProject.getGlobalId());
-						file.setDate(DatatypeFactory.newInstance().newXMLGregorianCalendar(new GregorianCalendar()));				
-						file.setFilename("C:\\Users\\Ruben de Laat\\Workspace\\BIMserver\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc");
-						
-						header.getFile().add(file);
-						
-						markup.setHeader(header);
-
-						Topic topic = new Topic();
-						topic.setGuid(topicUuid.toString());
-						topic.setTitle("Clash");
-						
-//						topic.setReferenceLink("project://projects/8d289643-c89a-4ffc-adec-2aedab679d6f");
-						
-						markup.setTopic(topic);
-						
-						VisualizationInfo visualizationInfo = new VisualizationInfo();
-						
-						Component component1 = new Component();
-						component1.setIfcGuid(guid1);
-						component1.setOriginatingSystem("BIMserver");
-						component1.setAuthoringToolId("" + clash.getEid1());
-
-						Component component2 = new Component();
-						component2.setIfcGuid(guid2);
-						component2.setOriginatingSystem("BIMserver");
-						component2.setAuthoringToolId("" + clash.getEid2());
-						
-						VisualizationInfo.Components components = new VisualizationInfo.Components();
-						visualizationInfo.setComponents(components);
-						components.getComponent().add(component1);
-						components.getComponent().add(component2);
-						
-						PerspectiveCamera perspectiveCamera = new PerspectiveCamera();
-						perspectiveCamera.setFieldOfView(45.0);
-						perspectiveCamera.setCameraUpVector(newDirection(0, 0, 1));
-						perspectiveCamera.setCameraViewPoint(newPoint(x - 100, y, z));
-						perspectiveCamera.setCameraDirection(newDirection(x, y, z));
-						
-						visualizationInfo.setPerspectiveCamera(perspectiveCamera);
-						visualizationInfo.setLines(new VisualizationInfo.Lines());
-						visualizationInfo.setClippingPlanes(new VisualizationInfo.ClippingPlanes());
-						
-						if (renderImage) {
-							byte[] snapshot = stillImageRenderer.snapshot(new Vector3f(x- 100, y, z), new Vector3f(0, 0, 1), new Vector3f(x, y, z), 500, 500, null);
-							issue.setImageData(snapshot);
-						} else {
-							ByteArrayOutputStream baos2 = new ByteArrayOutputStream();
-							ImageIO.write(new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB), "PNG", baos2);
-							issue.setImageData(baos2.toByteArray());
+						Deserializer deserializer = getPluginManager().requireDeserializer("ifc").createDeserializer(new PluginConfiguration());
+						deserializer.init(getPluginManager().requireSchemaDefinition());
+						IfcModelInterface model = deserializer.read(new ByteArrayInputStream(baos.toByteArray()), "test.ifc", baos.size());
+						List<IfcProject> ifcProjects = model.getAll(IfcProject.class);
+						IfcProject mainIfcProject = null;
+						if (!ifcProjects.isEmpty()) {
+							mainIfcProject = ifcProjects.get(0);
 						}
-						
-						issue.setMarkup(markup);
-						issue.setVisualizationInfo(visualizationInfo);
-						
-						bcf.addIssue(issue);
-					}
-				} catch (Exception e) {
-					LOGGER.error("", e);
-				}
-				
-				SExtendedDataSchema extendedDataSchemaByNamespace = serviceInterface.getExtendedDataSchemaByNamespace("http://www.buildingsmart-tech.org/specifications/bcf-releases");
 
-				SFile file = new SFile();
-				
-				SExtendedData extendedData = new SExtendedData();
-				extendedData.setTitle("Clashdetection Results");
-				file.setFilename("clashdetection.bcfzip");
-				extendedData.setSchemaId(extendedDataSchemaByNamespace.getOid());
-				try {
-					byte[] bytes = bcf.toBytes();
-					file.setData(bytes);
-					file.setMime("application/bcf");
-					
-					long fileId = serviceInterface.uploadFile(file);
-					extendedData.setFileId(fileId);
-					
-					serviceInterface.addExtendedDataToRevision(roid, extendedData);
-				} catch (Exception e) {
-					LOGGER.error("", e);
+						RenderEngine renderEngine = getPluginManager().requireRenderEngine().createRenderEngine(new PluginConfiguration());
+						renderEngine.init();
+
+						RenderEngineModel renderEngineModel = renderEngine.openModel(new ByteArrayInputStream(baos.toByteArray()), baos.size());
+						Set<RenderEngineClash> clashes = renderEngineModel.findClashesWithEids(pluginConfiguration.getDouble("margin"));
+						RenderEngineGeometry geometry = renderEngineModel.finalizeModelling(renderEngineModel.initializeModelling());
+
+						StillImageRenderer stillImageRenderer = getPluginManager().getFirstStillImageRenderPlugin().create(new PluginConfiguration());
+						boolean renderImage = true;
+						try {
+							stillImageRenderer.init(model);
+						} catch (StillImageRendererException e) {
+							renderImage = false;
+						}
+
+						for (RenderEngineClash clash : clashes) {
+							RenderEngineInstanceVisualisationProperties vp = renderEngineModel.getInstanceFromExpressId((int) clash.getEid1()).getVisualisationProperties();
+							float x = geometry.getVertex(geometry.getIndex(vp.getStartIndex()));
+							float y = geometry.getVertex(geometry.getIndex(vp.getStartIndex()));
+							float z = geometry.getVertex(geometry.getIndex(vp.getStartIndex()));
+
+							String guid1 = ((IfcRoot) model.get(clash.getEid1())).getGlobalId();
+							String guid2 = ((IfcRoot) model.get(clash.getEid2())).getGlobalId();
+
+							UUID topicUuid = UUID.randomUUID();
+							Issue issue = new Issue(topicUuid);
+
+							Markup markup = new Markup();
+							Header header = new Header();
+							File file = new File();
+							file.setIfcProject(mainIfcProject.getGlobalId());
+							file.setDate(DatatypeFactory.newInstance().newXMLGregorianCalendar(new GregorianCalendar()));
+							file.setFilename("C:\\Users\\Ruben de Laat\\Workspace\\BIMserver\\TestData\\data\\AC11-Institute-Var-2-IFC.ifc");
+
+							header.getFile().add(file);
+
+							markup.setHeader(header);
+
+							Topic topic = new Topic();
+							topic.setGuid(topicUuid.toString());
+							topic.setTitle("Clash");
+
+							// topic.setReferenceLink("project://projects/8d289643-c89a-4ffc-adec-2aedab679d6f");
+
+							markup.setTopic(topic);
+
+							VisualizationInfo visualizationInfo = new VisualizationInfo();
+
+							Component component1 = new Component();
+							component1.setIfcGuid(guid1);
+							component1.setOriginatingSystem("BIMserver");
+							component1.setAuthoringToolId("" + clash.getEid1());
+
+							Component component2 = new Component();
+							component2.setIfcGuid(guid2);
+							component2.setOriginatingSystem("BIMserver");
+							component2.setAuthoringToolId("" + clash.getEid2());
+
+							VisualizationInfo.Components components = new VisualizationInfo.Components();
+							visualizationInfo.setComponents(components);
+							components.getComponent().add(component1);
+							components.getComponent().add(component2);
+
+							PerspectiveCamera perspectiveCamera = new PerspectiveCamera();
+							perspectiveCamera.setFieldOfView(45.0);
+							perspectiveCamera.setCameraUpVector(newDirection(0, 0, 1));
+							perspectiveCamera.setCameraViewPoint(newPoint(x - 100, y, z));
+							perspectiveCamera.setCameraDirection(newDirection(x, y, z));
+
+							visualizationInfo.setPerspectiveCamera(perspectiveCamera);
+							visualizationInfo.setLines(new VisualizationInfo.Lines());
+							visualizationInfo.setClippingPlanes(new VisualizationInfo.ClippingPlanes());
+
+							if (renderImage) {
+								byte[] snapshot = stillImageRenderer.snapshot(new Vector3f(x - 100, y, z), new Vector3f(0, 0, 1), new Vector3f(x, y, z), 500, 500, null);
+								issue.setImageData(snapshot);
+							} else {
+								ByteArrayOutputStream baos2 = new ByteArrayOutputStream();
+								ImageIO.write(new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB), "PNG", baos2);
+								issue.setImageData(baos2.toByteArray());
+							}
+
+							issue.setMarkup(markup);
+							issue.setVisualizationInfo(visualizationInfo);
+
+							bcf.addIssue(issue);
+						}
+					} catch (Exception e) {
+						LOGGER.error("", e);
+					}
+
+					SExtendedDataSchema extendedDataSchemaByNamespace = serviceHolder.getService().getExtendedDataSchemaByNamespace(
+							"http://www.buildingsmart-tech.org/specifications/bcf-releases");
+
+					SFile file = new SFile();
+
+					SExtendedData extendedData = new SExtendedData();
+					extendedData.setTitle("Clashdetection Results");
+					file.setFilename("clashdetection.bcfzip");
+					extendedData.setSchemaId(extendedDataSchemaByNamespace.getOid());
+					try {
+						byte[] bytes = bcf.toBytes();
+						file.setData(bytes);
+						file.setMime("application/bcf");
+
+						long fileId = serviceHolder.getService().uploadFile(file);
+						extendedData.setFileId(fileId);
+
+						serviceHolder.getService().addExtendedDataToRevision(roid, extendedData);
+					} catch (Exception e) {
+						LOGGER.error("", e);
+					}
+				} catch (PublicInterfaceNotFoundException e1) {
+					e1.printStackTrace();
 				}
 			}
 		});
 	}
-	
+
 	private Point newPoint(double x, double y, double z) {
 		Point point = new Point();
 		point.setX(x);
@@ -234,7 +241,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		direction.setZ(z);
 		return direction;
 	}
-	
+
 	@Override
 	public String getDescription() {
 		return "Provides clash detection service";
@@ -249,7 +256,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 	public boolean isInitialized() {
 		return initialized;
 	}
-	
+
 	@Override
 	public String getTitle() {
 		return "Clashdetection";

@@ -1,4 +1,4 @@
-package org.bimserver.client;
+package org.bimserver.shared;
 
 public class PublicInterfaceNotFoundException extends Exception {
 

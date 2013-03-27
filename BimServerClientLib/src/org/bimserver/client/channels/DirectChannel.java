@@ -23,9 +23,9 @@ import java.io.InputStream;
 import javax.activation.DataHandler;
 
 import org.bimserver.client.ChannelConnectionException;
-import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.exceptions.ServerException;

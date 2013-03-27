@@ -10,9 +10,9 @@ import java.util.concurrent.TimeUnit;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.JsonBimServerClientFactory;
-import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -36,8 +36,8 @@ public class FileLoader {
 						System.out.println(file.getName());
 						SProject project;
 						try {
-							project = client.getServiceInterface().addProject(file.getName());
-							SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc");
+							project = client.getService().addProject(file.getName());
+							SDeserializerPluginConfiguration deserializer = client.getService().getSuggestedDeserializerForExtension("ifc");
 							client.checkin(project.getOid(), file.getName(), deserializer.getOid(), false, true, file);
 						} catch (ServerException e) {
 							e.printStackTrace();

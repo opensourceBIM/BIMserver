@@ -13,9 +13,10 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
+import org.bimserver.shared.ServiceHolder;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.ServiceInterface;
 
 public class DemoServicePlugin1 extends ServicePlugin {
 
@@ -68,28 +69,31 @@ public class DemoServicePlugin1 extends ServicePlugin {
 		serviceDescriptor.setTrigger(Trigger.NEW_REVISION);
 		registerNewRevisionHandler(serviceDescriptor, new NewRevisionHandler() {
 			@Override
-			public void newRevision(ServiceInterface serviceInterface, long poid, long roid, SObjectType settings) throws ServerException, UserException {
-				Long topicId = serviceInterface.registerProgressOnRevisionTopic(SProgressTopicType.RUNNING_SERVICE, poid, roid, "Running Demo Service");
-				
-				for (int i=0; i<100; i++) {
-					SLongActionState state = new SLongActionState();
-					state.setProgress(i);
-					state.setTitle("Doing absolutely nothing...");
-					state.setState(SActionState.STARTED);
-					serviceInterface.updateProgressTopic(topicId, state);
-					try {
-						Thread.sleep(200);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+			public void newRevision(ServiceHolder serviceHolder, long poid, long roid, SObjectType settings) throws ServerException, UserException {
+				try {
+					Long topicId = serviceHolder.getRegistry().registerProgressOnRevisionTopic(SProgressTopicType.RUNNING_SERVICE, poid, roid, "Running Demo Service");
+					for (int i=0; i<100; i++) {
+						SLongActionState state = new SLongActionState();
+						state.setProgress(i);
+						state.setTitle("Doing absolutely nothing...");
+						state.setState(SActionState.STARTED);
+						serviceHolder.getRegistry().updateProgressTopic(topicId, state);
+						try {
+							Thread.sleep(200);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 					}
+					SLongActionState state = new SLongActionState();
+					state.setProgress(100);
+					state.setTitle("Done");
+					state.setState(SActionState.FINISHED);
+					serviceHolder.getRegistry().updateProgressTopic(topicId, state);
+					
+					serviceHolder.getRegistry().unregisterProgressTopic(topicId);
+				} catch (PublicInterfaceNotFoundException e1) {
+					e1.printStackTrace();
 				}
-				SLongActionState state = new SLongActionState();
-				state.setProgress(100);
-				state.setTitle("Done");
-				state.setState(SActionState.FINISHED);
-				serviceInterface.updateProgressTopic(topicId, state);
-				
-				serviceInterface.unregisterProgressTopic(topicId);
 			}
 		});
 	}

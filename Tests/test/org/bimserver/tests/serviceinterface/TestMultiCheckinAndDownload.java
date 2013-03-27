@@ -26,7 +26,7 @@ public class TestMultiCheckinAndDownload extends TestWithEmbeddedServer {
 			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 
 			// Get the service interface
-			ServiceInterface serviceInterface = bimServerClient.getServiceInterface();
+			ServiceInterface serviceInterface = bimServerClient.getService();
 
 			long s = System.nanoTime();
 			for (int i=0; i<3; i++) {
@@ -46,7 +46,7 @@ public class TestMultiCheckinAndDownload extends TestWithEmbeddedServer {
 				SLongActionState longActionState = serviceInterface.getLongActionState(stateId);
 				if (longActionState.getState() == SActionState.FINISHED) {
 					// Find a serializer
-					SSerializerPluginConfiguration serializer = serviceInterface.getSerializerByContentType("application/ifc");
+					SSerializerPluginConfiguration serializer = bimServerClient.getPlugin().getSerializerByContentType("application/ifc");
 					
 					// Get the project details
 					newProject = serviceInterface.getProjectByPoid(newProject.getOid());

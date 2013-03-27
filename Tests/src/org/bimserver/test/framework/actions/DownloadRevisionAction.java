@@ -24,13 +24,13 @@ import java.io.InputStream;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
-import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
@@ -57,29 +57,29 @@ public class DownloadRevisionAction extends Action {
 			if (project.getLastRevisionId() != -1) {
 				SSerializerPluginConfiguration serializer = null;
 				if (serializerName != null) {
-					serializer = virtualUser.getBimServerClient().getServiceInterface().getSerializerByName(serializerName);
+					serializer = virtualUser.getBimServerClient().getPlugin().getSerializerByName(serializerName);
 				} else {
-					List<SSerializerPluginConfiguration> allSerializers = virtualUser.getBimServerClient().getServiceInterface().getAllSerializers(true);
+					List<SSerializerPluginConfiguration> allSerializers = virtualUser.getBimServerClient().getPlugin().getAllSerializers(true);
 					serializer = allSerializers.get(nextInt(allSerializers.size()));
 				}
 				boolean sync = nextBoolean();
 				virtualUser.getActionResults().setText("Downloading revision " + project.getLastRevisionId() + " of project " + project.getName() + " with serializer " + serializer.getName() + " sync: " + sync);
-				SRevision revision = virtualUser.getBimServerClient().getServiceInterface().getRevision(project.getLastRevisionId());
-				long download = virtualUser.getBimServerClient().getServiceInterface().download(project.getLastRevisionId(), serializer.getOid(), true, sync);
-				SActionState state = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(download).getState();
+				SRevision revision = virtualUser.getBimServerClient().getService().getRevision(project.getLastRevisionId());
+				long download = virtualUser.getBimServerClient().getService().download(project.getLastRevisionId(), serializer.getOid(), true, sync);
+				SActionState state = virtualUser.getBimServerClient().getService().getLongActionState(download).getState();
 				while (state != SActionState.FINISHED) {
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 					}
 					virtualUser.getLogger().info("SActionState: " + state);
-					state = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(download).getState();
+					state = virtualUser.getBimServerClient().getService().getLongActionState(download).getState();
 				}
 				virtualUser.getLogger().info("Done preparing download, downloading");
 				try {
 					InputStream downloadData = virtualUser.getBimServerClient().getDownloadData(download, serializer.getOid());
 					if (downloadData != null) {
-						PluginConfiguration pluginConfiguration = new PluginConfiguration(virtualUser.getBimServerClient().getServiceInterface().getPluginSettings(serializer.getOid()));
+						PluginConfiguration pluginConfiguration = new PluginConfiguration(virtualUser.getBimServerClient().getPlugin().getPluginSettings(serializer.getOid()));
 						String filename = project.getName() + "." + revision.getId() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION);
 						FileOutputStream fos = new FileOutputStream(new File(getTestFramework().getTestConfiguration().getOutputFolder(), filename));
 						IOUtils.copy(downloadData, fos);

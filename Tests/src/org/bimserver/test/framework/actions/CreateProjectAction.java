@@ -17,7 +17,7 @@ package org.bimserver.test.framework.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.client.PublicInterfaceNotFoundException;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
@@ -33,6 +33,6 @@ public class CreateProjectAction extends Action {
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		String name = "Project " + randomString();
 		virtualUser.getActionResults().setText("Creating new project " + name);
-		virtualUser.getBimServerClient().getServiceInterface().addProject(name);
+		virtualUser.getBimServerClient().getService().addProject(name);
 	}
 }

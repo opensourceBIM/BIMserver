@@ -29,6 +29,8 @@ option optimize_for = SPEED;
 service AuthInterface {
 	rpc autologin (AutologinRequest) returns (AutologinResponse);
 
+	rpc changePassword (ChangePasswordRequest) returns (ChangePasswordResponse);
+
 	rpc getAccessMethod (GetAccessMethodRequest) returns (GetAccessMethodResponse);
 
 	rpc getCurrentUser (GetCurrentUserRequest) returns (GetCurrentUserResponse);
@@ -43,6 +45,10 @@ service AuthInterface {
 
 	rpc logout (LogoutRequest) returns (VoidResponse);
 
+	rpc requestPasswordChange (RequestPasswordChangeRequest) returns (VoidResponse);
+
+	rpc validateAccount (ValidateAccountRequest) returns (ValidateAccountResponse);
+
 }
 
 message AutologinRequest {
@@ -53,6 +59,17 @@ message AutologinRequest {
 message AutologinResponse {
 	optional string errorMessage = 1;
 	optional string value = 2;
+}
+
+message ChangePasswordRequest {
+	optional int64 uoid = 1;
+	optional string oldPassword = 2;
+	optional string newPassword = 3;
+}
+
+message ChangePasswordResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
 }
 
 message GetAccessMethodRequest {
@@ -106,5 +123,21 @@ message LoginResponse {
 }
 
 message LogoutRequest {
+}
+
+message RequestPasswordChangeRequest {
+	optional string username = 1;
+	optional string resetUrl = 2;
+}
+
+message ValidateAccountRequest {
+	optional int64 uoid = 1;
+	optional string token = 2;
+	optional string password = 3;
+}
+
+message ValidateAccountResponse {
+	optional string errorMessage = 1;
+	optional SUser value = 2;
 }
 

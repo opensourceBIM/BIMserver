@@ -29,9 +29,9 @@ import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.JsonBimServerClientFactory;
-import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -53,9 +53,9 @@ public class TestSceneJsDownload {
 			BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
 			
 			BimServerClient bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-			ServiceInterface serviceInterface = bimServerClient.getServiceInterface();
-			bimServerClient.getAuthInterface().login("admin@bimserver.org", "admin");
-			SSerializerPluginConfiguration serializerByContentType = serviceInterface.getSerializerByContentType("application/json");
+			ServiceInterface serviceInterface = bimServerClient.getService();
+			bimServerClient.getAuth().login("admin@bimserver.org", "admin");
+			SSerializerPluginConfiguration serializerByContentType = bimServerClient.getPlugin().getSerializerByContentType("application/json");
 			List<SProject> projects = serviceInterface.getProjectsByName("test");
 			if (!projects.isEmpty()) {
 				SProject project = projects.get(0);

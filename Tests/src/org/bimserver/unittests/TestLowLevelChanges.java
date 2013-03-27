@@ -57,6 +57,7 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.LowLevelInterface;
+import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.eclipse.emf.common.util.EList;
 import org.junit.AfterClass;
@@ -68,7 +69,9 @@ public class TestLowLevelChanges {
 	private static BimServer bimServer;
 	private static ServiceInterface service;
 	private static LowLevelInterface lowLevelInterface;
+	private static PluginInterface pluginInterface;
 	private static PluginManager pluginManager;
+	private static AuthInterface authInterface;
 
 	@BeforeClass
 	public static void setup() {
@@ -113,6 +116,8 @@ public class TestLowLevelChanges {
 
 		service = bimServer.getService(ServiceInterface.class);
 		lowLevelInterface = bimServer.getService(LowLevelInterface.class);
+		authInterface = bimServer.getService(AuthInterface.class);
+		pluginInterface = bimServer.getService(PluginInterface.class);
 		pluginManager = bimServer.getPluginManager();
 		createUserAndLogin();
 	}
@@ -127,7 +132,7 @@ public class TestLowLevelChanges {
 		try {
 			String username = "test" + nextInt + "@bimserver.org";
 			long addUser = service.addUser(username, "User " + nextInt, SUserType.USER, false).getOid();
-			service.changePassword(addUser, null, "test");
+			authInterface.changePassword(addUser, null, "test");
 			bimServer.getService(AuthInterface.class).login(username, "test");
 			return addUser;
 		} catch (ServiceException e) {
@@ -316,7 +321,7 @@ public class TestLowLevelChanges {
 	
 	private IfcModelInterface getSingleRevision(long roid) throws ServiceException, DeserializeException, IOException {
 		SRevision revision = service.getRevision(roid);
-		SSerializerPluginConfiguration serializerByContentType = service.getSerializerByContentType("application/ifc");
+		SSerializerPluginConfiguration serializerByContentType = pluginInterface.getSerializerByContentType("application/ifc");
 		long downloadId = service.download(revision.getOid(), serializerByContentType.getOid(), true, true);
 		SDownloadResult downloadData = service.getDownloadData(downloadId);
 		DataHandler dataHandler = downloadData.getFile();

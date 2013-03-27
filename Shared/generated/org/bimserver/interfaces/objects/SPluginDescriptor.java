@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SSerializerPluginDescriptor.class, SWebModulePluginDescriptor.class, SModelComparePluginDescriptor.class, SDeserializerPluginDescriptor.class, SServicePluginDescriptor.class, SRenderEnginePluginDescriptor.class, SModelMergerPluginDescriptor.class, SQueryEnginePluginDescriptor.class})
+@XmlSeeAlso(value={SQueryEnginePluginDescriptor.class, SSerializerPluginDescriptor.class, SModelMergerPluginDescriptor.class, SModelComparePluginDescriptor.class, SRenderEnginePluginDescriptor.class, SDeserializerPluginDescriptor.class, SServicePluginDescriptor.class, SWebModulePluginDescriptor.class})
 public class SPluginDescriptor implements SDataBase
 {
 	private long oid = -1;

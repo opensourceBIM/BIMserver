@@ -41,21 +41,21 @@ public class CheckoutAction extends Action {
 	public void execute(VirtualUser virtualUser) throws Exception {
 		SProject project = virtualUser.getRandomProject();
 		if (project.getLastRevisionId() != -1) {
-			List<SSerializerPluginConfiguration> allSerializers = virtualUser.getBimServerClient().getServiceInterface().getAllSerializers(true);
+			List<SSerializerPluginConfiguration> allSerializers = virtualUser.getBimServerClient().getPlugin().getAllSerializers(true);
 			SSerializerPluginConfiguration serializer = allSerializers.get(nextInt(allSerializers.size()));
 			boolean sync = nextBoolean();
 			virtualUser.getActionResults().setText("Checking out revision " + project.getLastRevisionId() + " of project " + project.getName() + " with serializer " + serializer.getName() + " sync: " + sync);
-			long download = virtualUser.getBimServerClient().getServiceInterface().checkout(project.getLastRevisionId(), serializer.getOid(), sync);
-			SLongActionState downloadState = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(download);
+			long download = virtualUser.getBimServerClient().getService().checkout(project.getLastRevisionId(), serializer.getOid(), sync);
+			SLongActionState downloadState = virtualUser.getBimServerClient().getService().getLongActionState(download);
 			while (downloadState.getState() != SActionState.FINISHED) {
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 				}
-				downloadState = virtualUser.getBimServerClient().getServiceInterface().getLongActionState(download);
+				downloadState = virtualUser.getBimServerClient().getService().getLongActionState(download);
 			}
 			virtualUser.getLogger().info("Done preparing checkout, downloading");
-			SDownloadResult downloadData = virtualUser.getBimServerClient().getServiceInterface().getDownloadData(download);
+			SDownloadResult downloadData = virtualUser.getBimServerClient().getService().getDownloadData(download);
 			if (downloadData != null) {
 				try {
 					ByteArrayOutputStream data = new ByteArrayOutputStream();

@@ -31,8 +31,8 @@ import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.ProtocolBuffersBimServerClientFactory;
-import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.client.notifications.SocketNotificationsClient;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.meta.SService;
@@ -95,10 +95,10 @@ public class TestNotifications {
 		
 		try {
 			BimServerClient bimServerClient = factory.create();
-			bimServerClient.getAuthInterface().login("admin@bimserver.org", "admin");
+			bimServerClient.getAuth().login("admin@bimserver.org", "admin");
 			//TODO
 //			bimServerClient.getServiceInterface().setHttpCallback(bimServerClient.getServiceInterface().getCurrentUser().getOid(), "localhost:8055");
-			bimServerClient.getServiceInterface().addProject("test12345");
+			bimServerClient.getService().addProject("test12345");
 		} catch (ServiceException e) {
 			fail(e.getMessage());
 		} catch (ChannelConnectionException e) {

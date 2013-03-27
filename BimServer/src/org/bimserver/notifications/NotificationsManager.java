@@ -30,7 +30,6 @@ import org.bimserver.BimServer;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.JsonChannel;
 import org.bimserver.client.JsonSocketReflectorFactory;
-import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.client.SimpleTokenHolder;
 import org.bimserver.client.channels.Channel;
 import org.bimserver.database.DatabaseSession;
@@ -44,6 +43,7 @@ import org.bimserver.models.store.Service;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.NotificationsManagerInterface;
 import org.bimserver.plugins.services.NewRevisionHandler;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.ServiceMapInterface;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -172,11 +172,11 @@ public class NotificationsManager extends Thread implements NotificationsManager
 			public void newRevision(final Long poid, final Long roid, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) throws UserException, ServerException {
 				ServiceMapInterface serviceMapInterface = new ServiceMap(bimServer, null, AccessMethod.JSON, null);
 				serviceMapInterface.add(RemoteServiceInterface.class, internalRemoteServiceInterfaces.get(serviceIdentifier));
-				InternalChannel internalChannel = new InternalChannel();
+				final InternalChannel internalChannel = new InternalChannel();
 				try {
 					final ServiceInterface serviceInterface = internalChannel.get(ServiceInterface.class);
 					SService service = serviceInterface.getService(Long.parseLong(profileIdentifier));
-					final SObjectType settings = serviceInterface.getPluginSettings(service.getInternalServiceId());
+					final SObjectType settings = internalChannel.getPlugin().getPluginSettings(service.getInternalServiceId());
 					
 					// TODO this should somehow be managed...
 					// This must be asynchronous because we don't want the BIMserver's notifications processor to wait for this to finish...
@@ -184,7 +184,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 						@Override
 						public void run() {
 							try {
-								newRevisionHandler.newRevision(serviceInterface, poid, roid, settings);
+								newRevisionHandler.newRevision(internalChannel, poid, roid, settings);
 							} catch (ServerException e) {
 								LOGGER.error("", e);
 							} catch (UserException e) {

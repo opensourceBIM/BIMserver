@@ -23,6 +23,10 @@ import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
+import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.PluginInterface;
+import org.bimserver.shared.interfaces.RegistryInterface;
+import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.shared.meta.SService;
@@ -39,11 +43,16 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 	public AbstractBimServerClientFactory() {
 		this.servicesMap = new SServicesMap();
 		addService(new SServiceInterfaceService(null, ServiceInterface.class));
-		addService(new SService(null, AuthInterface.class));
+		addService(new SService(null, NotificationInterface.class));
+		addService(new SService(null, RemoteServiceInterface.class));
+		addService(new SService(null, MetaInterface.class));
+		addService(new SService(null, AdminInterface.class));
 		addService(new SService(null, MetaInterface.class));
 		addService(new SService(null, SettingsInterface.class));
-		addService(new SService(null, AdminInterface.class));
+		addService(new SService(null, AuthInterface.class));
 		addService(new SService(null, LowLevelInterface.class));
+		addService(new SService(null, RegistryInterface.class));
+		addService(new SService(null, PluginInterface.class));
 	}
 	
 	@Override

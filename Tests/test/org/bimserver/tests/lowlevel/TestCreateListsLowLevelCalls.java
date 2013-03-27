@@ -22,9 +22,8 @@ public class TestCreateListsLowLevelCalls extends TestWithEmbeddedServer {
 			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Get the service interface
-			ServiceInterface serviceInterface = bimServerClient.getServiceInterface();
-			
-			LowLevelInterface lowLevelInterface = bimServerClient.getLowLevelInterface();
+			ServiceInterface serviceInterface = bimServerClient.getService();
+			LowLevelInterface lowLevelInterface = bimServerClient.getLowLevel();
 			
 			// Create a new project
 			SProject newProject = serviceInterface.addProject("test" + Math.random());

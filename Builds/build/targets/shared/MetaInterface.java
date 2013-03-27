@@ -17,7 +17,7 @@ import org.bimserver.interfaces.objects.SServiceType;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
-@WebService(name = "MetaInterface")
+@WebService(name = "MetaInterface", targetNamespace="org.bimserver")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface MetaInterface extends PublicInterface {
 	/**

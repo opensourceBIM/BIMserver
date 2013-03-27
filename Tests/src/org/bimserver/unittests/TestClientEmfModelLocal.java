@@ -33,7 +33,6 @@ import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.ClientIfcModel;
 import org.bimserver.client.ProtocolBuffersBimServerClientFactory;
-import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevisionSummary;
@@ -41,6 +40,7 @@ import org.bimserver.interfaces.objects.SRevisionSummaryContainer;
 import org.bimserver.interfaces.objects.SRevisionSummaryType;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -76,7 +76,7 @@ public class TestClientEmfModelLocal {
 
 	private SProject createProject() throws PublicInterfaceNotFoundException {
 		try {
-			SProject project = bimServerClient.getServiceInterface().addProject("Project " + new Random().nextInt());
+			SProject project = bimServerClient.getService().addProject("Project " + new Random().nextInt());
 			return project;
 		} catch (ServiceException e) {
 			e.printStackTrace();
@@ -140,7 +140,7 @@ public class TestClientEmfModelLocal {
 	}
 
 	public void dumpSummary(long roid) throws ServiceException, PublicInterfaceNotFoundException {
-		SRevisionSummary revisionSummary = bimServerClient.getServiceInterface().getRevisionSummary(roid);
+		SRevisionSummary revisionSummary = bimServerClient.getService().getRevisionSummary(roid);
 		List<SRevisionSummaryContainer> list = revisionSummary.getList();
 		for (SRevisionSummaryContainer container : list) {
 			System.out.println(container.getName());

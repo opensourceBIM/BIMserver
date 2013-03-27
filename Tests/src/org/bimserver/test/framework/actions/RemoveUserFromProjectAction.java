@@ -19,8 +19,8 @@ package org.bimserver.test.framework.actions;
 
 import java.util.List;
 
-import org.bimserver.client.PublicInterfaceNotFoundException;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.framework.TestFramework;
@@ -39,7 +39,7 @@ public class RemoveUserFromProjectAction extends Action {
 		if (!hasAuthorizedUsers.isEmpty()) {
 			Long uoid = hasAuthorizedUsers.get(nextInt(hasAuthorizedUsers.size()));
 			virtualUser.getLogger().info("Removing user " + uoid + " from project " + project.getName());
-			virtualUser.getBimServerClient().getServiceInterface().removeUserFromProject(uoid, project.getOid());
+			virtualUser.getBimServerClient().getService().removeUserFromProject(uoid, project.getOid());
 		}
 	}
 }

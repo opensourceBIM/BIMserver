@@ -29,7 +29,7 @@ import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
-@WebService(name = "NotificationInterface")
+@WebService(name = "NotificationInterface", targetNamespace="org.buildingsmart.bimsie")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface NotificationInterface extends PublicInterface {
 

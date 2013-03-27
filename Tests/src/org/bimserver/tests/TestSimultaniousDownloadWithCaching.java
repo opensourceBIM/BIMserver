@@ -46,12 +46,14 @@ import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.serializers.CacheStoringEmfSerializerDataSource;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
+import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
+import org.bimserver.webservices.ServiceMap;
 
 public class TestSimultaniousDownloadWithCaching {
 	public static void main(String[] args) {
@@ -96,14 +98,15 @@ public class TestSimultaniousDownloadWithCaching {
 		}
 
 		try {
-			ServiceInterface serviceInterface = bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(ServiceInterface.class);
-			SettingsInterface settingsInterface = bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(SettingsInterface.class);
-			final AuthInterface authInterface = bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(AuthInterface.class);
+			final ServiceMap serviceMap = bimServer.getServiceFactory().get(AccessMethod.INTERNAL);
+			ServiceInterface serviceInterface = serviceMap.get(ServiceInterface.class);
+			SettingsInterface settingsInterface = serviceMap.get(SettingsInterface.class);
+			final AuthInterface authInterface = serviceMap.get(AuthInterface.class);
 			serviceInterface = bimServer.getServiceFactory().get(authInterface.login("admin@bimserver.org", "admin"), AccessMethod.INTERNAL).get(ServiceInterface.class);
 			settingsInterface.setCacheOutputFiles(true);
 			settingsInterface.setGenerateGeometryOnCheckin(false);
 			final SProject project = serviceInterface.addProject("test");
-			SDeserializerPluginConfiguration deserializerByName = serviceInterface.getDeserializerByName("IfcStepDeserializer");
+			SDeserializerPluginConfiguration deserializerByName = serviceMap.getPlugin().getDeserializerByName("IfcStepDeserializer");
 			File file = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
 			serviceInterface.checkin(project.getOid(), "test", deserializerByName.getOid(), file.length(), file.getName(), new DataHandler(new FileDataSource(file)), false, true);
 			final SProject projectUpdate = serviceInterface.getProjectByPoid(project.getOid());
@@ -113,9 +116,9 @@ public class TestSimultaniousDownloadWithCaching {
 					@Override
 					public void run() {
 						try {
-							ServiceInterface serviceInterface = bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(ServiceInterface.class);
+							ServiceInterface serviceInterface = serviceMap.get(ServiceInterface.class);
 							serviceInterface = bimServer.getServiceFactory().get(authInterface.login("admin@bimserver.org", "admin"), AccessMethod.INTERNAL).get(ServiceInterface.class);
-							SSerializerPluginConfiguration serializerPluginConfiguration = serviceInterface.getSerializerByName("Ifc2x3");
+							SSerializerPluginConfiguration serializerPluginConfiguration = serviceMap.getPlugin().getSerializerByName("Ifc2x3");
 							Long download = serviceInterface.download(projectUpdate.getLastRevisionId(), serializerPluginConfiguration.getOid(), true, true);
 							SDownloadResult downloadData = serviceInterface.getDownloadData(download);
 							if (downloadData.getFile().getDataSource() instanceof CacheStoringEmfSerializerDataSource) {
@@ -141,6 +144,8 @@ public class TestSimultaniousDownloadWithCaching {
 							e.printStackTrace();
 						} catch (IOException e) {
 							e.printStackTrace();
+						} catch (PublicInterfaceNotFoundException e1) {
+							e1.printStackTrace();
 						}
 					}});
 			}
@@ -153,6 +158,8 @@ public class TestSimultaniousDownloadWithCaching {
 			e1.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e1) {
+			e1.printStackTrace();
 		}
 	}
 }

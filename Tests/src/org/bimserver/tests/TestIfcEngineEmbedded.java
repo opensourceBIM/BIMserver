@@ -63,16 +63,16 @@ public class TestIfcEngineEmbedded {
 			BimServerClient client = bimServer.getBimServerClientFactory().create();
 
 			// Setup the server
-			client.getAdminInterface().setup("http://localhost:8080", "localhost", "noreply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
+			client.getAdmin().setup("http://localhost:8080", "localhost", "noreply@bimserver.org", "Administrator", "admin@bimserver.org", "admin");
 			
 			// Authenticate
 			client.setAuthentication(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Iterate over the IfcEngines and see if there is one matching the classname specified above
 			boolean ifcEngineFound = false;
-			for (SRenderEnginePluginConfiguration conf : client.getServiceInterface().getAllRenderEngines(false)) {
+			for (SRenderEnginePluginConfiguration conf : client.getPlugin().getAllRenderEngines(false)) {
 				if (ifcEngineToUse.equals(conf.getClassName())) {
-					client.getServiceInterface().setDefaultRenderEngine(conf.getOid());
+					client.getPlugin().setDefaultRenderEngine(conf.getOid());
 					ifcEngineFound = true;
 					LOGGER.info("Using " + conf.getName());
 					break;
@@ -84,10 +84,10 @@ public class TestIfcEngineEmbedded {
 			}
 			
 			// Get a deserializer
-			SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc");
+			SDeserializerPluginConfiguration deserializer = client.getService().getSuggestedDeserializerForExtension("ifc");
 						
 			// Create a project
-			SProject project = client.getServiceInterface().addProject("test" + Math.random());
+			SProject project = client.getService().addProject("test" + Math.random());
 
 			// This is the test file
 			File testIfcFile = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
@@ -96,10 +96,10 @@ public class TestIfcEngineEmbedded {
 			client.checkin(project.getOid(), "testing ifc engine", deserializer.getOid(), false, true, testIfcFile);
 
 			// Update local project
-			project = client.getServiceInterface().getProjectByPoid(project.getOid());
+			project = client.getService().getProjectByPoid(project.getOid());
 
 			// Find collada serializer
-			SSerializerPluginConfiguration serializer = client.getServiceInterface().getSerializerByContentType("application/collada");
+			SSerializerPluginConfiguration serializer = client.getPlugin().getSerializerByContentType("application/collada");
 
 			// Download as collada			
 			client.download(project.getLastRevisionId(), serializer.getOid(), new File(testIfcFile.getName() + ".dae"));
