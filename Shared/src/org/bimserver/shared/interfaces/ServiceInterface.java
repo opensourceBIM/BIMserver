@@ -39,7 +39,6 @@ import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
-import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
@@ -907,26 +906,6 @@ public interface ServiceInterface extends PublicInterface {
 	org.bimserver.interfaces.objects.SService getService(
 		@WebParam(name = "soid", partName = "getService.soid") Long soid) throws ServerException, UserException;
 
-	@WebMethod(action="getInternalServiceById")
-	SInternalServicePluginConfiguration getInternalServiceById(
-		@WebParam(name = "oid", partName = "getEServiceById.oid") Long oid) throws ServerException, UserException;
-	
-	@WebMethod(action="updateInternalService")
-	void updateInternalService(
-		@WebParam(name = "internalService", partName = "updateInternalService.internalService") SInternalServicePluginConfiguration internalService) throws ServerException, UserException;
-	
-	@WebMethod(action="addInternalService")
-	void addInternalService(
-		@WebParam(name = "internalService", partName = "addInternalService.internalService") SInternalServicePluginConfiguration internalService) throws ServerException, UserException;
-	
-	@WebMethod(action="deleteInternalService")
-	void deleteInternalService(
-		@WebParam(name = "oid", partName = "deleteInternalService.oid") Long oid) throws ServerException, UserException;
-	
-	@WebMethod(action="getAllInternalServices")
-	List<SInternalServicePluginConfiguration> getAllInternalServices(
-		@WebParam(name = "onlyEnabled", partName = "getAllInternalServices.onlyEnabled") Boolean onlyEnabled) throws UserException, ServerException;
-	
 	@WebMethod(action = "getAllPrivateProfiles")
 	List<SProfileDescriptor> getAllPrivateProfiles(
 		@WebParam(name = "notificationsUrl", partName = "getAllPrivateProfiles.notificationsUrl") String notificationsUrl, 

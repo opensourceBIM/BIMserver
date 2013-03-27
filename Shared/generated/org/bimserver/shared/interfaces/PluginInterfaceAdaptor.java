@@ -24,6 +24,9 @@ public class PluginInterfaceAdaptor implements PluginInterface {
 	public void addDeserializer(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration deserializer) throws UserException, ServerException {
 	}
 	
+	public void addInternalService(org.bimserver.interfaces.objects.SInternalServicePluginConfiguration internalService) throws UserException, ServerException {
+	}
+	
 	public void addModelCompare(org.bimserver.interfaces.objects.SModelComparePluginConfiguration modelCompare) throws UserException, ServerException {
 	}
 	
@@ -43,6 +46,9 @@ public class PluginInterfaceAdaptor implements PluginInterface {
 	}
 	
 	public void deleteDeserializer(java.lang.Long sid) throws UserException, ServerException {
+	}
+	
+	public void deleteInternalService(java.lang.Long oid) throws UserException, ServerException {
 	}
 	
 	public void deleteModelCompare(java.lang.Long iid) throws UserException, ServerException {
@@ -68,6 +74,10 @@ public class PluginInterfaceAdaptor implements PluginInterface {
 	}
 	
 	public java.util.List<org.bimserver.interfaces.objects.SDeserializerPluginConfiguration> getAllDeserializers(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.util.List<org.bimserver.interfaces.objects.SInternalServicePluginConfiguration> getAllInternalServices(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -148,6 +158,10 @@ public class PluginInterfaceAdaptor implements PluginInterface {
 	}
 	
 	public org.bimserver.interfaces.objects.SDeserializerPluginConfiguration getDeserializerByName(java.lang.String deserializerName) throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SInternalServicePluginConfiguration getInternalServiceById(java.lang.Long oid) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -245,6 +259,9 @@ public class PluginInterfaceAdaptor implements PluginInterface {
 	}
 	
 	public void updateDeserializer(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration deserializer) throws UserException, ServerException {
+	}
+	
+	public void updateInternalService(org.bimserver.interfaces.objects.SInternalServicePluginConfiguration internalService) throws UserException, ServerException {
 	}
 	
 	public void updateModelCompare(org.bimserver.interfaces.objects.SModelComparePluginConfiguration modelCompare) throws UserException, ServerException {

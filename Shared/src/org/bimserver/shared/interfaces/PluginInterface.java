@@ -12,6 +12,7 @@ import javax.jws.soap.SOAPBinding.Use;
 
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
+import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
@@ -529,4 +530,24 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "hasActiveSerializer")
 	Boolean hasActiveSerializer(
 		@WebParam(name = "contentType", partName = "hasActiveSerializer.contentType") String contentType) throws ServerException, UserException;
+	
+	@WebMethod(action="getInternalServiceById")
+	SInternalServicePluginConfiguration getInternalServiceById(
+		@WebParam(name = "oid", partName = "getEServiceById.oid") Long oid) throws ServerException, UserException;
+	
+	@WebMethod(action="updateInternalService")
+	void updateInternalService(
+		@WebParam(name = "internalService", partName = "updateInternalService.internalService") SInternalServicePluginConfiguration internalService) throws ServerException, UserException;
+	
+	@WebMethod(action="addInternalService")
+	void addInternalService(
+		@WebParam(name = "internalService", partName = "addInternalService.internalService") SInternalServicePluginConfiguration internalService) throws ServerException, UserException;
+	
+	@WebMethod(action="deleteInternalService")
+	void deleteInternalService(
+		@WebParam(name = "oid", partName = "deleteInternalService.oid") Long oid) throws ServerException, UserException;
+	
+	@WebMethod(action="getAllInternalServices")
+	List<SInternalServicePluginConfiguration> getAllInternalServices(
+		@WebParam(name = "onlyEnabled", partName = "getAllInternalServices.onlyEnabled") Boolean onlyEnabled) throws UserException, ServerException;
 }

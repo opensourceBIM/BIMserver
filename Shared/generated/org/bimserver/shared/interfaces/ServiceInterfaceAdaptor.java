@@ -30,9 +30,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	public void addExtendedDataToRevision(java.lang.Long roid, org.bimserver.interfaces.objects.SExtendedData extendedData) throws UserException, ServerException {
 	}
 	
-	public void addInternalService(org.bimserver.interfaces.objects.SInternalServicePluginConfiguration internalService) throws UserException, ServerException {
-	}
-	
 	public void addLocalServiceToProject(java.lang.Long poid, org.bimserver.interfaces.objects.SService sService, java.lang.Long internalServiceOid) throws UserException, ServerException {
 	}
 	
@@ -94,9 +91,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	
 	public java.lang.Integer count(java.lang.Long roid, java.lang.String className) throws UserException, ServerException {
 		return null;
-	}
-	
-	public void deleteInternalService(java.lang.Long oid) throws UserException, ServerException {
 	}
 	
 	public java.lang.Boolean deleteProject(java.lang.Long poid) throws UserException, ServerException {
@@ -167,10 +161,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	}
 	
 	public java.util.List<org.bimserver.interfaces.objects.SExtendedDataSchema> getAllExtendedDataSchemas() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SInternalServicePluginConfiguration> getAllInternalServices(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -278,10 +268,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SInternalServicePluginConfiguration getInternalServiceById(java.lang.Long oid) throws UserException, ServerException {
-		return null;
-	}
-	
 	public org.bimserver.interfaces.objects.SLongActionState getLongActionState(java.lang.Long actionId) throws UserException, ServerException {
 		return null;
 	}
@@ -378,9 +364,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	}
 	
 	public void updateGeoTag(org.bimserver.interfaces.objects.SGeoTag sGeoTag) throws UserException, ServerException {
-	}
-	
-	public void updateInternalService(org.bimserver.interfaces.objects.SInternalServicePluginConfiguration internalService) throws UserException, ServerException {
 	}
 	
 	public void updateProject(org.bimserver.interfaces.objects.SProject sProject) throws UserException, ServerException {
