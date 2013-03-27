@@ -16,10 +16,10 @@
 			<fileset file="${buildtargets}/shared/IFC2X3_TC1.exp" />
 			<fileset file="${buildtargets}/shared/version.xml" />
 			<fileset file="${buildtargets}/shared/web.xml" />
-			<fileset file="${buildtargets}/shared/service.proto" />
-			<fileset file="${buildtargets}/shared/notification.proto" />
-			<fileset file="${buildtargets}/shared/service.desc" />
-			<fileset file="${buildtargets}/shared/notification.desc" />
+			<fileset dir="../../Builds/build/pb">
+				<include name="**/*.proto"/>
+				<include name="**/*.desc"/>
+			</fileset>
 		</copy>
 		<copy todir="builds/BuildJar/www/META-INF" overwrite="true">
 			<fileset file="${buildtargets}/shared/context.xml" />
