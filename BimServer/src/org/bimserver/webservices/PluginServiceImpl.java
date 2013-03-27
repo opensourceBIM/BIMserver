@@ -8,6 +8,7 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.actions.AddDeserializerDatabaseAction;
+import org.bimserver.database.actions.AddInternalServiceDatabaseAction;
 import org.bimserver.database.actions.AddModelCompareDatabaseAction;
 import org.bimserver.database.actions.AddModelMergerDatabaseAction;
 import org.bimserver.database.actions.AddObjectIDMDatabaseAction;
@@ -16,12 +17,14 @@ import org.bimserver.database.actions.AddRenderEngineDatabaseAction;
 import org.bimserver.database.actions.AddSerializerDatabaseAction;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DeleteDeserializerDatabaseAction;
+import org.bimserver.database.actions.DeleteInternalServiceDatabaseAction;
 import org.bimserver.database.actions.DeleteModelCompareDatabaseAction;
 import org.bimserver.database.actions.DeleteModelMergerDatabaseAction;
 import org.bimserver.database.actions.DeleteObjectIDMDatabaseAction;
 import org.bimserver.database.actions.DeleteQueryEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteRenderEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteSerializerDatabaseAction;
+import org.bimserver.database.actions.GetByIdDatabaseAction;
 import org.bimserver.database.actions.GetDeserializerByIdDatabaseAction;
 import org.bimserver.database.actions.GetDeserializerByNameDatabaseAction;
 import org.bimserver.database.actions.GetModelCompareByIdDatabaseAction;
@@ -40,6 +43,7 @@ import org.bimserver.database.actions.GetSerializerByNameDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByPluginClassNameDatabaseAction;
 import org.bimserver.database.actions.SetPluginSettingsDatabaseAction;
 import org.bimserver.database.actions.SetUserSettingDatabaseAction;
+import org.bimserver.database.actions.UpdateDatabaseAction;
 import org.bimserver.database.actions.UpdateDeserializerDatabaseAction;
 import org.bimserver.database.actions.UpdateModelCompareDatabaseAction;
 import org.bimserver.database.actions.UpdateModelMergerDatabaseAction;
@@ -51,6 +55,7 @@ import org.bimserver.database.actions.UserSettingsSetter;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDeserializerPluginDescriptor;
+import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginDescriptor;
 import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
@@ -66,6 +71,7 @@ import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServicePluginDescriptor;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
+import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.ObjectType;
@@ -79,6 +85,7 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.PluginInterface;
+import org.eclipse.emf.common.util.EList;
 
 public class PluginServiceImpl extends GenericServiceImpl implements PluginInterface {
 	public PluginServiceImpl(ServiceMap serviceMap) {
@@ -992,5 +999,77 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	public SSerializerPluginDescriptor getSerializerPluginDescriptor(String type) throws UserException {
 		requireRealUserAuthentication();
 		return getBimServer().getSerializerFactory().getSerializerPluginDescriptor(type);
+	}
+	
+
+	@Override
+	public SInternalServicePluginConfiguration getInternalServiceById(Long oid) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			SInternalServicePluginConfiguration convertToSObject = getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetByIdDatabaseAction<InternalServicePluginConfiguration>(session, getInternalAccessMethod(), oid, StorePackage.eINSTANCE.getInternalServicePluginConfiguration())));
+			return convertToSObject;
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void updateInternalService(SInternalServicePluginConfiguration internalService) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			InternalServicePluginConfiguration convertFromSObject = getBimServer().getSConverter().convertFromSObject(internalService, session);
+			session.executeAndCommitAction(new UpdateDatabaseAction<InternalServicePluginConfiguration>(session, getInternalAccessMethod(), convertFromSObject));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void addInternalService(SInternalServicePluginConfiguration internalService) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			session.executeAndCommitAction(new AddInternalServiceDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), getBimServer().getSConverter().convertFromSObject(internalService, session)));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public void deleteInternalService(Long oid) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			session.executeAndCommitAction(new DeleteInternalServiceDatabaseAction(session, getInternalAccessMethod(), oid));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public List<SInternalServicePluginConfiguration> getAllInternalServices(Boolean onlyEnabled) throws UserException, ServerException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			UserSettings userSettings = getUserSettings(session);
+			EList<InternalServicePluginConfiguration> services2 = userSettings.getServices();
+			List<SInternalServicePluginConfiguration> services = getBimServer().getSConverter().convertToSListInternalServicePluginConfiguration(services2);
+			Collections.sort(services, new SPluginConfigurationComparator());
+			return services;
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
 	}
 }

@@ -89,37 +89,43 @@
 			
 			this.tryAutoLogin = function(){
 				$(function(){
-					loadBimServerApi($.cookie("address"), Global.notifier, function(serverInfo){
-						if (serverInfo.serverState == "NOT_SETUP") {
-							$(".indexcontainer").load("setup.html", function(){
-								new Setup($.cookie("address"));
-							});
-						} else if (serverInfo.serverState == "UNDEFINED") {
-						} else if (serverInfo.serverState == "MIGRATION_REQUIRED") {
-						} else if (serverInfo.serverState == "MIGRATION_IMPOSSIBLE") {
-						} else if (serverInfo.serverState == "FATAL_ERROR") {
-						} else if (serverInfo.serverState == "RUNNING") {
-							if ($.cookie("autologin") != null) {
-								Global.bimServerApi.autologin($.cookie("username"), $.cookie("autologin"), function(){
-									$(".indexcontainer").load("main.html", function(){
-										new Main($.cookie("address"), $.cookie("username")).show(false);
+					if ($.cookie("address") != null) {
+						loadBimServerApi($.cookie("address"), Global.notifier, function(serverInfo){
+							if (serverInfo.serverState == "NOT_SETUP") {
+								$(".indexcontainer").load("setup.html", function(){
+									new Setup($.cookie("address"));
+								});
+							} else if (serverInfo.serverState == "UNDEFINED") {
+							} else if (serverInfo.serverState == "MIGRATION_REQUIRED") {
+							} else if (serverInfo.serverState == "MIGRATION_IMPOSSIBLE") {
+							} else if (serverInfo.serverState == "FATAL_ERROR") {
+							} else if (serverInfo.serverState == "RUNNING") {
+								if ($.cookie("autologin") != null) {
+									Global.bimServerApi.autologin($.cookie("username"), $.cookie("autologin"), function(){
+										$(".indexcontainer").load("main.html", function(){
+											new Main($.cookie("address"), $.cookie("username")).show(false);
+										});
+									}, function(){
+										$(".indexcontainer").load("login.html", function(){
+											new Login();
+										});
 									});
-								}, function(){
+								} else {
 									$(".indexcontainer").load("login.html", function(){
 										new Login();
 									});
-								});
-							} else {
-								$(".indexcontainer").load("login.html", function(){
-									new Login();
-								});
+								}
 							}
-						}
-					}, function(){
+						}, function(){
+							$(".indexcontainer").load("login.html", function(){
+								new Login();
+							});
+						});
+					} else {
 						$(".indexcontainer").load("login.html", function(){
 							new Login();
 						});
-					});
+					}
 				});
 			};
 			setInterval(function() {

@@ -66,7 +66,7 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 			return (T) publicInterface;
 		}
 		if (clazz == ServiceInterface.class) {
-			publicInterface = new Service(this);
+			publicInterface = new ServiceImpl(this);
 		} else if (clazz == AuthInterface.class) {
 			publicInterface = new AuthServiceImpl(this);
 		} else if (clazz == AdminInterface.class) {

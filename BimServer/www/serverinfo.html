@@ -152,6 +152,13 @@ function ServerInfo(containerDiv, main) {
 			$(".bimserver table").append("<tr><td>Started</td><td>" + formatDateTime(new Date(data.started)) + "</td></tr>");
 			$(".bimserver table").append("<tr><td>Uptime</td><td>" + data.uptime + "</td></tr>");
 		});
+
+		Global.bimServerApi.call("MetaInterface", "getServiceInterfaces", {}, function(data){
+			$(".webservices table").append("<tr><td colspan=\"2\" class=\"header\">Web Services</td></tr>");
+			data.forEach(function(service){
+				$(".webservices table").append("<tr><td>" + service.simpleName + "</td><td><a href=\"" + Global.bimServerApi.baseUrl + "/soap/" + service.simpleName + "?wsdl\">WSDL</a> <a href=\"" + Global.bimServerApi.baseUrl + "/download?token=" + Global.bimServerApi.token + "&action=getfile&type=proto&name=" + service.simpleName + "\">Proto</a></td></tr>");
+			});
+		});
 	}
 	
 	$(".serverinfo .link").click(function(){

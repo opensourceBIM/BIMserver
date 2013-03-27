@@ -50,7 +50,6 @@ import org.bimserver.database.Query;
 import org.bimserver.database.actions.AddExtendedDataSchemaDatabaseAction;
 import org.bimserver.database.actions.AddExtendedDataToProjectDatabaseAction;
 import org.bimserver.database.actions.AddExtendedDataToRevisionDatabaseAction;
-import org.bimserver.database.actions.AddInternalServiceDatabaseAction;
 import org.bimserver.database.actions.AddLocalServiceToProjectDatabaseAction;
 import org.bimserver.database.actions.AddProjectDatabaseAction;
 import org.bimserver.database.actions.AddServiceToProjectDatabaseAction;
@@ -64,7 +63,6 @@ import org.bimserver.database.actions.ChangeUserTypeDatabaseAction;
 import org.bimserver.database.actions.CheckinDatabaseAction;
 import org.bimserver.database.actions.CompareDatabaseAction;
 import org.bimserver.database.actions.CountDatabaseAction;
-import org.bimserver.database.actions.DeleteInternalServiceDatabaseAction;
 import org.bimserver.database.actions.DeleteProjectDatabaseAction;
 import org.bimserver.database.actions.DeleteServiceDatabaseAction;
 import org.bimserver.database.actions.DeleteUserDatabaseAction;
@@ -83,7 +81,6 @@ import org.bimserver.database.actions.GetAllServicesOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllUsersDatabaseAction;
 import org.bimserver.database.actions.GetAvailableClassesDatabaseAction;
 import org.bimserver.database.actions.GetAvailableClassesInRevisionDatabaseAction;
-import org.bimserver.database.actions.GetByIdDatabaseAction;
 import org.bimserver.database.actions.GetCheckinWarningsDatabaseAction;
 import org.bimserver.database.actions.GetCheckoutWarningsDatabaseAction;
 import org.bimserver.database.actions.GetExtendedDataByIdDatabaseAction;
@@ -96,9 +93,6 @@ import org.bimserver.database.actions.GetProjectsByNameDatabaseAction;
 import org.bimserver.database.actions.GetProjectsOfUserDatabaseAction;
 import org.bimserver.database.actions.GetRevisionDatabaseAction;
 import org.bimserver.database.actions.GetRevisionSummaryDatabaseAction;
-import org.bimserver.database.actions.GetSerializerByContentTypeDatabaseAction;
-import org.bimserver.database.actions.GetSerializerByIdDatabaseAction;
-import org.bimserver.database.actions.GetSerializerByPluginClassNameDatabaseAction;
 import org.bimserver.database.actions.GetSubProjectsDatabaseAction;
 import org.bimserver.database.actions.GetUserByUoidDatabaseAction;
 import org.bimserver.database.actions.GetUserByUserNameDatabaseAction;
@@ -107,7 +101,6 @@ import org.bimserver.database.actions.RemoveUserFromProjectDatabaseAction;
 import org.bimserver.database.actions.SetRevisionTagDatabaseAction;
 import org.bimserver.database.actions.UndeleteProjectDatabaseAction;
 import org.bimserver.database.actions.UndeleteUserDatabaseAction;
-import org.bimserver.database.actions.UpdateDatabaseAction;
 import org.bimserver.database.actions.UpdateGeoTagDatabaseAction;
 import org.bimserver.database.actions.UpdateProjectDatabaseAction;
 import org.bimserver.database.actions.UpdateRevisionDatabaseAction;
@@ -131,7 +124,6 @@ import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SExtendedDataSchemaType;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
-import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
@@ -139,8 +131,6 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
-import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServiceDescriptor;
 import org.bimserver.interfaces.objects.STrigger;
 import org.bimserver.interfaces.objects.SUser;
@@ -188,14 +178,13 @@ import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.codehaus.jettison.json.JSONTokener;
-import org.eclipse.emf.common.util.EList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Service extends GenericServiceImpl implements ServiceInterface {
-	private static final Logger LOGGER = LoggerFactory.getLogger(Service.class);
+public class ServiceImpl extends GenericServiceImpl implements ServiceInterface {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceImpl.class);
 
-	public Service(ServiceMap serviceMap) {
+	public ServiceImpl(ServiceMap serviceMap) {
 		super(serviceMap);
 	}
 
@@ -1570,87 +1559,6 @@ public class Service extends GenericServiceImpl implements ServiceInterface {
 			session.close();
 		}
 	}
-
-	@Override
-	public SInternalServicePluginConfiguration getInternalServiceById(Long oid) throws ServerException, UserException {
-		requireAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			SInternalServicePluginConfiguration convertToSObject = getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetByIdDatabaseAction<InternalServicePluginConfiguration>(session, getInternalAccessMethod(), oid, StorePackage.eINSTANCE.getInternalServicePluginConfiguration())));
-			return convertToSObject;
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void updateInternalService(SInternalServicePluginConfiguration internalService) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			InternalServicePluginConfiguration convertFromSObject = getBimServer().getSConverter().convertFromSObject(internalService, session);
-			session.executeAndCommitAction(new UpdateDatabaseAction<InternalServicePluginConfiguration>(session, getInternalAccessMethod(), convertFromSObject));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void addInternalService(SInternalServicePluginConfiguration internalService) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			session.executeAndCommitAction(new AddInternalServiceDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), getBimServer().getSConverter().convertFromSObject(internalService, session)));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void deleteInternalService(Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			session.executeAndCommitAction(new DeleteInternalServiceDatabaseAction(session, getInternalAccessMethod(), oid));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public List<SInternalServicePluginConfiguration> getAllInternalServices(Boolean onlyEnabled) throws UserException, ServerException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			UserSettings userSettings = getUserSettings(session);
-			EList<InternalServicePluginConfiguration> services2 = userSettings.getServices();
-			List<SInternalServicePluginConfiguration> services = getBimServer().getSConverter().convertToSListInternalServicePluginConfiguration(services2);
-			Collections.sort(services, new SPluginConfigurationComparator());
-			return services;
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-//	public void registerAll(Long endPointId) throws ServerException, UserException {
-//		requireAuthentication();
-//		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
-//		if (getCurrentUser() == null) {
-//			getBimServer().getNotificationsManager().register(-1, endPoint);
-//		} else {
-//			getBimServer().getNotificationsManager().register(getCurrentUser().getOid(), endPoint);
-//		}
-//	}
 	
 	@Override
 	public List<SProfileDescriptor> getAllPublicProfiles(String notificationsUrl, String serviceIdentifier) throws ServerException, UserException {
