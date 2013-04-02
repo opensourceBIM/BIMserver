@@ -17,6 +17,8 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Collections;
+
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.AdminInterface;
@@ -42,17 +44,18 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 
 	public AbstractBimServerClientFactory() {
 		this.servicesMap = new SServicesMap();
-		addService(new SServiceInterfaceService(null, ServiceInterface.class));
-		addService(new SService(null, NotificationInterface.class));
-		addService(new SService(null, RemoteServiceInterface.class));
-		addService(new SService(null, MetaInterface.class));
-		addService(new SService(null, AdminInterface.class));
-		addService(new SService(null, MetaInterface.class));
-		addService(new SService(null, SettingsInterface.class));
-		addService(new SService(null, AuthInterface.class));
-		addService(new SService(null, LowLevelInterface.class));
-		addService(new SService(null, RegistryInterface.class));
-		addService(new SService(null, PluginInterface.class));
+		SService serviceInterface = new SServiceInterfaceService(null, ServiceInterface.class);
+		addService(serviceInterface);
+		addService(new SService(null, NotificationInterface.class, Collections.singletonList(serviceInterface)));
+		addService(new SService(null, RemoteServiceInterface.class, Collections.singletonList(serviceInterface)));
+		addService(new SService(null, MetaInterface.class, Collections.singletonList(serviceInterface)));
+		addService(new SService(null, AdminInterface.class, Collections.singletonList(serviceInterface)));
+		addService(new SService(null, MetaInterface.class, Collections.singletonList(serviceInterface)));
+		addService(new SService(null, SettingsInterface.class, Collections.singletonList(serviceInterface)));
+		addService(new SService(null, AuthInterface.class, Collections.singletonList(serviceInterface)));
+		addService(new SService(null, LowLevelInterface.class, Collections.singletonList(serviceInterface)));
+		addService(new SService(null, RegistryInterface.class, Collections.singletonList(serviceInterface)));
+		addService(new SService(null, PluginInterface.class, Collections.singletonList(serviceInterface)));
 	}
 	
 	@Override

@@ -13,7 +13,7 @@ import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
-public class TestCreateListsLowLevelCalls extends TestWithEmbeddedServer {
+public class TestCreateReferenceListsAndClear extends TestWithEmbeddedServer {
 
 	@Test
 	public void test() {
@@ -23,6 +23,7 @@ public class TestCreateListsLowLevelCalls extends TestWithEmbeddedServer {
 			
 			// Get the service interface
 			ServiceInterface serviceInterface = bimServerClient.getService();
+			
 			LowLevelInterface lowLevelInterface = bimServerClient.getLowLevel();
 			
 			// Create a new project
@@ -31,21 +32,31 @@ public class TestCreateListsLowLevelCalls extends TestWithEmbeddedServer {
 			// Start a transaction
 			Long tid = lowLevelInterface.startTransaction(newProject.getOid());
 			
-			Long cartesianPointOid = lowLevelInterface.createObject(tid, "IfcCartesianPoint");
+			Long ifcShapeRepresentationOid = lowLevelInterface.createObject(tid, "IfcShapeRepresentation");
 			
-			double firstVal = 5.1;
-			lowLevelInterface.addDoubleAttribute(tid, cartesianPointOid, "Coordinates", firstVal);
-			double secondVal = 6.2;
-			lowLevelInterface.addDoubleAttribute(tid, cartesianPointOid, "Coordinates", secondVal);
-			double thirdVal = 7.3;
-			lowLevelInterface.addDoubleAttribute(tid, cartesianPointOid, "Coordinates", thirdVal);
+			long ifcRepresentationItem1 = lowLevelInterface.createObject(tid, "IfcStyledItem");
+			long ifcRepresentationItem2 = lowLevelInterface.createObject(tid, "IfcMappedItem");
+			long ifcRepresentationItem3 = lowLevelInterface.createObject(tid, "IfcGeometricRepresentationItem");
+			
+			lowLevelInterface.addReference(tid, ifcShapeRepresentationOid, "Items", ifcRepresentationItem1);
+			lowLevelInterface.addReference(tid, ifcShapeRepresentationOid, "Items", ifcRepresentationItem2);
+			lowLevelInterface.addReference(tid, ifcShapeRepresentationOid, "Items", ifcRepresentationItem3);
 			
 			// Commit the transaction
 			lowLevelInterface.commitTransaction(tid, "test");
 
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
-			List<Double> coordinates = lowLevelInterface.getDoubleAttributes(tid, cartesianPointOid, "Coordinates");
-			assertTrue(coordinates.get(0) == firstVal && coordinates.get(1) == secondVal && coordinates.get(2) == thirdVal);
+			List<Long> itemOids = lowLevelInterface.getReferences(tid, ifcShapeRepresentationOid, "Items");
+			assertTrue(itemOids.get(0) == ifcRepresentationItem1 && itemOids.get(1) == ifcRepresentationItem2 && itemOids.get(2) == ifcRepresentationItem3);
+			
+			lowLevelInterface.removeAllReferences(tid, ifcShapeRepresentationOid, "Items");
+			
+			lowLevelInterface.commitTransaction(tid, "removed all references");
+			
+			tid = lowLevelInterface.startTransaction(newProject.getOid());
+			
+			itemOids = lowLevelInterface.getReferences(tid, ifcShapeRepresentationOid, "Items");
+			assertTrue(itemOids.size() == 0);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getMessage());

@@ -76,7 +76,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 	}
 
 	public void init() {
-		if (getBimServer().getDiskCacheManager().contains(downloadParameters)) {
+		if (getBimServer().getServerSettingsCache().getServerSettings().getCacheOutputFiles() && getBimServer().getDiskCacheManager().contains(downloadParameters)) {
 			return;
 		}
 		ObjectIDM objectIDM = null;
