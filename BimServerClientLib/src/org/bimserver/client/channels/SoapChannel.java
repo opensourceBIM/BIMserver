@@ -57,7 +57,7 @@ public class SoapChannel extends Channel implements TokenChangeListener {
 		for (Class<? extends PublicInterface> interface1 : interfaces) {
 			JaxWsProxyFactoryBean cpfb = new JaxWsProxyFactoryBean();
 			cpfb.setServiceClass(interface1);
-			cpfb.setAddress(address + "/" + interface1.getSimpleName().toLowerCase());
+			cpfb.setAddress(address + "/" + interface1.getSimpleName());
 			Map<String, Object> properties = new HashMap<String, Object>();
 			properties.put("mtom-enabled", Boolean.TRUE);
 			cpfb.setProperties(properties);
