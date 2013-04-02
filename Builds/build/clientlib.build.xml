@@ -26,9 +26,9 @@
 			<fileset file="../../BimServer/lib/cxf/xmlschema-core-2.0.3.jar"/>
 			<fileset file="../../BimServer/lib/gson-2.2.2.jar"/>
 			<fileset file="../../BimServer/lib/guava-13.0.1.jar"/>
-			<fileset file="../../BimServer/lib/httpclient/httpclient-4.2.2.jar"/>
-			<fileset file="../../BimServer/lib/httpclient/httpcore-4.2.2.jar"/>
-			<fileset file="../../BimServer/lib/httpclient/httpmime-4.2.2.jar"/>
+			<fileset file="../../BimServer/lib/cxf/httpclient-4.2.1.jar"/>
+			<fileset file="../../BimServer/lib/cxf/httpcore-4.2.2.jar"/>
+			<fileset file="../../BimServer/lib/cxf/httpmime-4.2.2.jar"/>
 			<fileset file="../../BimServer/lib/javassist.jar"/>
 			<fileset file="../../BimServer/lib/mail.jar"/>
 			<fileset file="../../BimServer/lib/jdt/org.eclipse.core.contenttype_3.4.200.v20120523-2004.jar"/>
