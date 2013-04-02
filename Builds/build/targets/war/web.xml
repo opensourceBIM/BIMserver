@@ -33,13 +33,23 @@
 	</listener>
 
 	<servlet>
-		<servlet-name>WebServiceServlet</servlet-name>
-		<servlet-class>org.bimserver.servlets.WebServiceServlet</servlet-class>
+		<servlet-name>WebServiceServlet11</servlet-name>
+		<servlet-class>org.bimserver.servlets.WebServiceServlet11</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>WebServiceServlet</servlet-name>
-		<url-pattern>/soap/*</url-pattern>
+		<servlet-name>WebServiceServlet11</servlet-name>
+		<url-pattern>/soap11/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>WebServiceServlet12</servlet-name>
+		<servlet-class>org.bimserver.servlets.WebServiceServlet12</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WebServiceServlet12</servlet-name>
+		<url-pattern>/soap12/*</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
