@@ -95,11 +95,11 @@
 				</path>
 			</classpath>
 		</javac>
-		<copy todir="builds/bimserverclientlib">
-			<fileset file="${buildtargets}/shared/service.proto" />
-			<fileset file="${buildtargets}/shared/notification.proto" />
-			<fileset file="${buildtargets}/shared/service.desc" />
-			<fileset file="${buildtargets}/shared/notification.desc" />
+		<copy todir="builds/bimserverclientlib/org/bimserver/client/channels">
+			<fileset dir="../../Builds/build/pb">
+				<include name="*.desc"/>
+				<include name="*.proto"/>
+			</fileset>
 		</copy>
 		<jar destfile="builds/lib/bimserver-${version}-client-lib.jar">
 			<fileset dir="builds/bimserverclientlib"/>
