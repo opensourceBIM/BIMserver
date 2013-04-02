@@ -15,7 +15,7 @@ import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
-public class TestCreateGuidEmf extends TestWithEmbeddedServer {
+public class TestCreateGuid extends TestWithEmbeddedServer {
 
 	@Test
 	public void test() {

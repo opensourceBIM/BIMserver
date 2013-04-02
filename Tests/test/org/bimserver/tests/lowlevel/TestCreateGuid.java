@@ -10,7 +10,7 @@ import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
-public class TestCreateGuidLowLevelCalls extends TestWithEmbeddedServer {
+public class TestCreateGuid extends TestWithEmbeddedServer {
 
 	@Test
 	public void test() {

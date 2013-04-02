@@ -15,7 +15,7 @@ import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
-public class TestDeleteObjectsEmf extends TestWithEmbeddedServer {
+public class TestDeleteObjects extends TestWithEmbeddedServer {
 
 	@Test
 	public void test() {

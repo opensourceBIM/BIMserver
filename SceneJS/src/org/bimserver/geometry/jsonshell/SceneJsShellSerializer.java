@@ -193,7 +193,8 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 		writeMaterial(jsonWriter, "IfcBuildingElementProxy", new double[] { 0.5f, 0.5f, 0.5f }, 1.0f);
 		writeMaterial(jsonWriter, "IfcFlowSegment", new double[] { 0.6f, 0.4f, 0.5f }, 1.0f);
 		writeMaterial(jsonWriter, "IfcProxy", new double[] { 0.637255f, 0.603922f, 0.670588f}, 1.0f);
-
+		writeMaterial(jsonWriter, "IfcSite", new double[] { 0.637255f, 0.603922f, 0.670588f}, 1.0f);
+		
 		List<IfcSurfaceStyle> listSurfaceStyles = model.getAll(IfcSurfaceStyle.class);
 		for (IfcSurfaceStyle ss : listSurfaceStyles) {
 			EList<IfcSurfaceStyleElementSelect> styles = ss.getStyles();
@@ -336,7 +337,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 					writeGeometricObject(jsonWriter, (IfcProduct) relatedObject);
 				}
 			}
-			return;
+//			return;
 		}
 
 		IfcMaterialSelect relatingMaterial = null;

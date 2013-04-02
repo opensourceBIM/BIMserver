@@ -14,16 +14,15 @@ import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.JsonBimServerClientFactory;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-import org.bimserver.tests.emf.TestCreateGuidEmf;
-import org.bimserver.tests.emf.TestDeleteObjectsEmf;
+import org.bimserver.tests.emf.TestCreateGuid;
+import org.bimserver.tests.emf.TestDeleteObjects;
 import org.bimserver.tests.emf.TestListWalls;
 import org.bimserver.tests.emf.TestLoadCompleteModel;
 import org.bimserver.tests.emf.TestReadTrim;
 import org.bimserver.tests.emf.TestRemoveReferenceList;
-import org.bimserver.tests.lowlevel.TestCreateGuidLowLevelCalls;
-import org.bimserver.tests.lowlevel.TestCreateListsLowLevelCalls;
-import org.bimserver.tests.lowlevel.TestCreateReferenceListsLowLevelCalls;
-import org.bimserver.tests.lowlevel.TestCreateUnknownTypeLowLevelCalls;
+import org.bimserver.tests.lowlevel.TestCreateLists;
+import org.bimserver.tests.lowlevel.TestCreateReferenceListsAndClear;
+import org.bimserver.tests.lowlevel.TestCreateUnknownType;
 import org.bimserver.tests.serviceinterface.TestMultiCheckinAndDownload;
 import org.bimserver.tests.serviceinterface.TestSingleCheckinAndDownload;
 import org.bimserver.tests.serviceinterface.TestUpdateProject;
@@ -33,12 +32,12 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        TestCreateGuidEmf.class,
-        TestCreateGuidLowLevelCalls.class,
-        TestCreateListsLowLevelCalls.class,
-        TestCreateReferenceListsLowLevelCalls.class,
-        TestCreateUnknownTypeLowLevelCalls.class,
-        TestDeleteObjectsEmf.class,
+        TestCreateGuid.class,
+        TestCreateGuid.class,
+        TestCreateLists.class,
+        TestCreateReferenceListsAndClear.class,
+        TestCreateUnknownType.class,
+        TestDeleteObjects.class,
         TestListWalls.class,
         TestLoadCompleteModel.class,
         TestMultiCheckinAndDownload.class,
