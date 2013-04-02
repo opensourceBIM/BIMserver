@@ -43,16 +43,16 @@ public class ProtocolBuffersChannel extends Channel implements ConnectDisconnect
 	static {
 		protocolBuffersMetaData = new ProtocolBuffersMetaData();
 		try {
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("ServiceInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("NotificationInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("RemoteServiceInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("AdminInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("AuthInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("SettingsInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("LowLevelInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("MetaInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("RegistryInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getClassLoader().getResource("PluginInterface.desc"));
+			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("ServiceInterface.desc"));
+			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("NotificationInterface.desc"));
+			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("RemoteServiceInterface.desc"));
+			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("AdminInterface.desc"));
+			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("AuthInterface.desc"));
+			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("SettingsInterface.desc"));
+			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("LowLevelInterface.desc"));
+			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("MetaInterface.desc"));
+			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("RegistryInterface.desc"));
+			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("PluginInterface.desc"));
 		} catch (IOException e) {
 			LoggerFactory.getLogger(ProtocolBuffersChannel.class).error("", e);
 		}
