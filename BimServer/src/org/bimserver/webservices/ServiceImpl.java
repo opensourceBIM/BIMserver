@@ -43,7 +43,7 @@ import javax.mail.internet.MimeMessage;
 
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
-import org.bimserver.client.JsonBimServerClientFactory;
+import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;

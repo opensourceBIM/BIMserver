@@ -12,7 +12,7 @@ import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.LocalVersionConstructor;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
-import org.bimserver.client.JsonBimServerClientFactory;
+import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.tests.emf.TestCreateGuid;
 import org.bimserver.tests.emf.TestDeleteObjects;

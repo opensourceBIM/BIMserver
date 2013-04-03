@@ -1,4 +1,4 @@
-package org.bimserver.client.channels;
+package org.bimserver.client.soap;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -33,6 +33,7 @@ import org.apache.cxf.headers.Header;
 import org.apache.cxf.jaxb.JAXBDataBinding;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
+import org.bimserver.client.Channel;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.TokenChangeListener;
 import org.bimserver.shared.TokenHolder;

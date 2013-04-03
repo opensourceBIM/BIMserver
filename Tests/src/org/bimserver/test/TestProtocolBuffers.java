@@ -2,7 +2,7 @@ package org.bimserver.test;
 
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ChannelConnectionException;
-import org.bimserver.client.SoapBimServerClientFactory;
+import org.bimserver.client.soap.SoapBimServerClientFactory;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;

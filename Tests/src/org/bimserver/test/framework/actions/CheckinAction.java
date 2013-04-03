@@ -63,10 +63,12 @@ public class CheckinAction extends Action {
 				if (longActionState.getState() == SActionState.AS_ERROR) {
 					virtualUser.getActionResults().setText("" + longActionState.getErrors());
 				}
+				virtualUser.getBimServerClient().getService().cleanupLongAction(checkinId);
 			} else {
 				while (true) {
 					SLongActionState checkinState = virtualUser.getBimServerClient().getService().getLongActionState(checkinId);
 					if (checkinState.getState() == SActionState.FINISHED || checkinState.getState() == SActionState.UNKNOWN) {
+						virtualUser.getBimServerClient().getService().cleanupLongAction(checkinId);
 						break;
 					}
 					try {

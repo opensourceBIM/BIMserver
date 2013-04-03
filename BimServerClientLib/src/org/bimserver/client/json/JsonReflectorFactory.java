@@ -1,4 +1,4 @@
-package org.bimserver.client;
+package org.bimserver.client.json;
 
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.json.JsonReflector;

@@ -1,4 +1,4 @@
-package org.bimserver.client;
+package org.bimserver.client.json;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -17,7 +17,8 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.client.channels.Channel;
+import org.bimserver.client.Channel;
+import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.json.JsonReflector;

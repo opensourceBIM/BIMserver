@@ -29,7 +29,6 @@ import java.util.Map;
 
 import javax.activation.DataHandler;
 
-import org.apache.commons.io.FileUtils;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
 import org.bimserver.shared.meta.SMethod;
@@ -52,7 +51,7 @@ public class ProtocolBuffersGenerator {
 
 	private void generateProtocolBuffersObjects(File protoFile, File protoDestFile, boolean javaOut) {
 		File destDir = new File("../GeneratedProtocolBuffersClient/generated");
-		File protoDir = new File("../Builds/build/pb");
+		File protoDir = new File("../BimServerClientLib/src/org/bimserver/client/protocolbuffers/");
 
 		File execFile = null;
 		String execFileName = "protoc";
@@ -381,11 +380,6 @@ public class ProtocolBuffersGenerator {
 			if (out != null) {
 				out.close();
 			}
-		}
-		try {
-			FileUtils.copyFile(protoFile, new File("../Builds/build/targets/shared/" + protoFile.getName()));
-		} catch (IOException e) {
-			LOGGER.error("", e);
 		}
 	}
 

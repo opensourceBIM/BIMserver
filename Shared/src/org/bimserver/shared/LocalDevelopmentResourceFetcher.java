@@ -28,7 +28,7 @@ public class LocalDevelopmentResourceFetcher extends ResourceFetcher {
 		addPath(new File("../Builds/defaultsettings/shared"));
 		addPath(new File("../Builds/build/targets/local"));
 		addPath(new File("../Builds/build/targets/shared"));
-		addPath(new File("../Builds/build/pb"));
+		addPath(new File("../BimServerClientLib/src/org/bimserver/client/protocolbuffers"));
 	}
 
 	@Override

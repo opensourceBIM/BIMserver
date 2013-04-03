@@ -95,8 +95,8 @@
 				</path>
 			</classpath>
 		</javac>
-		<copy todir="builds/bimserverclientlib/org/bimserver/client/channels">
-			<fileset dir="../../Builds/build/pb">
+		<copy todir="builds/bimserverclientlib/org/bimserver/client/protocolbuffers">
+			<fileset dir="../../BimServerClientLib/src/org/bimserver/client/protocolbuffers">
 				<include name="*.desc"/>
 				<include name="*.proto"/>
 			</fileset>

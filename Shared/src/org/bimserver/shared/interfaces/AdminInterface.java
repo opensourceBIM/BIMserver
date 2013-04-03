@@ -90,13 +90,6 @@ public interface AdminInterface extends PublicInterface {
 	List<SLogAction> getLogs() throws ServerException, UserException;
 
 	/**
-	 * @return A list with the currently running Long actions
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getActiveLongActions")
-	List<SLongAction> getActiveLongActions() throws ServerException, UserException;
-
-	/**
 	 * @return A list of all Migrations (either executed or not)
 	 * @throws ServerException, UserException
 	 */

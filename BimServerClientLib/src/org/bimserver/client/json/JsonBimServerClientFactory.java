@@ -1,4 +1,4 @@
-package org.bimserver.client;
+package org.bimserver.client.json;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -17,40 +17,41 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.client.channels.ProtocolBuffersChannel;
+import org.bimserver.client.AbstractBimServerClientFactory;
+import org.bimserver.client.BimServerClient;
+import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.reflector.ReflectorBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
 
-public class ProtocolBuffersBimServerClientFactory extends AbstractBimServerClientFactory {
+public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
 
-	private final String address;
-	private final int port;
+	private String address;
+	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private ReflectorFactory reflectorFactory;
-	private int httpPort;
 
-	public ProtocolBuffersBimServerClientFactory(String address, int port, SServicesMap servicesMap, ReflectorFactory reflectorFactory) {
+	public JsonBimServerClientFactory(String address, SServicesMap servicesMap, JsonSocketReflectorFactory jsonSocketReflectorFactory, ReflectorFactory reflectorFactory) {
 		super(servicesMap);
 		this.address = address;
-		this.port = port;
+		this.jsonSocketReflectorFactory = jsonSocketReflectorFactory;
 		this.reflectorFactory = reflectorFactory;
 	}
 
-	public ProtocolBuffersBimServerClientFactory(String address, int port, int httpPort) {
+	public JsonBimServerClientFactory(String address) {
 		super();
-		this.httpPort = httpPort;
 		this.address = address;
-		this.port = port;
-		reflectorFactory = new ReflectorBuilder(getServicesMap()).newReflectorFactory();
+		this.jsonSocketReflectorFactory = new JsonSocketReflectorFactory(getServicesMap());
+		ReflectorBuilder reflectorBuilder = new ReflectorBuilder(getServicesMap());
+		reflectorFactory = reflectorBuilder.newReflectorFactory();
 	}
 
 	@Override
 	public BimServerClient create(AuthenticationInfo authenticationInfo) throws ServiceException, ChannelConnectionException {
-		ProtocolBuffersChannel channel = new ProtocolBuffersChannel(getServicesMap(), reflectorFactory, address, port);
-		// TODO people using https or a non-root context-path will get in trouble here
-		BimServerClient bimServerClient = new BimServerClient("http://" + address + ":" + httpPort, getServicesMap(), channel);
+		JsonChannel jsonChannel = new JsonChannel(reflectorFactory, jsonSocketReflectorFactory, address + "/json", getServicesMap());
+		BimServerClient bimServerClient = new BimServerClient(address, getServicesMap(), jsonChannel);
+		jsonChannel.connect(bimServerClient);
 		bimServerClient.setAuthentication(authenticationInfo);
 		bimServerClient.connect();
 		return bimServerClient;

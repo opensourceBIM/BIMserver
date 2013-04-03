@@ -21,21 +21,22 @@ import java.io.File;
 
 import org.bimserver.test.framework.FolderWalker;
 import org.bimserver.test.framework.RandomBimServerClientFactory;
-import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
 import org.bimserver.test.framework.TestConfiguration;
 import org.bimserver.test.framework.TestFramework;
+import org.bimserver.test.framework.RandomBimServerClientFactory.Type;
 import org.bimserver.test.framework.actions.Action;
 import org.bimserver.test.framework.actions.ActionCreater;
 import org.bimserver.test.framework.actions.AddUserToProjectAction;
 import org.bimserver.test.framework.actions.CheckinAction;
 import org.bimserver.test.framework.actions.CheckinSettings;
 import org.bimserver.test.framework.actions.CreateProjectAction;
+import org.bimserver.test.framework.actions.CreateSubProjectAction;
 import org.bimserver.test.framework.actions.CreateUserAction;
+import org.bimserver.test.framework.actions.RandomActionFactory;
 import org.bimserver.test.framework.actions.LoginAction;
 import org.bimserver.test.framework.actions.LogoutAction;
-import org.bimserver.test.framework.actions.RandomActionFactory;
 
-public class TestCheckin {
+public class TestCheckin2 {
 	public static void main(String[] args) {
 		TestConfiguration testConfiguration = new TestConfiguration();
 		final TestFramework testFramework = new TestFramework(testConfiguration);
@@ -69,6 +70,11 @@ public class TestCheckin {
 					return new CreateProjectAction(testFramework);
 				}
 			}, 
+			new ActionCreater(){
+				public Action create() {
+					return new CreateSubProjectAction(testFramework);
+				}
+			}, 
 			new ActionCreater(6){
 				public Action create() {
 					return new CheckinAction(testFramework, new CheckinSettings());
@@ -76,11 +82,11 @@ public class TestCheckin {
 			} 
 		));
 //		testConfiguration.setActionFactory(new AllActionsFactory(testFramework));
-		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.JSON));
+		testConfiguration.setBimServerClientFactory(new RandomBimServerClientFactory(testFramework, Type.SOAP, Type.PROTOCOL_BUFFERS, Type.JSON));
 		testConfiguration.setTestFileProvider(new FolderWalker(new File("D:\\ifc selected"), testFramework));
 //		testConfiguration.setTestFileProvider(new FolderWalker(new File("C:\\Users\\Ruben de Laat\\Documents\\My Dropbox\\Logic Labs\\Clients\\TNO\\ifc selected")));
 		testConfiguration.setOutputFolder(new File("D:\\output"));
-		testConfiguration.setNrVirtualUsers(8);
+		testConfiguration.setNrVirtualUsers(5);
 		
 		testFramework.start();
 	}

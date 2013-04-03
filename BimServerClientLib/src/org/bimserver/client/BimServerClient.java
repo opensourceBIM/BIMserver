@@ -28,7 +28,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.io.IOUtils;
-import org.bimserver.client.channels.Channel;
 import org.bimserver.client.notifications.SocketNotificationsClient;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.interfaces.objects.SProject;
@@ -71,7 +70,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	private AuthenticationInfo authenticationInfo = new AnonymousAuthentication();
 	private String token;
 
-	protected BimServerClient(String baseAddress, SServicesMap servicesMap, Channel channel) {
+	public BimServerClient(String baseAddress, SServicesMap servicesMap, Channel channel) {
 		this.baseAddress = baseAddress;
 		this.servicesMap = servicesMap;
 		this.channel = channel;
@@ -88,7 +87,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		connect();
 	}
 
-	protected void connect() throws ServerException, UserException, ChannelConnectionException {
+	public void connect() throws ServerException, UserException, ChannelConnectionException {
 		disconnect();
 		this.channel.registerConnectDisconnectListener(this);
 		this.channel.connect(this);

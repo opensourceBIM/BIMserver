@@ -39,7 +39,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongAction.class);
 	private final GregorianCalendar start;
-	private AtomicInteger progress = new AtomicInteger(-1);
+	private final AtomicInteger progress = new AtomicInteger(-1);
 	private final CountDownLatch latch = new CountDownLatch(1);
 	private final BimServer bimServer;
 	private final String username;

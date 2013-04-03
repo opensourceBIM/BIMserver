@@ -803,4 +803,26 @@ public class IfcModel implements IfcModelInterface {
 		add(oid, object, false, false);
 		return (T) object;
 	}
+	
+	@Override
+	public void clear() {
+		if (guidIndex != null) {
+			guidIndex.clear();
+		}
+		if (guidIndexed != null) {
+			guidIndexed.clear();
+		}
+		if (indexPerClass != null) {
+			indexPerClass.clear();
+		}
+		if (nameIndex != null) {
+			nameIndex.clear();
+		}
+		if (indexPerClassWithSubTypes != null) {
+			indexPerClassWithSubTypes.clear();
+		}
+		if (objects != null) {
+			objects.clear();
+		}
+	}
 }

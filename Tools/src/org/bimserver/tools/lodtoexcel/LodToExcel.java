@@ -17,7 +17,7 @@ import jxl.write.biff.RowsExceededException;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ClientIfcModel;
-import org.bimserver.client.JsonBimServerClientFactory;
+import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.models.ifc2x3tc1.GeometryInfo;

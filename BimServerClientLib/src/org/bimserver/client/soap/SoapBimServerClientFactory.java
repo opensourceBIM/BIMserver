@@ -1,4 +1,4 @@
-package org.bimserver.client;
+package org.bimserver.client.soap;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -17,7 +17,9 @@ package org.bimserver.client;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.client.channels.SoapChannel;
+import org.bimserver.client.AbstractBimServerClientFactory;
+import org.bimserver.client.BimServerClient;
+import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.meta.SServicesMap;
