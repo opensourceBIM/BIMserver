@@ -28,12 +28,12 @@ import java.util.concurrent.BlockingQueue;
 
 import org.bimserver.BimServer;
 import org.bimserver.client.BimServerClient;
+import org.bimserver.client.Channel;
 import org.bimserver.client.ChannelConnectionException;
-import org.bimserver.client.JsonChannel;
-import org.bimserver.client.JsonSocketReflectorFactory;
+import org.bimserver.client.DirectChannel;
 import org.bimserver.client.SimpleTokenHolder;
-import org.bimserver.client.channels.Channel;
-import org.bimserver.client.channels.DirectChannel;
+import org.bimserver.client.json.JsonChannel;
+import org.bimserver.client.json.JsonSocketReflectorFactory;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SObjectType;

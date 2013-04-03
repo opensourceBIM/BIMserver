@@ -29,7 +29,7 @@ import org.apache.commons.io.IOUtils;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
-import org.bimserver.client.SoapBimServerClientFactory;
+import org.bimserver.client.soap.SoapBimServerClientFactory;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;

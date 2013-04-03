@@ -86,6 +86,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 
 		// This is very important! The LongCheckinAction will probably live another 30 minutes 
 		// before it will be cleaned up (this is useful for clients asking for the progress/status of this checkin)
+		checkinDatabaseAction.getModel().clear();
 		checkinDatabaseAction = null;
 	}
 

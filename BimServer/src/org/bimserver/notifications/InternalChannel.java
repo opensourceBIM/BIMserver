@@ -17,8 +17,8 @@ package org.bimserver.notifications;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.client.Channel;
 import org.bimserver.client.ChannelConnectionException;
-import org.bimserver.client.channels.Channel;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.TokenHolder;

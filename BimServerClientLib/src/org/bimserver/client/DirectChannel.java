@@ -1,4 +1,4 @@
-package org.bimserver.client.channels;
+package org.bimserver.client;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -22,7 +22,6 @@ import java.io.InputStream;
 
 import javax.activation.DataHandler;
 
-import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.PublicInterfaceNotFoundException;

@@ -1,4 +1,4 @@
-package org.bimserver.client.channels;
+package org.bimserver.client.protocolbuffers;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -20,6 +20,7 @@ package org.bimserver.client.channels;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
+import org.bimserver.client.Channel;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.TokenHolder;
@@ -29,37 +30,19 @@ import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.pb.ProtocolBuffersReflector;
 import org.bimserver.shared.pb.SocketProtocolBuffersChannel;
 import org.bimserver.shared.reflector.ReflectorFactory;
-import org.slf4j.LoggerFactory;
 
 public class ProtocolBuffersChannel extends Channel implements ConnectDisconnectListener {
 
 	private SocketProtocolBuffersChannel protocolBuffersChannel;
-	private final static ProtocolBuffersMetaData protocolBuffersMetaData;
 	private SServicesMap servicesMap;
 	private ReflectorFactory reflectorFactory;
 	private String address;
 	private int port;
+	private ProtocolBuffersMetaData protocolBuffersMetaData;
 
-	static {
-		protocolBuffersMetaData = new ProtocolBuffersMetaData();
-		try {
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("ServiceInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("NotificationInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("RemoteServiceInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("AdminInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("AuthInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("SettingsInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("LowLevelInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("MetaInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("RegistryInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("PluginInterface.desc"));
-		} catch (IOException e) {
-			LoggerFactory.getLogger(ProtocolBuffersChannel.class).error("", e);
-		}
-	}
-	
-	public ProtocolBuffersChannel(SServicesMap servicesMap, ReflectorFactory reflectorFactory, String address, int port) {
+	public ProtocolBuffersChannel(SServicesMap servicesMap, ProtocolBuffersMetaData protocolBuffersMetaData, ReflectorFactory reflectorFactory, String address, int port) {
 		this.servicesMap = servicesMap;
+		this.protocolBuffersMetaData = protocolBuffersMetaData;
 		this.reflectorFactory = reflectorFactory;
 		this.address = address;
 		this.port = port;

@@ -131,16 +131,6 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 		return bimServerInfo;
 	}
 
-
-	@Override
-	public List<SLongAction> getActiveLongActions() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
-		try {
-			return getBimServer().getSConverter().convertToSListLongAction(getBimServer().getLongActionManager().getActiveLongActions());
-		} catch (Exception e) {
-			return handleException(e);
-		}
-	}
 	@Override
 	public String getServerLog() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
@@ -151,7 +141,6 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 			throw new ServerException(e);
 		}
 	}
-	
 
 	@Override
 	public String getProtocolBuffersFile(String interfaceName) throws ServerException, UserException {

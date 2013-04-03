@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ChannelConnectionException;
-import org.bimserver.client.JsonBimServerClientFactory;
+import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.PublicInterfaceNotFoundException;

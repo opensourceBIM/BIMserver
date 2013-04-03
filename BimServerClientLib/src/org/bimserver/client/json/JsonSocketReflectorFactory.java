@@ -1,4 +1,4 @@
-package org.bimserver.client;
+package org.bimserver.client.json;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org

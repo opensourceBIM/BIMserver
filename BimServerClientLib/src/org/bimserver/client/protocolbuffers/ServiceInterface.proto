@@ -231,8 +231,8 @@ message SExtendedDataSchema {
 	repeated int64 extendedData = 2;
 	repeated int64 users = 3;
 	optional int32 rid = 4;
-	optional int64 oid = 5;
-	optional string description = 6;
+	optional string description = 5;
+	optional int64 oid = 6;
 	optional string name = 7;
 	optional SExtendedDataSchemaType type = 8;
 	optional bool validate = 9;
@@ -296,8 +296,8 @@ message SService {
 	optional string serviceName = 8;
 	optional SAccessMethod notificationProtocol = 9;
 	optional int32 rid = 10;
-	optional string providerName = 11;
-	optional string token = 12;
+	optional string token = 11;
+	optional string providerName = 12;
 	optional int64 oid = 13;
 	optional string description = 14;
 	optional int64 userId = 15;
@@ -354,12 +354,12 @@ message SProject {
 	repeated int64 concreteRevisions = 6;
 	optional int32 id = 7;
 	optional int64 parentId = 8;
-	repeated int64 extendedData = 9;
-	repeated int64 hasAuthorizedUsers = 10;
+	repeated int64 hasAuthorizedUsers = 9;
+	repeated int64 extendedData = 10;
 	optional int32 rid = 11;
 	optional int64 geoTagId = 12;
-	optional int64 oid = 13;
-	optional SSIPrefix exportLengthMeasurePrefix = 14;
+	optional SSIPrefix exportLengthMeasurePrefix = 13;
+	optional int64 oid = 14;
 	optional string description = 15;
 	optional string name = 16;
 	repeated int64 subProjects = 17;
@@ -406,14 +406,14 @@ message AddUserRequest {
 message SUser {
 	optional int64 userSettingsId = 1;
 	optional int64 lastSeen = 2;
-	repeated int64 schemas = 3;
-	repeated int64 services = 4;
+	repeated int64 services = 3;
+	repeated int64 schemas = 4;
 	optional int64 createdById = 5;
 	repeated int64 logs = 6;
 	optional string validationToken = 7;
 	optional SObjectState state = 8;
-	optional string password = 9;
-	repeated int64 hasRightsOn = 10;
+	repeated int64 hasRightsOn = 9;
+	optional string password = 10;
 	optional SUserType userType = 11;
 	optional int64 createdOn = 12;
 	repeated int64 extendedData = 13;
@@ -546,6 +546,11 @@ message CompareRequest {
 	optional int64 mcid = 4;
 }
 
+message SObjectAdded {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
 message SObjectRemoved {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
@@ -559,9 +564,10 @@ message SObjectModified {
 	optional string fieldName = 5;
 }
 
-message SObjectAdded {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
+message SListDataValue {
+	repeated SDataValue values = 1;
+	optional int32 rid = 2;
+	optional int64 oid = 3;
 }
 
 message SSimpleDataValue {
@@ -577,17 +583,11 @@ message SReferenceDataValue {
 	optional int64 oid = 4;
 }
 
-message SListDataValue {
-	repeated SDataValue values = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
-}
-
 message SDataValue {
 	required string __actual_type = 1;
-	optional SSimpleDataValue __SSimpleDataValue = 2;
-	optional SReferenceDataValue __SReferenceDataValue = 3;
-	optional SListDataValue __SListDataValue = 4;
+	optional SListDataValue __SListDataValue = 2;
+	optional SSimpleDataValue __SSimpleDataValue = 3;
+	optional SReferenceDataValue __SReferenceDataValue = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 	optional string fieldName = 7;
@@ -604,9 +604,9 @@ message SDataObject {
 
 message SCompareItem {
 	required string __actual_type = 1;
-	optional SObjectRemoved __SObjectRemoved = 2;
-	optional SObjectModified __SObjectModified = 3;
-	optional SObjectAdded __SObjectAdded = 4;
+	optional SObjectAdded __SObjectAdded = 2;
+	optional SObjectRemoved __SObjectRemoved = 3;
+	optional SObjectModified __SObjectModified = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 	optional SDataObject dataObject = 7;
@@ -782,8 +782,8 @@ message GetAllCheckoutsByUserRequest {
 message SRevision {
 	optional bool hasGeometry = 1;
 	optional int64 lastConcreteRevisionId = 2;
-	optional int32 bmi = 3;
-	repeated int64 logs = 4;
+	repeated int64 logs = 3;
+	optional int32 bmi = 4;
 	optional string tag = 5;
 	repeated int64 concreteRevisions = 6;
 	optional int64 projectId = 7;
@@ -794,16 +794,16 @@ message SRevision {
 	optional int32 rid = 12;
 	optional int64 oid = 13;
 	optional int64 userId = 14;
-	optional string lastError = 15;
-	optional string comment = 16;
+	optional string comment = 15;
+	optional string lastError = 16;
 	repeated int64 checkouts = 17;
 }
 
 message SCheckout {
 	optional SRevision checkin = 1;
 	optional SRevision revision = 2;
-	repeated int64 logs = 3;
-	optional int32 rid = 4;
+	optional int32 rid = 3;
+	repeated int64 logs = 4;
 	optional int64 oid = 5;
 	optional int64 userId = 6;
 	optional bool active = 7;
@@ -885,8 +885,8 @@ message SServiceDescriptor {
 	optional STrigger trigger = 3;
 	optional bool writeRevision = 4;
 	optional string readExtendedData = 5;
-	optional string token = 6;
-	optional string providerName = 7;
+	optional string providerName = 6;
+	optional string token = 7;
 	optional string description = 8;
 	optional string name = 9;
 	optional bool readRevision = 10;
@@ -1137,8 +1137,8 @@ message GetGeoTagRequest {
 }
 
 message SGeoTag {
-	optional bool enabled = 1;
-	repeated int64 projects = 2;
+	repeated int64 projects = 1;
+	optional bool enabled = 2;
 	optional int32 epsg = 3;
 	optional int32 rid = 4;
 	optional int64 oid = 5;
@@ -1172,8 +1172,8 @@ message SLongActionState {
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 	optional SActionState state = 7;
-	optional int32 stage = 8;
-	repeated string warnings = 9;
+	repeated string warnings = 8;
+	optional int32 stage = 9;
 }
 
 message GetLongActionStateResponse {
@@ -1339,9 +1339,9 @@ message SUserSettings {
 	optional int64 defaultObjectIDMId = 7;
 	optional int64 defaultModelCompareId = 8;
 	optional int64 defaultQueryEngineId = 9;
-	repeated int64 renderEngines = 10;
-	repeated int64 deserializers = 11;
-	optional int32 rid = 12;
+	optional int32 rid = 10;
+	repeated int64 renderEngines = 11;
+	repeated int64 deserializers = 12;
 	optional int64 oid = 13;
 	optional int64 defaultRenderEngineId = 14;
 	optional int64 defaultSerializerId = 15;

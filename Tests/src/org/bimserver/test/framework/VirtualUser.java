@@ -74,6 +74,7 @@ public class VirtualUser extends Thread {
 				Action action = null;
 				try {
 					if (!bimServerClient.getAuth().isLoggedIn()) {
+						actionResults = new ActionResults();
 						action = new LoginAction(testFramework);
 						action.execute(this);
 					} else {

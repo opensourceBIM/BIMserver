@@ -32,7 +32,7 @@ import org.bimserver.client.BimServerClientException;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.ClientIfcModel;
-import org.bimserver.client.ProtocolBuffersBimServerClientFactory;
+import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevisionSummary;

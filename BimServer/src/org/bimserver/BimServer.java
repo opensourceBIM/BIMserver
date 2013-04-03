@@ -44,7 +44,7 @@ import org.bimserver.cache.CompareCache;
 import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.DirectBimServerClientFactory;
-import org.bimserver.client.JsonSocketReflectorFactory;
+import org.bimserver.client.json.JsonSocketReflectorFactory;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
@@ -316,7 +316,7 @@ public class BimServer {
 			pluginManager.initAllLoadedPlugins();
 			serverStartTime = new GregorianCalendar();
 
-			longActionManager = new LongActionManager(this);
+			longActionManager = new LongActionManager();
 
 			Set<Ifc2x3tc1Package> packages = CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE);
 			templateEngine = new TemplateEngine();
@@ -387,8 +387,8 @@ public class BimServer {
 			servicesMap.add(new SService(getContent("SettingsInterface.java"), SettingsInterface.class, Collections.singletonList(serviceInterface)));
 			servicesMap.add(new SService(getContent("AuthInterface.java"), AuthInterface.class, Collections.singletonList(serviceInterface)));
 			servicesMap.add(new SService(getContent("LowLevelInterface.java"), LowLevelInterface.class, Collections.singletonList(serviceInterface)));
-			servicesMap.add(new SService(getContent("RegistryInterface.java"), RegistryInterface.class, Collections.singletonList(serviceInterface)));
 			servicesMap.add(new SService(getContent("PluginInterface.java"), PluginInterface.class, Collections.singletonList(serviceInterface)));
+			servicesMap.add(new SService(getContent("RegistryInterface.java"), RegistryInterface.class, Collections.singletonList(serviceInterface)));
 			
 			notificationsManager.start();
 

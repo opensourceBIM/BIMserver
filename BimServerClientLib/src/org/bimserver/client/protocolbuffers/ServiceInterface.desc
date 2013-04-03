@@ -8,9 +8,9 @@
 fileId (
 extendedData (
 users (
-rid (
-oid (
-description (	
+rid (
+description (	
+oid (
 name (	7
 type (2).org.bimserver.pb.SExtendedDataSchemaType
 validate	 (
@@ -51,9 +51,9 @@ revisionId	 (
 serviceName (	=
 notificationProtocol	 (2.org.bimserver.pb.SAccessMethod
 rid
- (
-providerName (	
-token (	
+ (
+token (	
+providerName (	
 oid (
 description (	
 userId (
@@ -79,14 +79,14 @@ revisionId	 (
 concreteRevisions (
 
 id (
-parentId (
-extendedData	 (
-hasAuthorizedUsers
+parentId (
+hasAuthorizedUsers	 (
+extendedData
  (
 rid (
-geoTagId (
-oid (>
-exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
+geoTagId (>
+exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
+oid (
 description (	
 name (	
 subProjects (
@@ -114,16 +114,16 @@ parentPoid ("a
 selfRegistration ("º
 SUser
 userSettingsId (
-lastSeen (
-schemas (
-services (
+lastSeen (
+services (
+schemas (
 createdById (
 logs (
 validationToken (	-
-state (2.org.bimserver.pb.SObjectState
-password	 (	
-hasRightsOn
- (-
+state (2.org.bimserver.pb.SObjectState
+hasRightsOn	 (
+password
+ (	-
 userType (2.org.bimserver.pb.SUserType
 	createdOn (
 extendedData (
@@ -208,7 +208,10 @@ parentPoid ("a
 roid1 (
 roid2 (4
 sCompareType (2.org.bimserver.pb.SCompareType
-mcid ("*
+mcid ("(
+SObjectAdded
+rid (
+oid ("*
 SObjectRemoved
 rid (
 oid ("b
@@ -217,10 +220,11 @@ parentPoid ("a
 rid (
 oid (
 oldValue (	
-	fieldName (	"(
-SObjectAdded
-rid (
-oid ("A
+	fieldName (	"X
+SListDataValue,
+values (2.org.bimserver.pb.SDataValue
+rid (
+oid ("A
 SSimpleDataValue
 rid (
 oid (
@@ -229,17 +233,13 @@ parentPoid ("a
 guid (	
 typeName (	
 rid (
-oid ("X
-SListDataValue,
-values (2.org.bimserver.pb.SDataValue
-rid (
-oid ("’
+oid ("’
 
 SDataValue
-__actual_type (	>
-__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValueD
-__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue:
-__SListDataValue (2 .org.bimserver.pb.SListDataValue
+__actual_type (	:
+__SListDataValue (2 .org.bimserver.pb.SListDataValue>
+__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValueD
+__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue
 rid (
 oid (
 	fieldName (	"
@@ -251,10 +251,10 @@ SDataValue
 name (	
 type (	"¤
 SCompareItem
-__actual_type (	:
-__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved<
-__SObjectModified (2!.org.bimserver.pb.SObjectModified6
-__SObjectAdded (2.org.bimserver.pb.SObjectAdded
+__actual_type (	6
+__SObjectAdded (2.org.bimserver.pb.SObjectAdded:
+__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved<
+__SObjectModified (2!.org.bimserver.pb.SObjectModified
 rid (
 oid (1
 
@@ -371,9 +371,9 @@ classNames (	
 uoid ("µ
 	SRevision
 hasGeometry (
-lastConcreteRevisionId (
-bmi (
-logs (
+lastConcreteRevisionId (
+logs (
+bmi (
 tag (	
 concreteRevisions (
 	projectId (
@@ -385,15 +385,15 @@ classNames (	
 extendedData (
 rid (
 oid (
-userId (
-	lastError (	
-comment (	
+userId (
+comment (	
+	lastError (	
 	checkouts ("Ñ
 	SCheckout,
 checkin (2.org.bimserver.pb.SRevision-
-revision (2.org.bimserver.pb.SRevision
-logs (
-rid (
+revision (2.org.bimserver.pb.SRevision
+rid (
+logs (
 oid (
 userId (
 active (
@@ -443,9 +443,9 @@ $GetAllLocalServiceDescriptorsRequest"Ë
 notificationProtocol (2.org.bimserver.pb.SAccessMethod+
 trigger (2.org.bimserver.pb.STrigger
 writeRevision (
-readExtendedData (	
-token (	
-providerName (	
+readExtendedData (	
+providerName (	
+token (	
 description (	
 name	 (	
 readRevision
@@ -592,9 +592,9 @@ revisionNr (
 value (2.org.bimserver.pb.SFile" 
 GetGeoTagRequest
 goid ("
-SGeoTag
-enabled (
-projects (
+SGeoTag
+projects (
+enabled (
 epsg (
 rid (
 oid (
@@ -614,9 +614,9 @@ revisionNr (
 errors (	
 rid (
 oid (-
-state (2.org.bimserver.pb.SActionState
-stage (
-warnings	 (	"e
+state (2.org.bimserver.pb.SActionState
+warnings (	
+stage	 ("e
 GetLongActionStateResponse
 errorMessage (	1
 value (2".org.bimserver.pb.SLongActionState"1
@@ -716,11 +716,11 @@ revisionNr (
 objectIDMs (
 defaultObjectIDMId (
 defaultModelCompareId (
-defaultQueryEngineId	 (
-renderEngines
- (
-deserializers (
-rid (
+defaultQueryEngineId	 (
+rid
+ (
+renderEngines (
+deserializers (
 oid (
 defaultRenderEngineId (
 defaultSerializerId (

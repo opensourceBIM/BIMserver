@@ -182,4 +182,6 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 
 	Collection<IdEObject> getUnidentifiedValues();
 	int countWithSubtypes(EClass eClass);
+
+	void clear();
 }
