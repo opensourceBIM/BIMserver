@@ -62,7 +62,7 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 		}
 	}
 	
-	protected int findHighestStopRid(Project project, ConcreteRevision subRevision) {
+	public static int findHighestStopRid(Project project, ConcreteRevision subRevision) {
 		int highestStopId = Integer.MIN_VALUE;
 		for (ConcreteRevision concreteRevision : project.getConcreteRevisions()) {
 			// The id must at least be lower or te same as the version we are querying

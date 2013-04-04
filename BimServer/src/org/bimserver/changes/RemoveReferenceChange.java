@@ -25,6 +25,8 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.Project;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
@@ -43,14 +45,14 @@ public class RemoveReferenceChange implements Change {
 	
 	@SuppressWarnings("rawtypes")
 	@Override
-	public void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		IdEObject idEObject = databaseSession.get(oid, new Query(pid, rid));
+	public void execute(Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		IdEObject idEObject = databaseSession.get(oid, new Query(project.getId(), concreteRevision.getId()));
 		EClass eClass = databaseSession.getEClassForOid(oid);
 		if (idEObject == null) {
 			idEObject = created.get(oid);
 		}
 		if (idEObject == null) {
-			throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found in project with pid " + pid);
+			throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found in project with pid " + project.getId());
 		}
 		EReference eReference = databaseSession.getMetaDataManager().getEReference(eClass.getName(), referenceName);
 		if (eReference == null) {
@@ -60,7 +62,13 @@ public class RemoveReferenceChange implements Change {
 			throw new UserException("Reference is not of type 'many'");
 		}
 		List list = (List) idEObject.eGet(eReference);
-		list.remove(index);
-		databaseSession.store(idEObject, pid, rid);
+		if (eReference.getEOpposite() != null) {
+			IdEObject referenced = (IdEObject) list.get(index);
+			referenced.eSet(eReference.getEOpposite(), null); // This will automatically remove the object from the list
+			databaseSession.store(referenced, project.getId(), concreteRevision.getId());
+		} else {
+			list.remove(index);
+		}
+		databaseSession.store(idEObject, project.getId(), concreteRevision.getId());
 	}
 }

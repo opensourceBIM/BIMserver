@@ -23,9 +23,11 @@ import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.Project;
 import org.bimserver.shared.exceptions.UserException;
 
 public interface Change {
 
-	void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException;
+	void execute(Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException;
 }

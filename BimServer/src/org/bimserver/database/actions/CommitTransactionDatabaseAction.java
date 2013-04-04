@@ -122,7 +122,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		Map<Long, IdEObject> created = new HashMap<Long, IdEObject>();
 		for (Change change : longTransaction.getChanges()) {
 			if (change instanceof CreateObjectChange) {
-				change.execute(project.getId(), concreteRevision.getId(), getDatabaseSession(), created);
+				change.execute(project, concreteRevision, getDatabaseSession(), created);
 				summaryMap.add(((CreateObjectChange)change).geteClass(), 1);
 			}
 		}
@@ -132,7 +132,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				if (change instanceof RemoveObjectChange) {
 					summaryMap.remove(((RemoveObjectChange)change).geteClass(), 1);
 				}
-				change.execute(project.getId(), concreteRevision.getId(), getDatabaseSession(), created);
+				change.execute(project, concreteRevision, getDatabaseSession(), created);
 			}
 		}
 		

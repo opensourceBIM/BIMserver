@@ -53,10 +53,6 @@ import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
-/**
- * This interface defines all functions that are made available via SOAP and Protocol Buffers, but
- * also used by the JSP web interface
- */
 @WebService(name = "ServiceInterface", targetNamespace="org.buildingsmart.bimsie")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface ServiceInterface extends PublicInterface {

@@ -48,6 +48,10 @@ public class UserException extends ServiceException {
 		super(userMessage);
 	}
 
+	public UserException(String userMessage, ErrorCode errorCode) {
+		super(userMessage, errorCode);
+	}
+
 	public UserException(String userMessage, Throwable e) {
 		super(userMessage, e);
 	}

@@ -8,9 +8,9 @@
 fileId (
 extendedData (
 users (
-rid (
-description (	
-oid (
+rid (
+oid (
+description (	
 name (	7
 type (2).org.bimserver.pb.SExtendedDataSchemaType
 validate	 (
@@ -49,13 +49,13 @@ revisionId	 (
 profileDescription (	
 url (	
 serviceName (	=
-notificationProtocol	 (2.org.bimserver.pb.SAccessMethod
-token
- (	
-rid (
-providerName (	
-description (	
-oid (
+notificationProtocol	 (2.org.bimserver.pb.SAccessMethod
+rid
+ (
+providerName (	
+token (	
+oid (
+description (	
 userId (
 writeRevisionId (
 readExtendedDataId (
@@ -84,9 +84,9 @@ revisionId	 (
 hasAuthorizedUsers
  (
 rid (
-geoTagId (
-description (	
-oid (>
+geoTagId (
+oid (
+description (	>
 exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
 name (	
 subProjects (
@@ -114,26 +114,26 @@ parentPoid ("a
 selfRegistration ("º
 SUser
 userSettingsId (
-lastSeen (
-schemas (
-services (
+lastSeen (
+services (
+schemas (
 createdById (
 logs (
 validationToken (	-
-state (2.org.bimserver.pb.SObjectState
-password	 (	
-hasRightsOn
- (-
+state (2.org.bimserver.pb.SObjectState
+hasRightsOn	 (
+password
+ (	-
 userType (2.org.bimserver.pb.SUserType
 	createdOn (
 extendedData (
-username (	
-token (	
-rid (
+username (	
+rid (
+token (	
 oid (
-name (	
-validationTokenCreated (
-	revisions ("O
+name (	
+	revisions (
+validationTokenCreated ("O
 AddUserResponse
 errorMessage (	&
 value (2.org.bimserver.pb.SUser"A
@@ -208,7 +208,10 @@ parentPoid ("a
 roid1 (
 roid2 (4
 sCompareType (2.org.bimserver.pb.SCompareType
-mcid ("(
+mcid ("*
+SObjectRemoved
+rid (
+oid ("(
 SObjectAdded
 rid (
 oid ("b
@@ -217,15 +220,7 @@ parentPoid ("a
 rid (
 oid (
 oldValue (	
-	fieldName (	"*
-SObjectRemoved
-rid (
-oid ("O
-SReferenceDataValue
-guid (	
-typeName (	
-rid (
-oid ("X
+	fieldName (	"X
 SListDataValue,
 values (2.org.bimserver.pb.SDataValue
 rid (
@@ -233,13 +228,18 @@ parentPoid ("a
 SSimpleDataValue
 rid (
 oid (
-stringValue (	"’
+stringValue (	"O
+SReferenceDataValue
+guid (	
+typeName (	
+rid (
+oid ("’
 
 SDataValue
-__actual_type (	D
-__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue:
-__SListDataValue (2 .org.bimserver.pb.SListDataValue>
-__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValue
+__actual_type (	:
+__SListDataValue (2 .org.bimserver.pb.SListDataValue>
+__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValueD
+__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue
 rid (
 oid (
 	fieldName (	"
@@ -251,22 +251,22 @@ SDataValue
 name (	
 type (	"¤
 SCompareItem
-__actual_type (	6
-__SObjectAdded (2.org.bimserver.pb.SObjectAdded<
-__SObjectModified (2!.org.bimserver.pb.SObjectModified:
-__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved
+__actual_type (	:
+__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved6
+__SObjectAdded (2.org.bimserver.pb.SObjectAdded<
+__SObjectModified (2!.org.bimserver.pb.SObjectModified
 rid (
 oid (1
 
 dataObject (2.org.bimserver.pb.SDataObject"j
-SCompareContainer
-rid (-
-items (2.org.bimserver.pb.SCompareItem
+SCompareContainer-
+items (2.org.bimserver.pb.SCompareItem
+rid (
 oid (
 type (	"^
-SCompareResult
-rid (2
-items (2#.org.bimserver.pb.SCompareContainer
+SCompareResult2
+items (2#.org.bimserver.pb.SCompareContainer
+rid (
 oid ("X
 CompareResponse
 errorMessage (	/
@@ -389,9 +389,9 @@ classNames (	
 	lastError (	
 comment (	
 	checkouts ("Ñ
-	SCheckout-
-revision (2.org.bimserver.pb.SRevision,
-checkin (2.org.bimserver.pb.SRevision
+	SCheckout,
+checkin (2.org.bimserver.pb.SRevision-
+revision (2.org.bimserver.pb.SRevision
 logs (
 rid (
 oid (
@@ -592,11 +592,11 @@ revisionNr (
 value (2.org.bimserver.pb.SFile" 
 GetGeoTagRequest
 goid ("
-SGeoTag
-projects (
-enabled (
-epsg (
-rid (
+SGeoTag
+enabled (
+projects (
+rid (
+epsg (
 oid (
 directionAngle (	
 z (	
@@ -609,14 +609,14 @@ revisionNr (
 actionId ("¼
 SLongActionState
 progress (
-title (	
-errors (	
-infos (	
+title (	
+infos (	
+errors (	
 rid (
 oid (-
-state (2.org.bimserver.pb.SActionState
-warnings (	
-stage	 ("e
+state (2.org.bimserver.pb.SActionState
+stage (
+warnings	 (	"e
 GetLongActionStateResponse
 errorMessage (	1
 value (2".org.bimserver.pb.SLongActionState"1

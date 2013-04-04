@@ -24,6 +24,8 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.Project;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
 
@@ -45,17 +47,17 @@ public class CreateObjectChange implements Change {
 	}
 	
 	@Override
-	public void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+	public void execute(Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		EClass eClass = databaseSession.getEClassForName(type);
 		if (eClass == null) {
 			throw new UserException("Type " + type + " does not exist");
 		}
 		eObject = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		eObject.setOid(oid);
-		eObject.setPid(pid);
-		eObject.setRid(rid);
+		eObject.setPid(project.getId());
+		eObject.setRid(concreteRevision.getId());
 		((IdEObjectImpl)eObject).setLoaded();
-		databaseSession.store(eObject, pid, rid);
+		databaseSession.store(eObject, project.getId(), concreteRevision.getId());
 		created.put(oid, eObject);
 	}
 }

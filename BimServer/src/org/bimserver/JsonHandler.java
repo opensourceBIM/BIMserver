@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.json.JsonConverter;
@@ -133,6 +134,13 @@ public class JsonHandler {
 				writer.value(exception.getClass().getSimpleName());
 				writer.name("message");
 				writer.value(exception.getMessage());
+				if (exception instanceof ServiceException) {
+					ServiceException serviceException = (ServiceException)exception;
+					if (serviceException.getErrorCode() != null) {
+						writer.name("errorCode");
+						writer.value(serviceException.getErrorCode().getCode());
+					}
+				}
 				writer.endObject();
 				writer.endObject();
 			} catch (IOException e) {

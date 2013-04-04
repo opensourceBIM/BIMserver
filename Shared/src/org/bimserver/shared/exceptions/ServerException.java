@@ -26,6 +26,10 @@ public class ServerException extends ServiceException {
 	public ServerException(String userMessage) {
 		super(userMessage);
 	}
+	
+	public ServerException(String message, ErrorCode errorCode) {
+		super(message, errorCode);
+	}
 
 	public ServerException(String userMessage, Throwable e) {
 		super(userMessage, e);

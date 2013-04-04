@@ -17,21 +17,35 @@ package org.bimserver.changes;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
+import org.bimserver.database.Query.Deep;
+import org.bimserver.database.actions.AbstractDownloadDatabaseAction;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.ifc.IfcModel;
+import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.Project;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 
 public class RemoveObjectChange implements Change {
 
 	private final long oid;
 	private EClass eClass;
 
+	/**
+	 * This is a potentially quite slow action
+	 * 
+	 * @param oid
+	 * @param eClass
+	 */
 	public RemoveObjectChange(long oid, EClass eClass) {
 		this.oid = oid;
 		this.eClass = eClass;
@@ -41,14 +55,48 @@ public class RemoveObjectChange implements Change {
 		return eClass;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	@Override
-	public void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		IdEObject idEObject = databaseSession.get(oid, new Query(pid, rid - 1));
+	public void execute(Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		IdEObject idEObject = databaseSession.get(oid, new Query(project.getId(), concreteRevision.getId() - 1));
 		if (idEObject == null) {
 			idEObject = created.get(oid);
 		}
 		if (idEObject == null) {
 			throw new UserException("Object with oid " + oid + " not found");
+		}
+
+		int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(project, concreteRevision);
+		Query query = new Query(project.getId(), concreteRevision.getId(), null, Deep.YES, highestStopId);
+		IfcModel subModel = new IfcModel();
+		databaseSession.getMap(subModel, query);
+		for (IdEObject idEObject2 : subModel.getValues()) {
+			boolean changed = false;
+			for (EReference eReference : idEObject2.eClass().getEAllReferences()) {
+				Object val = idEObject2.eGet(eReference);
+				if (val != null) {
+					if (eReference.isMany()) {
+						List list = (List)val;
+						Iterator iterator = list.iterator();
+						while (iterator.hasNext()) {
+							IdEObject item = (IdEObject) iterator.next();
+							if (item == idEObject) {
+								iterator.remove();
+								changed = true;
+							}
+						}
+					} else {
+						IdEObject ref = (IdEObject)val;
+						if (ref == idEObject) {
+							idEObject2.eSet(eReference, null);
+							changed = true;
+						}
+					}
+				}
+			}
+			if (changed) {
+				databaseSession.store(idEObject2, project.getId(), concreteRevision.getId());
+			}
 		}
 		databaseSession.delete(idEObject);
 	}

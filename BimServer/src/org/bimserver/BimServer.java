@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.lang.Thread.UncaughtExceptionHandler;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -251,8 +252,15 @@ public class BimServer {
 		return jsonSocketReflectorFactory;
 	}
 
-	public String getContent(String javaFile) {
-		URL url = config.getResourceFetcher().getResource(javaFile);
+	public String getContent(Class<?> clazz) {
+		URL url = clazz.getResource(clazz.getSimpleName() + ".java");
+		if (url == null) {
+			try {
+				url = new File("../Shared/src/org/bimserver/shared/interfaces/" + clazz.getSimpleName() + ".java").toURI().toURL();
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+		}
 		if (url != null) {
 			try {
 				InputStream inputStream = url.openStream();
@@ -379,17 +387,17 @@ public class BimServer {
 				LOGGER.error("", e);
 			}
 
-			SService serviceInterface = new SServiceInterfaceService(getContent("ServiceInterface.java"), ServiceInterface.class);
+			SService serviceInterface = new SServiceInterfaceService(getContent(ServiceInterface.class), ServiceInterface.class);
 			servicesMap.add(serviceInterface);
-			servicesMap.add(new SService(getContent("NotificationInterface.java"), NotificationInterface.class, Collections.singletonList(serviceInterface)));
-			servicesMap.add(new SService(getContent("RemoteServiceInterface.java"), RemoteServiceInterface.class, Collections.singletonList(serviceInterface)));
-			servicesMap.add(new SService(getContent("AdminInterface.java"), AdminInterface.class, Collections.singletonList(serviceInterface)));
-			servicesMap.add(new SService(getContent("MetaInterface.java"), MetaInterface.class, Collections.singletonList(serviceInterface)));
-			servicesMap.add(new SService(getContent("SettingsInterface.java"), SettingsInterface.class, Collections.singletonList(serviceInterface)));
-			servicesMap.add(new SService(getContent("AuthInterface.java"), AuthInterface.class, Collections.singletonList(serviceInterface)));
-			servicesMap.add(new SService(getContent("LowLevelInterface.java"), LowLevelInterface.class, Collections.singletonList(serviceInterface)));
-			servicesMap.add(new SService(getContent("PluginInterface.java"), PluginInterface.class, Collections.singletonList(serviceInterface)));
-			servicesMap.add(new SService(getContent("RegistryInterface.java"), RegistryInterface.class, Collections.singletonList(serviceInterface)));
+			servicesMap.add(new SService(getContent(NotificationInterface.class), NotificationInterface.class, Collections.singletonList(serviceInterface)));
+			servicesMap.add(new SService(getContent(RemoteServiceInterface.class), RemoteServiceInterface.class, Collections.singletonList(serviceInterface)));
+			servicesMap.add(new SService(getContent(AdminInterface.class), AdminInterface.class, Collections.singletonList(serviceInterface)));
+			servicesMap.add(new SService(getContent(MetaInterface.class), MetaInterface.class, Collections.singletonList(serviceInterface)));
+			servicesMap.add(new SService(getContent(SettingsInterface.class), SettingsInterface.class, Collections.singletonList(serviceInterface)));
+			servicesMap.add(new SService(getContent(AuthInterface.class), AuthInterface.class, Collections.singletonList(serviceInterface)));
+			servicesMap.add(new SService(getContent(LowLevelInterface.class), LowLevelInterface.class, Collections.singletonList(serviceInterface)));
+			servicesMap.add(new SService(getContent(PluginInterface.class), PluginInterface.class, Collections.singletonList(serviceInterface)));
+			servicesMap.add(new SService(getContent(RegistryInterface.class), RegistryInterface.class, Collections.singletonList(serviceInterface)));
 			
 			notificationsManager.start();
 

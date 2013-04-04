@@ -239,7 +239,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	}
 
 	@Override
-	public void setSettingCheckinMergingEnabled(final Boolean checkinMergingEnabled) throws ServerException, UserException {
+	public void setCheckinMergingEnabled(final Boolean checkinMergingEnabled) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {

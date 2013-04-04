@@ -17,6 +17,7 @@ package org.bimserver.shared.json;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.shared.exceptions.ErrorCode;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.meta.SMethod;
@@ -62,9 +63,17 @@ public abstract class JsonReflector implements Reflector {
 					String exceptionType = exceptionJson.get("__type").getAsString();
 					String message = exceptionJson.has("message") ? exceptionJson.get("message").getAsString() : "unknown";
 					if (exceptionType.equals(UserException.class.getSimpleName())) {
-						throw new UserException(message);
+						if (exceptionJson.has("errorCode")) {
+							throw new UserException(message, ErrorCode.parse(exceptionJson.get("errorCode").getAsInt()));
+						} else {
+							throw new UserException(message);
+						}
 					} else if (exceptionType.equals(ServerException.class.getSimpleName())) {
-						throw new ServerException(message);
+						if (exceptionJson.has("errorCode")) {
+							throw new ServerException(message, ErrorCode.parse(exceptionJson.get("errorCode").getAsInt()));
+						} else {
+							throw new ServerException(message);
+						}
 					}
 				} else if (response.has("result")) {
 					Object result = response.get("result");
