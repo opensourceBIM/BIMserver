@@ -60,6 +60,8 @@ service SettingsInterface {
 
 	rpc setCacheOutputFiles (SetCacheOutputFilesRequest) returns (VoidResponse);
 
+	rpc setCheckinMergingEnabled (SetCheckinMergingEnabledRequest) returns (VoidResponse);
+
 	rpc setEmailSenderAddress (SetEmailSenderAddressRequest) returns (VoidResponse);
 
 	rpc setGenerateGeometryOnCheckin (SetGenerateGeometryOnCheckinRequest) returns (VoidResponse);
@@ -73,8 +75,6 @@ service SettingsInterface {
 	rpc setServerSettings (SetServerSettingsRequest) returns (VoidResponse);
 
 	rpc setServiceRepositoryUrl (SetServiceRepositoryUrlRequest) returns (VoidResponse);
-
-	rpc setSettingCheckinMergingEnabled (SetSettingCheckinMergingEnabledRequest) returns (VoidResponse);
 
 	rpc setSiteAddress (SetSiteAddressRequest) returns (VoidResponse);
 
@@ -222,6 +222,10 @@ message SetCacheOutputFilesRequest {
 	optional bool cacheOutputFiles = 1;
 }
 
+message SetCheckinMergingEnabledRequest {
+	optional bool checkinMergingEnabled = 1;
+}
+
 message SetEmailSenderAddressRequest {
 	optional string emailSenderAddress = 1;
 }
@@ -248,10 +252,6 @@ message SetServerSettingsRequest {
 
 message SetServiceRepositoryUrlRequest {
 	optional string url = 1;
-}
-
-message SetSettingCheckinMergingEnabledRequest {
-	optional bool checkinMergingEnabled = 1;
 }
 
 message SetSiteAddressRequest {

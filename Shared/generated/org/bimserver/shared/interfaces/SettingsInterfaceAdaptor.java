@@ -82,6 +82,9 @@ public class SettingsInterfaceAdaptor implements SettingsInterface {
 	public void setCacheOutputFiles(java.lang.Boolean cacheOutputFiles) throws UserException, ServerException {
 	}
 	
+	public void setCheckinMergingEnabled(java.lang.Boolean checkinMergingEnabled) throws UserException, ServerException {
+	}
+	
 	public void setEmailSenderAddress(java.lang.String emailSenderAddress) throws UserException, ServerException {
 	}
 	
@@ -101,9 +104,6 @@ public class SettingsInterfaceAdaptor implements SettingsInterface {
 	}
 	
 	public void setServiceRepositoryUrl(java.lang.String url) throws UserException, ServerException {
-	}
-	
-	public void setSettingCheckinMergingEnabled(java.lang.Boolean checkinMergingEnabled) throws UserException, ServerException {
 	}
 	
 	public void setSiteAddress(java.lang.String siteAddress) throws UserException, ServerException {

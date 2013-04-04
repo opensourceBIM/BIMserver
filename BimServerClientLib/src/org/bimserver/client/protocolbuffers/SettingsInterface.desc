@@ -1,5 +1,5 @@
 
-º1
+ß1
 SettingsInterface.protoorg.bimserver.pbServiceInterface.protoNotificationInterface.protoRemoteServiceInterface.protoAdminInterface.protoAuthInterface.proto"
 GetEmailSenderAddressRequest"D
 GetEmailSenderAddressResponse
@@ -81,7 +81,9 @@ smtpServer (	
 ,SetAllowUsersToCreateTopLevelProjectsRequest*
 "allowUsersToCreateTopLevelProjects ("6
 SetCacheOutputFilesRequest
-cacheOutputFiles (":
+cacheOutputFiles ("@
+SetCheckinMergingEnabledRequest
+checkinMergingEnabled (":
 SetEmailSenderAddressRequest
 emailSenderAddress (	"H
 #SetGenerateGeometryOnCheckinRequest!
@@ -95,16 +97,14 @@ smtpServer (	
 SetServerSettingsRequest9
 serverSettings (2!.org.bimserver.pb.SServerSettings"-
 SetServiceRepositoryUrlRequest
-url (	"G
-&SetSettingCheckinMergingEnabledRequest
-checkinMergingEnabled (",
+url (	",
 SetSiteAddressRequest
 siteAddress (	"*
 SetSmtpServerRequest
 
 smtpServer (	"/
 SetWhiteListedDomainsRequest
-domains (	2∂
+domains (	2®
 SettingsInterfacex
 getEmailSenderAddress..org.bimserver.pb.GetEmailSenderAddressRequest/.org.bimserver.pb.GetEmailSenderAddressResponse{
 getProtocolBuffersPort/.org.bimserver.pb.GetProtocolBuffersPortRequest0.org.bimserver.pb.GetProtocolBuffersPortResponsel
@@ -121,15 +121,15 @@ $isAllowUsersToCreateTopLevelProjects=.org.bimserver.pb.IsAllowUsersToCreateTop
 (isSendConfirmationEmailAfterRegistrationA.org.bimserver.pb.IsSendConfirmationEmailAfterRegistrationRequestB.org.bimserver.pb.IsSendConfirmationEmailAfterRegistrationResponsem
 setAllowSelfRegistration1.org.bimserver.pb.SetAllowSelfRegistrationRequest.org.bimserver.pb.VoidResponseá
 %setAllowUsersToCreateTopLevelProjects>.org.bimserver.pb.SetAllowUsersToCreateTopLevelProjectsRequest.org.bimserver.pb.VoidResponsec
-setCacheOutputFiles,.org.bimserver.pb.SetCacheOutputFilesRequest.org.bimserver.pb.VoidResponseg
+setCacheOutputFiles,.org.bimserver.pb.SetCacheOutputFilesRequest.org.bimserver.pb.VoidResponsem
+setCheckinMergingEnabled1.org.bimserver.pb.SetCheckinMergingEnabledRequest.org.bimserver.pb.VoidResponseg
 setEmailSenderAddress..org.bimserver.pb.SetEmailSenderAddressRequest.org.bimserver.pb.VoidResponseu
 setGenerateGeometryOnCheckin5.org.bimserver.pb.SetGenerateGeometryOnCheckinRequest.org.bimserver.pb.VoidResponseq
 setHideUserListForNonAdmin3.org.bimserver.pb.SetHideUserListForNonAdminRequest.org.bimserver.pb.VoidResponsei
 setProtocolBuffersPort/.org.bimserver.pb.SetProtocolBuffersPortRequest.org.bimserver.pb.VoidResponseè
 )setSendConfirmationEmailAfterRegistrationB.org.bimserver.pb.SetSendConfirmationEmailAfterRegistrationRequest.org.bimserver.pb.VoidResponse_
 setServerSettings*.org.bimserver.pb.SetServerSettingsRequest.org.bimserver.pb.VoidResponsek
-setServiceRepositoryUrl0.org.bimserver.pb.SetServiceRepositoryUrlRequest.org.bimserver.pb.VoidResponse{
-setSettingCheckinMergingEnabled8.org.bimserver.pb.SetSettingCheckinMergingEnabledRequest.org.bimserver.pb.VoidResponseY
+setServiceRepositoryUrl0.org.bimserver.pb.SetServiceRepositoryUrlRequest.org.bimserver.pb.VoidResponseY
 setSiteAddress'.org.bimserver.pb.SetSiteAddressRequest.org.bimserver.pb.VoidResponseW
 setSmtpServer&.org.bimserver.pb.SetSmtpServerRequest.org.bimserver.pb.VoidResponseg
 setWhiteListedDomains..org.bimserver.pb.SetWhiteListedDomainsRequest.org.bimserver.pb.VoidResponseBBSettingsInterfaceImplHà

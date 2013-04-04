@@ -49,7 +49,7 @@ public class ChangeRandomSettingAction extends Action {
 			break;
 		case 4:
 			virtualUser.getActionResults().setText("Setting checkin merin enabled");
-			settingsInterface.setSettingCheckinMergingEnabled(nextBoolean());
+			settingsInterface.setCheckinMergingEnabled(nextBoolean());
 			break;
 		case 5:
 //			serviceInterface.setSettingCustomLogoAddress("");

@@ -25,6 +25,9 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.Project;
+import org.bimserver.shared.exceptions.ErrorCode;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
@@ -43,15 +46,15 @@ public class AddReferenceChange implements Change {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		IdEObject idEObject = databaseSession.get(oid, new Query(pid, rid));
+	public void execute(Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		IdEObject idEObject = databaseSession.get(oid, new Query(project.getId(), concreteRevision.getId()));
 		EClass eClass = databaseSession.getEClassForOid(oid);
 		EClass referenceEClass = databaseSession.getEClassForOid(referenceOid);
 		if (idEObject == null) {
 			idEObject = created.get(oid);
 		}
 		if (idEObject == null) {
-			throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found in project with pid " + pid);
+			throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found in project with pid " + project.getId());
 		}
 		EReference eReference = databaseSession.getMetaDataManager().getEReference(eClass.getName(), referenceName);
 		if (eReference == null) {
@@ -60,12 +63,32 @@ public class AddReferenceChange implements Change {
 		if (!eReference.isMany()) {
 			throw new UserException("Reference is not of type 'many'");
 		}
-		IdEObject referencedObject = databaseSession.get(referenceOid, new Query(pid, rid));
+		IdEObject referencedObject = databaseSession.get(referenceOid, new Query(project.getId(), concreteRevision.getId()));
 		if (referencedObject == null) {
 			throw new UserException("Referenced object of type " + referenceEClass.getName() + " with oid " + referenceOid + " not found");
 		}
-		List list = (List) idEObject.eGet(eReference);
-		list.add(referencedObject);
-		databaseSession.store(idEObject, pid, rid);
+		
+		boolean added = false;
+		
+		if (eReference.getEOpposite() != null) {
+			if (eReference.getEOpposite().isMany()) {
+				// TODO This never happens, no N-N??
+			} else {
+				IdEObject oldReferencing = (IdEObject) referencedObject.eGet(eReference.getEOpposite());
+				if (oldReferencing != null) {
+					throw new UserException("You cannot add a reference on " + idEObject.eClass().getName() + " (" + idEObject.getOid() + ")." + eReference.getName() + " to " + referencedObject.eClass().getName() + " (" + referencedObject.getOid() + ") because another object (" + oldReferencing.eClass().getName() + " (" + oldReferencing.getOid() + ")) is already and there is a singular inverse defined", ErrorCode.SET_REFERENCE_FAILED_OPPOSITE_ALREADY_SET);
+				}
+				referencedObject.eSet(eReference.getEOpposite(), idEObject); // This will also trigger EMF's opposite, so added=true
+				databaseSession.store(referencedObject, project.getId(), concreteRevision.getId());
+				added = true;
+			}
+		}
+		
+		if (!added) {
+			List list = (List) idEObject.eGet(eReference);
+			list.add(referencedObject);
+		}
+
+		databaseSession.store(idEObject, project.getId(), concreteRevision.getId());
 	}
 }

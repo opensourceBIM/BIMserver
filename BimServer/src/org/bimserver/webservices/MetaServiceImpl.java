@@ -1,6 +1,8 @@
 package org.bimserver.webservices;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.bimserver.interfaces.objects.SServiceField;
@@ -24,7 +26,6 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 
 	@Override
 	public List<SServiceInterface> getServiceInterfaces() throws ServerException, UserException {
-		requireRealUserAuthentication();
 		List<SServiceInterface> sServiceInterfaces = new ArrayList<SServiceInterface>();
 		for (String name : getBimServer().getServicesMap().keySetName()) {
 			SServiceInterface sServiceInterface = new SServiceInterface();
@@ -32,12 +33,17 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 			sServiceInterface.setSimpleName(getBimServer().getServicesMap().getByName(name).getSimpleName());
 			sServiceInterfaces.add(sServiceInterface);
 		}
+		Collections.sort(sServiceInterfaces, new Comparator<SServiceInterface>() {
+			@Override
+			public int compare(SServiceInterface o1, SServiceInterface o2) {
+				return o1.getName().compareTo(o2.getName());
+			}
+		});
 		return sServiceInterfaces;
 	}
 
 	@Override
 	public List<SServiceMethod> getServiceMethods(String serviceInterfaceName) throws ServerException, UserException {
-		requireRealUserAuthentication();
 		List<SServiceMethod> sServiceMethods = new ArrayList<SServiceMethod>();
 		SService sService = getBimServer().getServicesMap().getByName(serviceInterfaceName);
 		if (sService == null) {
@@ -56,7 +62,6 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 
 	@Override
 	public List<SServiceType> getServiceTypes(String serviceInterfaceName) throws ServerException, UserException {
-		requireRealUserAuthentication();
 		List<SServiceType> sServiceTypes = new ArrayList<SServiceType>();
 		SService serviceInterface = getBimServer().getServicesMap().getByName(serviceInterfaceName);
 		if (serviceInterface == null) {
@@ -72,7 +77,6 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 
 	// TODO Recursion to same type will result in endless loop
 	public SServiceType createSServiceType(SClass sClass) throws UserException, ServerException {
-		requireRealUserAuthentication();
 		if (sClass == null) {
 			return null;
 		}
@@ -92,7 +96,6 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 
 	@Override
 	public List<SServiceParameter> getServiceMethodParameters(String serviceInterfaceName, String serviceMethodName) throws ServerException, UserException {
-		requireRealUserAuthentication();
 		List<SServiceParameter> sServiceParameters = new ArrayList<SServiceParameter>();
 		SService serviceInterface = getBimServer().getServicesMap().getByName(serviceInterfaceName);
 		if (serviceInterface == null) {

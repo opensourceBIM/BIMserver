@@ -2137,25 +2137,25 @@ public final class SettingsInterfaceImpl {
      */
     boolean getGenerateGeometryOnCheckin();
 
-    // optional int32 protocolBuffersPort = 3;
+    // optional bool allowOnlyWhitelisted = 3;
     /**
-     * <code>optional int32 protocolBuffersPort = 3;</code>
-     */
-    boolean hasProtocolBuffersPort();
-    /**
-     * <code>optional int32 protocolBuffersPort = 3;</code>
-     */
-    int getProtocolBuffersPort();
-
-    // optional bool allowOnlyWhitelisted = 4;
-    /**
-     * <code>optional bool allowOnlyWhitelisted = 4;</code>
+     * <code>optional bool allowOnlyWhitelisted = 3;</code>
      */
     boolean hasAllowOnlyWhitelisted();
     /**
-     * <code>optional bool allowOnlyWhitelisted = 4;</code>
+     * <code>optional bool allowOnlyWhitelisted = 3;</code>
      */
     boolean getAllowOnlyWhitelisted();
+
+    // optional int32 protocolBuffersPort = 4;
+    /**
+     * <code>optional int32 protocolBuffersPort = 4;</code>
+     */
+    boolean hasProtocolBuffersPort();
+    /**
+     * <code>optional int32 protocolBuffersPort = 4;</code>
+     */
+    int getProtocolBuffersPort();
 
     // optional string siteAddress = 5;
     /**
@@ -2211,95 +2211,95 @@ public final class SettingsInterfaceImpl {
      */
     long getWebModules(int index);
 
-    // repeated string whitelistedDomains = 9;
+    // optional int32 rid = 9;
     /**
-     * <code>repeated string whitelistedDomains = 9;</code>
-     */
-    java.util.List<java.lang.String>
-    getWhitelistedDomainsList();
-    /**
-     * <code>repeated string whitelistedDomains = 9;</code>
-     */
-    int getWhitelistedDomainsCount();
-    /**
-     * <code>repeated string whitelistedDomains = 9;</code>
-     */
-    java.lang.String getWhitelistedDomains(int index);
-    /**
-     * <code>repeated string whitelistedDomains = 9;</code>
-     */
-    com.google.protobuf.ByteString
-        getWhitelistedDomainsBytes(int index);
-
-    // optional int32 rid = 10;
-    /**
-     * <code>optional int32 rid = 10;</code>
+     * <code>optional int32 rid = 9;</code>
      */
     boolean hasRid();
     /**
-     * <code>optional int32 rid = 10;</code>
+     * <code>optional int32 rid = 9;</code>
      */
     int getRid();
 
-    // optional bool allowSelfRegistration = 11;
+    // optional bool allowSelfRegistration = 10;
     /**
-     * <code>optional bool allowSelfRegistration = 11;</code>
+     * <code>optional bool allowSelfRegistration = 10;</code>
      */
     boolean hasAllowSelfRegistration();
     /**
-     * <code>optional bool allowSelfRegistration = 11;</code>
+     * <code>optional bool allowSelfRegistration = 10;</code>
      */
     boolean getAllowSelfRegistration();
 
-    // optional string smtpServer = 12;
+    // optional string smtpServer = 11;
     /**
-     * <code>optional string smtpServer = 12;</code>
+     * <code>optional string smtpServer = 11;</code>
      */
     boolean hasSmtpServer();
     /**
-     * <code>optional string smtpServer = 12;</code>
+     * <code>optional string smtpServer = 11;</code>
      */
     java.lang.String getSmtpServer();
     /**
-     * <code>optional string smtpServer = 12;</code>
+     * <code>optional string smtpServer = 11;</code>
      */
     com.google.protobuf.ByteString
         getSmtpServerBytes();
 
-    // optional bool cacheOutputFiles = 13;
+    // repeated string whitelistedDomains = 12;
     /**
-     * <code>optional bool cacheOutputFiles = 13;</code>
+     * <code>repeated string whitelistedDomains = 12;</code>
      */
-    boolean hasCacheOutputFiles();
+    java.util.List<java.lang.String>
+    getWhitelistedDomainsList();
     /**
-     * <code>optional bool cacheOutputFiles = 13;</code>
+     * <code>repeated string whitelistedDomains = 12;</code>
      */
-    boolean getCacheOutputFiles();
+    int getWhitelistedDomainsCount();
+    /**
+     * <code>repeated string whitelistedDomains = 12;</code>
+     */
+    java.lang.String getWhitelistedDomains(int index);
+    /**
+     * <code>repeated string whitelistedDomains = 12;</code>
+     */
+    com.google.protobuf.ByteString
+        getWhitelistedDomainsBytes(int index);
 
-    // optional int64 oid = 14;
+    // optional int64 oid = 13;
     /**
-     * <code>optional int64 oid = 14;</code>
+     * <code>optional int64 oid = 13;</code>
      */
     boolean hasOid();
     /**
-     * <code>optional int64 oid = 14;</code>
+     * <code>optional int64 oid = 13;</code>
      */
     long getOid();
 
-    // optional string emailSenderAddress = 15;
+    // optional string emailSenderAddress = 14;
     /**
-     * <code>optional string emailSenderAddress = 15;</code>
+     * <code>optional string emailSenderAddress = 14;</code>
      */
     boolean hasEmailSenderAddress();
     /**
-     * <code>optional string emailSenderAddress = 15;</code>
+     * <code>optional string emailSenderAddress = 14;</code>
      */
     java.lang.String getEmailSenderAddress();
     /**
-     * <code>optional string emailSenderAddress = 15;</code>
+     * <code>optional string emailSenderAddress = 14;</code>
      */
     com.google.protobuf.ByteString
         getEmailSenderAddressBytes();
+
+    // optional bool cacheOutputFiles = 15;
+    /**
+     * <code>optional bool cacheOutputFiles = 15;</code>
+     */
+    boolean hasCacheOutputFiles();
+    /**
+     * <code>optional bool cacheOutputFiles = 15;</code>
+     */
+    boolean getCacheOutputFiles();
 
     // optional bool hideUserListForNonAdmin = 16;
     /**
@@ -2409,12 +2409,12 @@ public final class SettingsInterfaceImpl {
             }
             case 24: {
               bitField0_ |= 0x00000004;
-              protocolBuffersPort_ = input.readInt32();
+              allowOnlyWhitelisted_ = input.readBool();
               break;
             }
             case 32: {
               bitField0_ |= 0x00000008;
-              allowOnlyWhitelisted_ = input.readBool();
+              protocolBuffersPort_ = input.readInt32();
               break;
             }
             case 42: {
@@ -2453,42 +2453,42 @@ public final class SettingsInterfaceImpl {
               input.popLimit(limit);
               break;
             }
-            case 74: {
-              if (!((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
-                whitelistedDomains_ = new com.google.protobuf.LazyStringArrayList();
-                mutable_bitField0_ |= 0x00000100;
-              }
-              whitelistedDomains_.add(input.readBytes());
-              break;
-            }
-            case 80: {
+            case 72: {
               bitField0_ |= 0x00000080;
               rid_ = input.readInt32();
               break;
             }
-            case 88: {
+            case 80: {
               bitField0_ |= 0x00000100;
               allowSelfRegistration_ = input.readBool();
               break;
             }
-            case 98: {
+            case 90: {
               bitField0_ |= 0x00000200;
               smtpServer_ = input.readBytes();
               break;
             }
-            case 104: {
-              bitField0_ |= 0x00000400;
-              cacheOutputFiles_ = input.readBool();
+            case 98: {
+              if (!((mutable_bitField0_ & 0x00000800) == 0x00000800)) {
+                whitelistedDomains_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000800;
+              }
+              whitelistedDomains_.add(input.readBytes());
               break;
             }
-            case 112: {
-              bitField0_ |= 0x00000800;
+            case 104: {
+              bitField0_ |= 0x00000400;
               oid_ = input.readInt64();
               break;
             }
-            case 122: {
-              bitField0_ |= 0x00001000;
+            case 114: {
+              bitField0_ |= 0x00000800;
               emailSenderAddress_ = input.readBytes();
+              break;
+            }
+            case 120: {
+              bitField0_ |= 0x00001000;
+              cacheOutputFiles_ = input.readBool();
               break;
             }
             case 128: {
@@ -2522,7 +2522,7 @@ public final class SettingsInterfaceImpl {
         if (((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
           webModules_ = java.util.Collections.unmodifiableList(webModules_);
         }
-        if (((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
+        if (((mutable_bitField0_ & 0x00000800) == 0x00000800)) {
           whitelistedDomains_ = new com.google.protobuf.UnmodifiableLazyStringList(whitelistedDomains_);
         }
         this.unknownFields = unknownFields.build();
@@ -2589,36 +2589,36 @@ public final class SettingsInterfaceImpl {
       return generateGeometryOnCheckin_;
     }
 
-    // optional int32 protocolBuffersPort = 3;
-    public static final int PROTOCOLBUFFERSPORT_FIELD_NUMBER = 3;
-    private int protocolBuffersPort_;
+    // optional bool allowOnlyWhitelisted = 3;
+    public static final int ALLOWONLYWHITELISTED_FIELD_NUMBER = 3;
+    private boolean allowOnlyWhitelisted_;
     /**
-     * <code>optional int32 protocolBuffersPort = 3;</code>
+     * <code>optional bool allowOnlyWhitelisted = 3;</code>
      */
-    public boolean hasProtocolBuffersPort() {
+    public boolean hasAllowOnlyWhitelisted() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>optional int32 protocolBuffersPort = 3;</code>
-     */
-    public int getProtocolBuffersPort() {
-      return protocolBuffersPort_;
-    }
-
-    // optional bool allowOnlyWhitelisted = 4;
-    public static final int ALLOWONLYWHITELISTED_FIELD_NUMBER = 4;
-    private boolean allowOnlyWhitelisted_;
-    /**
-     * <code>optional bool allowOnlyWhitelisted = 4;</code>
-     */
-    public boolean hasAllowOnlyWhitelisted() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>optional bool allowOnlyWhitelisted = 4;</code>
+     * <code>optional bool allowOnlyWhitelisted = 3;</code>
      */
     public boolean getAllowOnlyWhitelisted() {
       return allowOnlyWhitelisted_;
+    }
+
+    // optional int32 protocolBuffersPort = 4;
+    public static final int PROTOCOLBUFFERSPORT_FIELD_NUMBER = 4;
+    private int protocolBuffersPort_;
+    /**
+     * <code>optional int32 protocolBuffersPort = 4;</code>
+     */
+    public boolean hasProtocolBuffersPort() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional int32 protocolBuffersPort = 4;</code>
+     */
+    public int getProtocolBuffersPort() {
+      return protocolBuffersPort_;
     }
 
     // optional string siteAddress = 5;
@@ -2746,79 +2746,49 @@ public final class SettingsInterfaceImpl {
       return webModules_.get(index);
     }
 
-    // repeated string whitelistedDomains = 9;
-    public static final int WHITELISTEDDOMAINS_FIELD_NUMBER = 9;
-    private com.google.protobuf.LazyStringList whitelistedDomains_;
-    /**
-     * <code>repeated string whitelistedDomains = 9;</code>
-     */
-    public java.util.List<java.lang.String>
-        getWhitelistedDomainsList() {
-      return whitelistedDomains_;
-    }
-    /**
-     * <code>repeated string whitelistedDomains = 9;</code>
-     */
-    public int getWhitelistedDomainsCount() {
-      return whitelistedDomains_.size();
-    }
-    /**
-     * <code>repeated string whitelistedDomains = 9;</code>
-     */
-    public java.lang.String getWhitelistedDomains(int index) {
-      return whitelistedDomains_.get(index);
-    }
-    /**
-     * <code>repeated string whitelistedDomains = 9;</code>
-     */
-    public com.google.protobuf.ByteString
-        getWhitelistedDomainsBytes(int index) {
-      return whitelistedDomains_.getByteString(index);
-    }
-
-    // optional int32 rid = 10;
-    public static final int RID_FIELD_NUMBER = 10;
+    // optional int32 rid = 9;
+    public static final int RID_FIELD_NUMBER = 9;
     private int rid_;
     /**
-     * <code>optional int32 rid = 10;</code>
+     * <code>optional int32 rid = 9;</code>
      */
     public boolean hasRid() {
       return ((bitField0_ & 0x00000080) == 0x00000080);
     }
     /**
-     * <code>optional int32 rid = 10;</code>
+     * <code>optional int32 rid = 9;</code>
      */
     public int getRid() {
       return rid_;
     }
 
-    // optional bool allowSelfRegistration = 11;
-    public static final int ALLOWSELFREGISTRATION_FIELD_NUMBER = 11;
+    // optional bool allowSelfRegistration = 10;
+    public static final int ALLOWSELFREGISTRATION_FIELD_NUMBER = 10;
     private boolean allowSelfRegistration_;
     /**
-     * <code>optional bool allowSelfRegistration = 11;</code>
+     * <code>optional bool allowSelfRegistration = 10;</code>
      */
     public boolean hasAllowSelfRegistration() {
       return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     /**
-     * <code>optional bool allowSelfRegistration = 11;</code>
+     * <code>optional bool allowSelfRegistration = 10;</code>
      */
     public boolean getAllowSelfRegistration() {
       return allowSelfRegistration_;
     }
 
-    // optional string smtpServer = 12;
-    public static final int SMTPSERVER_FIELD_NUMBER = 12;
+    // optional string smtpServer = 11;
+    public static final int SMTPSERVER_FIELD_NUMBER = 11;
     private java.lang.Object smtpServer_;
     /**
-     * <code>optional string smtpServer = 12;</code>
+     * <code>optional string smtpServer = 11;</code>
      */
     public boolean hasSmtpServer() {
       return ((bitField0_ & 0x00000200) == 0x00000200);
     }
     /**
-     * <code>optional string smtpServer = 12;</code>
+     * <code>optional string smtpServer = 11;</code>
      */
     public java.lang.String getSmtpServer() {
       java.lang.Object ref = smtpServer_;
@@ -2835,7 +2805,7 @@ public final class SettingsInterfaceImpl {
       }
     }
     /**
-     * <code>optional string smtpServer = 12;</code>
+     * <code>optional string smtpServer = 11;</code>
      */
     public com.google.protobuf.ByteString
         getSmtpServerBytes() {
@@ -2851,49 +2821,63 @@ public final class SettingsInterfaceImpl {
       }
     }
 
-    // optional bool cacheOutputFiles = 13;
-    public static final int CACHEOUTPUTFILES_FIELD_NUMBER = 13;
-    private boolean cacheOutputFiles_;
+    // repeated string whitelistedDomains = 12;
+    public static final int WHITELISTEDDOMAINS_FIELD_NUMBER = 12;
+    private com.google.protobuf.LazyStringList whitelistedDomains_;
     /**
-     * <code>optional bool cacheOutputFiles = 13;</code>
+     * <code>repeated string whitelistedDomains = 12;</code>
      */
-    public boolean hasCacheOutputFiles() {
+    public java.util.List<java.lang.String>
+        getWhitelistedDomainsList() {
+      return whitelistedDomains_;
+    }
+    /**
+     * <code>repeated string whitelistedDomains = 12;</code>
+     */
+    public int getWhitelistedDomainsCount() {
+      return whitelistedDomains_.size();
+    }
+    /**
+     * <code>repeated string whitelistedDomains = 12;</code>
+     */
+    public java.lang.String getWhitelistedDomains(int index) {
+      return whitelistedDomains_.get(index);
+    }
+    /**
+     * <code>repeated string whitelistedDomains = 12;</code>
+     */
+    public com.google.protobuf.ByteString
+        getWhitelistedDomainsBytes(int index) {
+      return whitelistedDomains_.getByteString(index);
+    }
+
+    // optional int64 oid = 13;
+    public static final int OID_FIELD_NUMBER = 13;
+    private long oid_;
+    /**
+     * <code>optional int64 oid = 13;</code>
+     */
+    public boolean hasOid() {
       return ((bitField0_ & 0x00000400) == 0x00000400);
     }
     /**
-     * <code>optional bool cacheOutputFiles = 13;</code>
-     */
-    public boolean getCacheOutputFiles() {
-      return cacheOutputFiles_;
-    }
-
-    // optional int64 oid = 14;
-    public static final int OID_FIELD_NUMBER = 14;
-    private long oid_;
-    /**
-     * <code>optional int64 oid = 14;</code>
-     */
-    public boolean hasOid() {
-      return ((bitField0_ & 0x00000800) == 0x00000800);
-    }
-    /**
-     * <code>optional int64 oid = 14;</code>
+     * <code>optional int64 oid = 13;</code>
      */
     public long getOid() {
       return oid_;
     }
 
-    // optional string emailSenderAddress = 15;
-    public static final int EMAILSENDERADDRESS_FIELD_NUMBER = 15;
+    // optional string emailSenderAddress = 14;
+    public static final int EMAILSENDERADDRESS_FIELD_NUMBER = 14;
     private java.lang.Object emailSenderAddress_;
     /**
-     * <code>optional string emailSenderAddress = 15;</code>
+     * <code>optional string emailSenderAddress = 14;</code>
      */
     public boolean hasEmailSenderAddress() {
-      return ((bitField0_ & 0x00001000) == 0x00001000);
+      return ((bitField0_ & 0x00000800) == 0x00000800);
     }
     /**
-     * <code>optional string emailSenderAddress = 15;</code>
+     * <code>optional string emailSenderAddress = 14;</code>
      */
     public java.lang.String getEmailSenderAddress() {
       java.lang.Object ref = emailSenderAddress_;
@@ -2910,7 +2894,7 @@ public final class SettingsInterfaceImpl {
       }
     }
     /**
-     * <code>optional string emailSenderAddress = 15;</code>
+     * <code>optional string emailSenderAddress = 14;</code>
      */
     public com.google.protobuf.ByteString
         getEmailSenderAddressBytes() {
@@ -2924,6 +2908,22 @@ public final class SettingsInterfaceImpl {
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
+    }
+
+    // optional bool cacheOutputFiles = 15;
+    public static final int CACHEOUTPUTFILES_FIELD_NUMBER = 15;
+    private boolean cacheOutputFiles_;
+    /**
+     * <code>optional bool cacheOutputFiles = 15;</code>
+     */
+    public boolean hasCacheOutputFiles() {
+      return ((bitField0_ & 0x00001000) == 0x00001000);
+    }
+    /**
+     * <code>optional bool cacheOutputFiles = 15;</code>
+     */
+    public boolean getCacheOutputFiles() {
+      return cacheOutputFiles_;
     }
 
     // optional bool hideUserListForNonAdmin = 16;
@@ -3020,19 +3020,19 @@ public final class SettingsInterfaceImpl {
     private void initFields() {
       sendConfirmationEmailAfterRegistration_ = false;
       generateGeometryOnCheckin_ = false;
-      protocolBuffersPort_ = 0;
       allowOnlyWhitelisted_ = false;
+      protocolBuffersPort_ = 0;
       siteAddress_ = "";
       allowUsersToCreateTopLevelProjects_ = false;
       serviceRepositoryUrl_ = "";
       webModules_ = java.util.Collections.emptyList();
-      whitelistedDomains_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       rid_ = 0;
       allowSelfRegistration_ = false;
       smtpServer_ = "";
-      cacheOutputFiles_ = false;
+      whitelistedDomains_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       oid_ = 0L;
       emailSenderAddress_ = "";
+      cacheOutputFiles_ = false;
       hideUserListForNonAdmin_ = false;
       emailSenderName_ = "";
       webModuleId_ = 0L;
@@ -3057,10 +3057,10 @@ public final class SettingsInterfaceImpl {
         output.writeBool(2, generateGeometryOnCheckin_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt32(3, protocolBuffersPort_);
+        output.writeBool(3, allowOnlyWhitelisted_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBool(4, allowOnlyWhitelisted_);
+        output.writeInt32(4, protocolBuffersPort_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeBytes(5, getSiteAddressBytes());
@@ -3074,26 +3074,26 @@ public final class SettingsInterfaceImpl {
       for (int i = 0; i < webModules_.size(); i++) {
         output.writeInt64(8, webModules_.get(i));
       }
-      for (int i = 0; i < whitelistedDomains_.size(); i++) {
-        output.writeBytes(9, whitelistedDomains_.getByteString(i));
-      }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeInt32(10, rid_);
+        output.writeInt32(9, rid_);
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        output.writeBool(11, allowSelfRegistration_);
+        output.writeBool(10, allowSelfRegistration_);
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
-        output.writeBytes(12, getSmtpServerBytes());
+        output.writeBytes(11, getSmtpServerBytes());
+      }
+      for (int i = 0; i < whitelistedDomains_.size(); i++) {
+        output.writeBytes(12, whitelistedDomains_.getByteString(i));
       }
       if (((bitField0_ & 0x00000400) == 0x00000400)) {
-        output.writeBool(13, cacheOutputFiles_);
+        output.writeInt64(13, oid_);
       }
       if (((bitField0_ & 0x00000800) == 0x00000800)) {
-        output.writeInt64(14, oid_);
+        output.writeBytes(14, getEmailSenderAddressBytes());
       }
       if (((bitField0_ & 0x00001000) == 0x00001000)) {
-        output.writeBytes(15, getEmailSenderAddressBytes());
+        output.writeBool(15, cacheOutputFiles_);
       }
       if (((bitField0_ & 0x00002000) == 0x00002000)) {
         output.writeBool(16, hideUserListForNonAdmin_);
@@ -3126,11 +3126,11 @@ public final class SettingsInterfaceImpl {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, protocolBuffersPort_);
+          .computeBoolSize(3, allowOnlyWhitelisted_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(4, allowOnlyWhitelisted_);
+          .computeInt32Size(4, protocolBuffersPort_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
@@ -3153,6 +3153,18 @@ public final class SettingsInterfaceImpl {
         size += dataSize;
         size += 1 * getWebModulesList().size();
       }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(9, rid_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(10, allowSelfRegistration_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(11, getSmtpServerBytes());
+      }
       {
         int dataSize = 0;
         for (int i = 0; i < whitelistedDomains_.size(); i++) {
@@ -3162,29 +3174,17 @@ public final class SettingsInterfaceImpl {
         size += dataSize;
         size += 1 * getWhitelistedDomainsList().size();
       }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(10, rid_);
-      }
-      if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(11, allowSelfRegistration_);
-      }
-      if (((bitField0_ & 0x00000200) == 0x00000200)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(12, getSmtpServerBytes());
-      }
       if (((bitField0_ & 0x00000400) == 0x00000400)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(13, cacheOutputFiles_);
+          .computeInt64Size(13, oid_);
       }
       if (((bitField0_ & 0x00000800) == 0x00000800)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(14, oid_);
+          .computeBytesSize(14, getEmailSenderAddressBytes());
       }
       if (((bitField0_ & 0x00001000) == 0x00001000)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(15, getEmailSenderAddressBytes());
+          .computeBoolSize(15, cacheOutputFiles_);
       }
       if (((bitField0_ & 0x00002000) == 0x00002000)) {
         size += com.google.protobuf.CodedOutputStream
@@ -3322,9 +3322,9 @@ public final class SettingsInterfaceImpl {
         bitField0_ = (bitField0_ & ~0x00000001);
         generateGeometryOnCheckin_ = false;
         bitField0_ = (bitField0_ & ~0x00000002);
-        protocolBuffersPort_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
         allowOnlyWhitelisted_ = false;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        protocolBuffersPort_ = 0;
         bitField0_ = (bitField0_ & ~0x00000008);
         siteAddress_ = "";
         bitField0_ = (bitField0_ & ~0x00000010);
@@ -3334,19 +3334,19 @@ public final class SettingsInterfaceImpl {
         bitField0_ = (bitField0_ & ~0x00000040);
         webModules_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000080);
-        whitelistedDomains_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000100);
         rid_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000200);
+        bitField0_ = (bitField0_ & ~0x00000100);
         allowSelfRegistration_ = false;
-        bitField0_ = (bitField0_ & ~0x00000400);
+        bitField0_ = (bitField0_ & ~0x00000200);
         smtpServer_ = "";
+        bitField0_ = (bitField0_ & ~0x00000400);
+        whitelistedDomains_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000800);
-        cacheOutputFiles_ = false;
-        bitField0_ = (bitField0_ & ~0x00001000);
         oid_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00002000);
+        bitField0_ = (bitField0_ & ~0x00001000);
         emailSenderAddress_ = "";
+        bitField0_ = (bitField0_ & ~0x00002000);
+        cacheOutputFiles_ = false;
         bitField0_ = (bitField0_ & ~0x00004000);
         hideUserListForNonAdmin_ = false;
         bitField0_ = (bitField0_ & ~0x00008000);
@@ -3395,11 +3395,11 @@ public final class SettingsInterfaceImpl {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.protocolBuffersPort_ = protocolBuffersPort_;
+        result.allowOnlyWhitelisted_ = allowOnlyWhitelisted_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.allowOnlyWhitelisted_ = allowOnlyWhitelisted_;
+        result.protocolBuffersPort_ = protocolBuffersPort_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
@@ -3417,36 +3417,36 @@ public final class SettingsInterfaceImpl {
           bitField0_ = (bitField0_ & ~0x00000080);
         }
         result.webModules_ = webModules_;
-        if (((bitField0_ & 0x00000100) == 0x00000100)) {
-          whitelistedDomains_ = new com.google.protobuf.UnmodifiableLazyStringList(
-              whitelistedDomains_);
-          bitField0_ = (bitField0_ & ~0x00000100);
-        }
-        result.whitelistedDomains_ = whitelistedDomains_;
-        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
           to_bitField0_ |= 0x00000080;
         }
         result.rid_ = rid_;
-        if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
+        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
           to_bitField0_ |= 0x00000100;
         }
         result.allowSelfRegistration_ = allowSelfRegistration_;
-        if (((from_bitField0_ & 0x00000800) == 0x00000800)) {
+        if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
           to_bitField0_ |= 0x00000200;
         }
         result.smtpServer_ = smtpServer_;
+        if (((bitField0_ & 0x00000800) == 0x00000800)) {
+          whitelistedDomains_ = new com.google.protobuf.UnmodifiableLazyStringList(
+              whitelistedDomains_);
+          bitField0_ = (bitField0_ & ~0x00000800);
+        }
+        result.whitelistedDomains_ = whitelistedDomains_;
         if (((from_bitField0_ & 0x00001000) == 0x00001000)) {
           to_bitField0_ |= 0x00000400;
         }
-        result.cacheOutputFiles_ = cacheOutputFiles_;
+        result.oid_ = oid_;
         if (((from_bitField0_ & 0x00002000) == 0x00002000)) {
           to_bitField0_ |= 0x00000800;
         }
-        result.oid_ = oid_;
+        result.emailSenderAddress_ = emailSenderAddress_;
         if (((from_bitField0_ & 0x00004000) == 0x00004000)) {
           to_bitField0_ |= 0x00001000;
         }
-        result.emailSenderAddress_ = emailSenderAddress_;
+        result.cacheOutputFiles_ = cacheOutputFiles_;
         if (((from_bitField0_ & 0x00008000) == 0x00008000)) {
           to_bitField0_ |= 0x00002000;
         }
@@ -3485,11 +3485,11 @@ public final class SettingsInterfaceImpl {
         if (other.hasGenerateGeometryOnCheckin()) {
           setGenerateGeometryOnCheckin(other.getGenerateGeometryOnCheckin());
         }
-        if (other.hasProtocolBuffersPort()) {
-          setProtocolBuffersPort(other.getProtocolBuffersPort());
-        }
         if (other.hasAllowOnlyWhitelisted()) {
           setAllowOnlyWhitelisted(other.getAllowOnlyWhitelisted());
+        }
+        if (other.hasProtocolBuffersPort()) {
+          setProtocolBuffersPort(other.getProtocolBuffersPort());
         }
         if (other.hasSiteAddress()) {
           bitField0_ |= 0x00000010;
@@ -3514,16 +3514,6 @@ public final class SettingsInterfaceImpl {
           }
           onChanged();
         }
-        if (!other.whitelistedDomains_.isEmpty()) {
-          if (whitelistedDomains_.isEmpty()) {
-            whitelistedDomains_ = other.whitelistedDomains_;
-            bitField0_ = (bitField0_ & ~0x00000100);
-          } else {
-            ensureWhitelistedDomainsIsMutable();
-            whitelistedDomains_.addAll(other.whitelistedDomains_);
-          }
-          onChanged();
-        }
         if (other.hasRid()) {
           setRid(other.getRid());
         }
@@ -3531,20 +3521,30 @@ public final class SettingsInterfaceImpl {
           setAllowSelfRegistration(other.getAllowSelfRegistration());
         }
         if (other.hasSmtpServer()) {
-          bitField0_ |= 0x00000800;
+          bitField0_ |= 0x00000400;
           smtpServer_ = other.smtpServer_;
           onChanged();
         }
-        if (other.hasCacheOutputFiles()) {
-          setCacheOutputFiles(other.getCacheOutputFiles());
+        if (!other.whitelistedDomains_.isEmpty()) {
+          if (whitelistedDomains_.isEmpty()) {
+            whitelistedDomains_ = other.whitelistedDomains_;
+            bitField0_ = (bitField0_ & ~0x00000800);
+          } else {
+            ensureWhitelistedDomainsIsMutable();
+            whitelistedDomains_.addAll(other.whitelistedDomains_);
+          }
+          onChanged();
         }
         if (other.hasOid()) {
           setOid(other.getOid());
         }
         if (other.hasEmailSenderAddress()) {
-          bitField0_ |= 0x00004000;
+          bitField0_ |= 0x00002000;
           emailSenderAddress_ = other.emailSenderAddress_;
           onChanged();
+        }
+        if (other.hasCacheOutputFiles()) {
+          setCacheOutputFiles(other.getCacheOutputFiles());
         }
         if (other.hasHideUserListForNonAdmin()) {
           setHideUserListForNonAdmin(other.getHideUserListForNonAdmin());
@@ -3653,68 +3653,68 @@ public final class SettingsInterfaceImpl {
         return this;
       }
 
-      // optional int32 protocolBuffersPort = 3;
-      private int protocolBuffersPort_ ;
+      // optional bool allowOnlyWhitelisted = 3;
+      private boolean allowOnlyWhitelisted_ ;
       /**
-       * <code>optional int32 protocolBuffersPort = 3;</code>
+       * <code>optional bool allowOnlyWhitelisted = 3;</code>
        */
-      public boolean hasProtocolBuffersPort() {
+      public boolean hasAllowOnlyWhitelisted() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional int32 protocolBuffersPort = 3;</code>
-       */
-      public int getProtocolBuffersPort() {
-        return protocolBuffersPort_;
-      }
-      /**
-       * <code>optional int32 protocolBuffersPort = 3;</code>
-       */
-      public Builder setProtocolBuffersPort(int value) {
-        bitField0_ |= 0x00000004;
-        protocolBuffersPort_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional int32 protocolBuffersPort = 3;</code>
-       */
-      public Builder clearProtocolBuffersPort() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        protocolBuffersPort_ = 0;
-        onChanged();
-        return this;
-      }
-
-      // optional bool allowOnlyWhitelisted = 4;
-      private boolean allowOnlyWhitelisted_ ;
-      /**
-       * <code>optional bool allowOnlyWhitelisted = 4;</code>
-       */
-      public boolean hasAllowOnlyWhitelisted() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      /**
-       * <code>optional bool allowOnlyWhitelisted = 4;</code>
+       * <code>optional bool allowOnlyWhitelisted = 3;</code>
        */
       public boolean getAllowOnlyWhitelisted() {
         return allowOnlyWhitelisted_;
       }
       /**
-       * <code>optional bool allowOnlyWhitelisted = 4;</code>
+       * <code>optional bool allowOnlyWhitelisted = 3;</code>
        */
       public Builder setAllowOnlyWhitelisted(boolean value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
         allowOnlyWhitelisted_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional bool allowOnlyWhitelisted = 4;</code>
+       * <code>optional bool allowOnlyWhitelisted = 3;</code>
        */
       public Builder clearAllowOnlyWhitelisted() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         allowOnlyWhitelisted_ = false;
+        onChanged();
+        return this;
+      }
+
+      // optional int32 protocolBuffersPort = 4;
+      private int protocolBuffersPort_ ;
+      /**
+       * <code>optional int32 protocolBuffersPort = 4;</code>
+       */
+      public boolean hasProtocolBuffersPort() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional int32 protocolBuffersPort = 4;</code>
+       */
+      public int getProtocolBuffersPort() {
+        return protocolBuffersPort_;
+      }
+      /**
+       * <code>optional int32 protocolBuffersPort = 4;</code>
+       */
+      public Builder setProtocolBuffersPort(int value) {
+        bitField0_ |= 0x00000008;
+        protocolBuffersPort_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 protocolBuffersPort = 4;</code>
+       */
+      public Builder clearProtocolBuffersPort() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        protocolBuffersPort_ = 0;
         onChanged();
         return this;
       }
@@ -3966,175 +3966,82 @@ public final class SettingsInterfaceImpl {
         return this;
       }
 
-      // repeated string whitelistedDomains = 9;
-      private com.google.protobuf.LazyStringList whitelistedDomains_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureWhitelistedDomainsIsMutable() {
-        if (!((bitField0_ & 0x00000100) == 0x00000100)) {
-          whitelistedDomains_ = new com.google.protobuf.LazyStringArrayList(whitelistedDomains_);
-          bitField0_ |= 0x00000100;
-         }
-      }
-      /**
-       * <code>repeated string whitelistedDomains = 9;</code>
-       */
-      public java.util.List<java.lang.String>
-          getWhitelistedDomainsList() {
-        return java.util.Collections.unmodifiableList(whitelistedDomains_);
-      }
-      /**
-       * <code>repeated string whitelistedDomains = 9;</code>
-       */
-      public int getWhitelistedDomainsCount() {
-        return whitelistedDomains_.size();
-      }
-      /**
-       * <code>repeated string whitelistedDomains = 9;</code>
-       */
-      public java.lang.String getWhitelistedDomains(int index) {
-        return whitelistedDomains_.get(index);
-      }
-      /**
-       * <code>repeated string whitelistedDomains = 9;</code>
-       */
-      public com.google.protobuf.ByteString
-          getWhitelistedDomainsBytes(int index) {
-        return whitelistedDomains_.getByteString(index);
-      }
-      /**
-       * <code>repeated string whitelistedDomains = 9;</code>
-       */
-      public Builder setWhitelistedDomains(
-          int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureWhitelistedDomainsIsMutable();
-        whitelistedDomains_.set(index, value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string whitelistedDomains = 9;</code>
-       */
-      public Builder addWhitelistedDomains(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureWhitelistedDomainsIsMutable();
-        whitelistedDomains_.add(value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string whitelistedDomains = 9;</code>
-       */
-      public Builder addAllWhitelistedDomains(
-          java.lang.Iterable<java.lang.String> values) {
-        ensureWhitelistedDomainsIsMutable();
-        super.addAll(values, whitelistedDomains_);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string whitelistedDomains = 9;</code>
-       */
-      public Builder clearWhitelistedDomains() {
-        whitelistedDomains_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000100);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string whitelistedDomains = 9;</code>
-       */
-      public Builder addWhitelistedDomainsBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureWhitelistedDomainsIsMutable();
-        whitelistedDomains_.add(value);
-        onChanged();
-        return this;
-      }
-
-      // optional int32 rid = 10;
+      // optional int32 rid = 9;
       private int rid_ ;
       /**
-       * <code>optional int32 rid = 10;</code>
+       * <code>optional int32 rid = 9;</code>
        */
       public boolean hasRid() {
-        return ((bitField0_ & 0x00000200) == 0x00000200);
+        return ((bitField0_ & 0x00000100) == 0x00000100);
       }
       /**
-       * <code>optional int32 rid = 10;</code>
+       * <code>optional int32 rid = 9;</code>
        */
       public int getRid() {
         return rid_;
       }
       /**
-       * <code>optional int32 rid = 10;</code>
+       * <code>optional int32 rid = 9;</code>
        */
       public Builder setRid(int value) {
-        bitField0_ |= 0x00000200;
+        bitField0_ |= 0x00000100;
         rid_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int32 rid = 10;</code>
+       * <code>optional int32 rid = 9;</code>
        */
       public Builder clearRid() {
-        bitField0_ = (bitField0_ & ~0x00000200);
+        bitField0_ = (bitField0_ & ~0x00000100);
         rid_ = 0;
         onChanged();
         return this;
       }
 
-      // optional bool allowSelfRegistration = 11;
+      // optional bool allowSelfRegistration = 10;
       private boolean allowSelfRegistration_ ;
       /**
-       * <code>optional bool allowSelfRegistration = 11;</code>
+       * <code>optional bool allowSelfRegistration = 10;</code>
        */
       public boolean hasAllowSelfRegistration() {
-        return ((bitField0_ & 0x00000400) == 0x00000400);
+        return ((bitField0_ & 0x00000200) == 0x00000200);
       }
       /**
-       * <code>optional bool allowSelfRegistration = 11;</code>
+       * <code>optional bool allowSelfRegistration = 10;</code>
        */
       public boolean getAllowSelfRegistration() {
         return allowSelfRegistration_;
       }
       /**
-       * <code>optional bool allowSelfRegistration = 11;</code>
+       * <code>optional bool allowSelfRegistration = 10;</code>
        */
       public Builder setAllowSelfRegistration(boolean value) {
-        bitField0_ |= 0x00000400;
+        bitField0_ |= 0x00000200;
         allowSelfRegistration_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional bool allowSelfRegistration = 11;</code>
+       * <code>optional bool allowSelfRegistration = 10;</code>
        */
       public Builder clearAllowSelfRegistration() {
-        bitField0_ = (bitField0_ & ~0x00000400);
+        bitField0_ = (bitField0_ & ~0x00000200);
         allowSelfRegistration_ = false;
         onChanged();
         return this;
       }
 
-      // optional string smtpServer = 12;
+      // optional string smtpServer = 11;
       private java.lang.Object smtpServer_ = "";
       /**
-       * <code>optional string smtpServer = 12;</code>
+       * <code>optional string smtpServer = 11;</code>
        */
       public boolean hasSmtpServer() {
-        return ((bitField0_ & 0x00000800) == 0x00000800);
+        return ((bitField0_ & 0x00000400) == 0x00000400);
       }
       /**
-       * <code>optional string smtpServer = 12;</code>
+       * <code>optional string smtpServer = 11;</code>
        */
       public java.lang.String getSmtpServer() {
         java.lang.Object ref = smtpServer_;
@@ -4148,7 +4055,7 @@ public final class SettingsInterfaceImpl {
         }
       }
       /**
-       * <code>optional string smtpServer = 12;</code>
+       * <code>optional string smtpServer = 11;</code>
        */
       public com.google.protobuf.ByteString
           getSmtpServerBytes() {
@@ -4164,117 +4071,177 @@ public final class SettingsInterfaceImpl {
         }
       }
       /**
-       * <code>optional string smtpServer = 12;</code>
+       * <code>optional string smtpServer = 11;</code>
        */
       public Builder setSmtpServer(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000800;
+  bitField0_ |= 0x00000400;
         smtpServer_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string smtpServer = 12;</code>
+       * <code>optional string smtpServer = 11;</code>
        */
       public Builder clearSmtpServer() {
-        bitField0_ = (bitField0_ & ~0x00000800);
+        bitField0_ = (bitField0_ & ~0x00000400);
         smtpServer_ = getDefaultInstance().getSmtpServer();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string smtpServer = 12;</code>
+       * <code>optional string smtpServer = 11;</code>
        */
       public Builder setSmtpServerBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000800;
+  bitField0_ |= 0x00000400;
         smtpServer_ = value;
         onChanged();
         return this;
       }
 
-      // optional bool cacheOutputFiles = 13;
-      private boolean cacheOutputFiles_ ;
-      /**
-       * <code>optional bool cacheOutputFiles = 13;</code>
-       */
-      public boolean hasCacheOutputFiles() {
-        return ((bitField0_ & 0x00001000) == 0x00001000);
+      // repeated string whitelistedDomains = 12;
+      private com.google.protobuf.LazyStringList whitelistedDomains_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureWhitelistedDomainsIsMutable() {
+        if (!((bitField0_ & 0x00000800) == 0x00000800)) {
+          whitelistedDomains_ = new com.google.protobuf.LazyStringArrayList(whitelistedDomains_);
+          bitField0_ |= 0x00000800;
+         }
       }
       /**
-       * <code>optional bool cacheOutputFiles = 13;</code>
+       * <code>repeated string whitelistedDomains = 12;</code>
        */
-      public boolean getCacheOutputFiles() {
-        return cacheOutputFiles_;
+      public java.util.List<java.lang.String>
+          getWhitelistedDomainsList() {
+        return java.util.Collections.unmodifiableList(whitelistedDomains_);
       }
       /**
-       * <code>optional bool cacheOutputFiles = 13;</code>
+       * <code>repeated string whitelistedDomains = 12;</code>
        */
-      public Builder setCacheOutputFiles(boolean value) {
-        bitField0_ |= 0x00001000;
-        cacheOutputFiles_ = value;
+      public int getWhitelistedDomainsCount() {
+        return whitelistedDomains_.size();
+      }
+      /**
+       * <code>repeated string whitelistedDomains = 12;</code>
+       */
+      public java.lang.String getWhitelistedDomains(int index) {
+        return whitelistedDomains_.get(index);
+      }
+      /**
+       * <code>repeated string whitelistedDomains = 12;</code>
+       */
+      public com.google.protobuf.ByteString
+          getWhitelistedDomainsBytes(int index) {
+        return whitelistedDomains_.getByteString(index);
+      }
+      /**
+       * <code>repeated string whitelistedDomains = 12;</code>
+       */
+      public Builder setWhitelistedDomains(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureWhitelistedDomainsIsMutable();
+        whitelistedDomains_.set(index, value);
         onChanged();
         return this;
       }
       /**
-       * <code>optional bool cacheOutputFiles = 13;</code>
+       * <code>repeated string whitelistedDomains = 12;</code>
        */
-      public Builder clearCacheOutputFiles() {
-        bitField0_ = (bitField0_ & ~0x00001000);
-        cacheOutputFiles_ = false;
+      public Builder addWhitelistedDomains(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureWhitelistedDomainsIsMutable();
+        whitelistedDomains_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string whitelistedDomains = 12;</code>
+       */
+      public Builder addAllWhitelistedDomains(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureWhitelistedDomainsIsMutable();
+        super.addAll(values, whitelistedDomains_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string whitelistedDomains = 12;</code>
+       */
+      public Builder clearWhitelistedDomains() {
+        whitelistedDomains_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000800);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string whitelistedDomains = 12;</code>
+       */
+      public Builder addWhitelistedDomainsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureWhitelistedDomainsIsMutable();
+        whitelistedDomains_.add(value);
         onChanged();
         return this;
       }
 
-      // optional int64 oid = 14;
+      // optional int64 oid = 13;
       private long oid_ ;
       /**
-       * <code>optional int64 oid = 14;</code>
+       * <code>optional int64 oid = 13;</code>
        */
       public boolean hasOid() {
-        return ((bitField0_ & 0x00002000) == 0x00002000);
+        return ((bitField0_ & 0x00001000) == 0x00001000);
       }
       /**
-       * <code>optional int64 oid = 14;</code>
+       * <code>optional int64 oid = 13;</code>
        */
       public long getOid() {
         return oid_;
       }
       /**
-       * <code>optional int64 oid = 14;</code>
+       * <code>optional int64 oid = 13;</code>
        */
       public Builder setOid(long value) {
-        bitField0_ |= 0x00002000;
+        bitField0_ |= 0x00001000;
         oid_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int64 oid = 14;</code>
+       * <code>optional int64 oid = 13;</code>
        */
       public Builder clearOid() {
-        bitField0_ = (bitField0_ & ~0x00002000);
+        bitField0_ = (bitField0_ & ~0x00001000);
         oid_ = 0L;
         onChanged();
         return this;
       }
 
-      // optional string emailSenderAddress = 15;
+      // optional string emailSenderAddress = 14;
       private java.lang.Object emailSenderAddress_ = "";
       /**
-       * <code>optional string emailSenderAddress = 15;</code>
+       * <code>optional string emailSenderAddress = 14;</code>
        */
       public boolean hasEmailSenderAddress() {
-        return ((bitField0_ & 0x00004000) == 0x00004000);
+        return ((bitField0_ & 0x00002000) == 0x00002000);
       }
       /**
-       * <code>optional string emailSenderAddress = 15;</code>
+       * <code>optional string emailSenderAddress = 14;</code>
        */
       public java.lang.String getEmailSenderAddress() {
         java.lang.Object ref = emailSenderAddress_;
@@ -4288,7 +4255,7 @@ public final class SettingsInterfaceImpl {
         }
       }
       /**
-       * <code>optional string emailSenderAddress = 15;</code>
+       * <code>optional string emailSenderAddress = 14;</code>
        */
       public com.google.protobuf.ByteString
           getEmailSenderAddressBytes() {
@@ -4304,37 +4271,70 @@ public final class SettingsInterfaceImpl {
         }
       }
       /**
-       * <code>optional string emailSenderAddress = 15;</code>
+       * <code>optional string emailSenderAddress = 14;</code>
        */
       public Builder setEmailSenderAddress(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00004000;
+  bitField0_ |= 0x00002000;
         emailSenderAddress_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string emailSenderAddress = 15;</code>
+       * <code>optional string emailSenderAddress = 14;</code>
        */
       public Builder clearEmailSenderAddress() {
-        bitField0_ = (bitField0_ & ~0x00004000);
+        bitField0_ = (bitField0_ & ~0x00002000);
         emailSenderAddress_ = getDefaultInstance().getEmailSenderAddress();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string emailSenderAddress = 15;</code>
+       * <code>optional string emailSenderAddress = 14;</code>
        */
       public Builder setEmailSenderAddressBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00004000;
+  bitField0_ |= 0x00002000;
         emailSenderAddress_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional bool cacheOutputFiles = 15;
+      private boolean cacheOutputFiles_ ;
+      /**
+       * <code>optional bool cacheOutputFiles = 15;</code>
+       */
+      public boolean hasCacheOutputFiles() {
+        return ((bitField0_ & 0x00004000) == 0x00004000);
+      }
+      /**
+       * <code>optional bool cacheOutputFiles = 15;</code>
+       */
+      public boolean getCacheOutputFiles() {
+        return cacheOutputFiles_;
+      }
+      /**
+       * <code>optional bool cacheOutputFiles = 15;</code>
+       */
+      public Builder setCacheOutputFiles(boolean value) {
+        bitField0_ |= 0x00004000;
+        cacheOutputFiles_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool cacheOutputFiles = 15;</code>
+       */
+      public Builder clearCacheOutputFiles() {
+        bitField0_ = (bitField0_ & ~0x00004000);
+        cacheOutputFiles_ = false;
         onChanged();
         return this;
       }
@@ -15209,6 +15209,402 @@ public final class SettingsInterfaceImpl {
     // @@protoc_insertion_point(class_scope:org.bimserver.pb.SetCacheOutputFilesRequest)
   }
 
+  public interface SetCheckinMergingEnabledRequestOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional bool checkinMergingEnabled = 1;
+    /**
+     * <code>optional bool checkinMergingEnabled = 1;</code>
+     */
+    boolean hasCheckinMergingEnabled();
+    /**
+     * <code>optional bool checkinMergingEnabled = 1;</code>
+     */
+    boolean getCheckinMergingEnabled();
+  }
+  /**
+   * Protobuf type {@code org.bimserver.pb.SetCheckinMergingEnabledRequest}
+   */
+  public static final class SetCheckinMergingEnabledRequest extends
+      com.google.protobuf.GeneratedMessage
+      implements SetCheckinMergingEnabledRequestOrBuilder {
+    // Use SetCheckinMergingEnabledRequest.newBuilder() to construct.
+    private SetCheckinMergingEnabledRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private SetCheckinMergingEnabledRequest(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final SetCheckinMergingEnabledRequest defaultInstance;
+    public static SetCheckinMergingEnabledRequest getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public SetCheckinMergingEnabledRequest getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SetCheckinMergingEnabledRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              checkinMergingEnabled_ = input.readBool();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.bimserver.pb.SettingsInterfaceImpl.internal_static_org_bimserver_pb_SetCheckinMergingEnabledRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.bimserver.pb.SettingsInterfaceImpl.internal_static_org_bimserver_pb_SetCheckinMergingEnabledRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest.class, org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<SetCheckinMergingEnabledRequest> PARSER =
+        new com.google.protobuf.AbstractParser<SetCheckinMergingEnabledRequest>() {
+      public SetCheckinMergingEnabledRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SetCheckinMergingEnabledRequest(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SetCheckinMergingEnabledRequest> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional bool checkinMergingEnabled = 1;
+    public static final int CHECKINMERGINGENABLED_FIELD_NUMBER = 1;
+    private boolean checkinMergingEnabled_;
+    /**
+     * <code>optional bool checkinMergingEnabled = 1;</code>
+     */
+    public boolean hasCheckinMergingEnabled() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional bool checkinMergingEnabled = 1;</code>
+     */
+    public boolean getCheckinMergingEnabled() {
+      return checkinMergingEnabled_;
+    }
+
+    private void initFields() {
+      checkinMergingEnabled_ = false;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBool(1, checkinMergingEnabled_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, checkinMergingEnabled_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.bimserver.pb.SetCheckinMergingEnabledRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.bimserver.pb.SettingsInterfaceImpl.internal_static_org_bimserver_pb_SetCheckinMergingEnabledRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.bimserver.pb.SettingsInterfaceImpl.internal_static_org_bimserver_pb_SetCheckinMergingEnabledRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest.class, org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest.Builder.class);
+      }
+
+      // Construct using org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        checkinMergingEnabled_ = false;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.bimserver.pb.SettingsInterfaceImpl.internal_static_org_bimserver_pb_SetCheckinMergingEnabledRequest_descriptor;
+      }
+
+      public org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest getDefaultInstanceForType() {
+        return org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest.getDefaultInstance();
+      }
+
+      public org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest build() {
+        org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest buildPartial() {
+        org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest result = new org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.checkinMergingEnabled_ = checkinMergingEnabled_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest) {
+          return mergeFrom((org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest other) {
+        if (other == org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest.getDefaultInstance()) return this;
+        if (other.hasCheckinMergingEnabled()) {
+          setCheckinMergingEnabled(other.getCheckinMergingEnabled());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional bool checkinMergingEnabled = 1;
+      private boolean checkinMergingEnabled_ ;
+      /**
+       * <code>optional bool checkinMergingEnabled = 1;</code>
+       */
+      public boolean hasCheckinMergingEnabled() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional bool checkinMergingEnabled = 1;</code>
+       */
+      public boolean getCheckinMergingEnabled() {
+        return checkinMergingEnabled_;
+      }
+      /**
+       * <code>optional bool checkinMergingEnabled = 1;</code>
+       */
+      public Builder setCheckinMergingEnabled(boolean value) {
+        bitField0_ |= 0x00000001;
+        checkinMergingEnabled_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool checkinMergingEnabled = 1;</code>
+       */
+      public Builder clearCheckinMergingEnabled() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        checkinMergingEnabled_ = false;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.SetCheckinMergingEnabledRequest)
+    }
+
+    static {
+      defaultInstance = new SetCheckinMergingEnabledRequest(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.SetCheckinMergingEnabledRequest)
+  }
+
   public interface SetEmailSenderAddressRequestOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
@@ -18242,402 +18638,6 @@ public final class SettingsInterfaceImpl {
     // @@protoc_insertion_point(class_scope:org.bimserver.pb.SetServiceRepositoryUrlRequest)
   }
 
-  public interface SetSettingCheckinMergingEnabledRequestOrBuilder
-      extends com.google.protobuf.MessageOrBuilder {
-
-    // optional bool checkinMergingEnabled = 1;
-    /**
-     * <code>optional bool checkinMergingEnabled = 1;</code>
-     */
-    boolean hasCheckinMergingEnabled();
-    /**
-     * <code>optional bool checkinMergingEnabled = 1;</code>
-     */
-    boolean getCheckinMergingEnabled();
-  }
-  /**
-   * Protobuf type {@code org.bimserver.pb.SetSettingCheckinMergingEnabledRequest}
-   */
-  public static final class SetSettingCheckinMergingEnabledRequest extends
-      com.google.protobuf.GeneratedMessage
-      implements SetSettingCheckinMergingEnabledRequestOrBuilder {
-    // Use SetSettingCheckinMergingEnabledRequest.newBuilder() to construct.
-    private SetSettingCheckinMergingEnabledRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
-    }
-    private SetSettingCheckinMergingEnabledRequest(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final SetSettingCheckinMergingEnabledRequest defaultInstance;
-    public static SetSettingCheckinMergingEnabledRequest getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public SetSettingCheckinMergingEnabledRequest getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
-    }
-    private SetSettingCheckinMergingEnabledRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              checkinMergingEnabled_ = input.readBool();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return org.bimserver.pb.SettingsInterfaceImpl.internal_static_org_bimserver_pb_SetSettingCheckinMergingEnabledRequest_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return org.bimserver.pb.SettingsInterfaceImpl.internal_static_org_bimserver_pb_SetSettingCheckinMergingEnabledRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest.class, org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest.Builder.class);
-    }
-
-    public static com.google.protobuf.Parser<SetSettingCheckinMergingEnabledRequest> PARSER =
-        new com.google.protobuf.AbstractParser<SetSettingCheckinMergingEnabledRequest>() {
-      public SetSettingCheckinMergingEnabledRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SetSettingCheckinMergingEnabledRequest(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<SetSettingCheckinMergingEnabledRequest> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
-    // optional bool checkinMergingEnabled = 1;
-    public static final int CHECKINMERGINGENABLED_FIELD_NUMBER = 1;
-    private boolean checkinMergingEnabled_;
-    /**
-     * <code>optional bool checkinMergingEnabled = 1;</code>
-     */
-    public boolean hasCheckinMergingEnabled() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>optional bool checkinMergingEnabled = 1;</code>
-     */
-    public boolean getCheckinMergingEnabled() {
-      return checkinMergingEnabled_;
-    }
-
-    private void initFields() {
-      checkinMergingEnabled_ = false;
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBool(1, checkinMergingEnabled_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, checkinMergingEnabled_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
-    public static org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-    public static org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
-    }
-    public static org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
-    }
-    public static org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code org.bimserver.pb.SetSettingCheckinMergingEnabledRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return org.bimserver.pb.SettingsInterfaceImpl.internal_static_org_bimserver_pb_SetSettingCheckinMergingEnabledRequest_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return org.bimserver.pb.SettingsInterfaceImpl.internal_static_org_bimserver_pb_SetSettingCheckinMergingEnabledRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest.class, org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest.Builder.class);
-      }
-
-      // Construct using org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-
-      public Builder clear() {
-        super.clear();
-        checkinMergingEnabled_ = false;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return org.bimserver.pb.SettingsInterfaceImpl.internal_static_org_bimserver_pb_SetSettingCheckinMergingEnabledRequest_descriptor;
-      }
-
-      public org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest getDefaultInstanceForType() {
-        return org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest.getDefaultInstance();
-      }
-
-      public org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest build() {
-        org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest buildPartial() {
-        org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest result = new org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.checkinMergingEnabled_ = checkinMergingEnabled_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest) {
-          return mergeFrom((org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest other) {
-        if (other == org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest.getDefaultInstance()) return this;
-        if (other.hasCheckinMergingEnabled()) {
-          setCheckinMergingEnabled(other.getCheckinMergingEnabled());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      // optional bool checkinMergingEnabled = 1;
-      private boolean checkinMergingEnabled_ ;
-      /**
-       * <code>optional bool checkinMergingEnabled = 1;</code>
-       */
-      public boolean hasCheckinMergingEnabled() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>optional bool checkinMergingEnabled = 1;</code>
-       */
-      public boolean getCheckinMergingEnabled() {
-        return checkinMergingEnabled_;
-      }
-      /**
-       * <code>optional bool checkinMergingEnabled = 1;</code>
-       */
-      public Builder setCheckinMergingEnabled(boolean value) {
-        bitField0_ |= 0x00000001;
-        checkinMergingEnabled_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bool checkinMergingEnabled = 1;</code>
-       */
-      public Builder clearCheckinMergingEnabled() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        checkinMergingEnabled_ = false;
-        onChanged();
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.SetSettingCheckinMergingEnabledRequest)
-    }
-
-    static {
-      defaultInstance = new SetSettingCheckinMergingEnabledRequest(true);
-      defaultInstance.initFields();
-    }
-
-    // @@protoc_insertion_point(class_scope:org.bimserver.pb.SetSettingCheckinMergingEnabledRequest)
-  }
-
   public interface SetSiteAddressRequestOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
@@ -20214,6 +20214,14 @@ public final class SettingsInterfaceImpl {
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
 
       /**
+       * <code>rpc setCheckinMergingEnabled(.org.bimserver.pb.SetCheckinMergingEnabledRequest) returns (.org.bimserver.pb.VoidResponse);</code>
+       */
+      public abstract void setCheckinMergingEnabled(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
+
+      /**
        * <code>rpc setEmailSenderAddress(.org.bimserver.pb.SetEmailSenderAddressRequest) returns (.org.bimserver.pb.VoidResponse);</code>
        */
       public abstract void setEmailSenderAddress(
@@ -20267,14 +20275,6 @@ public final class SettingsInterfaceImpl {
       public abstract void setServiceRepositoryUrl(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.SettingsInterfaceImpl.SetServiceRepositoryUrlRequest request,
-          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
-
-      /**
-       * <code>rpc setSettingCheckinMergingEnabled(.org.bimserver.pb.SetSettingCheckinMergingEnabledRequest) returns (.org.bimserver.pb.VoidResponse);</code>
-       */
-      public abstract void setSettingCheckinMergingEnabled(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
 
       /**
@@ -20435,6 +20435,14 @@ public final class SettingsInterfaceImpl {
         }
 
         @java.lang.Override
+        public  void setCheckinMergingEnabled(
+            com.google.protobuf.RpcController controller,
+            org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest request,
+            com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
+          impl.setCheckinMergingEnabled(controller, request, done);
+        }
+
+        @java.lang.Override
         public  void setEmailSenderAddress(
             com.google.protobuf.RpcController controller,
             org.bimserver.pb.SettingsInterfaceImpl.SetEmailSenderAddressRequest request,
@@ -20488,14 +20496,6 @@ public final class SettingsInterfaceImpl {
             org.bimserver.pb.SettingsInterfaceImpl.SetServiceRepositoryUrlRequest request,
             com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
           impl.setServiceRepositoryUrl(controller, request, done);
-        }
-
-        @java.lang.Override
-        public  void setSettingCheckinMergingEnabled(
-            com.google.protobuf.RpcController controller,
-            org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest request,
-            com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
-          impl.setSettingCheckinMergingEnabled(controller, request, done);
         }
 
         @java.lang.Override
@@ -20577,21 +20577,21 @@ public final class SettingsInterfaceImpl {
             case 15:
               return impl.setCacheOutputFiles(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetCacheOutputFilesRequest)request);
             case 16:
-              return impl.setEmailSenderAddress(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetEmailSenderAddressRequest)request);
+              return impl.setCheckinMergingEnabled(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest)request);
             case 17:
-              return impl.setGenerateGeometryOnCheckin(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetGenerateGeometryOnCheckinRequest)request);
+              return impl.setEmailSenderAddress(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetEmailSenderAddressRequest)request);
             case 18:
-              return impl.setHideUserListForNonAdmin(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetHideUserListForNonAdminRequest)request);
+              return impl.setGenerateGeometryOnCheckin(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetGenerateGeometryOnCheckinRequest)request);
             case 19:
-              return impl.setProtocolBuffersPort(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetProtocolBuffersPortRequest)request);
+              return impl.setHideUserListForNonAdmin(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetHideUserListForNonAdminRequest)request);
             case 20:
-              return impl.setSendConfirmationEmailAfterRegistration(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetSendConfirmationEmailAfterRegistrationRequest)request);
+              return impl.setProtocolBuffersPort(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetProtocolBuffersPortRequest)request);
             case 21:
-              return impl.setServerSettings(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetServerSettingsRequest)request);
+              return impl.setSendConfirmationEmailAfterRegistration(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetSendConfirmationEmailAfterRegistrationRequest)request);
             case 22:
-              return impl.setServiceRepositoryUrl(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetServiceRepositoryUrlRequest)request);
+              return impl.setServerSettings(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetServerSettingsRequest)request);
             case 23:
-              return impl.setSettingCheckinMergingEnabled(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest)request);
+              return impl.setServiceRepositoryUrl(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetServiceRepositoryUrlRequest)request);
             case 24:
               return impl.setSiteAddress(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetSiteAddressRequest)request);
             case 25:
@@ -20645,21 +20645,21 @@ public final class SettingsInterfaceImpl {
             case 15:
               return org.bimserver.pb.SettingsInterfaceImpl.SetCacheOutputFilesRequest.getDefaultInstance();
             case 16:
-              return org.bimserver.pb.SettingsInterfaceImpl.SetEmailSenderAddressRequest.getDefaultInstance();
+              return org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest.getDefaultInstance();
             case 17:
-              return org.bimserver.pb.SettingsInterfaceImpl.SetGenerateGeometryOnCheckinRequest.getDefaultInstance();
+              return org.bimserver.pb.SettingsInterfaceImpl.SetEmailSenderAddressRequest.getDefaultInstance();
             case 18:
-              return org.bimserver.pb.SettingsInterfaceImpl.SetHideUserListForNonAdminRequest.getDefaultInstance();
+              return org.bimserver.pb.SettingsInterfaceImpl.SetGenerateGeometryOnCheckinRequest.getDefaultInstance();
             case 19:
-              return org.bimserver.pb.SettingsInterfaceImpl.SetProtocolBuffersPortRequest.getDefaultInstance();
+              return org.bimserver.pb.SettingsInterfaceImpl.SetHideUserListForNonAdminRequest.getDefaultInstance();
             case 20:
-              return org.bimserver.pb.SettingsInterfaceImpl.SetSendConfirmationEmailAfterRegistrationRequest.getDefaultInstance();
+              return org.bimserver.pb.SettingsInterfaceImpl.SetProtocolBuffersPortRequest.getDefaultInstance();
             case 21:
-              return org.bimserver.pb.SettingsInterfaceImpl.SetServerSettingsRequest.getDefaultInstance();
+              return org.bimserver.pb.SettingsInterfaceImpl.SetSendConfirmationEmailAfterRegistrationRequest.getDefaultInstance();
             case 22:
-              return org.bimserver.pb.SettingsInterfaceImpl.SetServiceRepositoryUrlRequest.getDefaultInstance();
+              return org.bimserver.pb.SettingsInterfaceImpl.SetServerSettingsRequest.getDefaultInstance();
             case 23:
-              return org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest.getDefaultInstance();
+              return org.bimserver.pb.SettingsInterfaceImpl.SetServiceRepositoryUrlRequest.getDefaultInstance();
             case 24:
               return org.bimserver.pb.SettingsInterfaceImpl.SetSiteAddressRequest.getDefaultInstance();
             case 25:
@@ -20871,6 +20871,14 @@ public final class SettingsInterfaceImpl {
         com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
 
     /**
+     * <code>rpc setCheckinMergingEnabled(.org.bimserver.pb.SetCheckinMergingEnabledRequest) returns (.org.bimserver.pb.VoidResponse);</code>
+     */
+    public abstract void setCheckinMergingEnabled(
+        com.google.protobuf.RpcController controller,
+        org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest request,
+        com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
+
+    /**
      * <code>rpc setEmailSenderAddress(.org.bimserver.pb.SetEmailSenderAddressRequest) returns (.org.bimserver.pb.VoidResponse);</code>
      */
     public abstract void setEmailSenderAddress(
@@ -20924,14 +20932,6 @@ public final class SettingsInterfaceImpl {
     public abstract void setServiceRepositoryUrl(
         com.google.protobuf.RpcController controller,
         org.bimserver.pb.SettingsInterfaceImpl.SetServiceRepositoryUrlRequest request,
-        com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
-
-    /**
-     * <code>rpc setSettingCheckinMergingEnabled(.org.bimserver.pb.SetSettingCheckinMergingEnabledRequest) returns (.org.bimserver.pb.VoidResponse);</code>
-     */
-    public abstract void setSettingCheckinMergingEnabled(
-        com.google.protobuf.RpcController controller,
-        org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest request,
         com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
 
     /**
@@ -21061,42 +21061,42 @@ public final class SettingsInterfaceImpl {
               done));
           return;
         case 16:
-          this.setEmailSenderAddress(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetEmailSenderAddressRequest)request,
+          this.setCheckinMergingEnabled(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 17:
-          this.setGenerateGeometryOnCheckin(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetGenerateGeometryOnCheckinRequest)request,
+          this.setEmailSenderAddress(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetEmailSenderAddressRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 18:
-          this.setHideUserListForNonAdmin(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetHideUserListForNonAdminRequest)request,
+          this.setGenerateGeometryOnCheckin(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetGenerateGeometryOnCheckinRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 19:
-          this.setProtocolBuffersPort(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetProtocolBuffersPortRequest)request,
+          this.setHideUserListForNonAdmin(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetHideUserListForNonAdminRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 20:
-          this.setSendConfirmationEmailAfterRegistration(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetSendConfirmationEmailAfterRegistrationRequest)request,
+          this.setProtocolBuffersPort(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetProtocolBuffersPortRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 21:
-          this.setServerSettings(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetServerSettingsRequest)request,
+          this.setSendConfirmationEmailAfterRegistration(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetSendConfirmationEmailAfterRegistrationRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 22:
-          this.setServiceRepositoryUrl(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetServiceRepositoryUrlRequest)request,
+          this.setServerSettings(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetServerSettingsRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
         case 23:
-          this.setSettingCheckinMergingEnabled(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest)request,
+          this.setServiceRepositoryUrl(controller, (org.bimserver.pb.SettingsInterfaceImpl.SetServiceRepositoryUrlRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
               done));
           return;
@@ -21162,21 +21162,21 @@ public final class SettingsInterfaceImpl {
         case 15:
           return org.bimserver.pb.SettingsInterfaceImpl.SetCacheOutputFilesRequest.getDefaultInstance();
         case 16:
-          return org.bimserver.pb.SettingsInterfaceImpl.SetEmailSenderAddressRequest.getDefaultInstance();
+          return org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest.getDefaultInstance();
         case 17:
-          return org.bimserver.pb.SettingsInterfaceImpl.SetGenerateGeometryOnCheckinRequest.getDefaultInstance();
+          return org.bimserver.pb.SettingsInterfaceImpl.SetEmailSenderAddressRequest.getDefaultInstance();
         case 18:
-          return org.bimserver.pb.SettingsInterfaceImpl.SetHideUserListForNonAdminRequest.getDefaultInstance();
+          return org.bimserver.pb.SettingsInterfaceImpl.SetGenerateGeometryOnCheckinRequest.getDefaultInstance();
         case 19:
-          return org.bimserver.pb.SettingsInterfaceImpl.SetProtocolBuffersPortRequest.getDefaultInstance();
+          return org.bimserver.pb.SettingsInterfaceImpl.SetHideUserListForNonAdminRequest.getDefaultInstance();
         case 20:
-          return org.bimserver.pb.SettingsInterfaceImpl.SetSendConfirmationEmailAfterRegistrationRequest.getDefaultInstance();
+          return org.bimserver.pb.SettingsInterfaceImpl.SetProtocolBuffersPortRequest.getDefaultInstance();
         case 21:
-          return org.bimserver.pb.SettingsInterfaceImpl.SetServerSettingsRequest.getDefaultInstance();
+          return org.bimserver.pb.SettingsInterfaceImpl.SetSendConfirmationEmailAfterRegistrationRequest.getDefaultInstance();
         case 22:
-          return org.bimserver.pb.SettingsInterfaceImpl.SetServiceRepositoryUrlRequest.getDefaultInstance();
+          return org.bimserver.pb.SettingsInterfaceImpl.SetServerSettingsRequest.getDefaultInstance();
         case 23:
-          return org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest.getDefaultInstance();
+          return org.bimserver.pb.SettingsInterfaceImpl.SetServiceRepositoryUrlRequest.getDefaultInstance();
         case 24:
           return org.bimserver.pb.SettingsInterfaceImpl.SetSiteAddressRequest.getDefaultInstance();
         case 25:
@@ -21512,12 +21512,27 @@ public final class SettingsInterfaceImpl {
             org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance()));
       }
 
+      public  void setCheckinMergingEnabled(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
+        channel.callMethod(
+          getDescriptor().getMethods().get(16),
+          controller,
+          request,
+          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
+          com.google.protobuf.RpcUtil.generalizeCallback(
+            done,
+            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.class,
+            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance()));
+      }
+
       public  void setEmailSenderAddress(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.SettingsInterfaceImpl.SetEmailSenderAddressRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(16),
+          getDescriptor().getMethods().get(17),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -21532,7 +21547,7 @@ public final class SettingsInterfaceImpl {
           org.bimserver.pb.SettingsInterfaceImpl.SetGenerateGeometryOnCheckinRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(17),
+          getDescriptor().getMethods().get(18),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -21547,7 +21562,7 @@ public final class SettingsInterfaceImpl {
           org.bimserver.pb.SettingsInterfaceImpl.SetHideUserListForNonAdminRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(18),
+          getDescriptor().getMethods().get(19),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -21562,7 +21577,7 @@ public final class SettingsInterfaceImpl {
           org.bimserver.pb.SettingsInterfaceImpl.SetProtocolBuffersPortRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(19),
+          getDescriptor().getMethods().get(20),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -21577,7 +21592,7 @@ public final class SettingsInterfaceImpl {
           org.bimserver.pb.SettingsInterfaceImpl.SetSendConfirmationEmailAfterRegistrationRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(20),
+          getDescriptor().getMethods().get(21),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -21592,7 +21607,7 @@ public final class SettingsInterfaceImpl {
           org.bimserver.pb.SettingsInterfaceImpl.SetServerSettingsRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(21),
+          getDescriptor().getMethods().get(22),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
@@ -21605,21 +21620,6 @@ public final class SettingsInterfaceImpl {
       public  void setServiceRepositoryUrl(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.SettingsInterfaceImpl.SetServiceRepositoryUrlRequest request,
-          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
-        channel.callMethod(
-          getDescriptor().getMethods().get(22),
-          controller,
-          request,
-          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
-          com.google.protobuf.RpcUtil.generalizeCallback(
-            done,
-            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.class,
-            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance()));
-      }
-
-      public  void setSettingCheckinMergingEnabled(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
         channel.callMethod(
           getDescriptor().getMethods().get(23),
@@ -21764,6 +21764,11 @@ public final class SettingsInterfaceImpl {
           org.bimserver.pb.SettingsInterfaceImpl.SetCacheOutputFilesRequest request)
           throws com.google.protobuf.ServiceException;
 
+      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse setCheckinMergingEnabled(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest request)
+          throws com.google.protobuf.ServiceException;
+
       public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse setEmailSenderAddress(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.SettingsInterfaceImpl.SetEmailSenderAddressRequest request)
@@ -21797,11 +21802,6 @@ public final class SettingsInterfaceImpl {
       public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse setServiceRepositoryUrl(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.SettingsInterfaceImpl.SetServiceRepositoryUrlRequest request)
-          throws com.google.protobuf.ServiceException;
-
-      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse setSettingCheckinMergingEnabled(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest request)
           throws com.google.protobuf.ServiceException;
 
       public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse setSiteAddress(
@@ -22019,12 +22019,24 @@ public final class SettingsInterfaceImpl {
       }
 
 
+      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse setCheckinMergingEnabled(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.SettingsInterfaceImpl.SetCheckinMergingEnabledRequest request)
+          throws com.google.protobuf.ServiceException {
+        return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
+          getDescriptor().getMethods().get(16),
+          controller,
+          request,
+          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
+      }
+
+
       public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse setEmailSenderAddress(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.SettingsInterfaceImpl.SetEmailSenderAddressRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(16),
+          getDescriptor().getMethods().get(17),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -22036,7 +22048,7 @@ public final class SettingsInterfaceImpl {
           org.bimserver.pb.SettingsInterfaceImpl.SetGenerateGeometryOnCheckinRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(17),
+          getDescriptor().getMethods().get(18),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -22048,7 +22060,7 @@ public final class SettingsInterfaceImpl {
           org.bimserver.pb.SettingsInterfaceImpl.SetHideUserListForNonAdminRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(18),
+          getDescriptor().getMethods().get(19),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -22060,7 +22072,7 @@ public final class SettingsInterfaceImpl {
           org.bimserver.pb.SettingsInterfaceImpl.SetProtocolBuffersPortRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(19),
+          getDescriptor().getMethods().get(20),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -22072,7 +22084,7 @@ public final class SettingsInterfaceImpl {
           org.bimserver.pb.SettingsInterfaceImpl.SetSendConfirmationEmailAfterRegistrationRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(20),
+          getDescriptor().getMethods().get(21),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -22084,7 +22096,7 @@ public final class SettingsInterfaceImpl {
           org.bimserver.pb.SettingsInterfaceImpl.SetServerSettingsRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(21),
+          getDescriptor().getMethods().get(22),
           controller,
           request,
           org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
@@ -22094,18 +22106,6 @@ public final class SettingsInterfaceImpl {
       public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse setServiceRepositoryUrl(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.SettingsInterfaceImpl.SetServiceRepositoryUrlRequest request)
-          throws com.google.protobuf.ServiceException {
-        return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(22),
-          controller,
-          request,
-          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
-      }
-
-
-      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse setSettingCheckinMergingEnabled(
-          com.google.protobuf.RpcController controller,
-          org.bimserver.pb.SettingsInterfaceImpl.SetSettingCheckinMergingEnabledRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
           getDescriptor().getMethods().get(23),
@@ -22306,6 +22306,11 @@ public final class SettingsInterfaceImpl {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_bimserver_pb_SetCacheOutputFilesRequest_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_bimserver_pb_SetCheckinMergingEnabledRequest_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_bimserver_pb_SetCheckinMergingEnabledRequest_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_org_bimserver_pb_SetEmailSenderAddressRequest_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -22340,11 +22345,6 @@ public final class SettingsInterfaceImpl {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_bimserver_pb_SetServiceRepositoryUrlRequest_fieldAccessorTable;
-  private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_org_bimserver_pb_SetSettingCheckinMergingEnabledRequest_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_org_bimserver_pb_SetSettingCheckinMergingEnabledRequest_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_org_bimserver_pb_SetSiteAddressRequest_descriptor;
   private static
@@ -22381,15 +22381,15 @@ public final class SettingsInterfaceImpl {
       "\022\r\n\005value\030\002 \001(\005\"\032\n\030GetServerSettingsRequ",
       "est\"\237\004\n\017SServerSettings\022.\n&sendConfirmat" +
       "ionEmailAfterRegistration\030\001 \001(\010\022!\n\031gener" +
-      "ateGeometryOnCheckin\030\002 \001(\010\022\033\n\023protocolBu" +
-      "ffersPort\030\003 \001(\005\022\034\n\024allowOnlyWhitelisted\030" +
-      "\004 \001(\010\022\023\n\013siteAddress\030\005 \001(\t\022*\n\"allowUsers" +
+      "ateGeometryOnCheckin\030\002 \001(\010\022\034\n\024allowOnlyW" +
+      "hitelisted\030\003 \001(\010\022\033\n\023protocolBuffersPort\030" +
+      "\004 \001(\005\022\023\n\013siteAddress\030\005 \001(\t\022*\n\"allowUsers" +
       "ToCreateTopLevelProjects\030\006 \001(\010\022\034\n\024servic" +
       "eRepositoryUrl\030\007 \001(\t\022\022\n\nwebModules\030\010 \003(\003" +
-      "\022\032\n\022whitelistedDomains\030\t \003(\t\022\013\n\003rid\030\n \001(" +
-      "\005\022\035\n\025allowSelfRegistration\030\013 \001(\010\022\022\n\nsmtp" +
-      "Server\030\014 \001(\t\022\030\n\020cacheOutputFiles\030\r \001(\010\022\013",
-      "\n\003oid\030\016 \001(\003\022\032\n\022emailSenderAddress\030\017 \001(\t\022" +
+      "\022\013\n\003rid\030\t \001(\005\022\035\n\025allowSelfRegistration\030\n" +
+      " \001(\010\022\022\n\nsmtpServer\030\013 \001(\t\022\032\n\022whitelistedD" +
+      "omains\030\014 \003(\t\022\013\n\003oid\030\r \001(\003\022\032\n\022emailSender",
+      "Address\030\016 \001(\t\022\030\n\020cacheOutputFiles\030\017 \001(\010\022" +
       "\037\n\027hideUserListForNonAdmin\030\020 \001(\010\022\027\n\017emai" +
       "lSenderName\030\021 \001(\t\022\023\n\013webModuleId\030\022 \001(\003\022\035" +
       "\n\025checkinMergingEnabled\030\023 \001(\010\"c\n\031GetServ" +
@@ -22427,107 +22427,106 @@ public final class SettingsInterfaceImpl {
       "\"Z\n,SetAllowUsersToCreateTopLevelProject" +
       "sRequest\022*\n\"allowUsersToCreateTopLevelPr" +
       "ojects\030\001 \001(\010\"6\n\032SetCacheOutputFilesReque" +
-      "st\022\030\n\020cacheOutputFiles\030\001 \001(\010\":\n\034SetEmail" +
-      "SenderAddressRequest\022\032\n\022emailSenderAddre",
-      "ss\030\001 \001(\t\"H\n#SetGenerateGeometryOnCheckin" +
-      "Request\022!\n\031generateGeometryOnCheckin\030\001 \001" +
-      "(\010\"D\n!SetHideUserListForNonAdminRequest\022" +
-      "\037\n\027hideUserListForNonAdmin\030\001 \001(\010\"-\n\035SetP" +
-      "rotocolBuffersPortRequest\022\014\n\004port\030\001 \001(\005\"" +
-      "b\n0SetSendConfirmationEmailAfterRegistra" +
-      "tionRequest\022.\n&sendConfirmationEmailAfte" +
-      "rRegistration\030\001 \001(\010\"U\n\030SetServerSettings" +
-      "Request\0229\n\016serverSettings\030\001 \001(\0132!.org.bi" +
-      "mserver.pb.SServerSettings\"-\n\036SetService",
-      "RepositoryUrlRequest\022\013\n\003url\030\001 \001(\t\"G\n&Set" +
-      "SettingCheckinMergingEnabledRequest\022\035\n\025c" +
-      "heckinMergingEnabled\030\001 \001(\010\",\n\025SetSiteAdd" +
-      "ressRequest\022\023\n\013siteAddress\030\001 \001(\t\"*\n\024SetS" +
-      "mtpServerRequest\022\022\n\nsmtpServer\030\001 \001(\t\"/\n\034" +
-      "SetWhiteListedDomainsRequest\022\017\n\007domains\030" +
-      "\001 \003(\t2\266\031\n\021SettingsInterface\022x\n\025getEmailS" +
-      "enderAddress\022..org.bimserver.pb.GetEmail" +
-      "SenderAddressRequest\032/.org.bimserver.pb." +
-      "GetEmailSenderAddressResponse\022{\n\026getProt",
-      "ocolBuffersPort\022/.org.bimserver.pb.GetPr" +
-      "otocolBuffersPortRequest\0320.org.bimserver" +
-      ".pb.GetProtocolBuffersPortResponse\022l\n\021ge" +
-      "tServerSettings\022*.org.bimserver.pb.GetSe" +
-      "rverSettingsRequest\032+.org.bimserver.pb.G" +
-      "etServerSettingsResponse\022~\n\027getServiceRe" +
-      "positoryUrl\0220.org.bimserver.pb.GetServic" +
-      "eRepositoryUrlRequest\0321.org.bimserver.pb" +
-      ".GetServiceRepositoryUrlResponse\022c\n\016getS" +
-      "iteAddress\022\'.org.bimserver.pb.GetSiteAdd",
-      "ressRequest\032(.org.bimserver.pb.GetSiteAd" +
-      "dressResponse\022`\n\rgetSmtpServer\022&.org.bim" +
-      "server.pb.GetSmtpServerRequest\032\'.org.bim" +
-      "server.pb.GetSmtpServerResponse\022~\n\027isAll" +
-      "owSelfRegistration\0220.org.bimserver.pb.Is" +
-      "AllowSelfRegistrationRequest\0321.org.bimse" +
-      "rver.pb.IsAllowSelfRegistrationResponse\022" +
-      "\245\001\n$isAllowUsersToCreateTopLevelProjects" +
-      "\022=.org.bimserver.pb.IsAllowUsersToCreate" +
-      "TopLevelProjectsRequest\032>.org.bimserver.",
-      "pb.IsAllowUsersToCreateTopLevelProjectsR" +
-      "esponse\022o\n\022isCacheOutputFiles\022+.org.bims" +
-      "erver.pb.IsCacheOutputFilesRequest\032,.org" +
-      ".bimserver.pb.IsCacheOutputFilesResponse" +
-      "\022~\n\027isCheckinMergingEnabled\0220.org.bimser" +
-      "ver.pb.IsCheckinMergingEnabledRequest\0321." +
-      "org.bimserver.pb.IsCheckinMergingEnabled" +
-      "Response\022\212\001\n\033isGenerateGeometryOnCheckin" +
-      "\0224.org.bimserver.pb.IsGenerateGeometryOn" +
-      "CheckinRequest\0325.org.bimserver.pb.IsGene",
-      "rateGeometryOnCheckinResponse\022\204\001\n\031isHide" +
-      "UserListForNonAdmin\0222.org.bimserver.pb.I" +
-      "sHideUserListForNonAdminRequest\0323.org.bi" +
-      "mserver.pb.IsHideUserListForNonAdminResp" +
-      "onse\022\261\001\n(isSendConfirmationEmailAfterReg" +
-      "istration\022A.org.bimserver.pb.IsSendConfi" +
-      "rmationEmailAfterRegistrationRequest\032B.o" +
-      "rg.bimserver.pb.IsSendConfirmationEmailA" +
-      "fterRegistrationResponse\022m\n\030setAllowSelf" +
-      "Registration\0221.org.bimserver.pb.SetAllow",
-      "SelfRegistrationRequest\032\036.org.bimserver." +
-      "pb.VoidResponse\022\207\001\n%setAllowUsersToCreat" +
-      "eTopLevelProjects\022>.org.bimserver.pb.Set" +
-      "AllowUsersToCreateTopLevelProjectsReques" +
-      "t\032\036.org.bimserver.pb.VoidResponse\022c\n\023set" +
-      "CacheOutputFiles\022,.org.bimserver.pb.SetC" +
-      "acheOutputFilesRequest\032\036.org.bimserver.p" +
-      "b.VoidResponse\022g\n\025setEmailSenderAddress\022" +
-      "..org.bimserver.pb.SetEmailSenderAddress" +
-      "Request\032\036.org.bimserver.pb.VoidResponse\022",
-      "u\n\034setGenerateGeometryOnCheckin\0225.org.bi" +
-      "mserver.pb.SetGenerateGeometryOnCheckinR" +
-      "equest\032\036.org.bimserver.pb.VoidResponse\022q" +
-      "\n\032setHideUserListForNonAdmin\0223.org.bimse" +
-      "rver.pb.SetHideUserListForNonAdminReques" +
-      "t\032\036.org.bimserver.pb.VoidResponse\022i\n\026set" +
-      "ProtocolBuffersPort\022/.org.bimserver.pb.S" +
-      "etProtocolBuffersPortRequest\032\036.org.bimse" +
-      "rver.pb.VoidResponse\022\217\001\n)setSendConfirma" +
-      "tionEmailAfterRegistration\022B.org.bimserv",
-      "er.pb.SetSendConfirmationEmailAfterRegis" +
-      "trationRequest\032\036.org.bimserver.pb.VoidRe" +
-      "sponse\022_\n\021setServerSettings\022*.org.bimser" +
-      "ver.pb.SetServerSettingsRequest\032\036.org.bi" +
-      "mserver.pb.VoidResponse\022k\n\027setServiceRep" +
-      "ositoryUrl\0220.org.bimserver.pb.SetService" +
-      "RepositoryUrlRequest\032\036.org.bimserver.pb." +
-      "VoidResponse\022{\n\037setSettingCheckinMerging" +
-      "Enabled\0228.org.bimserver.pb.SetSettingChe" +
-      "ckinMergingEnabledRequest\032\036.org.bimserve",
-      "r.pb.VoidResponse\022Y\n\016setSiteAddress\022\'.or" +
-      "g.bimserver.pb.SetSiteAddressRequest\032\036.o" +
-      "rg.bimserver.pb.VoidResponse\022W\n\rsetSmtpS" +
-      "erver\022&.org.bimserver.pb.SetSmtpServerRe" +
-      "quest\032\036.org.bimserver.pb.VoidResponse\022g\n" +
-      "\025setWhiteListedDomains\022..org.bimserver.p" +
-      "b.SetWhiteListedDomainsRequest\032\036.org.bim" +
-      "server.pb.VoidResponseB\034B\025SettingsInterf" +
-      "aceImplH\001\210\001\001"
+      "st\022\030\n\020cacheOutputFiles\030\001 \001(\010\"@\n\037SetCheck" +
+      "inMergingEnabledRequest\022\035\n\025checkinMergin",
+      "gEnabled\030\001 \001(\010\":\n\034SetEmailSenderAddressR" +
+      "equest\022\032\n\022emailSenderAddress\030\001 \001(\t\"H\n#Se" +
+      "tGenerateGeometryOnCheckinRequest\022!\n\031gen" +
+      "erateGeometryOnCheckin\030\001 \001(\010\"D\n!SetHideU" +
+      "serListForNonAdminRequest\022\037\n\027hideUserLis" +
+      "tForNonAdmin\030\001 \001(\010\"-\n\035SetProtocolBuffers" +
+      "PortRequest\022\014\n\004port\030\001 \001(\005\"b\n0SetSendConf" +
+      "irmationEmailAfterRegistrationRequest\022.\n" +
+      "&sendConfirmationEmailAfterRegistration\030" +
+      "\001 \001(\010\"U\n\030SetServerSettingsRequest\0229\n\016ser",
+      "verSettings\030\001 \001(\0132!.org.bimserver.pb.SSe" +
+      "rverSettings\"-\n\036SetServiceRepositoryUrlR" +
+      "equest\022\013\n\003url\030\001 \001(\t\",\n\025SetSiteAddressReq" +
+      "uest\022\023\n\013siteAddress\030\001 \001(\t\"*\n\024SetSmtpServ" +
+      "erRequest\022\022\n\nsmtpServer\030\001 \001(\t\"/\n\034SetWhit" +
+      "eListedDomainsRequest\022\017\n\007domains\030\001 \003(\t2\250" +
+      "\031\n\021SettingsInterface\022x\n\025getEmailSenderAd" +
+      "dress\022..org.bimserver.pb.GetEmailSenderA" +
+      "ddressRequest\032/.org.bimserver.pb.GetEmai" +
+      "lSenderAddressResponse\022{\n\026getProtocolBuf",
+      "fersPort\022/.org.bimserver.pb.GetProtocolB" +
+      "uffersPortRequest\0320.org.bimserver.pb.Get" +
+      "ProtocolBuffersPortResponse\022l\n\021getServer" +
+      "Settings\022*.org.bimserver.pb.GetServerSet" +
+      "tingsRequest\032+.org.bimserver.pb.GetServe" +
+      "rSettingsResponse\022~\n\027getServiceRepositor" +
+      "yUrl\0220.org.bimserver.pb.GetServiceReposi" +
+      "toryUrlRequest\0321.org.bimserver.pb.GetSer" +
+      "viceRepositoryUrlResponse\022c\n\016getSiteAddr" +
+      "ess\022\'.org.bimserver.pb.GetSiteAddressReq",
+      "uest\032(.org.bimserver.pb.GetSiteAddressRe" +
+      "sponse\022`\n\rgetSmtpServer\022&.org.bimserver." +
+      "pb.GetSmtpServerRequest\032\'.org.bimserver." +
+      "pb.GetSmtpServerResponse\022~\n\027isAllowSelfR" +
+      "egistration\0220.org.bimserver.pb.IsAllowSe" +
+      "lfRegistrationRequest\0321.org.bimserver.pb" +
+      ".IsAllowSelfRegistrationResponse\022\245\001\n$isA" +
+      "llowUsersToCreateTopLevelProjects\022=.org." +
+      "bimserver.pb.IsAllowUsersToCreateTopLeve" +
+      "lProjectsRequest\032>.org.bimserver.pb.IsAl",
+      "lowUsersToCreateTopLevelProjectsResponse" +
+      "\022o\n\022isCacheOutputFiles\022+.org.bimserver.p" +
+      "b.IsCacheOutputFilesRequest\032,.org.bimser" +
+      "ver.pb.IsCacheOutputFilesResponse\022~\n\027isC" +
+      "heckinMergingEnabled\0220.org.bimserver.pb." +
+      "IsCheckinMergingEnabledRequest\0321.org.bim" +
+      "server.pb.IsCheckinMergingEnabledRespons" +
+      "e\022\212\001\n\033isGenerateGeometryOnCheckin\0224.org." +
+      "bimserver.pb.IsGenerateGeometryOnCheckin" +
+      "Request\0325.org.bimserver.pb.IsGenerateGeo",
+      "metryOnCheckinResponse\022\204\001\n\031isHideUserLis" +
+      "tForNonAdmin\0222.org.bimserver.pb.IsHideUs" +
+      "erListForNonAdminRequest\0323.org.bimserver" +
+      ".pb.IsHideUserListForNonAdminResponse\022\261\001" +
+      "\n(isSendConfirmationEmailAfterRegistrati" +
+      "on\022A.org.bimserver.pb.IsSendConfirmation" +
+      "EmailAfterRegistrationRequest\032B.org.bims" +
+      "erver.pb.IsSendConfirmationEmailAfterReg" +
+      "istrationResponse\022m\n\030setAllowSelfRegistr" +
+      "ation\0221.org.bimserver.pb.SetAllowSelfReg",
+      "istrationRequest\032\036.org.bimserver.pb.Void" +
+      "Response\022\207\001\n%setAllowUsersToCreateTopLev" +
+      "elProjects\022>.org.bimserver.pb.SetAllowUs" +
+      "ersToCreateTopLevelProjectsRequest\032\036.org" +
+      ".bimserver.pb.VoidResponse\022c\n\023setCacheOu" +
+      "tputFiles\022,.org.bimserver.pb.SetCacheOut" +
+      "putFilesRequest\032\036.org.bimserver.pb.VoidR" +
+      "esponse\022m\n\030setCheckinMergingEnabled\0221.or" +
+      "g.bimserver.pb.SetCheckinMergingEnabledR" +
+      "equest\032\036.org.bimserver.pb.VoidResponse\022g",
+      "\n\025setEmailSenderAddress\022..org.bimserver." +
+      "pb.SetEmailSenderAddressRequest\032\036.org.bi" +
+      "mserver.pb.VoidResponse\022u\n\034setGenerateGe" +
+      "ometryOnCheckin\0225.org.bimserver.pb.SetGe" +
+      "nerateGeometryOnCheckinRequest\032\036.org.bim" +
+      "server.pb.VoidResponse\022q\n\032setHideUserLis" +
+      "tForNonAdmin\0223.org.bimserver.pb.SetHideU" +
+      "serListForNonAdminRequest\032\036.org.bimserve" +
+      "r.pb.VoidResponse\022i\n\026setProtocolBuffersP" +
+      "ort\022/.org.bimserver.pb.SetProtocolBuffer",
+      "sPortRequest\032\036.org.bimserver.pb.VoidResp" +
+      "onse\022\217\001\n)setSendConfirmationEmailAfterRe" +
+      "gistration\022B.org.bimserver.pb.SetSendCon" +
+      "firmationEmailAfterRegistrationRequest\032\036" +
+      ".org.bimserver.pb.VoidResponse\022_\n\021setSer" +
+      "verSettings\022*.org.bimserver.pb.SetServer" +
+      "SettingsRequest\032\036.org.bimserver.pb.VoidR" +
+      "esponse\022k\n\027setServiceRepositoryUrl\0220.org" +
+      ".bimserver.pb.SetServiceRepositoryUrlReq" +
+      "uest\032\036.org.bimserver.pb.VoidResponse\022Y\n\016",
+      "setSiteAddress\022\'.org.bimserver.pb.SetSit" +
+      "eAddressRequest\032\036.org.bimserver.pb.VoidR" +
+      "esponse\022W\n\rsetSmtpServer\022&.org.bimserver" +
+      ".pb.SetSmtpServerRequest\032\036.org.bimserver" +
+      ".pb.VoidResponse\022g\n\025setWhiteListedDomain" +
+      "s\022..org.bimserver.pb.SetWhiteListedDomai" +
+      "nsRequest\032\036.org.bimserver.pb.VoidRespons" +
+      "eB\034B\025SettingsInterfaceImplH\001\210\001\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -22569,7 +22568,7 @@ public final class SettingsInterfaceImpl {
           internal_static_org_bimserver_pb_SServerSettings_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SServerSettings_descriptor,
-              new java.lang.String[] { "SendConfirmationEmailAfterRegistration", "GenerateGeometryOnCheckin", "ProtocolBuffersPort", "AllowOnlyWhitelisted", "SiteAddress", "AllowUsersToCreateTopLevelProjects", "ServiceRepositoryUrl", "WebModules", "WhitelistedDomains", "Rid", "AllowSelfRegistration", "SmtpServer", "CacheOutputFiles", "Oid", "EmailSenderAddress", "HideUserListForNonAdmin", "EmailSenderName", "WebModuleId", "CheckinMergingEnabled", });
+              new java.lang.String[] { "SendConfirmationEmailAfterRegistration", "GenerateGeometryOnCheckin", "AllowOnlyWhitelisted", "ProtocolBuffersPort", "SiteAddress", "AllowUsersToCreateTopLevelProjects", "ServiceRepositoryUrl", "WebModules", "Rid", "AllowSelfRegistration", "SmtpServer", "WhitelistedDomains", "Oid", "EmailSenderAddress", "CacheOutputFiles", "HideUserListForNonAdmin", "EmailSenderName", "WebModuleId", "CheckinMergingEnabled", });
           internal_static_org_bimserver_pb_GetServerSettingsResponse_descriptor =
             getDescriptor().getMessageTypes().get(6);
           internal_static_org_bimserver_pb_GetServerSettingsResponse_fieldAccessorTable = new
@@ -22714,54 +22713,54 @@ public final class SettingsInterfaceImpl {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SetCacheOutputFilesRequest_descriptor,
               new java.lang.String[] { "CacheOutputFiles", });
-          internal_static_org_bimserver_pb_SetEmailSenderAddressRequest_descriptor =
+          internal_static_org_bimserver_pb_SetCheckinMergingEnabledRequest_descriptor =
             getDescriptor().getMessageTypes().get(30);
+          internal_static_org_bimserver_pb_SetCheckinMergingEnabledRequest_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_bimserver_pb_SetCheckinMergingEnabledRequest_descriptor,
+              new java.lang.String[] { "CheckinMergingEnabled", });
+          internal_static_org_bimserver_pb_SetEmailSenderAddressRequest_descriptor =
+            getDescriptor().getMessageTypes().get(31);
           internal_static_org_bimserver_pb_SetEmailSenderAddressRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SetEmailSenderAddressRequest_descriptor,
               new java.lang.String[] { "EmailSenderAddress", });
           internal_static_org_bimserver_pb_SetGenerateGeometryOnCheckinRequest_descriptor =
-            getDescriptor().getMessageTypes().get(31);
+            getDescriptor().getMessageTypes().get(32);
           internal_static_org_bimserver_pb_SetGenerateGeometryOnCheckinRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SetGenerateGeometryOnCheckinRequest_descriptor,
               new java.lang.String[] { "GenerateGeometryOnCheckin", });
           internal_static_org_bimserver_pb_SetHideUserListForNonAdminRequest_descriptor =
-            getDescriptor().getMessageTypes().get(32);
+            getDescriptor().getMessageTypes().get(33);
           internal_static_org_bimserver_pb_SetHideUserListForNonAdminRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SetHideUserListForNonAdminRequest_descriptor,
               new java.lang.String[] { "HideUserListForNonAdmin", });
           internal_static_org_bimserver_pb_SetProtocolBuffersPortRequest_descriptor =
-            getDescriptor().getMessageTypes().get(33);
+            getDescriptor().getMessageTypes().get(34);
           internal_static_org_bimserver_pb_SetProtocolBuffersPortRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SetProtocolBuffersPortRequest_descriptor,
               new java.lang.String[] { "Port", });
           internal_static_org_bimserver_pb_SetSendConfirmationEmailAfterRegistrationRequest_descriptor =
-            getDescriptor().getMessageTypes().get(34);
+            getDescriptor().getMessageTypes().get(35);
           internal_static_org_bimserver_pb_SetSendConfirmationEmailAfterRegistrationRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SetSendConfirmationEmailAfterRegistrationRequest_descriptor,
               new java.lang.String[] { "SendConfirmationEmailAfterRegistration", });
           internal_static_org_bimserver_pb_SetServerSettingsRequest_descriptor =
-            getDescriptor().getMessageTypes().get(35);
+            getDescriptor().getMessageTypes().get(36);
           internal_static_org_bimserver_pb_SetServerSettingsRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SetServerSettingsRequest_descriptor,
               new java.lang.String[] { "ServerSettings", });
           internal_static_org_bimserver_pb_SetServiceRepositoryUrlRequest_descriptor =
-            getDescriptor().getMessageTypes().get(36);
+            getDescriptor().getMessageTypes().get(37);
           internal_static_org_bimserver_pb_SetServiceRepositoryUrlRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_SetServiceRepositoryUrlRequest_descriptor,
               new java.lang.String[] { "Url", });
-          internal_static_org_bimserver_pb_SetSettingCheckinMergingEnabledRequest_descriptor =
-            getDescriptor().getMessageTypes().get(37);
-          internal_static_org_bimserver_pb_SetSettingCheckinMergingEnabledRequest_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_org_bimserver_pb_SetSettingCheckinMergingEnabledRequest_descriptor,
-              new java.lang.String[] { "CheckinMergingEnabled", });
           internal_static_org_bimserver_pb_SetSiteAddressRequest_descriptor =
             getDescriptor().getMessageTypes().get(38);
           internal_static_org_bimserver_pb_SetSiteAddressRequest_fieldAccessorTable = new

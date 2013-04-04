@@ -25,6 +25,8 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.Project;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -45,14 +47,14 @@ public class SetAttributeChange implements Change {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public void execute(int pid, int rid, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		IdEObject idEObject = databaseSession.get(oid, new Query(pid, rid));
+	public void execute(Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		IdEObject idEObject = databaseSession.get(oid, new Query(project.getId(), concreteRevision.getId()));
 		EClass eClass = databaseSession.getEClassForOid(oid);
 		if (idEObject == null) {
 			idEObject = created.get(oid);
 		}
 		if (idEObject == null) {
-			throw new UserException("No object of type \"" + eClass.getName() + "\" with oid " + oid + " found in project with pid " + pid);
+			throw new UserException("No object of type \"" + eClass.getName() + "\" with oid " + oid + " found in project with pid " + project.getId());
 		}
 		EAttribute eAttribute = databaseSession.getMetaDataManager().getEAttribute(eClass.getName(), attributeName);
 		if (eAttribute == null) {
@@ -71,7 +73,7 @@ public class SetAttributeChange implements Change {
 				}
 				list.add(o);
 			}
-			databaseSession.store(idEObject, pid, rid);
+			databaseSession.store(idEObject, project.getId(), concreteRevision.getId());
 		} else {
 			if (eAttribute.isMany()) {
 				throw new UserException("Attribute is not of type 'single'");
@@ -85,7 +87,7 @@ public class SetAttributeChange implements Change {
 			if (value instanceof Double) {
 				idEObject.eSet(idEObject.eClass().getEStructuralFeature(attributeName + "AsString"), String.valueOf((Double)value));
 			}
-			databaseSession.store(idEObject, pid, rid);
+			databaseSession.store(idEObject, project.getId(), concreteRevision.getId());
 		}
 	}
 }

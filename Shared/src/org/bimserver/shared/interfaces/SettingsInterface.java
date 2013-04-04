@@ -134,9 +134,9 @@ public interface SettingsInterface extends PublicInterface {
 	 * @param checkinMergingEnabled Set whether the BIMserver should do checkin merging (warning: this wil alter your models)
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "setSettingCheckinMergingEnabled")
-	void setSettingCheckinMergingEnabled(
-		@WebParam(name = "checkinMergingEnabled", partName = "setSettingCheckinMergingEnabled.checkinMergingEnabled") Boolean checkinMergingEnabled) throws ServerException, UserException;
+	@WebMethod(action = "setCheckinMergingEnabled")
+	void setCheckinMergingEnabled(
+		@WebParam(name = "checkinMergingEnabled", partName = "setCheckinMergingEnabled.checkinMergingEnabled") Boolean checkinMergingEnabled) throws ServerException, UserException;
 
 	/**
 	 * @return Whether a confirmation e-mail should be send after registration

@@ -14,37 +14,37 @@ import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
-import org.bimserver.tests.emf.TestCreateGuid;
-import org.bimserver.tests.emf.TestDeleteObjects;
-import org.bimserver.tests.emf.TestListWalls;
-import org.bimserver.tests.emf.TestLoadCompleteModel;
-import org.bimserver.tests.emf.TestReadTrim;
-import org.bimserver.tests.emf.TestRemoveReferenceList;
-import org.bimserver.tests.lowlevel.TestCreateLists;
-import org.bimserver.tests.lowlevel.TestCreateReferenceListsAndClear;
-import org.bimserver.tests.lowlevel.TestCreateUnknownType;
-import org.bimserver.tests.serviceinterface.TestMultiCheckinAndDownload;
-import org.bimserver.tests.serviceinterface.TestSingleCheckinAndDownload;
-import org.bimserver.tests.serviceinterface.TestUpdateProject;
+import org.bimserver.tests.emf.CreateGuid;
+import org.bimserver.tests.emf.DeleteObjects;
+import org.bimserver.tests.emf.ListWalls;
+import org.bimserver.tests.emf.LoadCompleteModel;
+import org.bimserver.tests.emf.ReadTrim;
+import org.bimserver.tests.emf.RemoveReferenceList;
+import org.bimserver.tests.lowlevel.CreateLists;
+import org.bimserver.tests.lowlevel.CreateReferenceListsAndClear;
+import org.bimserver.tests.lowlevel.CreateUnknownType;
+import org.bimserver.tests.serviceinterface.MultiCheckinAndDownload;
+import org.bimserver.tests.serviceinterface.SingleCheckinAndDownload;
+import org.bimserver.tests.serviceinterface.UpdateProject;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        TestCreateGuid.class,
-        TestCreateGuid.class,
-        TestCreateLists.class,
-        TestCreateReferenceListsAndClear.class,
-        TestCreateUnknownType.class,
-        TestDeleteObjects.class,
-        TestListWalls.class,
-        TestLoadCompleteModel.class,
-        TestMultiCheckinAndDownload.class,
-        TestReadTrim.class,
-        TestSingleCheckinAndDownload.class,
-        TestRemoveReferenceList.class,
-        TestUpdateProject.class})
+        CreateGuid.class,
+        CreateGuid.class,
+        CreateLists.class,
+        CreateReferenceListsAndClear.class,
+        CreateUnknownType.class,
+        DeleteObjects.class,
+        ListWalls.class,
+        LoadCompleteModel.class,
+        MultiCheckinAndDownload.class,
+        ReadTrim.class,
+        SingleCheckinAndDownload.class,
+        RemoveReferenceList.class,
+        UpdateProject.class})
 public class AllTests {
 	public static BimServer bimServer;
 	public static boolean running = false;

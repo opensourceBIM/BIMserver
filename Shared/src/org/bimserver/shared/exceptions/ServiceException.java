@@ -23,6 +23,7 @@ import javax.xml.ws.WebFault;
 public abstract class ServiceException extends Exception {
 	private static final long serialVersionUID = -2820189529963377510L;
 	
+	private ErrorCode errorCode;
 	private String userMessage;
 	private String fullMessage;
 
@@ -32,6 +33,17 @@ public abstract class ServiceException extends Exception {
 		this.setFullMessage(userMessage);
 	}
 
+	public ServiceException(String userMessage, ErrorCode errorCode) {
+		super(userMessage);
+		this.errorCode = errorCode;
+		this.setUserMessage(userMessage);
+		this.setFullMessage(userMessage);
+	}
+	
+	public ErrorCode getErrorCode() {
+		return errorCode;
+	}
+	
 	public ServiceException(Throwable e) {
 		this(e.getMessage(), e);
 	}
