@@ -2,6 +2,8 @@ package org.bimserver.webservices;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -10,6 +12,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.AddUserDatabaseAction;
@@ -23,7 +27,6 @@ import org.bimserver.interfaces.objects.SBimServerInfo;
 import org.bimserver.interfaces.objects.SDatabaseInformation;
 import org.bimserver.interfaces.objects.SJavaInfo;
 import org.bimserver.interfaces.objects.SLogAction;
-import org.bimserver.interfaces.objects.SLongAction;
 import org.bimserver.interfaces.objects.SMigration;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SServerInfo;
@@ -144,12 +147,14 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 
 	@Override
 	public String getProtocolBuffersFile(String interfaceName) throws ServerException, UserException {
-		File file = getBimServer().getResourceFetcher().getFile(interfaceName + ".proto");
+		InputStream resourceAsStream = ProtocolBuffersBimServerClientFactory.class.getResourceAsStream(interfaceName + ".proto");
+		StringWriter stringWriter = new StringWriter();
 		try {
-			return FileUtils.readFileToString(file);
+			IOUtils.copy(resourceAsStream, stringWriter);
 		} catch (IOException e) {
 			throw new ServerException(e);
 		}
+		return stringWriter.toString();
 	}
 
 	@Override
