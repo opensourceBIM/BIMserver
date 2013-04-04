@@ -27,12 +27,6 @@
 		<copy todir="builds/BuildJar/home/templates" overwrite="true" failonerror="false">
 			<fileset dir="${defaultsettings}/${target}/templates" />
 		</copy>
-		<copy todir="builds/BuildJar/www" overwrite="true" failonerror="false">
-			<fileset dir="${buildtargets}/${target}/jsp" />
-		</copy>
-		<copy todir="builds/BuildJar/www/images" overwrite="true" failonerror="false">
-			<fileset dir="${buildtargets}/${target}/images" />
-		</copy>
 		<replace file="builds/BuildJar/config/version.xml" token="@MAJOR@" value="${majorversion}" />
 		<replace file="builds/BuildJar/config/version.xml" token="@MINOR@" value="${minorversion}" />
 		<replace file="builds/BuildJar/config/version.xml" token="@REVISION@" value="${revisionversion}" />
