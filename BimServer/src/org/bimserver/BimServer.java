@@ -45,6 +45,7 @@ import org.bimserver.cache.DiskCacheManager;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.DirectBimServerClientFactory;
 import org.bimserver.client.json.JsonSocketReflectorFactory;
+import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
@@ -364,16 +365,16 @@ public class BimServer {
 
 			protocolBuffersMetaData = new ProtocolBuffersMetaData();
 			try {
-				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("ServiceInterface.desc"));
-				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("NotificationInterface.desc"));
-				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("RemoteServiceInterface.desc"));
-				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("AdminInterface.desc"));
-				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("AuthInterface.desc"));
-				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("SettingsInterface.desc"));
-				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("LowLevelInterface.desc"));
-				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("MetaInterface.desc"));
-				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("PluginInterface.desc"));
-				protocolBuffersMetaData.load(config.getResourceFetcher().getResource("RegistryInterface.desc"));
+				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("ServiceInterface.desc"));
+				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("NotificationInterface.desc"));
+				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("RemoteServiceInterface.desc"));
+				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("AdminInterface.desc"));
+				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("AuthInterface.desc"));
+				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("SettingsInterface.desc"));
+				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("LowLevelInterface.desc"));
+				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("MetaInterface.desc"));
+				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("PluginInterface.desc"));
+				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("RegistryInterface.desc"));
 			} catch (IOException e) {
 				LOGGER.error("", e);
 			}
