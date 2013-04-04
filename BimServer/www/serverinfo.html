@@ -6,8 +6,8 @@
 			<li><a class="link bimserverLink" data-toggle="tab" href="#bimserver">BIMserver</a></li>
 			<li><a class="link databaseLink" data-toggle="tab" href="#database">Database</a></li>
 			<li><a class="link webservicesLink" data-toggle="tab" href="#webservices">Web Services</a></li>
-			<li><a class="link transactionsLink" data-toggle="tab" href="#transactions">Transactions</a></li>
-			<li><a class="link longrunningactionsLink" data-toggle="tab" href="#longrunningactions">Long running actions</a></li>
+			<li class="initialhide"><a class="link transactionsLink" data-toggle="tab" href="#transactions">Transactions</a></li>
+			<li class="initialhide"><a class="link longrunningactionsLink" data-toggle="tab" href="#longrunningactions">Long running actions</a></li>
 			<li><a class="link logLink" data-toggle="tab" href="#log">Log</a></li>
 		</ul>
 		<div class="tab-content">
@@ -156,7 +156,7 @@ function ServerInfo(containerDiv, main) {
 		Global.bimServerApi.call("MetaInterface", "getServiceInterfaces", {}, function(data){
 			$(".webservices table").append("<tr><td colspan=\"2\" class=\"header\">Web Services</td></tr>");
 			data.forEach(function(service){
-				$(".webservices table").append("<tr><td>" + service.simpleName + "</td><td><a href=\"" + Global.bimServerApi.baseUrl + "/soap/" + service.simpleName + "?wsdl\">WSDL</a> <a href=\"" + Global.bimServerApi.baseUrl + "/download?token=" + Global.bimServerApi.token + "&action=getfile&type=proto&name=" + service.simpleName + "\">Proto</a></td></tr>");
+				$(".webservices table").append("<tr><td>" + service.simpleName + "</td><td><a href=\"" + Global.bimServerApi.baseUrl + "/soap11/" + service.simpleName + "?wsdl\">WSDL (1.1)</a> / <a href=\"" + Global.bimServerApi.baseUrl + "/soap12/" + service.simpleName + "?wsdl\">WSDL (1.2)</a> / <a href=\"" + Global.bimServerApi.baseUrl + "/download?token=" + Global.bimServerApi.token + "&action=getfile&type=proto&name=" + service.simpleName + "\">Proto</a></td></tr>");
 			});
 		});
 	}
@@ -191,7 +191,7 @@ function ServerInfo(containerDiv, main) {
 	};
 	
 	this.newChangeProgressHandler = function(topicId){
-		Global.bimServerApi.call("ServiceInterface", "getProgress", {topicId: topicId}, function(state){
+		Global.bimServerApi.call("RegistryInterface", "getProgress", {topicId: topicId}, function(state){
 			othis.progressHandler(topicId, state);
 			Global.bimServerApi.registerProgressHandler(topicId, othis.progressHandler);
 		});
@@ -202,14 +202,14 @@ function ServerInfo(containerDiv, main) {
 	};
 	
 	this.loadLog = function(){
-		Global.bimServerApi.call("ServiceInterface", "getProgressTopicsOnServer", {}, function(topicIds){
+		Global.bimServerApi.call("RegistryInterface", "getProgressTopicsOnServer", {}, function(topicIds){
 			topicIds.forEach(function(topicId){
 				othis.newChangeProgressHandler(topicId);
 			});
 			Global.bimServerApi.registerChangeProgressServerHandler(othis.newChangeProgressHandler, othis.closedChangeProgressHandler);
 		});
 	};
-	
+
 	containerDiv.find(".logLink").click(othis.loadLog);
 	
 	var history = History.getState().data;
