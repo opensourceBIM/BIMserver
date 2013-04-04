@@ -31,10 +31,6 @@ public class AdminInterfaceAdaptor implements AdminInterface {
 	public void enablePlugin(java.lang.String name) throws UserException, ServerException {
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SLongAction> getActiveLongActions() throws UserException, ServerException {
-		return null;
-	}
-	
 	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> getAllPlugins() throws UserException, ServerException {
 		return null;
 	}
