@@ -1,5 +1,10 @@
 package org.bimserver.webservices;
 
+import java.nio.ByteBuffer;
+
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.AutologinDatabaseAction;
 import org.bimserver.database.actions.BimDatabaseAction;
@@ -14,6 +19,8 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.webservices.authorization.AuthenticationException;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class AuthServiceImpl extends GenericServiceImpl implements AuthInterface {
 	public AuthServiceImpl(ServiceMap serviceMap) {
@@ -43,6 +50,15 @@ public class AuthServiceImpl extends GenericServiceImpl implements AuthInterface
 			return handleException(e);
 		} finally {
 			session.close();
+		}
+	}
+	
+	@Override
+	public void tokenlogin(String token) throws UserException {
+		try {
+			setAuthorization(Authorization.fromToken(getBimServer().getEncryptionKey(), token));
+		} catch (AuthenticationException e) {
+			throw new UserException(e);
 		}
 	}
 	

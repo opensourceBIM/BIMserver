@@ -59,6 +59,9 @@ public class AuthInterfaceAdaptor implements AuthInterface {
 	public void requestPasswordChange(java.lang.String username, java.lang.String resetUrl) throws UserException, ServerException {
 	}
 	
+	public void tokenlogin(java.lang.String token) throws UserException, ServerException {
+	}
+	
 	public org.bimserver.interfaces.objects.SUser validateAccount(java.lang.Long uoid, java.lang.String token, java.lang.String password) throws UserException, ServerException {
 		return null;
 	}

@@ -10,6 +10,7 @@ import org.bimserver.database.Query;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProgressTopicType;
+import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
@@ -104,7 +105,8 @@ public class RegistryServiceImpl extends GenericServiceImpl implements RegistryI
 
 	@Override
 	public Long registerProgressOnRevisionTopic(SProgressTopicType type, Long poid, Long roid, String description) throws UserException, ServerException {
-		return getBimServer().getNotificationsManager().createProgressOnRevisionTopic(getCurrentUser().getOid(), poid, roid, type, description).getKey().getId();
+		SUser currentUser = getCurrentUser();
+		return getBimServer().getNotificationsManager().createProgressOnRevisionTopic(currentUser.getOid(), poid, roid, type, description).getKey().getId();
 	}
 
 	@Override

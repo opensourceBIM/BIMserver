@@ -348,7 +348,7 @@ public class IfcModel implements IfcModelInterface {
 		if (((IdEObjectImpl) eObject).hasModel() && !allowMultiModel) {
 			throw new IfcModelInterfaceException("This object (" + eObject + ") already belongs to a Model: " + ((IdEObjectImpl) eObject).getModel());
 		}
-		if (oid == -1) {
+		if (oid == -1 || eObject.eClass().getEAnnotation("wrapped") != null) {
 			unidentifiedObjects.add(eObject);
 		} else {
 			if (objects.containsKey(oid)) {

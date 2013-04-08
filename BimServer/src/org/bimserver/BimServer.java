@@ -211,6 +211,8 @@ public class BimServer {
 					} else if (e instanceof Error) {
 						serverInfoManager.setErrorMessage(e.getMessage());
 						LOGGER.error("", e);
+					} else {
+						LOGGER.error("", e);
 					}
 				}
 			};

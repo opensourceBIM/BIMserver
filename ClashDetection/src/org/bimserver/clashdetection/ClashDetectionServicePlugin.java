@@ -50,12 +50,12 @@ import org.bimserver.plugins.renderengine.RenderEngineGeometry;
 import org.bimserver.plugins.renderengine.RenderEngineInstanceVisualisationProperties;
 import org.bimserver.plugins.renderengine.RenderEngineModel;
 import org.bimserver.plugins.serializers.EmfSerializerDataSource;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.stillimagerenderer.StillImageRenderer;
 import org.bimserver.plugins.stillimagerenderer.StillImageRendererException;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
-import org.bimserver.shared.ServiceHolder;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.openmali.vecmath2.Vector3f;
@@ -84,15 +84,15 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		clashDetection.setWriteExtendedData("http://www.buildingsmart-tech.org/specifications/bcf-releases");
 		clashDetection.setTrigger(Trigger.NEW_REVISION);
 		registerNewRevisionHandler(clashDetection, new NewRevisionHandler() {
-			public void newRevision(ServiceHolder serviceHolder, long poid, long roid, SObjectType settings) throws ServerException, UserException {
+			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, SObjectType settings) throws ServerException, UserException {
 				Bcf bcf = new Bcf();
 
 				SSerializerPluginConfiguration sSerializer;
 				try {
-					sSerializer = serviceHolder.getPlugin().getSerializerByPluginClassName("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin");
+					sSerializer = bimServerClientInterface.getPlugin().getSerializerByPluginClassName("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin");
 
-					long download = serviceHolder.getService().download(roid, sSerializer.getOid(), true, true);
-					SDownloadResult downloadData = serviceHolder.getService().getDownloadData(download);
+					long download = bimServerClientInterface.getService().download(roid, sSerializer.getOid(), true, true);
+					SDownloadResult downloadData = bimServerClientInterface.getService().getDownloadData(download);
 
 					try {
 						ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -198,7 +198,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						LOGGER.error("", e);
 					}
 
-					SExtendedDataSchema extendedDataSchemaByNamespace = serviceHolder.getService().getExtendedDataSchemaByNamespace(
+					SExtendedDataSchema extendedDataSchemaByNamespace = bimServerClientInterface.getService().getExtendedDataSchemaByNamespace(
 							"http://www.buildingsmart-tech.org/specifications/bcf-releases");
 
 					SFile file = new SFile();
@@ -212,10 +212,10 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						file.setData(bytes);
 						file.setMime("application/bcf");
 
-						long fileId = serviceHolder.getService().uploadFile(file);
+						long fileId = bimServerClientInterface.getService().uploadFile(file);
 						extendedData.setFileId(fileId);
 
-						serviceHolder.getService().addExtendedDataToRevision(roid, extendedData);
+						bimServerClientInterface.getService().addExtendedDataToRevision(roid, extendedData);
 					} catch (Exception e) {
 						LOGGER.error("", e);
 					}

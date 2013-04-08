@@ -26,9 +26,11 @@ import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.ServiceFactory;
+import org.bimserver.shared.TokenChangeListener;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SServicesMap;
@@ -36,7 +38,7 @@ import org.bimserver.utils.InputStreamDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DirectChannel extends Channel {
+public class DirectChannel extends Channel implements TokenChangeListener {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DirectChannel.class);
 	private ServiceFactory serviceFactory;
 	private SServicesMap sServicesMap;
@@ -48,7 +50,9 @@ public class DirectChannel extends Channel {
 
 	public void connect() throws UserException {
 		for (Class<? extends PublicInterface> interface1 : sServicesMap.getInterfaceClasses()) {
-			add(interface1.getName(), serviceFactory.get(AccessMethod.INTERNAL).get(interface1));
+			if (!has(interface1)) {
+				add(interface1.getName(), serviceFactory.get(AccessMethod.INTERNAL).get(interface1));
+			}
 		}
 		notifyOfConnect();
 	}
@@ -85,5 +89,19 @@ public class DirectChannel extends Channel {
 
 	@Override
 	public void connect(TokenHolder tokenHolder) throws ChannelConnectionException {
+		tokenHolder.registerTokenChangeListener(this);
+	}
+
+	@Override
+	public void newToken(String token) {
+		try {
+			get(AuthInterface.class).tokenlogin(token);
+		} catch (PublicInterfaceNotFoundException e) {
+			e.printStackTrace();
+		} catch (UserException e) {
+			e.printStackTrace();
+		} catch (ServerException e) {
+			e.printStackTrace();
+		}
 	}
 }

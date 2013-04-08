@@ -1,0 +1,3160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- =================================================================== -->
+<!--                                                     IMRO2008                                                                   -->
+<!-- =================================================================== -->
+<!-- Geonovum, Beheerorganisatie RO-Standaarden. http://ro-standaarden.geonovum.nl -->
+<!-- =================================================================== -->
+<!-- Versie informatie: -->
+<!-- 2009-01-09: Versie 1.1.0. Officieel uitgebrachte versie. Onderdeel van RO Standaarden 2008, versie 1.1, 24 december 2008 -->
+<!-- Hoort bij IMRO2008 modeldocument 1.1 -->
+<!-- Geen veranderingen t.o.v. versie 1.1.0RC. Behalve aanpassing versienummer -->
+<!-- =================================================================== -->
+<!-- 2008-12-17: Versie 1.1.0RC. Aanpassing uit wijzigingsvoorstel BROS20081111 gerealiseerd.-->
+<!-- Aanpassing uit Supplement Wijzigingsvoorstel SUP20081208 gerealiseerd: -->
+<!-- Wijziging: 1366: spelfout: militair oefenterrein, gerealiseerd (2x aangepast) -->
+<!-- Wijziging: 1367: spelfout: veiligheidszone, gerealiseerd (1X) -->
+<!-- Wijziging: 1368: gebiedsaanduiding, verwijzingNaarTekst, 1..* -> , gerealiseerd -->
+<!-- Wijziging: 1369: aanpassing: luchtvaartverkeerzone, gerealiseerd (1X) -->
+<!-- Wijziging: 1372: aanpassing: bedrijf tot en met categorie, gerealiseerd (2X) -->
+<!-- Wijziging: 1373: aanpassing: horeca tot en met categorie, gerealiseerd (2X) -->
+<!-- Wijziging: 1437: niet geeffectueerd. VerwijzingNaarObjectgerichteTekst blijft als string. Minder implementatie -->
+<!-- problemen -->
+<!-- Wijziging: 1690: Conform supplement SUP20081208 -->
+<!-- 1) aanpassen enumlijst gebiedsaanduidingen -->
+<!-- verwijderd: overig -->
+<!-- toegevoegd: patronen voor toevoeging bij elke voorkomende waarde:-->
+<!-- " - .*" bij hoofdgroepen -->
+<!-- " .*" bij subwaarden    -->
+<!-- 2) Attribuut gebiedsaanduidinggroep bij objectklasse gebiedsaanduiding toegevoegd -->
+<!-- 3) enumeratie Gebiedsaanduidinggroep toegevoegd -->
+<!-- Wijziging 1775: spelfout: buiten toepassing verklaring beheersverordening, gerealiseerd (1X) -->
+<!-- Wijziging 1832: datatype NotEmptyString om gebruik lege stringwaarden te voorkomen; alle string datatypen -->
+<!-- vervangen door imro:NotEmptyString -->
+<!-- =================================================================== -->
+<!-- 2008-04-15: Versie 1.0.0RC. 3de in ontwikkelingstraject gedistribueerde versie -->
+<!-- Deze versie volgt na versie 0.0.5 -->
+<!-- Dit is een Release Candidate. Alle inhoudelijke info is verwerkt -->
+<!-- Technische wijzigingen ivm software implementatie worden niet verwacht maar zijn wel mogelijk -->
+<!-- Alle informatie van eindocumenten van PR is verwerkt (versies 28 maart 2008) -->
+<!-- Bij die verwerking is zorgvuldigheid betracht. Discrepanties tussen beide worden niet verwacht, -->
+<!-- maar indien deze toch worden gevonden, graag terugkoppelen naar de opsteller van het XSD. -->
+<!-- Hoort bij IMRO2008 modeldocument versie 1.0 -->
+<!-- =================================================================== -->
+<!-- =================================================================== -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:gml4nl="http://www.geonovum.nl/gml4nl/1.0" xmlns:imro="http://www.geonovum.nl/imro/2008/1" targetNamespace="http://www.geonovum.nl/imro/2008/1" elementFormDefault="qualified" version="1.1.0">
+	<annotation>
+		<appinfo>
+			<gml4nl:ComplianceLevel>2</gml4nl:ComplianceLevel>
+			<gml4nl:GMLProfileSchema>http://www.geonovum.nl/imro2008/1.0/imro2008gmlprofile.xsd</gml4nl:GMLProfileSchema>
+		</appinfo>
+	</annotation>
+	<import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+	<import namespace="http://www.geonovum.nl/gml4nl/1.0" schemaLocation="http://schemas.geonovum.nl/gml4nl/1.0.0/gml4nlLevels.xsd"/>
+	<!-- =========================================================== -->
+	<element name="FeatureCollectionIMRO" type="imro:FeatureCollectionIMROType" substitutionGroup="gml:_GML"/>
+	<complexType name="FeatureCollectionIMROType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence minOccurs="0" maxOccurs="unbounded">
+					<element name="featureMember">
+						<complexType>
+							<sequence>
+								<element ref="gml:_Feature"/>
+							</sequence>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- =========================================================== -->
+	<simpleType name="Idealisatie_3Type">
+		<restriction base="string">
+			<enumeration value="exact"/>
+			<enumeration value="indicatief"/>
+			<enumeration value="cartografisch figuur"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="TeksttypeBG_AMBType">
+		<restriction base="string">
+			<enumeration value="besluitdocument"/>
+			<enumeration value="regels"/>
+			<enumeration value="toelichting"/>
+			<enumeration value="bijlage bij besluitdocument"/>
+			<enumeration value="bijlage bij regels"/>
+			<enumeration value="bijlage bij toelichting"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="RuimtelijkPlanOfBesluit_BPType">
+		<restriction base="string">
+			<enumeration value="bestemmingsplan"/>
+			<enumeration value="inpassingsplan"/>
+			<enumeration value="rijksbestemmingsplan"/>
+			<enumeration value="uitwerkingsplan"/>
+			<enumeration value="wijzigingsplan"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="RuimtelijkPlanobject_BPType">
+		<restriction base="string">
+			<enumeration value="enkelbestemming"/>
+			<enumeration value="dubbelbestemming"/>
+			<enumeration value="bouwvlak"/>
+			<enumeration value="functieaanduiding"/>
+			<enumeration value="bouwaanduiding"/>
+			<enumeration value="maatvoering"/>
+			<enumeration value="figuur"/>
+			<enumeration value="gebiedsaanduiding"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="RuimtelijkPlanobject_SVType">
+		<restriction base="string">
+			<enumeration value="structuurvisiegebied_G"/>
+			<enumeration value="structuurvisiegebied_P"/>
+			<enumeration value="structuurvisiegebied_R"/>
+			<enumeration value="structuurvisiecomplex_G"/>
+			<enumeration value="structuurvisiecomlex_P"/>
+			<enumeration value="structuurvisiecomplex_R"/>
+			<enumeration value="structuuvisieverklaring_P"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="RuimtelijkPlanobject_GBType">
+		<restriction base="string">
+			<enumeration value="besluitvlak_X"/>
+			<enumeration value="besluitsubvlak_X"/>
+			<enumeration value="besluitvlak_P"/>
+			<enumeration value="besluitsubvlak_P"/>
+			<enumeration value="besluitvlak_A"/>
+			<enumeration value="besluitsubvlak_A"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Overheden_RType">
+		<restriction base="string">
+			<enumeration value="nationale overheid"/>
+		</restriction>
+	</simpleType>
+	<element name="PlanstatusEnDatum_SV" type="imro:PlanstatusEnDatum_SVType"/>
+	<complexType name="PlanstatusEnDatum_SVType">
+		<sequence>
+			<element name="planstatus" type="imro:Planstatus_SVType"/>
+			<element name="datum" type="imro:NotEmptyString"/>
+		</sequence>
+	</complexType>
+	<complexType name="PlanstatusEnDatum_SVPropertyType">
+		<sequence>
+			<element ref="imro:PlanstatusEnDatum_SV"/>
+		</sequence>
+	</complexType>
+	<!--
+	<element name="PuntLijnVlakCombi" type="imro:PuntLijnVlakCombiType"/>
+	<complexType name="PuntLijnVlakCombiType">
+		<choice>
+			<element name="geometriePunt" type="gml:PointPropertyType"/>
+			<element name="geometrieLijn" type="gml:CurvePropertyType"/>
+			<element name="geometrieVlak" type="gml:SurfacePropertyType"/>
+			<element name="geometrieCombi" type="gml:MultiGeometryPropertyType"/>
+		</choice>
+	</complexType>
+	<complexType name="PuntLijnVlakCombiPropertyType">
+		<sequence>
+			<element ref="imro:PuntLijnVlakCombi"/>
+		</sequence>
+	</complexType> -->
+	<complexType name="PuntLijnVlakCombiPropertyType">
+		<choice>
+			<element ref="gml:Point"/>
+			<element ref="gml:Curve"/>
+			<element ref="gml:Surface"/>
+			<element ref="gml:MultiGeometry"/>
+		</choice>
+	</complexType>
+	<element name="Besluitsubvlak_A" type="imro:Besluitsubvlak_AType" substitutionGroup="imro:Planobject"/>
+	<complexType name="Besluitsubvlak_AType">
+		<complexContent>
+			<extension base="imro:PlanobjectType">
+				<sequence>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="thema" type="imro:NotEmptyString" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentie_AMBPropertyType" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarIllustratieInfo" type="imro:IllustratieReferentiePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="besluitsubvlak" type="imro:Besluitsubvlak_APropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="besluitvlak" type="imro:Besluitvlak_APropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="besluitgebied" type="imro:Besluitgebied_APropertyType"/>
+					<element name="begrenzing" type="imro:GeometrieBesluitobject_APropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Besluitsubvlak_APropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Besluitsubvlak_A"/>
+		</sequence>
+-->
+	</complexType>
+	<element name="ExternPlanReferentie_SV" type="imro:ExternPlanReferentie_SVType"/>
+	<complexType name="ExternPlanReferentie_SVType">
+		<sequence>
+			<element name="naamExternPlan" type="imro:NotEmptyString"/>
+			<element name="idnExternPlan" type="imro:NotEmptyString" minOccurs="0"/>
+			<element name="rolExternPlan" type="imro:RolExternPlan_SVType"/>
+		</sequence>
+	</complexType>
+	<complexType name="ExternPlanReferentie_SVPropertyType">
+		<sequence>
+			<element ref="imro:ExternPlanReferentie_SV"/>
+		</sequence>
+	</complexType>
+	<simpleType name="Overheden_XGBType">
+		<restriction base="string">
+			<enumeration value="gemeentelijke overheid"/>
+			<enumeration value="deelgemeente/stadsdeel"/>
+			<enumeration value="provinciale overheid"/>
+			<enumeration value="nationale overheid"/>
+		</restriction>
+	</simpleType>
+	<element name="PlanstatusEnDatum_XGB" type="imro:PlanstatusEnDatum_XGBType"/>
+	<complexType name="PlanstatusEnDatum_XGBType">
+		<sequence>
+			<element name="planstatus" type="imro:Planstatus_XGBType"/>
+			<element name="datum" type="imro:NotEmptyString"/>
+		</sequence>
+	</complexType>
+	<complexType name="PlanstatusEnDatum_XGBPropertyType">
+		<sequence>
+			<element ref="imro:PlanstatusEnDatum_XGB"/>
+		</sequence>
+	</complexType>
+	<simpleType name="Planstatus_XGBType">
+		<restriction base="string">
+			<enumeration value="concept"/>
+			<enumeration value="voorontwerp"/>
+			<enumeration value="ontwerp"/>
+			<enumeration value="vastgesteld"/>
+			<enumeration value="onherroepelijk"/>
+			<enumeration value="geconsolideerde versie"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Overheden_BPType">
+		<restriction base="string">
+			<enumeration value="gemeentelijke overheid"/>
+			<enumeration value="deelgemeente/stadsdeel"/>
+			<enumeration value="provinciale overheid"/>
+			<enumeration value="nationale overheid"/>
+		</restriction>
+	</simpleType>
+	<element name="Besluitgebied_X" type="imro:Besluitgebied_XType" substitutionGroup="imro:Plangebied"/>
+	<complexType name="Besluitgebied_XType">
+		<complexContent>
+			<extension base="imro:PlangebiedType">
+				<sequence>
+					<element name="typePlan" type="imro:RuimtelijkPlanOfBesluit_XGBType"/>
+					<element name="beleidsmatigVerantwoordelijkeOverheid" type="imro:Overheden_XGBType"/>
+					<element name="naamOverheid" type="imro:NotEmptyString"/>
+					<element name="overheidsCode" type="imro:NotEmptyString"/>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="normadressant" type="imro:Normadressant_XGBType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="locatieNaam" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="planstatusInfo" type="imro:PlanstatusEnDatum_XGBPropertyType"/>
+					<element name="besluitnummer" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="verwijzingNaarVaststellingsbesluit" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentieBG_XGBPropertyType" maxOccurs="6"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="ondergrond" type="imro:NotEmptyString" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarIllustratieInfo" type="imro:IllustratieReferentie_XGBPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarExternPlanInfo" type="imro:ExternPlanReferentie_XGBPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNorm" type="imro:NotEmptyString" minOccurs="2" maxOccurs="2"/>
+					<element name="geometrie" type="imro:VlakMultiVlakPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Besluitgebied_XPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--		
+		<sequence minOccurs="0">
+			<element ref="imro:Besluitgebied_X"/>
+		</sequence> -->
+	</complexType>
+	<element name="Besluitvlak_X" type="imro:Besluitvlak_XType" substitutionGroup="imro:Planobject"/>
+	<complexType name="Besluitvlak_XType">
+		<complexContent>
+			<extension base="imro:PlanobjectType">
+				<sequence>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentie_XGBPropertyType" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="geometrie" type="imro:VlakMultiVlakPropertyType"/>
+					<element name="besluitgebied" type="imro:Besluitgebied_XPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Besluitvlak_XPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--		
+		<sequence minOccurs="0">
+			<element ref="imro:Besluitvlak_X"/>
+		</sequence>-->
+	</complexType>
+	<element name="Structuurvisieverklaring_P" type="imro:Structuurvisieverklaring_PType" substitutionGroup="imro:Planobject"/>
+	<complexType name="Structuurvisieverklaring_PType">
+		<complexContent>
+			<extension base="imro:PlanobjectType">
+				<sequence>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="thema" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentieV_PSVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarIllustratieInfo" type="imro:IllustratieReferentie_PSVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="begrenzing" type="imro:GeometrieStructuurvisieObject_PPropertyType" maxOccurs="unbounded"/>
+					<element name="plangebied" type="imro:Structuurvisieplangebied_PPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Structuurvisieverklaring_PPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--		
+		<sequence minOccurs="0">
+			<element ref="imro:Structuurvisieverklaring_P"/>
+		</sequence> -->
+	</complexType>
+	<element name="Bouwaanduiding" type="imro:BouwaanduidingType" substitutionGroup="imro:Aanduiding"/>
+	<complexType name="BouwaanduidingType">
+		<complexContent>
+			<extension base="imro:AanduidingType">
+				<sequence>
+					<element name="naam" type="imro:BouwaanduidingenType"/>
+					<element name="labelInfo" type="imro:LabelPropertyType"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="geometrie" type="gml:SurfacePropertyType"/>
+					<element name="aanduiding" type="imro:AanduidingPropertyType" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="BouwaanduidingPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Bouwaanduiding"/>
+		</sequence> -->
+	</complexType>
+	<simpleType name="RuimtelijkPlanOfBesluit_XGBType">
+		<restriction base="string">
+			<enumeration value="aanwijzingsbesluit"/>
+			<enumeration value="beheersverordening"/>
+			<enumeration value="buiten toepassing verklaring beheersverordening"/>
+			<enumeration value="projectbesluit"/>
+			<enumeration value="reactieve aanwijzing"/>
+			<enumeration value="tijdelijke ontheffing buitenplans"/>
+			<enumeration value="voorbereidingsbesluit"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Illustratie_XGBType">
+		<restriction base="string">
+			<enumeration value="kaart"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="RuimtelijkPlanOfBesluit_PVType">
+		<restriction base="string">
+			<enumeration value="provinciale verordening"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="RuimtelijkPlanOfBesluit_AMBType">
+		<restriction base="string">
+			<enumeration value="amvb"/>
+		</restriction>
+	</simpleType>
+	<element name="IllustratieReferentie_BP" type="imro:IllustratieReferentie_BPType"/>
+	<complexType name="IllustratieReferentie_BPType">
+		<sequence>
+			<element name="verwijzingNaarIllustratie" type="imro:NotEmptyString"/>
+			<element name="typeIllustratie" type="imro:Illustratie_BPType"/>
+		</sequence>
+	</complexType>
+	<complexType name="IllustratieReferentie_BPPropertyType">
+		<sequence>
+			<element ref="imro:IllustratieReferentie_BP"/>
+		</sequence>
+	</complexType>
+	<element name="GeometrieStructuurvisieObject" type="imro:GeometrieStructuurvisieObjectType" substitutionGroup="gml:_Feature"/>
+	<complexType name="GeometrieStructuurvisieObjectType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="geometrie" type="imro:PuntLijnVlakCombiPropertyType"/>
+					<element name="idealisatie" type="imro:Idealisatie_3Type"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GeometrieStructuurvisieObjectPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:GeometrieStructuurvisieObject"/>
+		</sequence> -->
+	</complexType>
+	<element name="BeleidInfo" type="imro:BeleidInfoType"/>
+	<complexType name="BeleidInfoType">
+		<sequence>
+			<element name="belang" type="imro:NotEmptyString"/>
+			<element name="rol" type="imro:NotEmptyString"/>
+			<element name="instrument" type="imro:NotEmptyString" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="BeleidInfoPropertyType">
+		<sequence>
+			<element ref="imro:BeleidInfo"/>
+		</sequence>
+	</complexType>
+	<simpleType name="RolExternPlan_SVType">
+		<restriction base="string">
+			<enumeration value="in extern plan/besluit uit te werken"/>
+			<enumeration value="in extern plan/besluit uitgewerkt"/>
+			<enumeration value="informatie in extern plan/besluit"/>
+			<enumeration value="ten gevolge van extern plan/besluit"/>
+		</restriction>
+	</simpleType>
+	<element name="Besluitsubvlak_X" type="imro:Besluitsubvlak_XType" substitutionGroup="imro:Planobject"/>
+	<complexType name="Besluitsubvlak_XType">
+		<complexContent>
+			<extension base="imro:PlanobjectType">
+				<sequence>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentie_XGBPropertyType" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="geometrie" type="imro:VlakMultiVlakPropertyType"/>
+					<element name="besluitgebied" type="imro:Besluitgebied_XPropertyType"/>
+					<element name="besluitvlak" type="imro:Besluitvlak_XPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="besluitsubvlak" type="imro:Besluitsubvlak_XPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Besluitsubvlak_XPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Besluitsubvlak_X"/>
+		</sequence> -->
+	</complexType>
+	<element name="IllustratieReferentie_XGB" type="imro:IllustratieReferentie_XGBType"/>
+	<complexType name="IllustratieReferentie_XGBType">
+		<sequence>
+			<element name="verwijzingNaarIllustratie" type="imro:NotEmptyString"/>
+			<element name="typeIllustratie" type="imro:Illustratie_XGBType"/>
+		</sequence>
+	</complexType>
+	<complexType name="IllustratieReferentie_XGBPropertyType">
+		<sequence>
+			<element ref="imro:IllustratieReferentie_XGB"/>
+		</sequence>
+	</complexType>
+	<element name="TekstReferentie_XGB" type="imro:TekstReferentie_XGBType"/>
+	<complexType name="TekstReferentie_XGBType">
+		<sequence>
+			<element name="verwijzingNaarTekst" type="imro:NotEmptyString"/>
+			<element name="typeTekst" type="imro:Teksttype_XGBType"/>
+			<element name="normadressant" type="imro:Normadressant_XGBType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="TekstReferentie_XGBPropertyType">
+		<sequence>
+			<element ref="imro:TekstReferentie_XGB"/>
+		</sequence>
+	</complexType>
+	<element name="IllustratieReferentie_PSV" type="imro:IllustratieReferentie_PSVType"/>
+	<complexType name="IllustratieReferentie_PSVType">
+		<sequence>
+			<element name="verwijzingNaarIllustratie" type="imro:NotEmptyString"/>
+			<element name="typeIllustratie" type="imro:IllustratieType"/>
+			<element name="naamIllustratie" type="imro:NotEmptyString" minOccurs="0"/>
+			<element name="legendanaam" type="imro:NotEmptyString" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="IllustratieReferentie_PSVPropertyType">
+		<sequence>
+			<element ref="imro:IllustratieReferentie_PSV"/>
+		</sequence>
+	</complexType>
+	<simpleType name="Teksttype_AMBType">
+		<restriction base="string">
+			<enumeration value="beleidstekst"/>
+			<enumeration value="regels"/>
+			<enumeration value="toelichting"/>
+			<enumeration value="bijlage bij beleidstekst"/>
+			<enumeration value="bijlage bij regels"/>
+			<enumeration value="bijlage bij toelichting"/>
+		</restriction>
+	</simpleType>
+	<element name="TekstReferentie_BP" type="imro:TekstReferentie_BPType"/>
+	<complexType name="TekstReferentie_BPType">
+		<sequence>
+			<element name="verwijzingNaarTekst" type="imro:NotEmptyString"/>
+			<element name="typeTekst" type="imro:Teksttype_BPType"/>
+		</sequence>
+	</complexType>
+	<complexType name="TekstReferentie_BPPropertyType">
+		<sequence>
+			<element ref="imro:TekstReferentie_BP"/>
+		</sequence>
+	</complexType>
+	<simpleType name="Teksttype_BPType">
+		<restriction base="string">
+			<enumeration value="regels"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Normadressant_AMBType">
+		<restriction base="string">
+			<enumeration value="bevoegd gezag"/>
+			<enumeration value="burgemeester en wethouders"/>
+			<enumeration value="burgers"/>
+			<enumeration value="gedeputeerde staten"/>
+			<enumeration value="gemeentelijke bestuursorganen"/>
+			<enumeration value="gemeenteraad"/>
+			<enumeration value="provinciale bestuursorganen"/>
+			<enumeration value="provinciale staten"/>
+			<enumeration value="regionale bestuursorganen"/>
+			<enumeration value="onze Minister"/>
+			<enumeration value="onze Minister die het mede aangaat"/>
+			<enumeration value="rijksbestuursorganen"/>
+			<enumeration value="waterschappen"/>
+			<enumeration value="niet nader aangeduid"/>
+		</restriction>
+	</simpleType>
+	<element name="GeometrieBesluitobject_A" type="imro:GeometrieBesluitobject_AType" substitutionGroup="gml:_Feature"/>
+	<complexType name="GeometrieBesluitobject_AType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="geometrie" type="imro:PuntLijnVlakCombiPropertyType"/>
+					<element name="idealisatie" type="imro:Idealisatie_2Type"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GeometrieBesluitobject_APropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:GeometrieBesluitobject_A"/>
+		</sequence> -->
+	</complexType>
+	<simpleType name="Idealisatie_2Type">
+		<restriction base="string">
+			<enumeration value="exact"/>
+			<enumeration value="indicatief"/>
+		</restriction>
+	</simpleType>
+	<element name="Besluitgebied_P" type="imro:Besluitgebied_PType" substitutionGroup="imro:Plangebied"/>
+	<complexType name="Besluitgebied_PType">
+		<complexContent>
+			<extension base="imro:PlangebiedType">
+				<sequence>
+					<element name="typePlan" type="imro:RuimtelijkPlanOfBesluit_PVType"/>
+					<element name="beleidsmatigVerantwoordelijkeOverheid" type="imro:Overheden_PType"/>
+					<element name="naamOverheid" type="imro:NotEmptyString"/>
+					<element name="overheidsCode" type="imro:NotEmptyString"/>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="normadressant" type="imro:Normadressant_PVType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="locatieNaam" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="planstatusInfo" type="imro:PlanstatusEnDatum_PVPropertyType"/>
+					<element name="besluitnummer" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="verwijzingNaarVaststellingsbesluit" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentieBG_PVPropertyType" maxOccurs="6"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="ondergrond" type="imro:NotEmptyString" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarIllustratieInfo" type="imro:IllustratieReferentiePGPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarExternPlanInfo" type="imro:ExternPlanReferentie_PVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNorm" type="imro:NotEmptyString" minOccurs="2" maxOccurs="2"/>
+					<element name="begrenzing" type="imro:GeometriePlangebiedPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Besluitgebied_PPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Besluitgebied_P"/>
+		</sequence> -->
+	</complexType>
+	<element name="Besluitvlak_P" type="imro:Besluitvlak_PType" substitutionGroup="imro:Planobject"/>
+	<complexType name="Besluitvlak_PType">
+		<complexContent>
+			<extension base="imro:PlanobjectType">
+				<sequence>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="thema" type="imro:NotEmptyString" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentie_PVPropertyType" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarIllustratieInfo" type="imro:IllustratieReferentiePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="besluitgebied" type="imro:Besluitgebied_PPropertyType"/>
+					<element name="begrenzing" type="imro:GeometrieBesluitobject_P1PropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Besluitvlak_PPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Besluitvlak_P"/>
+		</sequence> -->
+	</complexType>
+	<element name="Besluitsubvlak_P" type="imro:Besluitsubvlak_PType" substitutionGroup="imro:Planobject"/>
+	<complexType name="Besluitsubvlak_PType">
+		<complexContent>
+			<extension base="imro:PlanobjectType">
+				<sequence>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="thema" type="imro:NotEmptyString" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentie_PVPropertyType" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarIllustratieInfo" type="imro:IllustratieReferentiePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="besluitgebied" type="imro:Besluitgebied_PPropertyType"/>
+					<element name="besluitvlak" type="imro:Besluitvlak_PPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="besluitsubvlak" type="imro:Besluitsubvlak_PPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="begrenzing" type="imro:GeometrieBesluitobject_P3PropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Besluitsubvlak_PPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Besluitsubvlak_P"/>
+		</sequence> -->
+	</complexType>
+	<element name="GeometrieBesluitobject_P3" type="imro:GeometrieBesluitobject_P3Type" substitutionGroup="gml:_Feature"/>
+	<complexType name="GeometrieBesluitobject_P3Type">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="geometrie" type="imro:PuntLijnVlakCombiPropertyType"/>
+					<element name="idealisatie" type="imro:Idealisatie_3Type"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GeometrieBesluitobject_P3PropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:GeometrieBesluitobject_P3"/>
+		</sequence> -->
+	</complexType>
+	<element name="TekstReferentie_PSV" type="imro:TekstReferentie_PSVType"/>
+	<complexType name="TekstReferentie_PSVType">
+		<sequence>
+			<element name="verwijzingNaarTekst" type="imro:NotEmptyString"/>
+			<element name="typeTekst" type="imro:Teksttype_PSVType"/>
+		</sequence>
+	</complexType>
+	<complexType name="TekstReferentie_PSVPropertyType">
+		<sequence>
+			<element ref="imro:TekstReferentie_PSV"/>
+		</sequence>
+	</complexType>
+	<simpleType name="Teksttype_PSVType">
+		<restriction base="string">
+			<enumeration value="beleid"/>
+			<enumeration value="beleid gemandateerd aan GS"/>
+			<enumeration value="toelichting"/>
+		</restriction>
+	</simpleType>
+	<element name="Structuurvisiegebied_R" type="imro:Structuurvisiegebied_RType" substitutionGroup="imro:Planobject"/>
+	<complexType name="Structuurvisiegebied_RType">
+		<complexContent>
+			<extension base="imro:PlanobjectType">
+				<sequence>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="thema" type="imro:NotEmptyString" maxOccurs="unbounded"/>
+					<element name="beleidInfo" type="imro:BeleidInfo_RSVPropertyType" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentie_SVPropertyType" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarIllustratieInfo" type="imro:IllustratieReferentiePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarExternPlanInfo" type="imro:ExternPlanReferentie_SVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="begrenzing" type="imro:GeometrieStructuurvisieObjectPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="plangebied" type="imro:Structuurvisieplangebied_RPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Structuurvisiegebied_RPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Structuurvisiegebied_R"/>
+		</sequence> -->
+	</complexType>
+	<element name="Structuurvisiegebied_G" type="imro:Structuurvisiegebied_GType" substitutionGroup="imro:Planobject"/>
+	<complexType name="Structuurvisiegebied_GType">
+		<complexContent>
+			<extension base="imro:PlanobjectType">
+				<sequence>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="thema" type="imro:NotEmptyString" maxOccurs="unbounded"/>
+					<element name="beleidInfo" type="imro:BeleidInfo_GSVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentie_SVPropertyType" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarIllustratieInfo" type="imro:IllustratieReferentiePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarExternPlanInfo" type="imro:ExternPlanReferentie_SVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="begrenzing" type="imro:GeometrieStructuurvisieObjectPropertyType" maxOccurs="unbounded"/>
+					<element name="plangebied" type="imro:Structuurvisieplangebied_GPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Structuurvisiegebied_GPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Structuurvisiegebied_G"/>
+		</sequence> -->
+	</complexType>
+	<element name="Structuurvisiecomplex_R" type="imro:Structuurvisiecomplex_RType" substitutionGroup="imro:Planobject"/>
+	<complexType name="Structuurvisiecomplex_RType">
+		<complexContent>
+			<extension base="imro:PlanobjectType">
+				<sequence>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="thema" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="beleidInfo" type="imro:BeleidInfo_RSVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentie_SVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarIllustratieInfo" type="imro:IllustratieReferentiePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarExternPlanInfo" type="imro:ExternPlanReferentie_SVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="begrenzing" type="imro:GeometrieStructuurvisieObjectPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="plangebied" type="imro:Structuurvisieplangebied_RPropertyType"/>
+					<element name="planobject" type="imro:PlanobjectPropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Structuurvisiecomplex_RPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Structuurvisiecomplex_R"/>
+		</sequence> -->
+	</complexType>
+	<simpleType name="Teksttype_GBType">
+		<restriction base="string">
+			<enumeration value="beleid"/>
+			<enumeration value="bijlage"/>
+			<enumeration value="toelichting"/>
+			<enumeration value="voorschrift/regel"/>
+		</restriction>
+	</simpleType>
+	<element name="GeometriePlangebied" type="imro:GeometriePlangebiedType" substitutionGroup="gml:_Feature"/>
+	<complexType name="GeometriePlangebiedType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="geometrie" type="imro:VlakMultiVlakPropertyType"/>
+					<element name="idealisatie" type="imro:Idealisatie_1Type"/>
+					<element name="plangebiedInfo_PRV" type="imro:Besluitgebied_PPropertyType" minOccurs="0"/>
+					<element name="plangebiedInfo_AMB" type="imro:Besluitgebied_APropertyType" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GeometriePlangebiedPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:GeometriePlangebied"/>
+		</sequence> -->
+	</complexType>
+	<simpleType name="RuimtelijkPlanobjectType">
+		<restriction base="string">
+			<enumeration value="enkelbestemming"/>
+			<enumeration value="dubbelbestemming"/>
+			<enumeration value="bouwvlak"/>
+			<enumeration value="functieaanduiding"/>
+			<enumeration value="bouwaanduiding"/>
+			<enumeration value="maatvoering"/>
+			<enumeration value="figuur"/>
+			<enumeration value="gebiedsaanduiding"/>
+			<enumeration value="structuurvisiegebied_G"/>
+			<enumeration value="structuurvisiegebied_P"/>
+			<enumeration value="structuurvisiegebied_R"/>
+			<enumeration value="structuurvisiecomplex_G"/>
+			<enumeration value="structuurvisiecomplex_P"/>
+			<enumeration value="structuurvisiecomplex_R"/>
+			<enumeration value="structuurvisieverklaring_P"/>
+			<enumeration value="besluitvlak_X"/>
+			<enumeration value="besluitsubvlak_X"/>
+			<enumeration value="besluitvlak_P"/>
+			<enumeration value="besluitsubvlak_P"/>
+			<enumeration value="besluitvlak_A"/>
+			<enumeration value="besluitsubvlak_A"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OverhedenType">
+		<restriction base="string">
+			<enumeration value="gemeentelijke overheid"/>
+			<enumeration value="gemeentelijke overheid; deelgemeente"/>
+			<enumeration value="internationale structuren"/>
+			<enumeration value="nationale overheid"/>
+			<enumeration value="overige overheden"/>
+			<enumeration value="overige overheden; waterschap"/>
+			<enumeration value="provinciale overheid"/>
+			<enumeration value="regionale overheid"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="TeksttypeBG_PVType">
+		<restriction base="string">
+			<enumeration value="besluitdocument"/>
+			<enumeration value="regels"/>
+			<enumeration value="toelichting"/>
+			<enumeration value="bijlage bij besluitdocument"/>
+			<enumeration value="bijlage bij regels"/>
+			<enumeration value="bijlage bij toelichting"/>
+		</restriction>
+	</simpleType>
+	<element name="Structuurvisiecomplex_G" type="imro:Structuurvisiecomplex_GType" substitutionGroup="imro:Planobject"/>
+	<complexType name="Structuurvisiecomplex_GType">
+		<complexContent>
+			<extension base="imro:PlanobjectType">
+				<sequence>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="thema" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="beleidInfo" type="imro:BeleidInfo_GSVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentie_SVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarIllustratieInfo" type="imro:IllustratieReferentiePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarExternPlanInfo" type="imro:ExternPlanReferentie_SVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="begrenzing" type="imro:GeometrieStructuurvisieObjectPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="plangebied" type="imro:Structuurvisieplangebied_GPropertyType"/>
+					<element name="planobject" type="imro:PlanobjectPropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Structuurvisiecomplex_GPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Structuurvisiecomplex_G"/>
+		</sequence> -->
+	</complexType>
+	<element name="Structuurvisieplangebied_G" type="imro:Structuurvisieplangebied_GType" substitutionGroup="imro:Plangebied"/>
+	<complexType name="Structuurvisieplangebied_GType">
+		<complexContent>
+			<extension base="imro:PlangebiedType">
+				<sequence>
+					<element name="typePlan" type="imro:RuimtelijkPlanOfBesluit_SVType"/>
+					<element name="beleidsmatigVerantwoordelijkeOverheid" type="imro:Overheden_GType"/>
+					<element name="naamOverheid" type="imro:NotEmptyString"/>
+					<element name="overheidsCode" type="imro:NotEmptyString"/>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="locatieNaam" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="planstatusInfo" type="imro:PlanstatusEnDatum_SVPropertyType"/>
+					<element name="besluitnummer" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="verwijzingNaarVaststellingsbesluit" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="verwijzingNaarIllustratieInfo" type="imro:IllustratieReferentiePGPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentiePG_SVPropertyType" maxOccurs="2"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="ondergrond" type="imro:NotEmptyString" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarExternPlanInfo" type="imro:ExternPlanReferentiePG_SVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNorm" type="imro:NotEmptyString" minOccurs="2" maxOccurs="2"/>
+					<element name="begrenzing" type="imro:GeometriePlangebiedPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Structuurvisieplangebied_GPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Structuurvisieplangebied_G"/>
+		</sequence> -->
+	</complexType>
+	<element name="Structuurvisieplangebied_R" type="imro:Structuurvisieplangebied_RType" substitutionGroup="imro:Plangebied"/>
+	<complexType name="Structuurvisieplangebied_RType">
+		<complexContent>
+			<extension base="imro:PlangebiedType">
+				<sequence>
+					<element name="typePlan" type="imro:RuimtelijkPlanOfBesluit_SVType"/>
+					<element name="beleidsmatigVerantwoordelijkeOverheid" type="imro:Overheden_RType"/>
+					<element name="naamOverheid" type="imro:NotEmptyString" maxOccurs="unbounded"/>
+					<element name="overheidsCode" type="imro:NotEmptyString"/>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="locatieNaam" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="planstatusInfo" type="imro:PlanstatusEnDatum_SVPropertyType"/>
+					<element name="besluitnummer" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="verwijzingNaarVaststellingsbesluit" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="verwijzingNaarIllustratieInfo" type="imro:IllustratieReferentiePGPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentiePG_SVPropertyType" maxOccurs="2"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="ondergrond" type="imro:NotEmptyString" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarExternPlanInfo" type="imro:ExternPlanReferentiePG_SVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNorm" type="imro:NotEmptyString" minOccurs="2" maxOccurs="2"/>
+					<element name="begrenzing" type="imro:GeometriePlangebiedPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Structuurvisieplangebied_RPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Structuurvisieplangebied_R"/>
+		</sequence> -->
+	</complexType>
+	<simpleType name="RuimtelijkPlanOfBesluit_SVType">
+		<restriction base="string">
+			<enumeration value="structuurvisie"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Overheden_GType">
+		<restriction base="string">
+			<enumeration value="gemeentelijke overheid"/>
+			<enumeration value="deelgemeente/stadsdeel"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Planstatus_AMBType">
+		<restriction base="string">
+			<enumeration value="concept"/>
+			<enumeration value="voorontwerp"/>
+			<enumeration value="ontwerp"/>
+			<enumeration value="vastgesteld"/>
+			<enumeration value="onherroepelijk"/>
+			<enumeration value="geconsolideerde versie"/>
+		</restriction>
+	</simpleType>
+	<element name="PlanstatusEnDatum_AMB" type="imro:PlanstatusEnDatum_AMBType"/>
+	<complexType name="PlanstatusEnDatum_AMBType">
+		<sequence>
+			<element name="planstatus" type="imro:Planstatus_AMBType"/>
+			<element name="datum" type="imro:NotEmptyString"/>
+		</sequence>
+	</complexType>
+	<complexType name="PlanstatusEnDatum_AMBPropertyType">
+		<sequence>
+			<element ref="imro:PlanstatusEnDatum_AMB"/>
+		</sequence>
+	</complexType>
+	<simpleType name="Overheden_PType">
+		<restriction base="string">
+			<enumeration value="provinciale overheid"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="FigurenType">
+		<union memberTypes="imro:FigurenEnumerationType imro:FigurenOtherType"/>
+	</simpleType>
+	<simpleType name="FigurenEnumerationType">
+		<restriction base="string">
+			<enumeration value="as van de weg"/>
+			<enumeration value="dwarsprofiel"/>
+			<enumeration value="gevellijn"/>
+			<enumeration value="hartlijn leiding - brandstof"/>
+			<enumeration value="hartlijn leiding - gas"/>
+			<enumeration value="hartlijn leiding - hoogspanning"/>
+			<enumeration value="hartlijn leiding - hoogspanningsverbinding"/>
+			<enumeration value="hartlijn leiding - olie"/>
+			<enumeration value="hartlijn leiding - riool"/>
+			<enumeration value="hartlijn leiding - water"/>
+			<enumeration value="relatie"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="FigurenOtherType">
+		<restriction base="string">
+			<pattern value="hartlijn leiding - .*"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Illustratie_BPType">
+		<restriction base="string">
+			<enumeration value="afbeelding"/>
+		</restriction>
+	</simpleType>
+	<element name="TekstReferentieBG_AMB" type="imro:TekstReferentieBG_AMBType"/>
+	<complexType name="TekstReferentieBG_AMBType">
+		<sequence>
+			<element name="verwijzingNaarTekst" type="imro:NotEmptyString"/>
+			<element name="typeTekst" type="imro:TeksttypeBG_AMBType"/>
+		</sequence>
+	</complexType>
+	<complexType name="TekstReferentieBG_AMBPropertyType">
+		<sequence>
+			<element ref="imro:TekstReferentieBG_AMB"/>
+		</sequence>
+	</complexType>
+	<element name="TekstReferentieBG_PV" type="imro:TekstReferentieBG_PVType"/>
+	<complexType name="TekstReferentieBG_PVType">
+		<sequence>
+			<element name="verwijzingNaarTekst" type="imro:NotEmptyString"/>
+			<element name="typeTekst" type="imro:TeksttypeBG_PVType"/>
+		</sequence>
+	</complexType>
+	<complexType name="TekstReferentieBG_PVPropertyType">
+		<sequence>
+			<element ref="imro:TekstReferentieBG_PV"/>
+		</sequence>
+	</complexType>
+	<simpleType name="BouwaanduidingenType">
+		<union memberTypes="imro:BouwaanduidingenEnumerationType imro:BouwaanduidingenOtherType"/>
+	</simpleType>
+	<simpleType name="BouwaanduidingenEnumerationType">
+		<restriction base="string">
+			<enumeration value="aaneengebouwd"/>
+			<enumeration value="antennemast"/>
+			<enumeration value="bijgebouwen"/>
+			<enumeration value="gestapeld"/>
+			<enumeration value="kap"/>
+			<enumeration value="karakteristiek"/>
+			<enumeration value="nokrichting"/>
+			<enumeration value="onderdoorgang"/>
+			<enumeration value="plat dak"/>
+			<enumeration value="twee-aaneen"/>
+			<enumeration value="vrijstaand"/>
+			<enumeration value="aaneengebouwd uitgesloten"/>
+			<enumeration value="antennemast uitgesloten"/>
+			<enumeration value="bijgebouwen uitgesloten"/>
+			<enumeration value="gestapeld uitgesloten"/>
+			<enumeration value="kap uitgesloten"/>
+			<enumeration value="karakteristiek uitgesloten"/>
+			<enumeration value="nokrichting uitgesloten"/>
+			<enumeration value="onderdoorgang uitgesloten"/>
+			<enumeration value="plat dak uitgesloten"/>
+			<enumeration value="twee-aaneen uitgesloten"/>
+			<enumeration value="vrijstaand uitgesloten"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="BouwaanduidingenOtherType">
+		<restriction base="string">
+			<pattern value="specifieke bouwaanduiding - .*"/>
+			<pattern value="specifieke bouwaanduiding uitgesloten - .*"/>
+		</restriction>
+	</simpleType>
+	<element name="ExternPlanReferentie_BP" type="imro:ExternPlanReferentie_BPType"/>
+	<complexType name="ExternPlanReferentie_BPType">
+		<sequence>
+			<element name="naamExternPlan" type="imro:NotEmptyString"/>
+			<element name="idnExternPlan" type="imro:NotEmptyString" minOccurs="0"/>
+			<element name="rolExternPlan" type="imro:RolExternPlan_BPType"/>
+		</sequence>
+	</complexType>
+	<complexType name="ExternPlanReferentie_BPPropertyType">
+		<sequence>
+			<element ref="imro:ExternPlanReferentie_BP"/>
+		</sequence>
+	</complexType>
+	<simpleType name="RolExternPlan_BPType">
+		<restriction base="string">
+			<enumeration value="als mutatie opgenomen"/>
+			<enumeration value="gedeeltelijke herziening van extern plan"/>
+			<enumeration value="ten gevolge van extern plan/besluit"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Idealisatie_1Type">
+		<restriction base="string">
+			<enumeration value="exact"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Normadressant_XGBType">
+		<restriction base="string">
+			<enumeration value="bevoegd gezag"/>
+			<enumeration value="burgemeester en wethouders"/>
+			<enumeration value="burgers"/>
+			<enumeration value="gedeputeerde staten"/>
+			<enumeration value="gemeentelijke bestuursorganen"/>
+			<enumeration value="gemeenteraad"/>
+			<enumeration value="provinciale bestuursorganen"/>
+			<enumeration value="provinciale staten"/>
+			<enumeration value="regionale bestuursorganen"/>
+			<enumeration value="rijksbestuursorganen"/>
+			<enumeration value="niet nader aangeduid"/>
+		</restriction>
+	</simpleType>
+	<element name="ExternPlanReferentie_XGB" type="imro:ExternPlanReferentie_XGBType"/>
+	<complexType name="ExternPlanReferentie_XGBType">
+		<sequence>
+			<element name="naamExternPlan" type="imro:NotEmptyString"/>
+			<element name="idnExternPlan" type="imro:NotEmptyString" minOccurs="0"/>
+			<element name="rolExternPlan" type="imro:RolExternPlan_XGBType"/>
+		</sequence>
+	</complexType>
+	<complexType name="ExternPlanReferentie_XGBPropertyType">
+		<sequence>
+			<element ref="imro:ExternPlanReferentie_XGB"/>
+		</sequence>
+	</complexType>
+	<simpleType name="RolExternPlan_XGBType">
+		<restriction base="string">
+			<enumeration value="als mutatie opgenomen"/>
+			<enumeration value="gedeeltelijke herziening van extern plan/besluit"/>
+			<enumeration value="in extern plan/besluit uit te werken"/>
+			<enumeration value="ten gevolge van extern plan/besluit"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="IllustratieType">
+		<restriction base="string">
+			<enumeration value="afbeelding"/>
+			<enumeration value="kaart"/>
+		</restriction>
+	</simpleType>
+	<element name="PlanstatusEnDatum_BP" type="imro:PlanstatusEnDatum_BPType"/>
+	<complexType name="PlanstatusEnDatum_BPType">
+		<sequence>
+			<element name="planstatus" type="imro:Planstatus_BPType"/>
+			<element name="datum" type="imro:NotEmptyString"/>
+		</sequence>
+	</complexType>
+	<complexType name="PlanstatusEnDatum_BPPropertyType">
+		<sequence>
+			<element ref="imro:PlanstatusEnDatum_BP"/>
+		</sequence>
+	</complexType>
+	<element name="Label" type="imro:LabelType"/>
+	<complexType name="LabelType">
+		<sequence>
+			<element name="tekst" type="imro:NotEmptyString"/>
+			<element name="positie" type="imro:LabelpositiePropertyType" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="LabelPropertyType">
+		<sequence>
+			<element ref="imro:Label"/>
+		</sequence>
+	</complexType>
+	<element name="Labelpositie" type="imro:LabelpositieType"/>
+	<complexType name="LabelpositieType">
+		<sequence>
+			<element name="plaatsingspunt" type="gml:PointPropertyType"/>
+			<element name="aanpijlingspunt" type="gml:PointPropertyType" minOccurs="0"/>
+			<element name="hoek" type="double" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="LabelpositiePropertyType">
+		<sequence>
+			<element ref="imro:Labelpositie"/>
+		</sequence>
+	</complexType>
+	<element name="WaardeEnType" type="imro:WaardeEnTypeType"/>
+	<complexType name="WaardeEnTypeType">
+		<sequence>
+			<element name="waarde" type="imro:NotEmptyString"/>
+			<element name="waardeType" type="imro:OmvangWaardeType"/>
+		</sequence>
+	</complexType>
+	<complexType name="WaardeEnTypePropertyType">
+		<sequence>
+			<element ref="imro:WaardeEnType"/>
+		</sequence>
+	</complexType>
+	<simpleType name="Bestemmingshoofdgroep_EType">
+		<restriction base="string">
+			<enumeration value="agrarisch"/>
+			<enumeration value="agrarisch met waarden"/>
+			<enumeration value="bedrijf"/>
+			<enumeration value="bedrijventerrein"/>
+			<enumeration value="bos"/>
+			<enumeration value="centrum"/>
+			<enumeration value="cultuur en ontspanning"/>
+			<enumeration value="detailhandel"/>
+			<enumeration value="dienstverlening"/>
+			<enumeration value="gemengd"/>
+			<enumeration value="groen"/>
+			<enumeration value="horeca"/>
+			<enumeration value="kantoor"/>
+			<enumeration value="maatschappelijk"/>
+			<enumeration value="natuur"/>
+			<enumeration value="overig"/>
+			<enumeration value="recreatie"/>
+			<enumeration value="sport"/>
+			<enumeration value="tuin"/>
+			<enumeration value="verkeer"/>
+			<enumeration value="water"/>
+			<enumeration value="wonen"/>
+			<enumeration value="woongebied"/>
+		</restriction>
+	</simpleType>
+	<element name="Bestemmingshoofdgroep_D" type="imro:Bestemmingshoofdgroep_DType"/>
+	<simpleType name="Bestemmingshoofdgroep_DType">
+		<restriction base="string">
+			<enumeration value="leiding"/>
+			<enumeration value="waarde"/>
+			<enumeration value="waterstaat"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Bestemmingshoofdgroep_EDType">
+		<restriction base="string">
+			<enumeration value="agrarisch"/>
+			<enumeration value="agrarisch met waarden"/>
+			<enumeration value="bedrijf"/>
+			<enumeration value="bedrijventerrein"/>
+			<enumeration value="bos"/>
+			<enumeration value="centrum"/>
+			<enumeration value="cultuur en ontspanning"/>
+			<enumeration value="detailhandel"/>
+			<enumeration value="dienstverlening"/>
+			<enumeration value="gemengd"/>
+			<enumeration value="groen"/>
+			<enumeration value="horeca"/>
+			<enumeration value="kantoor"/>
+			<enumeration value="maatschappelijk"/>
+			<enumeration value="natuur"/>
+			<enumeration value="overig"/>
+			<enumeration value="recreatie"/>
+			<enumeration value="sport"/>
+			<enumeration value="tuin"/>
+			<enumeration value="verkeer"/>
+			<enumeration value="water"/>
+			<enumeration value="wonen"/>
+			<enumeration value="woongebied"/>
+			<enumeration value="leiding"/>
+			<enumeration value="waarde"/>
+			<enumeration value="waterstaat"/>
+		</restriction>
+	</simpleType>
+	<element name="Besluitgebied_A" type="imro:Besluitgebied_AType" substitutionGroup="imro:Plangebied"/>
+	<complexType name="Besluitgebied_AType">
+		<complexContent>
+			<extension base="imro:PlangebiedType">
+				<sequence>
+					<element name="typePlan" type="imro:RuimtelijkPlanOfBesluit_AMBType"/>
+					<element name="beleidsmatigVerantwoordelijkeOverheid" type="imro:Overheden_RType"/>
+					<element name="naamOverheid" type="imro:NotEmptyString"/>
+					<element name="overheidsCode" type="imro:NotEmptyString"/>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="normadressant" type="imro:Normadressant_AMBType" maxOccurs="unbounded"/>
+					<element name="locatieNaam" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="planstatusInfo" type="imro:PlanstatusEnDatum_AMBPropertyType"/>
+					<element name="besluitnummer" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="verwijzingNaarVaststellingsbesluit" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentieBG_AMBPropertyType" maxOccurs="6"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="ondergrond" type="imro:NotEmptyString" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarIllustratieInfo" type="imro:IllustratieReferentiePGPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarExternPlanInfo" type="imro:ExternPlanReferentie_AMBPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNorm" type="imro:NotEmptyString" minOccurs="2" maxOccurs="2"/>
+					<element name="begrenzing" type="imro:GeometriePlangebiedPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Besluitgebied_APropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Besluitgebied_A"/>
+		</sequence> -->
+	</complexType>
+	<element name="Besluitvlak_A" type="imro:Besluitvlak_AType" substitutionGroup="imro:Planobject"/>
+	<complexType name="Besluitvlak_AType">
+		<complexContent>
+			<extension base="imro:PlanobjectType">
+				<sequence>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="thema" type="imro:NotEmptyString" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentie_AMBPropertyType" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarIllustratieInfo" type="imro:IllustratieReferentiePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="begrenzing" type="imro:GeometrieBesluitobject_APropertyType" maxOccurs="unbounded"/>
+					<element name="besluitgebied" type="imro:Besluitgebied_APropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Besluitvlak_APropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Besluitvlak_A"/>
+		</sequence> -->
+	</complexType>
+	<element name="Structuurvisieplangebied_P" type="imro:Structuurvisieplangebied_PType" substitutionGroup="imro:Plangebied"/>
+	<complexType name="Structuurvisieplangebied_PType">
+		<complexContent>
+			<extension base="imro:PlangebiedType">
+				<sequence>
+					<element name="typePlan" type="imro:RuimtelijkPlanOfBesluit_SVType"/>
+					<element name="beleidsmatigVerantwoordelijkeOverheid" type="imro:Overheden_PType"/>
+					<element name="naamOverheid" type="imro:NotEmptyString"/>
+					<element name="overheidsCode" type="imro:NotEmptyString"/>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="locatieNaam" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="planstatusInfo" type="imro:PlanstatusEnDatum_SVPropertyType"/>
+					<element name="besluitnummer" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="verwijzingNaarVaststellingsbesluit" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="verwijzingNaarIllustratieInfo" type="imro:IllustratieReferentiePGPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentiePG_SVPropertyType" maxOccurs="2"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="ondergrond" type="imro:NotEmptyString" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarExternPlanInfo" type="imro:ExternPlanReferentiePG_SVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNorm" type="imro:NotEmptyString" minOccurs="2" maxOccurs="2"/>
+					<element name="begrenzing" type="imro:GeometriePlangebied_PPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Structuurvisieplangebied_PPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Structuurvisieplangebied_P"/>
+		</sequence> -->
+	</complexType>
+	<element name="Figuur" type="imro:FiguurType" substitutionGroup="imro:Aanduiding"/>
+	<complexType name="FiguurType">
+		<complexContent>
+			<extension base="imro:AanduidingType">
+				<sequence>
+					<element name="naam" type="imro:FigurenType"/>
+					<element name="verwijzingNaarIllustratieInfo" type="imro:IllustratieReferentie_BPPropertyType" minOccurs="0"/>
+					<element name="labelInfo" type="imro:LabelPropertyType" minOccurs="0"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="geometrie" type="imro:LijnMultiLijnPropertyType"/>
+					<element name="aanduiding" type="imro:AanduidingPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="FiguurPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Figuur"/>
+		</sequence> -->
+	</complexType>
+	<element name="Bouwvlak" type="imro:BouwvlakType" substitutionGroup="imro:Aanduiding"/>
+	<complexType name="BouwvlakType">
+		<complexContent>
+			<extension base="imro:AanduidingType">
+				<sequence>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="geometrie" type="imro:VlakMultiVlakPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="BouwvlakPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Bouwvlak"/>
+		</sequence> -->
+	</complexType>
+	<element name="Bestemmingsplangebied" type="imro:BestemmingsplangebiedType" substitutionGroup="imro:Plangebied"/>
+	<complexType name="BestemmingsplangebiedType">
+		<complexContent>
+			<extension base="imro:PlangebiedType">
+				<sequence>
+					<element name="typePlan" type="imro:RuimtelijkPlanOfBesluit_BPType"/>
+					<element name="beleidsmatigVerantwoordelijkeOverheid" type="imro:Overheden_BPType"/>
+					<element name="naamOverheid" type="imro:NotEmptyString"/>
+					<element name="overheidsCode" type="imro:NotEmptyString"/>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="locatieNaam" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="planstatusInfo" type="imro:PlanstatusEnDatum_BPPropertyType"/>
+					<element name="besluitnummer" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="verwijzingNaarVaststellingsbesluit" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentiePG_BPPropertyType" minOccurs="2" maxOccurs="4"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="ondergrond" type="imro:NotEmptyString" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarExternPlanInfo" type="imro:ExternPlanReferentie_BPPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNorm" type="imro:NotEmptyString" minOccurs="2" maxOccurs="2"/>
+					<element name="geometrie" type="imro:VlakMultiVlakPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="BestemmingsplangebiedPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Bestemmingsplangebied"/>
+		</sequence> -->
+	</complexType>
+	<element name="Structuurvisiecomplex_P" type="imro:Structuurvisiecomplex_PType" substitutionGroup="imro:Planobject"/>
+	<complexType name="Structuurvisiecomplex_PType">
+		<complexContent>
+			<extension base="imro:PlanobjectType">
+				<sequence>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="thema" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="beleidInfo" type="imro:BeleidInfo_PSVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentie_PSVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarIllustratieInfo" type="imro:IllustratieReferentie_PSVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarExternPlanInfo" type="imro:ExternPlanReferentie_SVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="plangebied" type="imro:Structuurvisieplangebied_PPropertyType"/>
+					<element name="begrenzing" type="imro:GeometrieStructuurvisieObject_PPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="planobject" type="imro:PlanobjectPropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Structuurvisiecomplex_PPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Structuurvisiecomplex_P"/>
+		</sequence> -->
+	</complexType>
+	<element name="Dubbelbestemming" type="imro:DubbelbestemmingType" substitutionGroup="imro:Bestemmingsvlak"/>
+	<complexType name="DubbelbestemmingType">
+		<complexContent>
+			<extension base="imro:BestemmingsvlakType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="DubbelbestemmingPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Dubbelbestemming"/>
+		</sequence> -->
+	</complexType>
+	<element name="Enkelbestemming" type="imro:EnkelbestemmingType" substitutionGroup="imro:Bestemmingsvlak"/>
+	<complexType name="EnkelbestemmingType">
+		<complexContent>
+			<extension base="imro:BestemmingsvlakType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="EnkelbestemmingPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Enkelbestemming"/>
+		</sequence> -->
+	</complexType>
+	<element name="Planobject" type="imro:PlanobjectType" abstract="true" substitutionGroup="imro:PlanologischGebied"/>
+	<complexType name="PlanobjectType" abstract="true">
+		<complexContent>
+			<extension base="imro:PlanologischGebiedType">
+				<sequence>
+					<element name="typePlanobject" type="imro:RuimtelijkPlanobjectType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="PlanobjectPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Planobject"/>
+		</sequence> -->
+	</complexType>
+	<element name="Bestemmingsvlak" type="imro:BestemmingsvlakType" abstract="true" substitutionGroup="imro:Planobject"/>
+	<complexType name="BestemmingsvlakType" abstract="true">
+		<complexContent>
+			<extension base="imro:PlanobjectType">
+				<sequence>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="bestemmingshoofdgroep" type="imro:Bestemmingshoofdgroep_EDType"/>
+					<element name="artikelnummer" type="imro:NotEmptyString"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentie_BPPropertyType"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="labelInfo" type="imro:LabelPropertyType"/>
+					<element name="geometrie" type="gml:SurfacePropertyType"/>
+					<element name="plangebied" type="imro:BestemmingsplangebiedPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="BestemmingsvlakPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Bestemmingsvlak"/>
+		</sequence> -->
+	</complexType>
+	<element name="Functieaanduiding" type="imro:FunctieaanduidingType" substitutionGroup="imro:Aanduiding"/>
+	<complexType name="FunctieaanduidingType">
+		<complexContent>
+			<extension base="imro:AanduidingType">
+				<sequence>
+					<element name="naam" type="imro:FunctieaanduidingenType"/>
+					<element name="labelInfo" type="imro:LabelPropertyType"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="geometrie" type="gml:SurfacePropertyType"/>
+					<element name="aanduiding" type="imro:AanduidingPropertyType" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="FunctieaanduidingPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Functieaanduiding"/>
+		</sequence> -->
+	</complexType>
+	<element name="Maatvoering" type="imro:MaatvoeringType" substitutionGroup="imro:Aanduiding"/>
+	<complexType name="MaatvoeringType">
+		<complexContent>
+			<extension base="imro:AanduidingType">
+				<sequence>
+					<element name="naam" type="imro:MaatvoeringenType"/>
+					<element name="symboolInfo" type="imro:SymboolEnPositiePropertyType"/>
+					<element name="maatvoeringInfo" type="imro:WaardeEnTypePropertyType" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="geometrie" type="gml:SurfacePropertyType"/>
+					<element name="aanduiding" type="imro:AanduidingPropertyType" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="MaatvoeringPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Maatvoering"/>
+		</sequence> -->
+	</complexType>
+	<element name="Aanduiding" type="imro:AanduidingType" abstract="true" substitutionGroup="imro:Planobject"/>
+	<complexType name="AanduidingType" abstract="true">
+		<complexContent>
+			<extension base="imro:PlanobjectType">
+				<sequence>
+					<element name="plangebied" type="imro:BestemmingsplangebiedPropertyType"/>
+					<element name="bestemmingsvlak" type="imro:BestemmingsvlakPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AanduidingPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Aanduiding"/>
+		</sequence> -->
+	</complexType>
+	<element name="Structuurvisiegebied_P" type="imro:Structuurvisiegebied_PType" substitutionGroup="imro:Planobject"/>
+	<complexType name="Structuurvisiegebied_PType">
+		<complexContent>
+			<extension base="imro:PlanobjectType">
+				<sequence>
+					<element name="naam" type="gml:CodeType"/>
+					<element name="thema" type="imro:NotEmptyString" maxOccurs="unbounded"/>
+					<element name="beleidInfo" type="imro:BeleidInfo_PSVPropertyType" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentie_PSVPropertyType" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarIllustratieInfo" type="imro:IllustratieReferentie_PSVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="verwijzingNaarExternPlanInfo" type="imro:ExternPlanReferentie_SVPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="plangebied" type="imro:Structuurvisieplangebied_PPropertyType"/>
+					<element name="begrenzing" type="imro:GeometrieStructuurvisieObject_PPropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Structuurvisiegebied_PPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Structuurvisiegebied_P"/>
+		</sequence> -->
+	</complexType>
+	<element name="Plangebied" type="imro:PlangebiedType" abstract="true" substitutionGroup="imro:PlanologischGebied"/>
+	<complexType name="PlangebiedType" abstract="true">
+		<complexContent>
+			<extension base="imro:PlanologischGebiedType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="PlangebiedPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Plangebied"/>
+		</sequence> -->
+	</complexType>
+	<element name="Gebiedsaanduiding" type="imro:GebiedsaanduidingType" substitutionGroup="imro:Aanduiding"/>
+	<complexType name="GebiedsaanduidingType">
+		<complexContent>
+			<extension base="imro:AanduidingType">
+				<sequence>
+					<element name="naam" type="imro:GebiedsaanduidingenType"/>
+					<element name="gebiedsaanduidinggroep" type="imro:GebiedsaanduidinggroepType"/>
+					<element name="artikelnummer" type="imro:NotEmptyString"/>
+					<element name="verwijzingNaarTekstInfo" type="imro:TekstReferentie_BPPropertyType"/>
+					<element name="verwijzingNaarObjectgerichteTekst" type="imro:NotEmptyString" minOccurs="0"/>
+					<element name="labelInfo" type="imro:LabelPropertyType" minOccurs="0"/>
+					<element name="geometrie" type="imro:VlakMultiVlakPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GebiedsaanduidingPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:Gebiedsaanduiding"/>
+		</sequence> -->
+	</complexType>
+	<element name="SymboolEnPositie" type="imro:SymboolEnPositieType"/>
+	<complexType name="SymboolEnPositieType">
+		<sequence>
+			<element name="symboolCode" type="imro:SymboolCodeMatrixType"/>
+			<element name="positie" type="imro:LabelpositiePropertyType" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="SymboolEnPositiePropertyType">
+		<sequence>
+			<element ref="imro:SymboolEnPositie"/>
+		</sequence>
+	</complexType>
+	<element name="GeoObject" type="imro:GeoObjectType" abstract="true" substitutionGroup="gml:_Feature"/>
+	<complexType name="GeoObjectType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="identificatie" type="imro:NotEmptyString"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GeoObjectPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:GeoObject"/>
+		</sequence> -->
+	</complexType>
+	<element name="PlanologischGebied" type="imro:PlanologischGebiedType" abstract="true" substitutionGroup="imro:GeoObject"/>
+	<complexType name="PlanologischGebiedType" abstract="true">
+		<complexContent>
+			<extension base="imro:GeoObjectType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="PlanologischGebiedPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:PlanologischGebied"/>
+		</sequence> -->
+	</complexType>
+	<!--
+	<element name="VlakMultiVlak" type="imro:VlakMultiVlakType"/>
+	<complexType name="VlakMultiVlakType">
+		<annotation>
+			<documentation>vlak of multivlak </documentation>
+		</annotation>
+		<choice>
+			<element name="geometrieVlak" type="gml:SurfacePropertyType"/>
+			<element name="geometrieMultiVlak" type="gml:MultiSurfacePropertyType"/>
+		</choice>
+	</complexType>
+	<complexType name="VlakMultiVlakPropertyType">
+		<sequence>
+			<element ref="imro:VlakMultiVlak"/>
+		</sequence>
+	</complexType> -->
+	<complexType name="VlakMultiVlakPropertyType">
+		<choice>
+			<element ref="gml:Surface"/>
+			<element ref="gml:MultiSurface"/>
+		</choice>
+	</complexType>
+	<element name="MetadataIMRObestand" type="imro:MetadataIMRObestandType" substitutionGroup="gml:_Feature"/>
+	<complexType name="MetadataIMRObestandType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="datasetTitel" type="imro:NotEmptyString"/>
+					<element name="creatiedatum" type="imro:NotEmptyString"/>
+					<element name="bronbeheerder" type="imro:NotEmptyString"/>
+					<element name="codeerVerantwoordelijke" type="imro:NotEmptyString"/>
+					<element name="naamApplicatieschema" type="imro:NotEmptyString"/>
+					<element name="codeReferentiesysteem" type="imro:NotEmptyString"/>
+					<element name="toepassingsschaal" type="integer"/>
+					<element name="applicatieIdentificatie" type="imro:NotEmptyString"/>
+					<element name="versieXMLschema" type="imro:NotEmptyString"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="MetadataIMRObestandPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:MetadataIMRObestand"/>
+		</sequence> -->
+	</complexType>
+	<!--	
+	<element name="PuntLijnVlak" type="imro:PuntLijnVlakType"/>
+	<complexType name="PuntLijnVlakType">
+		<choice>
+			<element name="geometrieLijn" type="gml:CurvePropertyType"/>
+			<element name="geometriePunt" type="gml:PointPropertyType"/>
+			<element name="geometrieVlak" type="gml:SurfacePropertyType"/>
+		</choice>
+	</complexType>
+	<complexType name="PuntLijnVlakPropertyType">
+		<sequence>
+			<element ref="imro:PuntLijnVlak"/>
+		</sequence>
+	</complexType> -->
+	<complexType name="PuntLijnVlakPropertyType">
+		<choice>
+			<element ref="gml:Point"/>
+			<element ref="gml:Curve"/>
+			<element ref="gml:Surface"/>
+		</choice>
+	</complexType>
+	<!--
+	<element name="PuntLijnVlakMulti" type="imro:PuntLijnVlakMultiType"/>
+	<complexType name="PuntLijnVlakMultiType">
+		<choice>
+			<element name="geometriePunt" type="gml:PointPropertyType"/>
+			<element name="geometrieLijn" type="gml:CurvePropertyType"/>
+			<element name="geometrieVlak" type="gml:SurfacePropertyType"/>
+			<element name="geometrieMultiLijn" type="gml:MultiCurvePropertyType"/>
+			<element name="geometrieMultiPunt" type="gml:MultiPointPropertyType"/>
+			<element name="geometrieMultiVlak" type="gml:MultiSurfacePropertyType"/>
+		</choice>
+	</complexType>
+	<complexType name="PuntLijnVlakMultiPropertyType">
+		<sequence>
+			<element ref="imro:PuntLijnVlakMulti"/>
+		</sequence>
+	</complexType> -->
+	<complexType name="PuntLijnVlakMultiPropertyType">
+		<choice>
+			<element ref="gml:Point"/>
+			<element ref="gml:Curve"/>
+			<element ref="gml:Surface"/>
+			<element ref="gml:MultiPoint"/>
+			<element ref="gml:MultiCurve"/>
+			<element ref="gml:MultiSurface"/>
+		</choice>
+	</complexType>
+	<!--
+	<element name="LijnMultiLijn" type="imro:LijnMultiLijnType"/>
+	<complexType name="LijnMultiLijnType">
+		<choice>
+			<element name="geometrieLijn" type="gml:CurvePropertyType"/>
+			<element name="geometrieMultiLijn" type="gml:MultiCurvePropertyType"/>
+		</choice>
+	</complexType>
+	<complexType name="LijnMultiLijnPropertyType">
+		<sequence>
+			<element ref="imro:LijnMultiLijn"/>
+		</sequence>
+	</complexType> -->
+	<complexType name="LijnMultiLijnPropertyType">
+		<choice>
+			<element ref="gml:Curve"/>
+			<element ref="gml:MultiCurve"/>
+		</choice>
+	</complexType>
+	<simpleType name="Planstatus_SVType">
+		<restriction base="string">
+			<enumeration value="concept"/>
+			<enumeration value="voorontwerp"/>
+			<enumeration value="ontwerp"/>
+			<enumeration value="vastgesteld"/>
+			<enumeration value="geconsolideerde versie"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Planstatus_BPType">
+		<restriction base="string">
+			<enumeration value="concept"/>
+			<enumeration value="voorontwerp"/>
+			<enumeration value="ontwerp"/>
+			<enumeration value="vastgesteld"/>
+			<enumeration value="onherroepelijk"/>
+			<enumeration value="geconsolideerde versie"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Planstatus_RSVType">
+		<restriction base="string">
+			<enumeration value="kabinetsstandpunt"/>
+			<enumeration value="kabinetsvoornemen"/>
+			<enumeration value="resultaten van inspraak bestuurlijk overleg en advies"/>
+			<enumeration value="vastgesteld beleid"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Instrument_RSVType">
+		<union memberTypes="imro:Instrument_RSVEnumerationType imro:Instrument_RSVOtherType"/>
+	</simpleType>
+	<simpleType name="Instrument_RSVEnumerationType">
+		<restriction base="string">
+			<enumeration value="amvb"/>
+			<enumeration value="beheersverordening"/>
+			<enumeration value="bestemmingsplan"/>
+			<enumeration value="bestuurlijke afspraken"/>
+			<enumeration value="coördinatieregeling"/>
+			<enumeration value="inpassingsplan"/>
+			<enumeration value="ontheffing buitenplans"/>
+			<enumeration value="proactieve aanwijzing"/>
+			<enumeration value="projectbesluit"/>
+			<enumeration value="reactieve aanwijzing"/>
+			<enumeration value="verordening"/>
+			<enumeration value="voorbereidingsbesluit"/>
+			<enumeration value="vooroverleg"/>
+			<enumeration value="zienswijze"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Instrument_RSVOtherType">
+		<restriction base="string">
+			<pattern value="other: .*"/>
+		</restriction>
+	</simpleType>
+	<element name="TekstReferentieBG_XGB" type="imro:TekstReferentieBG_XGBType"/>
+	<complexType name="TekstReferentieBG_XGBType">
+		<sequence>
+			<element name="verwijzingNaarTekst" type="imro:NotEmptyString"/>
+			<element name="typeTekst" type="imro:TeksttypeBG_XGBType"/>
+		</sequence>
+	</complexType>
+	<complexType name="TekstReferentieBG_XGBPropertyType">
+		<sequence>
+			<element ref="imro:TekstReferentieBG_XGB"/>
+		</sequence>
+	</complexType>
+	<element name="ExternPlanReferentie_AMB" type="imro:ExternPlanReferentie_AMBType"/>
+	<complexType name="ExternPlanReferentie_AMBType">
+		<sequence>
+			<element name="naamExternPlan" type="imro:NotEmptyString"/>
+			<element name="idnExternPlan" type="imro:NotEmptyString" minOccurs="0"/>
+			<element name="rolExternPlan" type="imro:RolExternPlan_AMBType"/>
+		</sequence>
+	</complexType>
+	<complexType name="ExternPlanReferentie_AMBPropertyType">
+		<sequence>
+			<element ref="imro:ExternPlanReferentie_AMB"/>
+		</sequence>
+	</complexType>
+	<simpleType name="RolExternPlan_AMBType">
+		<restriction base="string">
+			<enumeration value="als mutatie opgenomen"/>
+			<enumeration value="gedeeltelijke heziening van extern plan/besluit"/>
+			<enumeration value="in extern plan/besluit uit te werken"/>
+			<enumeration value="informatie in extern plan/besluit"/>
+			<enumeration value="ten gevolge van extern plan/besluit"/>
+		</restriction>
+	</simpleType>
+	<element name="TekstReferentie_AMB" type="imro:TekstReferentie_AMBType"/>
+	<complexType name="TekstReferentie_AMBType">
+		<sequence>
+			<element name="verwijzingNaarTekst" type="imro:NotEmptyString"/>
+			<element name="typeTekst" type="imro:Teksttype_AMBType"/>
+			<element name="normadressant" type="imro:Normadressant_AMBType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="TekstReferentie_AMBPropertyType">
+		<sequence>
+			<element ref="imro:TekstReferentie_AMB"/>
+		</sequence>
+	</complexType>
+	<simpleType name="Normadressant_PVType">
+		<restriction base="string">
+			<enumeration value="bevoegd gezag"/>
+			<enumeration value="burgemeester en wethouders"/>
+			<enumeration value="gedeputeerde staten"/>
+			<enumeration value="gemeentelijke bestuursorganen"/>
+			<enumeration value="gemeenteraad"/>
+			<enumeration value="regionale bestuursorganen"/>
+			<enumeration value="niet nader aangeduid"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Planstatus_PVType">
+		<restriction base="string">
+			<enumeration value="concept"/>
+			<enumeration value="voorontwerp"/>
+			<enumeration value="ontwerp"/>
+			<enumeration value="vastgesteld"/>
+			<enumeration value="geconsolideerde versie"/>
+		</restriction>
+	</simpleType>
+	<element name="PlanstatusEnDatum_PV" type="imro:PlanstatusEnDatum_PVType"/>
+	<complexType name="PlanstatusEnDatum_PVType">
+		<sequence>
+			<element name="planstatus" type="imro:Planstatus_PVType"/>
+			<element name="datum" type="imro:NotEmptyString"/>
+		</sequence>
+	</complexType>
+	<complexType name="PlanstatusEnDatum_PVPropertyType">
+		<sequence>
+			<element ref="imro:PlanstatusEnDatum_PV"/>
+		</sequence>
+	</complexType>
+	<simpleType name="RolExternPlan_PVType">
+		<restriction base="string">
+			<enumeration value="als mutatie opgenomen"/>
+			<enumeration value="gedeeltelijke herziening van extern plan/besluit"/>
+			<enumeration value="ten gevolge van extern plan/besluit"/>
+		</restriction>
+	</simpleType>
+	<element name="ExternPlanReferentie_PV" type="imro:ExternPlanReferentie_PVType"/>
+	<complexType name="ExternPlanReferentie_PVType">
+		<sequence>
+			<element name="naamExternPlan" type="imro:NotEmptyString"/>
+			<element name="idnExternPlan" type="imro:NotEmptyString" minOccurs="0"/>
+			<element name="rolExternPlan" type="imro:RolExternPlan_PVType"/>
+		</sequence>
+	</complexType>
+	<complexType name="ExternPlanReferentie_PVPropertyType">
+		<sequence>
+			<element ref="imro:ExternPlanReferentie_PV"/>
+		</sequence>
+	</complexType>
+	<simpleType name="Teksttype_PVType">
+		<restriction base="string">
+			<enumeration value="regel zonder voorbereidingsbescherming"/>
+			<enumeration value="regel met voorbereidingsbescherming"/>
+			<enumeration value="toelichting"/>
+			<enumeration value="bijlage bij regel zonder voorbereidingsbescherming"/>
+			<enumeration value="bijlage bij regel met voorbereidingsbescherming"/>
+			<enumeration value="bijlage bij toelichting"/>
+		</restriction>
+	</simpleType>
+	<element name="TekstReferentie_PV" type="imro:TekstReferentie_PVType"/>
+	<complexType name="TekstReferentie_PVType">
+		<sequence>
+			<element name="verwijzingNaarTekst" type="imro:NotEmptyString"/>
+			<element name="typeTekst" type="imro:Teksttype_PVType"/>
+			<element name="normadressant" type="imro:Normadressant_PVType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="TekstReferentie_PVPropertyType">
+		<sequence>
+			<element ref="imro:TekstReferentie_PV"/>
+		</sequence>
+	</complexType>
+	<element name="IllustratieReferentie" type="imro:IllustratieReferentieType"/>
+	<complexType name="IllustratieReferentieType">
+		<sequence>
+			<element name="verwijzingNaarIllustratie" type="imro:NotEmptyString"/>
+			<element name="typeIllustratie" type="imro:IllustratieType"/>
+			<element name="legendanaam" type="imro:NotEmptyString" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="IllustratieReferentiePropertyType">
+		<sequence>
+			<element ref="imro:IllustratieReferentie"/>
+		</sequence>
+	</complexType>
+	<element name="BeleidInfo_GSV" type="imro:BeleidInfo_GSVType"/>
+	<complexType name="BeleidInfo_GSVType">
+		<sequence>
+			<element name="belang" type="imro:NotEmptyString" minOccurs="0"/>
+			<element name="rol" type="imro:NotEmptyString" minOccurs="0"/>
+			<element name="instrument" type="imro:Instrument_GSVType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="BeleidInfo_GSVPropertyType">
+		<sequence>
+			<element ref="imro:BeleidInfo_GSV"/>
+		</sequence>
+	</complexType>
+	<simpleType name="Teksttype_XGBType">
+		<restriction base="string">
+			<enumeration value="besluittekst"/>
+			<enumeration value="voorschriften/regels"/>
+			<enumeration value="toelichting"/>
+			<enumeration value="bijlage bij besluittekst"/>
+			<enumeration value="bijlage bij voorschriften/regels"/>
+			<enumeration value="bijlage bij toelichting"/>
+		</restriction>
+	</simpleType>
+	<element name="GeometrieStructuurvisieObject_P" type="imro:GeometrieStructuurvisieObject_PType" substitutionGroup="gml:_Feature"/>
+	<complexType name="GeometrieStructuurvisieObject_PType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="geometrie" type="imro:PuntLijnVlakCombiPropertyType"/>
+					<element name="inwinningsschaal" type="integer" minOccurs="0"/>
+					<element name="idealisatie" type="imro:Idealisatie_3Type"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GeometrieStructuurvisieObject_PPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:GeometrieStructuurvisieObject_P"/>
+		</sequence> -->
+	</complexType>
+	<simpleType name="Instrument_GSVType">
+		<union memberTypes="imro:Instrument_GSVEnumerationType imro:Instrument_GSVOtherType"/>
+	</simpleType>
+	<simpleType name="Instrument_GSVEnumerationType">
+		<restriction base="string">
+			<enumeration value="beheersverordening"/>
+			<enumeration value="bestemmingsplan"/>
+			<enumeration value="coördinatieregeling"/>
+			<enumeration value="inpassingsplan"/>
+			<enumeration value="ontheffing buitenplans"/>
+			<enumeration value="proactieve aanwijzing"/>
+			<enumeration value="projectbesluit"/>
+			<enumeration value="reactieve aanwijzing"/>
+			<enumeration value="verordening"/>
+			<enumeration value="voorbereidingsbesluit"/>
+			<enumeration value="zienswijze"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Instrument_GSVOtherType">
+		<restriction base="string">
+			<pattern value="other: .*"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Teksttype_SVType">
+		<restriction base="string">
+			<enumeration value="beleid"/>
+			<enumeration value="toelichting"/>
+		</restriction>
+	</simpleType>
+	<element name="TekstReferentie_SV" type="imro:TekstReferentie_SVType"/>
+	<complexType name="TekstReferentie_SVType">
+		<sequence>
+			<element name="verwijzingNaarTekst" type="imro:NotEmptyString"/>
+			<element name="typeTekst" type="imro:Teksttype_SVType"/>
+		</sequence>
+	</complexType>
+	<complexType name="TekstReferentie_SVPropertyType">
+		<sequence>
+			<element ref="imro:TekstReferentie_SV"/>
+		</sequence>
+	</complexType>
+	<simpleType name="Instrument_PSVType">
+		<union memberTypes="imro:Instrument_PSVEnumerationType imro:Instrument_PSVOtherType"/>
+	</simpleType>
+	<simpleType name="Instrument_PSVEnumerationType">
+		<restriction base="string">
+			<enumeration value="bestuurlijke afspraken (convenanten)"/>
+			<enumeration value="coördinatieregeling"/>
+			<enumeration value="inpassingsplan"/>
+			<enumeration value="proactieve aanwijzing"/>
+			<enumeration value="projectbesluit"/>
+			<enumeration value="reactieve aanwijzing"/>
+			<enumeration value="verordening"/>
+			<enumeration value="vooroverleg"/>
+			<enumeration value="zienswijze"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Instrument_PSVOtherType">
+		<restriction base="string">
+			<pattern value="other: .*"/>
+		</restriction>
+	</simpleType>
+	<element name="BeleidInfo_PSV" type="imro:BeleidInfo_PSVType"/>
+	<complexType name="BeleidInfo_PSVType">
+		<sequence>
+			<element name="belang" type="imro:NotEmptyString"/>
+			<element name="rol" type="imro:NotEmptyString"/>
+			<element name="instrument" type="imro:Instrument_PSVType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="BeleidInfo_PSVPropertyType">
+		<sequence>
+			<element ref="imro:BeleidInfo_PSV"/>
+		</sequence>
+	</complexType>
+	<element name="GeometriePlangebied_P" type="imro:GeometriePlangebied_PType" substitutionGroup="gml:_Feature"/>
+	<complexType name="GeometriePlangebied_PType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="geometrie" type="imro:VlakMultiVlakPropertyType"/>
+					<element name="inwinningsschaal" type="integer" minOccurs="0"/>
+					<element name="idealisatie" type="imro:Idealisatie_1Type"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GeometriePlangebied_PPropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:GeometriePlangebied_P"/>
+		</sequence> -->
+	</complexType>
+	<element name="GeometrieBesluitobject_P1" type="imro:GeometrieBesluitobject_P1Type" substitutionGroup="gml:_Feature"/>
+	<complexType name="GeometrieBesluitobject_P1Type">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="geometrie" type="imro:VlakMultiVlakPropertyType"/>
+					<element name="idealisatie" type="imro:Idealisatie_1Type"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GeometrieBesluitobject_P1PropertyType">
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<!--
+		<sequence minOccurs="0">
+			<element ref="imro:GeometrieBesluitobject_P1"/>
+		</sequence> -->
+	</complexType>
+	<element name="BeleidInfo_RSV" type="imro:BeleidInfo_RSVType"/>
+	<complexType name="BeleidInfo_RSVType">
+		<sequence>
+			<element name="belang" type="imro:NotEmptyString"/>
+			<element name="rol" type="imro:NotEmptyString"/>
+			<element name="instrument" type="imro:Instrument_RSVType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="BeleidInfo_RSVPropertyType">
+		<sequence>
+			<element ref="imro:BeleidInfo_RSV"/>
+		</sequence>
+	</complexType>
+	<simpleType name="SymboolCodeMatrixType">
+		<restriction base="string">
+			<enumeration value="s100"/>
+			<enumeration value="s101"/>
+			<enumeration value="s102"/>
+			<enumeration value="s103"/>
+			<enumeration value="s104"/>
+			<enumeration value="s105"/>
+			<enumeration value="s106"/>
+			<enumeration value="s107"/>
+			<enumeration value="s108"/>
+			<enumeration value="s109"/>
+			<enumeration value="s110"/>
+			<enumeration value="s111"/>
+			<enumeration value="s112"/>
+			<enumeration value="s113"/>
+			<enumeration value="s114"/>
+			<enumeration value="s115"/>
+			<enumeration value="s116"/>
+			<enumeration value="s117"/>
+			<enumeration value="s118"/>
+			<enumeration value="s119"/>
+			<enumeration value="s120"/>
+			<enumeration value="s121"/>
+			<enumeration value="s122"/>
+			<enumeration value="s123"/>
+			<enumeration value="s124"/>
+			<enumeration value="s125"/>
+			<enumeration value="s126"/>
+			<enumeration value="s127"/>
+			<enumeration value="s128a"/>
+			<enumeration value="s128b"/>
+			<enumeration value="s128c"/>
+			<enumeration value="s128d"/>
+			<enumeration value="s128e"/>
+			<enumeration value="s128f"/>
+			<enumeration value="s128g"/>
+			<enumeration value="s128h"/>
+			<enumeration value="s128i"/>
+			<enumeration value="s128j"/>
+			<enumeration value="s128k"/>
+			<enumeration value="s128l"/>
+			<enumeration value="s128m"/>
+			<enumeration value="s128n"/>
+			<enumeration value="s128o"/>
+			<enumeration value="s128p"/>
+			<enumeration value="s128q"/>
+			<enumeration value="s128r"/>
+			<enumeration value="s128s"/>
+			<enumeration value="s128t"/>
+			<enumeration value="s128u"/>
+			<enumeration value="s128v"/>
+			<enumeration value="s128w"/>
+			<enumeration value="s128x"/>
+			<enumeration value="s128y"/>
+			<enumeration value="s128z"/>
+			<enumeration value="s128aa"/>
+			<enumeration value="s128ab"/>
+			<enumeration value="s128ac"/>
+			<enumeration value="s128ad"/>
+			<enumeration value="s129a"/>
+			<enumeration value="s129b"/>
+			<enumeration value="s129c"/>
+			<enumeration value="s129d"/>
+			<enumeration value="s129e"/>
+			<enumeration value="s129f"/>
+			<enumeration value="s129g"/>
+			<enumeration value="s129h"/>
+			<enumeration value="s129i"/>
+			<enumeration value="s129j"/>
+			<enumeration value="s129k"/>
+			<enumeration value="s129l"/>
+			<enumeration value="s129m"/>
+			<enumeration value="s129n"/>
+			<enumeration value="s129o"/>
+			<enumeration value="s129p"/>
+			<enumeration value="s129q"/>
+			<enumeration value="s129r"/>
+			<enumeration value="s129s"/>
+			<enumeration value="s129t"/>
+			<enumeration value="s129u"/>
+			<enumeration value="s129v"/>
+			<enumeration value="s129w"/>
+			<enumeration value="s129x"/>
+			<enumeration value="s129y"/>
+			<enumeration value="s129z"/>
+			<enumeration value="s130a"/>
+			<enumeration value="s130b"/>
+			<enumeration value="s130c"/>
+			<enumeration value="s130d"/>
+			<enumeration value="s130e"/>
+			<enumeration value="s130f"/>
+			<enumeration value="s130g"/>
+			<enumeration value="s130h"/>
+			<enumeration value="s130i"/>
+			<enumeration value="s130j"/>
+			<enumeration value="s130k"/>
+			<enumeration value="s130l"/>
+			<enumeration value="s130m"/>
+			<enumeration value="s130n"/>
+			<enumeration value="s130o"/>
+			<enumeration value="s130p"/>
+			<enumeration value="s130q"/>
+			<enumeration value="s130r"/>
+			<enumeration value="s130s"/>
+			<enumeration value="s130t"/>
+			<enumeration value="s130u"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="TeksttypeBG_XGBType">
+		<restriction base="string">
+			<enumeration value="besluitdocument"/>
+			<enumeration value="voorschriften/regels"/>
+			<enumeration value="toelichting"/>
+			<enumeration value="bijlage bij besluitdocument"/>
+			<enumeration value="bijlage bij voorschriften/regels"/>
+			<enumeration value="bijlage bij toelichting"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="TeksttypePG_SVType">
+		<restriction base="string">
+			<enumeration value="document"/>
+			<enumeration value="bijlage"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="RolExternPlanPG_SVType">
+		<restriction base="string">
+			<enumeration value="als mutatie opgenomen"/>
+			<enumeration value="gedeeltelijke herziening van extern plan"/>
+			<enumeration value="in extern plan/besluit uit te werken"/>
+			<enumeration value="in extern plan/besluit uitgewerkt"/>
+			<enumeration value="informatie in extern plan/besluit"/>
+			<enumeration value="ten gevolge van extern plan/besluit"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="TeksttypeV_PSVType">
+		<restriction base="string">
+			<enumeration value="toelichting"/>
+		</restriction>
+	</simpleType>
+	<element name="IllustratieReferentiePG" type="imro:IllustratieReferentiePGType"/>
+	<complexType name="IllustratieReferentiePGType">
+		<sequence>
+			<element name="verwijzingNaarIllustratie" type="imro:NotEmptyString"/>
+			<element name="typeIllustratie" type="imro:IllustratieType"/>
+		</sequence>
+	</complexType>
+	<complexType name="IllustratieReferentiePGPropertyType">
+		<sequence>
+			<element ref="imro:IllustratieReferentiePG"/>
+		</sequence>
+	</complexType>
+	<simpleType name="FunctieaanduidingenType">
+		<union memberTypes="imro:FunctieaanduidingenEnumerationType imro:FunctieaanduidingenOtherType"/>
+	</simpleType>
+	<simpleType name="FunctieaanduidingenEnumerationType">
+		<restriction base="string">
+			<enumeration value="aanlegsteiger"/>
+			<enumeration value="agrarisch"/>
+			<enumeration value="agrarisch bedrijf"/>
+			<enumeration value="agrarisch loonbedrijf"/>
+			<enumeration value="agrarisch met waarden"/>
+			<enumeration value="akkerbouw"/>
+			<enumeration value="ambachtelijke be- en verwerking agrarische producten"/>
+			<enumeration value="aquacultuur"/>
+			<enumeration value="aquaduct"/>
+			<enumeration value="archeologische waarden"/>
+			<enumeration value="asielzoekerscentrum"/>
+			<enumeration value="atelier"/>
+			<enumeration value="attractiepark"/>
+			<enumeration value="autocircuit"/>
+			<enumeration value="baggerspeciedepot"/>
+			<enumeration value="bed &amp; breakfast"/>
+			<enumeration value="bedrijf"/>
+			<enumeration value="bedrijf aan huis"/>
+			<enumeration value="bedrijfswoning"/>
+			<enumeration value="bedrijventerrein"/>
+			<enumeration value="beeldbepalende boom"/>
+			<enumeration value="begraafplaats"/>
+			<enumeration value="belwinkel"/>
+			<enumeration value="beroep aan huis"/>
+			<enumeration value="bibliotheek"/>
+			<enumeration value="bioscoop"/>
+			<enumeration value="bollenteelt"/>
+			<enumeration value="bomenteelt"/>
+			<enumeration value="bordeel"/>
+			<enumeration value="bos"/>
+			<enumeration value="bowlingbaan"/>
+			<enumeration value="brandweerkazerne"/>
+			<enumeration value="brug"/>
+			<enumeration value="caravanstalling"/>
+			<enumeration value="casino"/>
+			<enumeration value="centrum"/>
+			<enumeration value="congrescentrum"/>
+			<enumeration value="creativiteitscentrum"/>
+			<enumeration value="crematorium"/>
+			<enumeration value="cultuur en ontspanning"/>
+			<enumeration value="cultuurhistorische waarden"/>
+			<enumeration value="dagrecreatie"/>
+			<enumeration value="dansschool"/>
+			<enumeration value="detailhandel"/>
+			<enumeration value="detailhandel grootschalig"/>
+			<enumeration value="detailhandel in brand en explosiegevaarlijke goederen"/>
+			<enumeration value="detailhandel perifeer"/>
+			<enumeration value="detailhandel volumineus"/>
+			<enumeration value="dienstverlening"/>
+			<enumeration value="dierenasiel"/>
+			<enumeration value="dierentuin"/>
+			<enumeration value="discotheek"/>
+			<enumeration value="drafbaan"/>
+			<enumeration value="drugsopvang"/>
+			<enumeration value="ecologische verbindingszone"/>
+			<enumeration value="ecologische waarde"/>
+			<enumeration value="eendenkooi"/>
+			<enumeration value="erf"/>
+			<enumeration value="evenemententerrein"/>
+			<enumeration value="feestzaal"/>
+			<enumeration value="fruitteelt"/>
+			<enumeration value="garage"/>
+			<enumeration value="geluidscherm"/>
+			<enumeration value="geluidwal"/>
+			<enumeration value="gemaal"/>
+			<enumeration value="gemengd"/>
+			<enumeration value="geomorfologische waarde"/>
+			<enumeration value="gezondheidszorg"/>
+			<enumeration value="glastuinbouw"/>
+			<enumeration value="golfbaan"/>
+			<enumeration value="groen"/>
+			<enumeration value="gronddepot"/>
+			<enumeration value="grondgebonden veehouderij"/>
+			<enumeration value="groothandel"/>
+			<enumeration value="haven"/>
+			<enumeration value="horeca"/>
+			<enumeration value="houtsingel"/>
+			<enumeration value="houtwal"/>
+			<enumeration value="hovenier"/>
+			<enumeration value="ijsbaan"/>
+			<enumeration value="infrastructuur"/>
+			<enumeration value="intensieve kwekerij"/>
+			<enumeration value="intensieve veehouderij"/>
+			<enumeration value="internetcafé"/>
+			<enumeration value="internetwinkel"/>
+			<enumeration value="jachthaven"/>
+			<enumeration value="jeugdopvang"/>
+			<enumeration value="jongeren ontmoetingsplek"/>
+			<enumeration value="justitiële inrichting"/>
+			<enumeration value="kamerverhuur"/>
+			<enumeration value="kampeerboerderij"/>
+			<enumeration value="kampeerterrein"/>
+			<enumeration value="kantoor"/>
+			<enumeration value="kartbaan"/>
+			<enumeration value="kas"/>
+			<enumeration value="kazerne"/>
+			<enumeration value="kinderboerderij"/>
+			<enumeration value="kunstijsbaan"/>
+			<enumeration value="laad- en losplaats"/>
+			<enumeration value="landingsbaan"/>
+			<enumeration value="landschapswaarden"/>
+			<enumeration value="leidingstrook"/>
+			<enumeration value="ligplaats"/>
+			<enumeration value="luchthaven"/>
+			<enumeration value="luchtverkeer"/>
+			<enumeration value="maatschappelijk"/>
+			<enumeration value="manege"/>
+			<enumeration value="markt"/>
+			<enumeration value="meer"/>
+			<enumeration value="militaire zaken"/>
+			<enumeration value="militair oefenterrein"/>
+			<enumeration value="modelvliegtuigbaan"/>
+			<enumeration value="monumentale boom"/>
+			<enumeration value="motorcrossterrein"/>
+			<enumeration value="munitiedepot"/>
+			<enumeration value="museum"/>
+			<enumeration value="muziekschool"/>
+			<enumeration value="muziektheater"/>
+			<enumeration value="naschoolse opvang"/>
+			<enumeration value="natuur- en landschapswaarden"/>
+			<enumeration value="natuur"/>
+			<enumeration value="natuurwaarden"/>
+			<enumeration value="nutsbedrijf"/>
+			<enumeration value="nutsvoorziening"/>
+			<enumeration value="oever"/>
+			<enumeration value="onderwijs"/>
+			<enumeration value="ontsluiting"/>
+			<enumeration value="openbaar vervoer"/>
+			<enumeration value="openbare dienstverlening"/>
+			<enumeration value="opslag"/>
+			<enumeration value="openbaar vervoerstation"/>
+			<enumeration value="paardenfokkerij"/>
+			<enumeration value="paardenhouderij"/>
+			<enumeration value="pad"/>
+			<enumeration value="park"/>
+			<enumeration value="parkeergarage"/>
+			<enumeration value="parkeerterrein"/>
+			<enumeration value="partyboerderij"/>
+			<enumeration value="passantenhaven"/>
+			<enumeration value="pitch &amp; putt"/>
+			<enumeration value="plantsoen"/>
+			<enumeration value="plein"/>
+			<enumeration value="praktijkruimte"/>
+			<enumeration value="prostitutie"/>
+			<enumeration value="raamprostitutie (raamexploitatie)"/>
+			<enumeration value="railverkeer"/>
+			<enumeration value="recreatie"/>
+			<enumeration value="recreatiewoning"/>
+			<enumeration value="religie"/>
+			<enumeration value="risicovolle inrichting"/>
+			<enumeration value="rivier"/>
+			<enumeration value="sauna"/>
+			<enumeration value="schiphuis"/>
+			<enumeration value="seksinrichting"/>
+			<enumeration value="sierteelt"/>
+			<enumeration value="silo"/>
+			<enumeration value="skeelerbaan"/>
+			<enumeration value="skibaan"/>
+			<enumeration value="sluis"/>
+			<enumeration value="speeltuin"/>
+			<enumeration value="speelvoorziening"/>
+			<enumeration value="spoorweg"/>
+			<enumeration value="sport"/>
+			<enumeration value="sportcentrum"/>
+			<enumeration value="sporthal"/>
+			<enumeration value="sportveld"/>
+			<enumeration value="sportzaal"/>
+			<enumeration value="squashcentrum"/>
+			<enumeration value="stadion"/>
+			<enumeration value="steiger"/>
+			<enumeration value="strand"/>
+			<enumeration value="strandhuis"/>
+			<enumeration value="studentenhuisvesting"/>
+			<enumeration value="stuw"/>
+			<enumeration value="supermarkt"/>
+			<enumeration value="tennisbaan"/>
+			<enumeration value="terras"/>
+			<enumeration value="theater"/>
+			<enumeration value="tuin"/>
+			<enumeration value="tuinbouw"/>
+			<enumeration value="tuincentrum"/>
+			<enumeration value="tunnel"/>
+			<enumeration value="uitvaartcentrum"/>
+			<enumeration value="vaarweg"/>
+			<enumeration value="veerhaven"/>
+			<enumeration value="ven"/>
+			<enumeration value="verblijfsgebied"/>
+			<enumeration value="verblijfsrecreatie"/>
+			<enumeration value="verenigingsleven"/>
+			<enumeration value="verkeer"/>
+			<enumeration value="verkoop eigen producten"/>
+			<enumeration value="verkooppunt motorbrandstoffen met lpg"/>
+			<enumeration value="verkooppunt motorbrandstoffen zonder lpg"/>
+			<enumeration value="vertrek- en aankomsthal"/>
+			<enumeration value="vijver"/>
+			<enumeration value="viskwekerij"/>
+			<enumeration value="volkstuin"/>
+			<enumeration value="vulpunt lpg"/>
+			<enumeration value="waardevolle boom"/>
+			<enumeration value="water"/>
+			<enumeration value="waterberging"/>
+			<enumeration value="waterkering"/>
+			<enumeration value="waterstaat"/>
+			<enumeration value="waterweg"/>
+			<enumeration value="waterzuiveringsinstallatie"/>
+			<enumeration value="weg"/>
+			<enumeration value="wellness"/>
+			<enumeration value="welzijnsinstelling"/>
+			<enumeration value="wielerbaan"/>
+			<enumeration value="windturbine"/>
+			<enumeration value="windturbinepark"/>
+			<enumeration value="wonen"/>
+			<enumeration value="woongebied"/>
+			<enumeration value="woonschepenligplaats"/>
+			<enumeration value="woonwagenstandplaats"/>
+			<enumeration value="zee"/>
+			<enumeration value="zend-/ontvangstinstallatie"/>
+			<enumeration value="zorginstelling"/>
+			<enumeration value="zorgboerderij"/>
+			<enumeration value="zorgwoning"/>
+			<enumeration value="zwembad"/>
+			<enumeration value="aanlegsteiger uitgesloten"/>
+			<enumeration value="agrarisch uitgesloten"/>
+			<enumeration value="agrarisch bedrijf uitgesloten"/>
+			<enumeration value="agrarisch loonbedrijf uitgesloten"/>
+			<enumeration value="agrarisch met waarden uitgesloten"/>
+			<enumeration value="akkerbouw uitgesloten"/>
+			<enumeration value="ambachtelijke be- en verwerking agrarische producten uitgesloten"/>
+			<enumeration value="aquacultuur uitgesloten"/>
+			<enumeration value="aquaduct uitgesloten"/>
+			<enumeration value="archeologische waarden uitgesloten"/>
+			<enumeration value="asielzoekerscentrum uitgesloten"/>
+			<enumeration value="atelier uitgesloten"/>
+			<enumeration value="attractiepark uitgesloten"/>
+			<enumeration value="autocircuit uitgesloten"/>
+			<enumeration value="baggerspeciedepot uitgesloten"/>
+			<enumeration value="bed &amp; breakfast uitgesloten"/>
+			<enumeration value="bedrijf uitgesloten"/>
+			<enumeration value="bedrijf aan huis uitgesloten"/>
+			<enumeration value="bedrijfswoning uitgesloten"/>
+			<enumeration value="bedrijventerrein uitgesloten"/>
+			<enumeration value="beeldbepalende boom uitgesloten"/>
+			<enumeration value="begraafplaats uitgesloten"/>
+			<enumeration value="belwinkel uitgesloten"/>
+			<enumeration value="beroep aan huis uitgesloten"/>
+			<enumeration value="bibliotheek uitgesloten"/>
+			<enumeration value="bioscoop uitgesloten"/>
+			<enumeration value="bollenteelt uitgesloten"/>
+			<enumeration value="bomenteelt uitgesloten"/>
+			<enumeration value="bordeel uitgesloten"/>
+			<enumeration value="bos uitgesloten"/>
+			<enumeration value="bowlingbaan uitgesloten"/>
+			<enumeration value="brandweerkazerne uitgesloten"/>
+			<enumeration value="brug uitgesloten"/>
+			<enumeration value="caravanstalling uitgesloten"/>
+			<enumeration value="casino uitgesloten"/>
+			<enumeration value="centrum uitgesloten"/>
+			<enumeration value="congrescentrum uitgesloten"/>
+			<enumeration value="creativiteitscentrum uitgesloten"/>
+			<enumeration value="crematorium uitgesloten"/>
+			<enumeration value="cultuur en ontspanning uitgesloten"/>
+			<enumeration value="cultuurhistorische waarden uitgesloten"/>
+			<enumeration value="dagrecreatie uitgesloten"/>
+			<enumeration value="dansschool uitgesloten"/>
+			<enumeration value="detailhandel uitgesloten"/>
+			<enumeration value="detailhandel grootschalig uitgesloten"/>
+			<enumeration value="detailhandel in brand en explosiegevaarlijke goederen uitgesloten"/>
+			<enumeration value="detailhandel perifeer uitgesloten"/>
+			<enumeration value="detailhandel volumineus uitgesloten"/>
+			<enumeration value="dienstverlening uitgesloten"/>
+			<enumeration value="dierenasiel uitgesloten"/>
+			<enumeration value="dierentuin uitgesloten"/>
+			<enumeration value="discotheek uitgesloten"/>
+			<enumeration value="drafbaan uitgesloten"/>
+			<enumeration value="drugsopvang uitgesloten"/>
+			<enumeration value="ecologische verbindingszone uitgesloten"/>
+			<enumeration value="ecologische waarde uitgesloten"/>
+			<enumeration value="eendenkooi uitgesloten"/>
+			<enumeration value="erf uitgesloten"/>
+			<enumeration value="evenemententerrein uitgesloten"/>
+			<enumeration value="feestzaal uitgesloten"/>
+			<enumeration value="fruitteelt uitgesloten"/>
+			<enumeration value="garage uitgesloten"/>
+			<enumeration value="geluidscherm uitgesloten"/>
+			<enumeration value="geluidwal uitgesloten"/>
+			<enumeration value="gemaal uitgesloten"/>
+			<enumeration value="gemengd uitgesloten"/>
+			<enumeration value="geomorfologische waarde uitgesloten"/>
+			<enumeration value="gezondheidszorg uitgesloten"/>
+			<enumeration value="glastuinbouw uitgesloten"/>
+			<enumeration value="golfbaan uitgesloten"/>
+			<enumeration value="groen uitgesloten"/>
+			<enumeration value="gronddepot uitgesloten"/>
+			<enumeration value="grondgebonden veehouderij uitgesloten"/>
+			<enumeration value="groothandel uitgesloten"/>
+			<enumeration value="haven uitgesloten"/>
+			<enumeration value="horeca uitgesloten"/>
+			<enumeration value="houtsingel uitgesloten"/>
+			<enumeration value="houtwal uitgesloten"/>
+			<enumeration value="hovenier uitgesloten"/>
+			<enumeration value="ijsbaan uitgesloten"/>
+			<enumeration value="infrastructuur uitgesloten"/>
+			<enumeration value="intensieve kwekerij uitgesloten"/>
+			<enumeration value="intensieve veehouderij uitgesloten"/>
+			<enumeration value="internetcafé uitgesloten"/>
+			<enumeration value="internetwinkel uitgesloten"/>
+			<enumeration value="jachthaven uitgesloten"/>
+			<enumeration value="jeugdopvang uitgesloten"/>
+			<enumeration value="jongeren ontmoetingsplek uitgesloten"/>
+			<enumeration value="justitiële inrichting uitgesloten"/>
+			<enumeration value="kamerverhuur uitgesloten"/>
+			<enumeration value="kampeerboerderij uitgesloten"/>
+			<enumeration value="kampeerterrein uitgesloten"/>
+			<enumeration value="kantoor uitgesloten"/>
+			<enumeration value="kartbaan uitgesloten"/>
+			<enumeration value="kas uitgesloten"/>
+			<enumeration value="kazerne uitgesloten"/>
+			<enumeration value="kinderboerderij uitgesloten"/>
+			<enumeration value="kunstijsbaan uitgesloten"/>
+			<enumeration value="laad- en losplaats uitgesloten"/>
+			<enumeration value="landingsbaan uitgesloten"/>
+			<enumeration value="landschapswaarden uitgesloten"/>
+			<enumeration value="leidingstrook uitgesloten"/>
+			<enumeration value="ligplaats uitgesloten"/>
+			<enumeration value="luchthaven uitgesloten"/>
+			<enumeration value="luchtverkeer uitgesloten"/>
+			<enumeration value="maatschappelijk uitgesloten"/>
+			<enumeration value="manege uitgesloten"/>
+			<enumeration value="markt uitgesloten"/>
+			<enumeration value="meer uitgesloten"/>
+			<enumeration value="militaire zaken uitgesloten"/>
+			<enumeration value="militair oefenterrein uitgesloten"/>
+			<enumeration value="modelvliegtuigbaan uitgesloten"/>
+			<enumeration value="monumentale boom uitgesloten"/>
+			<enumeration value="motorcrossterrein uitgesloten"/>
+			<enumeration value="munitiedepot uitgesloten"/>
+			<enumeration value="museum uitgesloten"/>
+			<enumeration value="muziekschool uitgesloten"/>
+			<enumeration value="muziektheater uitgesloten"/>
+			<enumeration value="naschoolse opvang uitgesloten"/>
+			<enumeration value="natuur- en landschapswaarden uitgesloten"/>
+			<enumeration value="natuur uitgesloten"/>
+			<enumeration value="natuurwaarden uitgesloten"/>
+			<enumeration value="nutsbedrijf uitgesloten"/>
+			<enumeration value="nutsvoorziening uitgesloten"/>
+			<enumeration value="oever uitgesloten"/>
+			<enumeration value="onderwijs uitgesloten"/>
+			<enumeration value="ontsluiting uitgesloten"/>
+			<enumeration value="openbaar vervoer uitgesloten"/>
+			<enumeration value="openbare dienstverlening uitgesloten"/>
+			<enumeration value="opslag uitgesloten"/>
+			<enumeration value="openbaar vervoerstation uitgesloten"/>
+			<enumeration value="paardenfokkerij uitgesloten"/>
+			<enumeration value="paardenhouderij uitgesloten"/>
+			<enumeration value="pad uitgesloten"/>
+			<enumeration value="park uitgesloten"/>
+			<enumeration value="parkeergarage uitgesloten"/>
+			<enumeration value="parkeerterrein uitgesloten"/>
+			<enumeration value="partyboerderij uitgesloten"/>
+			<enumeration value="passantenhaven uitgesloten"/>
+			<enumeration value="pitch &amp; putt uitgesloten"/>
+			<enumeration value="plantsoen uitgesloten"/>
+			<enumeration value="plein uitgesloten"/>
+			<enumeration value="praktijkruimte uitgesloten"/>
+			<enumeration value="prostitutie uitgesloten"/>
+			<enumeration value="raamprostitutie (raamexploitatie) uitgesloten"/>
+			<enumeration value="railverkeer uitgesloten"/>
+			<enumeration value="recreatie uitgesloten"/>
+			<enumeration value="recreatiewoning uitgesloten"/>
+			<enumeration value="religie uitgesloten"/>
+			<enumeration value="risicovolle inrichting uitgesloten"/>
+			<enumeration value="rivier uitgesloten"/>
+			<enumeration value="sauna uitgesloten"/>
+			<enumeration value="schiphuis uitgesloten"/>
+			<enumeration value="seksinrichting uitgesloten"/>
+			<enumeration value="sierteelt uitgesloten"/>
+			<enumeration value="silo uitgesloten"/>
+			<enumeration value="skeelerbaan uitgesloten"/>
+			<enumeration value="skibaan uitgesloten"/>
+			<enumeration value="sluis uitgesloten"/>
+			<enumeration value="speeltuin uitgesloten"/>
+			<enumeration value="speelvoorziening uitgesloten"/>
+			<enumeration value="spoorweg uitgesloten"/>
+			<enumeration value="sport uitgesloten"/>
+			<enumeration value="sportcentrum uitgesloten"/>
+			<enumeration value="sporthal uitgesloten"/>
+			<enumeration value="sportveld uitgesloten"/>
+			<enumeration value="sportzaal uitgesloten"/>
+			<enumeration value="squashcentrum uitgesloten"/>
+			<enumeration value="stadion uitgesloten"/>
+			<enumeration value="steiger uitgesloten"/>
+			<enumeration value="strand uitgesloten"/>
+			<enumeration value="strandhuis uitgesloten"/>
+			<enumeration value="studentenhuisvesting uitgesloten"/>
+			<enumeration value="stuw uitgesloten"/>
+			<enumeration value="supermarkt uitgesloten"/>
+			<enumeration value="tennisbaan uitgesloten"/>
+			<enumeration value="terras uitgesloten"/>
+			<enumeration value="theater uitgesloten"/>
+			<enumeration value="tuin uitgesloten"/>
+			<enumeration value="tuinbouw uitgesloten"/>
+			<enumeration value="tuincentrum uitgesloten"/>
+			<enumeration value="tunnel uitgesloten"/>
+			<enumeration value="uitvaartcentrum uitgesloten"/>
+			<enumeration value="vaarweg uitgesloten"/>
+			<enumeration value="veerhaven uitgesloten"/>
+			<enumeration value="ven uitgesloten"/>
+			<enumeration value="verblijfsgebied uitgesloten"/>
+			<enumeration value="verblijfsrecreatie uitgesloten"/>
+			<enumeration value="verenigingsleven uitgesloten"/>
+			<enumeration value="verkeer uitgesloten"/>
+			<enumeration value="verkoop eigen producten uitgesloten"/>
+			<enumeration value="verkooppunt motorbrandstoffen met lpg uitgesloten"/>
+			<enumeration value="verkooppunt motorbrandstoffen zonder lpg uitgesloten"/>
+			<enumeration value="vertrek- en aankomsthal uitgesloten"/>
+			<enumeration value="vijver uitgesloten"/>
+			<enumeration value="viskwekerij uitgesloten"/>
+			<enumeration value="volkstuin uitgesloten"/>
+			<enumeration value="vulpunt lpg uitgesloten"/>
+			<enumeration value="waardevolle boom uitgesloten"/>
+			<enumeration value="water uitgesloten"/>
+			<enumeration value="waterberging uitgesloten"/>
+			<enumeration value="waterkering uitgesloten"/>
+			<enumeration value="waterstaat uitgesloten"/>
+			<enumeration value="waterweg uitgesloten"/>
+			<enumeration value="waterzuiveringsinstallatie uitgesloten"/>
+			<enumeration value="weg uitgesloten"/>
+			<enumeration value="wellness uitgesloten"/>
+			<enumeration value="welzijnsinstelling uitgesloten"/>
+			<enumeration value="wielerbaan uitgesloten"/>
+			<enumeration value="windturbine uitgesloten"/>
+			<enumeration value="windturbinepark uitgesloten"/>
+			<enumeration value="wonen uitgesloten"/>
+			<enumeration value="woongebied uitgesloten"/>
+			<enumeration value="woonschepenligplaats uitgesloten"/>
+			<enumeration value="woonwagenstandplaats uitgesloten"/>
+			<enumeration value="zee uitgesloten"/>
+			<enumeration value="zend-/ontvangstinstallatie uitgesloten"/>
+			<enumeration value="zorginstelling uitgesloten"/>
+			<enumeration value="zorgboerderij uitgesloten"/>
+			<enumeration value="zorgwoning uitgesloten"/>
+			<enumeration value="zwembad uitgesloten"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="FunctieaanduidingenOtherType">
+		<restriction base="string">
+			<pattern value="bedrijf tot en met categorie .*"/>
+			<pattern value="bedrijf van categorie .*"/>
+			<pattern value="horeca tot en met horecacategorie .*"/>
+			<pattern value="horeca van categorie .*"/>
+			<pattern value="specifieke vorm van agrarisch - .*"/>
+			<pattern value="specifieke vorm van agrarisch met waarden - .*"/>
+			<pattern value="specifieke vorm van bedrijf - .*"/>
+			<pattern value="specifieke vorm van bedrijventerrein - .*"/>
+			<pattern value="specifieke vorm van bos - .*"/>
+			<pattern value="specifieke vorm van centrum - .*"/>
+			<pattern value="specifieke vorm van cultuur en ontspanning - .*"/>
+			<pattern value="specifieke vorm van detailhandel - .*"/>
+			<pattern value="specifieke vorm van dienstverlening - .*"/>
+			<pattern value="specifieke vorm van gemengd - .*"/>
+			<pattern value="specifieke vorm van groen - .*"/>
+			<pattern value="specifieke vorm van horeca - .*"/>
+			<pattern value="specifieke vorm van kantoor - .*"/>
+			<pattern value="specifieke vorm van leiding - .*"/>
+			<pattern value="specifieke vorm van maatschappelijk - .*"/>
+			<pattern value="specifieke vorm van natuur - .*"/>
+			<pattern value="specifieke vorm van recreatie - .*"/>
+			<pattern value="specifieke vorm van sport - .*"/>
+			<pattern value="specifieke vorm van tuin - .*"/>
+			<pattern value="specifieke vorm van verkeer - .*"/>
+			<pattern value="specifieke vorm van waarde - .*"/>
+			<pattern value="specifieke vorm van water - .*"/>
+			<pattern value="specifieke vorm van waterstaat - .*"/>
+			<pattern value="specifieke vorm van wonen - .*"/>
+			<pattern value="specifieke vorm van woongebied - .*"/>
+			<pattern value="bedrijf tot en met categorie .* uitgesloten"/>
+			<pattern value="bedrijf van categorie .* uitgesloten"/>
+			<pattern value="horeca tot en met horecacategorie .* uitgesloten"/>
+			<pattern value="horeca van categorie .* uitgesloten"/>
+			<pattern value="specifieke vorm van agrarisch uitgesloten - .*"/>
+			<pattern value="specifieke vorm van agrarisch met waarden uitgesloten - .*"/>
+			<pattern value="specifieke vorm van bedrijf uitgesloten - .*"/>
+			<pattern value="specifieke vorm van bedrijventerrein uitgesloten - .*"/>
+			<pattern value="specifieke vorm van bos uitgesloten - .*"/>
+			<pattern value="specifieke vorm van centrum uitgesloten - .*"/>
+			<pattern value="specifieke vorm van cultuur en ontspanning uitgesloten - .*"/>
+			<pattern value="specifieke vorm van detailhandel uitgesloten - .*"/>
+			<pattern value="specifieke vorm van dienstverlening uitgesloten - .*"/>
+			<pattern value="specifieke vorm van gemengd uitgesloten - .*"/>
+			<pattern value="specifieke vorm van groen uitgesloten - .*"/>
+			<pattern value="specifieke vorm van horeca uitgesloten - .*"/>
+			<pattern value="specifieke vorm van kantoor uitgesloten - .*"/>
+			<pattern value="specifieke vorm van leiding uitgesloten - .*"/>
+			<pattern value="specifieke vorm van maatschappelijk uitgesloten - .*"/>
+			<pattern value="specifieke vorm van natuur uitgesloten - .*"/>
+			<pattern value="specifieke vorm van recreatie uitgesloten - .*"/>
+			<pattern value="specifieke vorm van sport uitgesloten - .*"/>
+			<pattern value="specifieke vorm van tuin uitgesloten - .*"/>
+			<pattern value="specifieke vorm van verkeer uitgesloten - .*"/>
+			<pattern value="specifieke vorm van waarde uitgesloten - .*"/>
+			<pattern value="specifieke vorm van water uitgesloten - .*"/>
+			<pattern value="specifieke vorm van waterstaat uitgesloten - .*"/>
+			<pattern value="specifieke vorm van wonen uitgesloten - .*"/>
+			<pattern value="specifieke vorm van woongebied uitgesloten - .*"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="GebiedsaanduidingenType">
+		<union memberTypes="imro:GebiedsaanduidingenEnumerationType imro:GebiedsaanduidingenOtherType"/>
+	</simpleType>
+	<simpleType name="GebiedsaanduidingenEnumerationType">
+		<restriction base="string">
+			<enumeration value="geluidzone"/>
+			<enumeration value="geluidzone - industrie"/>
+			<enumeration value="geluidzone - spoor"/>
+			<enumeration value="geluidzone - weg"/>
+			<enumeration value="luchtvaartverkeerzone"/>
+			<enumeration value="milieuzone"/>
+			<enumeration value="milieuzone - bodembeschermingsgebied"/>
+			<enumeration value="milieuzone - geluidsgevoelige functie"/>
+			<enumeration value="milieuzone - geurzone"/>
+			<enumeration value="milieuzone - grondwaterbeschermingsgebied"/>
+			<enumeration value="milieuzone - stiltegebied"/>
+			<enumeration value="milieuzone - waterwingebied"/>
+			<enumeration value="milieuzone - zones Wet milieubeheer"/>
+			<enumeration value="reconstructiewetzone"/>
+			<enumeration value="reconstructiewetzone - extensiveringsgebied"/>
+			<enumeration value="reconstructiewetzone - landbouwontwikkelingsgebied"/>
+			<enumeration value="reconstructiewetzone - verwevingsgebied"/>
+			<enumeration value="veiligheidszone"/>
+			<enumeration value="veiligheidszone - bevi"/>
+			<enumeration value="veiligheidszone - leiding"/>
+			<enumeration value="veiligheidszone - lpg"/>
+			<enumeration value="veiligheidszone - munitie"/>
+			<enumeration value="veiligheidszone - vervoer gevaarlijke stoffen"/>
+			<enumeration value="veiligheidszone - vuurwerk"/>
+			<enumeration value="veiligheidszone - windturbine"/>
+			<enumeration value="vrijwaringszone"/>
+			<enumeration value="vrijwaringszone - buisleidingenstraat"/>
+			<enumeration value="vrijwaringszone - dijk"/>
+			<enumeration value="vrijwaringszone - duin"/>
+			<enumeration value="vrijwaringszone - molenbiotoop"/>
+			<enumeration value="vrijwaringszone - radar"/>
+			<enumeration value="vrijwaringszone - spoor"/>
+			<enumeration value="vrijwaringszone - straalpad"/>
+			<enumeration value="vrijwaringszone - vaarweg"/>
+			<enumeration value="vrijwaringszone - weg"/>
+			<enumeration value="wro-zone"/>
+			<enumeration value="wro-zone - moderniseringsgebied"/>
+			<enumeration value="wro-zone - ontheffingsgebied"/>
+			<enumeration value="wro-zone - verwerkelijking in naaste toekomst"/>
+			<enumeration value="wro-zone - wijzigingsgebied"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="GebiedsaanduidingenOtherType">
+		<restriction base="string">
+			<pattern value="geluidzone - .*"/>
+			<pattern value="geluidzone - industrie .*"/>
+			<pattern value="geluidzone - spoor .*"/>
+			<pattern value="geluidzone - weg .*"/>
+			<pattern value="luchtvaartverkeerzone - .*"/>
+			<pattern value="milieuzone - .*"/>
+			<pattern value="milieuzone - bodembeschermingsgebied .*"/>
+			<pattern value="milieuzone - geluidsgevoelige functie .*"/>
+			<pattern value="milieuzone - geurzone .*"/>
+			<pattern value="milieuzone - grondwaterbeschermingsgebied .*"/>
+			<pattern value="milieuzone - stiltegebied .*"/>
+			<pattern value="milieuzone - waterwingebied .*"/>
+			<pattern value="milieuzone - zones Wet milieubeheer ``.*"/>
+			<pattern value="reconstructiewetzone - .*"/>
+			<pattern value="reconstructiewetzone - extensiveringsgebied .*"/>
+			<pattern value="reconstructiewetzone - landbouwontwikkelingsgebied .*"/>
+			<pattern value="reconstructiewetzone - verwevingsgebied .*"/>
+			<pattern value="veiligheidszone - .*"/>
+			<pattern value="veiligheidszone - bevi .*"/>
+			<pattern value="veiligheidszone - leiding .*"/>
+			<pattern value="veiligheidszone - lpg .*"/>
+			<pattern value="veiligheidszone - munitie .*"/>
+			<pattern value="veiligheidszone - vervoer gevaarlijke stoffen .*"/>
+			<pattern value="veiligheidszone - vuurwerk .*"/>
+			<pattern value="veiligheidszone - windturbine .*"/>
+			<pattern value="vrijwaringszone - .*"/>
+			<pattern value="vrijwaringszone - buisleidingenstraat .*"/>
+			<pattern value="vrijwaringszone - dijk .*"/>
+			<pattern value="vrijwaringszone - duin .*"/>
+			<pattern value="vrijwaringszone - molenbiotoop .*"/>
+			<pattern value="vrijwaringszone - radar .*"/>
+			<pattern value="vrijwaringszone - spoor .*"/>
+			<pattern value="vrijwaringszone - straalpad .*"/>
+			<pattern value="vrijwaringszone - vaarweg .*"/>
+			<pattern value="vrijwaringszone - weg .*"/>
+			<pattern value="wro-zone - .*"/>
+			<pattern value="wro-zone - moderniseringsgebied .*"/>
+			<pattern value="wro-zone - ontheffingsgebied .*"/>
+			<pattern value="wro-zone - verwerkelijking in naaste toekomst .*"/>
+			<pattern value="wro-zone - wijzigingsgebied .*"/>
+			<pattern value="other: .*"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OmvangWaardeType">
+		<union memberTypes="imro:OmvangWaardeEnumerationType imro:OmvangWaardeOtherType"/>
+	</simpleType>
+	<simpleType name="OmvangWaardeEnumerationType">
+		<restriction base="string">
+			<enumeration value="aantal"/>
+			<enumeration value="aantal bedrijven"/>
+			<enumeration value="maximum aantal bedrijven"/>
+			<enumeration value="minimum aantal bedrijven"/>
+			<enumeration value="aantal bezoekers"/>
+			<enumeration value="maximum aantal bezoekers"/>
+			<enumeration value="minimum aantal bezoekers"/>
+			<enumeration value="aantal bouwlagen"/>
+			<enumeration value="maximum aantal bouwlagen"/>
+			<enumeration value="minimum aantal bouwlagen"/>
+			<enumeration value="aantal gebouwen"/>
+			<enumeration value="maximum aantal gebouwen"/>
+			<enumeration value="minimum aantal gebouwen"/>
+			<enumeration value="aantal parkeerplaatsen"/>
+			<enumeration value="maximum aantal parkeerplaatsen"/>
+			<enumeration value="minimum aantal parkeerplaatsen"/>
+			<enumeration value="aantal rijstroken"/>
+			<enumeration value="maximum aantal rijstroken"/>
+			<enumeration value="minimum aantal rijstroken"/>
+			<enumeration value="aantal sporen"/>
+			<enumeration value="maximum aantal sporen"/>
+			<enumeration value="minimum aantal sporen"/>
+			<enumeration value="aantal winkels"/>
+			<enumeration value="maximum aantal winkels"/>
+			<enumeration value="minimum aantal winkels"/>
+			<enumeration value="aantal wooneenheden"/>
+			<enumeration value="maximaal aantal wooneenheden"/>
+			<enumeration value="minimum aantal wooneenheden"/>
+			<enumeration value="maatvoering"/>
+			<enumeration value="bebouwd oppervlak (m2)"/>
+			<enumeration value="maximum bebouwd oppervlak (m2)"/>
+			<enumeration value="minimum bebouwd oppervlak (m2)"/>
+			<enumeration value="bebouwingspercentage terrein (%)"/>
+			<enumeration value="maximum bebouwingspercentage terrein (%)"/>
+			<enumeration value="minimum bebouwingspercentage terrein (%)"/>
+			<enumeration value="breedte (m)"/>
+			<enumeration value="maximum breedte (m)"/>
+			<enumeration value="minimum breedte (m)"/>
+			<enumeration value="dakhelling (graden)"/>
+			<enumeration value="maximum dakhelling (graden)"/>
+			<enumeration value="minimum dakhelling (graden)"/>
+			<enumeration value="diepte (m)"/>
+			<enumeration value="maximum diepte (m)"/>
+			<enumeration value="minimum diepte (m)"/>
+			<enumeration value="hoogte (m)"/>
+			<enumeration value="bouwhoogte (m)"/>
+			<enumeration value="maximum bouwhoogte (m)"/>
+			<enumeration value="minimum bouwhoogte (m)"/>
+			<enumeration value="goothoogte (m)"/>
+			<enumeration value="maximum goothoogte (m)"/>
+			<enumeration value="minimum goothoogte (m)"/>
+			<enumeration value="maximum hoogte (m)"/>
+			<enumeration value="minimum hoogte (m)"/>
+			<enumeration value="hoogteligging vlak (m)"/>
+			<enumeration value="maximum hoogteligging vlak (m)"/>
+			<enumeration value="minimum hoogteligging vlak (m)"/>
+			<enumeration value="lengte (m)"/>
+			<enumeration value="maximum lengte (m)"/>
+			<enumeration value="minimum lengte (m)"/>
+			<enumeration value="oppervlakte (m2)"/>
+			<enumeration value="maximum oppervlakte (m2)"/>
+			<enumeration value="minimum oppervlakte (m2)"/>
+			<enumeration value="vloeroppervlakte (m2)"/>
+			<enumeration value="bruto vloeroppervlakte (m2)"/>
+			<enumeration value="netto vloeroppervlakte (m2)"/>
+			<enumeration value="vloeroppervlakte; bvo (m2)"/>
+			<enumeration value="vloeroppervlakte; vvo (m2)"/>
+			<enumeration value="maximum vloeroppervlakte (m2)"/>
+			<enumeration value="maximum bruto vloeroppervlakte (m2)"/>
+			<enumeration value="maximum netto vloeroppervlakte (m2)"/>
+			<enumeration value="maximum vloeroppervlakte; bvo (m2)"/>
+			<enumeration value="maximum vloeroppervlakte; vvo (m2)"/>
+			<enumeration value="minimum vloeroppervlakte (m2)"/>
+			<enumeration value="minimum bruto vloeroppervlakte (m2)"/>
+			<enumeration value="minimum netto vloeroppervlakte (m2)"/>
+			<enumeration value="minimum vloeroppervlakte; bvo (m2)"/>
+			<enumeration value="minimum vloeroppervlakte; vvo (m2)"/>
+			<enumeration value="volume (m3)"/>
+			<enumeration value="maximum volume (m3)"/>
+			<enumeration value="minimum volume (m3)"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OmvangWaardeOtherType">
+		<restriction base="string">
+			<pattern value="other: .*"/>
+		</restriction>
+	</simpleType>
+	<!--
+	<element name="HoofdgroepEnkelOfDubbel" type="imro:HoofdgroepEnkelOfDubbelType"/>
+	<complexType name="HoofdgroepEnkelOfDubbelType">
+		<choice>
+			<element name="naamHoofdgroepEnkelbestemming" type="imro:BestemmingshoofdgroepType"/>
+			<element name="naamHoofdgroepDubbelbestemming" type="imro:Bestemmingshoofdgroep_DType"/>
+		</choice>
+	</complexType>
+	<complexType name="HoofdgroepEnkelOfDubbelPropertyType">
+		<sequence>
+			<element ref="imro:HoofdgroepEnkelOfDubbel"/>
+		</sequence>
+	</complexType> -->
+	<element name="ExternPlanReferentiePG_SV" type="imro:ExternPlanReferentiePG_SVType"/>
+	<complexType name="ExternPlanReferentiePG_SVType">
+		<sequence>
+			<element name="naamExternPlan" type="imro:NotEmptyString"/>
+			<element name="idnExternPlan" type="imro:NotEmptyString" minOccurs="0"/>
+			<element name="rolExternPlan" type="imro:RolExternPlanPG_SVType"/>
+		</sequence>
+	</complexType>
+	<complexType name="ExternPlanReferentiePG_SVPropertyType">
+		<sequence>
+			<element ref="imro:ExternPlanReferentiePG_SV"/>
+		</sequence>
+	</complexType>
+	<element name="TekstReferentiePG_SV" type="imro:TekstReferentiePG_SVType"/>
+	<complexType name="TekstReferentiePG_SVType">
+		<sequence>
+			<element name="verwijzingNaarTekst" type="imro:NotEmptyString"/>
+			<element name="typeTekst" type="imro:TeksttypePG_SVType"/>
+		</sequence>
+	</complexType>
+	<complexType name="TekstReferentiePG_SVPropertyType">
+		<sequence>
+			<element ref="imro:TekstReferentiePG_SV"/>
+		</sequence>
+	</complexType>
+	<simpleType name="TeksttypePG_BPType">
+		<restriction base="string">
+			<enumeration value="regels"/>
+			<enumeration value="toelichting"/>
+			<enumeration value="bijlage bij regels"/>
+			<enumeration value="bijlage bij toelichting"/>
+		</restriction>
+	</simpleType>
+	<element name="TekstReferentiePG_BP" type="imro:TekstReferentiePG_BPType"/>
+	<complexType name="TekstReferentiePG_BPType">
+		<sequence>
+			<element name="verwijzingNaarTekst" type="imro:NotEmptyString"/>
+			<element name="typeTekst" type="imro:TeksttypePG_BPType"/>
+		</sequence>
+	</complexType>
+	<complexType name="TekstReferentiePG_BPPropertyType">
+		<sequence>
+			<element ref="imro:TekstReferentiePG_BP"/>
+		</sequence>
+	</complexType>
+	<element name="TekstReferentieV_PSV" type="imro:TekstReferentieV_PSVType"/>
+	<complexType name="TekstReferentieV_PSVType">
+		<sequence>
+			<element name="verwijzingNaarTekst" type="imro:NotEmptyString"/>
+			<element name="typeTekst" type="imro:TeksttypeV_PSVType"/>
+		</sequence>
+	</complexType>
+	<complexType name="TekstReferentieV_PSVPropertyType">
+		<sequence>
+			<element ref="imro:TekstReferentieV_PSV"/>
+		</sequence>
+	</complexType>
+	<simpleType name="MaatvoeringenType">
+		<union memberTypes="imro:MaatvoeringenEnumerationType imro:MaatvoeringenOtherType"/>
+	</simpleType>
+	<simpleType name="MaatvoeringenEnumerationType">
+		<restriction base="string">
+			<enumeration value="minimale goothoogte (m)"/>
+			<enumeration value="maximale goothoogte (m)"/>
+			<enumeration value="minimale-maximale goothoogte (m)"/>
+			<enumeration value="minimale bouwhoogte (m)"/>
+			<enumeration value="maximale bouwhoogte (m)"/>
+			<enumeration value="minimale-maximale bouwhoogte (m)"/>
+			<enumeration value="minimale dakhelling (graden)"/>
+			<enumeration value="maximale dakhelling (graden)"/>
+			<enumeration value="minimale-maximale dakhelling (graden)"/>
+			<enumeration value="maximum bebouwingspercentage (%)"/>
+			<enumeration value="minimale goot- en bouwhoogte (m)"/>
+			<enumeration value="maximale goot- en bouwhoogte (m)"/>
+			<enumeration value="minimale-maximale goot- en bouwhoogte (m)"/>
+			<enumeration value="minimale goot-, bouwhoogte (m) en dakhelling (graden)"/>
+			<enumeration value="maximale goot-, bouwhoogte (m) en dakhelling (graden)"/>
+			<enumeration value="minimale-maximale goot-, bouwhoogte (m) en dakhelling (graden)"/>
+			<enumeration value="minimale goot-, bouwhoogte (m), dakhelling (graden) en maximum bebouwingspercentage (%)"/>
+			<enumeration value="maximale goot-, bouwhoogte (m), dakhelling (graden) en maximum bebouwingspercentage (%)"/>
+			<enumeration value="minimale-maximale goot-, bouwhoogte (m), dakhelling (graden) en maximum bebouwingspercentage (%)"/>
+			<enumeration value="maximum aantal wooneenheden"/>
+			<enumeration value="maximum aantal bouwlagen"/>
+			<enumeration value="maximum aantal aaneen te bouwen wooneenheden"/>
+			<enumeration value="verticale bouwdiepte (m)"/>
+			<enumeration value="maximale bouwhoogte (m) en maximum bebouwingspercentage (%)"/>
+			<enumeration value="maximale goot-, bouwhoogte (m) en maximum bebouwingspercentage (%)"/>
+			<enumeration value="minimale en maximale bouwhoogte (m) en maximum bebouwingspercentage (%)"/>
+			<enumeration value="maximale bouwhoogte (m), aantal bouwlagen en maximum bebouwingspercentage (%)"/>
+			<enumeration value="maximum oppervlakte (bvo) (m2)"/>
+			<enumeration value="aantal"/>
+			<enumeration value="aantal bedrijven"/>
+			<enumeration value="aantal bezoekers"/>
+			<enumeration value="aantal bouwlagen"/>
+			<enumeration value="aantal gebouwen"/>
+			<enumeration value="aantal parkeerplaatsen"/>
+			<enumeration value="aantal rijstroken"/>
+			<enumeration value="aantal sporen"/>
+			<enumeration value="aantal winkels"/>
+			<enumeration value="aantal wooneenheden"/>
+			<enumeration value="maatvoering"/>
+			<enumeration value="bebouwd oppervlak (m2)"/>
+			<enumeration value="bebouwingspercentage terrein (%)"/>
+			<enumeration value="breedte (m)"/>
+			<enumeration value="dakhelling (graden)"/>
+			<enumeration value="diepte (m)"/>
+			<enumeration value="hoogte (m)"/>
+			<enumeration value="bouwhoogte (m)"/>
+			<enumeration value="goothoogte (m)"/>
+			<enumeration value="hoogteligging vlak (m)"/>
+			<enumeration value="lengte (m)"/>
+			<enumeration value="oppervlakte (m2)"/>
+			<enumeration value="vloeroppervlakte; bruto (m2)"/>
+			<enumeration value="vloeroppervlakte; bvo (m2)"/>
+			<enumeration value="vloeroppervlakte; netto (m2)"/>
+			<enumeration value="vloeroppervlakte; vvo (m2)"/>
+			<enumeration value="volume (m3)"/>
+			<enumeration value="minimum aantal bedrijven"/>
+			<enumeration value="minimum aantal bezoekers"/>
+			<enumeration value="minimum aantal bouwlagen"/>
+			<enumeration value="minimum aantal gebouwen"/>
+			<enumeration value="minimum aantal parkeerplaatsen"/>
+			<enumeration value="minimum aantal rijstroken"/>
+			<enumeration value="minimum aantal sporen"/>
+			<enumeration value="minimum aantal winkels"/>
+			<enumeration value="minimum aantal wooneenheden"/>
+			<enumeration value="minimum bebouwd oppervlak (m2)"/>
+			<enumeration value="minimum bebouwingspercentage terrein (%)"/>
+			<enumeration value="minimum breedte (m)"/>
+			<enumeration value="minimum diepte (m)"/>
+			<enumeration value="minimum hoogte (m)"/>
+			<enumeration value="minimum hoogteligging vlak (m)"/>
+			<enumeration value="minimum lengte (m)"/>
+			<enumeration value="minimum oppervlakte (m2)"/>
+			<enumeration value="minimum vloeroppervlakte (m2)"/>
+			<enumeration value="minimum vloeroppervlakte; bruto (m2)"/>
+			<enumeration value="minimum vloeroppervlakte; bvo (m2)"/>
+			<enumeration value="minimum vloeroppervlakte; netto (m2)"/>
+			<enumeration value="minimum vloeroppervlakte; vvo (m2)"/>
+			<enumeration value="minimum volume (m3)"/>
+			<enumeration value="maximum aantal bedrijven"/>
+			<enumeration value="maximum aantal bezoekers"/>
+			<enumeration value="maximum aantal gebouwen"/>
+			<enumeration value="maximum aantal parkeerplaatsen"/>
+			<enumeration value="maximum aantal rijstroken"/>
+			<enumeration value="maximum aantal sporen"/>
+			<enumeration value="maximum aantal winkels"/>
+			<enumeration value="maximum bebouwd oppervlak (m2)"/>
+			<enumeration value="maximum breedte (m)"/>
+			<enumeration value="maximum hoogte (m)"/>
+			<enumeration value="maximum hoogteligging vlak (m)"/>
+			<enumeration value="maximum lengte (m)"/>
+			<enumeration value="maximum oppervlakte (m2)"/>
+			<enumeration value="maximum vloeroppervlakte (m2)"/>
+			<enumeration value="maximum vloeroppervlakte; bruto (m2)"/>
+			<enumeration value="maximum vloeroppervlakte; netto (m2)"/>
+			<enumeration value="maximum vloeroppervlakte; vvo (m2)"/>
+			<enumeration value="maximum volume (m3)"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="MaatvoeringenOtherType">
+		<restriction base="string">
+			<pattern value=".*"/>
+			<pattern value="minimum .*"/>
+			<pattern value="maximum .*"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="GebiedsaanduidinggroepType">
+		<restriction base="string">
+			<enumeration value="geluidzone"/>
+			<enumeration value="luchtvaartverkeerzone"/>
+			<enumeration value="milieuzone"/>
+			<enumeration value="reconstructiewetzone"/>
+			<enumeration value="veiligheidszone"/>
+			<enumeration value="vrijwaringszone"/>
+			<enumeration value="wro-zone"/>
+			<enumeration value="overig"/>
+		</restriction>
+	</simpleType>
+	<!-- datatype NotEmptyString om gebruik lege stringwaarden te voorkomen -->
+	<simpleType name="NotEmptyString">
+		<restriction base="string">
+			<pattern value="[^ \t]{1}.*"/>
+			<!-- string is niet leeg -->
+			<!-- string begint niet met een spatie -->
+			<!-- string begint niet met een tab -->
+		</restriction>
+	</simpleType>
+</schema>

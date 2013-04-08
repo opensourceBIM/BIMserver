@@ -29,8 +29,9 @@ public class ExplicitRightsAuthorization extends Authorization {
 	private long readExtendedDataRoid = -1;
 	private long writeExtendedDataRoid = -1;
 
-	public ExplicitRightsAuthorization(long readRevisionRoid, long writeProjectPoid, long readExtendedDataRoid, long writeExtendedDataRoid) {
+	public ExplicitRightsAuthorization(long uoid, long readRevisionRoid, long writeProjectPoid, long readExtendedDataRoid, long writeExtendedDataRoid) {
 		super(1, TimeUnit.HOURS);
+		this.setUoid(uoid);
 		this.setReadRevisionRoid(readRevisionRoid);
 		this.setWriteProjectPoid(writeProjectPoid);
 		this.setReadExtendedDataRoid(readExtendedDataRoid);
@@ -67,6 +68,7 @@ public class ExplicitRightsAuthorization extends Authorization {
 
 	public static ExplicitRightsAuthorization fromBuffer(ByteBuffer buffer) {
 		ExplicitRightsAuthorization explicitRightsAuthorization = new ExplicitRightsAuthorization();
+		explicitRightsAuthorization.setUoid(buffer.getLong());
 		explicitRightsAuthorization.setReadRevisionRoid(buffer.getLong());
 		explicitRightsAuthorization.setWriteProjectPoid(buffer.getLong());
 		explicitRightsAuthorization.setReadExtendedDataRoid(buffer.getLong());
@@ -80,11 +82,12 @@ public class ExplicitRightsAuthorization extends Authorization {
 	
 	@Override
 	protected int getBufferSize() {
-		return 32;
+		return 40;
 	}
 
 	@Override
 	public void getBytes(ByteBuffer buffer) {
+		buffer.putLong(getUoid());
 		buffer.putLong(getReadRevisionRoid());
 		buffer.putLong(getWriteProjectPoid());
 		buffer.putLong(getReadExtendedDataRoid());
