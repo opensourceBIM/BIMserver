@@ -184,4 +184,6 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	int countWithSubtypes(EClass eClass);
 
 	void clear();
+
+	void resetExpressIds();
 }
