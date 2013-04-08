@@ -11,5 +11,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/BimServerClientLib"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/IfcPlugins"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/IfcEngine"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/BimServer"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

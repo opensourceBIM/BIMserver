@@ -799,7 +799,6 @@ public class IfcModel implements IfcModelInterface {
 		IdEObject object = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		long oid = oidCounter++;
 		((IdEObjectImpl) object).setOid(oid);
-		((IdEObjectImpl) object).setModel(this);
 		add(oid, object, false, false);
 		return (T) object;
 	}
@@ -823,6 +822,13 @@ public class IfcModel implements IfcModelInterface {
 		}
 		if (objects != null) {
 			objects.clear();
+		}
+	}
+
+	@Override
+	public void resetExpressIds() {
+		for (IdEObject idEObject : objects.values()) {
+			((IdEObjectImpl)idEObject).setExpressId(-1);
 		}
 	}
 }

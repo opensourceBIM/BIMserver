@@ -269,6 +269,9 @@ public class IfcStepSerializer extends IfcSerializer {
 		}
 		out.print(DASH);
 		int convertedKey = getExpressId(object);
+		if (convertedKey == -1) {
+			throw new SerializerException("Going to serialize an object with id -1 (" + object.eClass().getName() + ")");
+		}
 		out.print(String.valueOf(convertedKey));
 		out.print("= ");
 		String upperCase = upperCases.get(eClass);
