@@ -146,7 +146,8 @@ public class NotificationsManager extends Thread implements NotificationsManager
 			return jsonChannel;
 		case INTERNAL:
 			DirectChannel directChannel = new DirectChannel(bimServer.getServiceFactory(), bimServer.getServicesMap());
-			directChannel.add(RemoteServiceInterface.class.getName(), internalRemoteServiceInterfaces.get(service.getServiceIdentifier()));
+			RemoteServiceInterface service2 = internalRemoteServiceInterfaces.get(service.getServiceIdentifier());
+			directChannel.add(RemoteServiceInterface.class.getName(), service2);
 			try {
 				directChannel.connect();
 			} catch (UserException e) {
@@ -201,7 +202,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 						@Override
 						public void run() {
 							try {
-								newRevisionHandler.newRevision(bimServerClient.getChannel(), poid, roid, settings);
+								newRevisionHandler.newRevision(bimServerClient, poid, roid, settings);
 							} catch (ServerException e) {
 								LOGGER.error("", e);
 							} catch (UserException e) {

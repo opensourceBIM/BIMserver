@@ -41,6 +41,10 @@ public interface AuthInterface extends PublicInterface {
 		@WebParam(name = "username", partName = "autologin.username") String username,
 		@WebParam(name = "hash", partName = "autologin.hash") String hash) throws ServerException, UserException;
 
+	@WebMethod(action = "tokenlogin")
+	void tokenlogin(
+		@WebParam(name = "token", partName = "tokenlogin.token") String token) throws UserException, ServerException;
+	
 	/**
 	 * Logout from this ServiceInterface (beware, the ServiceInterface is not closed and is still usable)
 	 * @throws ServerException, UserException

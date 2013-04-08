@@ -18,11 +18,10 @@ package org.bimserver.plugins.services;
  *****************************************************************************/
 
 import org.bimserver.interfaces.objects.SObjectType;
-import org.bimserver.shared.ServiceHolder;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
 public interface NewRevisionHandler {
 
-	void newRevision(ServiceHolder serviceHolder, long poid, long roid, SObjectType settings) throws ServerException, UserException;
+	void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, SObjectType settings) throws ServerException, UserException;
 }

@@ -1703,8 +1703,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 	
 	@Override
-	public String shareRevision(Long roid) {
-		ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(roid, -1, -1, -1);
+	public String shareRevision(Long roid) throws UserException, ServerException {
+		ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(getCurrentUser().getOid(), roid, -1, -1, -1);
 		return authorization.asHexToken(getBimServer().getEncryptionKey());
 	}
 	

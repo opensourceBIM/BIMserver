@@ -11,6 +11,7 @@ import org.bimserver.models.store.Trigger;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
@@ -69,15 +70,15 @@ public class DemoServicePlugin1 extends ServicePlugin {
 		serviceDescriptor.setTrigger(Trigger.NEW_REVISION);
 		registerNewRevisionHandler(serviceDescriptor, new NewRevisionHandler() {
 			@Override
-			public void newRevision(ServiceHolder serviceHolder, long poid, long roid, SObjectType settings) throws ServerException, UserException {
+			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, SObjectType settings) throws ServerException, UserException {
 				try {
-					Long topicId = serviceHolder.getRegistry().registerProgressOnRevisionTopic(SProgressTopicType.RUNNING_SERVICE, poid, roid, "Running Demo Service");
+					Long topicId = bimServerClientInterface.getRegistry().registerProgressOnRevisionTopic(SProgressTopicType.RUNNING_SERVICE, poid, roid, "Running Demo Service");
 					for (int i=0; i<100; i++) {
 						SLongActionState state = new SLongActionState();
 						state.setProgress(i);
 						state.setTitle("Doing absolutely nothing...");
 						state.setState(SActionState.STARTED);
-						serviceHolder.getRegistry().updateProgressTopic(topicId, state);
+						bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 						try {
 							Thread.sleep(200);
 						} catch (InterruptedException e) {
@@ -88,9 +89,9 @@ public class DemoServicePlugin1 extends ServicePlugin {
 					state.setProgress(100);
 					state.setTitle("Done");
 					state.setState(SActionState.FINISHED);
-					serviceHolder.getRegistry().updateProgressTopic(topicId, state);
+					bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 					
-					serviceHolder.getRegistry().unregisterProgressTopic(topicId);
+					bimServerClientInterface.getRegistry().unregisterProgressTopic(topicId);
 				} catch (PublicInterfaceNotFoundException e1) {
 					e1.printStackTrace();
 				}

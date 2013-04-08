@@ -1,0 +1,41 @@
+<jaxb:bindings version="1.0" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" schemaLocation="file:IMRO2008.xsd">
+	<jaxb:bindings>
+		<jaxb:globalBindings typesafeEnumMaxMembers="600" />
+	</jaxb:bindings>
+
+	<jaxb:bindings schemaLocation="http://www.w3.org/1999/xlink.xsd"
+		node="/xs:schema">
+
+		<jaxb:bindings node="//xs:attributeGroup[@name='locatorAttrs']">
+			<jaxb:bindings node=".//xs:attribute[@ref='xlink:title']">
+				<jaxb:property name="title1" />
+			</jaxb:bindings>
+		</jaxb:bindings>
+
+		<jaxb:bindings node="//xs:attributeGroup[@name='arcAttrs']">
+			<jaxb:bindings node=".//xs:attribute[@ref='xlink:title']">
+				<jaxb:property name="title2" />
+			</jaxb:bindings>
+		</jaxb:bindings>
+	</jaxb:bindings>
+
+	<jaxb:bindings
+		schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/geometryPrimitives.xsd"
+		node="/xs:schema">
+		<jaxb:bindings node="//xs:element[@name='_Solid']">
+			<jaxb:factoryMethod name="gmlAbstractSolidElementFactory" />
+		</jaxb:bindings>
+	</jaxb:bindings>
+
+	<bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/defaultStyle.xsd">
+		<schemaBindings>
+			<package name="gmlDefaultStyle" />
+		</schemaBindings>
+	</bindings>
+	<bindings schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/geometryBasic0d1d.xsd">
+		<schemaBindings>
+			<package name="geometryBasic0d1d" />
+		</schemaBindings>
+	</bindings>
+</jaxb:bindings>

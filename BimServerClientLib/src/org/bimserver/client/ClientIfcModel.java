@@ -26,6 +26,7 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.services.BimServerClientException;
 import org.bimserver.shared.ListWaitingObject;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.SingleWaitingObject;
@@ -551,7 +552,6 @@ public class ClientIfcModel extends IfcModel {
 		try {
 			Long oid = bimServerClient.getLowLevel().createObject(tid, eClass.getName());
 			object.setOid(oid);
-			add(oid, object);
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {

@@ -1,5 +1,8 @@
 package org.bimserver.shared;
 
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.LowLevelInterface;

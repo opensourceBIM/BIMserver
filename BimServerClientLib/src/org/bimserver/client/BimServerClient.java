@@ -32,11 +32,14 @@ import org.bimserver.client.notifications.SocketNotificationsClient;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.plugins.services.BimServerClientException;
+import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.AutologinAuthenticationInfo;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.ServiceHolder;
+import org.bimserver.shared.TokenAuthentication;
 import org.bimserver.shared.TokenChangeListener;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
@@ -58,7 +61,7 @@ import org.bimserver.shared.meta.SServicesMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BimServerClient implements ConnectDisconnectListener, TokenHolder, ServiceHolder {
+public class BimServerClient implements ConnectDisconnectListener, TokenHolder, ServiceHolder, BimServerClientInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BimServerClient.class);
 	private final Set<ConnectDisconnectListener> connectDisconnectListeners = new HashSet<ConnectDisconnectListener>();
 	private final Set<TokenChangeListener> tokenChangeListeners = new HashSet<TokenChangeListener>();
@@ -103,6 +106,9 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 			} else if (authenticationInfo instanceof AutologinAuthenticationInfo) {
 				AutologinAuthenticationInfo autologinAuthenticationInfo = (AutologinAuthenticationInfo) authenticationInfo;
 				setToken(authInterface.autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode()));
+			} else if (authenticationInfo instanceof TokenAuthentication) {
+				TokenAuthentication tokenAuthentication = (TokenAuthentication)authenticationInfo;
+				setToken(tokenAuthentication.getToken());
 			}
 		} catch (PublicInterfaceNotFoundException e) {
 			LOGGER.error("", e);
