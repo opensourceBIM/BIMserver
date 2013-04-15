@@ -170,7 +170,6 @@ public interface ServiceInterface extends PublicInterface {
 
 	/**
 	 * Download a model in a serialized format by giving a set of revisions and a set of Object IDs
-	 * NOTE: This is a potentially slow method because the classes of the objects are not given
 	 * @param roids A set of Revision ObjectIDs
 	 * @param oids A set of ObjectIDs
 	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres

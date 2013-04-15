@@ -19,7 +19,6 @@ public class IfcDoc {
 							if (y.getName().endsWith(".htm")) {
 								String domain = f.getName();
 								String classname = y.getName().substring(0, y.getName().length() - 4);
-								System.out.println(domain + " -> " + classname);
 								if (!domainToClasses.containsKey(domain)) {
 									domainToClasses.put(domain, new HashSet<String>());
 								}

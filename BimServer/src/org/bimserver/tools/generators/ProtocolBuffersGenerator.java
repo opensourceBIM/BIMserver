@@ -46,7 +46,7 @@ public class ProtocolBuffersGenerator {
 
 	public void generate(Class<?> serviceInterfaceClass, File protoFile, File descFile, boolean createBaseMessages, SService service, List<String> imports) {
 		generateProtoFile(serviceInterfaceClass, protoFile, createBaseMessages, service, imports);
-		generateProtocolBuffersObjects(protoFile, descFile, true);
+		generateProtocolBuffersObjects(protoFile, descFile, false);
 	}
 
 	private void generateProtocolBuffersObjects(File protoFile, File protoDestFile, boolean javaOut) {
