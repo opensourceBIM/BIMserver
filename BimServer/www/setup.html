@@ -54,7 +54,7 @@ function Setup(address) {
 	
 	this.setup = function(event){
 		event.preventDefault();
-		Global.bimServerApi.call("ServiceInterface", "setup", {
+		Global.bimServerApi.call("AdminInterface", "setup", {
 			siteAddress: $(".setup .siteAddressInput").val(),
 			smtpServer: $(".setup .smtpServerInput").val(),
 			smtpSender: $(".setup .smtpSenderInput").val(),
