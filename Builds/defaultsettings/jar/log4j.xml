@@ -4,7 +4,7 @@
 	<appender name="Console" class="org.apache.log4j.ConsoleAppender">
 		<param name="Threshold" value="DEBUG" />
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%d{ISO8601} %-5p %c - %m%n" />
+			<param name="ConversionPattern" value="%d{dd-MM-yyyy HH:mm:ss} %-5p %c - %m%n" />
 		</layout>
 	</appender>
 	<logger name="org.quartz">

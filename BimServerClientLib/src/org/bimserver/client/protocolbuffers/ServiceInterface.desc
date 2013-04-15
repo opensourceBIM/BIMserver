@@ -8,9 +8,9 @@
 fileId (
 extendedData (
 users (
-rid (
-oid (
-description (	
+rid (
+description (	
+oid (
 name (	7
 type (2).org.bimserver.pb.SExtendedDataSchemaType
 validate	 (
@@ -51,14 +51,14 @@ revisionId	 (
 serviceName (	=
 notificationProtocol	 (2.org.bimserver.pb.SAccessMethod
 rid
- (
-providerName (	
-token (	
+ (
+token (	
+providerName (	
 oid (
-description (	
-userId (
-writeRevisionId (
-readExtendedDataId (
+description (	
+writeRevisionId (
+readExtendedDataId (
+userId (
 name (	
 serviceIdentifier (	
 writeExtendedDataId (
@@ -79,15 +79,15 @@ revisionId	 (
 concreteRevisions (
 
 id (
-parentId (
-extendedData	 (
-hasAuthorizedUsers
+parentId (
+hasAuthorizedUsers	 (
+extendedData
  (
 rid (
-geoTagId (
-oid (
-description (	>
-exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
+geoTagId (>
+exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
+oid (
+description (	
 name (	
 subProjects (
 lastRevisionId (
@@ -114,16 +114,16 @@ parentPoid ("a
 selfRegistration ("º
 SUser
 userSettingsId (
-lastSeen (
-services (
-schemas (
+lastSeen (
+schemas (
+services (
 createdById (
 logs (
 validationToken (	-
-state (2.org.bimserver.pb.SObjectState
-hasRightsOn	 (
-password
- (	-
+state (2.org.bimserver.pb.SObjectState
+password	 (	
+hasRightsOn
+ (-
 userType (2.org.bimserver.pb.SUserType
 	createdOn (
 extendedData (
@@ -131,9 +131,9 @@ parentPoid ("a
 rid (
 token (	
 oid (
-name (	
-	revisions (
-validationTokenCreated ("O
+name (	
+validationTokenCreated (
+	revisions ("O
 AddUserResponse
 errorMessage (	&
 value (2.org.bimserver.pb.SUser"A
@@ -208,11 +208,11 @@ parentPoid ("a
 roid1 (
 roid2 (4
 sCompareType (2.org.bimserver.pb.SCompareType
-mcid ("*
-SObjectRemoved
-rid (
-oid ("(
+mcid ("(
 SObjectAdded
+rid (
+oid ("*
+SObjectRemoved
 rid (
 oid ("b
 SObjectModified
@@ -220,26 +220,26 @@ parentPoid ("a
 rid (
 oid (
 oldValue (	
-	fieldName (	"X
-SListDataValue,
-values (2.org.bimserver.pb.SDataValue
-rid (
-oid ("A
-SSimpleDataValue
-rid (
-oid (
-stringValue (	"O
+	fieldName (	"O
 SReferenceDataValue
 guid (	
 typeName (	
 rid (
-oid ("’
+oid ("A
+SSimpleDataValue
+rid (
+oid (
+stringValue (	"X
+SListDataValue,
+values (2.org.bimserver.pb.SDataValue
+rid (
+oid ("’
 
 SDataValue
-__actual_type (	:
-__SListDataValue (2 .org.bimserver.pb.SListDataValue>
-__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValueD
-__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue
+__actual_type (	D
+__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue>
+__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValue:
+__SListDataValue (2 .org.bimserver.pb.SListDataValue
 rid (
 oid (
 	fieldName (	"
@@ -251,9 +251,9 @@ SDataValue
 name (	
 type (	"¤
 SCompareItem
-__actual_type (	:
-__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved6
-__SObjectAdded (2.org.bimserver.pb.SObjectAdded<
+__actual_type (	6
+__SObjectAdded (2.org.bimserver.pb.SObjectAdded:
+__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved<
 __SObjectModified (2!.org.bimserver.pb.SObjectModified
 rid (
 oid (1
@@ -371,9 +371,9 @@ classNames (	
 uoid ("µ
 	SRevision
 hasGeometry (
-lastConcreteRevisionId (
-bmi (
-logs (
+lastConcreteRevisionId (
+logs (
+bmi (
 tag (	
 concreteRevisions (
 	projectId (
@@ -385,15 +385,15 @@ classNames (	
 extendedData (
 rid (
 oid (
-userId (
-	lastError (	
-comment (	
+userId (
+comment (	
+	lastError (	
 	checkouts ("Ñ
-	SCheckout,
-checkin (2.org.bimserver.pb.SRevision-
-revision (2.org.bimserver.pb.SRevision
-logs (
-rid (
+	SCheckout-
+revision (2.org.bimserver.pb.SRevision,
+checkin (2.org.bimserver.pb.SRevision
+rid (
+logs (
 oid (
 userId (
 active (
@@ -438,14 +438,14 @@ identifier (	"h
 errorMessage (	3
 value (2$.org.bimserver.pb.SProfileDescriptor"&
 $GetAllLocalServiceDescriptorsRequest"Ë
-SServiceDescriptor+
-trigger (2.org.bimserver.pb.STrigger
-writeExtendedData (	=
-notificationProtocol (2.org.bimserver.pb.SAccessMethod
+SServiceDescriptor
+writeExtendedData (	=
+notificationProtocol (2.org.bimserver.pb.SAccessMethod+
+trigger (2.org.bimserver.pb.STrigger
 writeRevision (
-readExtendedData (	
-token (	
-providerName (	
+readExtendedData (	
+providerName (	
+token (	
 description (	
 name	 (	
 readRevision
@@ -592,11 +592,11 @@ revisionNr (
 value (2.org.bimserver.pb.SFile" 
 GetGeoTagRequest
 goid ("
-SGeoTag
-enabled (
-projects (
-rid (
-epsg (
+SGeoTag
+projects (
+enabled (
+epsg (
+rid (
 oid (
 directionAngle (	
 z (	
@@ -716,11 +716,11 @@ revisionNr (
 objectIDMs (
 defaultObjectIDMId (
 defaultModelCompareId (
-defaultQueryEngineId	 (
-renderEngines
- (
-deserializers (
-rid (
+defaultQueryEngineId	 (
+rid
+ (
+renderEngines (
+deserializers (
 oid (
 defaultRenderEngineId (
 defaultSerializerId (

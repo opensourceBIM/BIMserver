@@ -4,7 +4,7 @@
 	<appender name="ErrorConsole" class="org.apache.log4j.ConsoleAppender">
 		<param name="Target" value="System.err" />
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%d{HH:mm:ss} %-5p %-80m (%c.java:%L) %n" />
+			<param name="ConversionPattern" value="%d{dd-MM-yyyy HH:mm:ss} %-5p %-80m (%c.java:%L) %n" />
 		</layout>
 		<filter class="org.apache.log4j.varia.LevelMatchFilter">
         	<param name="LevelToMatch" value="ERROR" />
@@ -15,7 +15,7 @@
 	<appender name="OutConsole" class="org.apache.log4j.ConsoleAppender">
 		<param name="Target" value="System.out" />
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%d{HH:mm:ss} %-5p %-80m (%c.java:%L) %n" />
+			<param name="ConversionPattern" value="%d{dd-MM-yyyy HH:mm:ss} %-5p %-80m (%c.java:%L) %n" />
 		</layout>
 		<filter class="org.apache.log4j.varia.LevelMatchFilter">
         	<param name="LevelToMatch" value="ERROR" />
@@ -26,7 +26,7 @@
 		<param name="File" value="[willbeoverridden]" />
 		<param name="Threshold" value="DEBUG" />
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%d{ISO8601} %-5p %c - %m%n" />
+			<param name="ConversionPattern" value="%d{dd-MM-yyyy HH:mm:ss} %-5p %-80m (%c.java:%L) %n" />
 		</layout>
 	</appender>
 	<logger name="org.quartz">
