@@ -130,6 +130,12 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	 */
 	<T extends IdEObject> List<T> getAllWithSubTypes(Class<T> clazz);
 
+	/**
+	 * @param clazz The type to query for 
+	 * @return A List with all the objects in this model of the given type, instances of subtypes are included
+	 */
+	<T extends IdEObject> List<T> getAllWithSubTypes(EClass eClass);
+
 	/** Tests whether the given object is part of this model
 	 * @param referencedObject
 	 * @return Whether the given object is part of this model
