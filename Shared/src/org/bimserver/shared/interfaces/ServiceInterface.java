@@ -754,8 +754,6 @@ public interface ServiceInterface extends PublicInterface {
 	String getQueryEngineExample(
 		@WebParam(name = "qeid", partName = "getQueryEngineExample.qeid") Long qeid,
 		@WebParam(name = "key", partName = "getQueryEngineExample.key") String key) throws ServerException, UserException;
-	
-
 
 	/**
 	 * @param oid ObjectID of the ExtendedDataSchema
