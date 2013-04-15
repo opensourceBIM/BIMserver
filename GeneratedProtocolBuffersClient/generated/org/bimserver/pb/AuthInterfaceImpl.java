@@ -9323,6 +9323,477 @@ public final class AuthInterfaceImpl {
     // @@protoc_insertion_point(class_scope:org.bimserver.pb.RequestPasswordChangeRequest)
   }
 
+  public interface TokenloginRequestOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional string token = 1;
+    /**
+     * <code>optional string token = 1;</code>
+     */
+    boolean hasToken();
+    /**
+     * <code>optional string token = 1;</code>
+     */
+    java.lang.String getToken();
+    /**
+     * <code>optional string token = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getTokenBytes();
+  }
+  /**
+   * Protobuf type {@code org.bimserver.pb.TokenloginRequest}
+   */
+  public static final class TokenloginRequest extends
+      com.google.protobuf.GeneratedMessage
+      implements TokenloginRequestOrBuilder {
+    // Use TokenloginRequest.newBuilder() to construct.
+    private TokenloginRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private TokenloginRequest(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final TokenloginRequest defaultInstance;
+    public static TokenloginRequest getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public TokenloginRequest getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TokenloginRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              token_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_TokenloginRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_TokenloginRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest.class, org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<TokenloginRequest> PARSER =
+        new com.google.protobuf.AbstractParser<TokenloginRequest>() {
+      public TokenloginRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TokenloginRequest(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TokenloginRequest> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional string token = 1;
+    public static final int TOKEN_FIELD_NUMBER = 1;
+    private java.lang.Object token_;
+    /**
+     * <code>optional string token = 1;</code>
+     */
+    public boolean hasToken() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string token = 1;</code>
+     */
+    public java.lang.String getToken() {
+      java.lang.Object ref = token_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          token_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string token = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTokenBytes() {
+      java.lang.Object ref = token_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        token_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private void initFields() {
+      token_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getTokenBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getTokenBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code org.bimserver.pb.TokenloginRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.bimserver.pb.AuthInterfaceImpl.TokenloginRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_TokenloginRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_TokenloginRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest.class, org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest.Builder.class);
+      }
+
+      // Construct using org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        token_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.bimserver.pb.AuthInterfaceImpl.internal_static_org_bimserver_pb_TokenloginRequest_descriptor;
+      }
+
+      public org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest getDefaultInstanceForType() {
+        return org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest.getDefaultInstance();
+      }
+
+      public org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest build() {
+        org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest buildPartial() {
+        org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest result = new org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.token_ = token_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest) {
+          return mergeFrom((org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest other) {
+        if (other == org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest.getDefaultInstance()) return this;
+        if (other.hasToken()) {
+          bitField0_ |= 0x00000001;
+          token_ = other.token_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional string token = 1;
+      private java.lang.Object token_ = "";
+      /**
+       * <code>optional string token = 1;</code>
+       */
+      public boolean hasToken() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string token = 1;</code>
+       */
+      public java.lang.String getToken() {
+        java.lang.Object ref = token_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          token_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string token = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTokenBytes() {
+        java.lang.Object ref = token_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          token_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string token = 1;</code>
+       */
+      public Builder setToken(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        token_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string token = 1;</code>
+       */
+      public Builder clearToken() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        token_ = getDefaultInstance().getToken();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string token = 1;</code>
+       */
+      public Builder setTokenBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        token_ = value;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:org.bimserver.pb.TokenloginRequest)
+    }
+
+    static {
+      defaultInstance = new TokenloginRequest(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:org.bimserver.pb.TokenloginRequest)
+  }
+
   public interface ValidateAccountRequestOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
@@ -10783,6 +11254,14 @@ public final class AuthInterfaceImpl {
           com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
 
       /**
+       * <code>rpc tokenlogin(.org.bimserver.pb.TokenloginRequest) returns (.org.bimserver.pb.VoidResponse);</code>
+       */
+      public abstract void tokenlogin(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
+
+      /**
        * <code>rpc validateAccount(.org.bimserver.pb.ValidateAccountRequest) returns (.org.bimserver.pb.ValidateAccountResponse);</code>
        */
       public abstract void validateAccount(
@@ -10876,6 +11355,14 @@ public final class AuthInterfaceImpl {
         }
 
         @java.lang.Override
+        public  void tokenlogin(
+            com.google.protobuf.RpcController controller,
+            org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest request,
+            com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
+          impl.tokenlogin(controller, request, done);
+        }
+
+        @java.lang.Override
         public  void validateAccount(
             com.google.protobuf.RpcController controller,
             org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest request,
@@ -10926,6 +11413,8 @@ public final class AuthInterfaceImpl {
             case 9:
               return impl.requestPasswordChange(controller, (org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest)request);
             case 10:
+              return impl.tokenlogin(controller, (org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest)request);
+            case 11:
               return impl.validateAccount(controller, (org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest)request);
             default:
               throw new java.lang.AssertionError("Can't get here.");
@@ -10962,6 +11451,8 @@ public final class AuthInterfaceImpl {
             case 9:
               return org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest.getDefaultInstance();
             case 10:
+              return org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest.getDefaultInstance();
+            case 11:
               return org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest.getDefaultInstance();
             default:
               throw new java.lang.AssertionError("Can't get here.");
@@ -10998,6 +11489,8 @@ public final class AuthInterfaceImpl {
             case 9:
               return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
             case 10:
+              return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+            case 11:
               return org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse.getDefaultInstance();
             default:
               throw new java.lang.AssertionError("Can't get here.");
@@ -11088,6 +11581,14 @@ public final class AuthInterfaceImpl {
         com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
 
     /**
+     * <code>rpc tokenlogin(.org.bimserver.pb.TokenloginRequest) returns (.org.bimserver.pb.VoidResponse);</code>
+     */
+    public abstract void tokenlogin(
+        com.google.protobuf.RpcController controller,
+        org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest request,
+        com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done);
+
+    /**
      * <code>rpc validateAccount(.org.bimserver.pb.ValidateAccountRequest) returns (.org.bimserver.pb.ValidateAccountResponse);</code>
      */
     public abstract void validateAccount(
@@ -11168,6 +11669,11 @@ public final class AuthInterfaceImpl {
               done));
           return;
         case 10:
+          this.tokenlogin(controller, (org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest)request,
+            com.google.protobuf.RpcUtil.<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse>specializeCallback(
+              done));
+          return;
+        case 11:
           this.validateAccount(controller, (org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest)request,
             com.google.protobuf.RpcUtil.<org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse>specializeCallback(
               done));
@@ -11207,6 +11713,8 @@ public final class AuthInterfaceImpl {
         case 9:
           return org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest.getDefaultInstance();
         case 10:
+          return org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest.getDefaultInstance();
+        case 11:
           return org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest.getDefaultInstance();
         default:
           throw new java.lang.AssertionError("Can't get here.");
@@ -11243,6 +11751,8 @@ public final class AuthInterfaceImpl {
         case 9:
           return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
         case 10:
+          return org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance();
+        case 11:
           return org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse.getDefaultInstance();
         default:
           throw new java.lang.AssertionError("Can't get here.");
@@ -11415,12 +11925,27 @@ public final class AuthInterfaceImpl {
             org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance()));
       }
 
+      public  void tokenlogin(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest request,
+          com.google.protobuf.RpcCallback<org.bimserver.pb.ServiceInterfaceImpl.VoidResponse> done) {
+        channel.callMethod(
+          getDescriptor().getMethods().get(10),
+          controller,
+          request,
+          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance(),
+          com.google.protobuf.RpcUtil.generalizeCallback(
+            done,
+            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.class,
+            org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance()));
+      }
+
       public  void validateAccount(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest request,
           com.google.protobuf.RpcCallback<org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse> done) {
         channel.callMethod(
-          getDescriptor().getMethods().get(10),
+          getDescriptor().getMethods().get(11),
           controller,
           request,
           org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse.getDefaultInstance(),
@@ -11485,6 +12010,11 @@ public final class AuthInterfaceImpl {
       public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse requestPasswordChange(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.AuthInterfaceImpl.RequestPasswordChangeRequest request)
+          throws com.google.protobuf.ServiceException;
+
+      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse tokenlogin(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest request)
           throws com.google.protobuf.ServiceException;
 
       public org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse validateAccount(
@@ -11620,12 +12150,24 @@ public final class AuthInterfaceImpl {
       }
 
 
+      public org.bimserver.pb.ServiceInterfaceImpl.VoidResponse tokenlogin(
+          com.google.protobuf.RpcController controller,
+          org.bimserver.pb.AuthInterfaceImpl.TokenloginRequest request)
+          throws com.google.protobuf.ServiceException {
+        return (org.bimserver.pb.ServiceInterfaceImpl.VoidResponse) channel.callBlockingMethod(
+          getDescriptor().getMethods().get(10),
+          controller,
+          request,
+          org.bimserver.pb.ServiceInterfaceImpl.VoidResponse.getDefaultInstance());
+      }
+
+
       public org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse validateAccount(
           com.google.protobuf.RpcController controller,
           org.bimserver.pb.AuthInterfaceImpl.ValidateAccountRequest request)
           throws com.google.protobuf.ServiceException {
         return (org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse) channel.callBlockingMethod(
-          getDescriptor().getMethods().get(10),
+          getDescriptor().getMethods().get(11),
           controller,
           request,
           org.bimserver.pb.AuthInterfaceImpl.ValidateAccountResponse.getDefaultInstance());
@@ -11727,6 +12269,11 @@ public final class AuthInterfaceImpl {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_org_bimserver_pb_RequestPasswordChangeRequest_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_org_bimserver_pb_TokenloginRequest_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_org_bimserver_pb_TokenloginRequest_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_org_bimserver_pb_ValidateAccountRequest_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -11772,39 +12319,42 @@ public final class AuthInterfaceImpl {
       "assword\030\002 \001(\t\"4\n\rLoginResponse\022\024\n\014errorM" +
       "essage\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"\017\n\rLogoutReq" +
       "uest\"B\n\034RequestPasswordChangeRequest\022\020\n\010" +
-      "username\030\001 \001(\t\022\020\n\010resetUrl\030\002 \001(\t\"G\n\026Vali" +
-      "dateAccountRequest\022\014\n\004uoid\030\001 \001(\003\022\r\n\005toke" +
-      "n\030\002 \001(\t\022\020\n\010password\030\003 \001(\t\"W\n\027ValidateAcc",
-      "ountResponse\022\024\n\014errorMessage\030\001 \001(\t\022&\n\005va" +
-      "lue\030\002 \001(\0132\027.org.bimserver.pb.SUser2\251\010\n\rA" +
-      "uthInterface\022T\n\tautologin\022\".org.bimserve" +
-      "r.pb.AutologinRequest\032#.org.bimserver.pb" +
-      ".AutologinResponse\022c\n\016changePassword\022\'.o" +
-      "rg.bimserver.pb.ChangePasswordRequest\032(." +
-      "org.bimserver.pb.ChangePasswordResponse\022" +
-      "f\n\017getAccessMethod\022(.org.bimserver.pb.Ge" +
-      "tAccessMethodRequest\032).org.bimserver.pb." +
-      "GetAccessMethodResponse\022c\n\016getCurrentUse",
-      "r\022\'.org.bimserver.pb.GetCurrentUserReque" +
-      "st\032(.org.bimserver.pb.GetCurrentUserResp" +
-      "onse\022f\n\017getLoggedInUser\022(.org.bimserver." +
-      "pb.GetLoggedInUserRequest\032).org.bimserve" +
-      "r.pb.GetLoggedInUserResponse\022i\n\020getRemot" +
-      "eAddress\022).org.bimserver.pb.GetRemoteAdd" +
-      "ressRequest\032*.org.bimserver.pb.GetRemote" +
-      "AddressResponse\022W\n\nisLoggedIn\022#.org.bims" +
-      "erver.pb.IsLoggedInRequest\032$.org.bimserv" +
-      "er.pb.IsLoggedInResponse\022H\n\005login\022\036.org.",
-      "bimserver.pb.LoginRequest\032\037.org.bimserve" +
-      "r.pb.LoginResponse\022I\n\006logout\022\037.org.bimse" +
-      "rver.pb.LogoutRequest\032\036.org.bimserver.pb" +
-      ".VoidResponse\022g\n\025requestPasswordChange\022." +
-      ".org.bimserver.pb.RequestPasswordChangeR" +
-      "equest\032\036.org.bimserver.pb.VoidResponse\022f" +
-      "\n\017validateAccount\022(.org.bimserver.pb.Val" +
-      "idateAccountRequest\032).org.bimserver.pb.V" +
-      "alidateAccountResponseB\030B\021AuthInterfaceI" +
-      "mplH\001\210\001\001"
+      "username\030\001 \001(\t\022\020\n\010resetUrl\030\002 \001(\t\"\"\n\021Toke" +
+      "nloginRequest\022\r\n\005token\030\001 \001(\t\"G\n\026Validate" +
+      "AccountRequest\022\014\n\004uoid\030\001 \001(\003\022\r\n\005token\030\002 ",
+      "\001(\t\022\020\n\010password\030\003 \001(\t\"W\n\027ValidateAccount" +
+      "Response\022\024\n\014errorMessage\030\001 \001(\t\022&\n\005value\030" +
+      "\002 \001(\0132\027.org.bimserver.pb.SUser2\374\010\n\rAuthI" +
+      "nterface\022T\n\tautologin\022\".org.bimserver.pb" +
+      ".AutologinRequest\032#.org.bimserver.pb.Aut" +
+      "ologinResponse\022c\n\016changePassword\022\'.org.b" +
+      "imserver.pb.ChangePasswordRequest\032(.org." +
+      "bimserver.pb.ChangePasswordResponse\022f\n\017g" +
+      "etAccessMethod\022(.org.bimserver.pb.GetAcc" +
+      "essMethodRequest\032).org.bimserver.pb.GetA",
+      "ccessMethodResponse\022c\n\016getCurrentUser\022\'." +
+      "org.bimserver.pb.GetCurrentUserRequest\032(" +
+      ".org.bimserver.pb.GetCurrentUserResponse" +
+      "\022f\n\017getLoggedInUser\022(.org.bimserver.pb.G" +
+      "etLoggedInUserRequest\032).org.bimserver.pb" +
+      ".GetLoggedInUserResponse\022i\n\020getRemoteAdd" +
+      "ress\022).org.bimserver.pb.GetRemoteAddress" +
+      "Request\032*.org.bimserver.pb.GetRemoteAddr" +
+      "essResponse\022W\n\nisLoggedIn\022#.org.bimserve" +
+      "r.pb.IsLoggedInRequest\032$.org.bimserver.p",
+      "b.IsLoggedInResponse\022H\n\005login\022\036.org.bims" +
+      "erver.pb.LoginRequest\032\037.org.bimserver.pb" +
+      ".LoginResponse\022I\n\006logout\022\037.org.bimserver" +
+      ".pb.LogoutRequest\032\036.org.bimserver.pb.Voi" +
+      "dResponse\022g\n\025requestPasswordChange\022..org" +
+      ".bimserver.pb.RequestPasswordChangeReque" +
+      "st\032\036.org.bimserver.pb.VoidResponse\022Q\n\nto" +
+      "kenlogin\022#.org.bimserver.pb.TokenloginRe" +
+      "quest\032\036.org.bimserver.pb.VoidResponse\022f\n" +
+      "\017validateAccount\022(.org.bimserver.pb.Vali",
+      "dateAccountRequest\032).org.bimserver.pb.Va" +
+      "lidateAccountResponseB\030B\021AuthInterfaceIm" +
+      "plH\001\210\001\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -11919,14 +12469,20 @@ public final class AuthInterfaceImpl {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_RequestPasswordChangeRequest_descriptor,
               new java.lang.String[] { "Username", "ResetUrl", });
-          internal_static_org_bimserver_pb_ValidateAccountRequest_descriptor =
+          internal_static_org_bimserver_pb_TokenloginRequest_descriptor =
             getDescriptor().getMessageTypes().get(18);
+          internal_static_org_bimserver_pb_TokenloginRequest_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_org_bimserver_pb_TokenloginRequest_descriptor,
+              new java.lang.String[] { "Token", });
+          internal_static_org_bimserver_pb_ValidateAccountRequest_descriptor =
+            getDescriptor().getMessageTypes().get(19);
           internal_static_org_bimserver_pb_ValidateAccountRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_ValidateAccountRequest_descriptor,
               new java.lang.String[] { "Uoid", "Token", "Password", });
           internal_static_org_bimserver_pb_ValidateAccountResponse_descriptor =
-            getDescriptor().getMessageTypes().get(19);
+            getDescriptor().getMessageTypes().get(20);
           internal_static_org_bimserver_pb_ValidateAccountResponse_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_org_bimserver_pb_ValidateAccountResponse_descriptor,

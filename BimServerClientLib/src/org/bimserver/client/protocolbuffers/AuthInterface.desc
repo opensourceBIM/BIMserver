@@ -1,5 +1,5 @@
 
-À
+·
 AuthInterface.protoorg.bimserver.pbServiceInterface.protoNotificationInterface.protoRemoteServiceInterface.protoAdminInterface.proto"2
 AutologinRequest
 username (	
@@ -43,14 +43,16 @@
 LogoutRequest"B
 RequestPasswordChangeRequest
 username (	
-resetUrl (	"G
+resetUrl (	""
+TokenloginRequest
+token (	"G
 ValidateAccountRequest
 uoid (
 token (	
 password (	"W
 ValidateAccountResponse
 errorMessage (	&
-value (2.org.bimserver.pb.SUser2©
+value (2.org.bimserver.pb.SUser2ü
 AuthInterfaceT
 	autologin".org.bimserver.pb.AutologinRequest#.org.bimserver.pb.AutologinResponsec
 changePassword'.org.bimserver.pb.ChangePasswordRequest(.org.bimserver.pb.ChangePasswordResponsef
@@ -62,5 +64,7 @@
 isLoggedIn#.org.bimserver.pb.IsLoggedInRequest$.org.bimserver.pb.IsLoggedInResponseH
 login.org.bimserver.pb.LoginRequest.org.bimserver.pb.LoginResponseI
 logout.org.bimserver.pb.LogoutRequest.org.bimserver.pb.VoidResponseg
-requestPasswordChange..org.bimserver.pb.RequestPasswordChangeRequest.org.bimserver.pb.VoidResponsef
+requestPasswordChange..org.bimserver.pb.RequestPasswordChangeRequest.org.bimserver.pb.VoidResponseQ
+
+tokenlogin#.org.bimserver.pb.TokenloginRequest.org.bimserver.pb.VoidResponsef
 validateAccount(.org.bimserver.pb.ValidateAccountRequest).org.bimserver.pb.ValidateAccountResponseBBAuthInterfaceImplHˆ

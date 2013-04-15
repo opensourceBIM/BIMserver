@@ -12,9 +12,9 @@
 GetServerSettingsRequest"Ÿ
 SServerSettings.
 &sendConfirmationEmailAfterRegistration (!
-generateGeometryOnCheckin (
-allowOnlyWhitelisted (
-protocolBuffersPort (
+generateGeometryOnCheckin (
+protocolBuffersPort (
+allowOnlyWhitelisted (
 siteAddress (	*
 "allowUsersToCreateTopLevelProjects (
 serviceRepositoryUrl (	
@@ -25,10 +25,10 @@ webModules (
  (
 
 smtpServer (	
-whitelistedDomains (	
-oid (
-emailSenderAddress (	
-cacheOutputFiles (
+whitelistedDomains (	
+cacheOutputFiles (
+oid (
+emailSenderAddress (	
 hideUserListForNonAdmin (
 emailSenderName (	
 webModuleId (

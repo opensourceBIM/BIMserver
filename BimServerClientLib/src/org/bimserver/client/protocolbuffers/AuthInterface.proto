@@ -47,6 +47,8 @@ service AuthInterface {
 
 	rpc requestPasswordChange (RequestPasswordChangeRequest) returns (VoidResponse);
 
+	rpc tokenlogin (TokenloginRequest) returns (VoidResponse);
+
 	rpc validateAccount (ValidateAccountRequest) returns (ValidateAccountResponse);
 
 }
@@ -128,6 +130,10 @@ message LogoutRequest {
 message RequestPasswordChangeRequest {
 	optional string username = 1;
 	optional string resetUrl = 2;
+}
+
+message TokenloginRequest {
+	optional string token = 1;
 }
 
 message ValidateAccountRequest {
