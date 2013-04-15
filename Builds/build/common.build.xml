@@ -413,6 +413,11 @@
 				</path>
 			</classpath>
 		</javac>
+		<copy todir="builds/shared/org/bimserver/shared/interfaces">
+			<fileset dir="../../Shared/src/org/bimserver/shared/interfaces">
+				<include name="*.java"/>
+			</fileset>
+		</copy>
 		<jar destfile="builds/lib/bimserver-${version}-shared.jar">
 			<fileset dir="builds/shared"/>
 		</jar>
