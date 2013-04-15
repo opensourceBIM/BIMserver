@@ -67,7 +67,7 @@
 		<servlet-name>JsonApiServlet</servlet-name>
 		<url-pattern>/json/*</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>UploadServlet</servlet-name>
 		<servlet-class>org.bimserver.servlets.UploadServlet</servlet-class>
@@ -87,7 +87,7 @@
 		<servlet-name>DownloadServlet</servlet-name>
 		<url-pattern>/download/*</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>StreamingServlet</servlet-name>
 		<servlet-class>org.bimserver.servlets.StreamingServlet</servlet-class>
@@ -97,4 +97,14 @@
 		<servlet-name>StreamingServlet</servlet-name>
 		<url-pattern>/stream/*</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Default</servlet-name>
+		<servlet-class>org.eclipse.jetty.servlet.DefaultServlet</servlet-class>
+		<init-param>
+			<param-name>useFileMappedBuffer</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
 </web-app>
