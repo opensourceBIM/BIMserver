@@ -1,0 +1,19 @@
+<script src="http://localhost:8080/soap11/AuthInterface?js"></script>
+<body>
+<script>
+function success() {
+	
+}
+
+function error() {
+	
+}
+
+var authInterface = new org_buildingsmart_bimsie_AuthInterface();
+authInterface.user_onerror = function(){
+	console.log("error");
+}
+authInterface.url = "http://localhost:8080/soap11/AuthInterface";
+var token = authInterface.login("admin@bimserver.org", "admin", success, error);
+</script>
+</body>

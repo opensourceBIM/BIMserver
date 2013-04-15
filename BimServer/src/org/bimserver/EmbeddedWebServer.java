@@ -46,8 +46,6 @@ public class EmbeddedWebServer {
 		if (localDev) {
 			context.setDefaultsDescriptor("www/WEB-INF/webdefault.xml");
 		}
-//		context.addServlet(WebServiceServlet.class.getName(), "/soap/*");
-//		context.addServlet(SyndicationServlet.class.getName(), "/syndication/*");
 		context.getServletContext().setAttribute("bimserver", bimServer);
 	}
 	
@@ -60,9 +58,6 @@ public class EmbeddedWebServer {
 				context.addServlet(new ServletHolder(new WebModuleServlet(webModulePlugin)), webModulePlugin.getContextPath());
 			}
 		}
-//		if (defaultWebModule != null) {
-//			context.addServlet(new ServletHolder(new WebModuleServlet(defaultWebModule)), "/*");
-//		}
 		try {
 			server.start();
 		} catch (Exception e) {
