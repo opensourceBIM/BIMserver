@@ -28,6 +28,5 @@
 	<classpathentry kind="lib" path="/BimServer/lib/junit-4.8.2.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/IfcPlugins"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BimServerClientLib"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/GeneratedProtocolBuffersClient"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

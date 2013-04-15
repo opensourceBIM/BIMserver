@@ -510,6 +510,7 @@ public class IfcModel implements IfcModelInterface {
 	}
 
 	public void remove(IdEObject idEObject) {
+		unidentifiedObjects.remove(idEObject);
 		objects.inverse().remove(idEObject);
 	}
 
