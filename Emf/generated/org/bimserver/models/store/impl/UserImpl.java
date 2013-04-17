@@ -41,7 +41,8 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.UserImpl#getPassword <em>Password</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.UserImpl#getPasswordHash <em>Password Hash</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.UserImpl#getPasswordSalt <em>Password Salt</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getHasRightsOn <em>Has Rights On</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getRevisions <em>Revisions</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getState <em>State</em>}</li>
@@ -116,8 +117,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getPassword() {
-		return (String) eGet(StorePackage.Literals.USER__PASSWORD, true);
+	public byte[] getPasswordHash() {
+		return (byte[]) eGet(StorePackage.Literals.USER__PASSWORD_HASH, true);
 	}
 
 	/**
@@ -125,8 +126,26 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPassword(String newPassword) {
-		eSet(StorePackage.Literals.USER__PASSWORD, newPassword);
+	public void setPasswordHash(byte[] newPasswordHash) {
+		eSet(StorePackage.Literals.USER__PASSWORD_HASH, newPasswordHash);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public byte[] getPasswordSalt() {
+		return (byte[]) eGet(StorePackage.Literals.USER__PASSWORD_SALT, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPasswordSalt(byte[] newPasswordSalt) {
+		eSet(StorePackage.Literals.USER__PASSWORD_SALT, newPasswordSalt);
 	}
 
 	/**
@@ -280,8 +299,8 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getValidationToken() {
-		return (String) eGet(StorePackage.Literals.USER__VALIDATION_TOKEN, true);
+	public byte[] getValidationToken() {
+		return (byte[]) eGet(StorePackage.Literals.USER__VALIDATION_TOKEN, true);
 	}
 
 	/**
@@ -289,7 +308,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValidationToken(String newValidationToken) {
+	public void setValidationToken(byte[] newValidationToken) {
 		eSet(StorePackage.Literals.USER__VALIDATION_TOKEN, newValidationToken);
 	}
 

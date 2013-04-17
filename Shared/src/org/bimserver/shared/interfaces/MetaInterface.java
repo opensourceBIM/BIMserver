@@ -29,6 +29,15 @@ public interface MetaInterface extends PublicInterface {
 	List<SServiceInterface> getServiceInterfaces() throws ServerException, UserException;
 	
 	/**
+	 * @return A list of all the registered services
+	 * @throws ServerException
+	 * @throws UserException
+	 */
+	@WebMethod(action="getServiceInterface")
+	SServiceInterface getServiceInterface(
+		@WebParam(name = "getServiceInterface", partName = "getServiceInterface.serviceInterfaceName") String serviceInterfaceName) throws ServerException, UserException;
+	
+	/**
 	 * @param serviceInterfaceName
 	 * @return A list of all methods of the given service
 	 * @throws ServerException
@@ -37,6 +46,17 @@ public interface MetaInterface extends PublicInterface {
 	@WebMethod(action="getServiceMethods")
 	List<SServiceMethod> getServiceMethods(
 		@WebParam(name = "serviceInterfaceName", partName = "getServiceMethods.serviceInterfaceName") String serviceInterfaceName) throws ServerException, UserException;
+
+	/**
+	 * @param serviceInterfaceName
+	 * @return A list of all methods of the given service
+	 * @throws ServerException
+	 * @throws UserException
+	 */
+	@WebMethod(action="getServiceMethod")
+	SServiceMethod getServiceMethod(
+		@WebParam(name = "serviceInterfaceName", partName = "getServiceMethod.serviceInterfaceName") String serviceInterfaceName,
+		@WebParam(name = "methodName", partName = "getServiceMethod.methodName") String methodName) throws ServerException, UserException;
 	
 	/**
 	 * @param serviceInterfaceName

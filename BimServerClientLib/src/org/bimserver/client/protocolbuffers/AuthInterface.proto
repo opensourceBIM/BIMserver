@@ -27,8 +27,6 @@ option java_outer_classname = "AuthInterfaceImpl";
 option optimize_for = SPEED;
 
 service AuthInterface {
-	rpc autologin (AutologinRequest) returns (AutologinResponse);
-
 	rpc changePassword (ChangePasswordRequest) returns (ChangePasswordResponse);
 
 	rpc getAccessMethod (GetAccessMethodRequest) returns (GetAccessMethodResponse);
@@ -47,20 +45,8 @@ service AuthInterface {
 
 	rpc requestPasswordChange (RequestPasswordChangeRequest) returns (VoidResponse);
 
-	rpc tokenlogin (TokenloginRequest) returns (VoidResponse);
-
 	rpc validateAccount (ValidateAccountRequest) returns (ValidateAccountResponse);
 
-}
-
-message AutologinRequest {
-	optional string username = 1;
-	optional string hash = 2;
-}
-
-message AutologinResponse {
-	optional string errorMessage = 1;
-	optional string value = 2;
 }
 
 message ChangePasswordRequest {
@@ -130,10 +116,6 @@ message LogoutRequest {
 message RequestPasswordChangeRequest {
 	optional string username = 1;
 	optional string resetUrl = 2;
-}
-
-message TokenloginRequest {
-	optional string token = 1;
 }
 
 message ValidateAccountRequest {

@@ -31,7 +31,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.bimserver.models.store.User#getName <em>Name</em>}</li>
- *   <li>{@link org.bimserver.models.store.User#getPassword <em>Password</em>}</li>
+ *   <li>{@link org.bimserver.models.store.User#getPasswordHash <em>Password Hash</em>}</li>
+ *   <li>{@link org.bimserver.models.store.User#getPasswordSalt <em>Password Salt</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getHasRightsOn <em>Has Rights On</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getRevisions <em>Revisions</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getState <em>State</em>}</li>
@@ -84,30 +85,56 @@ public interface User extends IdEObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Password</b></em>' attribute.
+	 * Returns the value of the '<em><b>Password Hash</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Password</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Password Hash</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Password</em>' attribute.
-	 * @see #setPassword(String)
-	 * @see org.bimserver.models.store.StorePackage#getUser_Password()
+	 * @return the value of the '<em>Password Hash</em>' attribute.
+	 * @see #setPasswordHash(byte[])
+	 * @see org.bimserver.models.store.StorePackage#getUser_PasswordHash()
 	 * @model
 	 * @generated
 	 */
-	String getPassword();
+	byte[] getPasswordHash();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.User#getPassword <em>Password</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.User#getPasswordHash <em>Password Hash</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Password</em>' attribute.
-	 * @see #getPassword()
+	 * @param value the new value of the '<em>Password Hash</em>' attribute.
+	 * @see #getPasswordHash()
 	 * @generated
 	 */
-	void setPassword(String value);
+	void setPasswordHash(byte[] value);
+
+	/**
+	 * Returns the value of the '<em><b>Password Salt</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Password Salt</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Password Salt</em>' attribute.
+	 * @see #setPasswordSalt(byte[])
+	 * @see org.bimserver.models.store.StorePackage#getUser_PasswordSalt()
+	 * @model
+	 * @generated
+	 */
+	byte[] getPasswordSalt();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.User#getPasswordSalt <em>Password Salt</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Password Salt</em>' attribute.
+	 * @see #getPasswordSalt()
+	 * @generated
+	 */
+	void setPasswordSalt(byte[] value);
 
 	/**
 	 * Returns the value of the '<em><b>Has Rights On</b></em>' reference list.
@@ -342,12 +369,12 @@ public interface User extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Validation Token</em>' attribute.
-	 * @see #setValidationToken(String)
+	 * @see #setValidationToken(byte[])
 	 * @see org.bimserver.models.store.StorePackage#getUser_ValidationToken()
 	 * @model
 	 * @generated
 	 */
-	String getValidationToken();
+	byte[] getValidationToken();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.store.User#getValidationToken <em>Validation Token</em>}' attribute.
@@ -357,7 +384,7 @@ public interface User extends IdEObject {
 	 * @see #getValidationToken()
 	 * @generated
 	 */
-	void setValidationToken(String value);
+	void setValidationToken(byte[] value);
 
 	/**
 	 * Returns the value of the '<em><b>Validation Token Created</b></em>' attribute.

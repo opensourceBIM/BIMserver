@@ -19,6 +19,7 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
+import org.bimserver.Authenticator;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -56,7 +57,11 @@ public class ValidateUserDatabaseAction extends BimDatabaseAction<User> {
 		if (password == null || password.trim().equals("")) {
 			throw new UserException("Invalid password");
 		}
-		user.setPassword(Hashers.getSha256Hash(password));
+		byte[] salt = new byte[32];
+		new java.security.SecureRandom().nextBytes(salt);
+		user.setPasswordHash(new Authenticator().createHash(password, salt));
+		user.setPasswordSalt(salt);
+		
 		user.setValidationToken(null);
 		user.setValidationTokenCreated(null);
 		getDatabaseSession().store(user);

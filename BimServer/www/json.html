@@ -7,54 +7,44 @@
 	body{padding: 0; margin: 0; height: 100%}
 	.error {color: red}
 	.success {color: black}
-	.methodlist {width: 20%; float: left}
-	.main {clear: both; height: 100%; width: 100%; position: absolute; margin-top: 35px}
-	.inner {padding-top: 35px; height: 90%}
 	* {font: 13px/1.5 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif; color: #333}
 	a {cursor: pointer}
 	li {list-style: none; }
 	ul {padding-left: 5px}
-	.methodlist {max-height: 100%; overflow: auto}
-	.methoddoc {height: 20%; background-color: #dddddd}
-	.input {height: 80%; width: 100%}
-	.output {height: 50%; width: 100%}
-	.console {height: 50%; width: 100%}
-	.right{height: 100%; width: 40%; float: left}
-	.left{height: 100%; width: 40%; float: left}
 	h1 {font-size: 2em; margin: 0}
 	h2 {font-size: 1.5em}
 	h3 {font-size: 1em; font-weight: bold; margin: 0}
 	.sendButton {float: right}
-	.top {height: 35px; float: left;}
 	textarea{padding: 0}
 </style>
-<div class="top">
-	<label>Server address: <input class="address" type="text" width="100" value="http://localhost:8080/json"/></label>
-	<label>Username: <input class="username" type="text" value=""/></label>
-	<label>Password: <input class="password" type="password" value=""/></label>
-	<input type="button" class="sendLoginRequest" value="Send login request"/>
-</div>
-<div class="main">
-	<div class="inner">
-		<div class="methodlist">
-			<a class="loadMethods">loadMethods</a><br/>
-		</div>
-		<div class="left">
-			<div class="methoddoc">
-				<div class="form">
-				
-				</div>
-				<input class="sendButton" type="button" value="Send"/>
-				<h1></h1>
-				<div></div>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span2">
+			<div class="methodlist">
+				<a class="loadMethods">loadMethods</a><br/>
 			</div>
-			<textarea class="input">
-			</textarea>
 		</div>
-		<div class="right">
-			<textarea class="output"></textarea>
-			<br/>
-			<textarea class="console"></textarea>
+		<div class="span10">
+			<div class="left">
+				<div class="form">
+					<table>
+						<thead></thead>
+						<tbody></tbody>
+					</table>
+				</div>
+				<div class="methoddoc">
+					<input class="sendButton" type="button" value="Send"/>
+					<h1></h1>
+					<div></div>
+				</div>
+				<textarea class="input">
+				</textarea>
+			</div>
+			<div class="right">
+				<textarea class="output"></textarea>
+				<br/>
+				<textarea class="console"></textarea>
+			</div>
 		</div>
 	</div>
 </div>
@@ -173,6 +163,20 @@ $(function(){
 		return example;
 	}
 	
+	function makeFieldFromType(type, genericType, doc) {
+		var content = $("<div>");
+		if (type.simpleName == "String") {
+			content.append("<input type=\"text\"/>");
+		} else if (type.name.contains("org.bimserver")) {
+			
+		} else if (type.simpleName == "List") {
+			
+		} else {
+			
+		}
+		return content;
+	}
+	
 	function getExample(event) {
 		event.preventDefault();
 		var request = {
@@ -186,11 +190,17 @@ $(function(){
 		$(".methoddoc div").html($(this).data("doc"));
 		$(".methoddoc h1").html($(this).data("serviceInterfaceSimpleName") + "." + $(this).data("serviceMethodName"));
 		var example = "{\n";
+		$(".form table tbody tr").remove();
+		$(".form table tbody").append("<tr><td>Interface</td><td>" + $(this).data("serviceInterfaceSimpleName") + "</td></tr>");
+		$(".form table tbody").append("<tr><td>Method</td><td>" + $(this).data("serviceMethodName") + "</td></tr>");
 		example += "  \"interface\": \"" + $(this).data("serviceInterfaceSimpleName") + "\", \n";
 		example += "  \"method\": \"" + $(this).data("serviceMethodName") + "\", \n";
 		example += "  \"parameters\": {\n";
 		call(request, function(data){
 			data.result.forEach(function(parameter, index){
+				var tr = $("<tr><td>" + parameter.name + "</td></tr>");
+				tr.append(makeFieldFromType(parameter.type, parameter.genericType, parameter.doc));
+				$(".form table tbody").append(tr);
 				example += "    \"" + parameter.name + "\": ";
 				example += makeExampleFromType(parameter.type, parameter.genericType, parameter.doc);
 				if (index != data.result.length - 1) {

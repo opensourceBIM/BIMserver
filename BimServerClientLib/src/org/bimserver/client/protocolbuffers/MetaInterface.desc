@@ -1,14 +1,30 @@
 
-ÿ
-MetaInterface.protoorg.bimserver.pbServiceInterface.protoNotificationInterface.protoRemoteServiceInterface.protoAdminInterface.protoAuthInterface.protoSettingsInterface.protoLowLevelInterface.proto"
-GetServiceInterfacesRequest"5
+²
+MetaInterface.protoorg.bimserver.pbServiceInterface.protoNotificationInterface.protoRemoteServiceInterface.protoAdminInterface.protoAuthInterface.protoSettingsInterface.protoLowLevelInterface.proto"9
+GetServiceInterfaceRequest
+getServiceInterface (	"5
 SServiceInterface
 
 simpleName (	
-name (	"h
+name (	"g
+GetServiceInterfaceResponse
+errorMessage (	2
+value (2#.org.bimserver.pb.SServiceInterface"
+GetServiceInterfacesRequest"h
 GetServiceInterfacesResponse
 errorMessage (	2
-value (2#.org.bimserver.pb.SServiceInterface"\
+value (2#.org.bimserver.pb.SServiceInterface"K
+GetServiceMethodRequest
+serviceInterfaceName (	
+
+methodName (	">
+SServiceMethod
+name (	
+doc (	
+	returnDoc (	"a
+GetServiceMethodResponse
+errorMessage (	/
+value (2 .org.bimserver.pb.SServiceMethod"\
 !GetServiceMethodParametersRequest
 serviceInterfaceName (	
 serviceMethodName (	"
@@ -33,11 +49,7 @@ simpleName (	
 errorMessage (	2
 value (2#.org.bimserver.pb.SServiceParameter"8
 GetServiceMethodsRequest
-serviceInterfaceName (	">
-SServiceMethod
-name (	
-doc (	
-	returnDoc (	"b
+serviceInterfaceName (	"b
 GetServiceMethodsResponse
 errorMessage (	/
 value (2 .org.bimserver.pb.SServiceMethod"6
@@ -45,9 +57,11 @@ simpleName (	
 serviceInterfaceName (	"^
 GetServiceTypesResponse
 errorMessage (	-
-value (2.org.bimserver.pb.SServiceType2æ
-MetaInterfaceu
-getServiceInterfaces-.org.bimserver.pb.GetServiceInterfacesRequest..org.bimserver.pb.GetServiceInterfacesResponse‡
+value (2.org.bimserver.pb.SServiceType2Å
+MetaInterfacer
+getServiceInterface,.org.bimserver.pb.GetServiceInterfaceRequest-.org.bimserver.pb.GetServiceInterfaceResponseu
+getServiceInterfaces-.org.bimserver.pb.GetServiceInterfacesRequest..org.bimserver.pb.GetServiceInterfacesResponsei
+getServiceMethod).org.bimserver.pb.GetServiceMethodRequest*.org.bimserver.pb.GetServiceMethodResponse‡
 getServiceMethodParameters3.org.bimserver.pb.GetServiceMethodParametersRequest4.org.bimserver.pb.GetServiceMethodParametersResponsel
 getServiceMethods*.org.bimserver.pb.GetServiceMethodsRequest+.org.bimserver.pb.GetServiceMethodsResponsef
 getServiceTypes(.org.bimserver.pb.GetServiceTypesRequest).org.bimserver.pb.GetServiceTypesResponseBBMetaInterfaceImplHˆ

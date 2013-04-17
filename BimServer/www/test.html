@@ -1,19 +1,27 @@
 <script src="http://localhost:8080/soap11/AuthInterface?js"></script>
 <body>
 <script>
-function success() {
-	
-}
+//function success(token) {
+//	console.log("success");
+//	console.log(token);
+//}
 
-function error() {
-	
-}
+//function error() {
+//	console.log("error");
+//}
 
-var authInterface = new org_buildingsmart_bimsie_AuthInterface();
-authInterface.user_onerror = function(){
-	console.log("error");
-}
-authInterface.url = "http://localhost:8080/soap11/AuthInterface";
-var token = authInterface.login("admin@bimserver.org", "admin", success, error);
+//var authInterface = new org_buildingsmart_bimsie_AuthInterface();
+//authInterface.user_onerror = function(){
+//	console.log("error");
+//}
+//authInterface.url = "http://localhost:8080/soap11/AuthInterface";
+//var token = authInterface.login(success, error, "admin@bimserver.org", "admin");
+//console.log(token);
+
+var login = new org_buildingsmart_bimsie_login();
+login._username = "admin@bimserver.org";
+login._password = "admin";
+
+console.log(org_buildingsmart_bimsie_AuthInterface.prototype.login_serializeInput(new CxfApacheOrgUtil(), ["admin@bimserver.org", "admin"]));
 </script>
 </body>

@@ -868,7 +868,8 @@ public class Step0000 extends Migration {
 
 	private void createUserClass() {
 		schema.createEAttribute(user, "name", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(user, "password", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(user, "passwordHash", ecorePackage.getEByteArray(), Multiplicity.SINGLE);
+		schema.createEAttribute(user, "passwordSalt", ecorePackage.getEByteArray(), Multiplicity.SINGLE);
 		userHasRightsOn = schema.createEReference(user, "hasRightsOn", project, Multiplicity.MANY);
 		userRevisions = schema.createEReference(user, "revisions", revisionClass, Multiplicity.MANY);
 		schema.createEAttribute(user, "state", objectStateEnum, Multiplicity.SINGLE);
@@ -878,7 +879,7 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(user, "username", ecorePackage.getEString(), Multiplicity.SINGLE).getEAnnotations().add(createUniqueAnnotation());
 		schema.createEAttribute(user, "lastSeen", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEAttribute(user, "token", ecorePackage.getEString(), Multiplicity.SINGLE);
-		schema.createEAttribute(user, "validationToken", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.createEAttribute(user, "validationToken", ecorePackage.getEByteArray(), Multiplicity.SINGLE);
 		schema.createEAttribute(user, "validationTokenCreated", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEReference(user, "userSettings", userSettings, Multiplicity.SINGLE);
 	}

@@ -18,64 +18,62 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.Query;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.utils.Hashers;
 import org.bimserver.webservices.ServiceMap;
-import org.bimserver.webservices.authorization.AdminAuthorization;
+import org.bimserver.webservices.authorization.AuthenticationException;
 import org.bimserver.webservices.authorization.Authorization;
-import org.bimserver.webservices.authorization.UserAuthorization;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AutologinDatabaseAction extends BimDatabaseAction<String>{
-
-	private final String hash;
-	private final String username;
+	private static final Logger LOGGER = LoggerFactory.getLogger(AutologinDatabaseAction.class);
+	private final String token;
 	private BimServer bimServer;
 	private ServiceMap serviceMap;
 
-	public AutologinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, ServiceMap serviceMap, AccessMethod accessMethod, String username, String hash) {
+	public AutologinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, ServiceMap serviceMap, AccessMethod accessMethod, String token) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.serviceMap = serviceMap;
-		this.username = username;
-		this.hash = hash;
+		this.token = token;
 	}
 
 	@Override
 	public String execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(getDatabaseSession(), getAccessMethod(), username);
-		User user = action.execute();
-		if (user != null && hash.equals(Hashers.getSha256Hash(user.getUsername() + user.getPassword()))) {
+		try {
+			Authorization authorization = Authorization.fromToken(bimServer.getEncryptionKey(), token);
+			User user = getDatabaseSession().get(authorization.getUoid(), Query.getDefault());
 			if (user.getState() == ObjectState.DELETED) {
 				throw new UserException("User account has been deleted");
 			} else if (user.getUserType() == UserType.SYSTEM) {
 				throw new UserException("System user cannot login");
 			}
 			user.setLastSeen(new Date());
-			
-			Authorization authorization = null;
-			if (user.getUserType() == UserType.ADMIN) {
-				authorization = new AdminAuthorization(1, TimeUnit.DAYS);
-			} else {
-				authorization = new UserAuthorization(1, TimeUnit.DAYS);
-			}
 			authorization.setUoid(user.getOid());
 			String asHexToken = authorization.asHexToken(bimServer.getEncryptionKey());
 			
 			serviceMap.setAuthorization(authorization);
 			getDatabaseSession().store(user);
 			return asHexToken;
-		} else {
-			throw new UserException("User not found");
+		} catch (AuthenticationException e) {
+			LOGGER.error("", e);
 		}
+		try {
+			// Adding a random sleep to prevent timing attacks
+			Thread.sleep(LoginDatabaseAction.DEFAULT_LOGIN_ERROR_TIMEOUT + new java.security.SecureRandom().nextInt(1000));
+		} catch (InterruptedException e) {
+			LOGGER.error("", e);
+		}
+		throw new UserException("User not found or inccorrect autologin token");
 	}
 }

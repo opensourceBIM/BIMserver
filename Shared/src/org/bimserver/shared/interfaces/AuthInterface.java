@@ -30,22 +30,6 @@ public interface AuthInterface extends PublicInterface {
 		@WebParam(name = "password", partName = "login.password") String password) throws ServerException, UserException;
 
 	/**
-	 * Login with an autologin hash (useful for the "remember-me" functionality in web-interfaces)
-	 * @param username The username (must be a valid e-mail address)
-	 * @param hash The hash (which is computed as sha256(username + sha256(password))
-	 * @return True when successful, false if not
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "autologin")
-	String autologin(
-		@WebParam(name = "username", partName = "autologin.username") String username,
-		@WebParam(name = "hash", partName = "autologin.hash") String hash) throws ServerException, UserException;
-
-	@WebMethod(action = "tokenlogin")
-	void tokenlogin(
-		@WebParam(name = "token", partName = "tokenlogin.token") String token) throws UserException, ServerException;
-	
-	/**
 	 * Logout from this ServiceInterface (beware, the ServiceInterface is not closed and is still usable)
 	 * @throws ServerException, UserException
 	 */
@@ -87,7 +71,6 @@ public interface AuthInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getLoggedInUser")
 	SUser getLoggedInUser() throws ServerException, UserException;
-	
 
 	/**
 	 * Change a User's password, not the preferred way, use requestPasswordChange for a safer version

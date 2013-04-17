@@ -30,7 +30,11 @@ option java_outer_classname = "MetaInterfaceImpl";
 option optimize_for = SPEED;
 
 service MetaInterface {
+	rpc getServiceInterface (GetServiceInterfaceRequest) returns (GetServiceInterfaceResponse);
+
 	rpc getServiceInterfaces (GetServiceInterfacesRequest) returns (GetServiceInterfacesResponse);
+
+	rpc getServiceMethod (GetServiceMethodRequest) returns (GetServiceMethodResponse);
 
 	rpc getServiceMethodParameters (GetServiceMethodParametersRequest) returns (GetServiceMethodParametersResponse);
 
@@ -40,7 +44,8 @@ service MetaInterface {
 
 }
 
-message GetServiceInterfacesRequest {
+message GetServiceInterfaceRequest {
+	optional string getServiceInterface = 1;
 }
 
 message SServiceInterface {
@@ -48,9 +53,33 @@ message SServiceInterface {
 	optional string name = 2;
 }
 
+message GetServiceInterfaceResponse {
+	optional string errorMessage = 1;
+	optional SServiceInterface value = 2;
+}
+
+message GetServiceInterfacesRequest {
+}
+
 message GetServiceInterfacesResponse {
 	optional string errorMessage = 1;
 	repeated SServiceInterface value = 2;
+}
+
+message GetServiceMethodRequest {
+	optional string serviceInterfaceName = 1;
+	optional string methodName = 2;
+}
+
+message SServiceMethod {
+	optional string name = 1;
+	optional string doc = 2;
+	optional string returnDoc = 3;
+}
+
+message GetServiceMethodResponse {
+	optional string errorMessage = 1;
+	optional SServiceMethod value = 2;
 }
 
 message GetServiceMethodParametersRequest {
@@ -87,12 +116,6 @@ message GetServiceMethodParametersResponse {
 
 message GetServiceMethodsRequest {
 	optional string serviceInterfaceName = 1;
-}
-
-message SServiceMethod {
-	optional string name = 1;
-	optional string doc = 2;
-	optional string returnDoc = 3;
 }
 
 message GetServiceMethodsResponse {
