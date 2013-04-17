@@ -33,7 +33,8 @@ public class SUser implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private java.lang.String name;
-	private java.lang.String password;
+	private byte[] passwordHash;
+	private byte[] passwordSalt;
 	private List<Long> hasRightsOn = new ArrayList<Long>();
 	private List<Long> revisions = new ArrayList<Long>();
 	private SObjectState state;
@@ -43,7 +44,7 @@ public class SUser implements SDataBase
 	private java.lang.String username;
 	private java.util.Date lastSeen;
 	private java.lang.String token;
-	private java.lang.String validationToken;
+	private byte[] validationToken;
 	private java.util.Date validationTokenCreated;
 	private long userSettingsId = -1;
 	private List<Long> schemas = new ArrayList<Long>();
@@ -80,8 +81,11 @@ public class SUser implements SDataBase
 		if (sField.getName().equals("name")) {
 			return getName();
 		}
-		if (sField.getName().equals("password")) {
-			return getPassword();
+		if (sField.getName().equals("passwordHash")) {
+			return getPasswordHash();
+		}
+		if (sField.getName().equals("passwordSalt")) {
+			return getPasswordSalt();
 		}
 		if (sField.getName().equals("hasRightsOn")) {
 			return getHasRightsOn();
@@ -146,8 +150,12 @@ public class SUser implements SDataBase
 			setName((String)val);
 			return;
 		}
-		if (sField.getName().equals("password")) {
-			setPassword((String)val);
+		if (sField.getName().equals("passwordHash")) {
+			setPasswordHash((byte[])val);
+			return;
+		}
+		if (sField.getName().equals("passwordSalt")) {
+			setPasswordSalt((byte[])val);
 			return;
 		}
 		if (sField.getName().equals("hasRightsOn")) {
@@ -187,7 +195,7 @@ public class SUser implements SDataBase
 			return;
 		}
 		if (sField.getName().equals("validationToken")) {
-			setValidationToken((String)val);
+			setValidationToken((byte[])val);
 			return;
 		}
 		if (sField.getName().equals("validationTokenCreated")) {
@@ -233,12 +241,20 @@ public class SUser implements SDataBase
 		this.name = name;
 	}
 	
-	public java.lang.String getPassword() {
-		return password;
+	public byte[] getPasswordHash() {
+		return passwordHash;
 	}
 
-	public void setPassword(java.lang.String password) {
-		this.password = password;
+	public void setPasswordHash(byte[] passwordHash) {
+		this.passwordHash = passwordHash;
+	}
+	
+	public byte[] getPasswordSalt() {
+		return passwordSalt;
+	}
+
+	public void setPasswordSalt(byte[] passwordSalt) {
+		this.passwordSalt = passwordSalt;
 	}
 	
 	public List<Long> getHasRightsOn() {
@@ -313,11 +329,11 @@ public class SUser implements SDataBase
 		this.token = token;
 	}
 	
-	public java.lang.String getValidationToken() {
+	public byte[] getValidationToken() {
 		return validationToken;
 	}
 
-	public void setValidationToken(java.lang.String validationToken) {
+	public void setValidationToken(byte[] validationToken) {
 		this.validationToken = validationToken;
 	}
 	

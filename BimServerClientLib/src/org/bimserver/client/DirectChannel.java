@@ -94,14 +94,14 @@ public class DirectChannel extends Channel implements TokenChangeListener {
 
 	@Override
 	public void newToken(String token) {
-		try {
-			get(AuthInterface.class).tokenlogin(token);
-		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
-			e.printStackTrace();
-		} catch (ServerException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			get(AuthInterface.class).tokenlogin(token);
+//		} catch (PublicInterfaceNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (UserException e) {
+//			e.printStackTrace();
+//		} catch (ServerException e) {
+//			e.printStackTrace();
+//		}
 	}
 }

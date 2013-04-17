@@ -105,7 +105,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 				setToken(authInterface.login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword()));
 			} else if (authenticationInfo instanceof AutologinAuthenticationInfo) {
 				AutologinAuthenticationInfo autologinAuthenticationInfo = (AutologinAuthenticationInfo) authenticationInfo;
-				setToken(authInterface.autologin(autologinAuthenticationInfo.getUsername(), autologinAuthenticationInfo.getAutologinCode()));
+				setToken(autologinAuthenticationInfo.getAutologinCode());
 			} else if (authenticationInfo instanceof TokenAuthentication) {
 				TokenAuthentication tokenAuthentication = (TokenAuthentication)authenticationInfo;
 				setToken(tokenAuthentication.getToken());

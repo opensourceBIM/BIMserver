@@ -47,20 +47,6 @@ function BimServerApi(baseUrl, notifier) {
 		});
 	};
 	
-	this.autologin = function(username, autologin, callback, errorCallback) {
-		var request = {
-			username: username,
-			hash: autologin
-		};
-		othis.call("AuthInterface", "autologin", request, function(data){
-			othis.token = data;
-			othis.notifier.info("Auto login successful, logout to disable autologin");
-			othis.resolveUser();
-			callback();
-			othis.autoLoginTried = false;
-		}, errorCallback);
-	};
-	
 	this.translate = function(key) {
 		key = key.toUpperCase();
 		if (othis.translations[key] != null) {
@@ -77,14 +63,11 @@ function BimServerApi(baseUrl, notifier) {
 		};
 		othis.call("AuthInterface", "login", request, function(data){
 			othis.token = data;
-			var autologin = Sha256.hash(username + Sha256.hash(password));
 			if (rememberme) {
-				$.cookie("username", username, { expires: 31 });
-				$.cookie("autologin", autologin, { expires: 31 });
+				$.cookie("autologin", othis.token, { expires: 31 });
 				$.cookie("address", othis.baseUrl, { expires: 31 });
 			} else {
-				$.cookie("username", username, { });
-				$.cookie("autologin", autologin, { });
+				$.cookie("autologin", othis.token, { });
 				$.cookie("address", othis.baseUrl, { });
 			}
 			othis.notifier.info("Login successful");
@@ -114,9 +97,8 @@ function BimServerApi(baseUrl, notifier) {
 			othis.user = data;
 		});
 	};
-	
+
 	this.logout = function(callback) {
-		$.removeCookie("username");
 		$.removeCookie("autologin");
 		$.removeCookie("address");
 		othis.call("AuthInterface", "logout", {}, function(){
@@ -472,7 +454,7 @@ function BimServerApi(baseUrl, notifier) {
 		othis.token = token;
 	};
 	
-	this.call = function(interfaceName, methodName, data, callback, showBusy, showDone, showError) {
+	this.call = function(interfaceName, methodName, data, callback, errorCallback, showBusy, showDone, showError) {
 		var showBusy = typeof showBusy !== 'undefined' ? showBusy : true;
 		var showDone = typeof showDone !== 'undefined' ? showDone : false;
 		var showError = typeof showError !== 'undefined' ? showError : true;
@@ -485,6 +467,10 @@ function BimServerApi(baseUrl, notifier) {
 			if (data.exception == null) {
 				if (callback != null) {
 					callback(data.result);
+				}
+			} else {
+				if (errorCallback != null) {
+					errorCallback();
 				}
 			}
 		}, showBusy, showDone, showError);

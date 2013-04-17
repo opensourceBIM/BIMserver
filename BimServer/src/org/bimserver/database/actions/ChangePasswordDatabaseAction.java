@@ -19,6 +19,7 @@ package org.bimserver.database.actions;
 
 import java.util.Date;
 
+import org.bimserver.Authenticator;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
@@ -31,7 +32,6 @@ import org.bimserver.models.log.PasswordChanged;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.utils.Hashers;
 import org.bimserver.webservices.authorization.Authorization;
 
 public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
@@ -71,8 +71,13 @@ public class ChangePasswordDatabaseAction extends BimDatabaseAction<Boolean> {
 
 	private boolean changePassword(DatabaseSession databaseSession, User actingUser, boolean skipCheck) throws BimserverLockConflictException, BimserverDatabaseException, UserException {
 		User user = getUserByUoid(uoid);
-		if (skipCheck || Hashers.getSha256Hash(oldPassword).equals(user.getPassword())) {
-			user.setPassword(Hashers.getSha256Hash(newPassword));
+		Authenticator authenticator = new Authenticator();
+		if (skipCheck || authenticator.validate(oldPassword, user.getPasswordHash(), user.getPasswordSalt())) {
+			byte[] salt = new byte[32];
+			new java.security.SecureRandom().nextBytes(salt);
+			user.setPasswordHash(authenticator.createHash(newPassword, salt));
+			user.setPasswordSalt(salt);
+			
 			final PasswordChanged passwordchanged = LogFactory.eINSTANCE.createPasswordChanged();
 			passwordchanged.setAccessMethod(getAccessMethod());
 			passwordchanged.setDate(new Date());

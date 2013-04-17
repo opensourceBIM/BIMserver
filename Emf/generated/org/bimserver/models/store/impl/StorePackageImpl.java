@@ -1017,7 +1017,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUser_Password() {
+	public EAttribute getUser_PasswordHash() {
 		return (EAttribute) getUser().getEStructuralFeatures().get(1);
 	}
 
@@ -1026,8 +1026,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUser_HasRightsOn() {
-		return (EReference) getUser().getEStructuralFeatures().get(2);
+	public EAttribute getUser_PasswordSalt() {
+		return (EAttribute) getUser().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1035,7 +1035,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUser_Revisions() {
+	public EReference getUser_HasRightsOn() {
 		return (EReference) getUser().getEStructuralFeatures().get(3);
 	}
 
@@ -1044,8 +1044,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUser_State() {
-		return (EAttribute) getUser().getEStructuralFeatures().get(4);
+	public EReference getUser_Revisions() {
+		return (EReference) getUser().getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1053,7 +1053,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUser_CreatedOn() {
+	public EAttribute getUser_State() {
 		return (EAttribute) getUser().getEStructuralFeatures().get(5);
 	}
 
@@ -1062,8 +1062,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getUser_CreatedOn() {
+		return (EAttribute) getUser().getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getUser_CreatedBy() {
-		return (EReference) getUser().getEStructuralFeatures().get(6);
+		return (EReference) getUser().getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -1072,15 +1081,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EAttribute getUser_UserType() {
-		return (EAttribute) getUser().getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getUser_Username() {
 		return (EAttribute) getUser().getEStructuralFeatures().get(8);
 	}
 
@@ -1089,7 +1089,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUser_LastSeen() {
+	public EAttribute getUser_Username() {
 		return (EAttribute) getUser().getEStructuralFeatures().get(9);
 	}
 
@@ -1098,7 +1098,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUser_Token() {
+	public EAttribute getUser_LastSeen() {
 		return (EAttribute) getUser().getEStructuralFeatures().get(10);
 	}
 
@@ -1107,7 +1107,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUser_ValidationToken() {
+	public EAttribute getUser_Token() {
 		return (EAttribute) getUser().getEStructuralFeatures().get(11);
 	}
 
@@ -1116,7 +1116,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getUser_ValidationTokenCreated() {
+	public EAttribute getUser_ValidationToken() {
 		return (EAttribute) getUser().getEStructuralFeatures().get(12);
 	}
 
@@ -1125,8 +1125,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUser_UserSettings() {
-		return (EReference) getUser().getEStructuralFeatures().get(13);
+	public EAttribute getUser_ValidationTokenCreated() {
+		return (EAttribute) getUser().getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -1134,7 +1134,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUser_Schemas() {
+	public EReference getUser_UserSettings() {
 		return (EReference) getUser().getEStructuralFeatures().get(14);
 	}
 
@@ -1143,7 +1143,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUser_ExtendedData() {
+	public EReference getUser_Schemas() {
 		return (EReference) getUser().getEStructuralFeatures().get(15);
 	}
 
@@ -1152,7 +1152,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUser_Services() {
+	public EReference getUser_ExtendedData() {
 		return (EReference) getUser().getEStructuralFeatures().get(16);
 	}
 
@@ -1161,8 +1161,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUser_Logs() {
+	public EReference getUser_Services() {
 		return (EReference) getUser().getEStructuralFeatures().get(17);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUser_Logs() {
+		return (EReference) getUser().getEStructuralFeatures().get(18);
 	}
 
 	/**

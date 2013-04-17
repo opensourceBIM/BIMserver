@@ -21,7 +21,15 @@ import org.bimserver.shared.exceptions.ServerException;
 
 public class MetaInterfaceAdaptor implements MetaInterface {
 
+	public org.bimserver.interfaces.objects.SServiceInterface getServiceInterface(java.lang.String getServiceInterface) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<org.bimserver.interfaces.objects.SServiceInterface> getServiceInterfaces() throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SServiceMethod getServiceMethod(java.lang.String serviceInterfaceName, java.lang.String methodName) throws UserException, ServerException {
 		return null;
 	}
 	

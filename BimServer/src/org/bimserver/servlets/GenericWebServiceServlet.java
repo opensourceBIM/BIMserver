@@ -68,6 +68,7 @@ public class GenericWebServiceServlet extends CXFNonSpringServlet {
 			serverFactoryBean.setBindingId(bindingId);
 			serverFactoryBean.setProperties(properties);
 			serverFactoryBean.setServiceClass(clazz);
+			serverFactoryBean.getOutFaultInterceptors().add(new StatusCodeModifyingFaultInterceptor());
 			serverFactoryBean.setInvoker(new CustomInvoker(bimServer.getServiceFactory(), clazz));
 			serverFactoryBean.setAddress("/" + clazz.getSimpleName());
 			serverFactoryBean.setTransportId("http://schemas.xmlsoap.org/soap/http");

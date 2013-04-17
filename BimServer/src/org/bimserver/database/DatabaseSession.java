@@ -567,13 +567,14 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return (T) get(idEObject, oid, model, query, todoList);
 	}
 
-	public IdEObject get(long oid, QueryInterface query) throws BimserverDatabaseException {
+	@SuppressWarnings("unchecked")
+	public <T extends IdEObject> T get(long oid, QueryInterface query) throws BimserverDatabaseException {
 		checkOpen();
 		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
 		IfcModelInterface model = createModel();
 		IdEObject idEObject = get(model, null, oid, query, todoList);
 		processTodoList(model, todoList, query);
-		return idEObject;
+		return (T) idEObject;
 	}
 
 	public <T extends IdEObject> T get(EClass eClass, long oid, QueryInterface query) throws BimserverDatabaseException {

@@ -17,6 +17,9 @@ package org.bimserver.database.actions;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.nio.ByteBuffer;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +30,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.bimserver.Authenticator;
 import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
@@ -117,7 +121,10 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		}
 		final User user = getDatabaseSession().create(StorePackage.eINSTANCE.getUser());
 		if (password != null) {
-			user.setPassword(Hashers.getSha256Hash(password));
+			byte[] salt = new byte[32];
+			new java.security.SecureRandom().nextBytes(salt);
+			user.setPasswordHash(new Authenticator().createHash(password, salt));
+			user.setPasswordSalt(salt);
 		}
 		user.setToken(GeneratorUtils.generateToken());
 		user.setName(trimmedName);

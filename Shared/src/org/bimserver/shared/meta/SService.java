@@ -300,4 +300,8 @@ public class SService {
 	public String getSimpleName() {
 		return simpleName;
 	}
+
+	public SMethod getMethod(String methodName) {
+		return methods.get(methodName);
+	}
 }

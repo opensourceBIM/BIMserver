@@ -138,7 +138,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	public String getServerLog() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
 		try {
-			return FileUtils.readFileToString(new File(getBimServer().getHomeDir(), "logs/getBimServer().log"));
+			return FileUtils.readFileToString(new File(getBimServer().getHomeDir(), "logs/bimserver.log"));
 		} catch (IOException e) {
 			LOGGER.error("", e);
 			throw new ServerException(e);

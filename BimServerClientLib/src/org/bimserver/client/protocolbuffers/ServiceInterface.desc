@@ -1,5 +1,5 @@
 
-éë
+÷ë
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -8,9 +8,9 @@
 fileId (
 extendedData (
 users (
-rid (
-oid (
-description (	
+rid (
+description (	
+oid (
 name (	7
 type (2).org.bimserver.pb.SExtendedDataSchemaType
 validate	 (
@@ -111,7 +111,7 @@ parentPoid ("a
 username (	
 name (	)
 type (2.org.bimserver.pb.SUserType
-selfRegistration ("º
+selfRegistration ("È
 SUser
 userSettingsId (
 lastSeen (
@@ -119,11 +119,11 @@ parentPoid ("a
 services (
 createdById (
 logs (
-validationToken (	-
+validationToken (-
 state (2.org.bimserver.pb.SObjectState
 hasRightsOn	 (
 password
- (	-
+ (-
 userType (2.org.bimserver.pb.SUserType
 	createdOn (
 extendedData (
@@ -133,7 +133,8 @@ parentPoid ("a
 oid (
 name (	
 validationTokenCreated (
-	revisions ("O
+	revisions (
+salt ("O
 AddUserResponse
 errorMessage (	&
 value (2.org.bimserver.pb.SUser"A
@@ -211,16 +212,16 @@ parentPoid ("a
 mcid ("*
 SObjectRemoved
 rid (
-oid ("(
-SObjectAdded
-rid (
 oid ("b
 SObjectModified
 newValue (	
 rid (
 oid (
 oldValue (	
-	fieldName (	"X
+	fieldName (	"(
+SObjectAdded
+rid (
+oid ("X
 SListDataValue,
 values (2.org.bimserver.pb.SDataValue
 rid (
@@ -252,21 +253,21 @@ SDataValue
 type (	"¤
 SCompareItem
 __actual_type (	:
-__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved6
-__SObjectAdded (2.org.bimserver.pb.SObjectAdded<
-__SObjectModified (2!.org.bimserver.pb.SObjectModified
+__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved<
+__SObjectModified (2!.org.bimserver.pb.SObjectModified6
+__SObjectAdded (2.org.bimserver.pb.SObjectAdded
 rid (
 oid (1
 
 dataObject (2.org.bimserver.pb.SDataObject"j
-SCompareContainer
-rid (-
-items (2.org.bimserver.pb.SCompareItem
+SCompareContainer-
+items (2.org.bimserver.pb.SCompareItem
+rid (
 oid (
 type (	"^
-SCompareResult
-rid (2
-items (2#.org.bimserver.pb.SCompareContainer
+SCompareResult2
+items (2#.org.bimserver.pb.SCompareContainer
+rid (
 oid ("X
 CompareResponse
 errorMessage (	/
@@ -371,9 +372,9 @@ classNames (	
 uoid ("µ
 	SRevision
 hasGeometry (
-lastConcreteRevisionId (
-logs (
-bmi (
+lastConcreteRevisionId (
+bmi (
+logs (
 tag (	
 concreteRevisions (
 	projectId (
@@ -389,9 +390,9 @@ classNames (	
 comment (	
 	lastError (	
 	checkouts ("Ñ
-	SCheckout-
-revision (2.org.bimserver.pb.SRevision,
-checkin (2.org.bimserver.pb.SRevision
+	SCheckout,
+checkin (2.org.bimserver.pb.SRevision-
+revision (2.org.bimserver.pb.SRevision
 logs (
 rid (
 oid (
@@ -438,10 +439,10 @@ identifier (	"h
 errorMessage (	3
 value (2$.org.bimserver.pb.SProfileDescriptor"&
 $GetAllLocalServiceDescriptorsRequest"Ë
-SServiceDescriptor+
-trigger (2.org.bimserver.pb.STrigger
-writeExtendedData (	=
-notificationProtocol (2.org.bimserver.pb.SAccessMethod
+SServiceDescriptor
+writeExtendedData (	=
+notificationProtocol (2.org.bimserver.pb.SAccessMethod+
+trigger (2.org.bimserver.pb.STrigger
 writeRevision (
 readExtendedData (	
 providerName (	
@@ -592,9 +593,9 @@ revisionNr (
 value (2.org.bimserver.pb.SFile" 
 GetGeoTagRequest
 goid ("
-SGeoTag
-enabled (
-projects (
+SGeoTag
+projects (
+enabled (
 epsg (
 rid (
 oid (
@@ -716,11 +717,11 @@ revisionNr (
 objectIDMs (
 defaultObjectIDMId (
 defaultModelCompareId (
-defaultQueryEngineId	 (
-renderEngines
- (
-deserializers (
-rid (
+defaultQueryEngineId	 (
+rid
+ (
+renderEngines (
+deserializers (
 oid (
 defaultRenderEngineId (
 defaultSerializerId (

@@ -28,9 +28,7 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 	public List<SServiceInterface> getServiceInterfaces() throws ServerException, UserException {
 		List<SServiceInterface> sServiceInterfaces = new ArrayList<SServiceInterface>();
 		for (String name : getBimServer().getServicesMap().keySetName()) {
-			SServiceInterface sServiceInterface = new SServiceInterface();
-			sServiceInterface.setName(name);
-			sServiceInterface.setSimpleName(getBimServer().getServicesMap().getByName(name).getSimpleName());
+			SServiceInterface sServiceInterface = convertServiceInterface(name);
 			sServiceInterfaces.add(sServiceInterface);
 		}
 		Collections.sort(sServiceInterfaces, new Comparator<SServiceInterface>() {
@@ -42,6 +40,13 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 		return sServiceInterfaces;
 	}
 
+	private SServiceInterface convertServiceInterface(String name) {
+		SServiceInterface sServiceInterface = new SServiceInterface();
+		sServiceInterface.setName(name);
+		sServiceInterface.setSimpleName(getBimServer().getServicesMap().getByName(name).getSimpleName());
+		return sServiceInterface;
+	}
+
 	@Override
 	public List<SServiceMethod> getServiceMethods(String serviceInterfaceName) throws ServerException, UserException {
 		List<SServiceMethod> sServiceMethods = new ArrayList<SServiceMethod>();
@@ -50,14 +55,19 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 			throw new UserException("Service \"" + serviceInterfaceName + "\" not found");
 		}
 		for (SMethod sMethod : sService.getMethods()) {
-			SServiceMethod sServiceMethod = new SServiceMethod();
-			sServiceMethod.setName(sMethod.getName());
-			sServiceMethod.setDoc(sMethod.getDoc());
-			sServiceMethod.setReturnDoc(sMethod.getReturnDoc());
-			// sServiceMethod.setReturnType(sMethod.getReturnType().getName());
+			SServiceMethod sServiceMethod = convertMethod(sMethod);
 			sServiceMethods.add(sServiceMethod);
 		}
 		return sServiceMethods;
+	}
+
+	private SServiceMethod convertMethod(SMethod sMethod) {
+		SServiceMethod sServiceMethod = new SServiceMethod();
+		sServiceMethod.setName(sMethod.getName());
+		sServiceMethod.setDoc(sMethod.getDoc());
+		sServiceMethod.setReturnDoc(sMethod.getReturnDoc());
+		// sServiceMethod.setReturnType(sMethod.getReturnType().getName());
+		return sServiceMethod;
 	}
 
 	@Override
@@ -114,5 +124,19 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 			sServiceParameters.add(sServiceParameter);
 		}
 		return sServiceParameters;
+	}
+
+	@Override
+	public SServiceInterface getServiceInterface(String serviceInterfaceName) throws ServerException, UserException {
+		return convertServiceInterface(serviceInterfaceName);
+	}
+
+	@Override
+	public SServiceMethod getServiceMethod(String serviceInterfaceName, String methodName) throws ServerException, UserException {
+		SService sService = getBimServer().getServicesMap().getByName(serviceInterfaceName);
+		if (sService == null) {
+			throw new UserException("Service \"" + serviceInterfaceName + "\" not found");
+		}
+		return convertMethod(sService.getMethod(methodName));
 	}
 }

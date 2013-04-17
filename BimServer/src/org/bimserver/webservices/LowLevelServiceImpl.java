@@ -52,6 +52,9 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 		int rid = -1;
 		try {
 			Project project = (Project) session.get(poid, Query.getDefault());
+			if (project == null) {
+				throw new UserException("No project found with poid " + poid);
+			}
 			pid = project.getId();
 			if (project.getLastRevision() != null) {
 				Revision revision = project.getLastRevision();
