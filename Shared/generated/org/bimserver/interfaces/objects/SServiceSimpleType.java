@@ -1,4 +1,4 @@
-package org.bimserver.utils;
+package org.bimserver.interfaces.objects;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -17,14 +17,29 @@ package org.bimserver.utils;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.security.SecureRandom;
-import java.util.Random;
+public enum SServiceSimpleType {
+	ENUM(0),
+	STRING(1),
+	LONG(2),
+	INT(3),
+	BOOLEAN(4),
+	FLOAT(5),
+	DOUBLE(6),
+	DATE(7),
+	CLASS(8),
+	DATAHANDLER(9),
+	BYTEARRAY(10),
+	LIST(11),
+	SET(12),
+	VOID(13),
+	UNKNOWN(14);
+	int ordinal;
 
-public class GeneratorUtils {
-	public static final String generateToken() {
-		Random random = new SecureRandom();
-		String result = Long.toHexString(random.nextLong()) + Long.toHexString(random.nextLong()) + Long.toHexString(random.nextLong());
-		result = result.substring(0, 32);
-		return result.toUpperCase();
+	SServiceSimpleType(int ordinal) {
+		this.ordinal = ordinal;
+	}
+	
+	public int getOrdinal() {
+		return ordinal;
 	}
 }

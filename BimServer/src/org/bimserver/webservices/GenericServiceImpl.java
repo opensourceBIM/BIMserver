@@ -129,10 +129,6 @@ public class GenericServiceImpl {
 		}
 	}
 	
-	public String getRemoteAddress() {
-		return serviceMap.getRemoteAddress();
-	}
-	
 	public ServiceMap getServiceMap() {
 		return serviceMap;
 	}

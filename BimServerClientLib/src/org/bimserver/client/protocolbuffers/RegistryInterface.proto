@@ -150,10 +150,10 @@ message RegisterProgressHandlerRequest {
 }
 
 enum SProgressTopicType{
-	DOWNLOAD = 0;
-	UPLOAD = 1;
-	RUNNING_SERVICE = 2;
-	BRANCH = 3;
+	SProgressTopicType_DOWNLOAD = 0;
+	SProgressTopicType_UPLOAD = 1;
+	SProgressTopicType_RUNNING_SERVICE = 2;
+	SProgressTopicType_BRANCH = 3;
 }
 
 message RegisterProgressOnProjectTopicRequest {

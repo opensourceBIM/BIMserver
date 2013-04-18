@@ -29,10 +29,6 @@ public class AuthInterfaceAdaptor implements AuthInterface {
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SUser getCurrentUser() throws UserException, ServerException {
-		return null;
-	}
-	
 	public org.bimserver.interfaces.objects.SUser getLoggedInUser() throws UserException, ServerException {
 		return null;
 	}

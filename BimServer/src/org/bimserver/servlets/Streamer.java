@@ -53,7 +53,7 @@ public class Streamer implements EndPoint {
 				String token = request.get("token").getAsString();
 				try {
 					AuthInterface authInterface = bimServer.getServiceFactory().get(token, AccessMethod.JSON).get(AuthInterface.class);
-					uoid = authInterface.getCurrentUser().getOid();
+					uoid = authInterface.getLoggedInUser().getOid();
 
 					this.endpointid = bimServer.getEndPointManager().register(this);
 					

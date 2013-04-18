@@ -30,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ServiceType#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceType#getSimpleName <em>Simple Name</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServiceType#getFields <em>Fields</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServiceType#getSimpleType <em>Simple Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -106,5 +107,34 @@ public interface ServiceType extends IdEObject {
 	 * @generated
 	 */
 	EList<ServiceField> getFields();
+
+	/**
+	 * Returns the value of the '<em><b>Simple Type</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.store.ServiceSimpleType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Simple Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Simple Type</em>' attribute.
+	 * @see org.bimserver.models.store.ServiceSimpleType
+	 * @see #setSimpleType(ServiceSimpleType)
+	 * @see org.bimserver.models.store.StorePackage#getServiceType_SimpleType()
+	 * @model
+	 * @generated
+	 */
+	ServiceSimpleType getSimpleType();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServiceType#getSimpleType <em>Simple Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Simple Type</em>' attribute.
+	 * @see org.bimserver.models.store.ServiceSimpleType
+	 * @see #getSimpleType()
+	 * @generated
+	 */
+	void setSimpleType(ServiceSimpleType value);
 
 } // ServiceType

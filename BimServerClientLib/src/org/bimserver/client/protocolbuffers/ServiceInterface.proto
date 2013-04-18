@@ -221,9 +221,9 @@ message VoidResponse {
 
 message Void {
 }enum SExtendedDataSchemaType{
-	XSD = 0;
-	PDF = 1;
-	TXT = 2;
+	SExtendedDataSchemaType_XSD = 0;
+	SExtendedDataSchemaType_PDF = 1;
+	SExtendedDataSchemaType_TXT = 2;
 }
 
 message SExtendedDataSchema {
@@ -270,19 +270,19 @@ message AddExtendedDataToRevisionRequest {
 }
 
 enum STrigger{
-	NEW_REVISION = 0;
-	NEW_PROJECT = 1;
-	NEW_EXTENDED_DATA = 2;
+	STrigger_NEW_REVISION = 0;
+	STrigger_NEW_PROJECT = 1;
+	STrigger_NEW_EXTENDED_DATA = 2;
 }
 
 enum SAccessMethod{
-	SOAP = 0;
-	WEB_INTERFACE = 1;
-	INTERNAL = 2;
-	REST = 3;
-	SYNDICATION = 4;
-	JSON = 5;
-	PROTOCOL_BUFFERS = 6;
+	SAccessMethod_SOAP = 0;
+	SAccessMethod_WEB_INTERFACE = 1;
+	SAccessMethod_INTERNAL = 2;
+	SAccessMethod_REST = 3;
+	SAccessMethod_SYNDICATION = 4;
+	SAccessMethod_JSON = 5;
+	SAccessMethod_PROTOCOL_BUFFERS = 6;
 }
 
 message SService {
@@ -300,9 +300,9 @@ message SService {
 	optional string providerName = 12;
 	optional int64 oid = 13;
 	optional string description = 14;
-	optional int64 userId = 15;
-	optional int64 writeRevisionId = 16;
-	optional int64 readExtendedDataId = 17;
+	optional int64 writeRevisionId = 15;
+	optional int64 readExtendedDataId = 16;
+	optional int64 userId = 17;
 	optional string name = 18;
 	optional string serviceIdentifier = 19;
 	optional int64 writeExtendedDataId = 20;
@@ -321,28 +321,28 @@ message AddProjectRequest {
 }
 
 enum SObjectState{
-	ACTIVE = 0;
-	DELETED = 1;
+	SObjectState_ACTIVE = 0;
+	SObjectState_DELETED = 1;
 }
 
 enum SSIPrefix{
-	meter = 0;
-	attometer = 1;
-	femtometer = 2;
-	picometer = 3;
-	nanometer = 4;
-	micrometer = 5;
-	millimeter = 6;
-	centimeter = 7;
-	decimeter = 8;
-	decameter = 9;
-	hectometer = 10;
-	kilometer = 11;
-	megameter = 12;
-	gigameter = 13;
-	terameter = 14;
-	petameter = 15;
-	exameter = 16;
+	SSIPrefix_meter = 0;
+	SSIPrefix_attometer = 1;
+	SSIPrefix_femtometer = 2;
+	SSIPrefix_picometer = 3;
+	SSIPrefix_nanometer = 4;
+	SSIPrefix_micrometer = 5;
+	SSIPrefix_millimeter = 6;
+	SSIPrefix_centimeter = 7;
+	SSIPrefix_decimeter = 8;
+	SSIPrefix_decameter = 9;
+	SSIPrefix_hectometer = 10;
+	SSIPrefix_kilometer = 11;
+	SSIPrefix_megameter = 12;
+	SSIPrefix_gigameter = 13;
+	SSIPrefix_terameter = 14;
+	SSIPrefix_petameter = 15;
+	SSIPrefix_exameter = 16;
 }
 
 message SProject {
@@ -358,9 +358,9 @@ message SProject {
 	repeated int64 hasAuthorizedUsers = 10;
 	optional int32 rid = 11;
 	optional int64 geoTagId = 12;
-	optional string description = 13;
-	optional SSIPrefix exportLengthMeasurePrefix = 14;
-	optional int64 oid = 15;
+	optional SSIPrefix exportLengthMeasurePrefix = 13;
+	optional int64 oid = 14;
+	optional string description = 15;
 	optional string name = 16;
 	repeated int64 subProjects = 17;
 	optional int64 lastRevisionId = 18;
@@ -390,10 +390,10 @@ message AddServiceToProjectRequest {
 }
 
 enum SUserType{
-	SYSTEM = 0;
-	ADMIN = 1;
-	USER = 2;
-	READ_ONLY = 3;
+	SUserType_SYSTEM = 0;
+	SUserType_ADMIN = 1;
+	SUserType_USER = 2;
+	SUserType_READ_ONLY = 3;
 }
 
 message AddUserRequest {
@@ -413,18 +413,18 @@ message SUser {
 	optional bytes validationToken = 7;
 	optional SObjectState state = 8;
 	repeated int64 hasRightsOn = 9;
-	optional bytes password = 10;
+	optional bytes passwordHash = 10;
 	optional SUserType userType = 11;
 	optional int64 createdOn = 12;
 	repeated int64 extendedData = 13;
 	optional string username = 14;
-	optional string token = 15;
+	optional bytes passwordSalt = 15;
 	optional int32 rid = 16;
-	optional int64 oid = 17;
-	optional string name = 18;
-	optional int64 validationTokenCreated = 19;
-	repeated int64 revisions = 20;
-	optional bytes salt = 21;
+	optional string token = 17;
+	optional int64 oid = 18;
+	optional string name = 19;
+	optional int64 validationTokenCreated = 20;
+	repeated int64 revisions = 21;
 }
 
 message AddUserResponse {
@@ -534,10 +534,10 @@ message CleanupLongActionRequest {
 }
 
 enum SCompareType{
-	ALL = 0;
-	ADD = 1;
-	MODIFY = 2;
-	DELETE = 3;
+	SCompareType_ALL = 0;
+	SCompareType_ADD = 1;
+	SCompareType_MODIFY = 2;
+	SCompareType_DELETE = 3;
 }
 
 message CompareRequest {
@@ -565,12 +565,6 @@ message SObjectAdded {
 	optional int64 oid = 2;
 }
 
-message SListDataValue {
-	repeated SDataValue values = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
-}
-
 message SSimpleDataValue {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
@@ -584,11 +578,17 @@ message SReferenceDataValue {
 	optional int64 oid = 4;
 }
 
+message SListDataValue {
+	repeated SDataValue values = 1;
+	optional int32 rid = 2;
+	optional int64 oid = 3;
+}
+
 message SDataValue {
 	required string __actual_type = 1;
-	optional SListDataValue __SListDataValue = 2;
-	optional SSimpleDataValue __SSimpleDataValue = 3;
-	optional SReferenceDataValue __SReferenceDataValue = 4;
+	optional SSimpleDataValue __SSimpleDataValue = 2;
+	optional SReferenceDataValue __SReferenceDataValue = 3;
+	optional SListDataValue __SListDataValue = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 	optional string fieldName = 7;
@@ -614,15 +614,15 @@ message SCompareItem {
 }
 
 message SCompareContainer {
-	repeated SCompareItem items = 1;
-	optional int32 rid = 2;
+	optional int32 rid = 1;
+	repeated SCompareItem items = 2;
 	optional int64 oid = 3;
 	optional string type = 4;
 }
 
 message SCompareResult {
-	repeated SCompareContainer items = 1;
-	optional int32 rid = 2;
+	optional int32 rid = 1;
+	repeated SCompareContainer items = 2;
 	optional int64 oid = 3;
 }
 
@@ -795,8 +795,8 @@ message SRevision {
 	optional int32 rid = 12;
 	optional int64 oid = 13;
 	optional int64 userId = 14;
-	optional string comment = 15;
-	optional string lastError = 16;
+	optional string lastError = 15;
+	optional string comment = 16;
 	repeated int64 checkouts = 17;
 }
 
@@ -1138,8 +1138,8 @@ message GetGeoTagRequest {
 }
 
 message SGeoTag {
-	repeated int64 projects = 1;
-	optional bool enabled = 2;
+	optional bool enabled = 1;
+	repeated int64 projects = 2;
 	optional int32 epsg = 3;
 	optional int32 rid = 4;
 	optional int64 oid = 5;
@@ -1159,17 +1159,17 @@ message GetLongActionStateRequest {
 }
 
 enum SActionState{
-	UNKNOWN = 0;
-	STARTED = 1;
-	AS_ERROR = 2;
-	FINISHED = 3;
+	SActionState_UNKNOWN = 0;
+	SActionState_STARTED = 1;
+	SActionState_AS_ERROR = 2;
+	SActionState_FINISHED = 3;
 }
 
 message SLongActionState {
 	optional int32 progress = 1;
 	optional string title = 2;
-	repeated string infos = 3;
-	repeated string errors = 4;
+	repeated string errors = 3;
+	repeated string infos = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 	optional SActionState state = 7;

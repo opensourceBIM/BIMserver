@@ -79,4 +79,8 @@ public interface MetaInterface extends PublicInterface {
 	List<SServiceParameter> getServiceMethodParameters(
 		@WebParam(name = "serviceInterfaceName", partName = "getServiceMethodParameters.serviceInterfaceName") String serviceInterfaceName,
 		@WebParam(name = "serviceMethodName", partName = "getServiceMethodParameters.serviceMethodName") String serviceMethodName) throws ServerException, UserException;
+
+	@WebMethod(action="getEnumLiterals")
+	List<String> getEnumLiterals(
+		@WebParam(name = "enumName", partName = "getEnumLiterals.enumName") String enumName) throws UserException, ServerException;
 }

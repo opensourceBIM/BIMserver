@@ -350,6 +350,7 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SServiceMethod();
 					}
 				}));
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SServiceSimpleType"), null));
 				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SServiceField"), new SConstructor(){
 					public Object newInstance() {
 						return new org.bimserver.interfaces.objects.SServiceField();

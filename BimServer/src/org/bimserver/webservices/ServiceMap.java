@@ -24,15 +24,13 @@ import org.bimserver.webservices.authorization.Authorization;
 public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 	private BimServer bimServer;
 	private AccessMethod accessMethod;
-	private String remoteAddress;
 	private Authorization authorization;
 	private final Map<Class<? extends PublicInterface>, PublicInterface> interfaces = new HashMap<Class<? extends PublicInterface>, PublicInterface>();
 
-	public ServiceMap(BimServer bimServer, Authorization authorization, AccessMethod accessMethod, String remoteAddress) {
+	public ServiceMap(BimServer bimServer, Authorization authorization, AccessMethod accessMethod) {
 		this.bimServer = bimServer;
 		this.authorization = authorization;
 		this.accessMethod = accessMethod;
-		this.remoteAddress = remoteAddress;
 	}
 
 	public void put(Class<PublicInterface> clazz, PublicInterface publicInterface) {
@@ -45,10 +43,6 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 	
 	public AccessMethod getAccessMethod() {
 		return accessMethod;
-	}
-	
-	public String getRemoteAddress() {
-		return remoteAddress;
 	}
 	
 	public Authorization getAuthorization() {

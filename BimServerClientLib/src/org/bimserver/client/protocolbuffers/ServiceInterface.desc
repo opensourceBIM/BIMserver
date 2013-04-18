@@ -1,5 +1,5 @@
 
-˜Î
+ù
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -55,10 +55,10 @@ revisionId	 (
 token (	
 providerName (	
 oid (
-description (	
-userId (
-writeRevisionId (
-readExtendedDataId (
+description (	
+writeRevisionId (
+readExtendedDataId (
+userId (
 name (	
 serviceIdentifier (	
 writeExtendedDataId (
@@ -84,10 +84,10 @@ revisionId	 (
 hasAuthorizedUsers
  (
 rid (
-geoTagId (
-description (	>
-exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
-oid (
+geoTagId (>
+exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
+oid (
+description (	
 name (	
 subProjects (
 lastRevisionId (
@@ -111,7 +111,7 @@ parentPoid ("a
 username (	
 name (	)
 type (2.org.bimserver.pb.SUserType
-selfRegistration ("»
+selfRegistration ("‘
 SUser
 userSettingsId (
 lastSeen (
@@ -121,20 +121,20 @@ parentPoid ("a
 logs (
 validationToken (-
 state (2.org.bimserver.pb.SObjectState
-hasRightsOn	 (
-password
+hasRightsOn	 (
+passwordHash
  (-
 userType (2.org.bimserver.pb.SUserType
 	createdOn (
 extendedData (
-username (	
-token (	
-rid (
-oid (
-name (	
-validationTokenCreated (
-	revisions (
-salt ("O
+username (	
+passwordSalt (
+rid (
+token (	
+oid (
+name (	
+validationTokenCreated (
+	revisions ("O
 AddUserResponse
 errorMessage (	&
 value (2.org.bimserver.pb.SUser"A
@@ -221,11 +221,7 @@ parentPoid ("a
 	fieldName (	"(
 SObjectAdded
 rid (
-oid ("X
-SListDataValue,
-values (2.org.bimserver.pb.SDataValue
-rid (
-oid ("A
+oid ("A
 SSimpleDataValue
 rid (
 oid (
@@ -234,13 +230,17 @@ parentPoid ("a
 guid (	
 typeName (	
 rid (
-oid ("í
+oid ("X
+SListDataValue,
+values (2.org.bimserver.pb.SDataValue
+rid (
+oid ("í
 
 SDataValue
-__actual_type (	:
-__SListDataValue (2 .org.bimserver.pb.SListDataValue>
-__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValueD
-__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue
+__actual_type (	>
+__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValueD
+__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue:
+__SListDataValue (2 .org.bimserver.pb.SListDataValue
 rid (
 oid (
 	fieldName (	"
@@ -260,14 +260,14 @@ SDataValue
 oid (1
 
 dataObject (2.org.bimserver.pb.SDataObject"j
-SCompareContainer-
-items (2.org.bimserver.pb.SCompareItem
-rid (
+SCompareContainer
+rid (-
+items (2.org.bimserver.pb.SCompareItem
 oid (
 type (	"^
-SCompareResult2
-items (2#.org.bimserver.pb.SCompareContainer
-rid (
+SCompareResult
+rid (2
+items (2#.org.bimserver.pb.SCompareContainer
 oid ("X
 CompareResponse
 errorMessage (	/
@@ -386,9 +386,9 @@ classNames (	
 extendedData (
 rid (
 oid (
-userId (
-comment (	
-	lastError (	
+userId (
+	lastError (	
+comment (	
 	checkouts ("—
 	SCheckout,
 checkin (2.org.bimserver.pb.SRevision-
@@ -593,9 +593,9 @@ revisionNr (
 value (2.org.bimserver.pb.SFile" 
 GetGeoTagRequest
 goid ("ç
-SGeoTag
-projects (
-enabled (
+SGeoTag
+enabled (
+projects (
 epsg (
 rid (
 oid (
@@ -610,9 +610,9 @@ revisionNr (
 actionId ("º
 SLongActionState
 progress (
-title (	
-infos (	
-errors (	
+title (	
+errors (	
+infos (	
 rid (
 oid (-
 state (2.org.bimserver.pb.SActionState
@@ -795,69 +795,60 @@ objectIDMs (
 poid ("<
 UserHasRightsResponse
 errorMessage (	
-value (*4
-SExtendedDataSchemaType
-XSD 
-PDF
-TXT*D
-STrigger
-NEW_REVISION 
-NEW_PROJECT
-NEW_EXTENDED_DATA*u
-SAccessMethod
-SOAP 
-WEB_INTERFACE
-INTERNAL
-REST
-SYNDICATION
-JSON
-PROTOCOL_BUFFERS*'
-SObjectState
-
-ACTIVE 
-DELETED*ä
-	SSIPrefix	
-meter 
-	attometer
-
-femtometer
-	picometer
-	nanometer
-
-micrometer
-
-millimeter
-
-centimeter
-	decimeter
-	decameter	
-
-hectometer
-
-	kilometer
-	megameter
-	gigameter
-	terameter
-	petameter
-exameter*;
-	SUserType
-
-SYSTEM 	
-ADMIN
-USER
-	READ_ONLY*8
-SCompareType
-ALL 
-ADD
-
-MODIFY
-
-DELETE*D
-SActionState
-UNKNOWN 
-STARTED
-AS_ERROR
-FINISHED2ÎS
+value (*|
+SExtendedDataSchemaType
+SExtendedDataSchemaType_XSD 
+SExtendedDataSchemaType_PDF
+SExtendedDataSchemaType_TXT*_
+STrigger
+STrigger_NEW_REVISION 
+STrigger_NEW_PROJECT
+STrigger_NEW_EXTENDED_DATA*◊
+SAccessMethod
+SAccessMethod_SOAP 
+SAccessMethod_WEB_INTERFACE
+SAccessMethod_INTERNAL
+SAccessMethod_REST
+SAccessMethod_SYNDICATION
+SAccessMethod_JSON"
+SAccessMethod_PROTOCOL_BUFFERS*A
+SObjectState
+SObjectState_ACTIVE 
+SObjectState_DELETED*¥
+	SSIPrefix
+SSIPrefix_meter 
+SSIPrefix_attometer
+SSIPrefix_femtometer
+SSIPrefix_picometer
+SSIPrefix_nanometer
+SSIPrefix_micrometer
+SSIPrefix_millimeter
+SSIPrefix_centimeter
+SSIPrefix_decimeter
+SSIPrefix_decameter	
+SSIPrefix_hectometer
+
+SSIPrefix_kilometer
+SSIPrefix_megameter
+SSIPrefix_gigameter
+SSIPrefix_terameter
+SSIPrefix_petameter
+SSIPrefix_exameter*c
+	SUserType
+SUserType_SYSTEM 
+SUserType_ADMIN
+SUserType_USER
+SUserType_READ_ONLY*l
+SCompareType
+SCompareType_ALL 
+SCompareType_ADD
+SCompareType_MODIFY
+SCompareType_DELETE*x
+SActionState
+SActionState_UNKNOWN 
+SActionState_STARTED
+SActionState_AS_ERROR
+SActionState_FINISHED2ÎS
 ServiceInterfaceg
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest.org.bimserver.pb.VoidResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo

@@ -30,6 +30,8 @@ option java_outer_classname = "MetaInterfaceImpl";
 option optimize_for = SPEED;
 
 service MetaInterface {
+	rpc getEnumLiterals (GetEnumLiteralsRequest) returns (GetEnumLiteralsResponse);
+
 	rpc getServiceInterface (GetServiceInterfaceRequest) returns (GetServiceInterfaceResponse);
 
 	rpc getServiceInterfaces (GetServiceInterfacesRequest) returns (GetServiceInterfacesResponse);
@@ -42,6 +44,15 @@ service MetaInterface {
 
 	rpc getServiceTypes (GetServiceTypesRequest) returns (GetServiceTypesResponse);
 
+}
+
+message GetEnumLiteralsRequest {
+	optional string enumName = 1;
+}
+
+message GetEnumLiteralsResponse {
+	optional string errorMessage = 1;
+	repeated string value = 2;
 }
 
 message GetServiceInterfaceRequest {
@@ -87,6 +98,24 @@ message GetServiceMethodParametersRequest {
 	optional string serviceMethodName = 2;
 }
 
+enum SServiceSimpleType{
+	SServiceSimpleType_ENUM = 0;
+	SServiceSimpleType_STRING = 1;
+	SServiceSimpleType_LONG = 2;
+	SServiceSimpleType_INT = 3;
+	SServiceSimpleType_BOOLEAN = 4;
+	SServiceSimpleType_FLOAT = 5;
+	SServiceSimpleType_DOUBLE = 6;
+	SServiceSimpleType_DATE = 7;
+	SServiceSimpleType_CLASS = 8;
+	SServiceSimpleType_DATAHANDLER = 9;
+	SServiceSimpleType_BYTEARRAY = 10;
+	SServiceSimpleType_LIST = 11;
+	SServiceSimpleType_SET = 12;
+	SServiceSimpleType_VOID = 13;
+	SServiceSimpleType_UNKNOWN = 14;
+}
+
 message SServiceField {
 	optional SServiceType genericType = 1;
 	optional string name = 2;
@@ -99,7 +128,8 @@ message SServiceType {
 	optional int32 rid = 2;
 	optional int64 oid = 3;
 	optional string name = 4;
-	repeated SServiceField fields = 5;
+	optional SServiceSimpleType simpleType = 5;
+	repeated SServiceField fields = 6;
 }
 
 message SServiceParameter {

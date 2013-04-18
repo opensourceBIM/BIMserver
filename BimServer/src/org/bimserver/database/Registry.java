@@ -114,8 +114,8 @@ public class Registry {
 		}
 	}
 
-	public boolean has(String string) {
-		return false;
+	public boolean has(String key, DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {
+		return keyValueStore.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession) != null;
 	}
 
 	public byte[] readByteArray(String key, DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {

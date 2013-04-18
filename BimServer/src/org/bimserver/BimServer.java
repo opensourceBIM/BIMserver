@@ -357,7 +357,7 @@ public class BimServer {
 			DatabaseSession encsession = bimDatabase.createSession();
 			try {
 				byte[] encryptionkeyBytes = null;
-				if (!bimDatabase.getRegistry().has(ENCRYPTIONKEY)) {
+				if (!bimDatabase.getRegistry().has(ENCRYPTIONKEY, encsession)) {
 					encryptionkeyBytes = new byte[16];
 					new SecureRandom().nextBytes(encryptionkeyBytes);
 					bimDatabase.getRegistry().save(ENCRYPTIONKEY, encryptionkeyBytes, encsession);

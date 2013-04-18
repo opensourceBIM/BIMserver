@@ -27,6 +27,7 @@ import org.bimserver.shared.exceptions.UserException;
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface AdminInterface extends PublicInterface {
 	/**
+	 * Get a list of all plugins
 	 * @return A list of all plugins
 	 * @throws ServerException, UserException
 	 */
@@ -34,6 +35,7 @@ public interface AdminInterface extends PublicInterface {
 	List<SPluginDescriptor> getAllPlugins() throws ServerException, UserException;
 	
 	/**
+	 * Enable a plugin
 	 * @param name Name of the plugin to enable
 	 * @throws ServerException, UserException
 	 */
@@ -42,6 +44,7 @@ public interface AdminInterface extends PublicInterface {
 		@WebParam(name = "name", partName = "enablePlugin.name") String name) throws ServerException, UserException;
 	
 	/**
+	 * Disable a plugin
 	 * @param name Name of the plugin to disable
 	 * @throws ServerException, UserException
 	 */
@@ -58,6 +61,7 @@ public interface AdminInterface extends PublicInterface {
 	SDatabaseInformation getDatabaseInformation() throws ServerException, UserException;
 
 	/**
+	 * Get information about the last database reset
 	 * @return When the last database reset occurred
 	 * @throws ServerException, UserException
 	 */
@@ -65,7 +69,7 @@ public interface AdminInterface extends PublicInterface {
 	Date getLastDatabaseReset() throws ServerException, UserException;
 
 	/**
-	 * Setup this BIMserver
+	 * Setup this BIMserver. This BIMserver will not be available until you execute this method successfully. You can only do this once. After initial setup, use the methods provided by the SettingsInterface to change values.
 	 * @param siteAddress The address the server will be reachable at (for example: http://demo.bimserver.org)
 	 * @param smtpServer The address of the SMTP server that wil be used for sending e-mails
 	 * @param adminName Name of the admin User (e.g. "Administrator")
@@ -82,6 +86,7 @@ public interface AdminInterface extends PublicInterface {
 		@WebParam(name = "adminPassword", partName = "setup.adminPassword") String adminPassword) throws ServerException, UserException;
 	
 	/**
+	 * Get a list of logged actions
 	 * @return A list with all Log objects, Log objects contain information about action performed on the BIMserver like ProjectAdded, UserAdded etc...
 	 * @throws ServerException, UserException
 	 */
@@ -89,6 +94,7 @@ public interface AdminInterface extends PublicInterface {
 	List<SLogAction> getLogs() throws ServerException, UserException;
 
 	/**
+	 * Get a list of all migrations
 	 * @return A list of all Migrations (either executed or not)
 	 * @throws ServerException, UserException
 	 */
@@ -111,6 +117,7 @@ public interface AdminInterface extends PublicInterface {
 	SServerInfo getServerInfo() throws ServerException, UserException;
 	
 	/**
+	 * Get the BIMserver log
 	 * @return The BIMserver log (can be big)
 	 * @throws ServerException 
 	 */
@@ -118,7 +125,8 @@ public interface AdminInterface extends PublicInterface {
 	String getServerLog() throws ServerException, UserException;
 	
 	/**
-	 * @return Initiate clearing the output cache
+	 * Initiate clearing the output cache
+	 * @return The amount of removed files
 	 * @throws UserException
 	 * @throws ServerException
 	 */
@@ -126,7 +134,8 @@ public interface AdminInterface extends PublicInterface {
 	Integer clearOutputFileCache() throws UserException, ServerException;
 
 	/**
-	 * @return Get information about the system this BIMserver is running on
+	 * Get information about the system this BIMserver is running on
+	 * @return A SSystemInfo object
 	 * @throws UserException
 	 * @throws ServerException
 	 */
@@ -134,7 +143,8 @@ public interface AdminInterface extends PublicInterface {
 	SSystemInfo getSystemInfo() throws UserException, ServerException;
 	
 	/**
-	 * @return Get information about the Java environment this BIMserver is running on
+	 * Get information about the Java environment this BIMserver is running on
+	 * @return A SJavaInfo object
 	 * @throws UserException
 	 * @throws ServerException
 	 */
@@ -142,7 +152,8 @@ public interface AdminInterface extends PublicInterface {
 	SJavaInfo getJavaInfo() throws UserException, ServerException;
 
 	/**
-	 * @return Get information about this BIMserver
+	 * Get information about this BIMserver
+	 * @return A SBimServerInfo object
 	 * @throws ServerException
 	 * @throws UserException
 	 */
@@ -150,8 +161,8 @@ public interface AdminInterface extends PublicInterface {
 	SBimServerInfo getBimServerInfo() throws ServerException, UserException;
 	
 	/**
-	 * Thsi will return the content of the .proto file (equivalent for SOAP's WSDL) for the ProtocolBuffers interface
-	 * @return Returns a serialized version of the .proto file for the ServiceInterface
+	 * This will return the content of the .proto file (equivalent for SOAP's WSDL) for the ProtocolBuffers interface
+	 * @return A serialized version of the .proto file
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getProtocolBuffersFile")
@@ -183,6 +194,7 @@ public interface AdminInterface extends PublicInterface {
 	Boolean upgradePossible() throws ServerException, UserException;
 	
 	/**
+	 * Get the date when this BIMserver was last started
 	 * @return The Date when the BIMserver was last started
 	 * @throws ServerException, UserException
 	 */
