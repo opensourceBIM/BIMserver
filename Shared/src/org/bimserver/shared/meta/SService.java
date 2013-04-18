@@ -92,7 +92,8 @@ public class SService {
 						for (Object tag : javaDoc.tags()) {
 							if (tag instanceof TagElement) {
 								TagElement tagElement = (TagElement) tag;
-								if ("@param".equals(tagElement.getTagName())) {
+								String tagName = tagElement.getTagName() == null ? null : tagElement.getTagName().trim();
+								if ("@param".equals(tagName)) {
 									SParameter parameter = null;
 									for (int i = 0; i < tagElement.fragments().size(); i++) {
 										Object fragment = tagElement.fragments().get(i);
@@ -102,9 +103,9 @@ public class SService {
 											parameter.setDoc(((TextElement) fragment).getText());
 										}
 									}
-								} else if ("@return".equals(tagElement.getTagName())) {
+								} else if ("@return".equals(tagName)) {
 									method.setReturnDoc(extractFullText(tagElement));
-								} else if ("@throws".equals(tagElement.getTagName())) {
+								} else if ("@throws".equals(tagName)) {
 								} else {
 									method.setDoc(extractFullText(tagElement));
 								}

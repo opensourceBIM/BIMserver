@@ -613,6 +613,24 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(serviceMethod, "doc", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serviceMethod, "returnDoc", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 
+		EEnum serviceSimpleType = schema.createEEnum("store", "ServiceSimpleType");
+		
+		schema.createEEnumLiteral(serviceSimpleType, "ENUM");
+		schema.createEEnumLiteral(serviceSimpleType, "STRING");
+		schema.createEEnumLiteral(serviceSimpleType, "LONG");
+		schema.createEEnumLiteral(serviceSimpleType, "INT");
+		schema.createEEnumLiteral(serviceSimpleType, "BOOLEAN");
+		schema.createEEnumLiteral(serviceSimpleType, "FLOAT");
+		schema.createEEnumLiteral(serviceSimpleType, "DOUBLE");
+		schema.createEEnumLiteral(serviceSimpleType, "DATE");
+		schema.createEEnumLiteral(serviceSimpleType, "CLASS");
+		schema.createEEnumLiteral(serviceSimpleType, "DATAHANDLER");
+		schema.createEEnumLiteral(serviceSimpleType, "BYTEARRAY");
+		schema.createEEnumLiteral(serviceSimpleType, "LIST");
+		schema.createEEnumLiteral(serviceSimpleType, "SET");
+		schema.createEEnumLiteral(serviceSimpleType, "VOID");
+		schema.createEEnumLiteral(serviceSimpleType, "UNKNOWN");
+		
 		EClass serviceField = schema.createEClass("store", "ServiceField");
 		serviceField.getEAnnotations().add(createNoDatabaseAnnotation());
 		EClass serviceType = schema.createEClass("store", "ServiceType");
@@ -625,6 +643,7 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(serviceType, "name", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(serviceType, "simpleName", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);
 		schema.createEReference(serviceType, "fields", serviceField, Multiplicity.MANY).getEAnnotations().add(createEmbedsReferenceAnnotation());
+		schema.createEAttribute(serviceType, "simpleType", serviceSimpleType, Multiplicity.SINGLE).getEAnnotations();
 
 		EClass serviceParameter = schema.createEClass("store", "ServiceParameter");
 		serviceParameter.getEAnnotations().add(createNoDatabaseAnnotation());

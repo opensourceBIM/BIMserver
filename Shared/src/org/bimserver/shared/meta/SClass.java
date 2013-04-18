@@ -46,6 +46,7 @@ public class SClass {
 	private SClass superClass;
 	private Set<SClass> subClasses = new HashSet<SClass>();
 	private SConstructor sConstructor;
+	private SimpleType simpleType;
 	
 	public SClass(SService sService, Class<?> instanceClass, SConstructor sConstructor) {
 		this.sConstructor = sConstructor;
@@ -55,6 +56,7 @@ public class SClass {
 		this.sService = sService;
 		this.instanceClass = instanceClass;
 		this.name = instanceClass.getName();
+		this.simpleType = SimpleType.get(instanceClass);
 		try {
 			Method method = instanceClass.getMethod("setSClass", new Class[]{SClass.class});
 			if (method != null) {
@@ -291,5 +293,9 @@ public class SClass {
 
 	public boolean isVoid() {
 		return name.equals("void") || name.equals("Void");
+	}
+	
+	public SimpleType getSimpleType() {
+		return simpleType;
 	}
 }

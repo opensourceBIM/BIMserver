@@ -15,10 +15,21 @@
 	list-style: none;
 }
 
+.mainDiv {
+	padding-right: 16px;
+	position: absolute;
+	top: 46px;
+	bottom: 0px;
+	right: 0px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
 .methodList {
 	padding: 8px 0;
 	position: absolute;
-	top: 68px;
+	top: 62px;
+	left: 16px;
 	bottom: 0px;
 	overflow-y: auto;
 	overflow-x: hidden;
@@ -85,7 +96,7 @@ pre.prettyprint {
 	margin: 10px;
 }
 .hero-unit {
-	margin-top: 40px;
+	margin-top: 16px;
 }
 .logo {
 	margin-top: 5px;
@@ -118,14 +129,21 @@ pre.prettyprint {
 				<div class="span2 methodList well">
 					<ul class="innerMethodList nav nav-list"></ul>
 				</div>
-				<div class="span10" style="margin-left: 270px">
+				<div class="span10 mainDiv">
 					<div class="hero-unit">
 						<h1>BIMserver API</h1>
 						<p>Execute your own calls and get to learn the way of the BIMserver</p>
 					</div>
 					<div class="method initialhide">
 						<h3 class="name"></h3>
-						<div class="doc alert"></div>
+						<div class="alert">
+							<span class="label label-info">Description</span>
+							<div class="doc"></div>
+							<div style="margin-top: 8px">
+								<span class="label">Returns</span>
+								<div class="docreturn"></div>
+							</div>
+						</div>
 						<div class="example">
 							<div class="noparameters initialhide">This call has no parameters</div>
 							<div class="parameters initialhide">
@@ -238,16 +256,22 @@ function makeExampleFromType(fieldName, type, genericType, doc) {
 	var example = "";
 	if (type.simpleName == "String") {
 		example += "\"" + $(".__field" + fieldName).val() + "\"";
+	} else if (type.name.contains("Boolean")) {
+		example += "\"" + $(".__field" + fieldName).is(":checked") + "\"";
 	} else if (type.name.contains("org.bimserver")) {
-		example += "{\n";
-		type.fields.forEach(function(field, index){
-			example += "    \"" + field.name + "\": " + makeExampleFromType(field.type, field.genericType, field.doc);
-			if (index != type.fields.length - 1) {
-				example += ",";
-			}
-			example += "\n";
-		});
-		example += "    }";
+		if (type.simpleType == "ENUM") {
+			example += "\"" + $(".__field" + fieldName).val() + "\"";
+		} else {
+			example += "{\n";
+			type.fields.forEach(function(field, index){
+				example += "    \"" + field.name + "\": " + makeExampleFromType(field.type, field.genericType, field.doc);
+				if (index != type.fields.length - 1) {
+					example += ",";
+				}
+				example += "\n";
+			});
+			example += "    }";
+		}
 	} else if (type.simpleName == "List") {
 		example += "[<<" + genericType.simpleName.toLowerCase() + (doc == null ? "" : (", " + doc)) + ">>]";
 	} else {
@@ -342,8 +366,32 @@ function makeFieldFromType(fieldName, type, genericType, doc) {
 		input.keyup(inputChange);
 		input.enterpress(send);
 		return input;
+	} else if (type.simpleType == "ENUM") {
+		var select = $("<select></select>");
+		select.addClass("__field" + fieldName);
+		select.change(inputChange);
+		var request = {
+			request: {
+				interface: "MetaInterface",
+				method: "getEnumLiterals",
+				parameters: {
+					enumName: type.name
+				}
+			}
+		};
+		call(request, function(data){
+			data.response.result.forEach(function(enumConstant){
+				var option = $("<option value=\"" + enumConstant + "\">" + enumConstant + "</option>");
+				select.append(option);
+			});
+		});
+		return select;
 	} else if (type.name.contains("org.bimserver")) {
-		
+	} else if (type.simpleName == "Boolean") {
+		var input = $("<input type=\"checkbox\" value=\"true\"/>");
+		input.addClass("__field" + fieldName);
+		input.change(inputChange);
+		return input;
 	} else if (type.simpleName == "List") {
 		
 	} else {
@@ -355,7 +403,7 @@ function makeFieldFromType(fieldName, type, genericType, doc) {
 	}
 }
 
-function loadExampleJson(interfaceName, interfaceSimpleName, methodName, doc) {
+function loadExampleJson(interfaceName, interfaceSimpleName, methodName, doc, returnDoc) {
 	if ($(".hero-unit").is(":visible")) {
 		$(".hero-unit").hide();
 	}
@@ -379,6 +427,11 @@ function loadExampleJson(interfaceName, interfaceSimpleName, methodName, doc) {
 		$(".method .doc").html("No documentation for this method yet");
 	} else {
 		$(".method .doc").html(doc);
+	}
+	if (returnDoc == null || returnDoc == "") {
+		$(".method .docreturn").parent().hide();
+	} else {
+		$(".method .docreturn").html(returnDoc).parent().show();
 	}
 	$(".method .parametersForm *").remove();
 	call(request, function(data){
@@ -446,10 +499,11 @@ function loadMethods(event) {
 					a.data("serviceInterfaceSimpleName", request.requests[index].parameters.serviceInterfaceSimpleName);
 					a.data("serviceMethodName", serviceMethod.name);
 					a.data("doc", serviceMethod.doc);
+					a.data("returndoc", serviceMethod.returnDoc);
 					a.click(function(){
 						$(this).parent().parent().find("li").removeClass("active");
 						$(this).parent().addClass("active");
-						loadExampleJson($(this).data("serviceInterfaceName"), $(this).data("serviceInterfaceSimpleName"), $(this).data("serviceMethodName"), $(this).data("doc"));
+						loadExampleJson($(this).data("serviceInterfaceName"), $(this).data("serviceInterfaceSimpleName"), $(this).data("serviceMethodName"), $(this).data("doc"), $(this).data("returndoc"));
 					});
 					li.append(a);
 					$(".innerMethodList").append(li);
@@ -544,7 +598,7 @@ function loadServiceInterfaceMethod(interfaceName, interfaceSimpleName, methodNa
 		}
 	};
 	call(request, function(data){
-		loadExampleJson(interfaceName, interfaceSimpleName, data.response.result.name, data.response.result.doc);
+		loadExampleJson(interfaceName, interfaceSimpleName, data.response.result.name, data.response.result.doc, data.response.result.returnDoc);
 	});
 }
 

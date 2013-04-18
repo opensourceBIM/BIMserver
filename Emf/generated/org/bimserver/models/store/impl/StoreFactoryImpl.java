@@ -366,6 +366,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return createExtendedDataSchemaTypeFromString(eDataType, initialValue);
 		case StorePackage.TRIGGER:
 			return createTriggerFromString(eDataType, initialValue);
+		case StorePackage.SERVICE_SIMPLE_TYPE:
+			return createServiceSimpleTypeFromString(eDataType, initialValue);
 		case StorePackage.PRIMITIVE_ENUM:
 			return createPrimitiveEnumFromString(eDataType, initialValue);
 		case StorePackage.NOTIFICTION_RESULT_ENUM:
@@ -403,6 +405,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return convertExtendedDataSchemaTypeToString(eDataType, instanceValue);
 		case StorePackage.TRIGGER:
 			return convertTriggerToString(eDataType, instanceValue);
+		case StorePackage.SERVICE_SIMPLE_TYPE:
+			return convertServiceSimpleTypeToString(eDataType, instanceValue);
 		case StorePackage.PRIMITIVE_ENUM:
 			return convertPrimitiveEnumToString(eDataType, instanceValue);
 		case StorePackage.NOTIFICTION_RESULT_ENUM:
@@ -1441,6 +1445,27 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	 * @generated
 	 */
 	public String convertTriggerToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ServiceSimpleType createServiceSimpleTypeFromString(EDataType eDataType, String initialValue) {
+		ServiceSimpleType result = ServiceSimpleType.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertServiceSimpleTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

@@ -4681,13 +4681,22 @@ public interface StorePackage extends EPackage {
 	int SERVICE_TYPE__FIELDS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Simple Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_TYPE__SIMPLE_TYPE = 3;
+
+	/**
 	 * The number of structural features of the '<em>Service Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_TYPE_FEATURE_COUNT = 3;
+	int SERVICE_TYPE_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServiceParameterImpl <em>Service Parameter</em>}' class.
@@ -5800,6 +5809,16 @@ public interface StorePackage extends EPackage {
 	int TRIGGER = 93;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.ServiceSimpleType <em>Service Simple Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.ServiceSimpleType
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceSimpleType()
+	 * @generated
+	 */
+	int SERVICE_SIMPLE_TYPE = 94;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5807,7 +5826,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_ENUM = 94;
+	int PRIMITIVE_ENUM = 95;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}' enum.
@@ -5817,7 +5836,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotifictionResultEnum()
 	 * @generated
 	 */
-	int NOTIFICTION_RESULT_ENUM = 95;
+	int NOTIFICTION_RESULT_ENUM = 96;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ProgressTopicType <em>Progress Topic Type</em>}' enum.
@@ -5827,7 +5846,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getProgressTopicType()
 	 * @generated
 	 */
-	int PROGRESS_TOPIC_TYPE = 96;
+	int PROGRESS_TOPIC_TYPE = 97;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -5837,7 +5856,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 97;
+	int DATA_HANDLER = 98;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -9516,6 +9535,17 @@ public interface StorePackage extends EPackage {
 	EReference getServiceType_Fields();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServiceType#getSimpleType <em>Simple Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Simple Type</em>'.
+	 * @see org.bimserver.models.store.ServiceType#getSimpleType()
+	 * @see #getServiceType()
+	 * @generated
+	 */
+	EAttribute getServiceType_SimpleType();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ServiceParameter <em>Service Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10562,6 +10592,16 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getTrigger();
+
+	/**
+	 * Returns the meta object for enum '{@link org.bimserver.models.store.ServiceSimpleType <em>Service Simple Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Service Simple Type</em>'.
+	 * @see org.bimserver.models.store.ServiceSimpleType
+	 * @generated
+	 */
+	EEnum getServiceSimpleType();
 
 	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}'.
@@ -13475,6 +13515,14 @@ public interface StorePackage extends EPackage {
 		EReference SERVICE_TYPE__FIELDS = eINSTANCE.getServiceType_Fields();
 
 		/**
+		 * The meta object literal for the '<em><b>Simple Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE_TYPE__SIMPLE_TYPE = eINSTANCE.getServiceType_SimpleType();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServiceParameterImpl <em>Service Parameter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -14317,6 +14365,16 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum TRIGGER = eINSTANCE.getTrigger();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.ServiceSimpleType <em>Service Simple Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.ServiceSimpleType
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceSimpleType()
+		 * @generated
+		 */
+		EEnum SERVICE_SIMPLE_TYPE = eINSTANCE.getServiceSimpleType();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.

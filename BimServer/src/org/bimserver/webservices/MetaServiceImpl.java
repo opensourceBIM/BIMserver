@@ -9,6 +9,7 @@ import org.bimserver.interfaces.objects.SServiceField;
 import org.bimserver.interfaces.objects.SServiceInterface;
 import org.bimserver.interfaces.objects.SServiceMethod;
 import org.bimserver.interfaces.objects.SServiceParameter;
+import org.bimserver.interfaces.objects.SServiceSimpleType;
 import org.bimserver.interfaces.objects.SServiceType;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -85,6 +86,15 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 		return sServiceTypes;
 	}
 
+	public List<String> getEnumLiterals(String enumName) throws UserException {
+		List<String> result = new ArrayList<>();
+		SClass type = getBimServer().getServicesMap().getType(enumName);
+		for (Object enumConstant : type.getInstanceClass().getEnumConstants()) {
+			result.add(enumConstant.toString());
+		}
+		return result;
+	}
+	
 	// TODO Recursion to same type will result in endless loop
 	public SServiceType createSServiceType(SClass sClass) throws UserException, ServerException {
 		if (sClass == null) {
@@ -93,6 +103,7 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 		SServiceType sServiceType = new SServiceType();
 		sServiceType.setName(sClass.getName());
 		sServiceType.setSimpleName(sClass.getSimpleName());
+		sServiceType.setSimpleType(SServiceSimpleType.valueOf(sClass.getSimpleType().name()));
 		for (SField field : sClass.getAllFields()) {
 			SServiceField sServiceField = new SServiceField();
 			sServiceField.setName(field.getName());

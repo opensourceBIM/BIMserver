@@ -496,7 +496,7 @@ public class ProtocolBuffersGenerator {
 		sb.append("enum " + clazz.getSimpleName() + "{\n");
 		int counter = 0;
 		for (Object o : clazz.getEnumConstants()) {
-			sb.append("\t" + o.toString() + " = " + (counter++) + ";\n");
+			sb.append("\t" + clazz.getSimpleName() + "_" + o.toString() + " = " + (counter++) + ";\n");
 		}
 		sb.append("}\n\n");
 		return clazz.getSimpleName();

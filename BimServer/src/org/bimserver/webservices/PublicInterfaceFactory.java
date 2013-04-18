@@ -34,7 +34,7 @@ public class PublicInterfaceFactory implements ServiceFactory {
 	}
 
 	public ServiceMap get(Authorization authorization, AccessMethod accessMethod) {
-		ServiceMap serviceMap = new ServiceMap(bimServer, authorization, accessMethod, null);
+		ServiceMap serviceMap = new ServiceMap(bimServer, authorization, accessMethod);
 		return serviceMap;
 	}
 	

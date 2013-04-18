@@ -37,13 +37,6 @@ public interface AuthInterface extends PublicInterface {
 	void logout() throws ServerException, UserException;
 	
 	/**
-	 * @return The currently logged-in User
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getCurrentUser")
-	SUser getCurrentUser() throws ServerException, UserException;
-
-	/**
 	 * @return Whether this ServiceInterface is logged-in
 	 * @throws ServerException, UserException
 	 */
@@ -57,14 +50,6 @@ public interface AuthInterface extends PublicInterface {
 	@WebMethod(action = "getAccessMethod")
 	SAccessMethod getAccessMethod() throws ServerException, UserException;
 
-	/**
-	 * Get the remove address (which is actually the address the server thinks the client is connecting from)
-	 * @return A string with a hostname or ip address
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getRemoteAddress")
-	String getRemoteAddress() throws ServerException, UserException;
-	
 	/**
 	 * @return The User that it currently loggedin on this ServiceInterface
 	 * @throws ServerException, UserException

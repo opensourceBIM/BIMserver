@@ -544,6 +544,23 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="doc" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnDoc" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ServiceSimpleType">
+    <eLiterals name="ENUM"/>
+    <eLiterals name="STRING" value="1"/>
+    <eLiterals name="LONG" value="2"/>
+    <eLiterals name="INT" value="3"/>
+    <eLiterals name="BOOLEAN" value="4"/>
+    <eLiterals name="FLOAT" value="5"/>
+    <eLiterals name="DOUBLE" value="6"/>
+    <eLiterals name="DATE" value="7"/>
+    <eLiterals name="CLASS" value="8"/>
+    <eLiterals name="DATAHANDLER" value="9"/>
+    <eLiterals name="BYTEARRAY" value="10"/>
+    <eLiterals name="LIST" value="11"/>
+    <eLiterals name="SET" value="12"/>
+    <eLiterals name="VOID" value="13"/>
+    <eLiterals name="UNKNOWN_TYPE" value="14"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ServiceField">
     <eAnnotations source="nodatabase"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -562,6 +579,7 @@
         eType="#//ServiceField">
       <eAnnotations source="embedsreference"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="simpleType" eType="#//ServiceSimpleType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ServiceParameter">
     <eAnnotations source="nodatabase"/>

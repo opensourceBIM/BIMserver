@@ -34,6 +34,7 @@ public class SServiceType implements SDataBase
 	private java.lang.String name;
 	private java.lang.String simpleName;
 	private List<SServiceField> fields = new ArrayList<SServiceField>();
+	private SServiceSimpleType simpleType;
 
 	public long getOid() {
 		return this.oid;
@@ -70,6 +71,9 @@ public class SServiceType implements SDataBase
 		if (sField.getName().equals("fields")) {
 			return getFields();
 		}
+		if (sField.getName().equals("simpleType")) {
+			return getSimpleType();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -91,6 +95,10 @@ public class SServiceType implements SDataBase
 		}
 		if (sField.getName().equals("fields")) {
 			setFields((List<SServiceField>)val);
+			return;
+		}
+		if (sField.getName().equals("simpleType")) {
+			setSimpleType((SServiceSimpleType)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -126,6 +134,14 @@ public class SServiceType implements SDataBase
 
 	public void setFields(List<SServiceField> fields) {
 		this.fields = fields;
+	}
+	
+	public SServiceSimpleType getSimpleType() {
+		return simpleType;
+	}
+
+	public void setSimpleType(SServiceSimpleType simpleType) {
+		this.simpleType = simpleType;
 	}
 	
 	@Override

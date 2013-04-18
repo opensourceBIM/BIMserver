@@ -31,8 +31,6 @@ service AuthInterface {
 
 	rpc getAccessMethod (GetAccessMethodRequest) returns (GetAccessMethodResponse);
 
-	rpc getCurrentUser (GetCurrentUserRequest) returns (GetCurrentUserResponse);
-
 	rpc getLoggedInUser (GetLoggedInUserRequest) returns (GetLoggedInUserResponse);
 
 	rpc getRemoteAddress (GetRemoteAddressRequest) returns (GetRemoteAddressResponse);
@@ -66,14 +64,6 @@ message GetAccessMethodRequest {
 message GetAccessMethodResponse {
 	optional string errorMessage = 1;
 	optional SAccessMethod value = 2;
-}
-
-message GetCurrentUserRequest {
-}
-
-message GetCurrentUserResponse {
-	optional string errorMessage = 1;
-	optional SUser value = 2;
 }
 
 message GetLoggedInUserRequest {

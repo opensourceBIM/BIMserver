@@ -74,8 +74,7 @@ public class JsonApiServlet extends HttpServlet {
 			response.setCharacterEncoding("UTF-8");
 			JsonReader reader = new JsonReader(httpRequest.getReader());
 			JsonParser parser = new JsonParser();
-			JsonObject request = (JsonObject) parser.parse(reader);
-			response.setHeader("Content-Type", "application/json");
+			JsonObject request = (JsonObject) parser.parse(reader);		response.setHeader("Content-Type", "application/json");
 
 			bimServer.getJsonHandler().execute(request, httpRequest, response.getWriter());
 		} catch (Exception e) {
