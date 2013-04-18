@@ -258,6 +258,8 @@ function makeExampleFromType(fieldName, type, genericType, doc) {
 		example += "\"" + $(".__field" + fieldName).val() + "\"";
 	} else if (type.name.contains("Boolean")) {
 		example += "\"" + $(".__field" + fieldName).is(":checked") + "\"";
+	} else if (type.name.contains("javax.activation.DataHandler")) {
+		example += "\"" + $(".__field" + fieldName).data("base64") + "\"";
 	} else if (type.name.contains("org.bimserver")) {
 		if (type.simpleType == "ENUM") {
 			example += "\"" + $(".__field" + fieldName).val() + "\"";
@@ -387,6 +389,28 @@ function makeFieldFromType(fieldName, type, genericType, doc) {
 		});
 		return select;
 	} else if (type.name.contains("org.bimserver")) {
+	} else if (type.name.contains("javax.activation.DataHandler")) {
+		var input = $("<input type=\"file\"/>");
+		input.addClass("__field" + fieldName);
+		
+		var reader = new FileReader();
+		reader.onload = function (event) {
+			var data = event.target.result;
+			var encoded = data.substr(data.indexOf(",") + 1);
+			input.data("base64", encoded);
+			inputChange();
+		};
+
+		input.change(function(){
+			var get = input.get(0);
+			var files = get.files;
+			if (files != null && files.length == 1) {
+				var oFile = files[0];
+				reader.readAsDataURL(oFile);
+			}
+		});
+		
+		return input;
 	} else if (type.simpleName == "Boolean") {
 		var input = $("<input type=\"checkbox\" value=\"true\"/>");
 		input.addClass("__field" + fieldName);
