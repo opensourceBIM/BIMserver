@@ -276,7 +276,6 @@ public abstract class Channel implements ServiceHolder {
 		return get(ServiceInterface.class);
 	}
 	
-	@SuppressWarnings("unused")
 	protected boolean has(Class<? extends PublicInterface> interface1) {
 		return serviceInterfaces.containsKey(interface1.getName());
 	}

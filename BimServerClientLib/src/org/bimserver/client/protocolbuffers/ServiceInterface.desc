@@ -8,9 +8,9 @@
 fileId (
 extendedData (
 users (
-rid (
-description (	
-oid (
+rid (
+oid (
+description (	
 name (	7
 type (2).org.bimserver.pb.SExtendedDataSchemaType
 validate	 (
@@ -28,11 +28,11 @@
 oid (
 userId (
 schemaId (
-	projectId (
+	projectId (
+url	 (	
 
-revisionId	 (
-url
- (	
+revisionId
+ (
 size ("f
 AddExtendedDataToProjectRequest
 poid (5
@@ -51,14 +51,14 @@ revisionId	 (
 serviceName (	=
 notificationProtocol	 (2.org.bimserver.pb.SAccessMethod
 rid
- (
-token (	
-providerName (	
+ (
+providerName (	
+token (	
 oid (
-description (	
-writeRevisionId (
-readExtendedDataId (
-userId (
+description (	
+userId (
+writeRevisionId (
+readExtendedDataId (
 name (	
 serviceIdentifier (	
 writeExtendedDataId (
@@ -72,9 +72,9 @@ revisionId	 (
 projectName (	"ð
 SProject
 lastConcreteRevisionId (
-services (
-createdById (
-logs (-
+services (
+logs (
+createdById (-
 state (2.org.bimserver.pb.SObjectState
 concreteRevisions (
 
@@ -84,15 +84,15 @@ revisionId	 (
 hasAuthorizedUsers
  (
 rid (
-geoTagId (>
-exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
-oid (
+geoTagId (
+oid (>
+exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
 description (	
 name (	
 subProjects (
-lastRevisionId (
-createdDate (
-	revisions (
+lastRevisionId (
+	revisions (
+createdDate (
 	checkouts ("U
 AddProjectResponse
 errorMessage (	)
@@ -114,27 +114,27 @@ parentPoid ("a
 selfRegistration ("Ô
 SUser
 userSettingsId (
-lastSeen (
-schemas (
-services (
-createdById (
-logs (
+lastSeen (
+services (
+schemas (
+logs (
+createdById (
 validationToken (-
-state (2.org.bimserver.pb.SObjectState
-hasRightsOn	 (
-passwordHash
- (-
+state (2.org.bimserver.pb.SObjectState
+passwordHash	 (
+hasRightsOn
+ (-
 userType (2.org.bimserver.pb.SUserType
 	createdOn (
 extendedData (
-username (	
-passwordSalt (
-rid (
+username (	
+rid (
+passwordSalt (
 token (	
 oid (
-name (	
-validationTokenCreated (
-	revisions ("O
+name (	
+	revisions (
+validationTokenCreated ("O
 AddUserResponse
 errorMessage (	&
 value (2.org.bimserver.pb.SUser"A
@@ -212,16 +212,16 @@ parentPoid ("a
 mcid ("*
 SObjectRemoved
 rid (
+oid ("(
+SObjectAdded
+rid (
 oid ("b
 SObjectModified
 newValue (	
 rid (
 oid (
 oldValue (	
-	fieldName (	"(
-SObjectAdded
-rid (
-oid ("A
+	fieldName (	"A
 SSimpleDataValue
 rid (
 oid (
@@ -253,21 +253,21 @@ SDataValue
 type (	"¤
 SCompareItem
 __actual_type (	:
-__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved<
-__SObjectModified (2!.org.bimserver.pb.SObjectModified6
-__SObjectAdded (2.org.bimserver.pb.SObjectAdded
+__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved6
+__SObjectAdded (2.org.bimserver.pb.SObjectAdded<
+__SObjectModified (2!.org.bimserver.pb.SObjectModified
 rid (
 oid (1
 
 dataObject (2.org.bimserver.pb.SDataObject"j
-SCompareContainer
-rid (-
-items (2.org.bimserver.pb.SCompareItem
+SCompareContainer-
+items (2.org.bimserver.pb.SCompareItem
+rid (
 oid (
 type (	"^
-SCompareResult
-rid (2
-items (2#.org.bimserver.pb.SCompareContainer
+SCompareResult2
+items (2#.org.bimserver.pb.SCompareContainer
+rid (
 oid ("X
 CompareResponse
 errorMessage (	/
@@ -392,9 +392,9 @@ classNames (	
 	checkouts ("Ñ
 	SCheckout,
 checkin (2.org.bimserver.pb.SRevision-
-revision (2.org.bimserver.pb.SRevision
-logs (
-rid (
+revision (2.org.bimserver.pb.SRevision
+rid (
+logs (
 oid (
 userId (
 active (
@@ -439,14 +439,14 @@ identifier (	"h
 errorMessage (	3
 value (2$.org.bimserver.pb.SProfileDescriptor"&
 $GetAllLocalServiceDescriptorsRequest"Ë
-SServiceDescriptor
-writeExtendedData (	=
-notificationProtocol (2.org.bimserver.pb.SAccessMethod+
-trigger (2.org.bimserver.pb.STrigger
+SServiceDescriptor+
+trigger (2.org.bimserver.pb.STrigger
+writeExtendedData (	=
+notificationProtocol (2.org.bimserver.pb.SAccessMethod
 writeRevision (
-readExtendedData (	
-providerName (	
-token (	
+readExtendedData (	
+token (	
+providerName (	
 description (	
 name	 (	
 readRevision
@@ -595,9 +595,9 @@ revisionNr (
 goid ("
 SGeoTag
 enabled (
-projects (
-epsg (
-rid (
+projects (
+rid (
+epsg (
 oid (
 directionAngle (	
 z (	
@@ -610,9 +610,9 @@ revisionNr (
 actionId ("¼
 SLongActionState
 progress (
-title (	
-errors (	
-infos (	
+title (	
+infos (	
+errors (	
 rid (
 oid (-
 state (2.org.bimserver.pb.SActionState

@@ -51,33 +51,45 @@ public class SService {
 	private final Map<String, SClass> types = new TreeMap<String, SClass>();
 	private final String fullName;
 	private final Class<?> clazz;
-	private String sourceCode;
 
 	// Disabled for now, makes the deployed JAR stop at this point
 	private boolean processJavaDoc = true;
 	private List<SService> others;
 	private SServicesMap servicesMap;
 	private String simpleName;
+	private SourceCodeFetcher sourceCodeFetcher;
 
-	public SService(String sourceCode, Class<?> clazz) {
-		this(sourceCode, clazz, new ArrayList<SService>());
+	public SService(SourceCodeFetcher sourceCodeFetcher, Class<?> clazz) {
+		this(sourceCodeFetcher, clazz, new ArrayList<SService>());
+		this.sourceCodeFetcher = sourceCodeFetcher;
 	}
 	
-	public SService(String sourceCode, Class<?> clazz, List<SService> others) {
-		this.sourceCode = sourceCode;
+	public SService(SourceCodeFetcher sourceCodeFetcher, Class<?> clazz, List<SService> others) {
+		this.sourceCodeFetcher = sourceCodeFetcher;
 		this.clazz = clazz;
 		this.others = others;
 		this.fullName = clazz.getName();
 		this.simpleName = clazz.getSimpleName();
 		init();
-		if (processJavaDoc && sourceCode != null) {
-			extractJavaDoc();
+		if (processJavaDoc && sourceCodeFetcher != null) {
+			processClass(clazz);
 		}
 	}
+	
+	private void processClass(Class<?> clazz) {
+		if (clazz == Class.class) {
+			return;
+		}
+		for (Class<?> x : clazz.getInterfaces()) {
+			processClass(x);
+		}
+		// Parents first, subclasses their documentation have precedence
+		extractJavaDoc(clazz);
+	}
 
-	private void extractJavaDoc() {
+	private void extractJavaDoc(Class<?> clazz) {
 		ASTParser parser = ASTParser.newParser(AST.JLS4);
-		parser.setSource(sourceCode.toCharArray());
+		parser.setSource(sourceCodeFetcher.get(clazz).toCharArray());
 		parser.setKind(ASTParser.K_COMPILATION_UNIT);
 		final CompilationUnit cu = (CompilationUnit) parser.createAST(null);
 		cu.accept(new ASTVisitor() {

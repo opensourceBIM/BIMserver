@@ -33,10 +33,6 @@ public class AuthInterfaceAdaptor implements AuthInterface {
 		return null;
 	}
 	
-	public java.lang.String getRemoteAddress() throws UserException, ServerException {
-		return null;
-	}
-	
 	public java.lang.Boolean isLoggedIn() throws UserException, ServerException {
 		return null;
 	}

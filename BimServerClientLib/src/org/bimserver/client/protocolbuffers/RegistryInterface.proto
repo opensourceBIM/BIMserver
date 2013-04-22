@@ -20,10 +20,10 @@ import "ServiceInterface.proto";
 import "NotificationInterface.proto";
 import "RemoteServiceInterface.proto";
 import "AdminInterface.proto";
-import "AuthInterface.proto";
-import "SettingsInterface.proto";
-import "LowLevelInterface.proto";
 import "MetaInterface.proto";
+import "SettingsInterface.proto";
+import "AuthInterface.proto";
+import "LowLevelInterface.proto";
 import "PluginInterface.proto";
 option java_generic_services = true;
 
