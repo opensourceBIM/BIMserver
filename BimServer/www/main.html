@@ -260,7 +260,7 @@ function Main(address, username) {
 	$(".logoutLink").click(othis.logout);
 	
 	$(".userButton").click(function(){
-		Global.bimServerApi.call("ServiceInterface", "getCurrentUser", {}, function(user){
+		Global.bimServerApi.call("AuthInterface", "getCurrentUser", {}, function(user){
 			othis.showUser(user);
 		});
 	});

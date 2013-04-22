@@ -101,11 +101,13 @@
 							} else if (serverInfo.serverState == "FATAL_ERROR") {
 							} else if (serverInfo.serverState == "RUNNING") {
 								if ($.cookie("autologin") != null) {
-									Global.bimServerApi.autologin($.cookie("username"), $.cookie("autologin"), function(){
+									Global.bimServerApi.token = $.cookie("autologin");
+									Global.bimServerApi.call("AuthInterface", "getCurrentUser", {}, function(data){
 										$(".indexcontainer").load("main.html", function(){
-											new Main($.cookie("address"), $.cookie("username")).show(false);
+											new Main(Global.bimServerApi.baseUrl, data.name).show(false);
 										});
 									}, function(){
+										$.removeCookie("autologin");
 										$(".indexcontainer").load("login.html", function(){
 											new Login();
 										});
