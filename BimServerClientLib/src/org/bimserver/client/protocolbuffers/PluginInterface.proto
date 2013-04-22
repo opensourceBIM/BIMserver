@@ -569,9 +569,9 @@ message SArrayDefinition {
 
 message STypeDefinition {
 	required string __actual_type = 1;
-	optional SObjectDefinition __SObjectDefinition = 2;
-	optional SPrimitiveDefinition __SPrimitiveDefinition = 3;
-	optional SArrayDefinition __SArrayDefinition = 4;
+	optional SPrimitiveDefinition __SPrimitiveDefinition = 2;
+	optional SArrayDefinition __SArrayDefinition = 3;
+	optional SObjectDefinition __SObjectDefinition = 4;
 }
 
 message SParameterDefinition {
@@ -607,10 +607,10 @@ message SBooleanType {
 	optional bool value = 3;
 }
 
-message SByteArrayType {
+message SStringType {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
-	optional bytes value = 3;
+	optional string value = 3;
 }
 
 message SLongType {
@@ -625,28 +625,28 @@ message SDoubleType {
 	optional double value = 3;
 }
 
-message SStringType {
+message SByteArrayType {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
-	optional string value = 3;
+	optional bytes value = 3;
 }
 
 message SPrimitiveType {
 	required string __actual_type = 1;
 	optional SBooleanType __SBooleanType = 2;
-	optional SByteArrayType __SByteArrayType = 3;
+	optional SStringType __SStringType = 3;
 	optional SLongType __SLongType = 4;
 	optional SDoubleType __SDoubleType = 5;
-	optional SStringType __SStringType = 6;
+	optional SByteArrayType __SByteArrayType = 6;
 	optional int32 rid = 7;
 	optional int64 oid = 8;
 }
 
 message SType {
 	required string __actual_type = 1;
-	optional SObjectType __SObjectType = 2;
-	optional SArrayType __SArrayType = 3;
-	optional SPrimitiveType __SPrimitiveType = 4;
+	optional SArrayType __SArrayType = 2;
+	optional SPrimitiveType __SPrimitiveType = 3;
+	optional SObjectType __SObjectType = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 }

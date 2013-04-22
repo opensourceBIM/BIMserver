@@ -14,11 +14,11 @@ import org.eclipse.emf.ecore.EReference;
 public class IslandIdentifier {
 
 	private static class Island {
-		public final Set<IdEObject> objects = new HashSet<>();
+		public final Set<IdEObject> objects = new HashSet<IdEObject>();
 	}
 
-	private final Set<Island> islands = new HashSet<>();
-	private final Set<IdEObject> identified = new HashSet<>();
+	private final Set<Island> islands = new HashSet<Island>();
+	private final Set<IdEObject> identified = new HashSet<IdEObject>();
 	private ReferenceCounter referenceCounter;
 
 	public IslandIdentifier(IfcModelInterface model) {

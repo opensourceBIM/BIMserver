@@ -40,6 +40,7 @@ public class CompareTest {
 		new CompareTest().start();
 	}
 
+	@SuppressWarnings("rawtypes")
 	private void start() {
 		File file1 = new File("C:\\Users\\Ruben de Laat\\Dropbox\\Shared\\BIMserver\\_IFC revisies wozoco\\1407_WE_WOZOCO_versie_1_general_translator.ifc");
 		File file2 = new File("C:\\Users\\Ruben de Laat\\Dropbox\\Shared\\BIMserver\\_IFC revisies wozoco\\1407_WE_WOZOCO_versie_2_verplaatsen_binnenwandje.ifc");
@@ -66,7 +67,6 @@ public class CompareTest {
 							if (!map.containsKey(((IdEObject)value))) {
 								map.put((IdEObject)value, new HashSet<IdEObject>());
 							}
-							IdEObject x = (IdEObject)value;
 							map.get((IdEObject)value).add(idEObject);
 						}
 					}

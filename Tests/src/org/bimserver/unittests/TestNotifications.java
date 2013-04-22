@@ -34,8 +34,6 @@ import org.bimserver.client.notifications.SocketNotificationsClient;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.shared.interfaces.NotificationInterface;
-import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.junit.AfterClass;
