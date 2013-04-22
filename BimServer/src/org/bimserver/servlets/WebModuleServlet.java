@@ -25,9 +25,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.bimserver.plugins.web.WebModulePlugin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class WebModuleServlet extends HttpServlet {
 	private static final long serialVersionUID = -6171114430760535167L;
+	private static final Logger LOGGER = LoggerFactory.getLogger(WebModuleServlet.class);
 	private WebModulePlugin webModule;
 
 	public WebModuleServlet(WebModulePlugin webModule) {
@@ -36,6 +39,19 @@ public class WebModuleServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		webModule.service(request, response);
+		try {
+			if (request.getRequestURI().endsWith(".css")) {
+				response.setContentType("text/css");
+			} else if (request.getRequestURI().endsWith(".js")) {
+				response.setContentType("application/javascript");
+			} else if (request.getRequestURI().endsWith(".png")) {
+				response.setContentType("image/png");
+			} else if (request.getRequestURI().endsWith(".gif")) {
+				response.setContentType("image/gif");
+			}
+			webModule.service(request, response);
+		} catch (Throwable e) {
+			LOGGER.error("", e);
+		}
 	}
 }

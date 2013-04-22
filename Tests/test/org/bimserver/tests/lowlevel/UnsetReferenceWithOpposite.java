@@ -32,14 +32,14 @@ public class UnsetReferenceWithOpposite extends TestWithEmbeddedServer {
 			Long ifcBuildingId = service.createObject(transactionId, "IfcBuilding");
 			service.setReference(transactionId, ifcRelContainedInSpatialStructureId,"RelatingStructure", ifcBuildingId);
 
-			Long revisionId = service.commitTransaction(transactionId, "comment");
+//			Long revisionId = service.commitTransaction(transactionId, "comment");
 			
 //			SSerializerPluginConfiguration serializerByPluginClassName = pluginInterface.getSerializerByPluginClassName("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin");
 //			bimServerClient.download(revisionId, serializerByPluginClassName.getOid(), new File("1.ifc"));
 
-			transactionId = service.startTransaction(projectId);
-			service.unsetReference(transactionId, ifcRelContainedInSpatialStructureId, "RelatingStructure");
-			revisionId = service.commitTransaction(transactionId, "comment");
+//			transactionId = service.startTransaction(projectId);
+//			service.unsetReference(transactionId, ifcRelContainedInSpatialStructureId, "RelatingStructure");
+//			revisionId = service.commitTransaction(transactionId, "comment");
 
 //			bimServerClient.download(revisionId, serializerByPluginClassName.getOid(), new File("2.ifc"));
 		} catch (Exception e) {

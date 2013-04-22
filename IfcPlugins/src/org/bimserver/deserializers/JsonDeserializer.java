@@ -43,15 +43,11 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.gson.stream.JsonReader;
 
 public class JsonDeserializer extends EmfDeserializer {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(JsonDeserializer.class);
-	
 	@Override
 	public void init(SchemaDefinition schema) {
 	}

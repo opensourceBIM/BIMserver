@@ -30,9 +30,11 @@ public class TestProtocolBuffers {
 		try {
 			BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			System.out.println(client.getService().getAllProjects(true));
-		} catch (ServiceException | ChannelConnectionException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
+			e.printStackTrace();
+		} catch (ChannelConnectionException e) {
 			e.printStackTrace();
 		}
 	}

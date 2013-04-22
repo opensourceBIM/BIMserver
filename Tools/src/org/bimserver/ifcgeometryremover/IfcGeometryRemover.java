@@ -61,7 +61,7 @@ public class IfcGeometryRemover {
 	}
 
 	private void remove(Iterator<String> iterator, IfcModelInterface model) {
-		Set<IdEObject> toRemove = new HashSet<>();
+		Set<IdEObject> toRemove = new HashSet<IdEObject>();
 		while (iterator.hasNext()) {
 			String classname = iterator.next();
 			EClassifier eClassifier = metaDataManager.getEClassifierCaseInsensitive(classname);

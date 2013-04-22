@@ -61,7 +61,6 @@ public class PsetSchemaLoader {
 											System.out.println(el.getName().toString());
 										}
 									} else if (val instanceof ValueDef) {
-										ValueDef valueDef = (ValueDef) val;
 										if (el.getName().toString().equals("ValueDef")) {
 											
 										} else {
