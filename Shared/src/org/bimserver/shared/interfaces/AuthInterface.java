@@ -111,4 +111,7 @@ public interface AuthInterface extends PublicInterface {
 		@WebParam(name = "uoid", partName = "validateAccount.uoid") Long uoid,
 		@WebParam(name = "token", partName = "validateAccount.token") String token,
 		@WebParam(name = "password", partName = "validateAccount.password") String password) throws ServerException, UserException;
+	
+	@WebMethod(action = "getCurrentUser")
+	public SUser getCurrentUser() throws UserException, ServerException;
 }
