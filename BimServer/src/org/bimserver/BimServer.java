@@ -19,15 +19,11 @@ package org.bimserver;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringWriter;
 import java.lang.Thread.UncaughtExceptionHandler;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
@@ -39,7 +35,6 @@ import java.util.concurrent.TimeUnit;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.apache.log4j.LogManager;
 import org.bimserver.cache.CompareCache;
 import org.bimserver.cache.DiskCacheManager;
@@ -65,7 +60,6 @@ import org.bimserver.deserializers.DeserializerFactory;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.endpoints.EndPointManager;
 import org.bimserver.interfaces.SConverter;
-import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.interfaces.objects.SVersion;
 import org.bimserver.logging.CustomFileAppender;
 import org.bimserver.longaction.LongActionManager;
@@ -119,19 +113,10 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
 import org.bimserver.serializers.SerializerFactory;
+import org.bimserver.shared.InterfaceList;
 import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.interfaces.AdminInterface;
-import org.bimserver.shared.interfaces.AuthInterface;
-import org.bimserver.shared.interfaces.LowLevelInterface;
-import org.bimserver.shared.interfaces.MetaInterface;
-import org.bimserver.shared.interfaces.NotificationInterface;
-import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
-import org.bimserver.shared.interfaces.RegistryInterface;
-import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.interfaces.SettingsInterface;
-import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.reflector.ReflectorBuilder;
@@ -170,7 +155,7 @@ public class BimServer {
 	private NotificationsManager notificationsManager;
 	private CompareCache compareCache;
 	private ProtocolBuffersMetaData protocolBuffersMetaData;
-	private final SServicesMap servicesMap = new SServicesMap();
+	private SServicesMap servicesMap;
 	private EmbeddedWebServer embeddedWebServer;
 	private final BimServerConfig config;
 	private ProtocolBuffersServer protocolBuffersServer;
@@ -252,31 +237,6 @@ public class BimServer {
 
 	public JsonSocketReflectorFactory getJsonSocketReflectorFactory() {
 		return jsonSocketReflectorFactory;
-	}
-
-	public String getContent(Class<?> clazz) {
-		URL url = clazz.getResource(clazz.getSimpleName() + ".java");
-		if (url == null) {
-			try {
-				url = new File("../Shared/src/org/bimserver/shared/interfaces/" + clazz.getSimpleName() + ".java").toURI().toURL();
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
-		}
-		if (url != null) {
-			try {
-				InputStream inputStream = url.openStream();
-				if (inputStream == null) {
-					return null;
-				}
-				StringWriter out = new StringWriter();
-				IOUtils.copy(inputStream, out);
-				return out.toString();
-			} catch (IOException e) {
-				LOGGER.error("", e);
-			}
-		}
-		return null;
 	}
 
 	public ReflectorFactory getReflectorFactory() {
@@ -374,32 +334,20 @@ public class BimServer {
 			notificationsManager.init();
 
 			protocolBuffersMetaData = new ProtocolBuffersMetaData();
+			servicesMap = InterfaceList.createSServicesMap();
+
 			try {
-				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("ServiceInterface.desc"));
-				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("NotificationInterface.desc"));
-				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("RemoteServiceInterface.desc"));
-				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("AdminInterface.desc"));
-				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("AuthInterface.desc"));
-				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("SettingsInterface.desc"));
-				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("LowLevelInterface.desc"));
-				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("MetaInterface.desc"));
-				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("PluginInterface.desc"));
-				protocolBuffersMetaData.load(ProtocolBuffersBimServerClientFactory.class.getResource("RegistryInterface.desc"));
+				for (Class<? extends PublicInterface> clazz : servicesMap.getInterfaceClasses()) {
+					URL resource = ProtocolBuffersBimServerClientFactory.class.getResource(clazz.getSimpleName() + ".desc");
+					if (resource != null) {
+						protocolBuffersMetaData.load(resource);
+					} else {
+						LOGGER.error("Resource not found");
+					}
+				}
 			} catch (IOException e) {
 				LOGGER.error("", e);
 			}
-
-			SService serviceInterface = new SServiceInterfaceService(getContent(ServiceInterface.class), ServiceInterface.class);
-			servicesMap.add(serviceInterface);
-			servicesMap.add(new SService(getContent(NotificationInterface.class), NotificationInterface.class, Collections.singletonList(serviceInterface)));
-			servicesMap.add(new SService(getContent(RemoteServiceInterface.class), RemoteServiceInterface.class, Collections.singletonList(serviceInterface)));
-			servicesMap.add(new SService(getContent(AdminInterface.class), AdminInterface.class, Collections.singletonList(serviceInterface)));
-			servicesMap.add(new SService(getContent(MetaInterface.class), MetaInterface.class, Collections.singletonList(serviceInterface)));
-			servicesMap.add(new SService(getContent(SettingsInterface.class), SettingsInterface.class, Collections.singletonList(serviceInterface)));
-			servicesMap.add(new SService(getContent(AuthInterface.class), AuthInterface.class, Collections.singletonList(serviceInterface)));
-			servicesMap.add(new SService(getContent(LowLevelInterface.class), LowLevelInterface.class, Collections.singletonList(serviceInterface)));
-			servicesMap.add(new SService(getContent(PluginInterface.class), PluginInterface.class, Collections.singletonList(serviceInterface)));
-			servicesMap.add(new SService(getContent(RegistryInterface.class), RegistryInterface.class, Collections.singletonList(serviceInterface)));
 			
 			notificationsManager.start();
 

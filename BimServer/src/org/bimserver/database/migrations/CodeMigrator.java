@@ -27,17 +27,11 @@ import java.util.Set;
 import org.apache.commons.io.FileUtils;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.shared.interfaces.AdminInterface;
-import org.bimserver.shared.interfaces.AuthInterface;
-import org.bimserver.shared.interfaces.LowLevelInterface;
-import org.bimserver.shared.interfaces.MetaInterface;
-import org.bimserver.shared.interfaces.NotificationInterface;
-import org.bimserver.shared.interfaces.PluginInterface;
-import org.bimserver.shared.interfaces.RegistryInterface;
-import org.bimserver.shared.interfaces.RemoteServiceInterface;
+import org.bimserver.shared.InterfaceList;
+import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.shared.meta.SService;
+import org.bimserver.shared.meta.SourceCodeFetcher;
 import org.bimserver.tools.generators.AdaptorGeneratorWrapper;
 import org.bimserver.tools.generators.DataObjectGeneratorWrapper;
 import org.bimserver.tools.generators.ProtocolBuffersGenerator;
@@ -100,16 +94,9 @@ public class CodeMigrator {
 		LOGGER.info("Generating protocol buffers file and classes...");
 		protocolBuffersGenerator = new ProtocolBuffersGenerator();
 
-		generateFiles(ServiceInterface.class);
-		generateFiles(NotificationInterface.class);
-		generateFiles(RemoteServiceInterface.class);
-		generateFiles(AdminInterface.class);
-		generateFiles(AuthInterface.class);
-		generateFiles(SettingsInterface.class);
-		generateFiles(LowLevelInterface.class);
-		generateFiles(MetaInterface.class);
-		generateFiles(PluginInterface.class);
-		generateFiles(RegistryInterface.class);
+		for (Class<? extends PublicInterface> clazz : InterfaceList.getInterfaces()) {
+			generateFiles(clazz);
+		}
 
 		SPackageGeneratorWrapper sPackageGeneratorWrapper = new SPackageGeneratorWrapper();
 		sPackageGeneratorWrapper.generate(ePackages);
@@ -120,18 +107,23 @@ public class CodeMigrator {
 	}
 
 	private void generateFiles(Class<?> interfaceClass) {
-		try {
-			File javaFile = new File("../Shared/src/org/bimserver/shared/interfaces/" + interfaceClass.getSimpleName() + ".java");
-			SService service = new SService(FileUtils.readFileToString(javaFile), interfaceClass, knownServices);
-			AdaptorGeneratorWrapper adaptorGeneratorWrapper = new AdaptorGeneratorWrapper();
-			adaptorGeneratorWrapper.generate(interfaceClass, service);
-			File protoFile = new File("../BimServerClientLib/src/org/bimserver/client/protocolbuffers/" + interfaceClass.getSimpleName() + ".proto");
-			File descFile = new File("../BimServerClientLib/src/org/bimserver/client/protocolbuffers/" + interfaceClass.getSimpleName() + ".desc");
-			protocolBuffersGenerator.generate(interfaceClass, protoFile, descFile, this.knownServices.isEmpty(), service, knownShortNames);
-			this.knownServices .add(service);
-			this.knownShortNames.add(interfaceClass.getSimpleName());
-		} catch (IOException e) {
-			LOGGER.error("", e);
-		}
+		SService service = new SService(new SourceCodeFetcher() {
+			@Override
+			public String get(Class<?> clazz) {
+				File javaFile = new File("../Shared/src/org/bimserver/shared/interfaces/" + clazz.getSimpleName() + ".java");
+				try {
+					return FileUtils.readFileToString(javaFile);
+				} catch (IOException e) {
+					return null;
+				}
+			}
+		} , interfaceClass, knownServices);
+		AdaptorGeneratorWrapper adaptorGeneratorWrapper = new AdaptorGeneratorWrapper();
+		adaptorGeneratorWrapper.generate(interfaceClass, service);
+		File protoFile = new File("../BimServerClientLib/src/org/bimserver/client/protocolbuffers/" + interfaceClass.getSimpleName() + ".proto");
+		File descFile = new File("../BimServerClientLib/src/org/bimserver/client/protocolbuffers/" + interfaceClass.getSimpleName() + ".desc");
+		protocolBuffersGenerator.generate(interfaceClass, protoFile, descFile, this.knownServices.isEmpty(), service, knownShortNames);
+		this.knownServices .add(service);
+		this.knownShortNames.add(interfaceClass.getSimpleName());
 	}
 }

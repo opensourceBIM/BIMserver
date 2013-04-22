@@ -20,10 +20,10 @@ import "ServiceInterface.proto";
 import "NotificationInterface.proto";
 import "RemoteServiceInterface.proto";
 import "AdminInterface.proto";
-import "AuthInterface.proto";
-import "SettingsInterface.proto";
-import "LowLevelInterface.proto";
 import "MetaInterface.proto";
+import "SettingsInterface.proto";
+import "AuthInterface.proto";
+import "LowLevelInterface.proto";
 option java_generic_services = true;
 
 option java_outer_classname = "PluginInterfaceImpl";
@@ -601,16 +601,10 @@ message SArrayType {
 	optional int64 oid = 3;
 }
 
-message SStringType {
+message SBooleanType {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
-	optional string value = 3;
-}
-
-message SDoubleType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional double value = 3;
+	optional bool value = 3;
 }
 
 message SByteArrayType {
@@ -619,33 +613,39 @@ message SByteArrayType {
 	optional bytes value = 3;
 }
 
-message SBooleanType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional bool value = 3;
-}
-
 message SLongType {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 	optional int64 value = 3;
 }
 
+message SDoubleType {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional double value = 3;
+}
+
+message SStringType {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional string value = 3;
+}
+
 message SPrimitiveType {
 	required string __actual_type = 1;
-	optional SStringType __SStringType = 2;
-	optional SDoubleType __SDoubleType = 3;
-	optional SByteArrayType __SByteArrayType = 4;
-	optional SBooleanType __SBooleanType = 5;
-	optional SLongType __SLongType = 6;
+	optional SBooleanType __SBooleanType = 2;
+	optional SByteArrayType __SByteArrayType = 3;
+	optional SLongType __SLongType = 4;
+	optional SDoubleType __SDoubleType = 5;
+	optional SStringType __SStringType = 6;
 	optional int32 rid = 7;
 	optional int64 oid = 8;
 }
 
 message SType {
 	required string __actual_type = 1;
-	optional SArrayType __SArrayType = 2;
-	optional SObjectType __SObjectType = 3;
+	optional SObjectType __SObjectType = 2;
+	optional SArrayType __SArrayType = 3;
 	optional SPrimitiveType __SPrimitiveType = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;

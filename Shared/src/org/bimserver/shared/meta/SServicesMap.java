@@ -17,8 +17,8 @@ package org.bimserver.shared.meta;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -64,7 +64,7 @@ public class SServicesMap {
 
 	@SuppressWarnings("unchecked")
 	public Set<Class<? extends PublicInterface>> getInterfaceClasses() {
-		Set<Class<? extends PublicInterface>> result = new HashSet<Class<? extends PublicInterface>>();
+		Set<Class<? extends PublicInterface>> result = new LinkedHashSet<Class<? extends PublicInterface>>();
 		for (SService sService : servicesByName.values()) {
 			result.add((Class<? extends PublicInterface>) sService.getInstanceClass());
 		}

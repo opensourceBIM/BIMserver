@@ -26,8 +26,8 @@ import org.slf4j.LoggerFactory;
 public class SServiceInterfaceService extends org.bimserver.shared.meta.SService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SServiceInterfaceService.class);
 
-	public SServiceInterfaceService(String sourceCode, Class<?> cl) {
-		super(sourceCode, cl);
+	public SServiceInterfaceService(SourceCodeFetcher sourceCodeFetcher, Class<?> cl) {
+		super(sourceCodeFetcher, cl);
 	}
 	
 		public void init() {

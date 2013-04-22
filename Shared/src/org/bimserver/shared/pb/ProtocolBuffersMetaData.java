@@ -152,7 +152,11 @@ public class ProtocolBuffersMetaData {
 			FileDescriptor[] ar = new FileDescriptor[fileDescriptorProto.getDependencyCount()];
 			int i=0;
 			for (String dep : fileDescriptorProto.getDependencyList()) {
-				ar[i++] = loaded.get(dep);
+				FileDescriptor fileDescriptor = loaded.get(dep);
+				if (fileDescriptor == null) {
+					LOGGER.error("Dependency " + dep + " of " + fileDescriptorProto.getName() + " not found");
+				}
+				ar[i++] = fileDescriptor;
 			}
 			FileDescriptor fileDescriptor = FileDescriptor.buildFrom(fileDescriptorProto, ar);
 			loaded.put(fileDescriptor.getName(), fileDescriptor);

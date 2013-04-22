@@ -1,6 +1,6 @@
 
-¶
-AuthInterface.protoorg.bimserver.pbServiceInterface.protoNotificationInterface.protoRemoteServiceInterface.protoAdminInterface.proto"O
+ç
+AuthInterface.protoorg.bimserver.pbServiceInterface.protoNotificationInterface.protoRemoteServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.proto"O
 ChangePasswordRequest
 uoid (
 oldPassword (	
@@ -15,11 +15,7 @@
 GetLoggedInUserRequest"W
 GetLoggedInUserResponse
 errorMessage (	&
-value (2.org.bimserver.pb.SUser"
-GetRemoteAddressRequest"?
-GetRemoteAddressResponse
-errorMessage (	
-value (	"
+value (2.org.bimserver.pb.SUser"
 IsLoggedInRequest"9
 IsLoggedInResponse
 errorMessage (	
@@ -40,12 +36,11 @@
 password (	"W
 ValidateAccountResponse
 errorMessage (	&
-value (2.org.bimserver.pb.SUser2Ó
+value (2.org.bimserver.pb.SUser2É
 AuthInterfacec
 changePassword'.org.bimserver.pb.ChangePasswordRequest(.org.bimserver.pb.ChangePasswordResponsef
 getAccessMethod(.org.bimserver.pb.GetAccessMethodRequest).org.bimserver.pb.GetAccessMethodResponsef
-getLoggedInUser(.org.bimserver.pb.GetLoggedInUserRequest).org.bimserver.pb.GetLoggedInUserResponsei
-getRemoteAddress).org.bimserver.pb.GetRemoteAddressRequest*.org.bimserver.pb.GetRemoteAddressResponseW
+getLoggedInUser(.org.bimserver.pb.GetLoggedInUserRequest).org.bimserver.pb.GetLoggedInUserResponseW
 
 isLoggedIn#.org.bimserver.pb.IsLoggedInRequest$.org.bimserver.pb.IsLoggedInResponseH
 login.org.bimserver.pb.LoginRequest.org.bimserver.pb.LoginResponseI

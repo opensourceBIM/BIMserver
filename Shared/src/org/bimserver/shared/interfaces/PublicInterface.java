@@ -1,6 +1,5 @@
 package org.bimserver.shared.interfaces;
 
-
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
  * 

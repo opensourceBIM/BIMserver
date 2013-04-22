@@ -1,5 +1,22 @@
 package org.bimserver.shared.interfaces;
 
+/******************************************************************************
+ * Copyright (C) 2009-2013  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+
 import java.util.List;
 
 import javax.jws.WebMethod;
@@ -18,7 +35,7 @@ import org.bimserver.shared.exceptions.UserException;
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface LowLevelInterface extends PublicInterface {
 	/**
-	 * @param pid ObjectID of the Project to start a transaction on
+	 * @param poid ObjectID of the Project to start a transaction on
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "startTransaction")
@@ -27,6 +44,7 @@ public interface LowLevelInterface extends PublicInterface {
 
 	/**
 	 * Commit the current transaction, changes will be saved, a transaction must be started by startTransaction first
+	 * @param tid The transaction id
 	 * @param comment Comment describing what has changed
 	 * @return ObjectID of the Revision
 	 * @throws ServerException, UserException
@@ -38,6 +56,7 @@ public interface LowLevelInterface extends PublicInterface {
 	
 	/**
 	 * Abort the current transaction, changes will not be saved
+	 * @param tid The transaction id
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "abortTransaction")
@@ -46,6 +65,7 @@ public interface LowLevelInterface extends PublicInterface {
 	
 	/**
 	 * Create a new Object
+	 * @param tid The transaction id
 	 * @param className The type of the new object
 	 * @return The ObjectID of the newly created object
 	 * @throws ServerException, UserException
@@ -57,6 +77,7 @@ public interface LowLevelInterface extends PublicInterface {
 	
 	/**
 	 * Remove an object
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to remove
 	 * @throws ServerException, UserException
 	 */
@@ -66,6 +87,8 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "oid", partName = "removeObject.oid") Long oid) throws ServerException, UserException;
 	
 	/**
+	 * Set the String value of an attribute
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New String value
@@ -79,6 +102,8 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setStringAttribute.value") String value) throws ServerException, UserException;
 	
 	/**
+	 * Set the wrapped value of a String attribute
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New String value
@@ -93,9 +118,12 @@ public interface LowLevelInterface extends PublicInterface {
 			@WebParam(name = "value", partName = "setWrappedStringAttribute.value") String value) throws ServerException, UserException;
 
 	/**
+	 * Get the String value of an attribute
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New String value
+	 * @return The String value
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getStringAttribute")
@@ -105,9 +133,12 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "getStringAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
+	 * Get a list of attributes of type String
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New String value
+	 * @return A list of Strings
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getStringAttributes")
@@ -117,6 +148,8 @@ public interface LowLevelInterface extends PublicInterface {
 			@WebParam(name = "attributeName", partName = "getStringAttributes.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
+	 * Set a double attribute
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New Double value
@@ -130,6 +163,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setDoubleAttribute.value") Double value) throws ServerException, UserException;
 
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New Double value
@@ -144,6 +178,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setWrappedDoubleAttribute.value") Double value) throws ServerException, UserException;
 	
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New Double value
@@ -157,6 +192,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "values", partName = "setDoubleAttributes.values") List<Double> values) throws ServerException, UserException;
 	
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New Double value
@@ -169,6 +205,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "getDoubleAttribute.attributeName") String attributeName) throws ServerException, UserException;
 
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New Double value
@@ -181,6 +218,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "getDoubleAttributes.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New Enum value (name of the enum item)
@@ -194,6 +232,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setEnumAttribute.value") String value) throws ServerException, UserException;
 
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New Enum value (name of the enum item)
@@ -206,6 +245,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "getEnumAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value new Integer value
@@ -219,6 +259,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setIntegerAttribute.value") Integer value) throws ServerException, UserException;
 
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value new Integer value
@@ -232,6 +273,13 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "type", partName = "setWrappedIntegerAttribute.type") String type, 
 		@WebParam(name = "value", partName = "setWrappedIntegerAttribute.value") Integer value) throws ServerException, UserException;
 	
+	/**
+	 * @param tid The transaction id
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value new ByteArray value
+	 * @throws ServerException, UserException
+	 */
 	@WebMethod(action = "setByteArrayAttribute")
 	void setByteArrayAttribute(
 		@WebParam(name = "tid", partName = "setByteArrayAttribute.tid") Long tid, 
@@ -240,6 +288,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setByteArrayAttribute.value") Byte[] value) throws UserException, ServerException;
 
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value new Integer value
@@ -253,6 +302,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "values", partName = "setIntegerAttributes.value") List<Integer> values) throws ServerException, UserException;
 	
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value new Integer value
@@ -266,6 +316,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setLongAttribute.value") Long value) throws ServerException, UserException;
 	
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value new Integer value
@@ -273,13 +324,14 @@ public interface LowLevelInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setWrappedLongAttribute")
 	void setWrappedLongAttribute(
-			@WebParam(name = "tid", partName = "setWrappedLongAttribute.tid") Long tid,
-			@WebParam(name = "oid", partName = "setWrappedLongAttribute.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "setWrappedLongAttribute.attributeName") String attributeName, 
-			@WebParam(name = "type", partName = "setWrappedLongAttribute.type") String type, 
-			@WebParam(name = "value", partName = "setWrappedLongAttribute.value") Long value) throws ServerException, UserException;
+		@WebParam(name = "tid", partName = "setWrappedLongAttribute.tid") Long tid,
+		@WebParam(name = "oid", partName = "setWrappedLongAttribute.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "setWrappedLongAttribute.attributeName") String attributeName, 
+		@WebParam(name = "type", partName = "setWrappedLongAttribute.type") String type, 
+		@WebParam(name = "value", partName = "setWrappedLongAttribute.value") Long value) throws ServerException, UserException;
 	
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value new Integer value
@@ -287,12 +339,13 @@ public interface LowLevelInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "setLongAttributes")
 	void setLongAttributes(
-			@WebParam(name = "tid", partName = "setLongAttributes.tid") Long tid,
-			@WebParam(name = "oid", partName = "setLongAttributes.oid") Long oid, 
-			@WebParam(name = "attributeName", partName = "setLongAttributes.attributeName") String attributeName, 
-			@WebParam(name = "values", partName = "setLongAttributes.value") List<Long> values) throws ServerException, UserException;
+		@WebParam(name = "tid", partName = "setLongAttributes.tid") Long tid,
+		@WebParam(name = "oid", partName = "setLongAttributes.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "setLongAttributes.attributeName") String attributeName, 
+		@WebParam(name = "values", partName = "setLongAttributes.value") List<Long> values) throws ServerException, UserException;
 	
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value new Integer value
@@ -305,6 +358,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "getIntegerAttribute.attributeName") String attributeName) throws ServerException, UserException;
 
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value new Integer value
@@ -317,6 +371,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "getByteArrayAttribute.attributeName") String attributeName) throws ServerException, UserException;
 
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value new Integer value
@@ -329,6 +384,7 @@ public interface LowLevelInterface extends PublicInterface {
 			@WebParam(name = "attributeName", partName = "getByteArrayAttributes.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value new Integer value
@@ -341,6 +397,7 @@ public interface LowLevelInterface extends PublicInterface {
 			@WebParam(name = "attributeName", partName = "getIntegerAttributes.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value new Integer value
@@ -353,6 +410,7 @@ public interface LowLevelInterface extends PublicInterface {
 			@WebParam(name = "attributeName", partName = "getLongAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New Boolean value
@@ -366,6 +424,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setBooleanAttribute.value") Boolean value) throws ServerException, UserException;
 
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New Boolean value
@@ -380,6 +439,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "setWrappedBooleanAttribute.value") Boolean value) throws ServerException, UserException;
 	
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New Boolean value
@@ -393,6 +453,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "values", partName = "setBooleanAttributes.values") List<Boolean> values) throws ServerException, UserException;
 
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New Boolean value
@@ -405,6 +466,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "getBooleanAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
 	 * @param value New Boolean value
@@ -415,8 +477,10 @@ public interface LowLevelInterface extends PublicInterface {
 			@WebParam(name = "tid", partName = "getBooleanAttributes.tid") Long tid,
 			@WebParam(name = "oid", partName = "getBooleanAttributes.oid") Long oid, 
 			@WebParam(name = "attributeName", partName = "getBooleanAttributes.attributeName") String attributeName) throws ServerException, UserException;
-	
+
 	/**
+	 * Set a reference
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param referenceName Name of the reference
 	 * @param referenceOid ObjectID of the newly referred object
@@ -430,6 +494,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "referenceOid", partName = "setReference.referenceOid") Long referenceOid) throws ServerException, UserException;
 
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param referenceName Name of the reference
 	 * @param referenceOid ObjectID of the newly referred object
@@ -442,6 +507,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "referenceName", partName = "getReference.referenceName") String referenceName) throws ServerException, UserException;
 
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param referenceName Name of the reference
 	 * @param referenceOid ObjectID of the newly referred object
@@ -454,6 +520,7 @@ public interface LowLevelInterface extends PublicInterface {
 			@WebParam(name = "referenceName", partName = "getReferences.referenceName") String referenceName) throws ServerException, UserException;
 	
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute to unset
 	 * @throws ServerException, UserException
@@ -465,6 +532,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "unsetAttribute.attributeName") String attributeName) throws ServerException, UserException;
 	
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param referenceName Name of the reference to unset (null)
 	 * @throws ServerException, UserException
@@ -476,6 +544,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "referenceName", partName = "unsetReference.referenceName") String referenceName) throws ServerException, UserException;
 	
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute to add a value to
 	 * @param value New String value
@@ -489,6 +558,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "addStringAttribute.value") String value) throws ServerException, UserException;
 
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute to add a value to
 	 * @param value New Double value
@@ -502,6 +572,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "addDoubleAttribute.value") Double value) throws ServerException, UserException;
 
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute to add a value to
 	 * @param value New Integer value
@@ -515,6 +586,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "addIntegerAttribute.value") Integer value) throws ServerException, UserException;
 
 	/**
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute to add a value to
 	 * @param value New Boolean value
@@ -528,6 +600,8 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "value", partName = "addBooleanAttribute.value") Boolean value) throws ServerException, UserException;
 
 	/**
+	 * Add a reference
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param referenceName Name of the reference to add a reference to
 	 * @param referenceOid ObjectID of the newly referenced Object
@@ -541,6 +615,8 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "referenceOid", partName = "addReference.referenceOid") Long referenceOid) throws ServerException, UserException;
 	
 	/**
+	 * Remove an attribute from a list
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute from which to remove an item
 	 * @param index Index of the item to remove
@@ -554,6 +630,8 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "index", partName = "removeAttribute.index") Integer index) throws ServerException, UserException;
 	
 	/**
+	 * Remove a single reference by it's index in the list
+	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
 	 * @param referenceName Name of the reference from which to remove an item
 	 * @param index Index of the item to remove
@@ -567,8 +645,10 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "index", partName = "removeReference.index") Integer index) throws ServerException, UserException;
 
 	/**
-	 * @param oid ObjectID of the object to change
-	 * @param referenceName Name of the reference from which to remove an item
+	 * Remove all references (clear the list of references) of the given object + reference
+	 * @param tid The transaction id
+	 * @param oid ObjectID of the object
+	 * @param referenceName Name of the reference from which to remove all references
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "removeAllReferences")
@@ -577,14 +657,19 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "oid", partName = "removeAllReferences.oid") Long oid, 
 		@WebParam(name = "referenceName", partName = "removeAllReferences.referenceName") String referenceName) throws ServerException, UserException;
 	
+	/**
+	 * Get an object from the given revision as a Data Object 
+	 * @param roid ObjectID of the Revision
+	 * @param oid ObjectID of the object to get
+	 * @throws ServerException, UserException
+	 */
 	@WebMethod(action = "getDataObjectByOid")
 	SDataObject getDataObjectByOid(
 		@WebParam(name = "roid", partName = "getDataObjectByOid.roid") Long roid,
 		@WebParam(name = "oid", partName = "getDataObjectByOid.oid") Long oid) throws ServerException, UserException;
 
 	/**
-	 * Get DataObjects based on a list of GUIDs
-	 * 
+	 * Get all the objects matching the given GUIDs as Data Objects
 	 * @param roid ObjectID of the Revision
 	 * @param guid An IFC GUID
 	 * @return The object with the given GUID in the given Revision, of null if not found
@@ -596,6 +681,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "guid", partName = "getDataObjectByGuid.guid") String guid) throws ServerException, UserException;
 
 	/**
+	 * Get all the objects of a certain type in Data Objects
 	 * @param roid ObjectID of the Revision
 	 * @param className Name of the class to query (e.g. "IfcWindow")
 	 * @return A list of DataObjects from the given Revision matching the given class
@@ -607,6 +693,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "className", partName = "getDataObjectsByType.className") String className) throws ServerException, UserException;
 
 	/**
+	 * Get all the objects of a certain revision in Data Objects
 	 * @param roid ObjectID of the Revision
 	 * @return A list of DataObjects from the given Revision
 	 * @throws ServerException, UserException

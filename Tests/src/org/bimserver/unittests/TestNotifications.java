@@ -82,13 +82,9 @@ public class TestNotifications {
 //				countDownLatch.countDown();
 //			}
 //		};
-		try {
 			SServicesMap servicesMap = new SServicesMap();
-			servicesMap.add(new SService(FileUtils.readFileToString(new File("../Shared/src/org/bimserver/shared/NotificationInterface.java")), NotificationInterface.class));
+//			servicesMap.add(new SService(FileUtils.readFileToString(new File("../Shared/src/org/bimserver/shared/NotificationInterface.java")), NotificationInterface.class));
 			socketNotificationsClient.connect(servicesMap, new InetSocketAddress("localhost", 8055));
-		} catch (IOException e2) {
-			e2.printStackTrace();
-		}
 		socketNotificationsClient.start();
 		
 		BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080);

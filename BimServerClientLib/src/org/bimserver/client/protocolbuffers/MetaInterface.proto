@@ -20,9 +20,6 @@ import "ServiceInterface.proto";
 import "NotificationInterface.proto";
 import "RemoteServiceInterface.proto";
 import "AdminInterface.proto";
-import "AuthInterface.proto";
-import "SettingsInterface.proto";
-import "LowLevelInterface.proto";
 option java_generic_services = true;
 
 option java_outer_classname = "MetaInterfaceImpl";

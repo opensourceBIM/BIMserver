@@ -1,5 +1,22 @@
 package org.bimserver.shared.interfaces;
 
+/******************************************************************************
+ * Copyright (C) 2009-2013  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -21,7 +38,8 @@ public interface AuthInterface extends PublicInterface {
 	 * Login with a username/password combination
 	 * @param username The username (must be a valid e-mail address)
 	 * @param password The password
-	 * @return True when successful, false if not
+	 * @return A token, use this token in subsequent calls. Read the documentation of the transport 
+	 * mechanism (SOAP, Protocol Buffers or JSON) to see how to send the token
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "login")
@@ -30,7 +48,7 @@ public interface AuthInterface extends PublicInterface {
 		@WebParam(name = "password", partName = "login.password") String password) throws ServerException, UserException;
 
 	/**
-	 * Logout from this ServiceInterface (beware, the ServiceInterface is not closed and is still usable)
+	 * Logout
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "logout")

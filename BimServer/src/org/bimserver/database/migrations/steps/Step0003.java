@@ -1,4 +1,4 @@
-package org.bimserver.emf;
+package org.bimserver.database.migrations.steps;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -17,20 +17,17 @@ package org.bimserver.emf;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.bimserver.database.migrations.Migration;
+import org.bimserver.database.migrations.Schema;
 
-public interface QueryInterface {
+public class Step0003 extends Migration {
 
-	int getPid();
+	@Override
+	public void migrate(Schema schema) {
+	}
 
-	int getRid();
-
-	boolean isDeep();
-
-	int getStopRid();
-
-	boolean shouldFollowReference(EClass originalQueryClass, EClass eClass, EStructuralFeature feature);
-
-	boolean shouldIncludeClass(EClass eClass);
+	@Override
+	public String getDescription() {
+		return "A few additions to the IFC2x3tc1 schema";
+	}
 }

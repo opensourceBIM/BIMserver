@@ -1,4 +1,4 @@
-package org.bimserver.emf;
+package org.bimserver.shared.meta;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -17,20 +17,7 @@ package org.bimserver.emf;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
+public interface SourceCodeFetcher {
 
-public interface QueryInterface {
-
-	int getPid();
-
-	int getRid();
-
-	boolean isDeep();
-
-	int getStopRid();
-
-	boolean shouldFollowReference(EClass originalQueryClass, EClass eClass, EStructuralFeature feature);
-
-	boolean shouldIncludeClass(EClass eClass);
+	String get(Class<?> clazz);
 }
