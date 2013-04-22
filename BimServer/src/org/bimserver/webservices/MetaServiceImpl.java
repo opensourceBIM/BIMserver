@@ -87,7 +87,7 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 	}
 
 	public List<String> getEnumLiterals(String enumName) throws UserException {
-		List<String> result = new ArrayList<>();
+		List<String> result = new ArrayList<String>();
 		SClass type = getBimServer().getServicesMap().getType(enumName);
 		for (Object enumConstant : type.getInstanceClass().getEnumConstants()) {
 			result.add(enumConstant.toString());
