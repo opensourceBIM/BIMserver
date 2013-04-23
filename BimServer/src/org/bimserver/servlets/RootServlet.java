@@ -44,6 +44,15 @@ public class RootServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			if (request.getRequestURI().endsWith(".js")) {
+				response.setContentType("application/javascript");
+			} else if (request.getRequestURI().endsWith(".css")) {
+				response.setContentType("text/css");
+			} else if (request.getRequestURI().endsWith(".png")) {
+				response.setContentType("image/png");
+			} else if (request.getRequestURI().endsWith(".gif")) {
+				response.setContentType("image/gif");
+			}
 			if (request.getPathInfo().startsWith("/soap11")) {
 				soap11Servlet.service(request, response);
 			} else if (request.getPathInfo().startsWith("/soap12")) {
@@ -67,6 +76,11 @@ public class RootServlet extends HttpServlet {
 							webModulePlugin.service(request, response);
 							return;
 						}
+					}
+				}
+				if (bimServer.getDefaultWebModule() != null) {
+					if (bimServer.getDefaultWebModule().service(request, response)) {
+						return;
 					}
 				}
 				
