@@ -86,7 +86,7 @@ public class RootServlet extends HttpServlet {
 					}
 				}
 
-				InputStream resourceAsStream = getServletContext().getResourceAsStream(request.getRequestURI());
+				InputStream resourceAsStream = getServletContext().getResourceAsStream(pathInfo);
 				if (resourceAsStream != null) {
 					IOUtils.copy(resourceAsStream, response.getOutputStream());
 				}
