@@ -37,7 +37,9 @@ public class RootServlet extends HttpServlet {
 		uploadServlet = new UploadServlet(bimServer, getServletContext());
 		downloadServlet = new DownloadServlet(bimServer, getServletContext());
 		soap11Servlet = new WebServiceServlet11(bimServer, getServletContext());
+		soap11Servlet.init(getServletConfig());
 		soap12Servlet = new WebServiceServlet12(bimServer, getServletContext());
+		soap12Servlet.init(getServletConfig());
 	}
 
 	@Override

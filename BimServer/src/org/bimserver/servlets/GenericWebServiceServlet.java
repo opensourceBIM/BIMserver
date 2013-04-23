@@ -38,6 +38,7 @@ import javax.xml.bind.JAXBException;
 import org.apache.cxf.Bus;
 import org.apache.cxf.BusException;
 import org.apache.cxf.BusFactory;
+import org.apache.cxf.common.WSDLConstants;
 import org.apache.cxf.databinding.DataBinding;
 import org.apache.cxf.headers.HeaderManager;
 import org.apache.cxf.headers.HeaderProcessor;
@@ -67,15 +68,13 @@ public class GenericWebServiceServlet extends SubServlet {
 		super(bimServer, servletContext);
 	}
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(WebServiceServlet11.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(GenericWebServiceServlet.class);
 	private String bindingId;
 
 	public void setBindingId(String bindingId) {
 		this.bindingId = bindingId;
 	}
 	
-    private static final String STATIC_RESOURCES_PARAMETER = "static-resources-list";
-    
     private static final String REDIRECTS_PARAMETER = "redirects-list";
     private static final String REDIRECT_SERVLET_NAME_PARAMETER = "redirect-servlet-name";
     private static final String REDIRECT_SERVLET_PATH_PARAMETER = "redirect-servlet-path";
@@ -92,7 +91,6 @@ public class GenericWebServiceServlet extends SubServlet {
         // TODO : add more types if needed
     }
     
-    private List<String> staticResourcesList;
     private List<String> redirectList; 
     private String dispatcherServletPath;
     private String dispatcherServletName;
@@ -116,8 +114,6 @@ public class GenericWebServiceServlet extends SubServlet {
         }
         this.controller = createServletController(sc);
 
-        staticResourcesList = parseListSequence(sc.getInitParameter(STATIC_RESOURCES_PARAMETER));
-        
         redirectList = parseListSequence(sc.getInitParameter(REDIRECTS_PARAMETER));
         redirectQueryCheck = Boolean.valueOf(sc.getInitParameter(REDIRECT_QUERY_CHECK_PARAMETER));
         dispatcherServletName = sc.getInitParameter(REDIRECT_SERVLET_NAME_PARAMETER);
@@ -204,19 +200,9 @@ public class GenericWebServiceServlet extends SubServlet {
         }
     }
     
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-        throws ServletException {
-        handleRequest(request, response);
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-        throws ServletException {
-        handleRequest(request, response);
-    }
-
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	handleRequest(request, response);
+    	invoke(request, response);
     }
     
     protected void handleRequest(HttpServletRequest request, HttpServletResponse response) 
@@ -229,11 +215,6 @@ public class GenericWebServiceServlet extends SubServlet {
             return;
         }
         
-        if (staticResourcesList != null 
-            && matchPath(staticResourcesList, request)) {
-            serveStaticContent(request, response, request.getPathInfo());
-            return;
-        }
         invoke(request, response);
     }
     
@@ -343,7 +324,6 @@ public class GenericWebServiceServlet extends SubServlet {
 
 	public void loadBus(ServletConfig servletConfig) {
         this.bus = BusFactory.newInstance().createBus();
-		BimServer bimServer = (BimServer) servletConfig.getServletContext().getAttribute("bimserver");
 		Bus bus = getBus();
 		HeaderManager headerManager = bus.getExtension(HeaderManager.class);
 		headerManager.registerHeaderProcessor(new HeaderProcessor() {
@@ -369,7 +349,7 @@ public class GenericWebServiceServlet extends SubServlet {
 		});
 		BusFactory.setDefaultBus(bus);
 		
-		for (Class<? extends PublicInterface> clazz : bimServer.getServicesMap().getInterfaceClasses()) {
+		for (Class<? extends PublicInterface> clazz : getBimServer().getServicesMap().getInterfaceClasses()) {
 			JaxWsServerFactoryBean serverFactoryBean = new JaxWsServerFactoryBean();
 			Map<String,Object> properties = new HashMap<String, Object>();
 			properties.put("mtom-enabled", Boolean.TRUE);
@@ -377,8 +357,8 @@ public class GenericWebServiceServlet extends SubServlet {
 			serverFactoryBean.setProperties(properties);
 			serverFactoryBean.setServiceClass(clazz);
 			serverFactoryBean.getOutFaultInterceptors().add(new StatusCodeModifyingFaultInterceptor());
-			serverFactoryBean.setInvoker(new CustomInvoker(bimServer.getServiceFactory(), clazz));
-			serverFactoryBean.setAddress("/" + clazz.getSimpleName());
+			serverFactoryBean.setInvoker(new CustomInvoker(getBimServer().getServiceFactory(), clazz));
+			serverFactoryBean.setAddress((bindingId == WSDLConstants.NS_SOAP11 ? "/soap11/" : "/soap12/") + clazz.getSimpleName());
 			serverFactoryBean.setTransportId("http://schemas.xmlsoap.org/soap/http");
 			serverFactoryBean.create();
 		}
