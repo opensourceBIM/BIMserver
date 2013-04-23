@@ -159,7 +159,7 @@ public class BimServer {
 	private EmbeddedWebServer embeddedWebServer;
 	private final BimServerConfig config;
 	private ProtocolBuffersServer protocolBuffersServer;
-	private final JsonHandler jsonHandler = new JsonHandler(this);
+	private JsonHandler jsonHandler;
 	private CommandLine commandLine;
 	private ServerSettingsCache serverSettingsCache;
 	private ReflectorFactory reflectorFactory;
@@ -214,12 +214,14 @@ public class BimServer {
 				LOGGER.info("Not using a homedir");
 			}
 
+			servicesMap = InterfaceList.createSServicesMap();
+
 			jsonSocketReflectorFactory = new JsonSocketReflectorFactory(servicesMap);
 
 			serverInfoManager = new ServerInfoManager();
 			notificationsManager = new NotificationsManager(this, jsonSocketReflectorFactory);
 			serviceFactory = new PublicInterfaceFactory(this);
-
+			
 			pluginManager = new PluginManager(new File(config.getHomeDir(), "tmp"), config.getClassPath(), serviceFactory, notificationsManager, servicesMap);
 
 			versionChecker = new VersionChecker(config.getResourceFetcher());
@@ -344,7 +346,6 @@ public class BimServer {
 			notificationsManager.init();
 
 			protocolBuffersMetaData = new ProtocolBuffersMetaData();
-			servicesMap = InterfaceList.createSServicesMap();
 
 			try {
 				for (Class<? extends PublicInterface> clazz : servicesMap.getInterfaceClasses()) {
@@ -364,6 +365,8 @@ public class BimServer {
 			serverInfoManager.init(this);
 			serverInfoManager.update();
 
+			jsonHandler = new JsonHandler(this);
+			
 			serializerFactory = new SerializerFactory();
 			deserializerFactory = new DeserializerFactory();
 

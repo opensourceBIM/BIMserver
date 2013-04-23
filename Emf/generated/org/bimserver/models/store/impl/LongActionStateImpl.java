@@ -16,6 +16,7 @@
  */
 package org.bimserver.models.store.impl;
 
+import java.util.Date;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.LongActionState;
@@ -30,6 +31,8 @@ import org.eclipse.emf.ecore.EClass;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getStart <em>Start</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getEnd <em>End</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getProgress <em>Progress</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getState <em>State</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.LongActionStateImpl#getTitle <em>Title</em>}</li>
@@ -70,6 +73,42 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	@Override
 	protected int eStaticFeatureCount() {
 		return 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date getStart() {
+		return (Date) eGet(StorePackage.Literals.LONG_ACTION_STATE__START, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStart(Date newStart) {
+		eSet(StorePackage.Literals.LONG_ACTION_STATE__START, newStart);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date getEnd() {
+		return (Date) eGet(StorePackage.Literals.LONG_ACTION_STATE__END, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEnd(Date newEnd) {
+		eSet(StorePackage.Literals.LONG_ACTION_STATE__END, newEnd);
 	}
 
 	/**

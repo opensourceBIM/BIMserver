@@ -2830,13 +2830,31 @@ public interface StorePackage extends EPackage {
 	int LONG_ACTION_STATE = 39;
 
 	/**
+	 * The feature id for the '<em><b>Start</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_ACTION_STATE__START = 0;
+
+	/**
+	 * The feature id for the '<em><b>End</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_ACTION_STATE__END = 1;
+
+	/**
 	 * The feature id for the '<em><b>Progress</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LONG_ACTION_STATE__PROGRESS = 0;
+	int LONG_ACTION_STATE__PROGRESS = 2;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -2845,7 +2863,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LONG_ACTION_STATE__STATE = 1;
+	int LONG_ACTION_STATE__STATE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Title</b></em>' attribute.
@@ -2854,7 +2872,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LONG_ACTION_STATE__TITLE = 2;
+	int LONG_ACTION_STATE__TITLE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Stage</b></em>' attribute.
@@ -2863,7 +2881,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LONG_ACTION_STATE__STAGE = 3;
+	int LONG_ACTION_STATE__STAGE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Errors</b></em>' attribute list.
@@ -2872,7 +2890,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LONG_ACTION_STATE__ERRORS = 4;
+	int LONG_ACTION_STATE__ERRORS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Warnings</b></em>' attribute list.
@@ -2881,7 +2899,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LONG_ACTION_STATE__WARNINGS = 5;
+	int LONG_ACTION_STATE__WARNINGS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Infos</b></em>' attribute list.
@@ -2890,7 +2908,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LONG_ACTION_STATE__INFOS = 6;
+	int LONG_ACTION_STATE__INFOS = 8;
 
 	/**
 	 * The number of structural features of the '<em>Long Action State</em>' class.
@@ -2899,7 +2917,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LONG_ACTION_STATE_FEATURE_COUNT = 7;
+	int LONG_ACTION_STATE_FEATURE_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServerInfoImpl <em>Server Info</em>}' class.
@@ -8261,6 +8279,28 @@ public interface StorePackage extends EPackage {
 	EClass getLongActionState();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.LongActionState#getStart <em>Start</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Start</em>'.
+	 * @see org.bimserver.models.store.LongActionState#getStart()
+	 * @see #getLongActionState()
+	 * @generated
+	 */
+	EAttribute getLongActionState_Start();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.LongActionState#getEnd <em>End</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>End</em>'.
+	 * @see org.bimserver.models.store.LongActionState#getEnd()
+	 * @see #getLongActionState()
+	 * @generated
+	 */
+	EAttribute getLongActionState_End();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.LongActionState#getProgress <em>Progress</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12521,6 +12561,22 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EClass LONG_ACTION_STATE = eINSTANCE.getLongActionState();
+
+		/**
+		 * The meta object literal for the '<em><b>Start</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LONG_ACTION_STATE__START = eINSTANCE.getLongActionState_Start();
+
+		/**
+		 * The meta object literal for the '<em><b>End</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LONG_ACTION_STATE__END = eINSTANCE.getLongActionState_End();
 
 		/**
 		 * The meta object literal for the '<em><b>Progress</b></em>' attribute feature.

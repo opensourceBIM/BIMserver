@@ -389,6 +389,8 @@ public class Step0000 extends Migration {
 		schema.createEEnumLiteral(actionStateEnum, "FINISHED");
 		
 		EClass longActionStateClass = schema.createEClass(storePackage, "LongActionState");
+		schema.createEAttribute(longActionStateClass, "start", ecorePackage.getEDate(), Multiplicity.SINGLE);
+		schema.createEAttribute(longActionStateClass, "end", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEAttribute(longActionStateClass, "progress", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
 		schema.createEAttribute(longActionStateClass, "state", actionStateEnum, Multiplicity.SINGLE);
 		schema.createEAttribute(longActionStateClass, "title", EcorePackage.eINSTANCE.getEString(), Multiplicity.SINGLE);

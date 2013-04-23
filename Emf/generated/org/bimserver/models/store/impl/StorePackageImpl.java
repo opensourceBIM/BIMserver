@@ -2938,7 +2938,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLongActionState_Progress() {
+	public EAttribute getLongActionState_Start() {
 		return (EAttribute) getLongActionState().getEStructuralFeatures().get(0);
 	}
 
@@ -2947,7 +2947,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLongActionState_State() {
+	public EAttribute getLongActionState_End() {
 		return (EAttribute) getLongActionState().getEStructuralFeatures().get(1);
 	}
 
@@ -2956,7 +2956,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLongActionState_Title() {
+	public EAttribute getLongActionState_Progress() {
 		return (EAttribute) getLongActionState().getEStructuralFeatures().get(2);
 	}
 
@@ -2965,7 +2965,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLongActionState_Stage() {
+	public EAttribute getLongActionState_State() {
 		return (EAttribute) getLongActionState().getEStructuralFeatures().get(3);
 	}
 
@@ -2974,7 +2974,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLongActionState_Errors() {
+	public EAttribute getLongActionState_Title() {
 		return (EAttribute) getLongActionState().getEStructuralFeatures().get(4);
 	}
 
@@ -2983,7 +2983,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLongActionState_Warnings() {
+	public EAttribute getLongActionState_Stage() {
 		return (EAttribute) getLongActionState().getEStructuralFeatures().get(5);
 	}
 
@@ -2992,8 +2992,26 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLongActionState_Infos() {
+	public EAttribute getLongActionState_Errors() {
 		return (EAttribute) getLongActionState().getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLongActionState_Warnings() {
+		return (EAttribute) getLongActionState().getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLongActionState_Infos() {
+		return (EAttribute) getLongActionState().getEStructuralFeatures().get(8);
 	}
 
 	/**

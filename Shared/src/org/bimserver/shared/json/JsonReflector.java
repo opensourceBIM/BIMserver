@@ -35,6 +35,9 @@ public abstract class JsonReflector implements Reflector {
 	private final SServicesMap servicesMap;
 
 	public JsonReflector(SServicesMap servicesMap) {
+		if (servicesMap == null) {
+			throw new IllegalArgumentException("servicesMap cannot be null");
+		}
 		this.servicesMap = servicesMap;
 		this.converter = new JsonConverter(servicesMap);
 	}

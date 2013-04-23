@@ -16,6 +16,7 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlTransient;
@@ -31,6 +32,8 @@ public class SLongActionState implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
+	private java.util.Date start;
+	private java.util.Date end;
 	private java.lang.Integer progress;
 	private SActionState state;
 	private java.lang.String title;
@@ -65,6 +68,12 @@ public class SLongActionState implements SDataBase
 	}
 
 	public Object sGet(SField sField) {
+		if (sField.getName().equals("start")) {
+			return getStart();
+		}
+		if (sField.getName().equals("end")) {
+			return getEnd();
+		}
 		if (sField.getName().equals("progress")) {
 			return getProgress();
 		}
@@ -97,6 +106,14 @@ public class SLongActionState implements SDataBase
 	@SuppressWarnings("unchecked")
 
 	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("start")) {
+			setStart((Date)val);
+			return;
+		}
+		if (sField.getName().equals("end")) {
+			setEnd((Date)val);
+			return;
+		}
 		if (sField.getName().equals("progress")) {
 			setProgress((Integer)val);
 			return;
@@ -134,6 +151,22 @@ public class SLongActionState implements SDataBase
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
+	public java.util.Date getStart() {
+		return start;
+	}
+
+	public void setStart(java.util.Date start) {
+		this.start = start;
+	}
+	
+	public java.util.Date getEnd() {
+		return end;
+	}
+
+	public void setEnd(java.util.Date end) {
+		this.end = end;
 	}
 	
 	public java.lang.Integer getProgress() {
