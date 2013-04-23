@@ -29,8 +29,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import javax.activation.DataSource;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -59,15 +59,17 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
 
-public class DownloadServlet extends HttpServlet {
-	private static final long serialVersionUID = 732025375536415841L;
+public class DownloadServlet extends SubServlet {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DownloadServlet.class);
 
+	public DownloadServlet(BimServer bimServer, ServletContext servletContext) {
+		super(bimServer, servletContext);
+	}
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
+	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			if (request.getHeader("Origin") != null && !bimServer.getServerSettingsCache().isHostAllowed(request.getHeader("Origin"))) {
+			if (request.getHeader("Origin") != null && !getBimServer().getServerSettingsCache().isHostAllowed(request.getHeader("Origin"))) {
 				response.setStatus(403);
 				return;
 			}
@@ -85,9 +87,9 @@ public class DownloadServlet extends HttpServlet {
 			if (token == null) {
 				token = request.getParameter("token");
 			}
-			ServiceInterface serviceInterface = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
-			PluginInterface pluginInterface = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL).get(PluginInterface.class);
-			AdminInterface adminInterface = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL).get(AdminInterface.class);
+			ServiceInterface serviceInterface = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
+			PluginInterface pluginInterface = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(PluginInterface.class);
+			AdminInterface adminInterface = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(AdminInterface.class);
 
 			String action = request.getParameter("action");
 			if (action != null) {

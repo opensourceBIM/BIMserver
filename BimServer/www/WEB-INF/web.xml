@@ -29,63 +29,13 @@
 	</filter-mapping>
 
 	<servlet>
-		<servlet-name>WebServiceServlet11</servlet-name>
-		<servlet-class>org.bimserver.servlets.WebServiceServlet11</servlet-class>
+		<servlet-name>RootServlet</servlet-name>
+		<servlet-class>org.bimserver.servlets.RootServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>WebServiceServlet11</servlet-name>
-		<url-pattern>/soap11/*</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>WebServiceServlet12</servlet-name>
-		<servlet-class>org.bimserver.servlets.WebServiceServlet12</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>WebServiceServlet12</servlet-name>
-		<url-pattern>/soap12/*</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>SyndicationServlet</servlet-name>
-		<servlet-class>org.bimserver.servlets.SyndicationServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>SyndicationServlet</servlet-name>
-		<url-pattern>/syndication/*</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>JsonApiServlet</servlet-name>
-		<servlet-class>org.bimserver.servlets.JsonApiServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>JsonApiServlet</servlet-name>
-		<url-pattern>/json/*</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>UploadServlet</servlet-name>
-		<servlet-class>org.bimserver.servlets.UploadServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>UploadServlet</servlet-name>
-		<url-pattern>/upload/*</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>DownloadServlet</servlet-name>
-		<servlet-class>org.bimserver.servlets.DownloadServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>DownloadServlet</servlet-name>
-		<url-pattern>/download/*</url-pattern>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -96,20 +46,5 @@
 	<servlet-mapping>
 		<servlet-name>StreamingServlet</servlet-name>
 		<url-pattern>/stream/*</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>Default</servlet-name>
-		<servlet-class>org.eclipse.jetty.servlet.DefaultServlet</servlet-class>
-		<init-param>
-			<param-name>useFileMappedBuffer</param-name>
-			<param-value>false</param-value>
-		</init-param>
-		<load-on-startup>0</load-on-startup>
-	</servlet>
-	
-	<servlet-mapping>
-		<servlet-name>Default</servlet-name>
-		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 </web-app>

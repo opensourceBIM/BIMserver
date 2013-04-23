@@ -17,7 +17,10 @@ package org.bimserver.servlets;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import javax.servlet.ServletContext;
+
 import org.apache.cxf.common.WSDLConstants;
+import org.bimserver.BimServer;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -37,10 +40,9 @@ import org.apache.cxf.common.WSDLConstants;
  *****************************************************************************/
 
 public class WebServiceServlet11 extends GenericWebServiceServlet {
-
-	private static final long serialVersionUID = 6869822023778863399L;
 	
-	public WebServiceServlet11() {
+	public WebServiceServlet11(BimServer bimServer, ServletContext servletContext) {
+		super(bimServer, servletContext);
 		setBindingId(WSDLConstants.NS_SOAP11);
 	}
 }
