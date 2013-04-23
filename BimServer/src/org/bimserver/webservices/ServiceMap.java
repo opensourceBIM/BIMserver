@@ -27,6 +27,7 @@ import org.bimserver.shared.ServiceHolder;
 import org.bimserver.shared.ServiceMapInterface;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
+import org.bimserver.shared.interfaces.Bimsie1Interface;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
 import org.bimserver.shared.interfaces.NotificationInterface;
@@ -96,6 +97,8 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 			publicInterface = new RegistryServiceImpl(this);
 		} else if (clazz == PluginInterface.class) {
 			publicInterface = new PluginServiceImpl(this);
+		} else if (clazz == Bimsie1Interface.class) {
+			publicInterface = new Bimsie1ServiceImpl(this);
 		} else {
 			throw new RuntimeException("Unknown interface: " + clazz.getName());
 		}

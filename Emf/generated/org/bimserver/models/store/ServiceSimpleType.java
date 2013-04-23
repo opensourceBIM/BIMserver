@@ -173,14 +173,14 @@ public enum ServiceSimpleType implements Enumerator {
 	VOID(13, "VOID", "VOID"),
 
 	/**
-	 * The '<em><b>UNKNOWN TYPE</b></em>' literal object.
+	 * The '<em><b>UNKNOWN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #UNKNOWN_TYPE_VALUE
+	 * @see #UNKNOWN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	UNKNOWN_TYPE(14, "UNKNOWN_TYPE", "UNKNOWN_TYPE");
+	UNKNOWN(14, "UNKNOWN", "UNKNOWN");
 
 	/**
 	 * The '<em><b>ENUM</b></em>' literal value.
@@ -393,19 +393,19 @@ public enum ServiceSimpleType implements Enumerator {
 	public static final int VOID_VALUE = 13;
 
 	/**
-	 * The '<em><b>UNKNOWN TYPE</b></em>' literal value.
+	 * The '<em><b>UNKNOWN</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>UNKNOWN TYPE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>UNKNOWN</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #UNKNOWN_TYPE
+	 * @see #UNKNOWN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UNKNOWN_TYPE_VALUE = 14;
+	public static final int UNKNOWN_VALUE = 14;
 
 	/**
 	 * An array of all the '<em><b>Service Simple Type</b></em>' enumerators.
@@ -414,7 +414,7 @@ public enum ServiceSimpleType implements Enumerator {
 	 * @generated
 	 */
 	private static final ServiceSimpleType[] VALUES_ARRAY = new ServiceSimpleType[] { ENUM, STRING, LONG, INT, BOOLEAN, FLOAT, DOUBLE, DATE, CLASS, DATAHANDLER, BYTEARRAY, LIST,
-			SET, VOID, UNKNOWN_TYPE, };
+			SET, VOID, UNKNOWN, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Service Simple Type</b></em>' enumerators.
@@ -492,8 +492,8 @@ public enum ServiceSimpleType implements Enumerator {
 			return SET;
 		case VOID_VALUE:
 			return VOID;
-		case UNKNOWN_TYPE_VALUE:
-			return UNKNOWN_TYPE;
+		case UNKNOWN_VALUE:
+			return UNKNOWN;
 		}
 		return null;
 	}

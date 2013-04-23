@@ -381,6 +381,8 @@
     <eLiterals name="FINISHED" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LongActionState">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="end" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="progress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="#//ActionState"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -559,7 +561,7 @@
     <eLiterals name="LIST" value="11"/>
     <eLiterals name="SET" value="12"/>
     <eLiterals name="VOID" value="13"/>
-    <eLiterals name="UNKNOWN_TYPE" value="14"/>
+    <eLiterals name="UNKNOWN" value="14"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ServiceField">
     <eAnnotations source="nodatabase"/>

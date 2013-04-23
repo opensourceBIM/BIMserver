@@ -67,7 +67,7 @@ public class Bimsie1InterfaceAdaptor implements Bimsie1Interface {
 		return null;
 	}
 	
-	public java.util.List<byte[]> getByteArrayAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
+	public java.util.List getByteArrayAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
 		return null;
 	}
 	

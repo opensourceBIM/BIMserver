@@ -16,6 +16,7 @@
  */
 package org.bimserver.models.store;
 
+import java.util.Date;
 import org.bimserver.emf.IdEObject;
 import org.eclipse.emf.common.util.EList;
 
@@ -27,6 +28,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.bimserver.models.store.LongActionState#getStart <em>Start</em>}</li>
+ *   <li>{@link org.bimserver.models.store.LongActionState#getEnd <em>End</em>}</li>
  *   <li>{@link org.bimserver.models.store.LongActionState#getProgress <em>Progress</em>}</li>
  *   <li>{@link org.bimserver.models.store.LongActionState#getState <em>State</em>}</li>
  *   <li>{@link org.bimserver.models.store.LongActionState#getTitle <em>Title</em>}</li>
@@ -43,6 +46,58 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface LongActionState extends IdEObject {
+	/**
+	 * Returns the value of the '<em><b>Start</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Start</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Start</em>' attribute.
+	 * @see #setStart(Date)
+	 * @see org.bimserver.models.store.StorePackage#getLongActionState_Start()
+	 * @model
+	 * @generated
+	 */
+	Date getStart();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.LongActionState#getStart <em>Start</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Start</em>' attribute.
+	 * @see #getStart()
+	 * @generated
+	 */
+	void setStart(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>End</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>End</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>End</em>' attribute.
+	 * @see #setEnd(Date)
+	 * @see org.bimserver.models.store.StorePackage#getLongActionState_End()
+	 * @model
+	 * @generated
+	 */
+	Date getEnd();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.LongActionState#getEnd <em>End</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>End</em>' attribute.
+	 * @see #getEnd()
+	 * @generated
+	 */
+	void setEnd(Date value);
+
 	/**
 	 * Returns the value of the '<em><b>Progress</b></em>' attribute.
 	 * <!-- begin-user-doc -->

@@ -154,6 +154,8 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 
 	public synchronized LongActionState getState() {
 		LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
+		ds.setStart(getStart().getTime());
+		ds.setEnd(getStop() != null ? getStop().getTime() : null);
 		ds.setProgress(getProgress());
 		ds.setState(getActionState());
 		ds.setTitle(title);
