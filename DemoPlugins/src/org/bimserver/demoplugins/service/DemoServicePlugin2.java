@@ -1,4 +1,6 @@
 package org.bimserver.demoplugins.service;
+import java.util.Date;
+
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectType;
@@ -71,11 +73,13 @@ public class DemoServicePlugin2 extends ServicePlugin {
 			@Override
 			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, SObjectType settings) throws ServerException, UserException {
 				try {
+					Date startDate = new Date();
 					Long topicId = bimServerClientInterface.getRegistry().registerProgressOnRevisionTopic(SProgressTopicType.RUNNING_SERVICE, poid, roid, "Running Demo Service");
 					SLongActionState state = new SLongActionState();
 					state.setTitle("Doing absolutely nothing...");
 					state.setState(SActionState.STARTED);
 					state.setProgress(-1);
+					state.setStart(startDate);
 					bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 					for (int i=0; i<100; i++) {
 						try {
@@ -86,8 +90,10 @@ public class DemoServicePlugin2 extends ServicePlugin {
 					}
 					state = new SLongActionState();
 					state.setProgress(100);
-					state.setTitle("Done");
+					state.setTitle("Doing absolutely nothing...");
 					state.setState(SActionState.FINISHED);
+					state.setStart(startDate);
+					state.setEnd(new Date());
 					bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 					
 					bimServerClientInterface.getRegistry().unregisterProgressTopic(topicId);
