@@ -46,6 +46,9 @@ public class EmbeddedWebServer {
 		if (context.getResourceBase() == null) {
 			context.setResourceBase("../BimServer/www");
 		}
+	}
+	
+	public void start() {
 		try {
 			server.start();
 		} catch (Exception e) {

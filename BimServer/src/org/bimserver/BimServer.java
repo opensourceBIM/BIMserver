@@ -437,6 +437,10 @@ public class BimServer {
 				LOGGER.error("", e);
 			}
 
+			if (config.isStartEmbeddedWebServer()) {
+				embeddedWebServer.start();
+			}
+			
 			if (config.isStartCommandLine()) {
 				commandLine = new CommandLine(this);
 				commandLine.start();
