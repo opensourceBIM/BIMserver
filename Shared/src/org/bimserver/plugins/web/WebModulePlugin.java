@@ -30,7 +30,7 @@ public interface WebModulePlugin extends Plugin {
 	 * @param request The HTTP request
 	 * @param response The HTTP response
 	 */
-	void service(HttpServletRequest request, HttpServletResponse response);
+	boolean service(HttpServletRequest request, HttpServletResponse response);
 
 	/**
 	 * @return The context path on which to serve this webmodule

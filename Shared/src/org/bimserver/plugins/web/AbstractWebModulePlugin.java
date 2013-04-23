@@ -24,10 +24,12 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 	}
 	
 	@Override
-	public void service(HttpServletRequest request, HttpServletResponse response) {
+	public boolean service(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			String path = request.getPathInfo();
-			path = path.substring(getContextPath().length());
+			if (path.startsWith(getContextPath())) {
+				path = path.substring(getContextPath().length());
+			}
 			if (path == null || path.equals("")) {
 				response.sendRedirect(getContextPath() + "/");
 			} else if (path.equals("/")) {
@@ -36,26 +38,19 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 			if (path.startsWith("/")) {
 				path = path.substring(1);
 			}
-			if (path.endsWith(".js")) {
-				response.setContentType("application/javascript");
-			} else if (path.endsWith(".css")) {
-				response.setContentType("text/css");
-			} else if (path.endsWith(".png")) {
-				response.setContentType("image/png");
-			} else if (path.endsWith(".gif")) {
-				response.setContentType("image/gif");
-			}
 			InputStream resourceAsInputStream = pluginContext.getResourceAsInputStream(path);
 			if (resourceAsInputStream != null) {
 				IOUtils.copy(resourceAsInputStream, response.getOutputStream());
 			} else {
-				LOGGER.error(path + " not found");
+				return false;
 			}
+			return true;
 		} catch (FileNotFoundException e) {
 			LOGGER.error("", e);
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		}
+		return false;
 	}
 	
 	public PluginContext getPluginContext() {
