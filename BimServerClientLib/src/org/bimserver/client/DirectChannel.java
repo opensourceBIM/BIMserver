@@ -50,7 +50,11 @@ public class DirectChannel extends Channel implements TokenChangeListener {
 	public void connect() throws UserException {
 		for (Class<? extends PublicInterface> interface1 : sServicesMap.getInterfaceClasses()) {
 			if (!has(interface1)) {
-				add(interface1.getName(), serviceFactory.get(AccessMethod.INTERNAL).get(interface1));
+				try {
+					add(interface1.getName(), serviceFactory.get(AccessMethod.INTERNAL).get(interface1));
+				} catch (UserException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		notifyOfConnect();
@@ -93,6 +97,13 @@ public class DirectChannel extends Channel implements TokenChangeListener {
 
 	@Override
 	public void newToken(String token) {
+		for (Class<? extends PublicInterface> interface1 : sServicesMap.getInterfaceClasses()) {
+			try {
+				add(interface1.getName(), serviceFactory.get(token, AccessMethod.INTERNAL).get(interface1));
+			} catch (UserException e) {
+				e.printStackTrace();
+			}
+		}
 //		try {
 //			get(AuthInterface.class).tokenlogin(token);
 //		} catch (PublicInterfaceNotFoundException e) {

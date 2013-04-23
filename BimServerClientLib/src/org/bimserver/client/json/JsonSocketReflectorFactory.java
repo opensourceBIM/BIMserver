@@ -31,6 +31,9 @@ public class JsonSocketReflectorFactory implements JsonReflectorFactory {
 	private PoolingClientConnectionManager connectionManager;
 
 	public JsonSocketReflectorFactory(SServicesMap servicesMap) {
+		if (servicesMap == null) {
+			throw new IllegalArgumentException("servicesMap cannot be null");
+		}
 		this.servicesMap = servicesMap;
 
 		connectionManager = new PoolingClientConnectionManager();

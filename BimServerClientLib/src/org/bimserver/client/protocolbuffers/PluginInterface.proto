@@ -551,6 +551,10 @@ message GetPluginObjectDefinitionRequest {
 	optional string className = 1;
 }
 
+message SArrayDefinition {
+	optional STypeDefinition type = 1;
+}
+
 enum SPrimitiveEnum{
 	SPrimitiveEnum_LONG = 0;
 	SPrimitiveEnum_DOUBLE = 1;
@@ -563,15 +567,11 @@ message SPrimitiveDefinition {
 	optional SPrimitiveEnum type = 1;
 }
 
-message SArrayDefinition {
-	optional STypeDefinition type = 1;
-}
-
 message STypeDefinition {
 	required string __actual_type = 1;
-	optional SPrimitiveDefinition __SPrimitiveDefinition = 2;
+	optional SObjectDefinition __SObjectDefinition = 2;
 	optional SArrayDefinition __SArrayDefinition = 3;
-	optional SObjectDefinition __SObjectDefinition = 4;
+	optional SPrimitiveDefinition __SPrimitiveDefinition = 4;
 }
 
 message SParameterDefinition {
@@ -601,12 +601,6 @@ message SArrayType {
 	optional int64 oid = 3;
 }
 
-message SBooleanType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional bool value = 3;
-}
-
 message SStringType {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
@@ -619,25 +613,31 @@ message SLongType {
 	optional int64 value = 3;
 }
 
-message SDoubleType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional double value = 3;
-}
-
 message SByteArrayType {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 	optional bytes value = 3;
 }
 
+message SDoubleType {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional double value = 3;
+}
+
+message SBooleanType {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional bool value = 3;
+}
+
 message SPrimitiveType {
 	required string __actual_type = 1;
-	optional SBooleanType __SBooleanType = 2;
-	optional SStringType __SStringType = 3;
-	optional SLongType __SLongType = 4;
+	optional SStringType __SStringType = 2;
+	optional SLongType __SLongType = 3;
+	optional SByteArrayType __SByteArrayType = 4;
 	optional SDoubleType __SDoubleType = 5;
-	optional SByteArrayType __SByteArrayType = 6;
+	optional SBooleanType __SBooleanType = 6;
 	optional int32 rid = 7;
 	optional int64 oid = 8;
 }
@@ -645,8 +645,8 @@ message SPrimitiveType {
 message SType {
 	required string __actual_type = 1;
 	optional SArrayType __SArrayType = 2;
-	optional SPrimitiveType __SPrimitiveType = 3;
-	optional SObjectType __SObjectType = 4;
+	optional SObjectType __SObjectType = 3;
+	optional SPrimitiveType __SPrimitiveType = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 }

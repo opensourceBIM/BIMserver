@@ -1,5 +1,5 @@
 
-‡W
+§W
 LowLevelInterface.protoorg.bimserver.pbServiceInterface.protoNotificationInterface.protoRemoteServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"&
 AbortTransactionRequest
 tid ("\
@@ -64,10 +64,10 @@
 GetByteArrayAttributesRequest
 tid (
 oid (
-attributeName (	"E
+attributeName (	"e
 GetByteArrayAttributesResponse
-errorMessage (	
-value ("8
+errorMessage (	-
+value (2.org.bimserver.pb.VoidResponse"8
 GetDataObjectByGuidRequest
 roid (
 guid (	"a

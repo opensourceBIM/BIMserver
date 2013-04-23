@@ -112,10 +112,10 @@ message SServerSettings {
 	optional bool allowUsersToCreateTopLevelProjects = 6;
 	optional string serviceRepositoryUrl = 7;
 	repeated int64 webModules = 8;
-	repeated string whitelistedDomains = 9;
-	optional int32 rid = 10;
-	optional bool allowSelfRegistration = 11;
-	optional string smtpServer = 12;
+	optional int32 rid = 9;
+	optional bool allowSelfRegistration = 10;
+	optional string smtpServer = 11;
+	repeated string whitelistedDomains = 12;
 	optional bool cacheOutputFiles = 13;
 	optional int64 oid = 14;
 	optional string emailSenderAddress = 15;
