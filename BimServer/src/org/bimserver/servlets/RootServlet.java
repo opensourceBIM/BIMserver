@@ -1,8 +1,7 @@
 package org.bimserver.servlets;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -73,8 +72,9 @@ public class RootServlet extends HttpServlet {
 				if (bimServer.getWebModules() != null) {
 					for (WebModulePlugin webModulePlugin : bimServer.getWebModules()) {
 						if (request.getPathInfo().startsWith(webModulePlugin.getContextPath())) {
-							webModulePlugin.service(request, response);
-							return;
+							if (webModulePlugin.service(request, response)) {
+								return;
+							}
 						}
 					}
 				}
@@ -84,11 +84,9 @@ public class RootServlet extends HttpServlet {
 					}
 				}
 				
-				File file = new File("../BimServer/www" + pathInfo);
-				if (file.exists()) {
-					FileInputStream fos = new FileInputStream(file);
-					IOUtils.copy(fos, response.getOutputStream());
-					fos.close();
+				InputStream resourceAsStream = getServletContext().getResourceAsStream(pathInfo);
+				if (resourceAsStream != null) {
+					IOUtils.copy(resourceAsStream, response.getOutputStream());
 				}
 			}
 		} catch (Throwable e) {

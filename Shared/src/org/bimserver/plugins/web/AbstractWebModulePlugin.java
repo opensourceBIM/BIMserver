@@ -41,10 +41,10 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 			InputStream resourceAsInputStream = pluginContext.getResourceAsInputStream(path);
 			if (resourceAsInputStream != null) {
 				IOUtils.copy(resourceAsInputStream, response.getOutputStream());
+				return true;
 			} else {
 				return false;
 			}
-			return true;
 		} catch (FileNotFoundException e) {
 			LOGGER.error("", e);
 		} catch (IOException e) {
