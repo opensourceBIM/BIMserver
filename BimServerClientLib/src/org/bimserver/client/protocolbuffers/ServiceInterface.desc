@@ -79,9 +79,9 @@ revisionId	 (
 concreteRevisions (
 
 id (
-parentId (
-hasAuthorizedUsers	 (
-extendedData
+parentId (
+extendedData	 (
+hasAuthorizedUsers
  (
 rid (
 geoTagId (>
@@ -114,23 +114,23 @@ parentPoid ("a
 selfRegistration ("Ô
 SUser
 userSettingsId (
-lastSeen (
-services (
-schemas (
+lastSeen (
+schemas (
+services (
 createdById (
 logs (
 validationToken (-
-state (2.org.bimserver.pb.SObjectState
-hasRightsOn	 (
-passwordHash
- (-
+state (2.org.bimserver.pb.SObjectState
+passwordHash	 (
+hasRightsOn
+ (-
 userType (2.org.bimserver.pb.SUserType
 	createdOn (
 extendedData (
-username (	
-passwordSalt (
-token (	
-rid (
+username (	
+token (	
+rid (
+passwordSalt (
 oid (
 name (	
 validationTokenCreated (
@@ -209,7 +209,10 @@ parentPoid ("a
 roid1 (
 roid2 (4
 sCompareType (2.org.bimserver.pb.SCompareType
-mcid ("*
+mcid ("(
+SObjectAdded
+rid (
+oid ("*
 SObjectRemoved
 rid (
 oid ("b
@@ -218,29 +221,26 @@ parentPoid ("a
 rid (
 oid (
 oldValue (	
-	fieldName (	"(
-SObjectAdded
-rid (
-oid ("X
+	fieldName (	"X
 SListDataValue,
 values (2.org.bimserver.pb.SDataValue
 rid (
-oid ("A
-SSimpleDataValue
-rid (
-oid (
-stringValue (	"O
+oid ("O
 SReferenceDataValue
 guid (	
 typeName (	
 rid (
-oid ("’
+oid ("A
+SSimpleDataValue
+rid (
+oid (
+stringValue (	"’
 
 SDataValue
 __actual_type (	:
-__SListDataValue (2 .org.bimserver.pb.SListDataValue>
-__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValueD
-__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue
+__SListDataValue (2 .org.bimserver.pb.SListDataValueD
+__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue>
+__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValue
 rid (
 oid (
 	fieldName (	"
@@ -252,10 +252,10 @@ SDataValue
 name (	
 type (	"¤
 SCompareItem
-__actual_type (	:
-__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved<
-__SObjectModified (2!.org.bimserver.pb.SObjectModified6
-__SObjectAdded (2.org.bimserver.pb.SObjectAdded
+__actual_type (	6
+__SObjectAdded (2.org.bimserver.pb.SObjectAdded:
+__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved<
+__SObjectModified (2!.org.bimserver.pb.SObjectModified
 rid (
 oid (1
 
@@ -390,9 +390,9 @@ classNames (	
 comment (	
 	lastError (	
 	checkouts ("Ñ
-	SCheckout-
-revision (2.org.bimserver.pb.SRevision,
-checkin (2.org.bimserver.pb.SRevision
+	SCheckout,
+checkin (2.org.bimserver.pb.SRevision-
+revision (2.org.bimserver.pb.SRevision
 logs (
 rid (
 oid (
@@ -439,10 +439,10 @@ identifier (	"h
 errorMessage (	3
 value (2$.org.bimserver.pb.SProfileDescriptor"&
 $GetAllLocalServiceDescriptorsRequest"Ë
-SServiceDescriptor+
-trigger (2.org.bimserver.pb.STrigger
-writeExtendedData (	=
-notificationProtocol (2.org.bimserver.pb.SAccessMethod
+SServiceDescriptor
+writeExtendedData (	=
+notificationProtocol (2.org.bimserver.pb.SAccessMethod+
+trigger (2.org.bimserver.pb.STrigger
 writeRevision (
 readExtendedData (	
 providerName (	
