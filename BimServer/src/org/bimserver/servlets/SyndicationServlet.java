@@ -23,8 +23,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -53,15 +53,17 @@ import com.sun.syndication.feed.synd.SyndFeedImpl;
 import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.SyndFeedOutput;
 
-public class SyndicationServlet extends HttpServlet {
+public class SyndicationServlet extends SubServlet {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SyndicationServlet.class);
-	private static final long serialVersionUID = -8204995157688379164L;
 	private static final String FEED_TYPE = "atom_1.0";
 
+	public SyndicationServlet(BimServer bimServer, ServletContext servletContext) {
+		super(bimServer, servletContext);
+	}
+	
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
-		if (request.getHeader("Origin") != null && !bimServer.getServerSettingsCache().isHostAllowed(request.getHeader("Origin"))) {
+	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (request.getHeader("Origin") != null && !getBimServer().getServerSettingsCache().isHostAllowed(request.getHeader("Origin"))) {
 			response.setStatus(403);
 			return;
 		}
@@ -81,11 +83,11 @@ public class SyndicationServlet extends HttpServlet {
 			AuthInterface authInterface = null;
 			try {
 				if (token == null) {
-					service = bimServer.getServiceFactory().get(AccessMethod.SYNDICATION).get(ServiceInterface.class);
-					authInterface = bimServer.getServiceFactory().get(AccessMethod.SYNDICATION).get(AuthInterface.class);
+					service = getBimServer().getServiceFactory().get(AccessMethod.SYNDICATION).get(ServiceInterface.class);
+					authInterface = getBimServer().getServiceFactory().get(AccessMethod.SYNDICATION).get(AuthInterface.class);
 				} else {
-					service = bimServer.getServiceFactory().get(token, AccessMethod.SYNDICATION).get(ServiceInterface.class);
-					authInterface = bimServer.getServiceFactory().get(token, AccessMethod.SYNDICATION).get(AuthInterface.class);
+					service = getBimServer().getServiceFactory().get(token, AccessMethod.SYNDICATION).get(ServiceInterface.class);
+					authInterface = getBimServer().getServiceFactory().get(token, AccessMethod.SYNDICATION).get(AuthInterface.class);
 				}
 			} catch (UserException e) {
 				LOGGER.error("", e);

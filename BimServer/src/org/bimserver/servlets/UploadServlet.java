@@ -25,8 +25,8 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.InflaterInputStream;
 
 import javax.activation.DataHandler;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -42,22 +42,21 @@ import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class UploadServlet extends HttpServlet {
+public class UploadServlet extends SubServlet {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UploadServlet.class);
-	private static final long serialVersionUID = 7852327471215749104L;
 	private DiskFileItemFactory factory;
 
-	public UploadServlet() {
+	public UploadServlet(BimServer bimServer, ServletContext servletContext) {
+		super(bimServer, servletContext);
 		factory = new DiskFileItemFactory();
 		factory.setSizeThreshold(1024 * 1024 * 500); // 500 MB
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
-		if (request.getHeader("Origin") != null && !bimServer.getServerSettingsCache().isHostAllowed(request.getHeader("Origin"))) {
+	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (request.getHeader("Origin") != null && !getBimServer().getServerSettingsCache().isHostAllowed(request.getHeader("Origin"))) {
 			response.setStatus(403);
 			return;
 		}
@@ -130,7 +129,7 @@ public class UploadServlet extends HttpServlet {
 						DataHandler ifcFile = new DataHandler(inputStreamDataSource);
 						
 						if (token != null) {
-							ServiceInterface service = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
+							ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
 							long checkinId = service.checkin(poid, comment, deserializerOid, size, name, ifcFile, merge, sync);
 							result.put("checkinid", checkinId);
 						}

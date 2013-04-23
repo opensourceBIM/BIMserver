@@ -169,6 +169,8 @@ public class BimServer {
 	private JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private SecretKeySpec encryptionkey;
 	private BimServerClientFactory bimServerClientFactory;
+	private List<WebModulePlugin> webModules;
+	private WebModulePlugin defaultWebModule;
 
 	/**
 	 * Create a new BIMserver
@@ -235,6 +237,14 @@ public class BimServer {
 		}
 	}
 
+	public List<WebModulePlugin> getWebModules() {
+		return webModules;
+	}
+	
+	public WebModulePlugin getDefaultWebModule() {
+		return defaultWebModule;
+	}
+	
 	public JsonSocketReflectorFactory getJsonSocketReflectorFactory() {
 		return jsonSocketReflectorFactory;
 	}
@@ -376,8 +386,7 @@ public class BimServer {
 
 			mailSystem = new MailSystem(this);
 
-			List<WebModulePlugin> webModules = new ArrayList<WebModulePlugin>();
-			WebModulePlugin defaultWebModule = null;
+			webModules = new ArrayList<WebModulePlugin>();
 			DatabaseSession ses = bimDatabase.createSession();
 			try {
 				List<WebModulePluginConfiguration> webModuleConfigurations = serverSettingsCache.getServerSettings().getWebModules();
@@ -389,10 +398,6 @@ public class BimServer {
 				}
 			} finally {
 				ses.close();
-			}
-
-			if (config.isStartEmbeddedWebServer()) {
-				embeddedWebServer.start(defaultWebModule, webModules);
 			}
 
 			diskCacheManager = new DiskCacheManager(this, new File(config.getHomeDir(), "cache"));

@@ -24,8 +24,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -45,14 +45,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
-public class JsonApiServlet extends HttpServlet {
+public class JsonApiServlet extends SubServlet {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JsonApiServlet.class);
-	private static final long serialVersionUID = 186486233172374336L;
 
+	public JsonApiServlet(BimServer bimServer, ServletContext servletContext) {
+		super(bimServer, servletContext);
+	}
+	
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BimServer bimServer = (BimServer) getServletContext().getAttribute("bimserver");
-		if (request.getHeader("Origin") != null && !bimServer.getServerSettingsCache().isHostAllowed(request.getHeader("Origin"))) {
+		if (request.getHeader("Origin") != null && !getBimServer().getServerSettingsCache().isHostAllowed(request.getHeader("Origin"))) {
 			response.setStatus(403);
 			return;
 		}
@@ -60,9 +62,9 @@ public class JsonApiServlet extends HttpServlet {
 		response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 		try {
 			if (request.getParameter("doc") != null) {
-				writeDocumentation(request, response, bimServer);
+				writeDocumentation(request, response, getBimServer());
 			} else {
-				handleRequest(request, response, bimServer);
+				handleRequest(request, response, getBimServer());
 			}
 		} catch (IOException e) {
 			LOGGER.error("", e);

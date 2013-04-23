@@ -18,14 +18,10 @@ package org.bimserver;
  *****************************************************************************/
 
 import java.security.SecureRandom;
-import java.util.List;
 
-import org.bimserver.plugins.web.WebModulePlugin;
-import org.bimserver.servlets.WebModuleServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.nio.SelectChannelConnector;
 import org.eclipse.jetty.server.session.HashSessionIdManager;
-import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,16 +43,8 @@ public class EmbeddedWebServer {
 			context.setDefaultsDescriptor("www/WEB-INF/webdefault.xml");
 		}
 		context.getServletContext().setAttribute("bimserver", bimServer);
-	}
-	
-	public void start(WebModulePlugin defaultWebModule, List<WebModulePlugin> webModules) {
 		if (context.getResourceBase() == null) {
 			context.setResourceBase("../BimServer/www");
-		}
-		if (webModules != null) {
-			for (WebModulePlugin webModulePlugin : webModules) {
-				context.addServlet(new ServletHolder(new WebModuleServlet(webModulePlugin)), webModulePlugin.getContextPath());
-			}
 		}
 		try {
 			server.start();
