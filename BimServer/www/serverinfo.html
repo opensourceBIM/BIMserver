@@ -163,7 +163,7 @@ function ServerInfo(containerDiv, main) {
 				td.append("<a href=\"" + Global.bimServerApi.baseUrl + "/soap11/" + service.simpleName + "?wsdl\">WSDL (1.1)</a> / ");
 				td.append("<a href=\"" + Global.bimServerApi.baseUrl + "/soap12/" + service.simpleName + "?wsdl\">WSDL (1.2)</a> / ");
 				td.append("<a href=\"" + Global.bimServerApi.baseUrl + "/download?token=" + Global.bimServerApi.token + "&action=getfile&type=proto&name=" + service.simpleName + "\">Proto</a> / ");
-				td.append("<a href=\"" + "json.html#" + service.simpleName + "\">JSON</a>");
+				td.append("<a href=\"" + "console.html\">JSON</a>");
 				$(".webservices table").append(tr);
 			});
 		});

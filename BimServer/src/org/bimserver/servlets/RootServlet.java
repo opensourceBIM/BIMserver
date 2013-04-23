@@ -54,26 +54,26 @@ public class RootServlet extends HttpServlet {
 			} else if (request.getRequestURI().endsWith(".gif")) {
 				response.setContentType("image/gif");
 			}
-			if (request.getPathInfo().startsWith("/soap11")) {
+			String pathInfo = request.getPathInfo();
+			if (pathInfo.startsWith("/soap11/") || pathInfo.equals("/soap11")) {
 				soap11Servlet.service(request, response);
-			} else if (request.getPathInfo().startsWith("/soap12")) {
+			} else if (pathInfo.startsWith("/soap12/") || pathInfo.equals("/soap12")) {
 				soap12Servlet.service(request, response);
-			} else if (request.getPathInfo().startsWith("/syndication")) {
+			} else if (pathInfo.startsWith("/syndication/") || pathInfo.equals("/syndication")) {
 				syndicationServlet.service(request, response);
-			} else if (request.getPathInfo().startsWith("/json")) {
+			} else if (pathInfo.startsWith("/json/") || pathInfo.equals("/json")) {
 				jsonApiServlet.service(request, response);
-			} else if (request.getPathInfo().startsWith("/upload")) {
+			} else if (pathInfo.startsWith("/upload/") || pathInfo.equals("/upload")) {
 				uploadServlet.service(request, response);
-			} else if (request.getPathInfo().startsWith("/download")) {
+			} else if (pathInfo.startsWith("/download/") || pathInfo.equals("/download")) {
 				downloadServlet.service(request, response);
 			} else {
-				String pathInfo = request.getPathInfo();
 				if (pathInfo.equals("") || pathInfo.equals("/") || pathInfo == null) {
 					pathInfo = "/index.html";
 				}
 				if (bimServer.getWebModules() != null) {
 					for (WebModulePlugin webModulePlugin : bimServer.getWebModules()) {
-						if (request.getPathInfo().startsWith(webModulePlugin.getContextPath())) {
+						if (pathInfo.startsWith(webModulePlugin.getContextPath())) {
 							if (webModulePlugin.service(request, response)) {
 								return;
 							}

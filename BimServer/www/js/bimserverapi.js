@@ -92,9 +92,12 @@ function BimServerApi(baseUrl, notifier) {
 		}
 	};
 	
-	this.resolveUser = function() {
+	this.resolveUser = function(callback) {
 		othis.call("AuthInterface", "getCurrentUser", {}, function(data){
 			othis.user = data;
+			if (callback != null) {
+				callback(othis.user);
+			}
 		});
 	};
 
