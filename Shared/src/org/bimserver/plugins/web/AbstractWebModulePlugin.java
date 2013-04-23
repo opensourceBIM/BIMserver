@@ -36,6 +36,15 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 			if (path.startsWith("/")) {
 				path = path.substring(1);
 			}
+			if (path.endsWith(".js")) {
+				response.setContentType("application/javascript");
+			} else if (path.endsWith(".css")) {
+				response.setContentType("text/css");
+			} else if (path.endsWith(".png")) {
+				response.setContentType("image/png");
+			} else if (path.endsWith(".gif")) {
+				response.setContentType("image/gif");
+			}
 			InputStream resourceAsInputStream = pluginContext.getResourceAsInputStream(path);
 			if (resourceAsInputStream != null) {
 				IOUtils.copy(resourceAsInputStream, response.getOutputStream());
