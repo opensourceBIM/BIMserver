@@ -73,7 +73,7 @@ public class RootServlet extends HttpServlet {
 				}
 				if (bimServer.getWebModules() != null) {
 					for (WebModulePlugin webModulePlugin : bimServer.getWebModules()) {
-						if (pathInfo != null && pathInfo.startsWith(webModulePlugin.getContextPath())) {
+						if (pathInfo != null && webModulePlugin != null && pathInfo.startsWith(webModulePlugin.getContextPath())) {
 							if (webModulePlugin.service(request, response)) {
 								return;
 							}
