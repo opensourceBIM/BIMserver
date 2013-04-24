@@ -55,20 +55,20 @@ public class CheckinAction extends Action {
 		boolean sync = !settings.shouldAsync();
 		boolean merge = settings.shouldMerge();
 		virtualUser.getActionResults().setText("Checking in new revision on project " + project.getName() + " (" + fileName + ") " + "sync: " + sync + ", merge: " + merge);
-		long checkinId;
+		long topicId;
 		try {
-			checkinId = virtualUser.getBimServerClient().checkin(project.getOid(), randomString(), suggestedDeserializerForExtension.getOid(), merge, sync, randomFile);
+			topicId = virtualUser.getBimServerClient().checkin(project.getOid(), randomString(), suggestedDeserializerForExtension.getOid(), merge, sync, randomFile);
 			if (sync) {
-				SLongActionState longActionState = virtualUser.getBimServerClient().getService().getLongActionState(checkinId);
+				SLongActionState longActionState = virtualUser.getBimServerClient().getRegistry().getProgress(topicId);
 				if (longActionState.getState() == SActionState.AS_ERROR) {
 					virtualUser.getActionResults().setText("" + longActionState.getErrors());
 				}
-				virtualUser.getBimServerClient().getService().cleanupLongAction(checkinId);
+				virtualUser.getBimServerClient().getService().cleanupLongAction(topicId);
 			} else {
 				while (true) {
-					SLongActionState checkinState = virtualUser.getBimServerClient().getService().getLongActionState(checkinId);
+					SLongActionState checkinState = virtualUser.getBimServerClient().getRegistry().getProgress(topicId);
 					if (checkinState.getState() == SActionState.FINISHED || checkinState.getState() == SActionState.UNKNOWN) {
-						virtualUser.getBimServerClient().getService().cleanupLongAction(checkinId);
+						virtualUser.getBimServerClient().getService().cleanupLongAction(topicId);
 						break;
 					}
 					try {

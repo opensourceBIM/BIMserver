@@ -100,7 +100,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 			@Override
 			public void execute() throws UserException {
-				bimServer.getNotificationsManager().notify(new NewProjectNotification(project.getOid()));
+				bimServer.getNotificationsManager().notify(new NewProjectNotification(bimServer, project.getOid()));
 //				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(newProjectAdded));
 			}
 		});

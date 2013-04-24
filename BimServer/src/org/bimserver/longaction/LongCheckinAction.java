@@ -33,10 +33,12 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongCheckinAction.class);
 	private CheckinDatabaseAction checkinDatabaseAction;
+	private String fileName;
 
 	public LongCheckinAction(BimServer bimServer, String username, String userUsername, Authorization authorization, CheckinDatabaseAction checkinDatabaseAction) {
 		super(bimServer, username, userUsername, authorization);
 		this.checkinDatabaseAction = checkinDatabaseAction;
+		this.fileName = checkinDatabaseAction.getFileName();
 		
 		setProgressTopic(bimServer.getNotificationsManager().createProgressOnProjectTopic(authorization.getUoid(), checkinDatabaseAction.getPoid(), SProgressTopicType.UPLOAD, "Checkin"));
 		checkinDatabaseAction.addProgressListener(this);
@@ -52,9 +54,9 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 				@Override
 				public void progress(int current, int max) {
 					if (count == 0) {
-						updateProgress("Storing data...", current * 100 / max);
+						updateProgress("Checkin of " + fileName, current * 100 / max);
 					} else {
-						updateProgress("Storing data (" + (count + 1) + ")...", current * 100 / max);
+						updateProgress("Checkin of " + fileName + " (" + count + ")", current * 100 / max);
 					}
 				}
 
@@ -75,7 +77,7 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 			session.close();
 			done();
 			if (getActionState() != ActionState.AS_ERROR) {
-				changeActionState(ActionState.FINISHED, "Done", 100);
+				changeActionState(ActionState.FINISHED, "Checkin of " + fileName, 100);
 			}
 		}
 	}

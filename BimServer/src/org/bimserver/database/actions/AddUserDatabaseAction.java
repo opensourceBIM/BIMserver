@@ -144,7 +144,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
 				public void execute() throws UserException {
-					bimServer.getNotificationsManager().notify(new NewUserNotification(user.getOid()));
+					bimServer.getNotificationsManager().notify(new NewUserNotification(bimServer,user.getOid()));
 				}
 			});
 			bimServer.updateUserSettings(getDatabaseSession(), user);

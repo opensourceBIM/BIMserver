@@ -36,6 +36,7 @@ import org.bimserver.notifications.ChangeProgressTopicOnRevisionTopic;
 import org.bimserver.notifications.ChangeProgressTopicOnServerTopic;
 import org.bimserver.notifications.NewRevisionOnSpecificProjectTopic;
 import org.bimserver.notifications.NewRevisionOnSpecificProjectTopicKey;
+import org.bimserver.notifications.ProgressNotification;
 import org.bimserver.notifications.ProgressOnRevisionTopic;
 import org.bimserver.notifications.ProgressTopic;
 import org.bimserver.notifications.TopicRegisterException;
@@ -86,7 +87,9 @@ public class RegistryServiceImpl extends GenericServiceImpl implements RegistryI
 	public void updateProgressTopic(Long topicId, SLongActionState state) throws UserException, ServerException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			getBimServer().getNotificationsManager().getProgressTopic(topicId).updateProgress(getBimServer().getSConverter().convertFromSObject(state, session));
+			ProgressTopic topic = getBimServer().getNotificationsManager().getProgressTopic(topicId);
+			ProgressNotification progressNotification = new ProgressNotification(getBimServer(), topic, getBimServer().getSConverter().convertFromSObject(state, session));
+			getBimServer().getNotificationsManager().addToQueue(progressNotification);
 		} catch (BimserverDatabaseException e) {
 			e.printStackTrace();
 		} finally {

@@ -76,7 +76,7 @@ public class DemoServicePlugin2 extends ServicePlugin {
 					Date startDate = new Date();
 					Long topicId = bimServerClientInterface.getRegistry().registerProgressOnRevisionTopic(SProgressTopicType.RUNNING_SERVICE, poid, roid, "Running Demo Service");
 					SLongActionState state = new SLongActionState();
-					state.setTitle("Doing absolutely nothing...");
+					state.setTitle("Demo Service 2");
 					state.setState(SActionState.STARTED);
 					state.setProgress(-1);
 					state.setStart(startDate);
@@ -90,7 +90,7 @@ public class DemoServicePlugin2 extends ServicePlugin {
 					}
 					state = new SLongActionState();
 					state.setProgress(100);
-					state.setTitle("Doing absolutely nothing...");
+					state.setTitle("Demo Service 2");
 					state.setState(SActionState.FINISHED);
 					state.setStart(startDate);
 					state.setEnd(new Date());

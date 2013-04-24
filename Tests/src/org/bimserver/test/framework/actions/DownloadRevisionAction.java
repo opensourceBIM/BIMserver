@@ -65,19 +65,19 @@ public class DownloadRevisionAction extends Action {
 				boolean sync = nextBoolean();
 				virtualUser.getActionResults().setText("Downloading revision " + project.getLastRevisionId() + " of project " + project.getName() + " with serializer " + serializer.getName() + " sync: " + sync);
 				SRevision revision = virtualUser.getBimServerClient().getService().getRevision(project.getLastRevisionId());
-				long download = virtualUser.getBimServerClient().getService().download(project.getLastRevisionId(), serializer.getOid(), true, sync);
-				SActionState state = virtualUser.getBimServerClient().getService().getLongActionState(download).getState();
+				long topicId = virtualUser.getBimServerClient().getService().download(project.getLastRevisionId(), serializer.getOid(), true, sync);
+				SActionState state = virtualUser.getBimServerClient().getRegistry().getProgress(topicId).getState();
 				while (state != SActionState.FINISHED) {
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 					}
 					virtualUser.getLogger().info("SActionState: " + state);
-					state = virtualUser.getBimServerClient().getService().getLongActionState(download).getState();
+					state = virtualUser.getBimServerClient().getRegistry().getProgress(topicId).getState();
 				}
 				virtualUser.getLogger().info("Done preparing download, downloading");
 				try {
-					InputStream downloadData = virtualUser.getBimServerClient().getDownloadData(download, serializer.getOid());
+					InputStream downloadData = virtualUser.getBimServerClient().getDownloadData(topicId, serializer.getOid());
 					if (downloadData != null) {
 						PluginConfiguration pluginConfiguration = new PluginConfiguration(virtualUser.getBimServerClient().getPlugin().getPluginSettings(serializer.getOid()));
 						String filename = project.getName() + "." + revision.getId() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION);

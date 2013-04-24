@@ -34,6 +34,6 @@ public class Topic {
 	}
 
 	public void unregister(EndPoint endPoint) throws TopicRegisterException {
-		endPoints.remove(endPoint);
+//		endPoints.remove(endPoint);
 	}
 }

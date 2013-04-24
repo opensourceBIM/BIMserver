@@ -360,8 +360,6 @@ public class BimServer {
 				LOGGER.error("", e);
 			}
 			
-			notificationsManager.start();
-
 			serverInfoManager.init(this);
 			serverInfoManager.update();
 

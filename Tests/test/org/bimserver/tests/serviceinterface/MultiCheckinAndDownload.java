@@ -40,10 +40,10 @@ public class MultiCheckinAndDownload extends TestWithEmbeddedServer {
 				SDeserializerPluginConfiguration deserializer = serviceInterface.getSuggestedDeserializerForExtension("ifc");
 				
 				// Checkin
-				Long stateId = serviceInterface.checkin(newProject.getOid(), "test", deserializer.getOid(), ifcFile.length(), ifcFile.getName(), new DataHandler(new FileDataSource(ifcFile)), false, true);
+				Long progressId = serviceInterface.checkin(newProject.getOid(), "test", deserializer.getOid(), ifcFile.length(), ifcFile.getName(), new DataHandler(new FileDataSource(ifcFile)), false, true);
 				
 				// Get the status
-				SLongActionState longActionState = serviceInterface.getLongActionState(stateId);
+				SLongActionState longActionState = bimServerClient.getRegistry().getProgress(progressId);
 				if (longActionState.getState() == SActionState.FINISHED) {
 					// Find a serializer
 					SSerializerPluginConfiguration serializer = bimServerClient.getPlugin().getSerializerByContentType("application/ifc");
@@ -53,7 +53,7 @@ public class MultiCheckinAndDownload extends TestWithEmbeddedServer {
 					
 					// Download the latest revision  (the one we just checked in)
 					Long downloadId = serviceInterface.download(newProject.getLastRevisionId(), serializer.getOid(), true, true);
-					SLongActionState downloadState = serviceInterface.getLongActionState(downloadId);
+					SLongActionState downloadState = bimServerClient.getRegistry().getProgress(downloadId);
 					if (downloadState.getState() == SActionState.FINISHED) {
 						// Success
 						System.out.println("Success");

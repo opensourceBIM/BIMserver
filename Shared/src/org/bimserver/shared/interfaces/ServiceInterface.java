@@ -39,7 +39,6 @@ import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
-import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProject;
@@ -277,16 +276,6 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getDownloadData")
 	SDownloadResult getDownloadData(
 		@WebParam(name = "actionId", partName = "getDownloadData.actionId") Long actionId) throws ServerException, UserException;
-
-	/**
-	 * Get the current state of a download/checkout
-	 * @param actionId The ID returned by a download or checkout method
-	 * @return A SLongActionState object containing details about the download/checkout 
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getLongActionState")
-	SLongActionState getLongActionState(
-		@WebParam(name = "actionId", partName = "getLongActionState.actionId") Long actionId) throws ServerException, UserException;
 
 	/**
 	 * Add a new user

@@ -27,15 +27,21 @@ public class NewProjectNotification extends Notification {
 
 	private long poid;
 
-	public NewProjectNotification(long poid) {
+	public NewProjectNotification(BimServer bimServer, long poid) {
+		super(bimServer);
 		this.poid = poid;
 	}
 	
 	@Override
-	public void process(BimServer bimServer, DatabaseSession session, NotificationsManager notificationsManager) throws BimserverDatabaseException, UserException, ServerException {
-		NewProjectTopic newProjectTopic = notificationsManager.getNewProjectTopic();
-		if (newProjectTopic != null) {
-			newProjectTopic.process(session, poid, this);
+	public void process() throws UserException, ServerException, BimserverDatabaseException {
+		NewProjectTopic newProjectTopic = getBimServer().getNotificationsManager().getNewProjectTopic();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			if (newProjectTopic != null) {
+				newProjectTopic.process(session, poid, this);
+			}
+		} finally {
+			session.close();
 		}
 	}
 }

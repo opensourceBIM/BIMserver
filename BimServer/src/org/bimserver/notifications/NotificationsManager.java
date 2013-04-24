@@ -23,8 +23,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.bimserver.BimServer;
 import org.bimserver.client.BimServerClient;
@@ -34,7 +35,6 @@ import org.bimserver.client.DirectChannel;
 import org.bimserver.client.SimpleTokenHolder;
 import org.bimserver.client.json.JsonChannel;
 import org.bimserver.client.json.JsonSocketReflectorFactory;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.interfaces.objects.SLogAction;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProgressTopicType;
@@ -58,7 +58,7 @@ import org.bimserver.webservices.ServiceMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class NotificationsManager extends Thread implements NotificationsManagerInterface {
+public class NotificationsManager implements NotificationsManagerInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(NotificationsManager.class);
 
 	private final NewRevisionTopic newRevisionTopic = new NewRevisionTopic();
@@ -78,16 +78,14 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	private final Map<ProgressOnRevisionTopicKey, Set<ProgressOnRevisionTopic>> progressOnRevisionTopics = new HashMap<ProgressOnRevisionTopicKey, Set<ProgressOnRevisionTopic>>();
 	private final Map<ProgressOnProjectTopicKey, Set<ProgressOnProjectTopic>> progressOnProjectTopics = new HashMap<ProgressOnProjectTopicKey, Set<ProgressOnProjectTopic>>();
 
-	private final BlockingQueue<Notification> queue = new ArrayBlockingQueue<Notification>(10000);
 	private final Map<String, ServiceDescriptor> internalServices = new HashMap<String, ServiceDescriptor>();
 	private final Map<String, RemoteServiceInterface> internalRemoteServiceInterfaces = new HashMap<String, RemoteServiceInterface>();
 	private final JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private final BimServer bimServer;
-	private volatile boolean running;
 	private String url;
+	private final ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(4, 20, 1, TimeUnit.DAYS, new SynchronousQueue<Runnable>());
 
 	public NotificationsManager(BimServer bimServer, JsonSocketReflectorFactory jsonSocketReflectorFactory) {
-		setName("NotificationsManager");
 		this.jsonSocketReflectorFactory = jsonSocketReflectorFactory;
 		this.bimServer = bimServer;
 	}
@@ -97,39 +95,13 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	}
 	
 	public void notify(SLogAction logAction) {
-		addToQueue(new LogActionNotification(logAction));
+		addToQueue(new LogActionNotification(bimServer, logAction));
 	}
 
 	public void addToQueue(Notification notification) {
-		queue.add(notification);
+		threadPoolExecutor.execute(notification);
 	}
 	
-	@Override
-	public void run() {
-		running = true;
-		try {
-			while (running) {
-				try {
-					Notification notification = queue.take();
-					DatabaseSession session = bimServer.getDatabase().createSession();
-					try {
-						notification.process(bimServer, session, this);
-					} finally {
-						session.close();
-					}
-				} catch (InterruptedException e) {
-					throw e;
-				} catch (Exception e) {
-					LOGGER.error("", e);
-				}
-			}
-		} catch (InterruptedException e) {
-			if (running) {
-				LOGGER.error("", e);
-			}
-		}
-	}
-
 	public void init() {
 		ServerSettings serverSettings = bimServer.getServerSettingsCache().getServerSettings();
 		this.url = serverSettings.getSiteAddress() + "/json";
@@ -161,8 +133,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 	}
 	
 	public void shutdown() {
-		running = false;
-		this.interrupt();
+		threadPoolExecutor.shutdown();
 	}
 
 	@Override
@@ -276,7 +247,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		ProgressTopicKey key = new ProgressTopicKey();
 		ProgressTopic topic = new ProgressTopic(key, uoid, type, description);
 		progressTopicsById.put(key.getId(), topic);
-		addToQueue(new NewProgressTopicOnServerNotification(key.getId()));
+		addToQueue(new NewProgressTopicOnServerNotification(bimServer, key.getId()));
 		return topic;
 	}
 
@@ -292,7 +263,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		ProgressOnProjectTopic topic = new ProgressOnProjectTopic(key, uoid, poid, type, description);
 		progressTopicsById.put(key.getId(), topic);
 		topics.add(topic);
-		addToQueue(new NewProgressTopicOnProjectNotification(poid, key.getId()));
+		addToQueue(new NewProgressTopicOnProjectNotification(bimServer, poid, key.getId()));
 		return topic;
 	}
 
@@ -308,7 +279,7 @@ public class NotificationsManager extends Thread implements NotificationsManager
 		ProgressOnRevisionTopic topic = new ProgressOnRevisionTopic(key, uoid, poid, roid, type, description);
 		progressTopicsById.put(key.getId(), topic);
 		topics.add(topic);
-		addToQueue(new NewProgressTopicOnRevisionNotification(poid, roid, key.getId()));
+		addToQueue(new NewProgressTopicOnRevisionNotification(bimServer, poid, roid, key.getId()));
 		return topic;
 	}
 	
