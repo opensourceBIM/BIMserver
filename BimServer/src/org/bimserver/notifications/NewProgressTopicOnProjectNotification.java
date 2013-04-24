@@ -18,8 +18,6 @@ package org.bimserver.notifications;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -28,7 +26,8 @@ public class NewProgressTopicOnProjectNotification extends Notification {
 	private long topicId;
 	private long poid;
 
-	public NewProgressTopicOnProjectNotification(long poid, long topicId) {
+	public NewProgressTopicOnProjectNotification(BimServer bimServer, long poid, long topicId) {
+		super(bimServer);
 		this.poid = poid;
 		this.topicId = topicId;
 	}
@@ -40,10 +39,15 @@ public class NewProgressTopicOnProjectNotification extends Notification {
 	public long getPoid() {
 		return poid;
 	}
-
-	@Override
-	public void process(BimServer bimServer, DatabaseSession session, NotificationsManager notificationsManager) throws BimserverDatabaseException, UserException, ServerException {
-		ChangeProgressTopicOnProjectTopic changeProgressOnProjectTopic = notificationsManager.getChangeProgressOnProjectTopic(poid);
-		changeProgressOnProjectTopic.notifyOfNewTopic(this);
+	
+	public void process() {
+		ChangeProgressTopicOnProjectTopic changeProgressOnProjectTopic = getBimServer().getNotificationsManager().getChangeProgressOnProjectTopic(poid);
+		try {
+			changeProgressOnProjectTopic.notifyOfNewTopic(this);
+		} catch (UserException e) {
+			e.printStackTrace();
+		} catch (ServerException e) {
+			e.printStackTrace();
+		}
 	}
 }

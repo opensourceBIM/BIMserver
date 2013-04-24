@@ -27,15 +27,21 @@ public class NewUserNotification extends Notification {
 
 	private long uoid;
 
-	public NewUserNotification(long uoid) {
+	public NewUserNotification(BimServer bimServer, long uoid) {
+		super(bimServer);
 		this.uoid = uoid;
 	}
 
 	@Override
-	public void process(BimServer bimServer, DatabaseSession session, NotificationsManager notificationsManager) throws BimserverDatabaseException, UserException, ServerException {
-		NewUserTopic newUserTopic = notificationsManager.getNewUserTopic();
+	public void process() throws UserException, ServerException, BimserverDatabaseException {
+		NewUserTopic newUserTopic = getBimServer().getNotificationsManager().getNewUserTopic();
 		if (newUserTopic != null) {
-			newUserTopic.process(session, uoid, this);
+			DatabaseSession session = getBimServer().getDatabase().createSession();
+			try {
+				newUserTopic.process(session, uoid, this);
+			} finally {
+				session.close();
+			}
 		}
 	}
 }

@@ -64,14 +64,16 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private Project project;
 	private Authorization authorization;
 	private final GeometryCache geometryCache = new GeometryCache();
+	private String fileName;
 
 	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface model,
-			String comment, boolean merge) {
+			String comment, String fileName, boolean merge) {
 		super(databaseSession, accessMethod, model);
 		this.bimServer = bimServer;
 		this.poid = poid;
 		this.authorization = authorization;
 		this.comment = comment;
+		this.fileName = fileName;
 		this.merge = merge;
 	}
 
@@ -146,7 +148,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
 				public void execute() throws UserException {
-					bimServer.getNotificationsManager().notify(new NewRevisionNotification(project.getOid(), revision.getOid()));
+					bimServer.getNotificationsManager().notify(new NewRevisionNotification(bimServer, project.getOid(), revision.getOid()));
 				}
 			});
 
@@ -166,6 +168,10 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		return concreteRevision;
 	}
 
+	public String getFileName() {
+		return fileName;
+	}
+	
 	private IfcModelInterface checkinMerge(Revision lastRevision) throws BimserverLockConflictException, BimserverDatabaseException, UserException {
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		for (ConcreteRevision subRevision : lastRevision.getConcreteRevisions()) {

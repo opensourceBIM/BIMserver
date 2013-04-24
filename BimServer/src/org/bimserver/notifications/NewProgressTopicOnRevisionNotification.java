@@ -18,8 +18,6 @@ package org.bimserver.notifications;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
-import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -29,7 +27,8 @@ public class NewProgressTopicOnRevisionNotification extends Notification {
 	private long roid;
 	private long topicId;
 
-	public NewProgressTopicOnRevisionNotification(long poid, long roid, long topicId) {
+	public NewProgressTopicOnRevisionNotification(BimServer bimServer, long poid, long roid, long topicId) {
+		super(bimServer);
 		this.poid = poid;
 		this.roid = roid;
 		this.topicId = topicId;
@@ -48,12 +47,12 @@ public class NewProgressTopicOnRevisionNotification extends Notification {
 	}
 	
 	@Override
-	public void process(BimServer bimServer, DatabaseSession session, NotificationsManager notificationsManager) throws BimserverDatabaseException, UserException, ServerException {
-		ChangeProgressTopicOnRevisionTopic changeProgressOnRevisionTopic = notificationsManager.getChangeProgressOnRevisionTopic(poid, roid);
+	public void process() throws UserException, ServerException {
+		ChangeProgressTopicOnRevisionTopic changeProgressOnRevisionTopic = getBimServer().getNotificationsManager().getChangeProgressOnRevisionTopic(poid, roid);
 		changeProgressOnRevisionTopic.notifyOfNewTopic(this);
-		ChangeProgressTopicOnProjectTopic changeProgressOnProjectTopic = notificationsManager.getChangeProgressOnProjectTopic(poid);
-		changeProgressOnProjectTopic.notifyOfNewTopic(new NewProgressTopicOnProjectNotification(poid, topicId));
-		ChangeProgressTopicOnServerTopic changeProgressTopicOnServerTopic = notificationsManager.getChangeProgressTopicOnServerTopic();
-		changeProgressTopicOnServerTopic.notifyOfNewTopic(new NewProgressTopicOnServerNotification(topicId));
+		ChangeProgressTopicOnProjectTopic changeProgressOnProjectTopic = getBimServer().getNotificationsManager().getChangeProgressOnProjectTopic(poid);
+		changeProgressOnProjectTopic.notifyOfNewTopic(new NewProgressTopicOnProjectNotification(getBimServer(), poid, topicId));
+		ChangeProgressTopicOnServerTopic changeProgressTopicOnServerTopic = getBimServer().getNotificationsManager().getChangeProgressTopicOnServerTopic();
+		changeProgressTopicOnServerTopic.notifyOfNewTopic(new NewProgressTopicOnServerNotification(getBimServer(), topicId));
 	}
 }

@@ -44,36 +44,43 @@ public class NewRevisionNotification extends Notification {
 	private long poid;
 	private long soid;
 
-	public NewRevisionNotification(long poid, long roid, long soid) {
+	public NewRevisionNotification(BimServer bimServer, long poid, long roid, long soid) {
+		super(bimServer);
 		this.poid = poid;
 		this.roid = roid;
 		this.soid = soid;
 	}
 
-	public NewRevisionNotification(long poid, long roid) {
+	public NewRevisionNotification(BimServer bimServer, long poid, long roid) {
+		super(bimServer);
 		this.poid = poid;
 		this.roid = roid;
 		this.soid = -1;
 	}
 
 	@Override
-	public void process(BimServer bimServer, DatabaseSession session, NotificationsManager notificationsManager) throws BimserverDatabaseException, UserException, ServerException {
-		Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
-		for (Service service : project.getServices()) {
-			if (soid == -1 || service.getOid() == soid) {
-				triggerNewRevision(notificationsManager, bimServer, notificationsManager.getSiteAddress(), project, roid, Trigger.NEW_REVISION, service);
+	public void process() throws BimserverDatabaseException, UserException, ServerException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
+			for (Service service : project.getServices()) {
+				if (soid == -1 || service.getOid() == soid) {
+					triggerNewRevision(getBimServer().getNotificationsManager(), getBimServer(), getBimServer().getNotificationsManager().getSiteAddress(), project, roid, Trigger.NEW_REVISION, service);
+				}
 			}
-		}
-		if (soid == -1) {
-			// Only execute if we are not triggering a specific service with this notification
-			NewRevisionTopic newRevisionTopic = notificationsManager.getNewRevisionTopic();
-			if (newRevisionTopic != null) {
-				newRevisionTopic.process(session, poid, roid, this);
+			if (soid == -1) {
+				// Only execute if we are not triggering a specific service with this notification
+				NewRevisionTopic newRevisionTopic = getBimServer().getNotificationsManager().getNewRevisionTopic();
+				if (newRevisionTopic != null) {
+					newRevisionTopic.process(session, poid, roid, this);
+				}
+				NewRevisionOnSpecificProjectTopic newRevisionOnSpecificProjectTopic = getBimServer().getNotificationsManager().getNewRevisionOnSpecificProjectTopic(new NewRevisionOnSpecificProjectTopicKey(poid));
+				if (newRevisionOnSpecificProjectTopic != null) {
+					newRevisionOnSpecificProjectTopic.process(session, poid, roid, this);
+				}
 			}
-			NewRevisionOnSpecificProjectTopic newRevisionOnSpecificProjectTopic = notificationsManager.getNewRevisionOnSpecificProjectTopic(new NewRevisionOnSpecificProjectTopicKey(poid));
-			if (newRevisionOnSpecificProjectTopic != null) {
-				newRevisionOnSpecificProjectTopic.process(session, poid, roid, this);
-			}
+		} finally {
+			session.close();
 		}
 	}
 	

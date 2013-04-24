@@ -78,7 +78,7 @@ public class DemoServicePlugin1 extends ServicePlugin {
 					for (int i=0; i<100; i++) {
 						SLongActionState state = new SLongActionState();
 						state.setProgress(i);
-						state.setTitle("Doing absolutely nothing...");
+						state.setTitle("Demo Service 1");
 						state.setState(SActionState.STARTED);
 						state.setStart(startDate);
 						bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
@@ -90,7 +90,7 @@ public class DemoServicePlugin1 extends ServicePlugin {
 					}
 					SLongActionState state = new SLongActionState();
 					state.setProgress(100);
-					state.setTitle("Doing absolutely nothing...");
+					state.setTitle("Demo Service 1");
 					state.setState(SActionState.FINISHED);
 					state.setStart(startDate);
 					state.setEnd(new Date());

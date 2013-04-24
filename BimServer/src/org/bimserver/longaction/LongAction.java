@@ -84,7 +84,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 			if (!title.equals(oldTitle)) {
 				stage++;
 			}
-			bimServer.getNotificationsManager().notify(new ProgressNotification(progressTopic, getState()));
+			bimServer.getNotificationsManager().notify(new ProgressNotification(bimServer, progressTopic, getState()));
 		}
 	}
 
@@ -120,7 +120,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 
 	protected void done() {
 		latch.countDown();
-		bimServer.getNotificationsManager().notify(new ProgressNotification(progressTopic, getState()));
+		bimServer.getNotificationsManager().notify(new ProgressNotification(bimServer, progressTopic, getState()));
 	}
 
 	public void waitForCompletion() {
@@ -144,7 +144,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 			if (!title.equals(oldTitle)) {
 				stage ++;
 			}
-			bimServer.getNotificationsManager().notify(new ProgressNotification(progressTopic, getState()));
+			bimServer.getNotificationsManager().notify(new ProgressNotification(bimServer, progressTopic, getState()));
 		}
 	}
 

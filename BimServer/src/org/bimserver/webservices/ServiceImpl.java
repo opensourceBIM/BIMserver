@@ -124,7 +124,6 @@ import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SExtendedDataSchemaType;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SGeoTag;
-import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProject;
@@ -138,7 +137,6 @@ import org.bimserver.interfaces.objects.SUserSettings;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.longaction.CannotBeScheduledException;
 import org.bimserver.longaction.DownloadParameters;
-import org.bimserver.longaction.LongAction;
 import org.bimserver.longaction.LongBranchAction;
 import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.longaction.LongCheckoutAction;
@@ -214,8 +212,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
 			}
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-			fileName = dateFormat.format(new Date()) + "-" + fileName;
-			File file = new File(userDirIncoming, fileName);
+			String cacheFileName = dateFormat.format(new Date()) + "-" + fileName;
+			File file = new File(userDirIncoming, cacheFileName);
 			InputStream inputStream = new MultiplexingInputStream(dataHandler.getInputStream(), new FileOutputStream(file));
 			try {
 				DeserializerPluginConfiguration deserializerObject = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, Query.getDefault());
@@ -228,11 +226,11 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				} catch (PluginException e) {
 					throw new UserException(e);
 				}
-				IfcModelInterface model = deserializer.read(inputStream, fileName, fileSize);
+				IfcModelInterface model = deserializer.read(inputStream, cacheFileName, fileSize);
 				if (model.size() == 0) {
 					throw new DeserializeException("Cannot checkin empty model");
 				}
-				CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, merge);
+				CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
 				LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
 				getBimServer().getLongActionManager().start(longAction);
 				if (sync) {
@@ -304,7 +302,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				if (model.size() == 0) {
 					throw new DeserializeException("Cannot checkin empty model");
 				}
-				CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, merge);
+				CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
 				LongCheckinAction longAction = new LongCheckinAction(getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
 				getBimServer().getLongActionManager().start(longAction);
 				if (sync) {
@@ -622,16 +620,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			return result;
 		} else {
 			throw new UserException("No data found for laid " + actionId);
-		}
-	}
-
-	@Override
-	public SLongActionState getLongActionState(Long actionId) throws ServerException, UserException {
-		LongAction<?> longAction = getBimServer().getLongActionManager().getLongAction(actionId);
-		if (longAction != null) {
-			return getBimServer().getSConverter().convertToSObject(longAction.getState());
-		} else {
-			throw new UserException("No state found for laid " + actionId);
 		}
 	}
 
@@ -1680,7 +1668,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			SExtendedDataAddedToRevision newExtendedData = new SExtendedDataAddedToRevision();
 			newExtendedData.setRevisionId(extendedData.getRevision().getOid());
 			newExtendedData.setExtendedDataId(edid);
-			getBimServer().getNotificationsManager().notify(new NewExtendedDataNotification(edid, soid));
+			getBimServer().getNotificationsManager().notify(new NewExtendedDataNotification(getBimServer(), edid, soid));
 //			getBimServer().getNotificationsManager().triggerNewRevision(getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress(), newExtendedData, extendedData.getRevision().getProject(), extendedData.getRevision().getOid(), Trigger.NEW_EXTENDED_DATA, service);
 		} catch (Exception e) {
 			handleException(e);
@@ -1694,7 +1682,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, Query.getDefault());
-			getBimServer().getNotificationsManager().notify(new NewRevisionNotification(revision.getProject().getOid(), revision.getOid(), soid));
+			getBimServer().getNotificationsManager().notify(new NewRevisionNotification(getBimServer(), revision.getProject().getOid(), revision.getOid(), soid));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
