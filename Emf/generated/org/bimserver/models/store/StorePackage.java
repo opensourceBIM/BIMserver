@@ -588,13 +588,22 @@ public interface StorePackage extends EPackage {
 	int REVISION__LOGS = 13;
 
 	/**
+	 * The feature id for the '<em><b>Service</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION__SERVICE = 14;
+
+	/**
 	 * The feature id for the '<em><b>Has Geometry</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION__HAS_GEOMETRY = 14;
+	int REVISION__HAS_GEOMETRY = 15;
 
 	/**
 	 * The number of structural features of the '<em>Revision</em>' class.
@@ -603,7 +612,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_FEATURE_COUNT = 15;
+	int REVISION_FEATURE_COUNT = 16;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -6479,6 +6488,17 @@ public interface StorePackage extends EPackage {
 	EReference getRevision_Logs();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Revision#getService <em>Service</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Service</em>'.
+	 * @see org.bimserver.models.store.Revision#getService()
+	 * @see #getRevision()
+	 * @generated
+	 */
+	EReference getRevision_Service();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Revision#isHasGeometry <em>Has Geometry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11151,6 +11171,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference REVISION__LOGS = eINSTANCE.getRevision_Logs();
+
+		/**
+		 * The meta object literal for the '<em><b>Service</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REVISION__SERVICE = eINSTANCE.getRevision_Service();
 
 		/**
 		 * The meta object literal for the '<em><b>Has Geometry</b></em>' attribute feature.

@@ -19,6 +19,7 @@ package org.bimserver.database.actions;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -35,7 +36,7 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 
-public class GetAllCheckoutsOfProjectDatabaseAction extends BimDatabaseAction<Set<Checkout>> {
+public class GetAllCheckoutsOfProjectDatabaseAction extends BimDatabaseAction<List<Checkout>> {
 
 	private final long poid;
 	private final boolean checkSubProjects;
@@ -47,7 +48,7 @@ public class GetAllCheckoutsOfProjectDatabaseAction extends BimDatabaseAction<Se
 	}
 
 	@Override
-	public Set<Checkout> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+	public List<Checkout> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Project project = getProjectByPoid(poid);
 		Set<Project> projects = new HashSet<Project>();
 		if (checkSubProjects) {
@@ -57,7 +58,7 @@ public class GetAllCheckoutsOfProjectDatabaseAction extends BimDatabaseAction<Se
 		}
 		Condition condition = new HasReferenceToInCondition(StorePackage.eINSTANCE.getCheckout_Project(), projects);
 		Map<Long, Checkout> query = (Map<Long, Checkout>) getDatabaseSession().query(condition, Checkout.class, Query.getDefault());
-		return CollectionUtils.mapToSet(query);
+		return CollectionUtils.mapToList(query);
 	}
 	
 	private void getSubProjects(Project project, Set<Project> projects) {

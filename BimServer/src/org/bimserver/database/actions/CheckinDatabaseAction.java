@@ -42,6 +42,7 @@ import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.Service;
 import org.bimserver.models.store.User;
 import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.plugins.IfcModelSet;
@@ -50,6 +51,7 @@ import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.shared.IncrementingOidProvider;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
+import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -119,6 +121,15 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 
 			concreteRevision.setSummary(new SummaryMap(getModel()).toRevisionSummary(getDatabaseSession()));
 
+			// If this revision is being created by an external service, store a link to the service in the revision
+			if (authorization instanceof ExplicitRightsAuthorization) {
+				ExplicitRightsAuthorization explicitRightsAuthorization = (ExplicitRightsAuthorization)authorization;
+				if (explicitRightsAuthorization.getSoid() != -1) {
+					Service service = getDatabaseSession().get(explicitRightsAuthorization.getSoid(), Query.getDefault());
+					revision.setService(service);
+				}
+			}
+			
 			newRevisionAdded.setRevision(revision);
 			newRevisionAdded.setProject(project);
 			newRevisionAdded.setAccessMethod(getAccessMethod());

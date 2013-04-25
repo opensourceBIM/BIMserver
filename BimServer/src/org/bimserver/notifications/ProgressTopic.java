@@ -20,17 +20,20 @@ package org.bimserver.notifications;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SProgressTopicType;
+import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.LongActionState;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
 public class ProgressTopic extends Topic {
 
+	private static final int RATE_LIMIT_NANO_SECONDS = 400000000; // 400ms
 	private long uoid;
 	private SProgressTopicType type;
 	private String description;
 	private ProgressTopicKey key;
 	private LongActionState lastProgress;
+	private long lastSent = -1;
 
 	public ProgressTopic(ProgressTopicKey key, long uoid, SProgressTopicType type, String description) {
 		this.key = key;
@@ -38,24 +41,27 @@ public class ProgressTopic extends Topic {
 		this.type = type;
 		this.description = description;
 	}
-	
+
 	public ProgressTopicKey getKey() {
 		return key;
 	}
-	
-	public void updateProgress(LongActionState state) {
+
+	public synchronized void updateProgress(LongActionState state) {
 		lastProgress = state;
-		for (EndPoint endPoint : getEndPoints()) {
-			try {
-				endPoint.getNotificationInterface().progress(key.getId(), new SConverter().convertToSObject(state));
-			} catch (UserException e) {
-				e.printStackTrace();
-			} catch (ServerException e) {
-				e.printStackTrace();
+		if (lastSent == -1 || System.nanoTime() - lastSent > RATE_LIMIT_NANO_SECONDS || state.getProgress() == 100 || state.getState() == ActionState.FINISHED || state.getState() == ActionState.AS_ERROR) {
+			for (EndPoint endPoint : getEndPoints()) {
+				try {
+					endPoint.getNotificationInterface().progress(key.getId(), new SConverter().convertToSObject(state));
+				} catch (UserException e) {
+					e.printStackTrace();
+				} catch (ServerException e) {
+					e.printStackTrace();
+				}
 			}
+			lastSent = System.nanoTime();
 		}
 	}
-	
+
 	public LongActionState getLastProgress() {
 		return lastProgress;
 	}

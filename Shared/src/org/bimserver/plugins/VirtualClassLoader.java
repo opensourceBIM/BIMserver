@@ -45,6 +45,11 @@ public class VirtualClassLoader extends ClassLoader {
 	}
 
 	@Override
+	protected synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
+		return super.loadClass(name, resolve);
+	}
+	
+	@Override
 	protected Class<?> findClass(String name) throws ClassNotFoundException {
 		VirtualFile virtualFile = baseDir.getClass(name);
 		if (virtualFile != null) {

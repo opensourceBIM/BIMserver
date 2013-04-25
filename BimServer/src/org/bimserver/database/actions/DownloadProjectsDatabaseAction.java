@@ -38,7 +38,6 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
-import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.exceptions.UserException;
@@ -52,7 +51,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 	private final ObjectIDM objectIDM;
 	private long serializerOid;
 
-	public DownloadProjectsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, long serializerOid, Authorization authorization, ObjectIDM objectIDM, Reporter reporter) {
+	public DownloadProjectsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, long serializerOid, Authorization authorization, ObjectIDM objectIDM) {
 		super(databaseSession, accessMethod, authorization);
 		this.bimServer = bimServer;
 		this.roids = roids;

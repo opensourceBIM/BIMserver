@@ -151,8 +151,6 @@ service ServiceInterface {
 
 	rpc getGeoTag (GetGeoTagRequest) returns (GetGeoTagResponse);
 
-	rpc getLongActionState (GetLongActionStateRequest) returns (GetLongActionStateResponse);
-
 	rpc getOidByGuid (GetOidByGuidRequest) returns (GetOidByGuidResponse);
 
 	rpc getProjectByPoid (GetProjectByPoidRequest) returns (GetProjectByPoidResponse);
@@ -547,11 +545,6 @@ message CompareRequest {
 	optional int64 mcid = 4;
 }
 
-message SObjectAdded {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
 message SObjectRemoved {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
@@ -565,10 +558,9 @@ message SObjectModified {
 	optional string fieldName = 5;
 }
 
-message SListDataValue {
-	repeated SDataValue values = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
+message SObjectAdded {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
 }
 
 message SReferenceDataValue {
@@ -576,6 +568,12 @@ message SReferenceDataValue {
 	optional string typeName = 2;
 	optional int32 rid = 3;
 	optional int64 oid = 4;
+}
+
+message SListDataValue {
+	repeated SDataValue values = 1;
+	optional int32 rid = 2;
+	optional int64 oid = 3;
 }
 
 message SSimpleDataValue {
@@ -586,8 +584,8 @@ message SSimpleDataValue {
 
 message SDataValue {
 	required string __actual_type = 1;
-	optional SListDataValue __SListDataValue = 2;
-	optional SReferenceDataValue __SReferenceDataValue = 3;
+	optional SReferenceDataValue __SReferenceDataValue = 2;
+	optional SListDataValue __SListDataValue = 3;
 	optional SSimpleDataValue __SSimpleDataValue = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
@@ -605,9 +603,9 @@ message SDataObject {
 
 message SCompareItem {
 	required string __actual_type = 1;
-	optional SObjectAdded __SObjectAdded = 2;
-	optional SObjectRemoved __SObjectRemoved = 3;
-	optional SObjectModified __SObjectModified = 4;
+	optional SObjectRemoved __SObjectRemoved = 2;
+	optional SObjectModified __SObjectModified = 3;
+	optional SObjectAdded __SObjectAdded = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 	optional SDataObject dataObject = 7;
@@ -1152,34 +1150,6 @@ message SGeoTag {
 message GetGeoTagResponse {
 	optional string errorMessage = 1;
 	optional SGeoTag value = 2;
-}
-
-message GetLongActionStateRequest {
-	optional int64 actionId = 1;
-}
-
-enum SActionState{
-	SActionState_UNKNOWN = 0;
-	SActionState_STARTED = 1;
-	SActionState_AS_ERROR = 2;
-	SActionState_FINISHED = 3;
-}
-
-message SLongActionState {
-	optional int32 progress = 1;
-	optional string title = 2;
-	repeated string infos = 3;
-	repeated string errors = 4;
-	optional int32 rid = 5;
-	optional int64 oid = 6;
-	optional SActionState state = 7;
-	optional int32 stage = 8;
-	repeated string warnings = 9;
-}
-
-message GetLongActionStateResponse {
-	optional string errorMessage = 1;
-	optional SLongActionState value = 2;
 }
 
 message GetOidByGuidRequest {

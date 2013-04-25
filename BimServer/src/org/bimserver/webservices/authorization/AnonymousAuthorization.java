@@ -27,11 +27,7 @@ public class AnonymousAuthorization extends Authorization {
 		super(expires, expiresUnit);
 	}
 	
-	public AnonymousAuthorization(long expires) {
-		super(expires);
-	}
-	
-	public AnonymousAuthorization() {
+	private AnonymousAuthorization() {
 		super();
 	}
 

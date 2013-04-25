@@ -1324,8 +1324,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getRevision_Service() {
+		return (EReference) getRevision().getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getRevision_HasGeometry() {
-		return (EAttribute) getRevision().getEStructuralFeatures().get(14);
+		return (EAttribute) getRevision().getEStructuralFeatures().get(15);
 	}
 
 	/**

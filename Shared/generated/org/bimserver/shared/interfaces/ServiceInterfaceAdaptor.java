@@ -268,10 +268,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SLongActionState getLongActionState(java.lang.Long actionId) throws UserException, ServerException {
-		return null;
-	}
-	
 	public java.lang.Long getOidByGuid(java.lang.Long roid, java.lang.String guid) throws UserException, ServerException {
 		return null;
 	}

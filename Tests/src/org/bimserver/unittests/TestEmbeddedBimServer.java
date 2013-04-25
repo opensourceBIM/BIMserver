@@ -39,7 +39,6 @@ import org.bimserver.models.ifc2x3tc1.IfcWall;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.plugins.PluginException;
-import org.bimserver.plugins.VoidReporter;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.AdminInterface;
@@ -160,7 +159,7 @@ public class TestEmbeddedBimServer {
 			}
 			if (firstProjectWithRevisions != null) {
 				long roid = firstProjectWithRevisions.getLastRevisionId();
-				DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, -1, -1, ((ServiceImpl)service).getAuthorization(), null, new VoidReporter());
+				DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, session, AccessMethod.INTERNAL, roid, -1, -1, ((ServiceImpl)service).getAuthorization(), null);
 				IfcModelInterface ifcModelInterface = downloadDatabaseAction.execute();
 				for (IfcWall ifcWall : ifcModelInterface.getAllWithSubTypes(IfcWall.class)) {
 					System.out.println(ifcWall.getName());

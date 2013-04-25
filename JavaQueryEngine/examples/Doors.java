@@ -10,7 +10,7 @@ package org.bimserver.jqep;
 
 import java.io.PrintWriter;
 
-import org.bimserver.plugins.QueryEngineHelper;
+import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.emf.IfcModelInterface;
 import java.util.*;
@@ -21,7 +21,7 @@ public class Query implements QueryInterface {
 	private IfcModelInterface model;
 
 	@Override
-	public void query(IfcModelInterface source, IfcModelInterface dest, Reporter reporter, QueryEngineHelper queryEngineHelper) {
+	public void query(IfcModelInterface source, IfcModelInterface dest, Reporter reporter, ModelHelper modelHelper) {
 		reporter.info("Running doors example");
         List<IfcBuildingStorey> stories = source.getAll(IfcBuildingStorey.class);
         Map<Double, IfcBuildingStorey> orderedStories = new TreeMap<Double, IfcBuildingStorey>();

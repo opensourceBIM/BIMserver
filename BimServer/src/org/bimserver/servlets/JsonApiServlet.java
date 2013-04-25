@@ -36,8 +36,6 @@ import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SServicesMap;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -72,27 +70,15 @@ public class JsonApiServlet extends SubServlet {
 	}
 
 	private void handleRequest(HttpServletRequest httpRequest, HttpServletResponse response, BimServer bimServer) {
+		response.setCharacterEncoding("UTF-8");
 		try {
-			response.setCharacterEncoding("UTF-8");
 			JsonReader reader = new JsonReader(httpRequest.getReader());
 			JsonParser parser = new JsonParser();
-			JsonObject request = (JsonObject) parser.parse(reader);		response.setHeader("Content-Type", "application/json");
-
+			JsonObject request = (JsonObject) parser.parse(reader);		
+			response.setHeader("Content-Type", "application/json");
 			bimServer.getJsonHandler().execute(request, httpRequest, response.getWriter());
-		} catch (Exception e) {
-			sendException(response, e);
-		}
-	}
-
-	private void sendException(HttpServletResponse response, Exception exception) {
-		try {
-			JSONObject responseObject = new JSONObject();
-			JSONObject exceptionJson = new JSONObject();
-			exceptionJson.put("message", exception.getMessage());
-			responseObject.put("exception", exceptionJson);
-			responseObject.write(response.getWriter());
-		} catch (JSONException e) {
 		} catch (IOException e) {
+			LOGGER.error("", e);
 		}
 	}
 

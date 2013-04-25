@@ -352,7 +352,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			if (serializerPluginConfiguration == null) {
 				throw new UserException("No serializer with id " + serializerOid + " could be found");
 			}
-			if (!serializerPluginConfiguration.getClassName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializer") && !serializerPluginConfiguration.getClassName().equals("org.bimserver.ifc.xml.serializer.IfcXmlSerializer")) {
+			if (!serializerPluginConfiguration.getClassName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin") && !serializerPluginConfiguration.getClassName().equals("org.bimserver.ifc.xml.serializer.IfcXmlSerializerPlugin")) {
 				throw new UserException("Only IFC or IFCXML allowed when checking out");
 			}
 			DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), roid, serializerOid, -1);
@@ -474,8 +474,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			BimDatabaseAction<Set<Checkout>> action = new GetAllCheckoutsOfProjectDatabaseAction(session, getInternalAccessMethod(), poid, false);
-			return getBimServer().getSConverter().convertToSListCheckout(session.executeAndCommitAction(action));
+			BimDatabaseAction<List<Checkout>> action = new GetAllCheckoutsOfProjectDatabaseAction(session, getInternalAccessMethod(), poid, false);
+			List<Checkout> list = session.executeAndCommitAction(action);
+			Collections.sort(list, new CheckoutComparator());
+			return getBimServer().getSConverter().convertToSListCheckout(list);
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -488,8 +490,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			BimDatabaseAction<Set<Checkout>> action = new GetAllCheckoutsOfProjectDatabaseAction(session, getInternalAccessMethod(), poid, true);
-			return getBimServer().getSConverter().convertToSListCheckout(session.executeAndCommitAction(action));
+			BimDatabaseAction<List<Checkout>> action = new GetAllCheckoutsOfProjectDatabaseAction(session, getInternalAccessMethod(), poid, true);
+			List<Checkout> list = session.executeAndCommitAction(action);
+			Collections.sort(list, new CheckoutComparator());
+			return getBimServer().getSConverter().convertToSListCheckout(list);
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -518,8 +522,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			BimDatabaseAction<Set<Checkout>> action = new GetAllCheckoutsByUserDatabaseAction(session, getInternalAccessMethod(), uoid);
-			return getBimServer().getSConverter().convertToSListCheckout(session.executeAndCommitAction(action));
+			BimDatabaseAction<List<Checkout>> action = new GetAllCheckoutsByUserDatabaseAction(session, getInternalAccessMethod(), uoid);
+			List<Checkout> list = session.executeAndCommitAction(action);
+			Collections.sort(list, new CheckoutComparator());
+			return getBimServer().getSConverter().convertToSListCheckout(list);
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -562,8 +568,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			BimDatabaseAction<Set<Checkout>> action = new GetAllCheckoutsOfRevisionDatabaseAction(session, getInternalAccessMethod(), roid);
-			return getBimServer().getSConverter().convertToSListCheckout(session.executeAndCommitAction(action));
+			BimDatabaseAction<List<Checkout>> action = new GetAllCheckoutsOfRevisionDatabaseAction(session, getInternalAccessMethod(), roid);
+			List<Checkout> list = session.executeAndCommitAction(action);
+			Collections.sort(list, new CheckoutComparator());
+			return getBimServer().getSConverter().convertToSListCheckout(list);
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -1692,7 +1700,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	
 	@Override
 	public String shareRevision(Long roid) throws UserException, ServerException {
-		ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(getCurrentUser().getOid(), roid, -1, -1, -1);
+		ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(getCurrentUser().getOid(), -1, roid, -1, -1, -1);
 		return authorization.asHexToken(getBimServer().getEncryptionKey());
 	}
 	

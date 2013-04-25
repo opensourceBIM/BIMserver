@@ -39,7 +39,6 @@ import org.bimserver.models.store.ObjectIDMPluginConfiguration;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.shared.exceptions.UserException;
@@ -99,31 +98,30 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 		}
 		
 		session = getBimServer().getDatabase().createSession();
-		Reporter reporter = this;
 		switch (downloadParameters.getDownloadType()) {
 		case DOWNLOAD_REVISION:
-			action = new DownloadDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getIgnoreUoid(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM, reporter);
+			action = new DownloadDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getIgnoreUoid(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM);
 			break;
 		case DOWNLOAD_BY_OIDS:
-			action = new DownloadByOidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getOids(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM, reporter, downloadParameters.getDeep());
+			action = new DownloadByOidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getOids(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM, downloadParameters.getDeep());
 			break;
 		case DOWNLOAD_BY_GUIDS:
-			action = new DownloadByGuidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getGuids(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM, reporter, downloadParameters.getDeep());
+			action = new DownloadByGuidsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getGuids(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM, downloadParameters.getDeep());
 			break;
 		case DOWNLOAD_BY_NAMES:
-			action = new DownloadByNamesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getNames(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM, reporter, downloadParameters.getDeep());
+			action = new DownloadByNamesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getNames(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM, downloadParameters.getDeep());
 			break;
 		case DOWNLOAD_OF_TYPE:
-			action = new DownloadByTypesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getClassNames(), downloadParameters.getSerializerOid(), downloadParameters.isIncludeAllSubtypes(), downloadParameters.getUseObjectIDM(), getAuthorization(), objectIDM, reporter, downloadParameters.getDeep());
+			action = new DownloadByTypesDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getClassNames(), downloadParameters.getSerializerOid(), downloadParameters.isIncludeAllSubtypes(), downloadParameters.getUseObjectIDM(), getAuthorization(), objectIDM, downloadParameters.getDeep());
 			break;
 		case DOWNLOAD_PROJECTS:
-			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM, reporter);
+			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM);
 			break;
 		case DOWNLOAD_COMPARE:
-			action = new DownloadCompareDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getModelCompareIdentifier(), downloadParameters.getCompareType(), getAuthorization(), objectIDM, reporter);
+			action = new DownloadCompareDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getModelCompareIdentifier(), downloadParameters.getCompareType(), getAuthorization(), objectIDM);
 			break;
 		case DOWNLOAD_QUERY:
-			action = new DownloadQueryDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getQeid(), downloadParameters.getSerializerOid(), downloadParameters.getCode(), getAuthorization(), objectIDM, reporter);
+			action = new DownloadQueryDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoid(), downloadParameters.getQeid(), downloadParameters.getSerializerOid(), downloadParameters.getCode(), getAuthorization(), objectIDM);
 			break;
 		}
 		action.addProgressListener(this);

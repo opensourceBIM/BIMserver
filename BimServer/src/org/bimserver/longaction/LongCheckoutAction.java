@@ -20,6 +20,7 @@ package org.bimserver.longaction;
 import org.bimserver.BimServer;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.CheckoutDatabaseAction;
+import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.shared.exceptions.UserException;
@@ -32,6 +33,7 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 
 	public LongCheckoutAction(BimServer bimServer, String username, String userUsername, DownloadParameters downloadParameters, Authorization authorization, AccessMethod accessMethod) {
 		super(bimServer, username, userUsername, downloadParameters, accessMethod, authorization);
+		setProgressTopic(bimServer.getNotificationsManager().createProgressTopic(authorization.getUoid(), SProgressTopicType.DOWNLOAD, "Download"));
 	}
 
 	@Override
@@ -46,7 +48,10 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 				LOGGER.error("", e);
 			}
 		} finally {
-			session.close();
+			if (session != null) {
+				session.close();
+			}
+			updateProgress("Done", 100);
 			changeActionState(ActionState.FINISHED, "Checkout finished", 100);
 		}
 	}
@@ -59,6 +64,7 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 	@Override
 	public void init() {
 		session = getBimServer().getDatabase().createSession();
-		action = new CheckoutDatabaseAction(session, accessMethod, getAuthorization(), downloadParameters.getRoid());
+		action = new CheckoutDatabaseAction(getBimServer(), session, accessMethod, getAuthorization(), downloadParameters.getRoid(), downloadParameters.getSerializerOid());
+		action.addProgressListener(this);
 	}
 }
