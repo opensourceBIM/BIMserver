@@ -2429,6 +2429,8 @@ public class SConverter {
 			listlogs.add(v.getOid());
 		}
 		result.setLogs(listlogs);
+		Service serviceVal = input.getService();
+		result.setServiceId(serviceVal == null ? -1 : serviceVal.getOid());
 		return result;
 	}
 	public Revision convertFromSObject(SRevision input, DatabaseSession session) throws BimserverDatabaseException {
@@ -2471,6 +2473,7 @@ public class SConverter {
 		for (long oid : input.getLogs()) {
 			listlogs.add((LogAction)session.get(LogPackage.eINSTANCE.getLogAction(), oid, Query.getDefault()));
 		}
+		result.setService((Service)session.get(StorePackage.eINSTANCE.getService(), input.getServiceId(), Query.getDefault()));
 		return result;
 	}
 

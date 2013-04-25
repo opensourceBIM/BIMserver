@@ -24,4 +24,8 @@ public class CompileException extends Exception {
 	public CompileException(String message) {
 		super(message);
 	}
+
+	public CompileException(Exception e) {
+		super(e);
+	}
 }

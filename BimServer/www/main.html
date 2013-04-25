@@ -109,7 +109,7 @@ function Main(address, username) {
 
 	this.showProjects = function(callback, alterState) {
 		othis.changePage($(".projectsLink"), "projects.html", function(){
-			othis.current = new Projects(othis);
+			othis.current = new Projects($(this), othis);
 			othis.current.show(alterState);
 			if (alterState) {
 				pushHistory({page: "Projects"});
@@ -165,7 +165,7 @@ function Main(address, username) {
 	
 	this.showProject = function(project, callback, alterState) {
 		othis.changePage($(".projectsLink"), "project.html", function(){
-			othis.current = new Project(othis, project);
+			othis.current = new Project($(this), othis, project);
 			othis.current.show();
 			if (alterState) {
 				pushHistory({page: "Project", "poid": typeof project == "object" ? project.oid : project});

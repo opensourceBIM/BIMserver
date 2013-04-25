@@ -95,31 +95,22 @@ public class JavaQueryEngine implements QueryEngine {
 //		options.add("7");
 
 		DiagnosticCollector<JavaFileObject> diagnosticsCollector = new DiagnosticCollector<JavaFileObject>();
-		boolean success = true;
 		compiler.getTask(null, myFileManager, diagnosticsCollector, options, null, compilationUnits).call();
 		List<Diagnostic<? extends JavaFileObject>> diagnostics = diagnosticsCollector.getDiagnostics();
 		for (Diagnostic<? extends JavaFileObject> d : diagnostics) {
 			if (d.getKind() == Kind.ERROR) {
-				success = false;
 				throw new CompileException(d.getMessage(Locale.ENGLISH));
 			} else if (d.getKind() == Kind.WARNING) {
 				throw new CompileException(d.getMessage(Locale.ENGLISH));
 			}
 		}
-		if (success) {
-			VirtualClassLoader loader = new VirtualClassLoader(classLoader, baseDir);
-			try {
-				Class<?> loadClass = loader.loadClass("org.bimserver.jqep.Query");
-				QueryInterface newInstance = (QueryInterface) loadClass.newInstance();
-				return newInstance;
-			} catch (ClassNotFoundException e) {
-				LOGGER.error("", e);
-			} catch (InstantiationException e) {
-				LOGGER.error("", e);
-			} catch (IllegalAccessException e) {
-				LOGGER.error("", e);
-			}
+		VirtualClassLoader loader = new VirtualClassLoader(classLoader, baseDir);
+		try {
+			Class<?> loadClass = loader.loadClass("org.bimserver.jqep.Query");
+			QueryInterface newInstance = (QueryInterface) loadClass.newInstance();
+			return newInstance;
+		} catch (Exception e) {
+			throw new CompileException(e);
 		}
-		return null;
 	}
 }

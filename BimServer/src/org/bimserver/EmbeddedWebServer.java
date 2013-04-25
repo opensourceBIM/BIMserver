@@ -17,7 +17,7 @@ package org.bimserver;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.security.SecureRandom;
+import java.util.Random;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.nio.SelectChannelConnector;
@@ -33,7 +33,7 @@ public class EmbeddedWebServer {
 
 	public EmbeddedWebServer(BimServer bimServer, boolean localDev) {
 		server = new Server();
-		HashSessionIdManager hashSessionIdManager = new HashSessionIdManager(new SecureRandom());
+		HashSessionIdManager hashSessionIdManager = new HashSessionIdManager(new Random()); // Should be SecureRandom, but this makes startup slow on certain systems
 		server.setSessionIdManager(hashSessionIdManager);
 		SelectChannelConnector socketConnector = new SelectChannelConnector();
 		socketConnector.setPort(bimServer.getConfig().getPort());

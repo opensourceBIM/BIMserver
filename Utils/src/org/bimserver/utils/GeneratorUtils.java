@@ -21,8 +21,9 @@ import java.security.SecureRandom;
 import java.util.Random;
 
 public class GeneratorUtils {
+	private static Random random = new SecureRandom();
+	
 	public static final String generateToken() {
-		Random random = new SecureRandom();
 		String result = Long.toHexString(random.nextLong()) + Long.toHexString(random.nextLong()) + Long.toHexString(random.nextLong());
 		result = result.substring(0, 32);
 		return result.toUpperCase();

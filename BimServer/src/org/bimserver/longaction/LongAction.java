@@ -60,6 +60,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 		this.userUsername = userUsername;
 		this.username = username;
 		this.bimServer = bimServer;
+		this.actionState = ActionState.STARTED;
 	}
 
 	public void setProgressTopic(ProgressTopic progressTopic) {

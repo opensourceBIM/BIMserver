@@ -29,7 +29,6 @@ import org.bimserver.models.store.CompareType;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.VoidReporter;
 import org.bimserver.plugins.modelcompare.ModelCompareException;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.shared.exceptions.UserException;
@@ -78,8 +77,8 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 											// roid2, sCompareType,
 											// sCompareIdentifier);
 		if (compareResults == null) {
-			IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, -1, serializerOid, authorization, null, new VoidReporter()).execute();
-			IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, -1, serializerOid, authorization, null, new VoidReporter()).execute();
+			IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, -1, serializerOid, authorization, null).execute();
+			IfcModelInterface model2 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid2, -1, serializerOid, authorization, null).execute();
 			try {
 				compareResults =  getModelCompare().compare(model1, model2, sCompareType);
 			} catch (ModelCompareException e) {

@@ -22,38 +22,46 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
 import org.bimserver.database.Query.Deep;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Checkout;
+import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.plugins.IfcModelSet;
+import org.bimserver.plugins.ModelHelper;
+import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 
-public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
+public class CheckoutDatabaseAction extends AbstractDownloadDatabaseAction<IfcModel> {
 
 	private final long roid;
-	private int progress;
-	private Authorization authorization;
+	private BimServer bimServer;
+	private long serializerOid;
 
-	public CheckoutDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long roid) {
-		super(databaseSession, accessMethod);
-		this.authorization = authorization;
+	public CheckoutDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long roid, long serializerOid) {
+		super(databaseSession, accessMethod, authorization);
+		this.bimServer = bimServer;
 		this.roid = roid;
+		this.serializerOid = serializerOid;
 	}
 
 	@Override
 	public IfcModel execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-		User user = getUserByUoid(authorization.getUoid());
+		User user = getUserByUoid(getAuthorization().getUoid());
 		Revision revision = getRevisionByRoid(roid);
 		Project project = revision.getProject();
 		if (user.getHasRightsOn().contains(project)) {
@@ -91,26 +99,49 @@ public class CheckoutDatabaseAction extends BimDatabaseAction<IfcModel> {
 		}
 	}
 
-	private IfcModel realCheckout(Project project, Revision revision, DatabaseSession databaseSession, User user) throws BimserverLockConflictException, BimserverDatabaseException {
+	private IfcModel realCheckout(Project project, Revision revision, DatabaseSession databaseSession, User user) throws BimserverLockConflictException, BimserverDatabaseException, UserException {
+		SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, Query.getDefault());
 		final long totalSize = revision.getSize();
 		final AtomicLong total = new AtomicLong();
-		IfcModel ifcModel = new IfcModel();
-		ifcModel.addChangeListener(new IfcModelChangeListener() {
-			@Override
-			public void objectAdded() {
-				total.incrementAndGet();
-				progress = Math.round(100L * total.get() / totalSize);
+		
+		IfcModelSet ifcModelSet = new IfcModelSet();
+		for (ConcreteRevision subRevision : revision.getConcreteRevisions()) {
+			IfcModel subModel = new IfcModel();
+			int highestStopId = findHighestStopRid(project, subRevision);
+			Query query = new Query(subRevision.getProject().getId(), subRevision.getId(), null, Deep.YES, highestStopId);
+			subModel.addChangeListener(new IfcModelChangeListener() {
+				@Override
+				public void objectAdded() {
+					total.incrementAndGet();
+					if (totalSize == 0) {
+						setProgress("Preparing checkout...", 0);
+					} else {
+						setProgress("Preparing checkout...", Math.round(100L * total.get() / totalSize));
+					}
+				}
+			});
+			getDatabaseSession().getMap(subModel, query);
+			checkGeometry(serializerPluginConfiguration, bimServer.getPluginManager(), subModel, project, subRevision, revision);
+			subModel.getModelMetaData().setDate(subRevision.getDate());
+			ifcModelSet.add(subModel);
+		}
+		
+		IfcModelInterface ifcModel;
+		if (ifcModelSet.size() > 1) {
+			try {
+				ifcModel = bimServer.getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid())
+						.merge(revision.getProject(), ifcModelSet, new ModelHelper());
+			} catch (MergeException e) {
+				throw new UserException(e);
 			}
-		});
-		databaseSession.getMap(ifcModel, new Query(project.getId(), revision.getLastConcreteRevision().getId(), Deep.YES));
+		} else {
+			ifcModel = ifcModelSet.iterator().next();
+		}
+		
 		ifcModel.getModelMetaData().setName(project.getName() + "." + revision.getId());
 		ifcModel.getModelMetaData().setRevisionId(project.getRevisions().indexOf(revision) + 1);
 		ifcModel.getModelMetaData().setAuthorizedUser(user.getName());
 		ifcModel.getModelMetaData().setDate(new Date());
-		return ifcModel;
-	}
-	
-	public int getProgress() {
-		return progress;
+		return (IfcModel) ifcModel;
 	}
 }

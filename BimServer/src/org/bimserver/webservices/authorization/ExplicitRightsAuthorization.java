@@ -28,9 +28,11 @@ public class ExplicitRightsAuthorization extends Authorization {
 	private long writeProjectPoid = -1;
 	private long readExtendedDataRoid = -1;
 	private long writeExtendedDataRoid = -1;
+	private long soid;
 
-	public ExplicitRightsAuthorization(long uoid, long readRevisionRoid, long writeProjectPoid, long readExtendedDataRoid, long writeExtendedDataRoid) {
+	public ExplicitRightsAuthorization(long uoid, long soid, long readRevisionRoid, long writeProjectPoid, long readExtendedDataRoid, long writeExtendedDataRoid) {
 		super(1, TimeUnit.HOURS);
+		this.soid = soid;
 		this.setUoid(uoid);
 		this.setReadRevisionRoid(readRevisionRoid);
 		this.setWriteProjectPoid(writeProjectPoid);
@@ -38,8 +40,12 @@ public class ExplicitRightsAuthorization extends Authorization {
 		this.setWriteExtendedDataRoid(writeExtendedDataRoid);
 	}
 	
-	public ExplicitRightsAuthorization() {
+	private ExplicitRightsAuthorization() {
 		super();
+	}
+	
+	public long getSoid() {
+		return soid;
 	}
 	
 	public void canDownload(long roid) throws UserException {
@@ -69,11 +75,16 @@ public class ExplicitRightsAuthorization extends Authorization {
 	public static ExplicitRightsAuthorization fromBuffer(ByteBuffer buffer) {
 		ExplicitRightsAuthorization explicitRightsAuthorization = new ExplicitRightsAuthorization();
 		explicitRightsAuthorization.setUoid(buffer.getLong());
+		explicitRightsAuthorization.setSoid(buffer.getLong());
 		explicitRightsAuthorization.setReadRevisionRoid(buffer.getLong());
 		explicitRightsAuthorization.setWriteProjectPoid(buffer.getLong());
 		explicitRightsAuthorization.setReadExtendedDataRoid(buffer.getLong());
 		explicitRightsAuthorization.setWriteExtendedDataRoid(buffer.getLong());
 		return explicitRightsAuthorization;
+	}
+
+	private void setSoid(long soid) {
+		this.soid = soid;
 	}
 
 	public byte getId() {
@@ -82,12 +93,13 @@ public class ExplicitRightsAuthorization extends Authorization {
 	
 	@Override
 	protected int getBufferSize() {
-		return 40;
+		return 48;
 	}
 
 	@Override
 	public void getBytes(ByteBuffer buffer) {
 		buffer.putLong(getUoid());
+		buffer.putLong(getSoid());
 		buffer.putLong(getReadRevisionRoid());
 		buffer.putLong(getWriteProjectPoid());
 		buffer.putLong(getReadExtendedDataRoid());

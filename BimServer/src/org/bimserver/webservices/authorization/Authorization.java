@@ -40,8 +40,7 @@ import org.slf4j.LoggerFactory;
 
 public abstract class Authorization {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Authorization.class);
-
-	private GregorianCalendar expires = new GregorianCalendar();
+	private final GregorianCalendar expires = new GregorianCalendar();
 	private long uoid = -1;
 
 	public Authorization(int expires, TimeUnit expiresUnit) {
@@ -49,10 +48,6 @@ public abstract class Authorization {
 	}
 	
 	public Authorization() {
-	}
-
-	public Authorization(long expires) {
-		this.expires.setTimeInMillis(expires);
 	}
 
 	public GregorianCalendar getExpires() {

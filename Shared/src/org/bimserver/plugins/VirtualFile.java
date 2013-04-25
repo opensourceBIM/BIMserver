@@ -402,7 +402,7 @@ public class VirtualFile implements JavaFileObject {
 
 	public VirtualFile getClass(String name) {
 		if (name.contains(".")) {
-			return files.get(name.substring(0, name.indexOf("."))).get(name.substring(name.indexOf(".") + 1));
+			return files.get(name.substring(0, name.indexOf("."))).getClass(name.substring(name.indexOf(".") + 1));
 		}
 		return files.get(name + ".class");
 	}

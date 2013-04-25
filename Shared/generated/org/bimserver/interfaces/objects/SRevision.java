@@ -46,6 +46,7 @@ public class SRevision implements SDataBase
 	private java.lang.Integer bmi;
 	private List<Long> extendedData = new ArrayList<Long>();
 	private List<Long> logs = new ArrayList<Long>();
+	private long serviceId = -1;
 	private boolean hasGeometry;
 
 	public long getOid() {
@@ -116,6 +117,9 @@ public class SRevision implements SDataBase
 		if (sField.getName().equals("logs")) {
 			return getLogs();
 		}
+		if (sField.getName().equals("serviceId")) {
+			return getServiceId();
+		}
 		if (sField.getName().equals("hasGeometry")) {
 			return isHasGeometry();
 		}
@@ -184,6 +188,10 @@ public class SRevision implements SDataBase
 		}
 		if (sField.getName().equals("logs")) {
 			setLogs((List<Long>)val);
+			return;
+		}
+		if (sField.getName().equals("serviceId")) {
+			setServiceId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("hasGeometry")) {
@@ -311,6 +319,14 @@ public class SRevision implements SDataBase
 
 	public void setLogs(List<Long> logs) {
 		this.logs = logs;
+	}
+	
+	public long getServiceId() {
+		return serviceId;
+	}
+
+	public void setServiceId(long serviceId) {
+		this.serviceId = serviceId;
 	}
 	
 	public boolean isHasGeometry() {

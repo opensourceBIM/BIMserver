@@ -228,12 +228,7 @@ parameters (2&.org.bimserver.pb.SParameterDefinition"m
 errorMessage (	2
 value (2#.org.bimserver.pb.SObjectDefinition"(
 GetPluginSettingsRequest
-poid ("O
-
-SArrayType'
-values (2.org.bimserver.pb.SType
-rid (
-oid ("6
+poid ("6
 SStringType
 rid (
 oid (
@@ -241,11 +236,7 @@ SArrayType'
 	SLongType
 rid (
 oid (
-value ("9
-SByteArrayType
-rid (
-oid (
-value ("6
+value ("6
 SDoubleType
 rid (
 oid (
@@ -253,21 +244,30 @@ SArrayType'
 SBooleanType
 rid (
 oid (
-value ("Ó
+value ("9
+SByteArrayType
+rid (
+oid (
+value ("Ó
 SPrimitiveType
 __actual_type (	4
 __SStringType (2.org.bimserver.pb.SStringType0
-__SLongType (2.org.bimserver.pb.SLongType:
-__SByteArrayType (2 .org.bimserver.pb.SByteArrayType4
-__SDoubleType (2.org.bimserver.pb.SDoubleType6
-__SBooleanType (2.org.bimserver.pb.SBooleanType
+__SLongType (2.org.bimserver.pb.SLongType4
+__SDoubleType (2.org.bimserver.pb.SDoubleType6
+__SBooleanType (2.org.bimserver.pb.SBooleanType:
+__SByteArrayType (2 .org.bimserver.pb.SByteArrayType
 rid (
-oid ("Þ
+oid ("O
+
+SArrayType'
+values (2.org.bimserver.pb.SType
+rid (
+oid ("Þ
 SType
-__actual_type (	2
-__SArrayType (2.org.bimserver.pb.SArrayType4
-__SObjectType (2.org.bimserver.pb.SObjectType:
-__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType
+__actual_type (	:
+__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType2
+__SArrayType (2.org.bimserver.pb.SArrayType4
+__SObjectType (2.org.bimserver.pb.SObjectType
 rid (
 oid ("\
 

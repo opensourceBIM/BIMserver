@@ -111,6 +111,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="extendedData" upperBound="-1"
         eType="#//ExtendedData" eOpposite="#//ExtendedData/revision"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="logs" upperBound="-1" eType="ecore:EClass log#//LogAction"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="service" eType="#//Service"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasGeometry" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConcreteRevision">

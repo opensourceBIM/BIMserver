@@ -28,11 +28,7 @@ public class SystemAuthorization extends Authorization {
 		super(expires, expiresUnit);
 	}
 
-	public SystemAuthorization(long expires) {
-		super(expires);
-	}
-	
-	public SystemAuthorization() {
+	private SystemAuthorization() {
 		super();
 	}
 	

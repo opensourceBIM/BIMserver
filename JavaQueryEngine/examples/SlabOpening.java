@@ -46,7 +46,7 @@ import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3tc1.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcSlab;
-import org.bimserver.plugins.QueryEngineHelper;
+import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.emf.IfcModelInterface;
 
@@ -54,7 +54,7 @@ public class Query implements QueryInterface {
 
 	@SuppressWarnings("rawtypes")
 	@Override
-	public void query(IfcModelInterface source, IfcModelInterface dest, Reporter reporter, QueryEngineHelper queryEngineHelper) {
+	public void query(IfcModelInterface source, IfcModelInterface dest, Reporter reporter, ModelHelper modelHelper) {
 
 		/*
 		 * Checking how many element quantity is present in the given model. To

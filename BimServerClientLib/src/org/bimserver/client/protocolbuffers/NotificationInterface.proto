@@ -102,6 +102,27 @@ message NewUserRequest {
 	optional int64 uoid = 1;
 }
 
+enum SActionState{
+	SActionState_UNKNOWN = 0;
+	SActionState_STARTED = 1;
+	SActionState_AS_ERROR = 2;
+	SActionState_FINISHED = 3;
+}
+
+message SLongActionState {
+	optional int32 progress = 1;
+	optional string title = 2;
+	repeated string infos = 3;
+	repeated string errors = 4;
+	optional int64 start = 5;
+	optional int32 rid = 6;
+	optional int64 oid = 7;
+	optional SActionState state = 8;
+	optional int32 stage = 9;
+	repeated string warnings = 10;
+	optional int64 end = 11;
+}
+
 message ProgressRequest {
 	optional int64 topicId = 1;
 	optional SLongActionState state = 2;

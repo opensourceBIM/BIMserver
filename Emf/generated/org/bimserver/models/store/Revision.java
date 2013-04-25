@@ -44,6 +44,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Revision#getBmi <em>Bmi</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getExtendedData <em>Extended Data</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getLogs <em>Logs</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Revision#getService <em>Service</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#isHasGeometry <em>Has Geometry</em>}</li>
  * </ul>
  * </p>
@@ -387,6 +388,32 @@ public interface Revision extends IdEObject {
 	 * @generated
 	 */
 	EList<LogAction> getLogs();
+
+	/**
+	 * Returns the value of the '<em><b>Service</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Service</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Service</em>' reference.
+	 * @see #setService(Service)
+	 * @see org.bimserver.models.store.StorePackage#getRevision_Service()
+	 * @model
+	 * @generated
+	 */
+	Service getService();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Revision#getService <em>Service</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Service</em>' reference.
+	 * @see #getService()
+	 * @generated
+	 */
+	void setService(Service value);
 
 	/**
 	 * Returns the value of the '<em><b>Has Geometry</b></em>' attribute.

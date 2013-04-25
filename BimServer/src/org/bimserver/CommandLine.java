@@ -39,7 +39,6 @@ import org.bimserver.models.ifc2x3tc1.IfcSlab;
 import org.bimserver.models.ifc2x3tc1.IfcWall;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.plugins.Reporter;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.slf4j.Logger;
@@ -79,18 +78,7 @@ public class CommandLine extends Thread {
 						long roid = Long.parseLong(line.substring(9).trim());
 						DatabaseSession databaseSession = bimServer.getDatabase().createSession();	
 						try {
-							DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, roid, -1, -1, new SystemAuthorization(1, TimeUnit.HOURS), null, new Reporter(){
-								@Override
-								public void error(String error) {
-								}
-
-								@Override
-								public void info(String info) {
-								}
-								
-								@Override
-								public void warning(String warning) {
-								}});
+							DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, roid, -1, -1, new SystemAuthorization(1, TimeUnit.HOURS), null);
 							IfcModelInterface model = downloadDatabaseAction.execute();
 							LOGGER.info("Model size: " + model.size());
 							

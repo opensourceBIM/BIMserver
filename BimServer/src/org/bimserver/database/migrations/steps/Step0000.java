@@ -804,8 +804,10 @@ public class Step0000 extends Migration {
 		schema.createEEnumLiteral(progressTopicType, "UPLOAD");
 		schema.createEEnumLiteral(progressTopicType, "RUNNING_SERVICE");
 		schema.createEEnumLiteral(progressTopicType, "BRANCH");
+		
+		schema.createEReference(revisionClass, "service", service, Multiplicity.SINGLE);
 	}
-	
+
 	private void createSIPrefixEnum() {
 		siPrefixEnum = schema.createEEnum(storePackage, "SIPrefix");
 		schema.createEEnumLiteral(siPrefixEnum, "meter", 0);
