@@ -31,6 +31,7 @@ import org.bimserver.interfaces.objects.SQueryEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServicePluginDescriptor;
+import org.bimserver.interfaces.objects.SWebModulePluginDescriptor;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.ObjectType;
@@ -47,6 +48,7 @@ import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
+import org.bimserver.plugins.web.WebModulePlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -67,6 +69,14 @@ public class SerializerFactory {
 		List<SSerializerPluginDescriptor> descriptors = new ArrayList<SSerializerPluginDescriptor>();
 		for (SerializerPlugin serializerPlugin : pluginManager.getAllSerializerPlugins(true)) {
 			descriptors.add(makeSerializerDescriptor(serializerPlugin));
+		}
+		return descriptors;
+	}
+
+	public List<SWebModulePluginDescriptor> getAllWebModulePluginDescriptors() {
+		List<SWebModulePluginDescriptor> descriptors = new ArrayList<SWebModulePluginDescriptor>();
+		for (WebModulePlugin webModulePlugin : pluginManager.getAllWebPlugins(true)) {
+			descriptors.add(makeWebModuleDescriptor(webModulePlugin));
 		}
 		return descriptors;
 	}
@@ -132,6 +142,13 @@ public class SerializerFactory {
 		SSerializerPluginDescriptor descriptor = new SSerializerPluginDescriptor();
 		descriptor.setDefaultName(serializerPlugin.getDefaultName());
 		descriptor.setPluginClassName(serializerPlugin.getClass().getName());
+		return descriptor;
+	}
+
+	private SWebModulePluginDescriptor makeWebModuleDescriptor(WebModulePlugin webModulePlugin) {
+		SWebModulePluginDescriptor descriptor = new SWebModulePluginDescriptor();
+		descriptor.setDefaultName(webModulePlugin.getDefaultName());
+		descriptor.setPluginClassName(webModulePlugin.getClass().getName());
 		return descriptor;
 	}
 

@@ -58,7 +58,11 @@ import org.bimserver.database.actions.GetSerializerByContentTypeDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByIdDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByNameDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByPluginClassNameDatabaseAction;
+import org.bimserver.database.actions.GetWebModuleByIdDatabaseAction;
+import org.bimserver.database.actions.GetWebModuleByNameDatabaseAction;
+import org.bimserver.database.actions.ServerSettingsSetter;
 import org.bimserver.database.actions.SetPluginSettingsDatabaseAction;
+import org.bimserver.database.actions.SetServerSettingDatabaseAction;
 import org.bimserver.database.actions.SetUserSettingDatabaseAction;
 import org.bimserver.database.actions.UpdateDatabaseAction;
 import org.bimserver.database.actions.UpdateDeserializerDatabaseAction;
@@ -87,6 +91,8 @@ import org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServicePluginDescriptor;
+import org.bimserver.interfaces.objects.SWebModulePluginConfiguration;
+import org.bimserver.interfaces.objects.SWebModulePluginDescriptor;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
@@ -96,8 +102,10 @@ import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.SerializerPluginConfiguration;
+import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserSettings;
+import org.bimserver.models.store.WebModulePluginConfiguration;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -228,6 +236,12 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 
 	@Override
+	public List<SWebModulePluginDescriptor> getAllWebModulePluginDescriptors() throws UserException {
+		requireRealUserAuthentication();
+		return getBimServer().getSerializerFactory().getAllWebModulePluginDescriptors();
+	}
+	
+	@Override
 	public void deleteObjectIDM(Long ifid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -275,6 +289,20 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByNameDatabaseAction(session, getInternalAccessMethod(), serializerName)));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public SWebModulePluginConfiguration getWebModuleByName(String name) throws ServerException, UserException {
+		requireAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetWebModuleByNameDatabaseAction(session, getInternalAccessMethod(), name)));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -722,6 +750,23 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 	
 	@Override
+	public List<SWebModulePluginConfiguration> getAllWebModules(Boolean onlyEnabled) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			EList<WebModulePluginConfiguration> webModules = getBimServer().getServerSettingsCache().getServerSettings().getWebModules();
+			List<SWebModulePluginConfiguration> serializers = getBimServer().getSConverter().convertToSListWebModulePluginConfiguration(webModules);
+			Collections.sort(serializers, new SPluginConfigurationComparator());
+			return serializers;
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+	
+	@Override
 	public void addSerializer(SSerializerPluginConfiguration serializer) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -800,6 +845,12 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		}
 	}
 
+	public SWebModulePluginConfiguration getDefaultWebModule() throws ServerException, UserException {
+		requireRealUserAuthentication();
+		WebModulePluginConfiguration defaultWebModule = getBimServer().getServerSettingsCache().getServerSettings().getWebModule();
+		return getBimServer().getSConverter().convertToSObject(defaultWebModule);
+	}
+
 	public SObjectIDMPluginConfiguration getDefaultObjectIDM() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -851,6 +902,24 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 				@Override
 				public void set(UserSettings userSettings) {
 					userSettings.setDefaultQueryEngine(find(userSettings.getQueryengines(), oid));
+				}});
+			session.executeAndCommitAction(action);
+		} catch (BimserverDatabaseException e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	public void setDefaultWebModule(final Long oid) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			final WebModulePluginConfiguration defaultWebModule = session.get(StorePackage.eINSTANCE.getWebModulePluginConfiguration(), oid, Query.getDefault());
+			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter(){
+				@Override
+				public void set(ServerSettings serverSettings) {
+					serverSettings.setWebModule(defaultWebModule);
 				}});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
@@ -959,6 +1028,20 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
+		} catch (Exception e) {
+			handleException(e);
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public SWebModulePluginConfiguration getWebModuleById(Long oid) throws ServerException, UserException {
+		requireAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetWebModuleByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {

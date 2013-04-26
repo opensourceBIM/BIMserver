@@ -1,5 +1,5 @@
 
-ï†
+È¨
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoNotificationInterface.protoRemoteServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoLowLevelInterface.proto"b
 AddDeserializerRequestH
 deserializer (22.org.bimserver.pb.SDeserializerPluginConfiguration"q
@@ -134,7 +134,20 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"(
 %GetAllServicePluginDescriptorsRequest"y
 &GetAllServicePluginDescriptorsResponse
 errorMessage (	9
-value (2*.org.bimserver.pb.SServicePluginDescriptor"
+value (2*.org.bimserver.pb.SServicePluginDescriptor")
+'GetAllWebModulePluginDescriptorsRequest"}
+(GetAllWebModulePluginDescriptorsResponse
+errorMessage (	;
+value (2,.org.bimserver.pb.SWebModulePluginDescriptor".
+GetAllWebModulesRequest
+onlyEnabled ("S
+SWebModulePluginConfiguration
+serverSettingsId (
+rid (
+oid ("p
+GetAllWebModulesResponse
+errorMessage (	>
+value (2/.org.bimserver.pb.SWebModulePluginConfiguration"
 GetDefaultModelCompareRequest"y
 GetDefaultModelCompareResponse
 errorMessage (	A
@@ -158,7 +171,11 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"(
 GetDefaultSerializerRequest"u
 GetDefaultSerializerResponse
 errorMessage (	?
-value (20.org.bimserver.pb.SSerializerPluginConfiguration")
+value (20.org.bimserver.pb.SSerializerPluginConfiguration"
+GetDefaultWebModuleRequest"s
+GetDefaultWebModuleResponse
+errorMessage (	>
+value (2/.org.bimserver.pb.SWebModulePluginConfiguration")
 GetDeserializerByIdRequest
 oid ("v
 GetDeserializerByIdResponse
@@ -236,11 +253,7 @@ parameters (2&.org.bimserver.pb.SParameterDefinition"m
 	SLongType
 rid (
 oid (
-value ("6
-SDoubleType
-rid (
-oid (
-value ("7
+value ("7
 SBooleanType
 rid (
 oid (
@@ -248,14 +261,18 @@ parameters (2&.org.bimserver.pb.SParameterDefinition"m
 SByteArrayType
 rid (
 oid (
-value ("”
+value ("6
+SDoubleType
+rid (
+oid (
+value ("”
 SPrimitiveType
 __actual_type (	4
 __SStringType (2.org.bimserver.pb.SStringType0
-__SLongType (2.org.bimserver.pb.SLongType4
-__SDoubleType (2.org.bimserver.pb.SDoubleType6
-__SBooleanType (2.org.bimserver.pb.SBooleanType:
-__SByteArrayType (2 .org.bimserver.pb.SByteArrayType
+__SLongType (2.org.bimserver.pb.SLongType6
+__SBooleanType (2.org.bimserver.pb.SBooleanType:
+__SByteArrayType (2 .org.bimserver.pb.SByteArrayType4
+__SDoubleType (2.org.bimserver.pb.SDoubleType
 rid (
 oid ("O
 
@@ -265,9 +282,9 @@ SArrayType'
 oid ("ﬁ
 SType
 __actual_type (	:
-__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType2
-__SArrayType (2.org.bimserver.pb.SArrayType4
-__SObjectType (2.org.bimserver.pb.SObjectType
+__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType4
+__SObjectType (2.org.bimserver.pb.SObjectType2
+__SArrayType (2.org.bimserver.pb.SArrayType
 rid (
 oid ("\
 
@@ -329,7 +346,17 @@ $GetSerializerPluginDescriptorRequest
 type (	"{
 %GetSerializerPluginDescriptorResponse
 errorMessage (	<
-value (2-.org.bimserver.pb.SSerializerPluginDescriptor"1
+value (2-.org.bimserver.pb.SSerializerPluginDescriptor"&
+GetWebModuleByIdRequest
+oid ("p
+GetWebModuleByIdResponse
+errorMessage (	>
+value (2/.org.bimserver.pb.SWebModulePluginConfiguration")
+GetWebModuleByNameRequest
+name (	"r
+GetWebModuleByNameResponse
+errorMessage (	>
+value (2/.org.bimserver.pb.SWebModulePluginConfiguration"1
 HasActiveSerializerRequest
 contentType (	"B
 HasActiveSerializerResponse
@@ -346,6 +373,8 @@ $GetSerializerPluginDescriptorRequest
 SetDefaultRenderEngineRequest
 oid ("*
 SetDefaultSerializerRequest
+oid (")
+SetDefaultWebModuleRequest
 oid ("Y
 SetPluginSettingsRequest
 poid (/
@@ -372,7 +401,7 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*ö
 SPrimitiveEnum_DOUBLE
 SPrimitiveEnum_BOOLEAN
 SPrimitiveEnum_STRING
-SPrimitiveEnum_BYTE_ARRAY2¨A
+SPrimitiveEnum_BYTE_ARRAY2ËF
 PluginInterface[
 addDeserializer(.org.bimserver.pb.AddDeserializerRequest.org.bimserver.pb.VoidResponsea
 addInternalService+.org.bimserver.pb.AddInternalServiceRequest.org.bimserver.pb.VoidResponse[
@@ -404,13 +433,16 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*ö
 getAllRenderEngines,.org.bimserver.pb.GetAllRenderEnginesRequest-.org.bimserver.pb.GetAllRenderEnginesResponseú
 !getAllSerializerPluginDescriptors:.org.bimserver.pb.GetAllSerializerPluginDescriptorsRequest;.org.bimserver.pb.GetAllSerializerPluginDescriptorsResponsel
 getAllSerializers*.org.bimserver.pb.GetAllSerializersRequest+.org.bimserver.pb.GetAllSerializersResponseì
-getAllServicePluginDescriptors7.org.bimserver.pb.GetAllServicePluginDescriptorsRequest8.org.bimserver.pb.GetAllServicePluginDescriptorsResponse{
+getAllServicePluginDescriptors7.org.bimserver.pb.GetAllServicePluginDescriptorsRequest8.org.bimserver.pb.GetAllServicePluginDescriptorsResponseô
+ getAllWebModulePluginDescriptors9.org.bimserver.pb.GetAllWebModulePluginDescriptorsRequest:.org.bimserver.pb.GetAllWebModulePluginDescriptorsResponsei
+getAllWebModules).org.bimserver.pb.GetAllWebModulesRequest*.org.bimserver.pb.GetAllWebModulesResponse{
 getDefaultModelCompare/.org.bimserver.pb.GetDefaultModelCompareRequest0.org.bimserver.pb.GetDefaultModelCompareResponsex
 getDefaultModelMerger..org.bimserver.pb.GetDefaultModelMergerRequest/.org.bimserver.pb.GetDefaultModelMergerResponser
 getDefaultObjectIDM,.org.bimserver.pb.GetDefaultObjectIDMRequest-.org.bimserver.pb.GetDefaultObjectIDMResponsex
 getDefaultQueryEngine..org.bimserver.pb.GetDefaultQueryEngineRequest/.org.bimserver.pb.GetDefaultQueryEngineResponse{
 getDefaultRenderEngine/.org.bimserver.pb.GetDefaultRenderEngineRequest0.org.bimserver.pb.GetDefaultRenderEngineResponseu
 getDefaultSerializer-.org.bimserver.pb.GetDefaultSerializerRequest..org.bimserver.pb.GetDefaultSerializerResponser
+getDefaultWebModule,.org.bimserver.pb.GetDefaultWebModuleRequest-.org.bimserver.pb.GetDefaultWebModuleResponser
 getDeserializerById,.org.bimserver.pb.GetDeserializerByIdRequest-.org.bimserver.pb.GetDeserializerByIdResponsex
 getDeserializerByName..org.bimserver.pb.GetDeserializerByNameRequest/.org.bimserver.pb.GetDeserializerByNameResponse{
 getInternalServiceById/.org.bimserver.pb.GetInternalServiceByIdRequest0.org.bimserver.pb.GetInternalServiceByIdResponser
@@ -430,14 +462,17 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*ö
 getSerializerById*.org.bimserver.pb.GetSerializerByIdRequest+.org.bimserver.pb.GetSerializerByIdResponser
 getSerializerByName,.org.bimserver.pb.GetSerializerByNameRequest-.org.bimserver.pb.GetSerializerByNameResponseì
 getSerializerByPluginClassName7.org.bimserver.pb.GetSerializerByPluginClassNameRequest8.org.bimserver.pb.GetSerializerByPluginClassNameResponseê
-getSerializerPluginDescriptor6.org.bimserver.pb.GetSerializerPluginDescriptorRequest7.org.bimserver.pb.GetSerializerPluginDescriptorResponser
+getSerializerPluginDescriptor6.org.bimserver.pb.GetSerializerPluginDescriptorRequest7.org.bimserver.pb.GetSerializerPluginDescriptorResponsei
+getWebModuleById).org.bimserver.pb.GetWebModuleByIdRequest*.org.bimserver.pb.GetWebModuleByIdResponseo
+getWebModuleByName+.org.bimserver.pb.GetWebModuleByNameRequest,.org.bimserver.pb.GetWebModuleByNameResponser
 hasActiveSerializer,.org.bimserver.pb.HasActiveSerializerRequest-.org.bimserver.pb.HasActiveSerializerResponsei
 setDefaultModelCompare/.org.bimserver.pb.SetDefaultModelCompareRequest.org.bimserver.pb.VoidResponseg
 setDefaultModelMerger..org.bimserver.pb.SetDefaultModelMergerRequest.org.bimserver.pb.VoidResponsec
 setDefaultObjectIDM,.org.bimserver.pb.SetDefaultObjectIDMRequest.org.bimserver.pb.VoidResponseg
 setDefaultQueryEngine..org.bimserver.pb.SetDefaultQueryEngineRequest.org.bimserver.pb.VoidResponsei
 setDefaultRenderEngine/.org.bimserver.pb.SetDefaultRenderEngineRequest.org.bimserver.pb.VoidResponsee
-setDefaultSerializer-.org.bimserver.pb.SetDefaultSerializerRequest.org.bimserver.pb.VoidResponse_
+setDefaultSerializer-.org.bimserver.pb.SetDefaultSerializerRequest.org.bimserver.pb.VoidResponsec
+setDefaultWebModule,.org.bimserver.pb.SetDefaultWebModuleRequest.org.bimserver.pb.VoidResponse_
 setPluginSettings*.org.bimserver.pb.SetPluginSettingsRequest.org.bimserver.pb.VoidResponsea
 updateDeserializer+.org.bimserver.pb.UpdateDeserializerRequest.org.bimserver.pb.VoidResponseg
 updateInternalService..org.bimserver.pb.UpdateInternalServiceRequest.org.bimserver.pb.VoidResponsea

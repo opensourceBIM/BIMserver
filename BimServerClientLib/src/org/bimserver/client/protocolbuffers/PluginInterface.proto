@@ -93,6 +93,10 @@ service PluginInterface {
 
 	rpc getAllServicePluginDescriptors (GetAllServicePluginDescriptorsRequest) returns (GetAllServicePluginDescriptorsResponse);
 
+	rpc getAllWebModulePluginDescriptors (GetAllWebModulePluginDescriptorsRequest) returns (GetAllWebModulePluginDescriptorsResponse);
+
+	rpc getAllWebModules (GetAllWebModulesRequest) returns (GetAllWebModulesResponse);
+
 	rpc getDefaultModelCompare (GetDefaultModelCompareRequest) returns (GetDefaultModelCompareResponse);
 
 	rpc getDefaultModelMerger (GetDefaultModelMergerRequest) returns (GetDefaultModelMergerResponse);
@@ -104,6 +108,8 @@ service PluginInterface {
 	rpc getDefaultRenderEngine (GetDefaultRenderEngineRequest) returns (GetDefaultRenderEngineResponse);
 
 	rpc getDefaultSerializer (GetDefaultSerializerRequest) returns (GetDefaultSerializerResponse);
+
+	rpc getDefaultWebModule (GetDefaultWebModuleRequest) returns (GetDefaultWebModuleResponse);
 
 	rpc getDeserializerById (GetDeserializerByIdRequest) returns (GetDeserializerByIdResponse);
 
@@ -145,6 +151,10 @@ service PluginInterface {
 
 	rpc getSerializerPluginDescriptor (GetSerializerPluginDescriptorRequest) returns (GetSerializerPluginDescriptorResponse);
 
+	rpc getWebModuleById (GetWebModuleByIdRequest) returns (GetWebModuleByIdResponse);
+
+	rpc getWebModuleByName (GetWebModuleByNameRequest) returns (GetWebModuleByNameResponse);
+
 	rpc hasActiveSerializer (HasActiveSerializerRequest) returns (HasActiveSerializerResponse);
 
 	rpc setDefaultModelCompare (SetDefaultModelCompareRequest) returns (VoidResponse);
@@ -158,6 +168,8 @@ service PluginInterface {
 	rpc setDefaultRenderEngine (SetDefaultRenderEngineRequest) returns (VoidResponse);
 
 	rpc setDefaultSerializer (SetDefaultSerializerRequest) returns (VoidResponse);
+
+	rpc setDefaultWebModule (SetDefaultWebModuleRequest) returns (VoidResponse);
 
 	rpc setPluginSettings (SetPluginSettingsRequest) returns (VoidResponse);
 
@@ -418,6 +430,29 @@ message GetAllServicePluginDescriptorsResponse {
 	repeated SServicePluginDescriptor value = 2;
 }
 
+message GetAllWebModulePluginDescriptorsRequest {
+}
+
+message GetAllWebModulePluginDescriptorsResponse {
+	optional string errorMessage = 1;
+	repeated SWebModulePluginDescriptor value = 2;
+}
+
+message GetAllWebModulesRequest {
+	optional bool onlyEnabled = 1;
+}
+
+message SWebModulePluginConfiguration {
+	optional int64 serverSettingsId = 1;
+	optional int32 rid = 2;
+	optional int64 oid = 3;
+}
+
+message GetAllWebModulesResponse {
+	optional string errorMessage = 1;
+	repeated SWebModulePluginConfiguration value = 2;
+}
+
 message GetDefaultModelCompareRequest {
 }
 
@@ -464,6 +499,14 @@ message GetDefaultSerializerRequest {
 message GetDefaultSerializerResponse {
 	optional string errorMessage = 1;
 	optional SSerializerPluginConfiguration value = 2;
+}
+
+message GetDefaultWebModuleRequest {
+}
+
+message GetDefaultWebModuleResponse {
+	optional string errorMessage = 1;
+	optional SWebModulePluginConfiguration value = 2;
 }
 
 message GetDeserializerByIdRequest {
@@ -607,12 +650,6 @@ message SLongType {
 	optional int64 value = 3;
 }
 
-message SDoubleType {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional double value = 3;
-}
-
 message SBooleanType {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
@@ -625,13 +662,19 @@ message SByteArrayType {
 	optional bytes value = 3;
 }
 
+message SDoubleType {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional double value = 3;
+}
+
 message SPrimitiveType {
 	required string __actual_type = 1;
 	optional SStringType __SStringType = 2;
 	optional SLongType __SLongType = 3;
-	optional SDoubleType __SDoubleType = 4;
-	optional SBooleanType __SBooleanType = 5;
-	optional SByteArrayType __SByteArrayType = 6;
+	optional SBooleanType __SBooleanType = 4;
+	optional SByteArrayType __SByteArrayType = 5;
+	optional SDoubleType __SDoubleType = 6;
 	optional int32 rid = 7;
 	optional int64 oid = 8;
 }
@@ -645,8 +688,8 @@ message SArrayType {
 message SType {
 	required string __actual_type = 1;
 	optional SPrimitiveType __SPrimitiveType = 2;
-	optional SArrayType __SArrayType = 3;
-	optional SObjectType __SObjectType = 4;
+	optional SObjectType __SObjectType = 3;
+	optional SArrayType __SArrayType = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 }
@@ -751,6 +794,24 @@ message GetSerializerPluginDescriptorResponse {
 	optional SSerializerPluginDescriptor value = 2;
 }
 
+message GetWebModuleByIdRequest {
+	optional int64 oid = 1;
+}
+
+message GetWebModuleByIdResponse {
+	optional string errorMessage = 1;
+	optional SWebModulePluginConfiguration value = 2;
+}
+
+message GetWebModuleByNameRequest {
+	optional string name = 1;
+}
+
+message GetWebModuleByNameResponse {
+	optional string errorMessage = 1;
+	optional SWebModulePluginConfiguration value = 2;
+}
+
 message HasActiveSerializerRequest {
 	optional string contentType = 1;
 }
@@ -781,6 +842,10 @@ message SetDefaultRenderEngineRequest {
 }
 
 message SetDefaultSerializerRequest {
+	optional int64 oid = 1;
+}
+
+message SetDefaultWebModuleRequest {
 	optional int64 oid = 1;
 }
 
