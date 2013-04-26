@@ -1,5 +1,5 @@
 
-έλ
+πλ
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -209,16 +209,16 @@ parentPoid ("a
 roid1 (
 roid2 (4
 sCompareType (2.org.bimserver.pb.SCompareType
-mcid ("*
-SObjectRemoved
-rid (
-oid ("b
+mcid ("b
 SObjectModified
 newValue (	
 rid (
 oid (
 oldValue (	
-	fieldName (	"(
+	fieldName (	"*
+SObjectRemoved
+rid (
+oid ("(
 SObjectAdded
 rid (
 oid ("O
@@ -252,9 +252,9 @@ SDataValue
 name (	
 type (	"¤
 SCompareItem
-__actual_type (	:
-__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved<
-__SObjectModified (2!.org.bimserver.pb.SObjectModified6
+__actual_type (	<
+__SObjectModified (2!.org.bimserver.pb.SObjectModified:
+__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved6
 __SObjectAdded (2.org.bimserver.pb.SObjectAdded
 rid (
 oid (1
@@ -369,7 +369,7 @@ classNames (	
 errorMessage (	&
 value (2.org.bimserver.pb.SUser",
 GetAllCheckoutsByUserRequest
-uoid ("µ
+uoid ("Θ
 	SRevision
 hasGeometry (
 lastConcreteRevisionId (
@@ -383,13 +383,14 @@ classNames (	
 
 id
  (
-extendedData (
-rid (
-oid (
-userId (
-comment (	
-	lastError (	
-	checkouts ("Ρ
+extendedData (
+	serviceId (
+rid (
+oid (
+userId (
+comment (	
+	lastError (	
+	checkouts ("Ρ
 	SCheckout,
 checkin (2.org.bimserver.pb.SRevision-
 revision (2.org.bimserver.pb.SRevision

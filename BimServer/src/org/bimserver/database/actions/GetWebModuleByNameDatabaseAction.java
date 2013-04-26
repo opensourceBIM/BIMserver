@@ -1,7 +1,7 @@
-package org.bimserver.jqep;
+package org.bimserver.database.actions;
 
 /******************************************************************************
- * Copyright (C) 2009-2012  BIMserver.org
+ * Copyright (C) 2009-2013  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -17,11 +17,14 @@ package org.bimserver.jqep;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.emf.IfcModelInterfaceException;
-import org.bimserver.plugins.ModelHelper;
-import org.bimserver.plugins.Reporter;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.WebModulePluginConfiguration;
 
-public interface QueryInterface {
-	void query(IfcModelInterface source, IfcModelInterface dest, Reporter reporter, ModelHelper modelHelper) throws IfcModelInterfaceException;
+public class GetWebModuleByNameDatabaseAction extends AbstractGetByFieldDatabaseAction<WebModulePluginConfiguration> {
+
+	public GetWebModuleByNameDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String name) {
+		super(databaseSession, accessMethod, WebModulePluginConfiguration.class, StorePackage.eINSTANCE.getPluginConfiguration_Name(), name);
+	}
 }

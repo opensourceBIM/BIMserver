@@ -44,12 +44,17 @@ import org.bimserver.interfaces.objects.SRenderEnginePluginDescriptor;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SSerializerPluginDescriptor;
 import org.bimserver.interfaces.objects.SServicePluginDescriptor;
+import org.bimserver.interfaces.objects.SWebModulePluginConfiguration;
+import org.bimserver.interfaces.objects.SWebModulePluginDescriptor;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
 @WebService(name = "PluginInterface", targetNamespace="org.bimserver")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface PluginInterface extends PublicInterface {
+	@WebMethod(action="getDefaultWebModule")
+	SWebModulePluginConfiguration getDefaultWebModule() throws ServerException, UserException;
+
 	@WebMethod(action="getDefaultRenderEngine")
 	SRenderEnginePluginConfiguration getDefaultRenderEngine() throws ServerException, UserException;
 
@@ -71,6 +76,10 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action="setDefaultRenderEngine")
 	void setDefaultRenderEngine(
 		@WebParam(name = "oid", partName = "setDefaultRenderEngine.oid") Long oid) throws UserException, ServerException;
+
+	@WebMethod(action="setDefaultWebModule")
+	void setDefaultWebModule(
+			@WebParam(name = "oid", partName = "setDefaultWebModule.oid") Long oid) throws UserException, ServerException;
 
 	@WebMethod(action="setDefaultQueryEngine")
 	void setDefaultQueryEngine(
@@ -99,6 +108,13 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getAllSerializerPluginDescriptors")
 	List<SSerializerPluginDescriptor> getAllSerializerPluginDescriptors() throws ServerException, UserException;
 
+	/**
+	 * @return List of all SerializerPluginDescriptors
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllWebModulePluginDescriptors")
+	List<SWebModulePluginDescriptor> getAllWebModulePluginDescriptors() throws ServerException, UserException;
+	
 	/**
 	 * @return List of all SerializerPluginDescriptors
 	 * @throws ServerException, UserException
@@ -150,6 +166,15 @@ public interface PluginInterface extends PublicInterface {
 	SSerializerPluginConfiguration getSerializerByName(
 		@WebParam(name = "serializerName", partName = "getSerializerByName.serializerName") String serializerName) throws ServerException, UserException;
 
+	/**
+	 * @param serializerName Name of the Serializer
+	 * @return Serializer
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getWebModuleByName")
+	SWebModulePluginConfiguration getWebModuleByName(
+		@WebParam(name = "name", partName = "getWebModuleByName.name") String name) throws ServerException, UserException;
+	
 	/**
 	 * @param name Name of the RenderEngine
 	 * @return RenderEngine
@@ -203,6 +228,15 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getAllRenderEngines")
 	List<SRenderEnginePluginConfiguration> getAllRenderEngines(
 		@WebParam(name = "onlyEnabled", partName = "getAllRenderEngines.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
+
+	/**
+	 * @param onlyEnabled Whether to only include enabled IFC engines
+	 * @return A list of RenderEngines
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getAllWebModules")
+	List<SWebModulePluginConfiguration> getAllWebModules(
+		@WebParam(name = "onlyEnabled", partName = "getAllWebModules.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 
 	/**
 	 * @param onlyEnabled Whether to only include enabled query engines
@@ -275,6 +309,15 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getDeserializerById")
 	SDeserializerPluginConfiguration getDeserializerById(
 		@WebParam(name = "oid", partName = "getDeserializerById.oid") Long oid) throws ServerException, UserException;
+	
+	/**
+	 * @param oid ObjectID of the Deserializer
+	 * @return Deserializer
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getWebModuleById")
+	SWebModulePluginConfiguration getWebModuleById(
+		@WebParam(name = "oid", partName = "getWebModuleById.oid") Long oid) throws ServerException, UserException;
 	
 	/**
 	 * @param serializer Serializer to add

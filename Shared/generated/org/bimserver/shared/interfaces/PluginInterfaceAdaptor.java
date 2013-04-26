@@ -129,6 +129,14 @@ public class PluginInterfaceAdaptor implements PluginInterface {
 		return null;
 	}
 	
+	public java.util.List<org.bimserver.interfaces.objects.SWebModulePluginDescriptor> getAllWebModulePluginDescriptors() throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.util.List<org.bimserver.interfaces.objects.SWebModulePluginConfiguration> getAllWebModules(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SModelComparePluginConfiguration getDefaultModelCompare() throws UserException, ServerException {
 		return null;
 	}
@@ -150,6 +158,10 @@ public class PluginInterfaceAdaptor implements PluginInterface {
 	}
 	
 	public org.bimserver.interfaces.objects.SSerializerPluginConfiguration getDefaultSerializer() throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SWebModulePluginConfiguration getDefaultWebModule() throws UserException, ServerException {
 		return null;
 	}
 	
@@ -233,6 +245,14 @@ public class PluginInterfaceAdaptor implements PluginInterface {
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SWebModulePluginConfiguration getWebModuleById(java.lang.Long oid) throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SWebModulePluginConfiguration getWebModuleByName(java.lang.String name) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.lang.Boolean hasActiveSerializer(java.lang.String contentType) throws UserException, ServerException {
 		return null;
 	}
@@ -253,6 +273,9 @@ public class PluginInterfaceAdaptor implements PluginInterface {
 	}
 	
 	public void setDefaultSerializer(java.lang.Long oid) throws UserException, ServerException {
+	}
+	
+	public void setDefaultWebModule(java.lang.Long oid) throws UserException, ServerException {
 	}
 	
 	public void setPluginSettings(java.lang.Long poid, org.bimserver.interfaces.objects.SObjectType settings) throws UserException, ServerException {

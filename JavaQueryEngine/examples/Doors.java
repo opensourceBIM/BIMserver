@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterfaceException;
 import java.util.*;
 import org.bimserver.models.ifc2x3tc1.*;
 
@@ -21,7 +22,7 @@ public class Query implements QueryInterface {
 	private IfcModelInterface model;
 
 	@Override
-	public void query(IfcModelInterface source, IfcModelInterface dest, Reporter reporter, ModelHelper modelHelper) {
+	public void query(IfcModelInterface source, IfcModelInterface dest, Reporter reporter, ModelHelper modelHelper) throws IfcModelInterfaceException {
 		reporter.info("Running doors example");
         List<IfcBuildingStorey> stories = source.getAll(IfcBuildingStorey.class);
         Map<Double, IfcBuildingStorey> orderedStories = new TreeMap<Double, IfcBuildingStorey>();
@@ -36,7 +37,7 @@ public class Query implements QueryInterface {
             			IfcDoor ifcDoor = (IfcDoor)product;
                         if (ifcDoor.getOverallHeight() > 2) {
                         	reporter.info(ifcDoor.getName() + " " + ifcDoor.getOverallHeight());
-                        	queryEngineHelper.copy(ifcDoor, dest);
+                        	modelHelper.copy(ifcDoor, dest);
                         }
             		}
             	}
