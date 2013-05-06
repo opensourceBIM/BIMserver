@@ -62,7 +62,9 @@ function pushHistoryAppend(obj) {
 	if (str.endsWith("&")) {
 		str = str.substring(0, str.length - 1);
 	}
-	History.pushState(obj, null, str);
+	if (!current.cleanUrl.endsWith(str)) {
+		History.pushState(obj, null, str);
+	}
 	pushing = false;
 }
 
@@ -76,7 +78,9 @@ function pushHistory(obj) {
 	if (str.endsWith("&")) {
 		str = str.substring(0, str.length - 1);
 	}
-	History.pushState(obj, null, str);
+	if (!current.cleanUrl.endsWith(str)) {
+		History.pushState(obj, null, str);
+	}
 	pushing = false;
 }
 
