@@ -474,6 +474,11 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 					}
 				}));
 				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SProgressTopicType"), null));
+				addType(new SClass(this, Class.forName("org.bimserver.interfaces.objects.SProjectSmall"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SProjectSmall();
+					}
+				}));
 			super.init();
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);

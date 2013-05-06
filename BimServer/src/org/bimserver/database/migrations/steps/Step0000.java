@@ -806,6 +806,10 @@ public class Step0000 extends Migration {
 		schema.createEEnumLiteral(progressTopicType, "BRANCH");
 		
 		schema.createEReference(revisionClass, "service", service, Multiplicity.SINGLE);
+		
+		EClass projectSmall = schema.createEClass("store", "ProjectSmall");
+		schema.createEAttribute(projectSmall, "name", EcorePackage.eINSTANCE.getEString());
+		schema.createEAttribute(projectSmall, "parentId", EcorePackage.eINSTANCE.getELong());
 	}
 
 	private void createSIPrefixEnum() {

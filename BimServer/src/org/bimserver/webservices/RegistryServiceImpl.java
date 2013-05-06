@@ -254,6 +254,9 @@ public class RegistryServiceImpl extends GenericServiceImpl implements RegistryI
 	
 	@Override
 	public void unregisterChangeProgressOnServer(Long endPointId) throws ServerException, UserException {
+		if (endPointId == null) {
+			throw new RuntimeException();
+		}
 		ChangeProgressTopicOnServerTopic changeProgressTopicOnServerTopic = getBimServer().getNotificationsManager().getChangeProgressTopicOnServerTopic();
 		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
 		try {

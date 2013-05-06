@@ -5756,6 +5756,43 @@ public interface StorePackage extends EPackage {
 	int BIM_SERVER_INFO_FEATURE_COUNT = 12;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.ProjectSmallImpl <em>Project Small</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.ProjectSmallImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getProjectSmall()
+	 * @generated
+	 */
+	int PROJECT_SMALL = 86;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_SMALL__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Parent Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_SMALL__PARENT_ID = 1;
+
+	/**
+	 * The number of structural features of the '<em>Project Small</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_SMALL_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5763,7 +5800,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 86;
+	int USER_TYPE = 87;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -5773,7 +5810,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 87;
+	int SI_PREFIX = 88;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -5783,7 +5820,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 88;
+	int OBJECT_STATE = 89;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -5793,7 +5830,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 89;
+	int COMPARE_TYPE = 90;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -5803,7 +5840,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 90;
+	int ACTION_STATE = 91;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -5813,7 +5850,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 91;
+	int SERVER_STATE = 92;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ExtendedDataSchemaType <em>Extended Data Schema Type</em>}' enum.
@@ -5823,7 +5860,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getExtendedDataSchemaType()
 	 * @generated
 	 */
-	int EXTENDED_DATA_SCHEMA_TYPE = 92;
+	int EXTENDED_DATA_SCHEMA_TYPE = 93;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
@@ -5833,7 +5870,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 93;
+	int TRIGGER = 94;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServiceSimpleType <em>Service Simple Type</em>}' enum.
@@ -5843,7 +5880,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceSimpleType()
 	 * @generated
 	 */
-	int SERVICE_SIMPLE_TYPE = 94;
+	int SERVICE_SIMPLE_TYPE = 95;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.
@@ -5853,7 +5890,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_ENUM = 95;
+	int PRIMITIVE_ENUM = 96;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}' enum.
@@ -5863,7 +5900,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotifictionResultEnum()
 	 * @generated
 	 */
-	int NOTIFICTION_RESULT_ENUM = 96;
+	int NOTIFICTION_RESULT_ENUM = 97;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ProgressTopicType <em>Progress Topic Type</em>}' enum.
@@ -5873,7 +5910,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getProgressTopicType()
 	 * @generated
 	 */
-	int PROGRESS_TOPIC_TYPE = 97;
+	int PROGRESS_TOPIC_TYPE = 98;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -5883,7 +5920,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 98;
+	int DATA_HANDLER = 99;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -10574,6 +10611,38 @@ public interface StorePackage extends EPackage {
 	EAttribute getBimServerInfo_Uptime();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.ProjectSmall <em>Project Small</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Project Small</em>'.
+	 * @see org.bimserver.models.store.ProjectSmall
+	 * @generated
+	 */
+	EClass getProjectSmall();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ProjectSmall#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.bimserver.models.store.ProjectSmall#getName()
+	 * @see #getProjectSmall()
+	 * @generated
+	 */
+	EAttribute getProjectSmall_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ProjectSmall#getParentId <em>Parent Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Parent Id</em>'.
+	 * @see org.bimserver.models.store.ProjectSmall#getParentId()
+	 * @see #getProjectSmall()
+	 * @generated
+	 */
+	EAttribute getProjectSmall_ParentId();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14369,6 +14438,32 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute BIM_SERVER_INFO__UPTIME = eINSTANCE.getBimServerInfo_Uptime();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ProjectSmallImpl <em>Project Small</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.ProjectSmallImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getProjectSmall()
+		 * @generated
+		 */
+		EClass PROJECT_SMALL = eINSTANCE.getProjectSmall();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT_SMALL__NAME = eINSTANCE.getProjectSmall_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Parent Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT_SMALL__PARENT_ID = eINSTANCE.getProjectSmall_ParentId();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.

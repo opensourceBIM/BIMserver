@@ -337,6 +337,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createJavaInfo();
 		case StorePackage.BIM_SERVER_INFO:
 			return (EObject) createBimServerInfo();
+		case StorePackage.PROJECT_SMALL:
+			return (EObject) createProjectSmall();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -1278,6 +1280,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public BimServerInfo createBimServerInfo() {
 		BimServerInfoImpl bimServerInfo = new BimServerInfoImpl();
 		return bimServerInfo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProjectSmall createProjectSmall() {
+		ProjectSmallImpl projectSmall = new ProjectSmallImpl();
+		return projectSmall;
 	}
 
 	/**

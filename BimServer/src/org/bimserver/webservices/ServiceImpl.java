@@ -75,6 +75,7 @@ import org.bimserver.database.actions.GetAllNonAuthorizedProjectsOfUserDatabaseA
 import org.bimserver.database.actions.GetAllNonAuthorizedUsersOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllProjectsDatabaseAction;
 import org.bimserver.database.actions.GetAllReadableProjectsDatabaseAction;
+import org.bimserver.database.actions.GetAllRelatedProjectsDatabaseAction;
 import org.bimserver.database.actions.GetAllRevisionsByUserDatabaseAction;
 import org.bimserver.database.actions.GetAllRevisionsOfProjectDatabaseAction;
 import org.bimserver.database.actions.GetAllServicesOfProjectDatabaseAction;
@@ -127,6 +128,7 @@ import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.interfaces.objects.SProjectSmall;
 import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
@@ -1723,6 +1725,19 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		try {
 			User user = session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
 			return getBimServer().getSConverter().convertToSObject(user.getUserSettings());
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public List<SProjectSmall> getAllRelatedProjects(Long poid) throws ServerException, UserException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			GetAllRelatedProjectsDatabaseAction action = new GetAllRelatedProjectsDatabaseAction(session, getInternalAccessMethod(), poid);
+			return action.execute();
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {

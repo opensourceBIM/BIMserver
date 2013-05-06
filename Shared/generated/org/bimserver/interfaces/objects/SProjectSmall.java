@@ -16,25 +16,21 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-import java.util.Date;
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SServerStarted.class, SNewObjectIDMUploaded.class, SUserDeleted.class, SNewRevisionAdded.class, SGeoTagUpdated.class, SProjectUndeleted.class, SNewProjectAdded.class, SSettingsSaved.class, SUserRemovedFromProject.class, SRevisionUpdated.class, SRemoteServiceCalled.class, SDownload.class, SNewCheckoutAdded.class, SPasswordReset.class, SProjectDeleted.class, SUserUndeleted.class, SExtendedDataAddedToProject.class, SUserAddedToProject.class, SNewUserAdded.class, SProjectUpdated.class, SDatabaseCreated.class, SExtendedDataAddedToRevision.class, SRevisionBranched.class, SPasswordChanged.class, SUserChanged.class})
-public class SLogAction implements SDataBase
+public class SProjectSmall implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
 
 	@XmlTransient
 	private static SClass sClass;
-	private java.util.Date date;
-	private long executorId = -1;
-	private SAccessMethod accessMethod;
+	private java.lang.String name;
+	private long parentId;
 
 	public long getOid() {
 		return this.oid;
@@ -58,18 +54,15 @@ public class SLogAction implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SLogAction.sClass = sClass;
+		SProjectSmall.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("date")) {
-			return getDate();
+		if (sField.getName().equals("name")) {
+			return getName();
 		}
-		if (sField.getName().equals("executorId")) {
-			return getExecutorId();
-		}
-		if (sField.getName().equals("accessMethod")) {
-			return getAccessMethod();
+		if (sField.getName().equals("parentId")) {
+			return getParentId();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -81,16 +74,12 @@ public class SLogAction implements SDataBase
 	}
 
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("date")) {
-			setDate((Date)val);
+		if (sField.getName().equals("name")) {
+			setName((String)val);
 			return;
 		}
-		if (sField.getName().equals("executorId")) {
-			setExecutorId((Long)val);
-			return;
-		}
-		if (sField.getName().equals("accessMethod")) {
-			setAccessMethod((SAccessMethod)val);
+		if (sField.getName().equals("parentId")) {
+			setParentId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -104,28 +93,20 @@ public class SLogAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	public java.util.Date getDate() {
-		return date;
+	public java.lang.String getName() {
+		return name;
 	}
 
-	public void setDate(java.util.Date date) {
-		this.date = date;
+	public void setName(java.lang.String name) {
+		this.name = name;
 	}
 	
-	public long getExecutorId() {
-		return executorId;
+	public long getParentId() {
+		return parentId;
 	}
 
-	public void setExecutorId(long executorId) {
-		this.executorId = executorId;
-	}
-	
-	public SAccessMethod getAccessMethod() {
-		return accessMethod;
-	}
-
-	public void setAccessMethod(SAccessMethod accessMethod) {
-		this.accessMethod = accessMethod;
+	public void setParentId(long parentId) {
+		this.parentId = parentId;
 	}
 	
 	@Override
@@ -144,7 +125,7 @@ public class SLogAction implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SLogAction other = (SLogAction) obj;
+		SProjectSmall other = (SProjectSmall) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

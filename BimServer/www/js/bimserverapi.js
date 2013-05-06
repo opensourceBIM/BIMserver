@@ -191,7 +191,9 @@ function BimServerApi(baseUrl, notifier) {
 	this.unregisterChangeProgressServerHandler = function(newHandler, closedHandler, callback) {
 		othis.unregister(newHandler);
 		othis.unregister(closedHandler);
-		othis.call("RegistryInterface", "unregisterChangeProgressOnServer", {endPointId: othis.server.endPointId}, callback);
+		if (othis.server.endPointId != null) {
+			othis.call("RegistryInterface", "unregisterChangeProgressOnServer", {endPointId: othis.server.endPointId}, callback);
+		}
 	};
 	
 	this.registerChangeProgressServerHandler = function(newHandler, closedHandler, callback) {
