@@ -200,6 +200,10 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
+	public java.util.List<org.bimserver.interfaces.objects.SProjectSmall> getAllRelatedProjects(java.lang.Long poid) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<org.bimserver.interfaces.objects.SExtendedDataSchema> getAllRepositoryExtendedDataSchemas() throws UserException, ServerException {
 		return null;
 	}

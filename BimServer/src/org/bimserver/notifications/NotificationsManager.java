@@ -151,7 +151,7 @@ public class NotificationsManager implements NotificationsManagerInterface {
 	public void registerInternalNewRevisionHandler(ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
 		register(serviceDescriptor, new RemoteServiceInterfaceAdaptor(){
 			@Override
-			public void newRevision(final Long poid, final Long roid, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) throws UserException, ServerException {
+			public void newRevision(final Long poid, final Long roid, Long soid, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) throws UserException, ServerException {
 				ServiceMapInterface serviceMapInterface = new ServiceMap(bimServer, null, AccessMethod.JSON);
 				serviceMapInterface.add(RemoteServiceInterface.class, internalRemoteServiceInterfaces.get(serviceIdentifier));
 				final InternalChannel internalChannel = new InternalChannel(bimServer.getServiceFactory(), bimServer.getServicesMap());

@@ -33,7 +33,7 @@ public class RemoteServiceInterfaceAdaptor implements RemoteServiceInterface {
 		return null;
 	}
 	
-	public void newRevision(java.lang.Long poid, java.lang.Long roid, java.lang.String serviceIdentifier, java.lang.String profileIdentifier, java.lang.String token, java.lang.String apiUrl) throws UserException, ServerException {
+	public void newRevision(java.lang.Long poid, java.lang.Long roid, java.lang.Long soid, java.lang.String serviceIdentifier, java.lang.String profileIdentifier, java.lang.String token, java.lang.String apiUrl) throws UserException, ServerException {
 	}
 	
 }

@@ -810,6 +810,15 @@ public interface StoreFactory extends EFactory {
 	BimServerInfo createBimServerInfo();
 
 	/**
+	 * Returns a new object of class '<em>Project Small</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Project Small</em>'.
+	 * @generated
+	 */
+	ProjectSmall createProjectSmall();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

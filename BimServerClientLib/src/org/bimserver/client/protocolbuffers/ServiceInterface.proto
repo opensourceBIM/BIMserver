@@ -117,6 +117,8 @@ service ServiceInterface {
 
 	rpc getAllReadableProjects (GetAllReadableProjectsRequest) returns (GetAllReadableProjectsResponse);
 
+	rpc getAllRelatedProjects (GetAllRelatedProjectsRequest) returns (GetAllRelatedProjectsResponse);
+
 	rpc getAllRepositoryExtendedDataSchemas (GetAllRepositoryExtendedDataSchemasRequest) returns (GetAllRepositoryExtendedDataSchemasResponse);
 
 	rpc getAllRevisionsByUser (GetAllRevisionsByUserRequest) returns (GetAllRevisionsByUserResponse);
@@ -545,6 +547,11 @@ message CompareRequest {
 	optional int64 mcid = 4;
 }
 
+message SObjectAdded {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
 message SObjectModified {
 	optional string newValue = 1;
 	optional int32 rid = 2;
@@ -554,11 +561,6 @@ message SObjectModified {
 }
 
 message SObjectRemoved {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SObjectAdded {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
 }
@@ -603,9 +605,9 @@ message SDataObject {
 
 message SCompareItem {
 	required string __actual_type = 1;
-	optional SObjectModified __SObjectModified = 2;
-	optional SObjectRemoved __SObjectRemoved = 3;
-	optional SObjectAdded __SObjectAdded = 4;
+	optional SObjectAdded __SObjectAdded = 2;
+	optional SObjectModified __SObjectModified = 3;
+	optional SObjectRemoved __SObjectRemoved = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 	optional SDataObject dataObject = 7;
@@ -967,6 +969,22 @@ message GetAllReadableProjectsRequest {
 message GetAllReadableProjectsResponse {
 	optional string errorMessage = 1;
 	repeated SProject value = 2;
+}
+
+message GetAllRelatedProjectsRequest {
+	optional int64 poid = 1;
+}
+
+message SProjectSmall {
+	optional int64 parentId = 1;
+	optional int32 rid = 2;
+	optional int64 oid = 3;
+	optional string name = 4;
+}
+
+message GetAllRelatedProjectsResponse {
+	optional string errorMessage = 1;
+	repeated SProjectSmall value = 2;
 }
 
 message GetAllRepositoryExtendedDataSchemasRequest {

@@ -42,6 +42,7 @@ import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.interfaces.objects.SProjectSmall;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SService;
@@ -945,4 +946,8 @@ public interface ServiceInterface extends PublicInterface {
 	
 	@WebMethod(action = "getUserSettings")
 	SUserSettings getUserSettings() throws ServerException, UserException;
+	
+	@WebMethod(action = "getAllRelatedProjects")
+	List<SProjectSmall> getAllRelatedProjects(
+		@WebParam(name = "poid", partName = "getAllRelatedProjects.poid") Long poid) throws ServerException, UserException;
 }

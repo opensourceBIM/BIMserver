@@ -659,6 +659,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass projectSmallEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum userTypeEEnum = null;
 
 	/**
@@ -4977,6 +4984,36 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EAttribute getBimServerInfo_Uptime() {
 		return (EAttribute) getBimServerInfo().getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getProjectSmall() {
+		if (projectSmallEClass == null) {
+			projectSmallEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(99);
+		}
+		return projectSmallEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectSmall_Name() {
+		return (EAttribute) getProjectSmall().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProjectSmall_ParentId() {
+		return (EAttribute) getProjectSmall().getEStructuralFeatures().get(1);
 	}
 
 	/**

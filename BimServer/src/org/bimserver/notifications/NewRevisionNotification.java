@@ -98,7 +98,7 @@ public class NewRevisionNotification extends Notification {
 				ServiceInterface newService = bimServer.getServiceFactory().get(authorization, AccessMethod.INTERNAL).get(ServiceInterface.class);
 				((org.bimserver.webservices.ServiceImpl)newService).setAuthorization(authorization);
 				
-				remoteServiceInterface.newRevision(poid, roid, service.getServiceIdentifier(), service.getProfileIdentifier(), authorization.asHexToken(bimServer.getEncryptionKey()), bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
+				remoteServiceInterface.newRevision(poid, roid, service.getOid(), service.getServiceIdentifier(), service.getProfileIdentifier(), authorization.asHexToken(bimServer.getEncryptionKey()), bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
 			} catch (ChannelConnectionException e) {
 				LOGGER.error("", e);
 			} catch (PublicInterfaceNotFoundException e) {

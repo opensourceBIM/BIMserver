@@ -1,5 +1,5 @@
 
-ðë
+Êî
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -209,7 +209,10 @@ parentPoid ("a
 roid1 (
 roid2 (4
 sCompareType (2.org.bimserver.pb.SCompareType
-mcid ("b
+mcid ("(
+SObjectAdded
+rid (
+oid ("b
 SObjectModified
 newValue (	
 rid (
@@ -217,9 +220,6 @@ parentPoid ("a
 oldValue (	
 	fieldName (	"*
 SObjectRemoved
-rid (
-oid ("(
-SObjectAdded
 rid (
 oid ("O
 SReferenceDataValue
@@ -252,10 +252,10 @@ SDataValue
 name (	
 type (	"¤
 SCompareItem
-__actual_type (	<
-__SObjectModified (2!.org.bimserver.pb.SObjectModified:
-__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved6
-__SObjectAdded (2.org.bimserver.pb.SObjectAdded
+__actual_type (	6
+__SObjectAdded (2.org.bimserver.pb.SObjectAdded<
+__SObjectModified (2!.org.bimserver.pb.SObjectModified:
+__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved
 rid (
 oid (1
 
@@ -498,6 +498,16 @@ identifier (	
 GetAllReadableProjectsResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SProject",
+GetAllRelatedProjectsRequest
+poid ("I
+SProjectSmall
+parentId (
+rid (
+oid (
+name (	"e
+GetAllRelatedProjectsResponse
+errorMessage (	.
+value (2.org.bimserver.pb.SProjectSmall",
 *GetAllRepositoryExtendedDataSchemasRequest"y
 +GetAllRepositoryExtendedDataSchemasResponse
 errorMessage (	4
@@ -829,7 +839,7 @@ objectIDMs (
 SCompareType_ALL 
 SCompareType_ADD
 SCompareType_MODIFY
-SCompareType_DELETE2úR
+SCompareType_DELETE2ôS
 ServiceInterfaceg
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest.org.bimserver.pb.VoidResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -879,7 +889,8 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 getAllPrivateProfiles..org.bimserver.pb.GetAllPrivateProfilesRequest/.org.bimserver.pb.GetAllPrivateProfilesResponsec
 getAllProjects'.org.bimserver.pb.GetAllProjectsRequest(.org.bimserver.pb.GetAllProjectsResponseu
 getAllPublicProfiles-.org.bimserver.pb.GetAllPublicProfilesRequest..org.bimserver.pb.GetAllPublicProfilesResponse{
-getAllReadableProjects/.org.bimserver.pb.GetAllReadableProjectsRequest0.org.bimserver.pb.GetAllReadableProjectsResponse¢
+getAllReadableProjects/.org.bimserver.pb.GetAllReadableProjectsRequest0.org.bimserver.pb.GetAllReadableProjectsResponsex
+getAllRelatedProjects..org.bimserver.pb.GetAllRelatedProjectsRequest/.org.bimserver.pb.GetAllRelatedProjectsResponse¢
 #getAllRepositoryExtendedDataSchemas<.org.bimserver.pb.GetAllRepositoryExtendedDataSchemasRequest=.org.bimserver.pb.GetAllRepositoryExtendedDataSchemasResponsex
 getAllRevisionsByUser..org.bimserver.pb.GetAllRevisionsByUserRequest/.org.bimserver.pb.GetAllRevisionsByUserResponse
 getAllRevisionsOfProject1.org.bimserver.pb.GetAllRevisionsOfProjectRequest2.org.bimserver.pb.GetAllRevisionsOfProjectResponse

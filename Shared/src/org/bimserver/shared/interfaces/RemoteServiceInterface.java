@@ -40,6 +40,7 @@ public interface RemoteServiceInterface extends PublicInterface {
 	void newRevision(
 		@WebParam(name = "poid", partName = "newRevision.poid") Long poid,
 		@WebParam(name = "roid", partName = "newRevision.roid") Long roid,
+		@WebParam(name = "soid", partName = "newRevision.soid") Long soid,
 		@WebParam(name = "serviceIdentifier", partName = "newRevision.serviceIdentifier") String serviceIdentifier,
 		@WebParam(name = "profileIdentifier", partName = "newRevision.profileIdentifier") String profileIdentifier,
 		@WebParam(name = "token", partName = "newRevision.token") String token,

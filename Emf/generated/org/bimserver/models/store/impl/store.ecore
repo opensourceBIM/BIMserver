@@ -739,4 +739,8 @@
     <eLiterals name="RUNNING_SERVICE" value="2"/>
     <eLiterals name="BRANCH" value="3"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProjectSmall">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parentId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+  </eClassifiers>
 </ecore:EPackage>
