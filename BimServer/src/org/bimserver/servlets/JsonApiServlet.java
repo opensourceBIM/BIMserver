@@ -74,7 +74,7 @@ public class JsonApiServlet extends SubServlet {
 		try {
 			JsonReader reader = new JsonReader(httpRequest.getReader());
 			JsonParser parser = new JsonParser();
-			JsonObject request = (JsonObject) parser.parse(reader);		
+			JsonObject request = (JsonObject) parser.parse(reader);
 			response.setHeader("Content-Type", "application/json");
 			bimServer.getJsonHandler().execute(request, httpRequest, response.getWriter());
 		} catch (IOException e) {
