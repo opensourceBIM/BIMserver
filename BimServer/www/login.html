@@ -64,8 +64,10 @@ function Login(address, username) {
 			} else if (serverInfo.serverState == "RUNNING") {
 				var username = $("#inputEmail").val()
 				Global.bimServerApi.login(username, $("#inputPassword").val(), $("#rememberMe").is(":checked"), function(data){
-					$(".indexcontainer").load("main.html", function(){
-						new Main(address, username).show(false);
+					Global.bimServerApi.resolveUser(function(user){
+						$(".indexcontainer").load("main.html", function(){
+							new Main(address, user.name).show(false);
+						});
 					});
 				});
 			}

@@ -33,17 +33,6 @@
 				<table class="table"></table>
 			</div>
 			<div id="log" class="tab-pane log">
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Title</th>
-							<th>State</th>
-							<th>Progress</th>
-						</tr>
-					</thead>
-					<tbody></tbody>
-				</table>
 			</div>
 		</div>
 	</div>
@@ -51,6 +40,9 @@
 <script>
 function ServerInfo(containerDiv, main) {
 	var othis = this;
+
+	this.show = function(){
+	};
 	
 	this.close = function(){
 		Global.bimServerApi.unregisterChangeProgressServerHandler(othis.newChangeProgressHandler, othis.closedChangeProgressHandler);
@@ -154,7 +146,7 @@ function ServerInfo(containerDiv, main) {
 		});
 
 		Global.bimServerApi.call("MetaInterface", "getServiceInterfaces", {}, function(data){
-			$(".webservices table").append("<tr><td colspan=\"2\" class=\"header\">Web Services</td></tr>");
+			$(".webservices table").append("<tr><th class=\"header\">Web Services</th><th>Files</th></tr>");
 			data.forEach(function(service){
 				var tr = $("<tr>");
 				tr.append("<td>" + service.simpleName + "</td>");
@@ -210,11 +202,18 @@ function ServerInfo(containerDiv, main) {
 	};
 	
 	this.loadLog = function(){
-		Global.bimServerApi.call("RegistryInterface", "getProgressTopicsOnServer", {}, function(topicIds){
-			topicIds.forEach(function(topicId){
-				othis.newChangeProgressHandler(topicId);
-			});
-			Global.bimServerApi.registerChangeProgressServerHandler(othis.newChangeProgressHandler, othis.closedChangeProgressHandler);
+		$("#log").load("log.html", function(){
+			var settings = {
+				getTopicsMethod: "getProgressTopicsOnServer",
+				getTopicsArguments: {},
+				registerFunction: function(newChangeProgressHandler, closedChangeProgressHandler){
+					Global.bimServerApi.registerChangeProgressServerHandler(newChangeProgressHandler, closedChangeProgressHandler);
+				},
+				unregisterFunction: function(newChangeProgressHandler, closedChangeProgressHandler){
+					Global.bimServerApi.unregisterChangeProgressServerHandler(newChangeProgressHandler, closedChangeProgressHandler)
+				}
+			};
+			new Log($(this), settings, main);
 		});
 	};
 

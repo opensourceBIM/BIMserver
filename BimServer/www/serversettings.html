@@ -4,6 +4,7 @@
 			<li><a class="basicServerSettingsLink">Server Settings</a></li>
 			<li><a class="migrationsLink">Migrations</a></li>
 			<li><a class="pluginsLink">Plugins</a></li>
+			<li><a class="webModulesLink">Web Modules</a></li>
 			<li><a class="extendedDataSchemasLink">Extended Data Schemas</a></li>
 		</ul>
 		<div class="tab-content">
@@ -14,6 +15,9 @@
 	function ServerSettings(main) {
 		var othis = this;
 
+		this.show = function(){
+		};
+		
 		this.changePage = function(linkElement, page, constructorFunction, callback) {
 			if (othis.current != null) {
 				othis.current.close();
@@ -82,6 +86,15 @@
 			}, callback);
 		};
 
+		this.showWebModules = function(callback, alterState) {
+			othis.changePage($(".webModulesLink"), "webmodules.html", function(){
+				othis.current = new WebModules(main, othis);
+				if (alterState) {
+					pushHistory({page: "ServerSettings", subpage: "WebModules"});
+				}
+			}, callback);
+		};
+
 		this.showExtendedDataSchemas = function(callback, alterState) {
 			othis.changePage($(".extendedDataSchemasLink"), "extendeddataschemas.html", function(){
 				othis.current = new ExtendedDataSchemas(main, othis);
@@ -105,6 +118,8 @@
 			othis.showMigrations();
 		} else if (history.subpage == "Plugins") {
 			othis.showPlugins();
+		} else if (history.subpage == "WebModules") {
+			othis.showWebModules();
 		} else if (history.subpage == "ExtendedDataSchemas") {
 			othis.showExtendedDataSchemas();
 		} else {
@@ -114,6 +129,7 @@
 		$(".serversettings .basicServerSettingsLink").click(function(){othis.showBasicServerSettings(null, true)});
 		$(".serversettings .migrationsLink").click(function(){othis.showMigrations(null, true)});
 		$(".serversettings .pluginsLink").click(function(){othis.showPlugins(null, true)});
+		$(".serversettings .webModulesLink").click(function(){othis.showWebModules(null, true)});
 		$(".serversettings .extendedDataSchemasLink").click(function(){othis.showExtendedDataSchemas(null, true)});
 	}
 </script>

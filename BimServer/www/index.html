@@ -4,8 +4,8 @@
     <title>BIMserver Demo</title>
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 	<meta content="utf-8" http-equiv="encoding">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link rel="shortcut icon" type="image/ico" href="img/logo_small.png"/>
     <script data-main="js/main" src="js/require-jquery.js"></script>
   </head>
@@ -17,12 +17,18 @@
 	<div class="statusholder">
 		<div class="status well well-small"></div>
 	</div>
-	<div class="indexcontainer container-fluid"></div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="sidespan span2">
+			</div>
+			<div class="indexcontainer span10"></div>
+		</div>
+	</div>
 	<script>
 		Global = {};
 	
 		require(["main", "jquery.history", "jquery.cookie", "jquery.numeric", "jquery.enterpress", "String", "bimserverapibootstrap", 
-		         "bootstrap.min", "sha256", "utils", "formatters", "settings", "jquery.fileupload"], function(util) {
+		         "bootstrap.min", "sha256", "utils", "formatters", "settings", "jquery.fileupload", "pagechanger"], function(util) {
 			pushInitialState();
 
 			Global.bimServerApi = null;
@@ -135,7 +141,13 @@
 				$(".timespan").each(function() {
 					$(this).html(formatTimeSpan(now - $(this).attr("datetime"), false));
 				});
-			}, 60000);
+				$(".duration").each(function() {
+					var start = new Date(parseInt($(this).attr("start")));
+					var end = $(this).attr("end") == null ? new Date() : new Date(parseInt($(this).attr("end")));
+					var diff = end.getTime() - start.getTime();
+					$(this).html(formatDuration(diff, true));
+				});
+			}, 1000);
 			
 			var history = History.getState().data;
 			if (history.page == "ResetPassword") {
