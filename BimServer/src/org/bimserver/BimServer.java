@@ -346,19 +346,7 @@ public class BimServer {
 			notificationsManager.init();
 
 			protocolBuffersMetaData = new ProtocolBuffersMetaData();
-
-			try {
-				for (Class<? extends PublicInterface> clazz : servicesMap.getInterfaceClasses()) {
-					URL resource = ProtocolBuffersBimServerClientFactory.class.getResource(clazz.getSimpleName() + ".desc");
-					if (resource != null) {
-						protocolBuffersMetaData.load(resource);
-					} else {
-						LOGGER.error("Resource not found");
-					}
-				}
-			} catch (IOException e) {
-				LOGGER.error("", e);
-			}
+			protocolBuffersMetaData.load(servicesMap, ProtocolBuffersBimServerClientFactory.class);
 			
 			serverInfoManager.init(this);
 			serverInfoManager.update();

@@ -17,8 +17,6 @@ package org.bimserver.test.framework;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.util.Collections;
-
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.ChannelConnectionException;
@@ -26,23 +24,13 @@ import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.client.json.JsonSocketReflectorFactory;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.client.soap.SoapBimServerClientFactory;
-import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.shared.AuthenticationInfo;
+import org.bimserver.shared.InterfaceList;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.AdminInterface;
-import org.bimserver.shared.interfaces.AuthInterface;
-import org.bimserver.shared.interfaces.LowLevelInterface;
-import org.bimserver.shared.interfaces.MetaInterface;
-import org.bimserver.shared.interfaces.NotificationInterface;
-import org.bimserver.shared.interfaces.PluginInterface;
-import org.bimserver.shared.interfaces.RegistryInterface;
-import org.bimserver.shared.interfaces.RemoteServiceInterface;
-import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.interfaces.SettingsInterface;
-import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SServicesMap;
+import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.reflector.ReflectorBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
 import org.slf4j.Logger;
@@ -71,23 +59,15 @@ public class RandomBimServerClientFactory implements BimServerClientFactory {
 		} else {
 			this.types = types;
 		}
-		SServicesMap servicesMap = new SServicesMap();
-		SService serviceInterfaceX = new SServiceInterfaceService(null, ServiceInterface.class);
-		servicesMap.add(serviceInterfaceX);
-		servicesMap.add(new SService(null, NotificationInterface.class, Collections.singletonList(serviceInterfaceX)));
-		servicesMap.add(new SService(null, RemoteServiceInterface.class, Collections.singletonList(serviceInterfaceX)));
-		servicesMap.add(new SService(null, AdminInterface.class, Collections.singletonList(serviceInterfaceX)));
-		servicesMap.add(new SService(null, MetaInterface.class, Collections.singletonList(serviceInterfaceX)));
-		servicesMap.add(new SService(null, SettingsInterface.class, Collections.singletonList(serviceInterfaceX)));
-		servicesMap.add(new SService(null, AuthInterface.class, Collections.singletonList(serviceInterfaceX)));
-		servicesMap.add(new SService(null, LowLevelInterface.class, Collections.singletonList(serviceInterfaceX)));
-		servicesMap.add(new SService(null, PluginInterface.class, Collections.singletonList(serviceInterfaceX)));
-		servicesMap.add(new SService(null, RegistryInterface.class, Collections.singletonList(serviceInterfaceX)));
-
+		
+		SServicesMap servicesMap = InterfaceList.createSServicesMap();
+		
 		ReflectorFactory reflectorFactory = new ReflectorBuilder(servicesMap).newReflectorFactory();
 		
 		jsonBimServerClientFactory = new JsonBimServerClientFactory("http://localhost:8080", servicesMap, new JsonSocketReflectorFactory(servicesMap), reflectorFactory);
-		protocolBuffersBimServerClientFactory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080);
+		ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
+		protocolBuffersMetaData.load(servicesMap, ProtocolBuffersBimServerClientFactory.class);
+		protocolBuffersBimServerClientFactory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080, protocolBuffersMetaData);
 		soapBimServerClientFactory = new SoapBimServerClientFactory("http://localhost:8080", servicesMap);
 	}
 	

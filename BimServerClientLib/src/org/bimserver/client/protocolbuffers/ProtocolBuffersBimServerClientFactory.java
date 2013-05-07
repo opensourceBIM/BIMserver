@@ -17,8 +17,6 @@ package org.bimserver.client.protocolbuffers;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import java.io.IOException;
-
 import org.bimserver.client.AbstractBimServerClientFactory;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ChannelConnectionException;
@@ -27,7 +25,6 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.reflector.ReflectorBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
-import org.slf4j.LoggerFactory;
 
 public class ProtocolBuffersBimServerClientFactory extends AbstractBimServerClientFactory {
 
@@ -35,32 +32,15 @@ public class ProtocolBuffersBimServerClientFactory extends AbstractBimServerClie
 	private final int port;
 	private final int httpPort;
 	private final ReflectorFactory reflectorFactory;
-	private final ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
+	private ProtocolBuffersMetaData protocolBuffersMetaData;
 
-	public ProtocolBuffersBimServerClientFactory(String address, int port, int httpPort) {
+	public ProtocolBuffersBimServerClientFactory(String address, int port, int httpPort, ProtocolBuffersMetaData protocolBuffersMetaData) {
 		super();
 		this.httpPort = httpPort;
 		this.address = address;
 		this.port = port;
+		this.protocolBuffersMetaData = protocolBuffersMetaData;
 		this.reflectorFactory = new ReflectorBuilder(getServicesMap()).newReflectorFactory();
-		initMeta();
-	}
-
-	private void initMeta() {
-		try {
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("ServiceInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("NotificationInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("RemoteServiceInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("AdminInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("AuthInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("SettingsInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("LowLevelInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("MetaInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("PluginInterface.desc"));
-			protocolBuffersMetaData.load(ProtocolBuffersChannel.class.getResource("RegistryInterface.desc"));
-		} catch (IOException e) {
-			LoggerFactory.getLogger(ProtocolBuffersBimServerClientFactory.class).error("", e);
-		}
 	}
 
 	@Override

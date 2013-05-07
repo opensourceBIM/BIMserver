@@ -1,0 +1,13 @@
+Testsuite: org.bimserver.tests.AllTests
+Tests run: 0, Failures: 0, Errors: 1, Time elapsed: 3,048 sec
+------------- Standard Output ---------------
+Logging to: D:\Software\Workspaces\BIMserver\Builds\build\home\logs\bimserver.log
+------------- ---------------- ---------------
+
+Testcase: org.bimserver.tests.AllTests took 0 sec
+	Caused an ERROR
+null
+java.lang.NullPointerException
+	at org.bimserver.tests.AllTests.setup(AllTests.java:81)
+	at org.bimserver.tests.AllTests.beforeClass(AllTests.java:56)
+

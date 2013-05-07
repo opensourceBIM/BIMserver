@@ -63,7 +63,7 @@ public class TestFramework {
 			bimServerConfig.setStartEmbeddedWebServer(true);
 			bimServerConfig.setHomeDir(testConfiguration.getHomeDir());
 			bimServerConfig.setPort(8080);
-			bimServerConfig.setResourceFetcher(new LocalDevelopmentResourceFetcher());
+			bimServerConfig.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
 			bimServerConfig.setClassPath(System.getProperty("java.class.path"));
 			bimServerConfig.setInitialProtocolBuffersPort(8020);
 			bimServer = new BimServer(bimServerConfig);

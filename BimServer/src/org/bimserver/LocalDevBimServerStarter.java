@@ -45,7 +45,7 @@ public class LocalDevBimServerStarter {
 	public void start(String address, int port) {
 		BimServerConfig config = new BimServerConfig();
 		config.setHomeDir(new File("home"));
-		config.setResourceFetcher(new LocalDevelopmentResourceFetcher());
+		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
 		config.setStartEmbeddedWebServer(true);
 		config.setClassPath(System.getProperty("java.class.path"));
 		config.setLocalDev(true);

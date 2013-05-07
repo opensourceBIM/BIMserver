@@ -23,12 +23,12 @@ import org.bimserver.plugins.ResourceFetcher;
 
 public class LocalDevelopmentResourceFetcher extends ResourceFetcher {
 
-	public LocalDevelopmentResourceFetcher() {
-		addPath(new File("../Builds/defaultsettings/local"));
-		addPath(new File("../Builds/defaultsettings/shared"));
-		addPath(new File("../Builds/build/targets/local"));
-		addPath(new File("../Builds/build/targets/shared"));
-		addPath(new File("../BimServerClientLib/src/org/bimserver/client/protocolbuffers"));
+	public LocalDevelopmentResourceFetcher(File workspaceDir) {
+		addPath(new File(workspaceDir, "Builds/defaultsettings/local"));
+		addPath(new File(workspaceDir, "Builds/defaultsettings/shared"));
+		addPath(new File(workspaceDir, "Builds/build/targets/local"));
+		addPath(new File(workspaceDir, "Builds/build/targets/shared"));
+		addPath(new File(workspaceDir, "BimServerClientLib/src/org/bimserver/client/protocolbuffers"));
 	}
 
 	@Override
