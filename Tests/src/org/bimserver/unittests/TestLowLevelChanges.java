@@ -84,7 +84,7 @@ public class TestLowLevelChanges {
 			// Create a BIMserver
 			BimServerConfig config = new BimServerConfig();
 			config.setHomeDir(new File("home"));
-			config.setResourceFetcher(new LocalDevelopmentResourceFetcher());
+			config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
 			bimServer = new BimServer(config);
 			
 			// Load plugins

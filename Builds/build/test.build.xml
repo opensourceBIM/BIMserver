@@ -1,64 +1,42 @@
 <project name="Test">
-	<import file="common.build.xml"/>
+	<path id="classpath.test">
+		<fileset dir="antlibs" includes="*.jar" />
+	</path>
+
+	<taskdef name="junit" classname="org.apache.tools.ant.taskdefs.optional.junit.JUnitTask">
+		<classpath refid="classpath.test" />
+	</taskdef>
+
+	<import file="common.build.xml" />
 	<target name="Test">
-		<property name="target" value="jar"/>
-		<delete dir="builds"/>
-		<mkdir dir="builds" />
-		<copy todir="builds/BuildJar">
-			<fileset file="${buildtargets}/shared/license.txt" />
-		</copy>
-		<copy todir="builds/BuildJar/www">
-			<fileset dir="../../BimServer/www" />
-		</copy>
-		<copy todir="builds/BuildJar/config" overwrite="true">
-			<fileset file="${buildtargets}/shared/IFC2X3_TC1.exp" />
-			<fileset file="${buildtargets}/shared/version.xml" />
-			<fileset file="${buildtargets}/shared/web.xml" />
-			<fileset file="${buildtargets}/shared/service.proto" />
-			<fileset file="${buildtargets}/shared/notification.proto" />
-			<fileset file="${buildtargets}/shared/service.desc" />
-			<fileset file="${buildtargets}/shared/notification.desc" />
-		</copy>
-		<copy todir="builds/BuildJar/www/META-INF" overwrite="true">
-			<fileset file="${buildtargets}/shared/context.xml" />
-		</copy>
-		<mkdir dir="builds/BuildJar/home/logs" />
-		<mkdir dir="builds/BuildJar/home/tmp" />
-		<copy todir="builds/BuildJar/home/templates" overwrite="true" failonerror="false">
-			<fileset dir="${defaultsettings}/${target}/templates" />
-		</copy>
-		<replace file="builds/BuildJar/config/version.xml" token="@MAJOR@" value="${majorversion}" />
-		<replace file="builds/BuildJar/config/version.xml" token="@MINOR@" value="${minorversion}" />
-		<replace file="builds/BuildJar/config/version.xml" token="@REVISION@" value="${revisionversion}" />
-		<replace file="builds/BuildJar/config/version.xml" token="@DATE@" value="${revisiondate}" />
-		<replace file="builds/BuildJar/config/web.xml" token="@VERSION@" value="${version}" />
-		<copy todir="builds/BuildJar/lib">
-			<fileset file="${defaultsettings}/${target}/log4j.xml" />
-		</copy>
-		<copy todir="builds/BuildJar/lib" flatten="true">
-			<fileset dir="../../BimServer/lib">
-				<include name="**/*.jar" />
-			</fileset>
-		</copy>
-		<mkdir dir="builds/BuildJar/classes" />
-		<antcall target="Build"/>
-		<copy todir="builds/BuildJar/lib">
+		<antcall target="Build" />
+		<antcall target="Tests" />
+		<copy todir="builds/UnitTests/lib">
 			<fileset dir="builds/lib" />
 		</copy>
-		<copy todir="builds/BuildJar/plugins">
+		<copy todir="builds/UnitTests/plugins">
 			<fileset dir="builds/pluginlibs" />
 			<fileset dir="../plugins" />
 		</copy>
-		<delete dir="builds/BuildJar/classes" />
-		<java classname="org.bimserver.test.framework.RemoteTest" fork="true" maxmemory="4g" dir="../">
+		<junit printsummary="yes" haltonfailure="yes" fork="true">
 			<classpath>
+				<pathelement path="${java.class.path}" />
+				<pathelement location="${build.tests}" />
+				<pathelement location="antlibs/junit-4.8.2.jar" />
 				<path>
-					<fileset refid="lib" />
-					<fileset refid="buildlib" />
-					<fileset dir="builds/pluginlibs"/>
+					<fileset dir="../../BimServer/lib">
+						<include name="**/*.jar" />
+					</fileset>
+					<fileset dir="builds/UnitTests/lib"/>
+					<fileset dir="builds/UnitTests/plugins"/>
 				</path>
 			</classpath>
-		</java>
-		<delete dir="builds/BuildJar" failonerror="false"/>
+
+			<formatter type="plain" />
+
+			<test name="org.bimserver.tests.AllTests" haltonfailure="no" outfile="result">
+				<formatter type="xml" />
+			</test>
+		</junit>
 	</target>
 </project>

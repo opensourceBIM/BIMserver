@@ -63,7 +63,7 @@ public class TestIfcEngineEmbedded {
 		config.setStartEmbeddedWebServer(true);
 		config.setPort(8080);
 		config.setInitialProtocolBuffersPort(8020);
-		config.setResourceFetcher(new LocalDevelopmentResourceFetcher());
+		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
 		config.setClassPath(System.getProperty("java.class.path"));
 		
 		// Create a BIMserver

@@ -85,7 +85,7 @@ public class TestNotifications {
 			socketNotificationsClient.connect(servicesMap, new InetSocketAddress("localhost", 8055));
 		socketNotificationsClient.start();
 		
-		BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080);
+		BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080, protocolBuffersMetaData);
 		
 		try {
 			BimServerClient bimServerClient = factory.create();

@@ -49,6 +49,7 @@
 		<mkdir dir="builds/tests" />
 		<javac destdir="builds/tests" debug="on" includeantruntime="false">
 			<src path="../../Tests/src" />
+			<src path="../../Tests/test" />
 			<classpath>
 				<path>
 					<fileset refid="lib" />

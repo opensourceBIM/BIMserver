@@ -32,6 +32,7 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -42,7 +43,9 @@ public class TestClientEmfModelRemoteProtocolBuffers {
 	@BeforeClass
 	public static void setup() {
 		try {
-			BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080);
+			ProtocolBuffersMetaData protocolBuffersMetaData = new ProtocolBuffersMetaData();
+			protocolBuffersMetaData.load(null, ProtocolBuffersBimServerClientFactory.class); // TODO
+			BimServerClientFactory factory = new ProtocolBuffersBimServerClientFactory("localhost", 8020, 8080, protocolBuffersMetaData);
 			UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin");
 			bimServerClient = factory.create(usernamePasswordAuthenticationInfo);
 		} catch (ChannelConnectionException e1) {

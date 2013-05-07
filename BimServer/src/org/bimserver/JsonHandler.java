@@ -136,7 +136,9 @@ public class JsonHandler {
 	}
 
 	private void handleException(JsonWriter writer, Exception exception) {
-		LoggerFactory.getLogger(JsonHandler.class).error("", exception);
+		if (LoggerFactory.getLogger(JsonHandler.class).isDebugEnabled()) {
+			LoggerFactory.getLogger(JsonHandler.class).debug("", exception);
+		}
 		try {
 			writer.beginObject();
 			writer.name("exception");

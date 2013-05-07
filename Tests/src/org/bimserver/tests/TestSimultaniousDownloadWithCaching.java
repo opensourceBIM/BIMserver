@@ -75,7 +75,7 @@ public class TestSimultaniousDownloadWithCaching {
 		config.setInitialProtocolBuffersPort(8020);
 		config.setPort(8080);
 		config.setStartEmbeddedWebServer(true);
-		config.setResourceFetcher(new LocalDevelopmentResourceFetcher());
+		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(new File("../")));
 		final BimServer bimServer = new BimServer(config);
 		try {
 			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());

@@ -28,6 +28,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.bimserver.shared.interfaces.PublicInterface;
+import org.bimserver.shared.meta.SServicesMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -205,5 +207,20 @@ public class ProtocolBuffersMetaData {
 
 	public Collection<ServiceDescriptorContainer> getServices() {
 		return serviceDescriptors.values();
+	}
+
+	public void load(SServicesMap servicesMap, Class<?> loaderClass) {
+		try {
+			for (Class<? extends PublicInterface> clazz : servicesMap.getInterfaceClasses()) {
+				URL resource = loaderClass.getResource(clazz.getSimpleName() + ".desc");
+				if (resource != null) {
+					load(resource);
+				} else {
+					LOGGER.error("Resource not found");
+				}
+			}
+		} catch (IOException e) {
+			LOGGER.error("", e);
+		}
 	}
 }
