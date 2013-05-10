@@ -33,7 +33,7 @@ public class LocalDevPluginLoader {
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "BootstrapBIM"));
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "BIMsurfer"));
 		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "RGDChecker"));
-		pluginManager.loadPluginsFromEclipseProject(new File(gitDirectory, "COBie-plugins\\COBiePlugins_Public"));
+		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "COBie-plugins\\COBiePlugins_Public"));
 //		pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
 //		pluginManager.loadPluginsFromJar(new File("../Builds/plugins/jqe.jar"));
 	}
