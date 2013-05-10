@@ -91,4 +91,7 @@ public interface Bimsie1Interface extends LowLevelInterface {
 		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
 		@WebParam(name = "showOwn", partName = "download.showOwn") Boolean showOwn,
 		@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
+
+	@WebMethod(action = "getServiceLog")
+	String getServiceLog() throws ServerException, UserException;
 }
