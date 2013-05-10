@@ -412,74 +412,78 @@ public class IfcStepDeserializer extends EmfDeserializer {
 				}
 			} else if (instanceClass == String.class) {
 				if (value.startsWith("'") && value.endsWith("'")) {
-					String result = value.substring(1, value.length() - 1);
-					// Replace all \\ with \
-					while (result.contains("\\\\")) {
-						int index = result.indexOf("\\\\");
-						result = result.substring(0, index) + "\\" + result.substring(index + 2);
-					}
-					// Replace all '' with '
-					while (result.contains("''")) {
-						int index = result.indexOf("''");
-						result = result.substring(0, index)  + "'" + result.substring(index + 2);
-					}
-					while (result.contains("\\S\\")) {
-						int index = result.indexOf("\\S\\");
-						char x = result.charAt(index + 3);
-						ByteBuffer b = ByteBuffer.wrap(new byte[]{(byte) (x + 128)});
-						CharBuffer decode = Charsets.ISO_8859_1.decode(b);
-						result = result.substring(0, index) + decode.get() + result.substring(index + 4);
-					}
-					while (result.contains("\\X\\")) {
-						int index = result.indexOf("\\X\\");
-						int code = Integer.parseInt(result.substring(index + 3, index + 5), 16);
-						ByteBuffer b = ByteBuffer.wrap(new byte[]{(byte) (code)});
-						CharBuffer decode = Charsets.ISO_8859_1.decode(b);
-						result = result.substring(0, index) + decode.get() + result.substring(index + 5);
-					}
-					while (result.contains("\\X2\\")) {
-						int index = result.indexOf("\\X2\\");
-						int indexOfEnd = result.indexOf("\\X0\\");
-						if (indexOfEnd == -1) {
-							throw new DeserializeException("\\X2\\ not closed with \\X0\\");
-						}
-						if ((indexOfEnd - index) % 4 != 0) {
-							throw new DeserializeException("Number of hex chars in \\X2\\ definition not divisible by 4");
-						}
-						try {
-							ByteBuffer buffer = ByteBuffer.wrap(Hex.decodeHex(result.substring(index + 4, indexOfEnd).toCharArray()));
-							CharBuffer decode = Charsets.UTF_16BE.decode(buffer);
-							result = result.substring(0, index) + decode.toString() + result.substring(indexOfEnd + 4);
-						} catch (DecoderException e) {
-							throw new DeserializeException(e);
-						}
-					}
-					while (result.contains("\\X4\\")) {
-						int index = result.indexOf("\\X4\\");
-						int indexOfEnd = result.indexOf("\\X0\\");
-						if (indexOfEnd == -1) {
-							throw new DeserializeException("\\X4\\ not closed with \\X0\\");
-						}
-						if ((indexOfEnd - index) % 8 != 0) {
-							throw new DeserializeException("Number of hex chars in \\X4\\ definition not divisible by 8");
-						}
-						try {
-							ByteBuffer buffer = ByteBuffer.wrap(Hex.decodeHex(result.substring(index + 4, indexOfEnd).toCharArray()));
-							CharBuffer decode = Charset.forName("UTF-32").decode(buffer);
-							result = result.substring(0, index) + decode.toString() + result.substring(indexOfEnd + 4);
-						} catch (DecoderException e) {
-							throw new DeserializeException(e);
-						} catch (UnsupportedCharsetException e) {
-							throw new DeserializeException("UTF-32 is not supported on your system" , e);
-						}
-					}
-					return result;
+					return readString(value);
 				} else {
 					return value;
 				}
 			}
 		}
 		return null;
+	}
+
+	private String readString(String value) throws DeserializeException {
+		String result = value.substring(1, value.length() - 1);
+		// Replace all '' with '
+		while (result.contains("''")) {
+			int index = result.indexOf("''");
+			result = result.substring(0, index)  + "'" + result.substring(index + 2);
+		}
+		while (result.contains("\\S\\")) {
+			int index = result.indexOf("\\S\\");
+			char x = result.charAt(index + 3);
+			ByteBuffer b = ByteBuffer.wrap(new byte[]{(byte) (x + 128)});
+			CharBuffer decode = Charsets.ISO_8859_1.decode(b);
+			result = result.substring(0, index) + decode.get() + result.substring(index + 4);
+		}
+		while (result.contains("\\X\\")) {
+			int index = result.indexOf("\\X\\");
+			int code = Integer.parseInt(result.substring(index + 3, index + 5), 16);
+			ByteBuffer b = ByteBuffer.wrap(new byte[]{(byte) (code)});
+			CharBuffer decode = Charsets.ISO_8859_1.decode(b);
+			result = result.substring(0, index) + decode.get() + result.substring(index + 5);
+		}
+		while (result.contains("\\X2\\")) {
+			int index = result.indexOf("\\X2\\");
+			int indexOfEnd = result.indexOf("\\X0\\");
+			if (indexOfEnd == -1) {
+				throw new DeserializeException("\\X2\\ not closed with \\X0\\");
+			}
+			if ((indexOfEnd - index) % 4 != 0) {
+				throw new DeserializeException("Number of hex chars in \\X2\\ definition not divisible by 4");
+			}
+			try {
+				ByteBuffer buffer = ByteBuffer.wrap(Hex.decodeHex(result.substring(index + 4, indexOfEnd).toCharArray()));
+				CharBuffer decode = Charsets.UTF_16BE.decode(buffer);
+				result = result.substring(0, index) + decode.toString() + result.substring(indexOfEnd + 4);
+			} catch (DecoderException e) {
+				throw new DeserializeException(e);
+			}
+		}
+		while (result.contains("\\X4\\")) {
+			int index = result.indexOf("\\X4\\");
+			int indexOfEnd = result.indexOf("\\X0\\");
+			if (indexOfEnd == -1) {
+				throw new DeserializeException("\\X4\\ not closed with \\X0\\");
+			}
+			if ((indexOfEnd - index) % 8 != 0) {
+				throw new DeserializeException("Number of hex chars in \\X4\\ definition not divisible by 8");
+			}
+			try {
+				ByteBuffer buffer = ByteBuffer.wrap(Hex.decodeHex(result.substring(index + 4, indexOfEnd).toCharArray()));
+				CharBuffer decode = Charset.forName("UTF-32").decode(buffer);
+				result = result.substring(0, index) + decode.toString() + result.substring(indexOfEnd + 4);
+			} catch (DecoderException e) {
+				throw new DeserializeException(e);
+			} catch (UnsupportedCharsetException e) {
+				throw new DeserializeException("UTF-32 is not supported on your system" , e);
+			}
+		}
+		// Replace all \\ with \
+		while (result.contains("\\\\")) {
+			int index = result.indexOf("\\\\");
+			result = result.substring(0, index) + "\\" + result.substring(index + 2);
+		}
+		return result;
 	}
 
 	private Object convert(EClassifier classifier, String value) throws DeserializeException {
@@ -509,7 +513,7 @@ public class IfcStepDeserializer extends EmfDeserializer {
 							}
 							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE + "AsString"), value);
 						} else if (instanceClass == String.class) {
-							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), value.substring(1, value.length() - 1));
+							create.eSet(create.eClass().getEStructuralFeature(WRAPPED_VALUE), readString(value));
 						} else if (instanceClass == Tristate.class) {
 							Tristate tristate = null;
 							if (value.equals(".T.")) {

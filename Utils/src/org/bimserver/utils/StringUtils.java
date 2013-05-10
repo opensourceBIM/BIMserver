@@ -66,30 +66,43 @@ public class StringUtils {
 	}
 	
 	public static int nextString(String in, int start) {
-		int haakjes = 0;
+		int parentheses = 0;
 		int quotes = 0;
 		char c;
 		int length = in.length();
+		int escapeMode = 0;
 		for (int i=start; i<length; i++) {
 			c = in.charAt(i);
 			if (c == ',') {
-				if (haakjes == 0 && quotes == 0) {
+				if (parentheses == 0 && quotes == 0 && escapeMode != 3) {
 					return i+1;
 				}
 			} else if (c == '(') {
 				if (quotes == 0) {
-					haakjes++;
+					parentheses++;
 				}
 			} else if (c == ')') {
 				if (quotes == 0) {
-					haakjes--;
+					parentheses--;
 				}
-			} else if (c == '\'') {
+			} else if (c == '\'' && escapeMode != 3) {
 				if (quotes == 0) {
 					quotes = 1;
 				} else {
 					quotes = 0;
 				}
+			} else if (c == '\\') {
+				if (escapeMode == 2) {
+					escapeMode = 3;
+					continue;
+				} else {
+					escapeMode = 1;
+				}
+			} else if (c == 'S' && escapeMode == 1) {
+				escapeMode = 2;
+			}
+			if (escapeMode == 3) {
+				escapeMode = 0;
 			}
 		}
 		return length + 1;

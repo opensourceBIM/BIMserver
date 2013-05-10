@@ -119,6 +119,10 @@ public class Bimsie1InterfaceAdaptor implements Bimsie1Interface {
 		return null;
 	}
 	
+	public java.lang.String getServiceLog() throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.lang.String getStringAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
 		return null;
 	}
