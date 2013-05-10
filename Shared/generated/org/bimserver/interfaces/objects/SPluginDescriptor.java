@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SModelComparePluginDescriptor.class, SWebModulePluginDescriptor.class, SServicePluginDescriptor.class, SDeserializerPluginDescriptor.class, SSerializerPluginDescriptor.class, SRenderEnginePluginDescriptor.class, SQueryEnginePluginDescriptor.class, SModelMergerPluginDescriptor.class})
+@XmlSeeAlso(value={SModelMergerPluginDescriptor.class, SModelComparePluginDescriptor.class, SQueryEnginePluginDescriptor.class, SRenderEnginePluginDescriptor.class, SSerializerPluginDescriptor.class, SWebModulePluginDescriptor.class, SDeserializerPluginDescriptor.class, SServicePluginDescriptor.class})
 public class SPluginDescriptor implements SDataBase
 {
 	private long oid = -1;
@@ -37,6 +37,7 @@ public class SPluginDescriptor implements SDataBase
 	private java.lang.String description;
 	private java.lang.String location;
 	private java.lang.Boolean enabled;
+	private java.lang.String pluginInterfaceClassName;
 
 	public long getOid() {
 		return this.oid;
@@ -82,6 +83,9 @@ public class SPluginDescriptor implements SDataBase
 		if (sField.getName().equals("enabled")) {
 			return getEnabled();
 		}
+		if (sField.getName().equals("pluginInterfaceClassName")) {
+			return getPluginInterfaceClassName();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -114,6 +118,10 @@ public class SPluginDescriptor implements SDataBase
 		}
 		if (sField.getName().equals("enabled")) {
 			setEnabled((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("pluginInterfaceClassName")) {
+			setPluginInterfaceClassName((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -173,6 +181,14 @@ public class SPluginDescriptor implements SDataBase
 
 	public void setEnabled(java.lang.Boolean enabled) {
 		this.enabled = enabled;
+	}
+	
+	public java.lang.String getPluginInterfaceClassName() {
+		return pluginInterfaceClassName;
+	}
+
+	public void setPluginInterfaceClassName(java.lang.String pluginInterfaceClassName) {
+		this.pluginInterfaceClassName = pluginInterfaceClassName;
 	}
 	
 	@Override

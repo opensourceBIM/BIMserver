@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getLocation <em>Location</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.PluginDescriptorImpl#getPluginInterfaceClassName <em>Plugin Interface Class Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -175,6 +176,24 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 */
 	public void setEnabled(Boolean newEnabled) {
 		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__ENABLED, newEnabled);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getPluginInterfaceClassName() {
+		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPluginInterfaceClassName(String newPluginInterfaceClassName) {
+		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME, newPluginInterfaceClassName);
 	}
 
 } //PluginDescriptorImpl

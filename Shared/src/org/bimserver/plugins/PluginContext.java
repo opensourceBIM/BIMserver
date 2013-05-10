@@ -40,12 +40,12 @@ public class PluginContext {
 	private boolean enabled = true;
 	private final PluginManager pluginManager;
 	private String classLocation;
-	private final PluginType pluginType;
+	private final PluginSourceType pluginType;
 	private JavaFileManager javaFileManager;
 	private final ClassLoader classLoader;
 	private VirtualFile virtualFile;
 
-	public PluginContext(PluginManager pluginManager, ClassLoader classLoader, PluginType pluginType, String location) throws IOException {
+	public PluginContext(PluginManager pluginManager, ClassLoader classLoader, PluginSourceType pluginType, String location) throws IOException {
 		this.pluginManager = pluginManager;
 		this.classLoader = classLoader;
 		this.pluginType = pluginType;

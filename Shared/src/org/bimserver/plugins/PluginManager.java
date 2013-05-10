@@ -120,7 +120,7 @@ public class PluginManager {
 				}
 			}
 			EclipsePluginClassloader pluginClassloader = new EclipsePluginClassloader(delegatingClassLoader, projectRoot);
-			loadPlugins(pluginClassloader, projectRoot.getAbsolutePath(), new File(projectRoot, "bin").getAbsolutePath(), pluginDescriptor, PluginType.ECLIPSE_PROJECT);
+			loadPlugins(pluginClassloader, projectRoot.getAbsolutePath(), new File(projectRoot, "bin").getAbsolutePath(), pluginDescriptor, PluginSourceType.ECLIPSE_PROJECT);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
 		} catch (FileNotFoundException e) {
@@ -129,12 +129,12 @@ public class PluginManager {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private void loadPlugins(ClassLoader classLoader, String location, String classLocation, PluginDescriptor pluginDescriptor, PluginType pluginType) throws PluginException {
+	private void loadPlugins(ClassLoader classLoader, String location, String classLocation, PluginDescriptor pluginDescriptor, PluginSourceType pluginType) throws PluginException {
 		for (PluginImplementation pluginImplementation : pluginDescriptor.getImplementations()) {
-			String interfaceClassName = pluginImplementation.getInterfaceClass();
+			String interfaceClassName = pluginImplementation.getInterfaceClass().trim().replace("\n", "");
 			try {
 				Class interfaceClass = classLoader.loadClass(interfaceClassName);
-				String implementationClassName = pluginImplementation.getImplementationClass();
+				String implementationClassName = pluginImplementation.getImplementationClass().trim().replace("\n", "");
 				try {
 					Class implementationClass = classLoader.loadClass(implementationClassName);
 					Plugin plugin = (Plugin) implementationClass.newInstance();
@@ -182,7 +182,7 @@ public class PluginManager {
 			JarClassLoader jarClassLoader = new JarClassLoader(getClass().getClassLoader(), file);
 			InputStream pluginStream = jarClassLoader.getResourceAsStream("plugin/plugin.xml");
 			PluginDescriptor pluginDescriptor = getPluginDescriptor(pluginStream);
-			loadPlugins(jarClassLoader, file.getAbsolutePath(), file.getAbsolutePath(), pluginDescriptor, PluginType.JAR_FILE);
+			loadPlugins(jarClassLoader, file.getAbsolutePath(), file.getAbsolutePath(), pluginDescriptor, PluginSourceType.JAR_FILE);
 		} catch (JAXBException e) {
 			throw new PluginException(e);
 		}
@@ -249,7 +249,7 @@ public class PluginManager {
 				URL url = resources.nextElement();
 				LOGGER.info("Loading " + url);
 				PluginDescriptor pluginDescriptor = getPluginDescriptor(url.openStream());
-				loadPlugins(getClass().getClassLoader(), url.toString(), url.toString(), pluginDescriptor, PluginType.INTERNAL);
+				loadPlugins(getClass().getClassLoader(), url.toString(), url.toString(), pluginDescriptor, PluginSourceType.INTERNAL);
 			}
 		} catch (IOException e) {
 			LOGGER.error("", e);
@@ -368,7 +368,7 @@ public class PluginManager {
 		return tempDir;
 	}
 
-	public void loadPlugin(Class<? extends Plugin> interfaceClass, String location, String classLocation, Plugin plugin, ClassLoader classLoader, PluginType pluginType) throws PluginException {
+	public void loadPlugin(Class<? extends Plugin> interfaceClass, String location, String classLocation, Plugin plugin, ClassLoader classLoader, PluginSourceType pluginType) throws PluginException {
 		if (!Plugin.class.isAssignableFrom(interfaceClass)) {
 			throw new PluginException("Given interface class (" + interfaceClass.getName() + ") must be a subclass of " + Plugin.class.getName());
 		}

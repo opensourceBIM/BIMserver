@@ -547,6 +547,11 @@ message CompareRequest {
 	optional int64 mcid = 4;
 }
 
+message SObjectRemoved {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+}
+
 message SObjectAdded {
 	optional int32 rid = 1;
 	optional int64 oid = 2;
@@ -558,18 +563,6 @@ message SObjectModified {
 	optional int64 oid = 3;
 	optional string oldValue = 4;
 	optional string fieldName = 5;
-}
-
-message SObjectRemoved {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SReferenceDataValue {
-	optional string guid = 1;
-	optional string typeName = 2;
-	optional int32 rid = 3;
-	optional int64 oid = 4;
 }
 
 message SListDataValue {
@@ -584,11 +577,18 @@ message SSimpleDataValue {
 	optional string stringValue = 3;
 }
 
+message SReferenceDataValue {
+	optional string guid = 1;
+	optional string typeName = 2;
+	optional int32 rid = 3;
+	optional int64 oid = 4;
+}
+
 message SDataValue {
 	required string __actual_type = 1;
-	optional SReferenceDataValue __SReferenceDataValue = 2;
-	optional SListDataValue __SListDataValue = 3;
-	optional SSimpleDataValue __SSimpleDataValue = 4;
+	optional SListDataValue __SListDataValue = 2;
+	optional SSimpleDataValue __SSimpleDataValue = 3;
+	optional SReferenceDataValue __SReferenceDataValue = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 	optional string fieldName = 7;
@@ -605,9 +605,9 @@ message SDataObject {
 
 message SCompareItem {
 	required string __actual_type = 1;
-	optional SObjectAdded __SObjectAdded = 2;
-	optional SObjectModified __SObjectModified = 3;
-	optional SObjectRemoved __SObjectRemoved = 4;
+	optional SObjectRemoved __SObjectRemoved = 2;
+	optional SObjectAdded __SObjectAdded = 3;
+	optional SObjectModified __SObjectModified = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 	optional SDataObject dataObject = 7;

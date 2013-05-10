@@ -32,6 +32,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getLocation <em>Location</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.bimserver.models.store.PluginDescriptor#getPluginInterfaceClassName <em>Plugin Interface Class Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -196,5 +197,31 @@ public interface PluginDescriptor extends IdEObject {
 	 * @generated
 	 */
 	void setEnabled(Boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Plugin Interface Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Plugin Interface Class Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Plugin Interface Class Name</em>' attribute.
+	 * @see #setPluginInterfaceClassName(String)
+	 * @see org.bimserver.models.store.StorePackage#getPluginDescriptor_PluginInterfaceClassName()
+	 * @model
+	 * @generated
+	 */
+	String getPluginInterfaceClassName();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.PluginDescriptor#getPluginInterfaceClassName <em>Plugin Interface Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Plugin Interface Class Name</em>' attribute.
+	 * @see #getPluginInterfaceClassName()
+	 * @generated
+	 */
+	void setPluginInterfaceClassName(String value);
 
 } // PluginDescriptor

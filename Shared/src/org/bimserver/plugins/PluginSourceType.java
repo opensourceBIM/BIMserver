@@ -17,7 +17,7 @@ package org.bimserver.plugins;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-public enum PluginType {
+public enum PluginSourceType {
 	ECLIPSE_PROJECT,
 	JAR_FILE,
 	INTERNAL
