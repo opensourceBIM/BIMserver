@@ -20,7 +20,6 @@ package org.bimserver;
 import java.io.File;
 import java.io.IOException;
 import java.lang.Thread.UncaughtExceptionHandler;
-import java.net.URL;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -101,7 +100,7 @@ import org.bimserver.plugins.PluginChangeListener;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.PluginType;
+import org.bimserver.plugins.PluginSourceType;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
@@ -291,7 +290,7 @@ public class BimServer {
 						}
 					}
 				});
-				pluginManager.loadPlugin(ObjectIDMPlugin.class, "Internal", "Internal", new SchemaFieldObjectIDMPlugin(), getClass().getClassLoader(), PluginType.INTERNAL);
+				pluginManager.loadPlugin(ObjectIDMPlugin.class, "Internal", "Internal", new SchemaFieldObjectIDMPlugin(), getClass().getClassLoader(), PluginSourceType.INTERNAL);
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}

@@ -25,10 +25,15 @@ import org.bimserver.plugins.PluginManager;
 public class LocalDevPluginLoader {
 	public static void loadPlugins(PluginManager pluginManager) throws PluginException {
 		pluginManager.loadAllPluginsFromEclipseWorkspace(new File(".."));
-		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("C:\\Users\\Ruben de Laat\\git\\bimql\\BimQL"));
-		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("C:\\Users\\Ruben\\git\\BootstrapBIM\\BootstrapBIM"));
-		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("C:\\Users\\Ruben\\git\\BIMsurfer"));
-		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File("C:\\Users\\Ruben\\git\\RGDChecker"));
+		
+		// Change this to wherever your GIT base dir is
+		File gitDirectory = new File("C:\\Users\\Ruben de Laat\\git");
+		
+		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "bimql\\BimQL"));
+		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "BootstrapBIM"));
+		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "BIMsurfer"));
+		pluginManager.loadPluginsFromEclipseProjectNoExceptions(new File(gitDirectory, "RGDChecker"));
+		pluginManager.loadPluginsFromEclipseProject(new File(gitDirectory, "COBie-plugins\\COBiePlugins_Public"));
 //		pluginManager.loadPluginsFromEclipseProject(new File("../buildingSMARTLibrary"));
 //		pluginManager.loadPluginsFromJar(new File("../Builds/plugins/jqe.jar"));
 	}

@@ -2276,13 +2276,22 @@ public interface StorePackage extends EPackage {
 	int PLUGIN_DESCRIPTOR__ENABLED = 5;
 
 	/**
+	 * The feature id for the '<em><b>Plugin Interface Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = 6;
+
+	/**
 	 * The number of structural features of the '<em>Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_DESCRIPTOR_FEATURE_COUNT = 6;
+	int PLUGIN_DESCRIPTOR_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl <em>Serializer Plugin Descriptor</em>}' class.
@@ -2347,6 +2356,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int SERIALIZER_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Plugin Interface Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
 
 	/**
 	 * The number of structural features of the '<em>Serializer Plugin Descriptor</em>' class.
@@ -2420,6 +2438,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int DESERIALIZER_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Plugin Interface Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESERIALIZER_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
 
 	/**
 	 * The number of structural features of the '<em>Deserializer Plugin Descriptor</em>' class.
@@ -3112,6 +3139,15 @@ public interface StorePackage extends EPackage {
 	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
 
 	/**
+	 * The feature id for the '<em><b>Plugin Interface Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENDER_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
+
+	/**
 	 * The number of structural features of the '<em>Render Engine Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3440,6 +3476,15 @@ public interface StorePackage extends EPackage {
 	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
 
 	/**
+	 * The feature id for the '<em><b>Plugin Interface Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_ENGINE_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
+
+	/**
 	 * The number of structural features of the '<em>Query Engine Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3584,6 +3629,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int WEB_MODULE_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Plugin Interface Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WEB_MODULE_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
 
 	/**
 	 * The number of structural features of the '<em>Web Module Plugin Descriptor</em>' class.
@@ -3732,6 +3786,15 @@ public interface StorePackage extends EPackage {
 	int MODEL_MERGER_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
 
 	/**
+	 * The feature id for the '<em><b>Plugin Interface Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_MERGER_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
+
+	/**
 	 * The number of structural features of the '<em>Model Merger Plugin Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3876,6 +3939,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Plugin Interface Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_COMPARE_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
 
 	/**
 	 * The number of structural features of the '<em>Model Compare Plugin Descriptor</em>' class.
@@ -4440,6 +4512,15 @@ public interface StorePackage extends EPackage {
 	 * @ordered
 	 */
 	int SERVICE_PLUGIN_DESCRIPTOR__ENABLED = PLUGIN_DESCRIPTOR__ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Plugin Interface Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE_PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME;
 
 	/**
 	 * The number of structural features of the '<em>Service Plugin Descriptor</em>' class.
@@ -7996,6 +8077,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPluginDescriptor_Enabled();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.PluginDescriptor#getPluginInterfaceClassName <em>Plugin Interface Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Plugin Interface Class Name</em>'.
+	 * @see org.bimserver.models.store.PluginDescriptor#getPluginInterfaceClassName()
+	 * @see #getPluginDescriptor()
+	 * @generated
+	 */
+	EAttribute getPluginDescriptor_PluginInterfaceClassName();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.SerializerPluginDescriptor <em>Serializer Plugin Descriptor</em>}'.
@@ -12374,6 +12466,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PLUGIN_DESCRIPTOR__ENABLED = eINSTANCE.getPluginDescriptor_Enabled();
+
+		/**
+		 * The meta object literal for the '<em><b>Plugin Interface Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME = eINSTANCE.getPluginDescriptor_PluginInterfaceClassName();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.SerializerPluginDescriptorImpl <em>Serializer Plugin Descriptor</em>}' class.

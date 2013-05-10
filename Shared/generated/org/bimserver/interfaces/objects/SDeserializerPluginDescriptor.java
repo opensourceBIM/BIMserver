@@ -74,6 +74,9 @@ public class SDeserializerPluginDescriptor extends SPluginDescriptor implements 
 		if (sField.getName().equals("enabled")) {
 			return getEnabled();
 		}
+		if (sField.getName().equals("pluginInterfaceClassName")) {
+			return getPluginInterfaceClassName();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -106,6 +109,10 @@ public class SDeserializerPluginDescriptor extends SPluginDescriptor implements 
 		}
 		if (sField.getName().equals("enabled")) {
 			setEnabled((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("pluginInterfaceClassName")) {
+			setPluginInterfaceClassName((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
