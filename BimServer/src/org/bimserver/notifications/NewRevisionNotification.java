@@ -84,21 +84,32 @@ public class NewRevisionNotification extends Notification {
 		}
 	}
 	
-	public void triggerNewRevision(NotificationsManager notificationsManager, BimServer bimServer, String siteAddress, Project project, long roid, Trigger trigger, Service service) throws UserException, ServerException {
+	public void triggerNewRevision(NotificationsManager notificationsManager, final BimServer bimServer, String siteAddress, Project project, final long roid, Trigger trigger, final Service service) throws UserException, ServerException {
 		if (service.getTrigger() == trigger) {
 			Channel channel = null;
 			try {
 				channel = notificationsManager.getChannel(service);
-				RemoteServiceInterface remoteServiceInterface = channel.get(RemoteServiceInterface.class);
+				final RemoteServiceInterface remoteServiceInterface = channel.get(RemoteServiceInterface.class);
 				long writeProjectPoid = service.getWriteRevision() == null ? -1 : service.getWriteRevision().getOid();
 				long writeExtendedDataRoid = service.getWriteExtendedData() != null ? roid : -1;
 				long readRevisionRoid = service.isReadRevision() ? roid : -1;
 				long readExtendedDataRoid = service.getReadExtendedData() != null ? roid : -1;
-				ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(service.getUser().getOid(), service.getOid(), readRevisionRoid, writeProjectPoid, readExtendedDataRoid, writeExtendedDataRoid);
+				final ExplicitRightsAuthorization authorization = new ExplicitRightsAuthorization(service.getUser().getOid(), service.getOid(), readRevisionRoid, writeProjectPoid, readExtendedDataRoid, writeExtendedDataRoid);
 				ServiceInterface newService = bimServer.getServiceFactory().get(authorization, AccessMethod.INTERNAL).get(ServiceInterface.class);
 				((org.bimserver.webservices.ServiceImpl)newService).setAuthorization(authorization);
 				
-				remoteServiceInterface.newRevision(poid, roid, service.getOid(), service.getServiceIdentifier(), service.getProfileIdentifier(), authorization.asHexToken(bimServer.getEncryptionKey()), bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
+				notificationsManager.submitAsync(new Runnable(){
+					@Override
+					public void run() {
+						try {
+							remoteServiceInterface.newRevision(poid, roid, service.getOid(), service.getServiceIdentifier(), service.getProfileIdentifier(), authorization.asHexToken(bimServer.getEncryptionKey()), bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
+						} catch (UserException e) {
+							LOGGER.error("", e);
+						} catch (ServerException e) {
+							LOGGER.error("", e);
+						}
+					}
+				});
 			} catch (ChannelConnectionException e) {
 				LOGGER.error("", e);
 			} catch (PublicInterfaceNotFoundException e) {

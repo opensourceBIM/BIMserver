@@ -332,4 +332,8 @@ public class NotificationsManager implements NotificationsManagerInterface {
 		}
 		return topic;
 	}
+
+	public void submitAsync(Runnable runnable) {
+		threadPoolExecutor.submit(runnable);
+	}
 }
