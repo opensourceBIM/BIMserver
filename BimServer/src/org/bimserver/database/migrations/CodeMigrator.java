@@ -123,7 +123,7 @@ public class CodeMigrator {
 		File protoFile = new File("../BimServerClientLib/src/org/bimserver/client/protocolbuffers/" + interfaceClass.getSimpleName() + ".proto");
 		File descFile = new File("../BimServerClientLib/src/org/bimserver/client/protocolbuffers/" + interfaceClass.getSimpleName() + ".desc");
 		protocolBuffersGenerator.generate(interfaceClass, protoFile, descFile, this.knownServices.isEmpty(), service, knownShortNames);
-		this.knownServices .add(service);
+		this.knownServices.add(service);
 		this.knownShortNames.add(interfaceClass.getSimpleName());
 	}
 }

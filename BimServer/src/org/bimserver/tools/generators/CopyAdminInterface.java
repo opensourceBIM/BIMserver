@@ -29,7 +29,7 @@ public class CopyAdminInterface {
 	}
 
 	private void start() {
-		File bootstrap = new File("C:\\Users\\Ruben\\git\\BootstrapBIM\\BootstrapBIM");
+		File bootstrap = new File("C:\\Users\\Ruben\\git\\BootstrapBIM");
 		File www = new File("www");
 		try {
 			FileUtils.copyFileToDirectory(new File(bootstrap, "setup.html"), www);
