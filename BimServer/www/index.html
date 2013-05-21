@@ -99,7 +99,7 @@
 						loadBimServerApi($.cookie("address") != null ? $.cookie("address") : stripLastSlash(getBaseURL()), Global.notifier, function(serverInfo){
 							if (serverInfo.serverState == "NOT_SETUP") {
 								$(".indexcontainer").load("setup.html", function(){
-									new Setup($.cookie("address"));
+									new Setup($.cookie("address") == null ? stripLastSlash(getBaseURL()) : $.cookie("address"));
 								});
 							} else if (serverInfo.serverState == "UNDEFINED") {
 							} else if (serverInfo.serverState == "MIGRATION_REQUIRED") {
