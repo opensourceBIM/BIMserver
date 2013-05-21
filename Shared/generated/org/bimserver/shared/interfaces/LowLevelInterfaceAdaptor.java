@@ -143,6 +143,9 @@ public class LowLevelInterfaceAdaptor implements LowLevelInterface {
 	public void setDoubleAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Double value) throws UserException, ServerException {
 	}
 	
+	public void setDoubleAttributeAtIndex(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Integer index, java.lang.Double value) throws UserException, ServerException {
+	}
+	
 	public void setDoubleAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.util.List<java.lang.Double> values) throws UserException, ServerException {
 	}
 	
@@ -152,10 +155,16 @@ public class LowLevelInterfaceAdaptor implements LowLevelInterface {
 	public void setIntegerAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Integer value) throws UserException, ServerException {
 	}
 	
+	public void setIntegerAttributeAtIndex(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Integer index, java.lang.Integer value) throws UserException, ServerException {
+	}
+	
 	public void setIntegerAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.util.List<java.lang.Integer> values) throws UserException, ServerException {
 	}
 	
 	public void setLongAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Long value) throws UserException, ServerException {
+	}
+	
+	public void setLongAttributeAtIndex(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Integer index, java.lang.Long value) throws UserException, ServerException {
 	}
 	
 	public void setLongAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.util.List<java.lang.Long> values) throws UserException, ServerException {
@@ -165,6 +174,9 @@ public class LowLevelInterfaceAdaptor implements LowLevelInterface {
 	}
 	
 	public void setStringAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.String value) throws UserException, ServerException {
+	}
+	
+	public void setStringAttributeAtIndex(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Integer index, java.lang.String value) throws UserException, ServerException {
 	}
 	
 	public void setWrappedBooleanAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.String type, java.lang.Boolean value) throws UserException, ServerException {

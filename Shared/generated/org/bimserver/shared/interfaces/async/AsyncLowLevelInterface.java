@@ -199,6 +199,11 @@ public class AsyncLowLevelInterface {
 		void error(Exception e);
 	}
 	
+	public interface SetDoubleAttributeAtIndexCallback {
+		void success();
+		void error(Exception e);
+	}
+	
 	public interface SetDoubleAttributesCallback {
 		void success();
 		void error(Exception e);
@@ -214,12 +219,22 @@ public class AsyncLowLevelInterface {
 		void error(Exception e);
 	}
 	
+	public interface SetIntegerAttributeAtIndexCallback {
+		void success();
+		void error(Exception e);
+	}
+	
 	public interface SetIntegerAttributesCallback {
 		void success();
 		void error(Exception e);
 	}
 	
 	public interface SetLongAttributeCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+	public interface SetLongAttributeAtIndexCallback {
 		void success();
 		void error(Exception e);
 	}
@@ -235,6 +250,11 @@ public class AsyncLowLevelInterface {
 	}
 	
 	public interface SetStringAttributeCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+	public interface SetStringAttributeAtIndexCallback {
 		void success();
 		void error(Exception e);
 	}
@@ -703,6 +723,19 @@ public class AsyncLowLevelInterface {
 		});
 	}
 	
+	public void setDoubleAttributeAtIndex(final java.lang.Long tid, final java.lang.Long oid, final java.lang.String attributeName, final java.lang.Integer index, final java.lang.Double value, final SetDoubleAttributeAtIndexCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setDoubleAttributeAtIndex(tid, oid, attributeName, index, value);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void setDoubleAttributes(final java.lang.Long tid, final java.lang.Long oid, final java.lang.String attributeName, final java.util.List<java.lang.Double> values, final SetDoubleAttributesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -742,6 +775,19 @@ public class AsyncLowLevelInterface {
 		});
 	}
 	
+	public void setIntegerAttributeAtIndex(final java.lang.Long tid, final java.lang.Long oid, final java.lang.String attributeName, final java.lang.Integer index, final java.lang.Integer value, final SetIntegerAttributeAtIndexCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setIntegerAttributeAtIndex(tid, oid, attributeName, index, value);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void setIntegerAttributes(final java.lang.Long tid, final java.lang.Long oid, final java.lang.String attributeName, final java.util.List<java.lang.Integer> values, final SetIntegerAttributesCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -760,6 +806,19 @@ public class AsyncLowLevelInterface {
 			public void run(){
 				try {
 					syncService.setLongAttribute(tid, oid, attributeName, value);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setLongAttributeAtIndex(final java.lang.Long tid, final java.lang.Long oid, final java.lang.String attributeName, final java.lang.Integer index, final java.lang.Long value, final SetLongAttributeAtIndexCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setLongAttributeAtIndex(tid, oid, attributeName, index, value);
 					callback.success();
 				} catch (Exception e) {
 					callback.error(e);
@@ -799,6 +858,19 @@ public class AsyncLowLevelInterface {
 			public void run(){
 				try {
 					syncService.setStringAttribute(tid, oid, attributeName, value);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setStringAttributeAtIndex(final java.lang.Long tid, final java.lang.Long oid, final java.lang.String attributeName, final java.lang.Integer index, final java.lang.String value, final SetStringAttributeAtIndexCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setStringAttributeAtIndex(tid, oid, attributeName, index, value);
 					callback.success();
 				} catch (Exception e) {
 					callback.error(e);

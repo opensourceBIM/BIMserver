@@ -100,6 +100,22 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "oid", partName = "setStringAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "setStringAttribute.attributeName") String attributeName, 
 		@WebParam(name = "value", partName = "setStringAttribute.value") String value) throws ServerException, UserException;
+
+	/**
+	 * Set the String value of an attribute
+	 * @param tid The transaction id
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value New String value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setStringAttributeAtIndex")
+	void setStringAttributeAtIndex(
+			@WebParam(name = "tid", partName = "setStringAttributeAtIndex.tid") Long tid,
+			@WebParam(name = "oid", partName = "setStringAttributeAtIndex.oid") Long oid, 
+			@WebParam(name = "attributeName", partName = "setStringAttributeAtIndex.attributeName") String attributeName, 
+			@WebParam(name = "index", partName = "setStringAttributeAtIndex.index") Integer index, 
+			@WebParam(name = "value", partName = "setStringAttributeAtIndex.value") String value) throws ServerException, UserException;
 	
 	/**
 	 * Set the wrapped value of a String attribute
@@ -162,6 +178,22 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "setDoubleAttribute.attributeName") String attributeName, 
 		@WebParam(name = "value", partName = "setDoubleAttribute.value") Double value) throws ServerException, UserException;
 
+	/**
+	 * Set a double attribute at a specific index
+	 * @param tid The transaction id
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value New Double value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setDoubleAttributeAtIndex")
+	void setDoubleAttributeAtIndex(
+		@WebParam(name = "tid", partName = "setDoubleAttributeAtIndex.tid") Long tid,
+		@WebParam(name = "oid", partName = "setDoubleAttributeAtIndex.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "setDoubleAttributeAtIndex.attributeName") String attributeName, 
+		@WebParam(name = "index", partName = "setDoubleAttributeAtIndex.index") Integer index, 
+		@WebParam(name = "value", partName = "setDoubleAttributeAtIndex.value") Double value) throws ServerException, UserException;
+	
 	/**
 	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
@@ -265,6 +297,21 @@ public interface LowLevelInterface extends PublicInterface {
 	 * @param value new Integer value
 	 * @throws ServerException, UserException
 	 */
+	@WebMethod(action = "setIntegerAttributeAtIndex")
+	void setIntegerAttributeAtIndex(
+			@WebParam(name = "tid", partName = "setIntegerAttributeAtIndex.tid") Long tid,
+			@WebParam(name = "oid", partName = "setIntegerAttributeAtIndex.oid") Long oid, 
+			@WebParam(name = "attributeName", partName = "setIntegerAttributeAtIndex.attributeName") String attributeName, 
+			@WebParam(name = "index", partName = "setIntegerAttributeAtIndex.index") Integer index, 
+			@WebParam(name = "value", partName = "setIntegerAttributeAtIndex.value") Integer value) throws ServerException, UserException;
+
+	/**
+	 * @param tid The transaction id
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value new Integer value
+	 * @throws ServerException, UserException
+	 */
 	@WebMethod(action = "setWrappedIntegerAttribute")
 	void setWrappedIntegerAttribute(
 		@WebParam(name = "tid", partName = "setWrappedIntegerAttribute.tid") Long tid,
@@ -314,7 +361,22 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "oid", partName = "setLongAttribute.oid") Long oid, 
 		@WebParam(name = "attributeName", partName = "setLongAttribute.attributeName") String attributeName, 
 		@WebParam(name = "value", partName = "setLongAttribute.value") Long value) throws ServerException, UserException;
-	
+
+	/**
+	 * @param tid The transaction id
+	 * @param oid ObjectID of the object to change
+	 * @param attributeName Name of the attribute
+	 * @param value new Integer value
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "setLongAttributeAtIndex")
+	void setLongAttributeAtIndex(
+		@WebParam(name = "tid", partName = "setLongAttributeAtIndex.tid") Long tid,
+		@WebParam(name = "oid", partName = "setLongAttributeAtIndex.oid") Long oid, 
+		@WebParam(name = "attributeName", partName = "setLongAttributeAtIndex.attributeName") String attributeName, 
+		@WebParam(name = "index", partName = "setLongAttributeAtIndex.index") Integer index, 
+		@WebParam(name = "value", partName = "setLongAttributeAtIndex.value") Long value) throws ServerException, UserException;
+
 	/**
 	 * @param tid The transaction id
 	 * @param oid ObjectID of the object to change
