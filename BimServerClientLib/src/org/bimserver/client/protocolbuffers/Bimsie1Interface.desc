@@ -1,6 +1,10 @@
 
-ù-
-Bimsie1Interface.protoorg.bimserver.pbServiceInterface.protoNotificationInterface.protoRemoteServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoLowLevelInterface.protoPluginInterface.protoRegistryInterface.proto2º+
+±/
+Bimsie1Interface.protoorg.bimserver.pbServiceInterface.protoNotificationInterface.protoRemoteServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoLowLevelInterface.protoPluginInterface.protoRegistryInterface.proto"
+GetServiceLogRequest"<
+GetServiceLogResponse
+errorMessage (	
+value (	2œ,
 Bimsie1Interface]
 abortTransaction).org.bimserver.pb.AbortTransactionRequest.org.bimserver.pb.VoidResponsec
 addBooleanAttribute,.org.bimserver.pb.AddBooleanAttributeRequest.org.bimserver.pb.VoidResponsea
@@ -27,7 +31,8 @@
 getIntegerAttributes-.org.bimserver.pb.GetIntegerAttributesRequest..org.bimserver.pb.GetIntegerAttributesResponsei
 getLongAttribute).org.bimserver.pb.GetLongAttributeRequest*.org.bimserver.pb.GetLongAttributeResponse]
 getReference%.org.bimserver.pb.GetReferenceRequest&.org.bimserver.pb.GetReferenceResponse`
-getReferences&.org.bimserver.pb.GetReferencesRequest'.org.bimserver.pb.GetReferencesResponseo
+getReferences&.org.bimserver.pb.GetReferencesRequest'.org.bimserver.pb.GetReferencesResponse`
+getServiceLog&.org.bimserver.pb.GetServiceLogRequest'.org.bimserver.pb.GetServiceLogResponseo
 getStringAttribute+.org.bimserver.pb.GetStringAttributeRequest,.org.bimserver.pb.GetStringAttributeResponser
 getStringAttributes,.org.bimserver.pb.GetStringAttributesRequest-.org.bimserver.pb.GetStringAttributesResponseH
 login.org.bimserver.pb.LoginRequest.org.bimserver.pb.LoginResponseI

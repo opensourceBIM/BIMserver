@@ -1,0 +1,507 @@
+package org.bimserver.shared.interfaces.async;
+
+/******************************************************************************
+ * Copyright (C) 2009-2013  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+import java.util.concurrent.ExecutorService;
+import org.bimserver.shared.interfaces.SettingsInterface;
+
+public class AsyncSettingsInterface {
+
+	private final ExecutorService executorService;
+	private final SettingsInterface syncService;
+
+	public AsyncSettingsInterface(SettingsInterface syncService, ExecutorService executorService) {
+		this.executorService = executorService;
+		this.syncService = syncService;
+	}
+
+	public interface GetEmailSenderAddressCallback {
+		void success(java.lang.String result);
+		void error(Exception e);
+	}
+	
+	public interface GetProtocolBuffersPortCallback {
+		void success(java.lang.Integer result);
+		void error(Exception e);
+	}
+	
+	public interface GetServerSettingsCallback {
+		void success(org.bimserver.interfaces.objects.SServerSettings result);
+		void error(Exception e);
+	}
+	
+	public interface GetServiceRepositoryUrlCallback {
+		void success(java.lang.String result);
+		void error(Exception e);
+	}
+	
+	public interface GetSiteAddressCallback {
+		void success(java.lang.String result);
+		void error(Exception e);
+	}
+	
+	public interface GetSmtpServerCallback {
+		void success(java.lang.String result);
+		void error(Exception e);
+	}
+	
+	public interface IsAllowSelfRegistrationCallback {
+		void success(java.lang.Boolean result);
+		void error(Exception e);
+	}
+	
+	public interface IsAllowUsersToCreateTopLevelProjectsCallback {
+		void success(java.lang.Boolean result);
+		void error(Exception e);
+	}
+	
+	public interface IsCacheOutputFilesCallback {
+		void success(java.lang.Boolean result);
+		void error(Exception e);
+	}
+	
+	public interface IsCheckinMergingEnabledCallback {
+		void success(java.lang.Boolean result);
+		void error(Exception e);
+	}
+	
+	public interface IsGenerateGeometryOnCheckinCallback {
+		void success(java.lang.Boolean result);
+		void error(Exception e);
+	}
+	
+	public interface IsHideUserListForNonAdminCallback {
+		void success(java.lang.Boolean result);
+		void error(Exception e);
+	}
+	
+	public interface IsSendConfirmationEmailAfterRegistrationCallback {
+		void success(java.lang.Boolean result);
+		void error(Exception e);
+	}
+	
+	public interface SetAllowSelfRegistrationCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+	public interface SetAllowUsersToCreateTopLevelProjectsCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+	public interface SetCacheOutputFilesCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+	public interface SetCheckinMergingEnabledCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+	public interface SetEmailSenderAddressCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+	public interface SetGenerateGeometryOnCheckinCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+	public interface SetHideUserListForNonAdminCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+	public interface SetProtocolBuffersPortCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+	public interface SetSendConfirmationEmailAfterRegistrationCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+	public interface SetServerSettingsCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+	public interface SetServiceRepositoryUrlCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+	public interface SetSiteAddressCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+	public interface SetSmtpServerCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+	public interface SetWhiteListedDomainsCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+
+
+	public void getEmailSenderAddress(final GetEmailSenderAddressCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getEmailSenderAddress());
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getProtocolBuffersPort(final GetProtocolBuffersPortCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getProtocolBuffersPort());
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getServerSettings(final GetServerSettingsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getServerSettings());
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getServiceRepositoryUrl(final GetServiceRepositoryUrlCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getServiceRepositoryUrl());
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getSiteAddress(final GetSiteAddressCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getSiteAddress());
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getSmtpServer(final GetSmtpServerCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getSmtpServer());
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void isAllowSelfRegistration(final IsAllowSelfRegistrationCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.isAllowSelfRegistration());
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void isAllowUsersToCreateTopLevelProjects(final IsAllowUsersToCreateTopLevelProjectsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.isAllowUsersToCreateTopLevelProjects());
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void isCacheOutputFiles(final IsCacheOutputFilesCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.isCacheOutputFiles());
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void isCheckinMergingEnabled(final IsCheckinMergingEnabledCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.isCheckinMergingEnabled());
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void isGenerateGeometryOnCheckin(final IsGenerateGeometryOnCheckinCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.isGenerateGeometryOnCheckin());
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void isHideUserListForNonAdmin(final IsHideUserListForNonAdminCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.isHideUserListForNonAdmin());
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void isSendConfirmationEmailAfterRegistration(final IsSendConfirmationEmailAfterRegistrationCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.isSendConfirmationEmailAfterRegistration());
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setAllowSelfRegistration(final java.lang.Boolean allowSelfRegistration, final SetAllowSelfRegistrationCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setAllowSelfRegistration(allowSelfRegistration);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setAllowUsersToCreateTopLevelProjects(final java.lang.Boolean allowUsersToCreateTopLevelProjects, final SetAllowUsersToCreateTopLevelProjectsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setAllowUsersToCreateTopLevelProjects(allowUsersToCreateTopLevelProjects);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setCacheOutputFiles(final java.lang.Boolean cacheOutputFiles, final SetCacheOutputFilesCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setCacheOutputFiles(cacheOutputFiles);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setCheckinMergingEnabled(final java.lang.Boolean checkinMergingEnabled, final SetCheckinMergingEnabledCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setCheckinMergingEnabled(checkinMergingEnabled);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setEmailSenderAddress(final java.lang.String emailSenderAddress, final SetEmailSenderAddressCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setEmailSenderAddress(emailSenderAddress);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setGenerateGeometryOnCheckin(final java.lang.Boolean generateGeometryOnCheckin, final SetGenerateGeometryOnCheckinCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setGenerateGeometryOnCheckin(generateGeometryOnCheckin);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setHideUserListForNonAdmin(final java.lang.Boolean hideUserListForNonAdmin, final SetHideUserListForNonAdminCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setHideUserListForNonAdmin(hideUserListForNonAdmin);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setProtocolBuffersPort(final java.lang.Integer port, final SetProtocolBuffersPortCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setProtocolBuffersPort(port);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setSendConfirmationEmailAfterRegistration(final java.lang.Boolean sendConfirmationEmailAfterRegistration, final SetSendConfirmationEmailAfterRegistrationCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setSendConfirmationEmailAfterRegistration(sendConfirmationEmailAfterRegistration);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setServerSettings(final org.bimserver.interfaces.objects.SServerSettings serverSettings, final SetServerSettingsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setServerSettings(serverSettings);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setServiceRepositoryUrl(final java.lang.String url, final SetServiceRepositoryUrlCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setServiceRepositoryUrl(url);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setSiteAddress(final java.lang.String siteAddress, final SetSiteAddressCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setSiteAddress(siteAddress);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setSmtpServer(final java.lang.String smtpServer, final SetSmtpServerCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setSmtpServer(smtpServer);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setWhiteListedDomains(final java.util.List<java.lang.String> domains, final SetWhiteListedDomainsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setWhiteListedDomains(domains);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+}

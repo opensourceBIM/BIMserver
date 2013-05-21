@@ -123,3 +123,7 @@ label.checkbox {
 table.table tr td span {
 	margin-left: 0;
 }
+
+.row-fluid span.timespan {
+	min-height: 0;	
+}

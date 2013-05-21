@@ -29,6 +29,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import javax.crypto.spec.SecretKeySpec;
@@ -170,6 +172,7 @@ public class BimServer {
 	private BimServerClientFactory bimServerClientFactory;
 	private List<WebModulePlugin> webModules;
 	private WebModulePlugin defaultWebModule;
+	private ExecutorService executorService = Executors.newFixedThreadPool(50);
 
 	/**
 	 * Create a new BIMserver
@@ -764,6 +767,7 @@ public class BimServer {
 
 	public void stop() {
 		LOGGER.info("Stopping BIMserver");
+		executorService.shutdown();
 		if (bimDatabase != null) {
 			bimDatabase.close();
 		}
@@ -881,5 +885,9 @@ public class BimServer {
 	
 	public LongTransactionManager getLongTransactionManager() {
 		return longTransactionManager;
+	}
+	
+	public ExecutorService getExecutorService() {
+		return executorService;
 	}
 }

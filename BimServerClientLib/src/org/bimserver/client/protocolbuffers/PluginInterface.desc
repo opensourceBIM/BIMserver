@@ -228,10 +228,10 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration"(
 SPrimitiveDefinition.
 type (2 .org.bimserver.pb.SPrimitiveEnum"ò
 STypeDefinition
-__actual_type (	@
-__SObjectDefinition (2#.org.bimserver.pb.SObjectDefinition>
-__SArrayDefinition (2".org.bimserver.pb.SArrayDefinitionF
-__SPrimitiveDefinition (2&.org.bimserver.pb.SPrimitiveDefinition"”
+__actual_type (	>
+__SArrayDefinition (2".org.bimserver.pb.SArrayDefinitionF
+__SPrimitiveDefinition (2&.org.bimserver.pb.SPrimitiveDefinition@
+__SObjectDefinition (2#.org.bimserver.pb.SObjectDefinition"”
 SParameterDefinition
 description (	
 name (	
@@ -245,7 +245,16 @@ parameters (2&.org.bimserver.pb.SParameterDefinition"m
 errorMessage (	2
 value (2#.org.bimserver.pb.SObjectDefinition"(
 GetPluginSettingsRequest
-poid ("6
+poid ("O
+
+SArrayType'
+values (2.org.bimserver.pb.SType
+rid (
+oid ("4
+	SLongType
+rid (
+oid (
+value ("6
 SDoubleType
 rid (
 oid (
@@ -253,38 +262,29 @@ parameters (2&.org.bimserver.pb.SParameterDefinition"m
 SStringType
 rid (
 oid (
-value (	"9
-SByteArrayType
-rid (
-oid (
-value ("4
-	SLongType
-rid (
-oid (
-value ("7
+value (	"7
 SBooleanType
 rid (
 oid (
-value ("Ó
+value ("9
+SByteArrayType
+rid (
+oid (
+value ("Ó
 SPrimitiveType
-__actual_type (	4
-__SDoubleType (2.org.bimserver.pb.SDoubleType4
-__SStringType (2.org.bimserver.pb.SStringType:
-__SByteArrayType (2 .org.bimserver.pb.SByteArrayType0
-__SLongType (2.org.bimserver.pb.SLongType6
-__SBooleanType (2.org.bimserver.pb.SBooleanType
+__actual_type (	0
+__SLongType (2.org.bimserver.pb.SLongType4
+__SDoubleType (2.org.bimserver.pb.SDoubleType4
+__SStringType (2.org.bimserver.pb.SStringType6
+__SBooleanType (2.org.bimserver.pb.SBooleanType:
+__SByteArrayType (2 .org.bimserver.pb.SByteArrayType
 rid (
-oid ("O
-
-SArrayType'
-values (2.org.bimserver.pb.SType
-rid (
-oid ("Þ
+oid ("Þ
 SType
-__actual_type (	:
-__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType2
-__SArrayType (2.org.bimserver.pb.SArrayType4
-__SObjectType (2.org.bimserver.pb.SObjectType
+__actual_type (	4
+__SObjectType (2.org.bimserver.pb.SObjectType2
+__SArrayType (2.org.bimserver.pb.SArrayType:
+__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType
 rid (
 oid ("\
 

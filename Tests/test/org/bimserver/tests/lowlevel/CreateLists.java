@@ -3,6 +3,7 @@ package org.bimserver.tests.lowlevel;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bimserver.client.BimServerClient;
@@ -46,6 +47,21 @@ public class CreateLists extends TestWithEmbeddedServer {
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			List<Double> coordinates = lowLevelInterface.getDoubleAttributes(tid, cartesianPointOid, "Coordinates");
 			assertTrue(coordinates.get(0) == firstVal && coordinates.get(1) == secondVal && coordinates.get(2) == thirdVal);
+			
+			tid = lowLevelInterface.startTransaction(newProject.getOid());
+			ArrayList<Double> al = new ArrayList<Double>();
+			al.add(1.0);
+			al.add(2.0);
+			al.add(3.0);
+			lowLevelInterface.setDoubleAttributes(tid, cartesianPointOid, "Coordinates", al);
+			lowLevelInterface.commitTransaction(tid, "replace");
+			
+			tid = lowLevelInterface.startTransaction(newProject.getOid());
+			coordinates = lowLevelInterface.getDoubleAttributes(tid, cartesianPointOid, "Coordinates");
+			if (coordinates.size() != 3) {
+				fail("Coordinates size should be 3, it is " + coordinates.size());
+			}
+			assertTrue(coordinates.get(0) == 1.0 && coordinates.get(1) == 2.0 && coordinates.get(2) == 3.0);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getMessage());

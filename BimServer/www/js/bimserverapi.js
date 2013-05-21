@@ -214,10 +214,10 @@ function BimServerApi(baseUrl, notifier) {
 		othis.call("RegistryInterface", "unregisterChangeProgressOnProject", {roid: roid, endPointId: othis.server.endPointId}, callback);		
 	};
 	
-	this.registerChangeProgressRevisionHandler = function(roid, newHandler, closedHandler, callback) {
+	this.registerChangeProgressRevisionHandler = function(poid, roid, newHandler, closedHandler, callback) {
 		othis.register("NotificationInterface", "newProgressOnRevisionTopic", newHandler, function(){
 			othis.register("NotificationInterface", "closedProgressOnRevisionTopic", closedHandler, function(){
-				othis.call("RegistryInterface", "registerChangeProgressOnRevision", {roid: roid, endPointId: othis.server.endPointId}, function(){
+				othis.call("RegistryInterface", "registerChangeProgressOnRevision", {poid: poid, roid: roid, endPointId: othis.server.endPointId}, function(){
 					if (callback != null) {
 						callback();
 					}

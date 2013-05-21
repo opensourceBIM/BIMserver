@@ -10,5 +10,8 @@ var Settings = {
 		        "serversettingsLink",
 		        "serverinfoLink"
 		];
+	},
+	allowBimServerAddress: function() {
+		return false;
 	}
 }

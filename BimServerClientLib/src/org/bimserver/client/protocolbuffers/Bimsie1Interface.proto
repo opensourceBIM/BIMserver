@@ -85,6 +85,8 @@ service Bimsie1Interface {
 
 	rpc getReferences (GetReferencesRequest) returns (GetReferencesResponse);
 
+	rpc getServiceLog (GetServiceLogRequest) returns (GetServiceLogResponse);
+
 	rpc getStringAttribute (GetStringAttributeRequest) returns (GetStringAttributeResponse);
 
 	rpc getStringAttributes (GetStringAttributesRequest) returns (GetStringAttributesResponse);
@@ -141,5 +143,13 @@ service Bimsie1Interface {
 
 	rpc unsetReference (UnsetReferenceRequest) returns (VoidResponse);
 
+}
+
+message GetServiceLogRequest {
+}
+
+message GetServiceLogResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
 }
 

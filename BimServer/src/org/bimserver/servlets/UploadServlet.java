@@ -33,7 +33,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
+import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.utils.InputStreamDataSource;
@@ -82,9 +84,13 @@ public class UploadServlet extends SubServlet {
 				boolean merge = false;
 				boolean sync = false;
 				String compression = null;
+				String action = null;
 				while (iter.hasNext()) {
 					FileItem item = iter.next();
 					if (item.isFormField()) {
+						if ("action".equals(item.getFieldName())) {
+							action = item.getString();
+						}
 						if ("token".equals(item.getFieldName())) {
 							token = item.getString();
 						}
@@ -112,7 +118,13 @@ public class UploadServlet extends SubServlet {
 						in = item.getInputStream();
 					}
 				}
-				if (poid != -1) {
+				if ("file".equals(action)) {
+					ServiceInterface serviceInterface = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
+					SFile file = new SFile();
+					file.setData(IOUtils.toByteArray(in));
+					file.setFilename(name);
+					result.put("fileId", serviceInterface.uploadFile(file));
+				} else if (poid != -1) {
 					if (size == 0) {
 						result.put("exception", "Uploaded file empty, or no file uploaded at all");
 					} else {

@@ -1,0 +1,90 @@
+<%@ jet package="org.bimserver.tools.generators" imports="org.bimserver.shared.meta.* org.bimserver.utils.* java.io.File" class="AsyncServiceGenerator" %>
+package org.bimserver.shared.interfaces.async;
+
+<%
+/******************************************************************************
+ * Copyright (C) 2009-2012  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+%>
+<%=Licenser.getCommentedLicenseText(new File("license.txt"))%>
+import java.util.concurrent.ExecutorService;
+<%
+SService sService = (SService)argument;
+%>
+import <%=sService.getName()%>;
+
+public class Async<%=sService.getSimpleName()%> {
+
+	private final ExecutorService executorService;
+	private final <%=sService.getSimpleName()%> syncService;
+
+	public Async<%=sService.getSimpleName()%>(<%=sService.getSimpleName()%> syncService, ExecutorService executorService) {
+		this.executorService = executorService;
+		this.syncService = syncService;
+	}
+
+<%
+for (SMethod method : sService.getMethods()) {
+%>
+	public interface <%=StringUtils.firstUpperCase(method.getName())%>Callback {
+		void success(<%=method.getReturnType().isVoid() ? "" : (method.returnTypeToJavaCode() + " result")%>);
+		void error(Exception e);
+	}
+	
+<%
+}
+%>
+
+
+<%
+for (SMethod method : sService.getMethods()) {
+%>
+	public void <%=method.getName()%>(
+<%
+	for (SParameter parameter : method.getParameters()) {
+%>final <%=parameter.getGenericType() != null ? (parameter.getType().toJavaCode() + "<" + parameter.getGenericType() + ">") : parameter.getType().toJavaCode()%> <%=parameter.getName()%>, <%
+	}
+%>final <%=StringUtils.firstUpperCase(method.getName())%>Callback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {<%	if (method.getReturnType().isVoid()) { %>
+					syncService.<%=method.getName()%>(<%
+						for (SParameter sParameter : method.getParameters()) {
+							%><%=sParameter.getName()%><%=sParameter.isLast() ? "" : ", "%><%
+						}
+					%>);
+					callback.success();
+				<%
+					} else {
+				%>
+					callback.success(syncService.<%=method.getName()%>(<%
+						for (SParameter sParameter : method.getParameters()) {
+							%><%=sParameter.getName()%><%=sParameter.isLast() ? "" : ", "%><%
+						}
+					%>));
+				<%
+					}
+				%>} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+<%
+}
+%>
+}

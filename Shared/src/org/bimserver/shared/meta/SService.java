@@ -261,7 +261,7 @@ public class SService {
 		if (sType == null) {
 			if (name.contains(".")) {
 				name = name.substring(name.lastIndexOf(".") + 1);
-				return getSType(name);
+				return getSType(name, checked);
 			}
 		}
 		if (sType == null) {

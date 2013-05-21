@@ -272,7 +272,7 @@ public class SClass {
 	}
 
 	public boolean isByteArray() {
-		return instanceClass == byte[].class;
+		return instanceClass == byte[].class || instanceClass == Byte[].class;
 	}
 
 	public boolean isBoolean() {
