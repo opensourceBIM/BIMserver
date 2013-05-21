@@ -39,6 +39,7 @@ import org.bimserver.shared.meta.SServicesMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
@@ -74,9 +75,14 @@ public class JsonApiServlet extends SubServlet {
 		try {
 			JsonReader reader = new JsonReader(httpRequest.getReader());
 			JsonParser parser = new JsonParser();
-			JsonObject request = (JsonObject) parser.parse(reader);
-			response.setHeader("Content-Type", "application/json");
-			bimServer.getJsonHandler().execute(request, httpRequest, response.getWriter());
+			JsonElement parse = parser.parse(reader);
+			if (parse instanceof JsonObject) {
+				JsonObject request = (JsonObject) parse;
+				response.setHeader("Content-Type", "application/json");
+				bimServer.getJsonHandler().execute(request, httpRequest, response.getWriter());
+			} else {
+				LOGGER.info("Invalid JSON request: " + parse);
+			}
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		}
