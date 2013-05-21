@@ -1,0 +1,2408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="LowLevelInterfaceService" targetNamespace="org.buildingsmart.bimsie" xmlns:ns1="bimserver" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="org.buildingsmart.bimsie" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="org.buildingsmart.bimsie" elementFormDefault="unqualified" targetNamespace="org.buildingsmart.bimsie" version="1.0">
+<xs:element name="abortTransaction" type="tns:abortTransaction"/>
+<xs:element name="abortTransactionResponse" type="tns:abortTransactionResponse"/>
+<xs:element name="addBooleanAttribute" type="tns:addBooleanAttribute"/>
+<xs:element name="addBooleanAttributeResponse" type="tns:addBooleanAttributeResponse"/>
+<xs:element name="addDoubleAttribute" type="tns:addDoubleAttribute"/>
+<xs:element name="addDoubleAttributeResponse" type="tns:addDoubleAttributeResponse"/>
+<xs:element name="addIntegerAttribute" type="tns:addIntegerAttribute"/>
+<xs:element name="addIntegerAttributeResponse" type="tns:addIntegerAttributeResponse"/>
+<xs:element name="addReference" type="tns:addReference"/>
+<xs:element name="addReferenceResponse" type="tns:addReferenceResponse"/>
+<xs:element name="addStringAttribute" type="tns:addStringAttribute"/>
+<xs:element name="addStringAttributeResponse" type="tns:addStringAttributeResponse"/>
+<xs:element name="commitTransaction" type="tns:commitTransaction"/>
+<xs:element name="commitTransactionResponse" type="tns:commitTransactionResponse"/>
+<xs:element name="createObject" type="tns:createObject"/>
+<xs:element name="createObjectResponse" type="tns:createObjectResponse"/>
+<xs:element name="getBooleanAttribute" type="tns:getBooleanAttribute"/>
+<xs:element name="getBooleanAttributeResponse" type="tns:getBooleanAttributeResponse"/>
+<xs:element name="getBooleanAttributes" type="tns:getBooleanAttributes"/>
+<xs:element name="getBooleanAttributesResponse" type="tns:getBooleanAttributesResponse"/>
+<xs:element name="getByteArrayAttribute" type="tns:getByteArrayAttribute"/>
+<xs:element name="getByteArrayAttributeResponse" type="tns:getByteArrayAttributeResponse"/>
+<xs:element name="getByteArrayAttributes" type="tns:getByteArrayAttributes"/>
+<xs:element name="getByteArrayAttributesResponse" type="tns:getByteArrayAttributesResponse"/>
+<xs:element name="getDataObjectByGuid" type="tns:getDataObjectByGuid"/>
+<xs:element name="getDataObjectByGuidResponse" type="tns:getDataObjectByGuidResponse"/>
+<xs:element name="getDataObjectByOid" type="tns:getDataObjectByOid"/>
+<xs:element name="getDataObjectByOidResponse" type="tns:getDataObjectByOidResponse"/>
+<xs:element name="getDataObjects" type="tns:getDataObjects"/>
+<xs:element name="getDataObjectsByType" type="tns:getDataObjectsByType"/>
+<xs:element name="getDataObjectsByTypeResponse" type="tns:getDataObjectsByTypeResponse"/>
+<xs:element name="getDataObjectsResponse" type="tns:getDataObjectsResponse"/>
+<xs:element name="getDoubleAttribute" type="tns:getDoubleAttribute"/>
+<xs:element name="getDoubleAttributeResponse" type="tns:getDoubleAttributeResponse"/>
+<xs:element name="getDoubleAttributes" type="tns:getDoubleAttributes"/>
+<xs:element name="getDoubleAttributesResponse" type="tns:getDoubleAttributesResponse"/>
+<xs:element name="getEnumAttribute" type="tns:getEnumAttribute"/>
+<xs:element name="getEnumAttributeResponse" type="tns:getEnumAttributeResponse"/>
+<xs:element name="getIntegerAttribute" type="tns:getIntegerAttribute"/>
+<xs:element name="getIntegerAttributeResponse" type="tns:getIntegerAttributeResponse"/>
+<xs:element name="getIntegerAttributes" type="tns:getIntegerAttributes"/>
+<xs:element name="getIntegerAttributesResponse" type="tns:getIntegerAttributesResponse"/>
+<xs:element name="getLongAttribute" type="tns:getLongAttribute"/>
+<xs:element name="getLongAttributeResponse" type="tns:getLongAttributeResponse"/>
+<xs:element name="getReference" type="tns:getReference"/>
+<xs:element name="getReferenceResponse" type="tns:getReferenceResponse"/>
+<xs:element name="getReferences" type="tns:getReferences"/>
+<xs:element name="getReferencesResponse" type="tns:getReferencesResponse"/>
+<xs:element name="getStringAttribute" type="tns:getStringAttribute"/>
+<xs:element name="getStringAttributeResponse" type="tns:getStringAttributeResponse"/>
+<xs:element name="getStringAttributes" type="tns:getStringAttributes"/>
+<xs:element name="getStringAttributesResponse" type="tns:getStringAttributesResponse"/>
+<xs:element name="removeAllReferences" type="tns:removeAllReferences"/>
+<xs:element name="removeAllReferencesResponse" type="tns:removeAllReferencesResponse"/>
+<xs:element name="removeAttribute" type="tns:removeAttribute"/>
+<xs:element name="removeAttributeResponse" type="tns:removeAttributeResponse"/>
+<xs:element name="removeObject" type="tns:removeObject"/>
+<xs:element name="removeObjectResponse" type="tns:removeObjectResponse"/>
+<xs:element name="removeReference" type="tns:removeReference"/>
+<xs:element name="removeReferenceResponse" type="tns:removeReferenceResponse"/>
+<xs:element name="sDataObject" type="tns:sDataObject"/>
+<xs:element name="sDataValue" type="tns:sDataValue"/>
+<xs:element name="sListDataValue" type="tns:sListDataValue"/>
+<xs:element name="sReferenceDataValue" type="tns:sReferenceDataValue"/>
+<xs:element name="sSimpleDataValue" type="tns:sSimpleDataValue"/>
+<xs:element name="setBooleanAttribute" type="tns:setBooleanAttribute"/>
+<xs:element name="setBooleanAttributeResponse" type="tns:setBooleanAttributeResponse"/>
+<xs:element name="setBooleanAttributes" type="tns:setBooleanAttributes"/>
+<xs:element name="setBooleanAttributesResponse" type="tns:setBooleanAttributesResponse"/>
+<xs:element name="setByteArrayAttribute" type="tns:setByteArrayAttribute"/>
+<xs:element name="setByteArrayAttributeResponse" type="tns:setByteArrayAttributeResponse"/>
+<xs:element name="setDoubleAttribute" type="tns:setDoubleAttribute"/>
+<xs:element name="setDoubleAttributeResponse" type="tns:setDoubleAttributeResponse"/>
+<xs:element name="setDoubleAttributes" type="tns:setDoubleAttributes"/>
+<xs:element name="setDoubleAttributesResponse" type="tns:setDoubleAttributesResponse"/>
+<xs:element name="setEnumAttribute" type="tns:setEnumAttribute"/>
+<xs:element name="setEnumAttributeResponse" type="tns:setEnumAttributeResponse"/>
+<xs:element name="setIntegerAttribute" type="tns:setIntegerAttribute"/>
+<xs:element name="setIntegerAttributeResponse" type="tns:setIntegerAttributeResponse"/>
+<xs:element name="setIntegerAttributes" type="tns:setIntegerAttributes"/>
+<xs:element name="setIntegerAttributesResponse" type="tns:setIntegerAttributesResponse"/>
+<xs:element name="setLongAttribute" type="tns:setLongAttribute"/>
+<xs:element name="setLongAttributeResponse" type="tns:setLongAttributeResponse"/>
+<xs:element name="setLongAttributes" type="tns:setLongAttributes"/>
+<xs:element name="setLongAttributesResponse" type="tns:setLongAttributesResponse"/>
+<xs:element name="setReference" type="tns:setReference"/>
+<xs:element name="setReferenceResponse" type="tns:setReferenceResponse"/>
+<xs:element name="setStringAttribute" type="tns:setStringAttribute"/>
+<xs:element name="setStringAttributeResponse" type="tns:setStringAttributeResponse"/>
+<xs:element name="setWrappedBooleanAttribute" type="tns:setWrappedBooleanAttribute"/>
+<xs:element name="setWrappedBooleanAttributeResponse" type="tns:setWrappedBooleanAttributeResponse"/>
+<xs:element name="setWrappedDoubleAttribute" type="tns:setWrappedDoubleAttribute"/>
+<xs:element name="setWrappedDoubleAttributeResponse" type="tns:setWrappedDoubleAttributeResponse"/>
+<xs:element name="setWrappedIntegerAttribute" type="tns:setWrappedIntegerAttribute"/>
+<xs:element name="setWrappedIntegerAttributeResponse" type="tns:setWrappedIntegerAttributeResponse"/>
+<xs:element name="setWrappedLongAttribute" type="tns:setWrappedLongAttribute"/>
+<xs:element name="setWrappedLongAttributeResponse" type="tns:setWrappedLongAttributeResponse"/>
+<xs:element name="setWrappedStringAttribute" type="tns:setWrappedStringAttribute"/>
+<xs:element name="setWrappedStringAttributeResponse" type="tns:setWrappedStringAttributeResponse"/>
+<xs:element name="startTransaction" type="tns:startTransaction"/>
+<xs:element name="startTransactionResponse" type="tns:startTransactionResponse"/>
+<xs:element name="unsetAttribute" type="tns:unsetAttribute"/>
+<xs:element name="unsetAttributeResponse" type="tns:unsetAttributeResponse"/>
+<xs:element name="unsetReference" type="tns:unsetReference"/>
+<xs:element name="unsetReferenceResponse" type="tns:unsetReferenceResponse"/>
+<xs:complexType name="getEnumAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getEnumAttributeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDataObjectByOid">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="roid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDataObjectByOidResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:sDataObject"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sDataObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="guid" type="xs:string"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element name="oid" type="xs:long"/>
+      <xs:element name="rid" type="xs:int"/>
+      <xs:element minOccurs="0" name="type" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="values" nillable="true" type="tns:sDataValue"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sDataValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fieldName" type="xs:string"/>
+      <xs:element name="oid" type="xs:long"/>
+      <xs:element name="rid" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sSimpleDataValue">
+    <xs:complexContent>
+      <xs:extension base="tns:sDataValue">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="stringValue" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="sListDataValue">
+    <xs:complexContent>
+      <xs:extension base="tns:sDataValue">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="values" nillable="true" type="tns:sDataValue"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="sReferenceDataValue">
+    <xs:complexContent>
+      <xs:extension base="tns:sDataValue">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="guid" type="xs:string"/>
+          <xs:element minOccurs="0" name="typeName" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+<xs:complexType name="unsetAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="unsetAttributeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="setStringAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="value" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setStringAttributeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="setIntegerAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="value" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setIntegerAttributeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="addDoubleAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="value" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addDoubleAttributeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getDataObjectsByType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="roid" type="xs:long"/>
+      <xs:element minOccurs="0" name="className" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDataObjectsByTypeResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:sDataObject"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setDoubleAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="value" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setDoubleAttributeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getReferences">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="referenceName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getReferencesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="startTransaction">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="poid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="startTransactionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getLongAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getLongAttributeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getByteArrayAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getByteArrayAttributeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:base64Binary"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setLongAttributes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="values" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setLongAttributesResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getDoubleAttributes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDoubleAttributesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="unsetReference">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="referenceName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="unsetReferenceResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="setBooleanAttributes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="values" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setBooleanAttributesResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getDataObjectByGuid">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="roid" type="xs:long"/>
+      <xs:element minOccurs="0" name="guid" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDataObjectByGuidResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:sDataObject"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setDoubleAttributes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="values" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setDoubleAttributesResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="setLongAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="value" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setLongAttributeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="setEnumAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="value" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setEnumAttributeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="removeReference">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="referenceName" type="xs:string"/>
+      <xs:element minOccurs="0" name="index" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="removeReferenceResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getStringAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getStringAttributeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getReference">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="referenceName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getReferenceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addBooleanAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="value" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addBooleanAttributeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="removeObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="removeObjectResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="createObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="className" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="createObjectResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getBooleanAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getBooleanAttributeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="abortTransaction">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="abortTransactionResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getIntegerAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getIntegerAttributeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setByteArrayAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="value" type="xs:byte"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setByteArrayAttributeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="setWrappedStringAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="type" type="xs:string"/>
+      <xs:element minOccurs="0" name="value" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setWrappedStringAttributeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="setWrappedBooleanAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="type" type="xs:string"/>
+      <xs:element minOccurs="0" name="value" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setWrappedBooleanAttributeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getDoubleAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDoubleAttributeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getByteArrayAttributes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getByteArrayAttributesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:base64Binary"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setWrappedLongAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="type" type="xs:string"/>
+      <xs:element minOccurs="0" name="value" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setWrappedLongAttributeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getStringAttributes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getStringAttributesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addReference">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="referenceName" type="xs:string"/>
+      <xs:element minOccurs="0" name="referenceOid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addReferenceResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="setIntegerAttributes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="values" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setIntegerAttributesResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="removeAllReferences">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="referenceName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="removeAllReferencesResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="setWrappedIntegerAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="type" type="xs:string"/>
+      <xs:element minOccurs="0" name="value" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setWrappedIntegerAttributeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="addIntegerAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="value" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addIntegerAttributeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="setWrappedDoubleAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="type" type="xs:string"/>
+      <xs:element minOccurs="0" name="value" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setWrappedDoubleAttributeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="addStringAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="value" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addStringAttributeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getIntegerAttributes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getIntegerAttributesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDataObjects">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="roid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDataObjectsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:sDataObject"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setReference">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="referenceName" type="xs:string"/>
+      <xs:element minOccurs="0" name="referenceOid" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setReferenceResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="setBooleanAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="value" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="setBooleanAttributeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="removeAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="index" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="removeAttributeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getBooleanAttributes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="oid" type="xs:long"/>
+      <xs:element minOccurs="0" name="attributeName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getBooleanAttributesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="commitTransaction">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tid" type="xs:long"/>
+      <xs:element minOccurs="0" name="comment" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="commitTransactionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:simpleType name="errorCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SET_REFERENCE_FAILED_OPPOSITE_ALREADY_SET"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns0="org.buildingsmart.bimsie" xmlns:tns="bimserver" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="bimserver">
+  <xsd:import namespace="org.buildingsmart.bimsie"/>
+  <xsd:element name="UserException" type="tns:UserException"/>
+  <xsd:complexType name="UserException">
+    <xsd:sequence>
+      <xsd:element name="errorCode" nillable="true" type="ns0:errorCode"/>
+      <xsd:element name="userMessage" nillable="true" type="xsd:string"/>
+      <xsd:element name="fullMessage" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ServerException" type="tns:ServerException"/>
+  <xsd:complexType name="ServerException">
+    <xsd:sequence>
+      <xsd:element name="errorCode" nillable="true" type="ns0:errorCode"/>
+      <xsd:element name="userMessage" nillable="true" type="xsd:string"/>
+      <xsd:element name="fullMessage" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="setEnumAttributeResponse">
+    <wsdl:part name="parameters" element="tns:setEnumAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UserException">
+    <wsdl:part name="UserException" element="ns1:UserException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setWrappedDoubleAttribute">
+    <wsdl:part name="parameters" element="tns:setWrappedDoubleAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setDoubleAttributeResponse">
+    <wsdl:part name="parameters" element="tns:setDoubleAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setIntegerAttribute">
+    <wsdl:part name="parameters" element="tns:setIntegerAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setEnumAttribute">
+    <wsdl:part name="parameters" element="tns:setEnumAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setWrappedDoubleAttributeResponse">
+    <wsdl:part name="parameters" element="tns:setWrappedDoubleAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDataObjectsResponse">
+    <wsdl:part name="parameters" element="tns:getDataObjectsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDataObjects">
+    <wsdl:part name="parameters" element="tns:getDataObjects">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="unsetReferenceResponse">
+    <wsdl:part name="parameters" element="tns:unsetReferenceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDataObjectByGuidResponse">
+    <wsdl:part name="parameters" element="tns:getDataObjectByGuidResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addIntegerAttributeResponse">
+    <wsdl:part name="parameters" element="tns:addIntegerAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDoubleAttribute">
+    <wsdl:part name="parameters" element="tns:getDoubleAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="unsetAttributeResponse">
+    <wsdl:part name="parameters" element="tns:unsetAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDoubleAttributes">
+    <wsdl:part name="parameters" element="tns:getDoubleAttributes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDataObjectByOidResponse">
+    <wsdl:part name="parameters" element="tns:getDataObjectByOidResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ServerException">
+    <wsdl:part name="ServerException" element="ns1:ServerException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addBooleanAttributeResponse">
+    <wsdl:part name="parameters" element="tns:addBooleanAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setIntegerAttributesResponse">
+    <wsdl:part name="parameters" element="tns:setIntegerAttributesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setLongAttribute">
+    <wsdl:part name="parameters" element="tns:setLongAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getByteArrayAttributeResponse">
+    <wsdl:part name="parameters" element="tns:getByteArrayAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLongAttributeResponse">
+    <wsdl:part name="parameters" element="tns:getLongAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setWrappedStringAttributeResponse">
+    <wsdl:part name="parameters" element="tns:setWrappedStringAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStringAttribute">
+    <wsdl:part name="parameters" element="tns:getStringAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeObject">
+    <wsdl:part name="parameters" element="tns:removeObject">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setWrappedStringAttribute">
+    <wsdl:part name="parameters" element="tns:setWrappedStringAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="abortTransactionResponse">
+    <wsdl:part name="parameters" element="tns:abortTransactionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAllReferencesResponse">
+    <wsdl:part name="parameters" element="tns:removeAllReferencesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAttributeResponse">
+    <wsdl:part name="parameters" element="tns:removeAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setLongAttributesResponse">
+    <wsdl:part name="parameters" element="tns:setLongAttributesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setBooleanAttributes">
+    <wsdl:part name="parameters" element="tns:setBooleanAttributes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getByteArrayAttribute">
+    <wsdl:part name="parameters" element="tns:getByteArrayAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setWrappedBooleanAttribute">
+    <wsdl:part name="parameters" element="tns:setWrappedBooleanAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setDoubleAttribute">
+    <wsdl:part name="parameters" element="tns:setDoubleAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStringAttributeResponse">
+    <wsdl:part name="parameters" element="tns:getStringAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getByteArrayAttributesResponse">
+    <wsdl:part name="parameters" element="tns:getByteArrayAttributesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeReferenceResponse">
+    <wsdl:part name="parameters" element="tns:removeReferenceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addReference">
+    <wsdl:part name="parameters" element="tns:addReference">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setReference">
+    <wsdl:part name="parameters" element="tns:setReference">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="unsetAttribute">
+    <wsdl:part name="parameters" element="tns:unsetAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getReference">
+    <wsdl:part name="parameters" element="tns:getReference">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setBooleanAttribute">
+    <wsdl:part name="parameters" element="tns:setBooleanAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDataObjectByOid">
+    <wsdl:part name="parameters" element="tns:getDataObjectByOid">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setStringAttributeResponse">
+    <wsdl:part name="parameters" element="tns:setStringAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setBooleanAttributesResponse">
+    <wsdl:part name="parameters" element="tns:setBooleanAttributesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStringAttributes">
+    <wsdl:part name="parameters" element="tns:getStringAttributes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setDoubleAttributesResponse">
+    <wsdl:part name="parameters" element="tns:setDoubleAttributesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDataObjectByGuid">
+    <wsdl:part name="parameters" element="tns:getDataObjectByGuid">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="commitTransaction">
+    <wsdl:part name="parameters" element="tns:commitTransaction">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setReferenceResponse">
+    <wsdl:part name="parameters" element="tns:setReferenceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getBooleanAttributesResponse">
+    <wsdl:part name="parameters" element="tns:getBooleanAttributesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setLongAttributes">
+    <wsdl:part name="parameters" element="tns:setLongAttributes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addReferenceResponse">
+    <wsdl:part name="parameters" element="tns:addReferenceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLongAttribute">
+    <wsdl:part name="parameters" element="tns:getLongAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="abortTransaction">
+    <wsdl:part name="parameters" element="tns:abortTransaction">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="startTransactionResponse">
+    <wsdl:part name="parameters" element="tns:startTransactionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getIntegerAttributeResponse">
+    <wsdl:part name="parameters" element="tns:getIntegerAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addDoubleAttributeResponse">
+    <wsdl:part name="parameters" element="tns:addDoubleAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getIntegerAttributes">
+    <wsdl:part name="parameters" element="tns:getIntegerAttributes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addStringAttribute">
+    <wsdl:part name="parameters" element="tns:addStringAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getBooleanAttribute">
+    <wsdl:part name="parameters" element="tns:getBooleanAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createObject">
+    <wsdl:part name="parameters" element="tns:createObject">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getReferenceResponse">
+    <wsdl:part name="parameters" element="tns:getReferenceResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDataObjectsByTypeResponse">
+    <wsdl:part name="parameters" element="tns:getDataObjectsByTypeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setBooleanAttributeResponse">
+    <wsdl:part name="parameters" element="tns:setBooleanAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setWrappedBooleanAttributeResponse">
+    <wsdl:part name="parameters" element="tns:setWrappedBooleanAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setWrappedLongAttribute">
+    <wsdl:part name="parameters" element="tns:setWrappedLongAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createObjectResponse">
+    <wsdl:part name="parameters" element="tns:createObjectResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDoubleAttributesResponse">
+    <wsdl:part name="parameters" element="tns:getDoubleAttributesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStringAttributesResponse">
+    <wsdl:part name="parameters" element="tns:getStringAttributesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setLongAttributeResponse">
+    <wsdl:part name="parameters" element="tns:setLongAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addStringAttributeResponse">
+    <wsdl:part name="parameters" element="tns:addStringAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getBooleanAttributes">
+    <wsdl:part name="parameters" element="tns:getBooleanAttributes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addDoubleAttribute">
+    <wsdl:part name="parameters" element="tns:addDoubleAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setIntegerAttributeResponse">
+    <wsdl:part name="parameters" element="tns:setIntegerAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setByteArrayAttributeResponse">
+    <wsdl:part name="parameters" element="tns:setByteArrayAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="commitTransactionResponse">
+    <wsdl:part name="parameters" element="tns:commitTransactionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAllReferences">
+    <wsdl:part name="parameters" element="tns:removeAllReferences">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getByteArrayAttributes">
+    <wsdl:part name="parameters" element="tns:getByteArrayAttributes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setWrappedIntegerAttributeResponse">
+    <wsdl:part name="parameters" element="tns:setWrappedIntegerAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setDoubleAttributes">
+    <wsdl:part name="parameters" element="tns:setDoubleAttributes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getIntegerAttributesResponse">
+    <wsdl:part name="parameters" element="tns:getIntegerAttributesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEnumAttributeResponse">
+    <wsdl:part name="parameters" element="tns:getEnumAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setIntegerAttributes">
+    <wsdl:part name="parameters" element="tns:setIntegerAttributes">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setByteArrayAttribute">
+    <wsdl:part name="parameters" element="tns:setByteArrayAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDataObjectsByType">
+    <wsdl:part name="parameters" element="tns:getDataObjectsByType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getBooleanAttributeResponse">
+    <wsdl:part name="parameters" element="tns:getBooleanAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addBooleanAttribute">
+    <wsdl:part name="parameters" element="tns:addBooleanAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEnumAttribute">
+    <wsdl:part name="parameters" element="tns:getEnumAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setWrappedIntegerAttribute">
+    <wsdl:part name="parameters" element="tns:setWrappedIntegerAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setStringAttribute">
+    <wsdl:part name="parameters" element="tns:setStringAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeReference">
+    <wsdl:part name="parameters" element="tns:removeReference">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getReferences">
+    <wsdl:part name="parameters" element="tns:getReferences">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getReferencesResponse">
+    <wsdl:part name="parameters" element="tns:getReferencesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getIntegerAttribute">
+    <wsdl:part name="parameters" element="tns:getIntegerAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeObjectResponse">
+    <wsdl:part name="parameters" element="tns:removeObjectResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDoubleAttributeResponse">
+    <wsdl:part name="parameters" element="tns:getDoubleAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setWrappedLongAttributeResponse">
+    <wsdl:part name="parameters" element="tns:setWrappedLongAttributeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="startTransaction">
+    <wsdl:part name="parameters" element="tns:startTransaction">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addIntegerAttribute">
+    <wsdl:part name="parameters" element="tns:addIntegerAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="unsetReference">
+    <wsdl:part name="parameters" element="tns:unsetReference">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAttribute">
+    <wsdl:part name="parameters" element="tns:removeAttribute">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="LowLevelInterface">
+    <wsdl:operation name="getEnumAttribute">
+      <wsdl:input name="getEnumAttribute" message="tns:getEnumAttribute">
+    </wsdl:input>
+      <wsdl:output name="getEnumAttributeResponse" message="tns:getEnumAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDataObjectByOid">
+      <wsdl:input name="getDataObjectByOid" message="tns:getDataObjectByOid">
+    </wsdl:input>
+      <wsdl:output name="getDataObjectByOidResponse" message="tns:getDataObjectByOidResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="unsetAttribute">
+      <wsdl:input name="unsetAttribute" message="tns:unsetAttribute">
+    </wsdl:input>
+      <wsdl:output name="unsetAttributeResponse" message="tns:unsetAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setStringAttribute">
+      <wsdl:input name="setStringAttribute" message="tns:setStringAttribute">
+    </wsdl:input>
+      <wsdl:output name="setStringAttributeResponse" message="tns:setStringAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setIntegerAttribute">
+      <wsdl:input name="setIntegerAttribute" message="tns:setIntegerAttribute">
+    </wsdl:input>
+      <wsdl:output name="setIntegerAttributeResponse" message="tns:setIntegerAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addDoubleAttribute">
+      <wsdl:input name="addDoubleAttribute" message="tns:addDoubleAttribute">
+    </wsdl:input>
+      <wsdl:output name="addDoubleAttributeResponse" message="tns:addDoubleAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDataObjectsByType">
+      <wsdl:input name="getDataObjectsByType" message="tns:getDataObjectsByType">
+    </wsdl:input>
+      <wsdl:output name="getDataObjectsByTypeResponse" message="tns:getDataObjectsByTypeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setDoubleAttribute">
+      <wsdl:input name="setDoubleAttribute" message="tns:setDoubleAttribute">
+    </wsdl:input>
+      <wsdl:output name="setDoubleAttributeResponse" message="tns:setDoubleAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getReferences">
+      <wsdl:input name="getReferences" message="tns:getReferences">
+    </wsdl:input>
+      <wsdl:output name="getReferencesResponse" message="tns:getReferencesResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="startTransaction">
+      <wsdl:input name="startTransaction" message="tns:startTransaction">
+    </wsdl:input>
+      <wsdl:output name="startTransactionResponse" message="tns:startTransactionResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLongAttribute">
+      <wsdl:input name="getLongAttribute" message="tns:getLongAttribute">
+    </wsdl:input>
+      <wsdl:output name="getLongAttributeResponse" message="tns:getLongAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getByteArrayAttribute">
+      <wsdl:input name="getByteArrayAttribute" message="tns:getByteArrayAttribute">
+    </wsdl:input>
+      <wsdl:output name="getByteArrayAttributeResponse" message="tns:getByteArrayAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setLongAttributes">
+      <wsdl:input name="setLongAttributes" message="tns:setLongAttributes">
+    </wsdl:input>
+      <wsdl:output name="setLongAttributesResponse" message="tns:setLongAttributesResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDoubleAttributes">
+      <wsdl:input name="getDoubleAttributes" message="tns:getDoubleAttributes">
+    </wsdl:input>
+      <wsdl:output name="getDoubleAttributesResponse" message="tns:getDoubleAttributesResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="unsetReference">
+      <wsdl:input name="unsetReference" message="tns:unsetReference">
+    </wsdl:input>
+      <wsdl:output name="unsetReferenceResponse" message="tns:unsetReferenceResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setBooleanAttributes">
+      <wsdl:input name="setBooleanAttributes" message="tns:setBooleanAttributes">
+    </wsdl:input>
+      <wsdl:output name="setBooleanAttributesResponse" message="tns:setBooleanAttributesResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDataObjectByGuid">
+      <wsdl:input name="getDataObjectByGuid" message="tns:getDataObjectByGuid">
+    </wsdl:input>
+      <wsdl:output name="getDataObjectByGuidResponse" message="tns:getDataObjectByGuidResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setDoubleAttributes">
+      <wsdl:input name="setDoubleAttributes" message="tns:setDoubleAttributes">
+    </wsdl:input>
+      <wsdl:output name="setDoubleAttributesResponse" message="tns:setDoubleAttributesResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setLongAttribute">
+      <wsdl:input name="setLongAttribute" message="tns:setLongAttribute">
+    </wsdl:input>
+      <wsdl:output name="setLongAttributeResponse" message="tns:setLongAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setEnumAttribute">
+      <wsdl:input name="setEnumAttribute" message="tns:setEnumAttribute">
+    </wsdl:input>
+      <wsdl:output name="setEnumAttributeResponse" message="tns:setEnumAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeReference">
+      <wsdl:input name="removeReference" message="tns:removeReference">
+    </wsdl:input>
+      <wsdl:output name="removeReferenceResponse" message="tns:removeReferenceResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStringAttribute">
+      <wsdl:input name="getStringAttribute" message="tns:getStringAttribute">
+    </wsdl:input>
+      <wsdl:output name="getStringAttributeResponse" message="tns:getStringAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getReference">
+      <wsdl:input name="getReference" message="tns:getReference">
+    </wsdl:input>
+      <wsdl:output name="getReferenceResponse" message="tns:getReferenceResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addBooleanAttribute">
+      <wsdl:input name="addBooleanAttribute" message="tns:addBooleanAttribute">
+    </wsdl:input>
+      <wsdl:output name="addBooleanAttributeResponse" message="tns:addBooleanAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeObject">
+      <wsdl:input name="removeObject" message="tns:removeObject">
+    </wsdl:input>
+      <wsdl:output name="removeObjectResponse" message="tns:removeObjectResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createObject">
+      <wsdl:input name="createObject" message="tns:createObject">
+    </wsdl:input>
+      <wsdl:output name="createObjectResponse" message="tns:createObjectResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getBooleanAttribute">
+      <wsdl:input name="getBooleanAttribute" message="tns:getBooleanAttribute">
+    </wsdl:input>
+      <wsdl:output name="getBooleanAttributeResponse" message="tns:getBooleanAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="abortTransaction">
+      <wsdl:input name="abortTransaction" message="tns:abortTransaction">
+    </wsdl:input>
+      <wsdl:output name="abortTransactionResponse" message="tns:abortTransactionResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getIntegerAttribute">
+      <wsdl:input name="getIntegerAttribute" message="tns:getIntegerAttribute">
+    </wsdl:input>
+      <wsdl:output name="getIntegerAttributeResponse" message="tns:getIntegerAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setByteArrayAttribute">
+      <wsdl:input name="setByteArrayAttribute" message="tns:setByteArrayAttribute">
+    </wsdl:input>
+      <wsdl:output name="setByteArrayAttributeResponse" message="tns:setByteArrayAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setWrappedStringAttribute">
+      <wsdl:input name="setWrappedStringAttribute" message="tns:setWrappedStringAttribute">
+    </wsdl:input>
+      <wsdl:output name="setWrappedStringAttributeResponse" message="tns:setWrappedStringAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setWrappedBooleanAttribute">
+      <wsdl:input name="setWrappedBooleanAttribute" message="tns:setWrappedBooleanAttribute">
+    </wsdl:input>
+      <wsdl:output name="setWrappedBooleanAttributeResponse" message="tns:setWrappedBooleanAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDoubleAttribute">
+      <wsdl:input name="getDoubleAttribute" message="tns:getDoubleAttribute">
+    </wsdl:input>
+      <wsdl:output name="getDoubleAttributeResponse" message="tns:getDoubleAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getByteArrayAttributes">
+      <wsdl:input name="getByteArrayAttributes" message="tns:getByteArrayAttributes">
+    </wsdl:input>
+      <wsdl:output name="getByteArrayAttributesResponse" message="tns:getByteArrayAttributesResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setWrappedLongAttribute">
+      <wsdl:input name="setWrappedLongAttribute" message="tns:setWrappedLongAttribute">
+    </wsdl:input>
+      <wsdl:output name="setWrappedLongAttributeResponse" message="tns:setWrappedLongAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStringAttributes">
+      <wsdl:input name="getStringAttributes" message="tns:getStringAttributes">
+    </wsdl:input>
+      <wsdl:output name="getStringAttributesResponse" message="tns:getStringAttributesResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addReference">
+      <wsdl:input name="addReference" message="tns:addReference">
+    </wsdl:input>
+      <wsdl:output name="addReferenceResponse" message="tns:addReferenceResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setIntegerAttributes">
+      <wsdl:input name="setIntegerAttributes" message="tns:setIntegerAttributes">
+    </wsdl:input>
+      <wsdl:output name="setIntegerAttributesResponse" message="tns:setIntegerAttributesResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeAllReferences">
+      <wsdl:input name="removeAllReferences" message="tns:removeAllReferences">
+    </wsdl:input>
+      <wsdl:output name="removeAllReferencesResponse" message="tns:removeAllReferencesResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setWrappedIntegerAttribute">
+      <wsdl:input name="setWrappedIntegerAttribute" message="tns:setWrappedIntegerAttribute">
+    </wsdl:input>
+      <wsdl:output name="setWrappedIntegerAttributeResponse" message="tns:setWrappedIntegerAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addIntegerAttribute">
+      <wsdl:input name="addIntegerAttribute" message="tns:addIntegerAttribute">
+    </wsdl:input>
+      <wsdl:output name="addIntegerAttributeResponse" message="tns:addIntegerAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setWrappedDoubleAttribute">
+      <wsdl:input name="setWrappedDoubleAttribute" message="tns:setWrappedDoubleAttribute">
+    </wsdl:input>
+      <wsdl:output name="setWrappedDoubleAttributeResponse" message="tns:setWrappedDoubleAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addStringAttribute">
+      <wsdl:input name="addStringAttribute" message="tns:addStringAttribute">
+    </wsdl:input>
+      <wsdl:output name="addStringAttributeResponse" message="tns:addStringAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getIntegerAttributes">
+      <wsdl:input name="getIntegerAttributes" message="tns:getIntegerAttributes">
+    </wsdl:input>
+      <wsdl:output name="getIntegerAttributesResponse" message="tns:getIntegerAttributesResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDataObjects">
+      <wsdl:input name="getDataObjects" message="tns:getDataObjects">
+    </wsdl:input>
+      <wsdl:output name="getDataObjectsResponse" message="tns:getDataObjectsResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setReference">
+      <wsdl:input name="setReference" message="tns:setReference">
+    </wsdl:input>
+      <wsdl:output name="setReferenceResponse" message="tns:setReferenceResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setBooleanAttribute">
+      <wsdl:input name="setBooleanAttribute" message="tns:setBooleanAttribute">
+    </wsdl:input>
+      <wsdl:output name="setBooleanAttributeResponse" message="tns:setBooleanAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeAttribute">
+      <wsdl:input name="removeAttribute" message="tns:removeAttribute">
+    </wsdl:input>
+      <wsdl:output name="removeAttributeResponse" message="tns:removeAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getBooleanAttributes">
+      <wsdl:input name="getBooleanAttributes" message="tns:getBooleanAttributes">
+    </wsdl:input>
+      <wsdl:output name="getBooleanAttributesResponse" message="tns:getBooleanAttributesResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="commitTransaction">
+      <wsdl:input name="commitTransaction" message="tns:commitTransaction">
+    </wsdl:input>
+      <wsdl:output name="commitTransactionResponse" message="tns:commitTransactionResponse">
+    </wsdl:output>
+      <wsdl:fault name="ServerException" message="tns:ServerException">
+    </wsdl:fault>
+      <wsdl:fault name="UserException" message="tns:UserException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LowLevelInterfaceServiceSoapBinding" type="tns:LowLevelInterface">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getDataObjectByOid">
+      <soap:operation soapAction="getDataObjectByOid" style="document"/>
+      <wsdl:input name="getDataObjectByOid">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDataObjectByOidResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getEnumAttribute">
+      <soap:operation soapAction="getEnumAttribute" style="document"/>
+      <wsdl:input name="getEnumAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getEnumAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="unsetAttribute">
+      <soap:operation soapAction="unsetAttribute" style="document"/>
+      <wsdl:input name="unsetAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="unsetAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setIntegerAttribute">
+      <soap:operation soapAction="setIntegerAttribute" style="document"/>
+      <wsdl:input name="setIntegerAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setIntegerAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setStringAttribute">
+      <soap:operation soapAction="setStringAttribute" style="document"/>
+      <wsdl:input name="setStringAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setStringAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addDoubleAttribute">
+      <soap:operation soapAction="addDoubleAttribute" style="document"/>
+      <wsdl:input name="addDoubleAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addDoubleAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDataObjectsByType">
+      <soap:operation soapAction="getDataObjectsByType" style="document"/>
+      <wsdl:input name="getDataObjectsByType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDataObjectsByTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setDoubleAttribute">
+      <soap:operation soapAction="setDoubleAttribute" style="document"/>
+      <wsdl:input name="setDoubleAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setDoubleAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getReferences">
+      <soap:operation soapAction="getReferences" style="document"/>
+      <wsdl:input name="getReferences">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getReferencesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="startTransaction">
+      <soap:operation soapAction="startTransaction" style="document"/>
+      <wsdl:input name="startTransaction">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="startTransactionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLongAttribute">
+      <soap:operation soapAction="getLongAttribute" style="document"/>
+      <wsdl:input name="getLongAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLongAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getByteArrayAttribute">
+      <soap:operation soapAction="getByteArrayAttribute" style="document"/>
+      <wsdl:input name="getByteArrayAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getByteArrayAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setLongAttributes">
+      <soap:operation soapAction="setLongAttributes" style="document"/>
+      <wsdl:input name="setLongAttributes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setLongAttributesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDoubleAttributes">
+      <soap:operation soapAction="getDoubleAttributes" style="document"/>
+      <wsdl:input name="getDoubleAttributes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDoubleAttributesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="unsetReference">
+      <soap:operation soapAction="unsetReference" style="document"/>
+      <wsdl:input name="unsetReference">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="unsetReferenceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDataObjectByGuid">
+      <soap:operation soapAction="getDataObjectByGuid" style="document"/>
+      <wsdl:input name="getDataObjectByGuid">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDataObjectByGuidResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setBooleanAttributes">
+      <soap:operation soapAction="setBooleanAttributes" style="document"/>
+      <wsdl:input name="setBooleanAttributes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setBooleanAttributesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setDoubleAttributes">
+      <soap:operation soapAction="setDoubleAttributes" style="document"/>
+      <wsdl:input name="setDoubleAttributes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setDoubleAttributesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setLongAttribute">
+      <soap:operation soapAction="setLongAttribute" style="document"/>
+      <wsdl:input name="setLongAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setLongAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStringAttribute">
+      <soap:operation soapAction="getStringAttribute" style="document"/>
+      <wsdl:input name="getStringAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStringAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeReference">
+      <soap:operation soapAction="removeReference" style="document"/>
+      <wsdl:input name="removeReference">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeReferenceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setEnumAttribute">
+      <soap:operation soapAction="setEnumAttribute" style="document"/>
+      <wsdl:input name="setEnumAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setEnumAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addBooleanAttribute">
+      <soap:operation soapAction="addBooleanAttribute" style="document"/>
+      <wsdl:input name="addBooleanAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addBooleanAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getReference">
+      <soap:operation soapAction="getReference" style="document"/>
+      <wsdl:input name="getReference">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getReferenceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeObject">
+      <soap:operation soapAction="removeObject" style="document"/>
+      <wsdl:input name="removeObject">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeObjectResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createObject">
+      <soap:operation soapAction="createObject" style="document"/>
+      <wsdl:input name="createObject">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createObjectResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getBooleanAttribute">
+      <soap:operation soapAction="getBooleanAttribute" style="document"/>
+      <wsdl:input name="getBooleanAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getBooleanAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="abortTransaction">
+      <soap:operation soapAction="abortTransaction" style="document"/>
+      <wsdl:input name="abortTransaction">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="abortTransactionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getIntegerAttribute">
+      <soap:operation soapAction="getIntegerAttribute" style="document"/>
+      <wsdl:input name="getIntegerAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getIntegerAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setByteArrayAttribute">
+      <soap:operation soapAction="setByteArrayAttribute" style="document"/>
+      <wsdl:input name="setByteArrayAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setByteArrayAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setWrappedStringAttribute">
+      <soap:operation soapAction="setWrappedStringAttribute" style="document"/>
+      <wsdl:input name="setWrappedStringAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setWrappedStringAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getByteArrayAttributes">
+      <soap:operation soapAction="getByteArrayAttributes" style="document"/>
+      <wsdl:input name="getByteArrayAttributes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getByteArrayAttributesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDoubleAttribute">
+      <soap:operation soapAction="getDoubleAttribute" style="document"/>
+      <wsdl:input name="getDoubleAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDoubleAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setWrappedBooleanAttribute">
+      <soap:operation soapAction="setWrappedBooleanAttribute" style="document"/>
+      <wsdl:input name="setWrappedBooleanAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setWrappedBooleanAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addReference">
+      <soap:operation soapAction="addReference" style="document"/>
+      <wsdl:input name="addReference">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addReferenceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStringAttributes">
+      <soap:operation soapAction="getStringAttributes" style="document"/>
+      <wsdl:input name="getStringAttributes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStringAttributesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setWrappedLongAttribute">
+      <soap:operation soapAction="setWrappedLongAttribute" style="document"/>
+      <wsdl:input name="setWrappedLongAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setWrappedLongAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeAllReferences">
+      <soap:operation soapAction="removeAllReferences" style="document"/>
+      <wsdl:input name="removeAllReferences">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeAllReferencesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setIntegerAttributes">
+      <soap:operation soapAction="setIntegerAttributes" style="document"/>
+      <wsdl:input name="setIntegerAttributes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setIntegerAttributesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addIntegerAttribute">
+      <soap:operation soapAction="addIntegerAttribute" style="document"/>
+      <wsdl:input name="addIntegerAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addIntegerAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setWrappedIntegerAttribute">
+      <soap:operation soapAction="setWrappedIntegerAttribute" style="document"/>
+      <wsdl:input name="setWrappedIntegerAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setWrappedIntegerAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setWrappedDoubleAttribute">
+      <soap:operation soapAction="setWrappedDoubleAttribute" style="document"/>
+      <wsdl:input name="setWrappedDoubleAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setWrappedDoubleAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addStringAttribute">
+      <soap:operation soapAction="addStringAttribute" style="document"/>
+      <wsdl:input name="addStringAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addStringAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDataObjects">
+      <soap:operation soapAction="getDataObjects" style="document"/>
+      <wsdl:input name="getDataObjects">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDataObjectsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getIntegerAttributes">
+      <soap:operation soapAction="getIntegerAttributes" style="document"/>
+      <wsdl:input name="getIntegerAttributes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getIntegerAttributesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getBooleanAttributes">
+      <soap:operation soapAction="getBooleanAttributes" style="document"/>
+      <wsdl:input name="getBooleanAttributes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getBooleanAttributesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeAttribute">
+      <soap:operation soapAction="removeAttribute" style="document"/>
+      <wsdl:input name="removeAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setBooleanAttribute">
+      <soap:operation soapAction="setBooleanAttribute" style="document"/>
+      <wsdl:input name="setBooleanAttribute">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setBooleanAttributeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setReference">
+      <soap:operation soapAction="setReference" style="document"/>
+      <wsdl:input name="setReference">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setReferenceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="commitTransaction">
+      <soap:operation soapAction="commitTransaction" style="document"/>
+      <wsdl:input name="commitTransaction">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="commitTransactionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServerException">
+        <soap:fault name="ServerException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserException">
+        <soap:fault name="UserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LowLevelInterfaceService">
+    <wsdl:port name="LowLevelInterfacePort" binding="tns:LowLevelInterfaceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/LowLevelInterfacePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

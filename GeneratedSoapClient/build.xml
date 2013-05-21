@@ -15,8 +15,28 @@
 			<arg value="-wsdl" />
 			<arg value="-verbose" />
 			<arg value="-o" />
-			<arg value="generated/BIMserver.wsdl" />
-			<arg value="org.bimserver.shared.ServiceInterface" />
+			<arg value="generated/ServiceInterface.wsdl" />
+			<arg value="org.bimserver.shared.interfaces.ServiceInterface" />
+			<classpath>
+				<path refid="cxf.classpath" />
+			</classpath>
+		</java>
+		<java classname="org.apache.cxf.tools.java2ws.JavaToWS" fork="true">
+			<arg value="-wsdl" />
+			<arg value="-verbose" />
+			<arg value="-o" />
+			<arg value="generated/AuthInterface.wsdl" />
+			<arg value="org.bimserver.shared.interfaces.AuthInterface" />
+			<classpath>
+				<path refid="cxf.classpath" />
+			</classpath>
+		</java>
+		<java classname="org.apache.cxf.tools.java2ws.JavaToWS" fork="true">
+			<arg value="-wsdl" />
+			<arg value="-verbose" />
+			<arg value="-o" />
+			<arg value="generated/LowLevelInterface.wsdl" />
+			<arg value="org.bimserver.shared.interfaces.LowLevelInterface" />
 			<classpath>
 				<path refid="cxf.classpath" />
 			</classpath>
@@ -29,7 +49,27 @@
 			<arg value="generated" />
 			<arg value="-p" />
 			<arg value="org.bimserver.generatedclient" />
-			<arg value="generated/BIMserver.wsdl" />
+			<arg value="generated/ServiceInterface.wsdl" />
+			<classpath>
+				<path refid="cxf.classpath" />
+			</classpath>
+		</java>
+		<java classname="org.apache.cxf.tools.wsdlto.WSDLToJava" fork="true">
+			<arg value="-d" />
+			<arg value="generated" />
+			<arg value="-p" />
+			<arg value="org.bimserver.generatedclient" />
+			<arg value="generated/AuthInterface.wsdl" />
+			<classpath>
+				<path refid="cxf.classpath" />
+			</classpath>
+		</java>
+		<java classname="org.apache.cxf.tools.wsdlto.WSDLToJava" fork="true">
+			<arg value="-d" />
+			<arg value="generated" />
+			<arg value="-p" />
+			<arg value="org.bimserver.generatedclient" />
+			<arg value="generated/LowLevelInterface.wsdl" />
 			<classpath>
 				<path refid="cxf.classpath" />
 			</classpath>

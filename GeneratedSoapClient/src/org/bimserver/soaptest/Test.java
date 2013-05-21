@@ -19,10 +19,19 @@ package org.bimserver.soaptest;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.JAXBException;
+import javax.xml.namespace.QName;
 import javax.xml.ws.BindingProvider;
 
+import org.apache.cxf.headers.Header;
+import org.apache.cxf.jaxb.JAXBDataBinding;
+import org.bimserver.generatedclient.AuthInterface;
+import org.bimserver.generatedclient.AuthInterfaceService;
+import org.bimserver.generatedclient.LowLevelInterface;
+import org.bimserver.generatedclient.LowLevelInterfaceService;
 import org.bimserver.generatedclient.SDataObject;
 import org.bimserver.generatedclient.SDataValue;
 import org.bimserver.generatedclient.SListDataValue;
@@ -30,8 +39,8 @@ import org.bimserver.generatedclient.SProject;
 import org.bimserver.generatedclient.SReferenceDataValue;
 import org.bimserver.generatedclient.SSimpleDataValue;
 import org.bimserver.generatedclient.ServerException_Exception;
+import org.bimserver.generatedclient.ServiceInterface;
 import org.bimserver.generatedclient.ServiceInterfaceService;
-import org.bimserver.generatedclient.Soap;
 import org.bimserver.generatedclient.UserException_Exception;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,16 +53,37 @@ public class Test {
 
 	private void start() {
 		try {
-			URL url = new URL("http://localhost/soap?wsdl");
-			ServiceInterfaceService service = new ServiceInterfaceService(url);
-			Soap soapPort = service.getSoapPort();
-			((BindingProvider) soapPort).getRequestContext().put(BindingProvider.SESSION_MAINTAIN_PROPERTY, true);
-				soapPort.login("admin@bimserver.org", "admin");
-				for (SProject sProject : soapPort.getAllProjects()) {
+			URL serviceInterfaceUrl = new URL("http://localhost:8080/soap12/ServiceInterface?wsdl");
+			URL authInterfaceUrl = new URL("http://localhost:8080/soap12/AuthInterface?wsdl");
+			URL lowLevelInterfaceUrl = new URL("http://localhost:8080/soap12/LowLevelInterface?wsdl");
+
+			ServiceInterfaceService serviceInterfaceService = new ServiceInterfaceService(serviceInterfaceUrl);
+			ServiceInterface serviceInterface = serviceInterfaceService.getServiceInterfacePort();
+
+			AuthInterfaceService authInterfaceService = new AuthInterfaceService(authInterfaceUrl);
+			AuthInterface authInterface = authInterfaceService.getAuthInterfacePort();
+			
+			LowLevelInterfaceService lowLevelInterfaceService = new LowLevelInterfaceService(lowLevelInterfaceUrl);
+			LowLevelInterface lowLevelInterface = lowLevelInterfaceService.getLowLevelInterfacePort();
+			
+			String token = authInterface.login("admin@bimserver.org", "admin");
+			try {
+				List<Header> headers = new ArrayList<Header>();
+				Token tokenObject = new Token();
+				tokenObject.setToken(token);
+				Header sessionHeader = new Header(new QName("uri:org.bimserver.shared", "token"), tokenObject, new JAXBDataBinding(Token.class));
+				headers.add(sessionHeader);
+				((BindingProvider) serviceInterface).getRequestContext().put(Header.HEADER_LIST, headers);
+				((BindingProvider) authInterface).getRequestContext().put(Header.HEADER_LIST, headers);
+				((BindingProvider) lowLevelInterface).getRequestContext().put(Header.HEADER_LIST, headers);
+			} catch (JAXBException e) {
+				LOGGER.error("", e);
+			}
+				for (SProject sProject : serviceInterface.getAllProjects(true)) {
 					System.out.println(sProject.getName());
 					long roid = sProject.getLastRevisionId();
 					if (roid != -1) {
-						List<SDataObject> dataObjectsByType = soapPort.getDataObjectsByType(roid, "IfcWindow");
+						List<SDataObject> dataObjectsByType = lowLevelInterface.getDataObjectsByType(roid, "IfcWindow");
 						for (SDataObject sDataObject : dataObjectsByType) {
 							for (SDataValue sDataValue : sDataObject.getValues()) {
 								System.out.print(sDataValue.getFieldName() + ": ");
