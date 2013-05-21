@@ -5,6 +5,13 @@ $.ajaxSetup({
 	cache: false
 })
 
+function stripLastSlash(str) {
+	if(str.substr(-1) == '/') {
+        return str.substr(0, str.length - 1);
+    }
+    return str;
+}
+
 function getBaseURL () {
    return location.protocol + "//" + location.hostname + 
       (location.port && ":" + location.port) + "/";

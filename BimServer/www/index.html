@@ -96,7 +96,7 @@
 			this.tryAutoLogin = function(){
 				$(function(){
 					if ($.cookie("address") != null || (!Settings.allowBimServerAddress())) {
-						loadBimServerApi($.cookie("address") != null ? $.cookie("address") : getBaseURL(), Global.notifier, function(serverInfo){
+						loadBimServerApi($.cookie("address") != null ? $.cookie("address") : stripLastSlash(getBaseURL()), Global.notifier, function(serverInfo){
 							if (serverInfo.serverState == "NOT_SETUP") {
 								$(".indexcontainer").load("setup.html", function(){
 									new Setup($.cookie("address"));
