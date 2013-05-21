@@ -29,6 +29,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -78,8 +79,8 @@ public class JsonApiServlet extends SubServlet {
 	private void handleRequest(HttpServletRequest httpRequest, HttpServletResponse response, BimServer bimServer) {
 		response.setCharacterEncoding("UTF-8");
 		try {
-			BufferedReader reader = httpRequest.getReader();
-			byte[] bytes = IOUtils.toByteArray(reader);
+			ServletInputStream inputStream = httpRequest.getInputStream();
+			byte[] bytes = IOUtils.toByteArray(inputStream);
 			JsonReader jsonReader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(bytes)));
 			JsonParser parser = new JsonParser();
 			JsonElement parse = parser.parse(jsonReader);
