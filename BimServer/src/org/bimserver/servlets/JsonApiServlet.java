@@ -17,7 +17,10 @@ package org.bimserver.servlets;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,6 +32,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;
@@ -39,6 +43,7 @@ import org.bimserver.shared.meta.SServicesMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Charsets;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -73,15 +78,17 @@ public class JsonApiServlet extends SubServlet {
 	private void handleRequest(HttpServletRequest httpRequest, HttpServletResponse response, BimServer bimServer) {
 		response.setCharacterEncoding("UTF-8");
 		try {
-			JsonReader reader = new JsonReader(httpRequest.getReader());
+			BufferedReader reader = httpRequest.getReader();
+			byte[] bytes = IOUtils.toByteArray(reader);
+			JsonReader jsonReader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(bytes)));
 			JsonParser parser = new JsonParser();
-			JsonElement parse = parser.parse(reader);
+			JsonElement parse = parser.parse(jsonReader);
 			if (parse instanceof JsonObject) {
 				JsonObject request = (JsonObject) parse;
 				response.setHeader("Content-Type", "application/json");
 				bimServer.getJsonHandler().execute(request, httpRequest, response.getWriter());
 			} else {
-				LOGGER.info("Invalid JSON request: " + parse);
+				LOGGER.info("Invalid JSON request: " + new String(bytes, Charsets.UTF_8));
 			}
 		} catch (IOException e) {
 			LOGGER.error("", e);
