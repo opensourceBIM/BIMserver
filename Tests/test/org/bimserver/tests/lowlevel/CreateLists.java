@@ -62,6 +62,17 @@ public class CreateLists extends TestWithEmbeddedServer {
 				fail("Coordinates size should be 3, it is " + coordinates.size());
 			}
 			assertTrue(coordinates.get(0) == 1.0 && coordinates.get(1) == 2.0 && coordinates.get(2) == 3.0);
+			
+			tid = lowLevelInterface.startTransaction(newProject.getOid());
+			lowLevelInterface.setDoubleAttributeAtIndex(tid, cartesianPointOid, "Coordinates", 1, 5.0);
+			lowLevelInterface.commitTransaction(tid, "changed middle one");
+			
+			tid = lowLevelInterface.startTransaction(newProject.getOid());
+			coordinates = lowLevelInterface.getDoubleAttributes(tid, cartesianPointOid, "Coordinates");
+			if (coordinates.size() != 3) {
+				fail("Coordinates size should be 3, it is " + coordinates.size());
+			}
+			assertTrue(coordinates.get(0) + ", " + coordinates.get(1) + ", " + coordinates.get(2), coordinates.get(0) == 1.0 && coordinates.get(1) == 5.0 && coordinates.get(2) == 3.0);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getMessage());

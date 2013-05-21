@@ -28,6 +28,7 @@ import org.bimserver.changes.RemoveAttributeChange;
 import org.bimserver.changes.RemoveObjectChange;
 import org.bimserver.changes.RemoveReferenceChange;
 import org.bimserver.changes.SetAttributeChange;
+import org.bimserver.changes.SetAttributeChangeAtIndex;
 import org.bimserver.changes.SetReferenceChange;
 import org.bimserver.changes.SetWrappedAttributeChange;
 import org.bimserver.database.BimserverDatabaseException;
@@ -160,12 +161,32 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 			handleException(e);
 		}
 	}
+	
+	@Override
+	public void setDoubleAttributeAtIndex(Long tid,	Long oid, String attributeName, Integer index, Double value) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChangeAtIndex(oid, attributeName, index, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
+	}
 
 	@Override
 	public void setIntegerAttributes(Long tid, Long oid, String attributeName, List<Integer> values) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		try {
 			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, values));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
+	}
+	
+	@Override
+	public void setIntegerAttributeAtIndex(Long tid, Long oid, String attributeName, Integer index, Integer value) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChangeAtIndex(oid, attributeName, index, value));
 		} catch (NoTransactionException e) {
 			handleException(e);
 		}
@@ -283,6 +304,16 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	}
 	
 	@Override
+	public void setStringAttributeAtIndex(Long tid, Long oid, String attributeName, Integer index, String value) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChangeAtIndex(oid, attributeName, index, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
+	}
+	
+	@Override
 	public void setWrappedStringAttribute(Long tid, Long oid, String attributeName, String type, String value)
 			throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
@@ -334,6 +365,16 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 		requireAuthenticationAndRunningServer();
 		try {
 			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChange(oid, attributeName, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
+	}
+	
+	@Override
+	public void setLongAttributeAtIndex(Long tid, Long oid, String attributeName, Integer index,Long value) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new SetAttributeChangeAtIndex(oid, attributeName, index, value));
 		} catch (NoTransactionException e) {
 			handleException(e);
 		}
