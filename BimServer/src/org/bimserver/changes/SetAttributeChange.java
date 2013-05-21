@@ -66,9 +66,14 @@ public class SetAttributeChange implements Change {
 				throw new UserException("Attribute is not of type 'many'");
 			}
 			List list = (List)idEObject.eGet(eAttribute);
+			list.clear();
+			List asStringList = null;
+			if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
+				asStringList = (List)idEObject.eGet(idEObject.eClass().getEStructuralFeature(attributeName + "AsString"));
+				asStringList.clear();
+			}
 			for (Object o : sourceList) {
 				if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-					List asStringList = (List)idEObject.eGet(idEObject.eClass().getEStructuralFeature(attributeName + "AsString"));
 					asStringList.add(String.valueOf(o));
 				}
 				list.add(o);

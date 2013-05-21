@@ -149,6 +149,30 @@ public class SMethod {
 		return genericReturnType != null ? genericReturnType : returnType;
 	}
 
+	public String returnTypeToJavaCode() {
+		StringBuilder sb = new StringBuilder();
+		if (getGenericReturnType() != null) {
+			sb.append(getReturnType().toJavaCode());
+			sb.append("<");
+			sb.append(getGenericReturnType().toJavaCode());
+			sb.append(">");
+		} else {
+			sb.append(getReturnType().toJavaCode());
+		}
+		return sb.toString();
+	}
+	
+	public String signatureToJavaCode() {
+		StringBuilder sb = new StringBuilder();
+		for (SParameter parameter : getParameters()) {
+			sb.append((parameter.getGenericType() != null ? (parameter.getGenericType().toJavaCode() + "<" + parameter.getType() + ">") : parameter.getType().toJavaCode()) + parameter.getName());
+			if (!parameter.isLast()) {
+				sb.append(", ");
+			}
+		}
+		return sb.toString();
+	}
+	
 	public boolean isListReturnType() {
 		return List.class.isAssignableFrom(method.getReturnType());
 	}

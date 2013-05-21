@@ -33,6 +33,7 @@ import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SourceCodeFetcher;
 import org.bimserver.tools.generators.AdaptorGeneratorWrapper;
+import org.bimserver.tools.generators.AsyncServiceGeneratorWrapper;
 import org.bimserver.tools.generators.DataObjectGeneratorWrapper;
 import org.bimserver.tools.generators.ProtocolBuffersGenerator;
 import org.bimserver.tools.generators.SConverterGeneratorWrapper;
@@ -120,6 +121,8 @@ public class CodeMigrator {
 		} , interfaceClass, knownServices);
 		AdaptorGeneratorWrapper adaptorGeneratorWrapper = new AdaptorGeneratorWrapper();
 		adaptorGeneratorWrapper.generate(interfaceClass, service);
+		AsyncServiceGeneratorWrapper asyncServiceGeneratorWrapper = new AsyncServiceGeneratorWrapper();
+		asyncServiceGeneratorWrapper.generate(interfaceClass, service);
 		File protoFile = new File("../BimServerClientLib/src/org/bimserver/client/protocolbuffers/" + interfaceClass.getSimpleName() + ".proto");
 		File descFile = new File("../BimServerClientLib/src/org/bimserver/client/protocolbuffers/" + interfaceClass.getSimpleName() + ".desc");
 		protocolBuffersGenerator.generate(interfaceClass, protoFile, descFile, this.knownServices.isEmpty(), service, knownShortNames);

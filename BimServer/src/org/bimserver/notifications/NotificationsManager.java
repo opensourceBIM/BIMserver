@@ -23,9 +23,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 import org.bimserver.BimServer;
 import org.bimserver.client.BimServerClient;
@@ -83,7 +80,6 @@ public class NotificationsManager implements NotificationsManagerInterface {
 	private final JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private final BimServer bimServer;
 	private String url;
-	private final ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(4, 20, 1, TimeUnit.DAYS, new SynchronousQueue<Runnable>());
 
 	public NotificationsManager(BimServer bimServer, JsonSocketReflectorFactory jsonSocketReflectorFactory) {
 		this.jsonSocketReflectorFactory = jsonSocketReflectorFactory;
@@ -99,7 +95,7 @@ public class NotificationsManager implements NotificationsManagerInterface {
 	}
 
 	public void addToQueue(Notification notification) {
-		threadPoolExecutor.execute(notification);
+		bimServer.getExecutorService().execute(notification);
 	}
 	
 	public void init() {
@@ -133,7 +129,6 @@ public class NotificationsManager implements NotificationsManagerInterface {
 	}
 	
 	public void shutdown() {
-		threadPoolExecutor.shutdown();
 	}
 
 	@Override
@@ -331,9 +326,5 @@ public class NotificationsManager implements NotificationsManagerInterface {
 			changeProgressTopicOnRevisionTopics.put(key, topic);
 		}
 		return topic;
-	}
-
-	public void submitAsync(Runnable runnable) {
-		threadPoolExecutor.submit(runnable);
 	}
 }

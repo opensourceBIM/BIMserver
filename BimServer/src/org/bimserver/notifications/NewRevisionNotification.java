@@ -33,6 +33,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.interfaces.async.AsyncRemoteServiceInterface;
 import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -98,18 +99,8 @@ public class NewRevisionNotification extends Notification {
 				ServiceInterface newService = bimServer.getServiceFactory().get(authorization, AccessMethod.INTERNAL).get(ServiceInterface.class);
 				((org.bimserver.webservices.ServiceImpl)newService).setAuthorization(authorization);
 				
-				notificationsManager.submitAsync(new Runnable(){
-					@Override
-					public void run() {
-						try {
-							remoteServiceInterface.newRevision(poid, roid, service.getOid(), service.getServiceIdentifier(), service.getProfileIdentifier(), authorization.asHexToken(bimServer.getEncryptionKey()), bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
-						} catch (UserException e) {
-							LOGGER.error("", e);
-						} catch (ServerException e) {
-							LOGGER.error("", e);
-						}
-					}
-				});
+				AsyncRemoteServiceInterface asyncRemoteServiceInterface = new AsyncRemoteServiceInterface(remoteServiceInterface, bimServer.getExecutorService());
+				asyncRemoteServiceInterface.newRevision(poid, roid, service.getOid(), service.getServiceIdentifier(), service.getProfileIdentifier(), authorization.asHexToken(bimServer.getEncryptionKey()), bimServer.getServerSettingsCache().getServerSettings().getSiteAddress(), null);
 			} catch (ChannelConnectionException e) {
 				LOGGER.error("", e);
 			} catch (PublicInterfaceNotFoundException e) {

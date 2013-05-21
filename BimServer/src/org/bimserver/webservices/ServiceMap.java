@@ -37,6 +37,14 @@ import org.bimserver.shared.interfaces.RegistryInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
+import org.bimserver.shared.interfaces.async.AsyncAdminInterface;
+import org.bimserver.shared.interfaces.async.AsyncAuthInterface;
+import org.bimserver.shared.interfaces.async.AsyncLowLevelInterface;
+import org.bimserver.shared.interfaces.async.AsyncMetaInterface;
+import org.bimserver.shared.interfaces.async.AsyncPluginInterface;
+import org.bimserver.shared.interfaces.async.AsyncRegistryInterface;
+import org.bimserver.shared.interfaces.async.AsyncServiceInterface;
+import org.bimserver.shared.interfaces.async.AsyncSettingsInterface;
 import org.bimserver.webservices.authorization.Authorization;
 
 public class ServiceMap implements ServiceMapInterface, ServiceHolder {
@@ -109,6 +117,38 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 	@Override
 	public <T extends PublicInterface> void add(Class<T> class1, T remoteServiceInterface) {
 		interfaces.put(class1, remoteServiceInterface);
+	}
+	
+	public AsyncAdminInterface getAdminAsync() {
+		return new AsyncAdminInterface(get(AdminInterface.class), bimServer.getExecutorService());
+	}
+	
+	public AsyncAuthInterface getAuthAsync() {
+		return new AsyncAuthInterface(get(AuthInterface.class), bimServer.getExecutorService());
+	}
+	
+	public AsyncLowLevelInterface getLowLevelAsync() {
+		return new AsyncLowLevelInterface(get(LowLevelInterface.class), bimServer.getExecutorService());
+	}
+	
+	public AsyncMetaInterface getMetaAsync() {
+		return new AsyncMetaInterface(get(MetaInterface.class), bimServer.getExecutorService());
+	}
+	
+	public AsyncPluginInterface getPluginAsync() {
+		return new AsyncPluginInterface(get(PluginInterface.class), bimServer.getExecutorService());
+	}
+	
+	public AsyncRegistryInterface getRegistryAsync() {
+		return new AsyncRegistryInterface(get(RegistryInterface.class), bimServer.getExecutorService());
+	}
+	
+	public AsyncServiceInterface getServiceAsync() {
+		return new AsyncServiceInterface(get(ServiceInterface.class), bimServer.getExecutorService());
+	}
+	
+	public AsyncSettingsInterface getSettingsAsync() {
+		return new AsyncSettingsInterface(get(SettingsInterface.class), bimServer.getExecutorService());
 	}
 	
 	@Override

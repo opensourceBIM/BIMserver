@@ -206,8 +206,11 @@ public class RegistryServiceImpl extends GenericServiceImpl implements RegistryI
 	@Override
 	public List<Long> getProgressTopicsOnRevision(Long poid, Long roid) {
 		List<Long> list = new ArrayList<Long>();
-		for (ProgressOnRevisionTopic topic : getBimServer().getNotificationsManager().getProgressOnRevisionTopics(poid, roid)) {
-			list.add(topic.getKey().getId());
+		Set<ProgressOnRevisionTopic> progressOnRevisionTopics = getBimServer().getNotificationsManager().getProgressOnRevisionTopics(poid, roid);
+		if (progressOnRevisionTopics != null) {
+			for (ProgressOnRevisionTopic topic : progressOnRevisionTopics) {
+				list.add(topic.getKey().getId());
+			}
 		}
 		return list;
 	}

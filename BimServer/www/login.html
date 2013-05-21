@@ -3,7 +3,7 @@
     	<img src="img/logo.gif"/>
     	<form class="form-horizontal">
     	<legend>Login</legend>
-		<div class="control-group">
+		<div class="serverAddressDiv control-group">
 			<label class="control-label" for="inputServer">Server</label>
 			<div class="controls">
 				<div class="btn-group input-append">
@@ -49,6 +49,10 @@ function Login(address, username) {
 	var othis = this;
 	if (address != null && address.startsWith("http://")) {
 		address = address.substring(7);
+	}
+	
+	if (!Settings.allowBimServerAddress()) {
+		$(".serverAddressDiv").hide();
 	}
 	
 	this.login = function(address) {

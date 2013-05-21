@@ -5,6 +5,11 @@ $.ajaxSetup({
 	cache: false
 })
 
+function getBaseURL () {
+   return location.protocol + "//" + location.hostname + 
+      (location.port && ":" + location.port) + "/";
+}
+
 function loadGeneric(targetElement, oidField, displayField, methodName, objectField, paramFunction) {
 	var oid = targetElement.attr(oidField);
 	if (Global.objectcache[oid] != null) {
