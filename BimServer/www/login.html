@@ -58,7 +58,7 @@ function Login(address, username) {
 	this.login = function(address) {
 		loadBimServerApi(address, Global.notifier, function(serverInfo){
 			if (serverInfo.serverState == "NOT_SETUP") {
-				$(".indexcontainer").load("setup.html", function(){
+				$(".indexcontainer").load(Global.baseDir + "setup.html", function(){
 					new Setup(address);
 				});
 			} else if (serverInfo.serverState == "UNDEFINED") {
@@ -69,7 +69,7 @@ function Login(address, username) {
 				var username = $("#inputEmail").val()
 				Global.bimServerApi.login(username, $("#inputPassword").val(), $("#rememberMe").is(":checked"), function(data){
 					Global.bimServerApi.resolveUser(function(user){
-						$(".indexcontainer").load("main.html", function(){
+						$(".indexcontainer").load(Global.baseDir + "main.html", function(){
 							new Main(address, user.name).show(false);
 						});
 					});
@@ -110,7 +110,7 @@ function Login(address, username) {
 	this.resetPassword = function(address){
 		loadBimServerApi(address, Global.notifier, function(serverInfo){
 			if (serverInfo.serverState == "NOT_SETUP") {
-				$(".indexcontainer").load("setup.html", function(){
+				$(".indexcontainer").load(Global.baseDir + "setup.html", function(){
 					new Setup(address);
 				});
 			} else if (serverInfo.serverState == "UNDEFINED") {

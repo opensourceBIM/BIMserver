@@ -67,7 +67,7 @@ function Setup(address) {
 		}, function(){
 			var address = $(".setup .siteAddressInput").val();
 			var username = $(".setup .adminUsernameInput").val();
-			$(".indexcontainer").load("login.html", function(){
+			$(".indexcontainer").load(Global.baseDir + "login.html", function(){
 				new Login(address, username);
 			});
 		});

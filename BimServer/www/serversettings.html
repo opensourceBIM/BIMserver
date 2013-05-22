@@ -24,7 +24,7 @@
 			}
 			$(".serversettings .nav li").removeClass("active");
 			linkElement.parent().addClass("active");
-			$(".serversettings .tab-content").load(page, function(){
+			$(".serversettings .tab-content").load(Global.baseDir + page, function(){
 				constructorFunction();
 				if (callback != null) {
 					callback.call(othis.current);
