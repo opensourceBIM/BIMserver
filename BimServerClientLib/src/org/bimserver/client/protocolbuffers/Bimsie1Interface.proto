@@ -111,21 +111,29 @@ service Bimsie1Interface {
 
 	rpc setDoubleAttribute (SetDoubleAttributeRequest) returns (VoidResponse);
 
+	rpc setDoubleAttributeAtIndex (SetDoubleAttributeAtIndexRequest) returns (VoidResponse);
+
 	rpc setDoubleAttributes (SetDoubleAttributesRequest) returns (VoidResponse);
 
 	rpc setEnumAttribute (SetEnumAttributeRequest) returns (VoidResponse);
 
 	rpc setIntegerAttribute (SetIntegerAttributeRequest) returns (VoidResponse);
 
+	rpc setIntegerAttributeAtIndex (SetIntegerAttributeAtIndexRequest) returns (VoidResponse);
+
 	rpc setIntegerAttributes (SetIntegerAttributesRequest) returns (VoidResponse);
 
 	rpc setLongAttribute (SetLongAttributeRequest) returns (VoidResponse);
+
+	rpc setLongAttributeAtIndex (SetLongAttributeAtIndexRequest) returns (VoidResponse);
 
 	rpc setLongAttributes (SetLongAttributesRequest) returns (VoidResponse);
 
 	rpc setReference (SetReferenceRequest) returns (VoidResponse);
 
 	rpc setStringAttribute (SetStringAttributeRequest) returns (VoidResponse);
+
+	rpc setStringAttributeAtIndex (SetStringAttributeAtIndexRequest) returns (VoidResponse);
 
 	rpc setWrappedBooleanAttribute (SetWrappedBooleanAttributeRequest) returns (VoidResponse);
 

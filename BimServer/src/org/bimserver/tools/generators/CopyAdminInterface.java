@@ -45,6 +45,8 @@ public class CopyAdminInterface {
 			FileUtils.copyFileToDirectory(new File(bootstrap, "addrepoextendeddataschema.html"), www);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "main.html"), www);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "migrations.html"), www);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "webmodules.html"), www);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "log.html"), www);
 			
 			FileUtils.copyDirectory(new File(bootstrap, "js"), new File(www, "js"), new FileFilter() {
 				@Override

@@ -8,7 +8,7 @@ if (typeof console === "undefined") {
 
 function BimServerApi(baseUrl, notifier) {
 	var othis = this;
-
+	
 	othis.jsonSerializerFetcher = new Synchronizer(function(callback){
 		othis.call("PluginInterface", "getSerializerByPluginClassName", {pluginClassName: "org.bimserver.serializers.JsonSerializerPlugin"}, function(serializer){
 			callback(serializer.oid);
@@ -21,7 +21,10 @@ function BimServerApi(baseUrl, notifier) {
 	
 	othis.token = null;
 	othis.baseUrl = baseUrl;
-	othis.address = baseUrl + "/json";
+	if (othis.baseUrl.substring(othis.baseUrl.length - 1) == "/") {
+		othis.baseUrl = othis.baseUrl.substring(0, othis.baseUrl.length - 1);
+	}
+	othis.address = othis.baseUrl + "/json";
 	othis.notifier = notifier;
 	if (othis.notifier == null) {
 		othis.notifier = {
@@ -1022,7 +1025,7 @@ function BimServerWebSocket(baseUrl, bimServerApi) {
 	
 	this.connect = function(callback) {
 		othis.openCallbacks.push(callback);
-		var location = baseUrl.toString().replace('http://', 'ws://').replace('https://', 'wss://') + "/stream";
+		var location = bimServerApi.baseUrl.toString().replace('http://', 'ws://').replace('https://', 'wss://') + "/stream";
 		this._ws = new WebSocket(location);
 		this._ws.onopen = this._onopen;
 		this._ws.onmessage = this._onmessage;

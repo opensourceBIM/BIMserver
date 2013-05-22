@@ -202,7 +202,7 @@ function ServerInfo(containerDiv, main) {
 	};
 	
 	this.loadLog = function(){
-		$("#log").load("log.html", function(){
+		$("#log").load(Global.baseDir + "log.html", function(){
 			var settings = {
 				getTopicsMethod: "getProgressTopicsOnServer",
 				getTopicsArguments: {},

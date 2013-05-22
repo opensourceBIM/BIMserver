@@ -1,5 +1,5 @@
 
-§W
+´^
 LowLevelInterface.protoorg.bimserver.pbServiceInterface.protoNotificationInterface.protoRemoteServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"&
 AbortTransactionRequest
 tid ("\
@@ -197,7 +197,13 @@
 tid (
 oid (
 attributeName (	
-value ("]
+value ("q
+ SetDoubleAttributeAtIndexRequest
+tid (
+oid (
+attributeName (	
+index (
+value ("]
 SetDoubleAttributesRequest
 tid (
 oid (
@@ -212,7 +218,13 @@
 tid (
 oid (
 attributeName (	
-value ("^
+value ("r
+!SetIntegerAttributeAtIndexRequest
+tid (
+oid (
+attributeName (	
+index (
+value ("^
 SetIntegerAttributesRequest
 tid (
 oid (
@@ -222,7 +234,13 @@
 tid (
 oid (
 attributeName (	
-value ("[
+value ("o
+SetLongAttributeAtIndexRequest
+tid (
+oid (
+attributeName (	
+index (
+value ("[
 SetLongAttributesRequest
 tid (
 oid (
@@ -238,6 +256,12 @@
 oid (
 attributeName (	
 value (	"q
+ SetStringAttributeAtIndexRequest
+tid (
+oid (
+attributeName (	
+index (
+value (	"q
 !SetWrappedBooleanAttributeRequest
 tid (
 oid (
@@ -280,7 +304,7 @@
 UnsetReferenceRequest
 tid (
 oid (
-referenceName (	2ƒ)
+referenceName (	2Å,
 LowLevelInterface]
 abortTransaction).org.bimserver.pb.AbortTransactionRequest.org.bimserver.pb.VoidResponsec
 addBooleanAttribute,.org.bimserver.pb.AddBooleanAttributeRequest.org.bimserver.pb.VoidResponsea
@@ -315,15 +339,19 @@
 setBooleanAttribute,.org.bimserver.pb.SetBooleanAttributeRequest.org.bimserver.pb.VoidResponsee
 setBooleanAttributes-.org.bimserver.pb.SetBooleanAttributesRequest.org.bimserver.pb.VoidResponseg
 setByteArrayAttribute..org.bimserver.pb.SetByteArrayAttributeRequest.org.bimserver.pb.VoidResponsea
-setDoubleAttribute+.org.bimserver.pb.SetDoubleAttributeRequest.org.bimserver.pb.VoidResponsec
+setDoubleAttribute+.org.bimserver.pb.SetDoubleAttributeRequest.org.bimserver.pb.VoidResponseo
+setDoubleAttributeAtIndex2.org.bimserver.pb.SetDoubleAttributeAtIndexRequest.org.bimserver.pb.VoidResponsec
 setDoubleAttributes,.org.bimserver.pb.SetDoubleAttributesRequest.org.bimserver.pb.VoidResponse]
 setEnumAttribute).org.bimserver.pb.SetEnumAttributeRequest.org.bimserver.pb.VoidResponsec
-setIntegerAttribute,.org.bimserver.pb.SetIntegerAttributeRequest.org.bimserver.pb.VoidResponsee
+setIntegerAttribute,.org.bimserver.pb.SetIntegerAttributeRequest.org.bimserver.pb.VoidResponseq
+setIntegerAttributeAtIndex3.org.bimserver.pb.SetIntegerAttributeAtIndexRequest.org.bimserver.pb.VoidResponsee
 setIntegerAttributes-.org.bimserver.pb.SetIntegerAttributesRequest.org.bimserver.pb.VoidResponse]
-setLongAttribute).org.bimserver.pb.SetLongAttributeRequest.org.bimserver.pb.VoidResponse_
+setLongAttribute).org.bimserver.pb.SetLongAttributeRequest.org.bimserver.pb.VoidResponsek
+setLongAttributeAtIndex0.org.bimserver.pb.SetLongAttributeAtIndexRequest.org.bimserver.pb.VoidResponse_
 setLongAttributes*.org.bimserver.pb.SetLongAttributesRequest.org.bimserver.pb.VoidResponseU
 setReference%.org.bimserver.pb.SetReferenceRequest.org.bimserver.pb.VoidResponsea
-setStringAttribute+.org.bimserver.pb.SetStringAttributeRequest.org.bimserver.pb.VoidResponseq
+setStringAttribute+.org.bimserver.pb.SetStringAttributeRequest.org.bimserver.pb.VoidResponseo
+setStringAttributeAtIndex2.org.bimserver.pb.SetStringAttributeAtIndexRequest.org.bimserver.pb.VoidResponseq
 setWrappedBooleanAttribute3.org.bimserver.pb.SetWrappedBooleanAttributeRequest.org.bimserver.pb.VoidResponseo
 setWrappedDoubleAttribute2.org.bimserver.pb.SetWrappedDoubleAttributeRequest.org.bimserver.pb.VoidResponseq
 setWrappedIntegerAttribute3.org.bimserver.pb.SetWrappedIntegerAttributeRequest.org.bimserver.pb.VoidResponsek

@@ -13,8 +13,11 @@ function stripLastSlash(str) {
 }
 
 function getBaseURL () {
-   return location.protocol + "//" + location.hostname + 
-      (location.port && ":" + location.port) + "/";
+	var loc = document.location;
+	if (loc.endsWith(".html")) {
+		loc = loc.substring(0, loc.lastIndexOf("/"));
+	}
+	return loc;
 }
 
 function loadGeneric(targetElement, oidField, displayField, methodName, objectField, paramFunction) {
