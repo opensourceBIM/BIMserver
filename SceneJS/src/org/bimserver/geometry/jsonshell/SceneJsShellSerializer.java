@@ -108,7 +108,8 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 	private final List<String> surfaceStyleIds = new ArrayList<String>();
 
 	@Override
-	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids) throws SerializerException {
+	public void init(IfcModelInterface model, ProjectInfo projectInfo, PluginManager pluginManager, RenderEnginePlugin renderEnginePlugin, boolean normalizeOids)
+			throws SerializerException {
 		super.init(model, projectInfo, pluginManager, renderEnginePlugin, normalizeOids);
 	}
 
@@ -127,7 +128,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 				try {
 					calculateGeometryExtents();
 					JsonWriter jsonWriter = new JsonWriter(new BufferedWriter(outputStreamWriter));
-									
+
 					jsonWriter.beginObject();
 					jsonWriter.name("type").value("scene");
 					jsonWriter.name("id").value("Scene");
@@ -143,7 +144,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 					jsonWriter.endObject();
 					writeVisualScenes(jsonWriter);
 					jsonWriter.endArray();
-					
+
 					// Append additional custom data to the scene node
 					jsonWriter.name("data").beginObject();
 					jsonWriter.name("bounds");
@@ -160,7 +161,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 					writeIfcProperties(jsonWriter);
 					jsonWriter.endObject();
 					jsonWriter.endObject();
-					
+
 					jsonWriter.flush();
 				} catch (Exception e) {
 					LOGGER.error("", e);
@@ -192,9 +193,9 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 		writeMaterial(jsonWriter, "IfcStair", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
 		writeMaterial(jsonWriter, "IfcBuildingElementProxy", new double[] { 0.5f, 0.5f, 0.5f }, 1.0f);
 		writeMaterial(jsonWriter, "IfcFlowSegment", new double[] { 0.6f, 0.4f, 0.5f }, 1.0f);
-		writeMaterial(jsonWriter, "IfcProxy", new double[] { 0.637255f, 0.603922f, 0.670588f}, 1.0f);
-		writeMaterial(jsonWriter, "IfcSite", new double[] { 0.637255f, 0.603922f, 0.670588f}, 1.0f);
-		
+		writeMaterial(jsonWriter, "IfcProxy", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
+		writeMaterial(jsonWriter, "IfcSite", new double[] { 0.637255f, 0.603922f, 0.670588f }, 1.0f);
+
 		List<IfcSurfaceStyle> listSurfaceStyles = model.getAll(IfcSurfaceStyle.class);
 		for (IfcSurfaceStyle ss : listSurfaceStyles) {
 			EList<IfcSurfaceStyleElementSelect> styles = ss.getStyles();
@@ -209,9 +210,8 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 					String name = fitNameForQualifiedName(ss.getName());
 					if (!surfaceStyleIds.contains(name)) {
 						surfaceStyleIds.add(name);
-						writeMaterial(jsonWriter, name, 
-								new double[] { colour.getRed(), colour.getGreen(), colour.getBlue() },
-								ssr.isSetTransparency() && ssr.getTransparency() < 1.0f ? 1.0f - ssr.getTransparency() : 1.0f);
+						writeMaterial(jsonWriter, name, new double[] { colour.getRed(), colour.getGreen(), colour.getBlue() }, ssr.isSetTransparency()
+								&& ssr.getTransparency() < 1.0f ? 1.0f - ssr.getTransparency() : 1.0f);
 						break;
 					}
 				}
@@ -231,104 +231,37 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 
 	private void writeVisualScenes(JsonWriter jsonWriter) throws IOException {
 		Extends sceneExtends = getSceneExtends();
-		// Calculate the maximum ray length through the scene (using the two extreme points of the scene's bounding box)
-		float[] extentsDiff = new float[]{ sceneExtends.max[0] - sceneExtends.min[0], sceneExtends.max[1] - sceneExtends.min[1], sceneExtends.max[2] - sceneExtends.min[2] };
+		// Calculate the maximum ray length through the scene (using the two
+		// extreme points of the scene's bounding box)
+		float[] extentsDiff = new float[] { sceneExtends.max[0] - sceneExtends.min[0], sceneExtends.max[1] - sceneExtends.min[1], sceneExtends.max[2] - sceneExtends.min[2] };
 		if (Float.isInfinite(extentsDiff[0]))
 			extentsDiff[0] = 50.0f;
 		if (Float.isInfinite(extentsDiff[1]))
 			extentsDiff[1] = 50.0f;
 		if (Float.isInfinite(extentsDiff[2]))
 			extentsDiff[2] = 50.0f;
-		float extentsDiffLength = (float) Math.sqrt((double)(extentsDiff[0]*extentsDiff[0] + extentsDiff[1]*extentsDiff[1] + extentsDiff[2]*extentsDiff[2]));
+		float extentsDiffLength = (float) Math.sqrt((double) (extentsDiff[0] * extentsDiff[0] + extentsDiff[1] * extentsDiff[1] + extentsDiff[2] * extentsDiff[2]));
 
 		// Write the nodes to the stream
-		jsonWriter.
-			beginObject()
-				.name("type").value("lookAt")
-				.name("id").value("main-lookAt")
-				.name("eye")
-				.beginObject()
-					.name("x").value(extentsDiff[0] * 1.5f)
-					.name("y").value(extentsDiff[1] * 1.5f)
-					.name("z").value(extentsDiff[2] * 1.5f)
-				.endObject()
-				.name("look")
-				.beginObject()
-					.name("x").value(0.0)
-					.name("y").value(0.0)
-					.name("z").value(0.0)
-				.endObject()
-				.name("up")
-				.beginObject()
-					.name("x").value(0.0)
-					.name("y").value(0.0)
-					.name("z").value(1.0)
-				.endObject()
-				.name("nodes")
-				.beginArray()
-					.beginObject()
-						.name("type").value("camera")
-						.name("id").value("main-camera")
-						.name("optics")
-						.beginObject()
-							.name("type").value("perspective")
-							.name("far").value(extentsDiffLength * 6)
-							.name("near").value(extentsDiffLength * 0.001f)
-							.name("aspect").value(1.0)
-							.name("fovy").value(37.8493)
-						.endObject()
-						.name("nodes")
-						.beginArray()
-							.beginObject()
-								.name("type").value("renderer")
-								.name("id").value("main-renderer")
-								.name("clear")
-								.beginObject()
-									.name("color").value(true)
-									.name("depth").value(true)
-									.name("stencil").value(false)
-								.endObject()
-								.name("clearColor")
-								.beginObject()
-									.name("r").value(0.2)
-									.name("g").value(0.2)
-									.name("b").value(0.2)
-									.name("a").value(0.2)
-								.endObject()
-								.name("nodes")
-								.beginArray()
-									.beginObject()
-										.name("type").value("light")
-										.name("id").value("sun-light")
-										.name("mode").value("dir")
-										.name("color")
-										.beginObject()
-											.name("r").value(0.8)
-											.name("g").value(0.8)
-											.name("b").value(0.8)
-										.endObject()
-										.name("dir")
-										.beginObject()
-											.name("x").value(-0.5)
-											.name("y").value(-0.5)
-											.name("z").value(-1.0)
-										.endObject()
-										.name("diffuse").value(true)
-										.name("specular").value(true)
-									.endObject()
-								.endArray()
-							.endObject()
-						.endArray()
-					.endObject()
-				.endArray()
-			.endObject();
+		jsonWriter.beginObject().name("type").value("lookAt").name("id").value("main-lookAt").name("eye").beginObject().name("x").value(extentsDiff[0] * 1.5f).name("y")
+				.value(extentsDiff[1] * 1.5f).name("z").value(extentsDiff[2] * 1.5f).endObject().name("look").beginObject().name("x").value(0.0).name("y").value(0.0).name("z")
+				.value(0.0).endObject().name("up").beginObject().name("x").value(0.0).name("y").value(0.0).name("z").value(1.0).endObject().name("nodes").beginArray()
+				.beginObject().name("type").value("camera").name("id").value("main-camera").name("optics").beginObject().name("type").value("perspective").name("far")
+				.value(extentsDiffLength * 6).name("near").value(extentsDiffLength * 0.001f).name("aspect").value(1.0).name("fovy").value(37.8493).endObject().name("nodes")
+				.beginArray().beginObject().name("type").value("renderer").name("id").value("main-renderer").name("clear").beginObject().name("color").value(true).name("depth")
+				.value(true).name("stencil").value(false).endObject().name("clearColor").beginObject().name("r").value(0.2).name("g").value(0.2).name("b").value(0.2).name("a")
+				.value(0.2).endObject().name("nodes").beginArray().beginObject().name("type").value("light").name("id").value("sun-light").name("mode").value("dir").name("color")
+				.beginObject().name("r").value(0.8).name("g").value(0.8).name("b").value(0.8).endObject().name("dir").beginObject().name("x").value(-0.5).name("y").value(-0.5)
+				.name("z").value(-1.0).endObject().name("diffuse").value(true).name("specular").value(true).endObject().endArray().endObject().endArray().endObject().endArray()
+				.endObject();
 	}
-	
+
 	private void writeGeometricObject(JsonWriter jsonWriter, IfcProduct ifcProduct) throws RenderEngineException, SerializerException, IOException {
 		boolean materialFound = false;
 		String material = ifcProduct.eClass().getName();
-		
-		// If this product is composed of other objects, output each object separately
+
+		// If this product is composed of other objects, output each object
+		// separately
 		EList<IfcRelDecomposes> isDecomposedBy = ifcProduct.getIsDecomposedBy();
 		if (isDecomposedBy != null && !isDecomposedBy.isEmpty()) {
 			for (IfcRelDecomposes dcmp : isDecomposedBy) {
@@ -337,13 +270,13 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 					writeGeometricObject(jsonWriter, (IfcProduct) relatedObject);
 				}
 			}
-//			return;
+			// return;
 		}
 
 		IfcMaterialSelect relatingMaterial = null;
 		for (IfcRelAssociates ifcRelAssociates : ifcProduct.getHasAssociations()) {
 			if (ifcRelAssociates instanceof IfcRelAssociatesMaterial) {
-				IfcRelAssociatesMaterial ifcRelAssociatesMaterial = (IfcRelAssociatesMaterial)ifcRelAssociates;
+				IfcRelAssociatesMaterial ifcRelAssociatesMaterial = (IfcRelAssociatesMaterial) ifcRelAssociates;
 				relatingMaterial = ifcRelAssociatesMaterial.getRelatingMaterial();
 			}
 		}
@@ -424,7 +357,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 		}
 		hashSet.add(ifcProduct.getOid());
 	}
-	
+
 	private void writeGeometries(JsonWriter jsonWriter) throws RenderEngineException, SerializerException, IOException {
 		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 			writeGeometricObject(jsonWriter, ifcProduct);
@@ -433,27 +366,28 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 
 	private void writeBounds(JsonWriter jsonWriter) throws IOException {
 		Extends sceneExtends = getSceneExtends();
-		float[] bounds = {sceneExtends.max[0] - sceneExtends.min[0], sceneExtends.max[1] - sceneExtends.min[1], sceneExtends.max[2] - sceneExtends.min[2]};
+		float[] bounds = { sceneExtends.max[0] - sceneExtends.min[0], sceneExtends.max[1] - sceneExtends.min[1], sceneExtends.max[2] - sceneExtends.min[2] };
 		jsonWriter.beginArray();
-		jsonWriter.value(Float.isInfinite(bounds[0])? 50.0f : bounds[0]);
-		jsonWriter.value(Float.isInfinite(bounds[1])? 50.0f : bounds[1]);
-		jsonWriter.value(Float.isInfinite(bounds[2])? 50.0f : bounds[2]);
+		jsonWriter.value(Float.isInfinite(bounds[0]) ? 50.0f : bounds[0]);
+		jsonWriter.value(Float.isInfinite(bounds[1]) ? 50.0f : bounds[1]);
+		jsonWriter.value(Float.isInfinite(bounds[2]) ? 50.0f : bounds[2]);
 		jsonWriter.endArray();
 	}
 
 	private void writeBounds2(JsonWriter jsonWriter) throws IOException {
 		Extends sceneExtends = getSceneExtends();
-		float[] bounds = {(sceneExtends.max[0] + sceneExtends.min[0]) * 0.5f, (sceneExtends.max[1] + sceneExtends.min[1]) * 0.5f, (sceneExtends.max[2] + sceneExtends.min[2]) * 0.5f};
+		float[] bounds = { (sceneExtends.max[0] + sceneExtends.min[0]) * 0.5f, (sceneExtends.max[1] + sceneExtends.min[1]) * 0.5f,
+				(sceneExtends.max[2] + sceneExtends.min[2]) * 0.5f };
 		jsonWriter.beginArray();
-		jsonWriter.value(Float.isInfinite(bounds[0])? 50.0f : bounds[0]);
-		jsonWriter.value(Float.isInfinite(bounds[1])? 50.0f : bounds[1]);
-		jsonWriter.value(Float.isInfinite(bounds[2])? 50.0f : bounds[2]);
+		jsonWriter.value(Float.isInfinite(bounds[0]) ? 50.0f : bounds[0]);
+		jsonWriter.value(Float.isInfinite(bounds[1]) ? 50.0f : bounds[1]);
+		jsonWriter.value(Float.isInfinite(bounds[2]) ? 50.0f : bounds[2]);
 		jsonWriter.endArray();
 	}
 
 	private void writeUnit(JsonWriter jsonWriter) throws IOException {
 		SIPrefix lengthUnitPrefix = getLengthUnitPrefix(model);
-		jsonWriter.value(lengthUnitPrefix == null? "1 meter" : Math.pow(10.0, lengthUnitPrefix.getValue()) + " " + lengthUnitPrefix.name().toLowerCase());
+		jsonWriter.value(lengthUnitPrefix == null ? "1 meter" : Math.pow(10.0, lengthUnitPrefix.getValue()) + " " + lengthUnitPrefix.name().toLowerCase());
 	}
 
 	private void writeIfcTreeRelatedObject(JsonWriter jsonWriter, HashSet<Long> visitedIds, IfcObject object) throws IOException {
@@ -464,8 +398,8 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 		jsonWriter.name("decomposedBy");
 		writeIfcTreeDecomposedBy(jsonWriter, visitedIds, object);
 		jsonWriter.name("definedBy");
-		writeIfcTreeDefinedBy(jsonWriter, visitedIds, (IfcObject)object);
-		
+		writeIfcTreeDefinedBy(jsonWriter, visitedIds, (IfcObject) object);
+
 		if (object instanceof IfcSpatialStructureElement) {
 			jsonWriter.name("contains");
 			writeIfcTreeContainsElements(jsonWriter, visitedIds, (IfcSpatialStructureElement) object);
@@ -511,11 +445,15 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 		EList<IfcRelDefines> relList = object.getIsDefinedBy();
 		if (relList != null && !relList.isEmpty()) {
 			for (IfcRelDefines rel : relList) {
-				EList<IfcObject> relatedObjects = rel.getRelatedObjects();
-				for (IfcObject relatedObject : relatedObjects) {
-					if (!visitedIds.contains(relatedObject.getOid())) {
-						visitedIds.add(relatedObject.getOid());
-						writeIfcTreeRelatedObject(jsonWriter, visitedIds, relatedObject);
+				if (rel instanceof IfcRelContainedInSpatialStructure) {
+					EList<IfcObject> relatedObjects = rel.getRelatedObjects();
+					for (IfcObject relatedObject : relatedObjects) {
+						if (!visitedIds.contains(relatedObject.getOid())) {
+							if (relatedObject instanceof IfcObject) {
+								visitedIds.add(relatedObject.getOid());
+								writeIfcTreeRelatedObject(jsonWriter, visitedIds, relatedObject);
+							}
+						}
 					}
 				}
 			}
@@ -532,7 +470,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 		// writeIfcTreeDecomposedBy(object);
 		// writeIfcTreeDefinedBy((IfcObject) object);
 		// if (object instanceof IfcSpatialStructureElement) {
-		// 		writeIfcTreeContainsElements((IfcSpatialStructureElement) object);
+		// writeIfcTreeContainsElements((IfcSpatialStructureElement) object);
 		// }
 	}
 
@@ -542,7 +480,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 		if (relList != null && !relList.isEmpty()) {
 			for (IfcRelContainedInSpatialStructure rel : relList) {
 				for (IfcProduct relatedObject : rel.getRelatedElements()) {
-					if (!visitedIds.contains(relatedObject.getOid())){
+					if (!visitedIds.contains(relatedObject.getOid())) {
 						visitedIds.add(relatedObject.getOid());
 						writeIfcTreeProduct(jsonWriter, relatedObject);
 					}
@@ -595,17 +533,14 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			}
 			jsonWriter.endArray();
 		}
-		/* TODO: It doesn't look like there's currently any useful information to be written for units?
-		if (object.getUnitsInContext() != null) {
-			EList<IfcUnit> units = object.getUnitsInContext().getUnits();
-			if (units != null && !units.isEmpty()) {
-				JSONArray jsonArray = new JSONArray();
-				jsonObj.put("Units in Context", jsonArray); 
-				for (IfcUnit unit : units) {
-					jsonArray.put(unit.toString());
-				}
-			}
-		}//*/
+		/*
+		 * TODO: It doesn't look like there's currently any useful information
+		 * to be written for units? if (object.getUnitsInContext() != null) {
+		 * EList<IfcUnit> units = object.getUnitsInContext().getUnits(); if
+		 * (units != null && !units.isEmpty()) { JSONArray jsonArray = new
+		 * JSONArray(); jsonObj.put("Units in Context", jsonArray); for (IfcUnit
+		 * unit : units) { jsonArray.put(unit.toString()); } } }//
+		 */
 	}
 
 	private void writeIfcPropertiesSite(JsonWriter jsonWriter, IfcSite object) throws IOException {
@@ -638,7 +573,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			jsonWriter.name("Site Address").value(addressToString(object.getSiteAddress()));
 		}
 	}
-	
+
 	private void writeIfcPropertiesBuilding(JsonWriter jsonWriter, IfcBuilding object) throws IOException {
 		writeIfcPropertiesSpatialStructureElement(jsonWriter, object);
 		if (object.isSetElevationOfRefHeightAsString()) {
@@ -655,7 +590,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			jsonWriter.name("Building Address").value(addressToString(object.getBuildingAddress()));
 		}
 	}
-	
+
 	private void writeIfcPropertiesBuildingStorey(JsonWriter jsonWriter, IfcBuildingStorey object) throws IOException {
 		writeIfcPropertiesSpatialStructureElement(jsonWriter, object);
 		if (object.isSetElevationAsString()) {
@@ -665,7 +600,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			jsonWriter.name("Elevation").value(new DecimalFormat("#.##").format(object.getElevation()));
 		}
 	}
-	
+
 	private void writeIfcPropertiesElement(JsonWriter jsonWriter, IfcElement object) throws IOException {
 		writeIfcPropertiesProduct(jsonWriter, object);
 		if (object.isSetTag()) {
@@ -676,30 +611,32 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			jsonWriter.beginArray();
 			for (IfcRelFillsElement rel : object.getFillsVoids()) {
 				writeLink(jsonWriter, rel);
-				/* TODO
-				new JSONObject()
-					.put("Relating Opening Element", writeLink(rel.getRelatingOpeningElement()))
-					.put("Related Building Element", writeLink(rel.getRelatedBuildingElement())));//*/
+				/*
+				 * TODO new JSONObject() .put("Relating Opening Element",
+				 * writeLink(rel.getRelatingOpeningElement()))
+				 * .put("Related Building Element",
+				 * writeLink(rel.getRelatedBuildingElement())));//
+				 */
 			}
 			jsonWriter.endArray();
 		}
-		if (object.getConnectedTo() != null	&& !object.getConnectedTo().isEmpty()) {
+		if (object.getConnectedTo() != null && !object.getConnectedTo().isEmpty()) {
 			jsonWriter.name("Connected To");
 			jsonWriter.beginArray();
 			for (IfcRelConnectsElements rel : object.getConnectedTo()) {
 				writeLink(jsonWriter, rel);
-				/* TODO: 
-				JSONObject jsonConectedTo = new JSONObject();
-				jsonArray.put(jsonConectedTo);
-				/* TODO: Nothing to write for connection geometry...?
-				if (rel.isSetConnectionGeometry()) {
-					jsonConectedTo.put("Connection Geometry", writeConnectionGeometry(rel.getConnectionGeometry()));
-				}//*/
-				/* TODO:
-				boolean isSetConnectionGeometry();
-				IfcElement getRelatingElement();
-				void setRelatingElement(IfcElement value);
-				IfcElement getRelatedElement(); //*/
+				/*
+				 * TODO: JSONObject jsonConectedTo = new JSONObject();
+				 * jsonArray.put(jsonConectedTo); /* TODO: Nothing to write for
+				 * connection geometry...? if (rel.isSetConnectionGeometry()) {
+				 * jsonConectedTo.put("Connection Geometry",
+				 * writeConnectionGeometry(rel.getConnectionGeometry())); }//
+				 */
+				/*
+				 * TODO: boolean isSetConnectionGeometry(); IfcElement
+				 * getRelatingElement(); void setRelatingElement(IfcElement
+				 * value); IfcElement getRelatedElement(); //
+				 */
 			}
 			jsonWriter.endArray();
 		}
@@ -708,44 +645,49 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			jsonWriter.beginArray();
 			for (IfcRelCoversBldgElements rel : object.getHasCoverings()) {
 				writeLink(jsonWriter, rel);
-				/* TODO:
-				getRelatingBuildingElement();
-				EList<IfcCovering> getRelatedCoverings();
-				//*/
+				/*
+				 * TODO: getRelatingBuildingElement(); EList<IfcCovering>
+				 * getRelatedCoverings(); //
+				 */
 			}
 			jsonWriter.endArray();
 		}
 		if (object.getHasProjections() != null && !object.getHasProjections().isEmpty()) {
 			jsonWriter.name("Has Projections");
 			jsonWriter.beginArray();
-//			for (IfcRelProjectsElement rel : object.getHasProjections()) {
-				/* TODO:
-				jsonArray.put(new JSONObject());
-				IfcElement getRelatingElement();
-				IfcFeatureElementAddition getRelatedFeatureElement();//*/				
-//			}
+			// for (IfcRelProjectsElement rel : object.getHasProjections()) {
+			/*
+			 * TODO: jsonArray.put(new JSONObject()); IfcElement
+			 * getRelatingElement(); IfcFeatureElementAddition
+			 * getRelatedFeatureElement();//
+			 */
+			// }
 			jsonWriter.endArray();
 		}
 		if (object.getHasStructuralMember() != null && !object.getHasStructuralMember().isEmpty()) {
-			jsonWriter.name("Has Structural Member"); // TODO: Shouldn't this be "Has Structural Member(s)"?
+			jsonWriter.name("Has Structural Member"); // TODO: Shouldn't this be
+														// "Has Structural Member(s)"?
 			jsonWriter.beginArray();
 			for (IfcRelConnectsStructuralElement rel : object.getHasStructuralMember()) {
 				writeLink(jsonWriter, rel);
-				/* TODO:
-				IfcElement getRelatingElement();
-				IfcStructuralMember getRelatedStructuralMember();
-				//*/
+				/*
+				 * TODO: IfcElement getRelatingElement(); IfcStructuralMember
+				 * getRelatedStructuralMember(); //
+				 */
 			}
 			jsonWriter.endArray();
 		}
 		if (object.getReferencedInStructures() != null && !object.getReferencedInStructures().isEmpty()) {
-			jsonWriter.name("Referenced In Structures"); // TODO: Shouldn't this be "Has Structural Member(s)"?
+			jsonWriter.name("Referenced In Structures"); // TODO: Shouldn't this
+															// be
+															// "Has Structural Member(s)"?
 			jsonWriter.beginArray();
 			for (IfcRelReferencedInSpatialStructure rel : object.getReferencedInStructures()) {
 				writeLink(jsonWriter, rel);
-				/* TODO:
-				EList<IfcProduct> getRelatedElements();
-				IfcSpatialStructureElement getRelatingStructure();//*/
+				/*
+				 * TODO: EList<IfcProduct> getRelatedElements();
+				 * IfcSpatialStructureElement getRelatingStructure();//
+				 */
 			}
 			jsonWriter.endArray();
 		}
@@ -754,9 +696,9 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			jsonWriter.beginArray();
 			for (IfcRelConnectsPortToElement rel : object.getHasPorts()) {
 				writeLink(jsonWriter, rel);
-				/* TODO:
-				getRelatingPort();
-				IfcElement getRelatedElement();//*/
+				/*
+				 * TODO: getRelatingPort(); IfcElement getRelatedElement();//
+				 */
 			}
 			jsonWriter.endArray();
 		}
@@ -765,25 +707,26 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			jsonWriter.beginArray();
 			for (IfcRelVoidsElement rel : object.getHasOpenings()) {
 				writeLink(jsonWriter, rel);
-				/* TODO:
-				getRelatingBuildingElement();
-				IfcFeatureElementSubtraction getRelatedOpeningElement();
-				//*/
+				/*
+				 * TODO: getRelatingBuildingElement();
+				 * IfcFeatureElementSubtraction getRelatedOpeningElement(); //
+				 */
 			}
 			jsonWriter.endArray();
 		}
 		if (object.getIsConnectionRealization() != null && !object.getIsConnectionRealization().isEmpty()) {
-			jsonWriter.name("Is Connection Realization"); // TODO: Should this rather be something like "Realizing Elements"?
+			jsonWriter.name("Is Connection Realization"); // TODO: Should this
+															// rather be
+															// something like
+															// "Realizing Elements"?
 			jsonWriter.beginArray();
 			for (IfcRelConnectsWithRealizingElements rel : object.getIsConnectionRealization()) {
 				writeLink(jsonWriter, rel);
-				/* TODO:
-				getRealizingElements();
-				String getConnectionType();
-				void setConnectionType(String value);
-				void unsetConnectionType();
-				boolean isSetConnectionType();
-				//*/
+				/*
+				 * TODO: getRealizingElements(); String getConnectionType();
+				 * void setConnectionType(String value); void
+				 * unsetConnectionType(); boolean isSetConnectionType(); //
+				 */
 			}
 			jsonWriter.endArray();
 		}
@@ -800,7 +743,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			jsonWriter.beginArray();
 			for (IfcRelConnectsElements rel : object.getConnectedFrom()) {
 				writeLink(jsonWriter, rel);
-				//TODO
+				// TODO
 			}
 			jsonWriter.endArray();
 		}
@@ -809,7 +752,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			jsonWriter.beginArray();
 			for (IfcRelContainedInSpatialStructure rel : object.getContainedInStructure()) {
 				writeLink(jsonWriter, rel);
-				//TODO
+				// TODO
 			}
 			jsonWriter.endArray();
 		}
@@ -828,7 +771,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			jsonWriter.beginArray();
 			for (IfcRelReferencedInSpatialStructure rel : object.getReferencesElements()) {
 				writeLink(jsonWriter, rel);
-				//TODO
+				// TODO
 			}
 			jsonWriter.endArray();
 		}
@@ -837,16 +780,16 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			jsonWriter.beginArray();
 			for (IfcRelServicesBuildings rel : object.getServicedBySystems()) {
 				writeLink(jsonWriter, rel);
-				//TODO
+				// TODO
 			}
 			jsonWriter.endArray();
 		}
 		if (object.getContainsElements() != null && !object.getContainsElements().isEmpty()) {
 			jsonWriter.name("Contains Elements");
-			jsonWriter.beginArray(); 
+			jsonWriter.beginArray();
 			for (IfcRelContainedInSpatialStructure rel : object.getContainsElements()) {
 				writeLink(jsonWriter, rel);
-				//TODO
+				// TODO
 			}
 			jsonWriter.endArray();
 		}
@@ -865,12 +808,12 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			jsonWriter.beginArray();
 			for (IfcRelAssignsToProduct rel : object.getReferencedBy()) {
 				writeLink(jsonWriter, rel);
-				//TODO
+				// TODO
 			}
 			jsonWriter.endArray();
 		}
 	}
-	
+
 	private void writeIfcPropertiesObject(JsonWriter jsonWriter, IfcObject object) throws IOException {
 		writeIfcPropertiesObjectDefinition(jsonWriter, object);
 		if (object.isSetObjectType()) {
@@ -881,7 +824,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			jsonWriter.beginArray();
 			for (IfcRelDefines rel : object.getIsDefinedBy()) {
 				writeLink(jsonWriter, rel);
-				//TODO
+				// TODO
 			}
 			jsonWriter.endArray();
 		}
@@ -892,19 +835,19 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 
 		if (object.getHasAssignments() != null && !object.getHasAssignments().isEmpty()) {
 			jsonWriter.name("Is Defined By");
-			jsonWriter.beginArray(); 
+			jsonWriter.beginArray();
 			for (IfcRelAssigns rel : object.getHasAssignments()) {
 				writeLink(jsonWriter, rel);
-				//TODO
+				// TODO
 			}
 			jsonWriter.endArray();
 		}
 		if (object.getIsDecomposedBy() != null && !object.getIsDecomposedBy().isEmpty()) {
 			jsonWriter.name("Is Defined By");
-			jsonWriter.beginArray(); 
+			jsonWriter.beginArray();
 			for (IfcRelDecomposes rel : object.getIsDecomposedBy()) {
 				writeLink(jsonWriter, rel);
-				//TODO
+				// TODO
 			}
 			jsonWriter.endArray();
 		}
@@ -913,7 +856,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			jsonWriter.beginArray();
 			for (IfcRelDecomposes rel : object.getDecomposes()) {
 				writeLink(jsonWriter, rel);
-				//TODO
+				// TODO
 			}
 			jsonWriter.endArray();
 		}
@@ -922,17 +865,17 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			jsonWriter.beginArray();
 			for (IfcRelAssociates rel : object.getHasAssociations()) {
 				writeLink(jsonWriter, rel);
-				//TODO
+				// TODO
 			}
 			jsonWriter.endArray();
 		}
 	}
 
 	private void writeIfcPropertiesRoot(JsonWriter jsonWriter, IfcRoot object) throws IOException {
-		/* NOT NEEDED:
-		if (object.getGlobalId() != null) {			
-			jsonObj.put("Global Id", object.getGlobalId().getWrappedValue());
-		}//*/
+		/*
+		 * NOT NEEDED: if (object.getGlobalId() != null) {
+		 * jsonObj.put("Global Id", object.getGlobalId().getWrappedValue()); }//
+		 */
 		if (object.getOwnerHistory() != null) {
 			IfcOwnerHistory history = object.getOwnerHistory();
 			jsonWriter.name("Owner History").beginObject();
@@ -945,13 +888,16 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			jsonWriter.name("Creation Date").value(history.getCreationDate());
 
 			if (history.isSetLastModifiedDate()) {
-				jsonWriter.name("Last Modified Date").value(history.getLastModifiedDate()); // TODO: Format as date?
+				jsonWriter.name("Last Modified Date").value(history.getLastModifiedDate()); // TODO:
+																							// Format
+																							// as
+																							// date?
 			}
-			
+
 			if (history.isSetLastModifyingUser()) {
 				// TODO IfcPersonAndOrganization getLastModifyingUser();
 			}
-			
+
 			if (history.isSetLastModifyingApplication()) {
 				// TODO IfcApplication getLastModifyingApplication();
 			}
@@ -964,7 +910,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			jsonWriter.name("Description").value(object.getDescription());
 		}
 	}
-	
+
 	private void writeOwningUser(JsonWriter jsonWriter, IfcPersonAndOrganization owningUser) throws IOException {
 		jsonWriter.beginObject();
 		jsonWriter.name("The Person");
@@ -980,56 +926,48 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 
 	private void writePerson(JsonWriter jsonWriter, IfcPerson person) throws IOException {
 		jsonWriter.beginObject().endObject();
-		/* TODO
-		String getId();
-		boolean isSetId();
-		
-		String getFamilyName();
-		void setFamilyName(String value);
-		boolean isSetFamilyName();
-
-		String getGivenName();
-		void setGivenName(String value);
-		boolean isSetGivenName();
-
-		EList<String> getMiddleNames();
-		boolean isSetMiddleNames();
-
-		EList<String> getPrefixTitles();
-		boolean isSetPrefixTitles();
-
-		EList<String> getSuffixTitles();
-		boolean isSetSuffixTitles();
-
-		EList<IfcActorRole> getRoles();
-		boolean isSetRoles();
-
-		EList<IfcAddress> getAddresses();
-		void unsetAddresses();
-		boolean isSetAddresses();
-		
-		EList<IfcPersonAndOrganization> getEngagedIn();//*/
+		/*
+		 * TODO String getId(); boolean isSetId();
+		 * 
+		 * String getFamilyName(); void setFamilyName(String value); boolean
+		 * isSetFamilyName();
+		 * 
+		 * String getGivenName(); void setGivenName(String value); boolean
+		 * isSetGivenName();
+		 * 
+		 * EList<String> getMiddleNames(); boolean isSetMiddleNames();
+		 * 
+		 * EList<String> getPrefixTitles(); boolean isSetPrefixTitles();
+		 * 
+		 * EList<String> getSuffixTitles(); boolean isSetSuffixTitles();
+		 * 
+		 * EList<IfcActorRole> getRoles(); boolean isSetRoles();
+		 * 
+		 * EList<IfcAddress> getAddresses(); void unsetAddresses(); boolean
+		 * isSetAddresses();
+		 * 
+		 * EList<IfcPersonAndOrganization> getEngagedIn();//
+		 */
 	}
-	
+
 	private void writeOrganization(JsonWriter jsonWriter, IfcOrganization organization) throws IOException {
 		// TODO
 		jsonWriter.beginObject().endObject();
 	}
-	
+
 	private void writeActorRoles(JsonWriter jsonWriter, EList<IfcActorRole> actorRoles) throws IOException {
 		// TODO
 		jsonWriter.beginObject().endObject();
 	}
-	
+
 	private void writeApplication(JsonWriter jsonWriter, IfcApplication application) throws IOException {
 		jsonWriter.beginObject().endObject();
-		/* TODO
-		IfcOrganization getApplicationDeveloper();
-		void setApplicationDeveloper(IfcOrganization value);
-		String getVersion();
-		void setVersion(String value);
-		String getApplicationFullName();
-		String getApplicationIdentifier(); //*/
+		/*
+		 * TODO IfcOrganization getApplicationDeveloper(); void
+		 * setApplicationDeveloper(IfcOrganization value); String getVersion();
+		 * void setVersion(String value); String getApplicationFullName();
+		 * String getApplicationIdentifier(); //
+		 */
 	}
 
 	private void writeIfcTypes(JsonWriter out) throws IOException {
@@ -1039,7 +977,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 		}
 		out.endArray();
 	}
-	
+
 	private void writeLink(JsonWriter jsonWriter, IfcRoot root) throws IOException {
 		// TODO: Might return a JSONObject later (with link name & global id)
 		jsonWriter.beginObject();
@@ -1079,9 +1017,9 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 		String name = classObject.getName();
 		int ifcIndex = name.lastIndexOf("Ifc");
 		int implIndex = name.lastIndexOf("Impl");
-		return name.substring(Math.max(name.lastIndexOf('.', ifcIndex < 0? 0 : ifcIndex)+1, ifcIndex < 0? 0 : ifcIndex+3), implIndex < 0? name.length() : implIndex);
+		return name.substring(Math.max(name.lastIndexOf('.', ifcIndex < 0 ? 0 : ifcIndex) + 1, ifcIndex < 0 ? 0 : ifcIndex + 3), implIndex < 0 ? name.length() : implIndex);
 	}
-	
+
 	private String addressToString(IfcPostalAddress address) {
 		// TODO: is this formatting correct?
 		String str = new String();
@@ -1093,7 +1031,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 				str += line;
 			}
 		}
-		//* TODO: Are these perhaps captured by address lines?
+		// * TODO: Are these perhaps captured by address lines?
 		else if (address.isSetInternalLocation()) {
 			str += firstLine ? "" : "\n";
 			firstLine = false;
@@ -1123,7 +1061,7 @@ public class SceneJsShellSerializer extends AbstractGeometrySerializer {
 			str += firstLine ? "" : "\n";
 			firstLine = false;
 			str += address.getCountry();
-		}//*/
+		}// */
 		return str;
 	}
 
