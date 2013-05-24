@@ -75,10 +75,10 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 			error(e.getMessage());
 		} finally {
 			session.close();
-			done();
 			if (getActionState() != ActionState.AS_ERROR) {
 				changeActionState(ActionState.FINISHED, "Checkin of " + fileName, 100);
 			}
+			done();
 		}
 	}
 	
