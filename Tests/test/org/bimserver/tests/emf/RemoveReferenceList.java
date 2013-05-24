@@ -39,9 +39,9 @@ public class RemoveReferenceList extends TestWithEmbeddedServer {
 			IfcRelContainedInSpatialStructure link3 = model.create(IfcRelContainedInSpatialStructure.class);
 			link3.setName("link3");
 
-			link1.getRelatedElements().add(furnishingElement);
-			link2.getRelatedElements().add(furnishingElement);
-			link3.getRelatedElements().add(furnishingElement);
+			furnishingElement.getContainedInStructure().add(link1);
+			furnishingElement.getContainedInStructure().add(link2);
+			furnishingElement.getContainedInStructure().add(link3);
 			
 			model.commit("initial");
 			

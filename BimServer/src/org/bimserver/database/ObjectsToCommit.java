@@ -71,4 +71,9 @@ public class ObjectsToCommit implements Iterable<IdEObject> {
 		objectsToCommitFirst.clear();
 		objectsToCommitSecond.clear();
 	}
+
+	public void remove(IdEObject object) {
+		objectsToCommitFirst.remove(object);
+		objectsToCommitSecond.remove(object);
+	}
 }

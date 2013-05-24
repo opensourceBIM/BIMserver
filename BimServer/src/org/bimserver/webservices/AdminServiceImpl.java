@@ -59,7 +59,6 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
-import org.bimserver.utils.Formatters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -143,10 +142,6 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 		bimServerInfo.setSchemaVersion(databaseInformation.getSchemaVersion());
 		bimServerInfo.setServerLogUrl(getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/download?action=getfile&file=serverlog");
 		bimServerInfo.setStarted(getServerStartTime());
-		
-		GregorianCalendar gc = new GregorianCalendar();
-		gc.setTime(getServerStartTime());
-		bimServerInfo.setUptime(Formatters.timeSpanToString(gc, new GregorianCalendar()));
 		
 		return bimServerInfo;
 	}

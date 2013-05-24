@@ -45,7 +45,7 @@ public class SetReferenceChange implements Change {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public void execute(Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+	public void execute(Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		IdEObject idEObject = databaseSession.get(oid, new Query(project.getId(), concreteRevision.getId()));
 		EClass eClass = databaseSession.getEClassForOid(oid);
 		if (idEObject == null) {

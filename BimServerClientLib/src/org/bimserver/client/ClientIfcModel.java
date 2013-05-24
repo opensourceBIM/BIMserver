@@ -211,7 +211,6 @@ public class ClientIfcModel extends IfcModel {
 														}
 													}
 												} else if (eStructuralFeature instanceof EReference) {
-													LOGGER.info(eClass.getName() + "." + eStructuralFeature.getName());
 													int index = 0;
 													while (jsonReader.hasNext()) {
 														if (embedded) {

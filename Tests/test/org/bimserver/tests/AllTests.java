@@ -20,9 +20,19 @@ import org.bimserver.tests.emf.ListWalls;
 import org.bimserver.tests.emf.LoadCompleteModel;
 import org.bimserver.tests.emf.ReadTrim;
 import org.bimserver.tests.emf.RemoveReferenceList;
+import org.bimserver.tests.lowlevel.AddReferenceWithOpposite;
+import org.bimserver.tests.lowlevel.AddReferenceWithOppositeExisting;
 import org.bimserver.tests.lowlevel.CreateLists;
 import org.bimserver.tests.lowlevel.CreateReferenceListsAndClear;
 import org.bimserver.tests.lowlevel.CreateUnknownType;
+import org.bimserver.tests.lowlevel.GetDataObjectsByType;
+import org.bimserver.tests.lowlevel.IfcMeasureWithUnit;
+import org.bimserver.tests.lowlevel.RemoveObject;
+import org.bimserver.tests.lowlevel.RemoveObject2;
+import org.bimserver.tests.lowlevel.RemoveReferenceWithOpposite;
+import org.bimserver.tests.lowlevel.SetReferenceWithOpposite;
+import org.bimserver.tests.lowlevel.UnsetReference;
+import org.bimserver.tests.lowlevel.UnsetReferenceWithOpposite;
 import org.bimserver.tests.serviceinterface.MultiCheckinAndDownload;
 import org.bimserver.tests.serviceinterface.SingleCheckinAndDownload;
 import org.bimserver.tests.serviceinterface.UpdateProject;
@@ -32,11 +42,20 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        CreateGuid.class,
+		AddReferenceWithOpposite.class,
+		AddReferenceWithOppositeExisting.class,
         CreateGuid.class,
         CreateLists.class,
         CreateReferenceListsAndClear.class,
         CreateUnknownType.class,
+        GetDataObjectsByType.class,
+        IfcMeasureWithUnit.class,
+        RemoveObject.class,
+        RemoveObject2.class,
+        RemoveReferenceWithOpposite.class,
+        SetReferenceWithOpposite.class,
+        UnsetReference.class,
+        UnsetReferenceWithOpposite.class,
         DeleteObjects.class,
         ListWalls.class,
         LoadCompleteModel.class,

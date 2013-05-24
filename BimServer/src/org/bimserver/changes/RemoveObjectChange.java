@@ -57,7 +57,7 @@ public class RemoveObjectChange implements Change {
 	
 	@SuppressWarnings("rawtypes")
 	@Override
-	public void execute(Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+	public void execute(Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		IdEObject idEObject = databaseSession.get(oid, new Query(project.getId(), concreteRevision.getId() - 1));
 		if (idEObject == null) {
 			idEObject = created.get(oid);
@@ -71,6 +71,12 @@ public class RemoveObjectChange implements Change {
 		IfcModel subModel = new IfcModel();
 		databaseSession.getMap(subModel, query);
 		for (IdEObject idEObject2 : subModel.getValues()) {
+			if (idEObject2 == idEObject) {
+				continue;
+			}
+			if (deleted.containsKey(idEObject2.getOid())) {
+				continue;
+			}
 			boolean changed = false;
 			for (EReference eReference : idEObject2.eClass().getEAllReferences()) {
 				Object val = idEObject2.eGet(eReference);
@@ -98,6 +104,7 @@ public class RemoveObjectChange implements Change {
 				databaseSession.store(idEObject2, project.getId(), concreteRevision.getId());
 			}
 		}
-		databaseSession.delete(idEObject);
+		deleted.put(idEObject.getOid(), idEObject);
+		databaseSession.delete(idEObject, concreteRevision.getId());
 	}
 }

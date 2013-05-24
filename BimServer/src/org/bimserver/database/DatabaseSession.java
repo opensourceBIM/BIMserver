@@ -89,7 +89,6 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	private static boolean DEVELOPER_DEBUG = false;
 	private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseSession.class);
 	private static final EcorePackage ECORE_PACKAGE = EcorePackage.eINSTANCE;
-	public static final String WRAPPED_VALUE = "wrappedValue";
 	private final Database database;
 	private BimTransaction bimTransaction;
 	private final Set<PostCommitAction> postCommitActions = new LinkedHashSet<PostCommitAction>();
@@ -480,10 +479,13 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return buffer;
 	}
 
-	public void delete(IdEObject object) throws BimserverDatabaseException {
+	public void delete(IdEObject object, Integer newRid) throws BimserverDatabaseException {
 		checkOpen();
 //		if (perRecordVersioning(object)) {
-			objectsToDelete.put(object.eClass(), object.getPid(), object.getRid() + 1, object.getOid());
+			objectsToDelete.put(object.eClass(), object.getPid(), newRid, object.getOid());
+			if (objectsToCommit.containsObject(object)) {
+				objectsToCommit.remove(object);
+			}
 //		} else {
 			
 			// TODO implement
@@ -866,7 +868,13 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return size;
 	}
 
-	private int getMap(EClass originalQueryClass, EClass eClass, IfcModelInterface model, ByteBuffer buffer, int keyPid, long keyOid, int keyRid, QueryInterface query, Queue<IdEObject> todoList) throws BimserverDatabaseException {
+	private enum GetResult {
+		STOP,
+		CONTINUE_WITH_NEXT_RECORD,
+		CONTINUE_WITH_NEXT_OID,
+	}
+	
+	private GetResult getMap(EClass originalQueryClass, EClass eClass, IfcModelInterface model, ByteBuffer buffer, int keyPid, long keyOid, int keyRid, QueryInterface query, Queue<IdEObject> todoList) throws BimserverDatabaseException {
 		checkOpen();
 		if (keyPid == query.getPid()) {
 			if (keyRid <= query.getRid() && keyRid >= query.getStopRid()) {
@@ -881,7 +889,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 							throw new BimserverDatabaseException(e);
 						}
 					}
-					return 1;
+					return GetResult.CONTINUE_WITH_NEXT_OID;
 				} else {
 					IdEObject object = null;
 					if (model.contains(keyOid)) {
@@ -889,7 +897,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 					} else {
 						if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 							buffer.position(buffer.position() + 1);
-							return 1;
+							return GetResult.CONTINUE_WITH_NEXT_OID;
 							// deleted entity
 						} else {
 							object = convertByteArrayToObject(originalQueryClass, eClass, keyOid, buffer, model, keyRid, query,	todoList);
@@ -897,16 +905,16 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 					}
 					if (object != null) {
 						objectCache.put(recordIdentifier, object);
-						return 1;
+						return GetResult.CONTINUE_WITH_NEXT_OID;
 					}
 				}
 			} else {
-				return -1;
+				return GetResult.CONTINUE_WITH_NEXT_RECORD;
 			}
 		} else {
-			return 0;
+			return GetResult.STOP;
 		}
-		return 0;
+		return GetResult.STOP;
 	}
 
 	public void getMap(EClass eClass, IfcModelInterface ifcModel, QueryInterface query, Queue<IdEObject> todoList) throws BimserverDatabaseException {
@@ -923,8 +931,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				long keyOid = keyBuffer.getLong();
 				int keyRid = -keyBuffer.getInt();
 				ByteBuffer valueBuffer = ByteBuffer.wrap(record.getValue());
-				int map = getMap(eClass, eClass, ifcModel, valueBuffer, keyPid, keyOid, keyRid, query, todoList);
-				if (map == 1) {
+				GetResult map = getMap(eClass, eClass, ifcModel, valueBuffer, keyPid, keyOid, keyRid, query, todoList);
+				if (map == GetResult.CONTINUE_WITH_NEXT_OID) {
 					nextKeyStart.position(0);
 					nextKeyStart.putInt(query.getPid());
 					nextKeyStart.putLong(keyOid + 1);
@@ -985,8 +993,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 				long keyOid = keyBuffer.getLong();
 				int keyRid = -keyBuffer.getInt();
 				ByteBuffer valueBuffer = ByteBuffer.wrap(record.getValue());
-				int map = getMap(eClass, eClass, model, valueBuffer, keyPid, keyOid, keyRid, query, todoList);
-				if (map == 1) {
+				GetResult map = getMap(eClass, eClass, model, valueBuffer, keyPid, keyOid, keyRid, query, todoList);
+				if (map == GetResult.CONTINUE_WITH_NEXT_OID) {
 					nextKeyStart.position(0);
 					nextKeyStart.putInt(query.getPid());
 					nextKeyStart.putLong(keyOid + 1);
@@ -1449,7 +1457,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	public long store(IdEObject object, int pid, int rid) throws BimserverDatabaseException {
 		checkOpen();
-		if (!objectsToCommit.containsObject(object)) {
+		if (!objectsToCommit.containsObject(object) && !objectsToDelete.contains(object)) {
 			objectCache.put(new RecordIdentifier(pid, object.getOid(), rid), object);
 			boolean wrappedValue = object.eClass().getEAnnotation("wrapped") != null;
 			if (!wrappedValue) {

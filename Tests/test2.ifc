@@ -1,0 +1,10 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION ((''), '2;1');
+FILE_NAME ('', '2013-05-24T10:26:26', (''), ('BIMserver.org'), '', 'BIMserver', '');
+FILE_SCHEMA (('IFC2X3'));
+ENDSEC;
+DATA;
+#1= IFCBUILDING($,$,$,$,$,$,$,$,$,$,$,$);
+ENDSEC;
+END-ISO-10303-21;
