@@ -32,16 +32,16 @@ import org.apache.commons.io.IOUtils;
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
-import org.bimserver.shared.interfaces.Bimsie1Interface;
-import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
-import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
-import org.bimserver.shared.interfaces.RegistryInterface;
-import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1AuthInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationRegistryInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.meta.SourceCodeFetcher;
@@ -82,16 +82,16 @@ public class InterfaceList {
 	
 	static {
 		interfaces.add(ServiceInterface.class);
-		interfaces.add(NotificationInterface.class);
-		interfaces.add(RemoteServiceInterface.class);
+		interfaces.add(Bimsie1NotificationInterface.class);
+		interfaces.add(Bimsie1RemoteServiceInterface.class);
 		interfaces.add(AdminInterface.class);
 		interfaces.add(MetaInterface.class);
 		interfaces.add(SettingsInterface.class);
+		interfaces.add(Bimsie1AuthInterface.class);
 		interfaces.add(AuthInterface.class);
-		interfaces.add(LowLevelInterface.class);
+		interfaces.add(Bimsie1LowLevelInterface.class);
 		interfaces.add(PluginInterface.class);
-		interfaces.add(RegistryInterface.class);
-		interfaces.add(Bimsie1Interface.class);
+		interfaces.add(Bimsie1NotificationRegistryInterface.class);
 	}
 
 	public static SServicesMap createSServicesMap() {

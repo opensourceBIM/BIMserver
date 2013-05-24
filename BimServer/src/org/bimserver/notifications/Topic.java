@@ -20,20 +20,29 @@ package org.bimserver.notifications;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.endpoints.EndPoint;
+import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.UserException;
 
 public class Topic {
 	private final Set<EndPoint> endPoints = new HashSet<EndPoint>();
 	
-	public Set<EndPoint> getEndPoints() {
-		return endPoints;
+	public static interface Mapper {
+		void map(EndPoint endPoint) throws UserException, ServerException, BimserverDatabaseException;
 	}
 	
-	public void register(EndPoint endPoint) throws TopicRegisterException {
+	public synchronized void map(Mapper mapper) throws UserException, ServerException, BimserverDatabaseException {
+		for (EndPoint endPoint : endPoints) {
+			mapper.map(endPoint);
+		}
+	}
+	
+	public synchronized void register(EndPoint endPoint) throws TopicRegisterException {
 		endPoints.add(endPoint);
 	}
 
-	public void unregister(EndPoint endPoint) throws TopicRegisterException {
-//		endPoints.remove(endPoint);
+	public synchronized void unregister(EndPoint endPoint) throws TopicRegisterException {
+		endPoints.remove(endPoint);
 	}
 }

@@ -1,4 +1,4 @@
-package org.bimserver.shared.interfaces;
+package org.bimserver.shared.interfaces.bimsie1;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -31,10 +31,11 @@ import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.PublicInterface;
 
 @WebService(name = "RegistryInterface", targetNamespace="org.bimserver")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
-public interface RegistryInterface extends PublicInterface {
+public interface Bimsie1NotificationRegistryInterface extends PublicInterface {
 	@WebMethod(action = "registerProgressTopic")
 	Long registerProgressTopic(
 		@WebParam(name = "type", partName = "registerProgressTopic.type") SProgressTopicType type,

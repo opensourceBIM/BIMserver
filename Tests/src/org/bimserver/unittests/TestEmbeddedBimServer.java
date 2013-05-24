@@ -44,8 +44,9 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1AuthInterface;
 import org.bimserver.tests.TestFile;
-import org.bimserver.webservices.ServiceImpl;
+import org.bimserver.webservices.impl.ServiceImpl;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -128,7 +129,7 @@ public class TestEmbeddedBimServer {
 	public void testUpload() {
 		try {
 			ServiceInterface service = bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(ServiceInterface.class);
-			bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(AuthInterface.class).login(username, password);
+			bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(Bimsie1AuthInterface.class).login(username, password);
 			SProject project = service.addProject("test " + new Random().nextInt());
 			File sourceFile = TestFile.AC11.getFile();
 			service.checkin(project.getOid(), "test", -1L, sourceFile.length(), "test", new DataHandler(new FileDataSource(sourceFile)), false, true); // TODO
@@ -146,7 +147,7 @@ public class TestEmbeddedBimServer {
 	public void testDump() {
 		try {
 			ServiceInterface service = bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(ServiceInterface.class);
-			String token = bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(AuthInterface.class).login(username, password);
+			String token = bimServer.getServiceFactory().get(AccessMethod.INTERNAL).get(Bimsie1AuthInterface.class).login(username, password);
 			service = bimServer.getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
 			BimDatabase database = bimServer.getDatabase();
 			DatabaseSession session = database.createSession();

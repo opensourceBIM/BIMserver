@@ -1,4 +1,4 @@
-package org.bimserver.shared.interfaces;
+package org.bimserver.shared.interfaces.bimsie1;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -30,10 +30,11 @@ import javax.jws.soap.SOAPBinding.Use;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.PublicInterface;
 
-@WebService(name = "LowLevelInterface", targetNamespace="org.buildingsmart.bimsie")
+@WebService(name = "Bimsie1LowLevelInterface", targetNamespace="org.buildingsmart.bimsie1")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
-public interface LowLevelInterface extends PublicInterface {
+public interface Bimsie1LowLevelInterface extends PublicInterface {
 	/**
 	 * @param poid ObjectID of the Project to start a transaction on
 	 * @throws ServerException, UserException

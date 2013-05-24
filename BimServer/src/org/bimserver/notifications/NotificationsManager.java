@@ -48,9 +48,9 @@ import org.bimserver.shared.TokenAuthentication;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterfaceAdaptor;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 import org.bimserver.webservices.ServiceMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -76,7 +76,7 @@ public class NotificationsManager implements NotificationsManagerInterface {
 	private final Map<ProgressOnProjectTopicKey, Set<ProgressOnProjectTopic>> progressOnProjectTopics = new HashMap<ProgressOnProjectTopicKey, Set<ProgressOnProjectTopic>>();
 
 	private final Map<String, ServiceDescriptor> internalServices = new HashMap<String, ServiceDescriptor>();
-	private final Map<String, RemoteServiceInterface> internalRemoteServiceInterfaces = new HashMap<String, RemoteServiceInterface>();
+	private final Map<String, Bimsie1RemoteServiceInterface> internalRemoteServiceInterfaces = new HashMap<String, Bimsie1RemoteServiceInterface>();
 	private final JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private final BimServer bimServer;
 	private String url;
@@ -114,8 +114,8 @@ public class NotificationsManager implements NotificationsManagerInterface {
 			return jsonChannel;
 		case INTERNAL:
 			DirectChannel directChannel = new DirectChannel(bimServer.getServiceFactory(), bimServer.getServicesMap());
-			RemoteServiceInterface service2 = internalRemoteServiceInterfaces.get(service.getServiceIdentifier());
-			directChannel.add(RemoteServiceInterface.class.getName(), service2);
+			Bimsie1RemoteServiceInterface service2 = internalRemoteServiceInterfaces.get(service.getServiceIdentifier());
+			directChannel.add(Bimsie1RemoteServiceInterface.class.getName(), service2);
 			try {
 				directChannel.connect();
 			} catch (UserException e) {
@@ -132,7 +132,7 @@ public class NotificationsManager implements NotificationsManagerInterface {
 	}
 
 	@Override
-	public void register(ServiceDescriptor serviceDescriptor, RemoteServiceInterface remoteServiceInterface) {
+	public void register(ServiceDescriptor serviceDescriptor, Bimsie1RemoteServiceInterface remoteServiceInterface) {
 		serviceDescriptor.setUrl(url);
 		internalServices.put(serviceDescriptor.getName(), serviceDescriptor);
 		internalRemoteServiceInterfaces.put(serviceDescriptor.getIdentifier(), remoteServiceInterface);
@@ -148,7 +148,7 @@ public class NotificationsManager implements NotificationsManagerInterface {
 			@Override
 			public void newRevision(final Long poid, final Long roid, Long soid, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) throws UserException, ServerException {
 				ServiceMapInterface serviceMapInterface = new ServiceMap(bimServer, null, AccessMethod.JSON);
-				serviceMapInterface.add(RemoteServiceInterface.class, internalRemoteServiceInterfaces.get(serviceIdentifier));
+				serviceMapInterface.add(Bimsie1RemoteServiceInterface.class, internalRemoteServiceInterfaces.get(serviceIdentifier));
 				final InternalChannel internalChannel = new InternalChannel(bimServer.getServiceFactory(), bimServer.getServicesMap());
 				try {
 					internalChannel.connect(new SimpleTokenHolder());
@@ -158,7 +158,7 @@ public class NotificationsManager implements NotificationsManagerInterface {
 				try {
 					final ServiceInterface serviceInterface = bimServer.getService(ServiceInterface.class);
 					SService service = serviceInterface.getService(Long.parseLong(profileIdentifier));
-					final SObjectType settings = internalChannel.getPlugin().getPluginSettings(service.getInternalServiceId());
+					final SObjectType settings = internalChannel.getPluginInterface().getPluginSettings(service.getInternalServiceId());
 
 					final BimServerClient bimServerClient = bimServer.getBimServerClientFactory().create(new TokenAuthentication(token));
 					

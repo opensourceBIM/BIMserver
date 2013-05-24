@@ -24,7 +24,7 @@ public class DeleteObjects extends TestWithEmbeddedServer {
 			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Get the service interface
-			ServiceInterface serviceInterface = bimServerClient.getService();
+			ServiceInterface serviceInterface = bimServerClient.getServiceInterface();
 			
 			// Create a new project
 			SProject newProject = serviceInterface.addProject("test" + Math.random());

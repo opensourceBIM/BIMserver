@@ -19,33 +19,14 @@ package org.bimserver.shared.interfaces;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
 
-public class AuthInterfaceAdaptor implements AuthInterface {
+public class AuthInterfaceAdaptor implements org.bimserver.shared.interfaces.AuthInterface {
 
 	public java.lang.Boolean changePassword(java.lang.Long uoid, java.lang.String oldPassword, java.lang.String newPassword) throws UserException, ServerException {
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SAccessMethod getAccessMethod() throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SUser getCurrentUser() throws UserException, ServerException {
-		return null;
-	}
-	
 	public org.bimserver.interfaces.objects.SUser getLoggedInUser() throws UserException, ServerException {
 		return null;
-	}
-	
-	public java.lang.Boolean isLoggedIn() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.String login(java.lang.String username, java.lang.String password) throws UserException, ServerException {
-		return null;
-	}
-	
-	public void logout() throws UserException, ServerException {
 	}
 	
 	public void requestPasswordChange(java.lang.String username, java.lang.String resetUrl) throws UserException, ServerException {

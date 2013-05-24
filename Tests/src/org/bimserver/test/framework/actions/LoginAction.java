@@ -33,12 +33,12 @@ public class LoginAction extends Action {
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		if (nextInt(virtualUser.getUserNames().size() + 1) == 0) {
 			virtualUser.getActionResults().setText("Logging in as admin@bimserver.org");
-			virtualUser.getBimServerClient().getAuth().login("admin@bimserver.org", "admin");
+			virtualUser.getBimServerClient().getBimsie1AuthInterface().login("admin@bimserver.org", "admin");
 		} else {
 			if (!virtualUser.getUserNames().isEmpty()) {
 				String username = virtualUser.getRandomUserName();
 				virtualUser.getActionResults().setText("Logging in as " + username);
-				virtualUser.getBimServerClient().getAuth().login(username, "test");
+				virtualUser.getBimServerClient().getBimsie1AuthInterface().login(username, "test");
 			}
 		}
 	}

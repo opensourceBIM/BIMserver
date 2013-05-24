@@ -18,7 +18,7 @@ public class UpdateProject extends TestWithEmbeddedServer {
 			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Get the service interface
-			ServiceInterface serviceInterface = bimServerClient.getService();
+			ServiceInterface serviceInterface = bimServerClient.getServiceInterface();
 			
 			// Create a new project
 			String originalName = "test " + Math.random();

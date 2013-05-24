@@ -1,6 +1,6 @@
 
-ó2
-Bimsie1Interface.protoorg.bimserver.pbServiceInterface.protoNotificationInterface.protoRemoteServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoLowLevelInterface.protoPluginInterface.protoRegistryInterface.proto"
+˜3
+Bimsie1Interface.protoorg.bimserver.pbServiceInterface.protoNotificationInterface.protoRemoteServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoBimsie1AuthInterface.protoBimServerAuthInterface.protoLowLevelInterface.protoPluginInterface.protoRegistryInterface.proto"
 GetServiceLogRequest"<
 GetServiceLogResponse
 errorMessage (	

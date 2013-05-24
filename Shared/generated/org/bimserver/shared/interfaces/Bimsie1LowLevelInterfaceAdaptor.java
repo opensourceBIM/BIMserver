@@ -19,7 +19,7 @@ package org.bimserver.shared.interfaces;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
 
-public class Bimsie1InterfaceAdaptor implements Bimsie1Interface {
+public class Bimsie1LowLevelInterfaceAdaptor implements org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface {
 
 	public void abortTransaction(java.lang.Long tid) throws UserException, ServerException {
 	}
@@ -39,19 +39,11 @@ public class Bimsie1InterfaceAdaptor implements Bimsie1Interface {
 	public void addStringAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.String value) throws UserException, ServerException {
 	}
 	
-	public java.lang.Long checkin(java.lang.Long poid, java.lang.String comment, java.lang.Long deserializerOid, java.lang.Long fileSize, java.lang.String fileName, javax.activation.DataHandler ifcFile, java.lang.Boolean sync) throws UserException, ServerException {
-		return null;
-	}
-	
 	public java.lang.Long commitTransaction(java.lang.Long tid, java.lang.String comment) throws UserException, ServerException {
 		return null;
 	}
 	
 	public java.lang.Long createObject(java.lang.Long tid, java.lang.String className) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long download(java.lang.Long roid, java.lang.Long serializerOid, java.lang.Boolean showOwn, java.lang.Boolean sync) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -119,23 +111,12 @@ public class Bimsie1InterfaceAdaptor implements Bimsie1Interface {
 		return null;
 	}
 	
-	public java.lang.String getServiceLog() throws UserException, ServerException {
-		return null;
-	}
-	
 	public java.lang.String getStringAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
 		return null;
 	}
 	
 	public java.util.List<java.lang.String> getStringAttributes(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName) throws UserException, ServerException {
 		return null;
-	}
-	
-	public java.lang.String login(java.lang.String username, java.lang.String password) throws UserException, ServerException {
-		return null;
-	}
-	
-	public void logout() throws UserException, ServerException {
 	}
 	
 	public void removeAllReferences(java.lang.Long tid, java.lang.Long oid, java.lang.String referenceName) throws UserException, ServerException {

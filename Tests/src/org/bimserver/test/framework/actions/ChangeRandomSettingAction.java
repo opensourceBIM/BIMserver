@@ -33,7 +33,7 @@ public class ChangeRandomSettingAction extends Action {
 	@Override
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		int random = nextInt(18);
-		SettingsInterface settingsInterface = virtualUser.getBimServerClient().getSettings();
+		SettingsInterface settingsInterface = virtualUser.getBimServerClient().getSettingsInterface();
 		switch (random) {
 		case 0:
 			virtualUser.getActionResults().setText("Setting allow self registration");

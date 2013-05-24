@@ -1,0 +1,24 @@
+
+©
+Bimsie1AuthInterface.protoorg.bimserver.pbServiceInterface.proto"Bimsie1NotificationInterface.proto#Bimsie1RemoteServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.proto"
+GetAccessMethodRequest"_
+GetAccessMethodResponse
+errorMessage (	.
+value (2.org.bimserver.pb.SAccessMethod"
+IsLoggedInRequest"9
+IsLoggedInResponse
+errorMessage (	
+value ("2
+LoginRequest
+username (	
+password (	"4
+LoginResponse
+errorMessage (	
+value (	"
+LogoutRequest2ì
+Bimsie1AuthInterfacef
+getAccessMethod(.org.bimserver.pb.GetAccessMethodRequest).org.bimserver.pb.GetAccessMethodResponseW
+
+isLoggedIn#.org.bimserver.pb.IsLoggedInRequest$.org.bimserver.pb.IsLoggedInResponseH
+login.org.bimserver.pb.LoginRequest.org.bimserver.pb.LoginResponseI
+logout.org.bimserver.pb.LogoutRequest.org.bimserver.pb.VoidResponseBBBimsie1AuthInterfaceImplHˆ

@@ -22,7 +22,8 @@ import "RemoteServiceInterface.proto";
 import "AdminInterface.proto";
 import "MetaInterface.proto";
 import "SettingsInterface.proto";
-import "AuthInterface.proto";
+import "Bimsie1AuthInterface.proto";
+import "BimServerAuthInterface.proto";
 option java_generic_services = true;
 
 option java_outer_classname = "LowLevelInterfaceImpl";

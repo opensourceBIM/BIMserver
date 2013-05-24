@@ -1,4 +1,4 @@
-package org.bimserver.shared.interfaces;
+package org.bimserver.shared.interfaces.bimsie1;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -28,10 +28,11 @@ import javax.jws.soap.SOAPBinding.Use;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.interfaces.PublicInterface;
 
 @WebService(name = "NotificationInterface", targetNamespace="org.buildingsmart.bimsie")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
-public interface NotificationInterface extends PublicInterface {
+public interface Bimsie1NotificationInterface extends PublicInterface {
 
 	@WebMethod(action = "newRevision")
 	void newRevision(

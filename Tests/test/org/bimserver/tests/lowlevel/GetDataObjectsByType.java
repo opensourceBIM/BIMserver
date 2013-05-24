@@ -8,7 +8,7 @@ import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SDataObject;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.interfaces.LowLevelInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
@@ -21,10 +21,10 @@ public class GetDataObjectsByType extends TestWithEmbeddedServer{
 			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Get the low level interface
-			LowLevelInterface lowLevelInterface = bimServerClient.getLowLevel();
+			Bimsie1LowLevelInterface lowLevelInterface = bimServerClient.getBimsie1LowLevelInterface();
 			
 			// Create a new project
-			SProject newProject = bimServerClient.getService().addProject("test" + Math.random());
+			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random());
 			
 			// Start a transaction
 			Long tid = lowLevelInterface.startTransaction(newProject.getOid());
@@ -36,7 +36,7 @@ public class GetDataObjectsByType extends TestWithEmbeddedServer{
 			
 			// Commit the transaction
 			lowLevelInterface.commitTransaction(tid, "test");
-			newProject = bimServerClient.getService().getProjectByPoid(newProject.getOid());
+			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 
 			List<SDataObject> dataObjectsByType = lowLevelInterface.getDataObjectsByType(newProject.getLastRevisionId(), "IfcRelContainedInSpatialStructure");
 			for (SDataObject sDataObject : dataObjectsByType) {

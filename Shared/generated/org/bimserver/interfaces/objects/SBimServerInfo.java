@@ -41,7 +41,6 @@ public class SBimServerInfo implements SDataBase
 	private int checkouts;
 	private java.lang.String serverLogUrl;
 	private java.util.Date started;
-	private java.lang.String uptime;
 
 	public long getOid() {
 		return this.oid;
@@ -102,9 +101,6 @@ public class SBimServerInfo implements SDataBase
 		if (sField.getName().equals("started")) {
 			return getStarted();
 		}
-		if (sField.getName().equals("uptime")) {
-			return getUptime();
-		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -157,10 +153,6 @@ public class SBimServerInfo implements SDataBase
 		}
 		if (sField.getName().equals("started")) {
 			setStarted((Date)val);
-			return;
-		}
-		if (sField.getName().equals("uptime")) {
-			setUptime((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -260,14 +252,6 @@ public class SBimServerInfo implements SDataBase
 
 	public void setStarted(java.util.Date started) {
 		this.started = started;
-	}
-	
-	public java.lang.String getUptime() {
-		return uptime;
-	}
-
-	public void setUptime(java.lang.String uptime) {
-		this.uptime = uptime;
 	}
 	
 	@Override

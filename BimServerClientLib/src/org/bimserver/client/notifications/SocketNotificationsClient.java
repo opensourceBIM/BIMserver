@@ -24,7 +24,7 @@ import java.net.Socket;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bimserver.shared.interfaces.NotificationInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.slf4j.Logger;
@@ -96,7 +96,7 @@ public class SocketNotificationsClient extends NotificationsClient {
 		}
 	}
 
-	public void unregisterNotifictionListener(NotificationInterface notificationInterface) {
+	public void unregisterNotifictionListener(Bimsie1NotificationInterface notificationInterface) {
 		
 	}
 }

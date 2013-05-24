@@ -1,4 +1,4 @@
-package org.bimserver.webservices;
+package org.bimserver.webservices.impl;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -42,21 +42,14 @@ import org.bimserver.database.actions.DeleteQueryEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteRenderEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteSerializerDatabaseAction;
 import org.bimserver.database.actions.GetByIdDatabaseAction;
-import org.bimserver.database.actions.GetDeserializerByIdDatabaseAction;
-import org.bimserver.database.actions.GetDeserializerByNameDatabaseAction;
 import org.bimserver.database.actions.GetModelCompareByIdDatabaseAction;
 import org.bimserver.database.actions.GetModelCompareByNameDatabaseAction;
 import org.bimserver.database.actions.GetModelMergerByIdDatabaseAction;
 import org.bimserver.database.actions.GetModelMergerByNameDatabaseAction;
 import org.bimserver.database.actions.GetObjectIDMByIdDatabaseAction;
 import org.bimserver.database.actions.GetObjectIDMByNameDatabaseAction;
-import org.bimserver.database.actions.GetQueryEngineByIdDatabaseAction;
-import org.bimserver.database.actions.GetQueryEngineByNameDatabaseAction;
 import org.bimserver.database.actions.GetRenderEngineByIdDatabaseAction;
 import org.bimserver.database.actions.GetRenderEngineByNameDatabaseAction;
-import org.bimserver.database.actions.GetSerializerByContentTypeDatabaseAction;
-import org.bimserver.database.actions.GetSerializerByIdDatabaseAction;
-import org.bimserver.database.actions.GetSerializerByNameDatabaseAction;
 import org.bimserver.database.actions.GetSerializerByPluginClassNameDatabaseAction;
 import org.bimserver.database.actions.GetWebModuleByIdDatabaseAction;
 import org.bimserver.database.actions.GetWebModuleByNameDatabaseAction;
@@ -110,6 +103,8 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.PluginInterface;
+import org.bimserver.webservices.SPluginConfigurationComparator;
+import org.bimserver.webservices.ServiceMap;
 import org.eclipse.emf.common.util.EList;
 
 public class PluginServiceImpl extends GenericServiceImpl implements PluginInterface {
@@ -200,20 +195,6 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			session.close();
 		}
 	}
-	
-	@Override
-	public SDeserializerPluginConfiguration getDeserializerById(Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetDeserializerByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
 
 	@Override
 	public SObjectIDMPluginConfiguration getObjectIDMById(Long oid) throws ServerException, UserException {
@@ -284,20 +265,6 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 
 	@Override
-	public SSerializerPluginConfiguration getSerializerByName(String serializerName) throws ServerException, UserException {
-		requireAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByNameDatabaseAction(session, getInternalAccessMethod(), serializerName)));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
 	public SWebModulePluginConfiguration getWebModuleByName(String name) throws ServerException, UserException {
 		requireAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -317,20 +284,6 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetObjectIDMByNameDatabaseAction(session, getInternalAccessMethod(), ObjectIDMName)));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
-	public SDeserializerPluginConfiguration getDeserializerByName(String deserializerName) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetDeserializerByNameDatabaseAction(session, getInternalAccessMethod(), deserializerName)));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -568,19 +521,6 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 
 	@Override
-	public SQueryEnginePluginConfiguration getQueryEngineByName(String name) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetQueryEngineByNameDatabaseAction(session, getInternalAccessMethod(), name)));
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
 	public SModelMergerPluginConfiguration getModelMergerById(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -638,19 +578,6 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetRenderEngineByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public SQueryEnginePluginConfiguration getQueryEngineById(Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetQueryEngineByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -1023,40 +950,11 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 
 	@Override
-	public SSerializerPluginConfiguration getSerializerById(Long oid) throws ServerException, UserException {
-		requireAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
 	public SWebModulePluginConfiguration getWebModuleById(Long oid) throws ServerException, UserException {
 		requireAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetWebModuleByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
-	public SSerializerPluginConfiguration getSerializerByContentType(String contentType) throws ServerException, UserException {
-		// Not checking for real authentication here because a remote service should be able to use a serializer for download call
-		requireAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByContentTypeDatabaseAction(session, getInternalAccessMethod(), contentType)));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -1084,7 +982,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	public Boolean hasActiveSerializer(String contentType) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		try {
-			SSerializerPluginConfiguration serializer = getSerializerByContentType(contentType);
+			SSerializerPluginConfiguration serializer = getServiceMap().getBimsie1ServiceInterface().getSerializerByContentType(contentType);
 			if (serializer != null) {
 				if (serializer.getEnabled()) {
 					return getBimServer().getPluginManager().isEnabled(serializer.getClassName());

@@ -66,7 +66,7 @@ public class TestClientEmfModelRemoteProtocolBuffers {
 
 	private SProject createProject() throws PublicInterfaceNotFoundException {
 		try {
-			SProject project = bimServerClient.getService().addProject("Project " + new Random().nextInt());
+			SProject project = bimServerClient.getServiceInterface().addProject("Project " + new Random().nextInt());
 			return project;
 		} catch (ServiceException e) {
 			e.printStackTrace();

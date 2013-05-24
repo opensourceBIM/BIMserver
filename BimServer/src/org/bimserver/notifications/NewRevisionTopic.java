@@ -35,13 +35,16 @@ public class NewRevisionTopic extends Topic {
 		super.register(endPoint);
 	}
 
-	public void process(DatabaseSession session, long poid, long roid, NewRevisionNotification newRevisionNotification) throws BimserverDatabaseException, UserException, ServerException {
-		for (EndPoint endPoint : getEndPoints()) {
-			User user = session.get(StorePackage.eINSTANCE.getUser(), endPoint.getUoid(), Query.getDefault());
-			Project project = session.get(StorePackage.eINSTANCE.getUser(), poid, Query.getDefault());
-			if (user.getUserType() == UserType.ADMIN || user.getHasRightsOn().contains(project)) {
-				endPoint.getNotificationInterface().newRevision(poid, roid);
+	public void process(final DatabaseSession session, final long poid, final long roid, NewRevisionNotification newRevisionNotification) throws BimserverDatabaseException, UserException, ServerException {
+		map(new Mapper(){
+			@Override
+			public void map(final EndPoint endPoint) throws UserException, ServerException, BimserverDatabaseException {
+				User user = session.get(StorePackage.eINSTANCE.getUser(), endPoint.getUoid(), Query.getDefault());
+				Project project = session.get(StorePackage.eINSTANCE.getUser(), poid, Query.getDefault());
+				if (user.getUserType() == UserType.ADMIN || user.getHasRightsOn().contains(project)) {
+					endPoint.getNotificationInterface().newRevision(poid, roid);
+				}
 			}
-		}
+		});
 	}
 }

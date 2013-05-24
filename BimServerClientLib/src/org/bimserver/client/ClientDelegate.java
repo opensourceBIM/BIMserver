@@ -48,7 +48,7 @@ public class ClientDelegate extends Delegate {
 	@Override
 	public void eUnset(EStructuralFeature eFeature) {
 		try {
-			model.getBimServerClient().getLowLevel().unsetAttribute(model.getTransactionId(), getOid(), eFeature.getName());
+			model.getBimServerClient().getBimsie1LowLevelInterface().unsetAttribute(model.getTransactionId(), getOid(), eFeature.getName());
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
@@ -63,21 +63,21 @@ public class ClientDelegate extends Delegate {
 		if (model.getModelState() != ModelState.LOADING) {
 			try {
 				if (newValue instanceof String) {
-					model.getBimServerClient().getLowLevel().setStringAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (String)newValue);
+					model.getBimServerClient().getBimsie1LowLevelInterface().setStringAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (String)newValue);
 				} else if (newValue instanceof Long) {
-					model.getBimServerClient().getLowLevel().setLongAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Long)newValue);
+					model.getBimServerClient().getBimsie1LowLevelInterface().setLongAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Long)newValue);
 				} else if (newValue instanceof Double) {
-					model.getBimServerClient().getLowLevel().setDoubleAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Double)newValue);
+					model.getBimServerClient().getBimsie1LowLevelInterface().setDoubleAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Double)newValue);
 				} else if (newValue instanceof Boolean) {
-					model.getBimServerClient().getLowLevel().setBooleanAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Boolean)newValue);
+					model.getBimServerClient().getBimsie1LowLevelInterface().setBooleanAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Boolean)newValue);
 				} else if (newValue instanceof Integer) {
-					model.getBimServerClient().getLowLevel().setIntegerAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Integer)newValue);
+					model.getBimServerClient().getBimsie1LowLevelInterface().setIntegerAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Integer)newValue);
 				} else if (newValue instanceof byte[]) {
-					model.getBimServerClient().getLowLevel().setByteArrayAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Byte[])newValue);
+					model.getBimServerClient().getBimsie1LowLevelInterface().setByteArrayAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Byte[])newValue);
 				} else if (newValue instanceof Enum) {
-					model.getBimServerClient().getLowLevel().setEnumAttribute(model.getTransactionId(), getOid(), eFeature.getName(), ((Enum<?>)newValue).toString());
+					model.getBimServerClient().getBimsie1LowLevelInterface().setEnumAttribute(model.getTransactionId(), getOid(), eFeature.getName(), ((Enum<?>)newValue).toString());
 				} else if (newValue instanceof IdEObject) {
-					model.getBimServerClient().getLowLevel().setReference(model.getTransactionId(), getOid(), eFeature.getName(), ((IdEObject)newValue).getOid());
+					model.getBimServerClient().getBimsie1LowLevelInterface().setReference(model.getTransactionId(), getOid(), eFeature.getName(), ((IdEObject)newValue).getOid());
 				} else {
 					throw new RuntimeException("Unimplemented " + eFeature.getEType().getName());
 				}
@@ -123,7 +123,7 @@ public class ClientDelegate extends Delegate {
 	@Override
 	public void remove() {
 		try {
-			model.getBimServerClient().getLowLevel().removeObject(model.getTransactionId(), getOid());
+			model.getBimServerClient().getBimsie1LowLevelInterface().removeObject(model.getTransactionId(), getOid());
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {

@@ -17,15 +17,18 @@ package org.bimserver.notifications;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
 public class ChangeProgressTopicOnProjectTopic extends Topic {
 
-	public void notifyOfNewTopic(NewProgressTopicOnProjectNotification notification) throws UserException, ServerException {
-		for (EndPoint endpoint : getEndPoints()) {
-			endpoint.getNotificationInterface().newProgressOnProjectTopic(notification.getPoid(), notification.getTopicId());
-		}
+	public void notifyOfNewTopic(final NewProgressTopicOnProjectNotification notification) throws UserException, ServerException, BimserverDatabaseException {
+		map(new Mapper(){
+			@Override
+			public void map(final EndPoint endPoint) throws UserException, ServerException {
+				endPoint.getNotificationInterface().newProgressOnProjectTopic(notification.getPoid(), notification.getTopicId());
+			}});
 	}
 }

@@ -17,11 +17,12 @@ package org.bimserver.pb;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import "ServiceInterface.proto";
-import "NotificationInterface.proto";
-import "RemoteServiceInterface.proto";
+import "Bimsie1NotificationInterface.proto";
+import "Bimsie1RemoteServiceInterface.proto";
 import "AdminInterface.proto";
 import "MetaInterface.proto";
 import "SettingsInterface.proto";
+import "Bimsie1AuthInterface.proto";
 option java_generic_services = true;
 
 option java_outer_classname = "AuthInterfaceImpl";
@@ -31,17 +32,7 @@ option optimize_for = SPEED;
 service AuthInterface {
 	rpc changePassword (ChangePasswordRequest) returns (ChangePasswordResponse);
 
-	rpc getAccessMethod (GetAccessMethodRequest) returns (GetAccessMethodResponse);
-
-	rpc getCurrentUser (GetCurrentUserRequest) returns (GetCurrentUserResponse);
-
 	rpc getLoggedInUser (GetLoggedInUserRequest) returns (GetLoggedInUserResponse);
-
-	rpc isLoggedIn (IsLoggedInRequest) returns (IsLoggedInResponse);
-
-	rpc login (LoginRequest) returns (LoginResponse);
-
-	rpc logout (LogoutRequest) returns (VoidResponse);
 
 	rpc requestPasswordChange (RequestPasswordChangeRequest) returns (VoidResponse);
 
@@ -60,49 +51,12 @@ message ChangePasswordResponse {
 	optional bool value = 2;
 }
 
-message GetAccessMethodRequest {
-}
-
-message GetAccessMethodResponse {
-	optional string errorMessage = 1;
-	optional SAccessMethod value = 2;
-}
-
-message GetCurrentUserRequest {
-}
-
-message GetCurrentUserResponse {
-	optional string errorMessage = 1;
-	optional SUser value = 2;
-}
-
 message GetLoggedInUserRequest {
 }
 
 message GetLoggedInUserResponse {
 	optional string errorMessage = 1;
 	optional SUser value = 2;
-}
-
-message IsLoggedInRequest {
-}
-
-message IsLoggedInResponse {
-	optional string errorMessage = 1;
-	optional bool value = 2;
-}
-
-message LoginRequest {
-	optional string username = 1;
-	optional string password = 2;
-}
-
-message LoginResponse {
-	optional string errorMessage = 1;
-	optional string value = 2;
-}
-
-message LogoutRequest {
 }
 
 message RequestPasswordChangeRequest {

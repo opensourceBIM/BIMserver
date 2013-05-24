@@ -1,4 +1,4 @@
-package org.bimserver.webservices;
+package org.bimserver.webservices.impl;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -114,11 +114,8 @@ import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SCheckout;
-import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.interfaces.objects.SCompareResult;
 import org.bimserver.interfaces.objects.SCompareType;
-import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataAddedToRevision;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
@@ -137,13 +134,9 @@ import org.bimserver.interfaces.objects.STrigger;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSettings;
 import org.bimserver.interfaces.objects.SUserType;
-import org.bimserver.longaction.CannotBeScheduledException;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.longaction.LongBranchAction;
 import org.bimserver.longaction.LongCheckinAction;
-import org.bimserver.longaction.LongCheckoutAction;
-import org.bimserver.longaction.LongDownloadAction;
-import org.bimserver.longaction.LongDownloadOrCheckoutAction;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
@@ -154,19 +147,15 @@ import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
-import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-import org.bimserver.models.store.UserSettings;
 import org.bimserver.notifications.NewExtendedDataNotification;
 import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
-import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
-import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.compare.CompareWriter;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -174,6 +163,12 @@ import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.utils.MultiplexingInputStream;
 import org.bimserver.utils.NetUtils;
+import org.bimserver.webservices.CheckoutComparator;
+import org.bimserver.webservices.SProjectComparator;
+import org.bimserver.webservices.SRevisionComparator;
+import org.bimserver.webservices.SServiceComparator;
+import org.bimserver.webservices.SUserComparator;
+import org.bimserver.webservices.ServiceMap;
 import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
@@ -327,55 +322,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			session.close();
 		}
 	}
-
-	@Override
-	public Long checkoutLastRevision(Long poid, Long serializerOid, Boolean sync) throws ServerException, UserException {
-		requireAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, Query.getDefault());
-			return checkout(project.getLastRevision().getOid(), serializerOid, sync);
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public Long checkout(Long roid, Long serializerOid, Boolean sync) throws ServerException, UserException {
-		requireAuthenticationAndRunningServer();
-		getAuthorization().canDownload(roid);
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		User user = null;
-		try {
-			SerializerPluginConfiguration serializerPluginConfiguration = (SerializerPluginConfiguration) session.get(serializerOid, Query.getDefault());
-//			org.bimserver.plugins.serializers.Serializer serializer = getBimServer().getEmfSerializerFactory().get(serializerOid).createSerializer(new org.bimserver.plugins.serializers.PluginConfiguration());
-			if (serializerPluginConfiguration == null) {
-				throw new UserException("No serializer with id " + serializerOid + " could be found");
-			}
-			if (!serializerPluginConfiguration.getClassName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin") && !serializerPluginConfiguration.getClassName().equals("org.bimserver.ifc.xml.serializer.IfcXmlSerializerPlugin")) {
-				throw new UserException("Only IFC or IFCXML allowed when checking out");
-			}
-			DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), roid, serializerOid, -1);
-			user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
-			LongDownloadOrCheckoutAction longDownloadAction = new LongCheckoutAction(getBimServer(), user.getName(), user.getUsername(), downloadParameters, getAuthorization(), getInternalAccessMethod());
-			try {
-				getBimServer().getLongActionManager().start(longDownloadAction);
-			} catch (CannotBeScheduledException e) {
-				LOGGER.error("", e);
-			}
-			if (sync) {
-				longDownloadAction.waitForCompletion();
-			}
-			return longDownloadAction.getProgressTopic().getKey().getId();
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
+	
 	@Override
 	public SUser addUser(String username, String name, SUserType type, Boolean selfRegistration) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -585,52 +532,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		getBimServer().getLongActionManager().remove(actionId);
 	}
 	
-	public Long download(Long roid, Long serializerOid, Boolean showOwn, Boolean sync) throws ServerException, UserException {
-		requireAuthenticationAndRunningServer();
-		return download(new DownloadParameters(getBimServer(), roid, serializerOid, showOwn ? -1 : getAuthorization().getUoid()), sync);
-	}
-
 	@Override
 	public Long downloadCompareResults(Long serializerOid, Long roid1, Long roid2, Long mcid, SCompareType type, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromCompare(roid1, roid2, getBimServer().getSConverter().convertFromSObject(type), mcid, serializerOid), sync);
-	}
-
-	private Long download(DownloadParameters downloadParameters, Boolean sync) throws ServerException, UserException {
-		User user = null;
-		for (long roid : downloadParameters.getRoids()) {
-			getAuthorization().canDownload(roid);
-		}
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), Query.getDefault());
-		} catch (BimserverDatabaseException e) {
-			throw new UserException(e);
-		} finally {
-			session.close();
-		}
-		LongDownloadOrCheckoutAction longDownloadAction = new LongDownloadAction(getBimServer(), user == null ? "Unknown" : user.getName(), user == null ? "Unknown" : user.getUsername(), downloadParameters, getAuthorization(), getInternalAccessMethod());
-		try {
-			getBimServer().getLongActionManager().start(longDownloadAction);
-		} catch (Exception e) {
-			LOGGER.error("", e);
-		}
-		if (sync) {
-			longDownloadAction.waitForCompletion();
-		}
-		return longDownloadAction.getProgressTopic().getKey().getId();
-	}
-
-	@Override
-	public SDownloadResult getDownloadData(final Long actionId) throws ServerException, UserException {
-		LongDownloadOrCheckoutAction longAction = (LongDownloadOrCheckoutAction) getBimServer().getLongActionManager().getLongAction(actionId);
-		if (longAction != null) {
-			longAction.waitForCompletion();
-			SCheckoutResult result = longAction.getCheckoutResult();
-			return result;
-		} else {
-			throw new UserException("No data found for laid " + actionId);
-		}
+		return ((Bimsie1ServiceIImpl)getServiceMap().getBimsie1ServiceInterface()).download(DownloadParameters.fromCompare(roid1, roid2, getBimServer().getSConverter().convertFromSObject(type), mcid, serializerOid), sync);
 	}
 
 	@Override
@@ -676,20 +581,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	@Override
-	public Long downloadByOids(Set<Long> roids, Set<Long> oids, Long serializerOid, Boolean sync, Boolean deep) throws ServerException, UserException {
-		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromOids(getBimServer(), serializerOid, roids, oids, deep), sync);
-	}
-
-	@Override
-	public Long downloadByTypes(Set<Long> roids, Set<String> classNames, Long serializerOid, Boolean includeAllSubtypes, Boolean useObjectIDM, Boolean deep, Boolean sync) throws ServerException, UserException {
-		requireAuthenticationAndRunningServer();
-		DownloadParameters fromClassNames = DownloadParameters.fromClassNames(getBimServer(), roids, classNames, includeAllSubtypes, serializerOid, deep);
-		fromClassNames.setUseObjectIDM(useObjectIDM);
-		return download(fromClassNames, sync);
-	}
-
-	@Override
 	public List<String> getAvailableClasses() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -701,18 +592,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		} finally {
 			session.close();
 		}
-	}
-
-	@Override
-	public Long downloadByGuids(Set<Long> roids, Set<String> guids, Long serializerOid, Boolean deep, Boolean sync) throws ServerException, UserException {
-		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromGuids(getBimServer(), roids, guids, serializerOid, deep), sync);
-	}
-
-	@Override
-	public Long downloadByNames(Set<Long> roids, Set<String> names, Long serializerOid, Boolean deep, Boolean sync) throws ServerException, UserException {
-		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromNames(getBimServer(), roids, names, serializerOid, deep), sync);
 	}
 
 	@Override
@@ -901,12 +780,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		} finally {
 			session.close();
 		}
-	}
-
-	@Override
-	public Long downloadRevisions(Set<Long> roids, Long serializerOid, Boolean sync) throws ServerException, UserException {
-		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromRoids(getBimServer(), roids, serializerOid), sync);
 	}
 
 	public Long getOidByGuid(Long roid, String guid) throws ServerException, UserException {
@@ -1208,12 +1081,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	@Override
-	public Long downloadQuery(Long roid, Long qeid, String code, Boolean sync, Long serializerOid) throws ServerException, UserException {
-		requireAuthenticationAndRunningServer();
-		return download(DownloadParameters.fromQuery(roid, qeid, code, serializerOid), sync);
-	}
-
-	@Override
 	public List<String> getAvailableClassesInRevision(Long roid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -1224,35 +1091,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			handleException(e);
 		} finally {
 			session.close();
-		}
-		return null;
-	}
-
-
-	@Override
-	public SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(String extension) throws ServerException, UserException {
-		// Token authenticated users should also be able to call this method
-		try {
-			requireAuthenticationAndRunningServer();
-			for (DeserializerPlugin deserializerPlugin : getBimServer().getPluginManager().getAllDeserializerPlugins(true)) {
-				if (deserializerPlugin.canHandleExtension(extension)) {
-					DatabaseSession session = getBimServer().getDatabase().createSession();
-					try {
-						UserSettings userSettings = getUserSettings(session);
-						for (DeserializerPluginConfiguration deserializer : userSettings.getDeserializers()) {
-							if (deserializer.getClassName().equals(deserializerPlugin.getClass().getName())) {
-								return getBimServer().getSConverter().convertToSObject(deserializer);
-							}
-						}
-					} catch (BimserverDatabaseException e) {
-						LOGGER.error("", e);
-					} finally {
-						session.close();
-					}
-				}
-			}
-		} catch (Exception e) {
-			handleException(e);
 		}
 		return null;
 	}
@@ -1373,25 +1211,17 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	@Override
 	public String getQueryEngineExample(Long qeid, String key) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		try {
-			SQueryEnginePluginConfiguration queryEngineById = getServiceMap().getPlugin().getQueryEngineById(qeid);
-			QueryEnginePlugin queryEngine = getBimServer().getPluginManager().getQueryEngine(queryEngineById.getClassName(), true);
-			return queryEngine.getExample(key);
-		} catch (PublicInterfaceNotFoundException e) {
-			return handleException(e);
-		}
+		SQueryEnginePluginConfiguration queryEngineById = getServiceMap().getBimsie1ServiceInterface().getQueryEngineById(qeid);
+		QueryEnginePlugin queryEngine = getBimServer().getPluginManager().getQueryEngine(queryEngineById.getClassName(), true);
+		return queryEngine.getExample(key);
 	}
 
 	@Override
 	public List<String> getQueryEngineExampleKeys(Long qeid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		try {
-			SQueryEnginePluginConfiguration queryEngineById = getServiceMap().getPlugin().getQueryEngineById(qeid);
-			QueryEnginePlugin queryEngine = getBimServer().getPluginManager().getQueryEngine(queryEngineById.getClassName(), true);
-			return new ArrayList<String>(queryEngine.getExampleKeys());
-		} catch (PublicInterfaceNotFoundException e) {
-			return handleException(e);
-		}
+		SQueryEnginePluginConfiguration queryEngineById = getServiceMap().getBimsie1ServiceInterface().getQueryEngineById(qeid);
+		QueryEnginePlugin queryEngine = getBimServer().getPluginManager().getQueryEngine(queryEngineById.getClassName(), true);
+		return new ArrayList<String>(queryEngine.getExampleKeys());
 	}
 
 	@Override

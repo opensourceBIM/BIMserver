@@ -104,16 +104,6 @@ public class AsyncServiceInterface {
 		void error(Exception e);
 	}
 	
-	public interface CheckoutCallback {
-		void success(java.lang.Long result);
-		void error(Exception e);
-	}
-	
-	public interface CheckoutLastRevisionCallback {
-		void success(java.lang.Long result);
-		void error(Exception e);
-	}
-	
 	public interface CleanupLongActionCallback {
 		void success();
 		void error(Exception e);
@@ -144,42 +134,7 @@ public class AsyncServiceInterface {
 		void error(Exception e);
 	}
 	
-	public interface DownloadCallback {
-		void success(java.lang.Long result);
-		void error(Exception e);
-	}
-	
-	public interface DownloadByGuidsCallback {
-		void success(java.lang.Long result);
-		void error(Exception e);
-	}
-	
-	public interface DownloadByNamesCallback {
-		void success(java.lang.Long result);
-		void error(Exception e);
-	}
-	
-	public interface DownloadByOidsCallback {
-		void success(java.lang.Long result);
-		void error(Exception e);
-	}
-	
-	public interface DownloadByTypesCallback {
-		void success(java.lang.Long result);
-		void error(Exception e);
-	}
-	
 	public interface DownloadCompareResultsCallback {
-		void success(java.lang.Long result);
-		void error(Exception e);
-	}
-	
-	public interface DownloadQueryCallback {
-		void success(java.lang.Long result);
-		void error(Exception e);
-	}
-	
-	public interface DownloadRevisionsCallback {
 		void success(java.lang.Long result);
 		void error(Exception e);
 	}
@@ -319,11 +274,6 @@ public class AsyncServiceInterface {
 		void error(Exception e);
 	}
 	
-	public interface GetDownloadDataCallback {
-		void success(org.bimserver.interfaces.objects.SDownloadResult result);
-		void error(Exception e);
-	}
-	
 	public interface GetExtendedDataCallback {
 		void success(org.bimserver.interfaces.objects.SExtendedData result);
 		void error(Exception e);
@@ -401,11 +351,6 @@ public class AsyncServiceInterface {
 	
 	public interface GetSubProjectsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SProject> result);
-		void error(Exception e);
-	}
-	
-	public interface GetSuggestedDeserializerForExtensionCallback {
-		void success(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration result);
 		void error(Exception e);
 	}
 	
@@ -669,11 +614,11 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void checkin(final java.lang.Long poid, final java.lang.String comment, final java.lang.Long deserializerOid, final java.lang.Long fileSize, final java.lang.String fileName, final javax.activation.DataHandler ifcFile, final java.lang.Boolean merge, final java.lang.Boolean sync, final CheckinCallback callback) {
+	public void checkin(final java.lang.Long poid, final java.lang.String comment, final java.lang.Long deserializerOid, final java.lang.Long fileSize, final java.lang.String fileName, final javax.activation.DataHandler data, final java.lang.Boolean merge, final java.lang.Boolean sync, final CheckinCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.checkin(poid, comment, deserializerOid, fileSize, fileName, ifcFile, merge, sync));
+					callback.success(syncService.checkin(poid, comment, deserializerOid, fileSize, fileName, data, merge, sync));
 				} catch (Exception e) {
 					callback.error(e);
 				}
@@ -686,30 +631,6 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.checkinFromUrl(poid, comment, deserializerOid, fileName, url, merge, sync));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void checkout(final java.lang.Long roid, final java.lang.Long serializerOid, final java.lang.Boolean sync, final CheckoutCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.checkout(roid, serializerOid, sync));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void checkoutLastRevision(final java.lang.Long poid, final java.lang.Long serializerOid, final java.lang.Boolean sync, final CheckoutLastRevisionCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.checkoutLastRevision(poid, serializerOid, sync));
 				} catch (Exception e) {
 					callback.error(e);
 				}
@@ -791,95 +712,11 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void download(final java.lang.Long roid, final java.lang.Long serializerOid, final java.lang.Boolean showOwn, final java.lang.Boolean sync, final DownloadCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.download(roid, serializerOid, showOwn, sync));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void downloadByGuids(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> guids, final java.lang.Long serializerOid, final java.lang.Boolean deep, final java.lang.Boolean sync, final DownloadByGuidsCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.downloadByGuids(roids, guids, serializerOid, deep, sync));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void downloadByNames(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> names, final java.lang.Long serializerOid, final java.lang.Boolean deep, final java.lang.Boolean sync, final DownloadByNamesCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.downloadByNames(roids, names, serializerOid, deep, sync));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void downloadByOids(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.Long> oids, final java.lang.Long serializerOid, final java.lang.Boolean sync, final java.lang.Boolean deep, final DownloadByOidsCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.downloadByOids(roids, oids, serializerOid, sync, deep));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void downloadByTypes(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> classNames, final java.lang.Long serializerOid, final java.lang.Boolean includeAllSubtypes, final java.lang.Boolean useObjectIDM, final java.lang.Boolean deep, final java.lang.Boolean sync, final DownloadByTypesCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.downloadByTypes(roids, classNames, serializerOid, includeAllSubtypes, useObjectIDM, deep, sync));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void downloadCompareResults(final java.lang.Long serializerOid, final java.lang.Long roid1, final java.lang.Long roid2, final java.lang.Long mcid, final org.bimserver.interfaces.objects.SCompareType type, final java.lang.Boolean sync, final DownloadCompareResultsCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
 					callback.success(syncService.downloadCompareResults(serializerOid, roid1, roid2, mcid, type, sync));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void downloadQuery(final java.lang.Long roid, final java.lang.Long qeid, final java.lang.String code, final java.lang.Boolean sync, final java.lang.Long serializerOid, final DownloadQueryCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.downloadQuery(roid, qeid, code, sync, serializerOid));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void downloadRevisions(final java.util.Set<java.lang.Long> roids, final java.lang.Long serializerOid, final java.lang.Boolean sync, final DownloadRevisionsCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.downloadRevisions(roids, serializerOid, sync));
 				} catch (Exception e) {
 					callback.error(e);
 				}
@@ -1211,18 +1048,6 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void getDownloadData(final java.lang.Long actionId, final GetDownloadDataCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getDownloadData(actionId));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void getExtendedData(final java.lang.Long oid, final GetExtendedDataCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1408,18 +1233,6 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getSubProjects(poid));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void getSuggestedDeserializerForExtension(final java.lang.String extension, final GetSuggestedDeserializerForExtensionCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getSuggestedDeserializerForExtension(extension));
 				} catch (Exception e) {
 					callback.error(e);
 				}

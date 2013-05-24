@@ -37,7 +37,7 @@ public class AddUserToProjectAction extends Action {
 		SUser user = virtualUser.getRandomUser();
 		virtualUser.getActionResults().setText("Adding user " + user.getName() + " to project " + project.getName());
 		try {
-			virtualUser.getBimServerClient().getService().addUserToProject(user.getOid(), project.getOid());
+			virtualUser.getBimServerClient().getServiceInterface().addUserToProject(user.getOid(), project.getOid());
 		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();
 		}

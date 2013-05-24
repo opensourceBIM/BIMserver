@@ -229,16 +229,6 @@ public class AsyncPluginInterface {
 		void error(Exception e);
 	}
 	
-	public interface GetDeserializerByIdCallback {
-		void success(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration result);
-		void error(Exception e);
-	}
-	
-	public interface GetDeserializerByNameCallback {
-		void success(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration result);
-		void error(Exception e);
-	}
-	
 	public interface GetInternalServiceByIdCallback {
 		void success(org.bimserver.interfaces.objects.SInternalServicePluginConfiguration result);
 		void error(Exception e);
@@ -284,16 +274,6 @@ public class AsyncPluginInterface {
 		void error(Exception e);
 	}
 	
-	public interface GetQueryEngineByIdCallback {
-		void success(org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration result);
-		void error(Exception e);
-	}
-	
-	public interface GetQueryEngineByNameCallback {
-		void success(org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration result);
-		void error(Exception e);
-	}
-	
 	public interface GetRenderEngineByIdCallback {
 		void success(org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration result);
 		void error(Exception e);
@@ -301,21 +281,6 @@ public class AsyncPluginInterface {
 	
 	public interface GetRenderEngineByNameCallback {
 		void success(org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration result);
-		void error(Exception e);
-	}
-	
-	public interface GetSerializerByContentTypeCallback {
-		void success(org.bimserver.interfaces.objects.SSerializerPluginConfiguration result);
-		void error(Exception e);
-	}
-	
-	public interface GetSerializerByIdCallback {
-		void success(org.bimserver.interfaces.objects.SSerializerPluginConfiguration result);
-		void error(Exception e);
-	}
-	
-	public interface GetSerializerByNameCallback {
-		void success(org.bimserver.interfaces.objects.SSerializerPluginConfiguration result);
 		void error(Exception e);
 	}
 	
@@ -922,30 +887,6 @@ public class AsyncPluginInterface {
 		});
 	}
 	
-	public void getDeserializerById(final java.lang.Long oid, final GetDeserializerByIdCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getDeserializerById(oid));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void getDeserializerByName(final java.lang.String deserializerName, final GetDeserializerByNameCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getDeserializerByName(deserializerName));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void getInternalServiceById(final java.lang.Long oid, final GetInternalServiceByIdCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1054,30 +995,6 @@ public class AsyncPluginInterface {
 		});
 	}
 	
-	public void getQueryEngineById(final java.lang.Long oid, final GetQueryEngineByIdCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getQueryEngineById(oid));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void getQueryEngineByName(final java.lang.String name, final GetQueryEngineByNameCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getQueryEngineByName(name));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void getRenderEngineById(final java.lang.Long oid, final GetRenderEngineByIdCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1095,42 +1012,6 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getRenderEngineByName(name));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void getSerializerByContentType(final java.lang.String contentType, final GetSerializerByContentTypeCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getSerializerByContentType(contentType));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void getSerializerById(final java.lang.Long oid, final GetSerializerByIdCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getSerializerById(oid));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void getSerializerByName(final java.lang.String serializerName, final GetSerializerByNameCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getSerializerByName(serializerName));
 				} catch (Exception e) {
 					callback.error(e);
 				}

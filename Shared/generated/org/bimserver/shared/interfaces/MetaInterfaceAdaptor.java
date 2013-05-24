@@ -19,7 +19,7 @@ package org.bimserver.shared.interfaces;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
 
-public class MetaInterfaceAdaptor implements MetaInterface {
+public class MetaInterfaceAdaptor implements org.bimserver.shared.interfaces.MetaInterface {
 
 	public java.util.List<java.lang.String> getEnumLiterals(java.lang.String enumName) throws UserException, ServerException {
 		return null;

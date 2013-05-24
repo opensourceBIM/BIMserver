@@ -1,4 +1,4 @@
-package org.bimserver.webservices;
+package org.bimserver.webservices.impl;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -31,6 +31,8 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.NoTransactionException;
+import org.bimserver.webservices.ServiceMap;
 import org.bimserver.webservices.authorization.AdminAuthorization;
 import org.bimserver.webservices.authorization.AnonymousAuthorization;
 import org.bimserver.webservices.authorization.Authorization;

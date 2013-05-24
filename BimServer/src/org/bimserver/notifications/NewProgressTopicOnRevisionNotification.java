@@ -18,6 +18,7 @@ package org.bimserver.notifications;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
+import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -47,7 +48,7 @@ public class NewProgressTopicOnRevisionNotification extends Notification {
 	}
 	
 	@Override
-	public void process() throws UserException, ServerException {
+	public void process() throws UserException, ServerException, BimserverDatabaseException {
 		ChangeProgressTopicOnRevisionTopic changeProgressOnRevisionTopic = getBimServer().getNotificationsManager().getChangeProgressOnRevisionTopic(poid, roid);
 		changeProgressOnRevisionTopic.notifyOfNewTopic(this);
 		ChangeProgressTopicOnProjectTopic changeProgressOnProjectTopic = getBimServer().getNotificationsManager().getChangeProgressOnProjectTopic(poid);

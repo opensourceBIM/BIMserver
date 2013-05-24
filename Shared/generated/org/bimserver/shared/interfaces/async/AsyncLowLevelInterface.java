@@ -17,14 +17,15 @@ package org.bimserver.shared.interfaces.async;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import java.util.concurrent.ExecutorService;
-import org.bimserver.shared.interfaces.LowLevelInterface;
+
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
 
 public class AsyncLowLevelInterface {
 
 	private final ExecutorService executorService;
-	private final LowLevelInterface syncService;
+	private final Bimsie1LowLevelInterface syncService;
 
-	public AsyncLowLevelInterface(LowLevelInterface syncService, ExecutorService executorService) {
+	public AsyncLowLevelInterface(Bimsie1LowLevelInterface syncService, ExecutorService executorService) {
 		this.executorService = executorService;
 		this.syncService = syncService;
 	}

@@ -18,8 +18,9 @@ package org.bimserver.shared.interfaces;
  *****************************************************************************/
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
 
-public class NotificationInterfaceAdaptor implements NotificationInterface {
+public class NotificationInterfaceAdaptor implements Bimsie1NotificationInterface {
 
 	public void closedProgressOnProjectTopic(java.lang.Long poid, java.lang.Long topicId) throws UserException, ServerException {
 	}

@@ -26,9 +26,9 @@ import org.bimserver.endpoints.EndPoint;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.AuthInterface;
-import org.bimserver.shared.interfaces.NotificationInterface;
-import org.bimserver.shared.interfaces.RemoteServiceInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
+import org.bimserver.webservices.ServiceMap;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -39,15 +39,15 @@ public class Streamer implements EndPoint {
 	private long uoid;
 	private long endpointid;
 	private BimServer bimServer;
-	private NotificationInterface notificationInterface;
-	private RemoteServiceInterface remoteServiceInterface;
+	private Bimsie1NotificationInterface notificationInterface;
+	private Bimsie1RemoteServiceInterface remoteServiceInterface;
 	private StreamingSocketInterface streamingSocketInterface;
 
 	public Streamer(StreamingSocketInterface streamingSocketInterface, BimServer bimServer) {
 		this.streamingSocketInterface = streamingSocketInterface;
 		this.bimServer = bimServer;
-		notificationInterface = bimServer.getReflectorFactory().createReflector(NotificationInterface.class, new JsonWebsocketReflector(bimServer.getServicesMap(), streamingSocketInterface));
-		remoteServiceInterface = bimServer.getReflectorFactory().createReflector(RemoteServiceInterface.class, new JsonWebsocketReflector(bimServer.getServicesMap(), streamingSocketInterface));
+		notificationInterface = bimServer.getReflectorFactory().createReflector(Bimsie1NotificationInterface.class, new JsonWebsocketReflector(bimServer.getServicesMap(), streamingSocketInterface));
+		remoteServiceInterface = bimServer.getReflectorFactory().createReflector(Bimsie1RemoteServiceInterface.class, new JsonWebsocketReflector(bimServer.getServicesMap(), streamingSocketInterface));
 	}
 
 	public void onOpen() {
@@ -63,8 +63,8 @@ public class Streamer implements EndPoint {
 		if (request.has("token")) {
 			String token = request.get("token").getAsString();
 			try {
-				AuthInterface authInterface = bimServer.getServiceFactory().get(token, AccessMethod.JSON).get(AuthInterface.class);
-				uoid = authInterface.getLoggedInUser().getOid();
+				ServiceMap serviceMap = bimServer.getServiceFactory().get(token, AccessMethod.JSON);
+				uoid = serviceMap.getBimServerAuthInterface().getLoggedInUser().getOid();
 
 				this.endpointid = bimServer.getEndPointManager().register(this);
 				
@@ -96,12 +96,12 @@ public class Streamer implements EndPoint {
 	}
 
 	@Override
-	public NotificationInterface getNotificationInterface() {
+	public Bimsie1NotificationInterface getNotificationInterface() {
 		return notificationInterface;
 	}
 
 	@Override
-	public RemoteServiceInterface getRemoteServiceInterface() {
+	public Bimsie1RemoteServiceInterface getRemoteServiceInterface() {
 		return remoteServiceInterface;
 	}
 

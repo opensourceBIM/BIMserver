@@ -1,4 +1,4 @@
-package org.bimserver.webservices;
+package org.bimserver.webservices.impl;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -42,10 +42,11 @@ import org.bimserver.notifications.ProgressTopic;
 import org.bimserver.notifications.TopicRegisterException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.RegistryInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationRegistryInterface;
+import org.bimserver.webservices.ServiceMap;
 
-public class RegistryServiceImpl extends GenericServiceImpl implements RegistryInterface {
-	public RegistryServiceImpl(ServiceMap serviceMap) {
+public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl implements Bimsie1NotificationRegistryInterface {
+	public Bimsie1NotificationRegistryServiceImpl(ServiceMap serviceMap) {
 		super(serviceMap);
 	}
 

@@ -18,6 +18,7 @@ package org.bimserver.notifications;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
+import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -47,6 +48,8 @@ public class NewProgressTopicOnProjectNotification extends Notification {
 		} catch (UserException e) {
 			e.printStackTrace();
 		} catch (ServerException e) {
+			e.printStackTrace();
+		} catch (BimserverDatabaseException e) {
 			e.printStackTrace();
 		}
 	}

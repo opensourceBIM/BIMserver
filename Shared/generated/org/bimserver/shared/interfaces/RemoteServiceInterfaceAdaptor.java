@@ -18,8 +18,9 @@ package org.bimserver.shared.interfaces;
  *****************************************************************************/
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 
-public class RemoteServiceInterfaceAdaptor implements RemoteServiceInterface {
+public class RemoteServiceInterfaceAdaptor implements Bimsie1RemoteServiceInterface {
 
 	public java.util.List<org.bimserver.interfaces.objects.SProfileDescriptor> getPrivateProfiles(java.lang.String serviceIdentifier, java.lang.String token) throws UserException, ServerException {
 		return null;

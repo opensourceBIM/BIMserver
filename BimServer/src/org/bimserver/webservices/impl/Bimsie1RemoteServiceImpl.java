@@ -1,4 +1,4 @@
-package org.bimserver.webservices;
+package org.bimserver.webservices.impl;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -33,11 +33,12 @@ import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.RemoteServiceInterfaceAdaptor;
+import org.bimserver.webservices.ServiceMap;
 
-public class RemoteServiceImpl extends RemoteServiceInterfaceAdaptor {
+public class Bimsie1RemoteServiceImpl extends RemoteServiceInterfaceAdaptor {
 	private ServiceMap serviceMapInterface;
 
-	public RemoteServiceImpl(ServiceMap serviceMapInterface) {
+	public Bimsie1RemoteServiceImpl(ServiceMap serviceMapInterface) {
 		this.serviceMapInterface = serviceMapInterface;
 	}
 	

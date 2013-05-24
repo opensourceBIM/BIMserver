@@ -35,12 +35,14 @@ public class NewUserTopic extends Topic {
 		super.register(endPoint);
 	}
 	
-	public void process(DatabaseSession session, long uoid, NewUserNotification newUserNotification) throws BimserverDatabaseException, UserException, ServerException {
-		for (EndPoint endPoint : getEndPoints()) {
-			User actingUser = session.get(StorePackage.eINSTANCE.getUser(), endPoint.getUoid(), Query.getDefault());
-			if (actingUser.getUserType() == UserType.ADMIN) {
-				endPoint.getNotificationInterface().newUser(uoid);
-			}
-		}
+	public void process(final DatabaseSession session, final long uoid, NewUserNotification newUserNotification) throws BimserverDatabaseException, UserException, ServerException {
+		map(new Mapper(){
+			@Override
+			public void map(EndPoint endPoint) throws UserException, ServerException, BimserverDatabaseException {
+				User actingUser = session.get(StorePackage.eINSTANCE.getUser(), endPoint.getUoid(), Query.getDefault());
+				if (actingUser.getUserType() == UserType.ADMIN) {
+					endPoint.getNotificationInterface().newUser(uoid);
+				}
+			}});
 	}
 }

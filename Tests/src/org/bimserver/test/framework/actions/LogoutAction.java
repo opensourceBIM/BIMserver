@@ -33,7 +33,7 @@ public class LogoutAction extends Action {
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		if (!virtualUser.getUserNames().isEmpty()) {
 			virtualUser.getActionResults().setText("Logging out");
-			virtualUser.getBimServerClient().getAuth().logout();
+			virtualUser.getBimServerClient().getBimsie1AuthInterface().logout();
 		}
 	}
 }
