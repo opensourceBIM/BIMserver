@@ -24,7 +24,6 @@ import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.LocalDevPluginLoader;
-import org.bimserver.LocalVersionConstructor;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
@@ -68,7 +67,6 @@ public class TestIfcEngineEmbedded {
 		
 		// Create a BIMserver
 		BimServer bimServer = new BimServer(config);
-		LocalVersionConstructor.augmentWithSvn(bimServer.getVersionChecker().getLocalVersion());
 		try {
 			// Load plugins
 			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());

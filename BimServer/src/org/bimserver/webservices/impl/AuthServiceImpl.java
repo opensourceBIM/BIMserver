@@ -13,9 +13,9 @@ import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.webservices.ServiceMap;
 
-public class BimServerAuthServiceImpl extends GenericServiceImpl implements AuthInterface {
+public class AuthServiceImpl extends GenericServiceImpl implements AuthInterface {
 
-	public BimServerAuthServiceImpl(ServiceMap serviceMap) {
+	public AuthServiceImpl(ServiceMap serviceMap) {
 		super(serviceMap);
 	}
 

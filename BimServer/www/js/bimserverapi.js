@@ -8,6 +8,18 @@ if (typeof console === "undefined") {
 
 function BimServerApi(baseUrl, notifier) {
 	var othis = this;
+	othis.interfaceMapping = {
+		"ServiceInterface": "org.bimserver.ServiceInterface",
+		"AuthInterface": "org.bimserver.AuthInterface",
+		"SettingsInterface": "org.bimserver.SettingsInterface",
+		"AdminInterface": "org.bimserver.AdminInterface",
+		"PluginInterface": "org.bimserver.PluginInterface",
+		"MetaInterface": "org.bimserver.MetaInterface",
+		"Bimsie1LowLevelInterface": "org.buildingsmart.bimsie1.Bimsie1LowLevelInterface",
+		"Bimsie1NotificationRegistryInterface": "org.buildingsmart.bimsie1.Bimsie1NotificationRegistryInterface",
+		"Bimsie1AuthInterface": "org.buildingsmart.bimsie1.Bimsie1AuthInterface",
+		"Bimsie1ServiceInterface": "org.buildingsmart.bimsie1.Bimsie1ServiceInterface"
+	};
 	
 	othis.jsonSerializerFetcher = new Synchronizer(function(callback){
 		othis.call("PluginInterface", "getSerializerByPluginClassName", {pluginClassName: "org.bimserver.serializers.JsonSerializerPlugin"}, function(serializer){
@@ -64,7 +76,7 @@ function BimServerApi(baseUrl, notifier) {
 			username: username,
 			password: password
 		};
-		othis.call("AuthInterface", "login", request, function(data){
+		othis.call("Bimsie1AuthInterface", "login", request, function(data){
 			othis.token = data;
 			if (rememberme) {
 				$.cookie("autologin", othis.token, { expires: 31 });
@@ -96,7 +108,7 @@ function BimServerApi(baseUrl, notifier) {
 	};
 	
 	this.resolveUser = function(callback) {
-		othis.call("AuthInterface", "getCurrentUser", {}, function(data){
+		othis.call("AuthInterface", "getLoggedInUser", {}, function(data){
 			othis.user = data;
 			if (callback != null) {
 				callback(othis.user);
@@ -107,7 +119,7 @@ function BimServerApi(baseUrl, notifier) {
 	this.logout = function(callback) {
 		$.removeCookie("autologin");
 		$.removeCookie("address");
-		othis.call("AuthInterface", "logout", {}, function(){
+		othis.call("Bimsie1AuthInterface", "logout", {}, function(){
 			othis.notifier.info("Logout successful");
 			callback();
 		});
@@ -146,7 +158,7 @@ function BimServerApi(baseUrl, notifier) {
 	
 	this.registerNewRevisionOnSpecificProjectHandler = function(poid, handler, callback){
 		othis.register("NotificationInterface", "newRevision", handler, function(){
-			othis.call("RegistryInterface", "registerNewRevisionOnSpecificProjectHandler", {endPointId: othis.server.endPointId, poid: poid}, function(){
+			othis.call("Bimsie1NotificationRegistryInterface", "registerNewRevisionOnSpecificProjectHandler", {endPointId: othis.server.endPointId, poid: poid}, function(){
 				if (callback != null) {
 					callback();
 				}
@@ -156,7 +168,7 @@ function BimServerApi(baseUrl, notifier) {
 
 	this.registerNewUserHandler = function(handler, callback) {
 		othis.register("NotificationInterface", "newUser", handler, function(){
-			othis.call("RegistryInterface", "registerNewUserHandler", {endPointId: othis.server.endPointId}, function(){
+			othis.call("Bimsie1NotificationRegistryInterface", "registerNewUserHandler", {endPointId: othis.server.endPointId}, function(){
 				if (callback != null) {
 					callback();
 				}
@@ -166,7 +178,7 @@ function BimServerApi(baseUrl, notifier) {
 
 	this.unregisterNewUserHandler = function(handler, callback) {
 		othis.unregister(handler);
-		othis.call("RegistryInterface", "unregisterNewUserHandler", {endPointId: othis.server.endPointId}, function(){
+		othis.call("Bimsie1NotificationRegistryInterface", "unregisterNewUserHandler", {endPointId: othis.server.endPointId}, function(){
 			if (callback != null) {
 				callback();
 			}
@@ -176,13 +188,13 @@ function BimServerApi(baseUrl, notifier) {
 	this.unregisterChangeProgressProjectHandler = function(poid, newHandler, closedHandler, callback) {
 		othis.unregister(newHandler);
 		othis.unregister(closedHandler);
-		othis.call("RegistryInterface", "unregisterChangeProgressOnProject", {poid: poid, endPointId: othis.server.endPointId}, callback);		
+		othis.call("Bimsie1NotificationRegistryInterface", "unregisterChangeProgressOnProject", {poid: poid, endPointId: othis.server.endPointId}, callback);		
 	};
 
 	this.registerChangeProgressProjectHandler = function(poid, newHandler, closedHandler, callback) {
 		othis.register("NotificationInterface", "newProgressOnProjectTopic", newHandler, function(){
 			othis.register("NotificationInterface", "closedProgressOnProjectTopic", closedHandler, function(){
-				othis.call("RegistryInterface", "registerChangeProgressOnProject", {poid: poid, endPointId: othis.server.endPointId}, function(){
+				othis.call("Bimsie1NotificationRegistryInterface", "registerChangeProgressOnProject", {poid: poid, endPointId: othis.server.endPointId}, function(){
 					if (callback != null) {
 						callback();
 					}
@@ -195,14 +207,14 @@ function BimServerApi(baseUrl, notifier) {
 		othis.unregister(newHandler);
 		othis.unregister(closedHandler);
 		if (othis.server.endPointId != null) {
-			othis.call("RegistryInterface", "unregisterChangeProgressOnServer", {endPointId: othis.server.endPointId}, callback);
+			othis.call("Bimsie1NotificationRegistryInterface", "unregisterChangeProgressOnServer", {endPointId: othis.server.endPointId}, callback);
 		}
 	};
 	
 	this.registerChangeProgressServerHandler = function(newHandler, closedHandler, callback) {
 		othis.register("NotificationInterface", "newProgressOnServerTopic", newHandler, function(){
 			othis.register("NotificationInterface", "closedProgressOnServerTopic", closedHandler, function(){
-				othis.call("RegistryInterface", "registerChangeProgressOnServer", {endPointId: othis.server.endPointId}, function(){
+				othis.call("Bimsie1NotificationRegistryInterface", "registerChangeProgressOnServer", {endPointId: othis.server.endPointId}, function(){
 					if (callback != null) {
 						callback();
 					}
@@ -214,13 +226,13 @@ function BimServerApi(baseUrl, notifier) {
 	this.unregisterChangeProgressRevisionHandler = function(roid, newHandler, closedHandler, callback) {
 		othis.unregister(newHandler);
 		othis.unregister(closedHandler);
-		othis.call("RegistryInterface", "unregisterChangeProgressOnProject", {roid: roid, endPointId: othis.server.endPointId}, callback);		
+		othis.call("Bimsie1NotificationRegistryInterface", "unregisterChangeProgressOnProject", {roid: roid, endPointId: othis.server.endPointId}, callback);		
 	};
 	
 	this.registerChangeProgressRevisionHandler = function(poid, roid, newHandler, closedHandler, callback) {
 		othis.register("NotificationInterface", "newProgressOnRevisionTopic", newHandler, function(){
 			othis.register("NotificationInterface", "closedProgressOnRevisionTopic", closedHandler, function(){
-				othis.call("RegistryInterface", "registerChangeProgressOnRevision", {poid: poid, roid: roid, endPointId: othis.server.endPointId}, function(){
+				othis.call("Bimsie1NotificationRegistryInterface", "registerChangeProgressOnRevision", {poid: poid, roid: roid, endPointId: othis.server.endPointId}, function(){
 					if (callback != null) {
 						callback();
 					}
@@ -231,7 +243,7 @@ function BimServerApi(baseUrl, notifier) {
 	
 	this.registerNewProjectHandler = function(handler, callback) {
 		othis.register("NotificationInterface", "newProject", handler, function(){
-			othis.call("RegistryInterface", "registerNewProjectHandler", {endPointId: othis.server.endPointId}, function(){
+			othis.call("Bimsie1NotificationRegistryInterface", "registerNewProjectHandler", {endPointId: othis.server.endPointId}, function(){
 				if (callback != null) {
 					callback();
 				}
@@ -241,7 +253,7 @@ function BimServerApi(baseUrl, notifier) {
 
 	this.unregisterNewProjectHandler = function(handler, callback){
 		othis.unregister(handler);
-		othis.call("RegistryInterface", "unregisterNewProjectHandler", {endPointId: othis.server.endPointId}, function(){
+		othis.call("Bimsie1NotificationRegistryInterface", "unregisterNewProjectHandler", {endPointId: othis.server.endPointId}, function(){
 			if (callback != null) {
 				callback();
 			}
@@ -250,7 +262,7 @@ function BimServerApi(baseUrl, notifier) {
 
 	this.unregisterNewRevisionOnSpecificProjectHandler = function(poid, handler, callback){
 		othis.unregister(handler);
-		othis.call("RegistryInterface", "unregisterNewRevisionOnSpecificProjectHandler", {endPointId: othis.server.endPointId, poid: poid}, function(){
+		othis.call("Bimsie1NotificationRegistryInterface", "unregisterNewRevisionOnSpecificProjectHandler", {endPointId: othis.server.endPointId, poid: poid}, function(){
 			if (callback != null) {
 				callback();
 			}
@@ -259,7 +271,7 @@ function BimServerApi(baseUrl, notifier) {
 
 	this.registerProgressHandler = function(topicId, handler, callback){
 		othis.register("NotificationInterface", "progress", handler, function(){
-			othis.call("RegistryInterface", "registerProgressHandler", {topicId: topicId, endPointId: othis.server.endPointId}, function(){
+			othis.call("Bimsie1NotificationRegistryInterface", "registerProgressHandler", {topicId: topicId, endPointId: othis.server.endPointId}, function(){
 				if (callback != null) {
 					callback();
 				}
@@ -269,7 +281,7 @@ function BimServerApi(baseUrl, notifier) {
 
 	this.unregisterProgressHandler = function(topicId, handler, callback){
 		othis.unregister(handler);
-		othis.call("RegistryInterface", "unregisterProgressHandler", {topicId: topicId, endPointId: othis.server.endPointId}, function(){
+		othis.call("Bimsie1NotificationRegistryInterface", "unregisterProgressHandler", {topicId: topicId, endPointId: othis.server.endPointId}, function(){
 			if (callback != null) {
 				callback();
 			}
@@ -313,11 +325,14 @@ function BimServerApi(baseUrl, notifier) {
 		var request = null;
 		if (requests.length == 1) {
 			var request = requests[0];
-			request = {request: othis.createRequest(request[0], request[1], request[2])};
+			if (othis.interfaceMapping[request[0]] == null) {
+				console.log("Interface " + request[0] + " not found");
+			}
+			request = {request: othis.createRequest(othis.interfaceMapping[request[0]], request[1], request[2])};
 		} else if (requests.length > 1) {
 			var requestObjects = [];
 			requests.forEach(function(request){
-				requestObjects.push(othis.createRequest(request[0], request[1], request[2]));
+				requestObjects.push(othis.createRequest(othis.interfaceMapping[request[0]], request[1], request[2]));
 			});
 			request = {
 				requests: requestObjects
@@ -539,7 +554,7 @@ function Model(bimServerApi, poid, roid) {
 	othis.logging = true;
 	
 	othis.transactionSynchronizer = new Synchronizer(function(callback){
-		bimServerApi.call("LowLevelInterface", "startTransaction", {poid: othis.poid}, function(tid){
+		bimServerApi.call("Bimsie1LowLevelInterface", "startTransaction", {poid: othis.poid}, function(tid){
 			callback(tid);
 		});
 	});
@@ -598,7 +613,7 @@ function Model(bimServerApi, poid, roid) {
 		othis.transactionSynchronizer.fetch(function(tid){
 			object.__type = className;
 			othis.resolveReferences(object, function(){
-				bimServerApi.call("LowLevelInterface", "createObject", {tid: tid, className: className}, function(oid){
+				bimServerApi.call("Bimsie1LowLevelInterface", "createObject", {tid: tid, className: className}, function(oid){
 					object.__oid = oid;
 					if (callback != null) {
 						callback(object);
@@ -644,7 +659,7 @@ function Model(bimServerApi, poid, roid) {
 
 	this.commit = function(comment, callback){
 		othis.transactionSynchronizer.fetch(function(tid){
-			bimServerApi.call("LowLevelInterface", "commitTransaction", {tid: tid, comment: comment}, function(roid){
+			bimServerApi.call("Bimsie1LowLevelInterface", "commitTransaction", {tid: tid, comment: comment}, function(roid){
 				if (callback != null) {
 					callback(roid);
 				}
@@ -663,7 +678,7 @@ function Model(bimServerApi, poid, roid) {
 							object[fieldName] = value;
 							othis.incrementRunningCalls("set" + fieldName.firstUpper());
 							if (value == null) {
-								bimServerApi.call("LowLevelInterface", "unsetReference", {
+								bimServerApi.call("Bimsie1LowLevelInterface", "unsetReference", {
 									tid: tid,
 									oid: object.__oid,
 									referenceName: fieldName,
@@ -676,7 +691,7 @@ function Model(bimServerApi, poid, roid) {
 									othis.changedObjectOids[object.oid] = true;
 								});
 							} else {
-								bimServerApi.call("LowLevelInterface", "setReference", {
+								bimServerApi.call("Bimsie1LowLevelInterface", "setReference", {
 									tid: tid,
 									oid: object.__oid,
 									referenceName: fieldName,
@@ -739,7 +754,7 @@ function Model(bimServerApi, poid, roid) {
 							}
 							object[fieldName].push = function(val){
 								othis.transactionSynchronizer.fetch(function(tid){
-									bimServerApi.call("LowLevelInterface", "addDoubleAttribute", {
+									bimServerApi.call("Bimsie1LowLevelInterface", "addDoubleAttribute", {
 										tid: tid,
 										oid: object.__oid,
 										attributeName: fieldName,
@@ -759,7 +774,7 @@ function Model(bimServerApi, poid, roid) {
 						othis.incrementRunningCalls("set" + fieldName.firstUpper());
 						othis.transactionSynchronizer.fetch(function(tid){
 							if (field.many) {
-								bimServerApi.call("LowLevelInterface", "setDoubleAttributes", {
+								bimServerApi.call("Bimsie1LowLevelInterface", "setDoubleAttributes", {
 									tid: tid,
 									oid: object.__oid,
 									attributeName: fieldName,
@@ -769,7 +784,7 @@ function Model(bimServerApi, poid, roid) {
 								});
 							} else {
 								if (value == null) {
-									bimServerApi.call("LowLevelInterface", "unsetAttribute", {
+									bimServerApi.call("Bimsie1LowLevelInterface", "unsetAttribute", {
 										tid: tid,
 										oid: object.__oid,
 										attributeName: fieldName
@@ -777,7 +792,7 @@ function Model(bimServerApi, poid, roid) {
 										othis.decrementRunningCalls("set" + fieldName.firstUpper());
 									});
 								} else if (field.type == "string") {
-									bimServerApi.call("LowLevelInterface", "setStringAttribute", {
+									bimServerApi.call("Bimsie1LowLevelInterface", "setStringAttribute", {
 										tid: tid,
 										oid: object.__oid,
 										attributeName: fieldName,
@@ -786,7 +801,7 @@ function Model(bimServerApi, poid, roid) {
 										othis.decrementRunningCalls("set" + fieldName.firstUpper());
 									});
 								} else if (field.type == "double") {
-									bimServerApi.call("LowLevelInterface", "setDoubleAttribute", {
+									bimServerApi.call("Bimsie1LowLevelInterface", "setDoubleAttribute", {
 										tid: tid,
 										oid: object.__oid,
 										attributeName: fieldName,
@@ -795,7 +810,7 @@ function Model(bimServerApi, poid, roid) {
 										othis.decrementRunningCalls("set" + fieldName.firstUpper());
 									});
 								} else if (field.type == "boolean") {
-									bimServerApi.call("LowLevelInterface", "setBooleanAttribute", {
+									bimServerApi.call("Bimsie1LowLevelInterface", "setBooleanAttribute", {
 										tid: tid,
 										oid: object.__oid,
 										attributeName: fieldName,
@@ -804,7 +819,7 @@ function Model(bimServerApi, poid, roid) {
 										othis.decrementRunningCalls("set" + fieldName.firstUpper());
 									});
 								} else if (field.type == "int") {
-									bimServerApi.call("LowLevelInterface", "setIntegerAttribute", {
+									bimServerApi.call("Bimsie1LowLevelInterface", "setIntegerAttribute", {
 										tid: tid,
 										oid: object.__oid,
 										attributeName: fieldName,
@@ -813,7 +828,7 @@ function Model(bimServerApi, poid, roid) {
 										othis.decrementRunningCalls("set" + fieldName.firstUpper());
 									});
 								} else if (field.type == "enum") {
-									bimServerApi.call("LowLevelInterface", "setEnumAttribute", {
+									bimServerApi.call("Bimsie1LowLevelInterface", "setEnumAttribute", {
 										tid: tid,
 										oid: object.__oid,
 										attributeName: fieldName,
@@ -851,7 +866,7 @@ function Model(bimServerApi, poid, roid) {
 		object.remove = function(removeCallback){
 			othis.incrementRunningCalls("removeObject");
 			othis.transactionSynchronizer.fetch(function(tid){
-				bimServerApi.call("LowLevelInterface", "removeObject", {tid: tid, oid: object.__oid}, function(){
+				bimServerApi.call("Bimsie1LowLevelInterface", "removeObject", {tid: tid, oid: object.__oid}, function(){
 					if (removeCallback != null) {
 						removeCallback();
 					}
@@ -915,7 +930,7 @@ function Model(bimServerApi, poid, roid) {
 						sync: true
 					};
 					request[interfaceFieldName] = list;
-					bimServerApi.call("ServiceInterface", interfaceMethodName, request, function(laid){
+					bimServerApi.call("Bimsie1ServiceInterface", interfaceMethodName, request, function(laid){
 						var url = bimServerApi.generateRevisionDownloadUrl({
 							laid: laid,
 							serializerOid: jsonSerializerOid
@@ -982,7 +997,7 @@ function Model(bimServerApi, poid, roid) {
 				othis.decrementRunningCalls("getAllOfType");
 			} else {
 				othis.bimServerApi.jsonSerializerFetcher.fetch(function(jsonSerializerOid){
-					bimServerApi.call("ServiceInterface", "downloadByTypes", {
+					bimServerApi.call("Bimsie1ServiceInterface", "downloadByTypes", {
 						roids: [roid],
 						classNames: [type],
 						includeAllSubtypes: includeAllSubTypes,

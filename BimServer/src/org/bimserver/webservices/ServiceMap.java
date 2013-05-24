@@ -47,8 +47,10 @@ import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1ServiceInterface;
 import org.bimserver.webservices.authorization.Authorization;
 import org.bimserver.webservices.impl.AdminServiceImpl;
+import org.bimserver.webservices.impl.AuthServiceImpl;
 import org.bimserver.webservices.impl.Bimsie1AuthServiceImpl;
 import org.bimserver.webservices.impl.Bimsie1LowLevelServiceImpl;
+import org.bimserver.webservices.impl.Bimsie1ServiceIImpl;
 import org.bimserver.webservices.impl.MetaServiceImpl;
 import org.bimserver.webservices.impl.Bimsie1NotificationImpl;
 import org.bimserver.webservices.impl.PluginServiceImpl;
@@ -99,6 +101,8 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 			publicInterface = new ServiceImpl(this);
 		} else if (clazz == Bimsie1AuthInterface.class) {
 			publicInterface = new Bimsie1AuthServiceImpl(this);
+		} else if (clazz == AuthInterface.class) {
+			publicInterface = new AuthServiceImpl(this);
 		} else if (clazz == AdminInterface.class) {
 			publicInterface = new AdminServiceImpl(this);
 		} else if (clazz == Bimsie1LowLevelInterface.class) {
@@ -113,6 +117,8 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 			publicInterface = new Bimsie1NotificationImpl(bimServer);
 		} else if (clazz == Bimsie1NotificationRegistryInterface.class) {
 			publicInterface = new Bimsie1NotificationRegistryServiceImpl(this);
+		} else if (clazz == Bimsie1ServiceInterface.class) {
+			publicInterface = new Bimsie1ServiceIImpl(this);
 		} else if (clazz == PluginInterface.class) {
 			publicInterface = new PluginServiceImpl(this);
 		} else {

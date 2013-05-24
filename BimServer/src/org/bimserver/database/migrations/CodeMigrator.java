@@ -107,7 +107,7 @@ public class CodeMigrator {
 		LOGGER.info("Migration successfull");
 	}
 
-	private void generateFiles(Class<?> interfaceClass) {
+	private void generateFiles(Class<? extends PublicInterface> interfaceClass) {
 		SService service = new SService(new SourceCodeFetcher() {
 			@Override
 			public String get(Class<?> clazz) {

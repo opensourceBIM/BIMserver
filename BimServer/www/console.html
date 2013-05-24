@@ -194,15 +194,17 @@ if (token != null) {
 var protocol = "json";
 
 var namespaceMapping = {
-	"AuthInterface": "org_buildingsmart_bimsie_AuthInterface",
-	"ServiceInterface": "org_buildingsmart_bimsie_ServiceInterface",
+	"AuthInterface": "org_bimserver_AuthInterface",
+	"Bimsie1AuthInterface": "org_buildingsmart_bimsie_Bimsie1AuthInterface",
+	"ServiceInterface": "org_bimserver_ServiceInterface",
+	"Bimsie1ServiceInterface": "org_buildingsmart_bimsie_Bimsie1ServiceInterface",
 	"AdminInterface": "org_bimserver_AdminInterface",
-	"LowLevelInterface": "org_bimserver_LowLevelInterface",
+	"Bimsie1LowLevelInterface": "org_buildingsmart_bimsie_Bimsie1LowLevelInterface",
 	"MetaInterface": "org_bimserver_MetaInterface",
-	"NotificationInterface": "org_bimserver_NotificationInterface",
+	"Bimsie1NotificationInterface": "org_buildingsmart_bimsie_Bimsie1NotificationInterface",
 	"PluginInterface": "org_bimserver_PluginInterface",
-	"RegistryInterface": "org_bimserver_RegistryInterface",
-	"RemoteServiceInterface": "org_bimserver_RemoteServiceInterface",
+	"Bimsie1NotificationRegistryInterface": "org_buildingsmart_bimsie_Bimsie1NotificationRegistryInterface",
+	"Bimsie1RemoteServiceInterface": "org_buildingsmart_bimsie_Bimsie1RemoteServiceInterface",
 	"SettingsInterface": "org_bimserver_SettingsInterface"
 };
 
@@ -437,7 +439,7 @@ function loadExampleJson(interfaceName, interfaceSimpleName, methodName, doc, re
 	lastCall.doc = doc;
 	var request = {
 		request: {
-			interface: "MetaInterface",
+			interface: "org.bimserver.MetaInterface",
 			method: "getServiceMethodParameters",
 			parameters: {
 				serviceInterfaceName: interfaceName,
@@ -491,7 +493,7 @@ function loadMethods(event) {
 	}
 	var request = {
 		request: {
-			interface: "MetaInterface",
+			interface: "org.bimserver.MetaInterface",
 			method: "getServiceInterfaces"
 		}
 	};
@@ -503,7 +505,7 @@ function loadMethods(event) {
 		}
 		data.response.result.forEach(function(serviceInterface){
 			request.requests.push({
-				interface: "MetaInterface",
+				interface: "org.bimserver.MetaInterface",
 				method: "getServiceMethods",
 				parameters: {
 					serviceInterfaceName: serviceInterface.name,
@@ -612,7 +614,7 @@ function send() {
 function loadServiceInterfaceMethod(interfaceName, interfaceSimpleName, methodName) {
 	var request = {
 		request: {
-			interface: "MetaInterface",
+			interface: "org.bimserver.MetaInterface",
 			method: "getServiceMethod",
 			parameters: {
 				serviceInterfaceName: interfaceName,

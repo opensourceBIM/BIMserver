@@ -1,6 +1,6 @@
 
-©
-Bimsie1AuthInterface.protoorg.bimserver.pbServiceInterface.proto"Bimsie1NotificationInterface.proto#Bimsie1RemoteServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.proto"
+ô
+Bimsie1AuthInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoBimsie1ServiceInterface.proto"Bimsie1NotificationInterface.proto#Bimsie1RemoteServiceInterface.proto"
 GetAccessMethodRequest"_
 GetAccessMethodResponse
 errorMessage (	.

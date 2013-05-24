@@ -30,8 +30,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
+import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.utils.StringUtils;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
@@ -50,7 +52,7 @@ public class SService {
 	private final Map<String, SMethod> methods = new TreeMap<String, SMethod>();
 	private final Map<String, SClass> types = new TreeMap<String, SClass>();
 	private final String fullName;
-	private final Class<?> clazz;
+	private final Class<? extends PublicInterface> interfaceClass;
 
 	// Disabled for now, makes the deployed JAR stop at this point
 	private boolean processJavaDoc = true;
@@ -59,20 +61,20 @@ public class SService {
 	private String simpleName;
 	private SourceCodeFetcher sourceCodeFetcher;
 
-	public SService(SourceCodeFetcher sourceCodeFetcher, Class<?> clazz) {
+	public SService(SourceCodeFetcher sourceCodeFetcher, Class<? extends PublicInterface> clazz) {
 		this(sourceCodeFetcher, clazz, new ArrayList<SService>());
 		this.sourceCodeFetcher = sourceCodeFetcher;
 	}
 	
-	public SService(SourceCodeFetcher sourceCodeFetcher, Class<?> clazz, List<SService> others) {
+	public SService(SourceCodeFetcher sourceCodeFetcher, Class<? extends PublicInterface> interfaceClass, List<SService> others) {
 		this.sourceCodeFetcher = sourceCodeFetcher;
-		this.clazz = clazz;
+		this.interfaceClass = interfaceClass;
 		this.others = others;
-		this.fullName = clazz.getName();
-		this.simpleName = clazz.getSimpleName();
+		this.fullName = interfaceClass.getAnnotation(WebService.class).targetNamespace() + "." + interfaceClass.getAnnotation(WebService.class).name();
+		this.simpleName = interfaceClass.getAnnotation(WebService.class).name();
 		init();
 		if (processJavaDoc && sourceCodeFetcher != null) {
-			processClass(clazz);
+			processClass(interfaceClass);
 		}
 	}
 	
@@ -154,7 +156,7 @@ public class SService {
 	}
 
 	public void init() {
-		for (Method method : clazz.getMethods()) {
+		for (Method method : interfaceClass.getMethods()) {
 			addType(method.getReturnType());
 			if (getGenericType(method) != null) {
 				addType(getGenericType(method));
@@ -166,7 +168,7 @@ public class SService {
 		for (SClass sType : types.values()) {
 			sType.init();
 		}
-		for (Method method : clazz.getMethods()) {
+		for (Method method : interfaceClass.getMethods()) {
 			methods.put(method.getName(), new SMethod(this, method));
 		}
 	}
@@ -247,8 +249,8 @@ public class SService {
 		return new HashSet<SClass>(types.values());
 	}
 
-	public Class<?> getInstanceClass() {
-		return clazz;
+	public Class<? extends PublicInterface> getInterfaceClass() {
+		return interfaceClass;
 	}
 
 	public SClass getSType(String name) {

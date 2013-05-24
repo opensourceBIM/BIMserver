@@ -17,8 +17,6 @@ package org.bimserver.pb;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import "ServiceInterface.proto";
-import "Bimsie1NotificationInterface.proto";
-import "Bimsie1RemoteServiceInterface.proto";
 import "AdminInterface.proto";
 import "MetaInterface.proto";
 option java_generic_services = true;

@@ -33,7 +33,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.PublicInterface;
 
-@WebService(name = "RegistryInterface", targetNamespace="org.bimserver")
+@WebService(name = "Bimsie1NotificationRegistryInterface", targetNamespace="org.buildingsmart.bimsie1")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface Bimsie1NotificationRegistryInterface extends PublicInterface {
 	@WebMethod(action = "registerProgressTopic")

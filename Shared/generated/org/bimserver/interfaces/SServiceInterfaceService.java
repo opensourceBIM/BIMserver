@@ -4,6 +4,7 @@ package org.bimserver.interfaces;
 import org.bimserver.shared.meta.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.bimserver.shared.interfaces.PublicInterface;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -26,7 +27,7 @@ import org.slf4j.LoggerFactory;
 public class SServiceInterfaceService extends org.bimserver.shared.meta.SService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SServiceInterfaceService.class);
 
-	public SServiceInterfaceService(SourceCodeFetcher sourceCodeFetcher, Class<?> cl) {
+	public SServiceInterfaceService(SourceCodeFetcher sourceCodeFetcher, Class<? extends PublicInterface> cl) {
 		super(sourceCodeFetcher, cl);
 	}
 	
