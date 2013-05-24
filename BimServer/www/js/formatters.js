@@ -1,3 +1,12 @@
+http://stackoverflow.com/questions/4498866/actual-numbers-to-the-human-readable-values
+var SizePrefixes = ' KMGTPEZYXWVU';
+function GetHumanSize(size) {
+  if(size <= 0) return '0';
+  var t2 = Math.min(Math.round(Math.log(size)/Math.log(1024)), 12);
+  return (Math.round(size * 100 / Math.pow(1024, t2)) / 100) +
+    SizePrefixes.charAt(t2).replace(' ', '') + 'B';
+}
+
 function formatDate(date) {
 	if (date == null) {
 		return "No date";

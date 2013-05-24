@@ -243,7 +243,7 @@ function Main(address, username) {
 	$(".logoutLink").click(othis.logout);
 	
 	$(".userButton").click(function(){
-		Global.bimServerApi.call("AuthInterface", "getCurrentUser", {}, function(user){
+		Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(user){
 			othis.showUser(user);
 		});
 	});

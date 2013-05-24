@@ -151,7 +151,7 @@
 							} else if (serverInfo.serverState == "RUNNING") {
 								if ($.cookie("autologin") != null) {
 									Global.bimServerApi.token = $.cookie("autologin");
-									Global.bimServerApi.call("AuthInterface", "getCurrentUser", {}, function(data){
+									Global.bimServerApi.call("AuthInterface", "getLoggedInUser", {}, function(data){
 										$(".indexcontainer").load(Global.baseDir + "main.html", function(){
 											new Main(Global.bimServerApi.baseUrl, data.name).show(false);
 										});
