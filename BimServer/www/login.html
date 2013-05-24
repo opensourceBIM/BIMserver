@@ -1,47 +1,49 @@
 <div class="login container">
-    <div class="span5">
+    <div class="span7">
     	<img src="img/logo.gif"/>
     	<form class="form-horizontal">
-    	<legend>Login</legend>
-		<div class="serverAddressDiv control-group">
-			<label class="control-label" for="inputServer">Server</label>
-			<div class="controls">
-				<div class="btn-group input-append">
-					<div class="input-prepend input-append">
-  						<span class="add-on">http://</span>
-						<input type="text" id="inputServer" class="address" placeholder="BIMserver">
-						
+	    	<legend>Login</legend>
+			<div class="serverAddressDiv control-group">
+				<label class="control-label" for="inputServer">Server</label>
+				<div class="controls">
+					<div class="btn-group input-append">
+						<div class="input-prepend input-append">
+	  						<span class="add-on">http://</span>
+							<input type="text" id="inputServer" class="address" placeholder="BIMserver">
+						</div>
+						<a class="btn dropdown-toggle btn" title="Suggestions" data-toggle="dropdown"><i class="icon-star"></i></a>
+						<ul id="serverDropdown" class="dropdown-menu">
+						</ul>
 					</div>
-					<a class="btn dropdown-toggle btn" title="Suggestions" data-toggle="dropdown"><i class="icon-star"></i></a>
-					<ul id="serverDropdown" class="dropdown-menu">
-					</ul>
 				</div>
 			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="inputEmail">Username</label>
-			<div class="controls">
-				<div class="input-prepend">
-  					<span class="add-on">@</span>
-					<input type="email" class="username" id="inputEmail" placeholder="Username (e-mail address)">
+			<div class="control-group">
+				<label class="control-label" for="inputEmail">Username</label>
+				<div class="controls">
+					<div class="input-prepend">
+	  					<span class="add-on">@</span>
+						<input type="email" class="username" id="inputEmail" placeholder="Username (e-mail address)">
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="inputPassword">Password</label>
-			<div class="controls">
-				<input type="password" class="password" id="inputPassword" placeholder="Password">
+			<div class="control-group">
+				<label class="control-label" for="inputPassword">Password</label>
+				<div class="controls">
+					<div class="input-prepend">
+		 				<span class="add-on"><i class="glyphicon-lock"></i></span>
+						<input type="password" class="password" id="inputPassword" placeholder="Password">
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="control-group">
-			<div class="controls">
-				<label class="checkbox"> <input type="checkbox" class="rememberme" id="rememberMe"> Remember me
-				</label>
-				<button type="button" class="btn loginButton">Sign in</button>
-				<button type="button" class="btn resetPasswordButton">Reset password</button>
+			<div class="control-group">
+				<div class="controls">
+					<label class="checkbox"> <input type="checkbox" class="rememberme" id="rememberMe"> Remember me
+					</label>
+					<button type="button" class="btn loginButton">Sign in</button>
+					<button type="button" class="btn resetPasswordButton">Reset password</button>
+				</div>
 			</div>
-		</div>
-	</form>
+		</form>
   </div>
 </div>
 <script>
@@ -56,7 +58,7 @@ function Login(address, username) {
 	}
 	
 	this.login = function(address) {
-		loadBimServerApi(address, Global.notifier, function(serverInfo){
+		loadBimServerApi("http://" + address, Global.notifier, function(serverInfo){
 			if (serverInfo.serverState == "NOT_SETUP") {
 				$(".indexcontainer").load(Global.baseDir + "setup.html", function(){
 					new Setup(address);
@@ -93,7 +95,7 @@ function Login(address, username) {
 		$("#inputServer").val($(event.target).attr("address"));
 	});
 	$(".loginButton").click(function(){
-		othis.login("http://" + $("#inputServer").val());
+		othis.login($("#inputServer").val());
 	});
 	
 	Settings.getServerList(function(servers){
@@ -104,7 +106,7 @@ function Login(address, username) {
 	});
 	
 	$(".login .username, .login .address, .login .password, .login .rememberme").enterpress(function(){
-		othis.login("http://" + $("#inputServer").val());
+		othis.login($("#inputServer").val());
 	});
 	
 	this.resetPassword = function(address){
@@ -118,7 +120,7 @@ function Login(address, username) {
 			} else if (serverInfo.serverState == "MIGRATION_IMPOSSIBLE") {
 			} else if (serverInfo.serverState == "FATAL_ERROR") {
 			} else if (serverInfo.serverState == "RUNNING") {
-				Global.bimServerApi.callWithFullIndication("ServiceInterface", "requestPasswordChange", {username: $(".username").val(), resetUrl: getBaseURL() + "?page=ResetPassword"}, function(){});
+				Global.bimServerApi.callWithFullIndication("AuthInterface", "requestPasswordChange", {username: $(".username").val(), resetUrl: getBaseURL() + "?page=ResetPassword"}, function(){});
 			}
 		});
 	};
@@ -127,6 +129,10 @@ function Login(address, username) {
 		othis.resetPassword("http://" + $("#inputServer").val());
 	});
 	
-	$("#inputServer").focus();
+	if (Settings.allowBimServerAddress()) {
+		$("#inputServer").focus();
+	} else {
+		$("#inputEmail").focus();
+	}
 }
 </script>

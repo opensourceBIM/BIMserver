@@ -119,10 +119,9 @@ function ServerInfo(containerDiv, main) {
 			$(".java table").append(tr);
 			
 			$(".java table").append("<tr><td>IO Tmp</td><td>" + data.javaIoTmp + "</td></tr>");
-			$(".java table").append("<tr><td>Java Compiler</td><td>" + data.javaCompiler + "</td></tr>");
 			$(".java table").append("<tr><td>Ext dir</td><td>" + data.javaExtdir + "</td></tr>");
 			$(".java table").append("<tr><td>File separator</td><td>" + data.javaFileSeparator + "</td></tr>");
-			$(".java table").append("<tr><td>Path serparator</td><td>" + data.javaPathSeparator + "</td></tr>");
+			$(".java table").append("<tr><td>Path separator</td><td>" + data.javaPathSeparator + "</td></tr>");
 			$(".java table").append("<tr><td>Line separator</td><td>" + data.javaLineSeparator + "</td></tr>");
 		});
 		
@@ -142,7 +141,7 @@ function ServerInfo(containerDiv, main) {
 			$(".bimserver table").append("<tr><td colspan=\"2\" class=\"header\">Other</td></tr>");
 			$(".bimserver table").append("<tr><td>Server log</td><td><a href=\"" + data.serverLogUrl + "\">Log</a></td></tr>");
 			$(".bimserver table").append("<tr><td>Started</td><td>" + formatDateTime(new Date(data.started)) + "</td></tr>");
-			$(".bimserver table").append("<tr><td>Uptime</td><td>" + data.uptime + "</td></tr>");
+			$(".bimserver table").append("<tr><td>Uptime</td><td>" + formatDuration(new Date().getTime() - data.started) + "</td></tr>");
 		});
 
 		Global.bimServerApi.call("MetaInterface", "getServiceInterfaces", {}, function(data){

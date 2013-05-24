@@ -36,10 +36,22 @@
 		var baseJsDir = Global.baseDir + "js/";
 		var baseCssDir = Global.baseDir + "css/";
 		
-		var theBase = document.getElementsByTagName("base"); 
-		theBase[0].href = Global.baseDir; 
+		var base = document.getElementsByTagName("base");
+		base[0].href = Global.baseDir;
 		
-		LazyLoad.css([baseCssDir + "main.css", baseCssDir + "bootstrap.min.css"], function(){});
+		(function() {
+		    var link = document.createElement('link');
+		    link.type = 'image/x-icon';
+		    link.rel = 'shortcut icon';
+		    link.href = Global.baseDir + 'img/logo_small.png';
+		    document.getElementsByTagName('head')[0].appendChild(link);
+		}());
+		
+		LazyLoad.css([
+		    baseCssDir + "main.css", 
+		    baseCssDir + "bootstrap.min.css",
+		    baseCssDir + "glyph.css"
+		], function(){});
 		
 		LazyLoad.js([
 		    baseJsDir + "jquery-1.8.2.min.js", 
@@ -57,7 +69,8 @@
 		    baseJsDir + "formatters.js", 
 		    baseJsDir + "settings.js", 
 		    baseJsDir + "jquery.fileupload.js", 
-		    baseJsDir + "pagechanger.js"], function () {
+		    baseJsDir + "pagechanger.js"
+		], function () {
 			
 			pushInitialState();
 
@@ -129,7 +142,7 @@
 						loadBimServerApi($.cookie("address") != null ? $.cookie("address") : Global.baseDir, Global.notifier, function(serverInfo){
 							if (serverInfo.serverState == "NOT_SETUP") {
 								$(".indexcontainer").load(Global.baseDir + "setup.html", function(){
-									new Setup($.cookie("address") == null ? Global.baseDir : $.cookie("address"));
+									new Setup($.cookie("address") == null ? stripHttp(stripLastSlash(Global.baseDir)) : $.cookie("address"));
 								});
 							} else if (serverInfo.serverState == "UNDEFINED") {
 							} else if (serverInfo.serverState == "MIGRATION_REQUIRED") {
