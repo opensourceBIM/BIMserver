@@ -51,7 +51,7 @@ function ServerInfo(containerDiv, main) {
 	this.loadData = function() {
 		Global.bimServerApi.call("AdminInterface", "getDatabaseInformation", {}, function(data){
 			$(".database table").append("<tr><td colspan=\"2\" class=\"header\">General Information</td></tr>");
-			$(".database table").append("<tr><td>Size</td><td>" + data.databaseSizeInBytes + "</td></tr>");
+			$(".database table").append("<tr><td>Size</td><td>" + GetHumanSize(data.databaseSizeInBytes) + "</td></tr>");
 			$(".database table").append("<tr><td>Type</td><td>" + data.type + "</td></tr>");
 			$(".database table").append("<tr><td>Created</td><td>" + formatDateTime(new Date(data.created)) + "</td></tr>");
 			$(".database table").append("<tr><td>Location</td><td>" + data.location + "</td></tr>");
