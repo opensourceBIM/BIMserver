@@ -86,6 +86,9 @@ public class JsonHandler {
 		String methodName = request.get("method").getAsString();
 		SService sService = bimServer.getServicesMap().getByName(interfaceName);
 		if (sService == null) {
+			sService = bimServer.getServicesMap().getBySimpleName(interfaceName);
+		}
+		if (sService == null) {
 			throw new UserException("No service found with name " + interfaceName);
 		}
 		SMethod method = sService.getSMethod(methodName);

@@ -157,7 +157,7 @@ function BimServerApi(baseUrl, notifier) {
 	};
 	
 	this.registerNewRevisionOnSpecificProjectHandler = function(poid, handler, callback){
-		othis.register("NotificationInterface", "newRevision", handler, function(){
+		othis.register("Bimsie1NotificationInterface", "newRevision", handler, function(){
 			othis.call("Bimsie1NotificationRegistryInterface", "registerNewRevisionOnSpecificProjectHandler", {endPointId: othis.server.endPointId, poid: poid}, function(){
 				if (callback != null) {
 					callback();
@@ -167,7 +167,7 @@ function BimServerApi(baseUrl, notifier) {
 	};
 
 	this.registerNewUserHandler = function(handler, callback) {
-		othis.register("NotificationInterface", "newUser", handler, function(){
+		othis.register("Bimsie1NotificationInterface", "newUser", handler, function(){
 			othis.call("Bimsie1NotificationRegistryInterface", "registerNewUserHandler", {endPointId: othis.server.endPointId}, function(){
 				if (callback != null) {
 					callback();
@@ -192,8 +192,8 @@ function BimServerApi(baseUrl, notifier) {
 	};
 
 	this.registerChangeProgressProjectHandler = function(poid, newHandler, closedHandler, callback) {
-		othis.register("NotificationInterface", "newProgressOnProjectTopic", newHandler, function(){
-			othis.register("NotificationInterface", "closedProgressOnProjectTopic", closedHandler, function(){
+		othis.register("Bimsie1NotificationInterface", "newProgressOnProjectTopic", newHandler, function(){
+			othis.register("Bimsie1NotificationInterface", "closedProgressOnProjectTopic", closedHandler, function(){
 				othis.call("Bimsie1NotificationRegistryInterface", "registerChangeProgressOnProject", {poid: poid, endPointId: othis.server.endPointId}, function(){
 					if (callback != null) {
 						callback();
@@ -212,8 +212,8 @@ function BimServerApi(baseUrl, notifier) {
 	};
 	
 	this.registerChangeProgressServerHandler = function(newHandler, closedHandler, callback) {
-		othis.register("NotificationInterface", "newProgressOnServerTopic", newHandler, function(){
-			othis.register("NotificationInterface", "closedProgressOnServerTopic", closedHandler, function(){
+		othis.register("Bimsie1NotificationInterface", "newProgressOnServerTopic", newHandler, function(){
+			othis.register("Bimsie1NotificationInterface", "closedProgressOnServerTopic", closedHandler, function(){
 				othis.call("Bimsie1NotificationRegistryInterface", "registerChangeProgressOnServer", {endPointId: othis.server.endPointId}, function(){
 					if (callback != null) {
 						callback();
@@ -230,8 +230,8 @@ function BimServerApi(baseUrl, notifier) {
 	};
 	
 	this.registerChangeProgressRevisionHandler = function(poid, roid, newHandler, closedHandler, callback) {
-		othis.register("NotificationInterface", "newProgressOnRevisionTopic", newHandler, function(){
-			othis.register("NotificationInterface", "closedProgressOnRevisionTopic", closedHandler, function(){
+		othis.register("Bimsie1NotificationInterface", "newProgressOnRevisionTopic", newHandler, function(){
+			othis.register("Bimsie1NotificationInterface", "closedProgressOnRevisionTopic", closedHandler, function(){
 				othis.call("Bimsie1NotificationRegistryInterface", "registerChangeProgressOnRevision", {poid: poid, roid: roid, endPointId: othis.server.endPointId}, function(){
 					if (callback != null) {
 						callback();
@@ -242,7 +242,7 @@ function BimServerApi(baseUrl, notifier) {
 	}
 	
 	this.registerNewProjectHandler = function(handler, callback) {
-		othis.register("NotificationInterface", "newProject", handler, function(){
+		othis.register("Bimsie1NotificationInterface", "newProject", handler, function(){
 			othis.call("Bimsie1NotificationRegistryInterface", "registerNewProjectHandler", {endPointId: othis.server.endPointId}, function(){
 				if (callback != null) {
 					callback();
@@ -270,7 +270,7 @@ function BimServerApi(baseUrl, notifier) {
 	};
 
 	this.registerProgressHandler = function(topicId, handler, callback){
-		othis.register("NotificationInterface", "progress", handler, function(){
+		othis.register("Bimsie1NotificationInterface", "progress", handler, function(){
 			othis.call("Bimsie1NotificationRegistryInterface", "registerProgressHandler", {topicId: topicId, endPointId: othis.server.endPointId}, function(){
 				if (callback != null) {
 					callback();

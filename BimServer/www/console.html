@@ -268,7 +268,7 @@ function makeExampleFromType(fieldName, type, genericType, doc) {
 		} else {
 			example += "{\n";
 			type.fields.forEach(function(field, index){
-				example += "    \"" + field.name + "\": " + makeExampleFromType(field.type, field.genericType, field.doc);
+				example += "    \"" + field.name + "\": " + makeExampleFromType("", field.type, field.genericType, field.doc);
 				if (index != type.fields.length - 1) {
 					example += ",";
 				}
