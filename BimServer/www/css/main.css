@@ -127,3 +127,15 @@ table.table tr td span {
 .row-fluid span.timespan {
 	min-height: 0;	
 }
+
+div.setup form.form-horizontal label {
+	text-align: left;
+}
+
+.fullwidth input {
+	width: 100%;
+}
+
+.fullwidth .controls {
+	width: 350px;
+}

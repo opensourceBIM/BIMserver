@@ -204,10 +204,6 @@ function getHumanSize(size) {
 }
 //http://stackoverflow.com/questions/4498866/actual-numbers-to-the-human-readable-values/4506030#4506030 //
 
-function getBaseURL () {
-	return location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/";
-}
-
 function getParameterByName(name)
 {
   name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");

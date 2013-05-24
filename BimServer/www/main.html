@@ -71,8 +71,7 @@ function Main(address, username) {
 		}
 	};
 
-	this.logout = function(event) {
-		event.preventDefault();
+	this.logout = function() {
 		Global.bimServerApi.logout(function(){
 			$(".indexcontainer").load(Global.baseDir + "login.html", function(){
 				new Login(Global.bimServerApi.baseUrl);
