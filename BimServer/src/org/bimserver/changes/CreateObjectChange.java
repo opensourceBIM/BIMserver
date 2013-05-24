@@ -47,7 +47,7 @@ public class CreateObjectChange implements Change {
 	}
 	
 	@Override
-	public void execute(Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+	public void execute(Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession, Map<Long, IdEObject> created, Map<Long, IdEObject> deleted) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		EClass eClass = databaseSession.getEClassForName(type);
 		if (eClass == null) {
 			throw new UserException("Type " + type + " does not exist");

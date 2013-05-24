@@ -60,7 +60,7 @@ public class RequestPasswordChangeDatabaseAction extends BimDatabaseAction<Void>
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		final User user = getUserByUserName(username);
 		if (user == null) {
-			throw new UserException("User with username " + username + " not found");
+			throw new UserException("User with username \"" + username + "\" not found");
 		}
 		final String token = GeneratorUtils.generateToken();
 		user.setValidationToken(Hashers.getSha256Hash(token));

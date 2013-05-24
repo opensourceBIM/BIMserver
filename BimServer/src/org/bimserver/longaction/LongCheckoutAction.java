@@ -51,7 +51,6 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 			if (session != null) {
 				session.close();
 			}
-			updateProgress("Done", 100);
 			changeActionState(ActionState.FINISHED, "Checkout finished", 100);
 		}
 	}

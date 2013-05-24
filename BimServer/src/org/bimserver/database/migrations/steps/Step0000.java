@@ -780,7 +780,6 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(javaInfo, "javaClasspath", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
 		schema.createEAttribute(javaInfo, "javaLibrarypath", EcorePackage.eINSTANCE.getEString(), Multiplicity.MANY);
 		schema.createEAttribute(javaInfo, "javaIoTmp", EcorePackage.eINSTANCE.getEString());
-		schema.createEAttribute(javaInfo, "javaCompiler", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(javaInfo, "javaExtdir", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(javaInfo, "javaFileSeparator", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(javaInfo, "javaPathSeparator", EcorePackage.eINSTANCE.getEString());
@@ -798,7 +797,6 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(bimserverInfo, "checkouts", EcorePackage.eINSTANCE.getEInt());
 		schema.createEAttribute(bimserverInfo, "serverLogUrl", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(bimserverInfo, "started", EcorePackage.eINSTANCE.getEDate());
-		schema.createEAttribute(bimserverInfo, "uptime", EcorePackage.eINSTANCE.getEString());
 		
 		EEnum progressTopicType = schema.createEEnum("store", "ProgressTopicType");
 		schema.createEEnumLiteral(progressTopicType, "DOWNLOAD");

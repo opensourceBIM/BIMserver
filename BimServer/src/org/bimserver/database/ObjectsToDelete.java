@@ -21,6 +21,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.bimserver.emf.IdEObject;
 import org.eclipse.emf.ecore.EClass;
 
 public class ObjectsToDelete implements Iterable<RecordIdentifierPlusType> {
@@ -47,5 +48,9 @@ public class ObjectsToDelete implements Iterable<RecordIdentifierPlusType> {
 
 	public int size() {
 		return set.size();
+	}
+
+	public boolean contains(IdEObject object) {
+		return set.contains(new RecordIdentifierPlusType(object.eClass(), object.getPid(), object.getOid(), object.getRid()));
 	}
 }
