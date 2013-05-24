@@ -1,6 +1,6 @@
 
-§1
-SettingsInterface.protoorg.bimserver.pbServiceInterface.protoNotificationInterface.protoRemoteServiceInterface.protoAdminInterface.protoMetaInterface.proto"
+µ1
+SettingsInterface.protoorg.bimserver.pbServiceInterface.proto"Bimsie1NotificationInterface.proto#Bimsie1RemoteServiceInterface.protoAdminInterface.protoMetaInterface.proto"
 GetEmailSenderAddressRequest"D
 GetEmailSenderAddressResponse
 errorMessage (	

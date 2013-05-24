@@ -17,14 +17,14 @@ package org.bimserver.shared.interfaces.async;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 import java.util.concurrent.ExecutorService;
-import org.bimserver.shared.interfaces.Bimsie1Interface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
 
-public class AsyncBimsie1Interface {
+public class AsyncBimsie1LowLevelInterface {
 
 	private final ExecutorService executorService;
-	private final Bimsie1Interface syncService;
+	private final Bimsie1LowLevelInterface syncService;
 
-	public AsyncBimsie1Interface(Bimsie1Interface syncService, ExecutorService executorService) {
+	public AsyncBimsie1LowLevelInterface(Bimsie1LowLevelInterface syncService, ExecutorService executorService) {
 		this.executorService = executorService;
 		this.syncService = syncService;
 	}
@@ -59,22 +59,12 @@ public class AsyncBimsie1Interface {
 		void error(Exception e);
 	}
 	
-	public interface CheckinCallback {
-		void success(java.lang.Long result);
-		void error(Exception e);
-	}
-	
 	public interface CommitTransactionCallback {
 		void success(java.lang.Long result);
 		void error(Exception e);
 	}
 	
 	public interface CreateObjectCallback {
-		void success(java.lang.Long result);
-		void error(Exception e);
-	}
-	
-	public interface DownloadCallback {
 		void success(java.lang.Long result);
 		void error(Exception e);
 	}
@@ -159,11 +149,6 @@ public class AsyncBimsie1Interface {
 		void error(Exception e);
 	}
 	
-	public interface GetServiceLogCallback {
-		void success(java.lang.String result);
-		void error(Exception e);
-	}
-	
 	public interface GetStringAttributeCallback {
 		void success(java.lang.String result);
 		void error(Exception e);
@@ -171,16 +156,6 @@ public class AsyncBimsie1Interface {
 	
 	public interface GetStringAttributesCallback {
 		void success(java.util.List<java.lang.String> result);
-		void error(Exception e);
-	}
-	
-	public interface LoginCallback {
-		void success(java.lang.String result);
-		void error(Exception e);
-	}
-	
-	public interface LogoutCallback {
-		void success();
 		void error(Exception e);
 	}
 	
@@ -404,18 +379,6 @@ public class AsyncBimsie1Interface {
 		});
 	}
 	
-	public void checkin(final java.lang.Long poid, final java.lang.String comment, final java.lang.Long deserializerOid, final java.lang.Long fileSize, final java.lang.String fileName, final javax.activation.DataHandler ifcFile, final java.lang.Boolean sync, final CheckinCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.checkin(poid, comment, deserializerOid, fileSize, fileName, ifcFile, sync));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void commitTransaction(final java.lang.Long tid, final java.lang.String comment, final CommitTransactionCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -433,18 +396,6 @@ public class AsyncBimsie1Interface {
 			public void run(){
 				try {
 					callback.success(syncService.createObject(tid, className));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void download(final java.lang.Long roid, final java.lang.Long serializerOid, final java.lang.Boolean showOwn, final java.lang.Boolean sync, final DownloadCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.download(roid, serializerOid, showOwn, sync));
 				} catch (Exception e) {
 					callback.error(e);
 				}
@@ -644,18 +595,6 @@ public class AsyncBimsie1Interface {
 		});
 	}
 	
-	public void getServiceLog(final GetServiceLogCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getServiceLog());
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void getStringAttribute(final java.lang.Long tid, final java.lang.Long oid, final java.lang.String attributeName, final GetStringAttributeCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -673,31 +612,6 @@ public class AsyncBimsie1Interface {
 			public void run(){
 				try {
 					callback.success(syncService.getStringAttributes(tid, oid, attributeName));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void login(final java.lang.String username, final java.lang.String password, final LoginCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.login(username, password));
-				} catch (Exception e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void logout(final LogoutCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					syncService.logout();
-					callback.success();
 				} catch (Exception e) {
 					callback.error(e);
 				}

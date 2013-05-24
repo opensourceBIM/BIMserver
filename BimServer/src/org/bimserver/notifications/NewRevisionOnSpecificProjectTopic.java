@@ -42,31 +42,30 @@ public class NewRevisionOnSpecificProjectTopic extends Topic {
 		super.register(endPoint);
 	}
 
-	public void process(SNewRevisionAdded newRevisionNotification) {
+	public void process(final SNewRevisionAdded newRevisionNotification) throws UserException, ServerException, BimserverDatabaseException {
 		// TODO this should also trigger the generic new revisions topic
 		if (newRevisionNotification.getProjectId() == poid) {
-			for (EndPoint endPoint : getEndPoints()) {
-				try {
+			map(new Mapper(){
+				@Override
+				public void map(final EndPoint endPoint) throws UserException, ServerException {
 					endPoint.getNotificationInterface().newRevision(newRevisionNotification.getProjectId(), newRevisionNotification.getRevisionId());
-				} catch (UserException e) {
-					e.printStackTrace();
-				} catch (ServerException e) {
-					e.printStackTrace();
 				}
-			}
+			});
 		}
 	}
 
-	public void process(DatabaseSession session, long poid, long roid, NewRevisionNotification newRevisionNotification) throws BimserverDatabaseException, UserException, ServerException {
-		for (EndPoint endPoint : getEndPoints()) {
-			User user = session.get(StorePackage.eINSTANCE.getUser(), endPoint.getUoid(), Query.getDefault());
-			Project notificationProject = session.get(StorePackage.eINSTANCE.getUser(), poid, Query.getDefault());
-			Project registrationProject = session.get(StorePackage.eINSTANCE.getUser(), this.poid, Query.getDefault());
-			if (notificationProject.getOid() == registrationProject.getOid()) {
-				if (user.getUserType() == UserType.ADMIN || user.getHasRightsOn().contains(notificationProject)) {
-					endPoint.getNotificationInterface().newRevision(poid, roid);
+	public void process(final DatabaseSession session, final long poid, final long roid, NewRevisionNotification newRevisionNotification) throws BimserverDatabaseException, UserException, ServerException {
+		map(new Mapper(){
+			@Override
+			public void map(EndPoint endPoint) throws UserException, ServerException, BimserverDatabaseException {
+				User user = session.get(StorePackage.eINSTANCE.getUser(), endPoint.getUoid(), Query.getDefault());
+				Project notificationProject = session.get(StorePackage.eINSTANCE.getUser(), poid, Query.getDefault());
+				Project registrationProject = session.get(StorePackage.eINSTANCE.getUser(), NewRevisionOnSpecificProjectTopic.this.poid, Query.getDefault());
+				if (notificationProject.getOid() == registrationProject.getOid()) {
+					if (user.getUserType() == UserType.ADMIN || user.getHasRightsOn().contains(notificationProject)) {
+						endPoint.getNotificationInterface().newRevision(poid, roid);
+					}
 				}
-			}
-		}
+			}});
 	}
 }

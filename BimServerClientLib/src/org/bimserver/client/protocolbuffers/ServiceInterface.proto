@@ -53,10 +53,6 @@ service ServiceInterface {
 
 	rpc checkinFromUrl (CheckinFromUrlRequest) returns (CheckinFromUrlResponse);
 
-	rpc checkout (CheckoutRequest) returns (CheckoutResponse);
-
-	rpc checkoutLastRevision (CheckoutLastRevisionRequest) returns (CheckoutLastRevisionResponse);
-
 	rpc cleanupLongAction (CleanupLongActionRequest) returns (VoidResponse);
 
 	rpc compare (CompareRequest) returns (CompareResponse);
@@ -69,21 +65,7 @@ service ServiceInterface {
 
 	rpc deleteUser (DeleteUserRequest) returns (DeleteUserResponse);
 
-	rpc download (DownloadRequest) returns (DownloadResponse);
-
-	rpc downloadByGuids (DownloadByGuidsRequest) returns (DownloadByGuidsResponse);
-
-	rpc downloadByNames (DownloadByNamesRequest) returns (DownloadByNamesResponse);
-
-	rpc downloadByOids (DownloadByOidsRequest) returns (DownloadByOidsResponse);
-
-	rpc downloadByTypes (DownloadByTypesRequest) returns (DownloadByTypesResponse);
-
 	rpc downloadCompareResults (DownloadCompareResultsRequest) returns (DownloadCompareResultsResponse);
-
-	rpc downloadQuery (DownloadQueryRequest) returns (DownloadQueryResponse);
-
-	rpc downloadRevisions (DownloadRevisionsRequest) returns (DownloadRevisionsResponse);
 
 	rpc getAllAuthorizedUsersOfProject (GetAllAuthorizedUsersOfProjectRequest) returns (GetAllAuthorizedUsersOfProjectResponse);
 
@@ -139,8 +121,6 @@ service ServiceInterface {
 
 	rpc getCheckoutWarnings (GetCheckoutWarningsRequest) returns (GetCheckoutWarningsResponse);
 
-	rpc getDownloadData (GetDownloadDataRequest) returns (GetDownloadDataResponse);
-
 	rpc getExtendedData (GetExtendedDataRequest) returns (GetExtendedDataResponse);
 
 	rpc getExtendedDataSchemaById (GetExtendedDataSchemaByIdRequest) returns (GetExtendedDataSchemaByIdResponse);
@@ -172,8 +152,6 @@ service ServiceInterface {
 	rpc getServiceDescriptor (GetServiceDescriptorRequest) returns (GetServiceDescriptorResponse);
 
 	rpc getSubProjects (GetSubProjectsRequest) returns (GetSubProjectsResponse);
-
-	rpc getSuggestedDeserializerForExtension (GetSuggestedDeserializerForExtensionRequest) returns (GetSuggestedDeserializerForExtensionResponse);
 
 	rpc getUserByUoid (GetUserByUoidRequest) returns (GetUserByUoidResponse);
 
@@ -482,7 +460,7 @@ message CheckinRequest {
 	optional int64 deserializerOid = 3;
 	optional int64 fileSize = 4;
 	optional string fileName = 5;
-	optional bytes ifcFile = 6;
+	optional bytes data = 6;
 	optional bool merge = 7;
 	optional bool sync = 8;
 }
@@ -503,28 +481,6 @@ message CheckinFromUrlRequest {
 }
 
 message CheckinFromUrlResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message CheckoutRequest {
-	optional int64 roid = 1;
-	optional int64 serializerOid = 2;
-	optional bool sync = 3;
-}
-
-message CheckoutResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message CheckoutLastRevisionRequest {
-	optional int64 poid = 1;
-	optional int64 serializerOid = 2;
-	optional bool sync = 3;
-}
-
-message CheckoutLastRevisionResponse {
 	optional string errorMessage = 1;
 	optional int64 value = 2;
 }
@@ -565,10 +521,10 @@ message SObjectModified {
 	optional string fieldName = 5;
 }
 
-message SSimpleDataValue {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-	optional string stringValue = 3;
+message SListDataValue {
+	repeated SDataValue values = 1;
+	optional int32 rid = 2;
+	optional int64 oid = 3;
 }
 
 message SReferenceDataValue {
@@ -578,17 +534,17 @@ message SReferenceDataValue {
 	optional int64 oid = 4;
 }
 
-message SListDataValue {
-	repeated SDataValue values = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
+message SSimpleDataValue {
+	optional int32 rid = 1;
+	optional int64 oid = 2;
+	optional string stringValue = 3;
 }
 
 message SDataValue {
 	required string __actual_type = 1;
-	optional SSimpleDataValue __SSimpleDataValue = 2;
+	optional SListDataValue __SListDataValue = 2;
 	optional SReferenceDataValue __SReferenceDataValue = 3;
-	optional SListDataValue __SListDataValue = 4;
+	optional SSimpleDataValue __SSimpleDataValue = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 	optional string fieldName = 7;
@@ -663,72 +619,6 @@ message DeleteUserResponse {
 	optional bool value = 2;
 }
 
-message DownloadRequest {
-	optional int64 roid = 1;
-	optional int64 serializerOid = 2;
-	optional bool showOwn = 3;
-	optional bool sync = 4;
-}
-
-message DownloadResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message DownloadByGuidsRequest {
-	repeated int64 roids = 1;
-	repeated string guids = 2;
-	optional int64 serializerOid = 3;
-	optional bool deep = 4;
-	optional bool sync = 5;
-}
-
-message DownloadByGuidsResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message DownloadByNamesRequest {
-	repeated int64 roids = 1;
-	repeated string names = 2;
-	optional int64 serializerOid = 3;
-	optional bool deep = 4;
-	optional bool sync = 5;
-}
-
-message DownloadByNamesResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message DownloadByOidsRequest {
-	repeated int64 roids = 1;
-	repeated int64 oids = 2;
-	optional int64 serializerOid = 3;
-	optional bool sync = 4;
-	optional bool deep = 5;
-}
-
-message DownloadByOidsResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message DownloadByTypesRequest {
-	repeated int64 roids = 1;
-	repeated string classNames = 2;
-	optional int64 serializerOid = 3;
-	optional bool includeAllSubtypes = 4;
-	optional bool useObjectIDM = 5;
-	optional bool deep = 6;
-	optional bool sync = 7;
-}
-
-message DownloadByTypesResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
 message DownloadCompareResultsRequest {
 	optional int64 serializerOid = 1;
 	optional int64 roid1 = 2;
@@ -739,30 +629,6 @@ message DownloadCompareResultsRequest {
 }
 
 message DownloadCompareResultsResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message DownloadQueryRequest {
-	optional int64 roid = 1;
-	optional int64 qeid = 2;
-	optional string code = 3;
-	optional bool sync = 4;
-	optional int64 serializerOid = 5;
-}
-
-message DownloadQueryResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
-message DownloadRevisionsRequest {
-	repeated int64 roids = 1;
-	optional int64 serializerOid = 2;
-	optional bool sync = 3;
-}
-
-message DownloadRevisionsResponse {
 	optional string errorMessage = 1;
 	optional int64 value = 2;
 }
@@ -1073,30 +939,6 @@ message GetCheckoutWarningsResponse {
 	repeated string value = 2;
 }
 
-message GetDownloadDataRequest {
-	optional int64 actionId = 1;
-}
-
-message SCheckoutResult {
-	optional int32 rid = 1;
-	optional int64 oid = 2;
-}
-
-message SDownloadResult {
-	required string __actual_type = 1;
-	optional SCheckoutResult __SCheckoutResult = 2;
-	optional int32 rid = 3;
-	optional int64 oid = 4;
-	optional bytes file = 5;
-	optional int32 revisionNr = 6;
-	optional string projectName = 7;
-}
-
-message GetDownloadDataResponse {
-	optional string errorMessage = 1;
-	optional SDownloadResult value = 2;
-}
-
 message GetExtendedDataRequest {
 	optional int64 oid = 1;
 }
@@ -1281,21 +1123,6 @@ message GetSubProjectsRequest {
 message GetSubProjectsResponse {
 	optional string errorMessage = 1;
 	repeated SProject value = 2;
-}
-
-message GetSuggestedDeserializerForExtensionRequest {
-	optional string extension = 1;
-}
-
-message SDeserializerPluginConfiguration {
-	optional int64 userSettingsId = 1;
-	optional int32 rid = 2;
-	optional int64 oid = 3;
-}
-
-message GetSuggestedDeserializerForExtensionResponse {
-	optional string errorMessage = 1;
-	optional SDeserializerPluginConfiguration value = 2;
 }
 
 message GetUserByUoidRequest {

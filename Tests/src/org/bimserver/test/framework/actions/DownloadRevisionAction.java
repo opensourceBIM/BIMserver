@@ -57,15 +57,15 @@ public class DownloadRevisionAction extends Action {
 			if (project.getLastRevisionId() != -1) {
 				SSerializerPluginConfiguration serializer = null;
 				if (serializerName != null) {
-					serializer = virtualUser.getBimServerClient().getPlugin().getSerializerByName(serializerName);
+					serializer = virtualUser.getBimServerClient().getBimsie1ServiceInterface().getSerializerByName(serializerName);
 				} else {
-					List<SSerializerPluginConfiguration> allSerializers = virtualUser.getBimServerClient().getPlugin().getAllSerializers(true);
+					List<SSerializerPluginConfiguration> allSerializers = virtualUser.getBimServerClient().getPluginInterface().getAllSerializers(true);
 					serializer = allSerializers.get(nextInt(allSerializers.size()));
 				}
 				boolean sync = nextBoolean();
 				virtualUser.getActionResults().setText("Downloading revision " + project.getLastRevisionId() + " of project " + project.getName() + " with serializer " + serializer.getName() + " sync: " + sync);
-				SRevision revision = virtualUser.getBimServerClient().getService().getRevision(project.getLastRevisionId());
-				long topicId = virtualUser.getBimServerClient().getService().download(project.getLastRevisionId(), serializer.getOid(), true, sync);
+				SRevision revision = virtualUser.getBimServerClient().getServiceInterface().getRevision(project.getLastRevisionId());
+				long topicId = virtualUser.getBimServerClient().getBimsie1ServiceInterface().download(project.getLastRevisionId(), serializer.getOid(), true, sync);
 				SActionState state = virtualUser.getBimServerClient().getRegistry().getProgress(topicId).getState();
 				while (state != SActionState.FINISHED) {
 					try {
@@ -79,7 +79,7 @@ public class DownloadRevisionAction extends Action {
 				try {
 					InputStream downloadData = virtualUser.getBimServerClient().getDownloadData(topicId, serializer.getOid());
 					if (downloadData != null) {
-						PluginConfiguration pluginConfiguration = new PluginConfiguration(virtualUser.getBimServerClient().getPlugin().getPluginSettings(serializer.getOid()));
+						PluginConfiguration pluginConfiguration = new PluginConfiguration(virtualUser.getBimServerClient().getPluginInterface().getPluginSettings(serializer.getOid()));
 						String filename = project.getName() + "." + revision.getId() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION);
 						FileOutputStream fos = new FileOutputStream(new File(getTestFramework().getTestConfiguration().getOutputFolder(), filename));
 						IOUtils.copy(downloadData, fos);

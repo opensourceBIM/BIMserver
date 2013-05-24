@@ -1,4 +1,4 @@
-package org.bimserver.webservices;
+package org.bimserver.webservices.impl;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -23,9 +23,9 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterfaceAdaptor;
 
-public class NotificationImpl extends NotificationInterfaceAdaptor {
+public class Bimsie1NotificationImpl extends NotificationInterfaceAdaptor {
 
-	public NotificationImpl(BimServer bimServer) {
+	public Bimsie1NotificationImpl(BimServer bimServer) {
 	}
 
 	@Override

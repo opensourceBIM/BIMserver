@@ -51,9 +51,7 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.AdminInterface;
-import org.bimserver.shared.interfaces.PluginInterface;
-import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.webservices.ServiceMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -87,15 +85,13 @@ public class DownloadServlet extends SubServlet {
 			if (token == null) {
 				token = request.getParameter("token");
 			}
-			ServiceInterface serviceInterface = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
-			PluginInterface pluginInterface = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(PluginInterface.class);
-			AdminInterface adminInterface = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(AdminInterface.class);
+			ServiceMap serviceMap = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL);
 
 			String action = request.getParameter("action");
 			if (action != null) {
 				if (action.equals("extendeddata")) {
-					SExtendedData sExtendedData = serviceInterface.getExtendedData(Long.parseLong(request.getParameter("edid")));
-					SFile file = serviceInterface.getFile(sExtendedData.getFileId());
+					SExtendedData sExtendedData = serviceMap.getServiceInterface().getExtendedData(Long.parseLong(request.getParameter("edid")));
+					SFile file = serviceMap.getServiceInterface().getFile(sExtendedData.getFileId());
 					if (file.getMime() != null) {
 						response.setContentType(file.getMime());
 					}
@@ -112,7 +108,7 @@ public class DownloadServlet extends SubServlet {
 					String type = request.getParameter("type");
 					if (type.equals("proto")) {
 						try {
-							String protocolBuffersFile = adminInterface.getProtocolBuffersFile(request.getParameter("name"));
+							String protocolBuffersFile = serviceMap.getAdminInterface().getProtocolBuffersFile(request.getParameter("name"));
 							outputStream.write(protocolBuffersFile.getBytes(Charsets.UTF_8));
 							outputStream.flush();
 						} catch (ServiceException e) {
@@ -121,7 +117,7 @@ public class DownloadServlet extends SubServlet {
 					} else if (type.equals("serverlog")) {
 						try {
 							OutputStreamWriter writer = new OutputStreamWriter(outputStream);
-							writer.write(adminInterface.getServerLog());
+							writer.write(serviceMap.getAdminInterface().getServerLog());
 							writer.flush();
 						} catch (ServerException e) {
 							LOGGER.error("", e);
@@ -134,9 +130,9 @@ public class DownloadServlet extends SubServlet {
 				SSerializerPluginConfiguration serializer = null;
 				if (request.getParameter("serializerOid") != null) {
 					long serializerOid = Long.parseLong(request.getParameter("serializerOid"));
-					serializer = pluginInterface.getSerializerById(serializerOid);
+					serializer = serviceMap.getBimsie1ServiceInterface().getSerializerById(serializerOid);
 				} else {
-					serializer = pluginInterface.getSerializerByName(request.getParameter("serializerName"));
+					serializer = serviceMap.getBimsie1ServiceInterface().getSerializerByName(request.getParameter("serializerName"));
 				}
 				long downloadId = -1;
 				if (request.getParameter("longActionId") != null) {
@@ -151,18 +147,18 @@ public class DownloadServlet extends SubServlet {
 							}
 						}
 					}
-					downloadId = serviceInterface.downloadRevisions(roids, serializer.getOid(), true);
+					downloadId = serviceMap.getBimsie1ServiceInterface().downloadRevisions(roids, serializer.getOid(), true);
 				} else if (request.getParameter("compare") != null) {
 					SCompareType sCompareType = SCompareType.valueOf(request.getParameter("type"));
 					Long roid1 = Long.parseLong(request.getParameter("roid1"));
 					Long roid2 = Long.parseLong(request.getParameter("roid2"));
-					downloadId = serviceInterface.downloadCompareResults(serializer.getOid(), roid1, roid2, Long.valueOf(request.getParameter("mcid")), sCompareType, true);
+					downloadId = serviceMap.getServiceInterface().downloadCompareResults(serializer.getOid(), roid1, roid2, Long.valueOf(request.getParameter("mcid")), sCompareType, true);
 				} else {
 					long roid = -1;
 					if (request.getParameter("roid") == null) {
 						if (request.getParameter("poid") != null) {
 							long poid = Long.parseLong(request.getParameter("poid"));
-							SProject projectByPoid = serviceInterface.getProjectByPoid(poid);
+							SProject projectByPoid = serviceMap.getServiceInterface().getProjectByPoid(poid);
 							if (projectByPoid == null) {
 								throw new UserException("Project with oid " + poid + " not found");
 							}
@@ -177,7 +173,7 @@ public class DownloadServlet extends SubServlet {
 						roid = Long.parseLong(request.getParameter("roid"));
 					}
 					if (request.getParameter("checkout") != null) {
-						downloadId = serviceInterface.checkout(roid, serializer.getOid(), true);
+						downloadId = serviceMap.getBimsie1ServiceInterface().checkout(roid, serializer.getOid(), true);
 					} else {
 						if (request.getParameter("classses") != null) {
 							Set<String> classes = new HashSet<String>();
@@ -186,7 +182,7 @@ public class DownloadServlet extends SubServlet {
 							}
 							Set<Long> roids = new HashSet<Long>();
 							roids.add(roid);
-							downloadId = serviceInterface.downloadByTypes(roids, classes, serializer.getOid(), false, true, true, true);
+							downloadId = serviceMap.getBimsie1ServiceInterface().downloadByTypes(roids, classes, serializer.getOid(), false, true, true, true);
 						} else if (request.getParameter("oids") != null) {
 							Set<Long> oids = new HashSet<Long>();
 							for (String oidString : request.getParameter("oids").split(";")) {
@@ -194,7 +190,7 @@ public class DownloadServlet extends SubServlet {
 							}
 							Set<Long> roids = new HashSet<Long>();
 							roids.add(roid);
-							downloadId = serviceInterface.downloadByOids(roids, oids, serializer.getOid(), true, true);
+							downloadId = serviceMap.getBimsie1ServiceInterface().downloadByOids(roids, oids, serializer.getOid(), true, true);
 						} else if (request.getParameter("guids") != null) {
 							Set<String> guids = new HashSet<String>();
 							for (String guid : request.getParameter("guids").split(";")) {
@@ -202,9 +198,9 @@ public class DownloadServlet extends SubServlet {
 							}
 							Set<Long> roids = new HashSet<Long>();
 							roids.add(roid);
-							downloadId = serviceInterface.downloadByGuids(roids, guids, serializer.getOid(), false, true);
+							downloadId = serviceMap.getBimsie1ServiceInterface().downloadByGuids(roids, guids, serializer.getOid(), false, true);
 						} else {
-							downloadId = serviceInterface.download(roid, serializer.getOid(), true, true);
+							downloadId = serviceMap.getBimsie1ServiceInterface().download(roid, serializer.getOid(), true, true);
 						}
 					}
 				}
@@ -212,12 +208,12 @@ public class DownloadServlet extends SubServlet {
 					response.getWriter().println("No valid download");
 					return;
 				}
-				SDownloadResult checkoutResult = serviceInterface.getDownloadData(downloadId);
+				SDownloadResult checkoutResult = serviceMap.getBimsie1ServiceInterface().getDownloadData(downloadId);
 				if (checkoutResult == null) {
 					LOGGER.error("Invalid downloadId: " + downloadId);
 				} else {
 					DataSource dataSource = checkoutResult.getFile().getDataSource();
-					PluginConfiguration pluginConfiguration = new PluginConfiguration(pluginInterface.getPluginSettings(serializer.getOid()));
+					PluginConfiguration pluginConfiguration = new PluginConfiguration(serviceMap.getPluginInterface().getPluginSettings(serializer.getOid()));
 					if (zip) {
 						if (pluginConfiguration.getString("ZipExtension") != null) {
 							response.setHeader("Content-Disposition",

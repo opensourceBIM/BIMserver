@@ -1,0 +1,29 @@
+
+¨	
+BimServerAuthInterface.protoorg.bimserver.pbServiceInterface.protoNotificationInterface.protoRemoteServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoBimsie1AuthInterface.proto"O
+ChangePasswordRequest
+uoid (
+oldPassword (	
+newPassword (	"=
+ChangePasswordResponse
+errorMessage (	
+value ("
+GetLoggedInUserRequest"W
+GetLoggedInUserResponse
+errorMessage (	&
+value (2.org.bimserver.pb.SUser"B
+RequestPasswordChangeRequest
+username (	
+resetUrl (	"G
+ValidateAccountRequest
+uoid (
+token (	
+password (	"W
+ValidateAccountResponse
+errorMessage (	&
+value (2.org.bimserver.pb.SUser2¶
+BimServerAuthInterfacec
+changePassword'.org.bimserver.pb.ChangePasswordRequest(.org.bimserver.pb.ChangePasswordResponsef
+getLoggedInUser(.org.bimserver.pb.GetLoggedInUserRequest).org.bimserver.pb.GetLoggedInUserResponseg
+requestPasswordChange..org.bimserver.pb.RequestPasswordChangeRequest.org.bimserver.pb.VoidResponsef
+validateAccount(.org.bimserver.pb.ValidateAccountRequest).org.bimserver.pb.ValidateAccountResponseB!BBimServerAuthInterfaceImplHˆ

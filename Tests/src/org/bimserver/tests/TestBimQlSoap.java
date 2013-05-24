@@ -40,7 +40,6 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.ServiceInterface;
 
 public class TestBimQlSoap {
 	public static void main(String[] args) {
@@ -48,22 +47,21 @@ public class TestBimQlSoap {
 		try {
 			BimServerClient bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
-			ServiceInterface service = bimServerClient.getService();
-			List<SProject> projects = service.getAllProjects(true);
+			List<SProject> projects = bimServerClient.getServiceInterface().getAllProjects(true);
 			if (projects.isEmpty()) {
 				throw new RuntimeException("No projects");
 			}
 			for (SProject project : projects) {
-				List<SRevision> revisionsOfProject = service.getAllRevisionsOfProject(project.getOid());
+				List<SRevision> revisionsOfProject = bimServerClient.getServiceInterface().getAllRevisionsOfProject(project.getOid());
 				if (!revisionsOfProject.isEmpty()) {
 					SRevision revision = revisionsOfProject.get(0);
-					SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getPlugin().getSerializerByContentType("application/ifc");
-					SQueryEnginePluginConfiguration queryEngine = bimServerClient.getPlugin().getQueryEngineByName("BimQL Engine");
+					SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getBimsie1ServiceInterface().getSerializerByContentType("application/ifc");
+					SQueryEnginePluginConfiguration queryEngine = bimServerClient.getBimsie1ServiceInterface().getQueryEngineByName("BimQL Engine");
 					if (queryEngine == null) {
 						throw new RuntimeException("No BIMQL query engines found");
 					}
-					Long downloadId = service.downloadQuery(revision.getOid(), queryEngine.getOid(), "Select $Var1Where $Var1.EntityType = IfcDoor", true, serializerPluginConfiguration.getOid());
-					SDownloadResult downloadData = service.getDownloadData(downloadId);
+					Long downloadId = bimServerClient.getBimsie1ServiceInterface().downloadQuery(revision.getOid(), queryEngine.getOid(), "Select $Var1Where $Var1.EntityType = IfcDoor", true, serializerPluginConfiguration.getOid());
+					SDownloadResult downloadData = bimServerClient.getBimsie1ServiceInterface().getDownloadData(downloadId);
 					DataHandler dataHandler = downloadData.getFile();
 					IOUtils.copy(dataHandler.getInputStream(), new FileOutputStream(new File("test.ifc")));
 				}

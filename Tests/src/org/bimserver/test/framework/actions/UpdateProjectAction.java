@@ -38,6 +38,6 @@ public class UpdateProjectAction extends Action {
 		project.setDescription(randomString());
 		project.setExportLengthMeasurePrefix(SSIPrefix.values()[nextInt(SSIPrefix.values().length)]);
 		project.setName(randomString());
-		virtualUser.getBimServerClient().getService().updateProject(project);
+		virtualUser.getBimServerClient().getServiceInterface().updateProject(project);
 	}
 }

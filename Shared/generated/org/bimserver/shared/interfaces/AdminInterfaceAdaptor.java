@@ -19,7 +19,7 @@ package org.bimserver.shared.interfaces;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
 
-public class AdminInterfaceAdaptor implements AdminInterface {
+public class AdminInterfaceAdaptor implements org.bimserver.shared.interfaces.AdminInterface {
 
 	public java.lang.Integer clearOutputFileCache() throws UserException, ServerException {
 		return null;

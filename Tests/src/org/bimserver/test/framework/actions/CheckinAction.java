@@ -45,7 +45,7 @@ public class CheckinAction extends Action {
 		File randomFile = getTestFramework().getTestFile();
 		String fileName = randomFile.getName();
 		String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
-		SDeserializerPluginConfiguration suggestedDeserializerForExtension = virtualUser.getBimServerClient().getService().getSuggestedDeserializerForExtension(extension);
+		SDeserializerPluginConfiguration suggestedDeserializerForExtension = virtualUser.getBimServerClient().getBimsie1ServiceInterface().getSuggestedDeserializerForExtension(extension);
 		
 		if (suggestedDeserializerForExtension == null) {
 			virtualUser.getActionResults().setText("No deserializer found for extension " + extension + " in file " + fileName);
@@ -63,12 +63,12 @@ public class CheckinAction extends Action {
 				if (longActionState.getState() == SActionState.AS_ERROR) {
 					virtualUser.getActionResults().setText("" + longActionState.getErrors());
 				}
-				virtualUser.getBimServerClient().getService().cleanupLongAction(topicId);
+				virtualUser.getBimServerClient().getServiceInterface().cleanupLongAction(topicId);
 			} else {
 				while (true) {
 					SLongActionState checkinState = virtualUser.getBimServerClient().getRegistry().getProgress(topicId);
 					if (checkinState.getState() == SActionState.FINISHED || checkinState.getState() == SActionState.UNKNOWN) {
-						virtualUser.getBimServerClient().getService().cleanupLongAction(topicId);
+						virtualUser.getBimServerClient().getServiceInterface().cleanupLongAction(topicId);
 						break;
 					}
 					try {

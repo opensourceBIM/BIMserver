@@ -17,14 +17,14 @@ package org.bimserver.endpoints;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.shared.interfaces.NotificationInterface;
-import org.bimserver.shared.interfaces.RemoteServiceInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 
 public interface EndPoint {
 
 	long getEndPointId();
-	NotificationInterface getNotificationInterface();
-	RemoteServiceInterface getRemoteServiceInterface();
+	Bimsie1NotificationInterface getNotificationInterface();
+	Bimsie1RemoteServiceInterface getRemoteServiceInterface();
 	void cleanup();
 	long getUoid();
 }

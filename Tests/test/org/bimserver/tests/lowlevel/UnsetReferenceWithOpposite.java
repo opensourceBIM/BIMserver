@@ -6,8 +6,8 @@ import java.util.Random;
 
 import org.bimserver.client.BimServerClient;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
 import org.bimserver.tests.utils.TestWithEmbeddedServer;
 import org.junit.Test;
 
@@ -20,10 +20,10 @@ public class UnsetReferenceWithOpposite extends TestWithEmbeddedServer {
 			BimServerClient bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			// Get the service interface
-			ServiceInterface serviceInterface = bimServerClient.getService();
+			ServiceInterface serviceInterface = bimServerClient.getServiceInterface();
 //			PluginInterface pluginInterface = bimServerClient.getPlugin();
 			
-			LowLevelInterface service = bimServerClient.getLowLevel();
+			Bimsie1LowLevelInterface service = bimServerClient.getBimsie1LowLevelInterface();
 			
 			Long projectId = serviceInterface.addProject("PG-unsetReferenceTest" + new Random().nextInt()).getOid();
 			Long transactionId = service.startTransaction(projectId);

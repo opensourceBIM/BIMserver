@@ -33,8 +33,6 @@ import javax.xml.bind.annotation.XmlMimeType;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SCompareResult;
 import org.bimserver.interfaces.objects.SCompareType;
-import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
@@ -53,7 +51,7 @@ import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
-@WebService(name = "ServiceInterface", targetNamespace="org.buildingsmart.bimsie")
+@WebService(name = "ServiceInterface", targetNamespace="org.bimserver")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface ServiceInterface extends PublicInterface {
 	/**
@@ -63,7 +61,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * @param comment A comment
 	 * @param deserializerOid ObjectId of the deserializer to use, use getAllDeserializers to get a list of available deserializers
 	 * @param fileSize The size of the file in bytes
-	 * @param ifcFile The actual file
+	 * @param file The actual file
 	 * @param merge Whether to use checkin merging (this will alter your model!)
 	 * @param sync Whether the call should return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getCheckinState method
@@ -76,7 +74,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "deserializerOid", partName = "checkin.deserializerOid") Long deserializerOid,
 		@WebParam(name = "fileSize", partName = "checkin.fileSize") Long fileSize,
 		@WebParam(name = "fileName", partName = "checkin.fileName") String fileName,
-		@WebParam(name = "ifcFile", partName = "checkin.ifcFile") @XmlMimeType("application/octet-stream") DataHandler ifcFile,
+		@WebParam(name = "data", partName = "checkin.data") @XmlMimeType("application/octet-stream") DataHandler data,
 		@WebParam(name = "merge", partName = "checkin.merge") Boolean merge,
 		@WebParam(name = "sync", partName = "checkin.sync") Boolean sync) throws ServerException, UserException;
 
@@ -101,53 +99,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "url", partName = "checkinFromUrl.url") String url,
 		@WebParam(name = "merge", partName = "checkinFromUrl.merge") Boolean merge,
 		@WebParam(name = "sync", partName = "checkinFromUrl.sync") Boolean sync) throws ServerException, UserException;
-	
-	/**
-	 * Checkout an existing model, cehckout is the same as download, except a "checkout" will tell the server and other users you are working on it
-	 * 
-	 * @param roid Revision ObjectID
-	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
-	 * @param sync Whether to return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the getDownloadState method
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "checkout")
-	Long checkout(
-		@WebParam(name = "roid", partName = "checkout.roid") Long roid,
-		@WebParam(name = "serializerOid", partName = "checkout.serializerOid") Long serializerOid,
-		@WebParam(name = "sync", partName = "checkout.sync") Boolean sync) throws ServerException, UserException;
-
-	/**
-	 * Same as checkout, only this will automatically select the last revision to checkout
-	 * 
-	 * @param poid Project ObjectID
-	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
-	 * @param sync Whether to return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "checkoutLastRevision")
-	Long checkoutLastRevision(
-		@WebParam(name = "poid", partName = "checkoutLastRevision.poid") Long poid,
-		@WebParam(name = "serializerOid", partName = "checkoutLastRevision.serializerOid") Long serializerOid,
-		@WebParam(name = "sync", partName = "checkoutLastRevision.sync") Boolean sync) throws ServerException, UserException;
-
-	/**
-	 * Download a single revision of a model in a serialized format
-	 * 
-	 * @param roid Revision ObjectID
-	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
-	 * @param showOwn Whether to return revisions created by the current user
-	 * @param sync Whether to return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "download")
-	Long download(
-		@WebParam(name = "roid", partName = "download.roid") Long roid,
-		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
-		@WebParam(name = "showOwn", partName = "download.showOwn") Boolean showOwn,
-		@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
 	 * Download a compare of a model
@@ -167,116 +118,6 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "mcid", partName = "downloadByOids.mcid") Long mcid,
 		@WebParam(name = "type", partName = "downloadByOids.type") SCompareType type,
 		@WebParam(name = "sync", partName = "downloadByOids.sync") Boolean sync) throws ServerException, UserException;
-
-	/**
-	 * Download a model in a serialized format by giving a set of revisions and a set of Object IDs
-	 * @param roids A set of Revision ObjectIDs
-	 * @param oids A set of ObjectIDs
-	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
-	 * @param sync Whether to return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "downloadByOids")
-	Long downloadByOids(
-		@WebParam(name = "roids", partName = "downloadCompareResults.roids") Set<Long> roids,
-		@WebParam(name = "oids", partName = "downloadCompareResults.oids") Set<Long> oids,
-		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
-		@WebParam(name = "sync", partName = "downloadCompareResults.sync") Boolean sync,
-		@WebParam(name = "deep", partName = "downloadCompareResults.deep") Boolean deep) throws ServerException, UserException;
-
-	/**
-	 * Download a model in serialized format by giving a set of revisions and a set of class names to filter on
-	 * @param roids A set of Revision ObjectIDs
-	 * @param classNames A set of class names to filter on (e.g. "IfcWindow")
-	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
-	 * @param includeAllSubtypes Whether to query all (recursive) subtypes of each gives class
-	 * @param sync Whether to return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "downloadByTypes")
-	Long downloadByTypes(
-		@WebParam(name = "roids", partName = "downloadByTypes.roids") Set<Long> roids,
-		@WebParam(name = "classNames", partName = "downloadByTypes.classNames") Set<String> classNames,
-		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
-		@WebParam(name = "includeAllSubtypes", partName = "downloadByTypes.includeAllSubtypes") Boolean includeAllSubtypes,
-		@WebParam(name = "useObjectIDM", partName = "downloadByTypes.useObjectIDM") Boolean useObjectIDM,
-		@WebParam(name = "deep", partName = "downloadByTypes.deep") Boolean deep,
-		@WebParam(name = "sync", partName = "download.sync") Boolean sync) throws ServerException, UserException;
-
-	/**
-	 * Download a model in a serialized format by giving a set of revisions and a set of guids to filter on
-	 * @param roids A set of Revision ObjectIDs
-	 * @param guids A set of IFC guids
-	 * @param serializerOid OID of the serializer to use
-	 * @param sync Whether to return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "downloadByGuids")
-	Long downloadByGuids(
-		@WebParam(name = "roids", partName = "downloadByGuids.roids") Set<Long> roids,
-		@WebParam(name = "guids", partName = "downloadByGuids.guids") Set<String> guids,
-		@WebParam(name = "serializerOid", partName = "downloadByGuids.serializerOid") Long serializerOid,
-		@WebParam(name = "deep", partName = "downloadByGuids.deep") Boolean deep,
-		@WebParam(name = "sync", partName = "downloadByGuids.sync") Boolean sync) throws ServerException, UserException;
-
-	/**
-	 * Download a model in a serialized format by giving a set of revisions and a set of names to filter on
-	 * @param roids A set of Revision ObjectIDs
-	 * @param names A set of names, the names should be exact matches for now
-	 * @param serializerOid OID of the serializer to use
-	 * @param sync Whether to return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "downloadByNames")
-	Long downloadByNames(
-		@WebParam(name = "roids", partName = "downloadByNames.roids") Set<Long> roids,
-		@WebParam(name = "names", partName = "downloadByNames.names") Set<String> names,
-		@WebParam(name = "serializerOid", partName = "downloadByNames.serializerOid") Long serializerOid,
-		@WebParam(name = "deep", partName = "downloadByNames.deep") Boolean deep,
-		@WebParam(name = "sync", partName = "downloadByNames.sync") Boolean sync) throws ServerException, UserException;
-	
-	/**
-	 * Download a model in a serialized format by giving a set of revisions
-	 * @param roids A set of Revision ObjectIDs
-	 * @param serializerOid ObjectId of the serializer to use, use getAllSerializers to find availble serializeres
-	 * @param sync Whether to return immediately (async) or wait for completion (sync)
-	 * @return An id, which you can use for the getDownloadState and getDownloadData methods
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "downloadRevisions")
-	Long downloadRevisions(
-		@WebParam(name = "roids", partName = "downloadRevisions.roids") Set<Long> roids,
-		@WebParam(name = "serializerOid", partName = "download.serializerOid") Long serializerOid,
-		@WebParam(name = "sync", partName = "downloadRevisions.sync") Boolean sync) throws ServerException, UserException;
-
-	/**
-	 * @param roid ObjectID of the Revision to perform this query on
-	 * @param code The Java code, should be an implementation of the QueryInterface interface
-	 * @return SRunResult
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "downloadQuery")
-	Long downloadQuery(
-		@WebParam(name = "roid", partName = "downloadQuery.roid") Long roid, 
-		@WebParam(name = "qeid", partName = "downloadQuery.qeid") Long qeid, 
-		@WebParam(name = "code", partName = "downloadQuery.code") String code,
-		@WebParam(name = "sync", partName = "downloadQuery.sync") Boolean sync,
-		@WebParam(name = "serializerOid", partName = "downloadQuery.serializerOid") Long serializerOid) throws ServerException, UserException;
-
-	/**
-	 * Get the data for a download/checkout
-	 * 
-	 * @param actionId The actionId returned by one of the download or checkout methods
-	 * @return An SDownloadResult containing the serialized data
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getDownloadData")
-	SDownloadResult getDownloadData(
-		@WebParam(name = "actionId", partName = "getDownloadData.actionId") Long actionId) throws ServerException, UserException;
 
 	/**
 	 * Add a new user
@@ -835,14 +676,6 @@ public interface ServiceInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "getAllObjectIDMPluginDescriptors")
 	List<SObjectIDMPluginDescriptor> getAllObjectIDMPluginDescriptors() throws ServerException, UserException;
-
-	/**
-	 * @return The name of the suggested deserializer
-	 * @throws ServerException 
-	 */
-	@WebMethod(action = "getSuggestedDeserializerForExtension")
-	SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(
-		@WebParam(name = "extension", partName = "getSuggestedDeserializerForExtension.extension") String extension) throws ServerException, UserException;
 
 	/**
 	 * Checkin warnings are given to users

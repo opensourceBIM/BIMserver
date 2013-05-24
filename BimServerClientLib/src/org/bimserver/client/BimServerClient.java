@@ -48,15 +48,17 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
-import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
-import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
-import org.bimserver.shared.interfaces.RegistryInterface;
-import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1AuthInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationRegistryInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1ServiceInterface;
 import org.bimserver.shared.meta.SServicesMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -99,7 +101,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 
 	private void authenticate() throws ServerException, UserException {
 		try {
-			AuthInterface authInterface = channel.get(AuthInterface.class);
+			Bimsie1AuthInterface authInterface = channel.get(Bimsie1AuthInterface.class);
 			if (authenticationInfo instanceof UsernamePasswordAuthenticationInfo) {
 				UsernamePasswordAuthenticationInfo usernamePasswordAuthenticationInfo = (UsernamePasswordAuthenticationInfo) authenticationInfo;
 				setToken(authInterface.login(usernamePasswordAuthenticationInfo.getUsername(), usernamePasswordAuthenticationInfo.getPassword()));
@@ -156,7 +158,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		notifyOfDisconnect();
 	}
 
-	public void registerNotificationListener(NotificationInterface notificationInterface) {
+	public void registerNotificationListener(Bimsie1NotificationInterface notificationInterface) {
 		setNotificationsEnabled(true);
 	}
 
@@ -201,39 +203,39 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		return token != null;
 	}
 
-	public void unregisterNotificationListener(NotificationInterface notificationInterface) {
+	public void unregisterNotificationListener(Bimsie1NotificationInterface notificationInterface) {
 		notificationsClient.unregisterNotifictionListener(notificationInterface);
 	}
 
-	public NotificationInterface getNotificationInterface() throws PublicInterfaceNotFoundException {
-		return get(NotificationInterface.class);
+	public Bimsie1NotificationInterface getNotificationInterface() throws PublicInterfaceNotFoundException {
+		return get(Bimsie1NotificationInterface.class);
 	}
 
-	public RemoteServiceInterface getRemoteServiceInterface() throws PublicInterfaceNotFoundException {
-		return get(RemoteServiceInterface.class);
+	public Bimsie1RemoteServiceInterface getRemoteServiceInterface() throws PublicInterfaceNotFoundException {
+		return get(Bimsie1RemoteServiceInterface.class);
 	}
 	
-	public LowLevelInterface getLowLevel() throws PublicInterfaceNotFoundException {
-		return get(LowLevelInterface.class);
+	public Bimsie1LowLevelInterface getBimsie1LowLevelInterface() throws PublicInterfaceNotFoundException {
+		return get(Bimsie1LowLevelInterface.class);
 	}
 	
-	public ServiceInterface getService() throws PublicInterfaceNotFoundException {
+	public ServiceInterface getServiceInterface() throws PublicInterfaceNotFoundException {
 		return get(ServiceInterface.class);
 	}
 
-	public AdminInterface getAdmin() throws PublicInterfaceNotFoundException {
+	public AdminInterface getAdminInterface() throws PublicInterfaceNotFoundException {
 		return get(AdminInterface.class);
 	}
 	
-	public AuthInterface getAuth() throws PublicInterfaceNotFoundException {
-		return get(AuthInterface.class);
+	public Bimsie1AuthInterface getBimsie1AuthInterface() throws PublicInterfaceNotFoundException {
+		return get(Bimsie1AuthInterface.class);
 	}
 
-	public SettingsInterface getSettings() throws PublicInterfaceNotFoundException {
+	public SettingsInterface getSettingsInterface() throws PublicInterfaceNotFoundException {
 		return get(SettingsInterface.class);
 	}
 	
-	public PluginInterface getPlugin() throws PublicInterfaceNotFoundException {
+	public PluginInterface getPluginInterface() throws PublicInterfaceNotFoundException {
 		return get(PluginInterface.class);
 	}
 	
@@ -275,10 +277,10 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 
 	public void download(long roid, long serializerOid, OutputStream outputStream) {
 		try {
-			Long download = getService().download(roid, serializerOid, true, true);
+			Long download = getBimsie1ServiceInterface().download(roid, serializerOid, true, true);
 			InputStream inputStream = getDownloadData(download, serializerOid);
 			IOUtils.copy(inputStream, outputStream);
-			getService().cleanupLongAction(download);
+			getServiceInterface().cleanupLongAction(download);
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {
@@ -318,7 +320,15 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	}
 	
 	@Override
-	public RegistryInterface getRegistry() throws PublicInterfaceNotFoundException {
+	public Bimsie1NotificationRegistryInterface getRegistry() throws PublicInterfaceNotFoundException {
 		return channel.getRegistry();
+	}
+
+	public AuthInterface getBimServerAuthInterface() throws PublicInterfaceNotFoundException {
+		return channel.getBimServerAuthInterface();
+	}
+
+	public Bimsie1ServiceInterface getBimsie1ServiceInterface() throws PublicInterfaceNotFoundException {
+		return channel.getBimsieServiceInterface();
 	}
 }

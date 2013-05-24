@@ -111,7 +111,7 @@ public class CodeMigrator {
 		SService service = new SService(new SourceCodeFetcher() {
 			@Override
 			public String get(Class<?> clazz) {
-				File javaFile = new File("../Shared/src/org/bimserver/shared/interfaces/" + clazz.getSimpleName() + ".java");
+				File javaFile = new File("../Shared/src/" + clazz.getName().replace(".", "/") + ".java");
 				try {
 					return FileUtils.readFileToString(javaFile);
 				} catch (IOException e) {

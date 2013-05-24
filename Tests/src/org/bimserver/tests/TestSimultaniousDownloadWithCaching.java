@@ -50,9 +50,9 @@ import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AdminInterface;
-import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1AuthInterface;
 import org.bimserver.webservices.ServiceMap;
 
 public class TestSimultaniousDownloadWithCaching {
@@ -101,12 +101,12 @@ public class TestSimultaniousDownloadWithCaching {
 			final ServiceMap serviceMap = bimServer.getServiceFactory().get(AccessMethod.INTERNAL);
 			ServiceInterface serviceInterface = serviceMap.get(ServiceInterface.class);
 			SettingsInterface settingsInterface = serviceMap.get(SettingsInterface.class);
-			final AuthInterface authInterface = serviceMap.get(AuthInterface.class);
+			final Bimsie1AuthInterface authInterface = serviceMap.get(Bimsie1AuthInterface.class);
 			serviceInterface = bimServer.getServiceFactory().get(authInterface.login("admin@bimserver.org", "admin"), AccessMethod.INTERNAL).get(ServiceInterface.class);
 			settingsInterface.setCacheOutputFiles(true);
 			settingsInterface.setGenerateGeometryOnCheckin(false);
 			final SProject project = serviceInterface.addProject("test");
-			SDeserializerPluginConfiguration deserializerByName = serviceMap.getPlugin().getDeserializerByName("IfcStepDeserializer");
+			SDeserializerPluginConfiguration deserializerByName = serviceMap.getBimsie1ServiceInterface().getDeserializerByName("IfcStepDeserializer");
 			File file = new File("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
 			serviceInterface.checkin(project.getOid(), "test", deserializerByName.getOid(), file.length(), file.getName(), new DataHandler(new FileDataSource(file)), false, true);
 			final SProject projectUpdate = serviceInterface.getProjectByPoid(project.getOid());
@@ -116,11 +116,10 @@ public class TestSimultaniousDownloadWithCaching {
 					@Override
 					public void run() {
 						try {
-							ServiceInterface serviceInterface = serviceMap.get(ServiceInterface.class);
-							serviceInterface = bimServer.getServiceFactory().get(authInterface.login("admin@bimserver.org", "admin"), AccessMethod.INTERNAL).get(ServiceInterface.class);
-							SSerializerPluginConfiguration serializerPluginConfiguration = serviceMap.getPlugin().getSerializerByName("Ifc2x3");
-							Long download = serviceInterface.download(projectUpdate.getLastRevisionId(), serializerPluginConfiguration.getOid(), true, true);
-							SDownloadResult downloadData = serviceInterface.getDownloadData(download);
+							ServiceMap serviceMap2 = bimServer.getServiceFactory().get(authInterface.login("admin@bimserver.org", "admin"), AccessMethod.INTERNAL);
+							SSerializerPluginConfiguration serializerPluginConfiguration = serviceMap.getBimsie1ServiceInterface().getSerializerByName("Ifc2x3");
+							Long download = serviceMap2.getBimsie1ServiceInterface().download(projectUpdate.getLastRevisionId(), serializerPluginConfiguration.getOid(), true, true);
+							SDownloadResult downloadData = serviceMap2.getBimsie1ServiceInterface().getDownloadData(download);
 							if (downloadData.getFile().getDataSource() instanceof CacheStoringEmfSerializerDataSource) {
 								CacheStoringEmfSerializerDataSource c = (CacheStoringEmfSerializerDataSource)downloadData.getFile().getDataSource();
 								try {
@@ -135,7 +134,7 @@ public class TestSimultaniousDownloadWithCaching {
 								IOUtils.copy(downloadData.getFile().getInputStream(), baos);
 								System.out.println(baos.size());
 							}
-							serviceInterface.cleanupLongAction(download);
+							serviceMap2.getServiceInterface().cleanupLongAction(download);
 						} catch (ServerException e) {
 							e.printStackTrace();
 						} catch (UserException e) {
@@ -158,8 +157,6 @@ public class TestSimultaniousDownloadWithCaching {
 			e1.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		} catch (PublicInterfaceNotFoundException e1) {
-			e1.printStackTrace();
 		}
 	}
 }

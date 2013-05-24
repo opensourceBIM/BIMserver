@@ -1,4 +1,4 @@
-package org.bimserver.webservices;
+package org.bimserver.webservices.impl;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -50,15 +50,18 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.LowLevelInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
+import org.bimserver.webservices.LongTransaction;
+import org.bimserver.webservices.NoTransactionException;
+import org.bimserver.webservices.ServiceMap;
 import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelInterface {
-	private static final Logger LOGGER = LoggerFactory.getLogger(LowLevelServiceImpl.class);
+public class Bimsie1LowLevelServiceImpl extends GenericServiceImpl implements Bimsie1LowLevelInterface {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Bimsie1LowLevelServiceImpl.class);
 	
-	public LowLevelServiceImpl(ServiceMap serviceMap) {
+	public Bimsie1LowLevelServiceImpl(ServiceMap serviceMap) {
 		super(serviceMap);
 	}
 

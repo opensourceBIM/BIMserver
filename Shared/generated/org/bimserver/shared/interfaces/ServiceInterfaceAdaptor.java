@@ -19,7 +19,7 @@ package org.bimserver.shared.interfaces;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
 
-public class ServiceInterfaceAdaptor implements ServiceInterface {
+public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.ServiceInterface {
 
 	public void addExtendedDataSchema(org.bimserver.interfaces.objects.SExtendedDataSchema extendedDataSchema) throws UserException, ServerException {
 	}
@@ -66,19 +66,11 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	public void changeUserType(java.lang.Long uoid, org.bimserver.interfaces.objects.SUserType userType) throws UserException, ServerException {
 	}
 	
-	public java.lang.Long checkin(java.lang.Long poid, java.lang.String comment, java.lang.Long deserializerOid, java.lang.Long fileSize, java.lang.String fileName, javax.activation.DataHandler ifcFile, java.lang.Boolean merge, java.lang.Boolean sync) throws UserException, ServerException {
+	public java.lang.Long checkin(java.lang.Long poid, java.lang.String comment, java.lang.Long deserializerOid, java.lang.Long fileSize, java.lang.String fileName, javax.activation.DataHandler data, java.lang.Boolean merge, java.lang.Boolean sync) throws UserException, ServerException {
 		return null;
 	}
 	
 	public java.lang.Long checkinFromUrl(java.lang.Long poid, java.lang.String comment, java.lang.Long deserializerOid, java.lang.String fileName, java.lang.String url, java.lang.Boolean merge, java.lang.Boolean sync) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long checkout(java.lang.Long roid, java.lang.Long serializerOid, java.lang.Boolean sync) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long checkoutLastRevision(java.lang.Long poid, java.lang.Long serializerOid, java.lang.Boolean sync) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -104,35 +96,7 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public java.lang.Long download(java.lang.Long roid, java.lang.Long serializerOid, java.lang.Boolean showOwn, java.lang.Boolean sync) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long downloadByGuids(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> guids, java.lang.Long serializerOid, java.lang.Boolean deep, java.lang.Boolean sync) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long downloadByNames(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> names, java.lang.Long serializerOid, java.lang.Boolean deep, java.lang.Boolean sync) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long downloadByOids(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.Long> oids, java.lang.Long serializerOid, java.lang.Boolean sync, java.lang.Boolean deep) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long downloadByTypes(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> classNames, java.lang.Long serializerOid, java.lang.Boolean includeAllSubtypes, java.lang.Boolean useObjectIDM, java.lang.Boolean deep, java.lang.Boolean sync) throws UserException, ServerException {
-		return null;
-	}
-	
 	public java.lang.Long downloadCompareResults(java.lang.Long serializerOid, java.lang.Long roid1, java.lang.Long roid2, java.lang.Long mcid, org.bimserver.interfaces.objects.SCompareType type, java.lang.Boolean sync) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long downloadQuery(java.lang.Long roid, java.lang.Long qeid, java.lang.String code, java.lang.Boolean sync, java.lang.Long serializerOid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.lang.Long downloadRevisions(java.util.Set<java.lang.Long> roids, java.lang.Long serializerOid, java.lang.Boolean sync) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -244,10 +208,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SDownloadResult getDownloadData(java.lang.Long actionId) throws UserException, ServerException {
-		return null;
-	}
-	
 	public org.bimserver.interfaces.objects.SExtendedData getExtendedData(java.lang.Long oid) throws UserException, ServerException {
 		return null;
 	}
@@ -309,10 +269,6 @@ public class ServiceInterfaceAdaptor implements ServiceInterface {
 	}
 	
 	public java.util.List<org.bimserver.interfaces.objects.SProject> getSubProjects(java.lang.Long poid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(java.lang.String extension) throws UserException, ServerException {
 		return null;
 	}
 	

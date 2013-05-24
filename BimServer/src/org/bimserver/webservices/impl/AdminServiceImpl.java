@@ -1,4 +1,4 @@
-package org.bimserver.webservices;
+package org.bimserver.webservices.impl;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -59,6 +59,10 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
+import org.bimserver.webservices.SLogComparator;
+import org.bimserver.webservices.SMigrationComparator;
+import org.bimserver.webservices.SPluginDescriptorComparator;
+import org.bimserver.webservices.ServiceMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -114,7 +118,6 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 			javaInfo.getJavaLibrarypath().add(classp);
 		}
 		javaInfo.setJavaIoTmp(System.getProperty("java.io.tmpdir"));
-		javaInfo.setJavaCompiler(System.getProperty("java.compiler"));
 		javaInfo.setJavaExtdir(System.getProperty("java.ext.dirs"));
 		javaInfo.setJavaFileSeparator(System.getProperty("file.separator"));
 		javaInfo.setJavaPathSeparator(System.getProperty("path.separator"));

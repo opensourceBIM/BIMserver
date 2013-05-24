@@ -19,7 +19,7 @@ package org.bimserver.shared.interfaces;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
 
-public class SettingsInterfaceAdaptor implements SettingsInterface {
+public class SettingsInterfaceAdaptor implements org.bimserver.shared.interfaces.SettingsInterface {
 
 	public java.lang.String getEmailSenderAddress() throws UserException, ServerException {
 		return null;

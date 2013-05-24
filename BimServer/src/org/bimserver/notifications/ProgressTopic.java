@@ -17,6 +17,7 @@ package org.bimserver.notifications;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SProgressTopicType;
@@ -46,17 +47,28 @@ public class ProgressTopic extends Topic {
 		return key;
 	}
 
-	public synchronized void updateProgress(LongActionState state) {
+	public synchronized void updateProgress(final LongActionState state) {
 		lastProgress = state;
 		if (lastSent == -1 || System.nanoTime() - lastSent > RATE_LIMIT_NANO_SECONDS || state.getProgress() == 100 || state.getState() == ActionState.FINISHED || state.getState() == ActionState.AS_ERROR) {
-			for (EndPoint endPoint : getEndPoints()) {
-				try {
-					endPoint.getNotificationInterface().progress(key.getId(), new SConverter().convertToSObject(state));
-				} catch (UserException e) {
-					e.printStackTrace();
-				} catch (ServerException e) {
-					e.printStackTrace();
-				}
+			try {
+				map(new Mapper(){
+					@Override
+					public void map(EndPoint endPoint) throws UserException, ServerException, BimserverDatabaseException {
+						try {
+							endPoint.getNotificationInterface().progress(key.getId(), new SConverter().convertToSObject(state));
+						} catch (UserException e) {
+							e.printStackTrace();
+						} catch (ServerException e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			} catch (UserException e) {
+				e.printStackTrace();
+			} catch (ServerException e) {
+				e.printStackTrace();
+			} catch (BimserverDatabaseException e) {
+				e.printStackTrace();
 			}
 			lastSent = System.nanoTime();
 		}

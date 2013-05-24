@@ -1,5 +1,5 @@
 
-Êî
+×Ô
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -165,14 +165,14 @@ parentPoid ("a
 value ("T
 ChangeUserTypeRequest
 uoid (-
-userType (2.org.bimserver.pb.SUserType"š
+userType (2.org.bimserver.pb.SUserType"—
 CheckinRequest
 poid (
 comment (	
 deserializerOid (
 fileSize (
-fileName (	
-ifcFile (
+fileName (	
+data (
 merge (
 sync ("6
 CheckinResponse
@@ -187,20 +187,6 @@ parentPoid ("a
 merge (
 sync ("=
 CheckinFromUrlResponse
-errorMessage (	
-value ("D
-CheckoutRequest
-roid (
-serializerOid (
-sync ("7
-CheckoutResponse
-errorMessage (	
-value ("P
-CheckoutLastRevisionRequest
-poid (
-serializerOid (
-sync ("C
-CheckoutLastRevisionResponse
 errorMessage (	
 value (",
 CleanupLongActionRequest
@@ -221,26 +207,26 @@ parentPoid ("a
 rid (
 oid (
 oldValue (	
-	fieldName (	"A
-SSimpleDataValue
-rid (
-oid (
-stringValue (	"O
+	fieldName (	"X
+SListDataValue,
+values (2.org.bimserver.pb.SDataValue
+rid (
+oid ("O
 SReferenceDataValue
 guid (	
 typeName (	
 rid (
-oid ("X
-SListDataValue,
-values (2.org.bimserver.pb.SDataValue
-rid (
-oid ("’
+oid ("A
+SSimpleDataValue
+rid (
+oid (
+stringValue (	"’
 
 SDataValue
-__actual_type (	>
-__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValueD
-__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue:
-__SListDataValue (2 .org.bimserver.pb.SListDataValue
+__actual_type (	:
+__SListDataValue (2 .org.bimserver.pb.SListDataValueD
+__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue>
+__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValue
 rid (
 oid (
 	fieldName (	"
@@ -289,54 +275,7 @@ dataObject (2.org.bimserver.pb.SDataObject"j
 uoid ("9
 DeleteUserResponse
 errorMessage (	
-value ("U
-DownloadRequest
-roid (
-serializerOid (
-showOwn (
-sync ("7
-DownloadResponse
-errorMessage (	
-value ("i
-DownloadByGuidsRequest
-roids (
-guids (	
-serializerOid (
-deep (
-sync (">
-DownloadByGuidsResponse
-errorMessage (	
-value ("i
-DownloadByNamesRequest
-roids (
-names (	
-serializerOid (
-deep (
-sync (">
-DownloadByNamesResponse
-errorMessage (	
-value ("g
-DownloadByOidsRequest
-roids (
-oids (
-serializerOid (
-sync (
-deep ("=
-DownloadByOidsResponse
-errorMessage (	
-value (" 
-DownloadByTypesRequest
-roids (
-
-classNames (	
-serializerOid (
-includeAllSubtypes (
-useObjectIDM (
-deep (
-sync (">
-DownloadByTypesResponse
-errorMessage (	
-value ("ž
+value ("ž
 DownloadCompareResultsRequest
 serializerOid (
 roid1 (
@@ -345,22 +284,6 @@ classNames (	
 type (2.org.bimserver.pb.SCompareType
 sync ("E
 DownloadCompareResultsResponse
-errorMessage (	
-value ("e
-DownloadQueryRequest
-roid (
-qeid (
-code (	
-sync (
-serializerOid ("<
-DownloadQueryResponse
-errorMessage (	
-value ("N
-DownloadRevisionsRequest
-roids (
-serializerOid (
-sync ("@
-DownloadRevisionsResponse
 errorMessage (	
 value ("5
 %GetAllAuthorizedUsersOfProjectRequest
@@ -553,24 +476,7 @@ $GetAvailableClassesInRevisionRequest
 poid ("B
 GetCheckoutWarningsResponse
 errorMessage (	
-value (	"*
-GetDownloadDataRequest
-actionId ("+
-SCheckoutResult
-rid (
-oid ("·
-SDownloadResult
-__actual_type (	<
-__SCheckoutResult (2!.org.bimserver.pb.SCheckoutResult
-rid (
-oid (
-file (
-
-revisionNr (
-projectName (	"a
-GetDownloadDataResponse
-errorMessage (	0
-value (2!.org.bimserver.pb.SDownloadResult"%
+value (	"%
 GetExtendedDataRequest
 oid ("_
 GetExtendedDataResponse
@@ -682,16 +588,7 @@ revisionNr (
 poid ("Y
 GetSubProjectsResponse
 errorMessage (	)
-value (2.org.bimserver.pb.SProject"@
-+GetSuggestedDeserializerForExtensionRequest
-	extension (	"T
- SDeserializerPluginConfiguration
-userSettingsId (
-rid (
-oid ("‡
-,GetSuggestedDeserializerForExtensionResponse
-errorMessage (	A
-value (22.org.bimserver.pb.SDeserializerPluginConfiguration"$
+value (2.org.bimserver.pb.SProject"$
 GetUserByUoidRequest
 uoid ("U
 GetUserByUoidResponse
@@ -839,7 +736,7 @@ objectIDMs (
 SCompareType_ALL 
 SCompareType_ADD
 SCompareType_MODIFY
-SCompareType_DELETE2ôS
+SCompareType_DELETE2ÚJ
 ServiceInterfaceg
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest.org.bimserver.pb.VoidResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -856,24 +753,15 @@ addProject#.org.bimserver.pb.AddProjectRequest$.org.bimserver.pb.AddProjectRes
 branchToNewProject+.org.bimserver.pb.BranchToNewProjectRequest,.org.bimserver.pb.BranchToNewProjectResponseY
 changeUserType'.org.bimserver.pb.ChangeUserTypeRequest.org.bimserver.pb.VoidResponseN
 checkin .org.bimserver.pb.CheckinRequest!.org.bimserver.pb.CheckinResponsec
-checkinFromUrl'.org.bimserver.pb.CheckinFromUrlRequest(.org.bimserver.pb.CheckinFromUrlResponseQ
-checkout!.org.bimserver.pb.CheckoutRequest".org.bimserver.pb.CheckoutResponseu
-checkoutLastRevision-.org.bimserver.pb.CheckoutLastRevisionRequest..org.bimserver.pb.CheckoutLastRevisionResponse_
+checkinFromUrl'.org.bimserver.pb.CheckinFromUrlRequest(.org.bimserver.pb.CheckinFromUrlResponse_
 cleanupLongAction*.org.bimserver.pb.CleanupLongActionRequest.org.bimserver.pb.VoidResponseN
 compare .org.bimserver.pb.CompareRequest!.org.bimserver.pb.CompareResponseH
 count.org.bimserver.pb.CountRequest.org.bimserver.pb.CountResponse`
 deleteProject&.org.bimserver.pb.DeleteProjectRequest'.org.bimserver.pb.DeleteProjectResponseW
 deleteService&.org.bimserver.pb.DeleteServiceRequest.org.bimserver.pb.VoidResponseW
 
-deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserResponseQ
-download!.org.bimserver.pb.DownloadRequest".org.bimserver.pb.DownloadResponsef
-downloadByGuids(.org.bimserver.pb.DownloadByGuidsRequest).org.bimserver.pb.DownloadByGuidsResponsef
-downloadByNames(.org.bimserver.pb.DownloadByNamesRequest).org.bimserver.pb.DownloadByNamesResponsec
-downloadByOids'.org.bimserver.pb.DownloadByOidsRequest(.org.bimserver.pb.DownloadByOidsResponsef
-downloadByTypes(.org.bimserver.pb.DownloadByTypesRequest).org.bimserver.pb.DownloadByTypesResponse{
-downloadCompareResults/.org.bimserver.pb.DownloadCompareResultsRequest0.org.bimserver.pb.DownloadCompareResultsResponse`
-downloadQuery&.org.bimserver.pb.DownloadQueryRequest'.org.bimserver.pb.DownloadQueryResponsel
-downloadRevisions*.org.bimserver.pb.DownloadRevisionsRequest+.org.bimserver.pb.DownloadRevisionsResponse“
+deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserResponse{
+downloadCompareResults/.org.bimserver.pb.DownloadCompareResultsRequest0.org.bimserver.pb.DownloadCompareResultsResponse“
 getAllAuthorizedUsersOfProject7.org.bimserver.pb.GetAllAuthorizedUsersOfProjectRequest8.org.bimserver.pb.GetAllAuthorizedUsersOfProjectResponsex
 getAllCheckoutsByUser..org.bimserver.pb.GetAllCheckoutsByUserRequest/.org.bimserver.pb.GetAllCheckoutsByUserResponse
 getAllCheckoutsOfProject1.org.bimserver.pb.GetAllCheckoutsOfProjectRequest2.org.bimserver.pb.GetAllCheckoutsOfProjectResponse«
@@ -901,7 +789,6 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 getAvailableClassesInRevision6.org.bimserver.pb.GetAvailableClassesInRevisionRequest7.org.bimserver.pb.GetAvailableClassesInRevisionResponseo
 getCheckinWarnings+.org.bimserver.pb.GetCheckinWarningsRequest,.org.bimserver.pb.GetCheckinWarningsResponser
 getCheckoutWarnings,.org.bimserver.pb.GetCheckoutWarningsRequest-.org.bimserver.pb.GetCheckoutWarningsResponsef
-getDownloadData(.org.bimserver.pb.GetDownloadDataRequest).org.bimserver.pb.GetDownloadDataResponsef
 getExtendedData(.org.bimserver.pb.GetExtendedDataRequest).org.bimserver.pb.GetExtendedDataResponse„
 getExtendedDataSchemaById2.org.bimserver.pb.GetExtendedDataSchemaByIdRequest3.org.bimserver.pb.GetExtendedDataSchemaByIdResponse™
  getExtendedDataSchemaByNamespace9.org.bimserver.pb.GetExtendedDataSchemaByNamespaceRequest:.org.bimserver.pb.GetExtendedDataSchemaByNamespaceResponse¢
@@ -918,8 +805,7 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 
 getService#.org.bimserver.pb.GetServiceRequest$.org.bimserver.pb.GetServiceResponseu
 getServiceDescriptor-.org.bimserver.pb.GetServiceDescriptorRequest..org.bimserver.pb.GetServiceDescriptorResponsec
-getSubProjects'.org.bimserver.pb.GetSubProjectsRequest(.org.bimserver.pb.GetSubProjectsResponse¥
-$getSuggestedDeserializerForExtension=.org.bimserver.pb.GetSuggestedDeserializerForExtensionRequest>.org.bimserver.pb.GetSuggestedDeserializerForExtensionResponse`
+getSubProjects'.org.bimserver.pb.GetSubProjectsRequest(.org.bimserver.pb.GetSubProjectsResponse`
 getUserByUoid&.org.bimserver.pb.GetUserByUoidRequest'.org.bimserver.pb.GetUserByUoidResponsel
 getUserByUserName*.org.bimserver.pb.GetUserByUserNameRequest+.org.bimserver.pb.GetUserByUserNameResponsef
 getUserSettings(.org.bimserver.pb.GetUserSettingsRequest).org.bimserver.pb.GetUserSettingsResponsei

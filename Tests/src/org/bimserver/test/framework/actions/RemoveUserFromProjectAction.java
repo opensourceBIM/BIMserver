@@ -39,7 +39,7 @@ public class RemoveUserFromProjectAction extends Action {
 		if (!hasAuthorizedUsers.isEmpty()) {
 			Long uoid = hasAuthorizedUsers.get(nextInt(hasAuthorizedUsers.size()));
 			virtualUser.getLogger().info("Removing user " + uoid + " from project " + project.getName());
-			virtualUser.getBimServerClient().getService().removeUserFromProject(uoid, project.getOid());
+			virtualUser.getBimServerClient().getServiceInterface().removeUserFromProject(uoid, project.getOid());
 		}
 	}
 }

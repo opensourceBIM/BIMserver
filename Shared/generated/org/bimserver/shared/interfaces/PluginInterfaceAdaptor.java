@@ -19,7 +19,7 @@ package org.bimserver.shared.interfaces;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
 
-public class PluginInterfaceAdaptor implements PluginInterface {
+public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.PluginInterface {
 
 	public void addDeserializer(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration deserializer) throws UserException, ServerException {
 	}
@@ -165,14 +165,6 @@ public class PluginInterfaceAdaptor implements PluginInterface {
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SDeserializerPluginConfiguration getDeserializerById(java.lang.Long oid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SDeserializerPluginConfiguration getDeserializerByName(java.lang.String deserializerName) throws UserException, ServerException {
-		return null;
-	}
-	
 	public org.bimserver.interfaces.objects.SInternalServicePluginConfiguration getInternalServiceById(java.lang.Long oid) throws UserException, ServerException {
 		return null;
 	}
@@ -209,31 +201,11 @@ public class PluginInterfaceAdaptor implements PluginInterface {
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration getQueryEngineById(java.lang.Long oid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration getQueryEngineByName(java.lang.String name) throws UserException, ServerException {
-		return null;
-	}
-	
 	public org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration getRenderEngineById(java.lang.Long oid) throws UserException, ServerException {
 		return null;
 	}
 	
 	public org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration getRenderEngineByName(java.lang.String name) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SSerializerPluginConfiguration getSerializerByContentType(java.lang.String contentType) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SSerializerPluginConfiguration getSerializerById(java.lang.Long oid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SSerializerPluginConfiguration getSerializerByName(java.lang.String serializerName) throws UserException, ServerException {
 		return null;
 	}
 	

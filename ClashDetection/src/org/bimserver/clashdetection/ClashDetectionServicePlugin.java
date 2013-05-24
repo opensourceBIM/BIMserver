@@ -89,10 +89,10 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 
 				SSerializerPluginConfiguration sSerializer;
 				try {
-					sSerializer = bimServerClientInterface.getPlugin().getSerializerByPluginClassName("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin");
+					sSerializer = bimServerClientInterface.getPluginInterface().getSerializerByPluginClassName("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin");
 
-					long download = bimServerClientInterface.getService().download(roid, sSerializer.getOid(), true, true);
-					SDownloadResult downloadData = bimServerClientInterface.getService().getDownloadData(download);
+					long download = bimServerClientInterface.getBimsie1ServiceInterface().download(roid, sSerializer.getOid(), true, true);
+					SDownloadResult downloadData = bimServerClientInterface.getBimsie1ServiceInterface().getDownloadData(download);
 
 					try {
 						ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -198,7 +198,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						LOGGER.error("", e);
 					}
 
-					SExtendedDataSchema extendedDataSchemaByNamespace = bimServerClientInterface.getService().getExtendedDataSchemaByNamespace(
+					SExtendedDataSchema extendedDataSchemaByNamespace = bimServerClientInterface.getServiceInterface().getExtendedDataSchemaByNamespace(
 							"http://www.buildingsmart-tech.org/specifications/bcf-releases");
 
 					SFile file = new SFile();
@@ -212,10 +212,10 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 						file.setData(bytes);
 						file.setMime("application/bcf");
 
-						long fileId = bimServerClientInterface.getService().uploadFile(file);
+						long fileId = bimServerClientInterface.getServiceInterface().uploadFile(file);
 						extendedData.setFileId(fileId);
 
-						bimServerClientInterface.getService().addExtendedDataToRevision(roid, extendedData);
+						bimServerClientInterface.getServiceInterface().addExtendedDataToRevision(roid, extendedData);
 					} catch (Exception e) {
 						LOGGER.error("", e);
 					}

@@ -27,25 +27,35 @@ import org.bimserver.shared.ServiceHolder;
 import org.bimserver.shared.ServiceMapInterface;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
-import org.bimserver.shared.interfaces.Bimsie1Interface;
-import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
-import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
-import org.bimserver.shared.interfaces.RegistryInterface;
-import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.shared.interfaces.async.AsyncAdminInterface;
-import org.bimserver.shared.interfaces.async.AsyncAuthInterface;
 import org.bimserver.shared.interfaces.async.AsyncLowLevelInterface;
 import org.bimserver.shared.interfaces.async.AsyncMetaInterface;
 import org.bimserver.shared.interfaces.async.AsyncPluginInterface;
 import org.bimserver.shared.interfaces.async.AsyncRegistryInterface;
 import org.bimserver.shared.interfaces.async.AsyncServiceInterface;
 import org.bimserver.shared.interfaces.async.AsyncSettingsInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1AuthInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationRegistryInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1ServiceInterface;
 import org.bimserver.webservices.authorization.Authorization;
+import org.bimserver.webservices.impl.AdminServiceImpl;
+import org.bimserver.webservices.impl.Bimsie1AuthServiceImpl;
+import org.bimserver.webservices.impl.Bimsie1LowLevelServiceImpl;
+import org.bimserver.webservices.impl.MetaServiceImpl;
+import org.bimserver.webservices.impl.Bimsie1NotificationImpl;
+import org.bimserver.webservices.impl.PluginServiceImpl;
+import org.bimserver.webservices.impl.Bimsie1NotificationRegistryServiceImpl;
+import org.bimserver.webservices.impl.Bimsie1RemoteServiceImpl;
+import org.bimserver.webservices.impl.ServiceImpl;
+import org.bimserver.webservices.impl.SettingsServiceImpl;
 
 public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 	private BimServer bimServer;
@@ -87,26 +97,24 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 		}
 		if (clazz == ServiceInterface.class) {
 			publicInterface = new ServiceImpl(this);
-		} else if (clazz == AuthInterface.class) {
-			publicInterface = new AuthServiceImpl(this);
+		} else if (clazz == Bimsie1AuthInterface.class) {
+			publicInterface = new Bimsie1AuthServiceImpl(this);
 		} else if (clazz == AdminInterface.class) {
 			publicInterface = new AdminServiceImpl(this);
-		} else if (clazz == LowLevelInterface.class) {
-			publicInterface = new LowLevelServiceImpl(this);
+		} else if (clazz == Bimsie1LowLevelInterface.class) {
+			publicInterface = new Bimsie1LowLevelServiceImpl(this);
 		} else if (clazz == MetaInterface.class) {
 			publicInterface = new MetaServiceImpl(this);
 		} else if (clazz == SettingsInterface.class) {
 			publicInterface = new SettingsServiceImpl(this);
-		} else if (clazz == RemoteServiceInterface.class) {
-			publicInterface = new RemoteServiceImpl(this);
-		} else if (clazz == NotificationInterface.class) {
-			publicInterface = new NotificationImpl(bimServer);
-		} else if (clazz == RegistryInterface.class) {
-			publicInterface = new RegistryServiceImpl(this);
+		} else if (clazz == Bimsie1RemoteServiceInterface.class) {
+			publicInterface = new Bimsie1RemoteServiceImpl(this);
+		} else if (clazz == Bimsie1NotificationInterface.class) {
+			publicInterface = new Bimsie1NotificationImpl(bimServer);
+		} else if (clazz == Bimsie1NotificationRegistryInterface.class) {
+			publicInterface = new Bimsie1NotificationRegistryServiceImpl(this);
 		} else if (clazz == PluginInterface.class) {
 			publicInterface = new PluginServiceImpl(this);
-		} else if (clazz == Bimsie1Interface.class) {
-			publicInterface = new Bimsie1ServiceImpl(this);
 		} else {
 			throw new RuntimeException("Unknown interface: " + clazz.getName());
 		}
@@ -123,12 +131,8 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 		return new AsyncAdminInterface(get(AdminInterface.class), bimServer.getExecutorService());
 	}
 	
-	public AsyncAuthInterface getAuthAsync() {
-		return new AsyncAuthInterface(get(AuthInterface.class), bimServer.getExecutorService());
-	}
-	
 	public AsyncLowLevelInterface getLowLevelAsync() {
-		return new AsyncLowLevelInterface(get(LowLevelInterface.class), bimServer.getExecutorService());
+		return new AsyncLowLevelInterface(get(Bimsie1LowLevelInterface.class), bimServer.getExecutorService());
 	}
 	
 	public AsyncMetaInterface getMetaAsync() {
@@ -140,7 +144,7 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 	}
 	
 	public AsyncRegistryInterface getRegistryAsync() {
-		return new AsyncRegistryInterface(get(RegistryInterface.class), bimServer.getExecutorService());
+		return new AsyncRegistryInterface(get(Bimsie1NotificationRegistryInterface.class), bimServer.getExecutorService());
 	}
 	
 	public AsyncServiceInterface getServiceAsync() {
@@ -152,18 +156,18 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 	}
 	
 	@Override
-	public AdminInterface getAdmin() throws PublicInterfaceNotFoundException {
+	public AdminInterface getAdminInterface() throws PublicInterfaceNotFoundException {
 		return get(AdminInterface.class);
 	}
 	
 	@Override
-	public AuthInterface getAuth() throws PublicInterfaceNotFoundException {
-		return get(AuthInterface.class);
+	public Bimsie1AuthInterface getBimsie1AuthInterface() throws PublicInterfaceNotFoundException {
+		return get(Bimsie1AuthInterface.class);
 	}
 	
 	@Override
-	public LowLevelInterface getLowLevel() throws PublicInterfaceNotFoundException {
-		return get(LowLevelInterface.class);
+	public Bimsie1LowLevelInterface getBimsie1LowLevelInterface() throws PublicInterfaceNotFoundException {
+		return get(Bimsie1LowLevelInterface.class);
 	}
 	
 	@Override
@@ -172,22 +176,30 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 	}
 	
 	@Override
-	public PluginInterface getPlugin() throws PublicInterfaceNotFoundException {
+	public PluginInterface getPluginInterface() throws PublicInterfaceNotFoundException {
 		return get(PluginInterface.class);
 	}
 	
 	@Override
-	public RegistryInterface getRegistry() throws PublicInterfaceNotFoundException {
-		return get(RegistryInterface.class);
+	public Bimsie1NotificationRegistryInterface getRegistry() throws PublicInterfaceNotFoundException {
+		return get(Bimsie1NotificationRegistryInterface.class);
 	}
 	
 	@Override
-	public ServiceInterface getService() throws PublicInterfaceNotFoundException {
+	public ServiceInterface getServiceInterface() throws PublicInterfaceNotFoundException {
 		return get(ServiceInterface.class);
 	}
 	
 	@Override
-	public SettingsInterface getSettings() throws PublicInterfaceNotFoundException {
+	public SettingsInterface getSettingsInterface() throws PublicInterfaceNotFoundException {
 		return get(SettingsInterface.class);
+	}
+
+	public AuthInterface getBimServerAuthInterface() {
+		return get(AuthInterface.class);
+	}
+
+	public Bimsie1ServiceInterface getBimsie1ServiceInterface() {
+		return get(Bimsie1ServiceInterface.class);
 	}
 }

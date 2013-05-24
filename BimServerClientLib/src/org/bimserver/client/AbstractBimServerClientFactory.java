@@ -22,15 +22,15 @@ import java.util.Collections;
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.AdminInterface;
-import org.bimserver.shared.interfaces.AuthInterface;
-import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
-import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.PluginInterface;
-import org.bimserver.shared.interfaces.RegistryInterface;
-import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1AuthInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationRegistryInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SServicesMap;
 
@@ -46,15 +46,15 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 		this.servicesMap = new SServicesMap();
 		SService serviceInterface = new SServiceInterfaceService(null, ServiceInterface.class);
 		addService(serviceInterface);
-		addService(new SService(null, NotificationInterface.class, Collections.singletonList(serviceInterface)));
-		addService(new SService(null, RemoteServiceInterface.class, Collections.singletonList(serviceInterface)));
+		addService(new SService(null, Bimsie1NotificationInterface.class, Collections.singletonList(serviceInterface)));
+		addService(new SService(null, Bimsie1RemoteServiceInterface.class, Collections.singletonList(serviceInterface)));
 		addService(new SService(null, MetaInterface.class, Collections.singletonList(serviceInterface)));
 		addService(new SService(null, AdminInterface.class, Collections.singletonList(serviceInterface)));
 		addService(new SService(null, MetaInterface.class, Collections.singletonList(serviceInterface)));
 		addService(new SService(null, SettingsInterface.class, Collections.singletonList(serviceInterface)));
-		addService(new SService(null, AuthInterface.class, Collections.singletonList(serviceInterface)));
-		addService(new SService(null, LowLevelInterface.class, Collections.singletonList(serviceInterface)));
-		addService(new SService(null, RegistryInterface.class, Collections.singletonList(serviceInterface)));
+		addService(new SService(null, Bimsie1AuthInterface.class, Collections.singletonList(serviceInterface)));
+		addService(new SService(null, Bimsie1LowLevelInterface.class, Collections.singletonList(serviceInterface)));
+		addService(new SService(null, Bimsie1NotificationRegistryInterface.class, Collections.singletonList(serviceInterface)));
 		addService(new SService(null, PluginInterface.class, Collections.singletonList(serviceInterface)));
 	}
 	

@@ -38,8 +38,8 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.comparators.SRevisionIdComparator;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1AuthInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,14 +80,14 @@ public class SyndicationServlet extends SubServlet {
 			String password = split[1];
 			String token = (String) getServletContext().getAttribute("token");
 			ServiceInterface service = null;
-			AuthInterface authInterface = null;
+			Bimsie1AuthInterface authInterface = null;
 			try {
 				if (token == null) {
 					service = getBimServer().getServiceFactory().get(AccessMethod.SYNDICATION).get(ServiceInterface.class);
-					authInterface = getBimServer().getServiceFactory().get(AccessMethod.SYNDICATION).get(AuthInterface.class);
+					authInterface = getBimServer().getServiceFactory().get(AccessMethod.SYNDICATION).get(Bimsie1AuthInterface.class);
 				} else {
 					service = getBimServer().getServiceFactory().get(token, AccessMethod.SYNDICATION).get(ServiceInterface.class);
-					authInterface = getBimServer().getServiceFactory().get(token, AccessMethod.SYNDICATION).get(AuthInterface.class);
+					authInterface = getBimServer().getServiceFactory().get(token, AccessMethod.SYNDICATION).get(Bimsie1AuthInterface.class);
 				}
 			} catch (UserException e) {
 				LOGGER.error("", e);

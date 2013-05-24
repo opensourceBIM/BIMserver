@@ -50,7 +50,6 @@ public class SJavaInfo implements SDataBase
 	private List<java.lang.String> javaClasspath = new ArrayList<java.lang.String>();
 	private List<java.lang.String> javaLibrarypath = new ArrayList<java.lang.String>();
 	private java.lang.String javaIoTmp;
-	private java.lang.String javaCompiler;
 	private java.lang.String javaExtdir;
 	private java.lang.String javaFileSeparator;
 	private java.lang.String javaPathSeparator;
@@ -138,9 +137,6 @@ public class SJavaInfo implements SDataBase
 		}
 		if (sField.getName().equals("javaIoTmp")) {
 			return getJavaIoTmp();
-		}
-		if (sField.getName().equals("javaCompiler")) {
-			return getJavaCompiler();
 		}
 		if (sField.getName().equals("javaExtdir")) {
 			return getJavaExtdir();
@@ -239,10 +235,6 @@ public class SJavaInfo implements SDataBase
 		}
 		if (sField.getName().equals("javaIoTmp")) {
 			setJavaIoTmp((String)val);
-			return;
-		}
-		if (sField.getName().equals("javaCompiler")) {
-			setJavaCompiler((String)val);
 			return;
 		}
 		if (sField.getName().equals("javaExtdir")) {
@@ -424,14 +416,6 @@ public class SJavaInfo implements SDataBase
 
 	public void setJavaIoTmp(java.lang.String javaIoTmp) {
 		this.javaIoTmp = javaIoTmp;
-	}
-	
-	public java.lang.String getJavaCompiler() {
-		return javaCompiler;
-	}
-
-	public void setJavaCompiler(java.lang.String javaCompiler) {
-		this.javaCompiler = javaCompiler;
 	}
 	
 	public java.lang.String getJavaExtdir() {

@@ -1,4 +1,4 @@
-package org.bimserver.webservices;
+package org.bimserver.webservices.impl;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -36,6 +36,7 @@ import org.bimserver.shared.meta.SField;
 import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
+import org.bimserver.webservices.ServiceMap;
 
 public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface {
 	public MetaServiceImpl(ServiceMap serviceMap) {

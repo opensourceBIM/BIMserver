@@ -50,13 +50,15 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.AuthInterface;
-import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.shared.interfaces.MetaInterface;
 import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
-import org.bimserver.shared.interfaces.RegistryInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1AuthInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationRegistryInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1ServiceInterface;
 import org.bimserver.shared.reflector.Reflector;
 import org.bimserver.shared.reflector.ReflectorFactory;
 import org.slf4j.Logger;
@@ -237,18 +239,18 @@ public abstract class Channel implements ServiceHolder {
 	}
 	
 	@Override
-	public AdminInterface getAdmin() throws PublicInterfaceNotFoundException {
+	public AdminInterface getAdminInterface() throws PublicInterfaceNotFoundException {
 		return get(AdminInterface.class);
 	}
 	
 	@Override
-	public AuthInterface getAuth() throws PublicInterfaceNotFoundException {
-		return get(AuthInterface.class);
+	public Bimsie1AuthInterface getBimsie1AuthInterface() throws PublicInterfaceNotFoundException {
+		return get(Bimsie1AuthInterface.class);
 	}
 	
 	@Override
-	public LowLevelInterface getLowLevel() throws PublicInterfaceNotFoundException {
-		return get(LowLevelInterface.class);
+	public Bimsie1LowLevelInterface getBimsie1LowLevelInterface() throws PublicInterfaceNotFoundException {
+		return get(Bimsie1LowLevelInterface.class);
 	}
 	
 	@Override
@@ -257,26 +259,39 @@ public abstract class Channel implements ServiceHolder {
 	}
 	
 	@Override
-	public PluginInterface getPlugin() throws PublicInterfaceNotFoundException {
+	public PluginInterface getPluginInterface() throws PublicInterfaceNotFoundException {
 		return get(PluginInterface.class);
 	}
 	
 	@Override
-	public RegistryInterface getRegistry() throws PublicInterfaceNotFoundException {
-		return get(RegistryInterface.class);
+	public Bimsie1NotificationRegistryInterface getRegistry() throws PublicInterfaceNotFoundException {
+		return get(Bimsie1NotificationRegistryInterface.class);
 	}
 	
 	@Override
-	public SettingsInterface getSettings() throws PublicInterfaceNotFoundException {
+	public SettingsInterface getSettingsInterface() throws PublicInterfaceNotFoundException {
 		return get(SettingsInterface.class);
 	}
 	
 	@Override
-	public ServiceInterface getService() throws PublicInterfaceNotFoundException {
+	public ServiceInterface getServiceInterface() throws PublicInterfaceNotFoundException {
 		return get(ServiceInterface.class);
+	}
+
+	@Override
+	public Bimsie1ServiceInterface getBimsie1ServiceInterface() throws PublicInterfaceNotFoundException {
+		return get(Bimsie1ServiceInterface.class);
 	}
 	
 	protected boolean has(Class<? extends PublicInterface> interface1) {
 		return serviceInterfaces.containsKey(interface1.getName());
+	}
+
+	public AuthInterface getBimServerAuthInterface() throws PublicInterfaceNotFoundException {
+		return get(AuthInterface.class);
+	}
+
+	public Bimsie1ServiceInterface getBimsieServiceInterface() throws PublicInterfaceNotFoundException {
+		return get(Bimsie1ServiceInterface.class);
 	}
 }

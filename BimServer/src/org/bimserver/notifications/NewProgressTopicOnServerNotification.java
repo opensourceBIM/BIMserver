@@ -18,6 +18,7 @@ package org.bimserver.notifications;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
+import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -35,7 +36,7 @@ public class NewProgressTopicOnServerNotification extends Notification {
 	}
 	
 	@Override
-	public void process() throws UserException, ServerException {
+	public void process() throws UserException, ServerException, BimserverDatabaseException {
 		ChangeProgressTopicOnServerTopic changeProgressTopicOnServerTopic = getBimServer().getNotificationsManager().getChangeProgressTopicOnServerTopic();
 		changeProgressTopicOnServerTopic.notifyOfNewTopic(this);
 	}

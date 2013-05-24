@@ -162,15 +162,6 @@ public interface PluginInterface extends PublicInterface {
 	 * @return Serializer
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "getSerializerByName")
-	SSerializerPluginConfiguration getSerializerByName(
-		@WebParam(name = "serializerName", partName = "getSerializerByName.serializerName") String serializerName) throws ServerException, UserException;
-
-	/**
-	 * @param serializerName Name of the Serializer
-	 * @return Serializer
-	 * @throws ServerException, UserException
-	 */
 	@WebMethod(action = "getWebModuleByName")
 	SWebModulePluginConfiguration getWebModuleByName(
 		@WebParam(name = "name", partName = "getWebModuleByName.name") String name) throws ServerException, UserException;
@@ -183,15 +174,6 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getRenderEngineByName")
 	SRenderEnginePluginConfiguration getRenderEngineByName(
 		@WebParam(name = "name", partName = "getRenderEngineByName.name") String name) throws ServerException, UserException;
-
-	/**
-	 * @param name Name of the QueryEngine
-	 * @return QueryEngine
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getQueryEngineByName")
-	SQueryEnginePluginConfiguration getQueryEngineByName(
-		@WebParam(name = "name", partName = "getQueryEngineByName.name") String name) throws ServerException, UserException;
 
 	/**
 	 * @param name Name of the ModelMerger
@@ -275,15 +257,6 @@ public interface PluginInterface extends PublicInterface {
 		@WebParam(name = "oid", partName = "getRenderEngineById.oid") Long oid) throws ServerException, UserException;
 
 	/**
-	 * @param oid ObjectID of the QueryEngine
-	 * @return QueryEngine
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getQueryEngineById")
-	SQueryEnginePluginConfiguration getQueryEngineById(
-		@WebParam(name = "oid", partName = "getQueryEngineById.oid") Long oid) throws ServerException, UserException;
-
-	/**
 	 * @param oid ObjectID of the ModelMerger
 	 * @return SModelMerger
 	 * @throws ServerException, UserException
@@ -300,15 +273,6 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getModelCompareById")
 	SModelComparePluginConfiguration getModelCompareById(
 		@WebParam(name = "oid", partName = "getModelCompareById.oid") Long oid) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the Deserializer
-	 * @return Deserializer
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getDeserializerById")
-	SDeserializerPluginConfiguration getDeserializerById(
-		@WebParam(name = "oid", partName = "getDeserializerById.oid") Long oid) throws ServerException, UserException;
 	
 	/**
 	 * @param oid ObjectID of the Deserializer
@@ -514,16 +478,6 @@ public interface PluginInterface extends PublicInterface {
 	SObjectIDMPluginConfiguration getObjectIDMByName(
 		@WebParam(name = "objectIDMName", partName = "getObjectIDMByName.objectIDMName") String objectIDMName) throws ServerException, UserException;
 
-	/**
-	 * @param deserializerName Name of the Deserializer
-	 * @return Deserializer
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getDeserializerByName")
-	SDeserializerPluginConfiguration getDeserializerByName(
-		@WebParam(name = "deserializerName", partName = "getDeserializerByName.deserializerName") String deserializerName) throws ServerException, UserException;
-	
-	
 	@WebMethod(action = "getPluginObjectDefinition")
 	SObjectDefinition getPluginObjectDefinition(
 		@WebParam(name = "className", partName = "getPluginObjectDefinition.className") String className) throws ServerException, UserException;
@@ -546,24 +500,6 @@ public interface PluginInterface extends PublicInterface {
 	List<SDeserializerPluginConfiguration> getAllDeserializers(
 		@WebParam(name = "onlyEnabled", partName = "getAllDeserializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 	
-	/**
-	 * @param oid ObjectID of the Serializer
-	 * @return Serializer
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSerializerById")
-	SSerializerPluginConfiguration getSerializerById(
-		@WebParam(name = "oid", partName = "getSerializerById.oid") Long oid) throws ServerException, UserException;
-	
-	/**
-	 * @param contentType The ContentType
-	 * @return Serializer supporting the given ContentType
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getSerializerByContentType")
-	SSerializerPluginConfiguration getSerializerByContentType(
-		@WebParam(name = "contentType", partName = "getSerializerByContentType.contentType") String contentType) throws ServerException, UserException;
-
 	/**
 	 * @param contentType The ContentType
 	 * @return Serializer supporting the given ContentType

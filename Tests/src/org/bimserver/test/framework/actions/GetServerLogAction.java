@@ -32,7 +32,7 @@ public class GetServerLogAction extends Action {
 	@Override
 	public void execute(VirtualUser virtualUser) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		virtualUser.getLogger().info("Getting server log");
-		String serverLog = virtualUser.getBimServerClient().getAdmin().getServerLog();
+		String serverLog = virtualUser.getBimServerClient().getAdminInterface().getServerLog();
 		virtualUser.getLogger().info("Server log " + serverLog.length() + " characters long");
 	}
 }

@@ -19,10 +19,10 @@ package org.bimserver.plugins;
 
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.services.NewRevisionHandler;
-import org.bimserver.shared.interfaces.RemoteServiceInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
 
 public interface NotificationsManagerInterface {
 
-	void register(ServiceDescriptor serviceDescriptor, RemoteServiceInterface remoteServiceInterface);
+	void register(ServiceDescriptor serviceDescriptor, Bimsie1RemoteServiceInterface remoteServiceInterface);
 	void registerInternalNewRevisionHandler(ServiceDescriptor serviceDescriptor, NewRevisionHandler newRevisionHandler);
 }

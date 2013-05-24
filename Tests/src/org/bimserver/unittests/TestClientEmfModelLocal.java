@@ -77,7 +77,7 @@ public class TestClientEmfModelLocal {
 
 	private SProject createProject() throws PublicInterfaceNotFoundException {
 		try {
-			SProject project = bimServerClient.getService().addProject("Project " + new Random().nextInt());
+			SProject project = bimServerClient.getServiceInterface().addProject("Project " + new Random().nextInt());
 			return project;
 		} catch (ServiceException e) {
 			e.printStackTrace();
@@ -143,7 +143,7 @@ public class TestClientEmfModelLocal {
 	}
 
 	public void dumpSummary(long roid) throws ServiceException, PublicInterfaceNotFoundException {
-		SRevisionSummary revisionSummary = bimServerClient.getService().getRevisionSummary(roid);
+		SRevisionSummary revisionSummary = bimServerClient.getServiceInterface().getRevisionSummary(roid);
 		List<SRevisionSummaryContainer> list = revisionSummary.getList();
 		for (SRevisionSummaryContainer container : list) {
 			System.out.println(container.getName());

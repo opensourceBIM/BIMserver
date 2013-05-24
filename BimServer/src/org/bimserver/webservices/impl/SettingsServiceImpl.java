@@ -1,4 +1,4 @@
-package org.bimserver.webservices;
+package org.bimserver.webservices.impl;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -35,6 +35,7 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.SettingsInterface;
+import org.bimserver.webservices.ServiceMap;
 
 public class SettingsServiceImpl extends GenericServiceImpl implements SettingsInterface {
 	public SettingsServiceImpl(ServiceMap serviceMap) {
