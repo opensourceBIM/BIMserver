@@ -18,6 +18,7 @@ package org.bimserver;
  *****************************************************************************/
 
 import java.io.File;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.bimserver.database.BimserverDatabaseException;
@@ -52,7 +53,7 @@ public class LocalDevBimServerStarter {
 		config.setPort(port);
 		config.setStartCommandLine(true);
 		bimServer = new BimServer(config);
-		LocalVersionConstructor.augmentWithSvn(bimServer.getVersionChecker().getLocalVersion());
+		bimServer.getVersionChecker().getLocalVersion().setDate(new Date());
 		try {
 	 		LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());
 			bimServer.start();

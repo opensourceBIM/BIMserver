@@ -83,10 +83,8 @@ public class JsonHandler {
 
 	private void processSingleRequest(JsonObject request, String jsonToken, HttpServletRequest httpRequest, JsonWriter writer) throws Exception {
 		String interfaceName = request.get("interface").getAsString();
-		@SuppressWarnings("unchecked")
-		Class<? extends PublicInterface> clazz = (Class<? extends PublicInterface>) Class.forName("org.bimserver.shared.interfaces." + interfaceName);
 		String methodName = request.get("method").getAsString();
-		SService sService = bimServer.getServicesMap().getBySimpleName(interfaceName);
+		SService sService = bimServer.getServicesMap().getByName(interfaceName);
 		if (sService == null) {
 			throw new UserException("No service found with name " + interfaceName);
 		}
@@ -113,8 +111,8 @@ public class JsonHandler {
 			}
 		}
 
-		PublicInterface service = getServiceInterface(httpRequest, bimServer, clazz, methodName, jsonToken);
-		Object result = method.invoke(clazz, service, parameters);
+		PublicInterface service = getServiceInterface(httpRequest, bimServer, sService.getInterfaceClass(), methodName, jsonToken);
+		Object result = method.invoke(sService.getInterfaceClass(), service, parameters);
 
 		// When we have managed to get here, no exceptions have been thrown. We
 		// can safely assume further serialization to JSON won't fail. So now we
@@ -139,6 +137,7 @@ public class JsonHandler {
 		if (LoggerFactory.getLogger(JsonHandler.class).isDebugEnabled()) {
 			LoggerFactory.getLogger(JsonHandler.class).debug("", exception);
 		}
+		LoggerFactory.getLogger(JsonHandler.class).info("", exception);
 		try {
 			writer.beginObject();
 			writer.name("exception");
@@ -146,7 +145,7 @@ public class JsonHandler {
 			writer.name("__type");
 			writer.value(exception.getClass().getSimpleName());
 			writer.name("message");
-			writer.value(exception.getMessage());
+			writer.value(exception.getMessage() == null ? exception.toString() : exception.getMessage());
 			if (exception instanceof ServiceException) {
 				ServiceException serviceException = (ServiceException) exception;
 				if (serviceException.getErrorCode() != null) {

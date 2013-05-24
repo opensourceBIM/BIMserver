@@ -9,7 +9,6 @@ import org.apache.commons.io.FileUtils;
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.LocalDevPluginLoader;
-import org.bimserver.LocalVersionConstructor;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.json.JsonBimServerClientFactory;
@@ -97,7 +96,6 @@ public class AllTests {
 		config.setClassPath(System.getProperty("java.class.path"));
 		
 		bimServer = new BimServer(config);
-		LocalVersionConstructor.augmentWithSvn(bimServer.getVersionChecker().getLocalVersion());
 		try {
 			// Load plugins
 			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager());

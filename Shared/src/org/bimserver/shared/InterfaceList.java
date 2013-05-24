@@ -42,6 +42,7 @@ import org.bimserver.shared.interfaces.bimsie1.Bimsie1LowLevelInterface;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationInterface;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1NotificationRegistryInterface;
 import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1ServiceInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.meta.SourceCodeFetcher;
@@ -55,7 +56,7 @@ public class InterfaceList {
 			URL url = clazz.getResource(clazz.getSimpleName() + ".java");
 			if (url == null) {
 				try {
-					url = new File("../Shared/src/org/bimserver/shared/interfaces/" + clazz.getSimpleName() + ".java").toURI().toURL();
+					url = new File("../Shared/src/" + clazz.getName().replace(".", "/") + ".java").toURI().toURL();
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
 				}
@@ -82,15 +83,16 @@ public class InterfaceList {
 	
 	static {
 		interfaces.add(ServiceInterface.class);
-		interfaces.add(Bimsie1NotificationInterface.class);
-		interfaces.add(Bimsie1RemoteServiceInterface.class);
 		interfaces.add(AdminInterface.class);
 		interfaces.add(MetaInterface.class);
 		interfaces.add(SettingsInterface.class);
-		interfaces.add(Bimsie1AuthInterface.class);
 		interfaces.add(AuthInterface.class);
-		interfaces.add(Bimsie1LowLevelInterface.class);
 		interfaces.add(PluginInterface.class);
+		interfaces.add(Bimsie1ServiceInterface.class);
+		interfaces.add(Bimsie1NotificationInterface.class);
+		interfaces.add(Bimsie1RemoteServiceInterface.class);
+		interfaces.add(Bimsie1AuthInterface.class);
+		interfaces.add(Bimsie1LowLevelInterface.class);
 		interfaces.add(Bimsie1NotificationRegistryInterface.class);
 	}
 

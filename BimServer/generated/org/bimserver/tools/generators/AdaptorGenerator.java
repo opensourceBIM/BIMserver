@@ -62,7 +62,7 @@ SService sService = (SService)argument;
     stringBuffer.append(TEXT_4);
     stringBuffer.append(sService.getSimpleName());
     stringBuffer.append(TEXT_5);
-    stringBuffer.append(sService.getName());
+    stringBuffer.append(sService.getInterfaceClass().getName());
     stringBuffer.append(TEXT_6);
     
 for (SMethod method : sService.getMethods()) {

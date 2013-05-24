@@ -198,20 +198,16 @@ parentPoid ("a
 mcid ("*
 SObjectRemoved
 rid (
-oid ("(
-SObjectAdded
-rid (
 oid ("b
 SObjectModified
 newValue (	
 rid (
 oid (
 oldValue (	
-	fieldName (	"X
-SListDataValue,
-values (2.org.bimserver.pb.SDataValue
-rid (
-oid ("O
+	fieldName (	"(
+SObjectAdded
+rid (
+oid ("O
 SReferenceDataValue
 guid (	
 typeName (	
@@ -220,13 +216,17 @@ parentPoid ("a
 SSimpleDataValue
 rid (
 oid (
-stringValue (	"’
+stringValue (	"X
+SListDataValue,
+values (2.org.bimserver.pb.SDataValue
+rid (
+oid ("’
 
 SDataValue
-__actual_type (	:
-__SListDataValue (2 .org.bimserver.pb.SListDataValueD
-__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue>
-__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValue
+__actual_type (	D
+__SReferenceDataValue (2%.org.bimserver.pb.SReferenceDataValue>
+__SSimpleDataValue (2".org.bimserver.pb.SSimpleDataValue:
+__SListDataValue (2 .org.bimserver.pb.SListDataValue
 rid (
 oid (
 	fieldName (	"
@@ -239,9 +239,9 @@ SDataValue
 type (	"¤
 SCompareItem
 __actual_type (	:
-__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved6
-__SObjectAdded (2.org.bimserver.pb.SObjectAdded<
-__SObjectModified (2!.org.bimserver.pb.SObjectModified
+__SObjectRemoved (2 .org.bimserver.pb.SObjectRemoved<
+__SObjectModified (2!.org.bimserver.pb.SObjectModified6
+__SObjectAdded (2.org.bimserver.pb.SObjectAdded
 rid (
 oid (1
 

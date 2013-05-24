@@ -1,0 +1,357 @@
+package org.bimserver.shared.interfaces.async;
+
+/******************************************************************************
+ * Copyright (C) 2009-2013  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+import java.util.concurrent.ExecutorService;
+import org.bimserver.shared.interfaces.bimsie1.Bimsie1ServiceInterface;
+
+public class AsyncBimsie1ServiceInterface {
+
+	private final ExecutorService executorService;
+	private final Bimsie1ServiceInterface syncService;
+
+	public AsyncBimsie1ServiceInterface(Bimsie1ServiceInterface syncService, ExecutorService executorService) {
+		this.executorService = executorService;
+		this.syncService = syncService;
+	}
+
+	public interface CheckinCallback {
+		void success(java.lang.Long result);
+		void error(Exception e);
+	}
+	
+	public interface CheckinFromUrlCallback {
+		void success(java.lang.Long result);
+		void error(Exception e);
+	}
+	
+	public interface CheckoutCallback {
+		void success(java.lang.Long result);
+		void error(Exception e);
+	}
+	
+	public interface DownloadCallback {
+		void success(java.lang.Long result);
+		void error(Exception e);
+	}
+	
+	public interface DownloadByGuidsCallback {
+		void success(java.lang.Long result);
+		void error(Exception e);
+	}
+	
+	public interface DownloadByNamesCallback {
+		void success(java.lang.Long result);
+		void error(Exception e);
+	}
+	
+	public interface DownloadByOidsCallback {
+		void success(java.lang.Long result);
+		void error(Exception e);
+	}
+	
+	public interface DownloadByTypesCallback {
+		void success(java.lang.Long result);
+		void error(Exception e);
+	}
+	
+	public interface DownloadQueryCallback {
+		void success(java.lang.Long result);
+		void error(Exception e);
+	}
+	
+	public interface DownloadRevisionsCallback {
+		void success(java.lang.Long result);
+		void error(Exception e);
+	}
+	
+	public interface GetDeserializerByIdCallback {
+		void success(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration result);
+		void error(Exception e);
+	}
+	
+	public interface GetDeserializerByNameCallback {
+		void success(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration result);
+		void error(Exception e);
+	}
+	
+	public interface GetDownloadDataCallback {
+		void success(org.bimserver.interfaces.objects.SDownloadResult result);
+		void error(Exception e);
+	}
+	
+	public interface GetQueryEngineByIdCallback {
+		void success(org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration result);
+		void error(Exception e);
+	}
+	
+	public interface GetQueryEngineByNameCallback {
+		void success(org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration result);
+		void error(Exception e);
+	}
+	
+	public interface GetSerializerByContentTypeCallback {
+		void success(org.bimserver.interfaces.objects.SSerializerPluginConfiguration result);
+		void error(Exception e);
+	}
+	
+	public interface GetSerializerByIdCallback {
+		void success(org.bimserver.interfaces.objects.SSerializerPluginConfiguration result);
+		void error(Exception e);
+	}
+	
+	public interface GetSerializerByNameCallback {
+		void success(org.bimserver.interfaces.objects.SSerializerPluginConfiguration result);
+		void error(Exception e);
+	}
+	
+	public interface GetSuggestedDeserializerForExtensionCallback {
+		void success(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration result);
+		void error(Exception e);
+	}
+	
+
+
+	public void checkin(final java.lang.Long poid, final java.lang.String comment, final java.lang.Long deserializerOid, final java.lang.Long fileSize, final java.lang.String fileName, final javax.activation.DataHandler data, final java.lang.Boolean sync, final CheckinCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.checkin(poid, comment, deserializerOid, fileSize, fileName, data, sync));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void checkinFromUrl(final java.lang.Long poid, final java.lang.String comment, final java.lang.Long deserializerOid, final java.lang.String fileName, final java.lang.String url, final java.lang.Boolean sync, final CheckinFromUrlCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.checkinFromUrl(poid, comment, deserializerOid, fileName, url, sync));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void checkout(final java.lang.Long roid, final java.lang.Long serializerOid, final java.lang.Boolean sync, final CheckoutCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.checkout(roid, serializerOid, sync));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void download(final java.lang.Long roid, final java.lang.Long serializerOid, final java.lang.Boolean showOwn, final java.lang.Boolean sync, final DownloadCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.download(roid, serializerOid, showOwn, sync));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void downloadByGuids(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> guids, final java.lang.Long serializerOid, final java.lang.Boolean deep, final java.lang.Boolean sync, final DownloadByGuidsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.downloadByGuids(roids, guids, serializerOid, deep, sync));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void downloadByNames(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> names, final java.lang.Long serializerOid, final java.lang.Boolean deep, final java.lang.Boolean sync, final DownloadByNamesCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.downloadByNames(roids, names, serializerOid, deep, sync));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void downloadByOids(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.Long> oids, final java.lang.Long serializerOid, final java.lang.Boolean sync, final java.lang.Boolean deep, final DownloadByOidsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.downloadByOids(roids, oids, serializerOid, sync, deep));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void downloadByTypes(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> classNames, final java.lang.Long serializerOid, final java.lang.Boolean includeAllSubtypes, final java.lang.Boolean useObjectIDM, final java.lang.Boolean deep, final java.lang.Boolean sync, final DownloadByTypesCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.downloadByTypes(roids, classNames, serializerOid, includeAllSubtypes, useObjectIDM, deep, sync));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void downloadQuery(final java.lang.Long roid, final java.lang.Long qeid, final java.lang.String code, final java.lang.Boolean sync, final java.lang.Long serializerOid, final DownloadQueryCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.downloadQuery(roid, qeid, code, sync, serializerOid));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void downloadRevisions(final java.util.Set<java.lang.Long> roids, final java.lang.Long serializerOid, final java.lang.Boolean sync, final DownloadRevisionsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.downloadRevisions(roids, serializerOid, sync));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getDeserializerById(final java.lang.Long oid, final GetDeserializerByIdCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getDeserializerById(oid));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getDeserializerByName(final java.lang.String deserializerName, final GetDeserializerByNameCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getDeserializerByName(deserializerName));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getDownloadData(final java.lang.Long actionId, final GetDownloadDataCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getDownloadData(actionId));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getQueryEngineById(final java.lang.Long oid, final GetQueryEngineByIdCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getQueryEngineById(oid));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getQueryEngineByName(final java.lang.String name, final GetQueryEngineByNameCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getQueryEngineByName(name));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getSerializerByContentType(final java.lang.String contentType, final GetSerializerByContentTypeCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getSerializerByContentType(contentType));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getSerializerById(final java.lang.Long oid, final GetSerializerByIdCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getSerializerById(oid));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getSerializerByName(final java.lang.String serializerName, final GetSerializerByNameCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getSerializerByName(serializerName));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getSuggestedDeserializerForExtension(final java.lang.String extension, final GetSuggestedDeserializerForExtensionCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getSuggestedDeserializerForExtension(extension));
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+}

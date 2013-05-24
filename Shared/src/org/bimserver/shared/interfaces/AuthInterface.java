@@ -12,7 +12,7 @@ import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
-@WebService(name = "BimServerAuthInterface", targetNamespace="org.bimserver")
+@WebService(name = "AuthInterface", targetNamespace="org.bimserver")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
 public interface AuthInterface extends PublicInterface {
 	/**

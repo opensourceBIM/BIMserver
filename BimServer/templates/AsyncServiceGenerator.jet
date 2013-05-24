@@ -24,14 +24,14 @@ import java.util.concurrent.ExecutorService;
 <%
 SService sService = (SService)argument;
 %>
-import <%=sService.getName()%>;
+import <%=sService.getInterfaceClass().getName()%>;
 
-public class Async<%=sService.getSimpleName()%> {
+public class Async<%=sService.getInterfaceClass().getSimpleName()%> {
 
 	private final ExecutorService executorService;
-	private final <%=sService.getSimpleName()%> syncService;
+	private final <%=sService.getInterfaceClass().getSimpleName()%> syncService;
 
-	public Async<%=sService.getSimpleName()%>(<%=sService.getSimpleName()%> syncService, ExecutorService executorService) {
+	public Async<%=sService.getInterfaceClass().getSimpleName()%>(<%=sService.getInterfaceClass().getSimpleName()%> syncService, ExecutorService executorService) {
 		this.executorService = executorService;
 		this.syncService = syncService;
 	}

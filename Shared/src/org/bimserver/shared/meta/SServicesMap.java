@@ -62,11 +62,10 @@ public class SServicesMap {
 		return servicesBySimpleName.keySet();
 	}
 
-	@SuppressWarnings("unchecked")
 	public Set<Class<? extends PublicInterface>> getInterfaceClasses() {
 		Set<Class<? extends PublicInterface>> result = new LinkedHashSet<Class<? extends PublicInterface>>();
 		for (SService sService : servicesByName.values()) {
-			result.add((Class<? extends PublicInterface>) sService.getInstanceClass());
+			result.add((Class<? extends PublicInterface>) sService.getInterfaceClass());
 		}
 		return result;
 	}

@@ -1,0 +1,150 @@
+
+˜*
+Bimsie1ServiceInterface.protoorg.bimserver.pbServiceInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.proto"D
+CheckoutRequest
+roid (
+serializerOid (
+sync ("7
+CheckoutResponse
+errorMessage (	
+value ("U
+DownloadRequest
+roid (
+serializerOid (
+showOwn (
+sync ("7
+DownloadResponse
+errorMessage (	
+value ("i
+DownloadByGuidsRequest
+roids (
+guids (	
+serializerOid (
+deep (
+sync (">
+DownloadByGuidsResponse
+errorMessage (	
+value ("i
+DownloadByNamesRequest
+roids (
+names (	
+serializerOid (
+deep (
+sync (">
+DownloadByNamesResponse
+errorMessage (	
+value ("g
+DownloadByOidsRequest
+roids (
+oids (
+serializerOid (
+sync (
+deep ("=
+DownloadByOidsResponse
+errorMessage (	
+value (" 
+DownloadByTypesRequest
+roids (
+
+classNames (	
+serializerOid (
+includeAllSubtypes (
+useObjectIDM (
+deep (
+sync (">
+DownloadByTypesResponse
+errorMessage (	
+value ("e
+DownloadQueryRequest
+roid (
+qeid (
+code (	
+sync (
+serializerOid ("<
+DownloadQueryResponse
+errorMessage (	
+value ("N
+DownloadRevisionsRequest
+roids (
+serializerOid (
+sync ("@
+DownloadRevisionsResponse
+errorMessage (	
+value (")
+GetDeserializerByIdRequest
+oid ("v
+GetDeserializerByIdResponse
+errorMessage (	A
+value (22.org.bimserver.pb.SDeserializerPluginConfiguration"8
+GetDeserializerByNameRequest
+deserializerName (	"x
+GetDeserializerByNameResponse
+errorMessage (	A
+value (22.org.bimserver.pb.SDeserializerPluginConfiguration"*
+GetDownloadDataRequest
+actionId ("+
+SCheckoutResult
+rid (
+oid ("·
+SDownloadResult
+__actual_type (	<
+__SCheckoutResult (2!.org.bimserver.pb.SCheckoutResult
+rid (
+oid (
+file (
+
+revisionNr (
+projectName (	"a
+GetDownloadDataResponse
+errorMessage (	0
+value (2!.org.bimserver.pb.SDownloadResult"(
+GetQueryEngineByIdRequest
+oid ("t
+GetQueryEngineByIdResponse
+errorMessage (	@
+value (21.org.bimserver.pb.SQueryEnginePluginConfiguration"+
+GetQueryEngineByNameRequest
+name (	"v
+GetQueryEngineByNameResponse
+errorMessage (	@
+value (21.org.bimserver.pb.SQueryEnginePluginConfiguration"8
+!GetSerializerByContentTypeRequest
+contentType (	"{
+"GetSerializerByContentTypeResponse
+errorMessage (	?
+value (20.org.bimserver.pb.SSerializerPluginConfiguration"'
+GetSerializerByIdRequest
+oid ("r
+GetSerializerByIdResponse
+errorMessage (	?
+value (20.org.bimserver.pb.SSerializerPluginConfiguration"4
+GetSerializerByNameRequest
+serializerName (	"t
+GetSerializerByNameResponse
+errorMessage (	?
+value (20.org.bimserver.pb.SSerializerPluginConfiguration"@
++GetSuggestedDeserializerForExtensionRequest
+	extension (	"‡
+,GetSuggestedDeserializerForExtensionResponse
+errorMessage (	A
+value (22.org.bimserver.pb.SDeserializerPluginConfiguration2³
+Bimsie1ServiceInterfaceN
+checkin .org.bimserver.pb.CheckinRequest!.org.bimserver.pb.CheckinResponsec
+checkinFromUrl'.org.bimserver.pb.CheckinFromUrlRequest(.org.bimserver.pb.CheckinFromUrlResponseQ
+checkout!.org.bimserver.pb.CheckoutRequest".org.bimserver.pb.CheckoutResponseQ
+download!.org.bimserver.pb.DownloadRequest".org.bimserver.pb.DownloadResponsef
+downloadByGuids(.org.bimserver.pb.DownloadByGuidsRequest).org.bimserver.pb.DownloadByGuidsResponsef
+downloadByNames(.org.bimserver.pb.DownloadByNamesRequest).org.bimserver.pb.DownloadByNamesResponsec
+downloadByOids'.org.bimserver.pb.DownloadByOidsRequest(.org.bimserver.pb.DownloadByOidsResponsef
+downloadByTypes(.org.bimserver.pb.DownloadByTypesRequest).org.bimserver.pb.DownloadByTypesResponse`
+downloadQuery&.org.bimserver.pb.DownloadQueryRequest'.org.bimserver.pb.DownloadQueryResponsel
+downloadRevisions*.org.bimserver.pb.DownloadRevisionsRequest+.org.bimserver.pb.DownloadRevisionsResponser
+getDeserializerById,.org.bimserver.pb.GetDeserializerByIdRequest-.org.bimserver.pb.GetDeserializerByIdResponsex
+getDeserializerByName..org.bimserver.pb.GetDeserializerByNameRequest/.org.bimserver.pb.GetDeserializerByNameResponsef
+getDownloadData(.org.bimserver.pb.GetDownloadDataRequest).org.bimserver.pb.GetDownloadDataResponseo
+getQueryEngineById+.org.bimserver.pb.GetQueryEngineByIdRequest,.org.bimserver.pb.GetQueryEngineByIdResponseu
+getQueryEngineByName-.org.bimserver.pb.GetQueryEngineByNameRequest..org.bimserver.pb.GetQueryEngineByNameResponse‡
+getSerializerByContentType3.org.bimserver.pb.GetSerializerByContentTypeRequest4.org.bimserver.pb.GetSerializerByContentTypeResponsel
+getSerializerById*.org.bimserver.pb.GetSerializerByIdRequest+.org.bimserver.pb.GetSerializerByIdResponser
+getSerializerByName,.org.bimserver.pb.GetSerializerByNameRequest-.org.bimserver.pb.GetSerializerByNameResponse¥
+$getSuggestedDeserializerForExtension=.org.bimserver.pb.GetSuggestedDeserializerForExtensionRequest>.org.bimserver.pb.GetSuggestedDeserializerForExtensionResponseB"BBimsie1ServiceInterfaceImplHˆ
