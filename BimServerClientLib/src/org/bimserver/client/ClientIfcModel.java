@@ -43,6 +43,8 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.serializers.SerializerException;
+import org.bimserver.plugins.serializers.SerializerInputstream;
 import org.bimserver.plugins.services.BimServerClientException;
 import org.bimserver.shared.ListWaitingObject;
 import org.bimserver.shared.PublicInterfaceNotFoundException;
@@ -85,12 +87,8 @@ public class ClientIfcModel extends IfcModel {
 		this.roid = roid;
 		try {
 			tid = bimServerClient.getBimsie1LowLevelInterface().startTransaction(poid);
-		} catch (ServerException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
-			e.printStackTrace();
-		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 		if (deep) {
 			loadDeep();
@@ -128,10 +126,12 @@ public class ClientIfcModel extends IfcModel {
 	}
 	
 	private void loadDeep() throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
-		modelState = ModelState.LOADING;
-		Long download = bimServerClient.getBimsie1ServiceInterface().download(roid, getIfcSerializerOid(), true, true);
-		processDownload(download);
-		modelState = ModelState.FULLY_LOADED;
+		if (modelState != ModelState.FULLY_LOADED) {
+			modelState = ModelState.LOADING;
+			Long download = bimServerClient.getBimsie1ServiceInterface().download(roid, getIfcSerializerOid(), true, true);
+			processDownload(download);
+			modelState = ModelState.FULLY_LOADED;
+		}
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -140,15 +140,30 @@ public class ClientIfcModel extends IfcModel {
 		try {
 			InputStream downloadData = bimServerClient.getDownloadData(download, getIfcSerializerOid());
 			boolean log = false;
+			// TODO Make this streaming again, make sure the EmfSerializer getInputStream method is working properly
 			if (log) {
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
-				IOUtils.copy(downloadData, baos);
+				if (downloadData instanceof SerializerInputstream) {
+					SerializerInputstream serializerInputStream = (SerializerInputstream)downloadData;
+					serializerInputStream.getEmfSerializer().writeToOutputStream(baos);
+				} else {
+					IOUtils.copy((InputStream) downloadData, baos);
+				}
 				FileOutputStream fos = new FileOutputStream(new File(download + ".json"));
 				IOUtils.write(baos.toByteArray(), fos);
 				fos.close();
 				downloadData = new ByteArrayInputStream(baos.toByteArray());
+			} else {
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				if (downloadData instanceof SerializerInputstream) {
+					SerializerInputstream serializerInputStream = (SerializerInputstream)downloadData;
+					serializerInputStream.getEmfSerializer().writeToOutputStream(baos);
+				} else {
+					IOUtils.copy((InputStream) downloadData, baos);
+				}
+				downloadData = new ByteArrayInputStream(baos.toByteArray());
 			}
-			JsonReader jsonReader = new JsonReader(new InputStreamReader(downloadData));
+			JsonReader jsonReader = new JsonReader(new InputStreamReader(downloadData, Charsets.UTF_8));
 			try {
 				jsonReader.beginObject();
 				if (jsonReader.nextName().equals("objects")) {
@@ -303,6 +318,8 @@ public class ClientIfcModel extends IfcModel {
 			}
 		} catch (IOException e) {
 			LOGGER.error("", e);
+		} catch (SerializerException e) {
+			LOGGER.error("", e);
 		} finally {
 			if (waitingList.size() > 0) {
 				LOGGER.error("Waitinglist not empty!");
@@ -351,8 +368,8 @@ public class ClientIfcModel extends IfcModel {
 
 	@Override
 	public <T extends IdEObject> List<T> getAll(EClass eClass) {
-		LOGGER.info("Loading all " + eClass.getName());
 		if (!loadedClasses.contains(eClass.getName()) && modelState != ModelState.FULLY_LOADED) {
+			LOGGER.info("Loading all " + eClass.getName());
 			try {
 				modelState = ModelState.LOADING;
 				Long downloadByTypes = bimServerClient.getBimsie1ServiceInterface().downloadByTypes(Collections.singleton(roid), Collections.singleton(eClass.getName()),
@@ -362,7 +379,7 @@ public class ClientIfcModel extends IfcModel {
 				rebuildIndexPerClass(eClass);
 				modelState = ModelState.NONE;
 			} catch (Exception e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		return super.getAll(eClass);
@@ -390,14 +407,8 @@ public class ClientIfcModel extends IfcModel {
 	public long size() {
 		try {
 			loadDeep();
-		} catch (ServerException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
-			e.printStackTrace();
-		} catch (BimServerClientException e) {
-			e.printStackTrace();
-		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 		return super.size();
 	}
@@ -406,14 +417,8 @@ public class ClientIfcModel extends IfcModel {
 	public Set<Long> keySet() {
 		try {
 			loadDeep();
-		} catch (ServerException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
-			e.printStackTrace();
-		} catch (BimServerClientException e) {
-			e.printStackTrace();
-		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 		return super.keySet();
 	}
@@ -439,14 +444,8 @@ public class ClientIfcModel extends IfcModel {
 				processDownload(downloadByOids);
 				modelState = ModelState.NONE;
 			}
-		} catch (ServerException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
-			e.printStackTrace();
-		} catch (BimServerClientException e) {
-			e.printStackTrace();
-		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 	}
 
@@ -458,14 +457,8 @@ public class ClientIfcModel extends IfcModel {
 	public Collection<IdEObject> getValues() {
 		try {
 			loadDeep();
-		} catch (ServerException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
-			e.printStackTrace();
-		} catch (BimServerClientException e) {
-			e.printStackTrace();
-		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 		return super.getValues();
 	}
@@ -484,14 +477,8 @@ public class ClientIfcModel extends IfcModel {
 				}
 				loadedClasses.add(eClass.getName());
 				modelState = ModelState.NONE;
-			} catch (ServerException e) {
-				e.printStackTrace();
-			} catch (UserException e) {
-				e.printStackTrace();
-			} catch (BimServerClientException e) {
-				e.printStackTrace();
-			} catch (PublicInterfaceNotFoundException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				LOGGER.error("", e);
 			}
 		}
 		return super.getAllWithSubTypes(eClass);
@@ -537,14 +524,8 @@ public class ClientIfcModel extends IfcModel {
 				processDownload(downloadByGuids);
 				modelState = ModelState.NONE;
 				return super.getByGuid(guid);
-			} catch (ServerException e) {
-				e.printStackTrace();
-			} catch (UserException e) {
-				e.printStackTrace();
-			} catch (BimServerClientException e) {
-				e.printStackTrace();
-			} catch (PublicInterfaceNotFoundException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				LOGGER.error("", e);
 			}
 		}
 		return idEObject;
@@ -568,12 +549,8 @@ public class ClientIfcModel extends IfcModel {
 		try {
 			Long oid = bimServerClient.getBimsie1LowLevelInterface().createObject(tid, eClass.getName());
 			object.setOid(oid);
-		} catch (ServerException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
-			e.printStackTrace();
-		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 		return (T) object;
 	}
@@ -623,14 +600,8 @@ public class ClientIfcModel extends IfcModel {
 				jsonReader.endArray();
 			}
 			jsonReader.endObject();
-		} catch (ServerException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.error("", e);
 		}
 	}
 }

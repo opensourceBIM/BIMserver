@@ -10,12 +10,12 @@
 	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.jdt.core_3.8.1.v20120531-0637.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jdt/org.eclipse.osgi_3.8.0.v20120529-1548.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/tomcat/tomcat-coyote.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/gson-2.2.2.jar" sourcepath="libsrc/gson-2.2.2-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/openmali.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/classmexer.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cors-filter-1.5.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/je-5.0.73.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/cxf/httpmime-4.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/gson-2.2.4.jar" sourcepath="libsrc/gson-2.2.4-sources.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="starter"/>

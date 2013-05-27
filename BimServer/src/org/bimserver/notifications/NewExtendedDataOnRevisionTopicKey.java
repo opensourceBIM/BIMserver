@@ -1,4 +1,4 @@
-package org.bimserver.plugins;
+package org.bimserver.notifications;
 
 /******************************************************************************
  * Copyright (C) 2009-2013  BIMserver.org
@@ -17,12 +17,37 @@ package org.bimserver.plugins;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.models.store.ServiceDescriptor;
-import org.bimserver.plugins.services.NewRevisionHandler;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
+public class NewExtendedDataOnRevisionTopicKey {
+	
+	private long roid;
 
-public interface NotificationsManagerInterface {
+	public NewExtendedDataOnRevisionTopicKey(long roid) {
+		this.roid = roid;
+	}
+	
+	public long getRoid() {
+		return roid;
+	}
 
-	void registerInternalNewRevisionHandler(ServiceDescriptor serviceDescriptor, NewRevisionHandler newRevisionHandler);
-	void register(ServiceDescriptor serviceDescriptor, Bimsie1RemoteServiceInterface remoteServiceInterface);
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (roid ^ (roid >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		NewExtendedDataOnRevisionTopicKey other = (NewExtendedDataOnRevisionTopicKey) obj;
+		if (roid != other.roid)
+			return false;
+		return true;
+	}
 }

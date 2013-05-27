@@ -18,22 +18,16 @@ package org.bimserver.notifications;
  *****************************************************************************/
 
 import org.bimserver.database.BimserverDatabaseException;
-import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.Query;
 import org.bimserver.endpoints.EndPoint;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.User;
-import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
-public class NewRevisionOnSpecificProjectTopic extends Topic {
+public class NewExtendedDataOnRevisionTopic extends Topic {
 
-	private long poid;
+	private long roid;
 
-	public NewRevisionOnSpecificProjectTopic(long poid) {
-		this.poid = poid;
+	public NewExtendedDataOnRevisionTopic(long roid) {
+		this.roid = roid;
 	}
 	
 	public void register(EndPoint endPoint) throws TopicRegisterException {
@@ -41,18 +35,11 @@ public class NewRevisionOnSpecificProjectTopic extends Topic {
 		super.register(endPoint);
 	}
 
-	public void process(final DatabaseSession session, final long poid, final long roid, NewRevisionNotification newRevisionNotification) throws BimserverDatabaseException, UserException, ServerException {
+	public void process(final NewExtendedDataOnRevisionNotification newExtendedDataOnRevisionNotification) throws BimserverDatabaseException, UserException, ServerException {
 		map(new Mapper(){
 			@Override
 			public void map(EndPoint endPoint) throws UserException, ServerException, BimserverDatabaseException {
-				User user = session.get(StorePackage.eINSTANCE.getUser(), endPoint.getUoid(), Query.getDefault());
-				Project notificationProject = session.get(StorePackage.eINSTANCE.getUser(), poid, Query.getDefault());
-				Project registrationProject = session.get(StorePackage.eINSTANCE.getUser(), NewRevisionOnSpecificProjectTopic.this.poid, Query.getDefault());
-				if (notificationProject.getOid() == registrationProject.getOid()) {
-					if (user.getUserType() == UserType.ADMIN || user.getHasRightsOn().contains(notificationProject)) {
-						endPoint.getNotificationInterface().newRevision(poid, roid);
-					}
-				}
+				endPoint.getNotificationInterface().newExtendedData(roid, newExtendedDataOnRevisionNotification.getEdid());
 			}});
 	}
 }

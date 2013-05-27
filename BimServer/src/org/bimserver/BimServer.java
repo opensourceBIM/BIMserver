@@ -95,6 +95,7 @@ import org.bimserver.models.store.Type;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.WebModulePluginConfiguration;
+import org.bimserver.notifications.InternalServicesManager;
 import org.bimserver.notifications.NotificationsManager;
 import org.bimserver.pb.server.ProtocolBuffersServer;
 import org.bimserver.plugins.Plugin;
@@ -173,6 +174,7 @@ public class BimServer {
 	private List<WebModulePlugin> webModules;
 	private WebModulePlugin defaultWebModule;
 	private ExecutorService executorService = Executors.newFixedThreadPool(50);
+	private InternalServicesManager internalServicesManager;
 
 	/**
 	 * Create a new BIMserver
@@ -222,9 +224,10 @@ public class BimServer {
 
 			serverInfoManager = new ServerInfoManager();
 			notificationsManager = new NotificationsManager(this, jsonSocketReflectorFactory);
+			internalServicesManager = new InternalServicesManager(this, notificationsManager.getSiteAddress());
 			serviceFactory = new PublicInterfaceFactory(this);
 			
-			pluginManager = new PluginManager(new File(config.getHomeDir(), "tmp"), config.getClassPath(), serviceFactory, notificationsManager, servicesMap);
+			pluginManager = new PluginManager(new File(config.getHomeDir(), "tmp"), config.getClassPath(), serviceFactory, internalServicesManager, servicesMap);
 
 			versionChecker = new VersionChecker(config.getResourceFetcher());
 
@@ -841,6 +844,10 @@ public class BimServer {
 
 	public NotificationsManager getNotificationsManager() {
 		return notificationsManager;
+	}
+
+	public InternalServicesManager getInternalServicesManager() {
+		return internalServicesManager;
 	}
 
 	public ServerInfoManager getServerInfoManager() {

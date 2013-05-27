@@ -75,7 +75,7 @@ public interface Bimsie1NotificationInterface extends PublicInterface {
 	
 	@WebMethod(action = "newExtendedData")
 	void newExtendedData(
-		@WebParam(name = "roid", partName = "progress.roid") Long roid,
+		@WebParam(name = "roid", partName = "newExtendedData.roid") Long roid,
 		@WebParam(name = "edid", partName = "newExtendedData.edid") Long edid) throws UserException, ServerException;
 	
 	@WebMethod(action = "newProject")

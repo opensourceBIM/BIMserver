@@ -25,7 +25,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.BimServer;
-import org.bimserver.client.BimServerClient;
 import org.bimserver.client.Channel;
 import org.bimserver.client.ChannelConnectionException;
 import org.bimserver.client.DirectChannel;
@@ -33,34 +32,20 @@ import org.bimserver.client.SimpleTokenHolder;
 import org.bimserver.client.json.JsonChannel;
 import org.bimserver.client.json.JsonSocketReflectorFactory;
 import org.bimserver.interfaces.objects.SLogAction;
-import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProgressTopicType;
-import org.bimserver.interfaces.objects.SService;
-import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.Service;
-import org.bimserver.models.store.ServiceDescriptor;
-import org.bimserver.plugins.NotificationsManagerInterface;
-import org.bimserver.plugins.services.NewRevisionHandler;
-import org.bimserver.shared.PublicInterfaceNotFoundException;
-import org.bimserver.shared.ServiceMapInterface;
-import org.bimserver.shared.TokenAuthentication;
-import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.RemoteServiceInterfaceAdaptor;
-import org.bimserver.shared.interfaces.ServiceInterface;
-import org.bimserver.shared.interfaces.bimsie1.Bimsie1RemoteServiceInterface;
-import org.bimserver.webservices.ServiceMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class NotificationsManager implements NotificationsManagerInterface {
+public class NotificationsManager {
 	private static final Logger LOGGER = LoggerFactory.getLogger(NotificationsManager.class);
 
 	private final NewRevisionTopic newRevisionTopic = new NewRevisionTopic();
 	private final NewProjectTopic newProjectTopic = new NewProjectTopic();
 	private final NewUserTopic newUserTopic = new NewUserTopic();
+	private final Map<NewExtendedDataOnRevisionTopicKey, NewExtendedDataOnRevisionTopic> newExtendedDataOnRevisionTopics = new HashMap<NewExtendedDataOnRevisionTopicKey, NewExtendedDataOnRevisionTopic>();
 	private final Map<NewRevisionOnSpecificProjectTopicKey, NewRevisionOnSpecificProjectTopic> newRevisionOnSpecificProjectTopics = new HashMap<NewRevisionOnSpecificProjectTopicKey, NewRevisionOnSpecificProjectTopic>();
 
 	// These are for keeping track of new/removed progress topics
@@ -75,8 +60,6 @@ public class NotificationsManager implements NotificationsManagerInterface {
 	private final Map<ProgressOnRevisionTopicKey, Set<ProgressOnRevisionTopic>> progressOnRevisionTopics = new HashMap<ProgressOnRevisionTopicKey, Set<ProgressOnRevisionTopic>>();
 	private final Map<ProgressOnProjectTopicKey, Set<ProgressOnProjectTopic>> progressOnProjectTopics = new HashMap<ProgressOnProjectTopicKey, Set<ProgressOnProjectTopic>>();
 
-	private final Map<String, ServiceDescriptor> internalServices = new HashMap<String, ServiceDescriptor>();
-	private final Map<String, Bimsie1RemoteServiceInterface> internalRemoteServiceInterfaces = new HashMap<String, Bimsie1RemoteServiceInterface>();
 	private final JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private final BimServer bimServer;
 	private String url;
@@ -101,9 +84,6 @@ public class NotificationsManager implements NotificationsManagerInterface {
 	public void init() {
 		ServerSettings serverSettings = bimServer.getServerSettingsCache().getServerSettings();
 		this.url = serverSettings.getSiteAddress() + "/json";
-		for (String s : internalServices.keySet()) {
-			internalServices.get(s).setUrl(url);
-		}
 	}
 
 	public Channel getChannel(Service service) throws ChannelConnectionException {
@@ -114,8 +94,6 @@ public class NotificationsManager implements NotificationsManagerInterface {
 			return jsonChannel;
 		case INTERNAL:
 			DirectChannel directChannel = new DirectChannel(bimServer.getServiceFactory(), bimServer.getServicesMap());
-			Bimsie1RemoteServiceInterface service2 = internalRemoteServiceInterfaces.get(service.getServiceIdentifier());
-			directChannel.add(Bimsie1RemoteServiceInterface.class.getName(), service2);
 			try {
 				directChannel.connect();
 			} catch (UserException e) {
@@ -131,62 +109,6 @@ public class NotificationsManager implements NotificationsManagerInterface {
 	public void shutdown() {
 	}
 
-	@Override
-	public void register(ServiceDescriptor serviceDescriptor, Bimsie1RemoteServiceInterface remoteServiceInterface) {
-		serviceDescriptor.setUrl(url);
-		internalServices.put(serviceDescriptor.getName(), serviceDescriptor);
-		internalRemoteServiceInterfaces.put(serviceDescriptor.getIdentifier(), remoteServiceInterface);
-	}
-	
-	public Map<String, ServiceDescriptor> getInternalServices() {
-		return internalServices;
-	}
-
-	@Override
-	public void registerInternalNewRevisionHandler(ServiceDescriptor serviceDescriptor, final NewRevisionHandler newRevisionHandler) {
-		register(serviceDescriptor, new RemoteServiceInterfaceAdaptor(){
-			@Override
-			public void newRevision(final Long poid, final Long roid, Long soid, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) throws UserException, ServerException {
-				ServiceMapInterface serviceMapInterface = new ServiceMap(bimServer, null, AccessMethod.JSON);
-				serviceMapInterface.add(Bimsie1RemoteServiceInterface.class, internalRemoteServiceInterfaces.get(serviceIdentifier));
-				final InternalChannel internalChannel = new InternalChannel(bimServer.getServiceFactory(), bimServer.getServicesMap());
-				try {
-					internalChannel.connect(new SimpleTokenHolder());
-				} catch (ChannelConnectionException e2) {
-					e2.printStackTrace();
-				}
-				try {
-					final ServiceInterface serviceInterface = bimServer.getService(ServiceInterface.class);
-					SService service = serviceInterface.getService(Long.parseLong(profileIdentifier));
-					final SObjectType settings = internalChannel.getPluginInterface().getPluginSettings(service.getInternalServiceId());
-
-					final BimServerClient bimServerClient = bimServer.getBimServerClientFactory().create(new TokenAuthentication(token));
-					
-					// TODO this should somehow be managed...
-					// This must be asynchronous because we don't want the BIMserver's notifications processor to wait for this to finish...
-					new Thread(){
-						@Override
-						public void run() {
-							try {
-								newRevisionHandler.newRevision(bimServerClient, poid, roid, settings);
-							} catch (ServerException e) {
-								LOGGER.error("", e);
-							} catch (UserException e) {
-								LOGGER.error("", e);
-							}
-						}
-					}.start();
-				} catch (PublicInterfaceNotFoundException e1) {
-					e1.printStackTrace();
-				} catch (ServiceException e1) {
-					e1.printStackTrace();
-				} catch (ChannelConnectionException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-	}
-	
 	public NewRevisionTopic getNewRevisionTopic() {
 		return newRevisionTopic;
 	}
@@ -197,6 +119,13 @@ public class NotificationsManager implements NotificationsManagerInterface {
 	
 	public NewRevisionOnSpecificProjectTopic getNewRevisionOnSpecificProjectTopic(NewRevisionOnSpecificProjectTopicKey key) {
 		return newRevisionOnSpecificProjectTopics.get(key);
+	}
+	
+	public NewExtendedDataOnRevisionTopic getOrCreateNewExtendedDataOnRevisionTopic(NewExtendedDataOnRevisionTopicKey key) {
+		if (!newExtendedDataOnRevisionTopics.containsKey(key)) {
+			newExtendedDataOnRevisionTopics.put(key, new NewExtendedDataOnRevisionTopic(key.getRoid()));
+		}
+		return newExtendedDataOnRevisionTopics.get(key);
 	}
 	
 	public NewRevisionOnSpecificProjectTopic getOrCreateNewRevisionOnSpecificProjectTopic(NewRevisionOnSpecificProjectTopicKey key) {
@@ -326,5 +255,9 @@ public class NotificationsManager implements NotificationsManagerInterface {
 			changeProgressTopicOnRevisionTopics.put(key, topic);
 		}
 		return topic;
+	}
+
+	public NewExtendedDataOnRevisionTopic getNewExtendedDataOnRevisionTopic(NewExtendedDataOnRevisionTopicKey key) {
+		return newExtendedDataOnRevisionTopics.get(key);
 	}
 }

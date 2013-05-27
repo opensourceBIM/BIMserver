@@ -658,9 +658,9 @@ message SPrimitiveType {
 
 message SType {
 	required string __actual_type = 1;
-	optional SArrayType __SArrayType = 2;
-	optional SPrimitiveType __SPrimitiveType = 3;
-	optional SObjectType __SObjectType = 4;
+	optional SObjectType __SObjectType = 2;
+	optional SArrayType __SArrayType = 3;
+	optional SPrimitiveType __SPrimitiveType = 4;
 	optional int32 rid = 5;
 	optional int64 oid = 6;
 }

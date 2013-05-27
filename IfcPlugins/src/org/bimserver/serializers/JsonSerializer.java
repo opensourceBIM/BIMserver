@@ -78,7 +78,7 @@ public class JsonSerializer extends IfcSerializer {
 						out.write("\"__oid\":" + object.getOid() + ",");
 						out.write("\"__type\":\"" + object.eClass().getName() + "\",");
 						out.write("\"__state\":\"NOT_LOADED\"");
-						out.write("}");
+						out.write("}\n");
 					} else {
 						out.write("{");
 						out.write("\"__oid\":" + object.getOid() + ",");
@@ -181,7 +181,7 @@ public class JsonSerializer extends IfcSerializer {
 								}
 		//						}
 						}
-						out.write("}");
+						out.write("}\n");
 					}
 					return true;
 				} else {
