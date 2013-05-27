@@ -33,7 +33,7 @@ import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.shared.interfaces.async.AsyncAdminInterface;
-import org.bimserver.shared.interfaces.async.AsyncLowLevelInterface;
+import org.bimserver.shared.interfaces.async.AsyncBimsie1LowLevelInterface;
 import org.bimserver.shared.interfaces.async.AsyncMetaInterface;
 import org.bimserver.shared.interfaces.async.AsyncPluginInterface;
 import org.bimserver.shared.interfaces.async.AsyncRegistryInterface;
@@ -50,12 +50,12 @@ import org.bimserver.webservices.impl.AdminServiceImpl;
 import org.bimserver.webservices.impl.AuthServiceImpl;
 import org.bimserver.webservices.impl.Bimsie1AuthServiceImpl;
 import org.bimserver.webservices.impl.Bimsie1LowLevelServiceImpl;
-import org.bimserver.webservices.impl.Bimsie1ServiceIImpl;
-import org.bimserver.webservices.impl.MetaServiceImpl;
 import org.bimserver.webservices.impl.Bimsie1NotificationImpl;
-import org.bimserver.webservices.impl.PluginServiceImpl;
 import org.bimserver.webservices.impl.Bimsie1NotificationRegistryServiceImpl;
 import org.bimserver.webservices.impl.Bimsie1RemoteServiceImpl;
+import org.bimserver.webservices.impl.Bimsie1ServiceIImpl;
+import org.bimserver.webservices.impl.MetaServiceImpl;
+import org.bimserver.webservices.impl.PluginServiceImpl;
 import org.bimserver.webservices.impl.ServiceImpl;
 import org.bimserver.webservices.impl.SettingsServiceImpl;
 
@@ -112,7 +112,7 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 		} else if (clazz == SettingsInterface.class) {
 			publicInterface = new SettingsServiceImpl(this);
 		} else if (clazz == Bimsie1RemoteServiceInterface.class) {
-			publicInterface = new Bimsie1RemoteServiceImpl(this);
+			publicInterface = new Bimsie1RemoteServiceImpl(bimServer, this);
 		} else if (clazz == Bimsie1NotificationInterface.class) {
 			publicInterface = new Bimsie1NotificationImpl(bimServer);
 		} else if (clazz == Bimsie1NotificationRegistryInterface.class) {
@@ -137,8 +137,8 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 		return new AsyncAdminInterface(get(AdminInterface.class), bimServer.getExecutorService());
 	}
 	
-	public AsyncLowLevelInterface getLowLevelAsync() {
-		return new AsyncLowLevelInterface(get(Bimsie1LowLevelInterface.class), bimServer.getExecutorService());
+	public AsyncBimsie1LowLevelInterface getBimsie1LowLevelAsync() {
+		return new AsyncBimsie1LowLevelInterface(get(Bimsie1LowLevelInterface.class), bimServer.getExecutorService());
 	}
 	
 	public AsyncMetaInterface getMetaAsync() {

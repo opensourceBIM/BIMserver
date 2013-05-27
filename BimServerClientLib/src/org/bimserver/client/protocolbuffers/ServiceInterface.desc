@@ -1,5 +1,5 @@
 
-вт
+ит
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -650,10 +650,9 @@ objectIDMs (
 roid ("<
 ShareRevisionResponse
 errorMessage (	
-value (	";
+value (	"-
 TriggerNewExtendedDataRequest
-edid (
-soid ("7
+edid ("7
 TriggerNewRevisionRequest
 roid (
 soid ("&

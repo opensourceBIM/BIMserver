@@ -64,6 +64,11 @@ public class AsyncBimsie1NotificationRegistryInterface {
 		void error(Exception e);
 	}
 	
+	public interface RegisterNewExtendedDataOnRevisionHandlerCallback {
+		void success();
+		void error(Exception e);
+	}
+	
 	public interface RegisterNewProjectHandlerCallback {
 		void success();
 		void error(Exception e);
@@ -110,6 +115,11 @@ public class AsyncBimsie1NotificationRegistryInterface {
 	}
 	
 	public interface UnregisterChangeProgressOnServerCallback {
+		void success();
+		void error(Exception e);
+	}
+	
+	public interface UnregisterNewExtendedDataOnRevisionHandlerCallback {
 		void success();
 		void error(Exception e);
 	}
@@ -225,6 +235,19 @@ public class AsyncBimsie1NotificationRegistryInterface {
 			public void run(){
 				try {
 					syncService.registerChangeProgressOnServer(endPointId);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void registerNewExtendedDataOnRevisionHandler(final java.lang.Long endPointId, final java.lang.Long roid, final RegisterNewExtendedDataOnRevisionHandlerCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.registerNewExtendedDataOnRevisionHandler(endPointId, roid);
 					callback.success();
 				} catch (Exception e) {
 					callback.error(e);
@@ -352,6 +375,19 @@ public class AsyncBimsie1NotificationRegistryInterface {
 			public void run(){
 				try {
 					syncService.unregisterChangeProgressOnServer(endPointId);
+					callback.success();
+				} catch (Exception e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void unregisterNewExtendedDataOnRevisionHandler(final java.lang.Long endPointId, final java.lang.Long roid, final UnregisterNewExtendedDataOnRevisionHandlerCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.unregisterNewExtendedDataOnRevisionHandler(endPointId, roid);
 					callback.success();
 				} catch (Exception e) {
 					callback.error(e);

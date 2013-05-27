@@ -20,6 +20,7 @@ package org.bimserver.webservices.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bimserver.BimServer;
 import org.bimserver.database.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.Query;
@@ -32,13 +33,15 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.interfaces.RemoteServiceInterfaceAdaptor;
+import org.bimserver.shared.interfaces.Bimsie1RemoteServiceInterfaceAdaptor;
 import org.bimserver.webservices.ServiceMap;
 
-public class Bimsie1RemoteServiceImpl extends RemoteServiceInterfaceAdaptor {
+public class Bimsie1RemoteServiceImpl extends Bimsie1RemoteServiceInterfaceAdaptor {
 	private ServiceMap serviceMapInterface;
+	private BimServer bimServer;
 
-	public Bimsie1RemoteServiceImpl(ServiceMap serviceMapInterface) {
+	public Bimsie1RemoteServiceImpl(BimServer bimServer, ServiceMap serviceMapInterface) {
+		this.bimServer = bimServer;
 		this.serviceMapInterface = serviceMapInterface;
 	}
 	
@@ -73,5 +76,10 @@ public class Bimsie1RemoteServiceImpl extends RemoteServiceInterfaceAdaptor {
 			session.close();
 		}
 		return descriptors;
+	}
+	
+	@Override
+	public void newRevision(Long poid, Long roid, Long soid, String serviceIdentifier, String profileIdentifier, String token, String apiUrl) throws UserException, ServerException {
+		bimServer.getInternalServicesManager().getLocalRemoteServiceInterface(serviceIdentifier).newRevision(poid, roid, soid, serviceIdentifier, profileIdentifier, token, apiUrl);
 	}
 }

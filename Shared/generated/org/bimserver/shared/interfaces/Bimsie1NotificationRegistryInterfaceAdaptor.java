@@ -46,6 +46,9 @@ public class Bimsie1NotificationRegistryInterfaceAdaptor implements org.bimserve
 	public void registerChangeProgressOnServer(java.lang.Long endPointId) throws UserException, ServerException {
 	}
 	
+	public void registerNewExtendedDataOnRevisionHandler(java.lang.Long endPointId, java.lang.Long roid) throws UserException, ServerException {
+	}
+	
 	public void registerNewProjectHandler(java.lang.Long endPointId) throws UserException, ServerException {
 	}
 	
@@ -77,6 +80,9 @@ public class Bimsie1NotificationRegistryInterfaceAdaptor implements org.bimserve
 	}
 	
 	public void unregisterChangeProgressOnServer(java.lang.Long endPointId) throws UserException, ServerException {
+	}
+	
+	public void unregisterNewExtendedDataOnRevisionHandler(java.lang.Long endPointId, java.lang.Long roid) throws UserException, ServerException {
 	}
 	
 	public void unregisterNewProjectHandler(java.lang.Long endPointId) throws UserException, ServerException {

@@ -275,10 +275,10 @@ SArrayType'
 rid (
 oid ("Þ
 SType
-__actual_type (	2
-__SArrayType (2.org.bimserver.pb.SArrayType:
-__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType4
-__SObjectType (2.org.bimserver.pb.SObjectType
+__actual_type (	4
+__SObjectType (2.org.bimserver.pb.SObjectType2
+__SArrayType (2.org.bimserver.pb.SArrayType:
+__SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType
 rid (
 oid ("\
 

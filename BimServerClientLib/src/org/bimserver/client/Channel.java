@@ -186,7 +186,6 @@ public abstract class Channel implements ServiceHolder {
 		String address = baseAddress + "/download?token=" + token + "&longActionId=" + download + "&serializerOid=" + serializerOid;
 		DefaultHttpClient httpclient = new DefaultHttpClient();
 		httpclient.addRequestInterceptor(new HttpRequestInterceptor() {
-
 			public void process(final HttpRequest request, final HttpContext context) throws HttpException, IOException {
 				if (!request.containsHeader("Accept-Encoding")) {
 					request.addHeader("Accept-Encoding", "gzip");
@@ -194,9 +193,7 @@ public abstract class Channel implements ServiceHolder {
 			}
 
 		});
-
 		httpclient.addResponseInterceptor(new HttpResponseInterceptor() {
-
 			public void process(final HttpResponse response, final HttpContext context) throws HttpException, IOException {
 				HttpEntity entity = response.getEntity();
 				if (entity != null) {
@@ -212,7 +209,6 @@ public abstract class Channel implements ServiceHolder {
 					}
 				}
 			}
-
 		});
 		HttpPost httppost = new HttpPost(address);
 		try {
@@ -233,7 +229,7 @@ public abstract class Channel implements ServiceHolder {
 	public <T extends PublicInterface> T get(Class<T> class1) throws PublicInterfaceNotFoundException {
 		T t = get(class1.getName());
 		if (t == null) {
-			throw new PublicInterfaceNotFoundException("Interface " + class1.getSimpleName() + " not registered on channel");
+			throw new PublicInterfaceNotFoundException("Interface " + class1.getSimpleName() + " not registered on channel " + this);
 		}
 		return t;
 	}

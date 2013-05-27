@@ -31,6 +31,7 @@ import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
+import org.bimserver.notifications.NewExtendedDataOnRevisionNotification;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 
@@ -61,6 +62,7 @@ public class AddExtendedDataToRevisionDatabaseAction extends AddDatabaseAction<E
 		}
 		revision.getExtendedData().add(getIdEObject());
 		getDatabaseSession().store(revision);
+		getIdEObject().setProject(revision.getProject());
 		
 		final ExtendedDataAddedToRevision extendedDataAddedToRevision = LogFactory.eINSTANCE.createExtendedDataAddedToRevision();
 		extendedDataAddedToRevision.setAccessMethod(getAccessMethod());
@@ -72,6 +74,7 @@ public class AddExtendedDataToRevisionDatabaseAction extends AddDatabaseAction<E
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 			@Override
 			public void execute() throws UserException {
+				bimServer.getNotificationsManager().notify(new NewExtendedDataOnRevisionNotification(bimServer, getIdEObject().getOid(), roid));
 				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(extendedDataAddedToRevision));
 			}
 		});

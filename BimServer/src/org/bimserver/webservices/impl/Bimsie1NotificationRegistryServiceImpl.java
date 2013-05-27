@@ -34,6 +34,8 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.notifications.ChangeProgressTopicOnProjectTopic;
 import org.bimserver.notifications.ChangeProgressTopicOnRevisionTopic;
 import org.bimserver.notifications.ChangeProgressTopicOnServerTopic;
+import org.bimserver.notifications.NewExtendedDataOnRevisionTopic;
+import org.bimserver.notifications.NewExtendedDataOnRevisionTopicKey;
 import org.bimserver.notifications.NewRevisionOnSpecificProjectTopic;
 import org.bimserver.notifications.NewRevisionOnSpecificProjectTopicKey;
 import org.bimserver.notifications.ProgressNotification;
@@ -110,10 +112,34 @@ public class Bimsie1NotificationRegistryServiceImpl extends GenericServiceImpl i
 	}
 	
 	@Override
+	public void registerNewExtendedDataOnRevisionHandler(Long endPointId, Long roid) {
+		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		NewExtendedDataOnRevisionTopic topic = getBimServer().getNotificationsManager().getOrCreateNewExtendedDataOnRevisionTopic(new NewExtendedDataOnRevisionTopicKey(roid));
+		try {
+			topic.register(endPoint);
+		} catch (TopicRegisterException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
 	public void unregisterNewRevisionOnSpecificProjectHandler(Long endPointId, Long poid) throws ServerException, UserException {
 		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
 		try {
 			getBimServer().getNotificationsManager().getNewRevisionOnSpecificProjectTopic(new NewRevisionOnSpecificProjectTopicKey(poid)).unregister(endPoint);
+		} catch (TopicRegisterException e) {
+			handleException(e);
+		}
+	}
+
+	@Override
+	public void unregisterNewExtendedDataOnRevisionHandler(Long endPointId, Long roid) throws ServerException, UserException {
+		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
+		try {
+			NewExtendedDataOnRevisionTopic newExtendedDataOnRevisionTopic = getBimServer().getNotificationsManager().getNewExtendedDataOnRevisionTopic(new NewExtendedDataOnRevisionTopicKey(roid));
+			if (newExtendedDataOnRevisionTopic != null) {
+				newExtendedDataOnRevisionTopic.unregister(endPoint);
+			}
 		} catch (TopicRegisterException e) {
 			handleException(e);
 		}

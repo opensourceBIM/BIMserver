@@ -48,6 +48,8 @@ service Bimsie1NotificationRegistryInterface {
 
 	rpc registerChangeProgressOnServer (RegisterChangeProgressOnServerRequest) returns (VoidResponse);
 
+	rpc registerNewExtendedDataOnRevisionHandler (RegisterNewExtendedDataOnRevisionHandlerRequest) returns (VoidResponse);
+
 	rpc registerNewProjectHandler (RegisterNewProjectHandlerRequest) returns (VoidResponse);
 
 	rpc registerNewRevisionOnSpecificProjectHandler (RegisterNewRevisionOnSpecificProjectHandlerRequest) returns (VoidResponse);
@@ -67,6 +69,8 @@ service Bimsie1NotificationRegistryInterface {
 	rpc unregisterChangeProgressOnRevision (UnregisterChangeProgressOnRevisionRequest) returns (VoidResponse);
 
 	rpc unregisterChangeProgressOnServer (UnregisterChangeProgressOnServerRequest) returns (VoidResponse);
+
+	rpc unregisterNewExtendedDataOnRevisionHandler (UnregisterNewExtendedDataOnRevisionHandlerRequest) returns (VoidResponse);
 
 	rpc unregisterNewProjectHandler (UnregisterNewProjectHandlerRequest) returns (VoidResponse);
 
@@ -131,6 +135,11 @@ message RegisterChangeProgressOnRevisionRequest {
 
 message RegisterChangeProgressOnServerRequest {
 	optional int64 endPointId = 1;
+}
+
+message RegisterNewExtendedDataOnRevisionHandlerRequest {
+	optional int64 endPointId = 1;
+	optional int64 roid = 2;
 }
 
 message RegisterNewProjectHandlerRequest {
@@ -204,6 +213,11 @@ message UnregisterChangeProgressOnRevisionRequest {
 
 message UnregisterChangeProgressOnServerRequest {
 	optional int64 endPointId = 1;
+}
+
+message UnregisterNewExtendedDataOnRevisionHandlerRequest {
+	optional int64 endPointId = 1;
+	optional int64 roid = 2;
 }
 
 message UnregisterNewProjectHandlerRequest {

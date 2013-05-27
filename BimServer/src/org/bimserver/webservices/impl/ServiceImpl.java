@@ -149,7 +149,7 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-import org.bimserver.notifications.NewExtendedDataNotification;
+import org.bimserver.notifications.NewExtendedDataOnRevisionNotification;
 import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.plugins.PluginException;
 import org.bimserver.plugins.deserializers.DeserializeException;
@@ -1255,7 +1255,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public List<SServiceDescriptor> getAllLocalServiceDescriptors() throws ServerException, UserException {
-		return getBimServer().getSConverter().convertToSListServiceDescriptor(getBimServer().getNotificationsManager().getInternalServices().values());
+		return getBimServer().getSConverter().convertToSListServiceDescriptor(getBimServer().getInternalServicesManager().getInternalServices().values());
 	}
 	
 	@Override
@@ -1500,16 +1500,14 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 	
 	@Override
-	public void triggerNewExtendedData(Long edid, Long soid) throws ServerException, UserException {
+	public void triggerNewExtendedData(Long edid) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-//			org.bimserver.models.store.Service service = (org.bimserver.models.store.Service)session.get(StorePackage.eINSTANCE.getService(), soid, Query.getDefault());
 			ExtendedData extendedData = (ExtendedData)session.get(StorePackage.eINSTANCE.getExtendedData(), edid, Query.getDefault());
 			SExtendedDataAddedToRevision newExtendedData = new SExtendedDataAddedToRevision();
 			newExtendedData.setRevisionId(extendedData.getRevision().getOid());
 			newExtendedData.setExtendedDataId(edid);
-			getBimServer().getNotificationsManager().notify(new NewExtendedDataNotification(getBimServer(), edid, soid));
-//			getBimServer().getNotificationsManager().triggerNewRevision(getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress(), newExtendedData, extendedData.getRevision().getProject(), extendedData.getRevision().getOid(), Trigger.NEW_EXTENDED_DATA, service);
+			getBimServer().getNotificationsManager().notify(new NewExtendedDataOnRevisionNotification(getBimServer(), edid, extendedData.getRevision().getOid()));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {

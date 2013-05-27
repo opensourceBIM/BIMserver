@@ -166,6 +166,16 @@ function BimServerApi(baseUrl, notifier) {
 		});
 	};
 
+	this.registerNewExtendedDataOnRevisionHandler = function(roid, handler, callback){
+		othis.register("Bimsie1NotificationInterface", "newExtendedData", handler, function(){
+			othis.call("Bimsie1NotificationRegistryInterface", "registerNewExtendedDataOnRevisionHandler", {endPointId: othis.server.endPointId, roid: roid}, function(){
+				if (callback != null) {
+					callback();
+				}
+			});
+		});
+	};
+	
 	this.registerNewUserHandler = function(handler, callback) {
 		othis.register("Bimsie1NotificationInterface", "newUser", handler, function(){
 			othis.call("Bimsie1NotificationRegistryInterface", "registerNewUserHandler", {endPointId: othis.server.endPointId}, function(){
@@ -263,6 +273,15 @@ function BimServerApi(baseUrl, notifier) {
 	this.unregisterNewRevisionOnSpecificProjectHandler = function(poid, handler, callback){
 		othis.unregister(handler);
 		othis.call("Bimsie1NotificationRegistryInterface", "unregisterNewRevisionOnSpecificProjectHandler", {endPointId: othis.server.endPointId, poid: poid}, function(){
+			if (callback != null) {
+				callback();
+			}
+		});
+	};
+
+	this.unregisterNewExtendedDataOnRevisionHandler = function(roid, handler, callback){
+		othis.unregister(handler);
+		othis.call("Bimsie1NotificationRegistryInterface", "unregisterNewExtendedDataOnRevisionHandler", {endPointId: othis.server.endPointId, roid: roid}, function(){
 			if (callback != null) {
 				callback();
 			}
