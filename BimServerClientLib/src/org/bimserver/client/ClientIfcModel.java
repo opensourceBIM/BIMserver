@@ -26,8 +26,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.codec.binary.Base64;
@@ -52,7 +54,7 @@ import org.bimserver.shared.SingleWaitingObject;
 import org.bimserver.shared.WaitingList;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -93,6 +95,74 @@ public class ClientIfcModel extends IfcModel {
 		if (deep) {
 			loadDeep();
 		}
+	}
+
+	private ClientIfcModel(BimServerClient bimServerClient, long poid) {
+		this.bimServerClient = bimServerClient;
+		try {
+			tid = bimServerClient.getBimsie1LowLevelInterface().startTransaction(poid);
+		} catch (Exception e) {
+			LOGGER.error("", e);
+		}
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ClientIfcModel branch(long poid) {
+		// TODO this should of course be done server side, without any copying
+		ClientIfcModel branch = new ClientIfcModel(bimServerClient, poid);
+		try {
+			loadDeep();
+		} catch (ServerException e) {
+			e.printStackTrace();
+		} catch (UserException e) {
+			e.printStackTrace();
+		} catch (BimServerClientException e) {
+			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e) {
+			e.printStackTrace();
+		}
+		Map<IdEObject, IdEObject> map = new HashMap<IdEObject, IdEObject>();
+		for (IdEObject sourceObject : getObjects().values()) {
+			try {
+				IdEObject targetObject = create(sourceObject.eClass());
+				map.put(sourceObject, targetObject);
+			} catch (IfcModelInterfaceException e) {
+				e.printStackTrace();
+			}
+		}
+		for (IdEObject sourceObject : getObjects().values()) {
+			IdEObject targetObject = map.get(sourceObject);
+			for (EStructuralFeature eStructuralFeature : sourceObject.eClass().getEAllStructuralFeatures()) {
+				Object sourceValue = sourceObject.eGet(eStructuralFeature);
+				if (eStructuralFeature instanceof EReference) {
+					if (eStructuralFeature.isMany()) {
+						List sourceList = (List)sourceValue;
+						List targetList = (List)targetObject.eGet(eStructuralFeature);
+						for (Object sourceItem : sourceList) {
+							targetList.add(map.get(sourceItem));
+						}
+					} else {
+						targetObject.eSet(eStructuralFeature, map.get(sourceValue));
+					}
+				} else {
+					if (eStructuralFeature.isMany()) {
+						List sourceList = (List)sourceValue;
+						List targetList = (List)targetObject.eGet(eStructuralFeature);
+						for (Object sourceItem : sourceList) {
+							targetList.add(sourceItem);
+						}
+					} else {
+						targetObject.eSet(eStructuralFeature, sourceValue);
+					}
+				}
+			}
+		}
+		branch.setModelState(ModelState.FULLY_LOADED);
+		return branch;
+	}
+	
+	private void setModelState(ModelState modelState) {
+		this.modelState = modelState;
 	}
 
 	public BimServerClient getBimServerClient() {
@@ -247,7 +317,7 @@ public class ClientIfcModel extends IfcModel {
 															long refOid = jsonReader.nextLong();
 															if (containsNoFetch(refOid)) {
 																IdEObject refObj = getNoFetch(refOid);
-																BasicEList l = (BasicEList)object.eGet(eStructuralFeature);
+																AbstractEList l = (AbstractEList)object.eGet(eStructuralFeature);
 																while (l.size() <= index) {
 																	l.addUnique(refObj.eClass().getEPackage().getEFactoryInstance().create(refObj.eClass()));
 																}

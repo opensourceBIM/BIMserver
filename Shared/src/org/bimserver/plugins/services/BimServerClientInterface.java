@@ -26,4 +26,5 @@ import org.bimserver.shared.exceptions.UserException;
 public interface BimServerClientInterface extends ServiceHolder {
 
 	IfcModelInterface getModel(long poid, long roid, boolean deep) throws BimServerClientException, UserException, ServerException, PublicInterfaceNotFoundException;
+	void commit(IfcModelInterface model, String comment);
 }

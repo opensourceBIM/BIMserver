@@ -17,6 +17,7 @@ package org.bimserver.emf;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public abstract class Delegate {
@@ -149,5 +150,9 @@ public abstract class Delegate {
 
 	public void remove() {
 		this.model.remove(getIdEObject());
+	}
+
+	public <T> EList<T> createList(EList<T> delegate, EStructuralFeature feature) {
+		return delegate;
 	}
 }

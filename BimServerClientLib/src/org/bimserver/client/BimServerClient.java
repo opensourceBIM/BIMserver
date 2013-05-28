@@ -29,6 +29,7 @@ import java.util.Set;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.client.notifications.SocketNotificationsClient;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
@@ -330,5 +331,16 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 
 	public Bimsie1ServiceInterface getBimsie1ServiceInterface() throws PublicInterfaceNotFoundException {
 		return channel.getBimsieServiceInterface();
+	}
+
+	@Override
+	public void commit(IfcModelInterface model, String comment) {
+		if (model instanceof ClientIfcModel) {
+			try {
+				((ClientIfcModel)model).commit(comment);
+			} catch (Exception e) {
+				LOGGER.error("", e);
+			}
+		}
 	}
 }

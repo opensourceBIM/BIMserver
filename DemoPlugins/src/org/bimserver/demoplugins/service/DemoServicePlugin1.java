@@ -71,7 +71,7 @@ public class DemoServicePlugin1 extends ServicePlugin {
 		serviceDescriptor.setTrigger(Trigger.NEW_REVISION);
 		registerNewRevisionHandler(serviceDescriptor, new NewRevisionHandler() {
 			@Override
-			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, SObjectType settings) throws ServerException, UserException {
+			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, long soid, SObjectType settings) throws ServerException, UserException {
 				try {
 					Date startDate = new Date();
 					Long topicId = bimServerClientInterface.getRegistry().registerProgressOnRevisionTopic(SProgressTopicType.RUNNING_SERVICE, poid, roid, "Running Demo Service");

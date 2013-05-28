@@ -84,7 +84,7 @@ public class ClashDetectionServicePlugin extends ServicePlugin {
 		clashDetection.setWriteExtendedData("http://www.buildingsmart-tech.org/specifications/bcf-releases");
 		clashDetection.setTrigger(Trigger.NEW_REVISION);
 		registerNewRevisionHandler(clashDetection, new NewRevisionHandler() {
-			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, SObjectType settings) throws ServerException, UserException {
+			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, long soid, SObjectType settings) throws ServerException, UserException {
 				Bcf bcf = new Bcf();
 
 				SSerializerPluginConfiguration sSerializer;

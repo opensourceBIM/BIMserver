@@ -804,6 +804,12 @@ public class IfcModel implements IfcModelInterface {
 		return (T) object;
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T extends IdEObject> T create(Class<T> clazz) throws IfcModelInterfaceException {
+		return (T) create(eClassClassMap.inverse().get(clazz));
+	}
+	
 	@Override
 	public void clear() {
 		if (guidIndex != null) {
@@ -831,5 +837,10 @@ public class IfcModel implements IfcModelInterface {
 		for (IdEObject idEObject : objects.values()) {
 			((IdEObjectImpl)idEObject).setExpressId(-1);
 		}
+	}
+
+	@Override
+	public IfcModelInterface branch(long poid) {
+		throw new UnsupportedOperationException();
 	}
 }

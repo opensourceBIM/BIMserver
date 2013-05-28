@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.bimserver.plugins.deserializers.DeserializeException;
-import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
@@ -49,7 +49,7 @@ public class WaitingList<T> {
 	public void updateNode(T expressId, EClass ec, EObject eObject) throws DeserializeException {
 		for (WaitingObject waitingObject : waitingObjects.get(expressId)) {
 			if (waitingObject.getStructuralFeature().isMany()) {
-				BasicEList<EObject> list = (BasicEList<EObject>) waitingObject.getObject().eGet(waitingObject.getStructuralFeature());
+				AbstractEList<EObject> list = (AbstractEList<EObject>) waitingObject.getObject().eGet(waitingObject.getStructuralFeature());
 				if (waitingObject instanceof SingleWaitingObject) {
 					list.addUnique(eObject);
 				} else {

@@ -25,7 +25,12 @@ import org.bimserver.shared.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
+import org.eclipse.emf.common.util.AbstractEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 
 public class ClientDelegate extends Delegate {
 
@@ -62,24 +67,28 @@ public class ClientDelegate extends Delegate {
 		loadForEdit();
 		if (model.getModelState() != ModelState.LOADING) {
 			try {
-				if (newValue instanceof String) {
+				if (eFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
 					model.getBimServerClient().getBimsie1LowLevelInterface().setStringAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (String)newValue);
-				} else if (newValue instanceof Long) {
+				} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getELong() || eFeature.getEType() == EcorePackage.eINSTANCE.getELongObject()) {
 					model.getBimServerClient().getBimsie1LowLevelInterface().setLongAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Long)newValue);
-				} else if (newValue instanceof Double) {
+				} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
 					model.getBimServerClient().getBimsie1LowLevelInterface().setDoubleAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Double)newValue);
-				} else if (newValue instanceof Boolean) {
+				} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() || eFeature.getEType() == EcorePackage.eINSTANCE.getEBooleanObject()) {
 					model.getBimServerClient().getBimsie1LowLevelInterface().setBooleanAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Boolean)newValue);
-				} else if (newValue instanceof Integer) {
+				} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEInt() || eFeature.getEType() == EcorePackage.eINSTANCE.getEIntegerObject()) {
 					model.getBimServerClient().getBimsie1LowLevelInterface().setIntegerAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Integer)newValue);
-				} else if (newValue instanceof byte[]) {
+				} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
 					model.getBimServerClient().getBimsie1LowLevelInterface().setByteArrayAttribute(model.getTransactionId(), getOid(), eFeature.getName(), (Byte[])newValue);
-				} else if (newValue instanceof Enum) {
+				} else if (eFeature.getEType() instanceof EEnum) {
 					model.getBimServerClient().getBimsie1LowLevelInterface().setEnumAttribute(model.getTransactionId(), getOid(), eFeature.getName(), ((Enum<?>)newValue).toString());
-				} else if (newValue instanceof IdEObject) {
-					model.getBimServerClient().getBimsie1LowLevelInterface().setReference(model.getTransactionId(), getOid(), eFeature.getName(), ((IdEObject)newValue).getOid());
+				} else if (eFeature instanceof EReference) {
+					if (newValue == null) {
+						model.getBimServerClient().getBimsie1LowLevelInterface().setReference(model.getTransactionId(), getOid(), eFeature.getName(), -1L);
+					} else {
+						model.getBimServerClient().getBimsie1LowLevelInterface().setReference(model.getTransactionId(), getOid(), eFeature.getName(), ((IdEObject)newValue).getOid());
+					}
 				} else {
-					throw new RuntimeException("Unimplemented " + eFeature.getEType().getName());
+					throw new RuntimeException("Unimplemented " + eFeature.getEType().getName() + " " + newValue);
 				}
 			} catch (ServiceException e) {
 				e.printStackTrace();
@@ -132,5 +141,10 @@ public class ClientDelegate extends Delegate {
 			e.printStackTrace();
 		}
 		super.remove();
+	}
+	
+	@Override
+	public <T> EList<T> createList(EList<T> delegate, EStructuralFeature feature) {
+		return new EDelegatingList<T>(model, getIdEObject(), feature, (AbstractEList<T>) delegate);
 	}
 }
