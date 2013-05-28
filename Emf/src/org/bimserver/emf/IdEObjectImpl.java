@@ -18,6 +18,7 @@ package org.bimserver.emf;
  *****************************************************************************/
 
 import org.bimserver.emf.Delegate.State;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -75,9 +76,13 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 		super.eSet(eFeature, newValue);
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public Object eGet(EStructuralFeature eFeature) {
 		getDelegate().eGet(eFeature);
+		if (eFeature.isMany()) {
+			return delegate.createList((EList) super.eGet(eFeature), eFeature);
+		}
 		return super.eGet(eFeature);
 	}
 	

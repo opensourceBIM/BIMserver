@@ -170,6 +170,7 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	ModelMetaData getModelMetaData();
 	
 	<T extends IdEObject> T create(EClass eClass) throws IfcModelInterfaceException;
+	<T extends IdEObject> T create(Class<T> clazz) throws IfcModelInterfaceException;
 	
 	void fixOids(OidProvider<Long> oidProvider);
 	void setObjectOids();
@@ -192,4 +193,6 @@ public interface IfcModelInterface extends Iterable<IdEObject> {
 	void clear();
 
 	void resetExpressIds();
+
+	IfcModelInterface branch(long poid);
 }

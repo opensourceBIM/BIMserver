@@ -71,7 +71,7 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 				}
 				try {
 					final ServiceInterface serviceInterface = bimServer.getService(ServiceInterface.class);
-					SService service = serviceInterface.getService(Long.parseLong(profileIdentifier));
+					final SService service = serviceInterface.getService(Long.parseLong(profileIdentifier));
 					final SObjectType settings = internalChannel.getPluginInterface().getPluginSettings(service.getInternalServiceId());
 
 					final BimServerClient bimServerClient = bimServer.getBimServerClientFactory().create(new TokenAuthentication(token));
@@ -82,7 +82,7 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 						@Override
 						public void run() {
 							try {
-								newRevisionHandler.newRevision(bimServerClient, poid, roid, settings);
+								newRevisionHandler.newRevision(bimServerClient, poid, roid, service.getOid(), settings);
 							} catch (ServerException e) {
 								LOGGER.error("", e);
 							} catch (UserException e) {

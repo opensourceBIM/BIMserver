@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -41,6 +42,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.commons.collections.comparators.ComparatorChain;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.BimServerClientFactory;
 import org.bimserver.client.json.JsonBimServerClientFactory;
@@ -1255,7 +1257,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public List<SServiceDescriptor> getAllLocalServiceDescriptors() throws ServerException, UserException {
-		return getBimServer().getSConverter().convertToSListServiceDescriptor(getBimServer().getInternalServicesManager().getInternalServices().values());
+		return sort(getBimServer().getSConverter().convertToSListServiceDescriptor(getBimServer().getInternalServicesManager().getInternalServices().values()));
 	}
 	
 	@Override
@@ -1286,10 +1288,30 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				sServiceDescriptor.setWriteExtendedData(rights.has("writeExtendedData") ? rights.getString("writeExtendedData") : null);
 				sServiceDescriptors.add(sServiceDescriptor);
 			}
+			
+			sort(sServiceDescriptors);
 			return sServiceDescriptors;
 		} catch (Exception e) {
 			return handleException(e);
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	private List<SServiceDescriptor> sort(List<SServiceDescriptor> sServiceDescriptors) {
+		ComparatorChain comparatorChain = new ComparatorChain();
+		comparatorChain.addComparator(new Comparator<SServiceDescriptor>() {
+			@Override
+			public int compare(SServiceDescriptor o1, SServiceDescriptor o2) {
+				return o1.getProviderName().compareTo(o2.getProviderName());
+			}
+		});
+		comparatorChain.addComparator(new Comparator<SServiceDescriptor>(){
+			@Override
+			public int compare(SServiceDescriptor o1, SServiceDescriptor o2) {
+				return o1.getName().compareTo(o2.getName());
+			}});
+		Collections.sort(sServiceDescriptors, comparatorChain);
+		return sServiceDescriptors;
 	}
 
 	@Override
