@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<script src="js/vkbeautify.0.99.00.beta.js"></script>
-	<script src="js/prettify.js"></script>
-  	<script src="js/jquery-1.8.2.min.js"></script>
-  	<script src="js/jquery.cookie.js"></script>
-  	<script src="js/jquery.enterpress.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/String.js"></script>
-	<link href="css/prettify.css" rel="stylesheet">
-	<link href="css/bootstrap.min.css" rel="stylesheet">
+  <base href="/"></base>
 	<style>
 .methodList li {
 	list-style: none;
@@ -112,7 +104,7 @@ pre.prettyprint {
 					class="icon-bar"></span> <span class="icon-bar"></span>
 				</a>
 				<ul class="nav">
-					<li><img class="logo" src="/img/logo_small.png"/></li>
+					<li><img class="logo"/></li>
 					<!--  <li><a class="pageLink homeLink">Home</a></li>-->
 					<li class="active"><a class="pageLink apiLink">API</a></li>
 					<li><a class="pageLink scenariosLink">Common scenarios</a></li>
@@ -186,484 +178,527 @@ pre.prettyprint {
 		</div>
 	</div>
 <script>
-var token = $.cookie("token");
-if (token != null) {
-	$(".loginButton").html("Logout");
+
+Global = {};
+
+LazyLoad=function(k){function p(b,a){var g=k.createElement(b),c;for(c in a)a.hasOwnProperty(c)&&g.setAttribute(c,a[c]);return g}function l(b){var a=m[b],c,f;if(a)c=a.callback,f=a.urls,f.shift(),h=0,f.length||(c&&c.call(a.context,a.obj),m[b]=null,n[b].length&&j(b))}function w(){var b=navigator.userAgent;c={async:k.createElement("script").async===!0};(c.webkit=/AppleWebKit\//.test(b))||(c.ie=/MSIE/.test(b))||(c.opera=/Opera/.test(b))||(c.gecko=/Gecko\//.test(b))||(c.unknown=!0)}function j(b,a,g,f,h){var j=
+	function(){l(b)},o=b==="css",q=[],d,i,e,r;c||w();if(a)if(a=typeof a==="string"?[a]:a.concat(),o||c.async||c.gecko||c.opera)n[b].push({urls:a,callback:g,obj:f,context:h});else{d=0;for(i=a.length;d<i;++d)n[b].push({urls:[a[d]],callback:d===i-1?g:null,obj:f,context:h})}if(!m[b]&&(r=m[b]=n[b].shift())){s||(s=k.head||k.getElementsByTagName("head")[0]);a=r.urls;d=0;for(i=a.length;d<i;++d)g=a[d],o?e=c.gecko?p("style"):p("link",{href:g,rel:"stylesheet"}):(e=p("script",{src:g}),e.async=!1),e.className="lazyload",
+	e.setAttribute("charset","utf-8"),c.ie&&!o?e.onreadystatechange=function(){if(/loaded|complete/.test(e.readyState))e.onreadystatechange=null,j()}:o&&(c.gecko||c.webkit)?c.webkit?(r.urls[d]=e.href,t()):(e.innerHTML='@import "'+g+'";',u(e)):e.onload=e.onerror=j,q.push(e);d=0;for(i=q.length;d<i;++d)s.appendChild(q[d])}}function u(b){var a;try{a=!!b.sheet.cssRules}catch(c){h+=1;h<200?setTimeout(function(){u(b)},50):a&&l("css");return}l("css")}function t(){var b=m.css,a;if(b){for(a=v.length;--a>=0;)if(v[a].href===
+	b.urls[0]){l("css");break}h+=1;b&&(h<200?setTimeout(t,50):l("css"))}}var c,s,m={},h=0,n={css:[],js:[]},v=k.styleSheets;return{css:function(b,a,c,f){j("css",b,a,c,f)},js:function(b,a,c,f){j("js",b,a,c,f)}}}(this.document);
+
+Global.baseDir = new String(document.location.protocol + "//" + document.location.host + document.location.pathname);
+if (Global.baseDir.substring(Global.baseDir.length - 5) == ".html") {
+	Global.baseDir = Global.baseDir.substring(0, Global.baseDir.lastIndexOf("/"));
 }
-
-var protocol = "json";
-
-var namespaceMapping = {
-	"AuthInterface": "org_bimserver_AuthInterface",
-	"Bimsie1AuthInterface": "org_buildingsmart_bimsie_Bimsie1AuthInterface",
-	"ServiceInterface": "org_bimserver_ServiceInterface",
-	"Bimsie1ServiceInterface": "org_buildingsmart_bimsie_Bimsie1ServiceInterface",
-	"AdminInterface": "org_bimserver_AdminInterface",
-	"Bimsie1LowLevelInterface": "org_buildingsmart_bimsie_Bimsie1LowLevelInterface",
-	"MetaInterface": "org_bimserver_MetaInterface",
-	"Bimsie1NotificationInterface": "org_buildingsmart_bimsie_Bimsie1NotificationInterface",
-	"PluginInterface": "org_bimserver_PluginInterface",
-	"Bimsie1NotificationRegistryInterface": "org_buildingsmart_bimsie_Bimsie1NotificationRegistryInterface",
-	"Bimsie1RemoteServiceInterface": "org_buildingsmart_bimsie_Bimsie1RemoteServiceInterface",
-	"SettingsInterface": "org_bimserver_SettingsInterface"
-};
-
-for (var key in namespaceMapping) {
-	$.getScript("/soap11/" + key + "?js");
+if (Global.baseDir.substring(Global.baseDir.length - 1) != "/") {
+	Global.baseDir = Global.baseDir + "/";
 }
+var baseJsDir = Global.baseDir + "js/";
+var baseCssDir = Global.baseDir + "css/";
 
-var lastCall = {};
+var base = document.getElementsByTagName("base");
+base[0].href = Global.baseDir;
 
-function getBaseURL () {
-   return location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/";
-}
+(function() {
+    var link = document.createElement('link');
+    link.type = 'image/x-icon';
+    link.rel = 'shortcut icon';
+    link.href = Global.baseDir + 'img/logo_small.png';
+    document.getElementsByTagName('head')[0].appendChild(link);
+}());
 
-function call(requestObject, callback) {
-	$.ajax({
-		url: getBaseURL() + "json",
-		data: JSON.stringify(requestObject),
-		contentType: "application/json",
-		type: "POST",
-		dataType: "json",
-		success: function(data){
-			if (data.exception == null) {
-				if (requestObject.request != null && requestObject.request.method == "login") {
-					token = data.response.result;
+LazyLoad.css([
+    baseCssDir + "prettify.css", 
+    baseCssDir + "bootstrap.min.css"
+], function(){});
+
+LazyLoad.js([
+    baseJsDir + "vkbeautify.0.99.00.beta.js", 
+    baseJsDir + "prettify.js", 
+    baseJsDir + "jquery-1.8.2.min.js", 
+    baseJsDir + "jquery.cookie.js", 
+    baseJsDir + "jquery.enterpress.js", 
+    baseJsDir + "bootstrap.min.js", 
+    baseJsDir + "String.js"
+], function () {
+	$(".logo").attr("src", Global.baseDir + "img/logo_small.png");
+
+	var token = $.cookie("token");
+	if (token != null) {
+		$(".loginButton").html("Logout");
+	}
+
+	var protocol = "json";
+
+	var namespaceMapping = {
+		"AuthInterface": "org_bimserver_AuthInterface",
+		"ServiceInterface": "org_bimserver_ServiceInterface",
+		"AdminInterface": "org_bimserver_AdminInterface",
+		"MetaInterface": "org_bimserver_MetaInterface",
+		"PluginInterface": "org_bimserver_PluginInterface",
+		"SettingsInterface": "org_bimserver_SettingsInterface",
+		"Bimsie1NotificationRegistryInterface": "org_buildingsmart_bimsie_Bimsie1NotificationRegistryInterface",
+		"Bimsie1RemoteServiceInterface": "org_buildingsmart_bimsie_Bimsie1RemoteServiceInterface",
+		"Bimsie1AuthInterface": "org_buildingsmart_bimsie_Bimsie1AuthInterface",
+		"Bimsie1ServiceInterface": "org_buildingsmart_bimsie_Bimsie1ServiceInterface",
+		"Bimsie1LowLevelInterface": "org_buildingsmart_bimsie_Bimsie1LowLevelInterface",
+		"Bimsie1NotificationInterface": "org_buildingsmart_bimsie_Bimsie1NotificationInterface"
+	};
+
+	for (var key in namespaceMapping) {
+		$.getScript(Global.baseDir + "soap11/" + key + "?js");
+	}
+
+	var lastCall = {};
+
+	function call(requestObject, callback) {
+		$.ajax({
+			url: Global.baseDir + "json",
+			data: JSON.stringify(requestObject),
+			contentType: "application/json",
+			type: "POST",
+			dataType: "json",
+			success: function(data){
+				if (data.exception == null) {
+					if (requestObject.request != null && requestObject.request.method == "login") {
+						token = data.response.result;
+						$.cookie("token", token);
+						$(".loginButton").html("Logout");
+					} else if (requestObject.request != null && requestObject.request.method == "logout") {
+						token = null;
+						$.cookie("token", null);
+						$(".loginButton").html("Login");
+					}
+					callback(data);
+				} else {
+					$(".output").removeClass("success").addClass("error");
+					$(".output").val(JSON.stringify(data, null, '  '));
+					$(".console").val(data.exception.message);
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown){
+				console.log(textStatus);
+				$(".output").removeClass("success").addClass("error");
+				$(".output").val(textStatus);
+			}
+		});
+	}
+
+	function makeExampleFromType(fieldName, type, genericType, doc) {
+		if (doc == "") {
+			doc = null;
+		}
+		var example = "";
+		if (type.simpleName == "String") {
+			example += "\"" + $(".__field" + fieldName).val() + "\"";
+		} else if (type.name.contains("Boolean")) {
+			example += "\"" + $(".__field" + fieldName).is(":checked") + "\"";
+		} else if (type.name.contains("javax.activation.DataHandler")) {
+			example += "\"" + $(".__field" + fieldName).data("base64") + "\"";
+		} else if (type.name.contains("org.bimserver")) {
+			if (type.simpleType == "ENUM") {
+				example += "\"" + $(".__field" + fieldName).val() + "\"";
+			} else {
+				example += "{\n";
+				type.fields.forEach(function(field, index){
+					example += "    \"" + field.name + "\": " + makeExampleFromType("", field.type, field.genericType, field.doc);
+					if (index != type.fields.length - 1) {
+						example += ",";
+					}
+					example += "\n";
+				});
+				example += "    }";
+			}
+		} else if (type.simpleName == "List") {
+			example += "[<<" + genericType.simpleName.toLowerCase() + (doc == null ? "" : (", " + doc)) + ">>]";
+		} else {
+			example += "\"" + $(".__field" + fieldName).val() + "\"";
+		}
+		return example;
+	}
+
+	function getJsonText() {
+		var request = "{\n";
+		if (token != null) {
+			request += "  \"token\": \"" + token + "\",\n";
+		}
+		request += "  \"request\": {\n";
+		request += "    \"interface\": \"" + lastCall.interfaceSimpleName + "\", \n";
+		request += "    \"method\": \"" + lastCall.methodName + "\", \n";
+		request += "    \"parameters\": {\n";
+		lastCall.parameters.forEach(function(parameter, index){
+			request += "      \"" + parameter.name + "\": ";
+			request += makeExampleFromType(parameter.name, parameter.type, parameter.genericType, parameter.doc);
+			if (index != lastCall.parameters.length - 1) {
+				request += ",\n";
+			} else {
+				request += "\n";
+			}
+		});
+		request += "    }\n";
+		request += "  }\n";
+		request += "}";
+		return request;	
+	}
+
+	// http://stackoverflow.com/questions/3362471/how-can-i-call-a-javascript-constructor-using-call-or-apply
+	function conthunktor(Constructor) {
+	    var args = Array.prototype.slice.call(arguments, 1);
+	    return function() {
+	         var Temp = function(){}, // temporary constructor
+	             inst, ret; // other vars
+
+	         // Give the Temp constructor the Constructor's prototype
+	         Temp.prototype = Constructor.prototype;
+
+	         // Create a new instance
+	         inst = new Temp;
+
+	         // Call the original Constructor with the temp
+	         // instance as its context (i.e. its 'this' value)
+	         ret = Constructor.apply(inst, args);
+
+	         // If an object has been returned then return it otherwise
+	         // return the original instance.
+	         // (consistent with behaviour of the new operator)
+	         return Object(ret) === ret ? ret : inst;
+	    }
+	}
+
+	function getSoapArgs() {
+		var params = [];
+		lastCall.parameters.forEach(function(parameter, index){
+			params.push($(".__field" + parameter.name).val());
+		});
+		return params;
+	}
+
+	function getSoapText() {
+		var params = getSoapArgs();	
+		var global = (function () {
+		    return this;
+		}());
+
+		var interfaceConstructor = global[namespaceMapping[lastCall.interfaceSimpleName]];
+		var interfaceObject = conthunktor(interfaceConstructor)();
+		var inputSerializer = interfaceObject[lastCall.methodName + "_serializeInput"];
+		var code = inputSerializer(new CxfApacheOrgUtil(), params);
+		return vkbeautify.xml(code);
+	}
+
+	function inputChange() {
+		$(".requestdiv pre").removeClass("prettyprinted");
+		if (protocol == "json") {
+			$(".requestdiv pre").text(getJsonText());
+		} else if (protocol == "soap") {
+			$(".requestdiv pre").text(getSoapText());
+		}
+		prettyPrint();
+	}
+
+	function makeFieldFromType(fieldName, type, genericType, doc) {
+		if (type.simpleName == "String") {
+			var input = $("<input type=\"text\"/>");
+			input.addClass("__field" + fieldName);
+			input.keyup(inputChange);
+			input.enterpress(send);
+			return input;
+		} else if (type.simpleType == "ENUM") {
+			var select = $("<select></select>");
+			select.addClass("__field" + fieldName);
+			select.change(inputChange);
+			var request = {
+				request: {
+					interface: "MetaInterface",
+					method: "getEnumLiterals",
+					parameters: {
+						enumName: type.name
+					}
+				}
+			};
+			call(request, function(data){
+				data.response.result.forEach(function(enumConstant){
+					var option = $("<option value=\"" + enumConstant + "\">" + enumConstant + "</option>");
+					select.append(option);
+				});
+			});
+			return select;
+		} else if (type.name.contains("org.bimserver")) {
+		} else if (type.name.contains("javax.activation.DataHandler")) {
+			var input = $("<input type=\"file\"/>");
+			input.addClass("__field" + fieldName);
+			
+			var reader = new FileReader();
+			reader.onload = function (event) {
+				var data = event.target.result;
+				var encoded = data.substr(data.indexOf(",") + 1);
+				input.data("base64", encoded);
+				inputChange();
+			};
+
+			input.change(function(){
+				var get = input.get(0);
+				var files = get.files;
+				if (files != null && files.length == 1) {
+					var oFile = files[0];
+					reader.readAsDataURL(oFile);
+				}
+			});
+			
+			return input;
+		} else if (type.simpleName == "Boolean") {
+			var input = $("<input type=\"checkbox\" value=\"true\"/>");
+			input.addClass("__field" + fieldName);
+			input.change(inputChange);
+			return input;
+		} else if (type.simpleName == "List") {
+			
+		} else {
+			var input = $("<input type=\"text\"/>");
+			input.keyup(inputChange);
+			input.enterpress(send);
+			input.addClass("__field" + fieldName);
+			return input;
+		}
+	}
+
+	function loadExampleJson(interfaceName, interfaceSimpleName, methodName, doc, returnDoc) {
+		if ($(".hero-unit").is(":visible")) {
+			$(".hero-unit").hide();
+		}
+		lastCall.interfaceName = interfaceName;
+		lastCall.interfaceSimpleName = interfaceSimpleName;
+		lastCall.methodName = methodName;
+		lastCall.doc = doc;
+		var request = {
+			request: {
+				interface: "org.bimserver.MetaInterface",
+				method: "getServiceMethodParameters",
+				parameters: {
+					serviceInterfaceName: interfaceName,
+					serviceMethodName: methodName				
+				}
+			}
+		};
+		$(".method .name").html(interfaceSimpleName + "." + methodName);
+		if (doc == null || doc == "") {
+			$(".method .doc").html("No documentation for this method yet");
+		} else {
+			$(".method .doc").html(doc);
+		}
+		if (returnDoc == null || returnDoc == "") {
+			$(".method .docreturn").parent().hide();
+		} else {
+			$(".method .docreturn").html(returnDoc).parent().show();
+		}
+		$(".method .parametersForm *").remove();
+		call(request, function(data){
+			lastCall.parameters = data.response.result;
+			if (data.response.result.length == 0) {
+				$(".method .noparameters").show();
+				$(".method .parameters").hide();
+			} else {
+				$(".method .noparameters").hide();
+				$(".method .parameters").show();
+				data.response.result.forEach(function(parameter, index){
+					var div = $("<div class=\"control-group\">");
+					var label = $("<label class=\"control-label\"><a>" + parameter.name + "</a></label>");
+					label.find("a").attr("title", parameter.doc);
+					label.find("a").tooltip();
+					var controls = $("<div class=\"controls\">");
+					div.append(label);
+					div.append(controls);
+					var input = makeFieldFromType(parameter.name, parameter.type, parameter.genericType, parameter.doc);
+					controls.append(input);
+					$(".method .parametersForm").append(div);
+				});
+			}
+			$(".method").show();
+			$(".method .parameters input:first").focus();
+			$(".responsediv").hide();
+			inputChange();
+		});
+	}
+
+	function loadMethods(event) {
+		if (event != null) {
+			event.preventDefault();
+		}
+		var request = {
+			request: {
+				interface: "org.bimserver.MetaInterface",
+				method: "getServiceInterfaces"
+			}
+		};
+		call(request, function(data){
+			$(".innerMethodList").empty();
+			var request = {
+				requests: [
+				]
+			}
+			data.response.result.forEach(function(serviceInterface){
+				request.requests.push({
+					interface: "org.bimserver.MetaInterface",
+					method: "getServiceMethods",
+					parameters: {
+						serviceInterfaceName: serviceInterface.name,
+						serviceInterfaceSimpleName: serviceInterface.simpleName
+					}
+				});
+			});
+			call(request, function(data){
+				data.responses.forEach(function(response, index){
+					var headerLi = $("<li class=\"nav-header\">" + request.requests[index].parameters.serviceInterfaceSimpleName + "</li>");
+					$(".innerMethodList").append(headerLi);
+					response.result.forEach(function(serviceMethod){
+						var li = $("<li></li>");
+						var a = $("<a>" + serviceMethod.name + "</a>");
+						a.data("serviceInterfaceName", request.requests[index].parameters.serviceInterfaceName);
+						a.data("serviceInterfaceSimpleName", request.requests[index].parameters.serviceInterfaceSimpleName);
+						a.data("serviceMethodName", serviceMethod.name);
+						a.data("doc", serviceMethod.doc);
+						a.data("returndoc", serviceMethod.returnDoc);
+						a.click(function(){
+							$(this).parent().parent().find("li").removeClass("active");
+							$(this).parent().addClass("active");
+							loadExampleJson($(this).data("serviceInterfaceName"), $(this).data("serviceInterfaceSimpleName"), $(this).data("serviceMethodName"), $(this).data("doc"), $(this).data("returndoc"));
+						});
+						li.append(a);
+						$(".innerMethodList").append(li);
+					});
+				});
+			});
+		});
+	}
+
+	function send() {
+		$(".responsediv pre").val("");
+		if (protocol == "json") {
+			var input = getJsonText();
+			try {
+				input = JSON.parse(input);
+				call(input, function(data){
+					$(".responsediv pre").removeClass("error").addClass("success");
+					$(".responsediv pre").removeClass("prettyprinted");
+					$(".responsediv pre").text(JSON.stringify(data, null, '  '));
+					prettyPrint();
+					$(".responsediv").show();
+				});
+			} catch (e) {
+				$(".responsediv pre").removeClass("success").addClass("error");
+				$(".responsediv pre").html("Invalid json");
+				$(".responsediv").show();
+			}
+		} else if (protocol == "soap") {
+			var global = (function () {
+			    return this;
+			}());
+			var interfaceConstructor = global[namespaceMapping[lastCall.interfaceSimpleName]];
+			var interfaceObject = conthunktor(interfaceConstructor)();
+			var callMethod = interfaceObject[lastCall.methodName];
+			var allArguments = [];
+			allArguments.push(function(response){
+				if (lastCall.methodName == "login") {
+					token = response.getReturn();
 					$.cookie("token", token);
 					$(".loginButton").html("Logout");
-				} else if (requestObject.request != null && requestObject.request.method == "logout") {
+				} else if (lastCall.methodName == "logout") {
 					token = null;
 					$.cookie("token", null);
 					$(".loginButton").html("Login");
 				}
-				callback(data);
-			} else {
-				$(".output").removeClass("success").addClass("error");
-				$(".output").val(JSON.stringify(data, null, '  '));
-				$(".console").val(data.exception.message);
-			}
-		},
-		error: function(jqXHR, textStatus, errorThrown){
-			console.log(textStatus);
-			$(".output").removeClass("success").addClass("error");
-			$(".output").val(textStatus);
-		}
-	});
-}
-
-function makeExampleFromType(fieldName, type, genericType, doc) {
-	if (doc == "") {
-		doc = null;
-	}
-	var example = "";
-	if (type.simpleName == "String") {
-		example += "\"" + $(".__field" + fieldName).val() + "\"";
-	} else if (type.name.contains("Boolean")) {
-		example += "\"" + $(".__field" + fieldName).is(":checked") + "\"";
-	} else if (type.name.contains("javax.activation.DataHandler")) {
-		example += "\"" + $(".__field" + fieldName).data("base64") + "\"";
-	} else if (type.name.contains("org.bimserver")) {
-		if (type.simpleType == "ENUM") {
-			example += "\"" + $(".__field" + fieldName).val() + "\"";
-		} else {
-			example += "{\n";
-			type.fields.forEach(function(field, index){
-				example += "    \"" + field.name + "\": " + makeExampleFromType("", field.type, field.genericType, field.doc);
-				if (index != type.fields.length - 1) {
-					example += ",";
-				}
-				example += "\n";
 			});
-			example += "    }";
-		}
-	} else if (type.simpleName == "List") {
-		example += "[<<" + genericType.simpleName.toLowerCase() + (doc == null ? "" : (", " + doc)) + ">>]";
-	} else {
-		example += "\"" + $(".__field" + fieldName).val() + "\"";
-	}
-	return example;
-}
-
-function getJsonText() {
-	var request = "{\n";
-	if (token != null) {
-		request += "  \"token\": \"" + token + "\",\n";
-	}
-	request += "  \"request\": {\n";
-	request += "    \"interface\": \"" + lastCall.interfaceSimpleName + "\", \n";
-	request += "    \"method\": \"" + lastCall.methodName + "\", \n";
-	request += "    \"parameters\": {\n";
-	lastCall.parameters.forEach(function(parameter, index){
-		request += "      \"" + parameter.name + "\": ";
-		request += makeExampleFromType(parameter.name, parameter.type, parameter.genericType, parameter.doc);
-		if (index != lastCall.parameters.length - 1) {
-			request += ",\n";
-		} else {
-			request += "\n";
-		}
-	});
-	request += "    }\n";
-	request += "  }\n";
-	request += "}";
-	return request;	
-}
-
-// http://stackoverflow.com/questions/3362471/how-can-i-call-a-javascript-constructor-using-call-or-apply
-function conthunktor(Constructor) {
-    var args = Array.prototype.slice.call(arguments, 1);
-    return function() {
-         var Temp = function(){}, // temporary constructor
-             inst, ret; // other vars
-
-         // Give the Temp constructor the Constructor's prototype
-         Temp.prototype = Constructor.prototype;
-
-         // Create a new instance
-         inst = new Temp;
-
-         // Call the original Constructor with the temp
-         // instance as its context (i.e. its 'this' value)
-         ret = Constructor.apply(inst, args);
-
-         // If an object has been returned then return it otherwise
-         // return the original instance.
-         // (consistent with behaviour of the new operator)
-         return Object(ret) === ret ? ret : inst;
-    }
-}
-
-function getSoapArgs() {
-	var params = [];
-	lastCall.parameters.forEach(function(parameter, index){
-		params.push($(".__field" + parameter.name).val());
-	});
-	return params;
-}
-
-function getSoapText() {
-	var params = getSoapArgs();	
-	var global = (function () {
-	    return this;
-	}());
-
-	var interfaceConstructor = global[namespaceMapping[lastCall.interfaceSimpleName]];
-	var interfaceObject = conthunktor(interfaceConstructor)();
-	var inputSerializer = interfaceObject[lastCall.methodName + "_serializeInput"];
-	var code = inputSerializer(new CxfApacheOrgUtil(), params);
-	return vkbeautify.xml(code);
-}
-
-function inputChange() {
-	$(".requestdiv pre").removeClass("prettyprinted");
-	if (protocol == "json") {
-		$(".requestdiv pre").text(getJsonText());
-	} else if (protocol == "soap") {
-		$(".requestdiv pre").text(getSoapText());
-	}
-	prettyPrint();
-}
-
-function makeFieldFromType(fieldName, type, genericType, doc) {
-	if (type.simpleName == "String") {
-		var input = $("<input type=\"text\"/>");
-		input.addClass("__field" + fieldName);
-		input.keyup(inputChange);
-		input.enterpress(send);
-		return input;
-	} else if (type.simpleType == "ENUM") {
-		var select = $("<select></select>");
-		select.addClass("__field" + fieldName);
-		select.change(inputChange);
-		var request = {
-			request: {
-				interface: "MetaInterface",
-				method: "getEnumLiterals",
-				parameters: {
-					enumName: type.name
-				}
-			}
-		};
-		call(request, function(data){
-			data.response.result.forEach(function(enumConstant){
-				var option = $("<option value=\"" + enumConstant + "\">" + enumConstant + "</option>");
-				select.append(option);
+			allArguments.push(function(){
+				console.log(arguments);
 			});
-		});
-		return select;
-	} else if (type.name.contains("org.bimserver")) {
-	} else if (type.name.contains("javax.activation.DataHandler")) {
-		var input = $("<input type=\"file\"/>");
-		input.addClass("__field" + fieldName);
-		
-		var reader = new FileReader();
-		reader.onload = function (event) {
-			var data = event.target.result;
-			var encoded = data.substr(data.indexOf(",") + 1);
-			input.data("base64", encoded);
-			inputChange();
-		};
-
-		input.change(function(){
-			var get = input.get(0);
-			var files = get.files;
-			if (files != null && files.length == 1) {
-				var oFile = files[0];
-				reader.readAsDataURL(oFile);
-			}
-		});
-		
-		return input;
-	} else if (type.simpleName == "Boolean") {
-		var input = $("<input type=\"checkbox\" value=\"true\"/>");
-		input.addClass("__field" + fieldName);
-		input.change(inputChange);
-		return input;
-	} else if (type.simpleName == "List") {
-		
-	} else {
-		var input = $("<input type=\"text\"/>");
-		input.keyup(inputChange);
-		input.enterpress(send);
-		input.addClass("__field" + fieldName);
-		return input;
-	}
-}
-
-function loadExampleJson(interfaceName, interfaceSimpleName, methodName, doc, returnDoc) {
-	if ($(".hero-unit").is(":visible")) {
-		$(".hero-unit").hide();
-	}
-	lastCall.interfaceName = interfaceName;
-	lastCall.interfaceSimpleName = interfaceSimpleName;
-	lastCall.methodName = methodName;
-	lastCall.doc = doc;
-	var request = {
-		request: {
-			interface: "org.bimserver.MetaInterface",
-			method: "getServiceMethodParameters",
-			parameters: {
-				serviceInterfaceName: interfaceName,
-				serviceMethodName: methodName				
-			}
-		}
-	};
-	$(".method .name").html(interfaceSimpleName + "." + methodName);
-	if (doc == null || doc == "") {
-		$(".method .doc").html("No documentation for this method yet");
-	} else {
-		$(".method .doc").html(doc);
-	}
-	if (returnDoc == null || returnDoc == "") {
-		$(".method .docreturn").parent().hide();
-	} else {
-		$(".method .docreturn").html(returnDoc).parent().show();
-	}
-	$(".method .parametersForm *").remove();
-	call(request, function(data){
-		lastCall.parameters = data.response.result;
-		if (data.response.result.length == 0) {
-			$(".method .noparameters").show();
-			$(".method .parameters").hide();
-		} else {
-			$(".method .noparameters").hide();
-			$(".method .parameters").show();
-			data.response.result.forEach(function(parameter, index){
-				var div = $("<div class=\"control-group\">");
-				var label = $("<label class=\"control-label\"><a>" + parameter.name + "</a></label>");
-				label.find("a").attr("title", parameter.doc);
-				label.find("a").tooltip();
-				var controls = $("<div class=\"controls\">");
-				div.append(label);
-				div.append(controls);
-				var input = makeFieldFromType(parameter.name, parameter.type, parameter.genericType, parameter.doc);
-				controls.append(input);
-				$(".method .parametersForm").append(div);
+			var otherArgs = getSoapArgs();
+			otherArgs.forEach(function(arg){
+				allArguments.push(arg);
 			});
-		}
-		$(".method").show();
-		$(".method .parameters input:first").focus();
-		$(".responsediv").hide();
-		inputChange();
-	});
-}
-
-function loadMethods(event) {
-	if (event != null) {
-		event.preventDefault();
-	}
-	var request = {
-		request: {
-			interface: "org.bimserver.MetaInterface",
-			method: "getServiceInterfaces"
-		}
-	};
-	call(request, function(data){
-		$(".innerMethodList").empty();
-		var request = {
-			requests: [
-			]
-		}
-		data.response.result.forEach(function(serviceInterface){
-			request.requests.push({
-				interface: "org.bimserver.MetaInterface",
-				method: "getServiceMethods",
-				parameters: {
-					serviceInterfaceName: serviceInterface.name,
-					serviceInterfaceSimpleName: serviceInterface.simpleName
-				}
-			});
-		});
-		call(request, function(data){
-			data.responses.forEach(function(response, index){
-				var headerLi = $("<li class=\"nav-header\">" + request.requests[index].parameters.serviceInterfaceSimpleName + "</li>");
-				$(".innerMethodList").append(headerLi);
-				response.result.forEach(function(serviceMethod){
-					var li = $("<li></li>");
-					var a = $("<a>" + serviceMethod.name + "</a>");
-					a.data("serviceInterfaceName", request.requests[index].parameters.serviceInterfaceName);
-					a.data("serviceInterfaceSimpleName", request.requests[index].parameters.serviceInterfaceSimpleName);
-					a.data("serviceMethodName", serviceMethod.name);
-					a.data("doc", serviceMethod.doc);
-					a.data("returndoc", serviceMethod.returnDoc);
-					a.click(function(){
-						$(this).parent().parent().find("li").removeClass("active");
-						$(this).parent().addClass("active");
-						loadExampleJson($(this).data("serviceInterfaceName"), $(this).data("serviceInterfaceSimpleName"), $(this).data("serviceMethodName"), $(this).data("doc"), $(this).data("returndoc"));
-					});
-					li.append(a);
-					$(".innerMethodList").append(li);
-				});
-			});
-		});
-	});
-}
-
-function send() {
-	$(".responsediv pre").val("");
-	if (protocol == "json") {
-		var input = getJsonText();
-		try {
-			input = JSON.parse(input);
-			call(input, function(data){
+			
+			var existingSuccessMethod = interfaceObject[lastCall.methodName + "_onsuccess"];
+			var newSuccessMethod = function(client, responseXml){
 				$(".responsediv pre").removeClass("error").addClass("success");
 				$(".responsediv pre").removeClass("prettyprinted");
-				$(".responsediv pre").text(JSON.stringify(data, null, '  '));
+				var oSerializer = new XMLSerializer();
+				$(".responsediv pre").text(vkbeautify.xml(oSerializer.serializeToString(responseXml)));
 				prettyPrint();
 				$(".responsediv").show();
-			});
-		} catch (e) {
-			$(".responsediv pre").removeClass("success").addClass("error");
-			$(".responsediv pre").html("Invalid json");
-			$(".responsediv").show();
-		}
-	} else if (protocol == "soap") {
-		var global = (function () {
-		    return this;
-		}());
-		var interfaceConstructor = global[namespaceMapping[lastCall.interfaceSimpleName]];
-		var interfaceObject = conthunktor(interfaceConstructor)();
-		var callMethod = interfaceObject[lastCall.methodName];
-		var allArguments = [];
-		allArguments.push(function(response){
-			if (lastCall.methodName == "login") {
-				token = response.getReturn();
-				$.cookie("token", token);
-				$(".loginButton").html("Logout");
-			} else if (lastCall.methodName == "logout") {
-				token = null;
-				$.cookie("token", null);
-				$(".loginButton").html("Login");
-			}
-		});
-		allArguments.push(function(){
-			console.log(arguments);
-		});
-		var otherArgs = getSoapArgs();
-		otherArgs.forEach(function(arg){
-			allArguments.push(arg);
-		});
-		
-		var existingSuccessMethod = interfaceObject[lastCall.methodName + "_onsuccess"];
-		var newSuccessMethod = function(client, responseXml){
-			$(".responsediv pre").removeClass("error").addClass("success");
-			$(".responsediv pre").removeClass("prettyprinted");
-			var oSerializer = new XMLSerializer();
-			$(".responsediv pre").text(vkbeautify.xml(oSerializer.serializeToString(responseXml)));
-			prettyPrint();
-			$(".responsediv").show();
-			existingSuccessMethod.apply(this, arguments);
-		};
-		interfaceObject[lastCall.methodName + "_onsuccess"] = newSuccessMethod;
+				existingSuccessMethod.apply(this, arguments);
+			};
+			interfaceObject[lastCall.methodName + "_onsuccess"] = newSuccessMethod;
 
-		var existingErrorMethod = interfaceObject[lastCall.methodName + "_onerror"];
-		var newErrorMethod = function(client, responseXml){
-			$(".responsediv pre").addClass("error").removeClass("success");
-			$(".responsediv pre").removeClass("prettyprinted");
-			var oSerializer = new XMLSerializer();
-			$(".responsediv pre").text(vkbeautify.xml(oSerializer.serializeToString(responseXml)));
-			prettyPrint();
-			$(".responsediv").show();
-			existingErrorMethod.apply(this, arguments);
-		};
-		interfaceObject[lastCall.methodName + "_onerror"] = newErrorMethod;
-		
-		callMethod.apply(interfaceObject, allArguments);
+			var existingErrorMethod = interfaceObject[lastCall.methodName + "_onerror"];
+			var newErrorMethod = function(client, responseXml){
+				$(".responsediv pre").addClass("error").removeClass("success");
+				$(".responsediv pre").removeClass("prettyprinted");
+				var oSerializer = new XMLSerializer();
+				$(".responsediv pre").text(vkbeautify.xml(oSerializer.serializeToString(responseXml)));
+				prettyPrint();
+				$(".responsediv").show();
+				existingErrorMethod.apply(this, arguments);
+			};
+			interfaceObject[lastCall.methodName + "_onerror"] = newErrorMethod;
+			
+			callMethod.apply(interfaceObject, allArguments);
+		}
 	}
-}
 
-function loadServiceInterfaceMethod(interfaceName, interfaceSimpleName, methodName) {
-	var request = {
-		request: {
-			interface: "org.bimserver.MetaInterface",
-			method: "getServiceMethod",
-			parameters: {
-				serviceInterfaceName: interfaceName,
-				methodName: methodName
+	function loadServiceInterfaceMethod(interfaceName, interfaceSimpleName, methodName) {
+		var request = {
+			request: {
+				interface: "org.bimserver.MetaInterface",
+				method: "getServiceMethod",
+				parameters: {
+					serviceInterfaceName: interfaceName,
+					methodName: methodName
+				}
 			}
+		};
+		call(request, function(data){
+			loadExampleJson(interfaceName, interfaceSimpleName, data.response.result.name, data.response.result.doc, data.response.result.returnDoc);
+		});
+	}
+
+	$(".loginButton").click(function(){
+		if (token == null) {
+			loadServiceInterfaceMethod("org.buildingsmart.bimsie1.Bimsie1AuthInterface", "Bimsie1AuthInterface", "login");
+		} else {
+			loadServiceInterfaceMethod("org.buildingsmart.bimsie1.Bimsie1AuthInterface", "Bimsie1AuthInterface", "logout");
 		}
-	};
-	call(request, function(data){
-		loadExampleJson(interfaceName, interfaceSimpleName, data.response.result.name, data.response.result.doc, data.response.result.returnDoc);
 	});
-}
 
-$(".loginButton").click(function(){
-	if (token == null) {
-		loadServiceInterfaceMethod("org.bimserver.shared.interfaces.AuthInterface", "AuthInterface", "login");
-	} else {
-		loadServiceInterfaceMethod("org.bimserver.shared.interfaces.AuthInterface", "AuthInterface", "logout");
-	}
-});
+	$(".soapRadio, .jsonRadio").click(function(){
+		if ($(this).hasClass("jsonRadio")) {
+			protocol = "json";
+		} else if ($(this).hasClass("soapRadio")) {
+			protocol = "soap";
+		}
+		inputChange();
+	});
+	$(".sendButton").click(send);
+	$(".homeLink").click(function(){
+		$(".page").hide();
+		$(".pageLink").parent().removeClass("active");
+		$(".homeLink").parent().addClass("active");
+		$(".home").show();
+	});
+	$(".apiLink").click(function(){
+		$(".page").hide();
+		$(".pageLink").parent().removeClass("active");
+		$(".apiLink").parent().addClass("active");
+		$(".api").show();
+	});
+	$(".scenariosLink").click(function(){
+		$(".page").hide();
+		$(".pageLink").parent().removeClass("active");
+		$(".scenariosLink").parent().addClass("active");
+		$(".scenarios").show();
+	});
 
-$(".soapRadio, .jsonRadio").click(function(){
-	if ($(this).hasClass("jsonRadio")) {
-		protocol = "json";
-	} else if ($(this).hasClass("soapRadio")) {
-		protocol = "soap";
-	}
-	inputChange();
+	
+	loadMethods();
 });
-$(".sendButton").click(send);
-$(".homeLink").click(function(){
-	$(".page").hide();
-	$(".pageLink").parent().removeClass("active");
-	$(".homeLink").parent().addClass("active");
-	$(".home").show();
-});
-$(".apiLink").click(function(){
-	$(".page").hide();
-	$(".pageLink").parent().removeClass("active");
-	$(".apiLink").parent().addClass("active");
-	$(".api").show();
-});
-$(".scenariosLink").click(function(){
-	$(".page").hide();
-	$(".pageLink").parent().removeClass("active");
-	$(".scenariosLink").parent().addClass("active");
-	$(".scenarios").show();
-});
-
-loadMethods();
 </script>
 </body>
 </html>

@@ -39,6 +39,7 @@ public class CopyAdminInterface {
 			FileUtils.copyFileToDirectory(new File(bootstrap, "serversettings.html"), www);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "serverinfo.html"), www);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "plugins.html"), www);
+			FileUtils.copyFileToDirectory(new File(bootstrap, "console.html"), www);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "extendeddataschemas.html"), www);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "extendeddataschema.html"), www);
 			FileUtils.copyFileToDirectory(new File(bootstrap, "addnewextendeddataschema.html"), www);

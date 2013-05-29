@@ -30,6 +30,9 @@
 			b.urls[0]){l("css");break}h+=1;b&&(h<200?setTimeout(t,50):l("css"))}}var c,s,m={},h=0,n={css:[],js:[]},v=k.styleSheets;return{css:function(b,a,c,f){j("css",b,a,c,f)},js:function(b,a,c,f){j("js",b,a,c,f)}}}(this.document);
 		
 		Global.baseDir = new String(document.location.protocol + "//" + document.location.host + document.location.pathname);
+		if (Global.baseDir.substring(Global.baseDir.length - 5) == ".html") {
+			Global.baseDir = Global.baseDir.substring(0, Global.baseDir.lastIndexOf("/"));
+		}
 		if (Global.baseDir.substring(Global.baseDir.length - 1) != "/") {
 			Global.baseDir = Global.baseDir + "/";
 		}
