@@ -330,7 +330,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	}
 
 	public Bimsie1ServiceInterface getBimsie1ServiceInterface() throws PublicInterfaceNotFoundException {
-		return channel.getBimsieServiceInterface();
+		return channel.getBimsie1ServiceInterface();
 	}
 
 	@Override

@@ -140,7 +140,6 @@ public class JsonHandler {
 		if (LoggerFactory.getLogger(JsonHandler.class).isDebugEnabled()) {
 			LoggerFactory.getLogger(JsonHandler.class).debug("", exception);
 		}
-		LoggerFactory.getLogger(JsonHandler.class).info("", exception);
 		try {
 			writer.beginObject();
 			writer.name("exception");
