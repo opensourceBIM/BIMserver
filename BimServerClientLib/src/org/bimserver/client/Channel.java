@@ -274,11 +274,6 @@ public abstract class Channel implements ServiceHolder {
 		return get(ServiceInterface.class);
 	}
 
-	@Override
-	public Bimsie1ServiceInterface getBimsie1ServiceInterface() throws PublicInterfaceNotFoundException {
-		return get(Bimsie1ServiceInterface.class);
-	}
-	
 	protected boolean has(Class<? extends PublicInterface> interface1) {
 		return serviceInterfaces.containsKey(interface1.getName());
 	}
@@ -287,7 +282,7 @@ public abstract class Channel implements ServiceHolder {
 		return get(AuthInterface.class);
 	}
 
-	public Bimsie1ServiceInterface getBimsieServiceInterface() throws PublicInterfaceNotFoundException {
+	public Bimsie1ServiceInterface getBimsie1ServiceInterface() throws PublicInterfaceNotFoundException {
 		return get(Bimsie1ServiceInterface.class);
 	}
 }
