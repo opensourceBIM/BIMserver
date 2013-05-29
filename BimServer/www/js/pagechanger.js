@@ -49,7 +49,7 @@ function TabChanger(navElement, mainContainer) {
 					othis.current = constructorFunction.call(this);
 					contentElement.show();
 					if (callback != null) {
-						//callback.call(othis.current);
+						callback.call(othis.current);
 					}
 				}
 			});

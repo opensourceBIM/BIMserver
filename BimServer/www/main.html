@@ -184,6 +184,21 @@ function Main(address, username) {
 		});
 	};
 
+	this.makeSchemaLink = function(soid){
+		if (soid == -1) {
+			return "No schema";			
+		} else {
+			var link = $("<a>Loading...</a>");
+			link.attr("soid", soid);
+			link.click(othis.schemaLinkClick);
+			loadExtendedDataSchema(link);
+			return link;
+		}
+	};
+	
+	this.schemaLinkClick = function(event) {
+	};
+	
 	this.showService = function(project, service, callback, alterState) {
 		this.showProject(project, function(){
 			othis.current.showService(service);
