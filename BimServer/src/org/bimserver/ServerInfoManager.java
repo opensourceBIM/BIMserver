@@ -39,7 +39,7 @@ public class ServerInfoManager {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServerInfoManager.class);
 	private BimServer bimServer;
 	private Set<StateChangeListener> stateChangeListeners = new HashSet<StateChangeListener>();
-	private ServerInfo serverInfo = StoreFactory.eINSTANCE.createServerInfo();
+	private final ServerInfo serverInfo = StoreFactory.eINSTANCE.createServerInfo();
 
 	public void registerStateChangeListener(StateChangeListener stateChangeListener) {
 		stateChangeListeners.add(stateChangeListener);

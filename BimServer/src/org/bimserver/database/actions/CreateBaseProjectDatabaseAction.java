@@ -36,7 +36,7 @@ public class CreateBaseProjectDatabaseAction extends BimDatabaseAction<Project>{
 
 	@Override
 	public Project execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
-		final Project project = getDatabaseSession().create(StorePackage.eINSTANCE.getProject());
+		final Project project = getDatabaseSession().create(Project.class);
 		project.setName(Database.STORE_PROJECT_NAME);
 		project.setCreatedDate(new Date());
 		getDatabaseSession().store(project);

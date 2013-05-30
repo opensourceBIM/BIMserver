@@ -30,6 +30,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
@@ -89,7 +90,7 @@ public class SetWrappedAttributeChange implements Change {
 				if (typeEClass.getEAnnotation("wrapped") == null) {
 					throw new UserException("Not a wrapped type");
 				}
-				IdEObject wrappedObject = databaseSession.create(typeEClass);
+				EObject wrappedObject = databaseSession.create(typeEClass);
 				wrappedObject.eSet(wrappedObject.eClass().getEStructuralFeature("wrappedValue"), value);
 				idEObject.eSet(eReference, wrappedObject);
 			}

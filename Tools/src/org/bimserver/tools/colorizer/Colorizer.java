@@ -13,7 +13,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.bimserver.LocalDevPluginLoader;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleAssignment;
 import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleSelect;
@@ -157,16 +156,16 @@ public class Colorizer {
 				name = name.trim();
 				String code = name.substring(name.indexOf("(NL.IMRO") + 1, name.lastIndexOf(")"));
 				Map<String, String> currentMap = map.get(code);
-				IfcPropertySet ifcPropertySet = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcPropertySet());
+				IfcPropertySet ifcPropertySet = model.create(IfcPropertySet.class);
 				ifcPropertySet.setName("IMRO");
-				IfcRelDefinesByProperties ifcRelDefinesByProperties = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcRelDefinesByProperties());
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = model.create(IfcRelDefinesByProperties.class);
 				ifcRelDefinesByProperties.setRelatingPropertyDefinition(ifcPropertySet);
 				ifcRelDefinesByProperties.getRelatedObjects().add(ifcProduct);
 				if (currentMap != null) {
 					for (Entry<String, String> entry : currentMap.entrySet()) {
-						IfcPropertySingleValue ifcProperty = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcPropertySingleValue());
+						IfcPropertySingleValue ifcProperty = model.create(IfcPropertySingleValue.class);
 						ifcProperty.setName(entry.getKey());
-						IfcText ifcText = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcText());
+						IfcText ifcText = model.create(IfcText.class);
 						ifcText.setWrappedValue(entry.getValue());
 						ifcProperty.setNominalValue(ifcText);
 						ifcPropertySet.getHasProperties().add(ifcProperty);
@@ -175,7 +174,7 @@ public class Colorizer {
 				}
 			}
 			if (ifcProduct.getName().contains("Noise")) {
-				IfcColourRgb color = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcColourRgb());
+				IfcColourRgb color = model.create(IfcColourRgb.class);
 				color.setRed(0.5);
 				color.setGreen(0.5);
 				color.setBlue(0.5);
@@ -186,7 +185,7 @@ public class Colorizer {
 				String[] split = description.split(" ");
 				if (split.length == 3) {
 					System.out.println("Colors found on " + ifcProduct.getName());
-					IfcColourRgb color = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcColourRgb());
+					IfcColourRgb color = model.create(IfcColourRgb.class);
 					color.setRed(Integer.parseInt(split[0]) / 255.0);
 					color.setGreen(Integer.parseInt(split[1]) / 255.0);
 					color.setBlue(Integer.parseInt(split[2]) / 255.0);
@@ -204,13 +203,13 @@ public class Colorizer {
 			for (IfcRepresentation ifcRepresentation : ifcProductRepresentation.getRepresentations()) {
 				for (IfcRepresentationItem ifcRepresentationItem : ifcRepresentation.getItems()) {
 					if (ifcRepresentationItem.getStyledByItem().isEmpty()) {
-						IfcStyledItem ifcStyledItem = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcStyledItem());
-						IfcPresentationStyleAssignment ifcPresentationStyleAssignment = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcPresentationStyleAssignment());
+						IfcStyledItem ifcStyledItem = model.create(IfcStyledItem.class);
+						IfcPresentationStyleAssignment ifcPresentationStyleAssignment = model.create(IfcPresentationStyleAssignment.class);
 						ifcRepresentationItem.getStyledByItem().add(ifcStyledItem);
 						ifcStyledItem.getStyles().add(ifcPresentationStyleAssignment);
-						IfcSurfaceStyle ifcSurfaceStyle = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcSurfaceStyle());
+						IfcSurfaceStyle ifcSurfaceStyle = model.create(IfcSurfaceStyle.class);
 						ifcPresentationStyleAssignment.getStyles().add(ifcSurfaceStyle);
-						IfcSurfaceStyleRendering ifcSurfaceStyleRendering = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcSurfaceStyleRendering());
+						IfcSurfaceStyleRendering ifcSurfaceStyleRendering = model.create(IfcSurfaceStyleRendering.class);
 						ifcSurfaceStyle.getStyles().add(ifcSurfaceStyleRendering);
 						setColor(color, ifcSurfaceStyleRendering, alpha);
 					} else {

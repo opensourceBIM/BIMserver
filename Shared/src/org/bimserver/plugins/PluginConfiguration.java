@@ -36,6 +36,7 @@ import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.Parameter;
 import org.bimserver.models.store.StringType;
 import org.bimserver.models.store.Type;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * This is basically just a wrapper for ObjectType with the values mapped in a hashmap for more efficient access
@@ -67,7 +68,8 @@ public class PluginConfiguration {
 	}
 	
 	public PluginConfiguration(ObjectType settings) {
-		for (Parameter parameter : settings.getParameters()) {
+		EList<Parameter> parameters = settings.getParameters();
+		for (Parameter parameter : parameters) {
 			Type value = parameter.getValue();
 			if (value instanceof BooleanType) {
 				values.put(parameter.getName(), ((BooleanType)value).isValue());

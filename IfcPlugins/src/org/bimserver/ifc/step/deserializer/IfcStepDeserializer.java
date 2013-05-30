@@ -65,7 +65,7 @@ import org.bimserver.shared.SingleWaitingObject;
 import org.bimserver.shared.WaitingList;
 import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.StringUtils;
-import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
@@ -342,14 +342,14 @@ public class IfcStepDeserializer extends EmfDeserializer {
 		if (!structuralFeature.isMany()) {
 			throw new DeserializeException("Field " + structuralFeature.getName() + " of " + structuralFeature.getEContainingClass().getName() + " is no aggregation");
 		}
-		BasicEList list = (BasicEList) object.eGet(structuralFeature);
-		BasicEList doubleStringList = null;
+		AbstractEList list = (AbstractEList) object.eGet(structuralFeature);
+		AbstractEList doubleStringList = null;
 		if (structuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
 			EStructuralFeature doubleStringFeature = structuralFeature.getEContainingClass().getEStructuralFeature(structuralFeature.getName() + "AsString");
 			if (doubleStringFeature == null) {
 				throw new DeserializeException("Field not found: " + structuralFeature.getName() + "AsString");
 			}
-			doubleStringList = (BasicEList)object.eGet(doubleStringFeature);
+			doubleStringList = (AbstractEList)object.eGet(doubleStringFeature);
 		}
 		String realData = val.substring(1, val.length() - 1);
 		int lastIndex = 0;

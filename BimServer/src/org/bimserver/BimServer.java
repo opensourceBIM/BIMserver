@@ -67,7 +67,6 @@ import org.bimserver.longaction.LongActionManager;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.ServerStarted;
 import org.bimserver.models.store.BooleanType;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
@@ -416,7 +415,8 @@ public class BimServer {
 					if (internalService.getEnabled()) {
 						ServicePlugin servicePlugin = pluginManager.getServicePlugin(internalService.getClassName(), true);
 						if (servicePlugin != null) {
-							servicePlugin.register(new org.bimserver.plugins.PluginConfiguration(internalService.getSettings()));
+							ObjectType settings = internalService.getSettings();
+							servicePlugin.register(new org.bimserver.plugins.PluginConfiguration(settings));
 						}
 					}
 				}
@@ -440,8 +440,8 @@ public class BimServer {
 				commandLine.start();
 			}
 		} catch (Throwable e) {
-			serverInfoManager.setErrorMessage(e.getMessage());
 			LOGGER.error("", e);
+			serverInfoManager.setErrorMessage(e.getMessage());
 		}
 	}
 
@@ -481,7 +481,7 @@ public class BimServer {
 	public void updateUserSettings(DatabaseSession session, User user) throws BimserverLockConflictException, BimserverDatabaseException {
 		UserSettings userSettings = user.getUserSettings();
 		if (userSettings == null) {
-			userSettings = session.create(StorePackage.eINSTANCE.getUserSettings());
+			userSettings = session.create(UserSettings.class);
 			user.setUserSettings(userSettings);
 			session.store(user);
 		}
@@ -489,7 +489,7 @@ public class BimServer {
 			String name = objectIDMPlugin.getDefaultName();
 			ObjectIDMPluginConfiguration objectIdmPluginConfiguration = find(userSettings.getObjectIDMs(), name);
 			if (objectIdmPluginConfiguration == null) {
-				objectIdmPluginConfiguration = session.create(StorePackage.eINSTANCE.getObjectIDMPluginConfiguration());
+				objectIdmPluginConfiguration = session.create(ObjectIDMPluginConfiguration.class);
 				userSettings.getObjectIDMs().add(objectIdmPluginConfiguration);
 				genericPluginConversion(session, objectIDMPlugin, objectIdmPluginConfiguration);
 			}
@@ -504,7 +504,7 @@ public class BimServer {
 			String name = ifcEnginePlugin.getDefaultName();
 			RenderEnginePluginConfiguration ifcEnginePluginConfiguration = find(userSettings.getRenderEngines(), name);
 			if (ifcEnginePluginConfiguration == null) {
-				ifcEnginePluginConfiguration = session.create(StorePackage.eINSTANCE.getRenderEnginePluginConfiguration());
+				ifcEnginePluginConfiguration = session.create(RenderEnginePluginConfiguration.class);
 				userSettings.getRenderEngines().add(ifcEnginePluginConfiguration);
 				genericPluginConversion(session, ifcEnginePlugin, ifcEnginePluginConfiguration);
 			}
@@ -519,7 +519,7 @@ public class BimServer {
 			String name = queryEnginePlugin.getDefaultName();
 			QueryEnginePluginConfiguration queryEnginePluginConfiguration = find(userSettings.getQueryengines(), name);
 			if (queryEnginePluginConfiguration == null) {
-				queryEnginePluginConfiguration = session.create(StorePackage.eINSTANCE.getQueryEnginePluginConfiguration());
+				queryEnginePluginConfiguration = session.create(QueryEnginePluginConfiguration.class);
 				userSettings.getQueryengines().add(queryEnginePluginConfiguration);
 				genericPluginConversion(session, queryEnginePlugin, queryEnginePluginConfiguration);
 			}
@@ -534,7 +534,7 @@ public class BimServer {
 			String name = modelMergerPlugin.getDefaultName();
 			ModelMergerPluginConfiguration modelMergerPluginConfiguration = find(userSettings.getModelmergers(), name);
 			if (modelMergerPluginConfiguration == null) {
-				modelMergerPluginConfiguration = session.create(StorePackage.eINSTANCE.getModelMergerPluginConfiguration());
+				modelMergerPluginConfiguration = session.create(ModelMergerPluginConfiguration.class);
 				userSettings.getModelmergers().add(modelMergerPluginConfiguration);
 				genericPluginConversion(session, modelMergerPlugin, modelMergerPluginConfiguration);
 			}
@@ -549,7 +549,7 @@ public class BimServer {
 			String name = modelComparePlugin.getDefaultName();
 			ModelComparePluginConfiguration modelComparePluginConfiguration = find(userSettings.getModelcompares(), name);
 			if (modelComparePluginConfiguration == null) {
-				modelComparePluginConfiguration = session.create(StorePackage.eINSTANCE.getModelComparePluginConfiguration());
+				modelComparePluginConfiguration = session.create(ModelComparePluginConfiguration.class);
 				userSettings.getModelcompares().add(modelComparePluginConfiguration);
 				genericPluginConversion(session, modelComparePlugin, modelComparePluginConfiguration);
 			}
@@ -564,7 +564,7 @@ public class BimServer {
 			String name = serializerPlugin.getDefaultName();
 			SerializerPluginConfiguration serializerPluginConfiguration = find(userSettings.getSerializers(), name);
 			if (serializerPluginConfiguration == null) {
-				serializerPluginConfiguration = session.create(StorePackage.eINSTANCE.getSerializerPluginConfiguration());
+				serializerPluginConfiguration = session.create(SerializerPluginConfiguration.class);
 				userSettings.getSerializers().add(serializerPluginConfiguration);
 				genericPluginConversion(session, serializerPlugin, serializerPluginConfiguration);
 				serializerPluginConfiguration.setObjectIDM(userSettings.getDefaultObjectIDM());
@@ -581,7 +581,7 @@ public class BimServer {
 			String name = servicePlugin.getTitle();
 			InternalServicePluginConfiguration internalServicePluginConfiguration = find(userSettings.getServices(), name);
 			if (internalServicePluginConfiguration == null) {
-				internalServicePluginConfiguration = session.create(StorePackage.eINSTANCE.getInternalServicePluginConfiguration());
+				internalServicePluginConfiguration = session.create(InternalServicePluginConfiguration.class);
 				userSettings.getServices().add(internalServicePluginConfiguration);
 				genericPluginConversion(session, servicePlugin, internalServicePluginConfiguration);
 			}
@@ -590,7 +590,7 @@ public class BimServer {
 			String name = deserializerPlugin.getDefaultName();
 			DeserializerPluginConfiguration deserializerPluginConfiguration = find(userSettings.getDeserializers(), name);
 			if (deserializerPluginConfiguration == null) {
-				deserializerPluginConfiguration = session.create(StorePackage.eINSTANCE.getDeserializerPluginConfiguration());
+				deserializerPluginConfiguration = session.create(DeserializerPluginConfiguration.class);
 				userSettings.getDeserializers().add(deserializerPluginConfiguration);
 				genericPluginConversion(session, deserializerPlugin, deserializerPluginConfiguration);
 			}
@@ -599,11 +599,11 @@ public class BimServer {
 	}
 
 	private ObjectType convertSettings(DatabaseSession session, Plugin plugin) throws BimserverDatabaseException {
-		ObjectType settings = session.create(StorePackage.eINSTANCE.getObjectType());
+		ObjectType settings = session.create(ObjectType.class);
 		ObjectDefinition settingsDefinition = plugin.getSettingsDefinition();
 		if (plugin.getSettingsDefinition() != null) {
 			for (ParameterDefinition parameterDefinition : settingsDefinition.getParameters()) {
-				Parameter parameter = session.create(StorePackage.eINSTANCE.getParameter());
+				Parameter parameter = session.create(Parameter.class);
 				parameter.setName(parameterDefinition.getName());
 				if (parameterDefinition.getDefaultValue() != null) {
 					Type value = cloneAndAdd(session, parameterDefinition.getDefaultValue());
@@ -617,22 +617,22 @@ public class BimServer {
 
 	private Type cloneAndAdd(DatabaseSession session, Type input) throws BimserverDatabaseException {
 		if (input instanceof BooleanType) {
-			BooleanType booleanType = session.create(StorePackage.eINSTANCE.getBooleanType());
+			BooleanType booleanType = session.create(BooleanType.class);
 			booleanType.setValue(((BooleanType) input).isValue());
 			session.store(booleanType);
 			return booleanType;
 		} else if (input instanceof StringType) {
-			StringType stringType = session.create(StorePackage.eINSTANCE.getStringType());
+			StringType stringType = session.create(StringType.class);
 			stringType.setValue(((StringType) input).getValue());
 			session.store(stringType);
 			return stringType;
 		} else if (input instanceof DoubleType) {
-			DoubleType doubleType = session.create(StorePackage.eINSTANCE.getDoubleType());
+			DoubleType doubleType = session.create(DoubleType.class);
 			doubleType.setValue(((DoubleType) input).getValue());
 			session.store(doubleType);
 			return doubleType;
 		} else if (input instanceof LongType) {
-			LongType longType = session.create(StorePackage.eINSTANCE.getLongType());
+			LongType longType = session.create(LongType.class);
 			longType.setValue(((LongType) input).getValue());
 			session.store(longType);
 			return longType;
@@ -654,7 +654,7 @@ public class BimServer {
 				String name = webModulePlugin.getDefaultName();
 				WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), name);
 				if (webPluginConfiguration == null) {
-					webPluginConfiguration = session.create(StorePackage.eINSTANCE.getWebModulePluginConfiguration());
+					webPluginConfiguration = session.create(WebModulePluginConfiguration.class);
 					serverSettings.getWebModules().add(webPluginConfiguration);
 					genericPluginConversion(session, webModulePlugin, webPluginConfiguration);
 				}
@@ -667,7 +667,7 @@ public class BimServer {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Username(), new StringLiteral("system"));
 			User systemUser = session.querySingle(condition, User.class, Query.getDefault());
 
-			ServerStarted serverStarted = session.create(LogPackage.eINSTANCE.getServerStarted());
+			ServerStarted serverStarted = session.create(ServerStarted.class);
 			serverStarted.setDate(new Date());
 			serverStarted.setAccessMethod(AccessMethod.INTERNAL);
 			serverStarted.setExecutor(systemUser);
@@ -692,7 +692,7 @@ public class BimServer {
 			Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_PluginClassName(), new StringLiteral(plugin.getClass().getName()));
 			Map<Long, PluginDescriptor> results = session.query(pluginCondition, PluginDescriptor.class, Query.getDefault());
 			if (results.size() == 0) {
-				PluginDescriptor pluginDescriptor = session.create(StorePackage.eINSTANCE.getPluginDescriptor());
+				PluginDescriptor pluginDescriptor = session.create(PluginDescriptor.class);
 				pluginDescriptor.setPluginClassName(plugin.getClass().getName());
 				pluginDescriptor.setEnabled(true); // New plugins are enabled by default
 			} else if (results.size() == 1) {

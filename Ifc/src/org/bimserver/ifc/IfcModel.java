@@ -797,7 +797,7 @@ public class IfcModel implements IfcModelInterface {
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends IdEObject> T create(EClass eClass) throws IfcModelInterfaceException {
-		IdEObject object = (IdEObject) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		long oid = oidCounter++;
 		((IdEObjectImpl) object).setOid(oid);
 		add(oid, object, false, false);

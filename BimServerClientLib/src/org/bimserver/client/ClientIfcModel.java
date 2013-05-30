@@ -34,9 +34,9 @@ import java.util.Set;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
-import org.bimserver.emf.Delegate.State;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
@@ -82,9 +82,11 @@ public class ClientIfcModel extends IfcModel {
 	private final Set<String> loadedClasses = new HashSet<String>();
 	private long ifcSerializerOid = -1;
 	private long jsonGeometrySerializerOid = -1;
+	private ClientEStore eStore;
 
 	public ClientIfcModel(BimServerClient bimServerClient, long poid, long roid, boolean deep) throws ServerException, UserException, BimServerClientException, PublicInterfaceNotFoundException {
 		super();
+		this.eStore = new ClientEStore(this);
 		this.bimServerClient = bimServerClient;
 		this.roid = roid;
 		try {
@@ -255,7 +257,7 @@ public class ClientIfcModel extends IfcModel {
 										object = getNoFetch(oid);
 									} else {
 										object = (IdEObject) Ifc2x3tc1Factory.eINSTANCE.create(eClass);
-										((IdEObjectImpl) object).setDelegate(new ClientDelegate(this, object, null));
+										((IdEObjectImpl) object).eSetStore(eStore);
 										((IdEObjectImpl) object).setOid(oid);
 										add(oid, object);
 									}
@@ -615,7 +617,7 @@ public class ClientIfcModel extends IfcModel {
 	@Override
 	public <T extends IdEObject> T create(EClass eClass) throws IfcModelInterfaceException {
 		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
-		object.setDelegate(new ClientDelegate(this, object, null));
+		object.eSetStore(eStore);
 		try {
 			Long oid = bimServerClient.getBimsie1LowLevelInterface().createObject(tid, eClass.getName());
 			object.setOid(oid);

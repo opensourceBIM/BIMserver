@@ -32,15 +32,14 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
-import org.bimserver.ServerDelegate;
+import org.bimserver.ServerEStore;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
-import org.bimserver.emf.Delegate;
-import org.bimserver.emf.Delegate.State;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.LazyLoader;
@@ -49,6 +48,7 @@ import org.bimserver.emf.OidProvider;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.models.store.Checkout;
@@ -62,6 +62,7 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.BinUtils;
+import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
@@ -75,6 +76,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.InternalEObject.EStore;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -97,6 +99,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	private StackTraceElement[] stackTrace;
 	private final ObjectCache objectCache = new ObjectCache();
 	private int reads;
+	private EStore eStore;
 
 	private enum SessionState {
 		OPEN, CLOSED
@@ -112,6 +115,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			LOGGER.info("");
 			LOGGER.info("NEW SESSION");
 		}
+		this.eStore = new ServerEStore(this);
 	}
 
 	public void addPostCommitAction(PostCommitAction postCommitAction) {
@@ -190,11 +194,13 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	private IdEObjectImpl createInternal(EClass eClass, QueryInterface queryInterface) {
 		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
-		object.setDelegate(new ServerDelegate(this, object, queryInterface));
+		object.eSetStore(eStore);
+		object.setQueryInterface(queryInterface);
 		return object;
 	}
-	
-	private IdEObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModelInterface model, int rid, QueryInterface query, Queue<IdEObject> todoList) throws BimserverDatabaseException {
+
+	private IdEObject convertByteArrayToObject(EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModelInterface model, int rid, QueryInterface query,
+			Queue<IdEObject> todoList) throws BimserverDatabaseException {
 		if (model.contains(oid)) {
 			return model.get(oid);
 		}
@@ -202,7 +208,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		if (objectCache.contains(recordIdentifier.getOid())) {
 			return objectCache.get(recordIdentifier.getOid());
 		}
-		
+
 		IdEObjectImpl object = createInternal(eClass, query);
 		object.setOid(oid);
 		object.setPid(query.getPid());
@@ -225,7 +231,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	@SuppressWarnings("unchecked")
-	private IdEObject convertByteArrayToObject(IdEObject idEObject, EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModelInterface model, int rid, QueryInterface query, Queue<IdEObject> todoList) throws BimserverDatabaseException {
+	private IdEObject convertByteArrayToObject(IdEObject idEObject, EClass originalQueryClass, EClass eClass, long oid, ByteBuffer buffer, IfcModelInterface model, int rid,
+			QueryInterface query, Queue<IdEObject> todoList) throws BimserverDatabaseException {
 		if (idEObject == null) {
 			idEObject = createInternal(eClass, query);
 			((IdEObjectImpl) idEObject).setOid(oid);
@@ -240,7 +247,9 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			LOGGER.info("Read: " + idEObject.eClass().getName() + " pid=" + query.getPid() + " oid=" + oid + " rid=" + rid);
 		}
 
-		((IdEObjectImpl)idEObject).setState(State.LOADING);
+		((IdEObjectImpl) idEObject).setState(State.LOADING);
+
+		objectCache.put(new RecordIdentifier(query.getPid(), oid, rid), idEObject);
 		
 		byte unsettedLength = buffer.get();
 		byte[] unsetted = new byte[unsettedLength];
@@ -259,7 +268,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 					if (feature.isMany()) {
 						if (feature.getEType() instanceof EEnum) {
 						} else if (feature.getEType() instanceof EClass) {
-							// EReference eReference = (EReference) feature;
+//							EReference eReference = (EReference) feature;
 							if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 								buffer.position(buffer.position() + 1);
 							} else {
@@ -272,8 +281,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 								 * Only can happen with non-unique references
 								 */
 								int listSize = buffer.getInt();
-								
-								BasicEList<Object> list = (BasicEList<Object>) idEObject.eGet(feature);
+
+								AbstractEList<Object> list = (AbstractEList<Object>) idEObject.eGet(feature);
 								for (int i = 0; i < listSize; i++) {
 									IdEObject referencedObject = null;
 
@@ -296,16 +305,13 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 										if (!feature.getEType().isInstance(referencedObject)) {
 											throw new BimserverDatabaseException(referencedObject.getClass().getSimpleName() + " cannot be stored in list of " + feature.getName());
 										}
-										// if (eReference.getEOpposite() == null
-										// ||
-										// !referencedObject.isLoadedOrLoading())
-										// {
-										if (feature.isUnique()) {
-											list.add(referencedObject);
-										} else {
-											list.addUnique(referencedObject);
-										}
-										// }
+//										if (eReference.getEOpposite() == null || !((IdEObjectImpl) referencedObject).isLoadedOrLoading()) {
+											if (feature.isUnique()) {
+												list.add(referencedObject);
+											} else {
+												list.addUnique(referencedObject);
+											}
+//										}
 									}
 								}
 							}
@@ -331,7 +337,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 								LOGGER.error(enumOrdinal + " not found");
 							}
 						} else if (feature.getEType() instanceof EClass) {
-							// EReference eReference = (EReference) feature;
+//							EReference eReference = (EReference) feature;
 							short cid = buffer.getShort();
 							if (cid == -1) {
 								// null, do nothing
@@ -344,11 +350,10 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 								// positive cid means value is reference to
 								// other record
 								EClass referenceClass = database.getEClassForCid(cid);
-								newValue = readReference(originalQueryClass, buffer, model, idEObject, feature,	referenceClass, query, todoList);
-								// if (eReference.getEOpposite() != null &&
-								// ((IdEObject) newValue).isLoadedOrLoading()) {
-								// newValue = null;
-								// }
+								newValue = readReference(originalQueryClass, buffer, model, idEObject, feature, referenceClass, query, todoList);
+//								if (eReference.getEOpposite() != null && ((IdEObjectImpl) newValue).isLoadedOrLoading()) {
+//									newValue = null;
+//								}
 							}
 						} else if (feature.getEType() instanceof EDataType) {
 							newValue = readPrimitiveValue(feature.getEType(), buffer);
@@ -447,7 +452,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	private ByteBuffer fillKeyBuffer(ByteBuffer buffer, IdEObject object) {
 		if (object.getRid() > 100000 || object.getRid() < -100000) {
-			throw new RuntimeException("Inprobable rid: " + object.getRid() + " - " + object);
+			throw new RuntimeException("Improbable rid: " + object.getRid() + " - " + object);
 		}
 		return fillKeyBuffer(buffer, object.getPid(), object.getOid(), object.getRid());
 	}
@@ -481,23 +486,23 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	public void delete(IdEObject object, Integer newRid) throws BimserverDatabaseException {
 		checkOpen();
-//		if (perRecordVersioning(object)) {
-			objectsToDelete.put(object.eClass(), object.getPid(), newRid, object.getOid());
-			if (objectsToCommit.containsObject(object)) {
-				objectsToCommit.remove(object);
-			}
-//		} else {
-			
-			// TODO implement
-//			throw new BimserverDatabaseException("This is not supported");
-//		}
+		// if (perRecordVersioning(object)) {
+		objectsToDelete.put(object.eClass(), object.getPid(), newRid, object.getOid());
+		if (objectsToCommit.containsObject(object)) {
+			objectsToCommit.remove(object);
+		}
+		// } else {
+
+		// TODO implement
+		// throw new BimserverDatabaseException("This is not supported");
+		// }
 	}
 
 	public <T> T executeAndCommitAction(BimDatabaseAction<T> action, ProgressHandler progressHandler) throws BimserverDatabaseException, UserException {
 		checkOpen();
 		return executeAndCommitAction(action, DEFAULT_CONFLICT_RETRIES, progressHandler);
 	}
-	
+
 	public <T> T executeAndCommitAction(BimDatabaseAction<T> action) throws BimserverDatabaseException, UserException {
 		checkOpen();
 		return executeAndCommitAction(action, DEFAULT_CONFLICT_RETRIES, null);
@@ -564,7 +569,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends IdEObject> T get(EClass eClass, IfcModelInterface model, IdEObject idEObject, long oid, QueryInterface query, Queue<IdEObject> todoList) throws BimserverDatabaseException {
+	public <T extends IdEObject> T get(EClass eClass, IfcModelInterface model, IdEObject idEObject, long oid, QueryInterface query, Queue<IdEObject> todoList)
+			throws BimserverDatabaseException {
 		checkOpen();
 		return (T) get(idEObject, oid, model, query, todoList);
 	}
@@ -603,8 +609,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		return (T) get(idEObject, oid, model, query, todoList);
 	}
 
-	public <T extends IdEObject> T get(IdEObject idEObject, long oid, IfcModelInterface model, QueryInterface query)
-			throws BimserverDatabaseException {
+	public <T extends IdEObject> T get(IdEObject idEObject, long oid, IfcModelInterface model, QueryInterface query) throws BimserverDatabaseException {
 		checkOpen();
 		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
 		T result = get(idEObject, oid, model, query, todoList);
@@ -654,9 +659,9 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 			int keyRid = -keyBuffer.getInt();
 			if (keyRid <= query.getRid()) {
 				if (idEObject != null && idEObject.getRid() == Integer.MAX_VALUE) {
-					((IdEObjectImpl)idEObject).setRid(keyRid);
+					((IdEObjectImpl) idEObject).setRid(keyRid);
 				}
-				if (model.contains(keyOid) && ((IdEObjectImpl) model.get(keyOid)).getLoadingState() == Delegate.State.LOADED) {
+				if (model.contains(keyOid) && ((IdEObjectImpl) model.get(keyOid)).getLoadingState() == State.LOADED) {
 					return (T) model.get(keyOid);
 				} else {
 					if (valueBuffer.capacity() == 1 && valueBuffer.get(0) == -1) {
@@ -666,7 +671,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 					} else {
 						T convertByteArrayToObject = (T) convertByteArrayToObject(idEObject, eClass, eClass, keyOid, valueBuffer, model, keyRid, query, todoList);
 						if (convertByteArrayToObject.getRid() == Integer.MAX_VALUE) {
-							((IdEObjectImpl)convertByteArrayToObject).setRid(keyRid);
+							((IdEObjectImpl) convertByteArrayToObject).setRid(keyRid);
 						}
 						objectCache.put(recordIdentifier, convertByteArrayToObject);
 						return convertByteArrayToObject;
@@ -869,12 +874,11 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	private enum GetResult {
-		STOP,
-		CONTINUE_WITH_NEXT_RECORD,
-		CONTINUE_WITH_NEXT_OID,
+		STOP, CONTINUE_WITH_NEXT_RECORD, CONTINUE_WITH_NEXT_OID,
 	}
-	
-	private GetResult getMap(EClass originalQueryClass, EClass eClass, IfcModelInterface model, ByteBuffer buffer, int keyPid, long keyOid, int keyRid, QueryInterface query, Queue<IdEObject> todoList) throws BimserverDatabaseException {
+
+	private GetResult getMap(EClass originalQueryClass, EClass eClass, IfcModelInterface model, ByteBuffer buffer, int keyPid, long keyOid, int keyRid, QueryInterface query,
+			Queue<IdEObject> todoList) throws BimserverDatabaseException {
 		checkOpen();
 		if (keyPid == query.getPid()) {
 			if (keyRid <= query.getRid() && keyRid >= query.getStopRid()) {
@@ -900,7 +904,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 							return GetResult.CONTINUE_WITH_NEXT_OID;
 							// deleted entity
 						} else {
-							object = convertByteArrayToObject(originalQueryClass, eClass, keyOid, buffer, model, keyRid, query,	todoList);
+							object = convertByteArrayToObject(originalQueryClass, eClass, keyOid, buffer, model, keyRid, query, todoList);
 						}
 					}
 					if (object != null) {
@@ -976,12 +980,12 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		}
 		// TODO check why clearCache??
 		objectCache.clear();
-		
+
 		Queue<IdEObject> todoList = new LinkedList<IdEObject>();
 		ByteBuffer mustStartWith = createKeyBuffer(query.getPid(), oid);
 		ByteBuffer key = createKeyBuffer(query.getPid(), oid, -query.getStopRid());
-		SearchingRecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(),
-				mustStartWith.array(), key.array(), this);
+		SearchingRecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), mustStartWith.array(),
+				key.array(), this);
 		checkOpen();
 		try {
 			Record record = recordIterator.next();
@@ -1052,8 +1056,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	public ObjectIdentifier getOidOfGuid(String guid, int pid, int rid) throws BimserverDatabaseException {
 		for (EClass eClass : getMetaDataManager().getAllSubClasses(Ifc2x3tc1Package.eINSTANCE.getIfcRoot())) {
-			RecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(
-					eClass.getEPackage().getName() + "_" + eClass.getName(), BinUtils.intToByteArray(pid), BinUtils.intToByteArray(pid), this);
+			RecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), BinUtils.intToByteArray(pid),
+					BinUtils.intToByteArray(pid), this);
 			try {
 				Record record = recordIterator.next();
 				while (record != null) {
@@ -1064,11 +1068,11 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 					int ridOfRecord = -buffer.getInt();
 					if (ridOfRecord == rid && pid == pidOfRecord) {
 						ByteBuffer value = ByteBuffer.wrap(record.getValue());
-						
+
 						// Skip the unsettable part
 						byte unsettablesSize = value.get();
 						value.position(value.position() + unsettablesSize);
-						
+
 						if (value.capacity() > 1) {
 							int stringLength = value.getInt();
 							if (stringLength == -1) {
@@ -1093,8 +1097,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	public Set<ObjectIdentifier> getOidsOfName(String name, int pid, int rid) throws BimserverDatabaseException {
 		Set<ObjectIdentifier> result = new HashSet<ObjectIdentifier>();
 		for (EClass eClass : getMetaDataManager().getAllSubClasses(Ifc2x3tc1Package.eINSTANCE.getIfcRoot())) {
-			RecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(
-					eClass.getEPackage().getName() + "_" + eClass.getName(), BinUtils.intToByteArray(pid), BinUtils.intToByteArray(pid), this);
+			RecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(), BinUtils.intToByteArray(pid),
+					BinUtils.intToByteArray(pid), this);
 			try {
 				Record record = recordIterator.next();
 				while (record != null) {
@@ -1105,18 +1109,19 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 					int ridOfRecord = -buffer.getInt();
 					if (ridOfRecord == rid && pid == pidOfRecord) {
 						ByteBuffer value = ByteBuffer.wrap(record.getValue());
-						
+
 						// Skip the unsettable part
 						byte unsettablesSize = value.get();
 						value.position(value.position() + unsettablesSize);
-						
+
 						if (value.capacity() > 1) {
 							int stringLength = value.getInt();
 							if (stringLength == -1) {
 								return null;
 							} else {
 								BinUtils.readString(value, stringLength); // GUID
-								if (value.getShort() != -1) {; // CID of OwnerHistory
+								if (value.getShort() != -1) {
+									; // CID of OwnerHistory
 									value.getLong(); // OID of OwnerHistory
 								}
 								stringLength = value.getInt();
@@ -1137,7 +1142,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		}
 		return result;
 	}
-	
+
 	private int getPrimitiveSize(EDataType eDataType, Object val) {
 		if (eDataType == ECORE_PACKAGE.getEInt() || eDataType == ECORE_PACKAGE.getEIntegerObject()) {
 			return 4;
@@ -1193,13 +1198,13 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	public IfcModelInterface createModel() {
 		return new IfcModel();
 	}
-	
+
 	public IdEObject lazyLoad(IdEObject idEObject) throws BimserverDatabaseException {
 		if (DEVELOPER_DEBUG) {
 			LOGGER.info("Lazy loading " + idEObject.eClass().getName() + " " + idEObject.getOid());
 		}
 		IfcModelInterface model = createModel();
-		idEObject = get(model, idEObject, idEObject.getOid(), ((IdEObjectImpl)idEObject).getQueryInterface(), new LinkedList<IdEObject>());
+		idEObject = get(model, idEObject, idEObject.getOid(), ((IdEObjectImpl) idEObject).getQueryInterface(), new LinkedList<IdEObject>());
 		if (idEObject != null) {
 			if (idEObject.getRid() > 100000 || idEObject.getRid() < -100000) {
 				throw new RuntimeException("Improbable rid " + idEObject.getRid() + " - " + idEObject);
@@ -1215,7 +1220,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		} catch (BimserverLockConflictException e) {
 			throw new UncheckedBimserverLockConflictException(e);
 		} catch (BimserverDatabaseException e) {
-			// TODO probably make unchecked version for other exceptions as well...
+			// TODO probably make unchecked version for other exceptions as
+			// well...
 			LOGGER.error("", e);
 		}
 	}
@@ -1367,7 +1373,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		}
 	}
 
-	private IdEObject readReference(EClass originalQueryClass, ByteBuffer buffer, IfcModelInterface model, IdEObject object, EStructuralFeature feature, EClass eClass, QueryInterface query, Queue<IdEObject> todoList) throws BimserverDatabaseException {
+	private IdEObject readReference(EClass originalQueryClass, ByteBuffer buffer, IfcModelInterface model, IdEObject object, EStructuralFeature feature, EClass eClass,
+			QueryInterface query, Queue<IdEObject> todoList) throws BimserverDatabaseException {
 		if (buffer.capacity() == 1 && buffer.get(0) == -1) {
 			buffer.position(buffer.position() + 1);
 			return null;
@@ -1408,7 +1415,8 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature("wrappedValue");
 		Object primitiveValue = readPrimitiveValue(eStructuralFeature.getEType(), buffer);
 		IdEObject eObject = createInternal(eClass, query);
-		((IdEObjectImpl)eObject).setLoaded(); // We don't want to go lazy load this
+		((IdEObjectImpl) eObject).setLoaded(); // We don't want to go lazy load
+												// this
 		eObject.eSet(eStructuralFeature, primitiveValue);
 		return eObject;
 	}
@@ -1430,7 +1438,7 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		Set<IdEObject> done = new HashSet<IdEObject>();
 		storeDeep(object, done);
 	}
-	
+
 	private void storeDeep(IdEObject object, Set<IdEObject> done) throws BimserverDatabaseException {
 		if (object == null || done.contains(object)) {
 			return;
@@ -1439,12 +1447,12 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		store(object);
 		for (EReference eReference : object.eClass().getEAllReferences()) {
 			if (eReference.isMany()) {
-				List<?> list = (List<?>)object.eGet(eReference);
+				List<?> list = (List<?>) object.eGet(eReference);
 				for (Object v : list) {
 					storeDeep((IdEObject) v, done);
 				}
 			} else {
-				IdEObject reference = (IdEObject)object.eGet(eReference);
+				IdEObject reference = (IdEObject) object.eGet(eReference);
 				storeDeep(reference, done);
 			}
 		}
@@ -1552,15 +1560,15 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 		buffer.putShort(cid);
 		IdEObject idEObject = (IdEObject) value;
 		if (idEObject.getOid() == -1) {
-			((IdEObjectImpl)idEObject).setOid(newOid(object.eClass()));
-			((IdEObjectImpl)idEObject).setPid(object.getPid());
-			((IdEObjectImpl)idEObject).setRid(object.getRid());
+			((IdEObjectImpl) idEObject).setOid(newOid(object.eClass()));
+			((IdEObjectImpl) idEObject).setPid(object.getPid());
+			((IdEObjectImpl) idEObject).setRid(object.getRid());
 		}
 		buffer.putLong(idEObject.getOid());
 	}
 
 	private void writeWrappedValue(int pid, int rid, Object value, ByteBuffer buffer) throws BimserverDatabaseException {
-		IdEObject wrappedValue = (IdEObject)value;
+		IdEObject wrappedValue = (IdEObject) value;
 		EStructuralFeature eStructuralFeature = wrappedValue.eClass().getEStructuralFeature("wrappedValue");
 		Short cid = database.getCidOfEClass(wrappedValue.eClass());
 		buffer.putShort((short) -cid);
@@ -1616,15 +1624,17 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 
 	@SuppressWarnings("unchecked")
 	public <T extends IdEObject> T getSingle(EClass eClass, QueryInterface query) throws BimserverDatabaseException {
-		List<T> all = getAllOfType(eClass, query).getAll((Class<T>)eClass.getInstanceClass());
-		if  (all.size() > 0) {
+		List<T> all = getAllOfType(eClass, query).getAll((Class<T>) eClass.getInstanceClass());
+		if (all.size() > 0) {
 			return all.get(0);
 		}
 		return null;
 	}
 
 	/**
-	 * Only call this method when you are sure no other processes are altering/using the same data. Basically only when the server is starting
+	 * Only call this method when you are sure no other processes are
+	 * altering/using the same data. Basically only when the server is starting
+	 * 
 	 * @throws BimserverDatabaseException
 	 */
 	public void commit() throws BimserverDatabaseException {
@@ -1632,11 +1642,19 @@ public class DatabaseSession implements LazyLoader, OidProvider<Long> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T> T create(EClass eClass) throws BimserverDatabaseException {
-		checkOpen();
-		IdEObject idEObject = createInternal(eClass, null);
-		store(idEObject, Database.STORE_PROJECT_ID, Integer.MAX_VALUE);
-		return (T) idEObject;
+	public <T extends IdEObject> T create(Class<T> clazz) {
+		return (T) create(database.getEClassForName(clazz.getSimpleName()));
+	}
+
+	public EObject create(EClass eClass) {
+		// checkOpen();
+		IdEObjectImpl idEObject = createInternal(eClass, null);
+		try {
+			store(idEObject, Database.STORE_PROJECT_ID, Integer.MAX_VALUE);
+		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		}
+		return idEObject;
 	}
 
 	public <T extends IdEObject> List<T> getAllOfType(EClass eClass, Class<T> clazz, QueryInterface query) throws BimserverDatabaseException {

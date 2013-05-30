@@ -23,9 +23,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.codec.binary.Base64;
-import org.bimserver.emf.Delegate;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.ifc.IfcSerializer;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -73,7 +73,7 @@ public class JsonSerializer extends IfcSerializer {
 					} else {
 						firstObject = false;
 					}
-					if (((IdEObjectImpl) object).getLoadingState() != Delegate.State.LOADED) {
+					if (((IdEObjectImpl) object).getLoadingState() != State.LOADED) {
 						out.write("{");
 						out.write("\"__oid\":" + object.getOid() + ",");
 						out.write("\"__type\":\"" + object.eClass().getName() + "\",");

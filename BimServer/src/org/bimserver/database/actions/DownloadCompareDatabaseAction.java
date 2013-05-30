@@ -29,7 +29,6 @@ import org.bimserver.database.Query;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcCharacterStyleSelect;
 import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
 import org.bimserver.models.ifc2x3tc1.IfcCurveStyle;
@@ -147,19 +146,19 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 				}
 			}
 
-			IfcColourRgb red = mergedModel.create(Ifc2x3tc1Package.eINSTANCE.getIfcColourRgb());
+			IfcColourRgb red = mergedModel.create(IfcColourRgb.class);
 			red.setName("red");
 			red.setRed(0.5);
 			red.setGreen(0.0);
 			red.setBlue(0.0);
 
-			IfcColourRgb green = mergedModel.create(Ifc2x3tc1Package.eINSTANCE.getIfcColourRgb());
+			IfcColourRgb green = mergedModel.create(IfcColourRgb.class);
 			green.setName("green");
 			green.setRed(0);
 			green.setGreen(0.5);
 			green.setBlue(0);
 
-			IfcColourRgb blue = mergedModel.create(Ifc2x3tc1Package.eINSTANCE.getIfcColourRgb());
+			IfcColourRgb blue = mergedModel.create(IfcColourRgb.class);
 			blue.setName("blue");
 			blue.setRed(0);
 			blue.setGreen(0);
@@ -270,7 +269,7 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 	}
 
 	private void createSurfaceStyleStyles(IfcModelInterface model, String representationIdentifier, IfcSurfaceStyle ifcSurfaceStyle, IfcColourRgb color) throws IfcModelInterfaceException {
-		IfcSurfaceStyleRendering ifcSurfaceStyleRendering = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcSurfaceStyleRendering());
+		IfcSurfaceStyleRendering ifcSurfaceStyleRendering = model.create(IfcSurfaceStyleRendering.class);
 		ifcSurfaceStyle.getStyles().add(ifcSurfaceStyleRendering);
 		if (color != null) {
 			ifcSurfaceStyleRendering.setDiffuseColour(color);
@@ -286,7 +285,7 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 	private void createPresentationStyleAssignmentStyles(IfcModelInterface model, String representationIdentifier,
 			IfcPresentationStyleAssignment ifcPresentationStyleAssignment, IfcColourRgb color) throws IfcModelInterfaceException {
 		if (representationIdentifier.equals("Body")) {
-			IfcSurfaceStyle ifcPresentationStyleSelect = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcSurfaceStyle());
+			IfcSurfaceStyle ifcPresentationStyleSelect = model.create(IfcSurfaceStyle.class);
 			ifcPresentationStyleAssignment.getStyles().add(ifcPresentationStyleSelect);
 			createSurfaceStyleStyles(model, representationIdentifier, ifcPresentationStyleSelect, color);
 		} else {
@@ -296,13 +295,13 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 
 	private void createStyledByItems(IfcModelInterface model, IfcRepresentationItem ifcRepresentationItem, String representationIdentifier,
 			IfcColourRgb color) throws IfcModelInterfaceException {
-		IfcStyledItem ifcStyledItem = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcStyledItem());
+		IfcStyledItem ifcStyledItem = model.create(IfcStyledItem.class);
 		ifcRepresentationItem.getStyledByItem().add(ifcStyledItem);
 		createStyledItemStyles(model, representationIdentifier, ifcStyledItem, color);
 	}
 
 	private void createStyledItemStyles(IfcModelInterface model, String representationIdentifier, IfcStyledItem ifcStyledItem, IfcColourRgb color) throws IfcModelInterfaceException {
-		IfcPresentationStyleAssignment ifcPresentationStyleAssignment = model.create(Ifc2x3tc1Package.eINSTANCE.getIfcPresentationStyleAssignment());
+		IfcPresentationStyleAssignment ifcPresentationStyleAssignment = model.create(IfcPresentationStyleAssignment.class);
 		ifcStyledItem.getStyles().add(ifcPresentationStyleAssignment);
 		createPresentationStyleAssignmentStyles(model, representationIdentifier, ifcPresentationStyleAssignment, color);
 	}

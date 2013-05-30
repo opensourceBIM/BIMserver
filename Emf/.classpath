@@ -8,7 +8,7 @@
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.codegen_2.8.0.v20130125-0826.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.codegen.ecore_2.8.2.v20130125-0826.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.common_2.8.0.v20130125-0546.jar" sourcepath="D:/Software/eclipse/plugins/org.eclipse.emf.common.source_2.8.0.v20130125-0546.jar"/>
-	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore_2.8.3.v20130125-0546.jar"/>
+	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore_2.8.3.v20130125-0546.jar" sourcepath="D:/Software/eclipse/plugins/org.eclipse.emf.ecore.source_2.8.3.v20130125-0546.jar"/>
 	<classpathentry exported="true" kind="lib" path="/BimServer/lib/emf/org.eclipse.emf.ecore.xmi_2.8.1.v20130125-0546.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
