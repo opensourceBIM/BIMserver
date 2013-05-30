@@ -28,7 +28,6 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.RevisionSummaryContainer;
 import org.bimserver.models.store.RevisionSummaryType;
-import org.bimserver.models.store.StorePackage;
 import org.eclipse.emf.ecore.EClass;
 
 public class SummaryMap {
@@ -79,17 +78,17 @@ public class SummaryMap {
 	}
 	
 	public RevisionSummary toRevisionSummary(DatabaseSession databaseSession) throws BimserverDatabaseException {
-		RevisionSummary revisionSummary = databaseSession.create(StorePackage.eINSTANCE.getRevisionSummary());
-		RevisionSummaryContainer revisionSummaryContainerEntities = databaseSession.create(StorePackage.eINSTANCE.getRevisionSummaryContainer());
+		RevisionSummary revisionSummary = databaseSession.create(RevisionSummary.class);
+		RevisionSummaryContainer revisionSummaryContainerEntities = databaseSession.create(RevisionSummaryContainer.class);
 		revisionSummaryContainerEntities.setName("IFC Entities");
 		revisionSummary.getList().add(revisionSummaryContainerEntities);
-		RevisionSummaryContainer revisionSummaryContainerRelations = databaseSession.create(StorePackage.eINSTANCE.getRevisionSummaryContainer());
+		RevisionSummaryContainer revisionSummaryContainerRelations = databaseSession.create(RevisionSummaryContainer.class);
 		revisionSummaryContainerRelations.setName("IFC Relations");
 		revisionSummary.getList().add(revisionSummaryContainerRelations);
-		RevisionSummaryContainer revisionSummaryContainerPrimitives = databaseSession.create(StorePackage.eINSTANCE.getRevisionSummaryContainer());
+		RevisionSummaryContainer revisionSummaryContainerPrimitives = databaseSession.create(RevisionSummaryContainer.class);
 		revisionSummaryContainerPrimitives.setName("IFC Primitives");
 		revisionSummary.getList().add(revisionSummaryContainerPrimitives);
-		RevisionSummaryContainer revisionSummaryContainerOther = databaseSession.create(StorePackage.eINSTANCE.getRevisionSummaryContainer());
+		RevisionSummaryContainer revisionSummaryContainerOther = databaseSession.create(RevisionSummaryContainer.class);
 		revisionSummaryContainerOther.setName("Rest");
 		revisionSummary.getList().add(revisionSummaryContainerOther);
 		
@@ -104,7 +103,7 @@ public class SummaryMap {
 			} else {
 				subMap = revisionSummaryContainerOther;
 			}
-			RevisionSummaryType createRevisionSummaryType = databaseSession.create(StorePackage.eINSTANCE.getRevisionSummaryType());
+			RevisionSummaryType createRevisionSummaryType = databaseSession.create(RevisionSummaryType.class);
 			createRevisionSummaryType.setCount(summaryMap.get(eClass));
 			createRevisionSummaryType.setName(eClass.getName());
 			subMap.getTypes().add(createRevisionSummaryType);

@@ -33,8 +33,10 @@ import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserSettings;
 import org.bimserver.utils.CollectionUtils;
 
 public class TestDatabase {
@@ -64,11 +66,108 @@ public class TestDatabase {
 				checkWithAllOfType();
 				removeWithOid();
 				checkWithAllOfType();
+				checkLists();
+				checkLists2();
+				checkLists3();
 			} finally {
 				database.close();
 			}
 		} catch (DatabaseInitException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	private void checkLists2() {
+		DatabaseSession session = database.createSession();
+		long uoid = -1;
+		try {
+			User user = session.create(User.class);
+			UserSettings userSettings = session.create(UserSettings.class);
+			SerializerPluginConfiguration serializerPluginConfiguration = session.create(SerializerPluginConfiguration.class);
+			user.setUserSettings(userSettings);
+			uoid = user.getOid();
+			serializerPluginConfiguration.setUserSettings(userSettings);
+			session.commit();
+		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+			session = database.createSession();
+			try {
+				User user = session.get(uoid, Query.getDefault());
+				UserSettings userSettings = user.getUserSettings();
+				List<SerializerPluginConfiguration> serializers = userSettings.getSerializers();
+				for (SerializerPluginConfiguration serializerPluginConfiguration : serializers) {
+					System.out.println(serializerPluginConfiguration);
+				}
+			} catch (BimserverDatabaseException e) {
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+		}
+	}
+	
+	private void checkLists3() {
+		DatabaseSession session = database.createSession();
+		long xid = -1;
+		try {
+			User user = session.create(User.class);
+			UserSettings userSettings = session.create(UserSettings.class);
+			SerializerPluginConfiguration serializerPluginConfiguration1 = session.create(SerializerPluginConfiguration.class);
+			SerializerPluginConfiguration serializerPluginConfiguration2 = session.create(SerializerPluginConfiguration.class);
+			xid = serializerPluginConfiguration2.getOid();
+			user.setUserSettings(userSettings);
+			serializerPluginConfiguration1.setUserSettings(userSettings);
+			serializerPluginConfiguration2.setUserSettings(userSettings);
+			session.commit();
+		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+			session = database.createSession();
+			try {
+				SerializerPluginConfiguration p1 = session.get(xid, Query.getDefault());
+				UserSettings userSettings = p1.getUserSettings();
+				for (SerializerPluginConfiguration p2 : userSettings.getSerializers()) {
+					System.out.println(p2.getOid() + " - " + p2);
+				}
+			} catch (BimserverDatabaseException e) {
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+		}
+	}
+	
+	private void checkLists() {
+		DatabaseSession session = database.createSession();
+		long uoid = -1;
+		try {
+			Project p1 = session.create(Project.class);
+			p1.setName("p1");
+			Project p2 = session.create(Project.class);
+			p2.setName("p2");
+			User u1 = session.create(User.class);
+			uoid = u1.getOid();
+			p1.getHasAuthorizedUsers().add(u1);
+			p2.getHasAuthorizedUsers().add(u1);
+			session.commit();
+		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+			session = database.createSession();
+			try {
+				User user = session.get(uoid, Query.getDefault());
+				for (Project p : user.getHasRightsOn()) {
+					System.out.println(p.getName());
+				}
+			} catch (BimserverDatabaseException e) {
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
 		}
 	}
 
@@ -146,10 +245,10 @@ public class TestDatabase {
 	private void create() {
 		DatabaseSession session = database.createSession();
 		try {
-			Project project = session.create(StorePackage.eINSTANCE.getProject());
+			Project project = session.create(Project.class);
 			poid = project.getOid();
 			project.setName("testproject");
-			User user = session.create(StorePackage.eINSTANCE.getUser());
+			User user = session.create(User.class);
 			uoid = user.getOid();
 			user.setName("testuser");
 			project.getHasAuthorizedUsers().add(user);

@@ -63,7 +63,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 		if (trimmedName.equals("")) {
 			throw new UserException("Invalid project name");
 		}
-		final Project project = getDatabaseSession().create(StorePackage.eINSTANCE.getProject());
+		final Project project = getDatabaseSession().create(Project.class);
 		Project parentProject = null;
 		if (parentPoid != -1) {
 			parentProject = getProjectByPoid(parentPoid);
@@ -91,7 +91,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 			}
 			project.setGeoTag(parent.getGeoTag());
 		}
-		final NewProjectAdded newProjectAdded = getDatabaseSession().create(LogPackage.eINSTANCE.getNewProjectAdded());
+		final NewProjectAdded newProjectAdded = getDatabaseSession().create(NewProjectAdded.class);
 		newProjectAdded.setDate(new Date());
 		newProjectAdded.setExecutor(actingUser);
 		newProjectAdded.setParentProject(parentProject);
@@ -113,7 +113,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 		project.setDescription("");
 		project.setExportLengthMeasurePrefix(SIPrefix.METER);
 		if (project.getParent() == null) {
-			GeoTag geoTag = getDatabaseSession().create(StorePackage.eINSTANCE.getGeoTag());
+			GeoTag geoTag = getDatabaseSession().create(GeoTag.class);
 			geoTag.setEnabled(false);
 			project.setGeoTag(geoTag);
 			getDatabaseSession().store(geoTag);

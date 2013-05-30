@@ -17,172 +17,140 @@ package org.bimserver.emf;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-import org.bimserver.emf.Delegate.State;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.impl.EStoreEObjectImpl;
 
-public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
+public class IdEObjectImpl extends EStoreEObjectImpl implements IdEObject {
 
-	private Delegate delegate;
+	public static enum State {
+		NO_LAZY_LOADING, TO_BE_LOADED, LOADING, LOADED
+	}
+
+	private long oid = -1;
+	private int pid;
+	private int rid;
+	private int expressId = -1;
+	private IfcModelInterface model;
+	private State loadingState = State.NO_LAZY_LOADING;
+	private QueryInterface queryInterface;
+
+	public IdEObjectImpl() {
+		eSetStore(new DefaultBimServerEStore());
+	}
 	
 	@Override
 	public long getOid() {
-		return getDelegate().getOid();
-	}
-
-	public void setOid(long oid) {
-		getDelegate().setOid(oid);
-	}
-
-	public void setModel(IfcModelInterface model) throws IfcModelInterfaceException {
-		getDelegate().setModel(model);
-	}
-
-	public Delegate getDelegate() {
-		if (delegate == null) {
-			delegate = new DefaultDelegate(this, null);
-		}
-		return delegate;
+		return oid;
 	}
 	
 	@Override
+	protected EList<?> createList(EStructuralFeature eStructuralFeature) {
+		load();
+		return super.createList(eStructuralFeature);
+	}
+	
+	public void setOid(long oid) {
+		this.oid = oid;
+	}
+
+	public void setModel(IfcModelInterface model) throws IfcModelInterfaceException {
+		this.model = model;
+	}
+
+	@Override
 	public int getPid() {
-		return getDelegate().getPid();
+		return this.pid;
 	}
 
 	@Override
 	public int getRid() {
-		return getDelegate().getRid();
+		load();
+		return this.rid;
 	}
 
 	public void setPid(int pid) {
-		getDelegate().setPid(pid);
+		this.pid = pid;
 	}
 
 	public void setRid(int rid) {
-		getDelegate().setRid(rid);
-	}
-
-	@Override
-	public void eUnset(EStructuralFeature eFeature) {
-		getDelegate().eUnset(eFeature);
-		super.eUnset(eFeature);
-	}
-	
-	@Override
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		getDelegate().eSet(eFeature, newValue);
-		super.eSet(eFeature, newValue);
-	}
-	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@Override
-	public Object eGet(EStructuralFeature eFeature) {
-		getDelegate().eGet(eFeature);
-		if (eFeature.isMany()) {
-			return delegate.createList((EList) super.eGet(eFeature), eFeature);
-		}
-		return super.eGet(eFeature);
-	}
-	
-	@Override
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		getDelegate().eIsSet(eFeature);
-		return super.eIsSet(eFeature);
-	}
-	
-	@Override
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		getDelegate().eGet(eFeature, resolve);
-		return super.eGet(eFeature, resolve);
-	}
-	
-	@Override
-	public Object eGet(EStructuralFeature eFeature, boolean resolve, boolean coreType) {
-		getDelegate().eGet(eFeature, resolve, coreType);
-		return super.eGet(eFeature, resolve, coreType);
-	}
-	
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		getDelegate().eGet(featureID, resolve, coreType);
-		return super.eGet(featureID, resolve, coreType);
-	}
-	
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		getDelegate().eSet(featureID, newValue);
-		super.eSet(featureID, newValue);
+		this.rid = rid;
 	}
 
 	public void load() {
-		if (getDelegate() != null) {
-			getDelegate().load();
+		if (!isLoadedOrLoading() && oid != -1) {
+			loadingState = State.LOADING;
+			internalLoad();
+			loadingState = State.LOADED;
 		}
 	}
 
 	public void loadExplicit() {
-		if (getDelegate() != null) {
-			getDelegate().loadExplicit();
-		}
+		loadingState = State.LOADING;
+		internalLoad();
+		loadingState = State.LOADED;
 	}
-	
+
+	private void internalLoad() {
+		((BimServerEStore)eStore).load(this);
+	}
+
 	public void loadForEdit() {
-		if (getDelegate() != null) {
-			getDelegate().loadForEdit();
-		}
+		// if (getDelegate() != null) {
+		// getDelegate().loadForEdit();
+		// }
 	}
-	
+
 	public void setLoaded() {
-		getDelegate().setState(State.LOADED);
+		setState(State.LOADED);
 	}
 
 	public State getLoadingState() {
-		return getDelegate().getState();
+		return loadingState;
 	}
-	
+
 	public IfcModelInterface getModel() {
-		return getDelegate().getModel();
+		return model;
 	}
-	
+
 	public boolean hasModel() {
 		return getModel() != null;
 	}
 
 	public int getExpressId() {
-		return getDelegate().getExpressId();
+		return expressId;
 	}
 
 	public void setExpressId(int expressId) {
-		this.getDelegate().setExpressId(expressId);
+		this.expressId = expressId;
 	}
 
 	public boolean isLoadedOrLoading() {
-		return getDelegate().isLoadedOrLoading();
+		return loadingState != State.TO_BE_LOADED;
 	}
 
 	public void setLoading() {
-		getDelegate().setLoading();
-	}
-
-	public void setDelegate(Delegate delegate) {
-		this.delegate = delegate;
+		loadingState = State.LOADING;
 	}
 
 	public void setQueryInterface(QueryInterface queryInterface) {
-		getDelegate().setQueryInterface(queryInterface);
+		this.queryInterface = queryInterface;
+		if (queryInterface == null || queryInterface.isDeep()) {
+			setState(State.NO_LAZY_LOADING);
+		} else {
+			setState(State.TO_BE_LOADED);
+		}
 	}
 
 	public QueryInterface getQueryInterface() {
-		return getDelegate().getQueryInterface();
+		return queryInterface;
 	}
-	
+
 	public void remove() {
-		delegate.remove();
+		((BimServerEStore)eStore).remove(this);
 	}
 
 	public void setState(State state) {
-		this.getDelegate().setState(state);
+		this.loadingState = state;
 	}
 }

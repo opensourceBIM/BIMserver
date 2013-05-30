@@ -34,9 +34,7 @@ public class ListWalls extends TestWithEmbeddedServer {
 			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 
 			ClientIfcModel model = bimServerClient.getModel(newProject.getOid(), newProject.getLastRevisionId(), true);
-			for (IfcWallStandardCase wall : model.getAllWithSubTypes(IfcWallStandardCase.class)) {
-				System.out.println(wall);
-			}
+			model.getAllWithSubTypes(IfcWallStandardCase.class);
 		} catch (Throwable e) {
 			e.printStackTrace();
 			if (e instanceof AssertionError) {

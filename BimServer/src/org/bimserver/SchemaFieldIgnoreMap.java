@@ -27,6 +27,8 @@ import org.bimserver.plugins.schema.EntityDefinition;
 import org.bimserver.plugins.schema.InverseAttribute;
 import org.bimserver.plugins.schema.SchemaDefinition;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class SchemaFieldIgnoreMap extends FieldIgnoreMap {
 
@@ -41,7 +43,10 @@ public class SchemaFieldIgnoreMap extends FieldIgnoreMap {
 						// Exception: http://code.google.com/p/bimserver/issues/detail?id=303
 						// Addition: Leon says this should be done for all types
 					} else {
-						addToGeneralIgnoreSet(new StructuralFeatureIdentifier(entity.getName(), attribute.getName()));
+						EStructuralFeature eStructuralFeature = getEClass(entity.getName()).getEStructuralFeature(attribute.getName());
+						if (((EReference)eStructuralFeature).getEOpposite() != null) {
+							addToGeneralIgnoreSet(new StructuralFeatureIdentifier(entity.getName(), attribute.getName()));
+						}
 					}
 				}
 			}

@@ -114,7 +114,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			if (getModel() != null) {
 				concreteRevision.setChecksum(getModel().getModelMetaData().getChecksum());
 			}
-			final NewRevisionAdded newRevisionAdded = getDatabaseSession().create(LogPackage.eINSTANCE.getNewRevisionAdded());
+			final NewRevisionAdded newRevisionAdded = getDatabaseSession().create(NewRevisionAdded.class);
 			newRevisionAdded.setDate(new Date());
 			newRevisionAdded.setExecutor(user);
 			final Revision revision = concreteRevision.getRevisions().get(0);

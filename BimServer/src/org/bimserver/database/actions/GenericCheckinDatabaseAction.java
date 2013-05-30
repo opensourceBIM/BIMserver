@@ -86,7 +86,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 	
 	public CreateRevisionResult createNewConcreteRevision(DatabaseSession session, long size, Project project, User user, String comment) throws BimserverDatabaseException, BimserverLockConflictException {
 		CreateRevisionResult result = new CreateRevisionResult();
-		ConcreteRevision concreteRevision = getDatabaseSession().create(StorePackage.eINSTANCE.getConcreteRevision());
+		ConcreteRevision concreteRevision = getDatabaseSession().create(ConcreteRevision.class);
 		concreteRevision.setSize(size);
 		Date date = new Date();
 		concreteRevision.setDate(date);
@@ -106,7 +106,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		project.setLastRevision(newRevision);
 		Project parent = project.getParent();
 		while (parent != null) {
-			Revision revision = getDatabaseSession().create(StorePackage.eINSTANCE.getRevision());
+			Revision revision = getDatabaseSession().create(Revision.class);
 			result.addRevision(revision);
 			revision.setComment("generated for subproject " + project.getName() + ", revision " + concreteRevision.getId() + ", by " + user.getName());
 			revision.setDate(date);

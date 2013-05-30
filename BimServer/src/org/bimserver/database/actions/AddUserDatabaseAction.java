@@ -35,10 +35,8 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.log.NewUserAdded;
 import org.bimserver.models.store.ServerSettings;
-import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
 import org.bimserver.notifications.NewUserNotification;
@@ -116,7 +114,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 				}
 			}
 		}
-		final User user = getDatabaseSession().create(StorePackage.eINSTANCE.getUser());
+		final User user = getDatabaseSession().create(User.class);
 		if (password != null) {
 			byte[] salt = new byte[32];
 			new java.security.SecureRandom().nextBytes(salt);
@@ -135,7 +133,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 		user.setValidationTokenCreated(new Date());
 		
 		if (!createSystemUser) {
-			final NewUserAdded newUserAdded = getDatabaseSession().create(LogPackage.eINSTANCE.getNewUserAdded());
+			final NewUserAdded newUserAdded = getDatabaseSession().create(NewUserAdded.class);
 			newUserAdded.setUser(user);
 			newUserAdded.setExecutor(actingUser);
 			newUserAdded.setDate(new Date());

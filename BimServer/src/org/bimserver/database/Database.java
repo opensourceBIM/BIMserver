@@ -153,7 +153,7 @@ public class Database implements BimDatabase {
 				systemUser.setCreatedBy(systemUser);
 				databaseSession.store(systemUser);
 
-				DatabaseCreated databaseCreated = databaseSession.create(LogPackage.eINSTANCE.getDatabaseCreated());
+				DatabaseCreated databaseCreated = databaseSession.create(DatabaseCreated.class);
 				databaseCreated.setAccessMethod(AccessMethod.INTERNAL);
 				databaseCreated.setExecutor(systemUser);
 				databaseCreated.setDate(new Date());
@@ -190,7 +190,7 @@ public class Database implements BimDatabase {
 	}
 
 	public ServerSettings createDefaultSettings(DatabaseSession databaseSession) throws BimserverDatabaseException {
-		ServerSettings settings = databaseSession.create(StorePackage.eINSTANCE.getServerSettings());
+		ServerSettings settings = databaseSession.create(ServerSettings.class);
 		settings.setEmailSenderAddress("no-reply@bimserver.org");
 		settings.setEmailSenderName("Administrator");
 		settings.setSiteAddress("");

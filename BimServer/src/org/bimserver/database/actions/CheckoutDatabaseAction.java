@@ -73,7 +73,7 @@ public class CheckoutDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 			for (Checkout checkout : project.getCheckouts()) {
 				if (checkout.getUser() == user && checkout.getActive()) {
 					checkout.setActive(false);
-					Checkout newCheckout = getDatabaseSession().create(StorePackage.eINSTANCE.getCheckout());
+					Checkout newCheckout = getDatabaseSession().create(Checkout.class);
 					newCheckout.setActive(true);
 					newCheckout.setDate(new Date());
 					newCheckout.setUser(user);
@@ -85,7 +85,7 @@ public class CheckoutDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 					return realCheckout(project, revision, getDatabaseSession(), user);
 				}
 			}
-			Checkout checkout = getDatabaseSession().create(StorePackage.eINSTANCE.getCheckout());
+			Checkout checkout = getDatabaseSession().create(Checkout.class);
 			checkout.setActive(true);
 			checkout.setDate(new Date());
 			checkout.setUser(user);

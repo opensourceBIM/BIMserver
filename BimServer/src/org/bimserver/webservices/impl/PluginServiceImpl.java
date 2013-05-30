@@ -159,7 +159,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			List<SObjectIDMPluginConfiguration> objectIdms = getBimServer().getSConverter().convertToSListObjectIDMPluginConfiguration(getUserSettings(session).getObjectIDMs());
+			UserSettings userSettings = getUserSettings(session);
+			List<SObjectIDMPluginConfiguration> objectIdms = getBimServer().getSConverter().convertToSListObjectIDMPluginConfiguration(userSettings.getObjectIDMs());
 			Collections.sort(objectIdms, new SPluginConfigurationComparator());
 			return objectIdms;
 		} catch (Exception e) {
@@ -340,7 +341,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			List<SRenderEnginePluginConfiguration> renderEngines = getBimServer().getSConverter().convertToSListRenderEnginePluginConfiguration(getUserSettings(session).getRenderEngines());
+			UserSettings userSettings = getUserSettings(session);
+			List<SRenderEnginePluginConfiguration> renderEngines = getBimServer().getSConverter().convertToSListRenderEnginePluginConfiguration(userSettings.getRenderEngines());
 			Collections.sort(renderEngines, new SPluginConfigurationComparator());
 			return renderEngines;
 		} catch (Exception e) {
@@ -355,7 +357,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			List<SQueryEnginePluginConfiguration> queryEngines = getBimServer().getSConverter().convertToSListQueryEnginePluginConfiguration(getUserSettings(session).getQueryengines());
+			UserSettings userSettings = getUserSettings(session);
+			List<SQueryEnginePluginConfiguration> queryEngines = getBimServer().getSConverter().convertToSListQueryEnginePluginConfiguration(userSettings.getQueryengines());
 			Collections.sort(queryEngines, new SPluginConfigurationComparator());
 			return queryEngines;
 		} catch (Exception e) {
@@ -370,7 +373,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			List<SModelComparePluginConfiguration> modelCompares = getBimServer().getSConverter().convertToSListModelComparePluginConfiguration(getUserSettings(session).getModelcompares());
+			UserSettings userSettings = getUserSettings(session);
+			List<SModelComparePluginConfiguration> modelCompares = getBimServer().getSConverter().convertToSListModelComparePluginConfiguration(userSettings.getModelcompares());
 			Collections.sort(modelCompares, new SPluginConfigurationComparator());
 			return modelCompares;
 		} catch (Exception e) {
@@ -385,7 +389,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			List<SModelMergerPluginConfiguration> modelMergers = getBimServer().getSConverter().convertToSListModelMergerPluginConfiguration(getUserSettings(session).getModelmergers());
+			UserSettings userSettings = getUserSettings(session);
+			List<SModelMergerPluginConfiguration> modelMergers = getBimServer().getSConverter().convertToSListModelMergerPluginConfiguration(userSettings.getModelmergers());
 			Collections.sort(modelMergers, new SPluginConfigurationComparator());
 			return modelMergers;
 		} catch (Exception e) {
@@ -665,7 +670,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			List<SSerializerPluginConfiguration> serializers = getBimServer().getSConverter().convertToSListSerializerPluginConfiguration(getUserSettings(session).getSerializers());
+			UserSettings userSettings = getUserSettings(session);
+			List<SSerializerPluginConfiguration> serializers = getBimServer().getSConverter().convertToSListSerializerPluginConfiguration(userSettings.getSerializers());
 			Collections.sort(serializers, new SPluginConfigurationComparator());
 			return serializers;
 		} catch (Exception e) {
@@ -938,7 +944,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			List<SDeserializerPluginConfiguration> deserializers = getBimServer().getSConverter().convertToSListDeserializerPluginConfiguration(getUserSettings(session).getDeserializers());
+			UserSettings userSettings = getUserSettings(session);
+			List<SDeserializerPluginConfiguration> deserializers = getBimServer().getSConverter().convertToSListDeserializerPluginConfiguration(userSettings.getDeserializers());
 			Collections.sort(deserializers, new SPluginConfigurationComparator());
 			return deserializers;
 		} catch (Exception e) {
