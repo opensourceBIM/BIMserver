@@ -1,0 +1,90 @@
+.methodList li {
+	list-style: none;
+}
+
+.mainDiv {
+	padding-right: 16px;
+	position: absolute;
+	top: 46px;
+	bottom: 0px;
+	right: 0px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.methodList {
+	padding: 8px 0;
+	position: absolute;
+	top: 62px;
+	left: 16px;
+	bottom: 0px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.innerMethodList {
+	height: 100%;
+}
+
+a {
+	cursor: pointer;
+}
+
+.scenarioNav {
+	width: 250px;
+	margin: 10px;
+}
+
+.initialhide {
+	display: none;
+}
+
+textarea {
+	width: 570px;
+	height: 460px;
+	font-family:Consolas,Monaco,Lucida Console,Liberation Mono;
+}
+
+.requestdiv, .responsediv {
+	float: left;
+	margin: 5px;
+	width: 600px;
+	height: 470px;
+}
+
+.str {
+	white-space: nowrap;
+}
+
+pre.prettyprint {
+	border: none;
+	width: auto;
+	height: auto;
+}
+
+.requestdiv div, .responsediv div {
+	width: 600px;
+	height: 470px;
+	overflow: auto;
+}
+
+.textareas {
+	height: 500px;
+}
+
+.example {
+	background-color: #eeeeee;
+	border-radius: 3px;
+	padding: 10px;
+}
+
+.menuLoginButton {
+	float: right;
+	margin: 10px;
+}
+.hero-unit {
+	margin-top: 16px;
+}
+.logo {
+	margin-top: 5px;
+}
