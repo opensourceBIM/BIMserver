@@ -23,12 +23,44 @@ import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 
-public class CopyAdminInterface {
+public class CopyAdminAndBIMsieInterface {
 	public static void main(String[] args) {
-		new CopyAdminInterface().start();
+		CopyAdminAndBIMsieInterface copyAdminAndBIMsieInterface = new CopyAdminAndBIMsieInterface();
+		copyAdminAndBIMsieInterface.copyAdminInterface();
+		copyAdminAndBIMsieInterface.copyBimsieInterface();
 	}
 
-	private void start() {
+	private void copyBimsieInterface() {
+		File bootstrap = new File("C:\\Users\\Ruben\\git\\BootstrapBIM");
+		File bimsie = new File("D:\\Software\\Workspaces\\BIMserver\\BIMsie");
+		try {
+			FileUtils.copyFileToDirectory(new File(bootstrap, "console.html"), bimsie);
+
+			FileUtils.copyDirectory(new File(bootstrap, "js"), new File(bimsie, "js"), new FileFilter() {
+				@Override
+				public boolean accept(File pathname) {
+					if (pathname.getName().equals("settings.js") || pathname.getName().equals("consolesettings.js")) {
+						return false;
+					}
+					return true;
+				}
+			});
+			FileUtils.copyDirectory(new File(bootstrap, "img"), new File(bimsie, "img"), new FileFilter() {
+				@Override
+				public boolean accept(File pathname) {
+					if (pathname.getName().equals("consolelogo.png") || pathname.getName().equals("consolelogolarge.png")) {
+						return false;
+					}
+					return true;
+				}
+			});
+			FileUtils.copyDirectory(new File(bootstrap, "css"), new File(bimsie, "css"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void copyAdminInterface() {
 		File bootstrap = new File("C:\\Users\\Ruben\\git\\BootstrapBIM");
 		File www = new File("www");
 		try {
