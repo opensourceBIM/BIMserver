@@ -363,7 +363,7 @@ public class Starter extends JFrame {
 //				command += " -Xdebug -Xrunjdwp:transport=dt_socket,address=8998,server=y";
 //			}
 			command += " -classpath";
-			command += " \"lib" + File.pathSeparator;
+			command += " lib" + File.pathSeparator;
 			File dir = new File(destDir + File.separator + "lib");
 			for (File lib : dir.listFiles()) {
 				if (lib.isFile()) {
@@ -373,7 +373,6 @@ public class Starter extends JFrame {
 			if (command.endsWith(File.pathSeparator)) {
 				command = command.substring(0, command.length()-1);
 			}
-			command += "\"";
 			Enumeration<URL> resources = getClass().getClassLoader().getResources("META-INF/MANIFEST.MF");
 			String realMainClass = "";
 			while (resources.hasMoreElements()) {
