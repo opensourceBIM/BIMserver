@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="sObjectAdded">
  *   &lt;complexContent>
- *     &lt;extension base="{org.buildingsmart.bimsie}sCompareItem">
+ *     &lt;extension base="{org.bimserver}sCompareItem">
  *       &lt;sequence>
  *       &lt;/sequence>
  *     &lt;/extension>

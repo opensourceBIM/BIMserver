@@ -35,10 +35,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="rid" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="schemas" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="services" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="state" type="{org.buildingsmart.bimsie}sObjectState" minOccurs="0"/>
+ *         &lt;element name="state" type="{org.bimserver}sObjectState" minOccurs="0"/>
  *         &lt;element name="token" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="userSettingsId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="userType" type="{org.buildingsmart.bimsie}sUserType" minOccurs="0"/>
+ *         &lt;element name="userType" type="{org.bimserver}sUserType" minOccurs="0"/>
  *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="validationToken" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
  *         &lt;element name="validationTokenCreated" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>

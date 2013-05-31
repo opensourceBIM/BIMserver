@@ -22,12 +22,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="active" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
- *         &lt;element name="checkin" type="{org.buildingsmart.bimsie}sRevision" minOccurs="0"/>
+ *         &lt;element name="checkin" type="{org.bimserver}sRevision" minOccurs="0"/>
  *         &lt;element name="date" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="logs" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="oid" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="projectId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="revision" type="{org.buildingsmart.bimsie}sRevision" minOccurs="0"/>
+ *         &lt;element name="revision" type="{org.bimserver}sRevision" minOccurs="0"/>
  *         &lt;element name="rid" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *       &lt;/sequence>

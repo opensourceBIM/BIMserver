@@ -26,7 +26,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="createdById" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="createdDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="exportLengthMeasurePrefix" type="{org.buildingsmart.bimsie}ssiPrefix" minOccurs="0"/>
+ *         &lt;element name="exportLengthMeasurePrefix" type="{org.buildingsmart.bimsie1}ssiPrefix" minOccurs="0"/>
  *         &lt;element name="extendedData" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="geoTagId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="hasAuthorizedUsers" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
@@ -40,7 +40,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="revisions" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="rid" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="services" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="state" type="{org.buildingsmart.bimsie}sObjectState" minOccurs="0"/>
+ *         &lt;element name="state" type="{org.buildingsmart.bimsie1}sObjectState" minOccurs="0"/>
  *         &lt;element name="subProjects" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>

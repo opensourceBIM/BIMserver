@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="sSerializerPluginConfiguration">
  *   &lt;complexContent>
- *     &lt;extension base="{org.buildingsmart.bimsie}sPluginConfiguration">
+ *     &lt;extension base="{org.buildingsmart.bimsie1}sPluginConfiguration">
  *       &lt;sequence>
  *         &lt;element name="objectIDMId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="renderEngineId" type="{http://www.w3.org/2001/XMLSchema}long"/>

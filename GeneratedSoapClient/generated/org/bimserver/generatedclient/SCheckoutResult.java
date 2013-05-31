@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="sCheckoutResult">
  *   &lt;complexContent>
- *     &lt;extension base="{org.buildingsmart.bimsie}sDownloadResult">
+ *     &lt;extension base="{org.buildingsmart.bimsie1}sDownloadResult">
  *       &lt;sequence>
  *       &lt;/sequence>
  *     &lt;/extension>

@@ -43,15 +43,15 @@ import javax.xml.bind.annotation.XmlType;
     "settingsId"
 })
 @XmlSeeAlso({
+    SModelComparePluginConfiguration.class,
     SModelMergerPluginConfiguration.class,
     SRenderEnginePluginConfiguration.class,
-    SWebModulePluginConfiguration.class,
-    SSerializerPluginConfiguration.class,
-    SObjectIDMPluginConfiguration.class,
-    SModelComparePluginConfiguration.class,
+    SDeserializerPluginConfiguration.class,
     SInternalServicePluginConfiguration.class,
+    SWebModulePluginConfiguration.class,
     SQueryEnginePluginConfiguration.class,
-    SDeserializerPluginConfiguration.class
+    SSerializerPluginConfiguration.class,
+    SObjectIDMPluginConfiguration.class
 })
 public class SPluginConfiguration {
 
